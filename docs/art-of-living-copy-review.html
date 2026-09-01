@@ -1,0 +1,627 @@
+<title>Art of Living, Rewritten</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Instrument+Sans:wght@400;500;600&display=swap">
+
+<style>
+  :root {
+    --paper:      #FBFBFA;
+    --paper-sunk: #F2F2F0;
+    --ink:        #17181A;
+    --ink-soft:   #5C5F66;
+    --ink-faint:  #8E9298;
+    --rule:       #DFDFDD;
+    --accent:     #274038;
+    --accent-tint:#E4EAE6;
+    --strike:     #A9ADAF;
+
+    --display: "Newsreader", "Iowan Old Style", Georgia, serif;
+    --body: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+
+    --measure: 34rem;
+    --page: 62rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:      #131413;
+      --paper-sunk: #1B1D1C;
+      --ink:        #EDEDEB;
+      --ink-soft:   #A2A6A5;
+      --ink-faint:  #74797A;
+      --rule:       #2C2F2D;
+      --accent:     #8FB3A2;
+      --accent-tint:#1E2723;
+      --strike:     #6A6F70;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper:      #131413;
+    --paper-sunk: #1B1D1C;
+    --ink:        #EDEDEB;
+    --ink-soft:   #A2A6A5;
+    --ink-faint:  #74797A;
+    --rule:       #2C2F2D;
+    --accent:     #8FB3A2;
+    --accent-tint:#1E2723;
+    --strike:     #6A6F70;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: var(--page);
+    margin: 0 auto;
+    padding: 4.5rem 1.5rem 7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4.5rem;
+  }
+
+  /* ---------- masthead ---------- */
+
+  .masthead { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .kicker {
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 500;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-weight: 300;
+    font-size: clamp(2.4rem, 6vw, 3.6rem);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .standfirst {
+    max-width: var(--measure);
+    color: var(--ink-soft);
+    font-size: 1.0625rem;
+    margin: 0;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 2.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.8125rem;
+    color: var(--ink-soft);
+  }
+  .meta div { display: flex; flex-direction: column; gap: 0.15rem; }
+  .meta dt {
+    font-size: 0.625rem; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink-faint); font-weight: 500;
+  }
+  .meta dd { margin: 0; font-variant-numeric: tabular-nums; }
+
+  /* ---------- generic section ---------- */
+
+  section { display: flex; flex-direction: column; gap: 1.75rem; }
+
+  h2 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: 1.75rem;
+    line-height: 1.15;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  .sec-head { display: flex; flex-direction: column; gap: 0.5rem; }
+  .sec-head p { margin: 0; max-width: var(--measure); color: var(--ink-soft); }
+
+  /* ---------- diagnosis list ---------- */
+
+  .faults { display: flex; flex-direction: column; gap: 0; margin: 0; padding: 0; list-style: none; }
+
+  .faults li {
+    display: grid;
+    grid-template-columns: 1.75rem 1fr;
+    gap: 0 1rem;
+    padding: 1.15rem 0;
+    border-top: 1px solid var(--rule);
+  }
+  .faults li:last-child { border-bottom: 1px solid var(--rule); }
+
+  .faults .n {
+    font-size: 0.6875rem;
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+    padding-top: 0.35rem;
+    letter-spacing: 0.05em;
+  }
+  .faults h3 {
+    margin: 0 0 0.3rem;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+  }
+  .faults p { margin: 0; color: var(--ink-soft); font-size: 0.9375rem; max-width: 42rem; }
+  .faults q {
+    font-family: var(--display);
+    font-style: italic;
+    color: var(--ink);
+    quotes: "\201C" "\201D";
+  }
+
+  /* ---------- specimen blocks ---------- */
+
+  .specimens { display: flex; flex-direction: column; gap: 2.5rem; }
+
+  .spec { display: flex; flex-direction: column; gap: 1rem; }
+
+  .spec-bar {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--ink);
+  }
+  .spec-bar h3 {
+    margin: 0;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+  }
+  .slug {
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .pair {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  @media (min-width: 42rem) {
+    .pair { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  }
+
+  .side { display: flex; flex-direction: column; gap: 0.85rem; padding-top: 0.25rem; }
+
+  .side-label {
+    font-size: 0.625rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .now .side-label { color: var(--ink-faint); }
+  .next .side-label { color: var(--accent); }
+
+  .line { display: flex; flex-direction: column; gap: 0.2rem; }
+
+  .role {
+    font-size: 0.625rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .copy {
+    font-family: var(--display);
+    font-size: 1.0625rem;
+    line-height: 1.4;
+    margin: 0;
+  }
+  .now .copy { color: var(--strike); }
+  .next .copy { color: var(--ink); }
+
+  .copy.big { font-size: 1.375rem; line-height: 1.2; }
+  .copy.label-case {
+    font-family: var(--body);
+    font-size: 0.8125rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .next { border-left: 2px solid var(--accent); padding-left: 1.25rem; }
+  .now  { border-left: 2px solid var(--rule);   padding-left: 1.25rem; }
+
+  .why {
+    font-family: var(--body);
+    font-size: 0.875rem;
+    color: var(--ink-soft);
+    margin: 0.35rem 0 0;
+    max-width: 40rem;
+  }
+  .why strong { color: var(--ink); font-weight: 600; }
+
+  .flag {
+    display: inline-block;
+    font-family: var(--body);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-tint);
+    padding: 0.15rem 0.45rem;
+    border-radius: 2px;
+    font-weight: 600;
+  }
+
+  /* ---------- house rules ---------- */
+
+  .rules { display: grid; grid-template-columns: 1fr; gap: 0; }
+  @media (min-width: 46rem) { .rules { grid-template-columns: 1fr 1fr; column-gap: 2.5rem; } }
+
+  .rule-item {
+    padding: 1.1rem 0;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .rule-item h3 {
+    margin: 0;
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: 1.125rem;
+  }
+  .rule-item p { margin: 0; font-size: 0.9375rem; color: var(--ink-soft); }
+
+  .banned {
+    background: var(--paper-sunk);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .banned p { margin: 0; font-size: 0.9375rem; color: var(--ink-soft); max-width: 44rem; }
+  .banned ul {
+    margin: 0; padding: 0; list-style: none;
+    display: flex; flex-wrap: wrap; gap: 0.4rem 0.5rem;
+  }
+  .banned li {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 0.9375rem;
+    color: var(--ink-soft);
+    border: 1px solid var(--rule);
+    padding: 0.15rem 0.6rem;
+    background: var(--paper);
+  }
+
+  /* ---------- fixes table ---------- */
+
+  .table-scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.9375rem; min-width: 34rem; }
+  th, td { text-align: left; padding: 0.7rem 1rem 0.7rem 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th {
+    font-family: var(--body);
+    font-size: 0.625rem; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink-faint); font-weight: 600;
+    border-bottom: 1px solid var(--ink);
+  }
+  td:first-child { color: var(--ink); font-weight: 500; white-space: nowrap; padding-right: 1.5rem; }
+  td:last-child { color: var(--ink-soft); }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 1.25rem;
+    font-size: 0.8125rem;
+    color: var(--ink-faint);
+    max-width: 44rem;
+  }
+  footer p { margin: 0 0 0.5rem; }
+
+  a { color: var(--accent); text-underline-offset: 2px; }
+  a:focus-visible, li:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="kicker">Oberndörfer Milano &middot; Copy review</p>
+    <h1>Art of Living, rewritten</h1>
+    <p class="standfirst">The page has a genuinely good story in it — a Riviera palace hotel lived with your trunks for a season and then asked you to make its furniture. It currently tells that story like a case study. Here is the same page told like a house.</p>
+    <dl class="meta">
+      <div><dt>Page</dt><dd>/pages/oberndorfer-x-miramare-sanremo</dd></div>
+      <div><dt>Template</dt><dd>page.art-of-living.json</dd></div>
+      <div><dt>Theme read</dt><dd>“Claude” (unpublished)</dd></div>
+      <div><dt>Sections</dt><dd>8</dd></div>
+    </dl>
+  </header>
+
+  <section>
+    <div class="sec-head">
+      <h2>Why it doesn’t read as luxury</h2>
+      <p>Not one bad sentence — five habits, each of which quietly costs the page authority.</p>
+    </div>
+    <ol class="faults">
+      <li>
+        <span class="n">01</span>
+        <div>
+          <h3>The headline announces instead of implying</h3>
+          <p><q>A hotel asked us to furnish it</q> is the sentence a founder says on a podcast. It’s a boast in the passive-aggressive register — vague about who (“a hotel”), loud about the flattery. Houses name the place and let the reader do the impressing.</p>
+        </div>
+      </li>
+      <li>
+        <span class="n">02</span>
+        <div>
+          <h3>It reaches for the worn phrases</h3>
+          <p><q>The same attention to detail</q>, <q>handcrafted in Italy</q>, <q>bespoke furniture</q>. These are category descriptors, not claims. Every Brianza workshop with a website says all three. Specificity is the only thing a reader can’t get elsewhere.</p>
+        </div>
+      </li>
+      <li>
+        <span class="n">03</span>
+        <div>
+          <h3>The register breaks three times</h3>
+          <p>Reverent opening → transactional headline → sustainability disclosure (<q>a byproduct of the meat industry</q>) → e‑commerce button. Each is fine somewhere. Together on one scroll they read as four different writers.</p>
+        </div>
+      </li>
+      <li>
+        <span class="n">04</span>
+        <div>
+          <h3>The closing metaphor is broken</h3>
+          <p><q>Our furniture belongs not only in your hands, but in the spaces you live in.</q> Furniture does not belong in your hands. The line was written for leather goods and carried across; it collapses the moment you picture it.</p>
+        </div>
+      </li>
+      <li>
+        <span class="n">05</span>
+        <div>
+          <h3>The last click contradicts the page</h3>
+          <p>Nine sections of made-to-commission furniture, then <q>Shop the Collection</q> into <span class="slug">/collections/home-accessories</span> — trays at €129. The reader is promised a commission and handed a coaster.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2>The rewrite, section by section</h2>
+      <p>In the order the reader scrolls. Theme block IDs are given so this can be typed straight into the editor.</p>
+    </div>
+
+    <div class="specimens">
+
+      <article class="spec">
+        <div class="spec-bar">
+          <h3>Opening chapter</h3>
+          <span class="slug">section_aol_open</span>
+        </div>
+        <div class="pair">
+          <div class="side now">
+            <span class="side-label">Now</span>
+            <div class="line"><span class="role">Eyebrow</span><p class="copy label-case">Art of Living</p></div>
+            <div class="line"><span class="role">Headline</span><p class="copy big">Bespoke furniture, handcrafted in Italy</p></div>
+            <div class="line"><span class="role">Body</span><p class="copy">The art of living begins with the art of making - the same leather craftsmanship behind our travel pieces, applied to objects made for the home.</p></div>
+          </div>
+          <div class="side next">
+            <span class="side-label">Proposed</span>
+            <div class="line"><span class="role">Eyebrow</span><p class="copy label-case">Art of Living</p></div>
+            <div class="line"><span class="role">Headline</span><p class="copy big">Leather, at the scale of a room</p></div>
+            <div class="line"><span class="role">Body</span><p class="copy">We have always made objects meant to be held. In Sanremo, we were asked to make objects meant to be lived in.</p></div>
+          </div>
+        </div>
+        <p class="why"><strong>Why.</strong> The old headline names a category; the new one names a leap — and it’s a leap only you can claim, because only you arrived at furniture from trunk-making. The body then does the work the old dek was avoiding: it opens the story instead of summarising the brand.</p>
+      </article>
+
+      <article class="spec">
+        <div class="spec-bar">
+          <h3>The Miramare, editorial</h3>
+          <span class="slug">section_aol_commission</span>
+        </div>
+        <div class="pair">
+          <div class="side now">
+            <span class="side-label">Now</span>
+            <div class="line"><span class="role">Caption</span><p class="copy label-case">Miramare Palace, Sanremo</p></div>
+            <div class="line"><span class="role">Heading</span><p class="copy big">A hotel asked us to furnish it</p></div>
+            <div class="line"><span class="role">Body</span><p class="copy">The Miramare Palace welcomed our pieces into their spaces. After living with them, they asked us to create their new furniture - a trust that began a new chapter for the house.</p></div>
+          </div>
+          <div class="side next">
+            <span class="side-label">Proposed</span>
+            <div class="line"><span class="role">Caption</span><p class="copy label-case">Miramare Palace — Sanremo, Liguria</p></div>
+            <div class="line"><span class="role">Heading</span><p class="copy big">It began with our trunks in the lobby</p></div>
+            <div class="line"><span class="role">Body</span><p class="copy">The Miramare kept our pieces in its public rooms for a season. Then it asked whether we would make the rest — the sofas, the armchairs, the tables. Saying yes committed the house to a new discipline.</p></div>
+          </div>
+        </div>
+        <p class="why"><strong>Why.</strong> Same facts, no boast. The heading now starts a story rather than reporting an outcome, and the body gives the reader the two details that make it real: a season of use, and a decision that cost you something. <q>Spaces</q> appeared twice in three lines; it’s gone.</p>
+      </article>
+
+      <article class="spec">
+        <div class="spec-bar">
+          <h3>The Commission, dark chapter</h3>
+          <span class="slug">section_aol_dark</span>
+        </div>
+        <div class="pair">
+          <div class="side now">
+            <span class="side-label">Now</span>
+            <div class="line"><span class="role">Heading</span><p class="copy big">Sofas, armchairs, poufs - and a trunk that became a table</p></div>
+            <div class="line"><span class="role">Body</span><p class="copy">Each piece carries the same attention to detail as our leather goods, simply expressed in a new form.</p></div>
+          </div>
+          <div class="side next">
+            <span class="side-label">Proposed</span>
+            <div class="line"><span class="role">Heading</span><p class="copy big">Sofas, armchairs, poufs — and a trunk that became a table</p></div>
+            <div class="line"><span class="role">Body</span><p class="copy">Nothing about the method changed. The same hides, the same hands, the same stitch — cut to the measure of a room.</p></div>
+          </div>
+        </div>
+        <p class="why"><strong>Why.</strong> The heading is the best line on the page — keep it exactly, just give it a real em dash. The body underneath was the weakest: it used <q>attention to detail</q> to avoid saying anything. The replacement makes the identical claim with three nouns a reader can picture.</p>
+      </article>
+
+      <article class="spec">
+        <div class="spec-bar">
+          <h3>Four full-bleed images</h3>
+          <span class="slug">section_aol_pieces</span>
+        </div>
+        <div class="pair">
+          <div class="side now">
+            <span class="side-label">Now</span>
+            <div class="line"><span class="role">Captions</span><p class="copy">None. Four silent images in a row.</p></div>
+          </div>
+          <div class="side next">
+            <span class="side-label">Proposed <span class="flag">confirm against photos</span></span>
+            <div class="line"><span class="role">p1</span><p class="copy">The travelling trunk, set at table height</p></div>
+            <div class="line"><span class="role">p2</span><p class="copy">Daybed, beneath the arch</p></div>
+            <div class="line"><span class="role">p3</span><p class="copy">The music room</p></div>
+            <div class="line"><span class="role">p4</span><p class="copy">Lounge, with poufs in three hides</p></div>
+          </div>
+        </div>
+        <p class="why"><strong>Why.</strong> Editorial luxury names what it shows — a caption is how a house signals it knows the difference between a daybed and a sofa. I inferred these from your image filenames (<span class="slug">trunk-table, daybed-arch, hall-piano, lounge-poufs</span>), so check them against the actual frames before publishing.</p>
+      </article>
+
+      <article class="spec">
+        <div class="spec-bar">
+          <h3>Materials, editorial</h3>
+          <span class="slug">section_aol_materials</span>
+        </div>
+        <div class="pair">
+          <div class="side now">
+            <span class="side-label">Now</span>
+            <div class="line"><span class="role">Heading</span><p class="copy label-case">Full-grain leather, palladium hardware</p></div>
+            <div class="line"><span class="role">Body</span><p class="copy">Handmade in Italy from full-grain leather sourced in Italy, France and Germany - a byproduct of the meat industry - with solid brass hardware galvanized in palladium.</p></div>
+          </div>
+          <div class="side next">
+            <span class="side-label">Proposed</span>
+            <div class="line"><span class="role">Heading</span><p class="copy label-case">Full-grain calf. Solid brass in palladium.</p></div>
+            <div class="line"><span class="role">Body</span><p class="copy">Full-grain hides from Italy, France and Germany. Solid brass, galvanised in palladium. Cut, stitched and finished by hand in our workshops around Milan.</p></div>
+          </div>
+        </div>
+        <p class="why"><strong>Why.</strong> One sentence became three, each a fact. And <q>a byproduct of the meat industry</q> should move to <span class="slug">/pages/materials-craftsmanship</span> — it is a true and creditable thing to say, but it puts an abattoir in the reader’s head halfway through a page about a Riviera palace. Right claim, wrong room. The button already points there.</p>
+      </article>
+
+      <article class="spec">
+        <div class="spec-bar">
+          <h3>Close</h3>
+          <span class="slug">section_aol_close</span>
+        </div>
+        <div class="pair">
+          <div class="side now">
+            <span class="side-label">Now</span>
+            <div class="line"><span class="role">Line</span><p class="copy">Our furniture belongs not only in your hands, but in the spaces you live in - available on request.</p></div>
+            <div class="line"><span class="role">Button</span><p class="copy label-case">Shop the Collection → /collections/home-accessories</p></div>
+          </div>
+          <div class="side next">
+            <span class="side-label">Proposed</span>
+            <div class="line"><span class="role">Line</span><p class="copy">Every piece is made to commission — to your room, your hide, your measure.</p></div>
+            <div class="line"><span class="role">Button</span><p class="copy label-case">Enquire about a commission → /pages/personalization</p></div>
+            <div class="line"><span class="role">Second button, optional</span><p class="copy label-case">Home accessories → /collections/home-accessories</p></div>
+          </div>
+        </div>
+        <p class="why"><strong>Why.</strong> This is the single most valuable change on the page. The broken hand/room metaphor goes; <q>available on request</q> — tacked onto the end of a clause, where it reads apologetic — becomes the whole proposition. And the reader who has just been sold a commission is offered a commission, with the €129 trays kept as a quiet second door rather than the only one.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2>Five rules that hold the voice steady</h2>
+      <p>Useful past this page — the same habits are worth applying to the jewellery and trunk descriptions.</p>
+    </div>
+    <div class="rules">
+      <div class="rule-item">
+        <h3>Nouns over adjectives</h3>
+        <p>“Full-grain calf from Tuscany, galvanised brass” tells a reader more than “exquisite materials” ever can. Adjectives ask to be believed; nouns can be checked.</p>
+      </div>
+      <div class="rule-item">
+        <h3>Understate the boast</h3>
+        <p>Give the reader the fact and let them draw the flattering conclusion. A hotel commission is impressive; saying so out loud makes it less so.</p>
+      </div>
+      <div class="rule-item">
+        <h3>One idea per line</h3>
+        <p>Luxury copy is short because it is confident. Two clauses joined by a dash usually means the writer wasn’t sure which half was the point.</p>
+      </div>
+      <div class="rule-item">
+        <h3>Never name the emotion</h3>
+        <p>Don’t write “timeless” — describe the thing that lasts. Don’t write “elegance” — set the object down and stop talking.</p>
+      </div>
+      <div class="rule-item">
+        <h3>Keep one register per page</h3>
+        <p>Decide whether a page is an essay, a spec, or a shop, and let the other two live elsewhere. Sustainability facts, dimensions, and CTAs each have a right room.</p>
+      </div>
+      <div class="rule-item">
+        <h3>Punctuate like a house</h3>
+        <p>Em dashes, not hyphens. Real quotation marks. It is a small thing that separates a maison from a Shopify default, and the page currently gets it wrong eleven times.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="banned">
+      <h2 style="font-size:1.25rem">The retire list</h2>
+      <p>Each of these appears in your live product copy — some several times in a single description. They are the phrases that make a €6,390 bracelet read like a marketplace listing. None of them survives the rules above.</p>
+      <ul>
+        <li>exquisite</li>
+        <li>timeless elegance</li>
+        <li>masterpiece</li>
+        <li>attention to detail</li>
+        <li>the perfect blend of</li>
+        <li>the finer things in life</li>
+        <li>shine bright</li>
+        <li>we are introducing</li>
+        <li>a true symbol of</li>
+        <li>stunning</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2>Structural fixes, separate from the copy</h2>
+      <p>Worth doing in the same pass.</p>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Item</th><th>Problem</th><th>Fix</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>URL</td>
+            <td>Handle is <span class="slug">oberndorfer-x-miramare-sanremo</span>, page is titled “Art of Living”. The address contradicts the name, and reads as a campaign slug.</td>
+            <td>Change the handle to <span class="slug">art-of-living</span> and add a 301 from the old one.</td>
+          </tr>
+          <tr>
+            <td>Dashes</td>
+            <td>Hyphens used where em dashes belong, throughout — including inside the best line on the page.</td>
+            <td>Replace <span class="slug">-</span> with <span class="slug">—</span> in all seven text blocks.</td>
+          </tr>
+          <tr>
+            <td>Hero</td>
+            <td>The opening image carries no words at all, so the page starts with no thesis.</td>
+            <td>Optional: an eyebrow reading <em>Sanremo</em> over the line <em>The commission that moved us into the room</em>.</td>
+          </tr>
+          <tr>
+            <td>Page body</td>
+            <td>The rich-text body still holds an older draft of the intro; the <span class="slug">main</span> section is disabled, so it never renders but still feeds search engines.</td>
+            <td>Replace it with the new opening lines, or write a dedicated meta description.</td>
+          </tr>
+          <tr>
+            <td>Live theme</td>
+            <td>The published theme carries a different, older version of this template than the preview you sent.</td>
+            <td>Apply the rewrite to the preview theme, then publish that theme rather than back-porting.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <p>Copy read directly from <span class="slug">templates/page.art-of-living.json</span> in the unpublished theme “Claude”, plus the page record and live product descriptions. The preview URL itself was unreachable from this session, so the visual layout is inferred from the template’s section settings rather than seen.</p>
+    <p>Nothing has been written to the store. Say the word and I’ll apply the rewrite to the preview theme.</p>
+  </footer>
+
+</div>
