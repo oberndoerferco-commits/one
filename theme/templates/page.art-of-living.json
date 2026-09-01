@@ -394,12 +394,12 @@
             "custom_width": 100,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
-            "height": "fill",
+            "height": "fit",
             "custom_height": 100,
-            "background_media": "image",
+            "background_media": "none",
             "background_color": "{{ settings.color_palette.color1 }}",
             "video_position": "cover",
-            "background_image": "shopify://shop_images/oberndoerfer-aol-ensemble.jpg",
+            "background_image": "",
             "background_image_position": "cover",
             "toggle_overlay": false,
             "overlay_color": "#00000026",
@@ -413,12 +413,39 @@
             "link": "",
             "open_in_new_tab": false,
             "placeholder": "hero-apparel-2",
-            "padding-block-start": 40,
-            "padding-block-end": 40,
-            "padding-inline-start": 40,
-            "padding-inline-end": 40
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
           },
-          "blocks": {}
+          "blocks": {
+            "image_cap": {
+              "type": "image",
+              "settings": {
+                "image": "shopify://shop_images/oberndoerfer-aol-ensemble.jpg",
+                "link": "",
+                "image_ratio": "adapt",
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_cap"
+          ]
         }
       },
       "block_order": [
@@ -435,7 +462,7 @@
         "vertical_alignment_flex_direction_column": "center",
         "gap": 0,
         "section_width": "full-width",
-        "section_height": "custom",
+        "section_height": "",
         "section_height_custom": 72,
         "background_media": "none",
         "background_color": "{{ settings.color_palette.background }}",
@@ -587,12 +614,12 @@
             "custom_width": 100,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
-            "height": "fill",
+            "height": "fit",
             "custom_height": 100,
-            "background_media": "image",
+            "background_media": "none",
             "background_color": "{{ settings.color_palette.color1 }}",
             "video_position": "cover",
-            "background_image": "shopify://shop_images/oberndoerfer-aol-trunk-table.jpg",
+            "background_image": "",
             "background_image_position": "cover",
             "toggle_overlay": false,
             "overlay_color": "#00000026",
@@ -606,12 +633,39 @@
             "link": "",
             "open_in_new_tab": false,
             "placeholder": "hero-apparel-2",
-            "padding-block-start": 40,
-            "padding-block-end": 40,
-            "padding-inline-start": 40,
-            "padding-inline-end": 40
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
           },
-          "blocks": {}
+          "blocks": {
+            "image_p1": {
+              "type": "image",
+              "settings": {
+                "image": "shopify://shop_images/oberndoerfer-aol-trunk-table.jpg",
+                "link": "",
+                "image_ratio": "adapt",
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_p1"
+          ]
         },
         "p2": {
           "type": "group",
@@ -628,12 +682,12 @@
             "custom_width": 100,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
-            "height": "fill",
+            "height": "fit",
             "custom_height": 100,
-            "background_media": "image",
+            "background_media": "none",
             "background_color": "{{ settings.color_palette.color1 }}",
             "video_position": "cover",
-            "background_image": "shopify://shop_images/oberndoerfer-aol-daybed-arch.jpg",
+            "background_image": "",
             "background_image_position": "cover",
             "toggle_overlay": false,
             "overlay_color": "#00000026",
@@ -647,12 +701,39 @@
             "link": "",
             "open_in_new_tab": false,
             "placeholder": "hero-apparel-1",
-            "padding-block-start": 40,
-            "padding-block-end": 40,
-            "padding-inline-start": 40,
-            "padding-inline-end": 40
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
           },
-          "blocks": {}
+          "blocks": {
+            "image_p2": {
+              "type": "image",
+              "settings": {
+                "image": "shopify://shop_images/oberndoerfer-aol-daybed-arch.jpg",
+                "link": "",
+                "image_ratio": "adapt",
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_p2"
+          ]
         },
         "p3": {
           "type": "group",
@@ -669,12 +750,12 @@
             "custom_width": 100,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
-            "height": "fill",
+            "height": "fit",
             "custom_height": 100,
-            "background_media": "image",
+            "background_media": "none",
             "background_color": "{{ settings.color_palette.color1 }}",
             "video_position": "cover",
-            "background_image": "shopify://shop_images/oberndoerfer-aol-hall-piano.jpg",
+            "background_image": "",
             "background_image_position": "cover",
             "toggle_overlay": false,
             "overlay_color": "#00000026",
@@ -688,12 +769,39 @@
             "link": "",
             "open_in_new_tab": false,
             "placeholder": "hero-apparel-1",
-            "padding-block-start": 40,
-            "padding-block-end": 40,
-            "padding-inline-start": 40,
-            "padding-inline-end": 40
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
           },
-          "blocks": {}
+          "blocks": {
+            "image_p3": {
+              "type": "image",
+              "settings": {
+                "image": "shopify://shop_images/oberndoerfer-aol-hall-piano.jpg",
+                "link": "",
+                "image_ratio": "adapt",
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_p3"
+          ]
         },
         "p4": {
           "type": "group",
@@ -710,12 +818,12 @@
             "custom_width": 100,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
-            "height": "fill",
+            "height": "fit",
             "custom_height": 100,
-            "background_media": "image",
+            "background_media": "none",
             "background_color": "{{ settings.color_palette.color1 }}",
             "video_position": "cover",
-            "background_image": "shopify://shop_images/oberndoerfer-aol-lounge-poufs.jpg",
+            "background_image": "",
             "background_image_position": "cover",
             "toggle_overlay": false,
             "overlay_color": "#00000026",
@@ -729,12 +837,39 @@
             "link": "",
             "open_in_new_tab": false,
             "placeholder": "hero-apparel-2",
-            "padding-block-start": 40,
-            "padding-block-end": 40,
-            "padding-inline-start": 40,
-            "padding-inline-end": 40
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
           },
-          "blocks": {}
+          "blocks": {
+            "image_p4": {
+              "type": "image",
+              "settings": {
+                "image": "shopify://shop_images/oberndoerfer-aol-lounge-poufs.jpg",
+                "link": "",
+                "image_ratio": "adapt",
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "image_p4"
+          ]
         }
       },
       "block_order": [
@@ -754,7 +889,7 @@
         "vertical_alignment_flex_direction_column": "center",
         "gap": 20,
         "section_width": "full-width",
-        "section_height": "custom",
+        "section_height": "",
         "section_height_custom": 58,
         "background_media": "none",
         "background_color": "{{ settings.color_palette.color2 }}",
