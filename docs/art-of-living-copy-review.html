@@ -68,8 +68,6 @@
     gap: 4.5rem;
   }
 
-  /* ---------- masthead ---------- */
-
   .masthead { display: flex; flex-direction: column; gap: 1.5rem; }
 
   .kicker {
@@ -105,6 +103,7 @@
     border-top: 1px solid var(--rule);
     font-size: 0.8125rem;
     color: var(--ink-soft);
+    margin: 0;
   }
   .meta div { display: flex; flex-direction: column; gap: 0.15rem; }
   .meta dt {
@@ -112,8 +111,6 @@
     color: var(--ink-faint); font-weight: 500;
   }
   .meta dd { margin: 0; font-variant-numeric: tabular-nums; }
-
-  /* ---------- generic section ---------- */
 
   section { display: flex; flex-direction: column; gap: 1.75rem; }
 
@@ -129,44 +126,65 @@
   .sec-head { display: flex; flex-direction: column; gap: 0.5rem; }
   .sec-head p { margin: 0; max-width: var(--measure); color: var(--ink-soft); }
 
-  /* ---------- diagnosis list ---------- */
+  /* ---------- the correction callout ---------- */
 
-  .faults { display: flex; flex-direction: column; gap: 0; margin: 0; padding: 0; list-style: none; }
+  .correction {
+    border-left: 2px solid var(--accent);
+    padding: 0.25rem 0 0.25rem 1.5rem;
+    display: flex; flex-direction: column; gap: 0.6rem;
+  }
+  .correction h2 { font-size: 1.375rem; }
+  .correction p { margin: 0; max-width: 44rem; color: var(--ink-soft); }
+  .correction strong { color: var(--ink); font-weight: 600; }
 
-  .faults li {
+  /* ---------- the house study ---------- */
+
+  .houses { display: flex; flex-direction: column; gap: 0; }
+
+  .house {
     display: grid;
-    grid-template-columns: 1.75rem 1fr;
-    gap: 0 1rem;
-    padding: 1.15rem 0;
+    grid-template-columns: 1fr;
+    gap: 0.35rem 1.5rem;
+    padding: 1.25rem 0;
     border-top: 1px solid var(--rule);
   }
-  .faults li:last-child { border-bottom: 1px solid var(--rule); }
-
-  .faults .n {
-    font-size: 0.6875rem;
-    color: var(--ink-faint);
-    font-variant-numeric: tabular-nums;
-    padding-top: 0.35rem;
-    letter-spacing: 0.05em;
+  @media (min-width: 48rem) {
+    .house { grid-template-columns: 10rem 1fr; }
   }
-  .faults h3 {
-    margin: 0 0 0.3rem;
-    font-size: 1rem;
-    font-weight: 600;
+  .houses .house:last-child { border-bottom: 1px solid var(--rule); }
+
+  .house-name {
+    display: flex; flex-direction: column; gap: 0.1rem;
+  }
+  .house-name b {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 1.0625rem;
     letter-spacing: -0.005em;
   }
-  .faults p { margin: 0; color: var(--ink-soft); font-size: 0.9375rem; max-width: 42rem; }
-  .faults q {
+  .house-name span {
+    font-size: 0.6875rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.04em;
+  }
+  .house-body { display: flex; flex-direction: column; gap: 0.5rem; }
+  .house-body p { margin: 0; font-size: 0.9375rem; color: var(--ink-soft); max-width: 40rem; }
+  .house-body q {
     font-family: var(--display);
     font-style: italic;
     color: var(--ink);
+    font-size: 1rem;
     quotes: "\201C" "\201D";
+  }
+  .take {
+    font-size: 0.8125rem;
+    color: var(--accent);
+    font-weight: 500;
   }
 
   /* ---------- specimen blocks ---------- */
 
   .specimens { display: flex; flex-direction: column; gap: 2.5rem; }
-
   .spec { display: flex; flex-direction: column; gap: 1rem; }
 
   .spec-bar {
@@ -178,12 +196,7 @@
     padding-bottom: 0.6rem;
     border-bottom: 1px solid var(--ink);
   }
-  .spec-bar h3 {
-    margin: 0;
-    font-size: 0.9375rem;
-    font-weight: 600;
-    letter-spacing: -0.005em;
-  }
+  .spec-bar h3 { margin: 0; font-size: 0.9375rem; font-weight: 600; }
   .slug {
     font-size: 0.6875rem;
     letter-spacing: 0.06em;
@@ -191,17 +204,10 @@
     font-variant-numeric: tabular-nums;
   }
 
-  .pair {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-  }
-  @media (min-width: 42rem) {
-    .pair { grid-template-columns: 1fr 1fr; gap: 2rem; }
-  }
+  .pair { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+  @media (min-width: 42rem) { .pair { grid-template-columns: 1fr 1fr; gap: 2rem; } }
 
   .side { display: flex; flex-direction: column; gap: 0.85rem; padding-top: 0.25rem; }
-
   .side-label {
     font-size: 0.625rem;
     letter-spacing: 0.16em;
@@ -212,7 +218,6 @@
   .next .side-label { color: var(--accent); }
 
   .line { display: flex; flex-direction: column; gap: 0.2rem; }
-
   .role {
     font-size: 0.625rem;
     letter-spacing: 0.14em;
@@ -223,12 +228,12 @@
   .copy {
     font-family: var(--display);
     font-size: 1.0625rem;
-    line-height: 1.4;
+    line-height: 1.45;
     margin: 0;
   }
+  .copy + .copy { margin-top: 0.6rem; }
   .now .copy { color: var(--strike); }
   .next .copy { color: var(--ink); }
-
   .copy.big { font-size: 1.375rem; line-height: 1.2; }
   .copy.label-case {
     font-family: var(--body);
@@ -245,9 +250,10 @@
     font-size: 0.875rem;
     color: var(--ink-soft);
     margin: 0.35rem 0 0;
-    max-width: 40rem;
+    max-width: 42rem;
   }
   .why strong { color: var(--ink); font-weight: 600; }
+  .why q { font-family: var(--display); font-style: italic; color: var(--ink); }
 
   .flag {
     display: inline-block;
@@ -262,25 +268,31 @@
     font-weight: 600;
   }
 
-  /* ---------- house rules ---------- */
+  /* ---------- alternates ---------- */
 
-  .rules { display: grid; grid-template-columns: 1fr; gap: 0; }
-  @media (min-width: 46rem) { .rules { grid-template-columns: 1fr 1fr; column-gap: 2.5rem; } }
-
-  .rule-item {
-    padding: 1.1rem 0;
+  .alts { display: flex; flex-direction: column; gap: 0; }
+  .alt {
+    padding: 0.9rem 0;
     border-top: 1px solid var(--rule);
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
+    display: flex; flex-direction: column; gap: 0.2rem;
   }
-  .rule-item h3 {
-    margin: 0;
-    font-family: var(--display);
-    font-weight: 400;
-    font-size: 1.125rem;
+  .alts .alt:last-child { border-bottom: 1px solid var(--rule); }
+  .alt p { margin: 0; font-family: var(--display); font-size: 1.125rem; }
+  .alt span { font-size: 0.8125rem; color: var(--ink-soft); font-family: var(--body); }
+
+  /* ---------- facts ---------- */
+
+  .table-scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.9375rem; min-width: 34rem; }
+  th, td { text-align: left; padding: 0.7rem 1rem 0.7rem 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th {
+    font-family: var(--body);
+    font-size: 0.625rem; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink-faint); font-weight: 600;
+    border-bottom: 1px solid var(--ink);
   }
-  .rule-item p { margin: 0; font-size: 0.9375rem; color: var(--ink-soft); }
+  td:first-child { color: var(--ink); font-weight: 500; padding-right: 1.5rem; }
+  td:last-child { color: var(--ink-soft); }
 
   .banned {
     background: var(--paper-sunk);
@@ -304,223 +316,247 @@
     background: var(--paper);
   }
 
-  /* ---------- fixes table ---------- */
-
-  .table-scroll { overflow-x: auto; }
-  table { border-collapse: collapse; width: 100%; font-size: 0.9375rem; min-width: 34rem; }
-  th, td { text-align: left; padding: 0.7rem 1rem 0.7rem 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
-  th {
-    font-family: var(--body);
-    font-size: 0.625rem; letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--ink-faint); font-weight: 600;
-    border-bottom: 1px solid var(--ink);
-  }
-  td:first-child { color: var(--ink); font-weight: 500; white-space: nowrap; padding-right: 1.5rem; }
-  td:last-child { color: var(--ink-soft); }
-
   footer {
     border-top: 1px solid var(--rule);
     padding-top: 1.25rem;
     font-size: 0.8125rem;
     color: var(--ink-faint);
-    max-width: 44rem;
+    max-width: 46rem;
   }
   footer p { margin: 0 0 0.5rem; }
 
   a { color: var(--accent); text-underline-offset: 2px; }
-  a:focus-visible, li:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 </style>
 
 <div class="wrap">
 
   <header class="masthead">
-    <p class="kicker">Oberndörfer Milano &middot; Copy review</p>
+    <p class="kicker">Oberndörfer Milano &middot; Copy review, second pass</p>
     <h1>Art of Living, rewritten</h1>
-    <p class="standfirst">The page has a genuinely good story in it — a Riviera palace hotel lived with your trunks for a season and then asked you to make its furniture. It currently tells that story like a case study. Here is the same page told like a house.</p>
+    <p class="standfirst">Read against fifteen houses in your sector, and against the Miramare’s own history. The page now runs 366 words where it ran 158 — and the register has changed, because the first pass had it wrong.</p>
     <dl class="meta">
       <div><dt>Page</dt><dd>/pages/oberndorfer-x-miramare-sanremo</dd></div>
-      <div><dt>Template</dt><dd>page.art-of-living.json</dd></div>
-      <div><dt>Theme read</dt><dd>“Claude” (unpublished)</dd></div>
-      <div><dt>Sections</dt><dd>8</dd></div>
+      <div><dt>Theme</dt><dd>“Claude” (unpublished)</dd></div>
+      <div><dt>Words</dt><dd>158 → 366</dd></div>
+      <div><dt>Status</dt><dd>Applied</dd></div>
     </dl>
   </header>
 
-  <section>
-    <div class="sec-head">
-      <h2>Why it doesn’t read as luxury</h2>
-      <p>Not one bad sentence — five habits, each of which quietly costs the page authority.</p>
-    </div>
-    <ol class="faults">
-      <li>
-        <span class="n">01</span>
-        <div>
-          <h3>The headline announces instead of implying</h3>
-          <p><q>A hotel asked us to furnish it</q> is the sentence a founder says on a podcast. It’s a boast in the passive-aggressive register — vague about who (“a hotel”), loud about the flattery. Houses name the place and let the reader do the impressing.</p>
-        </div>
-      </li>
-      <li>
-        <span class="n">02</span>
-        <div>
-          <h3>It reaches for the worn phrases</h3>
-          <p><q>The same attention to detail</q>, <q>handcrafted in Italy</q>, <q>bespoke furniture</q>. These are category descriptors, not claims. Every Brianza workshop with a website says all three. Specificity is the only thing a reader can’t get elsewhere.</p>
-        </div>
-      </li>
-      <li>
-        <span class="n">03</span>
-        <div>
-          <h3>The register breaks three times</h3>
-          <p>Reverent opening → transactional headline → sustainability disclosure (<q>a byproduct of the meat industry</q>) → e‑commerce button. Each is fine somewhere. Together on one scroll they read as four different writers.</p>
-        </div>
-      </li>
-      <li>
-        <span class="n">04</span>
-        <div>
-          <h3>The closing metaphor is broken</h3>
-          <p><q>Our furniture belongs not only in your hands, but in the spaces you live in.</q> Furniture does not belong in your hands. The line was written for leather goods and carried across; it collapses the moment you picture it.</p>
-        </div>
-      </li>
-      <li>
-        <span class="n">05</span>
-        <div>
-          <h3>The last click contradicts the page</h3>
-          <p>Nine sections of made-to-commission furniture, then <q>Shop the Collection</q> into <span class="slug">/collections/home-accessories</span> — trays at €129. The reader is promised a commission and handed a coaster.</p>
-        </div>
-      </li>
-    </ol>
+  <section class="correction">
+    <h2>First, a correction</h2>
+    <p>Last pass I told you luxury copy is short — <strong>one idea per line, confidence through brevity</strong>. That rule is real, but it belongs to a different house: Aesop, Jil Sander, the Nordic minimalists. It is not how the maisons you actually sit beside write.</p>
+    <p>Hermès writes <q>an object is never an accessory; it is a necessary punctuation</q>, and calls a piece <q>a tribute to the hand of the cabinetmaker and the upholsterer, where every joint and every stitch bears witness to uncompromising excellence.</q> That is a long, warm, subordinate-clause sentence. Loro Piana Interiors works the same way — sensory, unhurried, material-first.</p>
+    <p>You were right that the page was too short. The Italian–French <em>maison</em> register is fuller and slower than what I gave you. That is what this pass fixes.</p>
   </section>
 
   <section>
     <div class="sec-head">
-      <h2>The rewrite, section by section</h2>
-      <p>In the order the reader scrolls. Theme block IDs are given so this can be typed straight into the editor.</p>
+      <h2>How the houses in your sector actually write</h2>
+      <p>Grouped by the move each one makes. The pattern that matters to you is the third.</p>
+    </div>
+
+    <div class="houses">
+
+      <div class="house">
+        <div class="house-name"><b>Hermès</b><span>Maison &amp; art de vivre</span></div>
+        <div class="house-body">
+          <p>Philosophical, sensory, unhurried. Frames the handmade irregularity as the point: there is <q>always been a degree of imperfection, because it’s the work of a hand, not a machine.</q> Objects <q>inhabit a space with their singular presence.</q></p>
+          <p class="take">Take: permission to write long, and to name the hand.</p>
+        </div>
+      </div>
+
+      <div class="house">
+        <div class="house-name"><b>Louis Vuitton</b><span>Objets Nomades</span></div>
+        <div class="house-body">
+          <p>A trunk-maker moving into furniture — your exact manoeuvre. They legitimise it with one named historical commission: the <q>Bed Trunk produced in 1874 for French explorer Pierre Savorgnan de Brazza.</q> Not “we have heritage” — one object, one client, one year.</p>
+          <p class="take">Take: the Miramare is your Brazza bed trunk. Name it, date it.</p>
+        </div>
+      </div>
+
+      <div class="house">
+        <div class="house-name"><b>Frette</b><span>Milano, 1860</span></div>
+        <div class="house-body">
+          <p>The closest structural match to your story: a Lombard house whose whole prestige is <em>we were chosen</em>. They never say “prestigious clients.” They say: Official Purveyor to the Italian Royal Family, <strong>1881</strong>; crests for more than <strong>five hundred</strong> European royal families; the altar of St Peter’s; the dining car of the Orient Express.</p>
+          <p class="take">Take: institutions, dates and numbers do the boasting. Adjectives can’t.</p>
+        </div>
+      </div>
+
+      <div class="house">
+        <div class="house-name"><b>Baxter</b><span>Brianza, 1990</span></div>
+        <div class="house-body">
+          <p>Leather furniture house that earns the right to leather by lineage: the founders <q>descend from a family of master saddle-makers.</q> A young company — 1990 — that never pretends otherwise, and is credible anyway.</p>
+          <p class="take">Take: you don’t need an old date. You need a straight line from one craft to the next.</p>
+        </div>
+      </div>
+
+      <div class="house">
+        <div class="house-name"><b>Promemoria</b><span>Lake Como, 1988</span></div>
+        <div class="house-body">
+          <p>Same move: the Sozzi family <q>made a living by repairing aristocratic carriages in the 19th century.</q> The origin is humble and specific, and that is precisely what makes it land.</p>
+          <p class="take">Take: specific and modest beats grand and vague.</p>
+        </div>
+      </div>
+
+      <div class="house">
+        <div class="house-name"><b>Poltrona Frau</b><span>Tolentino, 1912</span></div>
+        <div class="house-body">
+          <p>Owns its material by naming it: <strong>Pelle Frau®</strong>, a proprietary full-grain hide with a named process — immersion dyeing. Place, date, technique, trademark.</p>
+          <p class="take">Take: consider naming your hide or your finish. An unnamed material is a commodity.</p>
+        </div>
+      </div>
+
+      <div class="house">
+        <div class="house-name"><b>Loro Piana</b><span>Interiors</span></div>
+        <div class="house-body">
+          <p>Pure tactility, almost no brand-shouting: the drape of a jacket, the softness under the hand, the sheen of a fabric in natural light. The material <em>is</em> the brand.</p>
+          <p class="take">Take: describe how a thing behaves under a hand, not how good it is.</p>
+        </div>
+      </div>
+
+      <div class="house">
+        <div class="house-name"><b>Serapian &middot; Valextra</b><span>Milano, 1928 &amp; 1937</span></div>
+        <div class="house-body">
+          <p>Your immediate Milanese neighbours. Both trade on a named local quality — the <q>Milanese hand,</q> the connoisseur’s rigour — and on invented techniques with dates (Serapian’s <em>Mosaico</em>, 1947).</p>
+          <p class="take">Take: “Milano” in your name is a claim. Cash it with method, not adjectives.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2>The Miramare, properly understood</h2>
+      <p>You have been under-using this. It is not “a hotel” — it is a documented belle-époque palace on a coast that Europe’s courts wintered in. All of this is on the record and none of it is currently on your page.</p>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Fact</th><th>Why it earns its place</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Opened in the 1870s as the <strong>Hôtel des Îles Britanniques</strong></td>
+            <td>The original name tells you exactly who Sanremo was built for. Better than any adjective about “history”.</td>
+          </tr>
+          <tr>
+            <td>Became the <strong>Continental Palace</strong>, then took the name <strong>Miramare in 1935</strong></td>
+            <td>Three names across sixty years. A building that has been re-made before — which is what your commission is.</td>
+          </tr>
+          <tr>
+            <td>White, <strong>Liberty</strong> (Art Nouveau) in style; Murano glass; reopened five-star in <strong>2018</strong></td>
+            <td>Concrete visual and material anchors that sit beside your own materials paragraph.</td>
+          </tr>
+          <tr>
+            <td><strong>Empress Maria Alexandrovna</strong>, wife of Tsar Alexander II, wintered in Sanremo 1874–75; gave the town its palms; the seafront <em>Passeggiata Imperatrice</em> is named for her</td>
+            <td>The Russian court is why that coast looks the way it does. One clause of this is worth a paragraph of “timeless elegance”.</td>
+          </tr>
+          <tr>
+            <td><strong>Alfred Nobel</strong> spent his last five years in Sanremo; the town still sends flowers to the Stockholm Nobel banquet each 10 December</td>
+            <td>Held in reserve — too good to crowd into this page, ideal for the Miramare Collection or a journal entry.</td>
+          </tr>
+          <tr>
+            <td>“The Lady in Grey”, painted <strong>1894 by Filippo Grosso</strong> for <strong>Queen Margherita of Savoy</strong>, hangs in the reception rooms</td>
+            <td>A commissioned object that stayed in the building for over a century. That is the argument for commissioning furniture, made by the hotel itself.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2>The page as it now reads</h2>
+      <p>Applied to the Claude theme. Block IDs given so any line can be swapped in the editor.</p>
     </div>
 
     <div class="specimens">
 
       <article class="spec">
-        <div class="spec-bar">
-          <h3>Opening chapter</h3>
-          <span class="slug">section_aol_open</span>
-        </div>
+        <div class="spec-bar"><h3>Opening chapter</h3><span class="slug">section_aol_open</span></div>
         <div class="pair">
           <div class="side now">
-            <span class="side-label">Now</span>
-            <div class="line"><span class="role">Eyebrow</span><p class="copy label-case">Art of Living</p></div>
+            <span class="side-label">Original</span>
             <div class="line"><span class="role">Headline</span><p class="copy big">Bespoke furniture, handcrafted in Italy</p></div>
             <div class="line"><span class="role">Body</span><p class="copy">The art of living begins with the art of making - the same leather craftsmanship behind our travel pieces, applied to objects made for the home.</p></div>
           </div>
           <div class="side next">
-            <span class="side-label">Proposed</span>
-            <div class="line"><span class="role">Eyebrow</span><p class="copy label-case">Art of Living</p></div>
-            <div class="line"><span class="role">Headline</span><p class="copy big">Leather, at the scale of a room</p></div>
-            <div class="line"><span class="role">Body</span><p class="copy">We have always made objects meant to be held. In Sanremo, we were asked to make objects meant to be lived in.</p></div>
+            <span class="side-label">Now live</span>
+            <div class="line"><span class="role">Headline</span><p class="copy big">Furniture, made the way we make a trunk</p></div>
+            <div class="line"><span class="role">Body</span><p class="copy">We began with objects made to be held — trunks, cases, the small things that travel with a person and take on their marks. In Sanremo we were asked to make objects to be lived in instead: to take the same hides, the same hands, the same slow method, and give them the dimensions of a room.</p></div>
           </div>
         </div>
-        <p class="why"><strong>Why.</strong> The old headline names a category; the new one names a leap — and it’s a leap only you can claim, because only you arrived at furniture from trunk-making. The body then does the work the old dek was avoiding: it opens the story instead of summarising the brand.</p>
+        <p class="why"><strong>Why.</strong> This is the Baxter/Promemoria lineage move stated plainly. The headline claims the one thing no competitor can copy — that you arrived at furniture through trunk-making — and the body earns it with the detail of objects that <q>take on their marks.</q></p>
       </article>
 
       <article class="spec">
-        <div class="spec-bar">
-          <h3>The Miramare, editorial</h3>
-          <span class="slug">section_aol_commission</span>
-        </div>
+        <div class="spec-bar"><h3>The Miramare, editorial</h3><span class="slug">section_aol_commission</span></div>
         <div class="pair">
           <div class="side now">
-            <span class="side-label">Now</span>
-            <div class="line"><span class="role">Caption</span><p class="copy label-case">Miramare Palace, Sanremo</p></div>
+            <span class="side-label">Original</span>
             <div class="line"><span class="role">Heading</span><p class="copy big">A hotel asked us to furnish it</p></div>
             <div class="line"><span class="role">Body</span><p class="copy">The Miramare Palace welcomed our pieces into their spaces. After living with them, they asked us to create their new furniture - a trust that began a new chapter for the house.</p></div>
           </div>
           <div class="side next">
-            <span class="side-label">Proposed</span>
-            <div class="line"><span class="role">Caption</span><p class="copy label-case">Miramare Palace — Sanremo, Liguria</p></div>
+            <span class="side-label">Now live</span>
+            <div class="line"><span class="role">Caption</span><p class="copy label-case">Miramare The Palace — Sanremo, Liguria</p></div>
             <div class="line"><span class="role">Heading</span><p class="copy big">It began with our trunks in the lobby</p></div>
-            <div class="line"><span class="role">Body</span><p class="copy">The Miramare kept our pieces in its public rooms for a season. Then it asked whether we would make the rest — the sofas, the armchairs, the tables. Saying yes committed the house to a new discipline.</p></div>
+            <div class="line"><span class="role">Body</span>
+              <p class="copy">The hotel opened in the 1870s as the Hôtel des Îles Britanniques, in the years when Sanremo filled each winter with the Russian and English courts. It became the Continental Palace, and took the name Miramare in 1935. White, Liberty in style, still hung with Murano glass.</p>
+              <p class="copy">Our pieces went into its public rooms and stayed a season. Then the hotel asked whether we would make the rest — the seating, the tables, the things a room is actually built from. Saying yes committed the house to a discipline it had not practised before.</p>
+            </div>
           </div>
         </div>
-        <p class="why"><strong>Why.</strong> Same facts, no boast. The heading now starts a story rather than reporting an outcome, and the body gives the reader the two details that make it real: a season of use, and a decision that cost you something. <q>Spaces</q> appeared twice in three lines; it’s gone.</p>
+        <p class="why"><strong>Why.</strong> This is the Frette method: a first paragraph of pure documented fact, so the second paragraph — the commission — lands on a reader who now understands what building chose you. Note that the boast is gone entirely and the story is far more impressive for it.</p>
       </article>
 
       <article class="spec">
-        <div class="spec-bar">
-          <h3>The Commission, dark chapter</h3>
-          <span class="slug">section_aol_dark</span>
-        </div>
+        <div class="spec-bar"><h3>The Commission, dark chapter</h3><span class="slug">section_aol_dark</span></div>
         <div class="pair">
           <div class="side now">
-            <span class="side-label">Now</span>
-            <div class="line"><span class="role">Heading</span><p class="copy big">Sofas, armchairs, poufs - and a trunk that became a table</p></div>
+            <span class="side-label">Original</span>
             <div class="line"><span class="role">Body</span><p class="copy">Each piece carries the same attention to detail as our leather goods, simply expressed in a new form.</p></div>
           </div>
           <div class="side next">
-            <span class="side-label">Proposed</span>
-            <div class="line"><span class="role">Heading</span><p class="copy big">Sofas, armchairs, poufs — and a trunk that became a table</p></div>
-            <div class="line"><span class="role">Body</span><p class="copy">Nothing about the method changed. The same hides, the same hands, the same stitch — cut to the measure of a room.</p></div>
+            <span class="side-label">Now live</span>
+            <div class="line"><span class="role">Body</span><p class="copy">Nothing about the method changed. The same full-grain hides, cut by the same hands, closed with the same stitch — only the dimensions moved. A travelling trunk, set on its side and given a top, turned out to be a table. What we had been making for a dressing room turned out to belong in a hall.</p></div>
           </div>
         </div>
-        <p class="why"><strong>Why.</strong> The heading is the best line on the page — keep it exactly, just give it a real em dash. The body underneath was the weakest: it used <q>attention to detail</q> to avoid saying anything. The replacement makes the identical claim with three nouns a reader can picture.</p>
+        <p class="why"><strong>Why.</strong> The heading above it promises a trunk that became a table; the old body never delivered it. Now the body <em>shows the transformation happening</em> — on its side, given a top — which is the single most memorable image available to you on this page.</p>
       </article>
 
       <article class="spec">
-        <div class="spec-bar">
-          <h3>Four full-bleed images</h3>
-          <span class="slug">section_aol_pieces</span>
-        </div>
+        <div class="spec-bar"><h3>Materials, editorial</h3><span class="slug">section_aol_materials</span></div>
         <div class="pair">
           <div class="side now">
-            <span class="side-label">Now</span>
-            <div class="line"><span class="role">Captions</span><p class="copy">None. Four silent images in a row.</p></div>
-          </div>
-          <div class="side next">
-            <span class="side-label">Proposed <span class="flag">confirm against photos</span></span>
-            <div class="line"><span class="role">p1</span><p class="copy">The travelling trunk, set at table height</p></div>
-            <div class="line"><span class="role">p2</span><p class="copy">Daybed, beneath the arch</p></div>
-            <div class="line"><span class="role">p3</span><p class="copy">The music room</p></div>
-            <div class="line"><span class="role">p4</span><p class="copy">Lounge, with poufs in three hides</p></div>
-          </div>
-        </div>
-        <p class="why"><strong>Why.</strong> Editorial luxury names what it shows — a caption is how a house signals it knows the difference between a daybed and a sofa. I inferred these from your image filenames (<span class="slug">trunk-table, daybed-arch, hall-piano, lounge-poufs</span>), so check them against the actual frames before publishing.</p>
-      </article>
-
-      <article class="spec">
-        <div class="spec-bar">
-          <h3>Materials, editorial</h3>
-          <span class="slug">section_aol_materials</span>
-        </div>
-        <div class="pair">
-          <div class="side now">
-            <span class="side-label">Now</span>
-            <div class="line"><span class="role">Heading</span><p class="copy label-case">Full-grain leather, palladium hardware</p></div>
+            <span class="side-label">Original</span>
             <div class="line"><span class="role">Body</span><p class="copy">Handmade in Italy from full-grain leather sourced in Italy, France and Germany - a byproduct of the meat industry - with solid brass hardware galvanized in palladium.</p></div>
           </div>
           <div class="side next">
-            <span class="side-label">Proposed</span>
-            <div class="line"><span class="role">Heading</span><p class="copy label-case">Full-grain calf. Solid brass in palladium.</p></div>
-            <div class="line"><span class="role">Body</span><p class="copy">Full-grain hides from Italy, France and Germany. Solid brass, galvanised in palladium. Cut, stitched and finished by hand in our workshops around Milan.</p></div>
+            <span class="side-label">Now live</span>
+            <div class="line"><span class="role">Body</span>
+              <p class="copy">Full-grain hides from tanneries in Italy, France and Germany, chosen for how they take a mark rather than how evenly they photograph. Solid brass, galvanised in palladium, so the hardware holds its colour under a hand that touches it every day. Cut, stitched and finished by hand in our ateliers around Milan, at the pace the work takes.</p>
+              <p class="copy">Leather in a room is not a finish. It is a surface that keeps a record of the years it is given.</p>
+            </div>
           </div>
         </div>
-        <p class="why"><strong>Why.</strong> One sentence became three, each a fact. And <q>a byproduct of the meat industry</q> should move to <span class="slug">/pages/materials-craftsmanship</span> — it is a true and creditable thing to say, but it puts an abattoir in the reader’s head halfway through a page about a Riviera palace. Right claim, wrong room. The button already points there.</p>
+        <p class="why"><strong>Why.</strong> Loro Piana and Hermès both describe how a material <em>behaves</em> rather than how good it is. <q>Chosen for how they take a mark rather than how evenly they photograph</q> is a real position on quality, and it quietly disqualifies corrected-grain competitors without naming them. The closing couplet is the page’s one permitted flourish.</p>
       </article>
 
       <article class="spec">
-        <div class="spec-bar">
-          <h3>Close</h3>
-          <span class="slug">section_aol_close</span>
-        </div>
+        <div class="spec-bar"><h3>Close</h3><span class="slug">section_aol_close</span></div>
         <div class="pair">
           <div class="side now">
-            <span class="side-label">Now</span>
+            <span class="side-label">Original</span>
             <div class="line"><span class="role">Line</span><p class="copy">Our furniture belongs not only in your hands, but in the spaces you live in - available on request.</p></div>
             <div class="line"><span class="role">Button</span><p class="copy label-case">Shop the Collection → /collections/home-accessories</p></div>
           </div>
           <div class="side next">
-            <span class="side-label">Proposed</span>
-            <div class="line"><span class="role">Line</span><p class="copy">Every piece is made to commission — to your room, your hide, your measure.</p></div>
+            <span class="side-label">Now live</span>
+            <div class="line"><span class="role">Line</span><p class="copy">Every piece is made to commission — to your room, your hide, your measure. We make a small number each year, in the ateliers around Milan, and we would rather make them slowly.</p></div>
             <div class="line"><span class="role">Button</span><p class="copy label-case">Enquire about a commission → /pages/personalization</p></div>
-            <div class="line"><span class="role">Second button, optional</span><p class="copy label-case">Home accessories → /collections/home-accessories</p></div>
           </div>
         </div>
-        <p class="why"><strong>Why.</strong> This is the single most valuable change on the page. The broken hand/room metaphor goes; <q>available on request</q> — tacked onto the end of a clause, where it reads apologetic — becomes the whole proposition. And the reader who has just been sold a commission is offered a commission, with the €129 trays kept as a quiet second door rather than the only one.</p>
+        <p class="why"><strong>Why.</strong> <q>We would rather make them slowly</q> is drawn straight from your own About page — <q>the time a thing takes to make properly.</q> Scarcity stated as preference rather than as a sales tactic is the most expensive-sounding sentence on the page.</p>
       </article>
 
     </div>
@@ -528,41 +564,33 @@
 
   <section>
     <div class="sec-head">
-      <h2>Five rules that hold the voice steady</h2>
-      <p>Useful past this page — the same habits are worth applying to the jewellery and trunk descriptions.</p>
+      <h2>Headline alternates</h2>
+      <p>All four are defensible. The live one is first. Swapping takes one line in <span class="slug">section_aol_open → head</span>.</p>
     </div>
-    <div class="rules">
-      <div class="rule-item">
-        <h3>Nouns over adjectives</h3>
-        <p>“Full-grain calf from Tuscany, galvanised brass” tells a reader more than “exquisite materials” ever can. Adjectives ask to be believed; nouns can be checked.</p>
+    <div class="alts">
+      <div class="alt">
+        <p>Furniture, made the way we make a trunk</p>
+        <span>Live. Plainest and most confident; states the proposition and the lineage in one breath.</span>
       </div>
-      <div class="rule-item">
-        <h3>Understate the boast</h3>
-        <p>Give the reader the fact and let them draw the flattering conclusion. A hotel commission is impressive; saying so out loud makes it less so.</p>
+      <div class="alt">
+        <p>What we made to be held, made to be lived in</p>
+        <span>More lyrical, better suited to Marcellus at 56px. Slightly more effortful.</span>
       </div>
-      <div class="rule-item">
-        <h3>One idea per line</h3>
-        <p>Luxury copy is short because it is confident. Two clauses joined by a dash usually means the writer wasn’t sure which half was the point.</p>
+      <div class="alt">
+        <p>Leather, at the scale of a room</p>
+        <span>Shortest and most arresting; less warm, and it drops the trunk lineage.</span>
       </div>
-      <div class="rule-item">
-        <h3>Never name the emotion</h3>
-        <p>Don’t write “timeless” — describe the thing that lasts. Don’t write “elegance” — set the object down and stop talking.</p>
-      </div>
-      <div class="rule-item">
-        <h3>Keep one register per page</h3>
-        <p>Decide whether a page is an essay, a spec, or a shop, and let the other two live elsewhere. Sustainability facts, dimensions, and CTAs each have a right room.</p>
-      </div>
-      <div class="rule-item">
-        <h3>Punctuate like a house</h3>
-        <p>Em dashes, not hyphens. Real quotation marks. It is a small thing that separates a maison from a Shopify default, and the page currently gets it wrong eleven times.</p>
+      <div class="alt">
+        <p>A trunk-maker is asked to furnish a palace</p>
+        <span>Boldest — states the whole story as the headline. Strong, but spends the Miramare section’s reveal early.</span>
       </div>
     </div>
   </section>
 
   <section>
     <div class="banned">
-      <h2 style="font-size:1.25rem">The retire list</h2>
-      <p>Each of these appears in your live product copy — some several times in a single description. They are the phrases that make a €6,390 bracelet read like a marketplace listing. None of them survives the rules above.</p>
+      <h2 style="font-size:1.25rem">Still on the retire list</h2>
+      <p>Confirmed against every house above: none of them uses these. They are the phrases that make expensive things read cheaply.</p>
       <ul>
         <li>exquisite</li>
         <li>timeless elegance</li>
@@ -570,49 +598,43 @@
         <li>attention to detail</li>
         <li>the perfect blend of</li>
         <li>the finer things in life</li>
-        <li>shine bright</li>
-        <li>we are introducing</li>
-        <li>a true symbol of</li>
-        <li>stunning</li>
+        <li>impeccable</li>
+        <li>unparalleled</li>
+        <li>nestled</li>
+        <li>a true celebration of</li>
       </ul>
+      <p>Two of these — <q>impeccable service</q>, <q>nestled on the stunning Italian Riviera</q> — are currently on your <span class="slug">Where to Find Us</span> page, which is the other place a Miramare guest will land. Worth the same pass.</p>
     </div>
   </section>
 
   <section>
     <div class="sec-head">
-      <h2>Structural fixes, separate from the copy</h2>
-      <p>Worth doing in the same pass.</p>
+      <h2>What I’d do next</h2>
+      <p>In order of what each is worth.</p>
     </div>
     <div class="table-scroll">
       <table>
-        <thead>
-          <tr><th>Item</th><th>Problem</th><th>Fix</th></tr>
-        </thead>
+        <thead><tr><th>Move</th><th>Reasoning</th></tr></thead>
         <tbody>
           <tr>
-            <td>URL</td>
-            <td>Handle is <span class="slug">oberndorfer-x-miramare-sanremo</span>, page is titled “Art of Living”. The address contradicts the name, and reads as a campaign slug.</td>
-            <td>Change the handle to <span class="slug">art-of-living</span> and add a 301 from the old one.</td>
+            <td>Name your leather</td>
+            <td>Poltrona Frau has Pelle Frau®, Serapian has Mosaico. An unnamed hide is a commodity; a named one is proprietary. The single highest-leverage change available to your whole catalogue.</td>
           </tr>
           <tr>
-            <td>Dashes</td>
-            <td>Hyphens used where em dashes belong, throughout — including inside the best line on the page.</td>
-            <td>Replace <span class="slug">-</span> with <span class="slug">—</span> in all seven text blocks.</td>
+            <td>Rewrite <span class="slug">Where to Find Us</span></td>
+            <td>It currently reads as a hotel brochure written by the hotel, with a discount offer in the middle of it. It is the page a Miramare guest actually arrives on.</td>
           </tr>
           <tr>
-            <td>Hero</td>
-            <td>The opening image carries no words at all, so the page starts with no thesis.</td>
-            <td>Optional: an eyebrow reading <em>Sanremo</em> over the line <em>The commission that moved us into the room</em>.</td>
+            <td>Caption the four images</td>
+            <td>Still undone — I need to see the photographs. Every house above captions its editorial imagery.</td>
           </tr>
           <tr>
-            <td>Page body</td>
-            <td>The rich-text body still holds an older draft of the intro; the <span class="slug">main</span> section is disabled, so it never renders but still feeds search engines.</td>
-            <td>Replace it with the new opening lines, or write a dedicated meta description.</td>
+            <td>Move the byproduct line</td>
+            <td>To <span class="slug">/pages/materials-craftsmanship</span>, which does not currently carry it. A real and creditable claim, in the wrong room.</td>
           </tr>
           <tr>
-            <td>Live theme</td>
-            <td>The published theme carries a different, older version of this template than the preview you sent.</td>
-            <td>Apply the rewrite to the preview theme, then publish that theme rather than back-porting.</td>
+            <td>Hold Nobel in reserve</td>
+            <td>Sanremo sending flowers to the Stockholm banquet every December is a gift of a story — for the Miramare Collection, not this page. Don’t spend it here.</td>
           </tr>
         </tbody>
       </table>
@@ -620,8 +642,9 @@
   </section>
 
   <footer>
-    <p>Copy read directly from <span class="slug">templates/page.art-of-living.json</span> in the unpublished theme “Claude”, plus the page record and live product descriptions. The preview URL itself was unreachable from this session, so the visual layout is inferred from the template’s section settings rather than seen.</p>
-    <p>Nothing has been written to the store. Say the word and I’ll apply the rewrite to the preview theme.</p>
+    <p><strong>On the facts.</strong> The hotel’s founding year appears as both 1870 and 1875 across sources, which is why the page says “the 1870s”. Confirm the exact year with the hotel and it can be stated outright — a date is worth more than a decade. Everything else above is corroborated: the Îles Britanniques and Continental Palace names, the 1935 renaming, the Liberty architecture, Maria Alexandrovna’s 1874–75 winter and the palms, Nobel’s final years, and the Grosso portrait for Queen Margherita.</p>
+    <p><strong>Sources.</strong> <a href="https://www.sanremostoria.it/en/tourism-and-sport/accommodation-facilities/381-the-great-hotels-of-the-nineteenth-century/901-hotel-miramare.html">Sanremo Storia — Hotel Miramare</a> · <a href="https://www.miramarepalacesanremo.com/en/5-star-hotel-sanremo">Miramare The Palace</a> · <a href="https://www.hermes.com/us/en/category/home/furniture-and-lighting/">Hermès Maison</a> · <a href="https://us.louisvuitton.com/eng-us/magazine/articles/milandesignweek">Louis Vuitton Objets Nomades</a> · <a href="https://international.frette.com/our-heritage">Frette Heritage</a> · <a href="https://www.tatlerasia.com/homes/architecture-design/baxter-italian-mastery-of-materials">Baxter</a> · <a href="https://www.promemoria.com/en/craftsmanship">Promemoria</a> · <a href="https://ifdm.design/2025/02/28/loro-piana-interiors-sensoriality-en-plein-air/">Loro Piana Interiors</a> · <a href="https://www.valextra.com/en-us/valextra-legacy/valextra-for-milano/The-Project.html">Valextra</a> · <a href="https://wwd.com/accessories-news/handbags/serapian-and-its-bespoke-journey-1235844819/">Serapian</a> · <a href="https://www.nobelprize.org/alfred-nobel/alfred-nobels-final-years-in-sanremo/">Nobel in Sanremo</a> · <a href="https://www.italyrivieralps.com/2016/10/13/read-more/argomenti/places-of-interest/articolo/passeggiata-imperatrice-in-sanremo-a-beautiful-walk-dedicated-to-tsarina-maria-alexandrovna.html">Passeggiata Imperatrice</a></p>
+    <p>Applied to the unpublished “Claude” theme. The live theme is untouched. I have not seen the page render — the preview URL is unreachable from my session, so check the longer paragraphs on mobile.</p>
   </footer>
 
 </div>

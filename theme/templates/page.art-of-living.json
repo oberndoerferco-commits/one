@@ -126,7 +126,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h1>Leather, at the scale of a room</h1>",
+            "text": "<h1>Furniture, made the way we make a trunk</h1>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "left",
@@ -151,7 +151,7 @@
         "dek": {
           "type": "text",
           "settings": {
-            "text": "<p>We have always made objects meant to be held. In Sanremo, we were asked to make objects meant to be lived in.</p>",
+            "text": "<p>We began with objects made to be held — trunks, cases, the small things that travel with a person and take on their marks. In Sanremo we were asked to make objects to be lived in instead: to take the same hides, the same hands, the same slow method, and give them the dimensions of a room.</p>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "left",
@@ -239,7 +239,7 @@
               "type": "text",
               "name": "t:names.caption",
               "settings": {
-                "text": "<p>MIRAMARE PALACE — SANREMO, LIGURIA</p>",
+                "text": "<p>MIRAMARE THE PALACE — SANREMO, LIGURIA</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -329,7 +329,7 @@
                 "body": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>The Miramare kept our pieces in its public rooms for a season. Then it asked whether we would make the rest — the sofas, the armchairs, the tables. Saying yes committed the house to a new discipline.</p>",
+                    "text": "<p>The hotel opened in the 1870s as the Hôtel des Îles Britanniques, in the years when Sanremo filled each winter with the Russian and English courts. It became the Continental Palace, and took the name Miramare in 1935. White, Liberty in style, still hung with Murano glass.</p><p>Our pieces went into its public rooms and stayed a season. Then the hotel asked whether we would make the rest — the seating, the tables, the things a room is actually built from. Saying yes committed the house to a discipline it had not practised before.</p>",
                     "width": "fit-content",
                     "max_width": "narrow",
                     "alignment": "left",
@@ -511,7 +511,7 @@
         "body": {
           "type": "text",
           "settings": {
-            "text": "<p>Nothing about the method changed. The same hides, the same hands, the same stitch — cut to the measure of a room.</p>",
+            "text": "<p>Nothing about the method changed. The same full-grain hides, cut by the same hands, closed with the same stitch — only the dimensions moved. A travelling trunk, set on its side and given a top, turned out to be a table. What we had been making for a dressing room turned out to belong in a hall.</p>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "center",
@@ -893,7 +893,7 @@
                 "body": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Full-grain hides from Italy, France and Germany. Solid brass, galvanised in palladium. Cut, stitched and finished by hand in our workshops around Milan.</p>",
+                    "text": "<p>Full-grain hides from tanneries in Italy, France and Germany, chosen for how they take a mark rather than how evenly they photograph. Solid brass, galvanised in palladium, so the hardware holds its colour under a hand that touches it every day. Cut, stitched and finished by hand in our ateliers around Milan, at the pace the work takes.</p><p>Leather in a room is not a finish. It is a surface that keeps a record of the years it is given.</p>",
                     "width": "fit-content",
                     "max_width": "narrow",
                     "alignment": "left",
@@ -965,7 +965,7 @@
         "line": {
           "type": "text",
           "settings": {
-            "text": "<p>Every piece is made to commission — to your room, your hide, your measure.</p>",
+            "text": "<p>Every piece is made to commission — to your room, your hide, your measure. We make a small number each year, in the ateliers around Milan, and we would rather make them slowly.</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
