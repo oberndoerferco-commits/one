@@ -299,7 +299,7 @@
         "text_ab_dek": {
           "type": "text",
           "settings": {
-            "text": "<p>Three years in Italy’s tanneries and ateliers before we made a single piece. Everything we make is still made that way — by hand, around Milan, to order, in small numbers.</p>",
+            "text": "<p>The house began as a journey — learning from, and then working alongside, the tanneries and artisans of Italy. Everything we make is still made that way: by hand, around Milan, to order, in small numbers.</p>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "left",
@@ -426,7 +426,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<p>THREE YEARS BEFORE THE FIRST PIECE</p>",
+                    "text": "<p>A JOURNEY BEFORE THE FIRST PIECE</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -451,7 +451,7 @@
                 "text_craftBody": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>We went to the tanneries first — family-run, in Italy, France and Germany — and then to the small ateliers around Milan where leather is still cut and stitched by hand. We watched, asked, and were corrected. What we brought back was less a plan than a standard: respect for the material, for the hands, and for the time a thing takes to make properly.</p>",
+                    "text": "<p>We went to the tanneries first — family-run, in Italy, France and Germany — and then to the small ateliers around Milan where leather is still cut and stitched by hand. We watched, asked, and were corrected. Then we stayed, and began to work alongside them. What we brought back was less a plan than a standard: respect for the material, for the hands, and for the time a thing takes to make properly.</p>",
                     "width": "fit-content",
                     "max_width": "narrow",
                     "alignment": "left",
