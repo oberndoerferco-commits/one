@@ -35,7 +35,12 @@ Diff the two JSON files to see exactly which strings changed.
   input borders `#d3cabc`, accent `#7a2e2b` (sale badge text only).
 - Home hero uses `Artisan.jpg` (the atelier) instead of the Unsplash stock photograph.
 - Home "Made to order" section carries the before/after slider of the Mirror bag in
-  lavender and pink (the lane images, so the two frames align).
+  lavender and pink, with the exact block settings and images of the live theme (the
+  owner found the lane images did not align at the divider).
+- Art of Living opening band is a papery Riviera blue, `#cfdbe3`, the one place blue is
+  used on the site.
+- Leather Care (14 answers) and FAQ (10, headings in sentence case) are in the house
+  voice; every fact from the previous versions is kept.
 - `templates/page.the-art-of-packaging.json` is a sectioned template for The Art of
   Packaging; the page's template suffix points to it. The live theme has no such
   template, so it falls back to the plain page there.

@@ -132,7 +132,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<p>Leather Care - Frequently Asked Questions</p>",
+            "text": "<p>How to look after a piece so it ages the way it should. Short answers; for anything not covered, write to us with a photograph.</p>",
             "width": "fit-content",
             "max_width": "narrow",
             "alignment": "left",
@@ -182,7 +182,7 @@
                 "text_adbV9w": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>To clean a leather bag, gently remove dust using a soft, dry cloth. For light cleaning, use a slightly damp cloth and wipe the surface carefully without saturating the leather. Allow it to air dry naturally. Avoid harsh chemicals or unsuitable cleaning products, as they may damage fine leather. For delicate or valuable pieces, professional leather care is recommended.</p>",
+                    "text": "<p>Dust it with a soft, dry cloth. For a mark, use a cloth barely dampened with water, wipe once, and let the bag dry on its own at room temperature. Nothing from under the kitchen sink: household cleaners, wipes and alcohol strip the finish from a fine calf. If a mark does not lift with a damp cloth, stop there and write to us with a photograph rather than trying something stronger.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -220,7 +220,7 @@
                 "text_4UkVhD": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Leather can tolerate small amounts of moisture, but excessive exposure to water may cause stains, stiffness, or changes in color. If your leather bag becomes wet, gently pat it dry with a soft cloth and allow it to dry at room temperature. Avoid direct heat, which can damage the material.</p>",
+                    "text": "<p>A few drops, yes. A soaking, no. Rain beads on a full-grain calf for a while; blot it with a soft cloth as soon as you can and let the piece dry slowly, away from radiators and direct sun. Heat is what does the damage, not the water: it dries the hide too fast and leaves it stiff. Water spots that remain after drying usually even out with use.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -260,7 +260,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>High-quality full-grain leather requires minimal conditioning. Depending on use, applying a suitable conditioner every few months helps maintain softness and prevent drying. Over-conditioning should be avoided, as it may alter the natural character and patina of the leather.</p>",
+                    "text": "<p>Rarely. The calf we use leaves the tannery with its oils in it and needs little more. On a piece used daily, a light application of a cream made for smooth leather once or twice a year is enough; on a piece that lives on a shelf, less. More than that darkens the hide and flattens the patina it would otherwise earn. Test any product on the base first.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -300,7 +300,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Full-grain leather is the highest quality leather available, taken from the outermost layer of the hide where the fibers are the most dense and durable. This layer, often referred to as the “grain,” remains completely intact and unaltered, preserving the leather’s natural surface.</p><p>Because the grain is not sanded or corrected, full-grain leather retains its original characteristics - including pores, veins, and subtle variations in texture. These natural features are a sign of authenticity and contribute to the strength and longevity of the material.</p><p>Beneath the grain lies a tightly structured network of fibers, which gives full-grain leather its exceptional resistance to wear while allowing it to remain breathable. Over time, this structure enables the leather to soften and develop a rich patina.</p><p>In contrast, top-grain leather is lightly sanded to remove surface irregularities and often finished with coatings to create a more uniform appearance. While still high quality, this process reduces the natural strength and prevents the leather from aging in the same way as full-grain leather.</p><p>Lower layers of the hide are used for genuine leather, which is typically processed and coated. These materials lack the durability, breathability, and character of full-grain leather.</p><p>For this reason, full-grain leather is used in luxury leather goods and handmade leather bags, where material integrity, longevity, and natural beauty are essential.</p>",
+                    "text": "<p>The top of the hide, left as it grew. The outermost layer, where the fibres are densest and strongest, is kept whole: not sanded, not corrected, not coated to hide the marks of the animal’s life. What you see on the surface are the pores, the faint veins and the small variations in grain that make one hide unlike another.</p><p>Beneath that surface the fibres are tightly bound, which is why full-grain leather resists wear, stays breathable, and softens rather than cracks. It is also why it takes a patina.</p><p>Top-grain leather has that surface lightly sanded and usually finished with a coating, which makes it more uniform, less strong, and stops it ageing the same way. What is sold as “genuine leather” is cut from the layers below, then processed and coated; it has none of the durability or character of the grain. We use full-grain calf for the same reason a saddler does: it is the part of the hide that lasts.</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -340,7 +340,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Full-grain leather preserves the strongest part of the hide, making it highly resistant and long-lasting. Unlike corrected leather, it ages naturally and develops character, which is why it is used in luxury leather goods and handmade leather products.</p>",
+                    "text": "<p>Because it is the strongest part of the hide, and because it is the only part that improves with use. A corrected leather looks its best on the day you buy it. A full-grain one looks its best some years later.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -379,7 +379,7 @@
                 "text_xT4JJX": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Patina refers to the natural aging process of leather, resulting in a deeper color, soft sheen, and enhanced texture. It develops through use, light exposure, and handling, making each piece unique.</p>",
+                    "text": "<p>The change a hide goes through as it is handled and lives in the light: a deeper colour, a soft sheen where the hands go, a surface that shows its history. It cannot be applied and it cannot be rushed, which is why two pieces cut from the same hide end up different after a year. We consider it the point.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -418,7 +418,7 @@
                 "text_LgYz6F": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Nubuck is a type of top-grain leather that has been lightly sanded to create a soft, velvety surface. It is more delicate than smooth leather but offers a refined appearance.</p>",
+                    "text": "<p>Calf whose grain side has been sanded very lightly to raise a fine, velvety nap. It is softer to the touch than smooth leather and more sensitive to it: it marks more easily and shows water. We use it where the hand of the material matters more than resistance.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -457,7 +457,7 @@
                 "text_NqngpU": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Nubuck should be cleaned using a soft brush designed for delicate leather. Avoid water and liquid cleaners, as they may leave marks. Protective sprays specifically made for nubuck can help prevent staining.</p>",
+                    "text": "<p>With a brush, not a cloth. A soft nubuck brush lifts dust and restores the nap. Keep it away from water and liquid cleaners, which leave rings. A protective spray made specifically for nubuck, applied once when the piece is new and again each season, is the best defence against marks.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -496,7 +496,7 @@
                 "text_qyFVAH": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>No, traditional leather creams and conditioners should not be used on nubuck. They may darken or damage the surface. Always use products specifically designed for nubuck or suede.</p>",
+                    "text": "<p>No. Creams and conditioners for smooth leather soak into the nap, darken it and flatten it, and the change is permanent. Use only products labelled for nubuck or suede.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -535,7 +535,7 @@
                 "text_XJTaPt": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Light stains can be removed using a nubuck brush or eraser. For more stubborn stains, professional cleaning is recommended. Avoid household cleaning products, as they may worsen the damage.</p>",
+                    "text": "<p>Start with the brush. A dry mark often lifts with a nubuck eraser and a few strokes of the brush to bring the nap back. Anything greasy, or anything that has soaked in, should go to a specialist cleaner; household products make it worse. Send us a photograph if you are unsure and we will tell you what we would do.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -574,7 +574,7 @@
                 "text_rUzERB": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Leather should be stored in a dry, breathable environment away from direct sunlight. Use a dust bag and maintain the shape with soft filling. Proper storage helps preserve both structure and appearance.</p>",
+                    "text": "<p>Somewhere dry, dark and airy. Keep the piece in its dust bag, fill it loosely with acid-free tissue so it holds its shape, and give it room: pressed against other things, a bag takes on their shape. Never plastic, which traps moisture, and never a spot in direct sun, which fades the hide. Take it out now and then; leather prefers to be used.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -613,7 +613,7 @@
                 "text_nA3FHH": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>High-quality full-grain leather products can last for decades when properly maintained. Over time, they develop character rather than deteriorate, making them a long-term investment.</p>",
+                    "text": "<p>A full-grain calf piece, treated with ordinary care, lasts for decades and should outlive its first owner. It will not stay new; it will get better. And if something does go wrong, we repair what we make: write to us with a photograph and we quote before any work begins.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -652,7 +652,7 @@
                 "text_XgTWGW": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Leather naturally reacts to light, air, and use. This gradual change in tone is part of its evolution and contributes to the unique identity of each piece.</p>",
+                    "text": "<p>Because it is a skin, and skin answers to light, air and the oils in your hands. Lighter leathers deepen and warm; darker ones gain a sheen. The change is uneven, and that is the character of a natural hide rather than a fault. If you want a piece to age evenly, use it evenly and keep it out of one-sided sun.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -691,7 +691,7 @@
                 "text_6RpXLx": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Maintaining a leather bag requires consistent, minimal care to preserve its structure, texture, and appearance over time. High-quality leather, especially full-grain leather, improves with proper handling rather than intensive treatment.</p><p>For daily and long-term <strong>leather maintenance</strong>, follow these principles:</p><ul><li>Gently wipe the surface with a soft, dry cloth to remove dust</li><li>Avoid prolonged exposure to sunlight, heat, or humidity</li><li>Handle with clean hands to prevent oils and stains</li><li>Keep away from water and harsh surfaces</li><li>Store the bag in a dust bag when not in use</li><li>Maintain its shape with soft filling</li><li>Condition occasionally using products suitable for fine leather</li></ul><p>Rather than frequent intervention, leather benefits from careful use and a stable environment. With the right care, it will develop a natural patina and retain its elegance for many years.</p>",
+                    "text": "<p>Lightly and often, rather than heavily and rarely.</p><ul><li>Wipe it with a soft, dry cloth.</li><li>Keep it out of prolonged sun, heat and damp.</li><li>Carry it with clean hands; keep it off wet ground and rough surfaces.</li><li>Store it in its dust bag, filled loosely so it keeps its shape.</li><li>Condition only when the leather feels dry, with a cream made for fine smooth leather.</li></ul><p>Beyond that, use it. A stable environment and regular handling do more for a hide than any product, and the patina that results is the reward.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",

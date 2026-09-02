@@ -105,7 +105,7 @@
               "type": "_accordion-row",
               "name": "t:names.accordion_row",
               "settings": {
-                "heading": "HOW SHOULD I CARE FOR MY LEATHER PRODUCT TO ENSURE IT LASTS A LONG TIME?",
+                "heading": "How should I care for my leather piece?",
                 "open_by_default": false,
                 "icon": "leather",
                 "width": 20
@@ -115,7 +115,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>To maintain the beauty and longevity of your leather goods, we recommend the following:</p><ul><li><strong>Regular cleaning:</strong> Wipe your leather product with a soft, dry cloth to remove dust and dirt. Avoid using water or soap, as these can damage the leather.</li><li><strong>Conditioning:</strong> Use a high-quality leather conditioner every 6-12 months to keep the leather soft and prevent it from drying out or cracking. Apply the conditioner with a soft cloth, following the product instructions.</li><li><strong>Storage:</strong> Store your leather items in a cool, dry place away from direct sunlight, which can cause the color to fade. Use a dust bag to protect the leather from dust and scratches.</li><li><strong>Avoid moisture:</strong> Keep your leather goods away from water. If they do get wet, blot the excess water with a dry cloth and allow them to air dry naturally, away from heat sources.</li><li><strong>Handling:</strong> When handling leather products, make sure your hands are clean and dry. Oils and dirt from your hands can stain the leather over time.</li></ul>",
+                    "text": "<p>Dust it with a soft, dry cloth; keep it out of prolonged sun, heat and damp; store it in its dust bag with a little tissue inside so it keeps its shape. Condition only when the leather feels dry, once or twice a year at most, with a cream made for fine smooth leather. If it gets wet, blot it and let it dry slowly, away from heat. The full guide, nubuck and exotic hides included, is on our <a href=\"/pages/leather-care-guide\">Leather Care</a> page.</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -144,7 +144,7 @@
             "accordion_row_BRGcRM": {
               "type": "_accordion-row",
               "settings": {
-                "heading": "WHAT IS THE RETURN POLICY?",
+                "heading": "What is the return policy?",
                 "open_by_default": false,
                 "icon": "none",
                 "width": 20
@@ -153,7 +153,7 @@
                 "text_h9y3Jg": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Our goal is for every customer to be totally satisfied with their purchase. If this isn't the case, let us know and we'll do our best to work with you to make it right.</p>",
+                    "text": "<p>Pieces bought from the website can be returned within 14 days of delivery, unused and in their original condition and packaging. Personalised and made-to-order pieces are made for you and cannot be returned. Write to <a href=\"mailto:info@oberndoerferco.com\">info@oberndoerferco.com</a> with your order number and we will send the instructions; the full terms are in our <a href=\"/policies/refund-policy\">return policy</a>.</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -182,7 +182,7 @@
             "accordion_row_HmCHyF": {
               "type": "_accordion-row",
               "settings": {
-                "heading": "HOW LONG DOES IT TAKE FOR YOUR PRODUCTS TO ARRIVE?",
+                "heading": "How long does delivery take?",
                 "open_by_default": false,
                 "icon": "none",
                 "width": 20
@@ -191,7 +191,7 @@
                 "text_ziEjaq": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Every piece on the website is delivered within 7–14 days, free worldwide with DHL Express. The exceptions are our larger commissions - trunks, sofas, and furniture - which are built to order: trunks take 2–6 months depending on complexity and level of personalization, furniture and highly detailed commissions 4–6 months. We confirm exact timing once you have placed your order, or in advance if you contact us.</p>",
+                    "text": "<p>Pieces in stock are delivered within 7–14 days, free worldwide with DHL Express. Larger commissions are built to order: trunks take 2–6 months depending on complexity and personalisation, furniture and highly detailed commissions 4–6 months. We confirm exact timing once you have placed your order, or beforehand if you write to us.</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -221,7 +221,7 @@
               "type": "_accordion-row",
               "name": "t:names.accordion_row",
               "settings": {
-                "heading": "WHAT HAPPENS AFTER PLACING MY ORDER?",
+                "heading": "What happens after I place an order?",
                 "open_by_default": false,
                 "icon": "none",
                 "width": 20
@@ -231,7 +231,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>You will receive an automatically generated order confirmation by email from our webshop.</p>",
+                    "text": "<p>You receive an order confirmation by email straight away. When your piece leaves Milan you receive a second email with the DHL Express tracking number. For anything made to order, we write to you first to confirm the timeline before work begins.</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -261,7 +261,7 @@
               "type": "_accordion-row",
               "name": "t:names.accordion_row",
               "settings": {
-                "heading": "HOW MAY I GET ASSISTANCE WITH MY ONLINE ORDER?",
+                "heading": "How can I get help with an order?",
                 "open_by_default": false,
                 "icon": "none",
                 "width": 20
@@ -271,7 +271,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Please write down your questions and contact <a href=\"mailto:info@oberndoerferco.com\">info@oberndoerferco.com</a> for specific details. If anything is unclear, we will contact you and do our best to fulfill your special requests.</p>",
+                    "text": "<p>Write to <a href=\"mailto:info@oberndoerferco.com\">info@oberndoerferco.com</a> with your order number and your question; a person in the atelier answers. If you would like something not shown, a different leather, colour or lining, say so: most of what we make can be made to order.</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -301,7 +301,7 @@
               "type": "_accordion-row",
               "name": "t:names.accordion_row",
               "settings": {
-                "heading": "HOW MUCH DOES SHIPPING COST?",
+                "heading": "How much does shipping cost?",
                 "open_by_default": false,
                 "icon": "none",
                 "width": 20
@@ -311,7 +311,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Shipping is free on all orders, worldwide. We ship with DHL Express.</p>",
+                    "text": "<p>Nothing. Shipping is free on every order, worldwide, with DHL Express.</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -341,7 +341,7 @@
               "type": "_accordion-row",
               "name": "t:names.accordion_row",
               "settings": {
-                "heading": "HOW LONG DOES A CUSTOM ORDER TAKE?",
+                "heading": "How long does a custom order take?",
                 "open_by_default": false,
                 "icon": "none",
                 "width": 20
@@ -351,7 +351,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Lead time depends on what we are making. A small, simple piece such as a leather box usually takes 4 to 6 weeks. Trunks take 2 to 6 months depending on complexity and level of personalization. Sofas, furniture and highly detailed commissions take 4 to 6 months.</p><p>Each piece is crafted entirely by hand. We confirm a timeline with you before work begins and keep you updated throughout.</p>",
+                    "text": "<p>It depends on what we are making. A small piece such as a leather box usually takes 4 to 6 weeks. Trunks take 2 to 6 months depending on complexity and personalisation. Sofas, furniture and highly detailed commissions take 4 to 6 months.</p><p>Each piece is made entirely by hand. We confirm a timeline with you before work begins and keep you informed as it progresses.</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -381,7 +381,7 @@
               "type": "_accordion-row",
               "name": "t:names.accordion_row",
               "settings": {
-                "heading": "WHAT MATERIALS DO YOU USE?",
+                "heading": "What materials do you use?",
                 "open_by_default": false,
                 "icon": "none",
                 "width": 20
@@ -391,7 +391,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Our leather comes from tanneries in Italy, France, and Germany, and is a byproduct of the meat industry. Exotic leathers follow a separate supply chain: the hides may originate outside Europe and are processed in Italy, always sourced and traded in full compliance with CITES regulations, with documentation available on request.</p><p>All materials are chosen for their durability, beauty, and ability to age gracefully over time. For the full picture of the leathers and hardware we use and how each piece is made, see our <a href=\"https://www.oberndoerferco.com/pages/materials-craftsmanship\" title=\"Materials &amp; Craftsmanship\">Materials &amp; Craftsmanship</a> page.</p>",
+                    "text": "<p>Our leather comes from tanneries in Italy, France and Germany, and is a byproduct of the meat industry. Exotic leathers follow a separate supply chain: the hides may originate outside Europe and are processed in Italy, always sourced and traded in full compliance with CITES, with documentation available on request.</p><p>For the leathers and hardware we use and how each piece is made, see <a href=\"/pages/materials-craftsmanship\">Materials &amp; Craftsmanship</a>.</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -421,7 +421,7 @@
               "type": "_accordion-row",
               "name": "t:names.accordion_row",
               "settings": {
-                "heading": "DO YOU OFFER WORLDWIDE SHIPPING?",
+                "heading": "Do you ship worldwide?",
                 "open_by_default": false,
                 "icon": "none",
                 "width": 20
@@ -431,7 +431,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Yes - we ship worldwide, free of charge, with DHL Express. Each piece is carefully packaged to ensure it arrives in perfect condition.</p>",
+                    "text": "<p>Yes, to every country DHL Express serves, free of charge. Each piece travels in its dust bag inside the house’s box.</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -461,7 +461,7 @@
               "type": "_accordion-row",
               "name": "t:names.accordion_row",
               "settings": {
-                "heading": "DO YOU REPAIR YOUR PIECES?",
+                "heading": "Do you repair your pieces?",
                 "open_by_default": false,
                 "icon": "none",
                 "width": 20
