@@ -87,7 +87,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Every Oberndörfer Milano piece starts with the same two questions: what is this material, and who is making it by hand. This page brings together, in one place, what we use and how we work - the same facts found across our About, FAQ, and product pages, gathered here for reference.</p>",
+            "text": "<p>Every piece starts with the same two questions: what is this material, and whose hands are making it. What follows is the plain answer — the hides, the hardware, the ateliers, and the time each one takes.</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "left",
@@ -123,7 +123,7 @@
         "vertical_alignment_flex_direction_column": "center",
         "gap": 20,
         "section_width": "page-width",
-        "section_height": "small",
+        "section_height": "",
         "section_height_custom": 50,
         "background_media": "none",
         "background_color": "{{ settings.color_palette.background }}",
@@ -137,8 +137,8 @@
         "border_width": 1,
         "border_opacity": 100,
         "border_radius": 0,
-        "padding-block-start": 40,
-        "padding-block-end": 20
+        "padding-block-start": 96,
+        "padding-block-end": 72
       }
     },
     "section_leathers": {
@@ -172,7 +172,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>We work primarily in full-grain leather - the highest grade available, its surface left intact so the natural grain, pores, and markings remain. Our leather comes from tanneries in Italy, France, and Germany, and is a byproduct of the meat industry. Left uncorrected, full-grain leather softens and develops a natural patina with use rather than wearing out.</p><p>Within the collection, specific pieces use specific leathers chosen for the job: grained Togo calf leather for its durability and soft hand feel, smooth goat leather as an interior lining, pebbled calf leather for trays and coasters, and nubuck where a softer, sanded surface is wanted. All are chosen for durability, beauty, and the way they age.</p>",
+            "text": "<p>We work primarily in full-grain leather — the highest grade available, its surface left intact so the natural grain, pores, and markings remain. Our leather comes from tanneries in Italy, France, and Germany, and is a byproduct of the meat industry. Left uncorrected, full-grain leather softens and develops a natural patina with use rather than wearing out.</p><p>Within the collection, specific pieces use specific leathers chosen for the job: grained Togo calf leather for its durability and soft hand feel, smooth goat leather as an interior lining, pebbled calf leather for trays and coasters, and nubuck where a softer, sanded surface is wanted. All are chosen for durability, beauty, and the way they age.</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "left",
@@ -257,7 +257,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Exotic leathers - crocodile, alligator, and ostrich - follow a separate supply chain from our full-grain leather. The hides may originate outside Europe and are processed in Italy. Our alligator, for example, is Alligator mississippiensis, the American alligator, sourced from licensed farms in Louisiana. All exotic leather is sourced and traded in full compliance with CITES regulations, with documentation available on request.</p>",
+            "text": "<p>Exotic leathers — crocodile, alligator, and ostrich — follow a separate supply chain from our full-grain leather. The hides may originate outside Europe and are processed in Italy. Our alligator, for example, is Alligator mississippiensis, the American alligator, sourced from licensed farms in Louisiana. All exotic leather is sourced and traded in full compliance with CITES regulations, with documentation available on request.</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "left",
@@ -427,7 +427,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Every piece is made by hand in our ateliers around Milan, by artisans we chose ourselves after visiting their workshops and seeing their work firsthand. Edges are hand-stitched and hand-burnished, a finishing step that keeps leather from fraying at the seams over years of use. Pieces are made in small batches, to order - never mass-produced. Read more about the people and the ateliers behind the work on our <a href=\"https://www.oberndoerferco.com/pages/about-us\" title=\"About Oberndörfer Milano\">About</a> page.</p>",
+            "text": "<p>Every piece is made by hand in our ateliers around Milan, by artisans we chose ourselves after visiting their workshops and seeing their work firsthand. Edges are hand-stitched and hand-burnished, a finishing step that keeps leather from fraying at the seams over years of use. Pieces are made in small batches, to order — never mass-produced. Read more about the people and the ateliers behind the work on our <a href=\"https://www.oberndoerferco.com/pages/about-us\" title=\"About Oberndörfer Milano\">About</a> page.</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "left",
@@ -597,7 +597,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Full-grain leather is a living material: wipe it with a soft, dry cloth, keep it away from water and direct sunlight, and let it rest in its dust bag when not in use. With time and handling it develops a patina that is part of its character, not a flaw. For the complete guide - conditioning, storage, and our repair and restoration service - see our full <a href=\"https://www.oberndoerferco.com/pages/leather-care-guide\" title=\"Leather Care Guide\">Leather Care Guide</a>.</p>",
+            "text": "<p>Full-grain leather is a living material: wipe it with a soft, dry cloth, keep it away from water and direct sunlight, and let it rest in its dust bag when not in use. With time and handling it develops a patina that is part of its character, not a flaw. For the complete guide — conditioning, storage, and our repair and restoration service — see our full <a href=\"https://www.oberndoerferco.com/pages/leather-care-guide\" title=\"Leather Care Guide\">Leather Care Guide</a>.</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "left",

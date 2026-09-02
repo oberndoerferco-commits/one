@@ -146,7 +146,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<h1>BESPOKE PRODUCTS</h1>",
+                    "text": "<h1>BESPOKE</h1>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -172,7 +172,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<p>Made to your specification, by hand in Milan.</p>",
+                    "text": "<p>Made to your measure, by hand, around Milan.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -277,7 +277,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h2>Crafted by hand, tailored exclusively for you.<br/>We believe every detail matters.</h2>",
+            "text": "<h2>Made once, for one person.</h2>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -303,7 +303,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>At Oberndörfer Milano, we create bespoke pieces for clients who want something made specifically for them, from custom leather goods to made-to-measure furniture.<br/>Each piece is shaped around your brief and handcrafted in our <a href=\"https://www.oberndoerferco.com/pages/about-us\" title=\"About Oberndörfer Milano\">ateliers around Milan</a>, where our team works with you directly from first sketch to finished object.</p>",
+            "text": "<p>A bespoke piece starts with a conversation and ends with an object that exists nowhere else — a trunk cut to the watches you own, a bag to the way you carry, a sofa to the room it will live in. It is drawn, made and finished in our ateliers around Milan, and we work with you directly from first sketch to last stitch.</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -480,7 +480,7 @@
                 "text_YAThXt": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Handcrafted in Italy, our leather pieces include bags, trunks, travel accessories, wallets and belts. Each is made to your specification.</p>",
+                    "text": "<p>Bags, trunks, travel pieces, wallets and belts — in the hide, lining, hardware and dimensions you choose.</p>",
                     "width": "fit-content",
                     "max_width": "narrow",
                     "alignment": "left",
@@ -511,7 +511,7 @@
             "button_nzW68w": {
               "type": "button",
               "settings": {
-                "label": "Contact us",
+                "label": "Begin a commission",
                 "link": "#shopify-section-template--31283375931717__section_FRT4RP",
                 "open_in_new_tab": false,
                 "style_class": "button-secondary",
@@ -666,7 +666,7 @@
                 "text_qyRnVW": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Made-to-measure furniture that blends Italian craftsmanship with refined leatherwork. Each piece is designed for your space, lifestyle, and taste: personal, enduring, and beautifully proportioned.</p>",
+                    "text": "<p>Sofas, armchairs, poufs and tables in full-grain leather, made to the measure of your room. The method is the one we use for a trunk; only the scale changes.</p>",
                     "width": "fit-content",
                     "max_width": "narrow",
                     "alignment": "left",
@@ -697,7 +697,7 @@
             "button_ytbXGM": {
               "type": "button",
               "settings": {
-                "label": "Contact us",
+                "label": "Begin a commission",
                 "link": "#shopify-section-template--31283375931717__section_FRT4RP",
                 "open_in_new_tab": false,
                 "style_class": "button-secondary",
@@ -883,7 +883,7 @@
             "button_XCAV9b": {
               "type": "button",
               "settings": {
-                "label": "Contact us",
+                "label": "Begin a commission",
                 "link": "#shopify-section-template--31283375931717__section_FRT4RP",
                 "open_in_new_tab": false,
                 "style_class": "button-secondary",
@@ -925,7 +925,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h2>WHY CHOOSE <strong>OBERNDÖRFER MILANO</strong> FOR BESPOKE DESIGNS?</h2>",
+            "text": "<h2>WHAT WE BRING TO IT</h2>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -951,7 +951,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Choosing Oberndörfer Milano means working with a house that values craftsmanship and individuality. We use only full-grain leathers and solid brass hardware, materials chosen for their durability and the way they age.</p>",
+            "text": "<p>Full-grain hides and solid brass, chosen for how they age rather than how they photograph. Ateliers we selected by visiting them. And a habit of saying no to a detail that will not last.</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -1189,7 +1189,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Each bespoke request is developed through a private dialogue with our atelier, allowing you to shape every detail while our artisans turn your ideas into pieces that exist only once in the world. No mass production, no replicas - only true personal design. Our furniture collaboration with the <a href=\"https://www.oberndoerferco.com/pages/oberndorfer-x-miramare-sanremo\" title=\"Art of Living\">Miramare Palace Hotel</a> began exactly this way, as a bespoke commission.</p>",
+            "text": "<p>Every commission is a private dialogue with the atelier. You decide the piece; we tell you honestly what the material will and will not do. The Miramare’s furniture began exactly this way — as one conversation about one room.</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -1461,7 +1461,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h2>GENERAL INFORMATION</h2>",
+            "text": "<h2>THE CHOICES</h2>",
             "width": "fit-content",
             "max_width": "narrow",
             "alignment": "left",
@@ -1637,7 +1637,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>At Oberndörfer Milano, craftsmanship and responsibility go together. Every piece is handmade in our ateliers around Milan.</p><p>Our leather comes from tanneries in Italy, France, and Germany, and is a byproduct of the meat industry. Exotic leathers follow a separate supply chain: the hides may originate outside Europe and are processed in Italy, always sourced and traded in full compliance with CITES regulations, with documentation available on request.</p><p>Each hide and each lining is chosen with care for material and origin.</p>",
+                    "text": "<p>Every piece is made by hand in ateliers around Milan. Our hides come from tanneries in Italy, France and Germany; exotic hides are CITES-documented, with papers available on request.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -1887,7 +1887,7 @@
         "text_JmceR6": {
           "type": "text",
           "settings": {
-            "text": "<h2>CONTACT US</h2><p>Tell us what you have in mind. Our team will follow up to discuss materials, sizing, and personalization, and to walk you through timing. A small piece such as a leather box usually takes 4 to 6 weeks; a larger piece such as a sofa, 1 to 2 months; a highly detailed commission, up to 4 to 6 months. For urgent enquiries, reach us directly at info@oberndoerferco.com.</p>",
+            "text": "<h2>BEGIN A COMMISSION</h2><p>Tell us what you have in mind — the piece, the room, or the person it is for. We reply personally, with materials, dimensions and a realistic timeline. For anything urgent, write to info@oberndoerferco.com.</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -2264,7 +2264,7 @@
               "type": "contact-form-submit-button",
               "static": true,
               "settings": {
-                "label": "Submit",
+                "label": "Send",
                 "style_class": "button",
                 "custom_button_background": "{{ settings.color_palette.foreground }}",
                 "custom_button_text": "{{ settings.color_palette.background }}",
