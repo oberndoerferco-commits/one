@@ -26,6 +26,20 @@ Diff the two JSON files to see exactly which strings changed.
   a "Write to the atelier" line under the product-page buy buttons, and the repair
   promise (home facts row, product facts and Delivery accordion, FAQ).
 
+### Colour and photography (Claude theme)
+
+- Product "lane" images (`obm-lane-*.jpg`, the first image on 128 of 129 products) all sit on
+  the same warm ground, `#eeede8`. The theme's page background is set to that value so
+  product tiles dissolve into the page; no product photos were recoloured.
+- Palette: ink `#1c1714`, saddle `#4a3f35` (primary buttons), band `#e5e0d7`, lines and
+  input borders `#d3cabc`, accent `#7a2e2b` (sale badge text only).
+- Home hero uses `Artisan.jpg` (the atelier) instead of the Unsplash stock photograph.
+- Home "Made to order" section carries the before/after slider of the Mirror bag in
+  lavender and pink (the lane images, so the two frames align).
+- `templates/page.the-art-of-packaging.json` is a sectioned template for The Art of
+  Packaging; the page's template suffix points to it. The live theme has no such
+  template, so it falls back to the plain page there.
+
 ### Decisions on record
 
 - Colour families stay as separate products (owner declined the merge).
