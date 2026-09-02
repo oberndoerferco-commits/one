@@ -321,7 +321,7 @@
                   "type": "text",
                   "name": "Trust badges",
                   "settings": {
-                    "text": "<p><strong>Handmade in Italy</strong> - crafted in small batches in ateliers around Milan<br><strong>Shipping</strong> - free worldwide with DHL Express; delivered in 7–14 days<br><strong>Made to order</strong> - trunks &amp; furniture are built to commission<br><strong>Returns</strong> - 14 days from delivery<br><strong>Personalisation</strong> - monogramming and <a href=\"/pages/personalization\">bespoke commissions</a> on request<br><strong>Repair &amp; restoration</strong> - <a href=\"/pages/leather-care-guide\">our ateliers maintain what they make</a></p>",
+                    "text": "<p><strong>Handmade in Italy</strong> - crafted in small batches in ateliers around Milan<br><strong>Shipping</strong> - free worldwide with DHL Express; delivered in 7–14 days<br><strong>Made to order</strong> - trunks &amp; furniture are built to commission<br><strong>Returns</strong> - 14 days from delivery<br><strong>Personalisation</strong> - monogramming and <a href=\"/pages/personalization\">bespoke commissions</a> on request<br><strong>Repairs</strong> - we repair what we make; <a href=\"/pages/contact\">send us a photograph</a> and we quote before any work begins</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -509,7 +509,7 @@
                     "text_delivery": {
                       "type": "text",
                       "settings": {
-                        "text": "<p><strong>Shipping</strong><br/>Free worldwide with DHL Express. Your piece is prepared and delivered within 7–14 days.</p><p><strong>Made to order</strong><br/>Larger pieces - trunks, sofas, and furniture - are built to commission: trunks take 2–6 months depending on complexity and level of personalization; furniture and large commissions 4–6 months. We confirm your piece's timeline right after your order.</p><p><strong>Returns</strong><br/>Returns are accepted within 14 days of delivery. Items must be unused and returned in their original condition. </p><p>Personalized or custom-made items are not eligible for return. For full details, please refer to our <a href=\"/policies/refund-policy\" title=\"Refund Policy\">return policy</a> and <a href=\"/policies/shipping-policy\" title=\"Shipping Policy\">shipping policy</a> or <a href=\"/pages/contact\" title=\"Contact\">contact us</a> directly.</p>",
+                        "text": "<p><strong>Shipping</strong><br/>Free worldwide with DHL Express. Your piece is prepared and delivered within 7–14 days.</p><p><strong>Made to order</strong><br/>Larger pieces - trunks, sofas, and furniture - are built to commission: trunks take 2–6 months depending on complexity and level of personalization; furniture and large commissions 4–6 months. We confirm your piece's timeline right after your order.</p><p><strong>Returns</strong><br/>Returns are accepted within 14 days of delivery. Items must be unused and returned in their original condition. </p><p><strong>Repairs</strong><br/>Every piece we make can come back to the atelier. Write to us with a photograph of the damage; the cost depends on what is needed, and we confirm a quote and timing before any work begins.</p><p>Personalized or custom-made items are not eligible for return. For full details, please refer to our <a href=\"/policies/refund-policy\" title=\"Refund Policy\">return policy</a> and <a href=\"/policies/shipping-policy\" title=\"Shipping Policy\">shipping policy</a> or <a href=\"/pages/contact\" title=\"Contact\">contact us</a> directly.</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -569,10 +569,19 @@
                         "padding-inline-end": 0
                       },
                       "blocks": {}
+                    },
+                    "liquid_packaging": {
+                      "type": "custom-liquid",
+                      "name": "Packaging moment",
+                      "settings": {
+                        "custom_liquid": "<div style=\"margin-top:16px\"><a href=\"/pages/the-art-of-packaging\" style=\"text-decoration:none;display:block\"><img src=\"https://cdn.shopify.com/s/files/1/0758/8387/2581/files/gift_boxes.heic?v=1770849042&width=900\" alt=\"Oberndörfer signature gift boxes with ribbons\" loading=\"lazy\" style=\"display:block;width:100%;height:auto\"></a><p style=\"font-family:var(--font-subheading--family);font-size:0.8125rem;letter-spacing:0.06em;text-transform:uppercase;color:rgba(22,18,13,0.55);margin:12px 0 0\">Presented in the house's signature packaging - <a href=\"/pages/the-art-of-packaging\" style=\"color:rgba(22,18,13,0.75)\">The Art of Packaging</a></p></div>"
+                      },
+                      "blocks": {}
                     }
                   },
                   "block_order": [
-                    "text_gifting"
+                    "text_gifting",
+                    "liquid_packaging"
                   ]
                 }
               },
@@ -582,14 +591,6 @@
                 "row_delivery",
                 "row_gifting"
               ]
-            },
-            "liquid_packaging": {
-              "type": "custom-liquid",
-              "name": "Packaging moment",
-              "settings": {
-                "custom_liquid": "<div style=\"margin-top:28px\"><a href=\"/pages/the-art-of-packaging\" style=\"text-decoration:none;display:block\"><img src=\"https://cdn.shopify.com/s/files/1/0758/8387/2581/files/gift_boxes.heic?v=1770849042&width=900\" alt=\"Oberndörfer signature gift boxes with ribbons\" loading=\"lazy\" style=\"display:block;width:100%;height:auto\"></a><p style=\"font-family:var(--font-subheading--family);font-size:0.8125rem;letter-spacing:0.06em;text-transform:uppercase;color:rgba(22,18,13,0.55);margin:12px 0 0\">Presented in the house's signature packaging - <a href=\"/pages/the-art-of-packaging\" style=\"color:rgba(22,18,13,0.75)\">The Art of Packaging</a></p></div>"
-              },
-              "blocks": {}
             },
             "liquid_specs": {
               "type": "custom-liquid",
@@ -618,8 +619,7 @@
             "group_trust_signals",
             "text_aEtTtq",
             "liquid_specs",
-            "accordion_info",
-            "liquid_packaging"
+            "accordion_info"
           ]
         }
       },

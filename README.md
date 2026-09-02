@@ -23,7 +23,16 @@ Diff the two JSON files to see exactly which strings changed.
   (merge colour families into variants, new main menu, repair promise, publishing).
 - Applied to the Claude theme from that review: home page "Made to order" section
   (replaces the "Find your perfect fit" comparison slider), hero and close-band buttons,
-  and a "Write to the atelier" line under the product-page buy buttons.
+  a "Write to the atelier" line under the product-page buy buttons, and the repair
+  promise (home facts row, product facts and Delivery accordion, FAQ).
+
+### Decisions on record
+
+- Colour families stay as separate products (owner declined the merge).
+- The proposed main menu in the review is the agreed target. **Do not apply it** until
+  the owner says so; menus are store-level and go live the moment they are saved.
+- Repairs: yes, paid, quoted per piece once the atelier has seen a photograph.
+- The owner publishes the Claude theme themself.
 
 ### Not applied
 
