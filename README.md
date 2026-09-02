@@ -16,6 +16,15 @@ Working copy of content pulled from the Shopify store `oberndoerferco.com`.
 
 Diff the two JSON files to see exactly which strings changed.
 
+## Site design review
+
+- `docs/website-design-review.html` — competitor research (nine houses), audit of the live
+  store and the Claude theme, the finished blueprint, and the four decisions still open
+  (merge colour families into variants, new main menu, repair promise, publishing).
+- Applied to the Claude theme from that review: home page "Made to order" section
+  (replaces the "Find your perfect fit" comparison slider), hero and close-band buttons,
+  and a "Write to the atelier" line under the product-page buy buttons.
+
 ### Not applied
 
 - Captions for the four full-bleed images in `section_aol_pieces` — drafted in the

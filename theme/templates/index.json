@@ -41,7 +41,7 @@
         "button_heroBtn": {
           "type": "button",
           "settings": {
-            "label": "Shop All",
+            "label": "Discover the collections",
             "link": "/collections/all",
             "open_in_new_tab": false,
             "style_class": "button-secondary",
@@ -366,11 +366,11 @@
             "horizontal_alignment": "flex-start",
             "vertical_alignment": "center",
             "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "center",
+            "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
-            "gap": 30,
-            "width": "fit-content",
-            "custom_width": 100,
+            "gap": 24,
+            "width": "custom",
+            "custom_width": 40,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
             "height": "fit",
@@ -406,7 +406,7 @@
                 "horizontal_alignment": "flex-start",
                 "vertical_alignment": "center",
                 "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "center",
+                "horizontal_alignment_flex_direction_column": "flex-start",
                 "vertical_alignment_flex_direction_column": "center",
                 "gap": 12,
                 "width": "fill",
@@ -441,16 +441,16 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<h2>Find your perfect fit</h2>",
+                    "text": "<p>MADE TO ORDER</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
-                    "type_preset": "h2",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
+                    "type_preset": "custom",
+                    "font": "var(--font-subheading--family)",
+                    "font_size": "0.8125rem",
                     "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
+                    "letter_spacing": "loose",
+                    "case": "uppercase",
                     "wrap": "pretty",
                     "text_color": "",
                     "background": false,
@@ -467,9 +467,9 @@
                   "type": "text",
                   "name": "t:names.subheading",
                   "settings": {
-                    "text": "<p>Discover the best of both worlds</p>",
+                    "text": "<h2>Every piece is also a starting point.</h2><p>Choose the leather, the colour and the lining on a design you already like, or bring us a room. Trunks, tables and seating are built to order in our ateliers around Milan, one at a time.</p>",
                     "width": "fit-content",
-                    "max_width": "normal",
+                    "max_width": "narrow",
                     "alignment": "left",
                     "type_preset": "rte",
                     "font": "var(--font-body--family)",
@@ -477,7 +477,7 @@
                     "line_height": "normal",
                     "letter_spacing": "normal",
                     "case": "none",
-                    "wrap": "pretty",
+                    "wrap": "balance",
                     "text_color": "",
                     "background": false,
                     "background_color": "#00000026",
@@ -501,7 +501,7 @@
               "settings": {
                 "content_direction": "row",
                 "vertical_on_mobile": false,
-                "horizontal_alignment": "center",
+                "horizontal_alignment": "flex-start",
                 "vertical_alignment": "center",
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
@@ -539,8 +539,27 @@
                   "type": "button",
                   "name": "t:names.button",
                   "settings": {
-                    "label": "Shop now",
-                    "link": "shopify://collections/bags",
+                    "label": "Begin a commission",
+                    "link": "shopify://pages/personalization",
+                    "open_in_new_tab": false,
+                    "style_class": "button",
+                    "custom_button_background": "{{ settings.color_palette.foreground }}",
+                    "custom_button_text": "{{ settings.color_palette.background }}",
+                    "custom_button_border": "{{ settings.color_palette.background }}",
+                    "link_text_color": "",
+                    "width": "fit-content",
+                    "custom_width": 100,
+                    "width_mobile": "fit-content",
+                    "custom_width_mobile": 100
+                  },
+                  "blocks": {}
+                },
+                "button_aolLink": {
+                  "type": "button",
+                  "name": "t:names.button",
+                  "settings": {
+                    "label": "Art of Living",
+                    "link": "shopify://pages/oberndorfer-x-miramare-sanremo",
                     "open_in_new_tab": false,
                     "style_class": "button-secondary",
                     "custom_button_background": "{{ settings.color_palette.foreground }}",
@@ -548,15 +567,16 @@
                     "custom_button_border": "{{ settings.color_palette.background }}",
                     "link_text_color": "",
                     "width": "fit-content",
-                    "custom_width": 34,
+                    "custom_width": 100,
                     "width_mobile": "fit-content",
-                    "custom_width_mobile": 34
+                    "custom_width_mobile": 100
                   },
                   "blocks": {}
                 }
               },
               "block_order": [
-                "button_pMdzD9"
+                "button_pMdzD9",
+                "button_aolLink"
               ]
             }
           },
@@ -565,49 +585,195 @@
             "group_aKUPfn"
           ]
         },
-        "comparison_slider_AhJtCm": {
-          "type": "comparison-slider",
-          "name": "t:names.comparison_slider",
+        "group_tiles": {
+          "type": "group",
+          "name": "Tiles",
           "settings": {
-            "before_image": "shopify://shop_images/LOGO_13.229_x_13.229_cm_-2.jpg",
-            "after_image": "shopify://shop_images/CB84DA31-BB4F-4349-8973-5D96C7D5AA65.jpg",
-            "slider_style": "horizontal",
-            "show_text": false,
-            "before_text": "",
-            "after_text": "",
-            "text_preset": "",
-            "text_position_horizontal": "start",
-            "text_position_vertical": "start",
-            "text_background": false,
-            "text_background_color": "#ffffff",
-            "text_corner_radius": 0,
-            "text_color": "{{ settings.color_palette.foreground }}",
-            "image_ratio": "landscape",
-            "width": "custom",
-            "custom_width": 65,
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "space-between",
+            "gap": 16,
+            "width": "fill",
+            "custom_width": 60,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
             "height": "fit",
-            "slider_bg_color": "",
-            "slider_handle_color": "",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image": "",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
             "border": "none",
             "border_width": 1,
             "border_opacity": 100,
             "border_color": "",
             "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "hero-apparel-2",
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
-          "blocks": {}
+          "blocks": {
+            "tile_bespoke": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "center",
+                "vertical_alignment_flex_direction_column": "space-between",
+                "gap": 32,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "background_media": "none",
+                "background_color": "",
+                "video_position": "cover",
+                "background_image": "",
+                "background_image_position": "cover",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "image_tile_bespoke": {
+                  "type": "image",
+                  "settings": {
+                    "image": "shopify://shop_images/Artisan.jpg",
+                    "link": "shopify://pages/personalization",
+                    "image_ratio": "portrait",
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_color": "",
+                    "border_radius": 20,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "image_tile_bespoke"
+              ]
+            },
+            "tile_aol": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "center",
+                "vertical_alignment_flex_direction_column": "space-between",
+                "gap": 32,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "background_media": "none",
+                "background_color": "",
+                "video_position": "cover",
+                "background_image": "",
+                "background_image_position": "cover",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "image_tile_aol": {
+                  "type": "image",
+                  "settings": {
+                    "image": "shopify://shop_images/oberndoerfer-aol-trunk-table.jpg",
+                    "link": "shopify://pages/oberndorfer-x-miramare-sanremo",
+                    "image_ratio": "portrait",
+                    "width": "fill",
+                    "custom_width": 100,
+                    "width_mobile": "fill",
+                    "custom_width_mobile": 100,
+                    "height": "fit",
+                    "border": "none",
+                    "border_width": 1,
+                    "border_opacity": 100,
+                    "border_color": "",
+                    "border_radius": 20,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "image_tile_aol"
+              ]
+            }
+          },
+          "block_order": [
+            "tile_bespoke",
+            "tile_aol"
+          ]
         }
       },
       "block_order": [
         "group_ee6M9F",
-        "comparison_slider_AhJtCm"
+        "group_tiles"
       ],
-      "name": "t:names.image_compare",
+      "name": "Bespoke & Art of Living",
       "settings": {
         "content_direction": "row",
         "vertical_on_mobile": true,
@@ -618,10 +784,10 @@
         "vertical_alignment_flex_direction_column": "center",
         "gap": 46,
         "section_width": "page-width",
-        "section_height": "small",
+        "section_height": "auto",
         "section_height_custom": 50,
         "background_media": "none",
-        "background_color": "{{ settings.color_palette.background }}",
+        "background_color": "{{ settings.color_palette.color2 }}",
         "video_position": "cover",
         "background_image_position": "cover",
         "toggle_overlay": false,
@@ -633,8 +799,8 @@
         "border_opacity": 100,
         "border_color": "",
         "border_radius": 0,
-        "padding-block-start": 70,
-        "padding-block-end": 40
+        "padding-block-start": 72,
+        "padding-block-end": 72
       }
     },
     "section_homeliving_studio": {
@@ -1246,7 +1412,7 @@
             "button_craftBtn": {
               "type": "button",
               "settings": {
-                "label": "Discover more",
+                "label": "The house",
                 "link": "shopify://pages/about-us",
                 "open_in_new_tab": false,
                 "style_class": "button-secondary",
@@ -1978,7 +2144,7 @@
         "text_close01": {
           "type": "text",
           "settings": {
-            "text": "<p>For made-to-order requests and inquiries, get in touch.</p>",
+            "text": "<p>Looking for a leather, a colour or a size you don’t see? Most of what we make is made to order.</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -2003,7 +2169,7 @@
         "button_close01": {
           "type": "button",
           "settings": {
-            "label": "Contact Us",
+            "label": "Write to the atelier",
             "link": "shopify://pages/contact",
             "open_in_new_tab": false,
             "style_class": "button-secondary",

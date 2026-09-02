@@ -598,6 +598,14 @@
                 "custom_liquid": "{% assign dim = product.metafields.custom.dimensions %}{% assign fits = product.metafields.custom.what_fits %}{% if dim != blank or fits != blank %}<div style=\"margin:4px 0 0;font-family:var(--font-subheading--family);font-size:0.8125rem;color:#00000099;line-height:1.7\">{% if dim != blank %}<p style=\"margin:0\"><strong style=\"letter-spacing:0.06em;text-transform:uppercase;font-weight:500\">Dimensions</strong> - {{ dim.value | default: dim }}</p>{% endif %}{% if fits != blank %}<p style=\"margin:0\"><strong style=\"letter-spacing:0.06em;text-transform:uppercase;font-weight:500\">What fits inside</strong> - {{ fits.value | default: fits }}</p>{% endif %}</div>{% endif %}"
               },
               "blocks": {}
+            },
+            "custom_liquid_atelier": {
+              "type": "custom-liquid",
+              "name": "Lead time",
+              "settings": {
+                "custom_liquid": "<p style=\"font-size:0.8125rem;color:#00000099;margin:10px 0 0;line-height:1.5\">Prefer a different leather, colour or lining? Most pieces can be made to order. <a href=\"/pages/contact?piece={{ product.handle }}\" style=\"color:inherit;text-decoration:underline\">Write to the atelier</a> and we will confirm what is possible and the lead time.</p>"
+              },
+              "blocks": {}
             }
           },
           "block_order": [
@@ -606,6 +614,7 @@
             "divider_VJhene",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
+            "custom_liquid_atelier",
             "group_trust_signals",
             "text_aEtTtq",
             "liquid_specs",
