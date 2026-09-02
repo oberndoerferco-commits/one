@@ -1,0 +1,779 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero_kLcUbL": {
+      "type": "hero",
+      "name": "t:names.hero_bottom_aligned",
+      "settings": {
+        "media_type_1": "image",
+        "image_1": "shopify://shop_images/Leather_Duffle_bag.jpg",
+        "media_type_2": "image",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": false,
+        "media_type_1_mobile": "image",
+        "media_type_2_mobile": "image",
+        "link": "",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "flex-end",
+        "gap": 16,
+        "section_width": "page-width",
+        "section_height": "custom",
+        "section_height_custom": 49,
+        "background_color": "{{ settings.color_palette.color1 }}",
+        "toggle_overlay": true,
+        "overlay_color": "#00000026",
+        "overlay_style": "gradient",
+        "gradient_direction": "to top",
+        "blurred_reflection": true,
+        "reflection_opacity": 5,
+        "padding-block-start": 65,
+        "padding-block-end": 40
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-accent--family)",
+            "font_size": "1.25rem",
+            "line_height": "normal",
+            "letter_spacing": "tight",
+            "case": "none",
+            "wrap": "pretty",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "gap": 26,
+        "background_color": "#F5F2EDE0",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "hero_QAPpnj": {
+      "type": "hero",
+      "name": "t:names.hero",
+      "settings": {
+        "media_type_1": "image",
+        "image_1": "shopify://shop_images/Italian_leather_backpack_-_SAC_in_grained_Togo_leather_made_in_Italy.jpg",
+        "media_type_2": "image",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": false,
+        "media_type_1_mobile": "image",
+        "media_type_2_mobile": "image",
+        "link": "",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 16,
+        "section_width": "page-width",
+        "section_height": "custom",
+        "section_height_custom": 50,
+        "background_color": "{{ settings.color_palette.color1 }}",
+        "toggle_overlay": true,
+        "overlay_color": "#00000026",
+        "overlay_style": "gradient",
+        "gradient_direction": "to top",
+        "blurred_reflection": false,
+        "reflection_opacity": 21,
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "section_8rFnYR": {
+      "type": "section",
+      "blocks": {
+        "text_cff8d8": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<p>Leather Care - Frequently Asked Questions</p>",
+            "width": "fit-content",
+            "max_width": "narrow",
+            "alignment": "left",
+            "type_preset": "h3",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "accordion_bwerQJ": {
+          "type": "accordion",
+          "name": "t:names.accordion",
+          "settings": {
+            "icon": "caret",
+            "dividers": true,
+            "type_preset": "h5",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "accordion_row_GEiwcK": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "How do you clean a leather bag?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_adbV9w": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>To clean a leather bag, gently remove dust using a soft, dry cloth. For light cleaning, use a slightly damp cloth and wipe the surface carefully without saturating the leather. Allow it to air dry naturally. Avoid harsh chemicals or unsuitable cleaning products, as they may damage fine leather. For delicate or valuable pieces, professional leather care is recommended.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_adbV9w"
+              ]
+            },
+            "accordion_row_Gi3k7Y": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "Can leather get wet?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_4UkVhD": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Leather can tolerate small amounts of moisture, but excessive exposure to water may cause stains, stiffness, or changes in color. If your leather bag becomes wet, gently pat it dry with a soft cloth and allow it to dry at room temperature. Avoid direct heat, which can damage the material.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_4UkVhD"
+              ]
+            },
+            "accordion_row_KEHFCx": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_row",
+              "settings": {
+                "heading": "How often should you condition leather?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_CqznBN": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>High-quality full-grain leather requires minimal conditioning. Depending on use, applying a suitable conditioner every few months helps maintain softness and prevent drying. Over-conditioning should be avoided, as it may alter the natural character and patina of the leather.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_CqznBN"
+              ]
+            },
+            "accordion_row_g4e3jW": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_row",
+              "settings": {
+                "heading": "What is full-grain leather?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_WWFqPe": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Full-grain leather is the highest quality leather available, taken from the outermost layer of the hide where the fibers are the most dense and durable. This layer, often referred to as the “grain,” remains completely intact and unaltered, preserving the leather’s natural surface.</p><p>Because the grain is not sanded or corrected, full-grain leather retains its original characteristics - including pores, veins, and subtle variations in texture. These natural features are a sign of authenticity and contribute to the strength and longevity of the material.</p><p>Beneath the grain lies a tightly structured network of fibers, which gives full-grain leather its exceptional resistance to wear while allowing it to remain breathable. Over time, this structure enables the leather to soften and develop a rich patina.</p><p>In contrast, top-grain leather is lightly sanded to remove surface irregularities and often finished with coatings to create a more uniform appearance. While still high quality, this process reduces the natural strength and prevents the leather from aging in the same way as full-grain leather.</p><p>Lower layers of the hide are used for genuine leather, which is typically processed and coated. These materials lack the durability, breathability, and character of full-grain leather.</p><p>For this reason, full-grain leather is used in luxury leather goods and handmade leather bags, where material integrity, longevity, and natural beauty are essential.</p>",
+                    "width": "100%",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_WWFqPe"
+              ]
+            },
+            "accordion_row_Ab7q7c": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_row",
+              "settings": {
+                "heading": "Why is full-grain leather considered the best?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_WWMcVz": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Full-grain leather preserves the strongest part of the hide, making it highly resistant and long-lasting. Unlike corrected leather, it ages naturally and develops character, which is why it is used in luxury leather goods and handmade leather products.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_WWMcVz"
+              ]
+            },
+            "accordion_row_PLqJ4d": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_row",
+              "settings": {
+                "heading": "What is patina in leather?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_xT4JJX": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Patina refers to the natural aging process of leather, resulting in a deeper color, soft sheen, and enhanced texture. It develops through use, light exposure, and handling, making each piece unique.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_xT4JJX"
+              ]
+            },
+            "accordion_row_AQr7pY": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_row",
+              "settings": {
+                "heading": "What is nubuck leather?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_LgYz6F": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Nubuck is a type of top-grain leather that has been lightly sanded to create a soft, velvety surface. It is more delicate than smooth leather but offers a refined appearance.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_LgYz6F"
+              ]
+            },
+            "accordion_row_cnUNgA": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_row",
+              "settings": {
+                "heading": "How do you care for nubuck leather?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_NqngpU": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Nubuck should be cleaned using a soft brush designed for delicate leather. Avoid water and liquid cleaners, as they may leave marks. Protective sprays specifically made for nubuck can help prevent staining.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_NqngpU"
+              ]
+            },
+            "accordion_row_Gjgxan": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_row",
+              "settings": {
+                "heading": "Can you use regular leather products on nubuck?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_qyFVAH": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>No, traditional leather creams and conditioners should not be used on nubuck. They may darken or damage the surface. Always use products specifically designed for nubuck or suede.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_qyFVAH"
+              ]
+            },
+            "accordion_row_trkVRt": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_row",
+              "settings": {
+                "heading": "How do you remove stains from nubuck leather?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_XJTaPt": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Light stains can be removed using a nubuck brush or eraser. For more stubborn stains, professional cleaning is recommended. Avoid household cleaning products, as they may worsen the damage.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_XJTaPt"
+              ]
+            },
+            "accordion_row_4d4FXH": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_row",
+              "settings": {
+                "heading": "How should leather be stored long-term?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_rUzERB": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Leather should be stored in a dry, breathable environment away from direct sunlight. Use a dust bag and maintain the shape with soft filling. Proper storage helps preserve both structure and appearance.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_rUzERB"
+              ]
+            },
+            "accordion_row_FaYiJx": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_row",
+              "settings": {
+                "heading": "Does leather last a lifetime?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_nA3FHH": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>High-quality full-grain leather products can last for decades when properly maintained. Over time, they develop character rather than deteriorate, making them a long-term investment.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_nA3FHH"
+              ]
+            },
+            "accordion_row_GKtaUJ": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_row",
+              "settings": {
+                "heading": "Why does leather change color over time?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_XgTWGW": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Leather naturally reacts to light, air, and use. This gradual change in tone is part of its evolution and contributes to the unique identity of each piece.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_XgTWGW"
+              ]
+            },
+            "accordion_row_UmGbzP": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_row",
+              "settings": {
+                "heading": "How do you maintain a leather bag?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_6RpXLx": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Maintaining a leather bag requires consistent, minimal care to preserve its structure, texture, and appearance over time. High-quality leather, especially full-grain leather, improves with proper handling rather than intensive treatment.</p><p>For daily and long-term <strong>leather maintenance</strong>, follow these principles:</p><ul><li>Gently wipe the surface with a soft, dry cloth to remove dust</li><li>Avoid prolonged exposure to sunlight, heat, or humidity</li><li>Handle with clean hands to prevent oils and stains</li><li>Keep away from water and harsh surfaces</li><li>Store the bag in a dust bag when not in use</li><li>Maintain its shape with soft filling</li><li>Condition occasionally using products suitable for fine leather</li></ul><p>Rather than frequent intervention, leather benefits from careful use and a stable environment. With the right care, it will develop a natural patina and retain its elegance for many years.</p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_6RpXLx"
+              ]
+            }
+          },
+          "block_order": [
+            "accordion_row_GEiwcK",
+            "accordion_row_Gi3k7Y",
+            "accordion_row_KEHFCx",
+            "accordion_row_g4e3jW",
+            "accordion_row_Ab7q7c",
+            "accordion_row_PLqJ4d",
+            "accordion_row_AQr7pY",
+            "accordion_row_cnUNgA",
+            "accordion_row_Gjgxan",
+            "accordion_row_trkVRt",
+            "accordion_row_4d4FXH",
+            "accordion_row_FaYiJx",
+            "accordion_row_GKtaUJ",
+            "accordion_row_UmGbzP"
+          ]
+        }
+      },
+      "block_order": [
+        "text_cff8d8",
+        "accordion_bwerQJ"
+      ],
+      "name": "t:names.faq_section",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 32,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "#F5F2EDE0",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    }
+  },
+  "order": [
+    "hero_kLcUbL",
+    "main",
+    "hero_QAPpnj",
+    "section_8rFnYR"
+  ]
+}
