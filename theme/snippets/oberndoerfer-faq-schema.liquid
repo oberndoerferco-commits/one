@@ -1,0 +1,42 @@
+{% comment %}
+  Oberndoerfer Milano - FAQPage structured data (/pages/faq, 10 questions).
+  GENERATED from the accordion text in the template on 2026-09-03 by scripts in the
+  content repo; regenerate there rather than editing by hand. Answers keep the
+  same HTML a visitor sees (p, ul, li, strong, a).
+{% endcomment %}
+{%- liquid
+  assign faq_q1 = "How should I care for my leather piece?"
+  assign faq_a1 = "<p>Dust it with a soft, dry cloth; keep it out of prolonged sun, heat and damp; store it in its dust bag with a little tissue inside so it keeps its shape. Condition only when the leather feels dry, once or twice a year at most, with a cream made for fine smooth leather. If it gets wet, blot it and let it dry slowly, away from heat. The full guide, nubuck and exotic hides included, is on our <a href=\"/pages/leather-care-guide\">Leather Care</a> page.</p>"
+  assign faq_q2 = "What is the return policy?"
+  assign faq_a2 = "<p>Pieces bought from the website can be returned within 14 days of delivery, unused and in their original condition and packaging. Personalised and made-to-order pieces are made for you and cannot be returned. Write to <a href=\"mailto:info@oberndoerferco.com\">info@oberndoerferco.com</a> with your order number and we will send the instructions; the full terms are in our <a href=\"/policies/refund-policy\">return policy</a>.</p>"
+  assign faq_q3 = "Do you repair your pieces?"
+  assign faq_a3 = "<p>Yes. Every piece we make can come back to the atelier. Write to info@oberndoerferco.com with a photograph of the damage; the cost depends on what is needed, and we confirm a quote and timing before any work begins.</p>"
+  assign faq_q4 = "How long does delivery take?"
+  assign faq_a4 = "<p>Pieces in stock are delivered within 7–14 days, free worldwide with DHL Express. Larger commissions are built to order: trunks take 2–6 months depending on complexity and personalisation, furniture and highly detailed commissions 4–6 months. We confirm exact timing once you have placed your order, or beforehand if you write to us.</p>"
+  assign faq_q5 = "What happens after I place an order?"
+  assign faq_a5 = "<p>You receive an order confirmation by email straight away. When your piece leaves Milan you receive a second email with the DHL Express tracking number. For anything made to order, we write to you first to confirm the timeline before work begins.</p>"
+  assign faq_q6 = "How can I get help with an order?"
+  assign faq_a6 = "<p>Write to <a href=\"mailto:info@oberndoerferco.com\">info@oberndoerferco.com</a> with your order number and your question; a person in the atelier answers. If you would like something not shown, a different leather, colour or lining, say so: most of what we make can be made to order.</p>"
+  assign faq_q7 = "How much does shipping cost?"
+  assign faq_a7 = "<p>Nothing. Shipping is free on every order, worldwide, with DHL Express.</p>"
+  assign faq_q8 = "How long does a custom order take?"
+  assign faq_a8 = "<p>It depends on what we are making. A small piece such as a leather box usually takes 4 to 6 weeks. Trunks take 2 to 6 months depending on complexity and personalisation. Sofas, furniture and highly detailed commissions take 4 to 6 months.</p><p>Each piece is made entirely by hand. We confirm a timeline with you before work begins and keep you informed as it progresses.</p>"
+  assign faq_q9 = "What materials do you use?"
+  assign faq_a9 = "<p>Our leather comes from tanneries in Italy, France and Germany, and is a byproduct of the meat industry. Exotic leathers follow a separate supply chain: the hides may originate outside Europe and are processed in Italy, always sourced and traded in full compliance with CITES, with documentation available on request.</p><p>For the leathers and hardware we use and how each piece is made, see <a href=\"/pages/materials-craftsmanship\">Materials &amp; Craftsmanship</a>.</p>"
+  assign faq_q10 = "Do you ship worldwide?"
+  assign faq_a10 = "<p>Yes, to every country DHL Express serves, free of charge. Each piece travels in its dust bag inside the house’s box.</p>"
+-%}
+<script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+    {"@type": "Question", "name": {{ faq_q1 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ faq_a1 | json }}}},
+    {"@type": "Question", "name": {{ faq_q2 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ faq_a2 | json }}}},
+    {"@type": "Question", "name": {{ faq_q3 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ faq_a3 | json }}}},
+    {"@type": "Question", "name": {{ faq_q4 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ faq_a4 | json }}}},
+    {"@type": "Question", "name": {{ faq_q5 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ faq_a5 | json }}}},
+    {"@type": "Question", "name": {{ faq_q6 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ faq_a6 | json }}}},
+    {"@type": "Question", "name": {{ faq_q7 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ faq_a7 | json }}}},
+    {"@type": "Question", "name": {{ faq_q8 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ faq_a8 | json }}}},
+    {"@type": "Question", "name": {{ faq_q9 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ faq_a9 | json }}}},
+    {"@type": "Question", "name": {{ faq_q10 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ faq_a10 | json }}}}
+  ]}
+</script>

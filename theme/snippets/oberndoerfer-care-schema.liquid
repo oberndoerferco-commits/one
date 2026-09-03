@@ -1,0 +1,54 @@
+{% comment %}
+  Oberndoerfer Milano - FAQPage structured data (/pages/leather-care-guide, 14 questions).
+  GENERATED from the accordion text in the template on 2026-09-03 by scripts in the
+  content repo; regenerate there rather than editing by hand. Answers keep the
+  same HTML a visitor sees (p, ul, li, strong, a).
+{% endcomment %}
+{%- liquid
+  assign faq_q1 = "How do you clean a leather bag?"
+  assign faq_a1 = "<p>Dust it with a soft, dry cloth. For a mark, use a cloth barely dampened with water, wipe once, and let the bag dry on its own at room temperature. Nothing from under the kitchen sink: household cleaners, wipes and alcohol strip the finish from a fine calf. If a mark does not lift with a damp cloth, stop there and write to us with a photograph rather than trying something stronger.</p>"
+  assign faq_q2 = "Can leather get wet?"
+  assign faq_a2 = "<p>A few drops, yes. A soaking, no. Rain beads on a full-grain calf for a while; blot it with a soft cloth as soon as you can and let the piece dry slowly, away from radiators and direct sun. Heat is what does the damage, not the water: it dries the hide too fast and leaves it stiff. Water spots that remain after drying usually even out with use.</p>"
+  assign faq_q3 = "How often should you condition leather?"
+  assign faq_a3 = "<p>Rarely. The calf we use leaves the tannery with its oils in it and needs little more. On a piece used daily, a light application of a cream made for smooth leather once or twice a year is enough; on a piece that lives on a shelf, less. More than that darkens the hide and flattens the patina it would otherwise earn. Test any product on the base first.</p>"
+  assign faq_q4 = "What is full-grain leather?"
+  assign faq_a4 = "<p>The top of the hide, left as it grew. The outermost layer, where the fibres are densest and strongest, is kept whole: not sanded, not corrected, not coated to hide the marks of the animal’s life. What you see on the surface are the pores, the faint veins and the small variations in grain that make one hide unlike another.</p><p>Beneath that surface the fibres are tightly bound, which is why full-grain leather resists wear, stays breathable, and softens rather than cracks. It is also why it takes a patina.</p><p>Top-grain leather has that surface lightly sanded and usually finished with a coating, which makes it more uniform, less strong, and stops it ageing the same way. What is sold as “genuine leather” is cut from the layers below, then processed and coated; it has none of the durability or character of the grain. We use full-grain calf for the same reason a saddler does: it is the part of the hide that lasts.</p>"
+  assign faq_q5 = "Why is full-grain leather considered the best?"
+  assign faq_a5 = "<p>Because it is the strongest part of the hide, and because it is the only part that improves with use. A corrected leather looks its best on the day you buy it. A full-grain one looks its best some years later.</p>"
+  assign faq_q6 = "What is patina in leather?"
+  assign faq_a6 = "<p>The change a hide goes through as it is handled and lives in the light: a deeper colour, a soft sheen where the hands go, a surface that shows its history. It cannot be applied and it cannot be rushed, which is why two pieces cut from the same hide end up different after a year. We consider it the point.</p>"
+  assign faq_q7 = "What is nubuck leather?"
+  assign faq_a7 = "<p>Calf whose grain side has been sanded very lightly to raise a fine, velvety nap. It is softer to the touch than smooth leather and more sensitive to it: it marks more easily and shows water. We use it where the hand of the material matters more than resistance.</p>"
+  assign faq_q8 = "How do you care for nubuck leather?"
+  assign faq_a8 = "<p>With a brush, not a cloth. A soft nubuck brush lifts dust and restores the nap. Keep it away from water and liquid cleaners, which leave rings. A protective spray made specifically for nubuck, applied once when the piece is new and again each season, is the best defence against marks.</p>"
+  assign faq_q9 = "Can you use regular leather products on nubuck?"
+  assign faq_a9 = "<p>No. Creams and conditioners for smooth leather soak into the nap, darken it and flatten it, and the change is permanent. Use only products labelled for nubuck or suede.</p>"
+  assign faq_q10 = "How do you remove stains from nubuck leather?"
+  assign faq_a10 = "<p>Start with the brush. A dry mark often lifts with a nubuck eraser and a few strokes of the brush to bring the nap back. Anything greasy, or anything that has soaked in, should go to a specialist cleaner; household products make it worse. Send us a photograph if you are unsure and we will tell you what we would do.</p>"
+  assign faq_q11 = "How should leather be stored long-term?"
+  assign faq_a11 = "<p>Somewhere dry, dark and airy. Keep the piece in its dust bag, fill it loosely with acid-free tissue so it holds its shape, and give it room: pressed against other things, a bag takes on their shape. Never plastic, which traps moisture, and never a spot in direct sun, which fades the hide. Take it out now and then; leather prefers to be used.</p>"
+  assign faq_q12 = "Does leather last a lifetime?"
+  assign faq_a12 = "<p>A full-grain calf piece, treated with ordinary care, lasts for decades and should outlive its first owner. It will not stay new; it will get better. And if something does go wrong, we repair what we make: write to us with a photograph and we quote before any work begins.</p>"
+  assign faq_q13 = "Why does leather change color over time?"
+  assign faq_a13 = "<p>Because it is a skin, and skin answers to light, air and the oils in your hands. Lighter leathers deepen and warm; darker ones gain a sheen. The change is uneven, and that is the character of a natural hide rather than a fault. If you want a piece to age evenly, use it evenly and keep it out of one-sided sun.</p>"
+  assign faq_q14 = "How do you maintain a leather bag?"
+  assign faq_a14 = "<p>Lightly and often, rather than heavily and rarely.</p><ul><li>Wipe it with a soft, dry cloth.</li><li>Keep it out of prolonged sun, heat and damp.</li><li>Carry it with clean hands; keep it off wet ground and rough surfaces.</li><li>Store it in its dust bag, filled loosely so it keeps its shape.</li><li>Condition only when the leather feels dry, with a cream made for fine smooth leather.</li></ul><p>Beyond that, use it. A stable environment and regular handling do more for a hide than any product, and the patina that results is the reward.</p>"
+-%}
+<script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+    {"@type": "Question", "name": {{ faq_q1 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ faq_a1 | json }}}},
+    {"@type": "Question", "name": {{ faq_q2 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ faq_a2 | json }}}},
+    {"@type": "Question", "name": {{ faq_q3 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ faq_a3 | json }}}},
+    {"@type": "Question", "name": {{ faq_q4 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ faq_a4 | json }}}},
+    {"@type": "Question", "name": {{ faq_q5 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ faq_a5 | json }}}},
+    {"@type": "Question", "name": {{ faq_q6 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ faq_a6 | json }}}},
+    {"@type": "Question", "name": {{ faq_q7 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ faq_a7 | json }}}},
+    {"@type": "Question", "name": {{ faq_q8 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ faq_a8 | json }}}},
+    {"@type": "Question", "name": {{ faq_q9 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ faq_a9 | json }}}},
+    {"@type": "Question", "name": {{ faq_q10 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ faq_a10 | json }}}},
+    {"@type": "Question", "name": {{ faq_q11 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ faq_a11 | json }}}},
+    {"@type": "Question", "name": {{ faq_q12 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ faq_a12 | json }}}},
+    {"@type": "Question", "name": {{ faq_q13 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ faq_a13 | json }}}},
+    {"@type": "Question", "name": {{ faq_q14 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ faq_a14 | json }}}}
+  ]}
+</script>

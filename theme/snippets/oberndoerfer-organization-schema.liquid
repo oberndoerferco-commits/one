@@ -1,0 +1,46 @@
+{% comment %}
+  Oberndoerfer Milano - additive Organization entity (2026-09-03). Rendered from
+  snippets/meta-tags.liquid on every page. Social profiles come from the theme's
+  social settings so they stay in one place.
+{% endcomment %}
+{%- liquid
+  assign same_as = ''
+  if settings.social_instagram_link != blank
+    assign same_as = same_as | append: '|' | append: settings.social_instagram_link
+  endif
+  if settings.social_facebook_link != blank
+    assign same_as = same_as | append: '|' | append: settings.social_facebook_link
+  endif
+  if settings.social_pinterest_link != blank
+    assign same_as = same_as | append: '|' | append: settings.social_pinterest_link
+  endif
+  if settings.social_tiktok_link != blank
+    assign same_as = same_as | append: '|' | append: settings.social_tiktok_link
+  endif
+  if settings.social_youtube_link != blank
+    assign same_as = same_as | append: '|' | append: settings.social_youtube_link
+  endif
+  assign same_as_list = same_as | remove_first: '|' | split: '|'
+-%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": {{ request.origin | append: '/#organization' | json }},
+  "name": "Oberndörfer Milano",
+  "alternateName": ["Oberndoerfer Milano", "Oberndörfer & Co."],
+  "url": {{ request.origin | json }},
+  "email": "info@oberndoerferco.com",
+  "telephone": "+49 173 2489709",
+  "description": "An independent house of leather craftsmanship. Bags, trunks, watch and jewellery boxes, small leather goods and furniture, made by hand in ateliers around Milan from full-grain Italian calf and CITES-documented exotic hides. Every piece can be made to order, and every piece can come back for repair.",
+  "areaServed": "Worldwide",
+  "foundingLocation": { "@type": "Place", "name": "Milan, Italy" },
+  "brand": { "@type": "Brand", "name": "Oberndörfer Milano" },
+  "contactPoint": [{ "@type": "ContactPoint", "email": "info@oberndoerferco.com", "telephone": "+49 173 2489709", "contactType": "customer service", "availableLanguage": ["en", "it", "de"] }],
+  "location": [
+    { "@type": "Place", "name": "Miramare The Palace, Sanremo", "address": { "@type": "PostalAddress", "streetAddress": "Corso Matuzia 9", "postalCode": "18038", "addressLocality": "Sanremo", "addressRegion": "IM", "addressCountry": "IT" } },
+    { "@type": "Place", "name": "Trax NYC, New York", "address": { "@type": "PostalAddress", "streetAddress": "64 W 47th St F-1", "postalCode": "10036", "addressLocality": "New York", "addressRegion": "NY", "addressCountry": "US" } }
+  ]{% if same_as_list.size > 0 %},
+  "sameAs": {{ same_as_list | json }}{% endif %}
+}
+</script>

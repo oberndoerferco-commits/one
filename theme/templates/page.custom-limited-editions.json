@@ -241,7 +241,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h2>CUSTOM &amp; LIMITED EDITIONS</h2>",
+            "text": "<p>ONE OF EACH</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -266,7 +266,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>We create custom and limited-edition pieces in close dialogue with our clients, crafting objects that exist in only a few hands. Each creation reflects a shared vision, shaped by time, craftsmanship, and intention.</p>",
+            "text": "<p>Some pieces we make once. A run of four for a jeweller in New York, a trunk built for one room, a colour we will not repeat. They are made in the same ateliers as everything else, to the same standard, and when they are gone they are gone.</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -479,7 +479,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Our collaboration with Trax NYC was shaped by a shared vision of craftsmanship and identity. Conceived through close creative dialogue, the project reflects an encounter between two worlds - one rooted in leather tradition, the other in contemporary jewelry culture. From this exchange emerged exclusive creations marked by presence, intention, and a sense of modern nobility.</p><p>The current line comprises four pieces, each one existing as a single example. Once a piece is acquired, it will not be repeated.</p>",
+            "text": "<p>Trax NYC is a custom jeweller in Manhattan’s Diamond District. We met over a practical problem: how to carry pieces of real value discreetly, and present them well the moment the case opens. The answer became a small line in full-grain calf, lined in red Alcantara, with solid brass galvanised in gold: a jewellery box, a necklace trunk, a briefcase and a mini trunk. Four designs, one example of each. Once a piece is sold, it is not made again.</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
