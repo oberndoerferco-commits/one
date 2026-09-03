@@ -24,7 +24,17 @@ Diff the two JSON files to see exactly which strings changed.
 - Moving "a byproduct of the meat industry" onto the Materials & Craftsmanship page.
 - Changing the page handle to `art-of-living` with a redirect from the old one.
 
-## Product naming and description study
+## T-shirt lane copy study
+
+- `docs/the-six-shirts.html`: "The Six Shirts", the T-shirt lane read against Loro
+  Piana, Hermès and Brunello Cucinelli. Four findings, two proposed renames (Gothic
+  to Duomo, Serigraph to Overprint), and all six descriptions rewritten with a shared
+  facts block.
+
+Blocked on one external answer: the cloth spec from the maker (gram weight, combed or
+carded, jersey type). The gram weights in the rewrites are placeholders.
+
+## Product naming and description study (wider, superseded for the T-shirt lane)
 
 - `docs/reading-the-houses.html`: "Reading the Houses", how Loro Piana, Hermès and
   Brunello Cucinelli name and describe products, read from their live copy, with the

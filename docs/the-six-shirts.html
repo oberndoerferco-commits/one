@@ -1,0 +1,431 @@
+<title>The Six Shirts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=UnifrakturMaguntia&display=swap">
+<style>
+:root{
+  --paper:#F1F0EC;
+  --raised:#FAF9F6;
+  --sunk:#E6E4DE;
+  --ink:#14130F;
+  --body:#3B3833;
+  --muted:#77726A;
+  --rule:#DCD9D1;
+  --hair:#CBC7BD;
+  --amber:#8E6A22;
+  --amber-ink:#8E6A22;
+  --amber-wash:#EFE5CE;
+  --cut:#8A3A2E;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#100F0D;
+    --raised:#1A1815;
+    --sunk:#0A0908;
+    --ink:#EDEAE2;
+    --body:#BEB9AF;
+    --muted:#847F76;
+    --rule:#2A2722;
+    --hair:#3A362F;
+    --amber:#D3A54B;
+    --amber-ink:#DDB262;
+    --amber-wash:#2E2617;
+    --cut:#C98070;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#100F0D;
+  --raised:#1A1815;
+  --sunk:#0A0908;
+  --ink:#EDEAE2;
+  --body:#BEB9AF;
+  --muted:#847F76;
+  --rule:#2A2722;
+  --hair:#3A362F;
+  --amber:#D3A54B;
+  --amber-ink:#DDB262;
+  --amber-wash:#2E2617;
+  --cut:#C98070;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--paper);color:var(--body);
+  font-family:"Archivo",ui-sans-serif,system-ui,-apple-system,sans-serif;
+  font-size:16px;line-height:1.64;-webkit-font-smoothing:antialiased;
+}
+.sheet{max-width:900px;margin:0 auto;padding:0 26px 130px}
+
+/* masthead */
+.mast{padding:74px 0 30px;border-bottom:2px solid var(--ink)}
+.kicker{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10.5px;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--amber-ink);margin:0 0 22px;
+}
+.mast h1{
+  font-family:"Bodoni Moda",Didot,Georgia,serif;font-weight:400;
+  font-size:clamp(2.7rem,7.2vw,4.6rem);line-height:1;letter-spacing:-.015em;
+  color:var(--ink);margin:0 0 20px;text-wrap:balance;
+}
+.stand{font-size:1.06rem;line-height:1.58;max-width:58ch;margin:0;color:var(--body)}
+.stand b{color:var(--ink);font-weight:600}
+.mast .line{
+  margin-top:26px;font-family:"IBM Plex Mono",monospace;font-size:11px;
+  color:var(--muted);letter-spacing:.04em;
+}
+
+/* sections */
+section{padding:52px 0;border-top:1px solid var(--rule)}
+section:first-of-type{border-top:none}
+h2{
+  font-family:"Bodoni Moda",Didot,Georgia,serif;font-weight:400;
+  font-size:clamp(1.55rem,3.4vw,2.1rem);line-height:1.14;color:var(--ink);
+  margin:0 0 14px;text-wrap:balance;letter-spacing:-.01em;
+}
+h3{font-family:"Archivo",sans-serif;font-weight:600;font-size:.98rem;color:var(--ink);margin:32px 0 8px}
+p{max-width:64ch}
+.lede{max-width:64ch;margin:0 0 24px}
+a{color:var(--amber-ink)}
+code{
+  font-family:"IBM Plex Mono",monospace;font-size:.87em;color:var(--ink);
+  background:var(--sunk);padding:1px 5px;
+}
+em{font-style:italic}
+
+/* line sheet */
+.tablewrap{overflow-x:auto;margin:6px 0 10px}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14.2px}
+th{
+  font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.17em;
+  text-transform:uppercase;color:var(--muted);font-weight:400;text-align:left;
+  padding:0 18px 9px 0;border-bottom:1px solid var(--ink);
+}
+td{padding:13px 18px 13px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+td.model{font-family:"Bodoni Moda",Georgia,serif;font-size:1.06rem;color:var(--ink);white-space:nowrap}
+td.mono{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--muted);white-space:nowrap}
+tr.clash td{background:var(--amber-wash)}
+
+/* register specimens */
+.registers{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:1px;background:var(--rule);border:1px solid var(--rule);margin:8px 0 26px;
+}
+.reg{background:var(--raised);padding:20px 16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.reg .art{
+  min-height:52px;display:flex;align-items:center;justify-content:center;
+  color:var(--ink);text-align:center;overflow:hidden;
+}
+.reg .art span{display:block;max-width:100%}
+.a-serif{font-family:"Bodoni Moda",Georgia,serif;font-size:1.05rem;letter-spacing:.1em;line-height:1.2}
+.a-serif small{display:block;font-size:.62em;letter-spacing:.2em;color:var(--muted);margin-bottom:3px}
+.a-black{font-family:"UnifrakturMaguntia","Bodoni Moda",serif;font-size:1.6rem;line-height:1}
+.a-amber{font-family:"Bodoni Moda",Georgia,serif;font-size:1.3rem;letter-spacing:.14em;color:var(--amber-ink)}
+.a-layer{position:relative;display:inline-block;font-family:"UnifrakturMaguntia",serif;font-size:1.35rem;line-height:1}
+.a-layer i{position:absolute;left:0;right:0;top:4px;font-style:normal;opacity:.45;transform:translateY(3px)}
+.a-star{font-family:"Bodoni Moda",Georgia,serif;font-size:1.7rem;color:var(--amber-ink)}
+.a-mark{font-family:"Bodoni Moda",Georgia,serif;font-size:1.5rem;color:var(--ink)}
+.reg .cap{
+  font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);line-height:1.5;
+}
+.reg .cap b{display:block;color:var(--ink);font-weight:500;letter-spacing:.1em;margin-bottom:3px}
+
+/* findings */
+.finding{padding:28px 0;border-top:1px solid var(--rule)}
+.finding:first-of-type{border-top:none;padding-top:6px}
+.fnum{
+  font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--amber-ink);margin:0 0 9px;
+}
+.finding h3{margin:0 0 10px;font-size:1.16rem;font-family:"Bodoni Moda",Georgia,serif;font-weight:400;color:var(--ink)}
+
+/* specimen quote */
+.spec{margin:20px 0;padding-left:18px;border-left:2px solid var(--amber);max-width:58ch}
+.spec .q{font-family:"Bodoni Moda",Georgia,serif;font-weight:400;font-size:1.1rem;line-height:1.5;color:var(--ink);margin:0 0 9px}
+.spec .src{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted);margin:0}
+
+/* boilerplate demo */
+.boiler{
+  background:var(--raised);border:1px solid var(--rule);padding:18px 20px;
+  margin:20px 0;max-width:62ch;font-size:14.6px;line-height:1.7;
+}
+.boiler .rep{background:var(--sunk);color:var(--muted);padding:0 2px}
+.boiler .uniq{color:var(--ink)}
+.boiler .key{
+  font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--muted);margin:14px 0 0;padding-top:12px;
+  border-top:1px solid var(--rule);
+}
+
+/* rewrites */
+.shirt{padding:34px 0;border-top:1px solid var(--rule)}
+.shirt:first-of-type{border-top:none}
+.shirt .hdr{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px;margin-bottom:4px}
+.shirt .was{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);
+  text-decoration:line-through;text-decoration-color:var(--cut);
+}
+.shirt .now{font-family:"Bodoni Moda",Georgia,serif;font-size:1.42rem;color:var(--ink);line-height:1.2}
+.shirt .keeps{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.shirt .copy{margin:16px 0 0;font-size:15.2px;line-height:1.66;max-width:58ch;color:var(--body)}
+.swap{color:var(--amber-ink)}
+.facts{
+  margin:16px 0 0;padding:14px 0 0;border-top:1px solid var(--rule);max-width:58ch;
+  display:grid;gap:5px;
+}
+.facts div{display:grid;grid-template-columns:104px minmax(0,1fr);gap:14px;font-size:13.6px}
+.facts .fk{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.facts .fv{color:var(--ink)}
+.shirt .why{
+  margin:16px 0 0;padding-left:15px;border-left:2px solid var(--hair);
+  font-size:14.2px;color:var(--muted);max-width:60ch;
+}
+.shirt .why b{color:var(--ink);font-weight:600}
+
+/* note */
+.note{
+  background:var(--raised);border:1px solid var(--rule);border-left:3px solid var(--amber);
+  padding:16px 19px;margin:24px 0;max-width:62ch;
+}
+.note p{margin:0;font-size:14.6px}
+.note .h{
+  font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--amber-ink);margin:0 0 7px;
+}
+ul.plain{padding-left:19px;margin:0 0 18px;max-width:62ch}
+ul.plain li{margin-bottom:8px}
+ol.check{list-style:none;counter-reset:c;padding:0;margin:0}
+ol.check li{
+  counter-increment:c;display:grid;grid-template-columns:28px minmax(0,1fr);gap:14px;
+  padding:13px 0;border-bottom:1px solid var(--rule);align-items:baseline;max-width:66ch;
+}
+ol.check li::before{content:counter(c,decimal-leading-zero);font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--amber-ink)}
+ol.check b{color:var(--ink);font-weight:600}
+footer{
+  margin-top:50px;padding-top:20px;border-top:1px solid var(--hair);
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--muted);line-height:1.7;
+}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="sheet">
+
+  <header class="mast">
+    <p class="kicker">Oberndörfer Milano / T-shirt lane</p>
+    <h1>The Six Shirts</h1>
+    <p class="stand">The T-shirt copy is the best writing in the store, and it is already close to how <b>Loro Piana</b>, <b>Hermès</b> and <b>Brunello Cucinelli</b> write. Four things stand between it and them, and two of the six names are the largest of them.</p>
+    <p class="line">Six models, twelve listings, read as published</p>
+  </header>
+
+  <!-- ============ THE LANE ============ -->
+  <section id="lane">
+    <h2>The lane as it stands</h2>
+    <p class="lede">Every shirt is the same garment: a regular-cut cotton T-shirt with a ribbed collar, in black and in white. What separates them is a mark, its placement and how it was put there.</p>
+
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Model</th><th>Mark</th><th>Placement</th><th>Method</th><th>Says</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="model">Crest</td><td>Ornament above the wordmark</td><td>Centre chest</td><td class="mono">Embroidered</td><td class="mono">Oberndörfer Milano</td></tr>
+          <tr><td class="model">Wordmark</td><td>Wordmark alone</td><td>Across the chest</td><td class="mono">Embroidered</td><td class="mono">Oberndörfer Milano</td></tr>
+          <tr><td class="model">Star</td><td>Hand-painted star, wordmark inside</td><td>Back</td><td class="mono">Printed</td><td class="mono">Oberndörfer Milano</td></tr>
+          <tr class="clash"><td class="model">Gothic</td><td>Blackletter capitals, badge at chest</td><td>Shoulders</td><td class="mono">Printed</td><td class="mono">Milano</td></tr>
+          <tr class="clash"><td class="model">Serigraph</td><td>Two blackletter marks printed through each other</td><td>Back</td><td class="mono">Printed</td><td class="mono">Oberndörfer / Milano</td></tr>
+          <tr class="clash"><td class="model">Milano</td><td>Amber serif capitals</td><td>Back</td><td class="mono">Printed</td><td class="mono">Oberndörfer Milano</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="lede">The six typographic registers, which is what a customer is actually choosing between:</p>
+
+    <div class="registers">
+      <div class="reg">
+        <div class="art"><span class="a-serif"><small>✦</small>OBERNDÖRFER</span></div>
+        <p class="cap"><b>Crest</b>Ornament over type, ivory thread</p>
+      </div>
+      <div class="reg">
+        <div class="art"><span class="a-serif">OBERNDÖRFER<br>MILANO</span></div>
+        <p class="cap"><b>Wordmark</b>Type alone, ivory thread</p>
+      </div>
+      <div class="reg">
+        <div class="art"><span class="a-star">★</span></div>
+        <p class="cap"><b>Star</b>Painted, brush kept in the print</p>
+      </div>
+      <div class="reg">
+        <div class="art"><span class="a-black">Milano</span></div>
+        <p class="cap"><b>Gothic</b>Blackletter, across the shoulders</p>
+      </div>
+      <div class="reg">
+        <div class="art"><span class="a-layer">Milano<i>Oberndörfer</i></span></div>
+        <p class="cap"><b>Serigraph</b>Blackletter, overprinted</p>
+      </div>
+      <div class="reg">
+        <div class="art"><span class="a-amber">MILANO</span></div>
+        <p class="cap"><b>Milano</b>Amber serif, matched to the brass</p>
+      </div>
+    </div>
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--muted);letter-spacing:.05em;max-width:60ch">Registers set in stand-in faces to show the distinction, not the artwork.</p>
+  </section>
+
+  <!-- ============ FINDINGS ============ -->
+  <section id="findings">
+    <h2>Four things between this and the houses</h2>
+
+    <div class="finding">
+      <p class="fnum">Finding one / naming</p>
+      <h3>Three of the six names describe the same word</h3>
+      <p>Gothic, Serigraph and Milano are all shirts whose mark is the word MILANO, set three ways. The names do not tell them apart, the typography does, and only one of the three names refers to what is actually printed. <em>Gothic</em> names a class of typeface. <em>Serigraph</em> names a printing process. A customer reading a collection page has to open all three to find out which is which.</p>
+      <p>Neither of the two houses that name products does this. Loro Piana names from its own world, the roads and the walks. Hermès names a scarf after its subject, <em>Brides de Gala</em>, never after the silk screen it was printed on. Crest, Wordmark and Star already follow that rule: each names the thing on the shirt. Gothic and Serigraph name the method.</p>
+    </div>
+
+    <div class="finding">
+      <p class="fnum">Finding two / material</p>
+      <h3>"100% cotton" is the weakest line in the lane</h3>
+      <p>It closes all twelve descriptions, and it is the one sentence none of the three houses would let stand. Not one of them leaves a material as a category.</p>
+      <div class="spec">
+        <p class="q">Sandal in Epsom calfskin</p>
+        <p class="src">Hermès, Oran</p>
+      </div>
+      <div class="spec">
+        <p class="q">The refined, iconic yarn of the Brunello Cucinelli collections elevates the essential feel of this new cashmere sweater.</p>
+        <p class="src">Brunello Cucinelli, cashmere sweater</p>
+      </div>
+      <p>Epsom is a leather. Feather yarn and Diamond yarn are Cucinelli's own. The Gift of Kings is Loro Piana's. A T-shirt's version of that is the cloth: its weight, whether the cotton is combed, what the jersey is. <code>A 240g combed cotton jersey</code> does work that <code>100% cotton</code> cannot, and it is the only line in the lane where the garment itself, rather than the graphic, gets to be the subject.</p>
+      <div class="note">
+        <p class="h">Needs a real number</p>
+        <p>The weights and yarn below are written as <span class="swap">placeholders in amber</span>. They have to come from the maker before any of this is published, because a wrong gram weight is worse than no gram weight.</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <p class="fnum">Finding three / structure</p>
+      <h3>Two of every five words are repeated across all twelve listings</h3>
+      <p>Shaded text below appears verbatim in every shirt in the lane:</p>
+      <div class="boiler">
+        <span class="uniq">A cotton T-shirt in black, with the house crest embroidered at the centre of the chest, the ornament above OBERNDÖRFER MILANO, stitched in ivory thread.</span> <span class="rep">A regular cut with a ribbed collar. The woven Oberndörfer label is sewn inside the collar,</span> <span class="uniq">and a small lockup sits at the back hem. The crest is the same four-pointed ornament that appears on the house's leather goods and hardware.</span> <span class="rep">100% cotton. Made in Italy.</span>
+        <p class="key">Shaded: identical in all twelve listings</p>
+      </div>
+      <p>Hermès never repeats a shared fact in prose. The cut, the collar, the label, the composition and the origin are the same on every shirt, so they belong in a labelled block underneath, where they can be scanned and compared. What is left in the sentences is only what differs, which is the mark. The prose gets shorter and the lane gets easier to keep true.</p>
+    </div>
+
+    <div class="finding">
+      <p class="fnum">Finding four / catalogue</p>
+      <h3>Six shirts are listed as twelve products</h3>
+      <p>Black and white are separate listings with separate handles. Loro Piana does this too, so it is defensible, but Loro Piana is choosing between Tapioca, Stone Dove and Pine Bark, where this lane is choosing between black and white. The cost is real: twelve descriptions to keep consistent instead of six, reviews and search relevance split across pairs, and a collection page that shows the same six shirts twice.</p>
+      <p>The rewrite below is written so it works either way. If the pairs are merged, the colour sentence becomes a variant line and everything else is unchanged.</p>
+    </div>
+  </section>
+
+  <!-- ============ REWRITE ============ -->
+  <section id="rewrite">
+    <h2>The six, rewritten</h2>
+    <p class="lede">Black shown throughout. The white version changes the colour word and the thread or ink colour, and nothing else. Two names change, four stay.</p>
+
+    <div class="shirt">
+      <div class="hdr"><span class="now">The Crest T-Shirt - Black</span><span class="keeps">Name kept</span></div>
+      <p class="copy">A T-shirt in <span class="swap">240g combed cotton jersey</span>, in black. The house crest is embroidered at the centre of the chest, the four-pointed ornament above OBERNDÖRFER MILANO, in ivory thread. A small lockup sits at the back hem. The same ornament is stamped on the house's leather goods and cast into its hardware.</p>
+      <div class="facts">
+        <div><span class="fk">Cloth</span><span class="fv"><span class="swap">240g combed cotton jersey, 100% cotton</span></span></div>
+        <div><span class="fk">Cut</span><span class="fv">Regular, ribbed collar</span></div>
+        <div><span class="fk">Mark</span><span class="fv">Embroidery, ivory thread, centre chest</span></div>
+        <div><span class="fk">Origin</span><span class="fv">Made in Italy</span></div>
+      </div>
+      <p class="why"><b>What changed.</b> The cloth is named. The collar, label, composition and origin move to the facts block. The closing sentence becomes active: the ornament is stamped and cast elsewhere, rather than being reported as appearing.</p>
+    </div>
+
+    <div class="shirt">
+      <div class="hdr"><span class="now">The Wordmark T-Shirt - Black</span><span class="keeps">Name kept</span></div>
+      <p class="copy">A T-shirt in <span class="swap">240g combed cotton jersey</span>, in black. OBERNDÖRFER MILANO is embroidered across the chest in ivory thread, the wordmark alone, without the ornament. A small lockup sits at the back hem. One line of type and nothing else: the least the house puts on a garment.</p>
+      <div class="facts">
+        <div><span class="fk">Cloth</span><span class="fv"><span class="swap">240g combed cotton jersey, 100% cotton</span></span></div>
+        <div><span class="fk">Cut</span><span class="fv">Regular, ribbed collar</span></div>
+        <div><span class="fk">Mark</span><span class="fv">Embroidery, ivory thread, chest</span></div>
+        <div><span class="fk">Origin</span><span class="fv">Made in Italy</span></div>
+      </div>
+      <p class="why"><b>What changed.</b> "The quietest piece in the line" was the house grading its own work, which none of the three do. The fact underneath it is kept and stated as a fact.</p>
+    </div>
+
+    <div class="shirt">
+      <div class="hdr"><span class="now">The Star T-Shirt - Black</span><span class="keeps">Name kept</span></div>
+      <p class="copy">A T-shirt in <span class="swap">240g combed cotton jersey</span>, in black. A golden star runs across the back with the wordmark set inside it, and a small lockup sits at the chest. The star was painted rather than drawn, and the print holds the brush marks, so the edges are uneven in the way a loaded brush leaves them.</p>
+      <div class="facts">
+        <div><span class="fk">Cloth</span><span class="fv"><span class="swap">240g combed cotton jersey, 100% cotton</span></span></div>
+        <div><span class="fk">Cut</span><span class="fv">Regular, ribbed collar</span></div>
+        <div><span class="fk">Mark</span><span class="fv">Print from a painted original, back</span></div>
+        <div><span class="fk">Origin</span><span class="fv">Made in Italy</span></div>
+      </div>
+      <p class="why"><b>What changed.</b> "Painted, not drawn" was the best line in the lane and it stops one clause too early. Saying what the brush actually leaves behind is the Loro Piana construction sentence.</p>
+    </div>
+
+    <div class="shirt">
+      <div class="hdr"><span class="was">The Gothic T-Shirt</span><span class="now">The Duomo T-Shirt - Black</span><span class="keeps">Renamed</span></div>
+      <p class="copy">A T-shirt in <span class="swap">240g combed cotton jersey</span>, in black. MILANO runs across the shoulders in blackletter, printed in ivory, with the house mark at the chest as a diamond badge. A small lockup sits at the back hem. Blackletter is the lettering of the cathedral the word names, cut in stone five centuries before it was cut in type.</p>
+      <div class="facts">
+        <div><span class="fk">Cloth</span><span class="fv"><span class="swap">240g combed cotton jersey, 100% cotton</span></span></div>
+        <div><span class="fk">Cut</span><span class="fv">Regular, ribbed collar</span></div>
+        <div><span class="fk">Mark</span><span class="fv">Print, ivory, across the shoulders</span></div>
+        <div><span class="fk">Origin</span><span class="fv">Made in Italy</span></div>
+      </div>
+      <p class="why"><b>Why the name.</b> <em>Gothic</em> named the typeface. <em>Duomo</em> names why the typeface is on the shirt: Milan's cathedral is the city's Gothic monument, and it is the one building the word MILANO in blackletter can be pointing at. It is also the Loro Piana move exactly, a name taken from the house's own geography rather than from its production methods, and it frees the word "Milano" for the shirt that actually is one.</p>
+    </div>
+
+    <div class="shirt">
+      <div class="hdr"><span class="was">The Serigraph T-Shirt</span><span class="now">The Overprint T-Shirt - Black</span><span class="keeps">Renamed</span></div>
+      <p class="copy">A T-shirt in <span class="swap">240g combed cotton jersey</span>, in black. Across the back, OBERNDÖRFER is printed over MILANO in blackletter, the two marks laid through each other so that neither reads first. The house badge sits at the chest.</p>
+      <div class="facts">
+        <div><span class="fk">Cloth</span><span class="fv"><span class="swap">240g combed cotton jersey, 100% cotton</span></span></div>
+        <div><span class="fk">Cut</span><span class="fv">Regular, ribbed collar</span></div>
+        <div><span class="fk">Mark</span><span class="fv">Two-pass print, back</span></div>
+        <div><span class="fk">Origin</span><span class="fv">Made in Italy</span></div>
+      </div>
+      <p class="why"><b>Why the name.</b> <em>Serigraph</em> is the process, and it is also the process used on four of the six shirts, so it never distinguished this one. <em>Overprint</em> names what you see, which is one mark laid over another. It also removes the second shirt whose name pointed at blackletter, so Duomo now owns that register alone.</p>
+    </div>
+
+    <div class="shirt">
+      <div class="hdr"><span class="now">The Milano T-Shirt - Black</span><span class="keeps">Name kept</span></div>
+      <p class="copy">A T-shirt in <span class="swap">240g combed cotton jersey</span>, in black. MILANO runs across the back in amber serif capitals with OBERNDÖRFER set above it, and the house badge sits at the chest. The amber is mixed to the tone of the brass the house uses for its clasps and buckles, so the shirt and the hardware read as one colour.</p>
+      <div class="facts">
+        <div><span class="fk">Cloth</span><span class="fv"><span class="swap">240g combed cotton jersey, 100% cotton</span></span></div>
+        <div><span class="fk">Cut</span><span class="fv">Regular, ribbed collar</span></div>
+        <div><span class="fk">Mark</span><span class="fv">Print, amber, back</span></div>
+        <div><span class="fk">Origin</span><span class="fv">Made in Italy</span></div>
+      </div>
+      <p class="why"><b>What changed.</b> The amber sentence was already the best link in the lane and it was stated passively. Mixed to the tone of the brass is a claim about a decision someone made, which is the kind the houses make.</p>
+    </div>
+  </section>
+
+  <!-- ============ LEAVE ALONE ============ -->
+  <section id="keep">
+    <h2>What not to touch</h2>
+    <ul class="plain">
+      <li><b>Black and white as colour names.</b> Loro Piana would call them something, but Loro Piana is separating six greys. Two colours, named plainly, is honest, and inventing Ivory and Onyx here would be the one move in this document that reads as pretending. Hermès sells Noir and Blanc.</li>
+      <li><b>The definite article.</b> <em>The Crest T-Shirt</em> is doing real work, it turns a description into a name, and it is the reason this lane already reads as a house and the leather lane does not.</li>
+      <li><b>The four kept names.</b> Crest, Wordmark, Star and Milano each name the mark on the shirt. That is the rule, and they already follow it.</li>
+      <li><b>The house-link sentence.</b> Crest and Milano both end by tying the shirt to the leather goods. That is the single most valuable sentence in the lane, because it is the only one that says these are not merchandise.</li>
+    </ul>
+  </section>
+
+  <!-- ============ ORDER ============ -->
+  <section id="order">
+    <h2>Order of work</h2>
+    <ol class="check">
+      <li><b>Get the cloth spec from the maker.</b> Weight in grams, combed or carded, jersey type. Everything else here is writing, this is the only thing that needs an answer from outside.</li>
+      <li><b>Decide the two renames.</b> Gothic to Duomo and Serigraph to Overprint change product handles, so they need redirects from the old URLs. Two products, four listings.</li>
+      <li><b>Decide whether black and white merge.</b> This is a bigger change than the copy and it can wait, but it is cheaper to decide before rewriting twelve descriptions than after.</li>
+      <li><b>Write the facts block into the theme,</b> not into the description field, so the cut, collar, label, composition and origin are one string the whole lane shares.</li>
+      <li><b>Then the six descriptions,</b> which by that point are three sentences each.</li>
+    </ol>
+    <div class="note">
+      <p class="h">Standing</p>
+      <p>All of this is staging-theme work. Nothing here changes a price, and the renames are the only part that touches anything a customer has bookmarked.</p>
+    </div>
+  </section>
+
+  <footer>
+    Oberndörfer Milano / T-shirt lane / September 2026<br>
+    Read from the twelve published listings. House specimens quoted from hermes.com, us.loropiana.com and shop.brunellocucinelli.com.
+  </footer>
+</div>
