@@ -1,0 +1,180 @@
+{% comment %}
+  Oberndoerfer Milano — "The house, in brief" (2026-08-19; timings and places
+  aligned with the Bespoke page on 2026-09-03).
+  The answerable-brand block: the facts a person, Google, or an AI assistant
+  needs about the house, stated once, plainly, in one place — with matching
+  FAQPage structured data. Every statement here is sourced from live site
+  content (PDP badges, delivery accordion, About, Bespoke, Art of Living);
+  nothing invented. Facts are hardcoded deliberately: one canonical version.
+{% endcomment %}
+<div class="obm-house-facts">
+  <div class="obm-hf-inner">
+    <h2 class="obm-hf-heading">The house, in brief</h2>
+    <dl class="obm-hf-grid">
+      <div class="obm-hf-item">
+        <dt>The house</dt>
+        <dd>An independent Italian leather-goods house, based in Milan.</dd>
+      </div>
+      <div class="obm-hf-item">
+        <dt>How pieces are made</dt>
+        <dd>Every piece is <a href="/pages/materials-craftsmanship">made by hand</a> in ateliers around Milan, in small numbers.</dd>
+      </div>
+      <div class="obm-hf-item">
+        <dt>Materials</dt>
+        <dd><a href="/pages/materials-craftsmanship">Full-grain calf</a> from family tanneries in Italy, France and Germany; exotic hides follow a separate, CITES-documented chain.</dd>
+      </div>
+      <div class="obm-hf-item">
+        <dt>Shipping</dt>
+        <dd>Free worldwide with DHL Express; <a href="/pages/faq">pieces in stock are delivered in 7&ndash;14 days</a>.</dd>
+      </div>
+      <div class="obm-hf-item">
+        <dt>Made to order</dt>
+        <dd>Leather goods and boxes in 4&ndash;6 weeks; furniture in 1&ndash;2 months; complex commissions in 4&ndash;6 months.</dd>
+      </div>
+      <div class="obm-hf-item">
+        <dt>Returns and repairs</dt>
+        <dd><a href="/pages/faq">14 days from delivery</a>; personalised and bespoke pieces excluded. Whatever we make, we repair, quoted per piece.</dd>
+      </div>
+      <div class="obm-hf-item">
+        <dt>Bespoke</dt>
+        <dd><a href="/pages/personalization">One-of-a-kind commissions and personalisation</a>, arranged directly with the atelier.</dd>
+      </div>
+      <div class="obm-hf-item">
+        <dt>Where to see the pieces</dt>
+        <dd><a href="/pages/oberndorfer-x-miramare-sanremo">Miramare The Palace, Sanremo</a> and <a href="/pages/where-to-find-us">Trax NYC, New York</a>.</dd>
+      </div>
+    </dl>
+  </div>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Where are Oberndörfer Milano products made?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every piece is made by hand in ateliers around Milan, Italy, in small numbers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does Oberndörfer Milano shipping take and what does it cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Shipping is free worldwide with DHL Express. Pieces in stock are delivered in 7–14 days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Oberndörfer Milano's return policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Returns are accepted within 14 days of delivery. Items must be unused and in their original condition. Personalised or bespoke pieces are not eligible for return. Repairs are offered on every piece the house makes, quoted per piece."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long do made-to-order Oberndörfer pieces take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Leather goods and boxes take 4–6 weeks; furniture 1–2 months; complex commissions 4–6 months."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What materials does Oberndörfer Milano use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Full-grain calf leathers such as Togo from family tanneries in Italy, France and Germany, with linings in goat leather, suede, nappa or Alcantara. Exotic hides follow a separate, CITES-documented supply chain."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Oberndörfer Milano make bespoke pieces?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The house takes one-of-a-kind commissions and offers personalisation, arranged directly with the atelier in Milan."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where can Oberndörfer Milano pieces be seen in person?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "At Miramare The Palace in Sanremo, Liguria, where the house's furniture stands in the public rooms, and at Trax NYC on 47th Street in New York."
+      }
+    }
+  ]
+}
+</script>
+
+<style>
+  .obm-house-facts {
+    background: var(--color-background, #eeede8);
+    padding: 72px 24px;
+  }
+  .obm-hf-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .obm-hf-heading {
+    font-family: var(--font-heading--family);
+    font-weight: 400;
+    color: var(--color-foreground, #1c1714);
+    letter-spacing: 0.02em;
+    margin: 0 0 40px;
+    font-size: clamp(1.5rem, 2.4vw, 2rem);
+  }
+  .obm-hf-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px 56px;
+    margin: 0;
+  }
+  @media screen and (min-width: 750px) {
+    .obm-hf-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .obm-hf-item dt {
+    font-family: var(--font-subheading--family);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-foreground, #1c1714);
+    opacity: 0.6;
+    margin-bottom: 6px;
+  }
+  .obm-hf-item dd a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: rgba(28, 23, 20, 0.3);
+    text-underline-offset: 3px;
+  }
+  .obm-hf-item dd {
+    font-family: var(--font-body--family);
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--color-foreground, #1c1714);
+    margin: 0;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "House facts",
+  "enabled_on": {
+    "templates": ["page", "index"]
+  },
+  "settings": [],
+  "presets": [
+    {
+      "name": "House facts"
+    }
+  ]
+}
+{% endschema %}

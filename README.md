@@ -107,6 +107,11 @@ Diff the two JSON files to see exactly which strings changed.
   goods / Furniture / Jewellery, a new four-step "How a commission works" section, "The
   choices" rewritten in the house voice, timings in sentence case, close band "Begin a
   commission".
+- `scripts/house-style-pass-2.py`: About us (tracked eyebrows, captions under the three
+  photographs, chapter buttons as text links, one primary button at the close) and Contact
+  (eyebrow, the one-sentence h1, details column beside the form, "Send").
+  `sections/oberndoerfer-house-facts.liquid` is now in the repo: lead times aligned with the
+  Bespoke page, repairs added, New York listed beside Sanremo, page-ground background.
 - Art of Living: chapter heads in sentence case and captions under the three photographs
   of the pieces (checked against the pictures). About, Materials & Craftsmanship, Packaging:
   eight chapter heads moved out of Inter capitals. Leather Care: the dek is a Marcellus

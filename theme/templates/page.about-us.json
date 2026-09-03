@@ -123,12 +123,12 @@
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
-                    "type_preset": "h6",
-                    "font": "var(--font-accent--family)",
-                    "font_size": "1rem",
+                    "type_preset": "custom",
+                    "font": "var(--font-subheading--family)",
+                    "font_size": "0.75rem",
                     "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
+                    "letter_spacing": "loose",
+                    "case": "uppercase",
                     "wrap": "pretty",
                     "text_color": "",
                     "background": false,
@@ -254,7 +254,7 @@
             "alignment": "left",
             "type_preset": "custom",
             "font": "var(--font-subheading--family)",
-            "font_size": "0.8125rem",
+            "font_size": "0.75rem",
             "line_height": "normal",
             "letter_spacing": "loose",
             "case": "uppercase",
@@ -509,8 +509,8 @@
             "vertical_alignment": "center",
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "center",
-            "vertical_alignment_flex_direction_column": "space-between",
-            "gap": 32,
+            "vertical_alignment_flex_direction_column": "flex-start",
+            "gap": 0,
             "width": "fill",
             "custom_width": 100,
             "width_mobile": "fill",
@@ -518,7 +518,7 @@
             "height": "fit",
             "custom_height": 100,
             "background_media": "none",
-            "background_color": "{{ settings.color_palette.color1 }}",
+            "background_color": "",
             "video_position": "cover",
             "background_image": "",
             "background_image_position": "cover",
@@ -562,10 +562,36 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "cap": {
+              "type": "text",
+              "settings": {
+                "text": "<p>At the bench, fitting the hardware</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-subheading--family)",
+                "font_size": "0.75rem",
+                "line_height": "normal",
+                "letter_spacing": "loose",
+                "case": "uppercase",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 12,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
             }
           },
           "block_order": [
-            "image_group_Jmc9kk"
+            "image_group_Jmc9kk",
+            "cap"
           ]
         },
         "group_DGcdwG": {
@@ -577,8 +603,8 @@
             "vertical_alignment": "center",
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "center",
-            "vertical_alignment_flex_direction_column": "space-between",
-            "gap": 32,
+            "vertical_alignment_flex_direction_column": "flex-start",
+            "gap": 0,
             "width": "fill",
             "custom_width": 100,
             "width_mobile": "fill",
@@ -586,7 +612,7 @@
             "height": "fit",
             "custom_height": 100,
             "background_media": "none",
-            "background_color": "{{ settings.color_palette.color1 }}",
+            "background_color": "",
             "video_position": "cover",
             "background_image": "",
             "background_image_position": "cover",
@@ -630,10 +656,36 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "cap": {
+              "type": "text",
+              "settings": {
+                "text": "<p>A trunk bag, carried</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-subheading--family)",
+                "font_size": "0.75rem",
+                "line_height": "normal",
+                "letter_spacing": "loose",
+                "case": "uppercase",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 12,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
             }
           },
           "block_order": [
-            "image_group_DGcdwG"
+            "image_group_DGcdwG",
+            "cap"
           ]
         },
         "group_9TAxbE": {
@@ -645,8 +697,8 @@
             "vertical_alignment": "center",
             "align_baseline": false,
             "horizontal_alignment_flex_direction_column": "center",
-            "vertical_alignment_flex_direction_column": "space-between",
-            "gap": 32,
+            "vertical_alignment_flex_direction_column": "flex-start",
+            "gap": 0,
             "width": "fill",
             "custom_width": 100,
             "width_mobile": "fill",
@@ -654,7 +706,7 @@
             "height": "fit",
             "custom_height": 100,
             "background_media": "none",
-            "background_color": "{{ settings.color_palette.color1 }}",
+            "background_color": "",
             "video_position": "cover",
             "background_image": "",
             "background_image_position": "cover",
@@ -698,10 +750,36 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "cap": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Watch boxes, stacked</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-subheading--family)",
+                "font_size": "0.75rem",
+                "line_height": "normal",
+                "letter_spacing": "loose",
+                "case": "uppercase",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 12,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
             }
           },
           "block_order": [
-            "image_group_9TAxbE"
+            "image_group_9TAxbE",
+            "cap"
           ]
         }
       },
@@ -737,7 +815,7 @@
         "border_color": "",
         "border_radius": 0,
         "padding-block-start": 30,
-        "padding-block-end": 0
+        "padding-block-end": 24
       }
     },
     "section_about_facts": {
@@ -841,7 +919,7 @@
                     "alignment": "center",
                     "type_preset": "custom",
                     "font": "var(--font-subheading--family)",
-                    "font_size": "0.8125rem",
+                    "font_size": "0.75rem",
                     "line_height": "normal",
                     "letter_spacing": "loose",
                     "case": "uppercase",
@@ -992,7 +1070,7 @@
                     "alignment": "center",
                     "type_preset": "custom",
                     "font": "var(--font-subheading--family)",
-                    "font_size": "0.8125rem",
+                    "font_size": "0.75rem",
                     "line_height": "normal",
                     "letter_spacing": "loose",
                     "case": "uppercase",
@@ -1143,7 +1221,7 @@
                     "alignment": "center",
                     "type_preset": "custom",
                     "font": "var(--font-subheading--family)",
-                    "font_size": "0.8125rem",
+                    "font_size": "0.75rem",
                     "line_height": "normal",
                     "letter_spacing": "loose",
                     "case": "uppercase",
@@ -1386,7 +1464,7 @@
                 "label": "Materials & Craftsmanship",
                 "link": "/pages/materials-craftsmanship",
                 "open_in_new_tab": false,
-                "style_class": "button-secondary",
+                "style_class": "button-unstyled",
                 "custom_button_background": "{{ settings.color_palette.foreground }}",
                 "custom_button_text": "{{ settings.color_palette.background }}",
                 "custom_button_border": "{{ settings.color_palette.background }}",
@@ -1572,7 +1650,7 @@
                 "label": "Art of Living",
                 "link": "/pages/oberndorfer-x-miramare-sanremo",
                 "open_in_new_tab": false,
-                "style_class": "button-secondary",
+                "style_class": "button-unstyled",
                 "custom_button_background": "{{ settings.color_palette.foreground }}",
                 "custom_button_text": "{{ settings.color_palette.background }}",
                 "custom_button_border": "{{ settings.color_palette.background }}",
@@ -1618,13 +1696,13 @@
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
+            "type_preset": "custom",
+            "font": "var(--font-heading--family)",
+            "font_size": "1.5rem",
             "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",
-            "wrap": "pretty",
+            "wrap": "balance",
             "text_color": "",
             "background": false,
             "background_color": "#00000026",
@@ -1642,7 +1720,7 @@
             "label": "Explore the collections",
             "link": "/collections/all",
             "open_in_new_tab": false,
-            "style_class": "button-secondary",
+            "style_class": "button",
             "custom_button_background": "{{ settings.color_palette.foreground }}",
             "custom_button_text": "{{ settings.color_palette.background }}",
             "custom_button_border": "{{ settings.color_palette.background }}",
