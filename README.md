@@ -103,6 +103,8 @@ Diff the two JSON files to see exactly which strings changed.
   the owner says so; menus are store-level and go live the moment they are saved.
 - Repairs: yes, paid, quoted per piece once the atelier has seen a photograph.
 - The owner publishes the Claude theme themself.
+- Journal: the nine drafted articles are released by the owner on a schedule of three a
+  week, managed in a separate session. **Do not publish, edit or reschedule them here.**
 
 ### Not applied
 
