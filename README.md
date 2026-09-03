@@ -96,6 +96,22 @@ Diff the two JSON files to see exactly which strings changed.
   heading-role paragraph, so the cart carries one h1. `templates/404.json`: house copy,
   two buttons, Signature Pieces underneath. Card eyebrow on the 404, cart and search cards.
 
+### House style pass (3 September, second pass)
+
+- `scripts/house-style-pass.py` applies one grammar to every story page: eyebrow in tracked
+  Inter capitals, chapter heads in Marcellus sentence case (theme setting `type_font_h3` is
+  now `heading`), chapter text centred on its photograph, one primary button per page and
+  underlined text links inside chapters. Competitor reading and the rules are in the
+  "House style" part of `docs/website-design-review.html`.
+- Bespoke (`templates/page.bespoke.json`, page handle `personalization`): chapters Leather
+  goods / Furniture / Jewellery, a new four-step "How a commission works" section, "The
+  choices" rewritten in the house voice, timings in sentence case, close band "Begin a
+  commission".
+- Art of Living: chapter heads in sentence case and captions under the three photographs
+  of the pieces (checked against the pictures). About, Materials & Craftsmanship, Packaging:
+  eight chapter heads moved out of Inter capitals. Leather Care: the dek is a Marcellus
+  statement.
+
 ### Decisions on record
 
 - Colour families stay as separate products (owner declined the merge).
@@ -108,8 +124,6 @@ Diff the two JSON files to see exactly which strings changed.
 
 ### Not applied
 
-- Captions for the four full-bleed images in `section_aol_pieces` — drafted in the
-  review, but they need checking against the actual photographs first.
 - Optional hero line over `hero_eAhQMJ`.
 - Moving "a byproduct of the meat industry" onto the Materials & Craftsmanship page.
 - Changing the page handle to `art-of-living` with a redirect from the old one.

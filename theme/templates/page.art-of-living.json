@@ -106,7 +106,7 @@
             "alignment": "left",
             "type_preset": "custom",
             "font": "var(--font-subheading--family)",
-            "font_size": "0.8125rem",
+            "font_size": "0.75rem",
             "line_height": "normal",
             "letter_spacing": "loose",
             "case": "uppercase",
@@ -231,7 +231,7 @@
           "static": true,
           "settings": {
             "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "space-between",
+            "vertical_alignment_flex_direction_column": "center",
             "gap": 24
           },
           "blocks": {
@@ -243,12 +243,12 @@
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
-                "type_preset": "h6",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
+                "type_preset": "custom",
+                "font": "var(--font-subheading--family)",
+                "font_size": "0.75rem",
                 "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
+                "letter_spacing": "loose",
+                "case": "uppercase",
                 "wrap": "pretty",
                 "text_color": "",
                 "background": false,
@@ -304,7 +304,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<p>IT BEGAN WITH OUR TRUNKS IN THE LOBBY</p>",
+                    "text": "<p>It began with our trunks in the lobby</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -493,7 +493,7 @@
             "alignment": "left",
             "type_preset": "custom",
             "font": "var(--font-subheading--family)",
-            "font_size": "0.8125rem",
+            "font_size": "0.75rem",
             "line_height": "normal",
             "letter_spacing": "loose",
             "case": "uppercase",
@@ -607,9 +607,9 @@
             "horizontal_alignment": "flex-start",
             "vertical_alignment": "center",
             "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "center",
+            "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "space-between",
-            "gap": 32,
+            "gap": 0,
             "width": "fill",
             "custom_width": 100,
             "width_mobile": "fill",
@@ -661,10 +661,37 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "cap": {
+              "type": "text",
+              "name": "t:names.caption",
+              "settings": {
+                "text": "<p>The trunk that became a table</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-subheading--family)",
+                "font_size": "0.75rem",
+                "line_height": "normal",
+                "letter_spacing": "loose",
+                "case": "uppercase",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 12,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
             }
           },
           "block_order": [
-            "image_p1"
+            "image_p1",
+            "cap"
           ]
         },
         "p2": {
@@ -675,9 +702,9 @@
             "horizontal_alignment": "flex-start",
             "vertical_alignment": "center",
             "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "center",
+            "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "space-between",
-            "gap": 32,
+            "gap": 0,
             "width": "fill",
             "custom_width": 100,
             "width_mobile": "fill",
@@ -729,10 +756,37 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "cap": {
+              "type": "text",
+              "name": "t:names.caption",
+              "settings": {
+                "text": "<p>The sofa under the arch</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-subheading--family)",
+                "font_size": "0.75rem",
+                "line_height": "normal",
+                "letter_spacing": "loose",
+                "case": "uppercase",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 12,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
             }
           },
           "block_order": [
-            "image_p2"
+            "image_p2",
+            "cap"
           ]
         },
         "p3": {
@@ -743,9 +797,9 @@
             "horizontal_alignment": "flex-start",
             "vertical_alignment": "center",
             "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "center",
+            "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "space-between",
-            "gap": 32,
+            "gap": 0,
             "width": "fill",
             "custom_width": 100,
             "width_mobile": "fill",
@@ -797,10 +851,37 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "cap": {
+              "type": "text",
+              "name": "t:names.caption",
+              "settings": {
+                "text": "<p>Armchairs by the piano</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-subheading--family)",
+                "font_size": "0.75rem",
+                "line_height": "normal",
+                "letter_spacing": "loose",
+                "case": "uppercase",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 12,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
             }
           },
           "block_order": [
-            "image_p3"
+            "image_p3",
+            "cap"
           ]
         }
       },
@@ -861,7 +942,7 @@
           "static": true,
           "settings": {
             "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "space-between",
+            "vertical_alignment_flex_direction_column": "center",
             "gap": 24
           },
           "blocks": {
@@ -873,12 +954,12 @@
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
-                "type_preset": "h6",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
+                "type_preset": "custom",
+                "font": "var(--font-subheading--family)",
+                "font_size": "0.75rem",
                 "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
+                "letter_spacing": "loose",
+                "case": "uppercase",
                 "wrap": "pretty",
                 "text_color": "",
                 "background": false,
@@ -934,7 +1015,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<p>FULL-GRAIN CALF. SOLID BRASS IN PALLADIUM.</p>",
+                    "text": "<p>Full-grain calf. Solid brass in palladium.</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
