@@ -1,0 +1,643 @@
+<title>Reading the Houses</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#E9EAE4;
+  --raised:#F5F5F1;
+  --sunk:#E1E3DB;
+  --ink:#15181A;
+  --body:#3D4245;
+  --muted:#757B79;
+  --rule:#D2D5CD;
+  --hair:#C3C7BD;
+  --accent:#6E1F26;
+  --accent-ink:#6E1F26;
+  --flag:#E2D3D2;
+  --good:#3E5641;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#121412;
+    --raised:#1A1D1A;
+    --sunk:#0D0F0D;
+    --ink:#E9EBE4;
+    --body:#BFC4BE;
+    --muted:#848A84;
+    --rule:#292D28;
+    --hair:#373C36;
+    --accent:#C9848A;
+    --accent-ink:#D89AA0;
+    --flag:#3A2427;
+    --good:#8FAE90;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#121412;
+  --raised:#1A1D1A;
+  --sunk:#0D0F0D;
+  --ink:#E9EBE4;
+  --body:#BFC4BE;
+  --muted:#848A84;
+  --rule:#292D28;
+  --hair:#373C36;
+  --accent:#C9848A;
+  --accent-ink:#D89AA0;
+  --flag:#3A2427;
+  --good:#8FAE90;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--body);
+  font-family:"Archivo",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+
+.sheet{max-width:1200px;margin:0 auto;padding:0 26px 140px}
+@media (min-width:1100px){
+  .sheet{display:grid;grid-template-columns:170px minmax(0,1fr);column-gap:64px;padding-left:34px}
+}
+
+/* ---------- masthead ---------- */
+.mast{padding:76px 0 34px;border-bottom:1px solid var(--hair)}
+@media (min-width:1100px){.mast{grid-column:1 / -1}}
+.kicker{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--accent-ink);margin:0 0 20px;
+}
+.mast h1{
+  font-family:"Spectral",Georgia,"Times New Roman",serif;
+  font-weight:300;font-size:clamp(2.6rem,6.4vw,4.4rem);line-height:1.02;
+  letter-spacing:-.02em;color:var(--ink);margin:0 0 22px;text-wrap:balance;
+}
+.stand{font-size:1.075rem;line-height:1.6;color:var(--body);max-width:60ch;margin:0}
+.stand b{color:var(--ink);font-weight:600}
+.meta{
+  display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:30px;
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--muted);
+}
+.meta span{display:inline-flex;gap:8px;align-items:baseline}
+.meta span::before{content:"";width:5px;height:5px;background:var(--accent);flex:0 0 auto;transform:translateY(-2px)}
+
+/* ---------- index rail ---------- */
+.rail{display:none}
+@media (min-width:1100px){
+  .rail{display:block;position:sticky;top:30px;align-self:start;padding-top:52px}
+  .rail p{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--muted);margin:0 0 14px}
+  .rail a{display:block;font-family:"IBM Plex Mono",monospace;font-size:11.5px;line-height:1.35;
+    color:var(--muted);text-decoration:none;padding:7px 0 7px 12px;border-left:1px solid var(--rule)}
+  .rail a:hover{color:var(--ink);border-left-color:var(--accent)}
+  .rail a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+}
+
+main{min-width:0;padding-top:52px}
+
+/* ---------- headings ---------- */
+h2{
+  font-family:"Spectral",Georgia,serif;font-weight:400;
+  font-size:clamp(1.6rem,3vw,2.15rem);line-height:1.14;letter-spacing:-.012em;
+  color:var(--ink);margin:0 0 12px;text-wrap:balance;
+}
+h3{
+  font-family:"Archivo",sans-serif;font-weight:600;font-size:1rem;letter-spacing:.005em;
+  color:var(--ink);margin:0 0 8px;
+}
+.sec{padding:56px 0;border-top:1px solid var(--rule)}
+.sec:first-of-type{border-top:none;padding-top:0}
+.lede{max-width:66ch;margin:0 0 30px}
+p{max-width:66ch}
+a{color:var(--accent-ink)}
+
+/* ---------- house plate ---------- */
+.plate{
+  display:flex;flex-wrap:wrap;align-items:flex-end;gap:8px 22px;
+  padding-bottom:16px;margin-bottom:26px;border-bottom:2px solid var(--ink);
+}
+.plate h2{margin:0}
+.plate .origin{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);padding-bottom:5px;
+}
+
+/* ---------- grammar strip ---------- */
+.grammar{display:grid;gap:0;margin:0 0 34px;border-top:1px solid var(--rule)}
+.grammar div{
+  display:grid;grid-template-columns:1fr;gap:2px;
+  padding:14px 0;border-bottom:1px solid var(--rule);
+}
+@media (min-width:640px){
+  .grammar div{grid-template-columns:118px minmax(0,1fr);gap:24px;align-items:baseline}
+}
+.grammar dt,.grammar .k{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);
+}
+.grammar .v{margin:0;max-width:62ch}
+code{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.86em;color:var(--ink);
+  background:var(--sunk);padding:1px 5px;
+}
+
+/* ---------- specimen ---------- */
+.spec{
+  margin:26px 0;padding:0 0 0 20px;border-left:2px solid var(--accent);
+  max-width:60ch;
+}
+.spec .q{
+  font-family:"Spectral",Georgia,serif;font-weight:300;font-size:1.235rem;line-height:1.5;
+  color:var(--ink);margin:0 0 12px;
+}
+.spec .q em{font-style:italic}
+.spec .src{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);margin:0;
+}
+
+/* names list */
+.names{
+  display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px;padding:0;list-style:none;
+}
+.names li{
+  font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink);
+  background:var(--raised);border:1px solid var(--rule);padding:6px 10px;
+}
+
+/* ---------- slot diagram ---------- */
+.slots{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px;margin:6px 0 22px}
+.slot{
+  display:flex;flex-direction:column;gap:5px;padding:9px 13px;
+  background:var(--raised);border:1px solid var(--rule);min-width:0;
+}
+.slot .lab{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted)}
+.slot .val{font-family:"Spectral",Georgia,serif;font-size:1.05rem;color:var(--ink)}
+.slot.fixed{background:transparent;border-style:dashed}
+.slot.key{border-color:var(--accent);border-width:1px 1px 3px}
+
+/* ---------- rewrite blocks ---------- */
+.rw{padding:30px 0;border-top:1px solid var(--rule)}
+.rw:first-of-type{border-top:none}
+.rw > .head{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);margin:0 0 16px;
+}
+.pair{display:grid;gap:20px}
+@media (min-width:840px){.pair{grid-template-columns:1fr 1fr;gap:34px}}
+.side .tag{
+  font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;margin:0 0 10px;
+}
+.side.now .tag{color:var(--muted)}
+.side.next .tag{color:var(--accent-ink)}
+.side .name{
+  font-family:"Spectral",Georgia,serif;font-size:1.28rem;line-height:1.25;
+  color:var(--ink);margin:0 0 10px;font-weight:400;
+}
+.side.now .name{color:var(--muted)}
+.side .txt{font-size:14.6px;line-height:1.62;margin:0;max-width:48ch}
+.side.now .txt{color:var(--muted)}
+.side .specline{
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink);
+  margin:12px 0 0;padding-top:10px;border-top:1px solid var(--rule);max-width:48ch;
+}
+mark.tic{
+  background:var(--flag);color:var(--accent-ink);
+  padding:0 2px;text-decoration:underline;text-decoration-color:var(--accent);
+  text-underline-offset:2px;
+}
+.why{
+  margin:18px 0 0;padding-left:16px;border-left:2px solid var(--hair);
+  font-size:14.4px;color:var(--body);max-width:64ch;
+}
+.why b{color:var(--ink);font-weight:600}
+
+/* ---------- audit table ---------- */
+.tablewrap{overflow-x:auto;margin:0 0 8px}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:14.4px}
+th{
+  font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);font-weight:400;text-align:left;
+  padding:0 16px 9px 0;border-bottom:1px solid var(--ink);
+}
+td{padding:12px 16px 12px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+td.t{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--ink);white-space:nowrap}
+td.verdict{white-space:nowrap;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.keep{color:var(--good)}
+.retire{color:var(--accent-ink)}
+
+/* ---------- checklist ---------- */
+ol.check{list-style:none;counter-reset:c;padding:0;margin:0;display:grid;gap:0}
+ol.check li{
+  counter-increment:c;display:grid;grid-template-columns:30px minmax(0,1fr);gap:16px;
+  padding:14px 0;border-bottom:1px solid var(--rule);align-items:baseline;max-width:70ch;
+}
+ol.check li::before{
+  content:counter(c,decimal-leading-zero);
+  font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--accent-ink);
+}
+ol.check b{color:var(--ink);font-weight:600}
+
+/* ---------- misc ---------- */
+.note{
+  background:var(--raised);border:1px solid var(--rule);border-left:3px solid var(--accent);
+  padding:16px 18px;margin:26px 0;max-width:64ch;
+}
+.note p{margin:0;font-size:14.6px}
+.note .h{
+  font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--accent-ink);margin:0 0 7px;
+}
+ul.plain{padding-left:19px;margin:0 0 20px;max-width:64ch}
+ul.plain li{margin-bottom:7px}
+.srcs{list-style:none;padding:0;margin:0;display:grid;gap:9px}
+.srcs li{font-size:13.8px;line-height:1.5}
+.srcs a{word-break:break-word}
+footer{
+  margin-top:56px;padding-top:22px;border-top:1px solid var(--hair);
+  font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);
+}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="sheet">
+
+  <header class="mast">
+    <p class="kicker">Copy study / Oberndörfer Milano</p>
+    <h1>Reading the Houses</h1>
+    <p class="stand">How <b>Loro Piana</b>, <b>Hermès</b> and <b>Brunello Cucinelli</b> actually name and describe a product, read from their own live copy, and the grammar it gives Oberndörfer for 267 listings that currently speak in three different voices.</p>
+    <div class="meta">
+      <span>Verbatim specimens from brand and stockist pages</span>
+      <span>Applied to the leather, bag and eyewear lanes</span>
+      <span>Jewellery excluded per house scope</span>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="Contents">
+    <p>Contents</p>
+    <a href="#common">What all three do</a>
+    <a href="#lp">Loro Piana</a>
+    <a href="#hermes">Hermès</a>
+    <a href="#bc">Brunello Cucinelli</a>
+    <a href="#grammar">The grammar</a>
+    <a href="#audit">Where we stand</a>
+    <a href="#applied">Applied</a>
+    <a href="#names">Name library</a>
+    <a href="#check">Before publishing</a>
+    <a href="#sources">Sources</a>
+  </nav>
+
+  <main>
+
+    <!-- ============ COMMON ============ -->
+    <section class="sec" id="common">
+      <h2>The one habit all three share</h2>
+      <p class="lede">None of them sells. Not one sentence on a Loro Piana, Hermès or Brunello Cucinelli product page tells you how the object will make you feel, or who you will be while carrying it. The copy states what the thing is, what it is made of, and one fact about how it was made. The desire is expected to be produced by the object and the photograph. The words are there to confirm the object is what it appears to be.</p>
+      <p class="lede">That is the whole discipline, and it is a negative one. What follows is mostly a catalogue of things they refuse to write.</p>
+
+      <div class="grammar" role="list">
+        <div role="listitem"><span class="k">Never</span><p class="v">A verb aimed at the reader. No <code>Introducing our</code>, no <code>Shine bright with</code>, no <code>Discover</code>. The product, the yarn or the detail is the subject of every sentence.</p></div>
+        <div role="listitem"><span class="k">Never</span><p class="v">Second person. The reader is never addressed, never told what the piece is perfect for, never given an occasion.</p></div>
+        <div role="listitem"><span class="k">Never</span><p class="v">Self-praise as a claim. No <code>masterpiece</code>, <code>exquisite</code> applied to their own work, <code>unparalleled</code>, <code>timeless elegance</code> as a summary.</p></div>
+        <div role="listitem"><span class="k">Never</span><p class="v">A benefit list with bolded lead-ins. No <code>Premium Materials:</code>, no <code>Product Highlights:</code>. Specifications appear as flat labelled values, separate from the prose.</p></div>
+        <div role="listitem"><span class="k">Never</span><p class="v">Search terms inside the sentence. No <code>leather tote bag for women and men</code>. The category is carried by the product name and the navigation, not smuggled into the description.</p></div>
+        <div role="listitem"><span class="k">Always</span><p class="v">Origin stated flat at the end, as a fact and not a boast: <code>Made in France.</code> <code>Made in Italy.</code></p></div>
+      </div>
+    </section>
+
+    <!-- ============ LORO PIANA ============ -->
+    <section class="sec" id="lp">
+      <div class="plate">
+        <h2>Loro Piana</h2>
+        <span class="origin">Quarona, Piedmont / cloth first</span>
+      </div>
+
+      <p class="lede">Loro Piana is the most useful of the three for us, because its naming is a system rather than a tradition. Every title is built from the same four slots, and the slots are always in the same order.</p>
+
+      <ul class="names">
+        <li>Roadster Sweater Cashmere Natural Melange/Nougat</li>
+        <li>Neo Piuma Turtleneck Cashmere Tapioca</li>
+        <li>Open Walk Ankle Boot Suede Sandstone</li>
+        <li>Summer Walk Loafer Suede Shamrock</li>
+        <li>Traveller Jacket Linen Pine Bark</li>
+        <li>New Piuma V-Neck Cashmere Tapioca</li>
+      </ul>
+
+      <div class="slots">
+        <div class="slot key"><span class="lab">Model</span><span class="val">Roadster</span></div>
+        <div class="slot"><span class="lab">Object</span><span class="val">Sweater</span></div>
+        <div class="slot"><span class="lab">Material</span><span class="val">Cashmere</span></div>
+        <div class="slot key"><span class="lab">Colour name</span><span class="val">Nougat</span></div>
+      </div>
+
+      <div class="grammar">
+        <div><span class="k">Model</span><p class="v">A proper noun that belongs to a silhouette, not to a category. <code>Roadster</code> is a jacket, a sweater and a half-zip. <code>Open Walk</code> is an ankle boot and a loafer. The name survives the material change, so a customer who liked one piece can find its relatives.</p></div>
+        <div><span class="k">Object</span><p class="v">The plainest possible noun. Sweater. Loafer. Jacket. Never <code>luxury knit</code>, never a silhouette adjective doing the naming work.</p></div>
+        <div><span class="k">Material</span><p class="v">The fibre, and where the house owns it, the trademark: <code>The Gift of Kings®</code>, <code>Storm System®</code>. A named material is an asset that survives seasons.</p></div>
+        <div><span class="k">Colour</span><p class="v">Never a plain colour word. Tapioca, Nougat, Stone Dove, Sandstone, Pine Bark, Shamrock, Caviar, Optical White. The colour name is the only place in the whole title where the house permits itself any poetry.</p></div>
+      </div>
+
+      <h3>What their description does</h3>
+      <div class="spec">
+        <p class="q">Inspired by the iconic jacket of the same name, the Roadster sweater is designed for those who are always en route, at the wheel and beyond. It is spun from ultra-soft cashmere yarns in a two-tone motif that runs diagonally across the garment. Sculpted with a high zipped neckline, this versatile layer complements the apparel of classic car drivers.</p>
+        <p class="src">Loro Piana, Roadster sweater</p>
+      </div>
+      <p class="lede">Three sentences, three jobs. The first places the piece in the house's own family, which is only possible because the model names are reused. The second is construction. The third is use, described as a fact about the garment rather than an instruction to the reader. Note that even the softest word in it, <em>ultra-soft</em>, is attached to the yarn, not to the experience of wearing it.</p>
+    </section>
+
+    <!-- ============ HERMES ============ -->
+    <section class="sec" id="hermes">
+      <div class="plate">
+        <h2>Hermès</h2>
+        <span class="origin">Paris / harness first</span>
+      </div>
+
+      <p class="lede">Hermès takes the opposite route on names and an even stricter one on description. A name is a single proper noun with no category word attached at all, and the size is a number after it.</p>
+
+      <ul class="names">
+        <li>Kelly</li><li>Birkin</li><li>Constance</li><li>Evelyne</li>
+        <li>Picotin</li><li>Lindy</li><li>Bolide</li><li>Della Cavalleria</li>
+        <li>Oran</li><li>Calvi</li><li>Kelly 25</li>
+      </ul>
+
+      <p class="lede">You cannot tell from <em>Kelly</em> that it is a bag, or from <em>Oran</em> that it is a sandal. That is deliberate: the name is an entry in a house vocabulary customers are expected to learn, which is why the same names have been earning for fifty years. The one place the category appears is the description, and it appears as the first word.</p>
+
+      <div class="spec">
+        <p class="q">Sandal in Epsom calfskin with iconic "H" cut-out detail</p>
+        <p class="src">Hermès, Oran sandal</p>
+      </div>
+      <div class="spec">
+        <p class="q">Card holder in Epsom calfskin</p>
+        <p class="src">Hermès, Calvi card holder</p>
+      </div>
+      <div class="spec">
+        <p class="q">Reversible leather strap in Epsom calfskin. Buckle in guilloched palladium plated metal.</p>
+        <p class="src">Hermès, leather strap</p>
+      </div>
+
+      <div class="grammar">
+        <div><span class="k">Formula</span><p class="v"><code>[Object] in [material]</code>, then any single distinguishing detail. No verb. Frequently no complete sentence at all.</p></div>
+        <div><span class="k">Adjectives</span><p class="v">Effectively none, and never one that praises. <code>Epsom</code> is a leather, not a compliment. The only evaluative word that appears in the specimens above is <code>iconic</code>, and it is describing a shape the customer already recognises.</p></div>
+        <div><span class="k">Specs</span><p class="v">Labelled values on their own lines, outside the prose: <code>Heel height: 1 cm</code>, <code>Metallic finish: Palladium plated</code>, <code>Made in Italy</code>. Nothing measurable is ever buried inside a sentence.</p></div>
+        <div><span class="k">Effect</span><p class="v">The restraint is the signal. A house that explains why its bag is special is a house that suspects you might not agree.</p></div>
+      </div>
+
+      <div class="note">
+        <p class="h">The line we can already hit</p>
+        <p>Our own normalised apparel copy is already at this standard: <em>"A cotton T-shirt in black, with the house crest embroidered at the centre of the chest."</em> That is the Hermès sentence exactly. The problem is that only one lane of the catalogue speaks this way.</p>
+      </div>
+    </section>
+
+    <!-- ============ BRUNELLO CUCINELLI ============ -->
+    <section class="sec" id="bc">
+      <div class="plate">
+        <h2>Brunello Cucinelli</h2>
+        <span class="origin">Solomeo, Umbria / cashmere first</span>
+      </div>
+
+      <p class="lede">Cucinelli is the counter-example, and worth reading precisely because it breaks the rule the other two follow. There are almost no proper nouns in the catalogue. The product name is a plain description, in sentence case, with no colour in it at all.</p>
+
+      <ul class="names">
+        <li>Cashmere sweater with monili</li>
+        <li>Cashmere and silk Diamond yarn scarf</li>
+        <li>Cashmere Feather yarn cardigan</li>
+        <li>Nordic jacquard turtleneck sweater</li>
+        <li>Cashmere jersey tailored trousers</li>
+      </ul>
+
+      <p class="lede">Two details make this work rather than read as generic. First, the proprietary nouns sit on the <em>yarn</em>, not the garment: Feather yarn, Diamond yarn, monili. Second, colour is never in the title, because colour is a variant of one product rather than a separate product. Where Loro Piana buys distinctiveness with model names, Cucinelli buys it with material names and spends the rest of its personality in the description.</p>
+
+      <div class="spec">
+        <p class="q">This timeless cashmere sweater combines the beauty of knitwear, endless comfort and elegant details. Inspired by rib knitting, a precious shiny monili embroidery stands out on the crew-neck, adding a delicate sparkle in true Brunello Cucinelli style.</p>
+        <p class="src">Brunello Cucinelli, cashmere sweater with monili</p>
+      </div>
+      <div class="spec">
+        <p class="q">The refined, iconic yarn of the Brunello Cucinelli collections elevates the essential feel of this new cashmere sweater. The garment features relaxed proportions, with dropped shoulders and slightly generous sleeves, for extraordinary comfort. A precious monili embroidery completes the sweater with a feminine sparkling note.</p>
+        <p class="src">Brunello Cucinelli, cashmere sweater</p>
+      </div>
+
+      <div class="grammar">
+        <div><span class="k">Subject</span><p class="v">Always the garment, the yarn or the detail. <code>The garment features</code>, <code>a monili embroidery stands out</code>, <code>the yarn elevates</code>. Never <code>we</code>, never <code>you</code>, never <code>our</code>.</p></div>
+        <div><span class="k">Warmth</span><p class="v">This is the warmest of the three voices, and the warmth is still never pointed at the reader. It is spent on the material.</p></div>
+        <div><span class="k">Length</span><p class="v">Two to three sentences. There is no fourth sentence, and no bullet list under it.</p></div>
+        <div><span class="k">Caution</span><p class="v">The one house habit not to copy: <code>timeless</code>, <code>precious</code>, <code>refined</code> and <code>iconic</code> carry weight for a house whose name has meant one material for fifty years. On a younger catalogue the same words read as filler. Take the sentence structure, leave the adjectives.</p></div>
+      </div>
+    </section>
+
+    <!-- ============ GRAMMAR ============ -->
+    <section class="sec" id="grammar">
+      <h2>The grammar, extracted</h2>
+      <p class="lede">Our apparel lane already resolved this in August. <em>The Crest T-Shirt</em>, <em>The Monogram Puffer Jacket</em>, <em>The Milano T-Shirt</em>: proper-noun model, plain object noun, colour after a hyphen. That is the Loro Piana slot system with an English definite article. It does not need reinventing, it needs extending to the other 200 listings.</p>
+
+      <h3>Names</h3>
+      <div class="slots">
+        <div class="slot fixed"><span class="lab">Article</span><span class="val">The</span></div>
+        <div class="slot key"><span class="lab">Model</span><span class="val">Mirror</span></div>
+        <div class="slot"><span class="lab">Object</span><span class="val">Handbag</span></div>
+        <div class="slot fixed"><span class="lab">In material</span><span class="val">in Ostrich</span></div>
+        <div class="slot key"><span class="lab">Colour</span><span class="val">- Cognac</span></div>
+      </div>
+      <ul class="plain">
+        <li>The model name is fixed to the <b>silhouette</b>, so it survives a change of leather. <em>The Mirror Handbag in Ostrich</em> is already correct. <em>Brown Ostrich Bag</em> is the same idea done wrong: the material has eaten the name.</li>
+        <li>The object noun is the plainest available word. Handbag. Backpack. Wallet. Tote.</li>
+        <li>Material appears only when the same model exists in more than one, and it appears as <code>in [Material]</code>, never as a leading adjective.</li>
+        <li>Colour is last, after a hyphen, and it is a named colour rather than a plain one wherever the lane can carry it: Cognac and Tortoise already do this, Grey and Brown do not.</li>
+        <li>No factory codes, no untranslated generics, no category keywords.</li>
+      </ul>
+
+      <h3>Descriptions: four moves, in this order</h3>
+      <div class="grammar">
+        <div><span class="k">1 &nbsp;Object</span><p class="v">One sentence in the Hermès form: what it is, in what material, in what colour. <code>A structured trunk bag in calf leather, in black.</code></p></div>
+        <div><span class="k">2 &nbsp;Build</span><p class="v">One or two sentences on the single construction fact that explains the price. A rigid core. A goat-leather interior. Hand-burnished edges. Choose the one that is true and unusual, not the three that are true and expected.</p></div>
+        <div><span class="k">3 &nbsp;Time</span><p class="v">One sentence on how the material behaves with use, or on the house signature the piece carries. This is the Cucinelli move, and it is the only place warmth belongs.</p></div>
+        <div><span class="k">4 &nbsp;Facts</span><p class="v">Composition, dimensions, origin, compliance. Flat, labelled, unsentenced. <code>Calf leather, Alcantara lining. 39 × 32 × 14.5 cm. Made in Italy.</code></p></div>
+      </div>
+      <div class="note">
+        <p class="h">Two house rules this has to respect</p>
+        <p>Prices are stated once and calmly, so no description mentions value, worth or investment. And every factual claim, lead time and compliance line has to match what the policy pages say, because a contradiction between a product page and a shipping page is how trust is lost.</p>
+      </div>
+    </section>
+
+    <!-- ============ AUDIT ============ -->
+    <section class="sec" id="audit">
+      <h2>Where the catalogue stands</h2>
+      <p class="lede">Read as a single list, the 267 product titles are speaking in at least four registers at once. The apparel lane is right, and a good share of the leather lane is already close. The rest is the work.</p>
+
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr><th>Title as it stands</th><th>What it is doing</th><th>Verdict</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="t">The Crest T-Shirt - Black</td><td>Article, model, object, colour. The pattern the rest should follow.</td><td class="verdict keep">Model</td></tr>
+            <tr><td class="t">The Mirror Handbag in Ostrich</td><td>Model name held constant across a material change, exactly as Loro Piana does.</td><td class="verdict keep">Model</td></tr>
+            <tr><td class="t">Vault Bag / Nebula Necklace</td><td>Real proper nouns already in the catalogue and already working.</td><td class="verdict keep">Keep</td></tr>
+            <tr><td class="t">BAG MODEL 017 - Black</td><td>An internal factory reference shown to customers, in shouting capitals.</td><td class="verdict retire">Rename</td></tr>
+            <tr><td class="t">SAC - Brown</td><td>The French word for "bag", used as a name, across six colours plus a bare duplicate.</td><td class="verdict retire">Rename</td></tr>
+            <tr><td class="t">Brown Ostrich Bag</td><td>Colour and material have absorbed the name, so the same silhouette in two hides reads as two unrelated products.</td><td class="verdict retire">Rename</td></tr>
+            <tr><td class="t">Tortoise Square Sunglasses</td><td>Nine of eleven frames are described rather than named, while <em>Narcos</em> alone is a name. The lane contradicts itself.</td><td class="verdict retire">Rename</td></tr>
+            <tr><td class="t">Handmade Italian Leather Duffle Bag</td><td>Three selling adjectives before the noun. This is a search phrase, not a product name.</td><td class="verdict retire">Rename</td></tr>
+            <tr><td class="t">Tote Leather Bag &nbsp;(×2)</td><td>Two distinct products under one identical title. Same for <em>Weekend Bag</em> and <em>SAC</em>.</td><td class="verdict retire">Resolve</td></tr>
+            <tr><td class="t">Rubin / Saphire / Nabuk</td><td>Ruby, sapphire and nubuck, misspelled consistently enough to look like house terms. <em>Valneza</em> for Valenza appears inside description copy.</td><td class="verdict retire">Correct</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="lede">The spellings are the most urgent of these, and the cheapest to fix. A house that cannot spell the stone it sets, or the city it claims to be made in, undoes every other signal on the page.</p>
+    </section>
+
+    <!-- ============ APPLIED ============ -->
+    <section class="sec" id="applied">
+      <h2>Applied</h2>
+      <p class="lede">Four live listings, rewritten against the grammar. Marked text is what the three houses would not write.</p>
+
+      <div class="rw">
+        <p class="head">Leather goods / backpack</p>
+        <div class="pair">
+          <div class="side now">
+            <p class="tag">As published</p>
+            <p class="name">SAC - Brown</p>
+            <p class="txt">SAC is a <mark class="tic">refined</mark> Italian leather backpack made from grained Togo leather, a material chosen for its durability, <mark class="tic">soft hand feel</mark>, and the way it deepens in character over time. The silhouette is compact and clean: L 19 × H 28 × D 9 cm, <mark class="tic">enough for your daily carry, nothing unnecessary</mark>. Inside, the bag is fully lined in smooth goat leather. <mark class="tic">This is not an afterthought</mark>, the goat leather interior creates a refined contrast and makes the bag notably more durable inside where most bags fail first. The closure is a palladium-finished brass fitting. SAC <mark class="tic">transitions naturally between uses: wear it as a backpack for city days or travel, or carry it as a crossbody leather bag</mark>.</p>
+          </div>
+          <div class="side next">
+            <p class="tag">Proposed</p>
+            <p class="name">The Corso Backpack - Brown</p>
+            <p class="txt">A backpack in grained calf leather, in brown. The interior is lined in smooth goat leather rather than textile, which is where a bag of this shape usually wears through first. The closure is brass finished in palladium, and the straps convert so the same piece is worn on the back or across the body. Grained leather takes the marks of use as depth of colour rather than as damage.</p>
+            <p class="specline">Calf leather, goat leather lining<br>19 × 28 × 9 cm<br>Made in Italy</p>
+          </div>
+        </div>
+        <p class="why"><b>What changed.</b> A name replaces a category word. The dimensions leave the sentence and become a labelled line. The two direct addresses to the reader are cut, and the sentence defending the lining against a charge nobody made is replaced by the fact that justifies it.</p>
+      </div>
+
+      <div class="rw">
+        <p class="head">Leather goods / tote</p>
+        <div class="pair">
+          <div class="side now">
+            <p class="tag">As published</p>
+            <p class="name">BAG MODEL 017 - Black</p>
+            <p class="txt">Made in Italy from Togo calf leather, the Model 017 is a large leather tote bag defined by its structure and <mark class="tic">quiet confidence</mark>. Togo is a finely grained, durable leather known for its natural texture and resistance to scratching, it carries well, and it ages better. The silhouette is <mark class="tic">sculptural</mark>: an integrated top handle formed by two curved panels, softly curved sides that taper toward the base, and a generous open interior designed to hold daily essentials without any compartments getting in the way. This is a <mark class="tic">leather tote bag for women and men who prefer function over fuss</mark>. Each bag is handmade by Italian artisans in small batches.</p>
+          </div>
+          <div class="side next">
+            <p class="tag">Proposed</p>
+            <p class="name">The 017 Tote - Black</p>
+            <p class="txt">A large tote in grained calf leather, in black. The top handle is formed from two curved panels worked into the body rather than stitched on, which is what holds the mouth of the bag open when it is carried. The sides taper to the base and the interior is left undivided. Grained leather resists scratching, so the surface stays even across years of daily carry.</p>
+            <p class="specline">Grained calf leather<br>39 × 32 × 14.5 cm<br>Made in Italy</p>
+          </div>
+        </div>
+        <p class="why"><b>What changed.</b> The factory code becomes a model number in the Loro Piana manner, an <code>Extra Pocket L19</code> rather than a line item. The search phrase goes. The construction claim is made specific enough to be checkable, which is the only kind of claim worth making.</p>
+      </div>
+
+      <div class="rw">
+        <p class="head">Exotic leather / shopper</p>
+        <div class="pair">
+          <div class="side now">
+            <p class="tag">As published</p>
+            <p class="name">Brown Ostrich Bag</p>
+            <p class="txt"><mark class="tic">Crafted</mark> from genuine ostrich leather, <mark class="tic">our</mark> Brown Ostrich Bag <mark class="tic">exudes elegance</mark>. Its rich brown color <mark class="tic">adds a touch of warmth to any ensemble</mark>. This Brown Ostrich Bag is handcrafted in Italy, ensuring quality and attention to detail. <mark class="tic">The perfect accessory for any occasion.</mark> All of our exotic leather goods are handmade in Italy by skilled artisans <mark class="tic">with decades of experience behind their backs</mark>. Our products are <mark class="tic">meant to be unique pieces that last for a lifetime</mark>.</p>
+          </div>
+          <div class="side next">
+            <p class="tag">Proposed</p>
+            <p class="name">The Brera Shopper in Ostrich - Brown</p>
+            <p class="txt">An open shopper in ostrich leather, in brown. The quill pattern is natural and follows the hide, so the spacing of the follicles differs from bag to bag and no two are matched. The panels are cut from a single skin to keep that pattern continuous across the front. Ostrich stays supple as it ages rather than stiffening at the fold lines.</p>
+            <p class="specline">Ostrich leather, CITES documentation on request<br>Made to order, 30 to 90 days<br>Made in Italy</p>
+          </div>
+        </div>
+        <p class="why"><b>What changed.</b> Everything the old copy asserted, it asserted about itself. The rewrite says one thing only this bag can say, which is what the quill pattern does, and moves the lead time out of a trailing fragment into the facts block where a customer about to wait three months will actually find it.</p>
+      </div>
+
+      <div class="rw">
+        <p class="head">Eyewear</p>
+        <div class="pair">
+          <div class="side now">
+            <p class="tag">As published</p>
+            <p class="name">Tortoise Square Sunglasses</p>
+            <p class="txt"><mark class="tic">The Silhouette</mark> <mark class="tic">A refined approach to the structured, classic frame.</mark> Tortoise Square Sunglasses feature a mid-profile, streamlined square shape crafted from deeply polished tortoiseshell acetate. This design offers a tailored, sharp look <mark class="tic">that is designed to be an everyday staple for any wardrobe</mark>. <mark class="tic">The Optical Standard: German Zeiss Lenses</mark> This sleek frame is equipped with genuine German Zeiss gradient brown lenses for <mark class="tic">exceptional visual clarity</mark>. These <mark class="tic">premium</mark> lenses offer rich contrast, an anti-reflective coating, and absolute 100% UVA/UVB protection.</p>
+          </div>
+          <div class="side next">
+            <p class="tag">Proposed</p>
+            <p class="name">The Vetra Square Sunglasses - Tortoise</p>
+            <p class="txt">A square frame in tortoise acetate, with gradient brown Zeiss lenses. The acetate is cut from block and polished rather than moulded, which is why the depth of the tortoise pattern changes as the frame turns in the light. The lenses are anti-reflective coated and filter 100% of UVA and UVB.</p>
+            <p class="specline">Block acetate, Zeiss gradient lenses<br>Mid-profile, square<br>Made in Italy</p>
+          </div>
+        </div>
+        <p class="why"><b>What changed.</b> The two invented section headings go, because a paragraph is not a spec sheet and a spec sheet does not need prose. Zeiss is a real asset and now stands in the first sentence rather than under a heading announcing itself. The lane gets a name so it stops being the only category where one product, <em>Narcos</em>, is named and ten are described.</p>
+      </div>
+    </section>
+
+    <!-- ============ NAMES ============ -->
+    <section class="sec" id="names">
+      <h2>A name library</h2>
+      <p class="lede">Loro Piana names from its own world: the roads it drove, the walks it took. Hermès names from its history. The catalogue already leans Milanese, and the apparel lane already uses <em>Milano</em> as a model name, so the register is set. What follows is a shortlist of Milanese and Lombard nouns that read cleanly in English, take a definite article, and do not collide with an existing luxury mark.</p>
+
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Name</th><th>Reading</th><th>Suits</th></tr></thead>
+          <tbody>
+            <tr><td class="t">Brera</td><td>The gallery quarter</td><td>Shoppers, totes, open bags</td></tr>
+            <tr><td class="t">Corso</td><td>A main street, and the act of running</td><td>Backpacks, day carry</td></tr>
+            <tr><td class="t">Vetra</td><td>The glassmakers' square</td><td>Eyewear</td></tr>
+            <tr><td class="t">Cordusio</td><td>A junction of five roads</td><td>Document holders, briefcases</td></tr>
+            <tr><td class="t">Naviglio</td><td>The canals, and cargo</td><td>Weekend and duffle bags</td></tr>
+            <tr><td class="t">Sforza</td><td>The castle, and the word for force</td><td>Trunks, trolleys, rigid cases</td></tr>
+            <tr><td class="t">Lambro</td><td>The river</td><td>Belts, straps, long goods</td></tr>
+            <tr><td class="t">Verziere</td><td>The old market</td><td>Wallets, card holders, small leather</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <ul class="plain">
+        <li>One name per <b>silhouette</b>, never per colour and never per material. <em>The Brera Shopper</em> exists in ostrich, in crocodile and in calf, and stays one product family.</li>
+        <li>Names already earning stay: Mirror, Vault, Nebula, Flora, Narcos, Crest, Monogram, Wordmark, Star, Gothic, Serigraph, Milano, Urus.</li>
+        <li>A name is retired only when its product is, so the vocabulary compounds rather than resets each season. This is the whole reason Hermès names are worth what they are worth.</li>
+      </ul>
+
+      <div class="note">
+        <p class="h">Scope</p>
+        <p>Jewellery sits outside catalogue and merchandising work under the house standard, so nothing here is proposed for the rings, necklaces or bracelets. The spelling corrections are the exception worth raising separately, since <em>Rubin</em> and <em>Saphire</em> appear in titles a customer reads before anything else.</p>
+      </div>
+    </section>
+
+    <!-- ============ CHECK ============ -->
+    <section class="sec" id="check">
+      <h2>Before a listing goes live</h2>
+      <ol class="check">
+        <li><b>Read the first sentence alone.</b> It should say what the object is and what it is made of, and nothing else. If it opens with a verb aimed at the reader, rewrite it.</li>
+        <li><b>Search the copy for "you", "your", "our" and "we".</b> None of the three houses uses any of them on a product page.</li>
+        <li><b>Delete every adjective the house applied to itself.</b> Exquisite, masterpiece, unparalleled, premium, refined. Keep adjectives that describe a material's behaviour, since those are checkable.</li>
+        <li><b>Move every number out of the prose.</b> Dimensions, weights, carats and lead times belong in the facts block, on their own lines.</li>
+        <li><b>Check the name against the silhouette.</b> If the same shape exists in another leather or colour, both listings carry the same model name.</li>
+        <li><b>Cut the occasion.</b> No listing tells a customer where to take the thing or what it is perfect for.</li>
+        <li><b>Confirm the claim matches the policy pages.</b> Lead time, made-to-order status, CITES documentation and returns say the same thing everywhere they appear.</li>
+        <li><b>Spell the material and the city.</b> Ruby, sapphire, nubuck, Valenza.</li>
+      </ol>
+    </section>
+
+    <!-- ============ SOURCES ============ -->
+    <section class="sec" id="sources">
+      <h2>Sources</h2>
+      <p class="lede">Verbatim copy quoted above was read from these pages and their stockist listings.</p>
+      <ul class="srcs">
+        <li>Loro Piana, Roadster sweater in cashmere: <a href="https://us.loropiana.com/en/man/knitwear/roadster-sweater-FAP5949_J668.html">us.loropiana.com/en/man/knitwear/roadster-sweater</a></li>
+        <li>Loro Piana, Neo Piuma turtleneck and Open Walk ankle boot: <a href="https://us.loropiana.com/en/woman/knitwear/neo-piuma-turtleneck-FAM9382_A314.html">neo-piuma-turtleneck</a>, <a href="https://us.loropiana.com/en/shoes/woman/white-sole/open-walk-ankle-boot-FAE9959_D044.html">open-walk-ankle-boot</a></li>
+        <li>Loro Piana, The Gift of Kings: <a href="https://us.loropiana.com/en/our-world/the-gift-of-kings">us.loropiana.com/en/our-world/the-gift-of-kings</a></li>
+        <li>Hermès, Oran sandal: <a href="https://www.hermes.com/us/en/product/oran-sandal-H021056Zv01/">hermes.com/us/en/product/oran-sandal</a></li>
+        <li>Hermès, Calvi card holder: <a href="https://www.hermes.com/us/en/product/calvi-card-holder-H044164CK18/">hermes.com/us/en/product/calvi-card-holder</a></li>
+        <li>Hermès, iconic bag lines: <a href="https://www.hermes.com/us/en/content/310339-hermes-iconic-bag-lines/">hermes.com/us/en/content/hermes-iconic-bag-lines</a></li>
+        <li>Brunello Cucinelli, cashmere sweater with monili: <a href="https://shop.brunellocucinelli.com/en-us/women/ready-to-wear/knitwear/cashmere-sweater-with-monili-252M12707300C9731.html">shop.brunellocucinelli.com, cashmere-sweater-with-monili</a></li>
+        <li>Brunello Cucinelli, women's cashmere: <a href="https://shop.brunellocucinelli.com/en-us/women/cashmere/">shop.brunellocucinelli.com/en-us/women/cashmere</a></li>
+      </ul>
+      <footer>
+        Oberndörfer Milano / copy study / September 2026. Catalogue figures read from the 267 published product listings.
+      </footer>
+    </section>
+
+  </main>
+</div>

@@ -23,3 +23,14 @@ Diff the two JSON files to see exactly which strings changed.
 - Optional hero line over `hero_eAhQMJ`.
 - Moving "a byproduct of the meat industry" onto the Materials & Craftsmanship page.
 - Changing the page handle to `art-of-living` with a redirect from the old one.
+
+## Product naming and description study
+
+- `docs/reading-the-houses.html`: "Reading the Houses", how Loro Piana, Hermès and
+  Brunello Cucinelli name and describe products, read from their live copy, with the
+  naming grammar and description skeleton extracted for the store, an audit of the
+  267 published titles, four applied rewrites and a proposed model-name library.
+
+Published as an Artifact. Jewellery is out of scope per the house standard; the
+misspellings it flags (Rubin, Saphire, Nabuk, Valneza) are the one jewellery item
+raised, because they sit in customer-facing titles.
