@@ -330,20 +330,13 @@
               "settings": {
                 "custom_liquid": "{%- assign p = closest.product -%}{%- assign lbl = 'Handmade in Italy' -%}{%- if p.title contains 'Trax' -%}{%- assign lbl = 'Limited edition' -%}{%- elsif p.type == 'Furniture' or p.type == 'sofa' or p.type == 'Wine Case' or p.metafields.custom.lead_time != blank -%}{%- assign lbl = 'Made to order' -%}{%- elsif p.title contains 'Alligator' or p.title contains 'Crocodile' or p.title contains 'Ostrich' -%}{%- assign lbl = 'Exotic leather' -%}{%- endif -%}<p style=\"font-family:var(--font-subheading--family);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(28,23,20,0.6);margin:0 0 8px\">{{ lbl }}</p>"
               }
-            },
-            "card_dots": {
-              "type": "custom-liquid",
-              "settings": {
-                "custom_liquid": "{%- assign s = closest.product.metafields.custom.siblings.value -%}{%- if s and s.size > 1 -%}<div style=\"display:flex;align-items:center;gap:7px;margin-top:6px\">{%- for it in s limit: 4 -%}<a href=\"/products/{{ it.handle }}\" title=\"{{ it.colour }}\" aria-label=\"{{ it.colour }}\" style=\"display:block;width:11px;height:11px;border-radius:50%;background:{{ it.hex }};box-shadow:0 0 0 1px rgba(28,23,20,0.25){% if it.handle == closest.product.handle %}, 0 0 0 3px #eeede8, 0 0 0 4px rgba(28,23,20,0.7){% endif %}\"></a>{%- endfor -%}{%- if s.size > 4 -%}<span style=\"font-size:0.72rem;color:rgba(28,23,20,0.6)\">+{{ s.size | minus: 4 }}</span>{%- endif -%}</div>{%- endif -%}"
-              }
             }
           },
           "block_order": [
             "card_eyebrow",
             "product_card_gallery_sig01",
             "product_title_sig01",
-            "price_sig01",
-            "card_dots"
+            "price_sig01"
           ]
         }
       },
@@ -383,8 +376,8 @@
             "horizontal_alignment_flex_direction_column": "flex-start",
             "vertical_alignment_flex_direction_column": "center",
             "gap": 24,
-            "width": "fit-content",
-            "custom_width": 100,
+            "width": "custom",
+            "custom_width": 38,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
             "height": "fit",
@@ -603,27 +596,27 @@
           "type": "comparison-slider",
           "name": "t:names.comparison_slider",
           "settings": {
-            "before_image": "shopify://shop_images/LOGO_13.229_x_13.229_cm_-2.jpg",
-            "after_image": "shopify://shop_images/CB84DA31-BB4F-4349-8973-5D96C7D5AA65.jpg",
+            "before_image": "shopify://shop_images/obm-slider-mirror-lavender.jpg",
+            "after_image": "shopify://shop_images/obm-slider-mirror-pink.jpg",
             "slider_style": "horizontal",
-            "show_text": false,
-            "before_text": "",
-            "after_text": "",
+            "show_text": true,
+            "before_text": "Lavender",
+            "after_text": "Pink",
             "text_preset": "",
             "text_position_horizontal": "start",
-            "text_position_vertical": "start",
+            "text_position_vertical": "end",
             "text_background": false,
             "text_background_color": "#ffffff",
             "text_corner_radius": 0,
-            "text_color": "{{ settings.color_palette.foreground }}",
-            "image_ratio": "landscape",
+            "text_color": "#5a4f46",
+            "image_ratio": "adapt",
             "width": "custom",
-            "custom_width": 65,
+            "custom_width": 56,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
             "height": "fit",
-            "slider_bg_color": "",
-            "slider_handle_color": "",
+            "slider_bg_color": "#eeede8",
+            "slider_handle_color": "#4a3f35",
             "border": "none",
             "border_width": 1,
             "border_opacity": 100,
@@ -655,7 +648,7 @@
         "section_height": "auto",
         "section_height_custom": 50,
         "background_media": "none",
-        "background_color": "{{ settings.color_palette.color2 }}",
+        "background_color": "{{ settings.color_palette.background }}",
         "video_position": "cover",
         "background_image_position": "cover",
         "toggle_overlay": false,
@@ -1490,20 +1483,13 @@
               "settings": {
                 "custom_liquid": "{%- assign p = closest.product -%}{%- assign lbl = 'Handmade in Italy' -%}{%- if p.title contains 'Trax' -%}{%- assign lbl = 'Limited edition' -%}{%- elsif p.type == 'Furniture' or p.type == 'sofa' or p.type == 'Wine Case' or p.metafields.custom.lead_time != blank -%}{%- assign lbl = 'Made to order' -%}{%- elsif p.title contains 'Alligator' or p.title contains 'Crocodile' or p.title contains 'Ostrich' -%}{%- assign lbl = 'Exotic leather' -%}{%- endif -%}<p style=\"font-family:var(--font-subheading--family);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(28,23,20,0.6);margin:0 0 8px\">{{ lbl }}</p>"
               }
-            },
-            "card_dots": {
-              "type": "custom-liquid",
-              "settings": {
-                "custom_liquid": "{%- assign s = closest.product.metafields.custom.siblings.value -%}{%- if s and s.size > 1 -%}<div style=\"display:flex;align-items:center;gap:7px;margin-top:6px\">{%- for it in s limit: 4 -%}<a href=\"/products/{{ it.handle }}\" title=\"{{ it.colour }}\" aria-label=\"{{ it.colour }}\" style=\"display:block;width:11px;height:11px;border-radius:50%;background:{{ it.hex }};box-shadow:0 0 0 1px rgba(28,23,20,0.25){% if it.handle == closest.product.handle %}, 0 0 0 3px #eeede8, 0 0 0 4px rgba(28,23,20,0.7){% endif %}\"></a>{%- endfor -%}{%- if s.size > 4 -%}<span style=\"font-size:0.72rem;color:rgba(28,23,20,0.6)\">+{{ s.size | minus: 4 }}</span>{%- endif -%}</div>{%- endif -%}"
-              }
             }
           },
           "block_order": [
             "card_eyebrow",
             "product_card_gallery_q63Brm",
             "product_title_RQAJtB",
-            "price_DiaDML",
-            "card_dots"
+            "price_DiaDML"
           ]
         }
       },

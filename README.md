@@ -52,11 +52,17 @@ Diff the two JSON files to see exactly which strings changed.
   Togo and alligator, table trunks, sofas, the Trax NYC pieces, jewellery boxes). The
   other 71 were already in voice. Before/after are in `docs/product-descriptions-*.json`.
   Descriptions are store-level, so these are live.
-- Product cards (collection page and the two home grids) carry an eyebrow line
-  (Handmade in Italy / Made to order / Limited edition / Exotic leather) and colour dots
-  linking to sibling listings, read from a `custom.siblings` JSON metafield set on the
-  101 products that belong to a colour family. This gives the one-design-many-colours
-  card without merging products.
+- Product cards (collection.json, the eleven `collection.<suffix>.json` templates, and
+  the two home grids) carry an eyebrow line: Handmade in Italy / Made to order / Limited
+  edition / Exotic leather. Colour swatches on cards and product pages come from the
+  theme's own script (an earlier session's "Concept 2", see the comment in
+  `blocks/product-title.liquid`); a duplicate dot row added on 3 September was removed
+  again. A `custom.siblings` JSON metafield (handle, colour, hex per sibling) sits on
+  the 101 products in colour families and is unused for now.
+- Home "Made to order" slider: the two Mirror-bag photographs were re-cut onto one
+  1800x1125 canvas with the bag at the same size and position, on the page ground
+  `#eeede8` instead of white (`obm-slider-mirror-lavender.jpg`, `-pink.jpg` in Files).
+  The section sits on the page ground, the handle is saddle brown, labels Lavender / Pink.
 - `templates/page.materials-craftsmanship.json` is now sectioned: hero on the ostrich
   trunk detail, opening chapter, four image chapters (leathers, exotics, hardware, the
   ateliers), made-to-order and care chapters, close.
