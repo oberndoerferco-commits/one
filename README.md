@@ -89,6 +89,13 @@ Diff the two JSON files to see exactly which strings changed.
   plus `install-deps`, then launch with no proxy option and the environment's
   `https_proxy`); Chromium does not.
 
+### Search, cart, 404
+
+- `sections/search-header.liquid`: the heading is the page's h1 and names the query and
+  count. `blocks/_cart-title.liquid`: the copy inside the hidden empty-cart template is a
+  heading-role paragraph, so the cart carries one h1. `templates/404.json`: house copy,
+  two buttons, Signature Pieces underneath. Card eyebrow on the 404, cart and search cards.
+
 ### Decisions on record
 
 - Colour families stay as separate products (owner declined the merge).
