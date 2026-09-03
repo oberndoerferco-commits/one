@@ -61,6 +61,13 @@ Diff the two JSON files to see exactly which strings changed.
   trunk detail, opening chapter, four image chapters (leathers, exotics, hardware, the
   ateliers), made-to-order and care chapters, close.
 
+### Galleries
+
+- On every live product with three or more images, the white-background cut-out that
+  sat second has been moved to the end of the gallery, so the second image is a
+  different angle. 108 products; the moves are listed in `docs/media-reorder.json`.
+  Store-level, so this is live.
+
 ### Decisions on record
 
 - Colour families stay as separate products (owner declined the merge).
