@@ -33,7 +33,7 @@ Diff the two JSON files to see exactly which strings changed.
   product tiles dissolve into the page; no product photos were recoloured.
 - Palette: ink `#1c1714`, saddle `#4a3f35` (primary buttons), band `#e5e0d7`, lines and
   input borders `#d3cabc`, accent `#7a2e2b` (sale badge text only).
-- Home hero uses `Artisan.jpg` (the atelier) instead of the Unsplash stock photograph.
+- Home hero is the garden photograph (`hamza-nahal-...-unsplash.jpg`), which the owner prefers.
 - Home "Made to order" section carries the before/after slider of the Mirror bag in
   lavender and pink, with the exact block settings and images of the live theme (the
   owner found the lane images did not align at the divider).
