@@ -45,6 +45,22 @@ Diff the two JSON files to see exactly which strings changed.
   Packaging; the page's template suffix points to it. The live theme has no such
   template, so it falls back to the plain page there.
 
+### Product descriptions, cards and Materials page
+
+- `scripts/product-descriptions.py` rewrote 58 of 129 product descriptions in the house
+  voice (briefcases, sunglasses, coasters, poufs, the three-watch box, Bag 017, SAC in
+  Togo and alligator, table trunks, sofas, the Trax NYC pieces, jewellery boxes). The
+  other 71 were already in voice. Before/after are in `docs/product-descriptions-*.json`.
+  Descriptions are store-level, so these are live.
+- Product cards (collection page and the two home grids) carry an eyebrow line
+  (Handmade in Italy / Made to order / Limited edition / Exotic leather) and colour dots
+  linking to sibling listings, read from a `custom.siblings` JSON metafield set on the
+  101 products that belong to a colour family. This gives the one-design-many-colours
+  card without merging products.
+- `templates/page.materials-craftsmanship.json` is now sectioned: hero on the ostrich
+  trunk detail, opening chapter, four image chapters (leathers, exotics, hardware, the
+  ateliers), made-to-order and care chapters, close.
+
 ### Decisions on record
 
 - Colour families stay as separate products (owner declined the merge).
