@@ -74,6 +74,21 @@ Diff the two JSON files to see exactly which strings changed.
   different angle. 108 products; the moves are listed in `docs/media-reorder.json`.
   Store-level, so this is live.
 
+### Page-by-page audit (3 September)
+
+- `snippets/meta-tags.liquid` now renders `oberndoerfer-care-schema` on Leather Care and an
+  additive Organization entity (`oberndoerfer-organization-schema`) on every page. The FAQ
+  and Leather Care FAQPage snippets are generated from the accordions in the templates;
+  regenerate them whenever those answers change.
+- Store-level, live: collection titles in title case with SEO titles (Bags, Trunks, Small
+  Leather Goods, Home Accessories, Travel, Eyewear, New In); Leather Care page title and
+  intro; Where to Find Us and Contact page bodies; alt text on three Bespoke photographs.
+- Custom & Limited Editions template: "One of each" section heading, intro and Trax NYC
+  copy in the house voice.
+- Screenshots: WebKit works through the sandbox proxy (`npx playwright install webkit`
+  plus `install-deps`, then launch with no proxy option and the environment's
+  `https_proxy`); Chromium does not.
+
 ### Decisions on record
 
 - Colour families stay as separate products (owner declined the merge).
