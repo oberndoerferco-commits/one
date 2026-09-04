@@ -213,3 +213,9 @@ find(row, "image_group_Jmc9kk")["settings"]["image"] = "shopify://shop_images/ob
 row["group_Jmc9kk"]["blocks"]["cap"]["settings"]["text"] = "<p>Trunks in the workshop</p>"
 save(p, h, d)
 print("hero geometry unified")
+
+# Leather Care: the page title under the hero was an Inter-bold h2; it becomes the statement
+p = "theme/templates/page.leather-care.json"; h, d = load(p)
+hd = d["sections"]["main"]["blocks"]["heading"]["settings"]
+hd.update(STATEMENT); hd["text"] = "<p>Very little, done regularly.</p>"; hd["width"] = "100%"; hd["alignment"] = "left"
+save(p, h, d)
