@@ -35,7 +35,7 @@
     "hero_H8KLYr": {
       "type": "hero",
       "blocks": {
-        "group_M3p7jx": {
+        "hero": {
           "type": "group",
           "name": "t:names.group",
           "settings": {
@@ -70,12 +70,12 @@
             "open_in_new_tab": false,
             "placeholder": "",
             "padding-block-start": 0,
-            "padding-block-end": 0,
+            "padding-block-end": 8,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
           "blocks": {
-            "group_Ep9THJ": {
+            "content": {
               "type": "group",
               "name": "t:names.group",
               "settings": {
@@ -86,9 +86,9 @@
                 "align_baseline": false,
                 "horizontal_alignment_flex_direction_column": "flex-start",
                 "vertical_alignment_flex_direction_column": "center",
-                "gap": 6,
+                "gap": 12,
                 "width": "custom",
-                "custom_width": 100,
+                "custom_width": 60,
                 "width_mobile": "fill",
                 "custom_width_mobile": 100,
                 "height": "fit",
@@ -115,11 +115,11 @@
                 "padding-inline-end": 0
               },
               "blocks": {
-                "text_FYmXW9": {
+                "eyebrow": {
                   "type": "text",
-                  "name": "t:names.text",
+                  "name": "t:names.heading",
                   "settings": {
-                    "text": "<p><em>Handmade around Milan</em></p>",
+                    "text": "<p>About us</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -130,7 +130,7 @@
                     "letter_spacing": "loose",
                     "case": "uppercase",
                     "wrap": "pretty",
-                    "text_color": "",
+                    "text_color": "#e5e0d7",
                     "background": false,
                     "background_color": "#00000026",
                     "corner_radius": 0,
@@ -141,22 +141,22 @@
                   },
                   "blocks": {}
                 },
-                "text_qkj9r9": {
+                "title": {
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<h4>OBERNDÖRFER MILANO</h4>",
+                    "text": "<h1>Leather, learned at the source.</h1>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
-                    "type_preset": "h2",
-                    "font": "var(--font-body--family)",
-                    "font_size": "",
-                    "line_height": "normal",
+                    "type_preset": "custom",
+                    "font": "var(--font-heading--family)",
+                    "font_size": "2.5rem",
+                    "line_height": "tight",
                     "letter_spacing": "normal",
                     "case": "none",
-                    "wrap": "pretty",
-                    "text_color": "",
+                    "wrap": "balance",
+                    "text_color": "#fbf9f6",
                     "background": false,
                     "background_color": "#00000026",
                     "corner_radius": 0,
@@ -169,50 +169,23 @@
                 }
               },
               "block_order": [
-                "text_FYmXW9",
-                "text_qkj9r9"
+                "eyebrow",
+                "title"
               ]
-            },
-            "text_YJG4YP": {
-              "type": "text",
-              "name": "t:names.text",
-              "settings": {
-                "text": "",
-                "width": "fit-content",
-                "max_width": "none",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
             }
           },
           "block_order": [
-            "group_Ep9THJ",
-            "text_YJG4YP"
+            "content"
           ]
         }
       },
       "block_order": [
-        "group_M3p7jx"
+        "hero"
       ],
       "name": "t:names.hero_bottom_aligned",
       "settings": {
         "media_type_1": "image",
-        "image_1": "shopify://shop_images/17.jpg",
+        "image_1": "shopify://shop_images/IMG_3535_dbf62bc4-2168-4b05-b2a5-40ce1a98f55a.heic",
         "media_type_2": "image",
         "stack_media_on_mobile": false,
         "custom_mobile_media": false,
@@ -225,7 +198,7 @@
         "horizontal_alignment": "flex-start",
         "vertical_alignment": "center",
         "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
+        "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "flex-end",
         "gap": 16,
         "section_width": "page-width",
@@ -233,7 +206,7 @@
         "section_height_custom": 50,
         "background_color": "",
         "toggle_overlay": true,
-        "overlay_color": "#00000026",
+        "overlay_color": "#1c171499",
         "overlay_style": "gradient",
         "gradient_direction": "to top",
         "blurred_reflection": false,
@@ -274,7 +247,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h1>Leather, learned at the source</h1>",
+            "text": "<h2>The house began as a journey.</h2>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "left",
@@ -299,7 +272,7 @@
         "text_ab_dek": {
           "type": "text",
           "settings": {
-            "text": "<p>The house began as a journey — learning from, and then working alongside, the tanneries and artisans of Italy. Everything we make is still made that way: by hand, around Milan, to order, in small numbers.</p>",
+            "text": "<p>We went to learn from the tanneries and artisans of Italy, then stayed to work alongside them. Everything we make is still made that way: by hand, around Milan, to order, in small numbers.</p>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "left",
@@ -543,7 +516,7 @@
             "image_group_Jmc9kk": {
               "type": "image",
               "settings": {
-                "image": "shopify://shop_images/IMG_0815.jpg",
+                "image": "shopify://shop_images/oberndoerfer-cle-workshop-trunks.jpg",
                 "link": "",
                 "image_ratio": "portrait",
                 "width": "fill",
@@ -566,7 +539,7 @@
             "cap": {
               "type": "text",
               "settings": {
-                "text": "<p>At the bench, fitting the hardware</p>",
+                "text": "<p>Trunks in the workshop</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -637,7 +610,7 @@
             "image_group_DGcdwG": {
               "type": "image",
               "settings": {
-                "image": "shopify://shop_images/bag.jpg",
+                "image": "shopify://shop_images/A89E7596-F00C-44A3-BB43-71E6C645AEF7_2bca46fe-1783-41bb-982a-e71b06e7c3a2.jpg",
                 "link": "",
                 "image_ratio": "portrait",
                 "width": "fill",
@@ -660,7 +633,7 @@
             "cap": {
               "type": "text",
               "settings": {
-                "text": "<p>A trunk bag, carried</p>",
+                "text": "<p>The 017 tote, in black</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -1698,7 +1671,7 @@
             "alignment": "center",
             "type_preset": "custom",
             "font": "var(--font-heading--family)",
-            "font_size": "1.5rem",
+            "font_size": "2rem",
             "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",

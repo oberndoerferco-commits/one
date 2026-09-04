@@ -16,18 +16,18 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h1>Handmade in Milan.<br/>Made for a lifetime.</h1>",
+            "text": "<h1>Made by hand, around Milan.</h1>",
             "width": "fit-content",
             "max_width": "narrow",
             "alignment": "left",
             "type_preset": "custom",
             "font": "var(--font-heading--family)",
             "font_size": "2.5rem",
-            "line_height": "normal",
+            "line_height": "tight",
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "balance",
-            "text_color": "",
+            "text_color": "#fbf9f6",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -44,20 +44,47 @@
             "label": "Discover the collections",
             "link": "/collections/all",
             "open_in_new_tab": false,
-            "style_class": "button-secondary",
+            "style_class": "button-unstyled",
             "custom_button_background": "{{ settings.color_palette.foreground }}",
             "custom_button_text": "{{ settings.color_palette.background }}",
             "custom_button_border": "{{ settings.color_palette.background }}",
-            "link_text_color": "",
+            "link_text_color": "#fbf9f6",
             "width": "fit-content",
             "custom_width": 100,
             "width_mobile": "fit-content",
             "custom_width_mobile": 100
           },
           "blocks": {}
+        },
+        "eyebrow": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<p>Trunks, bags and objects for the home</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-subheading--family)",
+            "font_size": "0.75rem",
+            "line_height": "normal",
+            "letter_spacing": "loose",
+            "case": "uppercase",
+            "wrap": "pretty",
+            "text_color": "#e5e0d7",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         }
       },
       "block_order": [
+        "eyebrow",
         "text_heroHead",
         "button_heroBtn"
       ],
@@ -80,7 +107,7 @@
         "background_image": "shopify://shop_images/hamza-nahal-ThsMPx5b80U-unsplash.jpg",
         "background_image_position": "cover",
         "toggle_overlay": true,
-        "overlay_color": "#f5f2ed6b",
+        "overlay_color": "#1c171480",
         "overlay_style": "gradient",
         "gradient_direction": "to top",
         "border": "none",
@@ -148,7 +175,7 @@
       ],
       "name": "Category tabs",
       "settings": {
-        "heading": "Shop by Category",
+        "heading": "Collections",
         "section_width": "page-width",
         "background_color": "{{ settings.color_palette.background }}",
         "padding-block-start": 72,
@@ -328,7 +355,7 @@
             "card_eyebrow": {
               "type": "custom-liquid",
               "settings": {
-                "custom_liquid": "{%- assign p = closest.product -%}{%- assign lbl = 'Handmade in Italy' -%}{%- if p.title contains 'Trax' -%}{%- assign lbl = 'Limited edition' -%}{%- elsif p.type == 'Furniture' or p.type == 'sofa' or p.type == 'Wine Case' or p.metafields.custom.lead_time != blank -%}{%- assign lbl = 'Made to order' -%}{%- elsif p.title contains 'Alligator' or p.title contains 'Crocodile' or p.title contains 'Ostrich' -%}{%- assign lbl = 'Exotic leather' -%}{%- endif -%}<p style=\"font-family:var(--font-subheading--family);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(28,23,20,0.6);margin:0 0 8px\">{{ lbl }}</p>"
+                "custom_liquid": "{%- assign p = closest.product -%}{%- assign lbl = '' -%}{%- if p.title contains 'Trax' -%}{%- assign lbl = 'Limited edition' -%}{%- elsif p.type == 'Furniture' or p.type == 'sofa' or p.type == 'Wine Case' or p.metafields.custom.lead_time != blank -%}{%- assign lbl = 'Made to order' -%}{%- elsif p.title contains 'Alligator' or p.title contains 'Crocodile' or p.title contains 'Ostrich' -%}{%- assign lbl = 'Exotic leather' -%}{%- endif -%}{%- if lbl == '' -%}{%- for c in p.collections -%}{%- unless c.handle == 'new-in' or c.handle == 'signature-pieces' or c.handle == 'featured-products' or c.handle == 'collections-2' -%}{%- assign lbl = c.title -%}{%- break -%}{%- endunless -%}{%- endfor -%}{%- endif -%}<p style=\"font-family:var(--font-subheading--family);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(28,23,20,0.6);margin:0 0 8px;min-height:1em\">{{ lbl }}</p>"
               }
             }
           },
@@ -454,7 +481,7 @@
                     "alignment": "left",
                     "type_preset": "custom",
                     "font": "var(--font-subheading--family)",
-                    "font_size": "0.8125rem",
+                    "font_size": "0.75rem",
                     "line_height": "normal",
                     "letter_spacing": "loose",
                     "case": "uppercase",
@@ -568,7 +595,7 @@
                     "label": "Art of Living",
                     "link": "shopify://pages/oberndorfer-x-miramare-sanremo",
                     "open_in_new_tab": false,
-                    "style_class": "button-secondary",
+                    "style_class": "button-unstyled",
                     "custom_button_background": "{{ settings.color_palette.foreground }}",
                     "custom_button_text": "{{ settings.color_palette.background }}",
                     "custom_button_border": "{{ settings.color_palette.background }}",
@@ -1073,7 +1100,7 @@
             "label": "Shop Home & Living",
             "link": "shopify://collections/home-accessories",
             "open_in_new_tab": false,
-            "style_class": "button-secondary",
+            "style_class": "button-unstyled",
             "custom_button_background": "{{ settings.color_palette.foreground }}",
             "custom_button_text": "{{ settings.color_palette.background }}",
             "custom_button_border": "{{ settings.color_palette.background }}",
@@ -1152,16 +1179,16 @@
               "type": "text",
               "name": "t:names.caption",
               "settings": {
-                "text": "<p>MADE IN ITALY</p>",
+                "text": "<p>The house</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
-                "type_preset": "h6",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
+                "type_preset": "custom",
+                "font": "var(--font-subheading--family)",
+                "font_size": "0.75rem",
                 "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
+                "letter_spacing": "loose",
+                "case": "uppercase",
                 "wrap": "pretty",
                 "text_color": "",
                 "background": false,
@@ -1217,11 +1244,11 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<h2>Crafted in our Milan ateliers</h2>",
+                    "text": "<p>Made in ateliers around Milan</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
-                    "type_preset": "h2",
+                    "type_preset": "h3",
                     "font": "var(--font-body--family)",
                     "font_size": "1rem",
                     "line_height": "normal",
@@ -1242,7 +1269,7 @@
                 "text_craftBody": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Care, heritage, craftsmanship - centuries of Italian technique, blended with contemporary design.</p>",
+                    "text": "<p>Full-grain hides from family tanneries in Italy, France and Germany, cut and stitched by hand in small workshops we chose after visiting them. The method is the one used for a trunk. Only the scale changes.</p>",
                     "width": "fit-content",
                     "max_width": "narrow",
                     "alignment": "left",
@@ -1273,10 +1300,10 @@
             "button_craftBtn": {
               "type": "button",
               "settings": {
-                "label": "The house",
+                "label": "About the house",
                 "link": "shopify://pages/about-us",
                 "open_in_new_tab": false,
-                "style_class": "button-secondary",
+                "style_class": "button-unstyled",
                 "custom_button_background": "{{ settings.color_palette.foreground }}",
                 "custom_button_text": "{{ settings.color_palette.background }}",
                 "custom_button_border": "{{ settings.color_palette.background }}",
@@ -1481,7 +1508,7 @@
             "card_eyebrow": {
               "type": "custom-liquid",
               "settings": {
-                "custom_liquid": "{%- assign p = closest.product -%}{%- assign lbl = 'Handmade in Italy' -%}{%- if p.title contains 'Trax' -%}{%- assign lbl = 'Limited edition' -%}{%- elsif p.type == 'Furniture' or p.type == 'sofa' or p.type == 'Wine Case' or p.metafields.custom.lead_time != blank -%}{%- assign lbl = 'Made to order' -%}{%- elsif p.title contains 'Alligator' or p.title contains 'Crocodile' or p.title contains 'Ostrich' -%}{%- assign lbl = 'Exotic leather' -%}{%- endif -%}<p style=\"font-family:var(--font-subheading--family);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(28,23,20,0.6);margin:0 0 8px\">{{ lbl }}</p>"
+                "custom_liquid": "{%- assign p = closest.product -%}{%- assign lbl = '' -%}{%- if p.title contains 'Trax' -%}{%- assign lbl = 'Limited edition' -%}{%- elsif p.type == 'Furniture' or p.type == 'sofa' or p.type == 'Wine Case' or p.metafields.custom.lead_time != blank -%}{%- assign lbl = 'Made to order' -%}{%- elsif p.title contains 'Alligator' or p.title contains 'Crocodile' or p.title contains 'Ostrich' -%}{%- assign lbl = 'Exotic leather' -%}{%- endif -%}{%- if lbl == '' -%}{%- for c in p.collections -%}{%- unless c.handle == 'new-in' or c.handle == 'signature-pieces' or c.handle == 'featured-products' or c.handle == 'collections-2' -%}{%- assign lbl = c.title -%}{%- break -%}{%- endunless -%}{%- endfor -%}{%- endif -%}<p style=\"font-family:var(--font-subheading--family);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(28,23,20,0.6);margin:0 0 8px;min-height:1em\">{{ lbl }}</p>"
               }
             }
           },
@@ -1615,7 +1642,7 @@
                     "alignment": "center",
                     "type_preset": "custom",
                     "font": "var(--font-subheading--family)",
-                    "font_size": "0.8125rem",
+                    "font_size": "0.75rem",
                     "line_height": "normal",
                     "letter_spacing": "loose",
                     "case": "uppercase",
@@ -1766,7 +1793,7 @@
                     "alignment": "center",
                     "type_preset": "custom",
                     "font": "var(--font-subheading--family)",
-                    "font_size": "0.8125rem",
+                    "font_size": "0.75rem",
                     "line_height": "normal",
                     "letter_spacing": "loose",
                     "case": "uppercase",
@@ -1917,7 +1944,7 @@
                     "alignment": "center",
                     "type_preset": "custom",
                     "font": "var(--font-subheading--family)",
-                    "font_size": "0.8125rem",
+                    "font_size": "0.75rem",
                     "line_height": "normal",
                     "letter_spacing": "loose",
                     "case": "uppercase",
@@ -2068,7 +2095,7 @@
                     "alignment": "center",
                     "type_preset": "custom",
                     "font": "var(--font-subheading--family)",
-                    "font_size": "0.8125rem",
+                    "font_size": "0.75rem",
                     "line_height": "normal",
                     "letter_spacing": "loose",
                     "case": "uppercase",
@@ -2192,7 +2219,7 @@
             "label": "Write to the atelier",
             "link": "shopify://pages/contact",
             "open_in_new_tab": false,
-            "style_class": "button-secondary",
+            "style_class": "button-unstyled",
             "custom_button_background": "{{ settings.color_palette.foreground }}",
             "custom_button_text": "{{ settings.color_palette.background }}",
             "custom_button_border": "{{ settings.color_palette.background }}",

@@ -120,6 +120,18 @@ Diff the two JSON files to see exactly which strings changed.
   eight chapter heads moved out of Inter capitals. Leather Care: the dek is a Marcellus
   statement.
 
+### Identity pass (4 September)
+
+- `docs/identity.md` is the one-page identity: colour, type, the hero grammar every page
+  now opens with, action rules, card eyebrow rules, writing rules, and the list of
+  low-resolution files still in use. Read it first in any new session.
+- `scripts/identity-pass.py` applied it: same hero on every page (full-bleed photograph,
+  ink gradient, eyebrow / Marcellus title / underlined link, bottom left, in white, as the
+  page's h1); About and Contact heroes moved to 1800px+ files; navigation in 12px capitals
+  (`sections/header-group.json` is now in the repo); outlined buttons replaced by underlined
+  links so each page keeps one filled button; card eyebrow shows the family in mixed grids and
+  only the exceptions on collection pages.
+
 ### Decisions on record
 
 - Colour families stay as separate products (owner declined the merge).
