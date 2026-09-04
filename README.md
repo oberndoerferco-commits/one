@@ -112,6 +112,9 @@ Diff the two JSON files to see exactly which strings changed.
   (eyebrow, the one-sentence h1, details column beside the form, "Send").
   `sections/oberndoerfer-house-facts.liquid` is now in the repo: lead times aligned with the
   Bespoke page, repairs added, New York listed beside Sanremo, page-ground background.
+- `scripts/house-style-pass-3.py`: Custom & Limited Editions (page handle `trax-nyc`) in the
+  same grammar: eyebrows, Marcellus sentence-case heads, one primary button ("See the four
+  pieces"), captions, accordion and enquiry copy without the repeated "one of each".
 - Art of Living: chapter heads in sentence case and captions under the three photographs
   of the pieces (checked against the pictures). About, Materials & Craftsmanship, Packaging:
   eight chapter heads moved out of Inter capitals. Leather Care: the dek is a Marcellus
