@@ -1,0 +1,875 @@
+<title>Where AI Pays</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+/* ---------- tokens: light is the base, complete ---------- */
+:root{
+  --paper:#F2F2EE;
+  --card:#FBFBF8;
+  --sunk:#EAEAE4;
+  --ink:#16191A;
+  --ink-2:#4A524E;
+  --ink-3:#7C837E;
+  --rule:#DDDED7;
+  --rule-strong:#C6C8BF;
+  --accent:#1D5C46;
+  --accent-soft:#DCE8E2;
+  --alarm:#A8322E;
+  --alarm-soft:#F0DFDC;
+  --ochre:#B07C00;
+  --ochre-soft:#F0E6CC;
+  --band:#E4E7E0;
+  --shadow:0 1px 2px rgba(22,25,26,.05), 0 8px 24px -16px rgba(22,25,26,.28);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#121513;
+    --card:#191D1A;
+    --sunk:#0D100E;
+    --ink:#E9EBE4;
+    --ink-2:#A6ADA7;
+    --ink-3:#7B837D;
+    --rule:#2A2F2B;
+    --rule-strong:#3C433D;
+    --accent:#5FC0A0;
+    --accent-soft:#1B2E27;
+    --alarm:#E0776A;
+    --alarm-soft:#33201E;
+    --ochre:#D9A22E;
+    --ochre-soft:#312812;
+    --band:#1E231F;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#121513;
+  --card:#191D1A;
+  --sunk:#0D100E;
+  --ink:#E9EBE4;
+  --ink-2:#A6ADA7;
+  --ink-3:#7B837D;
+  --rule:#2A2F2B;
+  --rule-strong:#3C433D;
+  --accent:#5FC0A0;
+  --accent-soft:#1B2E27;
+  --alarm:#E0776A;
+  --alarm-soft:#33201E;
+  --ochre:#D9A22E;
+  --ochre-soft:#312812;
+  --band:#1E231F;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:16px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px 96px}
+@media (max-width:620px){.wrap{padding:0 18px 64px}}
+
+/* ---------- typographic roles ---------- */
+.display{font-family:"Bodoni Moda",Georgia,"Times New Roman",serif;font-weight:400;text-wrap:balance;letter-spacing:-.005em}
+.mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+.eyebrow{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-3);
+}
+.num{font-variant-numeric:tabular-nums}
+
+/* ---------- masthead ---------- */
+.masthead{padding:64px 0 40px;border-bottom:1px solid var(--rule-strong)}
+.brandline{display:flex;flex-wrap:wrap;gap:12px 22px;align-items:baseline;margin-bottom:38px}
+.brandline .mark{
+  font-family:"Bodoni Moda",Georgia,serif;font-size:19px;font-weight:500;letter-spacing:.02em;
+}
+.masthead h1{
+  margin:0;
+  font-size:clamp(42px,7.4vw,78px);
+  line-height:1.02;
+  letter-spacing:-.02em;
+}
+.masthead h1 em{font-style:italic;color:var(--accent)}
+.standfirst{
+  margin:28px 0 0;max-width:62ch;font-size:19px;line-height:1.58;color:var(--ink-2);
+}
+.standfirst strong{color:var(--ink);font-weight:600}
+.provenance{
+  margin-top:34px;padding-top:18px;border-top:1px solid var(--rule);
+  display:flex;flex-wrap:wrap;gap:8px 28px;
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-3);letter-spacing:.02em;
+}
+
+/* ---------- sections with a numbered rail ---------- */
+section{padding:56px 0;border-bottom:1px solid var(--rule)}
+section:last-of-type{border-bottom:none}
+.sec-head{display:grid;grid-template-columns:64px 1fr;gap:0 20px;align-items:start;margin-bottom:30px}
+.sec-head .rail{
+  font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:500;color:var(--ink-3);
+  padding-top:.72em;border-top:2px solid var(--ink);letter-spacing:.08em;
+}
+.sec-head h2{
+  margin:0;font-family:"Bodoni Moda",Georgia,serif;font-weight:400;
+  font-size:clamp(26px,3.6vw,38px);line-height:1.14;letter-spacing:-.012em;text-wrap:balance;
+}
+.sec-head .sub{grid-column:2;margin:10px 0 0;max-width:64ch;color:var(--ink-2);font-size:16.5px}
+@media (max-width:620px){
+  .sec-head{grid-template-columns:1fr;gap:12px}
+  .sec-head .rail{border-top:none;padding-top:0}
+  .sec-head .sub{grid-column:1}
+}
+.body-col{max-width:68ch}
+.body-col p{margin:0 0 1.05em}
+.body-col p:last-child{margin-bottom:0}
+
+/* ---------- ledger ---------- */
+.ledger{width:100%;border-collapse:collapse;font-size:15px}
+.ledger caption{text-align:left;padding-bottom:12px;color:var(--ink-3);font-size:13px}
+.ledger th{
+  text-align:left;font-family:"IBM Plex Mono",monospace;font-weight:500;font-size:11px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);
+  padding:0 14px 10px 0;border-bottom:1px solid var(--rule-strong);white-space:nowrap;
+}
+.ledger th.r,.ledger td.r{text-align:right;padding-right:0}
+.ledger td{padding:13px 14px 13px 0;border-bottom:1px solid var(--rule);vertical-align:baseline}
+.ledger tr:last-child td{border-bottom:none}
+.ledger .metric{color:var(--ink);font-weight:500}
+.ledger .val{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;white-space:nowrap;font-size:15px}
+.ledger .read{color:var(--ink-2);font-size:14.5px;line-height:1.5}
+.ledger .flag td{background:var(--alarm-soft)}
+.ledger .flag .val{color:var(--alarm);font-weight:600}
+.tablewrap{overflow-x:auto;margin:0 -4px;padding:0 4px}
+
+/* ---------- charts ---------- */
+figure{margin:0}
+.chart{
+  background:var(--card);border:1px solid var(--rule);border-radius:3px;
+  padding:26px 26px 22px;box-shadow:var(--shadow);
+}
+.chart h3{
+  margin:0 0 4px;font-size:15px;font-weight:600;letter-spacing:-.005em;
+}
+.chart .note{margin:0 0 22px;font-size:13.5px;color:var(--ink-3);max-width:60ch}
+figcaption{margin-top:14px;font-size:13px;color:var(--ink-3);max-width:66ch;line-height:1.55}
+
+/* funnel */
+.funnel{display:block}
+.fr{display:grid;grid-template-columns:190px minmax(0,1fr) 96px;align-items:center;gap:16px;padding:7px 0}
+.fr .fl{font-size:13.5px;color:var(--ink-2)}
+.ftrack{position:relative;height:22px;background:var(--sunk);border-radius:2px;overflow:hidden}
+.fbar{position:absolute;left:0;top:0;bottom:0;background:var(--accent);border-radius:0 2px 2px 0;min-width:3px}
+.fr .fv{
+  font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;
+  text-align:right;font-size:14px;font-weight:500;
+}
+.fstep{
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.04em;
+  color:var(--ink-3);padding:3px 0 7px 206px;
+}
+.fstep b{color:var(--alarm);font-weight:600}
+@media (max-width:620px){
+  .fr{grid-template-columns:minmax(0,1fr) 84px;gap:6px 12px}
+  .fr .fl{grid-column:1 / 3}
+  .fstep{padding-left:0}
+}
+
+/* dot plot */
+.axis{
+  display:grid;grid-template-columns:var(--labelw) 1fr 118px;gap:0 16px;align-items:end;
+  margin-bottom:6px;
+}
+.ticks{position:relative;height:19px}
+.tick{
+  position:absolute;top:0;transform:translateX(-50%);
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--ink-3);white-space:nowrap;
+}
+.tick.first{transform:none}
+.rows{display:grid;gap:1px;--labelw:230px}
+.axis{--labelw:230px}
+.qr{
+  display:grid;grid-template-columns:var(--labelw) 1fr 118px;gap:0 16px;align-items:center;
+  padding:5px 0;border-radius:2px;transition:background .12s ease;
+}
+.qr:hover{background:var(--band)}
+.qlabel{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--ink);line-height:1.3;overflow-wrap:anywhere}
+.qlabel .lang{color:var(--ink-3);font-size:10.5px;letter-spacing:.08em;margin-right:7px}
+.qtrack{position:relative;height:28px}
+.qtrack .p1{
+  position:absolute;left:0;top:0;bottom:0;width:18.37%;
+  background:var(--accent-soft);border-right:1px dashed var(--rule-strong);border-radius:2px 0 0 2px;
+}
+.qtrack .stem{position:absolute;top:50%;height:1px;background:var(--rule-strong);left:0}
+.dot{
+  position:absolute;top:50%;border-radius:50%;background:var(--accent);
+  transform:translate(-50%,-50%);box-shadow:0 0 0 2px var(--card);
+}
+.qmeta{
+  font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:12px;
+  color:var(--ink-2);display:flex;justify-content:flex-end;gap:12px;white-space:nowrap;
+}
+.qmeta .pos{color:var(--ink);font-weight:600;min-width:42px;text-align:right}
+.legend{
+  display:flex;flex-wrap:wrap;gap:10px 24px;align-items:center;margin-top:18px;padding-top:14px;
+  border-top:1px solid var(--rule);font-size:12.5px;color:var(--ink-2);
+}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.sw{width:22px;height:11px;border-radius:2px;background:var(--accent-soft);border:1px solid var(--rule-strong);border-right-style:dashed}
+.swdot{width:11px;height:11px;border-radius:50%;background:var(--accent)}
+.swdot.lg{width:19px;height:19px}
+@media (max-width:760px){
+  .rows,.axis{--labelw:150px}
+  .axis,.qr{grid-template-columns:var(--labelw) 1fr 92px}
+  .qmeta{gap:8px;font-size:11px}
+  .qlabel{font-size:11.5px}
+}
+
+/* ---------- checks (pre-flight) ---------- */
+.checks{display:grid;gap:16px;margin-top:8px}
+.check{
+  display:grid;grid-template-columns:auto 1fr;gap:0 18px;
+  border-left:3px solid var(--alarm);background:var(--card);
+  padding:22px 24px;border-radius:0 3px 3px 0;box-shadow:var(--shadow);
+}
+.check .idx{
+  font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;color:var(--alarm);
+  padding-top:2px;letter-spacing:.06em;
+}
+.check h3{margin:0 0 8px;font-size:17px;font-weight:600;letter-spacing:-.005em}
+.check p{margin:0 0 .8em;font-size:15px;color:var(--ink-2);max-width:66ch}
+.check p:last-child{margin-bottom:0}
+.check strong{color:var(--ink);font-weight:600}
+@media (max-width:620px){.check{grid-template-columns:1fr;gap:8px}}
+
+/* ---------- plays ---------- */
+.plays{display:grid;gap:0}
+.play{
+  display:grid;grid-template-columns:64px 1fr;gap:0 20px;
+  padding:34px 0;border-top:1px solid var(--rule);
+}
+.play:first-child{border-top:2px solid var(--ink)}
+.play .rank{
+  font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;color:var(--ink-3);
+  letter-spacing:.08em;padding-top:.42em;
+}
+.play h3{
+  margin:0;font-family:"Bodoni Moda",Georgia,serif;font-weight:400;
+  font-size:clamp(22px,2.9vw,29px);line-height:1.18;letter-spacing:-.01em;text-wrap:balance;
+}
+.play .lede{margin:12px 0 0;font-size:17px;color:var(--ink-2);max-width:64ch}
+.play .lede strong{color:var(--ink);font-weight:600}
+.play .detail{margin:16px 0 0;max-width:66ch;font-size:15.5px;color:var(--ink-2)}
+.play .detail p{margin:0 0 .9em}
+.play .detail p:last-child{margin-bottom:0}
+.play.lead h3{font-size:clamp(27px,4vw,40px)}
+.play.lead .lede{font-size:19px}
+
+.tag{
+  display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.11em;
+  text-transform:uppercase;padding:3px 9px;border-radius:2px;margin-bottom:14px;
+  background:var(--accent-soft);color:var(--accent);font-weight:500;
+}
+.tag.warn{background:var(--ochre-soft);color:var(--ochre)}
+
+/* evidence block inside a play */
+.evidence{
+  margin:20px 0 0;padding:18px 20px;background:var(--sunk);border-radius:3px;
+  border-left:2px solid var(--accent);
+}
+.evidence .eh{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
+.evidence ul{margin:0;padding:0;list-style:none;display:grid;gap:9px}
+.evidence li{
+  display:grid;grid-template-columns:1fr auto;gap:6px 18px;align-items:baseline;
+  font-size:14px;color:var(--ink-2);
+}
+.evidence li .k{font-family:"IBM Plex Mono",monospace;color:var(--ink);font-size:13px;overflow-wrap:anywhere}
+.evidence li .v{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:13px;white-space:nowrap;color:var(--ink-2)}
+
+/* do-not list */
+.dont{display:grid;gap:0;margin-top:4px}
+.dont li{
+  list-style:none;display:grid;grid-template-columns:auto 1fr;gap:0 16px;
+  padding:16px 0;border-bottom:1px solid var(--rule);align-items:baseline;
+}
+.dont{padding:0;margin-left:0}
+.dont li:last-child{border-bottom:none}
+.dont .x{font-family:"IBM Plex Mono",monospace;color:var(--alarm);font-size:13px;font-weight:600}
+.dont b{display:block;font-weight:600;font-size:15.5px;margin-bottom:3px}
+.dont span.why{color:var(--ink-2);font-size:14.5px}
+
+/* ---------- sequence ---------- */
+.seq{display:grid;gap:0;counter-reset:wk}
+.wk{
+  display:grid;grid-template-columns:120px 1fr;gap:0 24px;
+  padding:24px 0;border-top:1px solid var(--rule);
+}
+.wk:first-child{border-top:1px solid var(--rule-strong)}
+.wk .when{
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);font-weight:500;padding-top:.25em;
+}
+.wk h4{margin:0 0 8px;font-size:16.5px;font-weight:600;letter-spacing:-.005em}
+.wk ul{margin:0;padding-left:1.1em;color:var(--ink-2);font-size:15px;display:grid;gap:5px}
+.wk .gate{
+  margin-top:10px;font-size:13.5px;color:var(--ink-3);font-family:"IBM Plex Mono",monospace;
+}
+@media (max-width:620px){.wk{grid-template-columns:1fr;gap:8px}}
+
+/* ---------- open questions ---------- */
+.oq{display:grid;gap:14px;max-width:70ch}
+.oq div{
+  padding:16px 18px;border:1px dashed var(--rule-strong);border-radius:3px;
+  font-size:15px;color:var(--ink-2);
+}
+.oq div b{color:var(--ink);font-weight:600;display:block;margin-bottom:4px;font-size:15px}
+
+footer{
+  padding:40px 0 0;border-top:1px solid var(--rule-strong);margin-top:56px;
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-3);
+  display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:space-between;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{transition:none!important;animation:none!important}
+}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="brandline">
+      <span class="mark">Oberndörfer Milano</span>
+      <span class="eyebrow">AI &amp; growth review</span>
+    </div>
+    <h1 class="display">You are already using AI well.<br>Just <em>not on the thing that's stuck.</em></h1>
+    <p class="standfirst">
+      The writing on the site is good, and it sounds like you. But copy was never the constraint.
+      In the last twelve months the store took <strong>one order, for €10</strong> — and meanwhile
+      Google is showing your products to German and Italian buyers roughly <strong>8,400 times a quarter</strong>,
+      from page three of the results. That gap is where AI has something to do.
+    </p>
+    <div class="provenance">
+      <span>Prepared 4 September 2026</span>
+      <span>Sources — Shopify Admin · GA4 · Search Console · Merchant Center</span>
+      <span>Windows — 12 months (store) · 3 months (search &amp; channels)</span>
+    </div>
+  </header>
+
+  <!-- ============ 1. THE NUMBERS ============ -->
+  <section>
+    <div class="sec-head">
+      <div class="rail">I</div>
+      <h2 class="display">What the live data says</h2>
+      <p class="sub">Everything below is pulled from your own accounts, not estimated. Two rows are marked because they change what you should do first.</p>
+    </div>
+
+    <div class="tablewrap">
+      <table class="ledger">
+        <caption>Store and channel figures as of 4 September 2026.</caption>
+        <thead>
+          <tr><th>Measure</th><th>Window</th><th class="r">Figure</th><th>What it means</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="metric">Sessions</td><td class="val">12 months</td><td class="val r">7,877</td>
+            <td class="read">Includes bots and your own admin visits — the real number is lower.</td>
+          </tr>
+          <tr class="flag">
+            <td class="metric">Orders</td><td class="val">12 months</td><td class="val r">1 &nbsp;·&nbsp; €10</td>
+            <td class="read">Order #1002, fulfilled. Reads like a test, not a customer.</td>
+          </tr>
+          <tr>
+            <td class="metric">Sessions adding to cart</td><td class="val">12 months</td><td class="val r">154</td>
+            <td class="read">1.96% of sessions — low, but not the break point.</td>
+          </tr>
+          <tr class="flag">
+            <td class="metric">Sessions reaching checkout</td><td class="val">12 months</td><td class="val r">134</td>
+            <td class="read">Almost everyone who adds to cart goes on to checkout. Then nothing.</td>
+          </tr>
+          <tr>
+            <td class="metric">Checkouts started (GA4)</td><td class="val">3 months</td><td class="val r">29</td>
+            <td class="read">All 29 came from “direct”. Revenue recorded: €0.</td>
+          </tr>
+          <tr>
+            <td class="metric">Google impressions</td><td class="val">3 months</td><td class="val r">8,449</td>
+            <td class="read">187 clicks — a 2.2% click rate, consistent with ranking deep.</td>
+          </tr>
+          <tr>
+            <td class="metric">Free Shopping-listing clicks</td><td class="val">3 months</td><td class="val r">~115</td>
+            <td class="read">Nearly as much as organic search, and it costs nothing.</td>
+          </tr>
+          <tr>
+            <td class="metric">Search demand by market</td><td class="val">3 months</td><td class="val r">DE 2,014 · IT 1,427 · US 1,306</td>
+            <td class="read">Germany and Italy lead, and both are mobile-first.</td>
+          </tr>
+          <tr>
+            <td class="metric">Instagram sessions</td><td class="val">3 months</td><td class="val r">421</td>
+            <td class="read">Attention arrives. Nothing downstream of it happens.</td>
+          </tr>
+          <tr>
+            <td class="metric">Referrals from ChatGPT</td><td class="val">3 months</td><td class="val r">41</td>
+            <td class="read">Plus Perplexity. A channel that didn't exist for you two years ago.</td>
+          </tr>
+          <tr>
+            <td class="metric">Your own admin traffic in GA4</td><td class="val">3 months</td><td class="val r">157</td>
+            <td class="read">You are 11% of your own measured traffic. Filter it out.</td>
+          </tr>
+          <tr>
+            <td class="metric">Catalogue</td><td class="val">current</td><td class="val r">267 &nbsp;·&nbsp; 129 live</td>
+            <td class="read">138 products sit in draft, including the entire fine-jewellery line.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 2. THE FUNNEL ============ -->
+  <section>
+    <div class="sec-head">
+      <div class="rail">II</div>
+      <h2 class="display">The break is at the last step, not the first</h2>
+      <p class="sub">People find you, they add pieces to a cart, they reach the checkout — and then, for twelve months, essentially none of them buy. That single fact outranks every idea in this document.</p>
+    </div>
+
+    <figure>
+      <div class="chart">
+        <h3>Store funnel, September 2025 – September 2026</h3>
+        <p class="note">Bars are to scale against 7,877 sessions; anything thinner than 3px is drawn at 3px so it stays visible. The last three are slivers because the numbers really are that small — that is the finding, not a rendering fault.</p>
+        <div class="funnel">
+          <div class="fr">
+            <div class="fl">Sessions</div>
+            <div class="ftrack"><div class="fbar" style="width:100%"></div></div>
+            <div class="fv num">7,877</div>
+          </div>
+          <div class="fstep">↓ 1.96% add something to a cart</div>
+          <div class="fr">
+            <div class="fl">Added to cart</div>
+            <div class="ftrack"><div class="fbar" style="width:1.955%"></div></div>
+            <div class="fv num">154</div>
+          </div>
+          <div class="fstep">↓ 87% of those go on to checkout — a healthy step</div>
+          <div class="fr">
+            <div class="fl">Reached checkout</div>
+            <div class="ftrack"><div class="fbar" style="width:1.701%"></div></div>
+            <div class="fv num">134</div>
+          </div>
+          <div class="fstep">↓ <b>0.7% complete — this is the break</b></div>
+          <div class="fr">
+            <div class="fl">Completed a purchase</div>
+            <div class="ftrack"><div class="fbar" style="width:0.0127%"></div></div>
+            <div class="fv num">1</div>
+          </div>
+        </div>
+      </div>
+      <figcaption>Source: Shopify sessions and sales reports, rolling 12 months. The single completed purchase is the €10 order of 11 August 2026.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ============ 3. PRE-FLIGHT ============ -->
+  <section>
+    <div class="sec-head">
+      <div class="rail">III</div>
+      <h2 class="display">Two checks worth more than any AI project</h2>
+      <p class="sub">Both take under an hour. Until they're done, every other number here is being read through a dirty lens.</p>
+    </div>
+
+    <div class="checks">
+      <div class="check">
+        <div class="idx">01</div>
+        <div>
+          <h3>Put a real order through the checkout yourself</h3>
+          <p>
+            Twenty-nine people started checkout in the last three months and none finished. There are two
+            honest explanations and they lead to opposite actions. Either <strong>the checkout is failing</strong> —
+            a payment method that isn't live for the card types your buyers hold, a duty or address step that
+            rejects them — or <strong>those twenty-nine were bots</strong>, which is what the pattern suggests:
+            all of them arrived as “direct”, while 421 real Instagram visitors and 233 from Google produced
+            not a single checkout start between them.
+          </p>
+          <p>
+            Test it the way a customer would: a real card, on a phone, from outside Germany, on a piece over
+            €1,000. If it goes through, you have a traffic-quality problem. If it doesn't, you have found the
+            reason for the last twelve months in twenty minutes.
+          </p>
+        </div>
+      </div>
+      <div class="check">
+        <div class="idx">02</div>
+        <div>
+          <h3>Stop counting yourself as a customer</h3>
+          <p>
+            157 of your GA4 sessions in three months came in via <span class="mono">admin.shopify.com</span> — that's you,
+            previewing your own store. It is 11% of everything you measure, and it is concentrated on exactly
+            the pages you're trying to judge. Add an internal-traffic filter in GA4 before you use any of this
+            to make a decision.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. THE SEARCH EVIDENCE ============ -->
+  <section>
+    <div class="sec-head">
+      <div class="rail">IV</div>
+      <h2 class="display">The demand already exists — in German and Italian</h2>
+      <p class="sub">These are real queries from real people in the last three months, matched against where you actually rank for them. Almost every one describes something you make.</p>
+    </div>
+
+    <figure>
+      <div class="chart">
+        <h3>Where your demand sits in Google's results</h3>
+        <p class="note">Each dot is a search term, placed at your average position. Larger dots mean more impressions. The shaded band at the left is page one — where clicks happen.</p>
+
+        <div class="axis">
+          <div></div>
+          <div class="ticks">
+            <span class="tick first" style="left:0">1</span>
+            <span class="tick" style="left:18.37%">10</span>
+            <span class="tick" style="left:38.78%">20</span>
+            <span class="tick" style="left:59.18%">30</span>
+            <span class="tick" style="left:79.59%">40</span>
+            <span class="tick" style="left:100%;transform:translateX(-100%)">50</span>
+          </div>
+          <div class="qmeta" style="color:var(--ink-3);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase">
+            <span>impr.</span><span class="pos">pos.</span>
+          </div>
+        </div>
+
+        <div class="rows" id="rows"></div>
+
+        <div class="legend">
+          <span><i class="sw"></i> Page one (positions 1–10)</span>
+          <span><i class="swdot"></i> ~20 impressions</span>
+          <span><i class="swdot lg"></i> ~220 impressions</span>
+          <span class="mono" style="color:var(--ink-3)">DE German · IT Italian · EN English</span>
+        </div>
+      </div>
+      <figcaption>
+        Source: Google Search Console, 3 June – 3 September 2026, queries with 20+ impressions.
+        Note the outlier: <span class="mono">uhrenbox</span> averages position 1.0 across 111 impressions and earns
+        no clicks at all — a listing that ranks but doesn't persuade, which is a title and snippet problem, not a ranking one.
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- ============ 5. THE PLAYS ============ -->
+  <section>
+    <div class="sec-head">
+      <div class="rail">V</div>
+      <h2 class="display">Where AI actually pays, in order</h2>
+      <p class="sub">Ranked by return on your time, given what the data above shows. The first one is worth more than the other four together.</p>
+    </div>
+
+    <div class="plays">
+
+      <article class="play lead">
+        <div class="rank">01</div>
+        <div>
+          <span class="tag">Highest return</span>
+          <h3 class="display">Rebuild the product data in German and Italian, driven by your own search data</h3>
+          <p class="lede">
+            You rank on page three to five for commercial queries describing products you actually make,
+            in the two languages where your demand is strongest. <strong>The traffic is being offered to you
+            and the listings aren't good enough to take it.</strong>
+          </p>
+          <div class="detail">
+            <p>
+              The proof that this works is already in your own account. Your free Google Shopping listings
+              earned roughly 115 clicks in three months, and the best-performing entries are the ones with
+              proper German and Italian titles — <span class="mono">Uhrenbox</span>,
+              <span class="mono">Krokodil Geldbörse</span>, <span class="mono">Portafoglio coccodrillo</span> —
+              not the English product names. Where you speak the customer's language, you get the click.
+              Most of the catalogue still doesn't.
+            </p>
+            <p>
+              This is the exact shape of work AI is genuinely better at than either a freelancer or a
+              translation tool: 267 products across three languages, each needing a title, a description,
+              a meta title, a meta description, image alt text and structured data — roughly five thousand
+              pieces of copy. A model can be driven directly from your Search Console export, so each one
+              leads with the phrase people actually type, in your established voice, rather than a guess.
+              And it is repeatable: pull the query data, regenerate, write back through the Shopify API,
+              measure six weeks later.
+            </p>
+            <p>
+              One specific, cheap fix inside this: your image alt text currently reads
+              <span class="mono">“Oberndorfer 3p green ivory”</span>. You sell visual objects to people who
+              search visually. That's a wasted slot on every photograph in the catalogue.
+            </p>
+          </div>
+          <div class="evidence">
+            <div class="eh">Demand you already rank for, and where</div>
+            <ul>
+              <li><span class="k">portafogli coccodrillo <span style="color:var(--ink-3)">IT</span></span><span class="v">218 impr · pos 34</span></li>
+              <li><span class="k">häkelhandtasche <span style="color:var(--ink-3)">DE</span></span><span class="v">218 impr · pos 8</span></li>
+              <li><span class="k">uhrenbox <span style="color:var(--ink-3)">DE</span></span><span class="v">111 impr · pos 1 · 0 clicks</span></li>
+              <li><span class="k">cintura coccodrillo <span style="color:var(--ink-3)">IT</span></span><span class="v">69 impr · pos 48</span></li>
+              <li><span class="k">brown leather watch box <span style="color:var(--ink-3)">EN</span></span><span class="v">66 impr · pos 32</span></li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="play">
+        <div class="rank">02</div>
+        <div>
+          <span class="tag warn">Unglamorous, high leverage</span>
+          <h3 class="display">Stop your own pages competing with each other</h3>
+          <p class="lede">
+            The same product is indexed under as many as nine locale paths, and Google is being asked to
+            choose a winner among your own URLs. It is choosing none of them.
+          </p>
+          <div class="detail">
+            <p>
+              Search Console shows your catalogue split across <span class="mono">/products/</span>,
+              <span class="mono">/de/</span>, <span class="mono">/de-de/</span>, <span class="mono">/de-it/</span>,
+              <span class="mono">/en-de/</span>, <span class="mono">/en-it/</span>, <span class="mono">/it/</span>,
+              <span class="mono">/it-it/</span> and <span class="mono">/it-de/</span>. One belt appears at
+              <span class="mono">/it-de/products/classic-leather-belt</span> in position 44 and at
+              <span class="mono">/it/products/classic-leather-belt</span> in position 43 — together 206 impressions
+              and no clicks, each version holding the other down.
+            </p>
+            <p>
+              AI's role here is narrow and real: auditing hreflang tags and canonical URLs across 267 products
+              is exactly the kind of tedious pattern-matching it does reliably and you shouldn't do by hand.
+              The judgement call — which markets you genuinely serve and ship to — stays yours, and it has to
+              be made before play 01 is worth doing, or you'll write beautiful copy nine times over.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="play">
+        <div class="rank">03</div>
+        <div>
+          <span class="tag">New channel, already live</span>
+          <h3 class="display">Be the answer an assistant gives, not just a link it might cite</h3>
+          <p class="lede">
+            41 visits came from ChatGPT last quarter, plus a trickle from Perplexity — with no effort from you.
+            For a house whose own name draws about 70 searches a quarter, that is a more realistic route to a
+            buyer than outranking the maisons.
+          </p>
+          <div class="detail">
+            <p>
+              What gets you cited is machine-readable specificity: materials, dimensions, lead times, what can
+              be customised, price, provenance — as structured product data and plain answers, not atmosphere.
+              Your watch-box copy already does this well: <em>wood core, floccato velvet lining, memory-foam
+              pillows resizable on request, solid brass closure, made in Milan.</em> That paragraph is exactly
+              what an assistant can use to recommend you. Almost nothing else in the catalogue reads like it.
+            </p>
+            <p>
+              The work is extending that level of concrete detail across the live products and exposing it as
+              structured data — a job that is mechanical enough for AI and specific enough that only you know
+              the facts to feed it.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="play">
+        <div class="rank">04</div>
+        <div>
+          <span class="tag">Fits how you actually sell</span>
+          <h3 class="display">Answer enquiries like a Milanese showroom — in three languages, within the hour</h3>
+          <p class="lede">
+            Your one genuine abandoned checkout was <strong>$974 for BAG MODEL 017</strong>, from a customer in the
+            United States. Nobody puts €13,170 on a card at two in the morning without speaking to a person first.
+          </p>
+          <div class="detail">
+            <p>
+              With 129 live products held at an inventory of one each, and prices from €125 to €34,250, your
+              transaction is a conversation, not a cart. Yet every piece over €2,000 currently offers a buyer
+              nothing but “add to cart”. Add a visible way to enquire about a specific piece, and let AI do the
+              part that's genuinely hard for one person across three languages: fast, correct, personal first
+              drafts written against your real product facts and stock, for you to read and send.
+            </p>
+            <p>
+              Note the shape of that: a drafting assistant behind your inbox, not a chatbot on the storefront.
+              At this price point, a customer who realises they're talking to a bot is a customer you've lost.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="play">
+        <div class="rank">05</div>
+        <div>
+          <span class="tag warn">With a hard limit</span>
+          <h3 class="display">Use generative tools for the campaign, never for the object</h3>
+          <p class="lede">
+            421 Instagram sessions and zero checkouts means you have attention and no path leading away from it.
+            Production is cheap now; the missing piece is what the attention is meant to do next.
+          </p>
+          <div class="detail">
+            <p>
+              Atmosphere, motion, campaign framing, layout, the fifteen variations of a format you'd never pay a
+              studio to shoot — these are worth doing with the generative tools you already have connected, at a
+              fraction of studio cost.
+            </p>
+            <p>
+              The limit is absolute and it is commercial, not squeamish: <strong>never generate an image of the
+              product itself.</strong> You sell handmade objects whose entire value proposition is that they are real
+              and singular. A rendered bag that differs from the one that ships is a trust problem with your
+              highest-value customers and, under EU consumer law, a compliance one. The atmosphere can be
+              synthetic. The object is photographed.
+            </p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ 6. DON'T ============ -->
+  <section>
+    <div class="sec-head">
+      <div class="rail">VI</div>
+      <h2 class="display">What not to point AI at</h2>
+      <p class="sub">Each of these is a plausible-sounding use that would cost you time, or actively damage something that's working.</p>
+    </div>
+
+    <ul class="dont">
+      <li><span class="x">✕</span><span><b>More brand copy</b><span class="why">The voice on the site is good and it is distinctly yours. It is also finished. More of it dilutes the asset and moves nothing, because copy quality is not what's stopping the sale.</span></span></li>
+      <li><span class="x">✕</span><span><b>Blog posts as an SEO strategy</b><span class="why">You already have them. “Why real leather is more sustainable than eco leather” sits at position 79 with 157 impressions and no clicks. Volume won't rescue that; the product pages are where your demand actually is.</span></span></li>
+      <li><span class="x">✕</span><span><b>A storefront chatbot</b><span class="why">Not before check 01 is done. A conversational layer on a checkout that may not complete simply gets you closer to a customer at the moment you fail them.</span></span></li>
+      <li><span class="x">✕</span><span><b>Generated product photography</b><span class="why">See play 05. This is the one hard line.</span></span></li>
+      <li><span class="x">✕</span><span><b>Paid advertising, for now</b><span class="why">You have no ad accounts connected and that is the right call today. Paying to send more people into a funnel that converts at 0.7% of checkouts would only make the loss faster.</span></span></li>
+    </ul>
+  </section>
+
+  <!-- ============ 7. SEQUENCE ============ -->
+  <section>
+    <div class="sec-head">
+      <div class="rail">VII</div>
+      <h2 class="display">The order to do it in</h2>
+      <p class="sub">Sequenced deliberately: each week's work depends on the one before it being settled. This is a real dependency chain, not a schedule.</p>
+    </div>
+
+    <div class="seq">
+      <div class="wk">
+        <div class="when">Week 1</div>
+        <div>
+          <h4>Clear the fog</h4>
+          <ul>
+            <li>Place a real order through your own checkout, from a phone, outside Germany, over €1,000.</li>
+            <li>Add an internal-traffic filter in GA4 so your admin visits stop counting.</li>
+            <li>Decide which markets you genuinely ship to and want to rank in.</li>
+          </ul>
+          <div class="gate">→ The market decision gates everything after this.</div>
+        </div>
+      </div>
+      <div class="wk">
+        <div class="when">Week 2</div>
+        <div>
+          <h4>Consolidate the URLs</h4>
+          <ul>
+            <li>One canonical URL per product per market; correct hreflang across the set.</li>
+            <li>Retire the locale paths for markets you decided against.</li>
+          </ul>
+          <div class="gate">→ Do this before writing copy, or you write it nine times.</div>
+        </div>
+      </div>
+      <div class="wk">
+        <div class="when">Week 3</div>
+        <div>
+          <h4>Rewrite the product data — the earning 30, not all 267</h4>
+          <ul>
+            <li>German and Italian titles, descriptions and meta for the products already drawing impressions.</li>
+            <li>Real alt text on every image of those products.</li>
+            <li>Start with <span class="mono">uhrenbox</span>: position 1, 111 impressions, zero clicks. The listing is the only thing wrong.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="wk">
+        <div class="when">Week 4</div>
+        <div>
+          <h4>Open the conversation</h4>
+          <ul>
+            <li>An enquiry path on every piece over €2,000, alongside the cart.</li>
+            <li>Multilingual reply drafting set up against your real product facts and stock.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="wk">
+        <div class="when">Week 10</div>
+        <div>
+          <h4>Measure the right thing</h4>
+          <ul>
+            <li>In Search Console, check impressions and average position on the German and Italian commercial queries.</li>
+            <li>Not sessions, and not revenue yet — position moves first, and it moves before money does.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8. OPEN QUESTIONS ============ -->
+  <section>
+    <div class="sec-head">
+      <div class="rail">VIII</div>
+      <h2 class="display">What I couldn't determine from the data</h2>
+      <p class="sub">Three things change the plan meaningfully, and only you can answer them.</p>
+    </div>
+
+    <div class="oq">
+      <div><b>Were the 29 checkout starts people or bots?</b>The pattern points to bots — every one arrived as “direct” while your real Instagram and Google visitors started none. But I can't see the sessions themselves, and the answer decides whether week 1 is a repair job or a traffic-quality job.</div>
+      <div><b>Is the €10 order yours?</b>Order #1002 was paid and fulfilled on 11 August. If it was a genuine customer, the checkout works and everything shifts toward traffic. If it was your test, it tells us only that the plumbing was connected that day.</div>
+      <div><b>What are the 138 draft products?</b>More than half the catalogue is unpublished, including a fine-jewellery line priced from €9,600 to €27,630 and a full apparel range. Whether those are arriving, abandoned, or deliberately held back changes what the store is supposed to be — and therefore what any of this should be optimised for.</div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Oberndörfer Milano · AI &amp; growth review</span>
+    <span>Figures pulled live 4 September 2026</span>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  // Search Console, 3 Jun – 3 Sep 2026. Queries with 20+ impressions.
+  var Q = [
+    {q:"portafogli coccodrillo",         lang:"IT", impr:218, clicks:0, pos:34.1},
+    {q:"häkelhandtasche",                lang:"DE", impr:218, clicks:2, pos:8.2},
+    {q:"uhrenbox",                       lang:"DE", impr:111, clicks:0, pos:1.0},
+    {q:"red leather tray",               lang:"EN", impr:83,  clicks:0, pos:14.3},
+    {q:"cintura coccodrillo",            lang:"IT", impr:69,  clicks:0, pos:48.0},
+    {q:"portafoglio coccodrillo",        lang:"IT", impr:69,  clicks:0, pos:26.4},
+    {q:"brown leather watch box",        lang:"EN", impr:66,  clicks:0, pos:31.5},
+    {q:"cinture coccodrillo artigianali",lang:"IT", impr:50,  clicks:0, pos:40.6},
+    {q:"portafoglio uomo coccodrillo",   lang:"IT", impr:44,  clicks:0, pos:38.5},
+    {q:"cintura in coccodrillo",         lang:"IT", impr:41,  clicks:0, pos:39.8},
+    {q:"italienische luxus sonnenbrillen",lang:"DE",impr:26,  clicks:0, pos:25.5},
+    {q:"luxuslederwaren",                lang:"DE", impr:25,  clicks:0, pos:28.7},
+    {q:"krokodilleder geldbörse",        lang:"DE", impr:20,  clicks:1, pos:14.5}
+  ];
+
+  var MAXPOS = 50;
+  function x(pos){ return Math.min(100, ((pos - 1) / (MAXPOS - 1)) * 100); }
+  function r(impr){ return 4 + Math.sqrt(impr) * 0.58; }   // area-proportional, min 8px across
+
+  var host = document.getElementById("rows");
+  Q.forEach(function(d){
+    var left = x(d.pos), rad = r(d.impr);
+    var row = document.createElement("div");
+    row.className = "qr";
+    row.innerHTML =
+      '<div class="qlabel"><span class="lang">' + d.lang + '</span>' + d.q + '</div>' +
+      '<div class="qtrack">' +
+        '<div class="p1"></div>' +
+        '<div class="stem" style="width:' + left.toFixed(2) + '%"></div>' +
+        '<div class="dot" style="left:' + left.toFixed(2) + '%;width:' + (rad*2).toFixed(1) + 'px;height:' + (rad*2).toFixed(1) + 'px"></div>' +
+      '</div>' +
+      '<div class="qmeta"><span>' + d.impr + '</span><span class="pos">' + d.pos.toFixed(1) + '</span></div>';
+    row.setAttribute("title", d.q + " — " + d.impr + " impressions, " + d.clicks + " clicks, average position " + d.pos.toFixed(1));
+    host.appendChild(row);
+  });
+})();
+</script>
