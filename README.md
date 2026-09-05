@@ -134,14 +134,17 @@ Diff the two JSON files to see exactly which strings changed.
 
 ### Commerce pass (5 September)
 
-- `scripts/commerce-pass.py` (re-runnable) applies the identity to the eleven collection
-  templates and the product template: hero section with a photograph per family, four-column
-  grid by CSS override, plain cards on the page ground, quick-add off in `settings_data`,
-  product page rebuilt with eyebrow, accordions from existing data only, a "Made by hand"
-  chapter and four recommendations. `docs/identity.md` has the rules.
-- Owner decisions: four across on desktop; keep the quantity selector; accordions use only
-  data that already exists. The home menu stays dark (`text_color_transparent_home`
-  `#000000cf`); the white version was rejected.
+- `scripts/commerce-pass.py` rebuilt the product template (eyebrow, accordions from existing
+  data only, a "Made by hand" chapter, four recommendations), turned quick-add off in
+  `settings_data`, and framed the product tiles on the home rows and in recommendations.
+  `docs/identity.md` has the rules.
+- **The collection pages were rebuilt and then restored.** The pass gave them a photographic
+  hero, four across and borderless cards; the owner preferred the originals, so the eleven
+  templates were restored from commit `0860a59` and the `rebuild_collection` loop in the
+  script is commented out. Do not re-enable it without asking.
+- Owner decisions: keep the quantity selector; accordions use only data that already exists;
+  the framed tile is the card style; no crochet bags in recommendations. The home menu stays
+  dark (`text_color_transparent_home` `#000000cf`); the white version was rejected.
 - Theme upload lessons: `product-recommendations.mobile_columns` must be a string; a text
   block's dynamic source may use one filter only; a URL-body `themeFilesUpsert` fails
   silently on validation errors, so send one file as TEXT to read the error.

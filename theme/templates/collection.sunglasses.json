@@ -12,48 +12,22 @@
     "section": {
       "type": "section",
       "blocks": {
-        "eyebrow": {
+        "text_tqQTNE": {
           "type": "text",
-          "name": "t:names.heading",
-          "settings": {
-            "text": "<p>Collection</p>",
-            "width": "fit-content",
-            "max_width": "narrow",
-            "alignment": "left",
-            "type_preset": "custom",
-            "font": "var(--font-subheading--family)",
-            "font_size": "0.75rem",
-            "line_height": "normal",
-            "letter_spacing": "loose",
-            "case": "uppercase",
-            "wrap": "pretty",
-            "text_color": "#e5e0d7",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "title": {
-          "type": "text",
-          "name": "t:names.heading",
+          "name": "Title",
           "settings": {
             "text": "<h1>{{ closest.collection.title }}</h1>",
             "width": "fit-content",
-            "max_width": "narrow",
+            "max_width": "normal",
             "alignment": "left",
             "type_preset": "custom",
             "font": "var(--font-heading--family)",
-            "font_size": "2.5rem",
-            "line_height": "tight",
+            "font_size": "2rem",
+            "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",
-            "wrap": "balance",
-            "text_color": "#fbf9f6",
+            "wrap": "pretty",
+            "text_color": "",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -64,21 +38,25 @@
           },
           "blocks": {}
         },
-        "line": {
-          "type": "custom-liquid",
+        "text_twGGkJ": {
+          "type": "text",
+          "name": "Description",
           "settings": {
-            "custom_liquid": "{%- assign c = closest.collection -%}{%- assign line = c.metafields.custom.editorial_line.value | default: c.description | strip_html -%}{%- if line != blank -%}<p style=\"font-family:var(--font-body--family);font-size:1rem;line-height:1.5;max-width:52ch;color:#f2ede6;margin:0\">{{ line }}</p>{%- endif -%}",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "css": {
-          "type": "custom-liquid",
-          "settings": {
-            "custom_liquid": "<style>@media screen and (min-width:990px){.product-grid--grid{--product-grid-columns-desktop:repeat(4,1fr)!important}}@media screen and (min-width:750px) and (max-width:989px){.product-grid--grid{--product-grid-columns-desktop:repeat(3,1fr)!important}}</style>",
+            "text": "{{ closest.collection.description }}",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
@@ -88,12 +66,10 @@
         }
       },
       "block_order": [
-        "eyebrow",
-        "title",
-        "line",
-        "css"
+        "text_tqQTNE",
+        "text_twGGkJ"
       ],
-      "name": "t:names.hero",
+      "name": "Collection heading",
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -101,27 +77,26 @@
         "vertical_alignment": "center",
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "flex-end",
-        "gap": 24,
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
         "section_width": "page-width",
-        "section_height": "custom",
-        "section_height_custom": 62,
-        "background_media": "image",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
         "background_color": "",
         "video_position": "cover",
-        "background_image": "shopify://shop_images/manufacture-polishing-sunglasses.jpg",
         "background_image_position": "cover",
-        "toggle_overlay": true,
-        "overlay_color": "#1c171499",
-        "overlay_style": "gradient",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
         "gradient_direction": "to top",
         "border": "none",
         "border_width": 1,
         "border_opacity": 100,
         "border_color": "",
         "border_radius": 0,
-        "padding-block-start": 32,
-        "padding-block-end": 72
+        "padding-block-start": 48,
+        "padding-block-end": 48
       }
     },
     "main": {
@@ -138,7 +113,7 @@
             "show_swatch_label": false,
             "show_filter_label": false,
             "enable_sorting": true,
-            "enable_grid_density": false,
+            "enable_grid_density": true,
             "background_color": "",
             "text_color": "",
             "padding-block-start": 8,
@@ -154,15 +129,15 @@
           "type": "_product-card",
           "static": true,
           "settings": {
-            "product_card_gap": 6,
-            "background_color": "",
+            "product_card_gap": 0,
+            "background_color": "{{ settings.color_palette.background }}",
             "border": "solid",
             "border_width": 1,
             "border_opacity": 100,
-            "border_color": "#d3cabc",
+            "border_color": "#00000012",
             "border_radius": 0,
             "padding-block-start": 0,
-            "padding-block-end": 14,
+            "padding-block-end": 12,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
@@ -191,20 +166,20 @@
                 "max_width": "normal",
                 "alignment": "left",
                 "type_preset": "custom",
-                "font": "var(--font-heading--family)",
-                "font_size": "1.125rem",
-                "line_height": "tight",
+                "font": "var(--font-body--family)",
+                "font_size": "0.9375rem",
+                "line_height": "normal",
                 "letter_spacing": "normal",
                 "case": "none",
                 "wrap": "pretty",
                 "text_color": "",
-                "background": false,
+                "background": true,
                 "background_color": "#ffffff",
                 "corner_radius": 0,
-                "padding-block-start": 10,
+                "padding-block-start": 12,
                 "padding-block-end": 0,
-                "padding-inline-start": 12,
-                "padding-inline-end": 12
+                "padding-inline-start": 16,
+                "padding-inline-end": 16
               },
               "blocks": {}
             },
@@ -214,19 +189,19 @@
                 "show_sale_price_first": true,
                 "show_installments": false,
                 "show_tax_info": false,
-                "type_preset": "paragraph",
+                "type_preset": "custom",
                 "width": "100%",
                 "alignment": "left",
-                "font": "var(--font-body--family)",
+                "font": "var(--font-accent--family)",
                 "font_size": "0.875rem",
                 "line_height": "normal",
                 "letter_spacing": "normal",
                 "case": "none",
                 "text_color": "",
                 "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 12,
-                "padding-inline-end": 12
+                "padding-block-end": 4,
+                "padding-inline-start": 16,
+                "padding-inline-end": 16
               },
               "blocks": {}
             },
@@ -236,17 +211,17 @@
                 "product_swatches_alignment": "flex-start",
                 "product_swatches_alignment_mobile": "flex-start",
                 "hide_padding": false,
-                "product_swatches_padding_top": 6,
-                "product_swatches_padding_bottom": 0,
-                "product_swatches_padding_left": 12,
-                "product_swatches_padding_right": 12
+                "product_swatches_padding_top": 8,
+                "product_swatches_padding_bottom": 12,
+                "product_swatches_padding_left": 16,
+                "product_swatches_padding_right": 16
               },
               "blocks": {}
             },
             "card_eyebrow": {
               "type": "custom-liquid",
               "settings": {
-                "custom_liquid": "{%- assign p = closest.product -%}{%- assign lbl = '' -%}{%- if p.title contains 'Trax' -%}{%- assign lbl = 'Limited edition' -%}{%- elsif p.type == 'Furniture' or p.type == 'sofa' or p.type == 'Wine Case' or p.metafields.custom.lead_time != blank -%}{%- assign lbl = 'Made to order' -%}{%- elsif p.title contains 'Alligator' or p.title contains 'Crocodile' or p.title contains 'Ostrich' -%}{%- assign lbl = 'Exotic leather' -%}{%- endif -%}<p style=\"font-family:var(--font-subheading--family);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(28,23,20,0.6);margin:10px 12px 8px;min-height:1em\">{{ lbl }}</p>"
+                "custom_liquid": "{%- assign p = closest.product -%}{%- assign lbl = '' -%}{%- if p.title contains 'Trax' -%}{%- assign lbl = 'Limited edition' -%}{%- elsif p.type == 'Furniture' or p.type == 'sofa' or p.type == 'Wine Case' or p.metafields.custom.lead_time != blank -%}{%- assign lbl = 'Made to order' -%}{%- elsif p.title contains 'Alligator' or p.title contains 'Crocodile' or p.title contains 'Ostrich' -%}{%- assign lbl = 'Exotic leather' -%}{%- endif -%}<p style=\"font-family:var(--font-subheading--family);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(28,23,20,0.6);margin:0 0 8px;min-height:1em\">{{ lbl }}</p>"
               }
             }
           },
@@ -261,107 +236,24 @@
       },
       "settings": {
         "layout_type": "grid",
-        "product_card_size": "medium",
+        "product_card_size": "large",
         "mobile_product_card_size": "small",
         "enable_infinite_scroll": true,
         "products_per_page": 24,
-        "product_grid_width": "centered",
+        "product_grid_width": "full-width",
         "full_width_on_mobile": true,
         "columns_gap_horizontal": 0,
         "columns_gap_vertical": 0,
         "padding-inline-start": 0,
         "padding-inline-end": 0,
         "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 24,
-        "padding-block-end": 48
-      }
-    },
-    "section_close": {
-      "type": "section",
-      "blocks": {
-        "text_close01": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Looking for a leather, a colour or a size you don’t see? Most of what we make is made to order.</p>",
-            "width": "100%",
-            "max_width": "normal",
-            "alignment": "center",
-            "type_preset": "custom",
-            "font": "var(--font-heading--family)",
-            "font_size": "1.5rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "balance",
-            "text_color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "button_close01": {
-          "type": "button",
-          "settings": {
-            "label": "Write to the atelier",
-            "link": "shopify://pages/contact",
-            "open_in_new_tab": false,
-            "style_class": "button-unstyled",
-            "custom_button_background": "{{ settings.color_palette.foreground }}",
-            "custom_button_text": "{{ settings.color_palette.background }}",
-            "custom_button_border": "{{ settings.color_palette.background }}",
-            "link_text_color": "",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "text_close01",
-        "button_close01"
-      ],
-      "name": "Close",
-      "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "center",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 16,
-        "section_width": "page-width",
-        "section_height": "custom",
-        "section_height_custom": 40,
-        "background_media": "none",
-        "background_color": "{{ settings.color_palette.color2 }}",
-        "video_position": "cover",
-        "background_image": "shopify://shop_images/oberndoerfer-atelier-wide-shelving.png",
-        "background_image_position": "cover",
-        "toggle_overlay": false,
-        "overlay_color": "#f5f2ede6",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_color": "",
-        "border_radius": 0,
-        "padding-block-start": 64,
-        "padding-block-end": 80
+        "padding-block-start": 0,
+        "padding-block-end": 32
       }
     }
   },
   "order": [
     "section",
-    "main",
-    "section_close"
+    "main"
   ]
 }

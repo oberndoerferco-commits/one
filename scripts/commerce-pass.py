@@ -129,8 +129,12 @@ def rebuild_collection(f):
         S["section_close"] = cl; d["order"].append("section_close")
     save(f, h, d)
 
-for f in sorted(glob.glob("theme/templates/collection*.json")):
-    rebuild_collection(f)
+# 5 September, later the same day: the owner preferred the collection pages as they were
+# (three across, framed cards, the text header rather than a photograph). The templates were
+# restored from commit 0860a59 and this loop is off. Do not re-enable without asking.
+#
+# for f in sorted(glob.glob("theme/templates/collection*.json")):
+#     rebuild_collection(f)
 
 # ---------- product page ----------
 p = "theme/templates/product.json"; h, d = load(p)

@@ -62,32 +62,24 @@ home hero: **Trunks, bags and objects for the home. Made by hand, around Milan.*
 
 ## Collection and product pages (commerce pass, 5 September)
 
-- Collection hero: the same section as the home hero, with a photograph of the family
-  (Bags: ostrich case detail; Trunks: black case with gold hardware; Travel: the Miramare
-  terrace; Home accessories: the lobby ensemble; Small leather goods: brass fittings;
-  Sunglasses: the polishing bench). Eyebrow "Collection", the collection title as h1, then
-  the collection's `custom.editorial_line` metafield or its description as one line.
-  A text block's dynamic source may carry only one Liquid filter, so the line is a
-  custom-liquid block.
-- Grid: four across on desktop, three between 750 and 989px, two on the phone. Horizon has
-  no four-column option, so a `<style>` block in the hero pins `--product-grid-columns-desktop`.
-  Cards sit straight on the page ground: no card background, no border, no quick-add icon,
-  square images, Marcellus 18px title, Inter 14px price, the exception eyebrow above the image.
-- Collection close: a band with "Looking for a leather, a colour or a size you don't see?
-  Most of what we make is made to order." and the link "Write to the atelier".
+- Collection pages stay as they were: the collection name over the page ground, filters and
+  sort on one line, three framed tiles across on desktop, the grid full width. A pass on
+  5 September gave them a photographic hero, four across and borderless cards; the owner
+  preferred the original and it was restored. The loop in `scripts/commerce-pass.py` that
+  rebuilt them is commented out — do not re-enable it without asking.
 - Product page: eyebrow (family and leather, or "Limited edition"), Marcellus title, price
   in body type, variant picker, quantity and one filled "Add to cart", an atelier line, the
   description, then six accordions from existing data only: Details, Delivery, Made to order,
   Repairs, Care, Packaging. A "Made by hand" chapter follows the product; "You may also like"
-  shows four pieces in the same card style.
+  shows four framed tiles and never a crochet bag.
 
 ## Product grid tiles (5 September, owner's note on the frame)
 
 Cards are framed tiles, in the manner of Miu Miu's grid: one hairline (#d3cabc) around each
 card, tiles touching with no gap so the frames read as a single ruled grid, the photograph
-edge to edge inside it, text inset 12px. This holds on collection pages, the home product
-rows, the four pieces on Custom & Limited Editions, and "You may also like". Colour swatches
-sit under the price wherever a piece has them.
+edge to edge inside it, text inset 12px. The collection pages already read this way and were left alone; the home
+product rows, the four pieces on Custom & Limited Editions and "You may also like" were
+brought into line with them. Colour swatches sit under the price wherever a piece has them.
 
 "You may also like" is `sections/oberndoerfer-recommendations.liquid`, the theme's section
 with two changes: the crochet handbags are never recommended, and when the filter leaves
