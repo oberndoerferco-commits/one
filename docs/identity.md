@@ -62,11 +62,14 @@ home hero: **Trunks, bags and objects for the home. Made by hand, around Milan.*
 
 ## Collection and product pages (commerce pass, 5 September)
 
-- Collection pages stay as they were: the collection name over the page ground, filters and
-  sort on one line, three framed tiles across on desktop, the grid full width. A pass on
-  5 September gave them a photographic hero, four across and borderless cards; the owner
-  preferred the original and it was restored. The loop in `scripts/commerce-pass.py` that
-  rebuilt them is commented out — do not re-enable it without asking.
+- Collection pages: the layout is the original one — framed tiles touching, the grid full
+  width, the card blocks and type as they were — with two pieces added back by the owner's
+  choice (`scripts/collection-hero-grid.py`): a hero carrying a photograph of the family,
+  "Collection" as the eyebrow, the collection title as the h1 and its own line beneath; and
+  four tiles across on desktop, three between 750 and 989px, by a style rule, since Horizon's
+  card sizes give three or five and nothing between. The fuller rebuild of these pages (cards
+  on the page ground, no frames, centred grid, a closing band) was tried and rejected; its
+  loop in `scripts/commerce-pass.py` stays commented out.
 - Product page: eyebrow (family and leather, or "Limited edition"), Marcellus title, price
   in body type, variant picker, quantity and one filled "Add to cart", an atelier line, the
   description, then six accordions from existing data only: Details, Delivery, Made to order,

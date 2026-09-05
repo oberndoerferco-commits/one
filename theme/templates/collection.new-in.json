@@ -12,22 +12,22 @@
     "section": {
       "type": "section",
       "blocks": {
-        "text_tqQTNE": {
+        "eyebrow": {
           "type": "text",
-          "name": "Title",
+          "name": "t:names.heading",
           "settings": {
-            "text": "<h1>{{ closest.collection.title }}</h1>",
+            "text": "<p>Collection</p>",
             "width": "fit-content",
-            "max_width": "normal",
+            "max_width": "narrow",
             "alignment": "left",
             "type_preset": "custom",
-            "font": "var(--font-heading--family)",
-            "font_size": "2rem",
+            "font": "var(--font-subheading--family)",
+            "font_size": "0.75rem",
             "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
+            "letter_spacing": "loose",
+            "case": "uppercase",
             "wrap": "pretty",
-            "text_color": "",
+            "text_color": "#e5e0d7",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -38,22 +38,22 @@
           },
           "blocks": {}
         },
-        "text_twGGkJ": {
+        "title": {
           "type": "text",
-          "name": "Description",
+          "name": "t:names.heading",
           "settings": {
-            "text": "{{ closest.collection.description }}",
+            "text": "<h1>{{ closest.collection.title }}</h1>",
             "width": "fit-content",
-            "max_width": "normal",
+            "max_width": "narrow",
             "alignment": "left",
-            "type_preset": "rte",
-            "font": "var(--font-primary--family)",
-            "font_size": "",
-            "line_height": "normal",
+            "type_preset": "custom",
+            "font": "var(--font-heading--family)",
+            "font_size": "2.5rem",
+            "line_height": "tight",
             "letter_spacing": "normal",
             "case": "none",
-            "wrap": "pretty",
-            "text_color": "",
+            "wrap": "balance",
+            "text_color": "#fbf9f6",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -63,13 +63,37 @@
             "padding-inline-end": 0
           },
           "blocks": {}
+        },
+        "line": {
+          "type": "custom-liquid",
+          "settings": {
+            "custom_liquid": "{%- assign c = closest.collection -%}{%- assign line = c.metafields.custom.editorial_line.value | default: c.description | strip_html -%}{%- if line != blank -%}<p style=\"font-family:var(--font-body--family);font-size:1rem;line-height:1.5;max-width:52ch;color:#f2ede6;margin:0\">{{ line }}</p>{%- endif -%}",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "css": {
+          "type": "custom-liquid",
+          "settings": {
+            "custom_liquid": "<style>@media screen and (min-width:990px){.product-grid--grid{--product-grid-columns-desktop:repeat(4,1fr)!important}}@media screen and (min-width:750px) and (max-width:989px){.product-grid--grid{--product-grid-columns-desktop:repeat(3,1fr)!important}}</style>",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "text_tqQTNE",
-        "text_twGGkJ"
+        "eyebrow",
+        "title",
+        "line",
+        "css"
       ],
-      "name": "Collection heading",
+      "name": "Collection hero",
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -77,26 +101,27 @@
         "vertical_alignment": "center",
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 12,
+        "vertical_alignment_flex_direction_column": "flex-end",
+        "gap": 24,
         "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "background_media": "none",
+        "section_height": "custom",
+        "section_height_custom": 62,
+        "background_media": "image",
         "background_color": "",
         "video_position": "cover",
+        "background_image": "shopify://shop_images/obm-coll-newin.jpg",
         "background_image_position": "cover",
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
+        "toggle_overlay": true,
+        "overlay_color": "#1c171499",
+        "overlay_style": "gradient",
         "gradient_direction": "to top",
         "border": "none",
         "border_width": 1,
         "border_opacity": 100,
         "border_color": "",
         "border_radius": 0,
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "padding-block-start": 32,
+        "padding-block-end": 72
       }
     },
     "main": {

@@ -138,10 +138,11 @@ Diff the two JSON files to see exactly which strings changed.
   data only, a "Made by hand" chapter, four recommendations), turned quick-add off in
   `settings_data`, and framed the product tiles on the home rows and in recommendations.
   `docs/identity.md` has the rules.
-- **The collection pages were rebuilt and then restored.** The pass gave them a photographic
-  hero, four across and borderless cards; the owner preferred the originals, so the eleven
-  templates were restored from commit `0860a59` and the `rebuild_collection` loop in the
-  script is commented out. Do not re-enable it without asking.
+- **The collection pages were rebuilt, restored, then given two pieces back.** The pass
+  replaced their layout wholesale; the owner preferred the originals, so the eleven templates
+  were restored from commit `0860a59` and the `rebuild_collection` loop stays commented out.
+  `scripts/collection-hero-grid.py` then added back the two pieces asked for — the
+  photographic hero and four tiles across — and nothing else. Run that script, not the loop.
 - Owner decisions: keep the quantity selector; accordions use only data that already exists;
   the framed tile is the card style; no crochet bags in recommendations. The home menu stays
   dark (`text_color_transparent_home` `#000000cf`); the white version was rejected.
