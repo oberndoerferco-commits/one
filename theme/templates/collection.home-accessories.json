@@ -156,13 +156,13 @@
           "settings": {
             "product_card_gap": 6,
             "background_color": "",
-            "border": "none",
+            "border": "solid",
             "border_width": 1,
             "border_opacity": 100,
-            "border_color": "#00000012",
+            "border_color": "#d3cabc",
             "border_radius": 0,
             "padding-block-start": 0,
-            "padding-block-end": 0,
+            "padding-block-end": 14,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
@@ -203,8 +203,8 @@
                 "corner_radius": 0,
                 "padding-block-start": 10,
                 "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-start": 12,
+                "padding-inline-end": 12
               },
               "blocks": {}
             },
@@ -225,8 +225,8 @@
                 "text_color": "",
                 "padding-block-start": 0,
                 "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
+                "padding-inline-start": 12,
+                "padding-inline-end": 12
               },
               "blocks": {}
             },
@@ -236,17 +236,17 @@
                 "product_swatches_alignment": "flex-start",
                 "product_swatches_alignment_mobile": "flex-start",
                 "hide_padding": false,
-                "product_swatches_padding_top": 8,
-                "product_swatches_padding_bottom": 12,
-                "product_swatches_padding_left": 16,
-                "product_swatches_padding_right": 16
+                "product_swatches_padding_top": 6,
+                "product_swatches_padding_bottom": 0,
+                "product_swatches_padding_left": 12,
+                "product_swatches_padding_right": 12
               },
               "blocks": {}
             },
             "card_eyebrow": {
               "type": "custom-liquid",
               "settings": {
-                "custom_liquid": "{%- assign p = closest.product -%}{%- assign lbl = '' -%}{%- if p.title contains 'Trax' -%}{%- assign lbl = 'Limited edition' -%}{%- elsif p.type == 'Furniture' or p.type == 'sofa' or p.type == 'Wine Case' or p.metafields.custom.lead_time != blank -%}{%- assign lbl = 'Made to order' -%}{%- elsif p.title contains 'Alligator' or p.title contains 'Crocodile' or p.title contains 'Ostrich' -%}{%- assign lbl = 'Exotic leather' -%}{%- endif -%}<p style=\"font-family:var(--font-subheading--family);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(28,23,20,0.6);margin:0 0 8px;min-height:1em\">{{ lbl }}</p>"
+                "custom_liquid": "{%- assign p = closest.product -%}{%- assign lbl = '' -%}{%- if p.title contains 'Trax' -%}{%- assign lbl = 'Limited edition' -%}{%- elsif p.type == 'Furniture' or p.type == 'sofa' or p.type == 'Wine Case' or p.metafields.custom.lead_time != blank -%}{%- assign lbl = 'Made to order' -%}{%- elsif p.title contains 'Alligator' or p.title contains 'Crocodile' or p.title contains 'Ostrich' -%}{%- assign lbl = 'Exotic leather' -%}{%- endif -%}<p style=\"font-family:var(--font-subheading--family);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(28,23,20,0.6);margin:10px 12px 8px;min-height:1em\">{{ lbl }}</p>"
               }
             }
           },
@@ -267,8 +267,8 @@
         "products_per_page": 24,
         "product_grid_width": "centered",
         "full_width_on_mobile": true,
-        "columns_gap_horizontal": 24,
-        "columns_gap_vertical": 48,
+        "columns_gap_horizontal": 0,
+        "columns_gap_vertical": 0,
         "padding-inline-start": 0,
         "padding-inline-end": 0,
         "background_color": "{{ settings.color_palette.background }}",

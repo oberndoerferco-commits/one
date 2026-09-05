@@ -72,6 +72,25 @@ LINE_LIQUID = ("{%- assign c = closest.collection -%}{%- assign line = c.metafie
 GRID_CSS = ("<style>@media screen and (min-width:990px){.product-grid--grid{--product-grid-columns-desktop:repeat(4,1fr)!important}}"
             "@media screen and (min-width:750px) and (max-width:989px){.product-grid--grid{--product-grid-columns-desktop:repeat(3,1fr)!important}}</style>")
 
+# ---------- the frame (owner: "I liked the frame around products, it's easier to understand", Miu Miu's grid) ----------
+LINE = "#d3cabc"
+def frame_card(card, eyebrow_margin=True):
+    """A card as a framed tile: one hairline around it, tiles touching, image edge to edge, text inset."""
+    card["settings"].update({"background_color": "", "border": "solid", "border_width": 1, "border_opacity": 100, "border_color": LINE,
+                             "border_radius": 0, "padding-block-start": 0, "padding-block-end": 14, "padding-inline-start": 0, "padding-inline-end": 0,
+                             "product_card_gap": 6})
+    for k, b in card["blocks"].items():
+        st = b["settings"]
+        if b["type"] == "_product-card-gallery": st.update({"image_ratio": "square", "border": "none"})
+        if b["type"] == "product-title": st.update({"type_preset": "custom", "font": "var(--font-heading--family)", "font_size": "1.125rem", "line_height": "tight", "letter_spacing": "normal", "case": "none", "wrap": "pretty", "background": False, "padding-block-start": 10, "padding-block-end": 0, "padding-inline-start": 12, "padding-inline-end": 12})
+        if b["type"] == "price": st.update({"type_preset": "paragraph", "font": "var(--font-body--family)", "font_size": "0.875rem", "padding-inline-start": 12, "padding-inline-end": 12, "padding-block-end": 0})
+        if b["type"] == "swatches": st.update({"hide_padding": False, "product_swatches_padding_top": 6, "product_swatches_padding_bottom": 0, "product_swatches_padding_left": 12, "product_swatches_padding_right": 12})
+        if b["type"] == "custom-liquid" and "assign lbl" in st.get("custom_liquid", ""):
+            st["custom_liquid"] = st["custom_liquid"].replace("margin:0 0 8px;", "margin:10px 12px 8px;").replace("margin:10px 12px 8px;min-height", "margin:10px 12px 8px;min-height")
+
+SWATCHES = {"type": "swatches", "settings": {"product_swatches_alignment": "flex-start", "product_swatches_alignment_mobile": "flex-start", "hide_padding": False,
+            "product_swatches_padding_top": 6, "product_swatches_padding_bottom": 0, "product_swatches_padding_left": 12, "product_swatches_padding_right": 12}, "blocks": {}}
+
 def rebuild_collection(f):
     h, d = load(f)
     S = d["sections"]
@@ -94,15 +113,10 @@ def rebuild_collection(f):
     # grid: four across on the page ground
     main = S["main"]
     main["settings"].update({"layout_type": "grid", "product_card_size": "medium", "mobile_product_card_size": "small",
-                             "product_grid_width": "centered", "columns_gap_horizontal": 24, "columns_gap_vertical": 48,
+                             "product_grid_width": "centered", "columns_gap_horizontal": 0, "columns_gap_vertical": 0,
                              "padding-block-start": 24, "padding-block-end": 48})
     card = main["blocks"]["product-card"]
-    card["settings"].update({"background_color": "", "border": "none", "padding-block-start": 0, "padding-block-end": 0,
-                             "padding-inline-start": 0, "padding-inline-end": 0, "product_card_gap": 6})
-    for k, b in card["blocks"].items():
-        if b["type"] == "_product-card-gallery": b["settings"]["image_ratio"] = "square"
-        if b["type"] == "product-title": b["settings"].update({"type_preset": "custom", "font": "var(--font-heading--family)", "font_size": "1.125rem", "line_height": "tight", "letter_spacing": "normal", "case": "none", "wrap": "pretty", "background": False, "padding-block-start": 10, "padding-block-end": 0, "padding-inline-start": 0, "padding-inline-end": 0})
-        if b["type"] == "price": b["settings"].update({"type_preset": "paragraph", "font": "var(--font-body--family)", "font_size": "0.875rem", "padding-inline-start": 0, "padding-inline-end": 0, "padding-block-end": 0})
+    frame_card(card)
     filt = main["blocks"].get("filters")
     if filt: filt["settings"].update({"enable_grid_density": False})
     # close band
@@ -192,11 +206,20 @@ if "section_pdp_chapter" not in d["sections"]:
 
 # recommendations: four across, Marcellus head, card titles in Marcellus
 rec = d["sections"]["product_recommendations_qggXJq"]
-rec["settings"].update({"columns": 4, "mobile_columns": "2", "gap": 24, "padding-block-start": 64, "padding-block-end": 64})
+rec["type"] = "oberndoerfer-recommendations"          # sections/oberndoerfer-recommendations.liquid: the theme section, minus the crochet bags
+rec["settings"].update({"columns": 4, "mobile_columns": "2", "columns_gap": 0, "rows_gap": 0, "gap": 24, "padding-block-start": 64, "padding-block-end": 64})
 find(rec["blocks"], "text_cbcgyb")["settings"].update({"type_preset": "h3", "text": "<p>You may also like</p>"})
-for k, b in find(rec["blocks"], "static-product-card")["blocks"].items():
-    if b["type"] == "product-title": b["settings"].update({"type_preset": "custom", "font": "var(--font-heading--family)", "font_size": "1.125rem", "line_height": "tight", "letter_spacing": "normal", "case": "none", "wrap": "pretty"})
-    if b["type"] == "price": b["settings"].update({"type_preset": "paragraph"})
-    if b["type"] == "_product-card-gallery": b["settings"]["image_ratio"] = "square"
+rc = find(rec["blocks"], "static-product-card")
+if "swatches_recs" not in rc["blocks"]:
+    rc["blocks"]["swatches_recs"] = copy.deepcopy(SWATCHES); rc["block_order"].append("swatches_recs")
+frame_card(rc)
+save(p, h, d)
+
+# ---------- home product lists: the same tiles ----------
+p = "theme/templates/index.json"; h, d = load(p)
+for k, S in d["sections"].items():
+    if S["type"] == "product-list":
+        S["settings"].update({"columns_gap": 0, "rows_gap": 0})
+        frame_card(S["blocks"]["static-product-card"])
 save(p, h, d)
 print("commerce pass done")

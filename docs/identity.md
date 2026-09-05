@@ -55,6 +55,9 @@ home hero: **Trunks, bags and objects for the home. Made by hand, around Milan.*
 - About: hero on the stacked cases (was a 780px model shot). "Leather, learned at the source." Captions under the three photographs.
 - Bespoke: "Made to your measure." with a line and "How a commission works". Four-step process. One filled button: Send.
 - Art of Living: "Furniture, made the way we make a trunk." / The Miramare commission.
+- Custom & Limited Editions: hero on the Trax pieces (6,000px), the four pieces shown as a
+  framed grid straight after the introduction instead of a button that sends the reader away,
+  the taped workshop photograph removed from the second slideshow, one filled button (Send).
 - Materials, Packaging, Custom, Contact, Leather Care: same hero grammar; Contact hero on the atelier bench (was a 1232px file).
 
 ## Collection and product pages (commerce pass, 5 September)
@@ -77,6 +80,18 @@ home hero: **Trunks, bags and objects for the home. Made by hand, around Milan.*
   description, then six accordions from existing data only: Details, Delivery, Made to order,
   Repairs, Care, Packaging. A "Made by hand" chapter follows the product; "You may also like"
   shows four pieces in the same card style.
+
+## Product grid tiles (5 September, owner's note on the frame)
+
+Cards are framed tiles, in the manner of Miu Miu's grid: one hairline (#d3cabc) around each
+card, tiles touching with no gap so the frames read as a single ruled grid, the photograph
+edge to edge inside it, text inset 12px. This holds on collection pages, the home product
+rows, the four pieces on Custom & Limited Editions, and "You may also like". Colour swatches
+sit under the price wherever a piece has them.
+
+"You may also like" is `sections/oberndoerfer-recommendations.liquid`, the theme's section
+with two changes: the crochet handbags are never recommended, and when the filter leaves
+fewer than four the row is filled from the product's own family.
 
 ## Files that are still too small (replace when new photographs exist)
 

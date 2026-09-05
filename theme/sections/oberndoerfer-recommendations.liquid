@@ -1,0 +1,266 @@
+{%- comment -%}
+  Oberndörfer Milano — "You may also like".
+  Horizon's product-recommendations section, with two changes: the crochet handbags are
+  never recommended (the owner's decision, 5 September), and the fetch asks for a few more
+  products than it shows so that four remain after the filter. Markup and schema are
+  otherwise the theme's own, so product-recommendations.js drives it unchanged.
+{%- endcomment -%}
+<script
+  src="{{ 'product-recommendations.js' | asset_url }}"
+  type="module"
+  fetchpriority="low"
+></script>
+
+{% liquid
+  case section.settings.layout_type
+    when 'grid'
+      assign classes = 'resource-list--grid'
+    when 'carousel'
+      assign classes = 'resource-list__carousel'
+  endcase
+
+  assign fetch_limit = section.settings.max_products | plus: 6
+
+  capture styles
+    echo '--column-count-mobile: ' | append: section.settings.mobile_columns | append: ';'
+    echo '--resource-list-column-gap-desktop: ' | append: section.settings.columns_gap | append: 'px;'
+    echo '--resource-list-row-gap-desktop: ' | append: section.settings.rows_gap | append: 'px;'
+    echo '--resource-list-columns: repeat(' | append: section.settings.columns | append: ', 1fr);'
+    echo '--resource-list-columns-mobile: repeat(' | append: section.settings.mobile_columns | append: ', 1fr);'
+    echo '--column-count: ' | append: section.settings.columns | append: ';'
+  endcapture
+%}
+
+{% render 'quick-add-styles' %}
+{% render 'quick-add-modal-styles' %}
+{% render 'swatch-styles' %}
+{% render 'quantity-selector-styles' %}
+{% render 'variant-picker-styles' %}
+{% render 'product-badges-styles' %}
+{% render 'resource-list-styles' %}
+{% render 'product-recommendations-styles' %}
+<product-recommendations
+  id="product-recommendations-{{ section.id }}"
+  class="product-recommendations"
+  data-url="{{ routes.product_recommendations_url }}?limit={{ fetch_limit }}"
+  data-section-id="{{ section.id }}"
+  data-product-id="{{ section.settings.product.id | default: product.id }}"
+  data-intent="{{ section.settings.recommendation_type }}"
+  data-testid="product-recommendations-section"
+  data-recommendations-performed="{{ recommendations.performed }}"
+  data-hydration-key="product-recommendations-{{ section.id }}"
+  {{ section.shopify_attributes }}
+>
+  {% liquid
+    if section.settings.background_color != blank
+      render 'contrast-override', background_color: section.settings.background_color, section_id: section.id
+    endif
+  %}
+
+  <div
+    class="section-background{% if section.settings.background_color != blank %} color-custom-{{ section.id }}{% endif %}"
+  ></div>
+  <div
+    class="
+      section
+      section--{{ section.settings.section_width }}
+      {% if section.settings.background_color != blank %}color-custom-{{ section.id }}{% endif %}
+      section-resource-list
+      spacing-style
+      gap-style
+    "
+    style="
+      {%  render 'spacing-style', settings: section.settings %}
+      {%  render 'gap-style', value: section.settings.gap %}
+      {{ styles }}
+    "
+  >
+    <div class="section-resource-list__content">
+      {% content_for 'blocks' %}
+    </div>
+
+    {%- if recommendations.performed or section.settings.product == blank -%}
+      {% liquid
+        if section.settings.product == blank
+          assign products = null
+          for i in (1..section.settings.max_products)
+            assign products = products | append: ', '
+            assign products = products | split: ','
+          endfor
+        elsif recommendations.performed and recommendations.products_count == 0
+          if section.settings.recommendation_type == 'related'
+            assign products = collections.all.products | reject: 'id', section.settings.product.id
+          elsif section.settings.recommendation_type == 'complementary'
+            assign products = null
+          endif
+        else
+          assign products = recommendations.products
+        endif
+      %}
+      {% liquid
+        # the fallback pool: the product's own family, so a filtered row still fills up
+        assign source = section.settings.product | default: product
+        assign fallback = null
+        for c in source.collections
+          unless c.handle == 'new-in' or c.handle == 'signature-pieces' or c.handle == 'featured-products' or c.handle == 'collections-2' or c.handle == 'collections'
+            assign fallback = c.products
+            break
+          endunless
+        endfor
+        if fallback == blank
+          assign fallback = collections.all.products
+        endif
+      %}
+      {% capture list_items %}
+        {% assign shown = 0 %}
+        {% assign seen = '' %}
+        {% for product in products %}
+          {% if shown >= section.settings.max_products %}{% break %}{% endif %}
+          {% if product.title contains 'Crochet' or product.title contains 'crochet' %}{% continue %}{% endif %}
+          {% assign shown = shown | plus: 1 %}
+          {% assign seen = seen | append: ',' | append: product.handle %}
+          {% if shown > 1 %}<!--@list/split-->{% endif %}
+          <div class="resource-list__item">
+            {% content_for 'block',
+              type: '_product-card',
+              id: 'static-product-card',
+              closest.product: product,
+              product_view_context: 'recommendation'
+            %}
+          </div>
+        {% endfor %}
+        {% if shown < section.settings.max_products %}
+          {% for product in fallback %}
+            {% if shown >= section.settings.max_products %}{% break %}{% endif %}
+            {% if product.title contains 'Crochet' or product.title contains 'crochet' %}{% continue %}{% endif %}
+            {% if product.handle == source.handle %}{% continue %}{% endif %}
+            {% assign mark = ',' | append: product.handle %}
+            {% if seen contains mark %}{% continue %}{% endif %}
+            {% assign shown = shown | plus: 1 %}
+            {% assign seen = seen | append: mark %}
+            {% if shown > 1 %}<!--@list/split-->{% endif %}
+            <div class="resource-list__item">
+              {% content_for 'block',
+                type: '_product-card',
+                id: 'static-product-card',
+                closest.product: product,
+                product_view_context: 'recommendation'
+              %}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endcapture %}
+
+      {% liquid
+        assign slide_content = list_items | strip
+        assign slides = slide_content | split: '<!--@list/split-->'
+
+        if shown > 0
+          assign has_recommendations = 'true'
+        else
+          assign has_recommendations = 'false'
+        endif
+      %}
+
+      <div
+        class="
+          resource-list
+          {% if section.settings.layout_type == 'carousel' %}
+            force-full-width
+          {% endif %}
+          {% if section.settings.carousel_on_mobile and section.settings.layout_type != 'carousel' %}
+            hidden--mobile
+          {% endif %}
+          {{ classes }}
+        "
+        {% if section.settings.layout_type == 'grid' %}
+          data-testid="resource-list-grid"
+        {% endif %}
+        data-has-recommendations="{{ has_recommendations }}"
+      >
+        {% case section.settings.layout_type %}
+          {% when 'grid' %}
+            {{ list_items }}
+          {% when 'carousel' %}
+            {% render 'resource-list-carousel',
+              ref: 'resourceListCarousel',
+              slides: slides,
+              slide_count: shown,
+              settings: section.settings
+            %}
+        {% endcase %}
+      </div>
+
+      {% if section.settings.carousel_on_mobile and section.settings.layout_type != 'carousel' %}
+        <div
+          class="
+            resource-list
+            hidden--desktop
+            force-full-width
+          "
+          style="
+            --resource-list-gap: {{ section.settings.columns_gap }}px;
+            --column-count: {{ section.settings.columns }};
+          "
+        >
+          {% render 'resource-list-carousel',
+            ref: 'resourceListCarouselMobile',
+            slides: slides,
+            slide_count: shown,
+            settings: section.settings
+          %}
+        </div>
+      {% endif %}
+    {%- else -%}
+      <div
+        class="resource-list resource-list--grid"
+      >
+        {% for i in (1..section.settings.columns) %}
+          <div
+            class="product-recommendations__skeleton-item"
+            aria-label="{{ 'accessibility.loading_product_recommendations' | t }}"
+          ></div>
+        {% endfor %}
+      </div>
+    {%- endif -%}
+  </div>
+</product-recommendations>
+
+{% schema %}
+{
+  "name": "Recommendations (house)",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "blocks": [
+    { "type": "@theme" }, { "type": "@app" }, { "type": "text" }, { "type": "icon" }, { "type": "image" },
+    { "type": "button" }, { "type": "video" }, { "type": "group" }, { "type": "spacer" }, { "type": "_divider" }
+  ],
+  "settings": [
+    { "type": "product", "id": "product", "label": "t:settings.product" },
+    { "type": "select", "id": "recommendation_type", "label": "t:settings.type",
+      "options": [ { "value": "related", "label": "t:options.related" }, { "value": "complementary", "label": "t:options.complementary" } ], "default": "related" },
+    { "type": "header", "content": "t:content.cards_layout" },
+    { "type": "select", "id": "layout_type", "label": "t:settings.layout_style",
+      "options": [ { "value": "grid", "label": "t:options.grid" }, { "value": "carousel", "label": "t:options.carousel" } ], "default": "grid" },
+    { "type": "checkbox", "id": "carousel_on_mobile", "label": "t:settings.carousel_on_mobile", "default": false },
+    { "type": "range", "id": "max_products", "label": "t:settings.product_count", "min": 3, "max": 10, "step": 1, "default": 4 },
+    { "type": "range", "id": "columns", "label": "t:settings.columns", "min": 1, "max": 8, "step": 1, "default": 4 },
+    { "type": "select", "id": "mobile_columns", "label": "t:settings.mobile_columns",
+      "options": [ { "value": "1", "label": "t:options.one_number" }, { "value": "2", "label": "t:options.two_number" } ], "default": "2" },
+    { "type": "range", "id": "columns_gap", "label": "t:settings.horizontal_gap", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 16 },
+    { "type": "range", "id": "rows_gap", "label": "t:settings.vertical_gap", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 16 },
+    { "type": "select", "id": "icons_style", "label": "t:settings.icon",
+      "options": [ { "value": "arrow", "label": "t:options.arrows" }, { "value": "chevron", "label": "t:options.chevrons" }, { "value": "arrows_large", "label": "t:options.arrows_large" }, { "value": "chevron_large", "label": "t:options.chevron_large" }, { "value": "none", "label": "t:options.none" } ], "default": "arrow" },
+    { "type": "select", "id": "icons_shape", "label": "t:settings.icon_background",
+      "options": [ { "value": "none", "label": "t:options.none" }, { "value": "circle", "label": "t:options.circle" }, { "value": "square", "label": "t:options.square" } ], "default": "none" },
+    { "type": "header", "content": "t:content.section_layout" },
+    { "type": "select", "id": "section_width", "label": "t:settings.width",
+      "options": [ { "value": "page-width", "label": "t:options.page" }, { "value": "full-width", "label": "t:options.full" } ], "default": "page-width" },
+    { "type": "range", "id": "gap", "label": "t:settings.gap", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 12 },
+    { "type": "color", "id": "background_color", "label": "t:settings.background_color", "placeholder": "t:settings.default" },
+    { "type": "header", "content": "t:content.padding" },
+    { "type": "range", "id": "padding-block-start", "label": "t:settings.top", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0 },
+    { "type": "range", "id": "padding-block-end", "label": "t:settings.bottom", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0 }
+  ],
+  "presets": [ { "name": "Recommendations (house)", "category": "t:categories.products" } ]
+}
+{% endschema %}

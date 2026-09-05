@@ -149,6 +149,20 @@ Diff the two JSON files to see exactly which strings changed.
   three catch-all collections overlap until the menu decision; the breadcrumb block is not in
   the repo.
 
+### Custom & Limited Editions and the framed grid (5 September, second pass)
+
+- `scripts/custom-pass.py` rebuilds the Custom & Limited Editions page: the hero moves to the
+  Trax photograph, the four pieces appear as a framed grid under the introduction, the second
+  slideshow loses the taped workshop shot, and the page keeps one filled button.
+- The owner asked for the frame back around products ("easier to understand", Miu Miu's grid).
+  `frame_card()` in `scripts/commerce-pass.py` applies it everywhere: hairline border, tiles
+  touching, image edge to edge, text inset, swatches under the price.
+- `theme/sections/oberndoerfer-recommendations.liquid` replaces the theme's recommendations on
+  the product page: no crochet handbags, and a fallback that fills the row from the product's
+  own family when the filter empties it. It over-fetches (max + 6) for the same reason.
+- The hero section's image setting is `image_1`, not `background_image`; only the `section`
+  type uses the latter.
+
 ### Decisions on record
 
 - Colour families stay as separate products (owner declined the merge).
