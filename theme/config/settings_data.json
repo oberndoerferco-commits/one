@@ -121,7 +121,9 @@
       "color2": "#e5e0d7",
       "color3": "#d3cabc",
       "color4": "#7a2e2b"
-    }
+    },
+    "quick_add": false,
+    "mobile_quick_add": false
   },
   "presets": {
     "Horizon": {

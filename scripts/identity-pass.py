@@ -195,7 +195,7 @@ for f in glob.glob("theme/templates/*.json"):
 p = "theme/sections/header-group.json"; h, d = load(p)
 hs = d["sections"]["header_section"]
 hs["blocks"]["header-menu"]["settings"]["type_font_primary_size"] = "0.75rem"
-hs["settings"].update({"localization_font_size": "0.75rem", "actions_font_size": "0.75rem", "text_color_transparent_home": "#fbf9f6"})
+hs["settings"].update({"localization_font_size": "0.75rem", "actions_font_size": "0.75rem"})
 save(p, h, d)
 print("identity pass done")
 

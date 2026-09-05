@@ -57,6 +57,27 @@ home hero: **Trunks, bags and objects for the home. Made by hand, around Milan.*
 - Art of Living: "Furniture, made the way we make a trunk." / The Miramare commission.
 - Materials, Packaging, Custom, Contact, Leather Care: same hero grammar; Contact hero on the atelier bench (was a 1232px file).
 
+## Collection and product pages (commerce pass, 5 September)
+
+- Collection hero: the same section as the home hero, with a photograph of the family
+  (Bags: ostrich case detail; Trunks: black case with gold hardware; Travel: the Miramare
+  terrace; Home accessories: the lobby ensemble; Small leather goods: brass fittings;
+  Sunglasses: the polishing bench). Eyebrow "Collection", the collection title as h1, then
+  the collection's `custom.editorial_line` metafield or its description as one line.
+  A text block's dynamic source may carry only one Liquid filter, so the line is a
+  custom-liquid block.
+- Grid: four across on desktop, three between 750 and 989px, two on the phone. Horizon has
+  no four-column option, so a `<style>` block in the hero pins `--product-grid-columns-desktop`.
+  Cards sit straight on the page ground: no card background, no border, no quick-add icon,
+  square images, Marcellus 18px title, Inter 14px price, the exception eyebrow above the image.
+- Collection close: a band with "Looking for a leather, a colour or a size you don't see?
+  Most of what we make is made to order." and the link "Write to the atelier".
+- Product page: eyebrow (family and leather, or "Limited edition"), Marcellus title, price
+  in body type, variant picker, quantity and one filled "Add to cart", an atelier line, the
+  description, then six accordions from existing data only: Details, Delivery, Made to order,
+  Repairs, Care, Packaging. A "Made by hand" chapter follows the product; "You may also like"
+  shows four pieces in the same card style.
+
 ## Files that are still too small (replace when new photographs exist)
 
 `17.jpg` (780px, the model in the garden — a good picture, needs the original), `bag.jpg`

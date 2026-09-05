@@ -132,6 +132,23 @@ Diff the two JSON files to see exactly which strings changed.
   links so each page keeps one filled button; card eyebrow shows the family in mixed grids and
   only the exceptions on collection pages.
 
+### Commerce pass (5 September)
+
+- `scripts/commerce-pass.py` (re-runnable) applies the identity to the eleven collection
+  templates and the product template: hero section with a photograph per family, four-column
+  grid by CSS override, plain cards on the page ground, quick-add off in `settings_data`,
+  product page rebuilt with eyebrow, accordions from existing data only, a "Made by hand"
+  chapter and four recommendations. `docs/identity.md` has the rules.
+- Owner decisions: four across on desktop; keep the quantity selector; accordions use only
+  data that already exists. The home menu stays dark (`text_color_transparent_home`
+  `#000000cf`); the white version was rejected.
+- Theme upload lessons: `product-recommendations.mobile_columns` must be a string; a text
+  block's dynamic source may use one filter only; a URL-body `themeFilesUpsert` fails
+  silently on validation errors, so send one file as TEXT to read the error.
+- Still open: the "Availability" filter comes from the Search & Discovery app (store-level);
+  three catch-all collections overlap until the menu decision; the breadcrumb block is not in
+  the repo.
+
 ### Decisions on record
 
 - Colour families stay as separate products (owner declined the merge).
