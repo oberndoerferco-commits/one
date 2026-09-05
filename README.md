@@ -143,6 +143,9 @@ Diff the two JSON files to see exactly which strings changed.
   were restored from commit `0860a59` and the `rebuild_collection` loop stays commented out.
   `scripts/collection-hero-grid.py` then added back the two pieces asked for — the
   photographic hero and four tiles across — and nothing else. Run that script, not the loop.
+- Collection heroes are never product photographs: five of the first eleven were product
+  cut-outs and three repeated a piece from their own grid. They are now material, hardware,
+  the bench or a room, all eleven different, each checked against that collection's products.
 - Owner decisions: keep the quantity selector; accordions use only data that already exists;
   the framed tile is the card style; no crochet bags in recommendations. The home menu stays
   dark (`text_color_transparent_home` `#000000cf`); the white version was rejected.

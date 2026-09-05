@@ -37,18 +37,22 @@ LINE_LIQUID = ("{%- assign c = closest.collection -%}"
 GRID_CSS = ("<style>@media screen and (min-width:990px){.product-grid--grid{--product-grid-columns-desktop:repeat(4,1fr)!important}}"
             "@media screen and (min-width:750px) and (max-width:989px){.product-grid--grid{--product-grid-columns-desktop:repeat(3,1fr)!important}}</style>")
 
+# A collection hero is never a photograph of a product. The grid below it is full of cut-outs;
+# a cut-out on top repeats them, and where the object is one of the products it reads as the same
+# picture twice (Bags opened on the ostrich case that was also its first tile). Heroes are
+# material, hardware, the bench, or a room — checked against each collection's own products.
 HERO_IMAGES = {
-  "collection.json": "obm-coll-featured.jpg",
-  "collection.bags.json": "oberndoerfer-about-craft-detail.jpg",
-  "collection.trunks.json": "oberndoerfer-cle-case-gold-hardware.jpg",
-  "collection.home-accessories.json": "oberndoerfer-aol-ensemble.jpg",
-  "collection.travel.json": "A1603CD8-9169-4741-81AE-31BBD21B10CC.jpg",
+  "collection.json": "oberndoerfer-cle-atelier-bench.jpg",              # the all-collection page: the bench
+  "collection.bags.json": "oberndoerfer-calf-leather-hide-macro.jpg",   # the hide the bags are cut from
+  "collection.trunks.json": "oberndoerfer-cle-brass-emblem.jpg",        # the mark on the hardware
+  "collection.home-accessories.json": "oberndoerfer-aol-hall-piano.jpg",# a room, with none of the pieces sold below
+  "collection.travel.json": "A1603CD8-9169-4741-81AE-31BBD21B10CC.jpg", # the Miramare terrace
   "collection.small-leather-goods.json": "oberndoerfer-cle-brass-fittings.jpg",
-  "collection.new-in.json": "obm-coll-newin.jpg",
-  "collection.sunglasses.json": "manufacture-polishing-sunglasses.jpg",
-  "collection.featured-products.json": "obm-coll-featured.jpg",
-  "collection.collections-2.json": "obm-coll-trunks.jpg",
-  "collection.oberndorfer-x-trax-nyc.json": "obm-coll-trunks.jpg",
+  "collection.new-in.json": "oberndoerfer-trunk-hardware-detail.jpg",   # a corner, brass and leather
+  "collection.sunglasses.json": "manufacture-polishing-sunglasses.jpg", # the polishing wheel
+  "collection.featured-products.json": "oberndoerfer-aol-gallery.jpg",
+  "collection.collections-2.json": "oberndoerfer-aol-daybed-arch.jpg",
+  "collection.oberndorfer-x-trax-nyc.json": "IMG_2910_fa219bea-5784-4100-b6bf-d3650979f5b2.jpg",  # the clasp, not one of the four
 }
 
 def hero_for(name):

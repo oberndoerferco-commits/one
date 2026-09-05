@@ -64,12 +64,21 @@ home hero: **Trunks, bags and objects for the home. Made by hand, around Milan.*
 
 - Collection pages: the layout is the original one — framed tiles touching, the grid full
   width, the card blocks and type as they were — with two pieces added back by the owner's
-  choice (`scripts/collection-hero-grid.py`): a hero carrying a photograph of the family,
+  choice (`scripts/collection-hero-grid.py`): a hero carrying a photograph of the house,
   "Collection" as the eyebrow, the collection title as the h1 and its own line beneath; and
   four tiles across on desktop, three between 750 and 989px, by a style rule, since Horizon's
   card sizes give three or five and nothing between. The fuller rebuild of these pages (cards
   on the page ground, no frames, centred grid, a closing band) was tried and rejected; its
   loop in `scripts/commerce-pass.py` stays commented out.
+- **A collection hero is never a photograph of a product.** The grid below it is already a wall
+  of cut-outs; another one on top repeats them, and where it is one of the pieces sold on that
+  page it reads as the same picture twice — Bags opened on the ostrich case that was also its
+  first tile. Heroes are material, hardware, the bench or a room, and each is checked against
+  that collection's own products before it is used. The eleven in use are all different from
+  one another: hide macro (Bags), brass emblem (Trunks), trunk corner (New in), bench
+  (all products), brass fittings (Small leather goods), polishing wheel (Eyewear), Miramare
+  terrace (Travel), piano hall (Home), gallery and daybed (the two catch-alls), gold clasp
+  (Trax NYC).
 - Product page: eyebrow (family and leather, or "Limited edition"), Marcellus title, price
   in body type, variant picker, quantity and one filled "Add to cart", an atelier line, the
   description, then six accordions from existing data only: Details, Delivery, Made to order,
