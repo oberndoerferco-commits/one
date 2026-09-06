@@ -64,7 +64,7 @@ HERO_IMAGES = {
   "collection.sunglasses.json": "manufacture-polishing-sunglasses.jpg",
   "collection.featured-products.json": "obm-coll-featured.jpg",
   "collection.collections-2.json": "obm-coll-trunks.jpg",
-  "collection.oberndorfer-x-trax-nyc.json": "obm-coll-trunks.jpg",
+  "collection.oberndoerfer-traxnyc.json": "obm-coll-trunks.jpg",
 }
 HOME_HERO = copy.deepcopy(idx["sections"]["hero_jVaWmY"])
 LINE_LIQUID = ("{%- assign c = closest.collection -%}{%- assign line = c.metafields.custom.editorial_line.value | default: c.description | strip_html -%}"

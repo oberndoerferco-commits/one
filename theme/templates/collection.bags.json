@@ -67,22 +67,14 @@
         "line": {
           "type": "custom-liquid",
           "settings": {
-            "custom_liquid": "{%- assign c = closest.collection -%}{%- assign line = c.metafields.custom.editorial_line.value | default: c.description | strip_html -%}{%- if line != blank -%}<p style=\"font-family:var(--font-body--family);font-size:1rem;line-height:1.5;max-width:52ch;color:#f2ede6;margin:0\">{{ line }}</p>{%- endif -%}",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "custom_liquid": "{%- assign c = closest.collection -%}{%- assign line = c.metafields.custom.editorial_line.value | default: c.description | strip_html -%}{%- if line != blank -%}<p style=\"font-family:var(--font-body--family);font-size:1rem;line-height:1.5;max-width:52ch;color:#f2ede6;margin:0\">{{ line }}</p>{%- endif -%}"
           },
           "blocks": {}
         },
         "css": {
           "type": "custom-liquid",
           "settings": {
-            "custom_liquid": "<style>@media screen and (min-width:990px){.product-grid--grid{--product-grid-columns-desktop:repeat(4,1fr)!important}}@media screen and (min-width:750px) and (max-width:989px){.product-grid--grid{--product-grid-columns-desktop:repeat(3,1fr)!important}}</style>",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "custom_liquid": "<style>@media screen and (min-width:990px){.product-grid--grid{--product-grid-columns-desktop:repeat(4,1fr)!important}}@media screen and (min-width:750px) and (max-width:989px){.product-grid--grid{--product-grid-columns-desktop:repeat(3,1fr)!important}}</style>"
           },
           "blocks": {}
         }
@@ -109,7 +101,7 @@
         "background_media": "image",
         "background_color": "",
         "video_position": "cover",
-        "background_image": "shopify://shop_images/oberndoerfer-calf-leather-hide-macro.jpg",
+        "background_image": "shopify://shop_images/IMG_3936.jpg",
         "background_image_position": "cover",
         "toggle_overlay": true,
         "overlay_color": "#1c171499",
@@ -167,6 +159,13 @@
             "padding-inline-end": 0
           },
           "blocks": {
+            "card_eyebrow": {
+              "type": "custom-liquid",
+              "settings": {
+                "custom_liquid": "{%- assign p = closest.product -%}{%- assign lbl = '' -%}{%- if p.title contains 'Trax' -%}{%- assign lbl = 'Limited edition' -%}{%- elsif p.type == 'Furniture' or p.type == 'sofa' or p.type == 'Wine Case' or p.metafields.custom.lead_time != blank -%}{%- assign lbl = 'Made to order' -%}{%- elsif p.title contains 'Alligator' or p.title contains 'Crocodile' or p.title contains 'Ostrich' -%}{%- assign lbl = 'Exotic leather' -%}{%- endif -%}<p style=\"font-family:var(--font-subheading--family);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(28,23,20,0.6);margin:0 0 8px;min-height:1em\">{{ lbl }}</p>"
+              },
+              "blocks": {}
+            },
             "card-gallery": {
               "type": "_product-card-gallery",
               "settings": {
@@ -242,12 +241,6 @@
                 "product_swatches_padding_right": 16
               },
               "blocks": {}
-            },
-            "card_eyebrow": {
-              "type": "custom-liquid",
-              "settings": {
-                "custom_liquid": "{%- assign p = closest.product -%}{%- assign lbl = '' -%}{%- if p.title contains 'Trax' -%}{%- assign lbl = 'Limited edition' -%}{%- elsif p.type == 'Furniture' or p.type == 'sofa' or p.type == 'Wine Case' or p.metafields.custom.lead_time != blank -%}{%- assign lbl = 'Made to order' -%}{%- elsif p.title contains 'Alligator' or p.title contains 'Crocodile' or p.title contains 'Ostrich' -%}{%- assign lbl = 'Exotic leather' -%}{%- endif -%}<p style=\"font-family:var(--font-subheading--family);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(28,23,20,0.6);margin:0 0 8px;min-height:1em\">{{ lbl }}</p>"
-              }
             }
           },
           "block_order": [

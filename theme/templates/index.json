@@ -12,6 +12,32 @@
     "hero_jVaWmY": {
       "type": "section",
       "blocks": {
+        "eyebrow": {
+          "type": "text",
+          "name": "t:names.heading",
+          "settings": {
+            "text": "<p>Trunks, bags and objects for the home</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "custom",
+            "font": "var(--font-subheading--family)",
+            "font_size": "0.75rem",
+            "line_height": "normal",
+            "letter_spacing": "loose",
+            "case": "uppercase",
+            "wrap": "pretty",
+            "text_color": "#e5e0d7",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
         "text_heroHead": {
           "type": "text",
           "name": "t:names.heading",
@@ -53,32 +79,6 @@
             "custom_width": 100,
             "width_mobile": "fit-content",
             "custom_width_mobile": 100
-          },
-          "blocks": {}
-        },
-        "eyebrow": {
-          "type": "text",
-          "name": "t:names.heading",
-          "settings": {
-            "text": "<p>Trunks, bags and objects for the home</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "custom",
-            "font": "var(--font-subheading--family)",
-            "font_size": "0.75rem",
-            "line_height": "normal",
-            "letter_spacing": "loose",
-            "case": "uppercase",
-            "wrap": "pretty",
-            "text_color": "#e5e0d7",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
           },
           "blocks": {}
         }
@@ -287,6 +287,13 @@
             "padding-inline-end": 0
           },
           "blocks": {
+            "card_eyebrow": {
+              "type": "custom-liquid",
+              "settings": {
+                "custom_liquid": "{%- assign p = closest.product -%}{%- assign lbl = '' -%}{%- if p.title contains 'Trax' -%}{%- assign lbl = 'Limited edition' -%}{%- elsif p.type == 'Furniture' or p.type == 'sofa' or p.type == 'Wine Case' or p.metafields.custom.lead_time != blank -%}{%- assign lbl = 'Made to order' -%}{%- elsif p.title contains 'Alligator' or p.title contains 'Crocodile' or p.title contains 'Ostrich' -%}{%- assign lbl = 'Exotic leather' -%}{%- endif -%}{%- if lbl == '' -%}{%- for c in p.collections -%}{%- unless c.handle == 'new-in' or c.handle == 'signature-pieces' or c.handle == 'featured-products' or c.handle == 'collections-2' -%}{%- assign lbl = c.title -%}{%- break -%}{%- endunless -%}{%- endfor -%}{%- endif -%}<p style=\"font-family:var(--font-subheading--family);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(28,23,20,0.6);margin:10px 12px 8px;min-height:1em\">{{ lbl }}</p>"
+              },
+              "blocks": {}
+            },
             "product_card_gallery_sig01": {
               "type": "_product-card-gallery",
               "name": "t:names.product_card_media",
@@ -351,12 +358,6 @@
                 "padding-inline-end": 12
               },
               "blocks": {}
-            },
-            "card_eyebrow": {
-              "type": "custom-liquid",
-              "settings": {
-                "custom_liquid": "{%- assign p = closest.product -%}{%- assign lbl = '' -%}{%- if p.title contains 'Trax' -%}{%- assign lbl = 'Limited edition' -%}{%- elsif p.type == 'Furniture' or p.type == 'sofa' or p.type == 'Wine Case' or p.metafields.custom.lead_time != blank -%}{%- assign lbl = 'Made to order' -%}{%- elsif p.title contains 'Alligator' or p.title contains 'Crocodile' or p.title contains 'Ostrich' -%}{%- assign lbl = 'Exotic leather' -%}{%- endif -%}{%- if lbl == '' -%}{%- for c in p.collections -%}{%- unless c.handle == 'new-in' or c.handle == 'signature-pieces' or c.handle == 'featured-products' or c.handle == 'collections-2' -%}{%- assign lbl = c.title -%}{%- break -%}{%- endunless -%}{%- endfor -%}{%- endif -%}<p style=\"font-family:var(--font-subheading--family);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(28,23,20,0.6);margin:10px 12px 8px;min-height:1em\">{{ lbl }}</p>"
-              }
             }
           },
           "block_order": [
@@ -1440,6 +1441,13 @@
             "padding-inline-end": 0
           },
           "blocks": {
+            "card_eyebrow": {
+              "type": "custom-liquid",
+              "settings": {
+                "custom_liquid": "{%- assign p = closest.product -%}{%- assign lbl = '' -%}{%- if p.title contains 'Trax' -%}{%- assign lbl = 'Limited edition' -%}{%- elsif p.type == 'Furniture' or p.type == 'sofa' or p.type == 'Wine Case' or p.metafields.custom.lead_time != blank -%}{%- assign lbl = 'Made to order' -%}{%- elsif p.title contains 'Alligator' or p.title contains 'Crocodile' or p.title contains 'Ostrich' -%}{%- assign lbl = 'Exotic leather' -%}{%- endif -%}{%- if lbl == '' -%}{%- for c in p.collections -%}{%- unless c.handle == 'new-in' or c.handle == 'signature-pieces' or c.handle == 'featured-products' or c.handle == 'collections-2' -%}{%- assign lbl = c.title -%}{%- break -%}{%- endunless -%}{%- endfor -%}{%- endif -%}<p style=\"font-family:var(--font-subheading--family);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(28,23,20,0.6);margin:10px 12px 8px;min-height:1em\">{{ lbl }}</p>"
+              },
+              "blocks": {}
+            },
             "product_card_gallery_q63Brm": {
               "type": "_product-card-gallery",
               "name": "t:names.product_card_media",
@@ -1504,12 +1512,6 @@
                 "padding-inline-end": 12
               },
               "blocks": {}
-            },
-            "card_eyebrow": {
-              "type": "custom-liquid",
-              "settings": {
-                "custom_liquid": "{%- assign p = closest.product -%}{%- assign lbl = '' -%}{%- if p.title contains 'Trax' -%}{%- assign lbl = 'Limited edition' -%}{%- elsif p.type == 'Furniture' or p.type == 'sofa' or p.type == 'Wine Case' or p.metafields.custom.lead_time != blank -%}{%- assign lbl = 'Made to order' -%}{%- elsif p.title contains 'Alligator' or p.title contains 'Crocodile' or p.title contains 'Ostrich' -%}{%- assign lbl = 'Exotic leather' -%}{%- endif -%}{%- if lbl == '' -%}{%- for c in p.collections -%}{%- unless c.handle == 'new-in' or c.handle == 'signature-pieces' or c.handle == 'featured-products' or c.handle == 'collections-2' -%}{%- assign lbl = c.title -%}{%- break -%}{%- endunless -%}{%- endfor -%}{%- endif -%}<p style=\"font-family:var(--font-subheading--family);font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(28,23,20,0.6);margin:10px 12px 8px;min-height:1em\">{{ lbl }}</p>"
-              }
             }
           },
           "block_order": [

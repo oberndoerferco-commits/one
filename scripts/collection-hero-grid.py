@@ -52,7 +52,7 @@ HERO_IMAGES = {
   "collection.sunglasses.json": "manufacture-polishing-sunglasses.jpg", # the polishing wheel
   "collection.featured-products.json": "oberndoerfer-aol-gallery.jpg",
   "collection.collections-2.json": "oberndoerfer-aol-daybed-arch.jpg",
-  "collection.oberndorfer-x-trax-nyc.json": "IMG_2910_fa219bea-5784-4100-b6bf-d3650979f5b2.jpg",  # the clasp, not one of the four
+  "collection.oberndoerfer-traxnyc.json": "IMG_2910_fa219bea-5784-4100-b6bf-d3650979f5b2.jpg",  # the clasp, not one of the four
 }
 
 def hero_for(name):
