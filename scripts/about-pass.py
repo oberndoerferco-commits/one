@@ -32,15 +32,15 @@ o = S["section_about_open"]
 find(o["blocks"], "text_ab_eyebrow")["settings"]["text"] = "<p>The house</p>"
 find(o["blocks"], "text_ab_head")["settings"]["text"] = "<h2>It began with a journey through Italy.</h2>"
 find(o["blocks"], "text_ab_dek")["settings"]["text"] = P(
-    "We set out with one question: what does Italian craftsmanship actually mean, once you take the word off the label? To find out, we went to the people who still practise it, the tanners, the cutters and the stitchers, and asked them to show us.",
+    "We set out with one question: what does Italian craftsmanship actually mean, once you take the word off the label? To find out, we went to the people who still practise it, leather artisans who learned the craft from their grandparents, and began to watch what really lies behind the words Made in Italy.",
     "What they showed us became the house. Not a brand built around a name, but a way of working we could see was worth keeping, and a promise to keep it before mass production makes it disappear.")
 
 # ---------- 2. the journey chapter, beside the owner's photograph ----------
 j = S["section_about_journey"]
 find(j["blocks"], "text_craftHead")["settings"]["text"] = "<p>What we learned on the road</p>"
 find(j["blocks"], "text_craftBody")["settings"]["text"] = P(
-    "The journey began at the tanneries, family-run, in Italy, France and Germany, where a hide is still turned over and judged by hand before anyone agrees a price. It ended in the small workshops around Milan, where a trunk is built rivet by rivet and the edge of a bag is painted and sanded until it reads as one line.",
-    "In between we watched, we asked, and we were corrected, often. When the journey was over we stayed, and began working alongside the people who had corrected us. They still make everything we sell.")
+    "The journey began at the tanneries, family-run, in Italy, France and Germany, where a hide is still turned over and judged by hand before anyone agrees a price. It ended in the small workshops around Milan, where a trunk is built stud by stud and a bag is cut, stitched and finished by the same pair of hands.",
+    "In between we watched, we asked, and we learned. When the journey was over we stayed, and began working alongside the people who had taught us. They still make everything we sell.")
 
 # ---------- 3. what craftsmanship turned out to be (new chapter) ----------
 def band(key, eyebrow, head, *paras, pad=(72, 56)):
@@ -73,7 +73,7 @@ band("section_about_why", "Why now", "The workshops are fewer every year.",
 
 # ---------- 6. how a piece is made (new chapter, before Sanremo) ----------
 band("section_about_making", "The making", "Every piece passes through the same hands.",
-    "What that looks like, piece by piece: the hide is chosen by eye and by hand at the tannery, then cut so the grain runs the way the piece will be used. The edges are painted, dried and sanded, then painted again, until the layers read as a single line.",
+    "What that looks like, piece by piece: the hide is chosen by eye and by hand at the tannery, then cut so the grain runs the way the piece will be used, with nothing wasted that could have been a smaller piece.",
     "The seams that take the strain are stitched by hand, so a thread that wears one day can be replaced without the seam giving way. The hardware comes last: solid brass, galvanised in gold, palladium or black. It is the part you touch every day, so it is the part we refuse to save money on.")
 
 # ---------- 6b. Sanremo: a bridge from the making to the room ----------
