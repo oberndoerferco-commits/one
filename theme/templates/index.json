@@ -502,7 +502,7 @@
                   "type": "text",
                   "name": "t:names.subheading",
                   "settings": {
-                    "text": "<h2>Every piece is also a starting point.</h2><p>Choose the leather, the colour and the lining on a design you already like, or bring us a room. Trunks, tables and seating are built to order in our ateliers around Milan, one at a time.</p>",
+                    "text": "<h2>Nothing is cut until it is yours.</h2><p>Choose the hide, the colour and the lining on a piece you already like, or tell us about a room. It is made after you order it, by the same hands that make everything else, and it takes the time it takes: four to six weeks for a bag or a box, longer for a sofa.</p>",
                     "width": "fit-content",
                     "max_width": "narrow",
                     "alignment": "left",
@@ -1245,7 +1245,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<p>Made in ateliers around Milan</p>",
+                    "text": "<p>It began with a journey through Italy.</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -1270,7 +1270,7 @@
                 "text_craftBody": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Full-grain hides from family tanneries in Italy, France and Germany, cut and stitched by hand in small workshops we chose after visiting them. The method is the one used for a trunk. Only the scale changes.</p>",
+                    "text": "<p>We set out to learn what Italian craftsmanship means once you take the word off the label, and stayed to work with the artisans who showed us. They still make everything we sell, in small workshops around Milan, stud by stud.</p>",
                     "width": "fit-content",
                     "max_width": "narrow",
                     "alignment": "left",

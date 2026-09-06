@@ -185,10 +185,10 @@
       "name": "t:names.hero_bottom_aligned",
       "settings": {
         "media_type_1": "image",
-        "image_1": "shopify://shop_images/IMG_3535_dbf62bc4-2168-4b05-b2a5-40ce1a98f55a.heic",
+        "image_1": "shopify://shop_images/oberndoerfer-about-hero-terrace.jpg",
         "media_type_2": "image",
         "stack_media_on_mobile": false,
-        "custom_mobile_media": false,
+        "custom_mobile_media": true,
         "media_type_1_mobile": "image",
         "media_type_2_mobile": "image",
         "link": "",
@@ -212,7 +212,8 @@
         "blurred_reflection": false,
         "reflection_opacity": 75,
         "padding-block-start": 40,
-        "padding-block-end": 40
+        "padding-block-end": 40,
+        "image_1_mobile": "shopify://shop_images/IMG_3936.jpg"
       }
     },
     "section_about_open": {
@@ -224,7 +225,7 @@
             "text": "<p>The house</p>",
             "width": "100%",
             "max_width": "normal",
-            "alignment": "left",
+            "alignment": "center",
             "type_preset": "custom",
             "font": "var(--font-subheading--family)",
             "font_size": "0.75rem",
@@ -250,11 +251,11 @@
             "text": "<h2>It began with a journey through Italy.</h2>",
             "width": "100%",
             "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
+            "alignment": "center",
+            "type_preset": "custom",
+            "font": "var(--font-heading--family)",
+            "font_size": "2rem",
+            "line_height": "tight",
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "balance",
@@ -272,10 +273,10 @@
         "text_ab_dek": {
           "type": "text",
           "settings": {
-            "text": "<p>We set out with one question: what does Italian craftsmanship actually mean, once you take the word off the label? To find out, we went to the people who still practise it, leather artisans who learned the craft from their grandparents, and began to watch what really lies behind the words Made in Italy.</p><p>What they showed us became the house. Not a brand built around a name, but a way of working we could see was worth keeping, and a promise to keep it before mass production makes it disappear.</p>",
+            "text": "<p>We set out with one question: what does Italian craftsmanship actually mean, once you take the word off the label? To find out we went to the leather artisans who learned the craft from their grandparents, and began to watch what really lies behind the words Made in Italy. What they showed us became the house.</p>",
             "width": "100%",
             "max_width": "narrow",
-            "alignment": "left",
+            "alignment": "center",
             "type_preset": "rte",
             "font": "var(--font-body--family)",
             "font_size": "1rem",
@@ -283,7 +284,7 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
-            "text_color": "#00000099",
+            "text_color": "",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -304,12 +305,12 @@
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
+        "horizontal_alignment": "center",
         "vertical_alignment": "center",
         "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
+        "horizontal_alignment_flex_direction_column": "center",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 16,
+        "gap": 20,
         "section_width": "page-width",
         "section_height": "",
         "section_height_custom": 50,
@@ -326,8 +327,8 @@
         "border_opacity": 100,
         "border_color": "",
         "border_radius": 0,
-        "padding-block-start": 96,
-        "padding-block-end": 72
+        "padding-block-start": 88,
+        "padding-block-end": 80
       }
     },
     "section_about_journey": {
@@ -338,7 +339,7 @@
           "static": true,
           "settings": {
             "media_type": "image",
-            "image": "shopify://shop_images/oberndoerfer-about-craft-detail.jpg",
+            "image": "shopify://shop_images/Custom.jpg",
             "link": "",
             "video_loop": true,
             "video_autoplay": false,
@@ -424,7 +425,7 @@
                 "text_craftBody": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>The journey began at the tanneries, family-run, in Italy, France and Germany, where a hide is still turned over and judged by hand before anyone agrees a price. It ended in the small workshops around Milan, where a trunk is built stud by stud and a bag is cut, stitched and finished by the same pair of hands.</p><p>In between we watched, we asked, and we learned. When the journey was over we stayed, and began working alongside the people who had taught us. They still make everything we sell.</p>",
+                    "text": "<p>It began at the tanneries, family-run, in Italy, France and Germany, where a hide is still turned over and judged by hand. It ended in the small workshops around Milan, where a trunk is built stud by stud. When the journey was over we stayed, and began working alongside the people who had taught us. They still make everything we sell.</p>",
                     "width": "fit-content",
                     "max_width": "narrow",
                     "alignment": "left",
@@ -515,7 +516,7 @@
             "image_group_Jmc9kk": {
               "type": "image",
               "settings": {
-                "image": "shopify://shop_images/oberndoerfer-cle-workshop-trunks.jpg",
+                "image": "shopify://shop_images/IMG_6188.jpg",
                 "link": "",
                 "image_ratio": "portrait",
                 "width": "fill",
@@ -527,7 +528,7 @@
                 "border_width": 1,
                 "border_opacity": 100,
                 "border_color": "",
-                "border_radius": 20,
+                "border_radius": 0,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -538,7 +539,7 @@
             "cap": {
               "type": "text",
               "settings": {
-                "text": "<p>Trunks in the workshop</p>",
+                "text": "<p>Studs, set one at a time</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -608,7 +609,7 @@
             "image_group_DGcdwG": {
               "type": "image",
               "settings": {
-                "image": "shopify://shop_images/A89E7596-F00C-44A3-BB43-71E6C645AEF7_2bca46fe-1783-41bb-982a-e71b06e7c3a2.jpg",
+                "image": "shopify://shop_images/Artisan.jpg",
                 "link": "",
                 "image_ratio": "portrait",
                 "width": "fill",
@@ -620,7 +621,7 @@
                 "border_width": 1,
                 "border_opacity": 100,
                 "border_color": "",
-                "border_radius": 20,
+                "border_radius": 0,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -631,7 +632,7 @@
             "cap": {
               "type": "text",
               "settings": {
-                "text": "<p>The 017 tote, in black</p>",
+                "text": "<p>At the bench, around Milan</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -701,7 +702,7 @@
             "image_group_9TAxbE": {
               "type": "image",
               "settings": {
-                "image": "shopify://shop_images/oberndoerfer-about-watchcase.jpg",
+                "image": "shopify://shop_images/IMG_7959.jpg",
                 "link": "",
                 "image_ratio": "portrait",
                 "width": "fill",
@@ -713,7 +714,7 @@
                 "border_width": 1,
                 "border_opacity": 100,
                 "border_color": "",
-                "border_radius": 20,
+                "border_radius": 0,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -724,7 +725,7 @@
             "cap": {
               "type": "text",
               "settings": {
-                "text": "<p>Watch boxes</p>",
+                "text": "<p>A Chesterfield, buttoned by hand</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -767,7 +768,7 @@
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 16,
+        "gap": 12,
         "section_width": "page-width",
         "section_height": "",
         "section_height_custom": 55,
@@ -784,8 +785,8 @@
         "border_opacity": 100,
         "border_color": "",
         "border_radius": 0,
-        "padding-block-start": 30,
-        "padding-block-end": 24
+        "padding-block-start": 8,
+        "padding-block-end": 72
       }
     },
     "section_about_facts": {
@@ -830,17 +831,6 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "icon_K6V37H": {
-              "type": "icon",
-              "settings": {
-                "icon": "leather",
-                "width": 32,
-                "link": "",
-                "open_in_new_tab": false,
-                "icon_color": ""
-              },
-              "blocks": {}
-            },
             "group_g43HyG": {
               "type": "group",
               "settings": {
@@ -908,7 +898,7 @@
                 "text_AFybWJ": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>The methods came to us from people who learned them from people, in workshops that have been doing this for longer than we have been alive. We invented none of it. We went to learn it, and we keep it.</p>",
+                    "text": "<p>Methods handed from one pair of hands to the next, in workshops older than we are. We invented none of it. We went to learn it, and we keep it.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -938,7 +928,6 @@
             }
           },
           "block_order": [
-            "icon_K6V37H",
             "group_g43HyG"
           ]
         },
@@ -981,17 +970,6 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "icon_4Aq4Ct": {
-              "type": "icon",
-              "settings": {
-                "icon": "heart",
-                "width": 32,
-                "link": "",
-                "open_in_new_tab": false,
-                "icon_color": ""
-              },
-              "blocks": {}
-            },
             "group_B3hJCW": {
               "type": "group",
               "settings": {
@@ -1059,7 +1037,7 @@
                 "text_LWwGLH": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Full-grain hides from tanneries we have stood in. Solid brass where others use plated zinc. Linings cut and glued by hand. Nothing that will look tired in five years, and whatever we make, we repair.</p>",
+                    "text": "<p>Full-grain hides from tanneries we have stood in. Solid brass where others use plated zinc. Whatever we make, we repair.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -1089,7 +1067,6 @@
             }
           },
           "block_order": [
-            "icon_4Aq4Ct",
             "group_B3hJCW"
           ]
         },
@@ -1132,17 +1109,6 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "icon_7QPVBM": {
-              "type": "icon",
-              "settings": {
-                "icon": "ruler",
-                "width": 32,
-                "link": "",
-                "open_in_new_tab": false,
-                "icon_color": ""
-              },
-              "blocks": {}
-            },
             "group_AydCLT": {
               "type": "group",
               "settings": {
@@ -1210,7 +1176,7 @@
                 "text_rbMHBf": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>The things you notice on the tenth day, not the first: a stitch count kept even where no one will look, a lock that closes with the right sound, an edge that reads as one line rather than three.</p>",
+                    "text": "<p>The things you notice on the tenth day, not the first: an even stitch where no one looks, a lock that closes with the right sound.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -1240,7 +1206,6 @@
             }
           },
           "block_order": [
-            "icon_7QPVBM",
             "group_AydCLT"
           ]
         }
@@ -1259,12 +1224,12 @@
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 16,
+        "gap": 40,
         "section_width": "page-width",
         "section_height": "",
         "section_height_custom": 50,
         "background_media": "none",
-        "background_color": "{{ settings.color_palette.color2 }}",
+        "background_color": "#e5e0d7",
         "video_position": "cover",
         "background_image_position": "cover",
         "toggle_overlay": false,
@@ -1276,194 +1241,8 @@
         "border_opacity": 100,
         "border_color": "",
         "border_radius": 0,
-        "padding-block-start": 64,
-        "padding-block-end": 64
-      }
-    },
-    "media_with_content_a7znjk": {
-      "type": "media-with-content",
-      "blocks": {
-        "media": {
-          "type": "_media-without-appearance",
-          "static": true,
-          "settings": {
-            "media_type": "image",
-            "image": "shopify://shop_images/oberndoerfer-cle-atelier-bench.jpg",
-            "link": "",
-            "video_loop": true,
-            "video_autoplay": false,
-            "image_position": "cover",
-            "video_position": "cover"
-          },
-          "blocks": {}
-        },
-        "content": {
-          "type": "_content-without-appearance",
-          "static": true,
-          "settings": {
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 24
-          },
-          "blocks": {
-            "text_MRPdFD": {
-              "type": "text",
-              "name": "t:names.caption",
-              "settings": {
-                "text": "<p>MADE IN ITALY</p>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "custom",
-                "font": "var(--font-subheading--family)",
-                "font_size": "0.75rem",
-                "line_height": "normal",
-                "letter_spacing": "loose",
-                "case": "uppercase",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "group_QQRGUi": {
-              "type": "group",
-              "settings": {
-                "content_direction": "column",
-                "vertical_on_mobile": true,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "custom_height": 100,
-                "background_media": "none",
-                "background_color": "",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
-                "gradient_direction": "to top",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_color": "",
-                "border_radius": 0,
-                "link": "",
-                "open_in_new_tab": false,
-                "placeholder": "",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "text_9nrqUG": {
-                  "type": "text",
-                  "name": "t:names.heading",
-                  "settings": {
-                    "text": "<p>The hide, accounted for</p>",
-                    "width": "fit-content",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "h3",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "text_color": "",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
-                "text_NdncVd": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Our leather is a byproduct of the meat industry - no animal is raised for it - and it comes from tanneries in Italy, France and Germany that we have visited ourselves. Exotic hides follow a separate, documented chain: sourced and traded under CITES, processed in Italy, papers available on request.</p><p>We would rather say exactly where a hide came from than call it sustainable.</p>",
-                    "width": "fit-content",
-                    "max_width": "narrow",
-                    "alignment": "left",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "text_color": "",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_9nrqUG",
-                "text_NdncVd"
-              ]
-            },
-            "button_sustain": {
-              "type": "button",
-              "settings": {
-                "label": "Materials & Craftsmanship",
-                "link": "/pages/materials-craftsmanship",
-                "open_in_new_tab": false,
-                "style_class": "button-unstyled",
-                "custom_button_background": "{{ settings.color_palette.foreground }}",
-                "custom_button_text": "{{ settings.color_palette.background }}",
-                "custom_button_border": "{{ settings.color_palette.background }}",
-                "link_text_color": "",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "text_MRPdFD",
-            "group_QQRGUi",
-            "button_sustain"
-          ]
-        }
-      },
-      "name": "t:names.editorial",
-      "settings": {
-        "media_position": "left",
-        "media_width": "medium",
-        "media_height": "60svh",
-        "section_width": "full-width",
-        "extend_media": true,
-        "background_color": "{{ settings.color_palette.color2 }}",
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "padding-block-start": 24,
+        "padding-block-end": 88
       }
     },
     "section_about_bridge": {
@@ -1474,7 +1253,7 @@
           "static": true,
           "settings": {
             "media_type": "image",
-            "image": "shopify://shop_images/oberndoerfer-trunk-table-lifestyle.jpg",
+            "image": "shopify://shop_images/oberndoerfer-aol-daybed-arch.jpg",
             "link": "",
             "video_loop": true,
             "video_autoplay": false,
@@ -1586,7 +1365,7 @@
                 "text_craftBody": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>The same hands, and the same habits, now make rooms. The Miramare - a belle-époque palace above the Ligurian sea - lived with our trunks for a season, then asked us to make its furniture. Sofas, armchairs, poufs, and a trunk that became a table.</p>",
+                    "text": "<p>The same hands, and the same habits, now make rooms. The Miramare, a belle-époque palace above the Ligurian sea, lived with our trunks for a season, then asked us to make its furniture. Sofas, armchairs, poufs, and a trunk that became a table.</p>",
                     "width": "fit-content",
                     "max_width": "narrow",
                     "alignment": "left",
@@ -1642,7 +1421,7 @@
       },
       "name": "t:names.editorial",
       "settings": {
-        "media_position": "right",
+        "media_position": "left",
         "media_width": "medium",
         "media_height": "60svh",
         "section_width": "full-width",
@@ -1673,7 +1452,7 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "balance",
-            "text_color": "",
+            "text_color": "#fbf9f6",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -1690,11 +1469,11 @@
             "label": "Explore the collections",
             "link": "/collections/all",
             "open_in_new_tab": false,
-            "style_class": "button",
+            "style_class": "button-unstyled",
             "custom_button_background": "{{ settings.color_palette.foreground }}",
             "custom_button_text": "{{ settings.color_palette.background }}",
             "custom_button_border": "{{ settings.color_palette.background }}",
-            "link_text_color": "",
+            "link_text_color": "#fbf9f6",
             "width": "fit-content",
             "custom_width": 100,
             "width_mobile": "fit-content",
@@ -1716,18 +1495,18 @@
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "center",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 16,
+        "gap": 20,
         "section_width": "page-width",
         "section_height": "custom",
-        "section_height_custom": 40,
+        "section_height_custom": 56,
         "background_media": "image",
         "background_color": "{{ settings.color_palette.background }}",
         "video_position": "cover",
-        "background_image": "shopify://shop_images/oberndoerfer-about-close.jpg",
+        "background_image": "shopify://shop_images/IMG_5642_8dccfc93-d5be-4a54-a4b3-062942ac0c1a.heic",
         "background_image_position": "cover",
         "toggle_overlay": true,
-        "overlay_color": "#f5f2ede6",
-        "overlay_style": "solid",
+        "overlay_color": "#1c171499",
+        "overlay_style": "gradient",
         "gradient_direction": "to top",
         "border": "none",
         "border_width": 1,
@@ -1747,7 +1526,7 @@
             "text": "<p>Craftsmanship</p>",
             "width": "100%",
             "max_width": "normal",
-            "alignment": "left",
+            "alignment": "center",
             "type_preset": "custom",
             "font": "var(--font-subheading--family)",
             "font_size": "0.75rem",
@@ -1773,11 +1552,11 @@
             "text": "<h2>It is not a label. It is a set of habits.</h2>",
             "width": "100%",
             "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
+            "alignment": "center",
+            "type_preset": "custom",
+            "font": "var(--font-heading--family)",
+            "font_size": "2rem",
+            "line_height": "tight",
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "balance",
@@ -1795,10 +1574,10 @@
         "text_ab_dek": {
           "type": "text",
           "settings": {
-            "text": "<p>Because that is what craftsmanship turned out to be: nothing you could print on a swing tag, but a hundred small decisions made the same way every time. The hide chosen for the piece rather than the price. The stitch that holds on its own, with no glue behind it. The hour spent on an edge most people will never look at.</p><p>Underneath those decisions we kept finding the same three things, and they became the three things this house stands for.</p>",
+            "text": "<p>Nothing you could print on a swing tag: a hundred small decisions made the same way every time. The hide chosen for the piece rather than the price. The stitch that holds without glue behind it. The hour spent on an edge most people will never look at. Underneath them we kept finding the same three things.</p>",
             "width": "100%",
             "max_width": "narrow",
-            "alignment": "left",
+            "alignment": "center",
             "type_preset": "rte",
             "font": "var(--font-body--family)",
             "font_size": "1rem",
@@ -1806,7 +1585,7 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
-            "text_color": "#00000099",
+            "text_color": "",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -1827,17 +1606,17 @@
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
+        "horizontal_alignment": "center",
         "vertical_alignment": "center",
         "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
+        "horizontal_alignment_flex_direction_column": "center",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 16,
+        "gap": 20,
         "section_width": "page-width",
         "section_height": "",
         "section_height_custom": 50,
         "background_media": "none",
-        "background_color": "{{ settings.color_palette.color2 }}",
+        "background_color": "#e5e0d7",
         "video_position": "cover",
         "background_image_position": "cover",
         "toggle_overlay": false,
@@ -1849,8 +1628,8 @@
         "border_opacity": 100,
         "border_color": "",
         "border_radius": 0,
-        "padding-block-start": 72,
-        "padding-block-end": 56
+        "padding-block-start": 88,
+        "padding-block-end": 40
       }
     },
     "section_about_why": {
@@ -1870,7 +1649,7 @@
             "letter_spacing": "loose",
             "case": "uppercase",
             "wrap": "pretty",
-            "text_color": "",
+            "text_color": "#e5e0d7",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -1889,14 +1668,14 @@
             "width": "100%",
             "max_width": "normal",
             "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
+            "type_preset": "custom",
+            "font": "var(--font-heading--family)",
+            "font_size": "2rem",
+            "line_height": "tight",
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "balance",
-            "text_color": "",
+            "text_color": "#fbf9f6",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -1910,7 +1689,7 @@
         "text_ab_dek": {
           "type": "text",
           "settings": {
-            "text": "<p>Those habits are the reason the house exists, and the reason it exists now. Much of what is sold as Italian leather today is made quickly and in volume, far from the hands it is named after. The workshops that still do it slowly are small, and each year there are fewer. When one closes, what it knew closes with it.</p><p>So we work with them, pay for the time a thing takes, and make in small numbers so that it stays worth their while. That is not a marketing position. It is the point of the house.</p>",
+            "text": "<p>Much of what is sold as Italian leather today is made quickly and in volume, far from the hands it is named after. The workshops that still do it slowly are small, and each year there are fewer. We work with them, pay for the time a thing takes, and make in small numbers, so that what they know does not disappear.</p>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "left",
@@ -1921,7 +1700,7 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
-            "text_color": "#00000099",
+            "text_color": "#f2ede6",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -1946,141 +1725,213 @@
         "vertical_alignment": "center",
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 16,
+        "vertical_alignment_flex_direction_column": "flex-end",
+        "gap": 14,
         "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "background_media": "none",
+        "section_height": "custom",
+        "section_height_custom": 72,
+        "background_media": "image",
         "background_color": "{{ settings.color_palette.color2 }}",
         "video_position": "cover",
         "background_image_position": "cover",
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
+        "toggle_overlay": true,
+        "overlay_color": "#1c171499",
+        "overlay_style": "gradient",
         "gradient_direction": "to top",
         "border": "none",
         "border_width": 1,
         "border_opacity": 100,
         "border_color": "",
         "border_radius": 0,
-        "padding-block-start": 72,
-        "padding-block-end": 56
+        "padding-block-start": 40,
+        "padding-block-end": 48,
+        "background_image": "shopify://shop_images/oberndoerfer-cle-workshop-trunks.jpg"
       }
     },
     "section_about_making": {
-      "type": "section",
+      "type": "media-with-content",
       "blocks": {
-        "text_ab_eyebrow": {
-          "type": "text",
+        "media": {
+          "type": "_media-without-appearance",
+          "static": true,
           "settings": {
-            "text": "<p>The making</p>",
-            "width": "100%",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "custom",
-            "font": "var(--font-subheading--family)",
-            "font_size": "0.75rem",
-            "line_height": "normal",
-            "letter_spacing": "loose",
-            "case": "uppercase",
-            "wrap": "pretty",
-            "text_color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "media_type": "image",
+            "image": "shopify://shop_images/oberndoerfer-trunk-hardware-detail.jpg",
+            "link": "",
+            "video_loop": true,
+            "video_autoplay": false,
+            "image_position": "cover",
+            "video_position": "cover"
           },
           "blocks": {}
         },
-        "text_ab_head": {
-          "type": "text",
-          "name": "t:names.heading",
+        "content": {
+          "type": "_content-without-appearance",
+          "static": true,
           "settings": {
-            "text": "<h2>Every piece passes through the same hands.</h2>",
-            "width": "100%",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "balance",
-            "text_color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 24
           },
-          "blocks": {}
-        },
-        "text_ab_dek": {
-          "type": "text",
-          "settings": {
-            "text": "<p>What that looks like, piece by piece: the hide is chosen by eye and by hand at the tannery, then cut so the grain runs the way the piece will be used, with nothing wasted that could have been a smaller piece.</p><p>The seams that take the strain are stitched by hand, so a thread that wears one day can be replaced without the seam giving way. The hardware comes last: solid brass, galvanised in gold, palladium or black. It is the part you touch every day, so it is the part we refuse to save money on.</p>",
-            "width": "100%",
-            "max_width": "narrow",
-            "alignment": "left",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "text_color": "#00000099",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+          "blocks": {
+            "text_craftCap": {
+              "type": "text",
+              "name": "t:names.caption",
+              "settings": {
+                "text": "<p>THE MAKING</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-subheading--family)",
+                "font_size": "0.75rem",
+                "line_height": "normal",
+                "letter_spacing": "loose",
+                "case": "uppercase",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "group_craftGrp": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "background_media": "none",
+                "background_color": "",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "text_craftHead": {
+                  "type": "text",
+                  "name": "t:names.heading",
+                  "settings": {
+                    "text": "<p>Every piece passes through the same hands</p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "h3",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "text_color": "",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "text_craftBody": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>The hide is chosen by eye and by hand at the tannery, then cut so the grain runs the way the piece will be used. The seams that take the strain are stitched by hand, so a worn thread can be replaced without the seam giving way. The hardware comes last: solid brass, galvanised in gold, palladium or black. It is the part you touch every day.</p>",
+                    "width": "fit-content",
+                    "max_width": "narrow",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "text_color": "",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_craftHead",
+                "text_craftBody"
+              ]
+            },
+            "button_craftBtn": {
+              "type": "button",
+              "settings": {
+                "label": "Materials & Craftsmanship",
+                "link": "/pages/materials-craftsmanship",
+                "open_in_new_tab": false,
+                "style_class": "button-unstyled",
+                "custom_button_background": "{{ settings.color_palette.foreground }}",
+                "custom_button_text": "{{ settings.color_palette.background }}",
+                "custom_button_border": "{{ settings.color_palette.background }}",
+                "link_text_color": "",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
           },
-          "blocks": {}
+          "block_order": [
+            "text_craftCap",
+            "group_craftGrp",
+            "button_craftBtn"
+          ]
         }
       },
-      "block_order": [
-        "text_ab_eyebrow",
-        "text_ab_head",
-        "text_ab_dek"
-      ],
-      "name": "About - Opening chapter",
+      "name": "t:names.editorial",
       "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 16,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "background_media": "none",
+        "media_position": "right",
+        "media_width": "medium",
+        "media_height": "60svh",
+        "section_width": "full-width",
+        "extend_media": true,
         "background_color": "{{ settings.color_palette.color2 }}",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_color": "",
-        "border_radius": 0,
-        "padding-block-start": 72,
-        "padding-block-end": 56
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     }
   },
@@ -2089,11 +1940,10 @@
     "hero_H8KLYr",
     "section_about_open",
     "section_about_journey",
-    "section_about_meaning",
     "section_dpgtkK",
+    "section_about_meaning",
     "section_about_facts",
     "section_about_why",
-    "media_with_content_a7znjk",
     "section_about_making",
     "section_about_bridge",
     "house_facts",

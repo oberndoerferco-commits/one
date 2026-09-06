@@ -52,7 +52,24 @@ home hero: **Trunks, bags and objects for the home. Made by hand, around Milan.*
 ## Page by page (all in the Claude theme)
 
 - Home: eyebrow / "Made by hand, around Milan." / Discover the collections. "Collections" (was SHOP BY CATEGORY). One filled button: Begin a commission.
-- About: hero on the stacked cases (was a 780px model shot). "Leather, learned at the source." Captions under the three photographs.
+  7 September (`scripts/home-copy-pass.py`, text only): the two blocks the owner disliked now
+  speak in the About voice. Made to order: "Nothing is cut until it is yours." and what happens
+  after you choose. The house: "It began with a journey through Italy." in three sentences,
+  pointing at About.
+- About (`scripts/about-design.py`, 7 September): photograph-led, one paragraph per chapter,
+  about 450 words where there were 900. Hero on the trunk bag under the umbrellas of the
+  Riviera terrace (`oberndoerfer-about-hero-terrace.jpg`, a 2:1 crop of the owner's IMG_3936
+  for desktop; the portrait original on mobile). Then: the journey beside the brass emblem being
+  brazed (`Custom.jpg`); three photographs of the hands with captions (studs being set, the
+  bench, the Chesterfield being buttoned); the "set of habits" statement and the three values on
+  the band colour; "The workshops are fewer every year." written over the trunks on the
+  workbench; the making beside the olive trunk corner; Sanremo beside the daybed under the arch;
+  the house in brief; the close over the Miramare lobby. No product cut-outs and no generated
+  images on this page. "The hide, accounted for" moved off to Materials & Craftsmanship.
+  The story the owner settled on stays word for word where it matters: the journey through
+  Italy, artisans who learned from their grandparents, what lies behind the words Made in
+  Italy, stud by stud, heritage / quality / attention to detail, and standing behind those
+  values before mass production makes them disappear.
 - Bespoke: "Made to your measure." with a line and "How a commission works". Four-step process. One filled button: Send.
 - Art of Living: "Furniture, made the way we make a trunk." / The Miramare commission.
 - Custom & Limited Editions: hero on the Trax pieces (6,000px), the four pieces shown as a
