@@ -23,3 +23,9 @@ Diff the two JSON files to see exactly which strings changed.
 - Optional hero line over `hero_eAhQMJ`.
 - Moving "a byproduct of the meat industry" onto the Materials & Craftsmanship page.
 - Changing the page handle to `art-of-living` with a redirect from the old one.
+
+## Assets
+
+| File | What it is |
+| --- | --- |
+| `assets/tshirt-back-folded-cross/` | Vectorised folded-cross T-shirt back print (SVG/PDF/EPS, full-page and trimmed) traced from the raster original |
