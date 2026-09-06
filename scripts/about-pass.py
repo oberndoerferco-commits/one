@@ -32,15 +32,15 @@ o = S["section_about_open"]
 find(o["blocks"], "text_ab_eyebrow")["settings"]["text"] = "<p>The house</p>"
 find(o["blocks"], "text_ab_head")["settings"]["text"] = "<h2>It began with a journey through Italy.</h2>"
 find(o["blocks"], "text_ab_dek")["settings"]["text"] = P(
-    "We went to learn from the artisans who still make leather goods by hand, and to find out what real Italian craftsmanship is when the word is not on a label.",
-    "We came back with a standard, and with a reason for the house to exist: to stand behind that way of working before mass production makes it disappear.")
+    "We set out with one question: what does Italian craftsmanship actually mean, once you take the word off the label? To find out, we went to the people who still practise it, the tanners, the cutters and the stitchers, and asked them to show us.",
+    "What they showed us became the house. Not a brand built around a name, but a way of working we could see was worth keeping, and a promise to keep it before mass production makes it disappear.")
 
 # ---------- 2. the journey chapter, beside the owner's photograph ----------
 j = S["section_about_journey"]
 find(j["blocks"], "text_craftHead")["settings"]["text"] = "<p>What we learned on the road</p>"
 find(j["blocks"], "text_craftBody")["settings"]["text"] = P(
-    "We started in the tanneries, family-run, in Italy, France and Germany, where a hide is still judged by hand before it is bought. Then the small workshops around Milan, where a trunk is built rivet by rivet and a bag’s edge is painted and sanded until it reads as one line.",
-    "We watched, asked, and were corrected. Then we stayed, and began to work alongside the people who had corrected us. Everything we make is still made with them.")
+    "The journey began at the tanneries, family-run, in Italy, France and Germany, where a hide is still turned over and judged by hand before anyone agrees a price. It ended in the small workshops around Milan, where a trunk is built rivet by rivet and the edge of a bag is painted and sanded until it reads as one line.",
+    "In between we watched, we asked, and we were corrected, often. When the journey was over we stayed, and began working alongside the people who had corrected us. They still make everything we sell.")
 
 # ---------- 3. what craftsmanship turned out to be (new chapter) ----------
 def band(key, eyebrow, head, *paras, pad=(72, 56)):
@@ -54,29 +54,32 @@ def band(key, eyebrow, head, *paras, pad=(72, 56)):
     return sec
 
 band("section_about_meaning", "Craftsmanship", "It is not a label. It is a set of habits.",
-    "Real Italian craftsmanship turned out to be nothing you could put on a swing tag. It is the hide chosen for the piece rather than the price. It is the stitch that holds on its own, without glue behind it. It is the hour spent on an edge that most people will never look at.",
-    "Three things run through all of it, and they are the three things we care about.")
+    "Because that is what craftsmanship turned out to be: nothing you could print on a swing tag, but a hundred small decisions made the same way every time. The hide chosen for the piece rather than the price. The stitch that holds on its own, with no glue behind it. The hour spent on an edge most people will never look at.",
+    "Underneath those decisions we kept finding the same three things, and they became the three things this house stands for.")
 
 # ---------- 4. the three values, in the facts row ----------
 f = S["section_about_facts"]
 find(f["blocks"], "text_6pYzpC")["settings"]["text"] = "<p>HERITAGE</p>"
-find(f["blocks"], "text_AFybWJ")["settings"]["text"] = P("Methods handed down in the workshops around Milan, from people who learned them from people. A trunk built the way trunks were always built. We did not invent any of it; we went to learn it, and we keep it.")
+find(f["blocks"], "text_AFybWJ")["settings"]["text"] = P("The methods came to us from people who learned them from people, in workshops that have been doing this for longer than we have been alive. We invented none of it. We went to learn it, and we keep it.")
 find(f["blocks"], "text_8JNP4n")["settings"]["text"] = "<p>QUALITY</p>"
-find(f["blocks"], "text_LWwGLH")["settings"]["text"] = P("Full-grain hides from family tanneries we have visited. Solid brass, not plated zinc. Linings cut and glued by hand. Nothing that will look tired in five years, and everything we make, we repair.")
+find(f["blocks"], "text_LWwGLH")["settings"]["text"] = P("Full-grain hides from tanneries we have stood in. Solid brass where others use plated zinc. Linings cut and glued by hand. Nothing that will look tired in five years, and whatever we make, we repair.")
 find(f["blocks"], "text_y3qQXc")["settings"]["text"] = "<p>ATTENTION TO DETAIL</p>"
-find(f["blocks"], "text_rbMHBf")["settings"]["text"] = P("The things you notice on the tenth day, not the first. A stitch count kept even where no one will look. A lock that closes with the right sound. An edge that is one line, not three.")
+find(f["blocks"], "text_rbMHBf")["settings"]["text"] = P("The things you notice on the tenth day, not the first: a stitch count kept even where no one will look, a lock that closes with the right sound, an edge that reads as one line rather than three.")
 
 # ---------- 5. why it matters now (new chapter) ----------
 band("section_about_why", "Why now", "The workshops are fewer every year.",
-    "Much of what is sold as Italian leather today is made quickly, in volume, far from the hands it is named after. The workshops that still do it the slow way are small, and there are fewer of them each year. When one closes, what it knew closes with it.",
-    "We work with them, pay for the time a thing takes, and make in small numbers so that it stays worth their while. That is not a marketing position. It is the point of the house.")
+    "Those habits are the reason the house exists, and the reason it exists now. Much of what is sold as Italian leather today is made quickly and in volume, far from the hands it is named after. The workshops that still do it slowly are small, and each year there are fewer. When one closes, what it knew closes with it.",
+    "So we work with them, pay for the time a thing takes, and make in small numbers so that it stays worth their while. That is not a marketing position. It is the point of the house.")
 
 # ---------- 6. how a piece is made (new chapter, before Sanremo) ----------
 band("section_about_making", "The making", "Every piece passes through the same hands.",
-    "The hide first: chosen by eye and hand at the tannery, then cut so that the grain runs the way the piece will be used.",
-    "The edges next: painted, dried and sanded, then painted again, until the layers read as a single line.",
-    "The stitching: stitched by hand where the piece takes its strain, so a thread that wears can be replaced without the seam giving way.",
-    "The hardware last: solid brass, galvanised in gold, palladium or black. It is the part you touch every day, so it is the part we refuse to save money on.")
+    "What that looks like, piece by piece: the hide is chosen by eye and by hand at the tannery, then cut so the grain runs the way the piece will be used. The edges are painted, dried and sanded, then painted again, until the layers read as a single line.",
+    "The seams that take the strain are stitched by hand, so a thread that wears one day can be replaced without the seam giving way. The hardware comes last: solid brass, galvanised in gold, palladium or black. It is the part you touch every day, so it is the part we refuse to save money on.")
+
+# ---------- 6b. Sanremo: a bridge from the making to the room ----------
+b = find(S["section_about_bridge"]["blocks"], "text_craftBody")["settings"]
+if "The same hands" not in b["text"]:
+    b["text"] = "<p>The same hands, and the same habits, now make rooms. " + b["text"].lstrip()[3:] if b["text"].lstrip().startswith("<p>") else "<p>The same hands, and the same habits, now make rooms.</p>" + b["text"]
 
 # ---------- 7. the close ----------
 find(S["section_about_close"]["blocks"], "text_close01")["settings"]["text"] = "<p>Made the old way, in small numbers, for people who notice the difference.</p>"

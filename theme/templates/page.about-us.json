@@ -272,7 +272,7 @@
         "text_ab_dek": {
           "type": "text",
           "settings": {
-            "text": "<p>We went to learn from the artisans who still make leather goods by hand, and to find out what real Italian craftsmanship is when the word is not on a label.</p><p>We came back with a standard, and with a reason for the house to exist: to stand behind that way of working before mass production makes it disappear.</p>",
+            "text": "<p>We set out with one question: what does Italian craftsmanship actually mean, once you take the word off the label? To find out, we went to the people who still practise it, the tanners, the cutters and the stitchers, and asked them to show us.</p><p>What they showed us became the house. Not a brand built around a name, but a way of working we could see was worth keeping, and a promise to keep it before mass production makes it disappear.</p>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "left",
@@ -424,7 +424,7 @@
                 "text_craftBody": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>We started in the tanneries, family-run, in Italy, France and Germany, where a hide is still judged by hand before it is bought. Then the small workshops around Milan, where a trunk is built rivet by rivet and a bag’s edge is painted and sanded until it reads as one line.</p><p>We watched, asked, and were corrected. Then we stayed, and began to work alongside the people who had corrected us. Everything we make is still made with them.</p>",
+                    "text": "<p>The journey began at the tanneries, family-run, in Italy, France and Germany, where a hide is still turned over and judged by hand before anyone agrees a price. It ended in the small workshops around Milan, where a trunk is built rivet by rivet and the edge of a bag is painted and sanded until it reads as one line.</p><p>In between we watched, we asked, and we were corrected, often. When the journey was over we stayed, and began working alongside the people who had corrected us. They still make everything we sell.</p>",
                     "width": "fit-content",
                     "max_width": "narrow",
                     "alignment": "left",
@@ -908,7 +908,7 @@
                 "text_AFybWJ": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Methods handed down in the workshops around Milan, from people who learned them from people. A trunk built the way trunks were always built. We did not invent any of it; we went to learn it, and we keep it.</p>",
+                    "text": "<p>The methods came to us from people who learned them from people, in workshops that have been doing this for longer than we have been alive. We invented none of it. We went to learn it, and we keep it.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -1059,7 +1059,7 @@
                 "text_LWwGLH": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Full-grain hides from family tanneries we have visited. Solid brass, not plated zinc. Linings cut and glued by hand. Nothing that will look tired in five years, and everything we make, we repair.</p>",
+                    "text": "<p>Full-grain hides from tanneries we have stood in. Solid brass where others use plated zinc. Linings cut and glued by hand. Nothing that will look tired in five years, and whatever we make, we repair.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -1210,7 +1210,7 @@
                 "text_rbMHBf": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>The things you notice on the tenth day, not the first. A stitch count kept even where no one will look. A lock that closes with the right sound. An edge that is one line, not three.</p>",
+                    "text": "<p>The things you notice on the tenth day, not the first: a stitch count kept even where no one will look, a lock that closes with the right sound, an edge that reads as one line rather than three.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "center",
@@ -1586,7 +1586,7 @@
                 "text_craftBody": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>The Miramare — a belle-époque palace above the Ligurian sea — lived with our trunks for a season, then asked us to make its furniture. Sofas, armchairs, poufs, and a trunk that became a table.</p>",
+                    "text": "<p>The same hands, and the same habits, now make rooms. The Miramare — a belle-époque palace above the Ligurian sea — lived with our trunks for a season, then asked us to make its furniture. Sofas, armchairs, poufs, and a trunk that became a table.</p>",
                     "width": "fit-content",
                     "max_width": "narrow",
                     "alignment": "left",
@@ -1795,7 +1795,7 @@
         "text_ab_dek": {
           "type": "text",
           "settings": {
-            "text": "<p>Real Italian craftsmanship turned out to be nothing you could put on a swing tag. It is the hide chosen for the piece rather than the price. It is the stitch that holds on its own, without glue behind it. It is the hour spent on an edge that most people will never look at.</p><p>Three things run through all of it, and they are the three things we care about.</p>",
+            "text": "<p>Because that is what craftsmanship turned out to be: nothing you could print on a swing tag, but a hundred small decisions made the same way every time. The hide chosen for the piece rather than the price. The stitch that holds on its own, with no glue behind it. The hour spent on an edge most people will never look at.</p><p>Underneath those decisions we kept finding the same three things, and they became the three things this house stands for.</p>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "left",
@@ -1910,7 +1910,7 @@
         "text_ab_dek": {
           "type": "text",
           "settings": {
-            "text": "<p>Much of what is sold as Italian leather today is made quickly, in volume, far from the hands it is named after. The workshops that still do it the slow way are small, and there are fewer of them each year. When one closes, what it knew closes with it.</p><p>We work with them, pay for the time a thing takes, and make in small numbers so that it stays worth their while. That is not a marketing position. It is the point of the house.</p>",
+            "text": "<p>Those habits are the reason the house exists, and the reason it exists now. Much of what is sold as Italian leather today is made quickly and in volume, far from the hands it is named after. The workshops that still do it slowly are small, and each year there are fewer. When one closes, what it knew closes with it.</p><p>So we work with them, pay for the time a thing takes, and make in small numbers so that it stays worth their while. That is not a marketing position. It is the point of the house.</p>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "left",
@@ -2025,7 +2025,7 @@
         "text_ab_dek": {
           "type": "text",
           "settings": {
-            "text": "<p>The hide first: chosen by eye and hand at the tannery, then cut so that the grain runs the way the piece will be used.</p><p>The edges next: painted, dried and sanded, then painted again, until the layers read as a single line.</p><p>The stitching: stitched by hand where the piece takes its strain, so a thread that wears can be replaced without the seam giving way.</p><p>The hardware last: solid brass, galvanised in gold, palladium or black. It is the part you touch every day, so it is the part we refuse to save money on.</p>",
+            "text": "<p>What that looks like, piece by piece: the hide is chosen by eye and by hand at the tannery, then cut so the grain runs the way the piece will be used. The edges are painted, dried and sanded, then painted again, until the layers read as a single line.</p><p>The seams that take the strain are stitched by hand, so a thread that wears one day can be replaced without the seam giving way. The hardware comes last: solid brass, galvanised in gold, palladium or black. It is the part you touch every day, so it is the part we refuse to save money on.</p>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "left",
