@@ -1,4 +1,4 @@
-"""3 Sept 2026 — visual design + writing-style pass on the story pages of the Claude theme.
+"""3 Sept 2026 - visual design + writing-style pass on the story pages of the Claude theme.
 
 House style applied here (documented in docs/website-design-review.html):
   * eyebrow   = Inter 12px, uppercase, loose tracking (text block, custom preset)
@@ -119,7 +119,7 @@ for sid, cap, head, body, btn, capt, headt, bodyt in chapters:
 w = find(d["sections"]["section_hgPEK7"]["blocks"], "text_MBqUTP")
 w["settings"].update(STATEMENT); w["settings"]["text"] = "<p>What we bring to it</p>"; w["settings"]["width"] = "100%"; w["settings"]["alignment"] = "center"
 
-# How a commission works — a new four-step section modelled on the timing strip
+# How a commission works - a new four-step section modelled on the timing strip
 close = d["sections"]["section_FRT4RP"]
 strip = close["blocks"]["group_timing_strip"]
 step_tpl = strip["blocks"]["timing_leather"]
@@ -149,7 +149,7 @@ d["sections"]["section_process"] = sec
 if "section_process" not in d["order"]:
     d["order"].insert(d["order"].index("section_hgPEK7"), "section_process")
 
-# The choices — sentence case, house voice
+# The choices - sentence case, house voice
 ch = find(d["sections"]["section_JRRjMP"]["blocks"], "text_cBpFEM"); ch["settings"].update(STATEMENT); ch["settings"]["text"] = "<p>The choices</p>"
 acc = d["sections"]["section_JRRjMP"]["blocks"]["accordion_nHzCXk"]["blocks"]
 copy_ = {

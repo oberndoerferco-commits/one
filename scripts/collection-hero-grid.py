@@ -5,7 +5,7 @@ The 5 September commerce pass rebuilt these pages and the owner preferred the or
 they were restored (see scripts/commerce-pass.py, where the rebuild loop is off). Two pieces
 of that pass were then asked for back, and only those two:
 
-  1. the hero — the home page's hero section with a photograph of the family, "Collection" as
+  1. the hero - the home page's hero section with a photograph of the family, "Collection" as
      the eyebrow, the collection title as the h1 and its own line beneath, in place of the
      plain "Collection heading" text section;
   2. four tiles across on desktop (three between 750 and 989px), by a style rule, since
@@ -40,7 +40,7 @@ GRID_CSS = ("<style>@media screen and (min-width:990px){.product-grid--grid{--pr
 # A collection hero is never a photograph of a product. The grid below it is full of cut-outs;
 # a cut-out on top repeats them, and where the object is one of the products it reads as the same
 # picture twice (Bags opened on the ostrich case that was also its first tile). Heroes are
-# material, hardware, the bench, or a room — checked against each collection's own products.
+# material, hardware, the bench, or a room - checked against each collection's own products.
 HERO_IMAGES = {
   "collection.json": "oberndoerfer-cle-atelier-bench.jpg",              # the all-collection page: the bench
   "collection.bags.json": "oberndoerfer-calf-leather-hide-macro.jpg",   # the hide the bags are cut from

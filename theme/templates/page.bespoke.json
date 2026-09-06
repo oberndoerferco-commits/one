@@ -322,7 +322,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>A bespoke piece starts with a conversation and ends with an object that exists nowhere else — a trunk cut to the watches you own, a bag to the way you carry, a sofa to the room it will live in. It is drawn, made and finished in our ateliers around Milan, and we work with you directly from first sketch to last stitch.</p>",
+            "text": "<p>A bespoke piece starts with a conversation and ends with an object that exists nowhere else - a trunk cut to the watches you own, a bag to the way you carry, a sofa to the room it will live in. It is drawn, made and finished in our ateliers around Milan, and we work with you directly from first sketch to last stitch.</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -1208,7 +1208,7 @@
           "type": "text",
           "name": "t:names.text",
           "settings": {
-            "text": "<p>Every commission is a private dialogue with the atelier. You decide the piece; we tell you honestly what the material will and will not do. The Miramare’s furniture began exactly this way — as one conversation about one room.</p>",
+            "text": "<p>Every commission is a private dialogue with the atelier. You decide the piece; we tell you honestly what the material will and will not do. The Miramare’s furniture began exactly this way - as one conversation about one room.</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",

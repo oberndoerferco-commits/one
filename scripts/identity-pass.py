@@ -1,4 +1,4 @@
-"""4 Sept 2026 — one identity across the Claude theme.
+"""4 Sept 2026 - one identity across the Claude theme.
 
 Applies the rules in docs/identity.md:
   * every page opens the same way: full-bleed photograph, ink gradient, eyebrow /

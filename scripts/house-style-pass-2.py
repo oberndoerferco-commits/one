@@ -1,4 +1,4 @@
-"""3 Sept 2026 — house style on About us and Contact (same grammar as house-style-pass.py)."""
+"""3 Sept 2026 - house style on About us and Contact (same grammar as house-style-pass.py)."""
 import json, re, copy, pathlib
 HDR = re.compile(r"(/\*.*?\*/\s*)", re.S)
 def load(p):

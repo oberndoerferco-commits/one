@@ -300,7 +300,7 @@
         "dek": {
           "type": "text",
           "settings": {
-            "text": "<p>Every piece starts with the same two questions: what is this material, and whose hands are making it. What follows is the plain answer — the hides, the hardware, the ateliers, and the time each one takes.</p>",
+            "text": "<p>Every piece starts with the same two questions: what is this material, and whose hands are making it. What follows is the plain answer - the hides, the hardware, the ateliers, and the time each one takes.</p>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "left",
@@ -478,7 +478,7 @@
                 "body": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>We work primarily in full-grain leather — the highest grade available, its surface left intact so the natural grain, pores, and markings remain. Our leather comes from tanneries in Italy, France, and Germany, and is a byproduct of the meat industry. Left uncorrected, full-grain leather softens and develops a natural patina with use rather than wearing out.</p><p>Within the collection, specific pieces use specific leathers chosen for the job: grained Togo calf leather for its durability and soft hand feel, smooth goat leather as an interior lining, pebbled calf leather for trays and coasters, and nubuck where a softer, sanded surface is wanted. All are chosen for durability, beauty, and the way they age.</p>",
+                    "text": "<p>We work primarily in full-grain leather - the highest grade available, its surface left intact so the natural grain, pores, and markings remain. Our leather comes from tanneries in Italy, France, and Germany, and is a byproduct of the meat industry. Left uncorrected, full-grain leather softens and develops a natural patina with use rather than wearing out.</p><p>Within the collection, specific pieces use specific leathers chosen for the job: grained Togo calf leather for its durability and soft hand feel, smooth goat leather as an interior lining, pebbled calf leather for trays and coasters, and nubuck where a softer, sanded surface is wanted. All are chosen for durability, beauty, and the way they age.</p>",
                     "width": "fit-content",
                     "max_width": "narrow",
                     "alignment": "left",
@@ -645,7 +645,7 @@
                 "body": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Exotic leathers — crocodile, alligator, and ostrich — follow a separate supply chain from our full-grain leather. The hides may originate outside Europe and are processed in Italy. Our alligator, for example, is Alligator mississippiensis, the American alligator, sourced from licensed farms in Louisiana. All exotic leather is sourced and traded in full compliance with CITES regulations, with documentation available on request.</p>",
+                    "text": "<p>Exotic leathers - crocodile, alligator, and ostrich - follow a separate supply chain from our full-grain leather. The hides may originate outside Europe and are processed in Italy. Our alligator, for example, is Alligator mississippiensis, the American alligator, sourced from licensed farms in Louisiana. All exotic leather is sourced and traded in full compliance with CITES regulations, with documentation available on request.</p>",
                     "width": "fit-content",
                     "max_width": "narrow",
                     "alignment": "left",
@@ -979,7 +979,7 @@
                 "body": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Every piece is made by hand in our ateliers around Milan, by artisans we chose ourselves after visiting their workshops and seeing their work firsthand. Edges are hand-stitched and hand-burnished, a finishing step that keeps leather from fraying at the seams over years of use. Pieces are made in small batches, to order — never mass-produced. Read more about the people and the ateliers behind the work on our <a href=\"https://www.oberndoerferco.com/pages/about-us\" title=\"About Oberndörfer Milano\">About</a> page.</p>",
+                    "text": "<p>Every piece is made by hand in our ateliers around Milan, by artisans we chose ourselves after visiting their workshops and seeing their work firsthand. Edges are hand-stitched and hand-burnished, a finishing step that keeps leather from fraying at the seams over years of use. Pieces are made in small batches, to order - never mass-produced. Read more about the people and the ateliers behind the work on our <a href=\"https://www.oberndoerferco.com/pages/about-us\" title=\"About Oberndörfer Milano\">About</a> page.</p>",
                     "width": "fit-content",
                     "max_width": "narrow",
                     "alignment": "left",
@@ -1198,7 +1198,7 @@
         "dek": {
           "type": "text",
           "settings": {
-            "text": "<p>Full-grain leather is a living material: wipe it with a soft, dry cloth, keep it away from water and direct sunlight, and let it rest in its dust bag when not in use. With time and handling it develops a patina that is part of its character, not a flaw. For the complete guide — conditioning, storage, and our repair and restoration service — see our full <a href=\"https://www.oberndoerferco.com/pages/leather-care-guide\" title=\"Leather Care Guide\">Leather Care Guide</a>.</p><p>The full guide is on our <a href=\"/pages/leather-care-guide\">Leather Care</a> page.</p>",
+            "text": "<p>Full-grain leather is a living material: wipe it with a soft, dry cloth, keep it away from water and direct sunlight, and let it rest in its dust bag when not in use. With time and handling it develops a patina that is part of its character, not a flaw. For the complete guide - conditioning, storage, and our repair and restoration service - see our full <a href=\"https://www.oberndoerferco.com/pages/leather-care-guide\" title=\"Leather Care Guide\">Leather Care Guide</a>.</p><p>The full guide is on our <a href=\"/pages/leather-care-guide\">Leather Care</a> page.</p>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "left",

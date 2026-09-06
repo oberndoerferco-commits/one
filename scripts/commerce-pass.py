@@ -1,4 +1,4 @@
-"""5 Sept 2026 — the identity applied to collection pages and the product page.
+"""5 Sept 2026 - the identity applied to collection pages and the product page.
 
 Collection: a hero in the site grammar (editorial image or collection image, eyebrow,
 Marcellus h1, one line), four cards across on the page ground with Marcellus titles and

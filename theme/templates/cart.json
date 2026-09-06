@@ -59,7 +59,7 @@
           "type": "text",
           "name": "Shipping & returns reassurance",
           "settings": {
-            "text": "<p>Handmade in Italy — crafted in small batches in ateliers around Milan</p><p>Shipping — Free DHL Express, delivered in 7–14 days (7 business days processing + 2–7 business days transit)</p><p>Returns — 14 days from delivery</p>",
+            "text": "<p>Handmade in Italy - crafted in small batches in ateliers around Milan</p><p>Shipping - Free DHL Express, delivered in 7–14 days (7 business days processing + 2–7 business days transit)</p><p>Returns - 14 days from delivery</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "left",

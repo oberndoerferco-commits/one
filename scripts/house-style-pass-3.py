@@ -1,4 +1,4 @@
-"""3 Sept 2026 — house style on Custom & Limited Editions (page handle trax-nyc)."""
+"""3 Sept 2026 - house style on Custom & Limited Editions (page handle trax-nyc)."""
 import json, re, copy, pathlib
 HDR = re.compile(r"(/\*.*?\*/\s*)", re.S)
 def load(p):

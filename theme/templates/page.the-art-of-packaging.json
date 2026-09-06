@@ -300,7 +300,7 @@
         "dek": {
           "type": "text",
           "settings": {
-            "text": "<p>A piece leaves Milan wrapped in something made much the same way it was. The weight of the lid, the grain of the board, the way a tag is tied — these are decided as deliberately as a stitch line, because they are the first thing the piece says for itself.</p>",
+            "text": "<p>A piece leaves Milan wrapped in something made much the same way it was. The weight of the lid, the grain of the board, the way a tag is tied - these are decided as deliberately as a stitch line, because they are the first thing the piece says for itself.</p>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "left",
