@@ -29,3 +29,4 @@ Diff the two JSON files to see exactly which strings changed.
 | File | What it is |
 | --- | --- |
 | `assets/tshirt-back-folded-cross/` | Vectorised folded-cross T-shirt back print (SVG/PDF/EPS, full-page and trimmed) traced from the raster original |
+| `scripts/vectorize_lineart.py` | The tracer that produced it — fits straight lines to straight edges instead of tracing JPEG noise |

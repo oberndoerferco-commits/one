@@ -10,51 +10,70 @@ Vector version of the folded-cross back print, traced from the raster original.
 | --- | --- | --- |
 | `tshirt-back-folded-cross.svg` | 909.82 × 1320 pt | Web, digital layout — keeps the original page position |
 | `tshirt-back-folded-cross.pdf` | 909.82 × 1320 pt | Print, keeps the original page position |
-| `tshirt-back-folded-cross.eps` | 909.82 × 1320 pt | Screen-print / older RIPs |
-| `tshirt-back-folded-cross-trimmed.svg` | 441.91 × 596.27 pt | Artwork cropped to its own bounds — place and scale on the garment |
-| `tshirt-back-folded-cross-trimmed.pdf` | 441.91 × 596.27 pt | Same, for print |
-| `tshirt-back-folded-cross-trimmed.eps` | 441.91 × 596.27 pt | Same, for screen print |
-| `preview.png` | 921 × 1243 px | Raster preview of the trimmed artwork only |
+| `tshirt-back-folded-cross.eps` | 909.82 × 1320 pt | Screen print / older RIPs |
+| `tshirt-back-folded-cross-trimmed.svg` | 442.18 × 596.38 pt | Artwork cropped to its own bounds — place and scale on the garment |
+| `tshirt-back-folded-cross-trimmed.pdf` | 442.18 × 596.38 pt | Same, for print |
+| `tshirt-back-folded-cross-trimmed.eps` | 442.18 × 596.38 pt | Same, for screen print |
+| `preview.png` | 922 × 1243 px | Raster preview of the trimmed artwork only |
 | `source-raster.pdf` | 909.82 × 1320 pt | The raster original this was traced from |
 
-Artwork size in the trimmed files is 155.9 × 210.4 mm (6.14 × 8.28 in) — it is
+Artwork size in the trimmed files is 156.0 × 210.4 mm (6.14 × 8.28 in). It is
 vector, so scale it to whatever the print calls for.
 
 All vector files are pure black fills (`#000000`) on a transparent background,
-no strokes. The design is one connected outline network plus 14 solid dots,
-80 contours and 13,086 curve segments in total.
+no strokes, even-odd fill rule. 80 contours, 2,288 segments — 1,148 straight
+lines and 1,140 curves.
 
 ## How it was traced
 
 `source-raster.pdf` is a wrapper around a single 1668 × 2420 px JPEG (132 dpi,
-grayscale line art, ~3 px strokes). It contains no vector data, so the outlines
-were traced rather than extracted.
+greyscale line art, ~3 px strokes, one connected outline network plus 14 solid
+dots). It holds no vector data, so the outlines were traced rather than
+extracted.
 
-1. Extract the embedded JPEG from the PDF.
-2. Upsample 6× with Lanczos and threshold at 50% grey, so the trace lands on
-   sub-pixel edge positions instead of the source pixel grid.
-3. Trace with potrace 1.16:
-   `potrace -b {svg,pdf,eps} -r 792 -a 1.0 -O 0.2 -t 2 -u 10 [--tight]`
+Reproduce with:
 
-`-r 792` is 6 × the source's 132 dpi, which reproduces the original page size
-exactly. `--tight` produces the trimmed variants.
+```sh
+python3 scripts/vectorize_lineart.py source-raster.pdf . --name tshirt-back-folded-cross
+```
 
-The parameters were picked by rasterising each candidate back to the source
-resolution and comparing against the original:
+### Why not just potrace
 
-| Upsample | Soft IoU vs. original | Ink weight |
-| --- | --- | --- |
-| 3× | 0.954 | 1.0030 |
-| 4× | 0.958 | 1.0023 |
-| **6×** | **0.971** | **1.0022** |
-| 8× | 0.969 | 1.0023 |
+The first attempt used potrace at maximum fidelity, and that was the wrong
+target. On a 132 dpi JPEG the pixel staircase and compression ringing along a
+3 px stroke are noise, but a general-purpose tracer cannot tell them from
+signal — it fitted them faithfully, and every edge that should have been dead
+straight came out with a visible ripple. It scored 0.971 soft IoU against the
+source precisely *because* it reproduced the noise.
 
-6× is the best of the four; 8× starts fitting JPEG ringing. Varying `-a`
-(0.8–1.334) and `-O` (0.1–0.3) moved IoU by less than 0.001, so the defaults
-were kept. Pre-blurring the bitmap cut node count ~10% but lost fidelity, so it
-was not used. Ink weight 1.0022 means the traced artwork carries 0.2% more ink
-than the original — stroke weight is preserved.
+`scripts/vectorize_lineart.py` targets the drawing instead of the pixels:
 
-Tracing an anti-aliased 3 px stroke caps IoU well below 1.0 (half a pixel of
-edge error on a 3 px line costs roughly 15%), so 0.971 is a close trace, not a
-loose one. Side-by-side at 4× zoom, tapers, spike tips and dots all match.
+1. Sub-pixel iso-contours from the greyscale, so the starting point is the
+   anti-aliased edge rather than the pixel grid.
+2. Break each contour into straight runs, then place each vertex at the
+   intersection of its neighbours' least-squares lines — long edges come out
+   as single straight segments, and corners stay sharp instead of being
+   rounded off by the simplification.
+3. Refit the runs that turn gently and consistently in one direction as smooth
+   Béziers. The design is mostly straight, but the tapered spike shapes are
+   genuinely curved, and polygonising everything left them visibly faceted.
+4. Drop contours under 1 px² — sub-pixel specks, invisible at any print size.
+
+The result is 2,288 segments against potrace's 13,086, with straight edges
+actually straight.
+
+### On the fidelity numbers
+
+| | Soft IoU vs. source | Ink weight | Segments |
+| --- | --- | --- | --- |
+| potrace, max fidelity | 0.971 | 1.0022 | 13,086 |
+| this tracer | 0.936 | 0.9994 | 2,288 |
+
+The lower IoU is the point, not a regression: the gap is the digitisation noise
+this tracer declines to reproduce. Ink weight 0.9994 shows nothing was thinned
+or fattened in the process — stroke weight matches the original to within 0.1%.
+
+Parameters were chosen by sweeping and inspecting the result at 16× zoom.
+`--line-tol` (default 0.5 source px) is the knob that matters: it sets how much
+deviation counts as noise rather than shape. Below ~0.4 some ripple survives;
+above ~0.8 genuine curves start being flattened into chords.
