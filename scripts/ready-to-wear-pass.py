@@ -75,6 +75,12 @@ def drop_block(blocks, key):
             return True
     return False
 drop_block(main, "custom_liquid_atelier")
+# the Colour option is linked to the store's Color swatches (7 Sept), so the picker draws them
+def set_swatches(blocks):
+    for b in blocks.values():
+        if b["type"] == "variant-picker": b["settings"]["show_swatches"] = True
+        set_swatches(b.get("blocks", {}))
+set_swatches(main)
 for sec in p["sections"].values():
     if "custom_liquid_atelier" in sec.get("block_order", []): sec["block_order"].remove("custom_liquid_atelier")
 ch = p["sections"]["section_pdp_chapter"]["blocks"]
