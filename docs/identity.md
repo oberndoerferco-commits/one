@@ -100,13 +100,15 @@ no longer be written to it through the API, so changes go to the draft copy
   neck label). "Ready to Wear" in the main menu (Collections) and the footer. Published to the
   Online Store and Shop channels (a collection made through the API is not, by default).
 - Products: the two Embroidered T-Shirts (spelling corrected from "Embroided") carry sizes
-  S, M, L, XL, XXL at the same price, colour swatches between black and white, and stay DRAFT
-  until the owner enters stock. The five caps are live. The other twelve T-shirts and the four
+  S, M, L, XL, XXL at the same price, colour swatches between black and white, one unit per size
+  tracked at the Schönblickweg 1 location (the owner's call, 7 Sept), and are live on the Online
+  Store and Shop channels. The five caps are live. The other twelve T-shirts and the four
   puffer jackets are drafts at price 0 and are not touched.
 - Collection image (the tile on the home tabs and the collections page): a real photograph of the
-  black cap composited onto the taupe studio ground the owner's other collection tiles use
-  (`oberndoerfer-coll-ready-to-wear.jpg`, made with PIL from `obm-lane-cap-black.jpg` and the
-  plate sampled from the Home Accessories tile). No AI generation: there is no ChatGPT or OpenAI
+  black Embroidered T-Shirt composited onto the taupe studio ground the owner's other collection
+  tiles use (`oberndoerfer-coll-ready-to-wear-tee.jpg`, made with PIL from
+  `obm-tee-tonal-black-front.jpg` and the plate sampled from the Home Accessories tile; a cap
+  version was made first and replaced at the owner's request). No AI generation: there is no ChatGPT or OpenAI
   connector in the claude.ai registry, and the Higgsfield account holds no credits.
 - The owner set the Ready to Wear page's hero to `sewing-machine-in-use.jpg` with a 21svh band on
   the live theme's generic collection template (7 Sept 10:35). Synced to the repo and to the draft
