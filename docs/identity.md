@@ -75,6 +75,9 @@ home hero: **Trunks, bags and objects for the home. Made by hand, around Milan.*
   Italy, stud by stud, heritage / quality / attention to detail, and standing behind those
   values before mass production makes them disappear.
 - Bespoke: "Made to your measure." with a line and "How a commission works". Four-step process. One filled button: Send.
+  7 September: a photograph-led redraw was proposed as a mockup only
+  (https://claude.ai/code/artifact/aa00ee2e-8d89-422d-b01f-cc0e788f1f05) and the owner chose
+  to keep the page as it is. Do not build it unless asked.
 - Art of Living: "Furniture, made the way we make a trunk." / The Miramare commission.
   7 September: the owner rearranged this page in the theme editor (hero on the gallery
   photograph without the overlay, a new chapter with the Chesterfield being buttoned, a new
