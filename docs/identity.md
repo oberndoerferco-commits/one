@@ -76,6 +76,10 @@ home hero: **Trunks, bags and objects for the home. Made by hand, around Milan.*
   values before mass production makes them disappear.
 - Bespoke: "Made to your measure." with a line and "How a commission works". Four-step process. One filled button: Send.
 - Art of Living: "Furniture, made the way we make a trunk." / The Miramare commission.
+  7 September: the owner rearranged this page in the theme editor (hero on the gallery
+  photograph without the overlay, a new chapter with the Chesterfield being buttoned, a new
+  photograph in the materials chapter). The repo copy is that version, synced verbatim.
+  Leave it as it is.
 - Custom & Limited Editions: hero on the Trax pieces (6,000px), the four pieces shown as a
   framed grid straight after the introduction instead of a button that sends the reader away,
   the taped workshop photograph removed from the second slideshow, one filled button (Send).
