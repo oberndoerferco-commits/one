@@ -132,6 +132,16 @@ the owner publishes it.
   same `swatches` card block Bags and Trunks already had; hovering a swatch shows that colour's
   photograph on the card and the click goes to that variant. The same link makes the product
   page's Colour picker a pair of swatches.
+- One card per colour on the Ready to Wear page (the owner, later the same evening: "make it
+  possible that also the white tee is seen in collection page"). Horizon has no setting for it,
+  so a small script in the hero's css block (`theme/assets-src/obm-colour-cards.js`, inlined by
+  `ready-to-wear-pass.py`) clones the card for each further colour swatch, moves that colour's
+  photographs to the front of the card's slideshow, ticks its swatch and points every link at its
+  variant. It rebuilds the overflow-list shadow root that cloneNode drops. Only the Ready to Wear
+  template carries it; on the leather collections a bag in three colours stays one card.
+- The owner renamed the draft prints on 7 Sept (T-Shirt OM, T-Shirt OBERNDÖRFER MILANO, T-Shirt
+  with Logo; Constellation is now also called "The Star T-Shirt", the same title as the Star). The
+  handles are unchanged, so the redirects still hold. Titles are the owner's.
 - Theme: collection.ready-to-wear.json (hero on the sewing machine), product.ready-to-
   wear.json (the leather page rewritten for cotton: care, made-to-order line, the "Made in Italy"
   chapter with the sewing machine as its photograph, the eyebrow fixed to Ready to Wear, and no

@@ -38,6 +38,13 @@ hero = d["sections"][d["order"][0]]
 # the owner's pick for this page (set on the live theme's generic collection template, 7 Sept 10:35)
 for k in ("image_1", "background_image"):
     if k in hero["settings"]: hero["settings"][k] = IMG + "sewing-machine-in-use.jpg"
+# one card per colour (7 Sept evening, the owner: "make it possible that also the white tee is seen
+# in collection page"): a script in the hero's css block clones a card for each further colour swatch,
+# shows that colour's photograph and links to its variant. Source: theme/assets-src/obm-colour-cards.js.
+js = open("theme/assets-src/obm-colour-cards.js").read().strip()
+css = d["sections"]["section"]["blocks"]["css"]["settings"]
+if "obm-colour-cards" not in css["custom_liquid"]:
+    css["custom_liquid"] += "<script id=\"obm-colour-cards\">" + js + "</script>"
 save(T + "collection.ready-to-wear.json", h, d)
 
 # ---------- 2. the product page for cotton ----------
