@@ -1,7 +1,7 @@
 # Oberndörfer Milano — the identity, in one page
 
-Read this before touching the live theme "OBERNDÖRFER MILANO" (id 205924630853; the first
-published copy, 204228231493, is now "OBERNDÖRFER MILANO backup"). It is the result of the
+Read this before touching the live theme "OBERNDÖRFER MILANO 1" (id 205967393093, published
+7 September evening; "OBERNDÖRFER MILANO" 205924630853 is the copy before it). It is the result of the
 4 September 2026 comparison against Goyard, Moynat, Valextra, Serapian, Métier, Bennett
 Winch, Globe-Trotter, Au Départ, Connolly, Ettinger and Brunello Cucinelli at desktop width,
 and it is what every page of the theme now follows. Scripts: `scripts/house-style-pass*.py`
@@ -92,8 +92,9 @@ home hero: **Trunks, bags and objects for the home. Made by hand, around Milan.*
 
 ## Ready to Wear (7 September, `scripts/ready-to-wear-pass.py`)
 
-The theme went live as "OBERNDÖRFER MILANO" on 7 September (first 204228231493, then the Ready
-to Wear draft copy 205924630853, which the owner published the same evening). The MCP refuses
+The theme went live as "OBERNDÖRFER MILANO" on 7 September (204228231493, then the Ready to
+Wear copy 205924630853, then "OBERNDÖRFER MILANO 1" 205967393093 with the home text and the
+tee chapter, each published by the owner the same evening). The MCP refuses
 theme file writes to whichever theme is live, so a change is uploaded to an unpublished copy and
 the owner publishes it.
 
