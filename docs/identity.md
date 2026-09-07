@@ -119,6 +119,13 @@ the owner publishes it.
   today to the shop"): active, on the Online Store and Shop channels, the Ready to Wear product
   template, one unit per size and colour tracked at Schönblickweg. Chrome exists in black only,
   so the Ready to Wear page shows nine T-shirt cards: five black, four white.
+- Back-print shirts lead with the back (the owner, on seeing four near-identical fronts: "show
+  the back photograph on the cards"): the way Palm Angels, Off-White or Represent do it, the
+  printed side is the first photograph and the plain front the second. Done by reordering each
+  product's media (black back, black front, white back, white front) and pointing every variant
+  at its colour's back photograph, on OM, OBERNDÖRFER MILANO, Star patch, with Logo, and on the
+  four older back-print drafts (Star, Gothic, Serigraph, Short sleeved). Embroidered, Crest and
+  Wordmark print on the front and keep the front first.
 - Collection image (the tile on the home tabs and the collections page): a real photograph of the
   black Embroidered T-Shirt composited onto the taupe studio ground the owner's other collection
   tiles use (`oberndoerfer-coll-ready-to-wear-tee.jpg`, made with PIL from
