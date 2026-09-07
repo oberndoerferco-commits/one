@@ -122,8 +122,16 @@ the owner publishes it.
   version was made first and replaced at the owner's request). No AI generation: there is no ChatGPT or OpenAI
   connector in the claude.ai registry, and the Higgsfield account holds no credits.
 - The owner set the Ready to Wear page's hero to `sewing-machine-in-use.jpg` with a 21svh band on
-  the live theme's generic collection template (7 Sept 10:35). Synced to the repo and to the draft
-  copy, and collection.ready-to-wear.json now clones that template rather than Trunks.
+  the live theme's generic collection template (7 Sept 10:35), and later restyled its cards (no
+  frame, #F5F2ED ground, 20px padding). Synced to the repo; collection.ready-to-wear.json clones
+  that template rather than Trunks.
+- Colour swatches on the cards (7 Sept evening, the owner: "show color swatches and different
+  color of one object in the collection page"): the T-shirts' Colour option is linked to the
+  store's Color metaobjects (Black #000000, White #FFFFFF, both already in the store), which is
+  what Horizon needs to draw a swatch. The generic and Ready to Wear collection templates carry the
+  same `swatches` card block Bags and Trunks already had; hovering a swatch shows that colour's
+  photograph on the card and the click goes to that variant. The same link makes the product
+  page's Colour picker a pair of swatches.
 - Theme: collection.ready-to-wear.json (hero on the sewing machine), product.ready-to-
   wear.json (the leather page rewritten for cotton: care, made-to-order line, the "Made in Italy"
   chapter with the sewing machine as its photograph, the eyebrow fixed to Ready to Wear, and no
