@@ -39,11 +39,11 @@ S = d["sections"]
 
 # ---------- 1. hero: the bag on the Riviera terrace, not the stacked cases ----------
 hero = S["hero_H8KLYr"]
-# desktop: a 2:1 crop of IMG_3936 that keeps the umbrella and the palms (uploaded to Files as
-# oberndoerfer-about-hero-terrace.jpg); mobile: the owner's original portrait frame.
-hero["settings"].update({"image_1": IMG + "oberndoerfer-about-hero-terrace.jpg",
-                         "custom_mobile_media": True, "media_type_1_mobile": "image",
-                         "image_1_mobile": IMG + "IMG_3936.jpg"})
+# The Miramare lobby: the house's sofa, armchairs and trunk table in a real room. (The terrace
+# trunk bag was tried first and rejected by the owner: it is already the Bags collection hero.)
+hero["settings"].update({"image_1": IMG + "IMG_5642_8dccfc93-d5be-4a54-a4b3-062942ac0c1a.heic",
+                         "custom_mobile_media": False})
+hero["settings"].pop("image_1_mobile", None)
 find(hero["blocks"], "eyebrow")["settings"]["text"] = "<p>About us</p>"
 find(hero["blocks"], "title")["settings"]["text"] = "<h1>Leather, learned at the source.</h1>"
 
@@ -152,9 +152,9 @@ find(b["blocks"], "text_craftBody")["settings"]["text"] = P(
     "The same hands, and the same habits, now make rooms. The Miramare, a belle-époque palace above the Ligurian sea, lived with our trunks for a season, then asked us to make its furniture. Sofas, armchairs, poufs, and a trunk that became a table.")
 find(b["blocks"], "button_craftBtn")["settings"].update({"label": "Art of Living", "link": "/pages/oberndorfer-x-miramare-sanremo"})
 
-# ---------- 9. the close: the Miramare lobby, the line in white ----------
+# ---------- 9. the close: the blue poufs in the marble lounge, the line in white ----------
 c = S["section_about_close"]
-c["settings"].update({"background_image": IMG + "IMG_5642_8dccfc93-d5be-4a54-a4b3-062942ac0c1a.heic",
+c["settings"].update({"background_image": IMG + "oberndoerfer-aol-lounge-poufs.jpg",
                       "toggle_overlay": True, "overlay_color": "#1c171499", "overlay_style": "gradient",
                       "gradient_direction": "to top", "section_height": "custom", "section_height_custom": 56,
                       "padding-block-start": 80, "padding-block-end": 80, "gap": 20})

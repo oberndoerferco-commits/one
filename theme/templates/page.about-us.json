@@ -185,10 +185,10 @@
       "name": "t:names.hero_bottom_aligned",
       "settings": {
         "media_type_1": "image",
-        "image_1": "shopify://shop_images/oberndoerfer-about-hero-terrace.jpg",
+        "image_1": "shopify://shop_images/IMG_5642_8dccfc93-d5be-4a54-a4b3-062942ac0c1a.heic",
         "media_type_2": "image",
         "stack_media_on_mobile": false,
-        "custom_mobile_media": true,
+        "custom_mobile_media": false,
         "media_type_1_mobile": "image",
         "media_type_2_mobile": "image",
         "link": "",
@@ -212,8 +212,7 @@
         "blurred_reflection": false,
         "reflection_opacity": 75,
         "padding-block-start": 40,
-        "padding-block-end": 40,
-        "image_1_mobile": "shopify://shop_images/IMG_3936.jpg"
+        "padding-block-end": 40
       }
     },
     "section_about_open": {
@@ -1502,7 +1501,7 @@
         "background_media": "image",
         "background_color": "{{ settings.color_palette.background }}",
         "video_position": "cover",
-        "background_image": "shopify://shop_images/IMG_5642_8dccfc93-d5be-4a54-a4b3-062942ac0c1a.heic",
+        "background_image": "shopify://shop_images/oberndoerfer-aol-lounge-poufs.jpg",
         "background_image_position": "cover",
         "toggle_overlay": true,
         "overlay_color": "#1c171499",

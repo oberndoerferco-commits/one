@@ -57,14 +57,15 @@ home hero: **Trunks, bags and objects for the home. Made by hand, around Milan.*
   after you choose. The house: "It began with a journey through Italy." in three sentences,
   pointing at About.
 - About (`scripts/about-design.py`, 7 September): photograph-led, one paragraph per chapter,
-  about 450 words where there were 900. Hero on the trunk bag under the umbrellas of the
-  Riviera terrace (`oberndoerfer-about-hero-terrace.jpg`, a 2:1 crop of the owner's IMG_3936
-  for desktop; the portrait original on mobile). Then: the journey beside the brass emblem being
+  about 450 words where there were 900. Hero on the Miramare lobby, the house's sofa, armchairs
+  and trunk table in a real room (the owner's IMG_5642; the terrace trunk bag was tried first
+  and rejected because it is already the Bags collection hero, and a page hero is never a
+  collection hero). Then: the journey beside the brass emblem being
   brazed (`Custom.jpg`); three photographs of the hands with captions (studs being set, the
   bench, the Chesterfield being buttoned); the "set of habits" statement and the three values on
   the band colour; "The workshops are fewer every year." written over the trunks on the
   workbench; the making beside the olive trunk corner; Sanremo beside the daybed under the arch;
-  the house in brief; the close over the Miramare lobby. No product cut-outs and no generated
+  the house in brief; the close over the blue poufs in the marble lounge. No product cut-outs and no generated
   images on this page. "The hide, accounted for" moved off to Materials & Craftsmanship.
   The story the owner settled on stays word for word where it matters: the journey through
   Italy, artisans who learned from their grandparents, what lies behind the words Made in
