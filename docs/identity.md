@@ -65,7 +65,8 @@ home hero: **Trunks, bags and objects for the home. Made by hand, around Milan.*
   bench, the Chesterfield being buttoned); the "set of habits" statement and the three values on
   the band colour; "The workshops are fewer every year." written over the trunks on the
   workbench; the making beside the olive trunk corner; Sanremo beside the daybed under the arch;
-  the house in brief; the close over the blue poufs in the marble lounge. No product cut-outs and no generated
+  the house in brief; the close over the palace hall with the high-back chair (the lounge poufs
+  and the calf hide macro were tried there and rejected by the owner). No product cut-outs and no generated
   images on this page. "The hide, accounted for" moved off to Materials & Craftsmanship.
   The story the owner settled on stays word for word where it matters: the journey through
   Italy, artisans who learned from their grandparents, what lies behind the words Made in

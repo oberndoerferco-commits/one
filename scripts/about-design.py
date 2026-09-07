@@ -152,9 +152,10 @@ find(b["blocks"], "text_craftBody")["settings"]["text"] = P(
     "The same hands, and the same habits, now make rooms. The Miramare, a belle-époque palace above the Ligurian sea, lived with our trunks for a season, then asked us to make its furniture. Sofas, armchairs, poufs, and a trunk that became a table.")
 find(b["blocks"], "button_craftBtn")["settings"].update({"label": "Art of Living", "link": "/pages/oberndorfer-x-miramare-sanremo"})
 
-# ---------- 9. the close: the blue poufs in the marble lounge, the line in white ----------
+# ---------- 9. the close: the palace hall with the high-back chair, the line in white ----------
+# (the lounge poufs and the calf hide macro were both tried here and rejected by the owner)
 c = S["section_about_close"]
-c["settings"].update({"background_image": IMG + "oberndoerfer-aol-lounge-poufs.jpg",
+c["settings"].update({"background_image": IMG + "oberndoerfer-aol-lobby.jpg",
                       "toggle_overlay": True, "overlay_color": "#1c171499", "overlay_style": "gradient",
                       "gradient_direction": "to top", "section_height": "custom", "section_height_custom": 56,
                       "padding-block-start": 80, "padding-block-end": 80, "gap": 20})
