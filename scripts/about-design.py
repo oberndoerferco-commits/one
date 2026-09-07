@@ -8,8 +8,9 @@ detail, standing behind those values before mass production makes them disappear
 
 What this pass does
 - Every chapter now has a photograph, and the photographs are the house in the world or at the
-  bench: the Riviera terrace, the tannery, studs being set, the Chesterfield being buttoned, the
-  trunks on the workbench, the Miramare daybed. No product cut-outs, no generated images.
+  bench: the Miramare daybed, the brass emblem being brazed, studs being set, the Chesterfield
+  being buttoned, the trunks on the workbench, the lobby. No product cut-outs, no generated
+  images. The hero and the Sanremo photograph are the owner's own picks (7 September).
 - The copy is the same story cut to one paragraph per chapter (about 900 words become about 450).
 - The house grammar from docs/identity.md throughout: full-bleed hero with the ink gradient and
   a bottom-left eyebrow and serif title, centred statements in Marcellus, captions under
@@ -39,9 +40,10 @@ S = d["sections"]
 
 # ---------- 1. hero: the bag on the Riviera terrace, not the stacked cases ----------
 hero = S["hero_H8KLYr"]
-# The Miramare lobby: the house's sofa, armchairs and trunk table in a real room. (The terrace
-# trunk bag was tried first and rejected by the owner: it is already the Bags collection hero.)
-hero["settings"].update({"image_1": IMG + "IMG_5642_8dccfc93-d5be-4a54-a4b3-062942ac0c1a.heic",
+# The owner's choice (theme editor, 7 September): the red daybed under the arched window above
+# the sea. (The terrace trunk bag was tried first and rejected, it is already the Bags hero; the
+# Miramare lobby was tried next and the owner swapped it for the daybed.)
+hero["settings"].update({"image_1": IMG + "oberndoerfer-aol-daybed-arch.jpg",
                          "custom_mobile_media": False})
 hero["settings"].pop("image_1_mobile", None)
 find(hero["blocks"], "eyebrow")["settings"]["text"] = "<p>About us</p>"
@@ -142,10 +144,10 @@ find(mk["blocks"], "text_craftBody")["settings"]["text"] = P(
     "The hide is chosen by eye and by hand at the tannery, then cut so the grain runs the way the piece will be used. The seams that take the strain are stitched by hand, so a worn thread can be replaced without the seam giving way. The hardware comes last: solid brass, galvanised in gold, palladium or black. It is the part you touch every day.")
 find(mk["blocks"], "button_craftBtn")["settings"].update({"label": "Materials & Craftsmanship", "link": "/pages/materials-craftsmanship"})
 
-# ---------- 8. Sanremo: the daybed under the arch ----------
+# ---------- 8. Sanremo: the lobby ensemble (the owner's choice; the daybed moved to the hero) ----------
 b = S["section_about_bridge"]
 b["settings"]["media_position"] = "left"
-b["blocks"]["media"]["settings"]["image"] = IMG + "oberndoerfer-aol-daybed-arch.jpg"
+b["blocks"]["media"]["settings"]["image"] = IMG + "oberndoerfer-aol-ensemble.jpg"
 find(b["blocks"], "text_craftCap")["settings"]["text"] = "<p>SANREMO</p>"
 find(b["blocks"], "text_craftHead")["settings"]["text"] = "<p>From the trunk to the room</p>"
 find(b["blocks"], "text_craftBody")["settings"]["text"] = P(
