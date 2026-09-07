@@ -115,6 +115,10 @@ the owner publishes it.
   Constellation) the note now describes both. Prices: the four prints added on 7 Sept (Initials,
   Chrome, Constellation, Lattice) are 130 EUR at the owner's request; the six older drafts stay at
   0 until the owner prices them. The five caps are live. The four puffer jackets are untouched.
+  Late on 7 Sept the four new prints went live too (the owner: "add the new tshirts we added
+  today to the shop"): active, on the Online Store and Shop channels, the Ready to Wear product
+  template, one unit per size and colour tracked at Schönblickweg. Chrome exists in black only,
+  so the Ready to Wear page shows nine T-shirt cards: five black, four white.
 - Collection image (the tile on the home tabs and the collections page): a real photograph of the
   black Embroidered T-Shirt composited onto the taupe studio ground the owner's other collection
   tiles use (`oberndoerfer-coll-ready-to-wear-tee.jpg`, made with PIL from
