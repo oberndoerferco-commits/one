@@ -1,6 +1,7 @@
 # Oberndörfer Milano — the identity, in one page
 
-Read this before touching the Claude theme (id 204228231493). It is the result of the
+Read this before touching the live theme "OBERNDÖRFER MILANO" (id 205924630853; the first
+published copy, 204228231493, is now "OBERNDÖRFER MILANO backup"). It is the result of the
 4 September 2026 comparison against Goyard, Moynat, Valextra, Serapian, Métier, Bennett
 Winch, Globe-Trotter, Au Départ, Connolly, Ettinger and Brunello Cucinelli at desktop width,
 and it is what every page of the theme now follows. Scripts: `scripts/house-style-pass*.py`
@@ -54,8 +55,9 @@ home hero: **Trunks, bags and objects for the home. Made by hand, around Milan.*
 - Home: eyebrow / "Made by hand, around Milan." / Discover the collections. "Collections" (was SHOP BY CATEGORY). One filled button: Begin a commission.
   7 September (`scripts/home-copy-pass.py`, text only): the two blocks the owner disliked now
   speak in the About voice. Made to order: "Nothing is cut until it is yours." and what happens
-  after you choose. The house: "It began with a journey through Italy." in three sentences,
-  pointing at About.
+  after you choose. The house: "It began with a journey through Italy." then two sentences
+  ("We went looking for what lies behind the words Made in Italy…", rewritten once more the same
+  evening at the owner's "this text can be improved"), pointing at About.
 - About (`scripts/about-design.py`, 7 September): photograph-led, one paragraph per chapter,
   about 450 words where there were 900. Hero on the red daybed under the arched window above
   the sea, the owner's own pick in the theme editor (the terrace trunk bag was tried first and
@@ -90,20 +92,28 @@ home hero: **Trunks, bags and objects for the home. Made by hand, around Milan.*
 
 ## Ready to Wear (7 September, `scripts/ready-to-wear-pass.py`)
 
-The theme went live as "OBERNDÖRFER MILANO" (id 204228231493) on 7 September. Theme files can
-no longer be written to it through the API, so changes go to the draft copy
-"OBERNDÖRFER MILANO - Ready to Wear (draft)" (id 205924630853) and the owner publishes.
+The theme went live as "OBERNDÖRFER MILANO" on 7 September (first 204228231493, then the Ready
+to Wear draft copy 205924630853, which the owner published the same evening). The MCP refuses
+theme file writes to whichever theme is live, so a change is uploaded to an unpublished copy and
+the owner publishes it.
 
 - Store: automated collection "Ready to Wear" (handle ready-to-wear): product type T-Shirt, Cap
   or Jacket. Anything typed that way joins it by itself, so the section grows as products are
   added. Same three types added to the "Products" catch-all. Editorial line and image (the woven
   neck label). "Ready to Wear" in the main menu (Collections) and the footer. Published to the
   Online Store and Shop channels (a collection made through the API is not, by default).
-- Products: the two Embroidered T-Shirts (spelling corrected from "Embroided") carry sizes
-  S, M, L, XL, XXL at the same price, colour swatches between black and white, one unit per size
-  tracked at the Schönblickweg 1 location (the owner's call, 7 Sept), and are live on the Online
-  Store and Shop channels. The five caps are live. The other twelve T-shirts and the four
-  puffer jackets are drafts at price 0 and are not touched.
+- Products: one product per print, not one per colour (the owner, 7 Sept evening: "put the
+  tshirts with the same print together"). The Embroidered T-Shirt (spelling corrected from
+  "Embroided") is live with Colour (Black, White) and Size (S to XXL), the same price on every
+  variant, each colour's photographs on its variants, one unit per size and colour tracked at the
+  Schönblickweg 1 location. The old "- White" product is archived and both old handles redirect.
+  The same merge was done on the draft prints (Crest, Wordmark, Star, Gothic, Serigraph, Short
+  sleeved, Initials, Constellation, Lattice; Chrome exists in black only): the black product is
+  the survivor, the white product archived, its two photographs copied over. The `custom.siblings`
+  metafield is gone with the merge. Where the two colours had different craft notes (Initials,
+  Constellation) the note now describes both. Prices: the four prints added on 7 Sept (Initials,
+  Chrome, Constellation, Lattice) are 130 EUR at the owner's request; the six older drafts stay at
+  0 until the owner prices them. The five caps are live. The four puffer jackets are untouched.
 - Collection image (the tile on the home tabs and the collections page): a real photograph of the
   black Embroidered T-Shirt composited onto the taupe studio ground the owner's other collection
   tiles use (`oberndoerfer-coll-ready-to-wear-tee.jpg`, made with PIL from
@@ -113,12 +123,15 @@ no longer be written to it through the API, so changes go to the draft copy
 - The owner set the Ready to Wear page's hero to `sewing-machine-in-use.jpg` with a 21svh band on
   the live theme's generic collection template (7 Sept 10:35). Synced to the repo and to the draft
   copy, and collection.ready-to-wear.json now clones that template rather than Trunks.
-- Theme (draft copy): collection.ready-to-wear.json (hero on the sewing machine), product.ready-to-
+- Theme: collection.ready-to-wear.json (hero on the sewing machine), product.ready-to-
   wear.json (the leather page rewritten for cotton: care, made-to-order line, the "Made in Italy"
-  chapter, the eyebrow fixed to Ready to Wear, and no "Prefer a different leather" line; the same
-  line is also skipped for cotton types on the generic product page), the Collections tab on the home page, the
-  collections list page. Template suffixes are set on the collection and the seven products; on
-  the live theme they fall back to the default templates until the draft is published.
+  chapter with the sewing machine as its photograph, the eyebrow fixed to Ready to Wear, and no
+  "Prefer a different leather" line; the same line is also skipped for cotton types on the generic
+  product page), the Collections tab on the home page, the collections list page. Template
+  suffixes are set on the collection and the T-shirt and cap products. The owner published the
+  draft as "OBERNDÖRFER MILANO" (id 205924630853) on 7 Sept; the first live theme (204228231493)
+  is the previous copy. The neck-label photograph was removed from every T-shirt product and from
+  the chapter (the owner: "remove the picture of the neck label from all tshirts").
 
 ## Collection and product pages (commerce pass, 5 September)
 

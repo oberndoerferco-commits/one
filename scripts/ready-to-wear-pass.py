@@ -7,8 +7,8 @@ that way joins it on its own), its editorial line and image, the same three type
 "Products" catch-all, "Ready to Wear" in the main menu and the footer.
 
 Theme side, produced here for the draft copy of the live theme:
-- templates/collection.ready-to-wear.json: the collection page with its own hero (the woven neck
-  label) and the same grid as every other collection.
+- templates/collection.ready-to-wear.json: the collection page with its own hero (the sewing
+  machine) and the same grid as every other collection.
 - templates/product.ready-to-wear.json: the product page for cotton. Same page as leather, with
   the care row, the "made by hand" chapter and the made-to-order line written for a T-shirt or a
   cap instead of a hide.
@@ -83,7 +83,9 @@ find(ch, "text_craftHead")["settings"]["text"] = "<p>Cotton, made the way we mak
 find(ch, "text_craftBody")["settings"]["text"] = ("<p>The T-shirts and caps come from the same house as the trunks and are held to the same habits: the cloth is washed before it is cut, the mark is embroidered in thread or cut from calf leather rather than printed on, and the label inside the neck is woven. Made in Italy, in small runs.</p>")
 media = p["sections"]["section_pdp_chapter"]["blocks"].get("media")
 if media and "image" in media.get("settings", {}):
-    media["settings"]["image"] = IMG + "obm-tee-neck-label.jpg"
+    # the neck label was here first; the owner wants it off every T-shirt page (7 Sept), so the chapter
+    # shows the sewing machine, the same photograph as the Ready to Wear hero
+    media["settings"]["image"] = IMG + "sewing-machine-in-use.jpg"
 save(T + "product.ready-to-wear.json", h, p)
 
 # ---------- 2b. the generic product page: the leather line never shows on cotton ----------

@@ -1278,7 +1278,7 @@
                 "text_craftBody": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>We set out to learn what Italian craftsmanship means once you take the word off the label, and stayed to work with the artisans who showed us. They still make everything we sell, in small workshops around Milan, stud by stud.</p>",
+                    "text": "<p>We went looking for what lies behind the words Made in Italy and found it in small workshops around Milan, with artisans who learned the trade from their grandparents. They make everything we sell, by hand, stud by stud.</p>",
                     "width": "fit-content",
                     "max_width": "narrow",
                     "alignment": "left",

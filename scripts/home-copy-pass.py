@@ -45,8 +45,9 @@ for k, st in t.items():
         st["text"] = "<p>The house</p>"
     elif "ateliers around Milan" in x and len(x) < 80 or "journey through Italy" in x:
         st["text"] = "<p>It began with a journey through Italy.</p>"
-    elif "Full-grain hides from family tanneries" in x or "take the word off the label" in x:
-        st["text"] = P("We set out to learn what Italian craftsmanship means once you take the word off the label, and stayed to work with the artisans who showed us. They still make everything we sell, in small workshops around Milan, stud by stud.")
+    elif "Full-grain hides from family tanneries" in x or "take the word off the label" in x or "learned the trade" in x:
+        # 7 September, second pass: the owner's "this text can be improved" on the first version
+        st["text"] = P("We went looking for what lies behind the words Made in Italy and found it in small workshops around Milan, with artisans who learned the trade from their grandparents. They make everything we sell, by hand, stud by stud.")
 
 save(p, h, d)
 print("home copy pass done")
