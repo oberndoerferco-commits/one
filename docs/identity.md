@@ -88,6 +88,27 @@ home hero: **Trunks, bags and objects for the home. Made by hand, around Milan.*
   the taped workshop photograph removed from the second slideshow, one filled button (Send).
 - Materials, Packaging, Custom, Contact, Leather Care: same hero grammar; Contact hero on the atelier bench (was a 1232px file).
 
+## Ready to Wear (7 September, `scripts/ready-to-wear-pass.py`)
+
+The theme went live as "OBERNDÖRFER MILANO" (id 204228231493) on 7 September. Theme files can
+no longer be written to it through the API, so changes go to the draft copy
+"OBERNDÖRFER MILANO - Ready to Wear (draft)" (id 205924630853) and the owner publishes.
+
+- Store: automated collection "Ready to Wear" (handle ready-to-wear): product type T-Shirt, Cap
+  or Jacket. Anything typed that way joins it by itself, so the section grows as products are
+  added. Same three types added to the "Products" catch-all. Editorial line and image (the woven
+  neck label). "Ready to Wear" in the main menu (Collections) and the footer. Published to the
+  Online Store and Shop channels (a collection made through the API is not, by default).
+- Products: the two Embroidered T-Shirts (spelling corrected from "Embroided") carry sizes
+  S, M, L, XL, XXL at the same price, colour swatches between black and white, and stay DRAFT
+  until the owner enters stock. The five caps are live. The other twelve T-shirts and the four
+  puffer jackets are drafts at price 0 and are not touched.
+- Theme (draft copy): collection.ready-to-wear.json (hero on the neck label), product.ready-to-
+  wear.json (the leather page rewritten for cotton: care, made-to-order line, the "Made in Italy"
+  chapter, the eyebrow fixed to Ready to Wear), the Collections tab on the home page, the
+  collections list page. Template suffixes are set on the collection and the seven products; on
+  the live theme they fall back to the default templates until the draft is published.
+
 ## Collection and product pages (commerce pass, 5 September)
 
 - Collection pages: the layout is the original one — framed tiles touching, the grid full

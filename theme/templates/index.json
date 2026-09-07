@@ -163,6 +163,13 @@
             "collection": "sunglasses",
             "label": "Eyewear"
           }
+        },
+        "cat_rtw": {
+          "type": "category",
+          "settings": {
+            "collection": "ready-to-wear",
+            "label": "Ready to Wear"
+          }
         }
       },
       "block_order": [
@@ -171,7 +178,8 @@
         "cat_slg",
         "cat_travel",
         "cat_home",
-        "cat_eyewear"
+        "cat_eyewear",
+        "cat_rtw"
       ],
       "name": "Category tabs",
       "settings": {
