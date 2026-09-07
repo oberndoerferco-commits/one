@@ -115,7 +115,8 @@ no longer be written to it through the API, so changes go to the draft copy
   copy, and collection.ready-to-wear.json now clones that template rather than Trunks.
 - Theme (draft copy): collection.ready-to-wear.json (hero on the sewing machine), product.ready-to-
   wear.json (the leather page rewritten for cotton: care, made-to-order line, the "Made in Italy"
-  chapter, the eyebrow fixed to Ready to Wear), the Collections tab on the home page, the
+  chapter, the eyebrow fixed to Ready to Wear, and no "Prefer a different leather" line; the same
+  line is also skipped for cotton types on the generic product page), the Collections tab on the home page, the
   collections list page. Template suffixes are set on the collection and the seven products; on
   the live theme they fall back to the default templates until the draft is published.
 

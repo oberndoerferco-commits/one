@@ -65,9 +65,18 @@ if eyebrow:
     # a cap can also sit in Small Leather Goods; on this template the family is always Ready to Wear
     eyebrow["settings"]["custom_liquid"] = ("<p style=\"font-family:var(--font-subheading--family);font-size:0.75rem;letter-spacing:0.12em;"
         "text-transform:uppercase;color:rgba(28,23,20,0.6);margin:0\">Ready to Wear &middot; {{ product.type }}</p>")
-atelier = find(main, "custom_liquid_atelier")
-if atelier:
-    atelier["settings"]["custom_liquid"] = "<p style=\"font-size:0.9375rem;color:rgba(28,23,20,0.7)\">Made in Italy, in small runs. When a colour or size sells out it is made again, not discontinued.</p>"
+# the "Prefer a different leather, colour or lining?" line has no place under a T-shirt: the block goes
+def drop_block(blocks, key):
+    for k, b in list(blocks.items()):
+        if k == key:
+            del blocks[k]; return True
+        if drop_block(b.get("blocks", {}), key):
+            if key in b.get("block_order", []): b["block_order"].remove(key)
+            return True
+    return False
+drop_block(main, "custom_liquid_atelier")
+for sec in p["sections"].values():
+    if "custom_liquid_atelier" in sec.get("block_order", []): sec["block_order"].remove("custom_liquid_atelier")
 ch = p["sections"]["section_pdp_chapter"]["blocks"]
 find(ch, "eyebrow")["settings"]["text"] = "<p>Made in Italy</p>"
 find(ch, "text_craftHead")["settings"]["text"] = "<p>Cotton, made the way we make everything else</p>"
@@ -76,6 +85,14 @@ media = p["sections"]["section_pdp_chapter"]["blocks"].get("media")
 if media and "image" in media.get("settings", {}):
     media["settings"]["image"] = IMG + "obm-tee-neck-label.jpg"
 save(T + "product.ready-to-wear.json", h, p)
+
+# ---------- 2b. the generic product page: the leather line never shows on cotton ----------
+h2, g = load(T + "product.json")
+ga = find(g["sections"]["main"]["blocks"], "custom_liquid_atelier")
+if ga and "product.type" not in ga["settings"]["custom_liquid"]:
+    ga["settings"]["custom_liquid"] = ("{%- unless product.type == 'T-Shirt' or product.type == 'Cap' or product.type == 'Jacket' -%}"
+        + ga["settings"]["custom_liquid"] + "{%- endunless -%}")
+save(T + "product.json", h2, g)
 
 # ---------- 3. home: the Collections tabs ----------
 h, i = load(T + "index.json")
