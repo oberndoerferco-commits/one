@@ -33,10 +33,11 @@ IMG = "shopify://shop_images/"
 T = "theme/templates/"
 
 # ---------- 1. the collection page ----------
-h, d = load(T + "collection.trunks.json")
+h, d = load(T + "collection.json")  # the generic page, as the owner set it up for Ready to Wear on the live theme
 hero = d["sections"][d["order"][0]]
+# the owner's pick for this page (set on the live theme's generic collection template, 7 Sept 10:35)
 for k in ("image_1", "background_image"):
-    if k in hero["settings"]: hero["settings"][k] = IMG + "obm-tee-neck-label.jpg"
+    if k in hero["settings"]: hero["settings"][k] = IMG + "sewing-machine-in-use.jpg"
 save(T + "collection.ready-to-wear.json", h, d)
 
 # ---------- 2. the product page for cotton ----------

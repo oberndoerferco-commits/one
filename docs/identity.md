@@ -103,7 +103,15 @@ no longer be written to it through the API, so changes go to the draft copy
   S, M, L, XL, XXL at the same price, colour swatches between black and white, and stay DRAFT
   until the owner enters stock. The five caps are live. The other twelve T-shirts and the four
   puffer jackets are drafts at price 0 and are not touched.
-- Theme (draft copy): collection.ready-to-wear.json (hero on the neck label), product.ready-to-
+- Collection image (the tile on the home tabs and the collections page): a real photograph of the
+  black cap composited onto the taupe studio ground the owner's other collection tiles use
+  (`oberndoerfer-coll-ready-to-wear.jpg`, made with PIL from `obm-lane-cap-black.jpg` and the
+  plate sampled from the Home Accessories tile). No AI generation: there is no ChatGPT or OpenAI
+  connector in the claude.ai registry, and the Higgsfield account holds no credits.
+- The owner set the Ready to Wear page's hero to `sewing-machine-in-use.jpg` with a 21svh band on
+  the live theme's generic collection template (7 Sept 10:35). Synced to the repo and to the draft
+  copy, and collection.ready-to-wear.json now clones that template rather than Trunks.
+- Theme (draft copy): collection.ready-to-wear.json (hero on the sewing machine), product.ready-to-
   wear.json (the leather page rewritten for cotton: care, made-to-order line, the "Made in Italy"
   chapter, the eyebrow fixed to Ready to Wear), the Collections tab on the home page, the
   collections list page. Template suffixes are set on the collection and the seven products; on
