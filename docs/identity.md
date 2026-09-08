@@ -133,7 +133,23 @@ the owner publishes it.
   script swaps the label and keeps it swapped), and the Made to order row explains that the order
   is paid today, dispatched when the run arrives, and can be cancelled before dispatch; the card
   eyebrow on both collection templates reads Pre-order. To end the pre-order: remove the tag and
-  set real stock. No dispatch date is promised anywhere, since none was given.
+  set real stock. No shipping date is promised anywhere, since none was given. The note was
+  reworded once ("write to you with the date" read oddly to the owner): "We will email you the
+  shipping date."
+- The gallery shows the chosen colour only (8 Sept, the owner: "in the white product page you can
+  see a picture of the black tshirt front"). Horizon's "hide unselected variant media" only hides
+  the other variants' own images, so the unattached fronts still showed. The snippet
+  `snippets/product-media-gallery-content.liquid` is patched (kept in the repo): with that setting
+  on, a colour's photographs are its variant image plus the unattached media that follow it, up to
+  the next variant image; media before the first variant image belong to every colour. The setting
+  is on for the Ready to Wear product template only.
+- The size row (8 Sept, the owner: "the size section looks basic"): the way Jacquemus, Zegna and
+  Loro Piana set it, sizes are plain letters in a row, the chosen one with a hairline under it,
+  unavailable ones struck through, the option name a tracked eyebrow. Horizon's boxed buttons are
+  restyled by CSS in a custom-liquid block on the Ready to Wear template; no theme file changed.
+- Known weak files: the Embroidered T-Shirt photographs (`obm-tee-tonal-*`) are soft; the white
+  pair was uploaded as 26 to 29 KB JPEGs and cannot be sharpened into a good file. Replace them
+  with the originals when the owner has them.
 - Collection image (the tile on the home tabs and the collections page): a real photograph of the
   black Embroidered T-Shirt composited onto the taupe studio ground the owner's other collection
   tiles use (`oberndoerfer-coll-ready-to-wear-tee.jpg`, made with PIL from

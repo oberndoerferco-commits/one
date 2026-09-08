@@ -60,12 +60,35 @@ main = p["sections"]["main"]["blocks"]
 PREORDER_NOTE = ("{%- if product.tags contains 'preorder' -%}"
   "<div class=\"obm-preorder\" style=\"border-top:1px solid #d3cabc;border-bottom:1px solid #d3cabc;padding:14px 0;margin:4px 0 16px\">"
   "<p style=\"font-family:var(--font-subheading--family);font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:#1c1714;margin:0 0 6px\">Pre-order</p>"
-  "<p style=\"font-size:0.9375rem;line-height:1.6;margin:0\">Not in stock yet. The first run is being made in Italy. Order now and we dispatch the moment it arrives, and write to you with the date.</p>"
+  "<p style=\"font-size:0.9375rem;line-height:1.6;margin:0\">Not in stock yet. The first run is being made in Italy now. Order today and it ships the moment the run arrives. We will email you the shipping date.</p>"
   "</div>"
   "<script>(function(){function fix(){document.querySelectorAll('button[name=\"add\"], .sticky-add-to-cart__button').forEach(function(b){var w=document.createTreeWalker(b,NodeFilter.SHOW_TEXT),n;while((n=w.nextNode())){if(n.nodeValue.trim()==='Add to cart'){n.nodeValue=n.nodeValue.replace('Add to cart','Pre-order');}}});}"
   "fix();new MutationObserver(fix).observe(document.body,{childList:true,subtree:true,characterData:true});})();</script>"
   "{%- endif -%}")
 pd = main["product-details"]
+# the gallery shows the chosen colour's photographs only (8 Sept, the owner: "in the white product
+# page you can see a picture of the black tshirt front"). Needs the patched
+# snippets/product-media-gallery-content.liquid, which groups a variant image with the media after it.
+main["media-gallery"]["settings"]["hide_variants"] = True
+# the size row: letters with a hairline under the chosen one, the way Jacquemus, Zegna and Loro Piana
+# set it (8 Sept, the owner: "the size section looks basic")
+PICKER_CSS = ("<style>"
+ ".variant-option legend{font-family:var(--font-subheading--family);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(28,23,20,.6);margin:0 0 10px}"
+ ".variant-option--buttons{display:flex;flex-wrap:wrap;gap:0 26px;row-gap:8px}"
+ ".variant-option--buttons legend{width:100%;flex:0 0 100%}"
+ ".variant-option--buttons .variant-option__button-label{position:relative;display:inline-flex;align-items:center;justify-content:flex-start;min-width:0;width:auto;height:auto;min-height:0;padding:0;margin:0;background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0}"
+ ".variant-option--buttons .variant-option__button-label__pill{display:none!important}"
+ ".variant-option--buttons .variant-option__button-label__text{font-family:var(--font-body--family);font-size:.875rem;letter-spacing:.08em;color:rgba(28,23,20,.5);padding:2px 0 6px;border-bottom:1px solid transparent;transition:color .15s,border-color .15s}"
+ ".variant-option--buttons .variant-option__button-label:hover .variant-option__button-label__text{color:#1c1714}"
+ ".variant-option--buttons .variant-option__button-label:has(input:checked) .variant-option__button-label__text{color:#1c1714;border-bottom-color:#1c1714}"
+ ".variant-option--buttons .variant-option__button-label:has(input[data-option-available=\"false\"]) .variant-option__button-label__text{color:rgba(28,23,20,.3);text-decoration:line-through}"
+ ".variant-option--buttons .variant-option__button-label:has(input:focus-visible) .variant-option__button-label__text{outline:1px solid #1c1714;outline-offset:4px}"
+ "</style>")
+if "obm_picker_css" not in pd["blocks"]:
+    pd["blocks"]["obm_picker_css"] = {"type": "custom-liquid", "settings": {"custom_liquid": PICKER_CSS}, "blocks": {}}
+    pd["block_order"].insert(pd["block_order"].index("variant_picker_R3rGDr"), "obm_picker_css")
+else:
+    pd["blocks"]["obm_picker_css"]["settings"]["custom_liquid"] = PICKER_CSS
 if "preorder_note" not in pd["blocks"]:
     pd["blocks"]["preorder_note"] = {"type": "custom-liquid", "settings": {"custom_liquid": PREORDER_NOTE}, "blocks": {}}
     pd["block_order"].insert(pd["block_order"].index("buy_buttons_eYQEYi"), "preorder_note")
@@ -76,7 +99,7 @@ for b in care["blocks"].values():
 made = find(main, "row_made")
 for b in made["blocks"].values():
     if b["type"] == "custom-liquid":
-        b["settings"]["custom_liquid"] = ("{%- if product.tags contains 'preorder' -%}This piece is on pre-order: the first run is being made in Italy now. Your order is placed today, paid today, and dispatched the moment the run arrives. We write to you with the date, and you can cancel at any time before dispatch.{%- else -%}"
+        b["settings"]["custom_liquid"] = ("{%- if product.tags contains 'preorder' -%}This piece is on pre-order. The first run is being made in Italy now. You pay today, and the piece ships the moment the run arrives. We will email you the shipping date, and you can cancel at any time before it ships.{%- else -%}"
             "{%- assign lt = product.metafields.custom.lead_time.value -%}"
             "{%- if lt != blank -%}This piece is made to order. Lead time: {{ lt }}.{%- else -%}"
             "Pieces in stock are dispatched within two working days. A colour or size not shown can often be made: write to the atelier.{%- endif -%}{%- endif -%}")
