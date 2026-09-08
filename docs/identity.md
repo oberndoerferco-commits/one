@@ -187,6 +187,29 @@ the owner publishes it.
   is the previous copy. The neck-label photograph was removed from every T-shirt product and from
   the chapter (the owner: "remove the picture of the neck label from all tshirts").
 
+## T-shirt photographs rebuilt from the Canva layers (8 September, `scripts/tee-photos/`)
+
+The owner, 8 Sept, on the five new prints: "the tag looks misplaced, the side of the tshirt is
+cut out, quality looks so low". The cause was in the Canva mockups ("tshirt design", DAHScXV8dgY):
+the base photographs are small (black shirt 848 x 1264 px with the shirt 558 px wide; the white
+pair is one 1223 x 865 px image on a black ground), the Canva crop boxes cut the sleeves, a pasted
+white label graphic sat on the collar, and both base photographs carry another maker's neck label.
+Fix: a Canva copy (DAHUnEGcqlA, the original untouched) exports each page's print layers alone on
+a transparent ground (`ov01`..`ov10.png`, 4x page size) and the three base photographs on their own
+pages (11 black front, 12 black back, 13 white). `compose.py` upscales the bases with OpenCV EDSR
+x3, paints an Oberndörfer Milano label inside the collar (Marcellus), lays the print back in the
+photograph's own space with the folds showing through (multiply by luminance), keys the white
+shirts off the black ground onto the same warm light ground with a soft shadow, and crops every
+side to a 2400 px square with air around the whole shirt. Twenty files, `obm-tee-<print>-
+<colour>-<side>.jpg`, uploaded with `upload.py` (staged targets from stagedUploadsCreate) and
+attached with productCreateMedia; each colour's variants point at that colour's lead side (back
+for the back prints, front for the Embroidered); the old media deleted. Chrome (T-Shirt
+OBERNDÖRFER MILANO) gained its White colour and five white variants (130 EUR, pre-order settings
+like the rest); the white Chrome print is Canva page 6. Page mapping: 1/2 Embroidered, 3/4 OM,
+5/6 Chrome, 7/8 Star patch, 9/10 Logo (lattice); odd pages black, even white.
+Limit: the base photographs are still small originals upscaled; real photographs of the sample
+run are the proper replacement.
+
 ## Collection and product pages (commerce pass, 5 September)
 
 - Collection pages: the layout is the original one — framed tiles touching, the grid full
