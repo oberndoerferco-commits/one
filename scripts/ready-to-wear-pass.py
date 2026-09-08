@@ -38,6 +38,12 @@ hero = d["sections"][d["order"][0]]
 # the owner's pick for this page (set on the live theme's generic collection template, 7 Sept 10:35)
 for k in ("image_1", "background_image"):
     if k in hero["settings"]: hero["settings"][k] = IMG + "sewing-machine-in-use.jpg"
+# pre-order (8 Sept, the owner: "make the tshirts all preorder? their not avaible yet"): a product
+# tagged "preorder" says so on its card. Stock is 0 with overselling allowed, so it can still be bought.
+eb = d["sections"]["main"]["blocks"]["product-card"]["blocks"]["card_eyebrow"]["settings"]
+if "preorder" not in eb["custom_liquid"]:
+    eb["custom_liquid"] = eb["custom_liquid"].replace("{%- if p.title contains 'Trax' -%}",
+        "{%- if p.tags contains 'preorder' -%}{%- assign lbl = 'Pre-order' -%}{%- elsif p.title contains 'Trax' -%}", 1)
 # one card per colour (7 Sept evening, the owner: "make it possible that also the white tee is seen
 # in collection page"): a script in the hero's css block clones a card for each further colour swatch,
 # shows that colour's photograph and links to its variant. Source: theme/assets-src/obm-colour-cards.js.
@@ -50,6 +56,19 @@ save(T + "collection.ready-to-wear.json", h, d)
 # ---------- 2. the product page for cotton ----------
 h, p = load(T + "product.json")
 main = p["sections"]["main"]["blocks"]
+# pre-order: a note above the buy button, the button reads "Pre-order", the made-to-order row says what happens
+PREORDER_NOTE = ("{%- if product.tags contains 'preorder' -%}"
+  "<div class=\"obm-preorder\" style=\"border-top:1px solid #d3cabc;border-bottom:1px solid #d3cabc;padding:14px 0;margin:4px 0 16px\">"
+  "<p style=\"font-family:var(--font-subheading--family);font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:#1c1714;margin:0 0 6px\">Pre-order</p>"
+  "<p style=\"font-size:0.9375rem;line-height:1.6;margin:0\">Not in stock yet. The first run is being made in Italy. Order now and we dispatch the moment it arrives, and write to you with the date.</p>"
+  "</div>"
+  "<script>(function(){function fix(){document.querySelectorAll('button[name=\"add\"], .sticky-add-to-cart__button').forEach(function(b){var w=document.createTreeWalker(b,NodeFilter.SHOW_TEXT),n;while((n=w.nextNode())){if(n.nodeValue.trim()==='Add to cart'){n.nodeValue=n.nodeValue.replace('Add to cart','Pre-order');}}});}"
+  "fix();new MutationObserver(fix).observe(document.body,{childList:true,subtree:true,characterData:true});})();</script>"
+  "{%- endif -%}")
+pd = main["product-details"]
+if "preorder_note" not in pd["blocks"]:
+    pd["blocks"]["preorder_note"] = {"type": "custom-liquid", "settings": {"custom_liquid": PREORDER_NOTE}, "blocks": {}}
+    pd["block_order"].insert(pd["block_order"].index("buy_buttons_eYQEYi"), "preorder_note")
 care = find(main, "row_care")
 for b in care["blocks"].values():
     if b["type"] == "text":
@@ -57,9 +76,10 @@ for b in care["blocks"].values():
 made = find(main, "row_made")
 for b in made["blocks"].values():
     if b["type"] == "custom-liquid":
-        b["settings"]["custom_liquid"] = ("{%- assign lt = product.metafields.custom.lead_time.value -%}"
+        b["settings"]["custom_liquid"] = ("{%- if product.tags contains 'preorder' -%}This piece is on pre-order: the first run is being made in Italy now. Your order is placed today, paid today, and dispatched the moment the run arrives. We write to you with the date, and you can cancel at any time before dispatch.{%- else -%}"
+            "{%- assign lt = product.metafields.custom.lead_time.value -%}"
             "{%- if lt != blank -%}This piece is made to order. Lead time: {{ lt }}.{%- else -%}"
-            "Pieces in stock are dispatched within two working days. A colour or size not shown can often be made: write to the atelier.{%- endif -%}")
+            "Pieces in stock are dispatched within two working days. A colour or size not shown can often be made: write to the atelier.{%- endif -%}{%- endif -%}")
 row_details = find(main, "row_details")
 for b in row_details["blocks"].values():
     if b["type"] == "custom-liquid":

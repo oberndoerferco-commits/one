@@ -126,6 +126,14 @@ the owner publishes it.
   at its colour's back photograph, on OM, OBERNDÖRFER MILANO, Star patch, with Logo, and on the
   four older back-print drafts (Star, Gothic, Serigraph, Short sleeved). Embroidered, Crest and
   Wordmark print on the front and keep the front first.
+- Pre-order (8 Sept, the owner: "make the tshirts all preorder? their not avaible yet"). Shopify
+  has no pre-order without an app, so: every T-shirt is tagged `preorder`, its stock is 0 with
+  overselling allowed (inventory policy Continue), so it can still be bought; the Ready to Wear
+  product page shows a "Pre-order" note above the button, the button itself reads Pre-order (a
+  script swaps the label and keeps it swapped), and the Made to order row explains that the order
+  is paid today, dispatched when the run arrives, and can be cancelled before dispatch; the card
+  eyebrow on both collection templates reads Pre-order. To end the pre-order: remove the tag and
+  set real stock. No dispatch date is promised anywhere, since none was given.
 - Collection image (the tile on the home tabs and the collections page): a real photograph of the
   black Embroidered T-Shirt composited onto the taupe studio ground the owner's other collection
   tiles use (`oberndoerfer-coll-ready-to-wear-tee.jpg`, made with PIL from
