@@ -30,3 +30,5 @@ Diff the two JSON files to see exactly which strings changed.
 | --- | --- |
 | `assets/tshirt-back-folded-cross/` | Vectorised folded-cross T-shirt back print (SVG/PDF/EPS, full-page and trimmed) traced from the raster original |
 | `scripts/vectorize_lineart.py` | The tracer that produced it — fits straight lines to straight edges instead of tracing JPEG noise |
+| `assets/logo-crest/` | Oberndörfer crest as DXF (exact splines and flattened polylines, mm, 13.229 cm artboard) |
+| `scripts/pdf_to_dxf.py` | PDF→DXF converter — reads geometry out of clipping paths, keeps Béziers exact |
