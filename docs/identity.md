@@ -210,6 +210,18 @@ like the rest); the white Chrome print is Canva page 6. Page mapping: 1/2 Embroi
 Limit: the base photographs are still small originals upscaled; real photographs of the sample
 run are the proper replacement.
 
+## Pre-order on the older theme (8 September evening, `scripts/preorder-old-theme.py`)
+
+The owner put "NEW WEBSITE BUG FIX 1.2" (202859512133, Horizon 4.1.3) back live: "the old theme is
+live again, we still need to fix things before our version goes live. could you make the tshirts
+preorder option in the current theme". On that theme the T-shirts fall back to the generic
+product and collection templates (no ready-to-wear suffix there), so the pre-order note, the
+"Pre-order" button label and the "Pre-order" line above the card were added to those two
+templates only, on a duplicate: "NEW WEBSITE BUG FIX 1.2 - pre-order (publish me)"
+(206022738245). Nothing else on that theme was touched. Everything that made the newer theme
+(MILANO 5, 205996556613: gallery by colour, one card per colour, swatches, size row) stays there
+for when the owner is ready.
+
 ## Collection and product pages (commerce pass, 5 September)
 
 - Collection pages: the layout is the original one — framed tiles touching, the grid full
