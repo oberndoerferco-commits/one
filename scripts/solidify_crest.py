@@ -152,6 +152,46 @@ def circle_intersections(c0, r0, c1, r1):
     rx = -(c1[1]-c0[1])*(h/d); ry = (c1[0]-c0[0])*(h/d)
     return [(xm+rx, ym+ry), (xm-rx, ym-ry)]
 
+def rounded_cross(cx, cy, a, rtip, twist=0.0):
+    """Two crossing capsules as one exact path: 8 lines + 4 semicircular caps.
+
+    `a` is the arm half-width, `rtip` the distance from centre to the outer
+    face of each rounded end. This is the shape the emblem actually uses - the
+    arms have straight parallel sides meeting at sharp concave corners on the
+    diagonals, which a union of circles cannot produce.
+    """
+    L = rtip - a
+    def rot(x, y):
+        t = np.radians(twist); c, sn = np.cos(t), np.sin(t)
+        return (cx + x*c - y*sn, cy + x*sn + y*c)
+
+    segs = []
+    start = rot(a, a)
+    # right side of the top arm, over the top cap, down the left side
+    segs.append(('L', rot(a, L)))
+    segs += [(k[0],)+tuple(rot(*q) for q in k[1:])
+             for k in _arc_local(0.0, L, a, 0.0, 180.0)]
+    segs.append(('L', rot(-a, a)))
+    segs.append(('L', rot(-L, a)))
+    segs += [(k[0],)+tuple(rot(*q) for q in k[1:])
+             for k in _arc_local(-L, 0.0, a, 90.0, 270.0)]
+    segs.append(('L', rot(-a, -a)))
+    segs.append(('L', rot(-a, -L)))
+    segs += [(k[0],)+tuple(rot(*q) for q in k[1:])
+             for k in _arc_local(0.0, -L, a, 180.0, 360.0)]
+    segs.append(('L', rot(a, -a)))
+    segs.append(('L', rot(L, -a)))
+    segs += [(k[0],)+tuple(rot(*q) for q in k[1:])
+             for k in _arc_local(L, 0.0, a, 270.0, 450.0)]
+    segs.append(('L', rot(a, a)))
+    return (start, segs)
+
+
+def _arc_local(cx, cy, r, a0, a1):
+    """arc_to_beziers in local (untwisted) coordinates."""
+    return arc_to_beziers(cx, cy, r, a0, a1)
+
+
 def quatrefoil(centres, r, cx, cy):
     """Boundary of the union of 4 equal circles, as exact arcs."""
     n = len(centres)
@@ -202,7 +242,7 @@ def write_pdf(path, groups, W, H):
 
 # --------------------------------------------------------------------- main
 
-def solidify(src_pdf, out_pdf, lane=22.0, notch=125.0, margin=12.0):
+def solidify(src_pdf, out_pdf, lane=22.0, arm=60.0, margin=12.0):
     """Read the outlined crest, write the solid version."""
     import pymupdf
     from shapely.geometry import Polygon
@@ -268,8 +308,8 @@ def solidify(src_pdf, out_pdf, lane=22.0, notch=125.0, margin=12.0):
     usable = [k for k, c in enumerate(canons) if len(c) == min(len(x) for x in canons)]
     sym = replicate(average_quadrants(canons, tuple(usable)), p['cx'], p['cy'])
 
-    D, Rc = inner_circles(p, lane, notch)
-    quat = quatrefoil(lobe_centres(p, D), Rc, p['cx'], p['cy'])
+    rtip = p['d'] + p['R'] - lane          # 22pt band at the arm tips
+    quat = rounded_cross(p['cx'], p['cy'], arm, rtip, p['twist'])
     eagle = [conv(s) for s in subpaths(draw[5])][1]
     eye = [conv(s) for s in subpaths(draw[7])][0]
     pupil = [conv(s) for s in subpaths(draw[6])][0]
@@ -286,7 +326,7 @@ def solidify(src_pdf, out_pdf, lane=22.0, notch=125.0, margin=12.0):
                         ([shift(eagle)], 'black'),
                         ([shift(eye)], 'white'),
                         ([shift(pupil)], 'black')], W, Hp)
-    return dict(params=p, page=(W, Hp), lane=lane, notch=notch, inner=(D, Rc),
+    return dict(params=p, page=(W, Hp), lane=lane, arm=arm, rtip=rtip,
                 segments=len(sym[1]) + len(quat[1]) + len(eagle[1]) + len(eye[1]) + len(pupil[1]))
 
 
@@ -297,17 +337,17 @@ if __name__ == '__main__':
     ap.add_argument('--lane', type=float, default=22.0,
                     help='width of the outer band in points (default 22, the '
                          'width implied by the original artwork)')
-    ap.add_argument('--notch', type=float, default=125.0,
-                    help='radius at which the diagonal notch between inner '
-                         'lobes bottoms out (default 125)')
+    ap.add_argument('--arm', type=float, default=60.0,
+                    help='half-width of the inner cross arms in points '
+                         '(default 60, i.e. 120pt wide arms)')
     a = ap.parse_args()
-    info = solidify(a.input, a.output, a.lane, a.notch)
+    info = solidify(a.input, a.output, a.lane, a.arm)
     p = info['params']
     print('lobe circles r=%.4f pt, centres %.4f pt out, pinwheel twist %.4f deg'
           % (p['R'], p['d'], p['twist']))
     print('agreement across the four lobes: r %.5f, offset %.5f, twist %.5f'
           % (p['spread']['R'], p['spread']['d'], p['spread']['twist']))
-    print('inner circles r=%.4f at offset %.4f (notch bottoms at r=%.1f)'
-          % (info['inner'][1], info['inner'][0], info['notch']))
+    print('inner cross: arms %.1f pt wide, tips at r=%.3f, corners at r=%.2f'
+          % (2*info['arm'], info['rtip'], info['arm']*np.sqrt(2)))
     print('page %.3f x %.3f pt, %d segments, lane %.1f pt'
           % (info['page'][0], info['page'][1], info['segments'], info['lane']))

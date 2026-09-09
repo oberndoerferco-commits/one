@@ -7,9 +7,8 @@ outside, no hairlines.
 
 | File | What it is |
 | --- | --- |
-| `traxnyc-crest-solid.pdf` | 22 pt band, notch 125 — the default |
-| `traxnyc-crest-solid-notch137.pdf` | same, with a shallower notch (rounder inner shape) |
-| `traxnyc-crest-solid-connected.pdf` | 34 pt band — wide enough that the eagle joins the frame |
+| `traxnyc-crest-solid.pdf` | The solid crest |
+| `reference-stylized.pdf` | The stylized TraxNYC logo the proportions come from |
 | `source-outlined.pdf` | The Illustrator original this was built from |
 
 Both are 392.856 × 392.856 pt, 81 curve/line segments, ~5 KB, pure black fill.
@@ -17,7 +16,7 @@ Both are 392.856 × 392.856 pt, 81 curve/line segments, ~5 KB, pure black fill.
 Reproduce with:
 
 ```sh
-python3 scripts/solidify_crest.py source-outlined.pdf out.pdf --lane 22 --notch 125
+python3 scripts/solidify_crest.py source-outlined.pdf out.pdf --lane 34.401 --arm 62.608
 ```
 
 ## What was wrong
@@ -53,50 +52,37 @@ of the true circles.
 The band is the silhouette with a quatrefoil hole, so it is one continuous band
 of uniform width the whole way round, star points included.
 
-## The inner circles
+## The inner shape is a rounded cross
 
-The inner ring's lobes are circles — fitted from the source they are
-r = **76.085 pt** at offset **86.335 pt**, and the ring follows them to within
-**0.03 pt** mean. But the ring does *not* close as a union of those circles: at
-the diagonals it leaves them and weaves out into the star points, reaching
-r ≈ 137–144. Completing them as a plain union instead drives the notch down to
-r ≈ 106, which pulls the lobes apart and opens a large wedge at each diagonal.
-That was wrong in the first build.
+The inner shape is **not** a quatrefoil of overlapping circles. In the stylized
+logo the arms have straight parallel sides meeting at sharp concave corners on
+the diagonals — that is two crossing capsules (a rounded cross), and no union
+of circles produces that corner. Two earlier builds got this wrong by fitting
+circles and then arguing about how deep to cut the notch between them; the
+shape family itself was wrong.
 
-So the notch depth is a genuine free parameter, not something the artwork
-fixes. `--notch` sets it: the script solves for the circle pair that puts the
-notch at that radius while keeping the band at the lobe centres exactly `--lane`
-wide. The default 125 sits between the plain union (106) and the radius the
-source ring reaches where it still follows its circles (137).
+Proportions are taken from `reference-stylized.pdf` rather than guessed. Its
+band is four pinwheel quadrant pieces whose union leaves the cross as a hole;
+fitting a rounded cross to that hole gives a residual of **0.62%** of area
+(the rest is the source's own drawing tolerance), confirming the construction:
 
-| `--notch` | inner circles | look |
-| --- | --- | --- |
-| 106 | r 76.1 at 86.3 | plain circle union — lobes too far apart |
-| **125** | **r 89.8 at 72.7** | **default** |
-| 137 | r 104.3 at 58.1 | rounder, lobes barely separated |
+| | in the stylized logo | as a ratio | on this 368.856 pt crest |
+| --- | --- | --- | --- |
+| Arm half-width | 37.721 pt | 0.169737 | **62.608 pt** (125.2 pt arms) |
+| Cross tip radius | 90.389 pt | 0.406735 | **150.027 pt** |
+| Band at the cardinals | 20.726 pt | 0.093265 | **34.401 pt** |
 
-## Choosing the band width
-
-22 pt is the width the original artwork implies: sweeping the width and
-comparing the resulting inner shape against the source's own ring, 22.0 pt is
-the minimum-mismatch fit (8.6%; the residual is the source ring bulging into the
-star points, which is the thing being fixed).
-
-There is one consequence worth knowing. At 22 pt the eagle sits entirely inside
-the quatrefoil and the metal is **two separate pieces** — fine for a printed
-logo, impossible to cast as one piece. The eagle only touches the frame at
-≥32 pt, and even at 34 pt the necks are just 1.5–2.4 pt wide. Above ~36.07 pt
-the lobes stop overlapping and the quatrefoil breaks into four circles.
-
-Hence the two files: 22 pt for print, 34 pt if it has to be one connected piece.
+The cross is emitted exactly: 8 straight segments and 4 semicircular caps, so
+the corners are true right angles at r = a·√2 and the caps are true arcs.
 
 ## Verification
 
 | Check | Result |
 | --- | --- |
-| Frame C4 symmetry, output geometry | 0.000046% area mismatch under 90° rotation |
-| Band width at the four cardinals | 21.986 / 21.980 / 21.980 / 21.980 pt |
-| Notch bottom | exactly on target (125.00) |
+| Frame C4 symmetry, output geometry | 0.00004% area mismatch under 90° rotation |
+| Band width at the four cardinals | 34.398 pt at all four |
+| Cross corner radius | 88.541 pt = a·√2 exactly |
+| Emitted cross vs. ideal capsule union | 0.011% of area |
 | Symmetrised silhouette vs. source | 0.00037% of area |
 | Emitted arcs vs. true circles | max 0.0033 pt |
 | Consolidated script vs. verified build | IoU 0.999997 at 432 dpi |
