@@ -7,7 +7,8 @@ outside, no hairlines.
 
 | File | What it is |
 | --- | --- |
-| `traxnyc-crest-solid.pdf` | 22 pt band — the width implied by the original artwork |
+| `traxnyc-crest-solid.pdf` | 22 pt band, notch 125 — the default |
+| `traxnyc-crest-solid-notch137.pdf` | same, with a shallower notch (rounder inner shape) |
 | `traxnyc-crest-solid-connected.pdf` | 34 pt band — wide enough that the eagle joins the frame |
 | `source-outlined.pdf` | The Illustrator original this was built from |
 
@@ -16,7 +17,7 @@ Both are 392.856 × 392.856 pt, 81 curve/line segments, ~5 KB, pure black fill.
 Reproduce with:
 
 ```sh
-python3 scripts/solidify_crest.py source-outlined.pdf out.pdf --lane 22
+python3 scripts/solidify_crest.py source-outlined.pdf out.pdf --lane 22 --notch 125
 ```
 
 ## What was wrong
@@ -52,6 +53,28 @@ of the true circles.
 The band is the silhouette with a quatrefoil hole, so it is one continuous band
 of uniform width the whole way round, star points included.
 
+## The inner circles
+
+The inner ring's lobes are circles — fitted from the source they are
+r = **76.085 pt** at offset **86.335 pt**, and the ring follows them to within
+**0.03 pt** mean. But the ring does *not* close as a union of those circles: at
+the diagonals it leaves them and weaves out into the star points, reaching
+r ≈ 137–144. Completing them as a plain union instead drives the notch down to
+r ≈ 106, which pulls the lobes apart and opens a large wedge at each diagonal.
+That was wrong in the first build.
+
+So the notch depth is a genuine free parameter, not something the artwork
+fixes. `--notch` sets it: the script solves for the circle pair that puts the
+notch at that radius while keeping the band at the lobe centres exactly `--lane`
+wide. The default 125 sits between the plain union (106) and the radius the
+source ring reaches where it still follows its circles (137).
+
+| `--notch` | inner circles | look |
+| --- | --- | --- |
+| 106 | r 76.1 at 86.3 | plain circle union — lobes too far apart |
+| **125** | **r 89.8 at 72.7** | **default** |
+| 137 | r 104.3 at 58.1 | rounder, lobes barely separated |
+
 ## Choosing the band width
 
 22 pt is the width the original artwork implies: sweeping the width and
@@ -71,7 +94,9 @@ Hence the two files: 22 pt for print, 34 pt if it has to be one connected piece.
 
 | Check | Result |
 | --- | --- |
-| Frame C4 symmetry, output geometry | 0.0000059% area mismatch under 90° rotation |
+| Frame C4 symmetry, output geometry | 0.000046% area mismatch under 90° rotation |
+| Band width at the four cardinals | 21.986 / 21.980 / 21.980 / 21.980 pt |
+| Notch bottom | exactly on target (125.00) |
 | Symmetrised silhouette vs. source | 0.00037% of area |
 | Emitted arcs vs. true circles | max 0.0033 pt |
 | Consolidated script vs. verified build | IoU 0.999997 at 432 dpi |

@@ -48,9 +48,32 @@ def frame_params(OUTER):
                 twist=float(np.mean(ths)),
                 spread=dict(R=float(np.ptp(Rs)),d=float(np.ptp(offs)),twist=float(np.ptp(ths))))
 
-def lobe_centres(p):
-    return [(p['cx']+p['d']*np.cos(np.radians(p['twist']+k*90)),
-             p['cy']+p['d']*np.sin(np.radians(p['twist']+k*90))) for k in range(4)]
+def lobe_centres(p, offset=None):
+    d = p['d'] if offset is None else offset
+    return [(p['cx']+d*np.cos(np.radians(p['twist']+k*90)),
+             p['cy']+d*np.sin(np.radians(p['twist']+k*90))) for k in range(4)]
+
+def inner_circles(p, lane, notch):
+    """Inner lobe circles: cardinal band fixed at `lane`, notch depth `notch`.
+
+    The source ring's lobes are circles, but at the diagonals the ring leaves
+    them to weave into the star points, so completing them as a plain union
+    cuts the notch far deeper (r~106) than the artwork ever goes (r~137).
+    Depth is therefore a free parameter: solve for the circle pair that keeps
+    the cardinal band exactly `lane` wide while placing the notch at `notch`.
+    """
+    card = p['d'] + p['R'] - lane          # inner radius at the lobe centres
+    def notch_radius(D):
+        Rc = card - D
+        return D/np.sqrt(2) + np.sqrt(max(Rc*Rc - D*D/2.0, 0.0))
+    lo, hi = 1.0, card - 1.0               # notch_radius decreases as D grows
+    for _ in range(200):
+        mid = (lo + hi)/2
+        if notch_radius(mid) > notch: lo = mid
+        else: hi = mid
+    D = (lo + hi)/2
+    return D, card - D
+
 
 def lobes(p, radius=None, quad_segs=256):
     r=p['R'] if radius is None else radius
@@ -179,7 +202,7 @@ def write_pdf(path, groups, W, H):
 
 # --------------------------------------------------------------------- main
 
-def solidify(src_pdf, out_pdf, lane=22.0, margin=12.0):
+def solidify(src_pdf, out_pdf, lane=22.0, notch=125.0, margin=12.0):
     """Read the outlined crest, write the solid version."""
     import pymupdf
     from shapely.geometry import Polygon
@@ -245,7 +268,8 @@ def solidify(src_pdf, out_pdf, lane=22.0, margin=12.0):
     usable = [k for k, c in enumerate(canons) if len(c) == min(len(x) for x in canons)]
     sym = replicate(average_quadrants(canons, tuple(usable)), p['cx'], p['cy'])
 
-    quat = quatrefoil(lobe_centres(p), p['R'] - lane, p['cx'], p['cy'])
+    D, Rc = inner_circles(p, lane, notch)
+    quat = quatrefoil(lobe_centres(p, D), Rc, p['cx'], p['cy'])
     eagle = [conv(s) for s in subpaths(draw[5])][1]
     eye = [conv(s) for s in subpaths(draw[7])][0]
     pupil = [conv(s) for s in subpaths(draw[6])][0]
@@ -262,7 +286,7 @@ def solidify(src_pdf, out_pdf, lane=22.0, margin=12.0):
                         ([shift(eagle)], 'black'),
                         ([shift(eye)], 'white'),
                         ([shift(pupil)], 'black')], W, Hp)
-    return dict(params=p, page=(W, Hp), lane=lane,
+    return dict(params=p, page=(W, Hp), lane=lane, notch=notch, inner=(D, Rc),
                 segments=len(sym[1]) + len(quat[1]) + len(eagle[1]) + len(eye[1]) + len(pupil[1]))
 
 
@@ -273,12 +297,17 @@ if __name__ == '__main__':
     ap.add_argument('--lane', type=float, default=22.0,
                     help='width of the outer band in points (default 22, the '
                          'width implied by the original artwork)')
+    ap.add_argument('--notch', type=float, default=125.0,
+                    help='radius at which the diagonal notch between inner '
+                         'lobes bottoms out (default 125)')
     a = ap.parse_args()
-    info = solidify(a.input, a.output, a.lane)
+    info = solidify(a.input, a.output, a.lane, a.notch)
     p = info['params']
     print('lobe circles r=%.4f pt, centres %.4f pt out, pinwheel twist %.4f deg'
           % (p['R'], p['d'], p['twist']))
     print('agreement across the four lobes: r %.5f, offset %.5f, twist %.5f'
           % (p['spread']['R'], p['spread']['d'], p['spread']['twist']))
+    print('inner circles r=%.4f at offset %.4f (notch bottoms at r=%.1f)'
+          % (info['inner'][1], info['inner'][0], info['notch']))
     print('page %.3f x %.3f pt, %d segments, lane %.1f pt'
           % (info['page'][0], info['page'][1], info['segments'], info['lane']))
