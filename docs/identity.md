@@ -247,11 +247,10 @@ renamed). Source: "OBERNDÖRFER MILANO 5" (205996556613, Horizon 4.1.5). Built o
   gallery-by-colour patch re-applied to the older theme's own
   `snippets/product-media-gallery-content.liquid`. `{{ settings.color_palette.color2 }}` does not
   exist on the older palette, so the chapter band colour is written as #e5e0d7 in those templates.
-- Type: the older theme's heading font is Inter and the rest of its pages keep it.
-  `snippets/oberndoerfer-transfer-styles.liquid` (head, after color-palette) loads Marcellus from
-  Google Fonts and sets the heading font, the shared heading scale, the price treatment and the
-  edge-to-edge card gallery on collection and product pages only, through `main[data-template]`.
-  The heading presets (--font-h1..h4) are resolved at :root, so they are set again in that scope.
+- Type: none. The owner, 10 Sept: "I like the font used before on current live, don't change
+  it". `snippets/oberndoerfer-transfer-styles.liquid` (head, after color-palette) no longer loads
+  or sets any font; it keeps only the product-page heading sizes, the quieter price and the
+  edge-to-edge card rows on product pages, plus the render of the colour-grouping swatches.
 - Colour dots (10 Sept, the owner: "show color instead of mini product images"): the swatch
   under a card is the colour named in the title, from a table in
   `snippets/oberndoerfer-color-grouping.liquid` (dark/light modifiers honoured), and the average

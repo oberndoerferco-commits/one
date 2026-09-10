@@ -8,31 +8,14 @@
   page (templates/product*.json, blocks/_breadcrumbs.liquid, sections/oberndoerfer-recommendations.liquid,
   the gallery-by-colour patch in snippets/product-media-gallery-content.liquid).
 
-  Those templates were drawn with Marcellus headings and a quieter price. This theme's global
-  heading font is Inter, and the rest of the site keeps it, so the type is changed here for the
-  collection and product pages only. Marcellus comes from Google Fonts because a font that is not
-  the theme's heading setting cannot be served from Shopify's font CDN.
+  Type stays this theme's own (the owner, 10 Sept: "I like the font used before on current live,
+  don't change it"), so nothing here touches font families or weights. Only the heading sizes the
+  product page was drawn with, the quieter price and the edge-to-edge card gallery on product
+  page rows remain, scoped to product pages.
 {% endcomment %}
-{%- if request.page_type == 'collection' or request.page_type == 'product' -%}
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
+{%- if request.page_type == 'product' -%}
   <style>
-    main[data-template^='collection'],
     main[data-template^='product'] {
-      --font-heading--family: 'Marcellus', Georgia, 'Times New Roman', serif;
-      --font-heading--weight: 400;
-      --font-heading--style: normal;
-      --font-primary--family: 'Marcellus', Georgia, 'Times New Roman', serif;
-      /* the heading presets are resolved at :root, so they are set again here */
-      --font-h1--family: 'Marcellus', Georgia, 'Times New Roman', serif;
-      --font-h2--family: 'Marcellus', Georgia, 'Times New Roman', serif;
-      --font-h3--family: 'Marcellus', Georgia, 'Times New Roman', serif;
-      --font-h4--family: 'Marcellus', Georgia, 'Times New Roman', serif;
-      --font-h1--weight: 400;
-      --font-h2--weight: 400;
-      --font-h3--weight: 400;
-      --font-h4--weight: 400;
-
       /* one shared heading scale, as on the newer theme */
       --ob-h1: clamp(1.5rem, 2.4vw, 2rem);
       --ob-h2: clamp(1.375rem, 2vw, 1.625rem);
@@ -42,13 +25,9 @@
     }
 
     main[data-template^='product'] h1 { font-size: var(--ob-h1) !important; line-height: 1.2; letter-spacing: 0.01em; }
-    main[data-template^='collection'] h2,
     main[data-template^='product'] h2 { font-size: var(--ob-h2) !important; line-height: 1.25; letter-spacing: 0.01em; }
-    main[data-template^='collection'] h3,
     main[data-template^='product'] h3 { font-size: var(--ob-h3) !important; line-height: 1.3; letter-spacing: 0.012em; }
-    main[data-template^='collection'] h4,
     main[data-template^='product'] h4 { font-size: var(--ob-h4) !important; line-height: 1.35; letter-spacing: 0.014em; }
-    main[data-template^='collection'] :is(h5, h6),
     main[data-template^='product'] :is(h5, h6) {
       font-size: var(--ob-label) !important;
       line-height: 1.4;
@@ -86,7 +65,6 @@
     }
 
     /* the house curve on hover */
-    main[data-template^='collection'],
     main[data-template^='product'] {
       --hover-transition-timing: cubic-bezier(0.22, 1, 0.36, 1);
       --hover-transition-duration: 0.38s;
