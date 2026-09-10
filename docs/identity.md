@@ -252,6 +252,11 @@ renamed). Source: "OBERNDÖRFER MILANO 5" (205996556613, Horizon 4.1.5). Built o
   Google Fonts and sets the heading font, the shared heading scale, the price treatment and the
   edge-to-edge card gallery on collection and product pages only, through `main[data-template]`.
   The heading presets (--font-h1..h4) are resolved at :root, so they are set again in that scope.
+- Colour dots (10 Sept, the owner: "show color instead of mini product images"): the swatch
+  under a card is the colour named in the title, from a table in
+  `snippets/oberndoerfer-color-grouping.liquid` (dark/light modifiers honoured), and the average
+  colour of the photograph when the name is not in the table. The photograph itself is the last
+  resort. Same file on the copy and in the repo.
 - Not carried: the home page beyond the reveal, the header, the footer voice, the page-enter
   animation, the global palette. The full file list is `scripts/transfer-old-theme-files.txt`.
 
