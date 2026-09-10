@@ -1,0 +1,169 @@
+{% comment %}
+  Oberndoerfer Milano - THE ORNAMENT REVEAL.
+
+  The screen opens as a field of the house mark on the house ground, holds,
+  and then dissolves into the site.
+
+  It first shipped as a burst - 96 marks flying outward on individual vectors.
+  The founder saw the still field and preferred it, and they were right: the
+  burst read as an effect, the still field reads as a house. So the marks do
+  not move at all. Nothing travels; the whole field simply fades.
+
+  That judgement also made it much cheaper. There are no per-tile animations
+  and no will-change, so the browser composites ONE fading layer instead of 96
+  moving ones. If the burst is ever wanted back it needs per-tile
+  --x/--y/--dist/--d plus a translate keyframe - see git history rather than
+  reconstructing it from memory.
+
+  THE MARK (2026-08-22). The first mask had ROUNDED tips and was wrong. The
+  founder sent the real artwork - the points are sharp. Two versions of the
+  ornament exist and they are NOT interchangeable:
+    - the header wordmark (MILANO_13_x_4_cm_-6.svg) draws it as an OUTLINE
+      with softened tips;
+    - scratchpad mark.svg, the vector master built from the founder's own PDF,
+      has the correct sharp geometry.
+  The mask in use is derived from the vector master: rendered at 2400px, the
+  outline flood-filled from outside to solidify it, squared, then resampled to
+  512 with Lanczos so the points stay crisp. Do not regenerate it from the
+  wordmark - the tips come out rounded. The superseded rounded mask is still
+  in Files as obm-ornament-mask.png (MediaImage 74278287311173), unused.
+
+  VARIED MARKS (2026-08-22, founder picked option B over adding a wordmark).
+  A perfectly uniform field reads as a CSS tile; printed damask does not. Each
+  mark therefore carries its own opacity between 0.09 and 0.22.
+
+  WHY THE VALUES ARE A BAKED TABLE AND NOT COMPUTED. The obvious approach - a
+  linear congruential hash of the tile index - fails visibly on a regular
+  grid, and both failure modes were checked before landing this:
+    - a small multiplier (9301) leaves idx*m below the modulus for the first
+      ~25 tiles, so the opening two rows RAMP smoothly instead of scattering;
+    - tuning the multiplier for maximum neighbour contrast (107610 scored
+      best) produces a clean DIAGONAL repeat, because every row is just the
+      previous row shifted - worse, since it reads as deliberate striping.
+  Liquid has no bitwise operations to mix with, so the table below was solved
+  offline instead: an even spread of all 14 levels, then simulated annealing
+  against a neighbour-contrast cost until no mark sits within one level of any
+  horizontal or vertical neighbour (final cost 0). Deterministic, identical on
+  every load, and free at runtime.
+
+  The table is laid out for the 12-column desktop grid. On mobile the grid is
+  6 columns, so the pairing differs - that only reshuffles which values land
+  beside each other, and since the table has no structure to expose there is
+  nothing to degrade.
+
+  ONCE PER SESSION, not per page load. A customer opens many pages in a visit,
+  and a curtain on each one stops being a welcome and becomes a toll gate. It
+  plays on the first page of a session; every page after keeps the quiet
+  entrance in oberndoerfer-global-styles instead.
+
+  ?reveal=1 FORCES it, ignoring the session gate, and deliberately does NOT set
+  the seen-flag. Without it the thing is nearly impossible to review: the gate
+  arms itself on the first load after any deploy, so if you blink you cannot
+  see it again without a brand-new browser session.
+
+  Fails safe in three ways, because a stuck curtain would hide the whole shop:
+    1. The dismissal is a pure CSS animation with `forwards`, so it runs even
+       if JavaScript never executes. JS only decides whether to SKIP it.
+    2. pointer-events stay none for its whole life, so it can never swallow a
+       click even if it somehow stays painted.
+    3. It is position:fixed and outside the layout, so it cannot shift content
+       or cause CLS.
+
+  If sessionStorage throws (private mode, storage blocked) the catch does
+  nothing, so the curtain SHOWS and the CSS dismisses it. Failing toward
+  "plays too often" rather than "never dismisses" is the safe direction.
+
+  The marks are applied as a mask so the shape takes its colour from CSS - one
+  cached request for the whole field, and the opacity variation above is
+  possible at all because each tile is a coloured box, not an image.
+
+  The grid is expressed in fractions of the viewport, not fixed pixels, so 96
+  tiles cover any screen from a phone to a 5K display without gaps and without
+  generating hundreds of nodes.
+{% endcomment %}
+
+<script>
+  (function () {
+    if (/[?&]reveal=1(&|$)/.test(location.search)) return; /* forced: always play */
+    try {
+      if (sessionStorage.getItem('obm-reveal-seen')) {
+        document.documentElement.classList.add('obm-reveal-seen');
+      } else {
+        sessionStorage.setItem('obm-reveal-seen', '1');
+      }
+    } catch (e) {
+      /* storage unavailable: show it and let the CSS dismiss it */
+    }
+  })();
+</script>
+
+<style>
+  .obm-reveal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background-color: #f5f2ed;
+    overflow: hidden;
+    pointer-events: none;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: calc(100vh / 8);
+    animation: obm-curtain-out 1100ms cubic-bezier(0.33, 1, 0.68, 1) forwards;
+  }
+
+  .obm-reveal__tile {
+    place-self: center;
+    width: 44%;
+    aspect-ratio: 1;
+    background-color: rgba(26, 22, 18, var(--a, 0.16));
+    -webkit-mask-image: url("https://cdn.shopify.com/s/files/1/0758/8387/2581/files/obm-ornament-mask-v2.png?v=1787389775");
+    mask-image: url("https://cdn.shopify.com/s/files/1/0758/8387/2581/files/obm-ornament-mask-v2.png?v=1787389775");
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+  }
+
+  /* the field holds, then the whole thing dissolves - nothing travels */
+  @keyframes obm-curtain-out {
+    0%,
+    36% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  /* seen already this session - never paint it at all */
+  html.obm-reveal-seen .obm-reveal {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .obm-reveal {
+      animation: obm-curtain-out 420ms ease-out forwards;
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .obm-reveal {
+      grid-template-columns: repeat(6, 1fr);
+      grid-auto-rows: calc(100vh / 12);
+    }
+  }
+</style>
+
+{%- liquid
+  # opacity x100 per mark - solved offline, see the comment above
+  assign shades = "19,12,17,13,15,18,15,13,11,9,15,22,17,14,9,16,13,15,11,9,13,18,21,18,20,16,21,19,21,13,16,11,9,22,19,10,11,13,16,14,19,10,22,20,14,18,11,15,21,9,22,10,14,22,19,12,20,9,17,20,10,21,15,21,10,18,11,16,12,17,12,18,14,16,19,14,16,20,17,11,20,10,17,12,9,19,14,17,22,12,10,20,13,18,12,15" | split: ","
+-%}
+<div class="obm-reveal" aria-hidden="true" role="presentation">
+  {%- for i in (1..96) -%}
+    {%- assign a = shades[forloop.index0] | times: 1 | divided_by: 100.0 -%}
+    <span class="obm-reveal__tile" style="--a:{{ a }}"></span>
+  {%- endfor -%}
+</div>

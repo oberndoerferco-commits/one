@@ -1,0 +1,24 @@
+{% comment %}
+  Oberndoerfer Milano - lifestyle tile inside the product grid (2026-08-18, two-tile 2026-08-19)
+  Miu Miu mosaic pattern: a full-bleed lifestyle photograph occupies one grid
+  cell among the product cards. Rendered from sections/main-collection.liquid
+  on page 1: tile 1 after the third product (right edge of row one), tile 2
+  after the fifteenth (left edge of row five) so the accents sit asymmetric.
+
+  Image sources: collection metafields custom.editorial_image and
+  custom.editorial_image_2 (file_reference). Collections without a value
+  render nothing. No text on the photograph.
+{% endcomment %}
+{%- if tile == 2 -%}
+  {%- assign gi = collection.metafields.custom.editorial_image_2 -%}
+{%- else -%}
+  {%- assign gi = collection.metafields.custom.editorial_image -%}
+{%- endif -%}
+{%- if gi != blank -%}
+  <li class="product-grid__item obm-grid-lifestyle" style="position:relative;overflow:hidden;list-style:none;min-height:100%">
+    <style>
+      .obm-grid-lifestyle img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+    </style>
+    {{ gi.value | image_url: width: 1400 | image_tag: loading: 'lazy', alt: gi.value.alt }}
+  </li>
+{%- endif -%}

@@ -1,0 +1,97 @@
+{% comment %}
+  Oberndoerfer Milano - pieces carried over from the "OBERNDÖRFER MILANO 5" design (10 September 2026)
+  ------------------------------------------------------------------------------------------------
+  The owner keeps this older theme live and asked for four things from the newer design: the
+  ornament reveal at the start (snippets/oberndoerfer-reveal.liquid, rendered from layout/theme.liquid),
+  the collection heroes and the photographs between the products (templates/collection*.json,
+  sections/main-collection.liquid, snippets/oberndoerfer-grid-lifestyle.liquid), and the product
+  page (templates/product*.json, blocks/_breadcrumbs.liquid, sections/oberndoerfer-recommendations.liquid,
+  the gallery-by-colour patch in snippets/product-media-gallery-content.liquid).
+
+  Those templates were drawn with Marcellus headings and a quieter price. This theme's global
+  heading font is Inter, and the rest of the site keeps it, so the type is changed here for the
+  collection and product pages only. Marcellus comes from Google Fonts because a font that is not
+  the theme's heading setting cannot be served from Shopify's font CDN.
+{% endcomment %}
+{%- if request.page_type == 'collection' or request.page_type == 'product' -%}
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap" rel="stylesheet">
+  <style>
+    main[data-template^='collection'],
+    main[data-template^='product'] {
+      --font-heading--family: 'Marcellus', Georgia, 'Times New Roman', serif;
+      --font-heading--weight: 400;
+      --font-heading--style: normal;
+      --font-primary--family: 'Marcellus', Georgia, 'Times New Roman', serif;
+      /* the heading presets are resolved at :root, so they are set again here */
+      --font-h1--family: 'Marcellus', Georgia, 'Times New Roman', serif;
+      --font-h2--family: 'Marcellus', Georgia, 'Times New Roman', serif;
+      --font-h3--family: 'Marcellus', Georgia, 'Times New Roman', serif;
+      --font-h4--family: 'Marcellus', Georgia, 'Times New Roman', serif;
+      --font-h1--weight: 400;
+      --font-h2--weight: 400;
+      --font-h3--weight: 400;
+      --font-h4--weight: 400;
+
+      /* one shared heading scale, as on the newer theme */
+      --ob-h1: clamp(1.5rem, 2.4vw, 2rem);
+      --ob-h2: clamp(1.375rem, 2vw, 1.625rem);
+      --ob-h3: clamp(1.125rem, 1.5vw, 1.25rem);
+      --ob-h4: clamp(1rem, 1.25vw, 1.0625rem);
+      --ob-label: 0.8125rem;
+    }
+
+    main[data-template^='product'] h1 { font-size: var(--ob-h1) !important; line-height: 1.2; letter-spacing: 0.01em; }
+    main[data-template^='collection'] h2,
+    main[data-template^='product'] h2 { font-size: var(--ob-h2) !important; line-height: 1.25; letter-spacing: 0.01em; }
+    main[data-template^='collection'] h3,
+    main[data-template^='product'] h3 { font-size: var(--ob-h3) !important; line-height: 1.3; letter-spacing: 0.012em; }
+    main[data-template^='collection'] h4,
+    main[data-template^='product'] h4 { font-size: var(--ob-h4) !important; line-height: 1.35; letter-spacing: 0.014em; }
+    main[data-template^='collection'] :is(h5, h6),
+    main[data-template^='product'] :is(h5, h6) {
+      font-size: var(--ob-label) !important;
+      line-height: 1.4;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* price treatment */
+    main[data-template^='product'] product-price .price {
+      font-size: 1rem !important;
+      font-weight: 400 !important;
+      color: rgba(0, 0, 0, 0.7) !important;
+    }
+    main[data-template^='collection'] .product-grid product-price .price,
+    main[data-template^='product'] .product-card__content product-price .price {
+      font-size: 0.75rem !important;
+      color: rgba(0, 0, 0, 0.55) !important;
+      letter-spacing: 0.02em;
+    }
+
+    /* product cards fill their tile */
+    main[data-template^='collection'] .product-card .card-gallery.card-gallery,
+    main[data-template^='product'] .product-card .card-gallery.card-gallery {
+      padding: 0 !important;
+      background-color: transparent !important;
+    }
+
+    /* colourway line under the product title */
+    .obm-colourway {
+      font-family: var(--font-subheading--family);
+      font-size: 0.8125rem !important;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(0, 0, 0, 0.55);
+      margin-block: 6px 0 !important;
+    }
+
+    /* the house curve on hover */
+    main[data-template^='collection'],
+    main[data-template^='product'] {
+      --hover-transition-timing: cubic-bezier(0.22, 1, 0.36, 1);
+      --hover-transition-duration: 0.38s;
+    }
+  </style>
+{%- endif -%}
+{% render 'oberndoerfer-color-grouping' %}

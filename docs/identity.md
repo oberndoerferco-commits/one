@@ -222,6 +222,39 @@ templates only, on a duplicate: "NEW WEBSITE BUG FIX 1.2 - pre-order (publish me
 (MILANO 5, 205996556613: gallery by colour, one card per colour, swatches, size row) stays there
 for when the owner is ready.
 
+## Four pieces of the newer design carried to the live theme (10 September)
+
+The owner, 10 Sept: "let's transfer some things I liked about the website design we created on
+the current live page": the banner with the animated pattern of the logo, the collection heroes,
+the pictures between the products, and the product page design. Live theme at the time: "NEW
+WEBSITE BUG FIX 2" (206022738245, Horizon 4.1.3, the pre-order copy the owner published and
+renamed). Source: "OBERNDÖRFER MILANO 5" (205996556613, Horizon 4.1.5). Built on a duplicate,
+"NEW WEBSITE BUG FIX 3 - transfer (publish me)" (206129004869); the owner publishes it.
+
+- The banner is the ornament reveal, `snippets/oberndoerfer-reveal.liquid`: a field of 96 house
+  marks on the house ground that holds and dissolves, first page of a session only, `?reveal=1`
+  forces it. Rendered first in the body from layout/theme.liquid (that file otherwise stays the
+  older theme's own).
+- Collections: all thirteen collection templates copied (hero photograph, eyebrow, title, line,
+  the css block with the one-card-per-colour script), plus the lifestyle tiles inside the grid
+  (`snippets/oberndoerfer-grid-lifestyle.liquid`, the six-line render in
+  `sections/main-collection.liquid` after the 3rd and 15th product, from the collection's
+  `custom.editorial_image` metafields) and `snippets/oberndoerfer-color-grouping.liquid` (swatches
+  under same-model cards). `blocks/product-title.liquid` drops the " - Colour" suffix on
+  collection pages only, so the home page cards of the older theme keep their full titles.
+- Product pages: product.json, product.ready-to-wear.json, product.sunglasses.json,
+  `blocks/_breadcrumbs.liquid`, `sections/oberndoerfer-recommendations.liquid`, and the
+  gallery-by-colour patch re-applied to the older theme's own
+  `snippets/product-media-gallery-content.liquid`. `{{ settings.color_palette.color2 }}` does not
+  exist on the older palette, so the chapter band colour is written as #e5e0d7 in those templates.
+- Type: the older theme's heading font is Inter and the rest of its pages keep it.
+  `snippets/oberndoerfer-transfer-styles.liquid` (head, after color-palette) loads Marcellus from
+  Google Fonts and sets the heading font, the shared heading scale, the price treatment and the
+  edge-to-edge card gallery on collection and product pages only, through `main[data-template]`.
+  The heading presets (--font-h1..h4) are resolved at :root, so they are set again in that scope.
+- Not carried: the home page beyond the reveal, the header, the footer voice, the page-enter
+  animation, the global palette. The full file list is `scripts/transfer-old-theme-files.txt`.
+
 ## Collection and product pages (commerce pass, 5 September)
 
 - Collection pages: the layout is the original one — framed tiles touching, the grid full
