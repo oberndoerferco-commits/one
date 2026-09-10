@@ -257,6 +257,14 @@ renamed). Source: "OBERNDÖRFER MILANO 5" (205996556613, Horizon 4.1.5). Built o
   `snippets/oberndoerfer-color-grouping.liquid` (dark/light modifiers honoured), and the average
   colour of the photograph when the name is not in the table. The photograph itself is the last
   resort. Same file on the copy and in the repo.
+- The grid itself stays the live theme's (10 Sept, the owner with a screenshot of the live Bags
+  page: "keep this design of product grid for collection pages"): every collection template on
+  the copy carries the newer hero above the live theme's own `main` section from its
+  collection.bags.json (tiles on the #F5F2ED band, uppercase 14px titles, uppercase filters,
+  infinite scroll, 24 per page), with two blocks added to the card: the pre-order eyebrow and
+  Shopify's colour swatches. The 4-across style rule from the newer css block is dropped, card
+  titles keep their full " - Colour" names, and the price and card-fill rules in the transfer
+  styles apply to product pages only. Those templates are in `theme/transfer-templates/`.
 - Not carried: the home page beyond the reveal, the header, the footer voice, the page-enter
   animation, the global palette. The full file list is `scripts/transfer-old-theme-files.txt`.
 

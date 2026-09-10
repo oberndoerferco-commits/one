@@ -62,15 +62,14 @@
       font-weight: 400 !important;
       color: rgba(0, 0, 0, 0.7) !important;
     }
-    main[data-template^='collection'] .product-grid product-price .price,
     main[data-template^='product'] .product-card__content product-price .price {
       font-size: 0.75rem !important;
       color: rgba(0, 0, 0, 0.55) !important;
       letter-spacing: 0.02em;
     }
 
-    /* product cards fill their tile */
-    main[data-template^='collection'] .product-card .card-gallery.card-gallery,
+    /* product cards fill their tile (product page rows only: the collection grid keeps the
+       live theme's own card, the owner's choice on 10 September) */
     main[data-template^='product'] .product-card .card-gallery.card-gallery {
       padding: 0 !important;
       background-color: transparent !important;
