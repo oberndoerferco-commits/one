@@ -59,6 +59,10 @@
   Same PDP-side swatch group lists live in snippets/oberndoerfer-pdp-color-swatches.liquid
   - keep all four lists (2 files x 2 matchers) in sync when adding a group.
 
+  10 Sept, later: the row keeps 6px under it so no ring is cut at the card edge; two-tone
+  names show a split dot; a bare base title ("Table Trunk") joins its family with the colour
+  read from its handle.
+
   COLOUR DOTS (2026-09-10, owner: "show color instead of mini product images"):
   each dot is now the colour named in the title (OB_COLOURS table, with
   dark/light modifiers), and the average colour of the photograph when the
@@ -117,6 +121,8 @@
     gap: 7px;
     margin-block-start: 0;
     padding-block-start: 14px !important;
+    padding-block-end: 6px !important;
+    padding-inline: 2px;
     min-height: 22px;
   }
   .ob-swatch {
@@ -193,23 +199,30 @@
       ['silver', '#bdbdbd'], ['grey', '#8b8b8b'], ['gray', '#8b8b8b'], ['charcoal', '#3c3c3c'],
       ['anthracite', '#3c3c3c'], ['graphite', '#4a4a4a'], ['leopard', '#b9975b'],
       ['natural', '#d9cbb3'], ['honey', '#c98f3b'], ['rust', '#a8492a'], ['terracotta', '#b7593a'],
-      ['denim', '#4a6491'], ['multicolor', '#b9975b'], ['multicolour', '#b9975b']
+      ['denim', '#4a6491'], ['jeans', '#4a6491'], ['multicolor', '#b9975b'], ['multicolour', '#b9975b']
     ];
 
-    function namedColour(name) {
+    /* every colour word in the name, in order, with its dark/light modifier applied */
+    function namedColours(name) {
       var words = String(name || '').toLowerCase().replace(/[^a-z\u00e0-\u00ff\/ -]/g, ' ').split(/[\s\/]+/);
-      // two-word names first ("dark blue", "light grey") so the modifier is honoured
+      var found = [];
       for (var i = 0; i < words.length; i++) {
         for (var c = 0; c < OB_COLOURS.length; c++) {
           if (words[i] === OB_COLOURS[c][0]) {
             var hex = OB_COLOURS[c][1];
-            if (words[i - 1] === 'dark' || words[i - 1] === 'deep') return shade(hex, -0.35);
-            if (words[i - 1] === 'light' || words[i - 1] === 'pale') return shade(hex, 0.55);
-            return hex;
+            if (words[i - 1] === 'dark' || words[i - 1] === 'deep') hex = shade(hex, -0.35);
+            else if (words[i - 1] === 'light' || words[i - 1] === 'pale' || words[i - 1] === 'pastel') hex = shade(hex, 0.55);
+            if (found.indexOf(hex) === -1) found.push(hex);
+            break;
           }
         }
       }
-      return null;
+      return found;
+    }
+
+    function namedColour(name) {
+      var f = namedColours(name);
+      return f.length ? f[0] : null;
     }
 
     function shade(hex, amount) {
@@ -248,8 +261,14 @@
     }
 
     function paintSwatch(el, colourName, imgSrc) {
-      var hex = namedColour(colourName);
-      if (hex) { el.style.backgroundColor = hex; return; }
+      var found = namedColours(colourName);
+      if (found.length > 1) {
+        // a two-tone piece ("Black and Yellow", "White/Blue") shows both halves
+        el.style.backgroundColor = found[0];
+        el.style.backgroundImage = 'linear-gradient(135deg, ' + found[0] + ' 0 50%, ' + found[1] + ' 50% 100%)';
+        return;
+      }
+      if (found.length === 1) { el.style.backgroundColor = found[0]; return; }
       averageColour(imgSrc, function (avg) {
         if (avg) { el.style.backgroundColor = avg; }
         else if (imgSrc) { el.style.backgroundImage = 'url("' + imgSrc + '")'; }
@@ -287,6 +306,29 @@
       return parts[parts.length - 1] || null;
     }
 
+    /* "Table Trunk" alone, next to "Table Trunk - Black": the bare title is the family's
+       first colour. Its colour is read from the handle (orange-tabel-trunk), or failing that
+       from the photograph, and it is labelled with that colour word. */
+    function colourWordFromHandle(handle) {
+      if (!handle) return null;
+      var parts = String(handle).toLowerCase().split('-');
+      for (var i = 0; i < parts.length; i++) {
+        for (var c = 0; c < OB_COLOURS.length; c++) {
+          if (parts[i] === OB_COLOURS[c][0]) return parts[i].charAt(0).toUpperCase() + parts[i].slice(1);
+        }
+      }
+      return null;
+    }
+
+    function splitBare(title, handle) {
+      for (var g = 0; g < OB_GROUPS.length; g++) {
+        if (OB_GROUPS[g].toLowerCase() === title.trim().toLowerCase()) {
+          return {base: OB_GROUPS[g], color: colourWordFromHandle(handle) || 'Original'};
+        }
+      }
+      return null;
+    }
+
     function splitByHyphen(title) {
       for (var e = 0; e < OB_EXCLUDE_TITLES.length; e++) {
         if (OB_EXCLUDE_TITLES[e].toLowerCase() === title.toLowerCase()) return null;
@@ -316,8 +358,8 @@
       return null;
     }
 
-    function split(title) {
-      return splitByHyphen(title) || splitBySuffix(title);
+    function split(title, handle) {
+      return splitByHyphen(title) || splitBySuffix(title) || splitBare(title, handle);
     }
 
     /* ---- catalog: the whole color range, not just what's on this page ---- */
@@ -325,7 +367,7 @@
     function indexFrom(list) {
       var m = new Map();
       list.forEach(function (p) {
-        var parsed = split(p.title);
+        var parsed = split(p.title, p.handle);
         if (!parsed) return;
         var key = parsed.base.toLowerCase();
         if (!m.has(key)) m.set(key, []);
@@ -395,7 +437,7 @@
         cards.forEach(function (card) {
           var title = titleOf(card);
           if (!title) return;
-          var parsed = split(title);
+          var parsed = split(title, handleOf(hrefOf(card)));
           if (!parsed) return;
           anyGroupable = true;
           var key = parsed.base.toLowerCase();

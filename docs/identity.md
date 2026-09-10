@@ -256,6 +256,11 @@ renamed). Source: "OBERNDÖRFER MILANO 5" (205996556613, Horizon 4.1.5). Built o
   `snippets/oberndoerfer-color-grouping.liquid` (dark/light modifiers honoured), and the average
   colour of the photograph when the name is not in the table. The photograph itself is the last
   resort. Same file on the copy and in the repo.
+- Dots, second pass (10 Sept, the owner: "some color swatches look cut out and table trunk is
+  missing color swatches"): the row keeps 6px under it and 2px at the sides so no ring is cut at
+  the card edge; a two-tone name ("Black and Yellow", "White/Blue") shows a split dot; "pastel"
+  reads as light and "jeans" as denim; a bare base title ("Table Trunk", handle
+  orange-tabel-trunk) joins its family with the colour read from the handle, labelled Orange.
 - The grid itself stays the live theme's (10 Sept, the owner with a screenshot of the live Bags
   page: "keep this design of product grid for collection pages"): every collection template on
   the copy carries the newer hero above the live theme's own `main` section from its
