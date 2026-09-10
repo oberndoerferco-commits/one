@@ -23,3 +23,6 @@ templates/collection.trunks.json
 templates/product.json
 templates/product.ready-to-wear.json
 templates/product.sunglasses.json
+snippets/oberndoerfer-mobile-menu.liquid
+snippets/oberndoerfer-transfer-styles.liquid
+blocks/product-title.liquid

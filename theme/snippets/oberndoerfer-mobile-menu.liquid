@@ -1,0 +1,384 @@
+{% comment %}
+  Oberndoerfer Milano - MOBILE MENU DRAWER (PART 9)
+  -------------------------------------------------------------------
+  Rendered from oberndoerfer-type-overrides.liquid.
+
+  Mostly CSS. The ACCORDION at the foot of this file is the one piece of JS,
+  written as progressive enhancement: if it never runs, the drawer simply
+  renders fully expanded exactly as it did before, and every link still works.
+
+  WHY THIS EXISTS
+  PART 4 of the type-overrides snippet deliberately scoped the shared heading
+  scale to `main`, which left the header, footer and MENU DRAWER on the theme's
+  own type scale. Measured on the draft theme at 375x812 before this change:
+
+    top-level items ("HOME", "COLLECTIONS")  28px uppercase, 47px row
+    child items ("NEW IN", "BAGS", ...)      16px, but 114-140px rows (images)
+    drawer width                             356px of a 375px viewport (95%)
+    open transition                          transform .2s
+
+  WHAT THIS SNIPPET DOES
+  - Top-level 28px -> 16px uppercase, tracked, weight 500. It is a nav label,
+    and at 28px it was louder than the mobile h1 (24px), inverting hierarchy.
+  - Non-grid children 14px, muted, >=44px tap rows.
+  - COLLECTION THUMBNAILS ARE SHOWN, in a 2-column grid, at one fixed crop.
+  - Top-level items with a submenu are COLLAPSED BY DEFAULT and expand on tap.
+  - Drawer fills the whole viewport on phones.
+  - Open transition .2s -> .42s on a soft curve, with a reduced-motion opt-out.
+
+  COLLECTION THUMBNAILS - OWNER DECISION, 2026-08-15
+  An earlier revision HID these thumbnails on the argument that Hermes / The Row
+  / Bottega Veneta / Miu Miu / Gucci all use pure typography in mobile nav. The
+  owner has asked twice for the collection pictures back, so they are restored.
+  That decision is settled - do not re-litigate it in a future pass.
+
+  The two real defects behind the original complaint are fixed here rather than
+  by removing the images:
+  1. INCONSISTENT CROP. The source images have different intrinsic ratios
+     (verified: 800x802, 800x533, ...), so cards in a row rendered at different
+     heights and rows never lined up. One enforced `aspect-ratio` +
+     `object-fit: cover` makes every thumbnail the same square. Display-only.
+  2. LOW CONTRAST. Pale beige-on-beige shots bled into the white drawer. Fixed
+     with a warm ground plus a hairline inset border.
+
+  BUGFIX 2026-08-15 - LOCALIZATION SELECTOR OVERLAPPING THE GRID
+  The previous revision set `min-height: 100%` on `.menu-drawer__navigation`.
+  `.menu-drawer` is `display: flex; flex-direction: column` and the nav is
+  `flex: 0 1 auto`, so that resolved the nav's box to exactly the drawer height
+  (812px) while its actual content was 1624px. The nav's `overflow` is
+  `visible`, so the menu content spilled straight out of its box, while the
+  `.menu-drawer__utility-links` row - which holds the USD / EN region+language
+  selector - was laid out at 856px, i.e. directly on top of the spilled
+  collection grid. That is what put "USD / EN" over the Small Leather Goods
+  thumbnail.
+  FIX: no min-height. `flex: 1 0 auto` lets the nav grow to fill the drawer when
+  the menu is short (keeping the utility row at the bottom) and take its natural
+  height when the menu is tall, with `.menu-drawer` as the single scroll
+  container. DO NOT reintroduce a percentage min-height on this element.
+
+  FULL-SCREEN DRAWER - OWNER REQUEST, 2026-08-15
+  The theme ships `.menu-drawer` as `position: fixed; inset: 0`, so it was
+  already full-bleed geometrically, but height came from `100vh`, which ignores
+  the mobile address bar and leaves a strip of page showing on real devices.
+  Pinned to `100dvh` where supported, with `100vh` kept first as the fallback.
+  NOTE: the previous revision also targeted `.menu-drawer__inner-container`,
+  which DOES NOT EXIST in this theme - verified in the live DOM. The real inner
+  element is `.menu-drawer__navigation`.
+
+  ACCORDION - OWNER REQUEST, 2026-08-15
+  Everything rendered expanded on open, so the first impression was a wall
+  including nine collection images. Top-level items that have a submenu now
+  start collapsed and expand on tap, one at a time (opening one closes the
+  others), which keeps the drawer near one screen.
+
+  Two details worth knowing before changing this:
+  - The parent rows are REAL LINKS (/collections, /pages/about-us,
+    /pages/personalization), so making them toggles would strand those
+    destinations. "About us" and "Bespoke" already repeat themselves as their
+    own first child, so they lose nothing. "Collections" does not, so a
+    "View all" link is appended to its panel. The injection is conditional -
+    it only happens when the parent's href is not already among its children.
+  - preventDefault only fires when the mobile media query matches AND the
+    script has run, so with JS unavailable the rows stay ordinary links.
+
+  NOT DONE HERE (needs the P0.4 navigation decision first):
+  the LABELS are still merchandising-led ("NEW IN", "FEATURED PRODUCTS",
+  "COLLECTIONS") rather than customer-intent-led. Renaming them edits the
+  Shopify navigation object and hits desktop too, so it belongs to the nav
+  restructure, not to this pass.
+
+  NOTE ON !important: this snippet is injected ahead of the theme stylesheet,
+  so equal-specificity theme rules would otherwise win the cascade.
+{% endcomment %}
+{% style %}
+  /* ---------- PART 9: mobile menu drawer ---------- */
+
+  /* -- type: top level becomes a nav label, not a headline -- */
+  .menu-drawer__menu-item--mainlist,
+  .menu-drawer__menu-item--mainlist .menu-drawer__menu-item-text {
+    font-size: 1rem !important;
+    line-height: 1.35 !important;
+    letter-spacing: 0.09em !important;
+    font-weight: 500 !important;
+    color: #18120C !important;
+  }
+  .menu-drawer__menu-item--mainlist {
+    padding-block: 14px !important;
+  }
+
+  /* -- children (plain text lists): quieter, comfortable tap rows -- */
+  .menu-drawer__menu--childlist {
+    padding-inline-start: 2px !important;
+    margin-block-start: 2px !important;
+  }
+  .menu-drawer__menu-item--child {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    min-height: 44px !important;
+    height: auto !important;
+    padding-block: 4px !important;
+    font-size: 0.875rem !important;
+    line-height: 1.4 !important;
+    letter-spacing: 0.06em !important;
+    font-weight: 400 !important;
+    color: rgba(24, 18, 12, 0.62) !important;
+  }
+  .menu-drawer__menu-item--child:hover,
+  .menu-drawer__menu-item--child:focus-visible {
+    color: #18120C !important;
+  }
+
+  /* -- COLLECTION THUMBNAIL GRID: restored, one consistent crop -- */
+  .menu-drawer__menu--grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 22px 12px !important;
+    align-items: start !important;
+    padding-inline: 2px 4px !important;
+    margin-block: 12px 6px !important;
+  }
+  .menu-drawer__menu--grid .menu-drawer__list-item {
+    min-width: 0 !important;
+    border: 0 !important;
+  }
+
+  /* card: image stacked over its label, both flush left */
+  .menu-drawer__menu--grid .menu-drawer__menu-item--child {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    min-height: 0 !important;
+    padding-block: 0 !important;
+    font-size: 0.8125rem !important;
+    line-height: 1.35 !important;
+    letter-spacing: 0.07em !important;
+    font-weight: 500 !important;
+    color: rgba(24, 18, 12, 0.86) !important;
+  }
+  .menu-drawer__menu--grid .menu-drawer__menu-item--child:hover,
+  .menu-drawer__menu--grid .menu-drawer__menu-item--child:focus-visible {
+    color: #18120C !important;
+  }
+
+  /* the crop fix: every source ratio renders as the same square */
+  .menu-drawer__menu--grid .menu-drawer__link-image,
+  .menu-drawer__menu--grid img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1 !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    margin: 0 0 10px 0 !important;
+    border-radius: 2px !important;
+    background-color: #F0EBE3 !important;
+    box-shadow: inset 0 0 0 1px rgba(24, 18, 12, 0.10) !important;
+  }
+
+  /* -- dividers: hairline, warm, not full black -- */
+  .menu-drawer__list-item--divider {
+    border-color: rgba(24, 18, 12, 0.12) !important;
+  }
+
+  /* -- close button: real 44px tap target, aligned to the type column -- */
+  .menu-drawer__close-button {
+    min-width: 44px !important;
+    min-height: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+  }
+
+  /* -- motion: slower, softer open than the theme's utilitarian .2s -- */
+  .menu-drawer {
+    transition:
+      transform 0.42s cubic-bezier(0.32, 0.08, 0.24, 1),
+      visibility 0.42s cubic-bezier(0.32, 0.08, 0.24, 1),
+      opacity 0.42s cubic-bezier(0.32, 0.08, 0.24, 1) !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .menu-drawer {
+      transition: none !important;
+    }
+  }
+
+  /* -- full-screen panel on phones -- */
+  @media (max-width: 749px) {
+    .menu-drawer {
+      inset: 0 !important;
+      width: 100vw !important;
+      max-width: 100vw !important;
+      height: 100vh !important;
+      max-height: 100vh !important;
+      overflow-y: auto !important;
+      overscroll-behavior: contain !important;
+      -webkit-overflow-scrolling: touch !important;
+    }
+    /* grow to fill a short menu, natural height for a tall one.
+       NEVER a percentage min-height here - see BUGFIX note above. */
+    .menu-drawer__navigation {
+      flex: 1 0 auto !important;
+      min-height: 0 !important;
+    }
+  }
+
+  @supports (height: 100dvh) {
+    @media (max-width: 749px) {
+      .menu-drawer {
+        height: 100dvh !important;
+        max-height: 100dvh !important;
+      }
+    }
+  }
+
+  /* -- ACCORDION: collapsed by default, expand on tap --
+     Everything here is gated on `html.ob-acc-js`, which the script adds only
+     when it runs AND the browser supports :has(). Without that class the menu
+     renders fully expanded, exactly as before, with every link working. */
+  @media (max-width: 749px) {
+    html.ob-acc-js .menu-drawer__navigation li:has(> ul):not([data-ob-acc='open']) > ul {
+      display: none !important;
+    }
+    html.ob-acc-js .menu-drawer__navigation li:has(> ul) > a.menu-drawer__menu-item--mainlist {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      gap: 12px !important;
+      width: 100% !important;
+    }
+    /* caret drawn with ::after rather than an injected element, so the theme's
+       DOM morphing cannot strip it */
+    html.ob-acc-js .menu-drawer__navigation li:has(> ul) > a.menu-drawer__menu-item--mainlist::after {
+      content: '';
+      flex: 0 0 auto;
+      width: 8px;
+      height: 8px;
+      margin-inline-end: 4px;
+      border-right: 1.5px solid currentColor;
+      border-bottom: 1.5px solid currentColor;
+      transform: rotate(-45deg);
+      transform-origin: center;
+      opacity: 0.5;
+      transition: transform 0.25s cubic-bezier(0.32, 0.08, 0.24, 1);
+    }
+    html.ob-acc-js .menu-drawer__navigation li[data-ob-acc='open'] > a.menu-drawer__menu-item--mainlist::after {
+      transform: rotate(45deg);
+      opacity: 0.8;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html.ob-acc-js .menu-drawer__navigation li:has(> ul) > a.menu-drawer__menu-item--mainlist::after {
+        transition: none;
+      }
+    }
+    /* "View all" spans the grid so it doesn't sit in a half-width image slot */
+    .ob-acc-viewall {
+      grid-column: 1 / -1 !important;
+      margin-block-start: 2px !important;
+    }
+    .ob-acc-viewall > a {
+      text-decoration: underline !important;
+      text-underline-offset: 3px !important;
+      min-height: 40px !important;
+    }
+  }
+{% endstyle %}
+
+<script>
+  (function () {
+    /* The theme re-renders / morphs the drawer markup after DOMContentLoaded
+       (note `data-skip-node-update` on the details container), which strips
+       attributes and injected elements set at init time. VERIFIED: an earlier
+       revision wired each row directly and every attribute was gone by the
+       time the drawer was opened. So this version keeps NO persistent state in
+       the drawer: the gate lives on <html>, the collapsed state and caret come
+       from CSS, and the toggle is delegated on document. Nothing here needs to
+       survive a re-render. */
+    var MQ = window.matchMedia('(max-width: 749px)');
+
+    /* Bail out entirely where :has() is unsupported, otherwise we would
+       preventDefault on rows that CSS cannot expand, stranding the submenus. */
+    if (!(window.CSS && CSS.supports && CSS.supports('selector(li:has(> ul))'))) return;
+
+    document.documentElement.classList.add('ob-acc-js');
+
+    function subOf(li) {
+      for (var i = 0; i < li.children.length; i++) {
+        if (li.children[i].tagName === 'UL') return li.children[i];
+      }
+      return null;
+    }
+
+    function linkOf(li) {
+      for (var i = 0; i < li.children.length; i++) {
+        if (li.children[i].tagName === 'A') return li.children[i];
+      }
+      return null;
+    }
+
+    /* Parent rows are real links. "About us" and "Bespoke" repeat themselves as
+       their own first child so they lose nothing, but "Collections" does not -
+       give it a "View all" so /collections stays reachable. Idempotent, and run
+       on expand rather than at init so a re-render cannot lose it. */
+    function ensureViewAll(a, sub) {
+      var href = a.getAttribute('href');
+      if (!href || href === '#' || sub.querySelector('.ob-acc-viewall')) return;
+      var links = sub.querySelectorAll('a');
+      for (var i = 0; i < links.length; i++) {
+        if (links[i].getAttribute('href') === href) return;
+      }
+      var li = document.createElement('li');
+      li.className = 'menu-drawer__list-item ob-acc-viewall';
+      var link = document.createElement('a');
+      link.className = 'menu-drawer__menu-item menu-drawer__menu-item--child';
+      link.setAttribute('href', href);
+      link.textContent = 'View all';
+      li.appendChild(link);
+      sub.appendChild(li);
+    }
+
+    document.addEventListener('click', function (e) {
+      if (!MQ.matches) return; // desktop: ordinary links
+      if (!e.target || !e.target.closest) return;
+
+      var a = e.target.closest('a.menu-drawer__menu-item--mainlist');
+      if (!a) return;
+
+      var li = a.parentElement;
+      if (!li || li.tagName !== 'LI') return;
+
+      var sub = subOf(li);
+      if (!sub) return; // leaf row: let it navigate
+
+      e.preventDefault();
+
+      var isOpen = li.getAttribute('data-ob-acc') === 'open';
+      var topUl = li.parentElement;
+
+      // single-open: collapse the others
+      if (topUl) {
+        for (var i = 0; i < topUl.children.length; i++) {
+          var sib = topUl.children[i];
+          if (sib === li) continue;
+          sib.removeAttribute('data-ob-acc');
+          var sa = linkOf(sib);
+          if (sa) sa.setAttribute('aria-expanded', 'false');
+        }
+      }
+
+      if (isOpen) {
+        li.removeAttribute('data-ob-acc');
+        a.setAttribute('aria-expanded', 'false');
+      } else {
+        li.setAttribute('data-ob-acc', 'open');
+        a.setAttribute('aria-expanded', 'true');
+        ensureViewAll(a, sub);
+      }
+    }, true); // capture, so this runs before the theme's own link handling
+  })();
+</script>

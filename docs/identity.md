@@ -269,6 +269,11 @@ renamed). Source: "OBERNDÖRFER MILANO 5" (205996556613, Horizon 4.1.5). Built o
   Shopify's colour swatches. The 4-across style rule from the newer css block is dropped, card
   titles keep their full " - Colour" names, and the price and card-fill rules in the transfer
   styles apply to product pages only. Those templates are in `theme/transfer-templates/`.
+- Mobile menu (10 Sept, the owner: "I also liked how the menu was on mobile version"):
+  `snippets/oberndoerfer-mobile-menu.liquid` copied as is and rendered at the foot of the
+  transfer styles. Same drawer markup on both Horizon versions, so it lands unchanged: 16px
+  tracked top-level rows, collapsed sections that open on tap, the collection thumbnails in a
+  two-column grid at one crop, full-height drawer.
 - Not carried: the home page beyond the reveal, the header, the footer voice, the page-enter
   animation, the global palette. The full file list is `scripts/transfer-old-theme-files.txt`.
 
