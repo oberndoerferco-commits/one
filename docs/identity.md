@@ -296,6 +296,16 @@ older theme's answers, and the Organization description is the admin's shop desc
 Instagram profile is added as sameAs when the theme's social settings are empty. Shopify's own
 Organization block and product schema stay as they are; the new entity is additive.
 
+## Eyewear hero (11 September)
+
+The owner: "remove the picture of the glasses getting polished and replace it with something
+free from Shopify that makes sense, even an ocean picture". Chosen from Shopify's Burst library
+(free for use on a shop, Burst licence): "boats sailing under buildings on rock face", a coast
+town on the cliffs above the sea, 5760px, uploaded to Files as obm-eyewear-riviera-coast.jpg
+and set as the hero background of templates/collection.sunglasses.json on the copy "NEW WEBSITE
+BUG fix 4 - seo schema (publish me)". The collection's own image (IMG_4804.jpg, used on menus and
+cards) is unchanged.
+
 ## Collection and product pages (commerce pass, 5 September)
 
 - Collection pages: the layout is the original one — framed tiles touching, the grid full
@@ -312,7 +322,7 @@ Organization block and product schema stay as they are; the new entity is additi
   first tile. Heroes are material, hardware, the bench or a room, and each is checked against
   that collection's own products before it is used. The eleven in use are all different from
   one another: hide macro (Bags), brass emblem (Trunks), trunk corner (New in), bench
-  (all products), brass fittings (Small leather goods), polishing wheel (Eyewear), Miramare
+  (all products), brass fittings (Small leather goods), a coast town above the sea (Eyewear, from 11 Sept), Miramare
   terrace (Travel), piano hall (Home), gallery and daybed (the two catch-alls), gold clasp
   (Trax NYC).
 - Product page: eyebrow (family and leather, or "Limited edition"), Marcellus title, price
