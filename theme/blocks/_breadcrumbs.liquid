@@ -1,0 +1,85 @@
+{% doc %}
+  Renders a small, muted "Home / Collection / Product" breadcrumb trail above
+  the product title on the PDP. Visual companion to the BreadcrumbList JSON-LD
+  emitted in snippets/meta-tags.liquid for product pages.
+{% enddoc %}
+
+{% liquid
+  assign crumb_product = closest.product
+
+  # 2026-08-17 fix: was crumb_product.collections.first, which frequently
+  # resolved to a manual merchandising collection ("New in" or "Signature
+  # Pieces" - both ruleSet: null, curated by hand, not real categories)
+  # instead of the product's actual category (e.g. Trunks for the Leather
+  # Watch Box, which the rule-based TRUNKS smart collection genuinely
+  # matches). See the matching fix and longer explanation in
+  # snippets/meta-tags.liquid's BreadcrumbList JSON-LD block, which this
+  # visual breadcrumb must stay consistent with. Both non-category
+  # collections are skipped in favor of the first remaining one; they're
+  # only used as a last resort if they're the product's only collection(s).
+  # 11 Sept 2026: the catch-all "Products" (handle collections) and "Featured
+  # products" are skipped too, so the trail names the real category.
+  assign crumb_ob_noncategory_collections = 'collections,featured-products,new-in,signature-pieces' | split: ','
+  assign crumb_collection = null
+  for crumb_c in crumb_product.collections
+    unless crumb_ob_noncategory_collections contains crumb_c.handle
+      assign crumb_collection = crumb_c
+      break
+    endunless
+  endfor
+  if crumb_collection == blank
+    assign crumb_collection = crumb_product.collections.first
+  endif
+%}
+
+<nav class="pdp-breadcrumbs" aria-label="Breadcrumb">
+  <a href="{{ routes.root_url }}" class="pdp-breadcrumbs__link">Home</a>
+  {%- if crumb_collection -%}
+    <span class="pdp-breadcrumbs__sep" aria-hidden="true">/</span>
+    <a href="{{ crumb_collection.url }}" class="pdp-breadcrumbs__link">{{ crumb_collection.title }}</a>
+  {%- endif -%}
+  <span class="pdp-breadcrumbs__sep" aria-hidden="true">/</span>
+  <span class="pdp-breadcrumbs__current" aria-current="page">{{ crumb_product.title }}</span>
+</nav>
+
+{% stylesheet %}
+  .pdp-breadcrumbs {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 0.25em;
+    column-gap: 0.5em;
+    font-family: var(--font-body--family);
+    font-size: 0.75rem;
+    letter-spacing: var(--letter-spacing-sm);
+    text-transform: uppercase;
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-muted-text));
+  }
+
+  .pdp-breadcrumbs__link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .pdp-breadcrumbs__link:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  .pdp-breadcrumbs__sep {
+    opacity: 0.5;
+  }
+
+  .pdp-breadcrumbs__current {
+    opacity: 0.6;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Breadcrumbs",
+  "tag": null,
+  "settings": [],
+  "presets": []
+}
+{% endschema %}

@@ -277,6 +277,25 @@ renamed). Source: "OBERNDÖRFER MILANO 5" (205996556613, Horizon 4.1.5). Built o
 - Not carried: the home page beyond the reveal, the header, the footer voice, the page-enter
   animation, the global palette. The full file list is `scripts/transfer-old-theme-files.txt`.
 
+## Structured data on the live theme (11 September, `scripts/seo-schemas.py`)
+
+The owner published the transfer copy as "NEW WEBSITE BUG fix 3" (206153285957) and removed
+the others. Checked on the live site, everything from the transfer works. What the newer theme
+still had and the live one did not was structured data only, so a copy "NEW WEBSITE BUG fix 4 -
+seo schema (publish me)" (206192443717) carries it: `snippets/meta-tags.liquid` is the live
+theme's own file with the schema blocks appended (collection listing and breadcrumb trail on
+collection pages, breadcrumb trail on product pages, the two FAQ pages, the Organization entity);
+`blocks/_breadcrumbs.liquid` and the product breadcrumb schema now skip the catch-all "Products"
+and "Featured products" collections so a T-shirt reads Home > Ready to Wear > T-shirt. Nothing
+visible changes except that one breadcrumb word.
+
+The owner, 11 Sept: "I prefer the writing style in NEW WEBSITE BUG FIX 3 rather than
+oberndörfer milano 5". So the FAQ and care-guide schemas are generated from the live pages' own
+accordion rows (`scripts/seo-schemas.py`, all-capital rows set in sentence case), never from the
+older theme's answers, and the Organization description is the admin's shop description. The
+Instagram profile is added as sameAs when the theme's social settings are empty. Shopify's own
+Organization block and product schema stay as they are; the new entity is additive.
+
 ## Collection and product pages (commerce pass, 5 September)
 
 - Collection pages: the layout is the original one — framed tiles touching, the grid full

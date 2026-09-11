@@ -1,5 +1,5 @@
 {% comment %}
-  Oberndoerfer Milano - additive Organization entity (2026-09-03). Rendered from
+  Oberndoerfer Milano - additive Organization entity (2026-09-03; description from the admin's shop description since 11 September so the writing stays the owner's). Rendered from
   snippets/meta-tags.liquid on every page. Social profiles come from the theme's
   social settings so they stay in one place.
 {% endcomment %}
@@ -20,6 +20,10 @@
   if settings.social_youtube_link != blank
     assign same_as = same_as | append: '|' | append: settings.social_youtube_link
   endif
+  if same_as == blank
+    # the theme's social settings are empty; the footer links this account (11 Sept 2026)
+    assign same_as = '|https://www.instagram.com/oberndoerferco/'
+  endif
   assign same_as_list = same_as | remove_first: '|' | split: '|'
 -%}
 <script type="application/ld+json">
@@ -32,7 +36,7 @@
   "url": {{ request.origin | json }},
   "email": "info@oberndoerferco.com",
   "telephone": "+49 173 2489709",
-  "description": "An independent house of leather craftsmanship. Bags, trunks, watch and jewellery boxes, small leather goods and furniture, made by hand in ateliers around Milan from full-grain Italian calf and CITES-documented exotic hides. Every piece can be made to order, and every piece can come back for repair.",
+  "description": {{ shop.description | json }},
   "areaServed": "Worldwide",
   "foundingLocation": { "@type": "Place", "name": "Milan, Italy" },
   "brand": { "@type": "Brand", "name": "Oberndörfer Milano" },
