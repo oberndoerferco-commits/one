@@ -33,18 +33,33 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import vectorize_lineart as VL
 
 
-def palette_of(rgb, min_fraction=0.001, merge_dist=6):
-    """The image's flat colours, most common first, near-duplicates merged."""
+def palette_of(rgb, min_fraction=0.00005, merge_dist=6, min_solid=40, erode=2):
+    """The image's flat colours, most common first, near-duplicates merged.
+
+    Frequency alone is the wrong test. A small but deliberate detail - a dot a
+    few dozen pixels across - is rarer than the anti-aliasing fringe along a
+    long edge, so any threshold that rejects the fringe also rejects the dot,
+    and the dot silently takes its neighbour's colour.
+
+    So a colour qualifies on being *solid* rather than common: erode its mask
+    and see whether anything survives. A fringe is a pixel or two wide and
+    vanishes; a real region, however small, does not.
+    """
     flat = rgb.reshape(-1, 3).astype(np.uint8)
     cols, counts = np.unique(flat, axis=0, return_counts=True)
     order = np.argsort(counts)[::-1]
+    img = rgb.astype(np.int16)
     out = []
     for k in order:
         if counts[k] / len(flat) < min_fraction:
             break
         c = cols[k].astype(np.float32)
-        if not any(np.abs(c - m).max() <= merge_dist for m in out):
-            out.append(c)
+        if any(np.abs(c - m).max() <= merge_dist for m in out):
+            continue
+        near = np.abs(img - cols[k].astype(np.int16)).max(axis=2) <= merge_dist
+        if ndimage.binary_erosion(near, iterations=erode).sum() < min_solid:
+            continue
+        out.append(c)
     return np.array(out, dtype=np.float32)
 
 

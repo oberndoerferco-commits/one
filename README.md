@@ -34,5 +34,5 @@ Diff the two JSON files to see exactly which strings changed.
 | `scripts/pdf_to_dxf.py` | PDF→DXF converter — reads geometry out of clipping paths, keeps Béziers exact |
 | `assets/traxnyc-crest/` | TraxNYC crest rebuilt as a solid emblem with one continuous wide band |
 | `scripts/solidify_crest.py` | Rebuilds that crest's frame from exact circles with enforced 4-fold symmetry |
-| `assets/motif-tiles/` | Five motif colourways vectorised from PNG (SVG + PDF) |
+| `assets/motif-tiles/` | Ten motif colourways vectorised from PNG (SVG + PDF) |
 | `scripts/vectorize_flat_art.py` | Flat-colour vectoriser — paints nested regions largest-first so edges cannot gap |
