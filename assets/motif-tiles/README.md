@@ -20,7 +20,7 @@ The ten colourways, vectorised from the 2048 × 2048 px PNGs.
 
 SVGs carry `viewBox="0 0 2048 2048"` so they scale to anything; the PDFs are
 512 × 512 pt. Backgrounds are transparent — the paper is not painted. Each file
-is ~86–100 KB, about 1,800–2,450 curve and line segments.
+is ~10–14 KB, about 350–500 curve and line segments.
 
 Reproduce with:
 
@@ -52,6 +52,31 @@ Outlines are fitted with the corner-preserving line/curve fitter in
 `scripts/vectorize_lineart.py`, so the straight edges of the cross stay straight,
 the circle stays a smooth curve, and the spike tips stay sharp.
 
+## Straight edges, and why they were wavy
+
+The first pass produced visibly wavy black lanes on every diagonal edge.
+
+A diagonal edge in the source is a staircase with roughly a pixel of
+quantisation. With the straightness tolerance set *below* that, the fitter
+cannot certify the edge as straight: it splits it into short runs, the curve
+classifier then sees a chain of small same-signed turns and calls it a curve,
+and what should be one straight line is emitted as a wobbling sequence of
+Béziers. Nothing about the fit was wrong — the tolerance was simply asking it
+to track noise.
+
+`--line-tol` now sits well above the staircase (2.5 source px). The whole set
+dropped from ~1,800–2,450 segments to ~350–500, which is the real tell: a
+straight edge is now *one* segment instead of twenty.
+
+![before and after](edge-fix.png)
+
+This costs nothing in curve quality. Measured on the disc, the traced circle's
+edge residual matches the source's own to within 0.03 px at every tolerance
+tried — the change only stops straight edges being mistaken for gentle curves.
+It is worth knowing that the pixel-match numbers below got very slightly
+*worse* as a result (from 0–12 off-edge pixels to 10–27): that is the cost of
+declining to reproduce the staircase, and it is the right trade.
+
 ## Picking the palette
 
 Frequency is the wrong test for what counts as a colour. A small deliberate
@@ -70,22 +95,21 @@ Each PDF was rasterised back to 2048 px and compared against its source:
 
 | | pixels differing by >32/255 | of those, **off** any edge |
 | --- | --- | --- |
-| Brown | 0.417% | 0 |
-| Blue / pink | 0.415% | 0 |
-| Magenta / pink | 0.453% | 0 |
-| Pink / yellow | 0.423% | 0 |
-| Magenta / blue | 0.440% | 0 |
-| Green / yellow | 0.462% | 0 |
-| Orange / magenta | 0.497% | 1 px |
-| Blue / tan | 0.400% | 0 |
-| Black / white | 0.355% | 12 px |
-| Olive / tan | 0.387% | 0 |
+| Brown | 0.451% | 23 px |
+| Blue / pink | 0.463% | 19 px |
+| Magenta / pink | 0.492% | 14 px |
+| Pink / yellow | 0.462% | 15 px |
+| Magenta / blue | 0.481% | 15 px |
+| Green / yellow | 0.501% | 19 px |
+| Orange / magenta | 0.532% | 10 px |
+| Blue / tan | 0.453% | 16 px |
+| Black / white | 0.385% | 27 px |
+| Olive / tan | 0.430% | 14 px |
 
-Essentially every disagreeing pixel lies on a region boundary — the differences
-are anti-aliasing along edges, not shape error. Eight of the ten have **no**
-off-edge pixel at all; the other two are down to a dozen isolated pixels at
-sharp corners. That is the result you want: the shapes are right and only the
-one-pixel edge blend differs, as it must when replacing pixels with curves.
+Off-edge disagreement is 10–27 pixels out of 4.19 million — 0.0005% or less,
+isolated pixels where a straightened edge crosses the source's staircase. Every
+other differing pixel lies on a region boundary, which is anti-aliasing rather
+than shape error.
 
 The three compositions are not identical to each other, so each was traced
 separately rather than recoloured from one master: the brown and blue/pink

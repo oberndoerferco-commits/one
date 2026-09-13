@@ -20,6 +20,16 @@ first, with the fill painted over the middle and leaving the outline showing.
 
 Outlines are fitted with the same corner-preserving line/curve fitter used for
 line art, so straight edges stay straight and curves stay smooth.
+
+One tolerance matters more than the rest. A diagonal edge in the source is a
+staircase with roughly a pixel of quantisation, so a straightness tolerance set
+below that cannot certify the edge as straight: the fitter splits it into short
+runs, the curve classifier then sees a chain of small same-signed turns, and
+what should be one straight line comes out as a visibly wavy sequence of
+Beziers. `--line-tol` therefore sits well above the staircase (2.5 source px by
+default). It does not cost curve quality - the traced circle matches the
+source's own edge residual to within 0.03 px either way - it only stops
+straight edges being mistaken for gentle curves.
 """
 
 import argparse
@@ -92,10 +102,39 @@ def regions(lab, n_colours, min_area=64):
     return out
 
 
-def outline(mask, sigma=0.8, **fit):
-    """Sub-pixel outline of a filled mask, fitted to lines and curves."""
+def coverage(rgb, pal, ci, filled, band=2):
+    """Sub-pixel coverage of a region, read from the source anti-aliasing.
+
+    Thresholding to a binary mask and blurring it throws away the very thing
+    that says where the edge really is. On a diagonal the binary mask is a
+    staircase, and a fitter asked to follow it produces a visibly wavy line.
+
+    An anti-aliased pixel on a boundary is a blend of the two colours meeting
+    there, so its distance to each gives the sub-pixel coverage directly:
+    alpha = d_other / (d_own + d_other), which is 1 on the region, 0 off it and
+    lands on 0.5 exactly at the true edge. Only the thin band around the
+    boundary needs it - the interior is forced solid so that nested children do
+    not carve contours out of their parent.
+    """
+    img = rgb.astype(np.float32)
+    d_own = np.linalg.norm(img - pal[ci], axis=2)
+    d_other = np.full(d_own.shape, np.inf, np.float32)
+    for j in range(len(pal)):
+        if j == ci:
+            continue
+        np.minimum(d_other, np.linalg.norm(img - pal[j], axis=2), out=d_other)
+    alpha = d_other / np.maximum(d_own + d_other, 1e-6)
+    inner = ndimage.binary_erosion(filled, iterations=band)
+    outer = ndimage.binary_dilation(filled, iterations=band)
+    return np.where(inner, 1.0, np.where(outer, alpha, 0.0)).astype(np.float32)
+
+
+def outline(field, sigma=0.8, **fit):
+    """Sub-pixel outline of a coverage field, fitted to lines and curves."""
     from skimage import measure
-    f = ndimage.gaussian_filter(mask.astype(np.float32), sigma)
+    f = field.astype(np.float32)
+    if sigma > 0:
+        f = ndimage.gaussian_filter(f, sigma)
     paths = []
     for con in measure.find_contours(f, 0.5):
         pts = con[:, ::-1].astype(np.float64) + 0.5
@@ -187,7 +226,7 @@ def write_pdf(path, layers, w, h, scale):
 
 
 def vectorise(src, out_svg=None, out_pdf=None, pdf_size=512.0, drop_background=True,
-              min_area=64, **fit):
+              min_area=64, use_coverage=False, sigma=1.2, **fit):
     from PIL import Image
     rgb = np.asarray(Image.open(src).convert('RGB'))
     h, w, _ = rgb.shape
@@ -202,7 +241,8 @@ def vectorise(src, out_svg=None, out_pdf=None, pdf_size=512.0, drop_background=T
 
     layers_svg, layers_pdf = [], []
     for mask, ci, _ in regs:
-        paths = outline(mask, **fit)
+        field = coverage(rgb, pal, ci, mask) if use_coverage else mask.astype(np.float32)
+        paths = outline(field, sigma=sigma, **fit)
         if not paths:
             continue
         c = pal[ci].astype(int)
@@ -225,16 +265,26 @@ def main(argv=None):
     ap.add_argument('--name', default=None)
     ap.add_argument('--pdf-size', type=float, default=512.0,
                     help='PDF page size in points (default 512)')
-    ap.add_argument('--line-tol', type=float, default=0.6)
-    ap.add_argument('--curve-tol', type=float, default=0.4)
+    ap.add_argument('--line-tol', type=float, default=2.5,
+                    help='straightness tolerance in source pixels; must sit above '
+                         'the staircase noise of a diagonal edge or straight edges '
+                         'get fitted as wobbling curves')
+    ap.add_argument('--curve-tol', type=float, default=0.8)
+    ap.add_argument('--min-smooth-run', type=int, default=4,
+                    help='polygon vertices that must turn the same way before a run '
+                         'is treated as a genuine curve rather than a straight edge')
+    ap.add_argument('--sigma', type=float, default=1.2)
+    ap.add_argument('--coverage', action='store_true',
+                    help='derive sub-pixel edges from the source anti-aliasing')
     a = ap.parse_args(argv)
     name = a.name or os.path.splitext(os.path.basename(a.input))[0]
     os.makedirs(a.outdir, exist_ok=True)
     info = vectorise(a.input,
                      os.path.join(a.outdir, name + '.svg'),
                      os.path.join(a.outdir, name + '.pdf'),
-                     pdf_size=a.pdf_size,
-                     line_tol=a.line_tol, curve_tol=a.curve_tol)
+                     pdf_size=a.pdf_size, use_coverage=a.coverage, sigma=a.sigma,
+                     line_tol=a.line_tol, curve_tol=a.curve_tol,
+                     min_smooth_run=a.min_smooth_run)
     print(f"{name}: palette {info['palette']}")
     print(f"   {info['layers']} filled regions, {info['segments']} segments")
     return info
