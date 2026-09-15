@@ -296,15 +296,61 @@ older theme's answers, and the Organization description is the admin's shop desc
 Instagram profile is added as sameAs when the theme's social settings are empty. Shopify's own
 Organization block and product schema stay as they are; the new entity is additive.
 
-## Eyewear hero (11 September)
+## Eyewear tile and hero (11 to 15 September)
 
 The owner: "remove the picture of the glasses getting polished and replace it with something
-free from Shopify that makes sense, even an ocean picture". Chosen from Shopify's Burst library
-(free for use on a shop, Burst licence): "boats sailing under buildings on rock face", a coast
-town on the cliffs above the sea, 5760px, uploaded to Files as obm-eyewear-riviera-coast.jpg
-and set as the hero background of templates/collection.sunglasses.json on the copy "NEW WEBSITE
-BUG fix 4 - seo schema (publish me)". The collection's own image (IMG_4804.jpg, used on menus and
-cards) is unchanged.
+free from Shopify that makes sense, even an ocean picture", then, on being shown the hero,
+"i meant this picture": the polishing photograph was the lifestyle tile inside the Eyewear
+grid (the collection metafield custom.editorial_image), not the hero. The tile is now a
+secluded beach under cliffs from Shopify's Burst library (Burst licence, free for use on a
+shop), uploaded to Files as obm-eyewear-sea-cliffs.jpg; the change is a product-data change
+and is live. The hero was put back to the sunglasses photograph it had before
+(Gemini_Generated_Image_bc4k18bc4k18bc4k.jpg) on "NEW WEBSITE BUG fix 5", which the owner has
+since published. The coast-town photograph (obm-eyewear-riviera-coast.jpg) stays in Files,
+unused.
+
+## White T-shirt edge, "You may also like", CITES (15 September)
+
+- The white T-shirt photographs had a dark line around the shirt: the mask kept the shirt's
+  own dark photo edge. `scripts/tee-photos/compose.py` now cuts the mask a little inside the
+  shirt, feathers it, blends the shirt straight over the ground and sharpens once; the ten
+  white images were regenerated and swapped on the five products (media ids in the product,
+  file names end in -v2).
+- "You may also like" on product pages used the framed card; the owner wanted the collection
+  grid's card. `theme/transfer-templates/product*.json` carry the collection card (pale tile,
+  uppercase title, price, colour dots) into the recommendations section of all three product
+  templates. The dots needed one fix in `oberndoerfer-color-grouping.liquid`: the snippet runs
+  in the head, before document.body exists, so its MutationObserver never attached and the
+  recommendation cards, which arrive after load, never got their row. It now attaches on
+  DOMContentLoaded.
+- The sunglasses product template carried the "Why Oberndörfer Milano" heading and the CITES
+  paragraph from the leather goods; removed (owner: "makes no sense to talk about cites for a
+  sunglass product").
+
+## Hoodies (15 September)
+
+Three hoodie designs from the owner's Canva PDF, as DRAFT products in Ready to Wear: Hoodie
+OBERNDÖRFER MILANO (chest wordmark, hem lockup), Hoodie OM (the initials across the back),
+Hoodie with Logo (the star lattice across the back). Each in Grey, Black and White, sizes S
+to XXL, 250.00 as a placeholder price, pre-order tag and continue-selling like the T-shirts.
+The PDF holds one 615x922 grey photograph per side and the prints as vectors, so
+`scripts/hoodie-photos/compose.py` upscales the photograph 4x (EDSR), paints out the mockup's
+own neck label, remaps the cloth to black or white on the garment only, keys it onto the same
+light ground as the T-shirt photographs, and re-lays the prints from an 8x render of the page
+with the page's white background rectangles removed (one of them sits inside a form object).
+On the black hoodie the ink is inverted, so the print is white and the OM keyline dark. The
+source photograph is small, so these are good draft images rather than final ones; a proper
+photograph of a sample would replace them.
+
+## Blank pages (15 September)
+
+Five pages rendered header and footer only: the live theme's templates/page.json had its main
+section disabled, so every page on the default template (Returns, Shipping) and every page
+whose named template did not exist on this theme (Materials & Craftsmanship, The Art of
+Packaging, Where to Find Us) fell through to nothing. On "NEW WEBSITE BUG fix 6 - blank pages
+(publish me)": page.json enabled again, and the repo's page.materials-craftsmanship.json and
+page.the-art-of-packaging.json (stock Horizon sections only, images already in Files) added.
+Where to Find Us, Returns and Shipping show their own page body.
 
 ## Collection and product pages (commerce pass, 5 September)
 

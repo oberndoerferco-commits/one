@@ -102,7 +102,12 @@ def build_white(page, name):
     base = load_base("base-white"); base = base.crop((0, 0, base.width, 864 * 3 - 8))   # the export padded a white row; keep clear of it
     base = paint_label(base, WHITE_LABEL)
     W, H = base.size
-    a_all = base.convert("L").point(lambda v: 255 if v > 150 else int(255 * v / 150))
+    # 15 Sept (the owner: "the white tshirts has a black lane around it"): the shirt's own dark
+    # edge in the photograph used to survive inside the mask. The mask is now cut a little inside
+    # the shirt, then feathered, and the shirt colour is taken as it is rather than as a
+    # premultiplied value, so the rim is the ground, not a dark line.
+    a_hard = base.convert("L").point(lambda v: 255 if v > 150 else 0)
+    a_all = a_hard.filter(ImageFilter.MedianFilter(9)).filter(ImageFilter.MinFilter(7)).filter(ImageFilter.GaussianBlur(1.6))
     ov_all = overlay_for(page, geo, (W, 864 * 3 + 3)).crop((0, 0, W, H))   # the page footprint covers the padded row too
     split = 616 * 3   # the gap between the two shirts in the photograph
     pad_x, pad_y = 500, 800
@@ -115,18 +120,16 @@ def build_white(page, name):
         shadow = Image.new("L", canvas.size, 0); shadow.paste(a, (pad_x, pad_y + 24))
         shadow = shadow.filter(ImageFilter.GaussianBlur(26)).point(lambda v: int(v * 0.20))
         canvas = Image.composite(Image.new("RGB", canvas.size, (152, 150, 144)), canvas, shadow)
-        inv = ImageChops.invert(full_a)
-        ground_part = ImageChops.multiply(canvas, Image.merge("RGB", (inv, inv, inv)))
-        # a white object on black: pixel = colour x alpha, so ground x (1 - alpha) + pixel is the exact composite
-        masked = ImageChops.multiply(base, Image.merge("RGB", (keep, keep, keep)))
-        pixel_part = Image.new("RGB", canvas.size, (0, 0, 0)); pixel_part.paste(masked, (pad_x, pad_y))
-        comp = ImageChops.add(ground_part, pixel_part)
+        # inside the eroded mask the pixels are the shirt itself, so a straight blend over the ground
+        shirt = Image.new("RGB", canvas.size, GROUND); shirt.paste(base, (pad_x, pad_y))
+        comp = Image.composite(shirt, canvas, full_a)
         ov = Image.new("RGBA", (W, H), (0, 0, 0, 0)); ov.paste(ov_all.crop((x0, 0, x1, H)), (x0, 0))
         full_ov = Image.new("RGBA", canvas.size, (0, 0, 0, 0)); full_ov.paste(ov, (pad_x, pad_y))
         full_ov = modulate(full_ov, comp)
         comp.paste(full_ov, (0, 0), full_ov)
         bb = full_a.point(lambda v: 255 if v > 128 else 0).getbbox()
-        square(comp, bb).save(f"out/{name}-white-{side}.jpg", quality=92, subsampling=0)
+        out = square(comp, bb).filter(ImageFilter.UnsharpMask(radius=1.2, percent=55, threshold=2))
+        out.save(f"out/{name}-white-{side}.jpg", quality=92, subsampling=0)
 
 os.makedirs("out", exist_ok=True)
 NAMES = {1: "embroidered", 3: "om", 5: "chrome", 7: "star", 9: "lattice"}

@@ -552,6 +552,10 @@
         return debounced();
       }
     });
-    if (document.body) mo.observe(document.body, {childList: true, subtree: true});
+    // This snippet is rendered in <head>, so document.body does not exist yet when it runs.
+    // Without the observer, cards that arrive after load (the "You may also like" row on
+    // product pages is fetched after the page) never got their dots (15 Sept 2026).
+    function observe() { if (document.body) mo.observe(document.body, {childList: true, subtree: true}); }
+    if (document.body) observe(); else document.addEventListener('DOMContentLoaded', observe);
   })();
 </script>
