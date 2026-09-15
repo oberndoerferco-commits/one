@@ -1,0 +1,385 @@
+<title>Oberndörfer Operations</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --ground: #E7E3DA;
+    --surface: #FBFAF7;
+    --surface-2: #F1EEE7;
+    --ink: #1B1916;
+    --ink-2: #4A453D;
+    --muted: #7A7367;
+    --line: #D3CDC0;
+    --line-soft: #E0DBD0;
+    --cordovan: #6E2639;
+    --cognac: #9A5B2C;
+    --moss: #4F6B45;
+    --amber: #A8761C;
+    --rust: #A33224;
+    --shadow: 0 1px 2px rgba(27,25,22,.05), 0 8px 24px -12px rgba(27,25,22,.18);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #17151300;
+      --ground: #171513;
+      --surface: #201D1A;
+      --surface-2: #29251F;
+      --ink: #F0EDE6;
+      --ink-2: #C3BCAF;
+      --muted: #918878;
+      --line: #3A352E;
+      --line-soft: #2F2B25;
+      --cordovan: #C4788C;
+      --cognac: #C98D52;
+      --moss: #8FAC80;
+      --amber: #D3A44E;
+      --rust: #D4715F;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #171513;
+    --surface: #201D1A;
+    --surface-2: #29251F;
+    --ink: #F0EDE6;
+    --ink-2: #C3BCAF;
+    --muted: #918878;
+    --line: #3A352E;
+    --line-soft: #2F2B25;
+    --cordovan: #C4788C;
+    --cognac: #C98D52;
+    --moss: #8FAC80;
+    --amber: #D3A44E;
+    --rust: #D4715F;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: 'Archivo', system-ui, -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding-inline: 20px; padding-block: 44px 72px; }
+
+  h1, h2, h3 { font-family: 'Marcellus', Georgia, serif; font-weight: 400; text-wrap: balance; margin: 0; }
+  .eyebrow {
+    font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--muted); font-weight: 600; margin: 0 0 10px;
+  }
+  .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+  .num { font-variant-numeric: tabular-nums; }
+
+  /* ---------- masthead ---------- */
+  .masthead { border-bottom: 1px solid var(--line); padding-bottom: 28px; margin-bottom: 40px; }
+  .masthead h1 { font-size: clamp(30px, 5.2vw, 46px); line-height: 1.12; letter-spacing: -.01em; }
+  .masthead p { color: var(--ink-2); max-width: 60ch; margin: 14px 0 0; }
+  .stamp {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 18px;
+    font-size: 12px; color: var(--muted); letter-spacing: .04em;
+  }
+  .stamp b { color: var(--cordovan); font-weight: 600; }
+
+  /* ---------- funnel ---------- */
+  section { margin-top: 52px; }
+  .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
+  .sec-head h2 { font-size: 23px; }
+  .sec-head .note { font-size: 13px; color: var(--muted); }
+
+  .funnel {
+    background: var(--surface); border: 1px solid var(--line-soft);
+    border-radius: 3px; padding: 24px; box-shadow: var(--shadow);
+  }
+  .step { display: grid; grid-template-columns: 148px 1fr auto; align-items: center; gap: 16px; padding: 9px 0; }
+  .step + .step { border-top: 1px solid var(--line-soft); }
+  .step-label { font-size: 13px; color: var(--ink-2); }
+  .track { background: var(--surface-2); border-radius: 2px; height: 26px; position: relative; overflow: hidden; }
+  .bar { height: 100%; border-radius: 2px; background: var(--cognac); min-width: 3px; }
+  .bar.terminal { background: var(--rust); }
+  .step-val { font-size: 15px; font-weight: 600; min-width: 62px; text-align: right; }
+  .step-val small { display: block; font-size: 11px; font-weight: 400; color: var(--muted); letter-spacing: .03em; }
+  .funnel-foot {
+    margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line);
+    font-size: 13.5px; color: var(--ink-2); display: flex; gap: 10px; align-items: flex-start;
+  }
+  .funnel-foot .flag {
+    flex: none; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; font-weight: 700;
+    color: var(--surface); background: var(--rust); padding: 3px 7px; border-radius: 2px; margin-top: 1px;
+  }
+
+  /* ---------- org ---------- */
+  .divisions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 760px) { .divisions { grid-template-columns: 1fr; } }
+  .division { display: flex; flex-direction: column; gap: 10px; }
+  .division > .dname {
+    font-size: 11px; letter-spacing: .15em; text-transform: uppercase; font-weight: 700;
+    color: var(--muted); padding-bottom: 8px; border-bottom: 2px solid var(--line);
+  }
+  .division[data-d="demand"] > .dname { border-color: var(--cognac); }
+  .division[data-d="conversion"] > .dname { border-color: var(--cordovan); }
+  .division[data-d="intelligence"] > .dname { border-color: var(--moss); }
+
+  button.agent {
+    display: block; width: 100%; text-align: left; font: inherit; cursor: pointer;
+    background: var(--surface); border: 1px solid var(--line-soft); border-left: 3px solid var(--line);
+    border-radius: 2px; padding: 13px 14px; color: var(--ink);
+    transition: border-color .14s, background .14s, transform .14s;
+  }
+  button.agent:hover { background: var(--surface-2); transform: translateX(2px); }
+  button.agent:focus-visible { outline: 2px solid var(--cordovan); outline-offset: 2px; }
+  button.agent[aria-pressed="true"] { border-left-color: var(--cordovan); background: var(--surface-2); }
+  .division[data-d="demand"] button.agent[aria-pressed="true"] { border-left-color: var(--cognac); }
+  .division[data-d="intelligence"] button.agent[aria-pressed="true"] { border-left-color: var(--moss); }
+  .agent .an { font-family: 'JetBrains Mono', monospace; font-size: 13.5px; font-weight: 500; }
+  .agent .ao { font-size: 12.5px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+
+  .lead {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 2px;
+    padding: 16px 18px; margin-bottom: 16px; box-shadow: var(--shadow);
+    display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+  }
+  .lead .badge {
+    font-size: 10px; letter-spacing: .13em; text-transform: uppercase; font-weight: 700;
+    color: var(--cordovan); border: 1px solid var(--cordovan); padding: 4px 8px; border-radius: 2px;
+  }
+  .lead .txt { flex: 1 1 320px; font-size: 13.5px; color: var(--ink-2); }
+  .lead .txt b { font-family: 'JetBrains Mono', monospace; font-weight: 500; color: var(--ink); font-size: 13px; }
+
+  /* ---------- detail ---------- */
+  .detail {
+    margin-top: 16px; background: var(--surface); border: 1px solid var(--line);
+    border-radius: 2px; padding: 22px 24px; box-shadow: var(--shadow);
+  }
+  .detail h3 { font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 500; }
+  .detail .role { font-size: 13px; color: var(--muted); margin: 4px 0 16px; }
+  .detail dl { display: grid; grid-template-columns: 112px 1fr; gap: 10px 18px; margin: 0; }
+  @media (max-width: 560px) { .detail dl { grid-template-columns: 1fr; gap: 3px 0; } .detail dd { margin-bottom: 12px; } }
+  .detail dt { font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 600; padding-top: 2px; }
+  .detail dd { margin: 0; font-size: 14px; color: var(--ink-2); }
+  .detail dd strong { color: var(--ink); font-weight: 600; }
+  code.cmd {
+    font-family: 'JetBrains Mono', monospace; font-size: 12.5px;
+    background: var(--surface-2); border: 1px solid var(--line-soft);
+    padding: 2px 6px; border-radius: 2px; color: var(--cordovan); white-space: nowrap;
+  }
+
+  /* ---------- sequence ---------- */
+  ol.seq { list-style: none; counter-reset: s; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1px; background: var(--line-soft); border: 1px solid var(--line-soft); border-radius: 2px; overflow: hidden; }
+  ol.seq li { counter-increment: s; background: var(--surface); padding: 15px 18px; display: grid; grid-template-columns: 30px 1fr 132px; gap: 14px; align-items: baseline; }
+  @media (max-width: 620px) { ol.seq li { grid-template-columns: 26px 1fr; } ol.seq li .owner { grid-column: 2; } }
+  ol.seq li::before {
+    content: counter(s); font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    color: var(--muted); font-variant-numeric: tabular-nums;
+  }
+  ol.seq .what { font-size: 14.5px; }
+  ol.seq .what em { display: block; font-style: normal; font-size: 12.5px; color: var(--muted); margin-top: 3px; }
+  ol.seq .owner { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--cordovan); }
+
+  /* ---------- commands ---------- */
+  table.cmds { width: 100%; border-collapse: collapse; font-size: 14px; }
+  table.cmds th { text-align: left; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 600; padding: 0 12px 9px 0; border-bottom: 1px solid var(--line); }
+  table.cmds td { padding: 11px 12px 11px 0; border-bottom: 1px solid var(--line-soft); color: var(--ink-2); vertical-align: baseline; }
+  table.cmds td:first-child { white-space: nowrap; }
+  .tablewrap { overflow-x: auto; }
+
+  .owner-note {
+    margin-top: 44px; border: 1px solid var(--cordovan); border-radius: 2px;
+    padding: 20px 22px; background: var(--surface);
+  }
+  .owner-note h2 { font-size: 20px; margin-bottom: 8px; }
+  .owner-note p { margin: 0; color: var(--ink-2); font-size: 14.5px; max-width: 62ch; }
+  .owner-note p + p { margin-top: 10px; }
+
+  footer { margin-top: 52px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">Oberndörfer Milano · operating structure</p>
+    <h1>Seven agents, three divisions,<br>one person to talk to.</h1>
+    <p>A working organisation for the store — who does what, in what order, and the six things you type to set them going. Built on the store's real numbers, not a template.</p>
+    <div class="stamp"><b>15 September 2026</b> · 269 products · Basic plan · EUR</div>
+  </header>
+
+  <section>
+    <div class="sec-head">
+      <h2>Where the business actually stands</h2>
+      <span class="note">Twelve months to 15 Sep 2026</span>
+    </div>
+    <div class="funnel">
+      <div class="step">
+        <span class="step-label">Sessions</span>
+        <span class="track"><span class="bar" style="width:100%"></span></span>
+        <span class="step-val num">8,601</span>
+      </div>
+      <div class="step">
+        <span class="step-label">Added to cart</span>
+        <span class="track"><span class="bar" style="width:1.84%"></span></span>
+        <span class="step-val num">158<small>1.8%</small></span>
+      </div>
+      <div class="step">
+        <span class="step-label">Reached checkout</span>
+        <span class="track"><span class="bar" style="width:1.62%"></span></span>
+        <span class="step-val num">139<small>1.6%</small></span>
+      </div>
+      <div class="step">
+        <span class="step-label">Completed an order</span>
+        <span class="track"><span class="bar terminal" style="width:0.4%"></span></span>
+        <span class="step-val num">1<small>€10</small></span>
+      </div>
+      <div class="funnel-foot">
+        <span class="flag">Read this</span>
+        <span>The one order was a €10 test. The store itself works — payments clear, DHL Express ships free worldwide, every product is available for sale. And much of that 8,601 is not human: 2,754 sessions were direct-from-US with no intent behind them, and the customer list is seeded with Google Shopping crawlers. <strong>This is a pre-revenue business with working infrastructure and no qualified demand.</strong></span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2>The organisation</h2>
+      <span class="note">Select an agent to see its brief</span>
+    </div>
+
+    <div class="lead">
+      <span class="badge">Start here</span>
+      <span class="txt"><b>chief-of-staff</b> — the only one you have to remember. Bring it a goal rather than a task; it diagnoses, routes to the specialists below, and reports back in one voice with a single recommended move.</span>
+    </div>
+
+    <div class="divisions">
+      <div class="division" data-d="demand">
+        <span class="dname">Demand</span>
+        <button class="agent" data-a="content-engine"><span class="an">content-engine</span><span class="ao">Blog, SEO, the article backlog</span></button>
+        <button class="agent" data-a="social-studio"><span class="an">social-studio</span><span class="ao">Imagery, video, Instagram, TikTok</span></button>
+      </div>
+      <div class="division" data-d="conversion">
+        <span class="dname">Conversion</span>
+        <button class="agent" data-a="merchandiser"><span class="an">merchandiser</span><span class="ao">269 product pages, collections</span></button>
+        <button class="agent" data-a="concierge"><span class="an">concierge</span><span class="ao">The €2,500+ pieces, commissions</span></button>
+      </div>
+      <div class="division" data-d="intelligence">
+        <span class="dname">Intelligence</span>
+        <button class="agent" data-a="analyst"><span class="an">analyst</span><span class="ao">The numbers, filtered of bots</span></button>
+        <button class="agent" data-a="crm"><span class="an">crm</span><span class="ao">Email capture, abandoned checkout</span></button>
+      </div>
+    </div>
+
+    <div class="detail" id="detail" aria-live="polite"></div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <h2>The order of work</h2>
+      <span class="note">Each makes the next worth more</span>
+    </div>
+    <ol class="seq">
+      <li><span class="what">Filter the analytics so the numbers mean something<em>Everything downstream is currently decided on bot traffic</em></span><span class="owner">analyst</span></li>
+      <li><span class="what">Publish the ten finished articles, spaced out<em>Free inventory on the only channel with proven pull</em></span><span class="owner">content-engine</span></li>
+      <li><span class="what">Email capture and abandoned-checkout recovery<em>139 people reached checkout and nothing can reach them</em></span><span class="owner">crm</span></li>
+      <li><span class="what">Bring 15–20 sellable product pages up to standard<em>Traffic without proof converts at zero — as it has</em></span><span class="owner">merchandiser</span></li>
+      <li><span class="what">Build the commission path for the top of the catalogue<em>€34,250 trunks will never move through a shopping cart</em></span><span class="owner">concierge</span></li>
+      <li><span class="what">Film the atelier — the hand at work<em>The strongest proof a leather house can own</em></span><span class="owner">social-studio</span></li>
+    </ol>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>What you type</h2><span class="note">Or just describe what you want</span></div>
+    <div class="tablewrap">
+      <table class="cmds">
+        <thead><tr><th>Command</th><th>What happens</th></tr></thead>
+        <tbody>
+          <tr><td><code class="cmd">/standup</code></td><td>One thing to do today, under 150 words. No dashboard, no options.</td></tr>
+          <tr><td><code class="cmd">/monday</code></td><td>The weekly review — filtered numbers, what changed, one recommended move.</td></tr>
+          <tr><td><code class="cmd">/funnel</code></td><td>Where visitors are being lost, and the single biggest leak with evidence.</td></tr>
+          <tr><td><code class="cmd">/publish-next</code></td><td>Takes the next article off the backlog, checks it against the voice, publishes on your go-ahead.</td></tr>
+          <tr><td><code class="cmd">/product &lt;name&gt;</code></td><td>Brings one product page up to house standard. Shows you before and after first.</td></tr>
+          <tr><td><code class="cmd">/enquiry &lt;message&gt;</code></td><td>Drafts a reply to a high-ticket enquiry. You send it, not the agent.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="owner-note">
+    <p class="eyebrow">The one thing no agent can do</p>
+    <h2>Name the leather.</h2>
+    <p>Poltrona Frau has Pelle Frau®. Serapian has Mosaico. An unnamed hide is a commodity; a named one is proprietary — and it changes every product page in the catalogue at once.</p>
+    <p>It was already identified in the copy review as the highest-leverage change available to the whole house. It needs your decision, not an agent's.</p>
+  </div>
+
+  <footer>
+    Every agent inherits <span class="mono">CLAUDE.md</span> — the maison voice, the retire list, and six guardrails: nothing touches the live theme, no price changes, no deletions, no posting, no sending, no spending without you saying so.
+  </footer>
+</div>
+
+<script>
+  const AGENTS = {
+    'content-engine': {
+      role: 'Demand · the proven channel',
+      owns: 'The blog, search visibility, keyword strategy, and the ten finished articles sitting unpublished.',
+      when: 'You want more qualified people arriving — not more traffic, more of the right traffic.',
+      why: 'One post — <strong>Why Real Leather is More Sustainable than Eco Leather</strong> — drew <strong>365 sessions in 90 days</strong>, unattended, since 2024. It is second only to the homepage. Paid has delivered nothing.',
+      cmd: '/publish-next'
+    },
+    'social-studio': {
+      role: 'Demand · what the house looks like',
+      owns: 'Product imagery, campaign stills, short video, Instagram and TikTok.',
+      when: 'The answer is a picture rather than a paragraph.',
+      why: 'A luxury house is judged on its pictures before its words. The firm rule: <strong>never generate a fake product</strong> — generation is for rooms, light and atmosphere; the object itself is always a real photograph.',
+      cmd: 'describe the asset you need'
+    },
+    'merchandiser': {
+      role: 'Conversion · the page that has to sell',
+      owns: '269 product pages, descriptions, SEO metadata, collections, and which products are shown at all.',
+      when: 'A product is not selling, or the catalogue needs focus.',
+      why: '269 products is too many to merchandise well at zero revenue. Its standing recommendation is focus: the <strong>15–20 pieces at €110–€800</strong> that can realistically make the first sales, made excellent. It never changes a price and never deletes.',
+      cmd: '/product &lt;name&gt;'
+    },
+    'concierge': {
+      role: 'Conversion · the top of the catalogue',
+      owns: 'Everything over €2,500 — sofas, table trunks, exotic skins, bespoke and commissions.',
+      when: 'Someone asks about a sofa, or any piece that will never move through a cart.',
+      why: 'A €34,250 table trunk and a €27,000 sofa sit behind an add-to-cart button nobody will ever press. That is the majority of the catalogue\'s value. These sell through conversation, a dossier, and CITES papers for the exotics — never urgency, never a discount.',
+      cmd: '/enquiry &lt;message&gt;'
+    },
+    'analyst': {
+      role: 'Intelligence · the only one who may state a number',
+      owns: 'The numbers, bot filtering, the funnel, channel attribution.',
+      when: 'Before any spending decision, and every Monday.',
+      why: 'This store\'s analytics lie. <strong>2,754 of 4,837 sessions</strong> were direct-from-US noise; signups arrive from Google Shopping crawlers. Every figure it reports comes with what was excluded — and it will not recommend ad spend while conversion sits at zero.',
+      cmd: '/monday'
+    },
+    'crm': {
+      role: 'Intelligence · after the first visit',
+      owns: 'Email capture, welcome and abandoned-checkout flows, list hygiene, repeat purchase.',
+      when: 'You want a visit to lead somewhere instead of ending.',
+      why: '<strong>139 people reached checkout and left</strong>, and there is currently no mechanism to reach a single one of them. Capture is proposed as early access or a commission waiting list — <strong>never a discount code</strong>, which tells a buyer the prices are soft.',
+      cmd: 'describe the flow you want'
+    }
+  };
+
+  const detail = document.getElementById('detail');
+  const buttons = Array.from(document.querySelectorAll('button.agent'));
+
+  function show(key) {
+    const a = AGENTS[key];
+    detail.innerHTML =
+      '<h3>' + key + '</h3>' +
+      '<p class="role">' + a.role + '</p>' +
+      '<dl>' +
+        '<dt>Owns</dt><dd>' + a.owns + '</dd>' +
+        '<dt>Reach for it</dt><dd>' + a.when + '</dd>' +
+        '<dt>Why it exists</dt><dd>' + a.why + '</dd>' +
+        '<dt>Start with</dt><dd><code class="cmd">' + a.cmd + '</code></dd>' +
+      '</dl>';
+    buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.a === key)));
+    try { localStorage.setItem('om-agent', key); } catch (e) {}
+  }
+
+  buttons.forEach(b => b.addEventListener('click', () => show(b.dataset.a)));
+
+  let start = 'content-engine';
+  try { const s = localStorage.getItem('om-agent'); if (s && AGENTS[s]) start = s; } catch (e) {}
+  show(start);
+</script>
