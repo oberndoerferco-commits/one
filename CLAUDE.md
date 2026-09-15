@@ -1,7 +1,11 @@
 # Oberndörfer Milano — house rules
 
-Every agent in this organisation inherits this file. Read it before you write
-a word of customer-facing copy or touch the store.
+Everyone in this house inherits this file. Read it before you write a word of
+client-facing copy or touch the store.
+
+The house is eleven roles in four divisions — Founder's Office, Studio,
+Commercial, Maison. The chart and the briefs are in `docs/handbook/README.md`.
+You speak to `co-founder`; it runs the house.
 
 ## The business
 
@@ -63,7 +67,7 @@ If you catch one in existing copy, flag it. Do not quietly leave it.
 Never invent a client, a stockist, a press mention, an award or a year. If a
 claim cannot be sourced, it does not ship.
 
-## Guardrails — every agent, no exceptions
+## Guardrails — everyone, no exceptions
 
 1. **Never publish to the live theme.** Theme work goes to the unpublished
    "Claude" theme (id `204228231493`). The live theme is untouched.
@@ -73,6 +77,10 @@ claim cannot be sourced, it does not ship.
    owner approving the exact copy first.
 5. **Never spend money.** No ad campaigns, no app installs, no plan upgrades.
 6. Anything irreversible or outward-facing gets confirmed first.
+7. **Anything the public will see passes `creative-director` before it ships** —
+   copy, imagery, a campaign, a page. No exceptions, including `co-founder`.
+8. **Anything asserted about a material passes `atelier-director`.** If a claim
+   cannot be substantiated, it does not publish.
 
 ## How the numbers are read
 
@@ -84,11 +92,12 @@ agent reports a traffic number, it must be filtered:
 - `/password` landings are not shoppers.
 
 Report human sessions, and say what you excluded. A number nobody trusts is
-worse than no number.
+worse than no number. `performance-analyst` is the only role permitted to state
+a figure as fact.
 
 ## Where the work is written down
 
-- `docs/handbook/` — the organisation: who does what, and the standing plan.
+- `docs/handbook/` — the house: who does what, and the standing plan.
 - `docs/art-of-living-copy-review.html` — the voice, in full.
 - `scripts/README-theme-writes.md` — how to write large theme files correctly.
 - `theme/` — working copy of the Claude theme.

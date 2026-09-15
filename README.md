@@ -1,31 +1,32 @@
 # Oberndörfer Milano
 
-Working repository for the store `oberndoerferco.com` — the operating structure,
-the house rules, and the theme working copy.
+Working repository for the store `oberndoerferco.com` — the house, its rules,
+and the theme working copy.
 
 ## Start here
 
 | | |
 | --- | --- |
 | **Dashboard** | https://claude.ai/artifact/CP9kz8iV7ESgJehs5bLwbZ |
-| **The organisation** | [`docs/handbook/README.md`](docs/handbook/README.md) |
+| **The house** | [`docs/handbook/README.md`](docs/handbook/README.md) |
 | **The standing plan** | [`docs/handbook/plan.md`](docs/handbook/plan.md) |
-| **House rules — every agent inherits these** | [`CLAUDE.md`](CLAUDE.md) |
+| **House rules — everyone inherits these** | [`CLAUDE.md`](CLAUDE.md) |
 
-## The structure
+## The house
 
-Seven agents in three divisions. You talk to `chief-of-staff`; it routes.
+Eleven roles in four divisions, staffed the way a maison is staffed. You speak
+to your co-founder; the co-founder runs the house.
 
 ```
-                     chief-of-staff
-    ┌──────────────────────┼──────────────────────┐
-  DEMAND              CONVERSION            INTELLIGENCE
-  content-engine      merchandiser          analyst
-  social-studio       concierge             crm
+  FOUNDER'S OFFICE      STUDIO              COMMERCIAL             MAISON
+  co-founder            creative-director   merchandising-manager  atelier-director
+  performance-analyst   art-director        ecommerce-manager      communications
+                        editorial-director  client-advisor
+                                            client-relations
 ```
 
-Defined in `.claude/agents/`. Commands in `.claude/commands/`:
-`/standup`, `/monday`, `/funnel`, `/publish-next`, `/product`, `/enquiry`.
+Briefs in `.claude/agents/`. Commands in `.claude/commands/`:
+`/brief`, `/monday`, `/funnel`, `/journal`, `/product`, `/enquiry`, `/campaign`.
 
 ## Where the business stands
 

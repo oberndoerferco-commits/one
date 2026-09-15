@@ -1,25 +1,28 @@
 ---
-description: Diagnose exactly where visitors are being lost, and what to fix first
+description: Find exactly where clients are being lost, and what to fix first
 ---
 
-Diagnose the conversion funnel.
+Diagnose the funnel.
 
-Use the `analyst` agent to establish, over the last 90 days:
+`performance-analyst` establishes, over the last 90 days:
 
 1. Filtered human sessions, by source and landing page.
-2. How many reached a product page, and which products.
-3. How many added to cart, and on which products.
+2. How many reached a product page, and which pieces.
+3. How many added to cart, and on what.
 4. How many reached checkout, and how many completed.
 
-Then have `merchandiser` inspect the specific product pages where people are
-dropping, checking for:
+Then `ecommerce-manager` walks the path itself — home → collection → product →
+cart → checkout, **on a phone viewport** — and reports every point of friction:
+missing trust signals at the decision point, checkout fields that cost
+completions, slow templates, the 21 overlapping collections.
 
-- Products with inventory 0 and `DENY` policy — silently unbuyable.
+And `merchandising-manager` inspects the pages people are leaving from:
+
+- Inventory 0 with `DENY` policy — silently unbuyable.
 - Missing dimensions, weight, or material detail.
-- Retire-list words (`exquisite`, `timeless elegance`, `impeccable`, `nestled`).
-- Missing or weak meta title and description.
-- No mention of free worldwide DHL shipping on the page itself.
+- Retire-list words.
+- No mention of free worldwide DHL on the page itself.
 
-Report back the single biggest leak with evidence, and what fixing it involves.
-Do not give me five problems ranked by severity — give me the one that is
-costing the most, and say why you are confident it is that one.
+Report **the single biggest leak, with evidence**, and what fixing it involves.
+Not five problems ranked by severity — the one costing the most, and why you
+are confident it is that one.

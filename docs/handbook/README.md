@@ -1,63 +1,104 @@
-# The organisation
+# The house
 
-Oberndörfer Milano runs as seven agents in three divisions. You talk to one of
-them; it talks to the rest.
+Oberndörfer Milano is staffed the way a maison is staffed: eleven roles in four
+divisions. You speak to your co-founder; the co-founder runs the house.
 
 ```
-                        YOU
-                         │
-                  chief-of-staff
-         the only one you have to remember
-                         │
-     ┌───────────────────┼───────────────────┐
-     │                   │                   │
-   DEMAND            CONVERSION          INTELLIGENCE
-     │                   │                   │
-content-engine      merchandiser          analyst
-social-studio       concierge             crm
+                              YOU
+                               │
+                          co-founder
+              your partner — the only one you must remember
+                               │
+        ┌──────────────┬───────┴───────┬──────────────┐
+        │              │               │              │
+  FOUNDER'S OFFICE   STUDIO       COMMERCIAL       MAISON
+        │              │               │              │
+  performance-      creative-     merchandising-  atelier-
+    analyst          director        manager       director
+                        │               │              │
+                    art-director   ecommerce-    communications
+                        │            manager
+                   editorial-          │
+                    director      client-advisor
+                                       │
+                                 client-relations
 ```
 
-## Who does what
+## The roles
 
-| Agent | Owns | Reach for it when |
-| --- | --- | --- |
-| **chief-of-staff** | routing, the weekly rhythm, one voice back to you | you have a goal, not a task |
-| **analyst** | the numbers, bot filtering, the funnel | "is this working?" |
-| **content-engine** | blog, SEO, the article backlog | you want more qualified visitors |
-| **merchandiser** | 269 product pages, collections, catalogue focus | a product isn't selling |
-| **concierge** | the €2,500+ pieces, commissions, enquiries | someone asks about a sofa |
-| **social-studio** | imagery, video, Instagram, TikTok | the answer is a picture |
-| **crm** | email capture, abandoned checkout, the list | you want the visit to lead somewhere |
+### Founder's Office
+
+| | |
+| --- | --- |
+| **co-founder** | Your partner. Strategy, priorities, and putting the right person on the right thing. Disagrees when the plan is wrong. |
+| **performance-analyst** | The only one permitted to state a number as fact. Trading figures, the funnel, and filtering the bots out of them. |
+
+### Studio — how the house looks and sounds
+
+| | |
+| --- | --- |
+| **creative-director** | Guardian of the identity. Everything public passes through this role before it ships — including the co-founder's work. |
+| **art-director** | Imagery, film, campaign, lookbook. Never generates a product that does not exist. |
+| **editorial-director** | Every word the house publishes — the journal, product copy, search. Runs the only channel that has ever worked here. |
+
+### Commercial — how the house sells
+
+| | |
+| --- | --- |
+| **merchandising-manager** | The assortment. Which of the 269 pieces are shown, how they are grouped, and whether each page earns its price. |
+| **ecommerce-manager** | The store as a machine. The funnel, the checkout, the theme, speed, navigation. |
+| **client-advisor** | Private clients. Everything over €2,500, commissions, exotic skins. The pieces that will never move through a cart. |
+| **client-relations** | The client register. Correspondence, welcome, abandoned checkout, after-sale, repeat purchase. |
+
+### Maison — what the house is
+
+| | |
+| --- | --- |
+| **atelier-director** | Materials, tanneries, provenance, CITES, construction, care. The source of every material fact the copy stands on. |
+| **communications** | The house's voice outward. Press, partnerships, stockists, social. |
 
 ## What you type
 
 | Command | What happens |
 | --- | --- |
-| `/standup` | one thing to do today, under 150 words |
-| `/monday` | the weekly review — filtered numbers, one recommended move |
-| `/funnel` | where visitors are being lost, and the biggest single leak |
-| `/publish-next` | takes the next article off the backlog, checks it, publishes |
-| `/product <name>` | brings one product page up to house standard |
-| `/enquiry <message>` | drafts a reply to a high-ticket enquiry |
+| `/brief` | The morning brief. One thing to do today, under 150 words. |
+| `/monday` | The Monday review — filtered figures, what changed, one move for the week. |
+| `/funnel` | Where clients are being lost, and the single biggest leak with evidence. |
+| `/journal` | Publishes the next piece from the backlog of ten, on your go-ahead. |
+| `/product <name>` | Brings one piece's page up to standard. Before and after, first. |
+| `/enquiry <message>` | Drafts a reply to a private client. You send it. |
+| `/campaign <occasion>` | Briefs the whole studio on a campaign as one piece of work. |
 
-Or just describe what you want. The chief of staff routes it.
+Or simply describe what you want. The co-founder routes it.
 
-## The rules every agent inherits
+## How work moves through the house
 
-They are in `CLAUDE.md` at the repository root — the voice, the retire list,
-the facts that must not drift, and six guardrails. The important ones:
+1. You bring a goal to **co-founder**.
+2. It checks the figures with **performance-analyst** before deciding anything.
+3. It briefs the specialist. **creative-director** sets direction on anything
+   the public will see.
+4. **atelier-director** supplies the material facts. Nothing unverifiable ships.
+5. **creative-director** approves.
+6. You approve. Then it publishes.
 
-- Nothing goes to the live theme. Work lands on the unpublished "Claude" theme.
-- No price changes, no deletions, no posting, no sending, no spending without
+Steps 5 and 6 are never skipped, by anyone.
+
+## The rules everyone inherits
+
+In `CLAUDE.md` at the repository root — the register, the retire list, the facts
+that must not drift, and six guardrails. The ones that bite:
+
+- Nothing touches the live theme. Work lands on the unpublished "Claude" theme.
+- No price changes, no deletions, no posting, no sending, no spending, without
   you saying so.
-- Every traffic number comes with what was filtered out of it.
+- Every traffic figure arrives with what was filtered out of it.
 
-## Where things get written down
+## Where things are written down
 
 ```
-docs/handbook/plan.md          the standing 90-day plan
-docs/handbook/reviews/         weekly reviews, dated
-docs/handbook/content-log.md   what was published, and what it earned
-docs/handbook/enquiries.md     every high-ticket enquiry and its outcome
-docs/handbook/crm-log.md       email flows and their performance
+docs/handbook/plan.md          the standing plan and the order of work
+docs/handbook/reviews/         Monday reviews, dated
+docs/handbook/content-log.md   what the journal published, and what it earned
+docs/handbook/enquiries.md     every private-client enquiry and its outcome
+docs/handbook/crm-log.md       correspondence flows and their performance
 ```

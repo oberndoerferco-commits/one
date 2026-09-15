@@ -110,16 +110,18 @@
   }
 
   /* ---------- org ---------- */
-  .divisions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  @media (max-width: 760px) { .divisions { grid-template-columns: 1fr; } }
+  .divisions { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-items: start; }
+  @media (max-width: 980px) { .divisions { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .divisions { grid-template-columns: 1fr; } }
   .division { display: flex; flex-direction: column; gap: 10px; }
   .division > .dname {
     font-size: 11px; letter-spacing: .15em; text-transform: uppercase; font-weight: 700;
     color: var(--muted); padding-bottom: 8px; border-bottom: 2px solid var(--line);
   }
-  .division[data-d="demand"] > .dname { border-color: var(--cognac); }
-  .division[data-d="conversion"] > .dname { border-color: var(--cordovan); }
-  .division[data-d="intelligence"] > .dname { border-color: var(--moss); }
+  .division[data-d="office"] > .dname { border-color: var(--ink); }
+  .division[data-d="studio"] > .dname { border-color: var(--cognac); }
+  .division[data-d="commercial"] > .dname { border-color: var(--cordovan); }
+  .division[data-d="maison"] > .dname { border-color: var(--moss); }
 
   button.agent {
     display: block; width: 100%; text-align: left; font: inherit; cursor: pointer;
@@ -130,9 +132,10 @@
   button.agent:hover { background: var(--surface-2); transform: translateX(2px); }
   button.agent:focus-visible { outline: 2px solid var(--cordovan); outline-offset: 2px; }
   button.agent[aria-pressed="true"] { border-left-color: var(--cordovan); background: var(--surface-2); }
-  .division[data-d="demand"] button.agent[aria-pressed="true"] { border-left-color: var(--cognac); }
-  .division[data-d="intelligence"] button.agent[aria-pressed="true"] { border-left-color: var(--moss); }
-  .agent .an { font-family: 'JetBrains Mono', monospace; font-size: 13.5px; font-weight: 500; }
+  .division[data-d="office"] button.agent[aria-pressed="true"] { border-left-color: var(--ink); }
+  .division[data-d="studio"] button.agent[aria-pressed="true"] { border-left-color: var(--cognac); }
+  .division[data-d="maison"] button.agent[aria-pressed="true"] { border-left-color: var(--moss); }
+  .agent .an { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 500; overflow-wrap: anywhere; }
   .agent .ao { font-size: 12.5px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
 
   .lead {
@@ -199,8 +202,8 @@
 
   <header class="masthead">
     <p class="eyebrow">Oberndörfer Milano · operating structure</p>
-    <h1>Seven agents, three divisions,<br>one person to talk to.</h1>
-    <p>A working organisation for the store — who does what, in what order, and the six things you type to set them going. Built on the store's real numbers, not a template.</p>
+    <h1>Eleven roles, four divisions,<br>one person to talk to.</h1>
+    <p>The house staffed the way a maison is staffed — from the founder's office to the atelier. Who does what, in what order, and the seven things you type to set them going. Built on the store's real numbers.</p>
     <div class="stamp"><b>15 September 2026</b> · 269 products · Basic plan · EUR</div>
   </header>
 
@@ -245,24 +248,31 @@
 
     <div class="lead">
       <span class="badge">Start here</span>
-      <span class="txt"><b>chief-of-staff</b> — the only one you have to remember. Bring it a goal rather than a task; it diagnoses, routes to the specialists below, and reports back in one voice with a single recommended move.</span>
+      <span class="txt"><b>co-founder</b> — your partner, and the only one you have to remember. Bring a goal rather than a task. It checks the figures, puts the right person on it, disagrees when the plan is wrong, and reports back with one recommended move.</span>
     </div>
 
     <div class="divisions">
-      <div class="division" data-d="demand">
-        <span class="dname">Demand</span>
-        <button class="agent" data-a="content-engine"><span class="an">content-engine</span><span class="ao">Blog, SEO, the article backlog</span></button>
-        <button class="agent" data-a="social-studio"><span class="an">social-studio</span><span class="ao">Imagery, video, Instagram, TikTok</span></button>
+      <div class="division" data-d="office">
+        <span class="dname">Founder&rsquo;s Office</span>
+        <button class="agent" data-a="performance-analyst"><span class="an">performance-analyst</span><span class="ao">The figures, filtered of bots</span></button>
       </div>
-      <div class="division" data-d="conversion">
-        <span class="dname">Conversion</span>
-        <button class="agent" data-a="merchandiser"><span class="an">merchandiser</span><span class="ao">269 product pages, collections</span></button>
-        <button class="agent" data-a="concierge"><span class="an">concierge</span><span class="ao">The €2,500+ pieces, commissions</span></button>
+      <div class="division" data-d="studio">
+        <span class="dname">Studio</span>
+        <button class="agent" data-a="creative-director"><span class="an">creative-director</span><span class="ao">Identity, and final approval</span></button>
+        <button class="agent" data-a="art-director"><span class="an">art-director</span><span class="ao">Imagery, film, campaign</span></button>
+        <button class="agent" data-a="editorial-director"><span class="an">editorial-director</span><span class="ao">The journal, copy, search</span></button>
       </div>
-      <div class="division" data-d="intelligence">
-        <span class="dname">Intelligence</span>
-        <button class="agent" data-a="analyst"><span class="an">analyst</span><span class="ao">The numbers, filtered of bots</span></button>
-        <button class="agent" data-a="crm"><span class="an">crm</span><span class="ao">Email capture, abandoned checkout</span></button>
+      <div class="division" data-d="commercial">
+        <span class="dname">Commercial</span>
+        <button class="agent" data-a="merchandising-manager"><span class="an">merchandising-manager</span><span class="ao">The assortment, 269 pieces</span></button>
+        <button class="agent" data-a="ecommerce-manager"><span class="an">ecommerce-manager</span><span class="ao">The store, funnel, checkout</span></button>
+        <button class="agent" data-a="client-advisor"><span class="an">client-advisor</span><span class="ao">Private clients, commissions</span></button>
+        <button class="agent" data-a="client-relations"><span class="an">client-relations</span><span class="ao">The register, correspondence</span></button>
+      </div>
+      <div class="division" data-d="maison">
+        <span class="dname">Maison</span>
+        <button class="agent" data-a="atelier-director"><span class="an">atelier-director</span><span class="ao">Materials, craft, CITES, care</span></button>
+        <button class="agent" data-a="communications"><span class="an">communications</span><span class="ao">Press, partnerships, social</span></button>
       </div>
     </div>
 
@@ -275,12 +285,14 @@
       <span class="note">Each makes the next worth more</span>
     </div>
     <ol class="seq">
-      <li><span class="what">Filter the analytics so the numbers mean something<em>Everything downstream is currently decided on bot traffic</em></span><span class="owner">analyst</span></li>
-      <li><span class="what">Publish the ten finished articles, spaced out<em>Free inventory on the only channel with proven pull</em></span><span class="owner">content-engine</span></li>
-      <li><span class="what">Email capture and abandoned-checkout recovery<em>139 people reached checkout and nothing can reach them</em></span><span class="owner">crm</span></li>
-      <li><span class="what">Bring 15–20 sellable product pages up to standard<em>Traffic without proof converts at zero — as it has</em></span><span class="owner">merchandiser</span></li>
-      <li><span class="what">Build the commission path for the top of the catalogue<em>€34,250 trunks will never move through a shopping cart</em></span><span class="owner">concierge</span></li>
-      <li><span class="what">Film the atelier — the hand at work<em>The strongest proof a leather house can own</em></span><span class="owner">social-studio</span></li>
+      <li><span class="what">Filter the analytics so the figures mean something<em>Every decision downstream is currently made on bot traffic</em></span><span class="owner">performance-analyst</span></li>
+      <li><span class="what">Publish the ten finished journal pieces, spaced out<em>Free inventory on the only channel with proven pull</em></span><span class="owner">editorial-director</span></li>
+      <li><span class="what">Establish what the leather actually is, and name it<em>An unnamed hide is a commodity — this upgrades all 269 pages at once</em></span><span class="owner">atelier-director</span></li>
+      <li><span class="what">Email capture and abandoned-checkout recovery<em>139 people reached checkout and nothing can reach them</em></span><span class="owner">client-relations</span></li>
+      <li><span class="what">Bring 15–20 sellable pages up to standard<em>Traffic without proof converts at zero — as it has all year</em></span><span class="owner">merchandising-manager</span></li>
+      <li><span class="what">Walk the whole path on a phone, and fix what is found<em>Payments work, so the leak is in the experience nobody has checked</em></span><span class="owner">ecommerce-manager</span></li>
+      <li><span class="what">Build the commission path for the top of the catalogue<em>€34,250 trunks will never move through a shopping cart</em></span><span class="owner">client-advisor</span></li>
+      <li><span class="what">Film the atelier — the hand at work<em>The cheapest proof a leather house can own, and it has none</em></span><span class="owner">art-director</span></li>
     </ol>
   </section>
 
@@ -290,72 +302,101 @@
       <table class="cmds">
         <thead><tr><th>Command</th><th>What happens</th></tr></thead>
         <tbody>
-          <tr><td><code class="cmd">/standup</code></td><td>One thing to do today, under 150 words. No dashboard, no options.</td></tr>
-          <tr><td><code class="cmd">/monday</code></td><td>The weekly review — filtered numbers, what changed, one recommended move.</td></tr>
-          <tr><td><code class="cmd">/funnel</code></td><td>Where visitors are being lost, and the single biggest leak with evidence.</td></tr>
-          <tr><td><code class="cmd">/publish-next</code></td><td>Takes the next article off the backlog, checks it against the voice, publishes on your go-ahead.</td></tr>
-          <tr><td><code class="cmd">/product &lt;name&gt;</code></td><td>Brings one product page up to house standard. Shows you before and after first.</td></tr>
-          <tr><td><code class="cmd">/enquiry &lt;message&gt;</code></td><td>Drafts a reply to a high-ticket enquiry. You send it, not the agent.</td></tr>
+          <tr><td><code class="cmd">/brief</code></td><td>The morning brief. One thing to do today, under 150 words.</td></tr>
+          <tr><td><code class="cmd">/monday</code></td><td>The Monday review — filtered figures, what changed, one move for the week.</td></tr>
+          <tr><td><code class="cmd">/funnel</code></td><td>Where clients are being lost, and the single biggest leak with evidence.</td></tr>
+          <tr><td><code class="cmd">/journal</code></td><td>Publishes the next piece from the backlog of ten, on your go-ahead.</td></tr>
+          <tr><td><code class="cmd">/product &lt;name&gt;</code></td><td>Brings one piece's page up to standard. Before and after, first.</td></tr>
+          <tr><td><code class="cmd">/enquiry &lt;message&gt;</code></td><td>Drafts a reply to a private client. You send it, not the house.</td></tr>
+          <tr><td><code class="cmd">/campaign &lt;occasion&gt;</code></td><td>Briefs the whole studio on a campaign as one piece of work.</td></tr>
         </tbody>
       </table>
     </div>
   </section>
 
   <div class="owner-note">
-    <p class="eyebrow">The one thing no agent can do</p>
+    <p class="eyebrow">The one decision that is only yours</p>
     <h2>Name the leather.</h2>
     <p>Poltrona Frau has Pelle Frau®. Serapian has Mosaico. An unnamed hide is a commodity; a named one is proprietary — and it changes every product page in the catalogue at once.</p>
-    <p>It was already identified in the copy review as the highest-leverage change available to the whole house. It needs your decision, not an agent's.</p>
+    <p>The copy review identified it as the highest-leverage change available to the whole house. <strong>atelier-director</strong> can establish what the leather actually is — the tanneries, the tannage, what makes it distinguishable — and bring you a short list of defensible names. The choice is yours.</p>
   </div>
 
   <footer>
-    Every agent inherits <span class="mono">CLAUDE.md</span> — the maison voice, the retire list, and six guardrails: nothing touches the live theme, no price changes, no deletions, no posting, no sending, no spending without you saying so.
+    Everyone inherits <span class="mono">CLAUDE.md</span> — the maison register, the retire list, and eight guardrails. Two never bend: anything the public will see passes <span class="mono">creative-director</span>, and any claim about a material passes <span class="mono">atelier-director</span>. Nothing touches the live theme. No price changes, no deletions, no posting, no sending, no spending without you saying so.
   </footer>
 </div>
 
 <script>
   const AGENTS = {
-    'content-engine': {
-      role: 'Demand · the proven channel',
-      owns: 'The blog, search visibility, keyword strategy, and the ten finished articles sitting unpublished.',
-      when: 'You want more qualified people arriving — not more traffic, more of the right traffic.',
-      why: 'One post — <strong>Why Real Leather is More Sustainable than Eco Leather</strong> — drew <strong>365 sessions in 90 days</strong>, unattended, since 2024. It is second only to the homepage. Paid has delivered nothing.',
-      cmd: '/publish-next'
-    },
-    'social-studio': {
-      role: 'Demand · what the house looks like',
-      owns: 'Product imagery, campaign stills, short video, Instagram and TikTok.',
-      when: 'The answer is a picture rather than a paragraph.',
-      why: 'A luxury house is judged on its pictures before its words. The firm rule: <strong>never generate a fake product</strong> — generation is for rooms, light and atmosphere; the object itself is always a real photograph.',
-      cmd: 'describe the asset you need'
-    },
-    'merchandiser': {
-      role: 'Conversion · the page that has to sell',
-      owns: '269 product pages, descriptions, SEO metadata, collections, and which products are shown at all.',
-      when: 'A product is not selling, or the catalogue needs focus.',
-      why: '269 products is too many to merchandise well at zero revenue. Its standing recommendation is focus: the <strong>15–20 pieces at €110–€800</strong> that can realistically make the first sales, made excellent. It never changes a price and never deletes.',
-      cmd: '/product &lt;name&gt;'
-    },
-    'concierge': {
-      role: 'Conversion · the top of the catalogue',
-      owns: 'Everything over €2,500 — sofas, table trunks, exotic skins, bespoke and commissions.',
-      when: 'Someone asks about a sofa, or any piece that will never move through a cart.',
-      why: 'A €34,250 table trunk and a €27,000 sofa sit behind an add-to-cart button nobody will ever press. That is the majority of the catalogue\'s value. These sell through conversation, a dossier, and CITES papers for the exotics — never urgency, never a discount.',
-      cmd: '/enquiry &lt;message&gt;'
-    },
-    'analyst': {
-      role: 'Intelligence · the only one who may state a number',
-      owns: 'The numbers, bot filtering, the funnel, channel attribution.',
-      when: 'Before any spending decision, and every Monday.',
-      why: 'This store\'s analytics lie. <strong>2,754 of 4,837 sessions</strong> were direct-from-US noise; signups arrive from Google Shopping crawlers. Every figure it reports comes with what was excluded — and it will not recommend ad spend while conversion sits at zero.',
+    'performance-analyst': {
+      role: "Founder's Office · the only one who may state a number",
+      owns: 'Trading figures, the funnel, traffic quality, and filtering the bots out of all of it.',
+      when: 'Every Monday, and before any decision involving money.',
+      why: "This store's analytics lie. <strong>2,754 of 4,837 sessions</strong> were direct-from-US noise, and the client register is seeded with Google Shopping crawlers. Every figure it reports arrives with what was excluded — and it will not recommend advertising while conversion sits at zero.",
       cmd: '/monday'
     },
-    'crm': {
-      role: 'Intelligence · after the first visit',
-      owns: 'Email capture, welcome and abandoned-checkout flows, list hygiene, repeat purchase.',
-      when: 'You want a visit to lead somewhere instead of ending.',
-      why: '<strong>139 people reached checkout and left</strong>, and there is currently no mechanism to reach a single one of them. Capture is proposed as early access or a commission waiting list — <strong>never a discount code</strong>, which tells a buyer the prices are soft.',
-      cmd: 'describe the flow you want'
+    'creative-director': {
+      role: 'Studio · guardian of the identity',
+      owns: 'The register and the visual standard. Everything public passes through this role before it ships — including the co-founder\u2019s work.',
+      when: 'To approve work, settle a question of taste, or set the direction of a season.',
+      why: 'It approves against four questions in order: is it true, is it in register, is it specific, and would a house we respect have shipped it. It also holds the retire list — <em>exquisite</em>, <em>timeless elegance</em>, <em>impeccable</em>, <em>nestled</em> — and rejects them on sight. Two are live on the Where to Find Us page right now.',
+      cmd: 'show it the work'
+    },
+    'art-director': {
+      role: 'Studio · how the house looks',
+      owns: 'Product imagery, campaign photography, film, lookbooks, and the visual treatment of pages.',
+      when: 'The answer is a picture, a film, or a layout rather than a paragraph.',
+      why: "The house has no revenue and no proof. Film of the hand at work — stitching, edge-painting, the hide being cut — is the cheapest proof available and the thing that separates a real atelier from a reseller. Its absolute rule: <strong>never generate a product that does not exist</strong>. Generation is for rooms and light; the object is always a real photograph.",
+      cmd: 'brief it on the asset'
+    },
+    'editorial-director': {
+      role: 'Studio · the proven channel',
+      owns: 'Every word the house publishes — the journal, product copy, page copy, and search.',
+      when: 'You want more of the right people arriving, or anything needs writing.',
+      why: "One piece — <strong>Why Real Leather is More Sustainable than Eco Leather</strong> — drew <strong>365 sessions in 90 days</strong>, unattended, since 2024. It is second only to the homepage. Advertising has returned nothing. Ten finished pieces sit unpublished.",
+      cmd: '/journal'
+    },
+    'merchandising-manager': {
+      role: 'Commercial · the assortment',
+      owns: 'Which of the 269 pieces are shown, how they are grouped, and whether each page earns its price.',
+      when: 'A piece is not selling, or the catalogue needs focus.',
+      why: '269 pieces is too many to merchandise properly at zero revenue — spreading attention across all of them is why no page is good enough to convert. Its standing recommendation is the <strong>15\u201320 pieces at \u20ac110\u2013\u20ac800</strong> that can realistically make the first sales. It never changes a price and never deletes.',
+      cmd: '/product &lt;name&gt;'
+    },
+    'ecommerce-manager': {
+      role: 'Commercial · the store as a machine',
+      owns: 'The funnel, the checkout, theme templates, site speed and navigation.',
+      when: 'The store misbehaves, or you want to know why people leave.',
+      why: 'Payments, shipping and availability were all verified working — so the failure is upstream of the plumbing. It hunts trust signals missing at the decision point, the mobile path nobody has walked, and 21 collections with overlapping names that read as a maze.',
+      cmd: '/funnel'
+    },
+    'client-advisor': {
+      role: 'Commercial · private clients',
+      owns: 'Everything over \u20ac2,500 — commissions, bespoke, exotic skins, and the correspondence around them.',
+      when: 'Someone asks about a sofa, or any piece that will never move through a cart.',
+      why: 'A \u20ac34,250 table trunk and a \u20ac27,000 sofa sit behind an add-to-cart button nobody will press — that is the majority of the catalogue\u2019s value. These sell through conversation, a dossier and CITES papers. Never urgency, never a discount: wealthy buyers walk away from pressure faster than anyone.',
+      cmd: '/enquiry &lt;message&gt;'
+    },
+    'client-relations': {
+      role: 'Commercial · the client register',
+      owns: 'Correspondence, the welcome sequence, abandoned checkout, after-sale and repeat purchase.',
+      when: 'You want a visit to lead somewhere instead of simply ending.',
+      why: '<strong>139 people reached checkout and left</strong>, and nothing exists to reach a single one of them. Capture is proposed as early access or the commission waiting list — <strong>never a discount code</strong>, which tells a client the prices are soft.',
+      cmd: 'describe the flow'
+    },
+    'atelier-director': {
+      role: 'Maison · what is true about the making',
+      owns: 'Materials, tanneries, provenance, CITES paperwork, construction, care and repair.',
+      when: 'Anything turns on what a piece is actually made of.',
+      why: 'It is the source of every material fact the copy stands on. When the journal writes <em>vegetable-tanned in Tuscany</em>, this role is why that sentence can be published. It also carries the leather-naming question below — establishing what the leather actually is, so the decision becomes easy to make.',
+      cmd: 'ask what a piece is made of'
+    },
+    'communications': {
+      role: 'Maison · the voice outward',
+      owns: 'Press, partnerships, stockists, and the house\u2019s social presence.',
+      when: 'Something is addressed to the room rather than to one client.',
+      why: 'No press, no stockists, no following yet — so everything must be earned rather than asserted. What is real: the Hotel Miramare in Sanremo, and made-in-Italy by hand in small numbers. Sanremo sending flowers to the Nobel banquet each December is a gift of a story, <strong>held in reserve</strong> for the Miramare collection. Partnerships beat advertising at this stage.',
+      cmd: '/campaign &lt;occasion&gt;'
     }
   };
 
@@ -379,7 +420,7 @@
 
   buttons.forEach(b => b.addEventListener('click', () => show(b.dataset.a)));
 
-  let start = 'content-engine';
+  let start = 'creative-director';
   try { const s = localStorage.getItem('om-agent'); if (s && AGENTS[s]) start = s; } catch (e) {}
   show(start);
 </script>
