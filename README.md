@@ -34,3 +34,17 @@ sessions; 134 sessions reached checkout and one completed. German and Italian
 commercial queries for products we actually make are drawing ~8,400 impressions a
 quarter at average positions 25–48. The catalogue is indexed under up to nine
 locale paths, so product pages compete with each other.
+
+## German and Italian product titles
+
+- `docs/product-titles-de-it.md` — the rewrite of all 134 active products' DE/IT titles
+  (15 September 2026), with before/after for every product and the reasoning.
+- `data/product-titles-de-it.json` — machine-readable before/after; also the rollback source.
+
+Fixed three things: colour variants that all shared one title (nine watch boxes were all
+`Uhrenbox`), machine mistranslations (`Table Trunk` → `Tabellenstamm`, `Leather Watch Box`
+→ `Scatola di guardia`, the SAC backpack → `Marsupio`), and a material misstatement — the
+full-grain calf belts were titled as crocodile in both locales.
+
+Still open: DE/IT `meta_title` and `meta_description`, image alt text, and the 138 draft
+products.
