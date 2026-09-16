@@ -7,7 +7,10 @@ import pypdfium2 as pdfium
 from PIL import Image, ImageFilter, ImageChops
 OUT = 2400; GROUND = (233, 232, 227); MARGIN = 0.14
 SC = 8                                   # page render scale
-BOX = {"front": (944, 706, 3314, 4257), "back": (3832, 706, 6202, 4257)}   # hoodie photo footprints at 8x
+# hoodie photo footprints at 8x. The PDF's object bounds are in a content space 3511 units wide on an
+# 842.25pt page (scale 0.23989 to points, then x8), not in 4x page pixels as first assumed: the wrong
+# footprint put every print high and to the left (owner, 16 Sept: "the hoodie logo positioning is wrong").
+BOX = {"front": (906, 677, 3180, 4085), "back": (3677, 677, 5951, 4085)}
 LABEL = (1993, 1623, 2136, 1686)         # the woven hood label, at 8x, front page only
 DESIGNS = {1: "wordmark", 2: "om", 3: "lattice"}
 
