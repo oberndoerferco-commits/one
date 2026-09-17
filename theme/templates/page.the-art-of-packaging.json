@@ -59,12 +59,12 @@
         "padding-block-end": 30
       }
     },
-    "hero_mat": {
+    "hero_pack": {
       "type": "hero",
       "name": "t:names.hero",
       "settings": {
         "media_type_1": "image",
-        "image_1": "shopify://shop_images/oberndoerfer-about-craft-detail.jpg",
+        "image_1": "shopify://shop_images/gift_boxes.heic",
         "media_type_2": "image",
         "stack_media_on_mobile": false,
         "custom_mobile_media": false,
@@ -92,7 +92,7 @@
         "reflection_opacity": 75,
         "padding-block-start": 40,
         "padding-block-end": 40,
-        "image_1_mobile": "shopify://shop_images/oberndoerfer-about-craft-detail.jpg"
+        "image_1_mobile": "shopify://shop_images/gift_boxes.heic"
       },
       "blocks": {
         "hero": {
@@ -179,7 +179,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<p>Materials & Craftsmanship</p>",
+                    "text": "<p>The Art of Packaging</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -205,7 +205,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<h1>Full-grain hides and solid brass, by hand.</h1>",
+                    "text": "<h1>A box made in Italy, for a piece made in Italy.</h1>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -243,13 +243,13 @@
         "hero"
       ]
     },
-    "section_mat_open": {
+    "section_pack_open": {
       "type": "section",
       "blocks": {
         "eyebrow": {
           "type": "text",
           "settings": {
-            "text": "<p>Materials &amp; Craftsmanship</p>",
+            "text": "<p>The Art of Packaging</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "left",
@@ -275,7 +275,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h2>What the material is, and whose hands make it</h2>",
+            "text": "<h2>The first part of the piece you touch</h2>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "left",
@@ -300,7 +300,7 @@
         "dek": {
           "type": "text",
           "settings": {
-            "text": "<p>Every piece starts with the same two questions: what is this material, and whose hands are making it. What follows is the plain answer - the hides, the hardware, the ateliers, and the time each one takes.</p>",
+            "text": "<p>A piece leaves Milan wrapped in something made much the same way it was. The weight of the lid, the grain of the board, the way a tag is tied - these are decided as deliberately as a stitch line, because they are the first thing the piece says for itself.</p>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "left",
@@ -328,7 +328,7 @@
         "head",
         "dek"
       ],
-      "name": "Materials - Materials &amp; Craftsmanship",
+      "name": "Packaging - The Art of Packaging",
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -358,7 +358,7 @@
         "padding-block-end": 72
       }
     },
-    "section_mat_leathers": {
+    "section_pack_made": {
       "type": "media-with-content",
       "blocks": {
         "media": {
@@ -366,7 +366,7 @@
           "static": true,
           "settings": {
             "media_type": "image",
-            "image": "shopify://shop_images/IMG_3535_dbf62bc4-2168-4b05-b2a5-40ce1a98f55a.heic",
+            "image": "shopify://shop_images/oberndoerfer-cle-atelier-bench.jpg",
             "link": "",
             "video_loop": true,
             "video_autoplay": false,
@@ -388,7 +388,7 @@
               "type": "text",
               "name": "t:names.caption",
               "settings": {
-                "text": "<p>OUR LEATHERS</p>",
+                "text": "<p>MADE BY HAND, IN ITALY</p>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -453,7 +453,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<p>Full-grain, left as it grew</p>",
+                    "text": "<p>Boxes, labels and tags, held to the same standard</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -478,7 +478,7 @@
                 "body": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>We work primarily in full-grain leather - the highest grade available, its surface left intact so the natural grain, pores, and markings remain. Our leather comes from tanneries in Italy, France, and Germany, and is a byproduct of the meat industry. Left uncorrected, full-grain leather softens and develops a natural patina with use rather than wearing out.</p><p>Within the collection, specific pieces use specific leathers chosen for the job: grained Togo calf leather for its durability and soft hand feel, smooth goat leather as an interior lining, pebbled calf leather for trays and coasters, and nubuck where a softer, sanded surface is wanted. All are chosen for durability, beauty, and the way they age.</p>",
+                    "text": "<p>Our boxes, labels and tags are made by hand in Italy, by artisans held to the same standard as the leather inside them. The packaging is not a container for the object. It is the first part of it you touch.</p><p>Every packaging material comes from Italy. That keeps the work close to the people who do it, and it keeps short the distance a box travels before it reaches you.</p>",
                     "width": "fit-content",
                     "max_width": "narrow",
                     "alignment": "left",
@@ -513,7 +513,7 @@
           ]
         }
       },
-      "name": "Materials - OUR LEATHERS",
+      "name": "t:names.editorial",
       "settings": {
         "media_position": "left",
         "media_width": "medium",
@@ -525,514 +525,13 @@
         "padding-block-end": 25
       }
     },
-    "section_mat_exotics": {
-      "type": "media-with-content",
-      "blocks": {
-        "media": {
-          "type": "_media-without-appearance",
-          "static": true,
-          "settings": {
-            "media_type": "image",
-            "image": "shopify://shop_images/obm-lane-ostrich-mini-trunk.jpg",
-            "link": "",
-            "video_loop": true,
-            "video_autoplay": false,
-            "image_position": "cover",
-            "video_position": "cover"
-          },
-          "blocks": {}
-        },
-        "content": {
-          "type": "_content-without-appearance",
-          "static": true,
-          "settings": {
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 24
-          },
-          "blocks": {
-            "cap": {
-              "type": "text",
-              "name": "t:names.caption",
-              "settings": {
-                "text": "<p>EXOTIC LEATHERS</p>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "custom",
-                "font": "var(--font-subheading--family)",
-                "font_size": "0.75rem",
-                "line_height": "normal",
-                "letter_spacing": "loose",
-                "case": "uppercase",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "grp": {
-              "type": "group",
-              "settings": {
-                "content_direction": "column",
-                "vertical_on_mobile": true,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "custom_height": 100,
-                "background_media": "none",
-                "background_color": "",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
-                "gradient_direction": "to top",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_color": "",
-                "border_radius": 0,
-                "link": "",
-                "open_in_new_tab": false,
-                "placeholder": "",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "head": {
-                  "type": "text",
-                  "name": "t:names.heading",
-                  "settings": {
-                    "text": "<p>Crocodile, alligator, ostrich</p>",
-                    "width": "fit-content",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "h3",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "text_color": "",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
-                "body": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Exotic leathers - crocodile, alligator, and ostrich - follow a separate supply chain from our full-grain leather. The hides may originate outside Europe and are processed in Italy. Our alligator, for example, is Alligator mississippiensis, the American alligator, sourced from licensed farms in Louisiana. All exotic leather is sourced and traded in full compliance with CITES regulations, with documentation available on request.</p>",
-                    "width": "fit-content",
-                    "max_width": "narrow",
-                    "alignment": "left",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "text_color": "",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "head",
-                "body"
-              ]
-            }
-          },
-          "block_order": [
-            "cap",
-            "grp"
-          ]
-        }
-      },
-      "name": "Materials - EXOTIC LEATHERS",
-      "settings": {
-        "media_position": "left",
-        "media_width": "medium",
-        "media_height": "60svh",
-        "section_width": "full-width",
-        "extend_media": true,
-        "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 0,
-        "padding-block-end": 25
-      }
-    },
-    "section_mat_hardware": {
-      "type": "media-with-content",
-      "blocks": {
-        "media": {
-          "type": "_media-without-appearance",
-          "static": true,
-          "settings": {
-            "media_type": "image",
-            "image": "shopify://shop_images/oberndoerfer-trunk-hardware-detail.jpg",
-            "link": "",
-            "video_loop": true,
-            "video_autoplay": false,
-            "image_position": "cover",
-            "video_position": "cover"
-          },
-          "blocks": {}
-        },
-        "content": {
-          "type": "_content-without-appearance",
-          "static": true,
-          "settings": {
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 24
-          },
-          "blocks": {
-            "cap": {
-              "type": "text",
-              "name": "t:names.caption",
-              "settings": {
-                "text": "<p>HARDWARE</p>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "custom",
-                "font": "var(--font-subheading--family)",
-                "font_size": "0.75rem",
-                "line_height": "normal",
-                "letter_spacing": "loose",
-                "case": "uppercase",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "grp": {
-              "type": "group",
-              "settings": {
-                "content_direction": "column",
-                "vertical_on_mobile": true,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "custom_height": 100,
-                "background_media": "none",
-                "background_color": "",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
-                "gradient_direction": "to top",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_color": "",
-                "border_radius": 0,
-                "link": "",
-                "open_in_new_tab": false,
-                "placeholder": "",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "head": {
-                  "type": "text",
-                  "name": "t:names.heading",
-                  "settings": {
-                    "text": "<p>Solid brass, in palladium or gold</p>",
-                    "width": "fit-content",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "h3",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "text_color": "",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
-                "body": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Clasps, buckles, and closures are solid brass, finished in palladium or gold depending on the piece. The finishes are chosen to resist wear while keeping their depth and tone over time, and they are designed as an integral part of each object rather than an afterthought.</p>",
-                    "width": "fit-content",
-                    "max_width": "narrow",
-                    "alignment": "left",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "text_color": "",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "head",
-                "body"
-              ]
-            }
-          },
-          "block_order": [
-            "cap",
-            "grp"
-          ]
-        }
-      },
-      "name": "Materials - HARDWARE",
-      "settings": {
-        "media_position": "left",
-        "media_width": "medium",
-        "media_height": "60svh",
-        "section_width": "full-width",
-        "extend_media": true,
-        "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 0,
-        "padding-block-end": 25
-      }
-    },
-    "section_mat_making": {
-      "type": "media-with-content",
-      "blocks": {
-        "media": {
-          "type": "_media-without-appearance",
-          "static": true,
-          "settings": {
-            "media_type": "image",
-            "image": "shopify://shop_images/Artisan.jpg",
-            "link": "",
-            "video_loop": true,
-            "video_autoplay": false,
-            "image_position": "cover",
-            "video_position": "cover"
-          },
-          "blocks": {}
-        },
-        "content": {
-          "type": "_content-without-appearance",
-          "static": true,
-          "settings": {
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 24
-          },
-          "blocks": {
-            "cap": {
-              "type": "text",
-              "name": "t:names.caption",
-              "settings": {
-                "text": "<p>MADE BY HAND, IN MILAN</p>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "custom",
-                "font": "var(--font-subheading--family)",
-                "font_size": "0.75rem",
-                "line_height": "normal",
-                "letter_spacing": "loose",
-                "case": "uppercase",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "grp": {
-              "type": "group",
-              "settings": {
-                "content_direction": "column",
-                "vertical_on_mobile": true,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "custom_height": 100,
-                "background_media": "none",
-                "background_color": "",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
-                "gradient_direction": "to top",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_color": "",
-                "border_radius": 0,
-                "link": "",
-                "open_in_new_tab": false,
-                "placeholder": "",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "head": {
-                  "type": "text",
-                  "name": "t:names.heading",
-                  "settings": {
-                    "text": "<p>The ateliers around Milan</p>",
-                    "width": "fit-content",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "h3",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "text_color": "",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
-                "body": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Every piece is made by hand in our ateliers around Milan, by artisans we chose ourselves after visiting their workshops and seeing their work firsthand. Edges are hand-stitched and hand-burnished, a finishing step that keeps leather from fraying at the seams over years of use. Pieces are made in small batches, to order - never mass-produced. Read more about the people and the ateliers behind the work on our <a href=\"https://www.oberndoerferco.com/pages/about-us\" title=\"About Oberndörfer Milano\">About</a> page.</p>",
-                    "width": "fit-content",
-                    "max_width": "narrow",
-                    "alignment": "left",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "text_color": "",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "head",
-                "body"
-              ]
-            }
-          },
-          "block_order": [
-            "cap",
-            "grp"
-          ]
-        }
-      },
-      "name": "Materials - MADE BY HAND, IN MILAN",
-      "settings": {
-        "media_position": "left",
-        "media_width": "medium",
-        "media_height": "60svh",
-        "section_width": "full-width",
-        "extend_media": true,
-        "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 0,
-        "padding-block-end": 25
-      }
-    },
-    "section_mat_timing": {
+    "section_pack_kept": {
       "type": "section",
       "blocks": {
         "eyebrow": {
           "type": "text",
           "settings": {
-            "text": "<p>MADE TO ORDER</p>",
+            "text": "<p>Kept, or returned</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "left",
@@ -1058,7 +557,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h2>Cut after it is ordered</h2>",
+            "text": "<h2>A box worth keeping</h2>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "left",
@@ -1083,7 +582,7 @@
         "dek": {
           "type": "text",
           "settings": {
-            "text": "<p>Because each piece is made after it is ordered rather than pulled from stock, lead time depends on what is being made: roughly 4 to 6 weeks for a small piece such as a leather box, 1 to 2 months for a larger piece such as a sofa, and up to 4 to 6 months for a highly detailed, heavily customized commission. We confirm a timeline with you before work begins. For fully custom and personalized commissions, see our <a href=\"https://www.oberndoerferco.com/pages/personalization\" title=\"Bespoke\">Bespoke</a> page.</p>",
+            "text": "<p>The materials are recyclable and biodegradable. A box worth keeping should be able to hold something else afterwards; one that isn’t kept should leave nothing behind.</p>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "left",
@@ -1111,7 +610,7 @@
         "head",
         "dek"
       ],
-      "name": "Materials - MADE TO ORDER",
+      "name": "Packaging - Kept, or returned",
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -1141,13 +640,13 @@
         "padding-block-end": 72
       }
     },
-    "section_mat_care": {
+    "section_pack_gift": {
       "type": "section",
       "blocks": {
         "eyebrow": {
           "type": "text",
           "settings": {
-            "text": "<p>CARING FOR YOUR PIECE</p>",
+            "text": "<p>Gifting</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "left",
@@ -1173,7 +672,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h2>A living material</h2>",
+            "text": "<h2>Sent as a gift, or kept for yourself</h2>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "left",
@@ -1198,7 +697,7 @@
         "dek": {
           "type": "text",
           "settings": {
-            "text": "<p>Full-grain leather is a living material: wipe it with a soft, dry cloth, keep it away from water and direct sunlight, and let it rest in its dust bag when not in use. With time and handling it develops a patina that is part of its character, not a flaw. For the complete guide - conditioning, storage, and our repair and restoration service - see our full <a href=\"https://www.oberndoerferco.com/pages/leather-care-guide\" title=\"Leather Care Guide\">Leather Care Guide</a>.</p><p>The full guide is on our <a href=\"/pages/leather-care-guide\">Leather Care</a> page.</p>",
+            "text": "<p>Every piece is presented this way, whether it is for you or for someone else. At checkout you can add a personal message in your own words; a gift receipt is provided on request, with no prices shown.</p>",
             "width": "100%",
             "max_width": "narrow",
             "alignment": "left",
@@ -1226,7 +725,7 @@
         "head",
         "dek"
       ],
-      "name": "Materials - CARING FOR YOUR PIECE",
+      "name": "Packaging - Gifting",
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
@@ -1256,13 +755,13 @@
         "padding-block-end": 72
       }
     },
-    "section_mat_close": {
+    "section_pack_close": {
       "type": "section",
       "blocks": {
         "line": {
           "type": "text",
           "settings": {
-            "text": "<p>These are the materials every piece begins with. To see what they become, explore the collections; to have something made in a leather or colour not shown, <a href=\"/pages/personalization\">begin a commission</a>.</p>",
+            "text": "<p>For how the pieces themselves are made, see <a href=\"/pages/materials-craftsmanship\">Materials &amp; Craftsmanship</a>; for the house, <a href=\"/pages/about-us\">About us</a>; for delivery, <a href=\"/pages/shipping-and-delivery\">Shipping &amp; Delivery</a>.</p>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -1340,14 +839,11 @@
   },
   "order": [
     "main",
-    "hero_mat",
-    "section_mat_open",
-    "section_mat_leathers",
-    "section_mat_exotics",
-    "section_mat_hardware",
-    "section_mat_making",
-    "section_mat_timing",
-    "section_mat_care",
-    "section_mat_close"
+    "hero_pack",
+    "section_pack_open",
+    "section_pack_made",
+    "section_pack_kept",
+    "section_pack_gift",
+    "section_pack_close"
   ]
 }

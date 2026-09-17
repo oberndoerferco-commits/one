@@ -63,7 +63,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<h1>Frequently asked questions</h1>",
+            "text": "<h3>Frequently asked questions</h3>",
             "width": "fit-content",
             "max_width": "none",
             "alignment": "left",
@@ -115,7 +115,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>To maintain the beauty and longevity of your leather goods, we recommend the following:</p><ul><li><strong>Regular cleaning:</strong> Wipe your leather product with a soft, dry cloth to remove dust and dirt. Avoid using water or soap, as these can damage the leather.</li><li><strong>Conditioning:</strong> Use a high-quality leather conditioner every 6-12 months to keep the leather soft and prevent it from drying out or cracking. Apply the conditioner with a soft cloth, following the product instructions.</li><li><strong>Storage:</strong> Store your leather items in a cool, dry place away from direct sunlight, which can cause the color to fade. Use a dust bag to protect the leather from dust and scratches.</li><li><strong>Avoid moisture:</strong> Keep your leather goods away from water. If they do get wet, blot the excess water with a dry cloth and allow them to air dry naturally, away from heat sources.</li><li><strong>Handling:</strong> When handling leather products, make sure your hands are clean and dry. Oils and dirt from your hands can stain the leather over time.</li></ul>",
+                    "text": "<p>TO MAINTAIN THE BEAUTY AND LONGEVITY OF YOUR LEATHER GOODS, WE RECOMMEND THE FOLLOWING CARE TIPS:REGULAR CLEANING: WIPE YOUR LEATHER PRODUCT WITH A SOFT, DRY CLOTH TO REMOVE DUST AND DIRT. AVOID USING WATER OR SOAP, AS THESE CAN DAMAGE THE LEATHER.CONDITIONING: USE A HIGH-QUALITY LEATHER CONDITIONER EVERY 6-12 MONTHS TO KEEP THE LEATHER SOFT AND PREVENT IT FROM DRYING OUT OR CRACKING. APPLY THE CONDITIONER WITH A SOFT CLOTH, FOLLOWING THE PRODUCT INSTRUCTIONS.STORAGE: STORE YOUR LEATHER ITEMS IN A COOL, DRY PLACE AWAY FROM DIRECT SUNLIGHT, WHICH CAN CAUSE THE COLOR TO FADE. USE A DUST BAG OR PILLOWCASE TO PROTECT THE LEATHER FROM DUST AND SCRATCHES.AVOID MOISTURE: KEEP YOUR LEATHER GOODS AWAY FROM WATER. IF THEY DO GET WET, BLOT THE EXCESS WATER WITH A DRY CLOTH AND ALLOW THEM TO AIR DRY NATURALLY, AWAY FROM HEAT SOURCES.HANDLING: WHEN HANDLING LEATHER PRODUCTS, MAKE SURE YOUR HANDS ARE CLEAN AND DRY. OILS AND DIRT FROM YOUR HANDS CAN STAIN THE LEATHER OVER TIME.</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -162,7 +162,7 @@
                     "font_size": "0.875rem",
                     "line_height": "normal",
                     "letter_spacing": "normal",
-                    "case": "none",
+                    "case": "uppercase",
                     "wrap": "pretty",
                     "background": false,
                     "background_color": "#00000026",
@@ -191,7 +191,7 @@
                 "text_ziEjaq": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Every piece on the website is delivered within 7–14 days, free worldwide with DHL Express. The exceptions are our larger commissions - trunks, sofas, and furniture - which are built to order: trunks take 2–6 months depending on complexity and level of personalization, furniture and highly detailed commissions 4–6 months. We confirm exact timing once you have placed your order, or in advance if you contact us.</p>",
+                    "text": "<p>THANKS TO OUR DIRECT TRANSPORT METHODS WITH DHL EXPRESS, WE HAVE THE POSSIBILITY OF DELIVERING THE PRODUCTS WITHIN A MAXIMUM OF 7 DAYS. IN THE CASE OF PRODUCT CUSTOMIZATION, IT IS BASED ON THE PRODUCTION TIME, WHICH CAN TAKE 4 TO 6 WEEKS. WE CAN PROVIDE MORE INFORMATION ABOUT THE EXACT DURATION ONCE YOU HAVE PLACED YOUR ORDER OR CONTACTED US IN ADVANCE.</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -200,7 +200,7 @@
                     "font_size": "0.875rem",
                     "line_height": "normal",
                     "letter_spacing": "normal",
-                    "case": "none",
+                    "case": "uppercase",
                     "wrap": "pretty",
                     "background": false,
                     "background_color": "#00000026",
@@ -221,7 +221,7 @@
               "type": "_accordion-row",
               "name": "t:names.accordion_row",
               "settings": {
-                "heading": "WHAT HAPPENS AFTER PLACING MY ORDER?",
+                "heading": "WHAT HAPPENS AFTER PLACING MY ORDER? ",
                 "open_by_default": false,
                 "icon": "none",
                 "width": 20
@@ -231,7 +231,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>You will receive an automatically generated order confirmation by email from our webshop.</p>",
+                    "text": "<p>YOU WILL RECEIVE AN AUTOMATICALLY GENERATED ORDER CONFIRMATION BY EMAIL FROM OUR WEBSHOP. </p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -271,7 +271,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Please write down your questions and contact <a href=\"mailto:info@oberndoerferco.com\">info@oberndoerferco.com</a> for specific details. If anything is unclear, we will contact you and do our best to fulfill your special requests.</p>",
+                    "text": "<p>PLEASE WRITE DOWN YOUR QUESTIONS AND CONTACT <a href=\"mailto:info@oberndoerferco.com\">INFO@OBERNDOERFERCO.COM</a> FOR SPECIFIC DETAILS. IF ANYTHING IS UNCLEAR, WE WILL CONTACT YOU AND DO OUR BEST TO FULFILL YOUR SPECIAL REQUESTS.</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -280,7 +280,7 @@
                     "font_size": "0.875rem",
                     "line_height": "normal",
                     "letter_spacing": "normal",
-                    "case": "none",
+                    "case": "uppercase",
                     "wrap": "pretty",
                     "background": false,
                     "background_color": "#00000026",
@@ -311,7 +311,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Shipping is free on all orders, worldwide. We ship with DHL Express.</p>",
+                    "text": "<p>Shipping is calculated based on your location and the items in your order. You will always know the shipping price before you purchase.</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -320,7 +320,7 @@
                     "font_size": "0.875rem",
                     "line_height": "normal",
                     "letter_spacing": "normal",
-                    "case": "none",
+                    "case": "uppercase",
                     "wrap": "pretty",
                     "background": false,
                     "background_color": "#00000026",
@@ -351,7 +351,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Lead time depends on what we are making. A small, simple piece such as a leather box usually takes 4 to 6 weeks. Trunks take 2 to 6 months depending on complexity and level of personalization. Sofas, furniture and highly detailed commissions take 4 to 6 months.</p><p>Each piece is crafted entirely by hand. We confirm a timeline with you before work begins and keep you updated throughout.</p>",
+                    "text": "<p>Timelines vary depending on complexity. Simpler custom pieces typically take 1–2 months, while more intricate or highly bespoke projects may require 4–6 months. Each piece is crafted entirely by hand, and we will keep you updated throughout the process with regular progress updates.</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -360,7 +360,7 @@
                     "font_size": "0.875rem",
                     "line_height": "normal",
                     "letter_spacing": "normal",
-                    "case": "none",
+                    "case": "uppercase",
                     "wrap": "pretty",
                     "background": false,
                     "background_color": "#00000026",
@@ -381,7 +381,7 @@
               "type": "_accordion-row",
               "name": "t:names.accordion_row",
               "settings": {
-                "heading": "WHAT MATERIALS DO YOU USE?",
+                "heading": "WHAT MATERIALS DO YOU USE? ",
                 "open_by_default": false,
                 "icon": "none",
                 "width": 20
@@ -391,7 +391,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Our leather comes from tanneries in Italy, France, and Germany, and is a byproduct of the meat industry. Exotic leathers follow a separate supply chain: the hides may originate outside Europe and are processed in Italy, always sourced and traded in full compliance with CITES regulations, with documentation available on request.</p><p>All materials are chosen for their durability, beauty, and ability to age gracefully over time. For the full picture of the leathers and hardware we use and how each piece is made, see our <a href=\"https://www.oberndoerferco.com/pages/materials-craftsmanship\" title=\"Materials &amp; Craftsmanship\">Materials &amp; Craftsmanship</a> page.</p>",
+                    "text": "<p>We source our leathers exclusively from Italy, selecting only exceptional hides from trusted tanneries. All materials are chosen for their durability, beauty, and ability to age gracefully over time.</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -400,7 +400,7 @@
                     "font_size": "0.875rem",
                     "line_height": "normal",
                     "letter_spacing": "normal",
-                    "case": "none",
+                    "case": "uppercase",
                     "wrap": "pretty",
                     "background": false,
                     "background_color": "#00000026",
@@ -421,7 +421,7 @@
               "type": "_accordion-row",
               "name": "t:names.accordion_row",
               "settings": {
-                "heading": "DO YOU OFFER WORLDWIDE SHIPPING?",
+                "heading": "DO YOU OFFER WORLDWIDE SHIPPING? ",
                 "open_by_default": false,
                 "icon": "none",
                 "width": 20
@@ -431,7 +431,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Yes - we ship worldwide, free of charge, with DHL Express. Each piece is carefully packaged to ensure it arrives in perfect condition.</p>",
+                    "text": "<p>Yes, we ship internationally. Each piece is carefully packaged to ensure it arrives in perfect condition. Shipping timelines and details will be shared with you once your order is ready.</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -440,7 +440,7 @@
                     "font_size": "0.875rem",
                     "line_height": "normal",
                     "letter_spacing": "normal",
-                    "case": "none",
+                    "case": "uppercase",
                     "wrap": "pretty",
                     "background": false,
                     "background_color": "#00000026",

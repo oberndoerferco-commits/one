@@ -97,11 +97,11 @@
         "gap": 24,
         "section_width": "page-width",
         "section_height": "custom",
-        "section_height_custom": 21,
+        "section_height_custom": 62,
         "background_media": "image",
         "background_color": "",
         "video_position": "cover",
-        "background_image": "shopify://shop_images/sewing-machine-in-use.jpg",
+        "background_image": "shopify://shop_images/oberndoerfer-bespoke-stacked-cases.jpg",
         "background_image_position": "cover",
         "toggle_overlay": true,
         "overlay_color": "#1c171499",
@@ -114,50 +114,6 @@
         "border_radius": 0,
         "padding-block-start": 32,
         "padding-block-end": 72
-      }
-    },
-    "section_editorial": {
-      "type": "section",
-      "blocks": {
-        "liquid_editorial": {
-          "type": "custom-liquid",
-          "name": "Collection editorial band",
-          "settings": {
-            "custom_liquid": "{%- assign ed_img = collection.metafields.custom.editorial_image -%}{%- if ed_img != blank -%}<style>.obm-collection-editorial{position:relative;width:100%;margin:0}.obm-collection-editorial img{width:100%;height:52svh;min-height:320px;object-fit:cover;display:block}.obm-collection-editorial figcaption{position:absolute;left:clamp(16px,4vw,48px);bottom:clamp(14px,3vw,36px);color:#ffffff;background:#00000066;padding:6px 12px;border-radius:4px;font-size:0.8125rem;letter-spacing:0.02em}@media (max-width:749px){.obm-collection-editorial img{height:38svh;min-height:240px}}</style><figure class=\"obm-collection-editorial\">{{ ed_img.value | image_url: width: 2600 | image_tag: loading: 'lazy', alt: ed_img.value.alt }}{%- assign ed_line = collection.metafields.custom.editorial_line.value -%}{%- if ed_line != blank -%}<figcaption>{{ ed_line }}</figcaption>{%- endif -%}</figure>{%- endif -%}"
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "liquid_editorial"
-      ],
-      "name": "Editorial band",
-      "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 0,
-        "section_width": "full-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "background_media": "none",
-        "background_color": "{{ settings.color_palette.background }}",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "padding-block-start": 0,
-        "padding-block-end": 0
       }
     },
     "main": {
@@ -309,7 +265,6 @@
   },
   "order": [
     "section",
-    "section_editorial",
     "main"
   ]
 }

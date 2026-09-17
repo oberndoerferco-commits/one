@@ -9,33 +9,10 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
-      "blocks": {
-        "page-content": {
-          "type": "page-content",
-          "settings": {
-            "text_color": ""
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "page-content"
-      ],
-      "disabled": true,
-      "settings": {
-        "content_direction": "column",
-        "gap": 32,
-        "background_color": "{{ settings.color_palette.background }}",
-        "padding-block-start": 40,
-        "padding-block-end": 80
-      }
-    },
-    "hero_H8KLYr": {
+    "hero_FXcjiz": {
       "type": "hero",
       "blocks": {
-        "group_M3p7jx": {
+        "group_9ewL9h": {
           "type": "group",
           "name": "t:names.group",
           "settings": {
@@ -75,7 +52,7 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "group_Ep9THJ": {
+            "group_B6L9pf": {
               "type": "group",
               "name": "t:names.group",
               "settings": {
@@ -115,11 +92,11 @@
                 "padding-inline-end": 0
               },
               "blocks": {
-                "text_FYmXW9": {
+                "text_CVzQX3": {
                   "type": "text",
-                  "name": "t:names.text",
+                  "name": "t:names.heading",
                   "settings": {
-                    "text": "<p><em>Handmade around Milan</em></p>",
+                    "text": "",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -141,20 +118,20 @@
                   },
                   "blocks": {}
                 },
-                "text_qkj9r9": {
+                "text_QPCEAX": {
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<h4>OBERNDÖRFER MILANO</h4>",
+                    "text": "<h1>About Oberndörfer Milano</h1>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
-                    "type_preset": "h2",
-                    "font": "var(--font-body--family)",
-                    "font_size": "",
+                    "type_preset": "custom",
+                    "font": "var(--font-heading--family)",
+                    "font_size": "1.5rem",
                     "line_height": "normal",
                     "letter_spacing": "normal",
-                    "case": "none",
+                    "case": "uppercase",
                     "wrap": "pretty",
                     "text_color": "",
                     "background": false,
@@ -169,11 +146,11 @@
                 }
               },
               "block_order": [
-                "text_FYmXW9",
-                "text_qkj9r9"
+                "text_CVzQX3",
+                "text_QPCEAX"
               ]
             },
-            "text_YJG4YP": {
+            "text_d7fTDL": {
               "type": "text",
               "name": "t:names.text",
               "settings": {
@@ -183,7 +160,7 @@
                 "alignment": "left",
                 "type_preset": "rte",
                 "font": "var(--font-body--family)",
-                "font_size": "",
+                "font_size": "1rem",
                 "line_height": "normal",
                 "letter_spacing": "normal",
                 "case": "none",
@@ -201,18 +178,18 @@
             }
           },
           "block_order": [
-            "group_Ep9THJ",
-            "text_YJG4YP"
+            "group_B6L9pf",
+            "text_d7fTDL"
           ]
         }
       },
       "block_order": [
-        "group_M3p7jx"
+        "group_9ewL9h"
       ],
       "name": "t:names.hero_bottom_aligned",
       "settings": {
         "media_type_1": "image",
-        "image_1": "shopify://shop_images/17.jpg",
+        "image_1": "shopify://shop_images/handbag.heic",
         "media_type_2": "image",
         "stack_media_on_mobile": false,
         "custom_mobile_media": false,
@@ -231,7 +208,7 @@
         "section_width": "page-width",
         "section_height": "large",
         "section_height_custom": 50,
-        "background_color": "",
+        "background_color": "{{ settings.color_palette.color1 }}",
         "toggle_overlay": true,
         "overlay_color": "#00000026",
         "overlay_style": "gradient",
@@ -242,22 +219,117 @@
         "padding-block-end": 40
       }
     },
-    "section_about_open": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "page-content": {
+          "type": "page-content",
+          "settings": {
+            "text_color": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "page-content"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "1772305362fdeb0a6f": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_56185bb_7mWE6w": {
+          "type": "ai_gen_block_56185bb",
+          "settings": {
+            "background_image": "shopify://shop_images/scissors-cutting-fabric.jpg",
+            "background_blur": 3,
+            "background_opacity": 100,
+            "main_image": "shopify://shop_images/IMG_2503.heic",
+            "image_border_radius": 0,
+            "heading": "CRAFTSMANSHIP AND DESIGN AT THE HEART OF OUR VISION",
+            "subheading": "",
+            "description": "<p>OBERNDÖRFER & CO is an independent artisanal house devoted to leather craftsmanship, architectural design, and timeless objects. Every creation reflects a commitment to skill, beauty, and responsibility.</p>",
+            "button_text": "",
+            "button_link": "",
+            "desktop_width_percent": 100,
+            "min_height": 500,
+            "section_padding": 60,
+            "content_gap": 60,
+            "mobile_gap": 30,
+            "text_spacing": 20,
+            "heading_font": "playfair_n4",
+            "heading_size": 28,
+            "subheading_size": 18,
+            "description_size": 16,
+            "text_color": "#ffffff",
+            "button_bg_color": "#000000",
+            "button_text_color": "#ffffff",
+            "button_border_color": "#000000",
+            "button_hover_bg_color": "#333333",
+            "button_hover_text_color": "#ffffff",
+            "button_hover_border_color": "#333333",
+            "button_font_size": 14,
+            "button_border_radius": 14,
+            "button_border_width": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_56185bb_7mWE6w"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "full-width",
+        "section_height": "custom",
+        "section_height_custom": 33,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.background }}",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "section_DeEKEy": {
       "type": "section",
       "blocks": {
-        "text_ab_eyebrow": {
+        "text_gF7Xbj": {
           "type": "text",
+          "name": "t:names.heading",
           "settings": {
-            "text": "<p>The House</p>",
-            "width": "100%",
+            "text": "<h4><strong>RESPONSIBILITY GUIDES OUR PROCESS</strong></h4><p></p>",
+            "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
             "type_preset": "custom",
-            "font": "var(--font-subheading--family)",
-            "font_size": "0.8125rem",
+            "font": "var(--font-heading--family)",
+            "font_size": "1.5rem",
             "line_height": "normal",
-            "letter_spacing": "loose",
-            "case": "uppercase",
+            "letter_spacing": "normal",
+            "case": "none",
             "wrap": "pretty",
             "text_color": "",
             "background": false,
@@ -270,38 +342,13 @@
           },
           "blocks": {}
         },
-        "text_ab_head": {
+        "text_PbhaLW": {
           "type": "text",
-          "name": "t:names.heading",
+          "name": "t:names.text",
           "settings": {
-            "text": "<h1>Leather, learned at the source</h1>",
-            "width": "100%",
+            "text": "<p>Materials are thoughtfully chosen, responsibly sourced, and treated with respect for the environment. We believe true luxury is enduring, creating objects designed to be kept, used, and cherished.</p>",
+            "width": "fit-content",
             "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "balance",
-            "text_color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "text_ab_dek": {
-          "type": "text",
-          "settings": {
-            "text": "<p>The house began as a journey — learning from, and then working alongside, the tanneries and artisans of Italy. Everything we make is still made that way: by hand, around Milan, to order, in small numbers.</p>",
-            "width": "100%",
-            "max_width": "narrow",
             "alignment": "left",
             "type_preset": "rte",
             "font": "var(--font-body--family)",
@@ -310,7 +357,7 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
-            "text_color": "#00000099",
+            "text_color": "",
             "background": false,
             "background_color": "#00000026",
             "corner_radius": 0,
@@ -323,25 +370,24 @@
         }
       },
       "block_order": [
-        "text_ab_eyebrow",
-        "text_ab_head",
-        "text_ab_dek"
+        "text_gF7Xbj",
+        "text_PbhaLW"
       ],
-      "name": "About - Opening chapter",
+      "name": "t:names.rich_text_section",
       "settings": {
         "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
         "vertical_alignment": "center",
         "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
+        "horizontal_alignment_flex_direction_column": "center",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 16,
+        "gap": 25,
         "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
+        "section_height": "custom",
+        "section_height_custom": 45,
         "background_media": "none",
-        "background_color": "{{ settings.color_palette.color2 }}",
+        "background_color": "{{ settings.color_palette.background }}",
         "video_position": "cover",
         "background_image_position": "cover",
         "toggle_overlay": false,
@@ -353,148 +399,8 @@
         "border_opacity": 100,
         "border_color": "",
         "border_radius": 0,
-        "padding-block-start": 96,
-        "padding-block-end": 72
-      }
-    },
-    "section_about_journey": {
-      "type": "media-with-content",
-      "blocks": {
-        "media": {
-          "type": "_media-without-appearance",
-          "static": true,
-          "settings": {
-            "media_type": "image",
-            "image": "shopify://shop_images/oberndoerfer-about-craft-detail.jpg",
-            "link": "",
-            "video_loop": true,
-            "video_autoplay": false,
-            "image_position": "cover",
-            "video_position": "cover"
-          },
-          "blocks": {}
-        },
-        "content": {
-          "type": "_content-without-appearance",
-          "static": true,
-          "settings": {
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "space-between",
-            "gap": 24
-          },
-          "blocks": {
-            "group_craftGrp": {
-              "type": "group",
-              "settings": {
-                "content_direction": "column",
-                "vertical_on_mobile": true,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap": 12,
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "custom_height": 100,
-                "background_media": "none",
-                "background_color": "",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
-                "gradient_direction": "to top",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_color": "",
-                "border_radius": 0,
-                "link": "",
-                "open_in_new_tab": false,
-                "placeholder": "",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "text_craftHead": {
-                  "type": "text",
-                  "name": "t:names.heading",
-                  "settings": {
-                    "text": "<p>A JOURNEY BEFORE THE FIRST PIECE</p>",
-                    "width": "fit-content",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "h3",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "text_color": "",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
-                "text_craftBody": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>We went to the tanneries first — family-run, in Italy, France and Germany — and then to the small ateliers around Milan where leather is still cut and stitched by hand. We watched, asked, and were corrected. Then we stayed, and began to work alongside them. What we brought back was less a plan than a standard: respect for the material, for the hands, and for the time a thing takes to make properly.</p>",
-                    "width": "fit-content",
-                    "max_width": "narrow",
-                    "alignment": "left",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "text_color": "",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_craftHead",
-                "text_craftBody"
-              ]
-            }
-          },
-          "block_order": [
-            "group_craftGrp"
-          ]
-        }
-      },
-      "name": "t:names.editorial",
-      "settings": {
-        "media_position": "left",
-        "media_width": "medium",
-        "media_height": "60svh",
-        "section_width": "full-width",
-        "extend_media": true,
-        "background_color": "{{ settings.color_palette.color2 }}",
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "padding-block-start": 50,
+        "padding-block-end": 50
       }
     },
     "section_dpgtkK": {
@@ -515,12 +421,12 @@
             "custom_width": 100,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
-            "height": "fit",
+            "height": "fill",
             "custom_height": 100,
-            "background_media": "none",
+            "background_media": "image",
             "background_color": "{{ settings.color_palette.color1 }}",
             "video_position": "cover",
-            "background_image": "",
+            "background_image": "shopify://shop_images/IMG_0815.jpg",
             "background_image_position": "cover",
             "toggle_overlay": false,
             "overlay_color": "#00000026",
@@ -534,39 +440,12 @@
             "link": "",
             "open_in_new_tab": false,
             "placeholder": "hero-apparel-2",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-block-start": 40,
+            "padding-block-end": 40,
+            "padding-inline-start": 40,
+            "padding-inline-end": 40
           },
-          "blocks": {
-            "image_group_Jmc9kk": {
-              "type": "image",
-              "settings": {
-                "image": "shopify://shop_images/IMG_0815.jpg",
-                "link": "",
-                "image_ratio": "portrait",
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_color": "",
-                "border_radius": 20,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "image_group_Jmc9kk"
-          ]
+          "blocks": {}
         },
         "group_DGcdwG": {
           "type": "group",
@@ -583,12 +462,12 @@
             "custom_width": 100,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
-            "height": "fit",
+            "height": "fill",
             "custom_height": 100,
-            "background_media": "none",
+            "background_media": "image",
             "background_color": "{{ settings.color_palette.color1 }}",
             "video_position": "cover",
-            "background_image": "",
+            "background_image": "shopify://shop_images/bag.jpg",
             "background_image_position": "cover",
             "toggle_overlay": false,
             "overlay_color": "#00000026",
@@ -602,39 +481,12 @@
             "link": "",
             "open_in_new_tab": false,
             "placeholder": "hero-apparel-1",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-block-start": 40,
+            "padding-block-end": 40,
+            "padding-inline-start": 40,
+            "padding-inline-end": 40
           },
-          "blocks": {
-            "image_group_DGcdwG": {
-              "type": "image",
-              "settings": {
-                "image": "shopify://shop_images/bag.jpg",
-                "link": "",
-                "image_ratio": "portrait",
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_color": "",
-                "border_radius": 20,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "image_group_DGcdwG"
-          ]
+          "blocks": {}
         },
         "group_9TAxbE": {
           "type": "group",
@@ -651,12 +503,12 @@
             "custom_width": 100,
             "width_mobile": "fill",
             "custom_width_mobile": 100,
-            "height": "fit",
+            "height": "fill",
             "custom_height": 100,
-            "background_media": "none",
+            "background_media": "image",
             "background_color": "{{ settings.color_palette.color1 }}",
             "video_position": "cover",
-            "background_image": "",
+            "background_image": "shopify://shop_images/IMG_3553_20638e12-c5fa-495e-92f3-0592cd4fe20f.heic",
             "background_image_position": "cover",
             "toggle_overlay": false,
             "overlay_color": "#00000026",
@@ -670,45 +522,60 @@
             "link": "",
             "open_in_new_tab": false,
             "placeholder": "hero-apparel-1",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
+            "padding-block-start": 40,
+            "padding-block-end": 40,
+            "padding-inline-start": 40,
+            "padding-inline-end": 40
           },
-          "blocks": {
-            "image_group_9TAxbE": {
-              "type": "image",
-              "settings": {
-                "image": "shopify://shop_images/oberndoerfer-about-watchcase.jpg",
-                "link": "",
-                "image_ratio": "portrait",
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_color": "",
-                "border_radius": 20,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
+          "blocks": {}
+        },
+        "group_7eKkWy": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "space-between",
+            "gap": 32,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fill",
+            "custom_height": 100,
+            "background_media": "image",
+            "background_color": "{{ settings.color_palette.color1 }}",
+            "video_position": "cover",
+            "background_image": "shopify://shop_images/Handbag.webp",
+            "background_image_position": "cover",
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "hero-apparel-1",
+            "padding-block-start": 40,
+            "padding-block-end": 40,
+            "padding-inline-start": 40,
+            "padding-inline-end": 40
           },
-          "block_order": [
-            "image_group_9TAxbE"
-          ]
+          "blocks": {}
         }
       },
       "block_order": [
         "group_Jmc9kk",
         "group_DGcdwG",
-        "group_9TAxbE"
+        "group_9TAxbE",
+        "group_7eKkWy"
       ],
       "name": "t:names.split_showcase",
       "settings": {
@@ -719,12 +586,12 @@
         "align_baseline": false,
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 16,
-        "section_width": "page-width",
-        "section_height": "",
+        "gap": 20,
+        "section_width": "full-width",
+        "section_height": "custom",
         "section_height_custom": 55,
         "background_media": "none",
-        "background_color": "{{ settings.color_palette.color2 }}",
+        "background_color": "{{ settings.color_palette.background }}",
         "video_position": "cover",
         "background_image_position": "cover",
         "toggle_overlay": false,
@@ -736,487 +603,182 @@
         "border_opacity": 100,
         "border_color": "",
         "border_radius": 0,
-        "padding-block-start": 30,
+        "padding-block-start": 0,
         "padding-block-end": 0
       }
     },
-    "section_about_facts": {
+    "section_87qkFi": {
       "type": "section",
       "blocks": {
-        "group_gx6VCY": {
-          "type": "group",
+        "text_L796ac": {
+          "type": "text",
+          "name": "t:names.heading",
           "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "center",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 16,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "background_media": "none",
-            "background_color": "",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 0,
-            "link": "",
-            "open_in_new_tab": false,
-            "placeholder": "",
+            "text": "<h4><strong>CRAFT AS STRUCTURE</strong></h4>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
-          "blocks": {
-            "icon_K6V37H": {
-              "type": "icon",
-              "settings": {
-                "icon": "leather",
-                "width": 32,
-                "link": "",
-                "open_in_new_tab": false,
-                "icon_color": ""
-              },
-              "blocks": {}
-            },
-            "group_g43HyG": {
-              "type": "group",
-              "settings": {
-                "content_direction": "column",
-                "vertical_on_mobile": true,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap": 4,
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "custom_height": 100,
-                "background_media": "none",
-                "background_color": "",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
-                "gradient_direction": "to top",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_color": "",
-                "border_radius": 0,
-                "link": "",
-                "open_in_new_tab": false,
-                "placeholder": "",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "text_6pYzpC": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>FULL-GRAIN HIDES</p>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "center",
-                    "type_preset": "custom",
-                    "font": "var(--font-subheading--family)",
-                    "font_size": "0.8125rem",
-                    "line_height": "normal",
-                    "letter_spacing": "loose",
-                    "case": "uppercase",
-                    "wrap": "pretty",
-                    "text_color": "",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
-                "text_AFybWJ": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>From family tanneries in Italy, France and Germany. Exotic hides are CITES-documented.</p>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "center",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "text_color": "",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_6pYzpC",
-                "text_AFybWJ"
-              ]
-            }
-          },
-          "block_order": [
-            "icon_K6V37H",
-            "group_g43HyG"
-          ]
+          "blocks": {}
         },
-        "group_h4WHUt": {
-          "type": "group",
+        "text_9JAUyr": {
+          "type": "text",
+          "name": "t:names.text",
           "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "center",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 16,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "background_media": "none",
-            "background_color": "",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 0,
-            "link": "",
-            "open_in_new_tab": false,
-            "placeholder": "",
+            "text": "<p>Each creation is produced in Italy by artisans selected for their exceptional expertise. Many have inherited their knowledge through generations, refining techniques passed from father to son, workshop to workshop. Their mastery allows material, proportion, and construction to become one language.</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
           },
-          "blocks": {
-            "icon_4Aq4Ct": {
-              "type": "icon",
-              "settings": {
-                "icon": "heart",
-                "width": 32,
-                "link": "",
-                "open_in_new_tab": false,
-                "icon_color": ""
-              },
-              "blocks": {}
-            },
-            "group_B3hJCW": {
-              "type": "group",
-              "settings": {
-                "content_direction": "column",
-                "vertical_on_mobile": true,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap": 4,
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "custom_height": 100,
-                "background_media": "none",
-                "background_color": "",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
-                "gradient_direction": "to top",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_color": "",
-                "border_radius": 0,
-                "link": "",
-                "open_in_new_tab": false,
-                "placeholder": "",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "text_8JNP4n": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>HANDMADE IN ITALY</p>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "center",
-                    "type_preset": "custom",
-                    "font": "var(--font-subheading--family)",
-                    "font_size": "0.8125rem",
-                    "line_height": "normal",
-                    "letter_spacing": "loose",
-                    "case": "uppercase",
-                    "wrap": "pretty",
-                    "text_color": "",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
-                "text_LWwGLH": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Cut, stitched and finished by hand in ateliers around Milan.</p>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "center",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "text_color": "",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_8JNP4n",
-                "text_LWwGLH"
-              ]
-            }
-          },
-          "block_order": [
-            "icon_4Aq4Ct",
-            "group_B3hJCW"
-          ]
-        },
-        "group_JM6c4a": {
-          "type": "group",
-          "settings": {
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "align_baseline": false,
-            "horizontal_alignment_flex_direction_column": "center",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 16,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "background_media": "none",
-            "background_color": "",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "toggle_overlay": false,
-            "overlay_color": "#00000026",
-            "overlay_style": "solid",
-            "gradient_direction": "to top",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 0,
-            "link": "",
-            "open_in_new_tab": false,
-            "placeholder": "",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "icon_7QPVBM": {
-              "type": "icon",
-              "settings": {
-                "icon": "ruler",
-                "width": 32,
-                "link": "",
-                "open_in_new_tab": false,
-                "icon_color": ""
-              },
-              "blocks": {}
-            },
-            "group_AydCLT": {
-              "type": "group",
-              "settings": {
-                "content_direction": "column",
-                "vertical_on_mobile": true,
-                "horizontal_alignment": "flex-start",
-                "vertical_alignment": "center",
-                "align_baseline": false,
-                "horizontal_alignment_flex_direction_column": "flex-start",
-                "vertical_alignment_flex_direction_column": "center",
-                "gap": 4,
-                "width": "fill",
-                "custom_width": 100,
-                "width_mobile": "fill",
-                "custom_width_mobile": 100,
-                "height": "fit",
-                "custom_height": 100,
-                "background_media": "none",
-                "background_color": "",
-                "video_position": "cover",
-                "background_image_position": "cover",
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
-                "gradient_direction": "to top",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_color": "",
-                "border_radius": 0,
-                "link": "",
-                "open_in_new_tab": false,
-                "placeholder": "",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "text_y3qQXc": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>MADE TO ORDER</p>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "center",
-                    "type_preset": "custom",
-                    "font": "var(--font-subheading--family)",
-                    "font_size": "0.8125rem",
-                    "line_height": "normal",
-                    "letter_spacing": "loose",
-                    "case": "uppercase",
-                    "wrap": "pretty",
-                    "text_color": "",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
-                "text_rbMHBf": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Made after it is ordered, never pulled from stock.</p>",
-                    "width": "100%",
-                    "max_width": "normal",
-                    "alignment": "center",
-                    "type_preset": "rte",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "text_color": "",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_y3qQXc",
-                "text_rbMHBf"
-              ]
-            }
-          },
-          "block_order": [
-            "icon_7QPVBM",
-            "group_AydCLT"
-          ]
+          "blocks": {}
         }
       },
       "block_order": [
-        "group_gx6VCY",
-        "group_h4WHUt",
-        "group_JM6c4a"
+        "text_L796ac",
+        "text_9JAUyr"
       ],
-      "name": "t:names.icons_with_text",
+      "name": "t:names.rich_text_section",
       "settings": {
-        "content_direction": "row",
+        "content_direction": "column",
         "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
         "vertical_alignment": "center",
         "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 25,
+        "section_width": "page-width",
+        "section_height": "custom",
+        "section_height_custom": 45,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.background }}",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 50,
+        "padding-block-end": 50
+      }
+    },
+    "hero_rBqyFR": {
+      "type": "hero",
+      "name": "t:names.hero",
+      "settings": {
+        "media_type_1": "image",
+        "image_1": "shopify://shop_images/IMG_5077_8c6eccf4-893c-40e7-a1db-4d4bf8afa386.heic",
+        "media_type_2": "image",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": false,
+        "media_type_1_mobile": "image",
+        "media_type_2_mobile": "image",
+        "link": "",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 16,
+        "section_width": "page-width",
+        "section_height": "large",
+        "section_height_custom": 50,
+        "background_color": "{{ settings.color_palette.color1 }}",
+        "toggle_overlay": true,
+        "overlay_color": "#00000026",
+        "overlay_style": "gradient",
+        "gradient_direction": "to top",
+        "blurred_reflection": true,
+        "reflection_opacity": 21,
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "section_mfDFWh": {
+      "type": "section",
+      "blocks": {
+        "text_jADNLt": {
+          "type": "text",
+          "settings": {
+            "text": "<h3>OUR VISION</h3><p></p>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_jADNLt"
+      ],
+      "name": "t:names.pull_quote",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 16,
         "section_width": "page-width",
         "section_height": "",
         "section_height_custom": 50,
         "background_media": "none",
-        "background_color": "{{ settings.color_palette.color2 }}",
+        "background_color": "#f5f2ede0",
         "video_position": "cover",
         "background_image_position": "cover",
         "toggle_overlay": false,
@@ -1240,7 +802,7 @@
           "static": true,
           "settings": {
             "media_type": "image",
-            "image": "shopify://shop_images/oberndoerfer-cle-atelier-bench.jpg",
+            "image": "shopify://shop_images/IMG_3553_20638e12-c5fa-495e-92f3-0592cd4fe20f.heic",
             "link": "",
             "video_loop": true,
             "video_autoplay": false,
@@ -1327,7 +889,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<p>THE HIDE, ACCOUNTED FOR</p>",
+                    "text": "<p>SUSTAINABLE LUXURY</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -1352,7 +914,7 @@
                 "text_NdncVd": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Our leather is a byproduct of the meat industry — no animal is raised for it — and it comes from tanneries in Italy, France and Germany that we have visited ourselves. Exotic hides follow a separate, documented chain: sourced and traded under CITES, processed in Italy, papers available on request.</p><p>We would rather say exactly where a hide came from than call it sustainable.</p>",
+                    "text": "<p>WE BELIEVE THAT TRUE LUXURY HONORS BOTH TRADITION AND THE WORLD AROUND US. OUR LEATHER IS RESPONSIBLY SOURCED FROM LOCAL ITALIAN FARMS, REPURPOSING BYPRODUCTS OF THE MEAT INDUSTRY TO CREATE SUSTAINABLE, HIGH-QUALITY MATERIALS. EVERY PIECE CARRIES THE CARE AND PASSION OF ITS MAKER, DESIGNED TO BE TREASURED FOR GENERATIONS.</p>",
                     "width": "fit-content",
                     "max_width": "narrow",
                     "alignment": "left",
@@ -1379,30 +941,11 @@
                 "text_9nrqUG",
                 "text_NdncVd"
               ]
-            },
-            "button_sustain": {
-              "type": "button",
-              "settings": {
-                "label": "Materials & Craftsmanship",
-                "link": "/pages/materials-craftsmanship",
-                "open_in_new_tab": false,
-                "style_class": "button-secondary",
-                "custom_button_background": "{{ settings.color_palette.foreground }}",
-                "custom_button_text": "{{ settings.color_palette.background }}",
-                "custom_button_border": "{{ settings.color_palette.background }}",
-                "link_text_color": "",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
             }
           },
           "block_order": [
             "text_MRPdFD",
-            "group_QQRGUi",
-            "button_sustain"
+            "group_QQRGUi"
           ]
         }
       },
@@ -1413,12 +956,12 @@
         "media_height": "60svh",
         "section_width": "full-width",
         "extend_media": true,
-        "background_color": "{{ settings.color_palette.color2 }}",
+        "background_color": "#f5f2ede0",
         "padding-block-start": 0,
         "padding-block-end": 0
       }
     },
-    "section_about_bridge": {
+    "media_with_content_MRxV7K": {
       "type": "media-with-content",
       "blocks": {
         "media": {
@@ -1426,7 +969,7 @@
           "static": true,
           "settings": {
             "media_type": "image",
-            "image": "shopify://shop_images/oberndoerfer-trunk-table-lifestyle.jpg",
+            "image": "shopify://shop_images/IMG_0269.heic",
             "link": "",
             "video_loop": true,
             "video_autoplay": false,
@@ -1444,11 +987,11 @@
             "gap": 24
           },
           "blocks": {
-            "text_craftCap": {
+            "text_DGbyAX": {
               "type": "text",
               "name": "t:names.caption",
               "settings": {
-                "text": "<p>SANREMO</p>",
+                "text": "",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -1470,7 +1013,7 @@
               },
               "blocks": {}
             },
-            "group_craftGrp": {
+            "group_4Gqgkf": {
               "type": "group",
               "settings": {
                 "content_direction": "column",
@@ -1509,38 +1052,12 @@
                 "padding-inline-end": 0
               },
               "blocks": {
-                "text_craftHead": {
-                  "type": "text",
-                  "name": "t:names.heading",
-                  "settings": {
-                    "text": "<p>FROM THE TRUNK TO THE ROOM</p>",
-                    "width": "fit-content",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "h3",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "text_color": "",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
-                "text_craftBody": {
+                "text_rQaQRp": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>The Miramare — a belle-époque palace above the Ligurian sea — lived with our trunks for a season, then asked us to make its furniture. Sofas, armchairs, poufs, and a trunk that became a table.</p>",
+                    "text": "<p>AT<strong> OBERNDÖRFER & CO.</strong>, LUXURY IS DEFINED BY CARE, HERITAGE, AND CRAFTSMANSHIP. EACH CREATION IS HANDCRAFTED IN MILAN BY SKILLED ARTISANS, BLENDING CENTURIES-OLD ITALIAN TECHNIQUES WITH CONTEMPORARY DESIGN TO PRODUCE LEATHER GOODS THAT ARE AS ELEGANT AS THEY ARE ENDURING.</p>",
                     "width": "fit-content",
-                    "max_width": "narrow",
+                    "max_width": "none",
                     "alignment": "left",
                     "type_preset": "rte",
                     "font": "var(--font-body--family)",
@@ -1562,33 +1079,13 @@
                 }
               },
               "block_order": [
-                "text_craftHead",
-                "text_craftBody"
+                "text_rQaQRp"
               ]
-            },
-            "button_craftBtn": {
-              "type": "button",
-              "settings": {
-                "label": "Art of Living",
-                "link": "/pages/oberndorfer-x-miramare-sanremo",
-                "open_in_new_tab": false,
-                "style_class": "button-secondary",
-                "custom_button_background": "{{ settings.color_palette.foreground }}",
-                "custom_button_text": "{{ settings.color_palette.background }}",
-                "custom_button_border": "{{ settings.color_palette.background }}",
-                "link_text_color": "",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
             }
           },
           "block_order": [
-            "text_craftCap",
-            "group_craftGrp",
-            "button_craftBtn"
+            "text_DGbyAX",
+            "group_4Gqgkf"
           ]
         }
       },
@@ -1599,107 +1096,22 @@
         "media_height": "60svh",
         "section_width": "full-width",
         "extend_media": true,
-        "background_color": "{{ settings.color_palette.color2 }}",
+        "background_color": "#f5f2ede0",
         "padding-block-start": 0,
         "padding-block-end": 0
-      }
-    },
-    "house_facts": {
-      "type": "oberndoerfer-house-facts",
-      "settings": {}
-    },
-    "section_about_close": {
-      "type": "section",
-      "blocks": {
-        "text_close01": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Everything we make begins as an order, and is made for the person who placed it.</p>",
-            "width": "100%",
-            "max_width": "normal",
-            "alignment": "center",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "text_color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "button_close01": {
-          "type": "button",
-          "settings": {
-            "label": "Explore the collections",
-            "link": "/collections/all",
-            "open_in_new_tab": false,
-            "style_class": "button-secondary",
-            "custom_button_background": "{{ settings.color_palette.foreground }}",
-            "custom_button_text": "{{ settings.color_palette.background }}",
-            "custom_button_border": "{{ settings.color_palette.background }}",
-            "link_text_color": "",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "text_close01",
-        "button_close01"
-      ],
-      "name": "Close",
-      "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "center",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 16,
-        "section_width": "page-width",
-        "section_height": "custom",
-        "section_height_custom": 40,
-        "background_media": "image",
-        "background_color": "{{ settings.color_palette.background }}",
-        "video_position": "cover",
-        "background_image": "shopify://shop_images/oberndoerfer-about-close.jpg",
-        "background_image_position": "cover",
-        "toggle_overlay": true,
-        "overlay_color": "#f5f2ede6",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "padding-block-start": 80,
-        "padding-block-end": 80
       }
     }
   },
   "order": [
+    "hero_FXcjiz",
     "main",
-    "hero_H8KLYr",
-    "section_about_open",
-    "section_about_journey",
+    "1772305362fdeb0a6f",
+    "section_DeEKEy",
     "section_dpgtkK",
-    "section_about_facts",
+    "section_87qkFi",
+    "hero_rBqyFR",
+    "section_mfDFWh",
     "media_with_content_a7znjk",
-    "section_about_bridge",
-    "house_facts",
-    "section_about_close"
+    "media_with_content_MRxV7K"
   ]
 }
