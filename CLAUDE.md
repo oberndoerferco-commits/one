@@ -69,8 +69,18 @@ claim cannot be sourced, it does not ship.
 
 ## Guardrails — everyone, no exceptions
 
-1. **Never publish to the live theme.** Theme work goes to the unpublished
-   "Claude" theme (id `204228231493`). The live theme is untouched.
+1. **The house never writes to the theme at all.** The owner makes theme
+   changes himself, in a separate "website theme" chat. The "Claude" theme this
+   file used to name (id `204228231493`) no longer exists.
+
+   The live theme is **"NEW WEBSITE BUG fix 7"**, id `206519796037`, Horizon-
+   based. Read it freely — the working copy is in `theme/`, with the full
+   inventory in `theme/MANIFEST.txt`. **Never write, never publish.**
+
+   When theme work is needed, `ecommerce-manager` writes a brief to
+   `docs/handbook/theme-briefs/` that the owner can paste straight into the
+   website theme chat: what to change, where, the exact copy or Liquid, and how
+   to check it worked. A brief that assumes our context is a brief that fails.
 2. **Never change a price** without the owner saying so in writing.
 3. **Never delete a product, collection, page or article.** Set to draft.
 4. **Never post to a social account or send an email campaign** without the

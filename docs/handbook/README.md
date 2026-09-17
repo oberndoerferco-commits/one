@@ -1,6 +1,6 @@
 # The house
 
-Oberndörfer Milano is staffed the way a maison is staffed: eleven roles in four
+Oberndörfer Milano is staffed the way a maison is staffed: twelve roles in four
 divisions. You speak to your co-founder; the co-founder runs the house.
 
 ```
@@ -39,6 +39,7 @@ divisions. You speak to your co-founder; the co-founder runs the house.
 | --- | --- |
 | **creative-director** | Guardian of the identity. Everything public passes through this role before it ships — including the co-founder's work. |
 | **art-director** | Imagery, film, campaign, lookbook. Never generates a product that does not exist. |
+| **social-media-manager** | Instagram and TikTok end to end — trends, calendar, and the generation prompts that produce the content. |
 | **editorial-director** | Every word the house publishes — the journal, product copy, search. Runs the only channel that has ever worked here. |
 
 ### Commercial — how the house sells
@@ -46,7 +47,7 @@ divisions. You speak to your co-founder; the co-founder runs the house.
 | | |
 | --- | --- |
 | **merchandising-manager** | The assortment. Which of the 269 pieces are shown, how they are grouped, and whether each page earns its price. |
-| **ecommerce-manager** | The store as a machine. The funnel, the checkout, the theme, speed, navigation. |
+| **ecommerce-manager** | The store as a machine. The funnel, the checkout, speed, navigation. Reads the theme, never writes to it — it writes briefs you paste into the website theme chat. |
 | **client-advisor** | Private clients. Everything over €2,500, commissions, exotic skins. The pieces that will never move through a cart. |
 | **client-relations** | The client register. Correspondence, welcome, abandoned checkout, after-sale, repeat purchase. |
 
@@ -70,6 +71,16 @@ divisions. You speak to your co-founder; the co-founder runs the house.
 | `/campaign <occasion>` | Briefs the whole studio on a campaign as one piece of work. |
 
 Or simply describe what you want. The co-founder routes it.
+
+## Theme work
+
+The house does not touch the theme. The owner makes theme changes himself, in a
+separate **website theme** chat.
+
+So when a theme change is needed, `ecommerce-manager` writes a self-contained
+brief to `docs/handbook/theme-briefs/` — the exact block, the exact Liquid, the
+reasoning, and how to check it worked — and you paste the whole file into that
+chat. A brief that assumes our context is a brief that fails there.
 
 ## How work moves through the house
 
@@ -101,4 +112,9 @@ docs/handbook/reviews/         Monday reviews, dated
 docs/handbook/content-log.md   what the journal published, and what it earned
 docs/handbook/enquiries.md     every private-client enquiry and its outcome
 docs/handbook/crm-log.md       correspondence flows and their performance
+docs/handbook/social-log.md    what was posted, and what it did
+docs/handbook/prompt-library.md  generation prompts that worked, ready to run
+docs/handbook/theme-briefs/    briefs to paste into the website theme chat
+docs/handbook/catalogue-audit.md  product data completeness, all 269
+docs/handbook/theme-baseline.md   the live theme, and what is in it
 ```
