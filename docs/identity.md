@@ -399,3 +399,17 @@ fewer than four the row is filled from the product's own family.
 
 Change the home hero photograph; apply the proposed menu; merge colour families; touch the
 journal drafts. The owner publishes the theme.
+
+## First image on cards, sliding rows (18 September)
+
+The owner: "all products have to always show the first image on product card (not carousel
+still) but still give the option to slide right until the end of a collection". Horizon's
+theme settings product_card_carousel and show_second_image_on_hover default to on, so every
+card held up to five swipeable images; both are now off in config/settings_data.json, and a
+card shows its first image everywhere (home rows, collection grids, "You may also like").
+The six product rows on the home page are now carousels (layout_type carousel, 16 products,
+two cards wide on a phone, arrows on desktop), so a row slides to the end of its collection
+instead of stopping at four. On "NEW WEBSITE BUG fix 8 - first image cards, sliding rows
+(publish me)", a duplicate of the live theme with only those two files changed. The mobile
+pages themselves (home, collection, product) were checked at phone width and left as they
+were: two columns, no sideways overflow.
