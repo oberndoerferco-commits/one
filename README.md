@@ -23,3 +23,14 @@ Diff the two JSON files to see exactly which strings changed.
 - Optional hero line over `hero_eAhQMJ`.
 - Moving "a byproduct of the meat industry" onto the Materials & Craftsmanship page.
 - Changing the page handle to `art-of-living` with a redirect from the old one.
+
+## Image generation
+
+`scripts/genimage.py` calls OpenAI (ChatGPT) or Google (Gemini) to generate and
+re-stage imagery. Claude Code runs it through Bash once the API keys are set.
+
+- `scripts/README-image-generation.md` — setup, costs, usage
+- `docs/image-prompt-pack.md` — briefs written for the live catalogue
+
+Always pass the real product photograph with `--ref`. Generate light and
+setting, never the product itself.

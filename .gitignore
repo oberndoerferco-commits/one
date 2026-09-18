@@ -1,0 +1,6 @@
+generated/
+__pycache__/
+*.pyc
+*.png
+*.jpg
+!theme/**
