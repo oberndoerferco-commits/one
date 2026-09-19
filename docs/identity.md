@@ -506,5 +506,5 @@ pass (marks touching) read as a checkerboard and was dropped.
 - Smaller card swatches (19 Sept, the owner: "can you make color swatches a bit smaller?"):
   Horizon derives the card swatch from the product-page swatch setting, capped at 32px, and
   the cards showed 28px dots. A rule in `snippets/oberndoerfer-transfer-styles.liquid` sets
-  `product-swatches .swatch` to 12px on desktop and 10px on mobile (after "make them even smaller"); the selected ring scales
+  `product-swatches .swatch` to 12px on desktop and 10px on mobile (after "make them even smaller", on "NEW WEBSITE BUG fix 12 - smaller swatches", 206736556357, since fix 11 was published in the meantime); the selected ring scales
   with it. Product-page swatches are untouched (theme setting). On the fix 11 copy.
