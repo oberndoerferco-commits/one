@@ -165,17 +165,18 @@
 {%- comment -%}
   Smaller colour swatches on product cards (19 Sept, the owner: "can you make color swatches
   a bit smaller?"). Horizon scales the card swatch from the product page swatch setting, up to
-  32px; the cards showed 28px dots. 16px on desktop, 14px on mobile, the ring follows.
+  32px; the cards showed 28px dots. 12px on desktop, 10px on mobile ("make them even smaller"),
+  the ring follows.
 {%- endcomment -%}
 <style>
   product-swatches .swatch {
-    --swatch-width: 14px;
-    --swatch-height: 14px;
+    --swatch-width: 10px;
+    --swatch-height: 10px;
   }
   @media screen and (min-width: 750px) {
     product-swatches .swatch {
-      --swatch-width: 16px;
-      --swatch-height: 16px;
+      --swatch-width: 12px;
+      --swatch-height: 12px;
     }
   }
 </style>
