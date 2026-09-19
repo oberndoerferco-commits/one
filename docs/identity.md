@@ -445,3 +445,50 @@ Draft product "Twill Pants" in Ready to Wear, five colours named here as Navy, S
 Taupe and Sage (the owner has not named them), sizes S to XXL, 290.00, pre-order tag,
 continue-selling. Photographs from `scripts/pants-photos/compose.py`: each Canva tile keyed
 onto the house ground with a soft shadow, front and back per colour.
+
+## Category metafields, one card per colour, hoodies and pants live (19 September)
+
+The owner: "add Category metafields in pants and hoodie and tshirts and all are for preorder
+like tshirts", then "make all different color visible on the collection page of ready to wear?
+now i can just see black T-shirts. set pants and hoodie active when you are finished and make
+all colors visible as product cards, also dont forget about color swatches".
+
+- Category metafields (the `shopify.*` standard ones) on the five T-shirts, three hoodies and
+  the Twill Pants: colour (the store's Color metaobjects; Slate #4D5E69, Steel #6E7B82, Taupe
+  #57524B and Sage #6D7A76 created for the pants, sampled from the photographs; Navy, Grey,
+  Black and White already existed), fabric (Cotton; Cotton and Twill on the pants), age group
+  Adults, target gender Unisex, care (Machine washable; the pants also Tumble dry and Ironing
+  instructions, from the maker's care note). Tops: sleeve length (Short / Long), neckline
+  (Crew / Hooded), top length Medium. Pants: fit Tapered leg, waist rise Mid, length Long,
+  waistband Elastic + Drawstring, pockets Utility. The pants attributes needed their standard
+  metaobject and metafield definitions enabled first (`standardMetaobjectDefinitionEnable`,
+  `standardMetafieldDefinitionEnable`; pinning is refused for these). Missing values (Long,
+  Hooded, Machine washable, Tumble dry, Ironing instructions, Twill, Tapered leg, Mid, Long,
+  Elastic, Drawstring, Utility) were created with `metaobjectCreate` on the `shopify--*` types
+  with their taxonomy_reference.
+- Swatches: the hoodies' and pants' Colour option is now linked to `shopify.color-pattern`
+  (`productOptionUpdate` with linkedMetafield and one linkedMetafieldValue per value), as the
+  T-shirts' already was. That is what Horizon needs to draw a swatch on the card and on the
+  product page's Colour picker.
+- Pre-order parity: hoodies and pants already matched the T-shirts (tag `preorder`, stock 0,
+  inventory tracked, continue selling); nothing to change. They are now ACTIVE and on the
+  Online Store and Shop channels. The Ready to Wear and Products collections' rules now also
+  take product types Hoodie and Pants.
+- The hoodie variants that carry a back print (OM, with Logo) now point at their colour's back
+  photograph, so a card and the gallery lead with the print, as the T-shirts do.
+- Why only black showed: the live theme is now Horizon 4.2.0 ("NEW WEBSITE BUG fix 9 ",
+  206715027781), a theme update that replaced layout/theme.liquid, sections/main-collection.liquid
+  and snippets/product-media-gallery-content.liquid with stock files. With the layout stock,
+  nothing rendered `oberndoerfer-transfer-styles` any more, so the reveal, the mobile menu, the
+  colour dots under same-model cards and the transfer styles were all silently off, and the
+  owner's Ready to Wear template edit had already replaced the hero block that carried the
+  one-card-per-colour script. On the copy "NEW WEBSITE BUG fix 10 - colour cards, hoodies &
+  pants" (206726988101): the two render lines are back in layout/theme.liquid, the lifestyle
+  tiles in main-collection.liquid, the gallery-by-colour block in
+  product-media-gallery-content.liquid (all re-applied to the 4.2.0 files, not copied from the
+  old ones), and the one-card-per-colour script now lives in
+  `snippets/oberndoerfer-transfer-styles.liquid`, gated by `request.path` (a rendered snippet
+  does not see `collection`, so `collection.handle` is blank there). Ready to Wear now shows
+  29 cards: every T-shirt in black and white, every hoodie in grey, black and white, the pants
+  in five colours, each with its swatch row. The owner publishes the copy. All four files are in
+  `theme/`.
