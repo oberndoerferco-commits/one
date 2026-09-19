@@ -501,5 +501,5 @@ mockup before doing it", then "go with option 1" of three mockups rendered on th
 a staggered 112px cell at 26px, 8.5% ink, sits behind the footer's first section (newsletter
 and menu); the copyright row stays plain. The tile `obm-footer-monogram-tile.png` (336px, in
 Files and in `theme/assets-src/`) is used as a CSS mask so the colour is set in CSS. The block
-lives in `snippets/oberndoerfer-transfer-styles.liquid` on the "fix 10" copy. A denser first
+lives in `snippets/oberndoerfer-transfer-styles.liquid` on "NEW WEBSITE BUG fix 11 - footer monogram" (206735671621), a copy of fix 10, which the owner published while the mockups were being made. A denser first
 pass (marks touching) read as a checkerboard and was dropped.
