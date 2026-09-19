@@ -313,10 +313,10 @@
       "name": "t:names.hero",
       "settings": {
         "media_type_1": "image",
-        "image_1": "shopify://shop_images/oberndoerfer-bespoke-stacked-cases.jpg",
+        "image_1": "shopify://shop_images/obm-home-sac-spheres.jpg",
         "media_type_2": "image",
         "stack_media_on_mobile": false,
-        "custom_mobile_media": false,
+        "custom_mobile_media": true,
         "media_type_1_mobile": "image",
         "media_type_2_mobile": "image",
         "link": "",
@@ -340,7 +340,8 @@
         "blurred_reflection": false,
         "reflection_opacity": 75,
         "padding-block-start": 40,
-        "padding-block-end": 40
+        "padding-block-end": 40,
+        "image_1_mobile": "shopify://shop_images/obm-home-sac-spheres-mobile.jpg"
       }
     },
     "product_list_NGhceV": {
@@ -749,9 +750,8 @@
       "name": "t:names.hero",
       "settings": {
         "media_type_1": "image",
-        "image_1": "shopify://shop_images/17_9c9e674e-7941-4956-b7a8-861704edbc9f.jpg",
+        "image_1": "shopify://shop_images/oberndoerfer-cle-atelier-bench.jpg",
         "media_type_2": "image",
-        "image_2": "shopify://shop_images/oberndoerfer-ig-pouch-spheres.jpg",
         "stack_media_on_mobile": false,
         "custom_mobile_media": false,
         "media_type_1_mobile": "image",
@@ -767,7 +767,7 @@
         "vertical_alignment_flex_direction_column": "center",
         "gap": 16,
         "section_width": "page-width",
-        "section_height": "large",
+        "section_height": "medium",
         "section_height_custom": 50,
         "background_color": "",
         "toggle_overlay": true,
@@ -1397,13 +1397,13 @@
                 "text_VFtHNK": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>WE BELIEVE THAT TRUE LUXURY HONORS BOTH TRADITION AND THE WORLD AROUND US. OUR LEATHER IS RESPONSIBLY SOURCED FROM LOCAL ITALIAN FARMS, REPURPOSING BYPRODUCTS OF THE MEAT INDUSTRY TO CREATE SUSTAINABLE, HIGH-QUALITY MATERIALS. EVERY PIECE CARRIES THE CARE AND PASSION OF ITS MAKER, DESIGNED TO BE TREASURED FOR GENERATIONS.</p>",
+                    "text": "<p> WE BELIEVE THAT TRUE LUXURY HONORS BOTH TRADITION AND THE WORLD AROUND US. OUR LEATHER IS RESPONSIBLY SOURCED FROM LOCAL ITALIAN FARMS, REPURPOSING BYPRODUCTS OF THE MEAT INDUSTRY TO CREATE SUSTAINABLE, HIGH-QUALITY MATERIALS. EVERY PIECE CARRIES THE CARE AND PASSION OF ITS MAKER, DESIGNED TO BE TREASURED FOR GENERATIONS.</p>",
                     "width": "fit-content",
                     "max_width": "narrow",
                     "alignment": "left",
-                    "type_preset": "rte",
+                    "type_preset": "custom",
                     "font": "var(--font-body--family)",
-                    "font_size": "1rem",
+                    "font_size": "0.875rem",
                     "line_height": "normal",
                     "letter_spacing": "normal",
                     "case": "none",
@@ -1432,7 +1432,6 @@
           ]
         }
       },
-      "disabled": true,
       "name": "t:names.editorial",
       "settings": {
         "media_position": "left",
@@ -1565,13 +1564,13 @@
                 "text_R9PGRG": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>AT<strong> OBERNDÖRFER & CO.</strong>, LUXURY IS DEFINED BY CARE, HERITAGE, AND CRAFTSMANSHIP. EACH CREATION IS HANDCRAFTED IN MILAN BY SKILLED ARTISANS, BLENDING CENTURIES-OLD ITALIAN TECHNIQUES WITH CONTEMPORARY DESIGN TO PRODUCE LEATHER GOODS THAT ARE AS ELEGANT AS THEY ARE ENDURING.</p>",
+                    "text": "<p> AT<strong> OBERNDÖRFER & CO.</strong>, LUXURY IS DEFINED BY CARE, HERITAGE, AND CRAFTSMANSHIP. EACH CREATION IS HANDCRAFTED IN MILAN BY SKILLED ARTISANS, BLENDING CENTURIES-OLD ITALIAN TECHNIQUES WITH CONTEMPORARY DESIGN TO PRODUCE LEATHER GOODS THAT ARE AS ELEGANT AS THEY ARE ENDURING.</p>",
                     "width": "fit-content",
                     "max_width": "narrow",
                     "alignment": "left",
-                    "type_preset": "rte",
+                    "type_preset": "custom",
                     "font": "var(--font-body--family)",
-                    "font_size": "1rem",
+                    "font_size": "0.875rem",
                     "line_height": "normal",
                     "letter_spacing": "normal",
                     "case": "none",
@@ -1619,7 +1618,6 @@
           ]
         }
       },
-      "disabled": true,
       "name": "t:names.editorial",
       "settings": {
         "media_position": "right",
@@ -1931,62 +1929,6 @@
     },
     "hero_f7abBH": {
       "type": "hero",
-      "blocks": {
-        "text_bfxnEm": {
-          "type": "text",
-          "settings": {
-            "text": "",
-            "width": "fit-content",
-            "max_width": "narrow",
-            "alignment": "left",
-            "type_preset": "h1",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "text_color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "text_kjQrdn": {
-          "type": "text",
-          "settings": {
-            "text": "",
-            "width": "fit-content",
-            "max_width": "narrow",
-            "alignment": "left",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "text_color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 32,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "text_bfxnEm",
-        "text_kjQrdn"
-      ],
       "name": "t:names.hero",
       "settings": {
         "media_type_1": "image",
@@ -2007,7 +1949,7 @@
         "vertical_alignment_flex_direction_column": "center",
         "gap": 16,
         "section_width": "page-width",
-        "section_height": "large",
+        "section_height": "custom",
         "section_height_custom": 50,
         "background_color": "{{ settings.color_palette.color1 }}",
         "toggle_overlay": true,

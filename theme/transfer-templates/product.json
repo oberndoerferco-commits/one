@@ -796,7 +796,7 @@
                   "type": "text",
                   "name": "t:names.heading",
                   "settings": {
-                    "text": "<p>Made by hand</p>",
+                    "text": "<p>Handmade in Milan</p>",
                     "width": "fit-content",
                     "max_width": "normal",
                     "alignment": "left",
@@ -818,36 +818,10 @@
                   },
                   "blocks": {}
                 },
-                "text_craftHead": {
-                  "type": "text",
-                  "name": "t:names.heading",
-                  "settings": {
-                    "text": "<p>Cut, stitched and finished around Milan</p>",
-                    "width": "fit-content",
-                    "max_width": "normal",
-                    "alignment": "left",
-                    "type_preset": "h3",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "text_color": "",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                },
                 "text_craftBody": {
                   "type": "text",
                   "settings": {
-                    "text": "<p>Every piece is made in small workshops we chose after visiting them, from hides we can trace to the tannery. The method is the one used for a trunk; only the scale changes. Whatever we make, we repair.</p>",
+                    "text": "<p>Every Oberndörfer Milano piece is cut, stitched and finished by hand in ateliers around Milan, in full-grain leather from Italian, French and German tanneries.</p>",
                     "width": "fit-content",
                     "max_width": "narrow",
                     "alignment": "left",
@@ -890,7 +864,6 @@
               },
               "block_order": [
                 "eyebrow",
-                "text_craftHead",
                 "text_craftBody",
                 "link"
               ]

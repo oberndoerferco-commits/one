@@ -413,3 +413,22 @@ instead of stopping at four. On "NEW WEBSITE BUG fix 8 - first image cards, slid
 (publish me)", a duplicate of the live theme with only those two files changed. The mobile
 pages themselves (home, collection, product) were checked at phone width and left as they
 were: two columns, no sideways overflow.
+
+## Product chapter text, home hero photograph (18 to 19 September)
+
+The chapter under every product ("Made by hand / Cut, stitched and finished around Milan"
+plus a four-sentence paragraph) was rewritten after the owner said the text did not sit
+right and, shown what Serapian and Valextra write, chose Serapian's manner: short capitalised
+label, one sentence in the third person, materials named. It now reads: HANDMADE IN MILAN.
+"Every Oberndörfer Milano piece is cut, stitched and finished by hand in ateliers around
+Milan, in full-grain leather from Italian, French and German tanneries." The middle heading
+block was removed; label, sentence, link.
+
+The second home banner (the SAC on stone spheres, oberndoerfer-ig-pouch-spheres.jpg) was a
+480x640 Instagram export stretched across the desktop width and looked pixelated. The Files
+library holds no larger copy of that frame (all 1,976 images were compared by picture), but
+it does hold a sibling frame from the same shoot, Sac2.heic at 5016x3346. That frame is now
+the banner: full width on desktop as obm-home-sac-spheres.jpg, and a 4:5 crop centred on
+the bag for phones as obm-home-sac-spheres-mobile.jpg. Both on "NEW WEBSITE BUG fix 9 -
+product chapter text (publish me)", a duplicate of the live theme with only
+templates/product.json and templates/index.json changed.
