@@ -503,3 +503,8 @@ and menu); the copyright row stays plain. The tile `obm-footer-monogram-tile.png
 Files and in `theme/assets-src/`) is used as a CSS mask so the colour is set in CSS. The block
 lives in `snippets/oberndoerfer-transfer-styles.liquid` on "NEW WEBSITE BUG fix 11 - footer monogram" (206735671621), a copy of fix 10, which the owner published while the mockups were being made. A denser first
 pass (marks touching) read as a checkerboard and was dropped.
+- Smaller card swatches (19 Sept, the owner: "can you make color swatches a bit smaller?"):
+  Horizon derives the card swatch from the product-page swatch setting, capped at 32px, and
+  the cards showed 28px dots. A rule in `snippets/oberndoerfer-transfer-styles.liquid` sets
+  `product-swatches .swatch` to 16px on desktop and 14px on mobile; the selected ring scales
+  with it. Product-page swatches are untouched (theme setting). On the fix 11 copy.
