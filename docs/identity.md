@@ -492,3 +492,14 @@ all colors visible as product cards, also dont forget about color swatches".
   29 cards: every T-shirt in black and white, every hoodie in grey, black and white, the pants
   in five colours, each with its swatch row. The owner publishes the copy. All four files are in
   `theme/`.
+
+## Footer monogram (19 September)
+
+The owner: "in the footer can you put my logo as a monogram in the background? show me a
+mockup before doing it", then "go with option 1" of three mockups rendered on the live footer
+(monogram field, fine monogram, one large mark). The house mark from the reveal, repeated on
+a staggered 112px cell at 26px, 8.5% ink, sits behind the footer's first section (newsletter
+and menu); the copyright row stays plain. The tile `obm-footer-monogram-tile.png` (336px, in
+Files and in `theme/assets-src/`) is used as a CSS mask so the colour is set in CSS. The block
+lives in `snippets/oberndoerfer-transfer-styles.liquid` on the "fix 10" copy. A denser first
+pass (marks touching) read as a checkerboard and was dropped.

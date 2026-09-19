@@ -132,5 +132,35 @@
 })();
 </script>
 {%- endif -%}
+{%- comment -%}
+  Footer monogram (19 Sept, the owner: "in the footer can you put my logo as a monogram in the
+  background", option 1 of three mockups). The house mark repeated on a staggered 112px cell,
+  26px each, at 8.5% ink behind the newsletter and menu section of the footer. The tile is a
+  mask (obm-footer-monogram-tile.png in Files, 336px for 3x screens), so the ink colour is set
+  here and the copyright row below stays plain. Same mark as the reveal.
+{%- endcomment -%}
+<style>
+  footer .shopify-section:first-child {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+  footer .shopify-section:first-child::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-color: rgba(26, 22, 18, 0.085);
+    -webkit-mask-image: url('https://cdn.shopify.com/s/files/1/0758/8387/2581/files/obm-footer-monogram-tile.png?v=1789854266');
+    mask-image: url('https://cdn.shopify.com/s/files/1/0758/8387/2581/files/obm-footer-monogram-tile.png?v=1789854266');
+    -webkit-mask-size: 112px 112px;
+    mask-size: 112px 112px;
+    -webkit-mask-repeat: repeat;
+    mask-repeat: repeat;
+    -webkit-mask-position: 10px 14px;
+    mask-position: 10px 14px;
+  }
+</style>
 {% render 'oberndoerfer-color-grouping' %}
 {% render 'oberndoerfer-mobile-menu' %}
