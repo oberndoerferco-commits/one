@@ -432,3 +432,16 @@ the banner: full width on desktop as obm-home-sac-spheres.jpg, and a 4:5 crop ce
 the bag for phones as obm-home-sac-spheres-mobile.jpg. Both on "NEW WEBSITE BUG fix 9 -
 product chapter text (publish me)", a duplicate of the live theme with only
 templates/product.json and templates/index.json changed.
+
+## Twill Pants (19 September)
+
+A fourth ready-to-wear piece from the owner's Canva design (pages 14 to 18, one colour per
+page): a garment-dyed cotton twill pant with an elasticated drawcord waist, zip fly, inseam
+gusset and a tool pocket, the woven label at the back pocket. The owner gave the maker's own
+description (the same model as Carhartt WIP's Flint Pant: mid-weight garment-dyed twill, 100%
+organic cotton, cotton pocket lining, wash 40°C, hang dry, iron 200°C, tumble 60°C, regular
+tapered fit, sizes S to XXL by waist 29–30 / 31–32 / 33–34 / 36–38 / 40 in, model 185 cm in M).
+Draft product "Twill Pants" in Ready to Wear, five colours named here as Navy, Slate, Steel,
+Taupe and Sage (the owner has not named them), sizes S to XXL, 290.00, pre-order tag,
+continue-selling. Photographs from `scripts/pants-photos/compose.py`: each Canva tile keyed
+onto the house ground with a soft shadow, front and back per colour.
