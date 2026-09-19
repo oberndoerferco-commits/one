@@ -1,0 +1,93 @@
+{%- comment -%}
+  Oberndörfer Milano · Abandoned checkout notification (Settings > Notifications > Customer
+  notifications > Abandoned checkout > Edit code). Paste this whole file as the email body.
+  Subject line: Your piece is still with us
+  Turn on: Settings > Checkout > Abandoned checkout emails > Automatically send, 1 hour.
+  Design: brown bar, logo on cream, photograph with one serif line, cream body, brown pill
+  button, two photograph tiles, quiet footer (the owner's chosen style, 19 Sept 2026).
+{%- endcomment -%}
+{%- assign cdn = 'https://cdn.shopify.com/s/files/1/0758/8387/2581/files/' -%}
+{%- assign first_line = checkout.line_items | first -%}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Your piece is still with us</title>
+</head>
+<body style="margin:0;padding:0;background:#e3ddd5;-webkit-font-smoothing:antialiased;">
+<div style="display:none;max-height:0;overflow:hidden;">Nothing has moved. It is held for you.</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#e3ddd5;">
+<tr><td align="center">
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#efebe6;font-family:Inter,'Helvetica Neue',Helvetica,Arial,sans-serif;color:#2b2320;">
+
+  <tr><td style="height:26px;background:#5f4534;font-size:0;line-height:0;">&nbsp;</td></tr>
+
+  <tr><td align="center" style="padding:30px 0 26px;">
+    <img src="{{ cdn }}MILANO_13_x_4_cm_-6.svg" alt="{{ shop.name }}" height="40" style="height:40px;display:block;">
+  </td></tr>
+
+  <tr><td style="padding:0;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" background="{{ cdn }}oberndoerfer-trunk-hardware-detail.jpg?width=1200" style="background:#6b5a48 url('{{ cdn }}oberndoerfer-trunk-hardware-detail.jpg?width=1200') center/cover no-repeat;height:480px;">
+      <tr><td align="center" valign="middle" style="height:480px;padding:0 56px;background:rgba(72,50,34,0.42);">
+        <div style="font-family:'Playfair Display',Georgia,'Times New Roman',serif;font-size:42px;line-height:1.12;color:#ffffff;">Your piece is still with us.</div>
+      </td></tr>
+    </table>
+  </td></tr>
+
+  <tr><td align="center" style="padding:44px 56px 8px;font-size:16px;line-height:1.7;">
+    <p style="margin:0 0 18px;">{% if customer.first_name %}{{ customer.first_name }}, you{% else %}You{% endif %} left {% if checkout.line_items.size == 1 %}the {{ first_line.title }}{% else %}{{ checkout.line_items.size }} pieces{% endif %} in your cart. Nothing has moved: it is held for you, and the price you saw is the price it stays.</p>
+    <p style="margin:0 0 18px;">Every piece is made by hand in our ateliers around Milan, so there is no rush on our side and no reason to hurry on yours. If a question stopped you, reply to this email and a person in the atelier will answer, usually within one working day.</p>
+  </td></tr>
+
+  {%- for line in checkout.line_items -%}
+  <tr><td style="padding:0 56px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #d9d2c8;{% if forloop.last %}border-bottom:1px solid #d9d2c8;{% endif %}">
+      <tr>
+        <td width="76" style="padding:18px 16px 18px 0;">
+          {%- if line.image -%}<img src="{{ line | img_url: 'compact_cropped' }}" alt="" width="76" height="76" style="display:block;width:76px;height:76px;object-fit:cover;background:#e9e8e3;">{%- endif -%}
+        </td>
+        <td style="padding:18px 0;font-size:13px;">
+          <div style="letter-spacing:.08em;text-transform:uppercase;">{{ line.title }}</div>
+          <div style="color:#7d7069;margin-top:4px;">{% if line.variant.title != 'Default Title' %}{{ line.variant.title }} · {% endif %}Made to order · Free DHL Express, worldwide · 14 days to return</div>
+        </td>
+      </tr>
+    </table>
+  </td></tr>
+  {%- endfor -%}
+
+  <tr><td align="center" style="padding:30px 56px 44px;">
+    <a href="{{ url }}" style="display:inline-block;background:#6b4b36;color:#ffffff;text-decoration:none;font-size:16px;font-weight:600;padding:16px 38px;border-radius:999px;">Return to your cart</a>
+  </td></tr>
+
+  <tr><td style="padding:0 36px 44px;background:linear-gradient(#efebe6 0 40%,#e3ddd5 40% 100%);">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+      <tr>
+        <td width="50%" style="padding-right:8px;">
+          <a href="{{ shop.url }}/pages/materials-craftsmanship" style="text-decoration:none;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#6b5a48 url('{{ cdn }}oberndoerfer-about-craft-detail.jpg?width=700') center/cover no-repeat;height:300px;">
+              <tr><td valign="bottom" style="height:300px;padding:0 0 22px 24px;font-family:'Playfair Display',Georgia,serif;font-size:28px;color:#ffffff;">Materials</td></tr>
+            </table>
+          </a>
+        </td>
+        <td width="50%" style="padding-left:8px;">
+          <a href="{{ shop.url }}/pages/shipping-and-delivery" style="text-decoration:none;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#6b5a48 url('{{ cdn }}gift_boxes.heic?width=700') center/cover no-repeat;height:300px;">
+              <tr><td valign="bottom" style="height:300px;padding:0 0 22px 24px;font-family:'Playfair Display',Georgia,serif;font-size:28px;color:#ffffff;">Delivery</td></tr>
+            </table>
+          </a>
+        </td>
+      </tr>
+    </table>
+  </td></tr>
+
+  <tr><td align="center" style="padding:8px 40px 36px;background:#e3ddd5;font-size:12px;line-height:1.7;color:#7d7069;">
+    {{ shop.name }} · Milan, Italy · <a href="mailto:{{ shop.email }}" style="color:#7d7069;">{{ shop.email }}</a><br>
+    You are receiving this because you began an order on {{ shop.domain }}.
+  </td></tr>
+
+</table>
+</td></tr>
+</table>
+</body>
+</html>
