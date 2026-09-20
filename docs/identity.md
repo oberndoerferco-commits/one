@@ -526,3 +526,10 @@ neutralises the cast so the shirt's median is an even white. Ten new files, suff
 replaced the -v2 media on the five T-shirts; the white variants point at their colour's lead
 side as before. Resolution is unchanged: the Canva mockup is 1223px wide for two shirts, so
 the file is an EDSR x3 upscale reduced to 2400px, and no sharper original exists.
+- Fourth pass, same day (the owner, with tshirt_design-5.pdf: "the white T-shirts still look
+  too dark in some spots, here is my reference for comparison"). The reference's white shirt
+  sits at a median of 245 with the deepest folds at 233; ours had a median of 241 and folds
+  down to 175. `key_white` now compresses the shirt's darkness to match, fitted on the median
+  and the 5th and 1st percentiles of both (d' = 0.039 (d/0.055)^0.47, never darkening a
+  pixel). The reference PDF's embedded photograph is 1102px wide for two shirts, smaller than
+  the Canva source, so the pipeline is unchanged. Ten -v4 files replaced the -v3 media.

@@ -144,6 +144,15 @@ def key_white(base):
     med = np.median(arr[filled == 1].reshape(-1, 3), axis=0)
     gain = (med.mean() / np.maximum(med, 1e-3)).reshape(1, 1, 3)
     col = np.clip(col * gain, 0.0, 1.0)
+    # 20 Sept, the owner's reference PDF (tshirt_design-5): its white shirt sits at a median of
+    # 245 with the deepest folds at 233; ours had a median of 241 and folds down to 175. The
+    # shirt's darkness is compressed to match: d' = 0.039 * (d / 0.055) ^ 0.47, fitted on the
+    # median, 5th and 1st percentiles of both.
+    d = np.clip(1.0 - col, 0.0, 1.0)
+    d2 = 0.039 * np.power(np.maximum(d, 1e-4) / 0.055, 0.47)
+    d2 = np.minimum(d2, d)   # never darken a pixel
+    lifted = 1.0 - d2
+    col = np.where(filled[..., None] == 1, lifted, col)
     return col, alpha, filled
 
 def build_white(page, name):
