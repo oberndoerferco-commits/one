@@ -508,3 +508,21 @@ pass (marks touching) read as a checkerboard and was dropped.
   the cards showed 28px dots. A rule in `snippets/oberndoerfer-transfer-styles.liquid` sets
   `product-swatches .swatch` to 12px on desktop and 10px on mobile (after "make them even smaller", on "NEW WEBSITE BUG fix 12 - smaller swatches", 206736556357, since fix 11 was published in the meantime); the selected ring scales
   with it. Product-page swatches are untouched (theme setting). On the fix 11 copy.
+
+## White T-shirts, third pass (20 September)
+
+The owner, with a screenshot of white blobs at the sleeve seam: "all of the white tshirts have
+a black lane around, quality is low and color looks off in some point". Cause: the white
+shirts are keyed off a black studio ground, and the old mask was a luminance threshold. The
+dark seam and fold pixels inside the shirt fell out of it, so the lighter ground showed
+through as white patches; the rim pixels kept the black they were blended with in the
+photograph; and the shirt's own blue cast read lavender against the warm ground.
+`scripts/tee-photos/compose.py` (`key_white`) now: fills the silhouette from the outside
+(flood fill through the black ground, so seams stay shirt), takes the alpha of the outer
+12px band from luminance (a shirt pixel over black is shirt x alpha), continues the rim's
+colour outward from the shirt's interior by inpainting with the ground masked out (a plain
+divide-by-alpha left a white halo, and inpainting from the ground pulled black in), and
+neutralises the cast so the shirt's median is an even white. Ten new files, suffix -v3,
+replaced the -v2 media on the five T-shirts; the white variants point at their colour's lead
+side as before. Resolution is unchanged: the Canva mockup is 1223px wide for two shirts, so
+the file is an EDSR x3 upscale reduced to 2400px, and no sharper original exists.

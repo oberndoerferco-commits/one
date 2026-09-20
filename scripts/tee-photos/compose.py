@@ -97,38 +97,84 @@ def build_black(page, name):
         comp = base.copy(); comp.paste(ov, (0, 0), ov)
         square(comp, dark_bbox(base)).save(f"out/{name}-black-{side}.jpg", quality=92, subsampling=0)
 
+def key_white(base):
+    """Alpha and un-premultiplied colour for a white shirt photographed on black.
+    20 Sept (the owner: "all of the white tshirts have a black lane around, quality is low and
+    color looks off"): the old mask was a luminance threshold, so the dark seam and fold pixels
+    inside the shirt fell out of it and showed the lighter ground as white blobs, and the rim
+    pixels kept the black they were blended with in the photograph. Now: the silhouette is the
+    thresholded shirt with its holes filled (flood fill from the black ground), the alpha in the
+    outer band follows the luminance (a shirt pixel over black is shirt x alpha), the colour
+    there is divided back out, and the shirt's blue cast is neutralised so it sits on the warm
+    ground as white rather than lavender."""
+    import numpy as np, cv2
+    arr = np.asarray(base).astype(np.float32) / 255.0
+    L = arr.max(axis=2)
+    hard = (L > 0.22).astype(np.uint8)
+    # fill holes: everything not reachable from the border through the black ground is shirt
+    h, w = hard.shape
+    ff = hard.copy(); mask = np.zeros((h + 2, w + 2), np.uint8)
+    cv2.floodFill(ff, mask, (0, 0), 1); cv2.floodFill(ff, mask, (w - 1, 0), 1)
+    cv2.floodFill(ff, mask, (0, h - 1), 1); cv2.floodFill(ff, mask, (w - 1, h - 1), 1)
+    filled = (hard | (ff == 0)).astype(np.uint8)
+    # drop specks: keep components of real size
+    n, lab, stats, _ = cv2.connectedComponentsWithStats(filled, 8)
+    keep = np.zeros_like(filled)
+    for i in range(1, n):
+        if stats[i, cv2.CC_STAT_AREA] > 20000: keep[lab == i] = 1
+    filled = keep
+    filled = cv2.morphologyEx(filled, cv2.MORPH_CLOSE, np.ones((5, 5), np.uint8))
+    dist = cv2.distanceTransform(filled, cv2.DIST_L2, 5)
+    # alpha: luminance-based at the rim, solid inside
+    ref = float(np.percentile(L[filled == 1], 60))   # the shirt's own white
+    a_lum = np.clip(L / ref, 0.0, 1.0)
+    # the photograph's edge falls off over ~10px at x3 scale, so the luminance rules that far in
+    inner = np.clip((dist - 8.0) / 6.0, 0.0, 1.0)
+    alpha = np.where(filled == 1, np.maximum(a_lum, inner), 0.0)
+    alpha = alpha.astype(np.float32)
+    # the rim's colour is continued outward from the shirt's interior (inpainting), so the edge
+    # carries the shirt's own tone; a plain divide-by-alpha left a bright white halo instead
+    band = ((filled == 1) & (dist < 12.0)).astype(np.uint8)
+    src = (np.clip(arr, 0, 1) * 255).round().astype(np.uint8)
+    # the black ground is masked too, so only the shirt's interior feeds the fill
+    fill_mask = ((filled == 0) | (band == 1)).astype(np.uint8)
+    col = cv2.inpaint(src, fill_mask, 8, cv2.INPAINT_TELEA).astype(np.float32) / 255.0
+    col = np.where(band[..., None] == 1, col, arr)
+    # neutralise the cast: the shirt's median becomes an even white
+    med = np.median(arr[filled == 1].reshape(-1, 3), axis=0)
+    gain = (med.mean() / np.maximum(med, 1e-3)).reshape(1, 1, 3)
+    col = np.clip(col * gain, 0.0, 1.0)
+    return col, alpha, filled
+
 def build_white(page, name):
+    import numpy as np
     geo = pages[page]["geo"]["MAHUWArrQKo"]
     base = load_base("base-white"); base = base.crop((0, 0, base.width, 864 * 3 - 8))   # the export padded a white row; keep clear of it
     base = paint_label(base, WHITE_LABEL)
     W, H = base.size
-    # 15 Sept (the owner: "the white tshirts has a black lane around it"): the shirt's own dark
-    # edge in the photograph used to survive inside the mask. The mask is now cut a little inside
-    # the shirt, then feathered, and the shirt colour is taken as it is rather than as a
-    # premultiplied value, so the rim is the ground, not a dark line.
-    a_hard = base.convert("L").point(lambda v: 255 if v > 150 else 0)
-    a_all = a_hard.filter(ImageFilter.MedianFilter(9)).filter(ImageFilter.MinFilter(7)).filter(ImageFilter.GaussianBlur(1.6))
+    col, alpha, filled = key_white(base)
     ov_all = overlay_for(page, geo, (W, 864 * 3 + 3)).crop((0, 0, W, H))   # the page footprint covers the padded row too
     split = 616 * 3   # the gap between the two shirts in the photograph
     pad_x, pad_y = 500, 800
     for side, (x0, x1) in (("front", (0, split)), ("back", (split, W))):
         # one shirt at a time: the other is masked out so the crop never reaches it
-        keep = Image.new("L", (W, H), 0); keep.paste(255, (x0, 0, x1, H))
-        a = ImageChops.multiply(a_all, keep)
+        keep = np.zeros_like(alpha); keep[:, x0:x1] = 1.0
+        a = alpha * keep
+        a_img = Image.fromarray((a * 255).round().astype("uint8"))
         canvas = Image.new("RGB", (W + 2 * pad_x, H + 2 * pad_y), GROUND)
-        full_a = Image.new("L", canvas.size, 0); full_a.paste(a, (pad_x, pad_y))
-        shadow = Image.new("L", canvas.size, 0); shadow.paste(a, (pad_x, pad_y + 24))
+        full_a = Image.new("L", canvas.size, 0); full_a.paste(a_img, (pad_x, pad_y))
+        shadow = Image.new("L", canvas.size, 0); shadow.paste(a_img, (pad_x, pad_y + 24))
         shadow = shadow.filter(ImageFilter.GaussianBlur(26)).point(lambda v: int(v * 0.20))
         canvas = Image.composite(Image.new("RGB", canvas.size, (152, 150, 144)), canvas, shadow)
-        # inside the eroded mask the pixels are the shirt itself, so a straight blend over the ground
-        shirt = Image.new("RGB", canvas.size, GROUND); shirt.paste(base, (pad_x, pad_y))
+        shirt = Image.new("RGB", canvas.size, GROUND)
+        shirt.paste(Image.fromarray((col * 255).round().astype("uint8")), (pad_x, pad_y))
         comp = Image.composite(shirt, canvas, full_a)
         ov = Image.new("RGBA", (W, H), (0, 0, 0, 0)); ov.paste(ov_all.crop((x0, 0, x1, H)), (x0, 0))
         full_ov = Image.new("RGBA", canvas.size, (0, 0, 0, 0)); full_ov.paste(ov, (pad_x, pad_y))
         full_ov = modulate(full_ov, comp)
         comp.paste(full_ov, (0, 0), full_ov)
         bb = full_a.point(lambda v: 255 if v > 128 else 0).getbbox()
-        out = square(comp, bb).filter(ImageFilter.UnsharpMask(radius=1.2, percent=55, threshold=2))
+        out = square(comp, bb).filter(ImageFilter.UnsharpMask(radius=1.0, percent=45, threshold=2))
         out.save(f"out/{name}-white-{side}.jpg", quality=92, subsampling=0)
 
 os.makedirs("out", exist_ok=True)
