@@ -48,12 +48,22 @@ def clear_neck_label(base):
     out = cv2.inpaint(im, mask, 9, cv2.INPAINT_TELEA)
     return Image.fromarray(cv2.cvtColor(out, cv2.COLOR_BGR2RGB))
 
+def white_curve(v):
+    """21 Sept (the owner, after the T-shirts: "do the same for the hoodies white ones"): the white
+    hoodie was an off-white grey (median 227, folds to 195). The remap now lifts the cloth to the
+    T-shirt reference (median 245) and compresses the shading the same way, with a little more
+    depth kept than on the tee so the hood and pocket still read: d' = 0.039 (d / 0.11) ^ 0.7."""
+    v1 = max(0.0, min(255.0, 0.85 * v + 135))
+    d = 1.0 - v1 / 255.0
+    d2 = min(d, 0.039 * (max(d, 1e-4) / 0.11) ** 0.7)
+    return int(round(255 * (1.0 - d2)))
+
 def recolour(base, colour):
     """the garment only: the grey cloth is remapped in luminance, the ground is left for the key"""
     if colour == "grey": return base
     L = base.convert("L")
     if colour == "black": m = L.point(lambda v: max(4, min(255, int(0.77 * v - 33))))
-    else:                 m = L.point(lambda v: max(0, min(255, int(0.85 * v + 135))))
+    else:                 m = L.point(white_curve)
     tinted = Image.merge("RGB", (m, m, m))
     garment = L.point(lambda v: 255 if v < 232 else 0).filter(ImageFilter.GaussianBlur(1.0))
     return Image.composite(tinted, base, garment)

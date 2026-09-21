@@ -533,3 +533,12 @@ the file is an EDSR x3 upscale reduced to 2400px, and no sharper original exists
   and the 5th and 1st percentiles of both (d' = 0.039 (d/0.055)^0.47, never darkening a
   pixel). The reference PDF's embedded photograph is 1102px wide for two shirts, smaller than
   the Canva source, so the pipeline is unchanged. Ten -v4 files replaced the -v3 media.
+
+## White hoodies lifted (21 September)
+
+The owner: "can you do the same for the hoodies white ones?". The white hoodie was an
+off-white grey (median 227, folds to 195). `scripts/hoodie-photos/compose.py` (`white_curve`)
+now lifts the cloth to the T-shirt reference (median 245) and compresses the shading the same
+way, keeping a little more depth than on the tee so the hood, cords and pocket still read
+(d' = 0.039 (d/0.11)^0.7, never darkening a pixel). Six -v3 files replaced the white -v2
+media on the three hoodies; the white variants point at their colour's lead side as before.
