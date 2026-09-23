@@ -556,3 +556,22 @@ observer now ignores mutations whose only added or removed nodes are our rows, a
 only when a card lacks its `data-ob-swatched` mark (a new card, or one the theme re-rendered),
 and the catalog's arrival forces one full pass. On "NEW WEBSITE BUG fix 13 - touch
 responsiveness" (206998372677).
+
+## Weekly site audit (23 September)
+
+The owner: "we need an ai agent that does weekly checks on the website and searches for bugs
+or issues, then we fix it". Two parts. `scripts/site-audit/audit.mjs` loads every main page on
+desktop and in an iPhone emulation and checks status, script errors, failed requests, broken
+images, sideways scroll, DOM churn and long tasks while idle, and the first tap on a product
+card; samples product pages; answers every internal link; reads the catalogue feed for
+products without photographs, descriptions or a price; checks the email DNS. It writes
+`docs/audits/<date>.json` and prints a ranked list. A Routine, "Oberndörfer Milano weekly site
+audit" (trig_01W5LGpHvampodQrRJaFDhm5), fires every Monday at 05:00 UTC into a fresh session
+that checks out this branch, runs the script, verifies the findings by hand, writes
+`docs/audits/<date>.md`, commits and pushes, and sends the three-line summary by push and
+email. It is read-only on the store; the owner decides what gets fixed. The Routine carries no
+connectors, so its store-side checks are skipped unless the owner attaches Shopify in the
+Routines page. First run and report: `docs/audits/2026-09-23.md`. It also found a stock
+Horizon 4.2.0 fault: `snippets/measure-header-heights.liquid` declared `const section` at the
+top level of an inline script, so a page with several such sections threw "Identifier
+'section' has already been declared"; the declaration is block-scoped on fix 13 (in `theme/`).

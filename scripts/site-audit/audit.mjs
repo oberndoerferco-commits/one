@@ -20,7 +20,8 @@ const ORIGIN = 'https://www.oberndoerferco.com';
 const PAGES = ['/', '/collections', '/collections/ready-to-wear', '/collections/bags', '/collections/trunks',
   '/collections/small-leather-goods', '/collections/home-accessories', '/collections/travel', '/collections/sunglasses',
   '/pages/about-us', '/pages/personalization', '/pages/trax-nyc', '/pages/contact', '/pages/faq',
-  '/pages/materials-craftsmanship', '/pages/the-art-of-packaging', '/pages/leather-care', '/search?q=bag', '/cart', '/this-page-does-not-exist'];
+  '/pages/materials-craftsmanship', '/pages/the-art-of-packaging', '/pages/leather-care-guide', '/search?q=bag', '/cart', '/this-page-does-not-exist'];
+const PROBE_404 = '/this-page-does-not-exist';   // deliberately missing: only its status is checked
 const outArg = process.argv.indexOf('--out');
 const outPath = outArg > -1 ? process.argv[outArg + 1] : null;
 const findings = [];
@@ -50,7 +51,7 @@ async function auditPage(ctx, path, mobile, linkSet, productLinks) {
     for (const img of document.images) { const rect = img.getBoundingClientRect(); if (rect.width > 0 && img.complete && img.naturalWidth === 0 && img.currentSrc) r.brokenImages.push((img.currentSrc || '').slice(0, 140)); }
     r.overflow = document.documentElement.scrollWidth > window.innerWidth + 2;
     r.cards = document.querySelectorAll('product-card').length;
-    r.links = [...document.querySelectorAll('a[href]')].map(a => a.getAttribute('href')).filter(h => h && (h.startsWith('/') || h.startsWith(location.origin)) && !h.startsWith('/cart/') && !h.includes('#') && !h.startsWith('/account'));
+    r.links = [...document.querySelectorAll('a[href]')].map(a => a.getAttribute('href')).filter(h => h && (h.startsWith('/') || h.startsWith(location.origin)) && !h.startsWith('/cart/') && !h.includes('#') && !h.startsWith('/account') && !h.includes('/customer_authentication') && !h.includes('/checkout'));
     r.products = [...document.querySelectorAll('product-card a[href*="/products/"]')].map(a => a.getAttribute('href')).slice(0, 3);
     return r;
   });
@@ -61,10 +62,12 @@ async function auditPage(ctx, path, mobile, linkSet, productLinks) {
   if (m.longTaskMs > 1000) add('medium', 'performance', path, `${dev}: main thread blocked ${Math.round(m.longTaskMs)} ms in 3 s idle`, `${m.longTasks} long tasks`);
   if (m.brokenImages.length) add('high', 'images', path, `${dev}: ${m.brokenImages.length} broken image(s)`, m.brokenImages.slice(0, 5).join('\n'));
   if (mobile && m.overflow) add('medium', 'layout', path, 'mobile: page scrolls sideways (content wider than the screen)', '');
+  const isProbe = path === PROBE_404;
   if (pageErrors.length) add('medium', 'javascript', path, `${dev}: ${pageErrors.length} script error(s)`, [...new Set(pageErrors)].slice(0, 5).join('\n'));
   const realConsole = consoleErrors.filter(t => !/shop\.app|frame-ancestors|403|favicon|net::ERR_BLOCKED/i.test(t));
-  if (realConsole.length) add('low', 'javascript', path, `${dev}: ${realConsole.length} console error(s)`, [...new Set(realConsole)].slice(0, 5).join('\n'));
-  if (failed.length) add('medium', 'network', path, `${dev}: ${failed.length} failed request(s)`, [...new Set(failed)].slice(0, 5).join('\n'));
+  if (realConsole.length && !isProbe) add('low', 'javascript', path, `${dev}: ${realConsole.length} console error(s)`, [...new Set(realConsole)].slice(0, 5).join('\n'));
+  const failedReal = failed.filter(f => !f.endsWith(ORIGIN + path) && !f.includes(path));
+  if (failedReal.length && !isProbe) add('medium', 'network', path, `${dev}: ${failed.length} failed request(s)`, [...new Set(failedReal)].slice(0, 5).join('\n'));
   // first-tap test on mobile collection pages
   if (mobile && m.cards > 0 && path.startsWith('/collections/')) {
     const el = await page.$('product-card a[href*="/products/"]');
@@ -138,6 +141,16 @@ async function main() {
   if (mx && !mx.some(d => /zoho/.test(d))) add('high', 'email', 'DNS', 'Zoho MX records missing: the mailbox will not receive mail', '');
 
   const order = { high: 0, medium: 1, low: 2 };
+  // the same problem seen on desktop and on the phone is one finding
+  const merged = new Map();
+  for (const f of findings) {
+    const key = f.severity + '|' + f.area + '|' + f.page + '|' + f.message.replace(/^(desktop|mobile): /, '');
+    const dev = (f.message.match(/^(desktop|mobile): /) || [])[1];
+    if (merged.has(key)) { const g = merged.get(key); if (dev && !g.devices.includes(dev)) g.devices.push(dev); }
+    else merged.set(key, { ...f, message: f.message.replace(/^(desktop|mobile): /, ''), devices: dev ? [dev] : [] });
+  }
+  findings.length = 0;
+  for (const g of merged.values()) { if (g.devices.length) g.message = g.devices.join(' and ') + ': ' + g.message; delete g.devices; findings.push(g); }
   findings.sort((a, b) => order[a.severity] - order[b.severity]);
   const report = { date: new Date().toISOString(), origin: ORIGIN, pagesChecked: PAGES.length * 2, productPagesChecked: Math.min(productLinks.size, 16), linksChecked: checked, seconds: Math.round((Date.now() - t0) / 1000), counts: { high: findings.filter(f => f.severity === 'high').length, medium: findings.filter(f => f.severity === 'medium').length, low: findings.filter(f => f.severity === 'low').length }, findings };
   if (outPath) { fs.mkdirSync(outPath.replace(/\/[^/]+$/, ''), { recursive: true }); fs.writeFileSync(outPath, JSON.stringify(report, null, 2)); }

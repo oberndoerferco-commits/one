@@ -1,0 +1,218 @@
+{
+  "date": "2026-09-23T17:34:51.135Z",
+  "origin": "https://www.oberndoerferco.com",
+  "pagesChecked": 40,
+  "productPagesChecked": 10,
+  "linksChecked": 157,
+  "seconds": 137,
+  "counts": {
+    "high": 14,
+    "medium": 11,
+    "low": 4
+  },
+  "findings": [
+    {
+      "severity": "high",
+      "area": "performance",
+      "page": "/",
+      "message": "desktop: page keeps changing while idle (2484 DOM nodes in 3 s)",
+      "detail": "a script is looping; taps and scrolling suffer"
+    },
+    {
+      "severity": "high",
+      "area": "performance",
+      "page": "/collections/bags",
+      "message": "desktop: page keeps changing while idle (864 DOM nodes in 3 s)",
+      "detail": "a script is looping; taps and scrolling suffer"
+    },
+    {
+      "severity": "high",
+      "area": "performance",
+      "page": "/collections/trunks",
+      "message": "desktop: page keeps changing while idle (800 DOM nodes in 3 s)",
+      "detail": "a script is looping; taps and scrolling suffer"
+    },
+    {
+      "severity": "high",
+      "area": "performance",
+      "page": "/collections/home-accessories",
+      "message": "desktop: page keeps changing while idle (1008 DOM nodes in 3 s)",
+      "detail": "a script is looping; taps and scrolling suffer"
+    },
+    {
+      "severity": "high",
+      "area": "performance",
+      "page": "/collections/travel",
+      "message": "desktop: page keeps changing while idle (912 DOM nodes in 3 s)",
+      "detail": "a script is looping; taps and scrolling suffer"
+    },
+    {
+      "severity": "high",
+      "area": "load",
+      "page": "/pages/leather-care",
+      "message": "page answers 404",
+      "detail": ""
+    },
+    {
+      "severity": "high",
+      "area": "performance",
+      "page": "/search?q=bag",
+      "message": "desktop: page keeps changing while idle (789 DOM nodes in 3 s)",
+      "detail": "a script is looping; taps and scrolling suffer"
+    },
+    {
+      "severity": "high",
+      "area": "performance",
+      "page": "/",
+      "message": "mobile: page keeps changing while idle (2592 DOM nodes in 3 s)",
+      "detail": "a script is looping; taps and scrolling suffer"
+    },
+    {
+      "severity": "high",
+      "area": "performance",
+      "page": "/collections/bags",
+      "message": "mobile: page keeps changing while idle (904 DOM nodes in 3 s)",
+      "detail": "a script is looping; taps and scrolling suffer"
+    },
+    {
+      "severity": "high",
+      "area": "performance",
+      "page": "/collections/trunks",
+      "message": "mobile: page keeps changing while idle (808 DOM nodes in 3 s)",
+      "detail": "a script is looping; taps and scrolling suffer"
+    },
+    {
+      "severity": "high",
+      "area": "performance",
+      "page": "/collections/home-accessories",
+      "message": "mobile: page keeps changing while idle (1014 DOM nodes in 3 s)",
+      "detail": "a script is looping; taps and scrolling suffer"
+    },
+    {
+      "severity": "high",
+      "area": "performance",
+      "page": "/collections/travel",
+      "message": "mobile: page keeps changing while idle (950 DOM nodes in 3 s)",
+      "detail": "a script is looping; taps and scrolling suffer"
+    },
+    {
+      "severity": "high",
+      "area": "load",
+      "page": "/pages/leather-care",
+      "message": "page answers 404",
+      "detail": ""
+    },
+    {
+      "severity": "high",
+      "area": "performance",
+      "page": "/search?q=bag",
+      "message": "mobile: page keeps changing while idle (735 DOM nodes in 3 s)",
+      "detail": "a script is looping; taps and scrolling suffer"
+    },
+    {
+      "severity": "medium",
+      "area": "javascript",
+      "page": "/",
+      "message": "desktop: 4 script error(s)",
+      "detail": "Identifier 'section' has already been declared"
+    },
+    {
+      "severity": "medium",
+      "area": "javascript",
+      "page": "/pages/about-us",
+      "message": "desktop: 1 script error(s)",
+      "detail": "Identifier 'section' has already been declared"
+    },
+    {
+      "severity": "medium",
+      "area": "javascript",
+      "page": "/pages/personalization",
+      "message": "desktop: 1 script error(s)",
+      "detail": "Identifier 'section' has already been declared"
+    },
+    {
+      "severity": "medium",
+      "area": "network",
+      "page": "/pages/leather-care",
+      "message": "desktop: 1 failed request(s)",
+      "detail": "404 https://www.oberndoerferco.com/pages/leather-care"
+    },
+    {
+      "severity": "medium",
+      "area": "network",
+      "page": "/this-page-does-not-exist",
+      "message": "desktop: 1 failed request(s)",
+      "detail": "404 https://www.oberndoerferco.com/this-page-does-not-exist"
+    },
+    {
+      "severity": "medium",
+      "area": "javascript",
+      "page": "/",
+      "message": "mobile: 4 script error(s)",
+      "detail": "Identifier 'section' has already been declared"
+    },
+    {
+      "severity": "medium",
+      "area": "javascript",
+      "page": "/pages/about-us",
+      "message": "mobile: 1 script error(s)",
+      "detail": "Identifier 'section' has already been declared"
+    },
+    {
+      "severity": "medium",
+      "area": "javascript",
+      "page": "/pages/personalization",
+      "message": "mobile: 1 script error(s)",
+      "detail": "Identifier 'section' has already been declared"
+    },
+    {
+      "severity": "medium",
+      "area": "network",
+      "page": "/pages/leather-care",
+      "message": "mobile: 1 failed request(s)",
+      "detail": "404 https://www.oberndoerferco.com/pages/leather-care"
+    },
+    {
+      "severity": "medium",
+      "area": "network",
+      "page": "/this-page-does-not-exist",
+      "message": "mobile: 1 failed request(s)",
+      "detail": "404 https://www.oberndoerferco.com/this-page-does-not-exist"
+    },
+    {
+      "severity": "medium",
+      "area": "links",
+      "page": "https://www.oberndoerferco.com/customer_authentication/redirect",
+      "message": "link answers 406",
+      "detail": ""
+    },
+    {
+      "severity": "low",
+      "area": "javascript",
+      "page": "/pages/leather-care",
+      "message": "desktop: 1 console error(s)",
+      "detail": "Failed to load resource: the server responded with a status of 404 ()"
+    },
+    {
+      "severity": "low",
+      "area": "javascript",
+      "page": "/this-page-does-not-exist",
+      "message": "desktop: 1 console error(s)",
+      "detail": "Failed to load resource: the server responded with a status of 404 ()"
+    },
+    {
+      "severity": "low",
+      "area": "javascript",
+      "page": "/pages/leather-care",
+      "message": "mobile: 1 console error(s)",
+      "detail": "Failed to load resource: the server responded with a status of 404 ()"
+    },
+    {
+      "severity": "low",
+      "area": "javascript",
+      "page": "/this-page-does-not-exist",
+      "message": "mobile: 1 console error(s)",
+      "detail": "Failed to load resource: the server responded with a status of 404 ()"
+    }
+  ]
+}
