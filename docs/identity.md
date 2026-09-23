@@ -542,3 +542,17 @@ now lifts the cloth to the T-shirt reference (median 245) and compresses the sha
 way, keeping a little more depth than on the tee so the hood, cords and pocket still read
 (d' = 0.039 (d/0.11)^0.7, never darkening a pixel). Six -v3 files replaced the white -v2
 media on the three hoodies; the white variants point at their colour's lead side as before.
+
+## Touch responsiveness (23 September)
+
+The owner: "scrolling and tapping through the website I noticed that sometimes it doesn't
+react to the first or second touch, for example in menu items, tapping on products". Measured
+in a phone emulation on the live home page: 2,160 swatch rows added in five seconds, forever.
+`snippets/oberndoerfer-color-grouping.liquid` removed every `.ob-swatches` row and appended new
+ones on each pass; those are mutations on the card, not inside a row, so the observer's
+own-output check never matched, and every pass scheduled the next, eight times a second. The
+main thread was busy repainting rows under the shopper's finger, and taps were lost. The
+observer now ignores mutations whose only added or removed nodes are our rows, a pass runs
+only when a card lacks its `data-ob-swatched` mark (a new card, or one the theme re-rendered),
+and the catalog's arrival forces one full pass. On "NEW WEBSITE BUG fix 13 - touch
+responsiveness" (206998372677).

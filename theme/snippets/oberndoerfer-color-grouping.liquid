@@ -387,7 +387,7 @@
         var cached = sessionStorage.getItem(CATALOG_KEY);
         if (cached) {
           familyIndex = indexFrom(JSON.parse(cached));
-          run();
+          run(true);
           return;
         }
       } catch (e) { /* unreadable cache: just fetch */ }
@@ -416,21 +416,42 @@
         if (!all.length) { run(); return; }   // fetch failed: DOM pass stands
         try { sessionStorage.setItem(CATALOG_KEY, JSON.stringify(all)); } catch (e) {}
         familyIndex = indexFrom(all);
-        run();
+        run(true);
       }
       page(1);
     }
 
     /* ---- render ---- */
 
-    function run() {
+    /* 23 Sept 2026 (the owner: "sometimes it doesn't react to the first or second touch").
+       Measured on the live home page: 2,160 swatch rows added in five seconds, forever. Every
+       pass removed all rows and appended new ones; those removals and appends are mutations on
+       the card, not inside .ob-swatches, so the observer's own-output check never matched and
+       each pass scheduled the next, eight times a second. The main thread was busy repainting
+       rows under the shopper's finger, and taps were lost. Now: the observer ignores mutations
+       whose only added or removed nodes are our rows, a pass only runs when a card lacks its
+       mark (new card, or one the theme re-rendered), and the catalog arrival forces one full
+       pass. Every card is marked data-ob-swatched after a pass. */
+    function needsRun() {
+      var cards = document.querySelectorAll('product-card');
+      for (var i = 0; i < cards.length; i++) {
+        var c = cards[i], mark = c.getAttribute('data-ob-swatched');
+        if (!mark) return true;
+        if (mark === 'row' && !c.querySelector('.ob-swatches')) return true;
+      }
+      return false;
+    }
+
+    function run(force) {
       if (busy) return;
+      if (!force && !needsRun()) return;
       busy = true;
       try {
         var cards = document.querySelectorAll('product-card');
         if (!cards.length) return;
 
         document.querySelectorAll('.ob-swatches').forEach(function (n) { n.remove(); });
+        cards.forEach(function (c) { c.setAttribute('data-ob-swatched', 'none'); });
 
         var byBase = new Map();
         var anyGroupable = false;
@@ -472,6 +493,7 @@
                 hold.className = 'ob-swatches ob-swatches--pending';
                 hold.setAttribute('aria-hidden', 'true');
                 (self.card.querySelector('.product-card__content') || self.card).appendChild(hold);
+                self.card.setAttribute('data-ob-swatched', 'row');
               });
             }
             return;
@@ -522,6 +544,7 @@
             }
 
             (self.card.querySelector('.product-card__content') || self.card).appendChild(row);
+            self.card.setAttribute('data-ob-swatched', 'row');
           });
         });
 
@@ -538,17 +561,25 @@
 
     function debounced() {
       clearTimeout(debounced._t);
-      debounced._t = setTimeout(run, 120);
+      debounced._t = setTimeout(function () { run(false); }, 120);
     }
 
     if (document.readyState !== 'loading') run();
     else document.addEventListener('DOMContentLoaded', run);
     document.addEventListener('shopify:section:load', debounced);
 
+    function onlyOurs(list) {
+      for (var i = 0; i < list.length; i++) {
+        var n = list[i];
+        if (n.nodeType !== 1 || !n.classList || !n.classList.contains('ob-swatches')) return false;
+      }
+      return true;
+    }
     var mo = new MutationObserver(function (records) {
       for (var i = 0; i < records.length; i++) {
-        var t = records[i].target;
-        if (t && t.closest && t.closest('.ob-swatches')) continue; // our own output
+        var r = records[i], t = r.target;
+        if (t && t.closest && t.closest('.ob-swatches')) continue; // inside our own output
+        if (onlyOurs(r.addedNodes) && onlyOurs(r.removedNodes)) continue; // our own rows coming and going
         return debounced();
       }
     });
