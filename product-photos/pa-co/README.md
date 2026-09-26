@@ -1,7 +1,7 @@
 # PA & CO — website product images
 
 Organised like a web shop: one folder per product, one sub-folder per colour.
-Inside each colour folder the files are numbered in display order — `01-front.jpg` is always the
+Inside each colour folder the files are numbered in display order — `01-…` is always the
 main (listing) image, followed by the gallery images.
 
 ```
@@ -18,22 +18,24 @@ main (listing) image, followed by the gallery images.
 07-backpack/green/             9
 ```
 
-`_overview.jpg` shows every folder at a glance.
+`_overview.jpg` shows every folder at a glance; `_backpacks_main.jpg` shows the backpack main images side by side.
 
-## Main images (01-front)
+## Main images (01)
 
-- Every product's main image is a straight front view on the same background, same framing.
-- **Mini backpack and backpack:** the main image is *the same photo* for every colour, recoloured,
-  so switching colour on the product page changes only the colour — angle, size and position are
-  identical.
-  - Mini backpack: pink is the original (IMG_4641); black is recoloured from it.
-  - Backpack: blue is the original (IMG_4712); green and black are recoloured from it.
+- Briefcase, folio, watch case, pouch, jewellery box: `01-front` — straight front view.
+- Mini backpack and backpack: `01-three-quarter` — a 3/4 view shows the volume, side zip and
+  pocket while keeping the logo readable. Both backpacks face the same direction so they sit
+  together cleanly in the collection grid. The front view follows as `02-front`.
+- **Backpacks use one photo per product, recoloured for each colour**, so switching colour on the
+  product page changes only the colour — angle, size and position are identical:
+  - Mini backpack: 3/4 from pink IMG_4625, front from pink IMG_4641; black is recoloured.
+  - Backpack: 3/4 from blue IMG_4711, front from blue IMG_4712; green and black are recoloured.
   - Leather, zip tape and stitching are recoloured; silver zips, pullers and the silver logo are kept.
 
 ## Gallery order
 
 Backpacks (both sizes), same order for every colour:
-`01 front · 02 three-quarter · 03 side · 04 back · 05 back three-quarter · 06 interior · 07–09 details`
+`01 three-quarter · 02 front · 03 side · 04 back · 05 back three-quarter · 06 interior · 07–09 details`
 
 Other products: front → angles → open/interior → close-up details.
 
@@ -59,8 +61,8 @@ Other products: front → angles → open/interior → close-up details.
 | 04-pouch/black | 4545, 4549, 4554, 4564, 4550, 4555, 4569, 4539 |
 | 04-pouch/pink | 4655, 4648, 4658, 4651, 4666, 4659, 4660 |
 | 05-jewellery-box/black | 4592, 4590, 4583, 4603, 4605, 4610, 4606, 4595, 4600, 4615 |
-| 06-mini-backpack/black | 4641 (recoloured), 4671, 4673, 4674, 4675, 4689, 4679, 4680, 4684 |
-| 06-mini-backpack/pink | 4641, 4634, 4642, 4629, 4628, 4631, 4626, 4636, 4644 |
-| 07-backpack/black | 4712 (recoloured), 4753, 4754, 4755, 4756, 4745, 4750, 4764, 4749 |
-| 07-backpack/blue | 4712, 4710, 4703, 4705, 4704, 4717, 4697, 4698, 4722 |
-| 07-backpack/green | 4712 (recoloured), 4735, 4736, 4739, 4738, 4726, 4731, 4733, 4727 |
+| 06-mini-backpack/black | 4625 (recoloured), 4641 (recoloured), 4673, 4674, 4675, 4689, 4679, 4680, 4684 |
+| 06-mini-backpack/pink | 4625, 4641, 4642, 4629, 4628, 4631, 4626, 4636, 4644 |
+| 07-backpack/black | 4711 (recoloured), 4712 (recoloured), 4754, 4755, 4756, 4745, 4750, 4764, 4749 |
+| 07-backpack/blue | 4711, 4712, 4703, 4705, 4704, 4717, 4697, 4698, 4722 |
+| 07-backpack/green | 4711 (recoloured), 4712 (recoloured), 4736, 4739, 4738, 4726, 4731, 4733, 4727 |
