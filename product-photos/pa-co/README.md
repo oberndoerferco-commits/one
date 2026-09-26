@@ -4,16 +4,16 @@ Client image set, organised like a web shop: one folder per product, one sub-fol
 Files are numbered in display order; `01-…` is the main (listing) image.
 
 ```
-01-briefcase/black/            8
-02-document-folio/black/       6
+01-briefcase/black/            7
+02-document-folio/black/       5
 03-watch-case/black/           7
 04-clutch/black/               7
 04-clutch/pink/                5
 05-jewellery-box/black/        8
-06-mini-backpack/black/        10
+06-mini-backpack/black/        9
 06-mini-backpack/pink/         8
-07-backpack/black/             9
-07-backpack/blue/              8
+07-backpack/black/             8
+07-backpack/blue/              7
 07-backpack/green/             7
 ```
 
