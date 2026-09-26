@@ -31,6 +31,11 @@ Every image uses the same warm stone background `#EDEAE4`:
 - Close-ups and interiors: the grey studio paper around the product is replaced with the same stone
   tone (keeping soft shadows); areas where the leather fills the frame are untouched.
 
+## Scale
+
+Mini backpack full-bag shots are framed smaller (54 % of the frame vs 72 % for the other
+products) so its size relative to the large backpack reads at a glance.
+
 ## Specs
 
 2048 × 2048 px (a few legacy close-ups 1280 × 1280), sRGB JPEG q95, no chroma subsampling.
