@@ -4,7 +4,7 @@ Client image set, organised like a web shop: one folder per product, one sub-fol
 Files are numbered in display order; `01-…` is the main (listing) image.
 
 ```
-01-briefcase/black/            9
+01-briefcase/black/            8
 02-document-folio/black/       6
 03-watch-case/black/           7
 04-clutch/black/               7
@@ -14,7 +14,7 @@ Files are numbered in display order; `01-…` is the main (listing) image.
 06-mini-backpack/pink/         8
 07-backpack/black/             9
 07-backpack/blue/              8
-07-backpack/green/             8
+07-backpack/green/             7
 ```
 
 `_overview.jpg` shows every folder at a glance; `_backpacks_main.jpg` shows the backpack main images side by side.
