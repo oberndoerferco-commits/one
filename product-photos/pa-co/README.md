@@ -26,11 +26,13 @@ main (listing) image, followed by the gallery images.
 - Mini backpack and backpack: `01-three-quarter` — a 3/4 view shows the volume, side zip and
   pocket while keeping the logo readable. Both backpacks face the same direction so they sit
   together cleanly in the collection grid. The front view follows as `02-front`.
-- **Backpacks use one photo per product, recoloured for each colour**, so switching colour on the
+- **Large backpack uses one photo, recoloured for each colour**, so switching colour on the
   product page changes only the colour — angle, size and position are identical:
-  - Mini backpack: 3/4 from pink IMG_4625, front from pink IMG_4641; black is recoloured.
   - Backpack: 3/4 from blue IMG_4711, front from blue IMG_4712; green and black are recoloured.
   - Leather, zip tape and stitching are recoloured; silver zips, pullers and the silver logo are kept.
+- **Mini backpack uses real photos of each colour** (pink 4625 / 4641, black 4670 / 4668), chosen
+  for the closest matching angle. Recolouring the pink photo could not reproduce the black
+  patent leather's gloss, so the real black photos are used for their true shine.
 
 ## Gallery order
 
@@ -61,7 +63,7 @@ Other products: front → angles → open/interior → close-up details.
 | 04-pouch/black | 4545, 4549, 4554, 4564, 4550, 4555, 4569, 4539 |
 | 04-pouch/pink | 4655, 4648, 4658, 4651, 4666, 4659, 4660 |
 | 05-jewellery-box/black | 4592, 4590, 4583, 4603, 4605, 4610, 4606, 4595, 4600, 4615 |
-| 06-mini-backpack/black | 4625 (recoloured), 4641 (recoloured), 4673, 4674, 4675, 4689, 4679, 4680, 4684 |
+| 06-mini-backpack/black | 4670, 4668, 4673, 4674, 4675, 4689, 4679, 4680, 4684 |
 | 06-mini-backpack/pink | 4625, 4641, 4642, 4629, 4628, 4631, 4626, 4636, 4644 |
 | 07-backpack/black | 4711 (recoloured), 4712 (recoloured), 4754, 4755, 4756, 4745, 4750, 4764, 4749 |
 | 07-backpack/blue | 4711, 4712, 4703, 4705, 4704, 4717, 4697, 4698, 4722 |
