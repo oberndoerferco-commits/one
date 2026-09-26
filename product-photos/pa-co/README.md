@@ -5,81 +5,62 @@ Inside each colour folder the files are numbered in display order — `01-…` i
 main (listing) image, followed by the gallery images.
 
 ```
-01-briefcase/black/            7
+01-briefcase/black/            6
 02-document-folio/black/       6
 03-watch-case/black/           8
 04-clutch/black/               7
 04-clutch/pink/                6
 05-jewellery-box/black/        9
-06-mini-backpack/black/        6
-06-mini-backpack/pink/         6
+06-mini-backpack/pink/         8
+06-mini-backpack/black/        7
+07-backpack/blue/              7
 07-backpack/black/             6
-07-backpack/blue/              6
 07-backpack/green/             6
 ```
 
 `_overview.jpg` shows every folder at a glance; `_backpacks_main.jpg` shows the backpack main images side by side.
 
+## Source
+
+Built from the **full-resolution 24 MP reshoot** (IMG_9082–9242, second Drive folder).
+A few views not in the reshoot come from the first 1920 px shoot (IMG_4xxx): briefcase open and
+logo close-up, folio logo close-up, pink clutch logo close-up, jewellery clasp close-up, blue and
+green backpack zip/logo close-ups and the green backpack back view.
+
 ## Main images (01)
 
-- Briefcase, folio, watch case, clutch, jewellery box: `01-front` — straight front view.
-- Mini backpack and backpack: `01-three-quarter` — a 3/4 view shows the volume, side zip and
-  pocket while keeping the logo readable. Both backpacks face the same direction so they sit
-  together cleanly in the collection grid. The front view follows as `02-front`.
-- **Large backpack uses one photo, recoloured for each colour**, so switching colour on the
-  product page changes only the colour — angle, size and position are identical:
-  3/4 from blue IMG_4711, front from blue IMG_4712; green and black are recoloured.
-  Leather, zip tape and stitching are recoloured; silver zips, pullers and the silver logo are kept.
-- **Mini backpack uses real photos of each colour** (pink 4625 / 4641, black 4670 / 4668), chosen
-  for the closest matching angle, because recolouring could not reproduce the black patent gloss.
-
-## Gallery order
-
-Backpacks (both sizes), same order for every colour:
-`01 three-quarter · 02 front · 03 back · 04 interior · 05 zip detail · 06 logo/strap detail`
-
-Other products: front → angles → open/interior → close-up details.
+- Briefcase, folio, watch case, clutch, jewellery box: `01-front`.
+- Mini backpack and backpack: `01-three-quarter`, then `02-front`; both backpacks face the same way.
+- **Backpack:** blue IMG_9211 / 9210 recoloured to green and black, so angle and framing are identical
+  across colours (the reshoot has no full green views).
+- **Mini backpack:** real photos of each colour (pink 9165 / 9164, black 9192 / 9191) for true gloss.
 
 ## Retouching
 
-- **Briefcase:** warm cast removed — the leather is rendered neutral black (hardware stays silver).
-  Open view levelled (it was tilted ~2°).
-- **Watch case:** white specks and lint removed from the microfibre lining and cushion
-  (only inside the microfibre areas; leather, stitching and the embossed logo are untouched).
-- **Document folio:** front, open and back views perspective-corrected to true rectangles;
-  specks removed from the suede-touch lining in the open and corner shots.
-- **Jewellery box:** lid shot rotated so the logo reads upright; side view levelled; clasp close-up
-  replaced with the sharpest frame (IMG_4597).
-- **One zip close-up per product** — duplicate zip/hardware close-ups removed.
-- **Frame check:** every cut-out was checked for product running off the original photo's edge;
-  shots where a strap, handle or lid was cut off by the camera frame were replaced or dropped.
-- **Close-ups:** full-bleed square crops at native resolution; where the plain studio background
-  could be separated safely it was replaced with the stone colour, otherwise it is kept.
+- Briefcase: neutral black (warm cast removed); open view levelled.
+- Watch case, jewellery box, folio, backpack linings: white specks and lint fibres removed from
+  microfibre (inpainted and re-grained so the texture stays natural).
+- Folio front, open and back perspective-corrected to true rectangles.
+- Interiors and close-ups are square crops; the studio background is swapped for stone only where
+  it separates cleanly.
 
-## Look & specs
+## Specs
 
-- Background: warm stone `#EDEAE4` with a soft contact shadow (benchmark: Hermès, Connolly,
-  Métier, Valextra all use toned light greys/greiges rather than pure white). Set the theme's
-  product-image background to `#EDEAE4` so images blend into the page.
-- 2048 × 2048 px (close-ups: 1280 × 1280 native), sRGB JPEG quality 95, no chroma subsampling.
-- Source photos in the Drive folder are 1920 × 1280. To stay sharp, products are never enlarged
-  more than 1.5× — small items (e.g. the watch case) sit slightly smaller in the frame instead of
-  being blown up. Re-running on full-resolution camera originals would give sharper results.
+- 2048 × 2048 px (a few legacy close-ups 1280 × 1280), sRGB JPEG q95, no chroma subsampling.
+- Background warm stone `#EDEAE4` with a soft contact shadow.
 
-## Source photos
+## Source photos (IMG_ numbers, in order)
 
-| Folder | Images (IMG_ numbers, in order) |
+| Folder | Images |
 |---|---|
-| 01-briefcase/black | 4772, 4768, 4767, 4779 (levelled), 4776, 4769, 4774 |
-| 02-document-folio/black | 4484, 4488, 4493, 4496, 4497, 4491 |
-| 03-watch-case/black | 4503, 4532, 4513, 4520, 4521, 4523, 4526, 4499 |
-| 04-clutch/black | 4545, 4548, 4549, 4554, 4564, 4555, 4569 |
-| 04-clutch/pink | 4655, 4658, 4651, 4666, 4659, 4660 |
-| 05-jewellery-box/black | 4592, 4590, 4583 (levelled), 4603, 4605, 4615, 4606, 4597, 4600 |
-| 06-mini-backpack/black | 4670, 4668, 4674, 4689, 4679, 4680 |
-| 06-mini-backpack/pink | 4625, 4641, 4629, 4631, 4626, 4636 |
-| 07-backpack/black | 4711 (recoloured), 4712 (recoloured), 4755, 4745, 4750, 4764 |
-| 07-backpack/blue | 4711, 4712, 4705, 4717, 4697, 4698 |
-| 07-backpack/green | 4711 (recoloured), 4712 (recoloured), 4739, 4726, 4731, 4733 |
-
-Note: the shoot has no opened photo of the pink clutch — only the black clutch has open views.
+| 01-briefcase/black | 9237 (neutral), 9242 (neutral), 9239 (neutral), 4779 (levelled), 9240 (neutral), 4776 |
+| 02-document-folio/black | 9082 (straightened), 9085 (straightened), 9083 (straightened), 4496, 9087 (retouched), 9088 (retouched) |
+| 03-watch-case/black | 9099, 9098, 9100, 9109 (retouched), 9108 (retouched), 9111 (retouched), 9112 (retouched), 9105 (retouched) |
+| 04-clutch/black | 9138, 9129, 9127, 9123, 9130, 9122, 9137 |
+| 04-clutch/pink | 9182, 9185, 9184, 9187, 9189, 4666 |
+| 05-jewellery-box/black | 9143, 9154, 9142, 9150 (retouched), 9151 (retouched), 9145, 9156 (retouched), 4597, 9155 |
+| 06-mini-backpack/pink | 9165, 9164, 9168, 9170, 9171 (retouched), 9178, 9181, 9176 |
+| 06-mini-backpack/black | 9192, 9191, 9195, 9193, 9203 (retouched), 9200, 4679 |
+| 07-backpack/blue | 9211, 9210, 9214, 9217, 9205 (retouched), 4697, 4698 |
+| 07-backpack/black | 9211 (recoloured black), 9210 (recoloured black), 9233, 9232, 9226, 9225 |
+| 07-backpack/green | 9211 (recoloured green), 9210 (recoloured green), 4739, 9222 (retouched), 9221, 4731 |
