@@ -23,6 +23,7 @@ repository.
 | D | [UX](docs/04-ux.md) | Desktop, keyboard-first workspace; states; interactions; accessibility |
 | E | [Security & privacy model](docs/05-security-model.md) | Threat model, controls, dev-data rule, gate before real data |
 | — | [Brand](docs/06-brand.md) | Positioning lines to test, tone, visual direction |
+| — | [Costs](docs/07-costs.md) | Competitor prices, our AI cost per consultation, running and build costs |
 
 ## Product principles (from the brief)
 
