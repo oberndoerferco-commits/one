@@ -9,6 +9,23 @@ is not in the MVP.
 
 ---
 
+## 0. Why this MVP, given the market
+
+The competitive analysis (`01-competitive-analysis.md`) shows that "AI writes the
+SOAP note" is already crowded, and that PIMS vendors are bundling it. The MVP's
+edge therefore isn't generation. It's **governance and speed of checking**:
+
+- keyboard-optimised input
+- one approved structured record
+- missing-info flags
+- medication integrity
+- sentence-to-source traceability
+- owner documents in the owner's language
+
+The first target is clinics on PIMS without bundled AI, in DE/IT. The riskiest
+assumption is that text-first is fast enough without voice. Step 0 of the build
+plan (§9) measures that before anything else.
+
 ## 1. Users and setting
 
 - **Primary user:** small-animal veterinarian in a 1–10 vet clinic (dogs, cats;
