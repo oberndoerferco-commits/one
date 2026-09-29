@@ -29,3 +29,8 @@ Regenerate with `node design/stamp-pattern/generate.js`.
   of each notch will fill in on most leathers, and the logo still reads. Don't
   go below about 12 mm.
 - To scale, change `T` (repeat) and `LOGO_R` (half the logo width) together.
+
+## Mockup
+
+`mockup.js` writes `mockup-signature-tote.html`: a 340 × 280 mm tote in cognac and
+black with Signature stamped at true scale. `mockup-signature-tote.png` is a render of it.
