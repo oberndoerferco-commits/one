@@ -103,7 +103,7 @@ For the Luna notes from the brief (`source_spans` offsets are illustrative).
                "weight": null },
   "presenting_complaint": { "text": "Vomiting since yesterday, approx. 3 episodes", "source_spans": [[22, 55]] },
   "history": [
-    { "finding": "appetite", "value": "reduced", "source_spans": [[70, 86]] },
+    { "finding": "appetite", "value": "reduced", "source_role": "owner_reported", "source_spans": [[70, 86]] },
     { "finding": "drinking", "value": "normal",  "source_spans": [[89, 105]] },
     { "finding": "diarrhoea", "value": "absent", "source_spans": [[58, 69]] }
   ],
@@ -115,7 +115,7 @@ For the Luna notes from the brief (`source_spans` offsets are illustrative).
   "diagnostics": [ { "test": "bloodwork", "status": "performed", "result": null, "source_spans": [[150, 159]] },
                    { "test": "abdominal ultrasound", "status": "performed", "result": null, "source_spans": [[162, 172]] } ],
   "assessment": { "text": null, "differentials": [] },
-  "treatment": [ { "type": "procedure", "text": "fluid therapy", "source_spans": [[175, 181]] } ],
+  "treatment": [ { "type": "procedure", "text": "fluid therapy", "status": "performed", "source_spans": [[175, 181]] } ],
   "medications": [
     { "drug": null, "class_as_written": "antiemetic", "dose": null, "dose_unit": null,
       "route": null, "frequency": null, "duration": null, "dispensed": null,
@@ -152,6 +152,38 @@ makes gaps visible instead of hiding them behind fluent prose.
    structures, rewrites and translates. Decision support is a later, separately
    validated feature.
 
+### 7.1 Additions from the competitor teardown (`08-competitor-teardown.md` §6)
+
+Each rule answers a failure users have documented in existing AI note tools.
+
+7. **Who said it and whether it happened.** Every history, finding and
+   treatment item carries two tags:
+   - `source_role`: `owner_reported` or `vet_observed`
+   - `status`: `planned`, `performed`, `declined`, `recommended` or `dispensed`
+
+   Owner statements render as "Owner reports…", and declined items are listed
+   explicitly. *Prevents: the owner's words recorded as the vet's findings;
+   "planned" written as "performed".*
+8. **Patient facts are locked.** Species, sex, neuter status and reproductive
+   status come only from the patient header. Prose can't change them, and a
+   conflict (for example "pregnant" on a male patient) raises a flag.
+   Multi-pet consultations need each bullet assigned to a patient; unassigned
+   bullets are flagged. *Prevents: the "pregnant male dog" error and facts
+   landing in the wrong patient's record.*
+9. **Review that's hard to skip, but fast.**
+   - Before approval, a summary shows "added by AI vs typed by you". In a
+     text-first product this should be almost empty.
+   - Medication rows, numbers and anything flagged need an explicit
+     confirmation.
+   - Plain prose sections approve with the main keystroke.
+10. **Regeneration never overwrites vet edits.** Regeneration works one
+    section at a time, shows a diff, and keeps every version.
+11. **Normal findings are never assumed.** "Examination otherwise unremarkable"
+    appears only if the vet wrote it or picked it from a clinic snippet. There
+    is no automatic "normals" template.
+12. **Clinic house style.** Terse clinical wording by default, a list of
+    banned filler phrases, and a separate plain-language register for owners.
+
 ## 8. Metrics (instrumented in the pilot)
 
 | Metric | Definition | MVP target (to validate, not promise) |
@@ -167,6 +199,21 @@ makes gaps visible instead of hiding them behind fluent prose.
 | Qualitative | 5-point "would be upset if taken away" | > 40 % "very" at week 6 |
 
 Telemetry records timings and counts, **not** clinical text.
+
+**Public quality page (from launch).**
+- **Format:** each release is named, has fixed minimum scores that can only
+  rise, and lists its known gaps honestly.
+- **What it tests:** our actual documents and translations, not a Q&A benchmark.
+- **Test set:** at least 300 cases across DE/IT/EN.
+- **Metrics:**
+  - rate of sentences with no source;
+  - medication and number mismatches (target 0);
+  - recall of missing-information flags;
+  - translation fidelity.
+- **Review:** an external panel of vets.
+
+This answers the market's unexplained accuracy claims (see
+`08-competitor-teardown.md` §2).
 
 ## 9. Build plan
 

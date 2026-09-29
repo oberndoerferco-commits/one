@@ -1,6 +1,6 @@
 # A. Competitive analysis
 
-Research date: 2026-09-28. Method: public web sources only (vendor sites,
+Research date: 2026-09-28. **Updated and corrected by the deeper teardown in `08-competitor-teardown.md` (2026-09-29): read that first.** Method: public web sources only (vendor sites,
 developer portals, press releases, Capterra/G2, trade press). Every claim links a
 source. Anything marked *unverified* came from a third-party, competitor or SEO
 source, or couldn't be confirmed. Many "comparison" articles in this market are
