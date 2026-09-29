@@ -11,9 +11,15 @@
 const fs = require('fs');
 const path = require('path');
 
-const T = 36;
-const tile = fs.readFileSync(path.join(__dirname, 'signature-tile.svg'), 'utf8');
-const art = tile.slice(tile.indexOf('>', tile.indexOf('<g clip-path')) + 1, tile.lastIndexOf('</g>'));
+// usage: node mockup.js [tile.svg] [repeat mm] [name]
+const tileFile = process.argv[2] || path.join(__dirname, 'signature-tile.svg');
+const T = +(process.argv[3] || 36);
+const name = process.argv[4] || 'signature';
+const tile = fs.readFileSync(tileFile, 'utf8');
+const art = tile.slice(tile.indexOf('>', tile.indexOf('<g clip-path')) + 1, tile.lastIndexOf('</g>'))
+  .replace(/<style>[^<]*<\/style>/g, '')
+  .replace(/ class="cut"/g, ' fill="#fff" fill-opacity="0"'); // holes: leave leather unpressed (approx.)
+const title = name[0].toUpperCase() + name.slice(1);
 
 // bag geometry (mm), front view, centred on x = 0
 const W_TOP = 300, W_BOT = 340, H = 280, TOP = 0;
@@ -23,8 +29,8 @@ const body = `M${-W_TOP / 2} ${TOP} L${W_TOP / 2} ${TOP} L${W_BOT / 2} ${H - 14}
 function bag(id, { leather, trim, hardware, pressOpacity, rim }) {
   const uses = [];
   // centre the grid so a logo column runs down the middle of the bag
-  for (let x = -6 * T; x <= 6 * T; x += T)
-    for (let y = -T; y <= 9 * T; y += T) uses.push(`<use href="#art" x="${x}" y="${y + 20}"/>`);
+  for (let x = -Math.ceil(240 / T) * T; x <= 240; x += T)
+    for (let y = -T; y <= 320; y += T) uses.push(`<use href="#art" x="${x}" y="${y + 20}"/>`);
   const handle = (x) => `
     <path d="M${x - 44} 6 C${x - 44} -150 ${x + 44} -150 ${x + 44} 6" fill="none" stroke="${trim}" stroke-width="15" stroke-linecap="round"/>
     <path d="M${x - 44} 6 C${x - 44} -150 ${x + 44} -150 ${x + 44} 6" fill="none" stroke="#fff" stroke-opacity=".10" stroke-width="3" transform="translate(-3 -2)"/>
@@ -96,19 +102,19 @@ const scene = (id, opts, label) => `
   <figcaption>${label}</figcaption>
 </figure>`;
 
-const html = `<!doctype html><meta charset="utf-8"><title>Signature tote</title>
+const html = `<!doctype html><meta charset="utf-8"><title>${title} tote</title>
 <style>
   body{margin:0;padding:36px 40px;background:linear-gradient(#efe9e1,#e4dcd1);font:15px/1.4 Georgia,serif;color:#2b2622}
   h1{font-weight:normal;font-size:26px;margin:0 0 4px} p{margin:0 0 18px;color:#6b625a}
   .row{display:flex;gap:28px} figure{margin:0} figcaption{text-align:center;color:#6b625a;font-size:14px}
 </style>
 <svg width="0" height="0" style="position:absolute"><defs><g id="art">${art}</g></defs></svg>
-<h1>Signature · tote</h1>
-<p>Blind-stamped pattern at true size: 36 mm repeat, 14 mm logo. Smooth leather trim, brass rivets.</p>
+<h1>${title} · tote</h1>
+<p>Blind-stamped pattern at true size (${T} mm repeat). Smooth leather trim, brass rivets.</p>
 <div class="row">
 ${scene('c', { leather: '#8a5634', trim: '#4a2a17', hardware: '#c9a258', pressOpacity: 0.28, rim: 0.35 }, 'Cognac with espresso trim')}
 ${scene('k', { leather: '#26221f', trim: '#141210', hardware: '#c9a258', pressOpacity: 0.55, rim: 0.22 }, 'Black on black')}
 </div>
 `;
-fs.writeFileSync(path.join(__dirname, 'mockup-signature-tote.html'), html);
-console.log('wrote mockup-signature-tote.html');
+fs.writeFileSync(path.join(path.dirname(tileFile), `mockup-${name}-tote.html`), html);
+console.log(`wrote mockup-${name}-tote.html`);
