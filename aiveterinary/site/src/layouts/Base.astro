@@ -1,0 +1,70 @@
+---
+import '../styles.css';
+interface Props {
+  title: string;
+  description: string;
+  lang?: string;
+}
+const { title, description, lang = 'en' } = Astro.props;
+const path = Astro.url.pathname.replace(/\.html$/, '');
+const nav = [
+  { href: '/animals', label: 'Animals' },
+  { href: '/vets', label: 'For vets' },
+  { href: '/about', label: 'About' },
+  { href: '/newsletter', label: 'Newsletter' },
+];
+const current = (href: string) => path === href || path.startsWith(href + '/');
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title === 'AI Veterinary' ? title : `${title} · AI Veterinary`}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={new URL(path === '/' ? '/' : path, Astro.site)} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="/" aria-label="AI Veterinary home">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="var(--accent)"/><path d="M11 12.5a2.2 2.2 0 1 1 0 .1zm10 0a2.2 2.2 0 1 1 0 .1zM8.5 17a2 2 0 1 1 0 .1zm15 0a2 2 0 1 1 0 .1zM16 15.5c2.9 0 5.5 2.6 5.5 5.2 0 1.7-1.2 2.8-2.7 2.8-1.1 0-1.9-.6-2.8-.6s-1.7.6-2.8.6c-1.5 0-2.7-1.1-2.7-2.8 0-2.6 2.6-5.2 5.5-5.2z" fill="var(--accent-ink)"/></svg>
+          AI Veterinary
+        </a>
+        <nav class="nav" aria-label="Main">
+          {nav.map((n) => (
+            <a href={n.href} aria-current={current(n.href) ? 'page' : undefined}>{n.label}</a>
+          ))}
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <div>
+          <strong>AI Veterinary</strong><br />
+          Less paperwork. More animal care.<br />
+          <span style="font-size:.88rem">Information on this site is general and reviewed by veterinarians where marked. It does not replace an examination by a vet. In an emergency, contact a veterinary clinic immediately.</span>
+        </div>
+        <ul>
+          <li><a href="/animals">Animal information</a></li>
+          <li><a href="/vets">For veterinary teams</a></li>
+          <li><a href="/vets/research">Research</a></li>
+        </ul>
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/newsletter">Newsletter</a></li>
+          <li><a href="/privacy">Privacy</a></li>
+        </ul>
+      </div>
+    </footer>
+  </body>
+</html>

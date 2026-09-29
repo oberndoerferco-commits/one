@@ -1,0 +1,20 @@
+---
+interface Props { compact?: boolean }
+const { compact = false } = Astro.props;
+// Form posts to a free newsletter service once one is connected (see site/README.md).
+// Until then the action is a placeholder; the form is inert but the layout is final.
+const action = import.meta.env.PUBLIC_NEWSLETTER_ACTION ?? '#newsletter';
+---
+<form class="card" action={action} method="post" id="newsletter">
+  {!compact && <h2>Stay in touch</h2>}
+  <p>One short email when something worth reading is published. No spam, easy to leave.</p>
+  <div class="choice" role="group" aria-label="I am">
+    <label><input type="radio" name="audience" value="owner" checked /> An animal owner</label>
+    <label><input type="radio" name="audience" value="vet" /> A veterinary professional</label>
+  </div>
+  <div class="form-row">
+    <label class="sr" for="nl-email">Email address</label>
+    <input id="nl-email" type="email" name="email" placeholder="you@example.com" required autocomplete="email" />
+    <button class="btn" type="submit">Subscribe</button>
+  </div>
+</form>

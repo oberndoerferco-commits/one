@@ -1,0 +1,58 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const all = (await getCollection('animals')).sort((a, b) => b.data.updated.valueOf() - a.data.updated.valueOf());
+const species = [
+  { key: 'dog', label: 'Dogs' }, { key: 'cat', label: 'Cats' }, { key: 'rabbit', label: 'Rabbits & small mammals' },
+  { key: 'horse', label: 'Horses' }, { key: 'bird', label: 'Birds' }, { key: 'general', label: 'All animals' },
+];
+const categories = [
+  { key: 'symptoms', label: 'Symptoms', d: 'What a sign can mean and when to call a vet' },
+  { key: 'conditions', label: 'Conditions', d: 'Common diagnoses explained plainly' },
+  { key: 'medications', label: 'Medications', d: 'What a prescribed drug is for and how to give it' },
+  { key: 'first-aid', label: 'First aid & emergencies', d: 'What to do right now, and what not to do' },
+  { key: 'travel', label: 'Travel & paperwork', d: 'Passports, microchips, moving between countries' },
+  { key: 'care', label: 'Everyday care', d: 'Feeding, vaccinations, the routine things' },
+];
+const count = (f: (d: any) => boolean) => all.filter((e) => f(e.data)).length;
+---
+<Base title="Animal information" description="Plain-language animal-health information for owners, reviewed by veterinarians.">
+  <section class="wrap hero">
+    <h1>Animal information</h1>
+    <p class="lead">Written for owners, checked by vets. Each article says who reviewed it and when. If something needs a veterinarian, the article says so at the top, not at the bottom.</p>
+    <div class="notice danger"><p><strong>Emergency?</strong> Collapse, difficulty breathing, severe bleeding, a bloated hard belly, seizures that don't stop, poisoning, or a cat that cannot urinate: go to a veterinary clinic now. Call ahead so they can prepare.</p></div>
+  </section>
+
+  <section class="wrap">
+    <h2>By topic</h2>
+    <div class="grid3">
+      {categories.map((c) => (
+        <a class="tile" href={`/animals/${c.key}`}>
+          <div class="t">{c.label}</div>
+          <div class="d">{c.d}</div>
+          <div class="d" style="margin-top:6px">{count((d) => d.category === c.key)} articles</div>
+        </a>
+      ))}
+    </div>
+    <h2>By animal</h2>
+    <div class="grid3">
+      {species.map((s) => (
+        <a class="tile" href={`/animals/${s.key}`}>
+          <div class="t">{s.label}</div>
+          <div class="d">{count((d) => d.species === s.key)} articles</div>
+        </a>
+      ))}
+    </div>
+    <h2>Latest</h2>
+    <div class="grid3">
+      {all.slice(0, 6).map((e) => (
+        <a class="tile" href={`/animals/${e.id}`}>
+          <div class="t">{e.data.title}</div>
+          <div class="d">{e.data.description}</div>
+          {e.data.draft && <span class="badge draft" style="margin-top:8px">Draft, awaiting vet review</span>}
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>

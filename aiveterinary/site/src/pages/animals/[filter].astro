@@ -1,0 +1,35 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const filters = [
+    ['dog', 'Dogs'], ['cat', 'Cats'], ['rabbit', 'Rabbits & small mammals'], ['horse', 'Horses'], ['bird', 'Birds'], ['general', 'All animals'],
+    ['symptoms', 'Symptoms'], ['conditions', 'Conditions'], ['medications', 'Medications'],
+    ['first-aid', 'First aid & emergencies'], ['travel', 'Travel & paperwork'], ['care', 'Everyday care'],
+  ];
+  return filters.map(([filter, label]) => ({ params: { filter }, props: { label } }));
+}
+const { filter } = Astro.params;
+const { label } = Astro.props;
+const all = await getCollection('animals');
+const entries = all
+  .filter((e) => e.data.species === filter || e.data.category === filter)
+  .sort((a, b) => b.data.updated.valueOf() - a.data.updated.valueOf());
+---
+<Base title={label} description={`Animal-health articles: ${label}.`}>
+  <section class="wrap hero">
+    <p class="eyebrow"><a href="/animals">Animal information</a></p>
+    <h1>{label}</h1>
+    {entries.length === 0 && <p class="lead">Nothing here yet. Articles are being written and reviewed; check back soon or <a href="/newsletter">subscribe</a> to hear when they're published.</p>}
+    <div class="grid3">
+      {entries.map((e) => (
+        <a class="tile" href={`/animals/${e.id}`}>
+          <div class="t">{e.data.title}</div>
+          <div class="d">{e.data.description}</div>
+          {e.data.draft && <span class="badge draft" style="margin-top:8px">Draft, awaiting vet review</span>}
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>

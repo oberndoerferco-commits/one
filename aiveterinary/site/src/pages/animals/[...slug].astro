@@ -1,0 +1,35 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('animals');
+  return entries.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+const fmt = (x: Date) => x.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+const urgency: Record<string, { cls: string; text: string }> = {
+  emergency: { cls: 'danger', text: 'This can be an emergency. If you are seeing it now, contact a veterinary clinic immediately.' },
+  today: { cls: 'warn', text: 'See a vet today. This is not usually an emergency, but it should not wait.' },
+  'this-week': { cls: '', text: 'Book a vet appointment this week if it continues or gets worse.' },
+  routine: { cls: 'ok', text: 'Routine information. Mention it at your next visit if you have questions.' },
+};
+---
+<Base title={d.title} description={d.description} lang={d.lang}>
+  <article class="wrap narrow hero">
+    <p class="eyebrow"><a href="/animals">Animal information</a> · <a href={`/animals/${d.category}`}>{d.category.replace('-', ' ')}</a> · <a href={`/animals/${d.species}`}>{d.species}</a></p>
+    <h1>{d.title}</h1>
+    <p class="lead">{d.description}</p>
+    <div class="article-meta">
+      {d.draft
+        ? <span class="badge draft">Draft, awaiting veterinary review</span>
+        : <span class="badge reviewed">Reviewed by {d.reviewedBy}{d.reviewedOn && `, ${fmt(d.reviewedOn)}`}</span>}
+      <span>Updated {fmt(d.updated)}</span>
+    </div>
+    {d.urgency && <div class={`notice ${urgency[d.urgency].cls}`}><p><strong>When to see a vet:</strong> {urgency[d.urgency].text}</p></div>}
+    <div class="prose"><Content /></div>
+    <div class="notice" style="margin-top:40px"><p>This article is general information and cannot take your animal's history, breed or medications into account. It is not a diagnosis and does not replace an examination. If you are worried, call your vet; they would rather hear from you early.</p></div>
+  </article>
+</Base>

@@ -1,0 +1,48 @@
+---
+import Base from '../layouts/Base.astro';
+import Newsletter from '../components/Newsletter.astro';
+---
+<Base title="AI Veterinary" description="Clear animal-health information for owners, reviewed by veterinarians, and an AI documentation assistant that gives vets their time back.">
+  <section class="hero">
+    <div class="wrap">
+      <h1>Less paperwork.<br />More animal care.</h1>
+      <p class="lead">A place for people who care about animals: plain-language health information reviewed by veterinarians, and tools that let vets spend less time at the computer and more time with the animal.</p>
+      <div class="two">
+        <div class="card">
+          <div class="eyebrow">For animal owners</div>
+          <h2>Understand what's going on</h2>
+          <p>What a symptom can mean, when it can wait and when it can't, how to give a medication, how to travel with your animal. Written plainly, reviewed by vets, never a replacement for one.</p>
+          <a class="btn cta" href="/animals">Browse animal information</a>
+        </div>
+        <div class="card">
+          <div class="eyebrow">For veterinary teams</div>
+          <h2>Type five lines. Approve the report.</h2>
+          <p>A documentation assistant built for the keyboard: rough notes in, structured record out, nothing on the page you didn't write. You review, you approve, you're done.</p>
+          <a class="btn cta secondary" href="/vets">See how it works</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <h2>How we work</h2>
+    <div class="grid3">
+      <div class="tile">
+        <div class="t">Vets sign what we publish</div>
+        <div class="d">Every health article shows the veterinarian who reviewed it and when. Unreviewed drafts are labelled as drafts.</div>
+      </div>
+      <div class="tile">
+        <div class="t">AI drafts. People decide.</div>
+        <div class="d">The same rule for our articles and our tools: software prepares, a professional checks and approves.</div>
+      </div>
+      <div class="tile">
+        <div class="t">Honest about limits</div>
+        <div class="d">No diagnoses over the internet, no doses, no invented facts. If something needs a vet, we say so.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap narrow" style="margin-top:56px">
+    <Newsletter />
+  </section>
+</Base>

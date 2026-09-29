@@ -1,0 +1,77 @@
+---
+import Base from '../../layouts/Base.astro';
+import Newsletter from '../../components/Newsletter.astro';
+---
+<Base title="For veterinary teams" description="An AI documentation assistant built for the keyboard: type rough notes, approve the finished record, generate owner instructions and referral letters from it.">
+  <section class="wrap hero">
+    <p class="eyebrow">Documentation assistant · in development</p>
+    <h1>You examine. We write it up.<br />You approve.</h1>
+    <p class="lead">Type a few rough lines after the consultation. Get a structured, professional record to review. Nothing on the page you didn't write. Then make the owner's instructions, the referral letter and a translation from the same approved record, without typing anything twice.</p>
+    <p><a class="btn" href="#waitlist">Join the early-access list</a></p>
+  </section>
+
+  <section class="wrap">
+    <h2>What it looks like</h2>
+    <div class="mock" aria-label="Example: notes on the left, generated report on the right">
+      <div>
+        <div class="h">Your notes</div>
+<pre>Luna, Lab, F, 6y
+vomiting 3x since yesterday
+no diarrhea
+reduced appetite, drinking ok
+T 39.1
+abdomen soft, mild pain
+bloods + US done
+fluids + antiemetic
+recheck 48h</pre>
+      </div>
+      <div>
+        <div class="h">Consultation report · draft</div>
+        <div class="sec">Reason for presentation</div>
+        <div>Vomiting since the previous day, approximately three episodes.</div>
+        <div class="sec">History</div>
+        <div>Owner reports reduced appetite; drinking normally. No diarrhoea.</div>
+        <div class="sec">Clinical examination</div>
+        <div>Temperature 39.1 °C. Abdomen soft, mild discomfort on palpation.</div>
+        <div class="sec">Diagnostics</div>
+        <div>Blood work and abdominal ultrasound performed. <span class="flag">▲ Results not recorded</span></div>
+        <div class="sec">Treatment</div>
+        <div>Fluid therapy. Antiemetic administered. <span class="flag">▲ Drug, dose and route not recorded</span></div>
+        <div class="sec">Follow-up</div>
+        <div>Recheck in 48 hours.</div>
+      </div>
+    </div>
+    <p>The flags are the point. The assistant does not fill gaps with plausible text. It shows you what's missing, you add it or mark it "not recorded", and you approve with one keystroke.</p>
+  </section>
+
+  <section class="wrap">
+    <h2>What we commit to</h2>
+    <p>We studied more than thirty AI note-taking tools and what vets say about them. These are the answers.</p>
+    <ol class="commit">
+      <li><b>Nothing on the page you didn't write.</b> No drug, dose, route, number or diagnosis appears unless it is in your notes.</li>
+      <li><b>Every sentence shows its source.</b> Click a line in the report and see the note it came from.</li>
+      <li><b>Missing information is flagged, never invented.</b> Before you sign, you see what isn't there.</li>
+      <li><b>Owner's words stay the owner's words.</b> "Owner reports…" is never turned into your finding.</li>
+      <li><b>Patient facts are locked.</b> Species, sex and reproductive status come from the patient record, never from prose.</li>
+      <li><b>One approved record, every document.</b> Discharge, owner instructions, referral letter and translations come only from what you signed.</li>
+      <li><b>Your edits are never lost.</b> Regenerating a section shows a diff and keeps your text.</li>
+      <li><b>No recording.</b> Nothing to consent to, nothing to store, no barking-dog problem. It works with a keyboard.</li>
+      <li><b>Native German, Italian and English.</b> Owner documents in the owner's language, with medication details copied exactly.</li>
+      <li><b>Your data stays in the EU and is never used to train AI.</b> On every plan.</li>
+      <li><b>Cancel any month.</b> Clear per-vet pricing; nurses and reception are free.</li>
+      <li><b>A public quality page.</b> We publish how the assistant is tested, on real document types, with the numbers.</li>
+    </ol>
+  </section>
+
+  <section class="wrap">
+    <h2>Works next to your practice software</h2>
+    <p>It runs in the browser beside whatever system your clinic uses. Approved documents copy cleanly into your record fields, export as PDF on your letterhead, or print. Direct integrations will follow only through official vendor programmes, never through workarounds.</p>
+  </section>
+
+  <section class="wrap narrow" id="waitlist" style="margin-top:56px">
+    <h2>Early access</h2>
+    <p>We're looking for a small number of clinics in Germany, Austria, Switzerland and Italy to test with. If you type your own notes and would like documentation to take less of your evening, leave your email and tick "veterinary professional".</p>
+    <Newsletter compact />
+    <p style="margin-top:16px"><a href="/vets/research">Read our research on existing tools →</a></p>
+  </section>
+</Base>
