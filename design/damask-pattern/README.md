@@ -8,14 +8,13 @@ reference had its large flower: no star frame, no lattice around it.
 - **Four oval medallions** point at each logo like petals. Each holds four mirrored C-scrolls.
 - **Small four-petal flower** with a pair of scrolls above and below, between the logos.
 
-Regenerate with `node design/damask-pattern/generate.js`, then the mockup with
-`node design/stamp-pattern/mockup.js design/damask-pattern/damask-tile.svg 80 damask`.
+Regenerate with `node design/damask-pattern/generate.js`.
 
 ## Files
 
 - `damask-tile.svg`: one 80 × 80 mm repeat, black artwork at true size. For the plate / roller maker.
 - `damask-sheet-240x160mm.svg`: 3 × 2 repeats as one seamless vector.
-- `mockup-damask-tote.png` / `-detail.png`: 340 mm tote, cognac and black, pattern at true scale.
+- `damask-preview.png`: the 240 × 160 mm sheet as line art.
 
 ## Stamping specs (at the 80 mm repeat)
 
