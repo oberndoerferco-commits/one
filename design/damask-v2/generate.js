@@ -179,6 +179,10 @@ function tileArt() {
   return out.join('\n');
 }
 
+module.exports = { S, LINE, f, pt, logoPath, circle, taper, bez, spiral, curl, paisley, leaf, quatrefoil,
+  g, p, mirrorX, mirrorY, mirrorXY };
+
+if (require.main === module) {
 const K = TILE_MM / S;
 const artMM = (ink = '#000', bg = '#fff') =>
   `<g transform="scale(${K})" fill="${ink}" color="${ink}"><style>.cut{fill:${bg}}</style>${tileArt()}</g>`;
@@ -200,3 +204,4 @@ fs.writeFileSync(path.join(out, `damask-v2-sheet-${SW}x${SH}mm.svg`),
 </svg>
 `);
 console.log(`wrote damask-v2-tile.svg, damask-v2-sheet-${SW}x${SH}mm.svg (repeat ${TILE_MM} mm, logo ${f(2 * LOGO_R * K)} mm)`);
+}

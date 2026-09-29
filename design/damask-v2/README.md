@@ -23,3 +23,25 @@ Regenerate with `node design/damask-v2/generate.js`, then `node design/damask-v2
 - Solid black, no gradients or hairlines.
 - `TILE_MM=120 node generate.js` scales the whole pattern. Below about 110 mm
   the finest curls drop under 1 mm and may blur when stamped.
+
+## Ten variations
+
+`node design/damask-v2/variations.js` writes `variations/NN-<name>-tile.svg`
+(stamp artwork, 150 mm repeat) and `variations/contact-sheet.html` (all ten
+embossed white on white). `variations/contact-sheet.png` shows them as line art.
+All ten are denser than v2: drops and beads inside the frame points, small curls
+at the top and bottom of each oval, and a second pair of scrolls in the centre
+clusters.
+
+| # | Name | What changes |
+| --- | --- | --- |
+| 1 | Classic | Closest to the photo |
+| 2 | Double frame | Frame drawn as two parallel lines |
+| 3 | Beaded frame | Frame made of beads |
+| 4 | Grand logo | Logo 20% larger, frame widened |
+| 5 | Crossed ogee | Frame curves cross at the centre clusters, as in the photo |
+| 6 | Curling frame | Curls grow off the frame into the open space (clear of the logo) |
+| 7 | Acanthus | Leaf pairs instead of curls |
+| 8 | Lace medallions | Ovals ringed with beads |
+| 9 | Monogram medallions | Small logo inside every oval, double rim |
+| 10 | Level ovals | Ovals sit level, plus curling frame |
