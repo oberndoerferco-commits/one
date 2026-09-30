@@ -575,3 +575,11 @@ Routines page. First run and report: `docs/audits/2026-09-23.md`. It also found 
 Horizon 4.2.0 fault: `snippets/measure-header-heights.liquid` declared `const section` at the
 top level of an inline script, so a page with several such sections threw "Identifier
 'section' has already been declared"; the declaration is block-scoped on fix 13 (in `theme/`).
+
+## 8-Place Watch Box sale (30 September)
+
+The owner: "discount all of the 8-Place Watch Box 50 %". Done as sale pricing on the nine
+colour variants: compare-at price set to the old price (€1,682 Black Stud, €1,490 the rest),
+price halved (€841 / €745). Left alone: "8-Place XL Watch Box" (€3,389, a different line, out
+of stock), flagged to the owner. To end the sale: set price back to the compare-at value and
+clear compare-at.
