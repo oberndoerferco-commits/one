@@ -583,3 +583,20 @@ colour variants: compare-at price set to the old price (€1,682 Black Stud, €
 price halved (€841 / €745). Left alone: "8-Place XL Watch Box" (€3,389, a different line, out
 of stock), flagged to the owner. To end the sale: set price back to the compare-at value and
 clear compare-at.
+
+## Email programme in Klaviyo (1 October)
+
+Order #1003 shipped (DHL 5272725931 on the fulfilment), so the parked email work started at
+the owner's "let's fix emails now". The six emails are written and rendered in
+`scripts/klaviyo/` (see its README): Welcome 1 "Thank you for joining us." (who makes the
+pieces, the monthly letter promised, the Welcome code 5% once), Welcome 2 "A trunk begins with
+a drawing." (day 3), Welcome 3 "The pieces you can order today." (day 10, pre-order terms),
+Checkout 1 "We have kept your pieces." (one hour, line items from the Checkout Started event,
+the one filled button), Checkout 2 "A note from the atelier." (two days, plain, no photograph,
+"nothing more will follow"), and the monthly letter as a template with bracketed placeholders.
+Voice per the writing rules; photographs are the site's own (brass emblem brazing, workshop
+trunks, hardware corner, white tee and hoodie, Miramare ensemble, atelier bench). Footer carries
+Klaviyo's unsubscribe, preferences and view-in-browser tags and the organisation address.
+Shopify Marketing automations are empty, so there is no double send. Waiting on the owner:
+Klaviyo account + Shopify app install + a private API key; then `build.mjs` uploads the
+templates and the flows are created switched off.

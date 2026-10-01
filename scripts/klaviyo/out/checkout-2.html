@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="x-apple-disable-message-reformatting" />
+<title>A note from the atelier.</title>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  body { margin:0; padding:0; background:#eeede8; -webkit-text-size-adjust:100%; }
+  img { -ms-interpolation-mode:bicubic; }
+  a { color:#1c1714; }
+  @media (max-width: 640px) {
+    .wrap { width:100% !important; }
+    .pad { padding-left:20px !important; padding-right:20px !important; }
+    h1 { font-size:26px !important; }
+  }
+</style>
+</head>
+<body style="margin:0;padding:0;background:#eeede8;">
+<div style="display:none;max-height:0;overflow:hidden;font-size:1px;line-height:1px;color:#eeede8;">In case a question stopped you.&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#eeede8;">
+<tr><td align="center" style="padding:28px 12px 40px;">
+<table role="presentation" class="wrap" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:600px;">
+  <tr><td align="center" style="padding:10px 0 22px;">
+    <a href="https://www.oberndoerferco.com" style="text-decoration:none;color:#1c1714;font:400 17px/1 'Marcellus', Georgia, 'Times New Roman', serif;letter-spacing:.26em;">OBERNDÖRFER MILANO</a>
+    <p style="margin:10px 0 0;font:400 11px/1.4 'Inter', Helvetica, Arial, sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#6b6259;">Milano &nbsp;·&nbsp; Sanremo &nbsp;·&nbsp; New York</p>
+  </td></tr>
+  <tr><td style="background:#eeede8;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+      <tr><td class="pad" style="padding:8px 36px 8px;">
+<h1 style="margin:0 0 18px;font:400 26px/1.2 'Marcellus', Georgia, 'Times New Roman', serif;color:#1c1714;">A note from the atelier.</h1>
+<p style="margin:0 0 16px;font:400 16px/1.6 'Inter', Helvetica, Arial, sans-serif;color:#1c1714;">{% if first_name %}{{ first_name }},{% else %}Good day,{% endif %}</p>
+<p style="margin:0 0 16px;font:400 16px/1.6 'Inter', Helvetica, Arial, sans-serif;color:#1c1714;">Two days ago you set aside {{ event.extra.line_items.0.product.title }}{% if event.extra.line_items|length > 1 %} and {{ event.extra.line_items|length|add:"-1" }} other piece{% if event.extra.line_items|length > 2 %}s{% endif %}{% endif %}. It is still held for you.</p>
+<p style="margin:0 0 16px;font:400 16px/1.6 'Inter', Helvetica, Arial, sans-serif;color:#1c1714;">If it was a question of size, lead time, duties or colour, write back and we will answer it ourselves. If you would like to see the piece before deciding, our interior at Miramare The Palace in Sanremo and our partner Trax NYC in New York both have pieces to hand.</p>
+<p style="margin:0 0 16px;font:400 16px/1.6 'Inter', Helvetica, Arial, sans-serif;color:#1c1714;">If you have simply changed your mind, nothing more will follow from us.</p>
+<p style="margin:0 0 16px;font:400 16px/1.6 'Inter', Helvetica, Arial, sans-serif;color:#1c1714;"><a href="{{ event.extra.checkout_url }}" style="color:#1c1714;text-decoration:underline;text-underline-offset:3px;font:400 15px/1.6 'Inter', Helvetica, Arial, sans-serif;">Return to your selection</a></p>
+<p style="margin:0 0 16px;font:400 16px/1.6 'Inter', Helvetica, Arial, sans-serif;color:#1c1714;">With our regards,<br />Oberndörfer Milano</p></td></tr>
+    </table>
+  </td></tr>
+  <tr><td class="pad" style="padding:30px 24px 0;text-align:center;">
+    <p style="margin:0 0 6px;font:400 15px/1.5 'Marcellus', Georgia, 'Times New Roman', serif;color:#1c1714;">Trunks, bags and objects for the home. Made by hand, around Milan.</p>
+    <p style="margin:0 0 14px;font:400 12px/1.7 'Inter', Helvetica, Arial, sans-serif;color:#6b6259;">Miramare The Palace, Sanremo &nbsp;·&nbsp; Trax NYC, New York<br />{{ organization.name }}, {{ organization.full_address }}</p>
+    <p style="margin:0;font:400 12px/1.7 'Inter', Helvetica, Arial, sans-serif;color:#6b6259;">
+      <a href="https://www.oberndoerferco.com/pages/contact" style="color:#6b6259;">Write to us</a> &nbsp;·&nbsp;
+      {% manage_preferences %} &nbsp;·&nbsp; {% unsubscribe %}
+    </p>
+    <p style="margin:8px 0 0;font:400 11px/1.6 'Inter', Helvetica, Arial, sans-serif;color:#6b6259;">{% view_in_browser %}</p>
+  </td></tr>
+</table>
+</td></tr></table>
+</body></html>
