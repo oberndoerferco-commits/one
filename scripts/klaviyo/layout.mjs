@@ -5,6 +5,8 @@ export const C = {
   line: '#d3cabc', muted: '#6b6259', accent: '#7a2e2b',
 };
 export const SITE = 'https://www.oberndoerferco.com';
+// The header logo (the site's own, rasterised in ink at 3x; see theme/assets-src/obm-email-logo.png).
+export const LOGO = 'https://cdn.shopify.com/s/files/1/0758/8387/2581/files/obm-email-logo.png?width=720&v=1790937158';
 const serif = "'Marcellus', Georgia, 'Times New Roman', serif";
 const sans = "'Inter', Helvetica, Arial, sans-serif";
 
@@ -66,8 +68,8 @@ export function layout({ title, preheader, body, plain = false }) {
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${C.page};">
 <tr><td align="center" style="padding:28px 12px 40px;">
 <table role="presentation" class="wrap" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:600px;">
-  <tr><td align="center" style="padding:10px 0 22px;">
-    <a href="${SITE}" style="text-decoration:none;color:${C.ink};font:400 18px/1 ${serif};letter-spacing:.28em;">OBERNDÖRFER MILANO</a>
+  <tr><td align="center" style="padding:14px 0 26px;">
+    <a href="${SITE}" style="text-decoration:none;"><img src="${LOGO}" alt="Oberndörfer Milano" width="236" height="42" style="display:block;width:236px;height:auto;border:0;margin:0 auto;" /></a>
   </td></tr>
   <tr><td style="background:${plain ? C.page : C.card};">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
