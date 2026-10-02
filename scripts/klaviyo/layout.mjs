@@ -25,6 +25,18 @@ ${href ? `<a href="${href}">` : ''}<img src="${src}" alt="${alt}" width="600" st
 ${cap ? caption(cap) : ''}
 </td></tr></table>`;
 export const rule = () => `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="border-top:1px solid ${C.line};font-size:0;line-height:0;height:1px;">&nbsp;</td></tr></table>`;
+// A row of two or three pieces: square studio photograph, name in serif, underlined link.
+export const grid = (items) => {
+  const n = items.length, cw = n === 2 ? 254 : 165, gap = n === 2 ? 12 : 12;
+  const cells = items.map((it, i) => `
+<td width="${cw}" valign="top" style="padding:0 ${i < n - 1 ? gap : 0}px 0 0;">
+  <a href="${it.href}" style="text-decoration:none;"><img src="${it.src}" alt="${it.alt || it.title}" width="${cw}" style="display:block;width:100%;max-width:${cw}px;height:auto;border:0;background:#f5f2ed;" /></a>
+  <p style="margin:10px 0 2px;font:400 ${n === 2 ? 17 : 15}px/1.3 ${serif};color:${C.ink};">${it.title}</p>
+  ${it.note ? `<p style="margin:0 0 6px;font:400 12px/1.5 ${sans};color:${C.muted};">${it.note}</p>` : ''}
+  <a href="${it.href}" style="font:400 13px/1.6 ${sans};color:${C.ink};text-decoration:underline;text-underline-offset:3px;">${it.cta || 'See the piece'}</a>
+</td>`).join('');
+  return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:6px 0 26px;"><tr>${cells}</tr></table>`;
+};
 export const band = (inner) => `
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:8px 0 24px;"><tr>
 <td style="background:${C.band};padding:28px 32px;">${inner}</td></tr></table>`;
@@ -55,8 +67,7 @@ export function layout({ title, preheader, body, plain = false }) {
 <tr><td align="center" style="padding:28px 12px 40px;">
 <table role="presentation" class="wrap" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:600px;">
   <tr><td align="center" style="padding:10px 0 22px;">
-    <a href="${SITE}" style="text-decoration:none;color:${C.ink};font:400 17px/1 ${serif};letter-spacing:.26em;">OBERNDÖRFER MILANO</a>
-    <p style="margin:10px 0 0;font:400 11px/1.4 ${sans};letter-spacing:.18em;text-transform:uppercase;color:${C.muted};">Milano &nbsp;·&nbsp; Sanremo &nbsp;·&nbsp; New York</p>
+    <a href="${SITE}" style="text-decoration:none;color:${C.ink};font:400 18px/1 ${serif};letter-spacing:.28em;">OBERNDÖRFER MILANO</a>
   </td></tr>
   <tr><td style="background:${plain ? C.page : C.card};">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -65,7 +76,7 @@ export function layout({ title, preheader, body, plain = false }) {
   </td></tr>
   <tr><td class="pad" style="padding:30px 24px 0;text-align:center;">
     <p style="margin:0 0 6px;font:400 15px/1.5 ${serif};color:${C.ink};">Trunks, bags and objects for the home. Made by hand, around Milan.</p>
-    <p style="margin:0 0 14px;font:400 12px/1.7 ${sans};color:${C.muted};">Miramare The Palace, Sanremo &nbsp;·&nbsp; Trax NYC, New York<br />{{ organization.name }}, {{ organization.full_address }}</p>
+    <p style="margin:0 0 14px;font:400 12px/1.7 ${sans};color:${C.muted};">{{ organization.name }}, {{ organization.full_address }}</p>
     <p style="margin:0;font:400 12px/1.7 ${sans};color:${C.muted};">
       <a href="${SITE}/pages/contact" style="color:${C.muted};">Write to us</a> &nbsp;·&nbsp;
       {% manage_preferences %} &nbsp;·&nbsp; {% unsubscribe %}
