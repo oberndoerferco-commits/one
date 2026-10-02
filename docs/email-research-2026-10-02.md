@@ -66,3 +66,49 @@ tracking-consent wording before 28 October 2026.
 
 Not found: luxury-specific benchmarks; per-industry flow revenue (Klaviyo 2026 gives apparel
 flows 34% open, 5.5% click, 2.2% placed order).
+
+## Part 2: what the comparable houses do (sign-up copy and indexed subject lines, 2 Oct 2026)
+
+Limits: milled.com and the other email archives block automated reading, so no email body
+could be opened. The evidence is each house's own sign-up copy plus subject lines and dates
+that search engines have indexed. Nothing below on welcome-email content or layout is claimed.
+
+| House | Sign-up incentive | What the emails are |
+| --- | --- | --- |
+| Hermès | none ("stories, collections, and surprises") | short playful editorial subjects, never a price: "Objects for Interior life", "Faubourg Express" |
+| Brunello Cucinelli | none | essays and dated letters from Solomeo: "Harmony and Hope" |
+| Connolly | none | a recurring signed series, "Letter from Isabel: Driving Loafers"; one product, story first |
+| Métier London | none | single-product explainers, "Introducing The Vagabond Messenger", "Which Perriand Is Right For You?"; signed "With Love, Melissa Morris" |
+| Bennett Winch | 10% off first order | "Introducing:" launches, restocks, customer reviews |
+| Carl Friedrik | none at sign-up, but sales often | "Summer Sale ends midnight", refurbished sales, fortnightly |
+| Smythson | none | witty subjects, frequent outlet and sale mailings |
+| Globe-Trotter | a service: complimentary initialling (earlier: a luggage tag) | first access to limited releases |
+| Ettinger | a £70 gift | not found |
+| Goyard, Berluti, Loro Piana, Valextra, Moynat, Serapian, Au Départ | none | "be the first to receive news"; no archived emails found |
+
+What the best programmes share: no sign-up discount (12 of 16; where there is an incentive
+it is a service or an object); one subject and one piece per email; short specific subjects
+with no emoji and no price; a named human voice (Isabel at Connolly, Melissa at Métier,
+Brunello Cucinelli's letters); launches, back-in-atelier notes and "introducing" do the
+selling. Sales language only at the two volume businesses (Smythson, Carl Friedrik).
+
+For Oberndörfer Milano: the Connolly and Métier model. A signed letter from the owner,
+monthly, one piece per send, "Introducing:" and "Back in the atelier:" subjects, pre-orders
+announced as letters, sign-up copy promising stories and first access, not offers. If any
+incentive, a service such as complimentary initials. A reply-able From address. Avoid
+percentage discounts, "ends midnight", outlet language, emoji, more than one call to action.
+
+## Decisions taken in the emails (2 October)
+
+- No discount codes anywhere (the owner's instinct; both parts of the research agree). The
+  Welcome code stays in Shopify unused; the sign-up promise is first access and the letter.
+- Header is the wordmark alone; cities removed from header and footer.
+- Signed by a person, not the house. Welcome 2 and 3 and the checkout notes carry the owner's
+  first name; the owner can change the signature in `scripts/klaviyo/emails.mjs`.
+- Product photographs: the house's own studio shots on the ivory ground, in rows of three,
+  each a link; one filled button only in the first checkout email.
+- Checkout flow is three emails: 2 hours (your pieces are kept), 24 hours (a note from the
+  atelier, personal), day 4 (an invitation to see the piece or to talk; "nothing more will
+  follow"). Welcome flow stays three over ten days.
+- Klaviyo settings to set with the owner: double opt-in on (Garante, June 2025), checkout
+  marketing box unticked, open tracking treated as consent-based before 28 October 2026.
