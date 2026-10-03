@@ -101,21 +101,21 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "accordion_row_GpGfEt": {
+            "accordion_row_faq01": {
               "type": "_accordion-row",
               "name": "t:names.accordion_row",
               "settings": {
-                "heading": "How should I care for my leather piece?",
+                "heading": "Where are Oberndörfer Milano pieces made?",
                 "open_by_default": false,
-                "icon": "leather",
+                "icon": "none",
                 "width": 20
               },
               "blocks": {
-                "text_xkKGPc": {
+                "text_faq01": {
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Dust it with a soft, dry cloth; keep it out of prolonged sun, heat and damp; store it in its dust bag with a little tissue inside so it keeps its shape. Condition only when the leather feels dry, once or twice a year at most, with a cream made for fine smooth leather. If it gets wet, blot it and let it dry slowly, away from heat. The full guide, nubuck and exotic hides included, is on our <a href=\"/pages/leather-care-guide\">Leather Care</a> page.</p>",
+                    "text": "<p>Every piece is handmade in Italy by artisans in and around Milan, from Italian leather sourced from Italian tanneries.</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -138,246 +138,10 @@
                 }
               },
               "block_order": [
-                "text_xkKGPc"
+                "text_faq01"
               ]
             },
-            "accordion_row_BRGcRM": {
-              "type": "_accordion-row",
-              "settings": {
-                "heading": "What is the return policy?",
-                "open_by_default": false,
-                "icon": "none",
-                "width": 20
-              },
-              "blocks": {
-                "text_h9y3Jg": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Pieces bought from the website can be returned within 14 days of delivery, unused and in their original condition and packaging. Personalised and made-to-order pieces are made for you and cannot be returned. Write to <a href=\"mailto:info@oberndoerferco.com\">info@oberndoerferco.com</a> with your order number and we will send the instructions; the full terms are in our <a href=\"/policies/refund-policy\">return policy</a>.</p>",
-                    "width": "100%",
-                    "max_width": "none",
-                    "alignment": "left",
-                    "type_preset": "custom",
-                    "font": "var(--font-body--family)",
-                    "font_size": "0.875rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_h9y3Jg"
-              ]
-            },
-            "accordion_row_HmCHyF": {
-              "type": "_accordion-row",
-              "settings": {
-                "heading": "How long does delivery take?",
-                "open_by_default": false,
-                "icon": "none",
-                "width": 20
-              },
-              "blocks": {
-                "text_ziEjaq": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p>Pieces in stock are delivered within 7–14 days, free worldwide with DHL Express. Larger commissions are built to order: trunks take 2–6 months depending on complexity and personalisation, furniture and highly detailed commissions 4–6 months. We confirm exact timing once you have placed your order, or beforehand if you write to us.</p>",
-                    "width": "100%",
-                    "max_width": "none",
-                    "alignment": "left",
-                    "type_preset": "custom",
-                    "font": "var(--font-body--family)",
-                    "font_size": "0.875rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_ziEjaq"
-              ]
-            },
-            "accordion_row_r8QbwT": {
-              "type": "_accordion-row",
-              "name": "t:names.accordion_row",
-              "settings": {
-                "heading": "What happens after I place an order?",
-                "open_by_default": false,
-                "icon": "none",
-                "width": 20
-              },
-              "blocks": {
-                "text_37MKjL": {
-                  "type": "text",
-                  "name": "t:names.text",
-                  "settings": {
-                    "text": "<p>You receive an order confirmation by email straight away. When your piece leaves Milan you receive a second email with the DHL Express tracking number. For anything made to order, we write to you first to confirm the timeline before work begins.</p>",
-                    "width": "100%",
-                    "max_width": "none",
-                    "alignment": "left",
-                    "type_preset": "custom",
-                    "font": "var(--font-body--family)",
-                    "font_size": "0.875rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_37MKjL"
-              ]
-            },
-            "accordion_row_JLfPwr": {
-              "type": "_accordion-row",
-              "name": "t:names.accordion_row",
-              "settings": {
-                "heading": "How can I get help with an order?",
-                "open_by_default": false,
-                "icon": "none",
-                "width": 20
-              },
-              "blocks": {
-                "text_cf7BkX": {
-                  "type": "text",
-                  "name": "t:names.text",
-                  "settings": {
-                    "text": "<p>Write to <a href=\"mailto:info@oberndoerferco.com\">info@oberndoerferco.com</a> with your order number and your question; a person in the atelier answers. If you would like something not shown, a different leather, colour or lining, say so: most of what we make can be made to order.</p>",
-                    "width": "100%",
-                    "max_width": "none",
-                    "alignment": "left",
-                    "type_preset": "custom",
-                    "font": "var(--font-body--family)",
-                    "font_size": "0.875rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_cf7BkX"
-              ]
-            },
-            "accordion_row_8JKnzD": {
-              "type": "_accordion-row",
-              "name": "t:names.accordion_row",
-              "settings": {
-                "heading": "How much does shipping cost?",
-                "open_by_default": false,
-                "icon": "none",
-                "width": 20
-              },
-              "blocks": {
-                "text_RB9KJG": {
-                  "type": "text",
-                  "name": "t:names.text",
-                  "settings": {
-                    "text": "<p>Nothing. Shipping is free on every order, worldwide, with DHL Express.</p>",
-                    "width": "100%",
-                    "max_width": "none",
-                    "alignment": "left",
-                    "type_preset": "custom",
-                    "font": "var(--font-body--family)",
-                    "font_size": "0.875rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_RB9KJG"
-              ]
-            },
-            "accordion_row_iY8ADB": {
-              "type": "_accordion-row",
-              "name": "t:names.accordion_row",
-              "settings": {
-                "heading": "How long does a custom order take?",
-                "open_by_default": false,
-                "icon": "none",
-                "width": 20
-              },
-              "blocks": {
-                "text_XHi4eN": {
-                  "type": "text",
-                  "name": "t:names.text",
-                  "settings": {
-                    "text": "<p>It depends on what we are making. A small piece such as a leather box usually takes 4 to 6 weeks. Trunks take 2 to 6 months depending on complexity and personalisation. Sofas, furniture and highly detailed commissions take 4 to 6 months.</p><p>Each piece is made entirely by hand. We confirm a timeline with you before work begins and keep you informed as it progresses.</p>",
-                    "width": "100%",
-                    "max_width": "none",
-                    "alignment": "left",
-                    "type_preset": "custom",
-                    "font": "var(--font-body--family)",
-                    "font_size": "0.875rem",
-                    "line_height": "normal",
-                    "letter_spacing": "normal",
-                    "case": "none",
-                    "wrap": "pretty",
-                    "background": false,
-                    "background_color": "#00000026",
-                    "corner_radius": 0,
-                    "padding-block-start": 0,
-                    "padding-block-end": 0,
-                    "padding-inline-start": 0,
-                    "padding-inline-end": 0
-                  },
-                  "blocks": {}
-                }
-              },
-              "block_order": [
-                "text_XHi4eN"
-              ]
-            },
-            "accordion_row_6eWXrm": {
+            "accordion_row_faq02": {
               "type": "_accordion-row",
               "name": "t:names.accordion_row",
               "settings": {
@@ -387,11 +151,11 @@
                 "width": 20
               },
               "blocks": {
-                "text_7Dagz8": {
+                "text_faq02": {
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Our leather comes from tanneries in Italy, France and Germany, and is a byproduct of the meat industry. Exotic leathers follow a separate supply chain: the hides may originate outside Europe and are processed in Italy, always sourced and traded in full compliance with CITES, with documentation available on request.</p><p>For the leathers and hardware we use and how each piece is made, see <a href=\"/pages/materials-craftsmanship\">Materials &amp; Craftsmanship</a>.</p>",
+                    "text": "<p>Italian leathers selected for durability and for how they age, including calf, nubuck and exotic leathers on selected pieces. Watch and jewellery boxes are built on a wood core and lined in microfiber or Alcantara.</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -414,24 +178,24 @@
                 }
               },
               "block_order": [
-                "text_7Dagz8"
+                "text_faq02"
               ]
             },
-            "accordion_row_emPQqc": {
+            "accordion_row_faq03": {
               "type": "_accordion-row",
               "name": "t:names.accordion_row",
               "settings": {
-                "heading": "Do you ship worldwide?",
+                "heading": "How much does shipping cost?",
                 "open_by_default": false,
                 "icon": "none",
                 "width": 20
               },
               "blocks": {
-                "text_KcwiFP": {
+                "text_faq03": {
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Yes, to every country DHL Express serves, free of charge. Each piece travels in its dust bag inside the house’s box.</p>",
+                    "text": "<p>Shipping is complimentary on every order, worldwide, with DHL Express. There is no minimum order.</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -454,24 +218,24 @@
                 }
               },
               "block_order": [
-                "text_KcwiFP"
+                "text_faq03"
               ]
             },
-            "accordion_row_repair": {
+            "accordion_row_faq04": {
               "type": "_accordion-row",
               "name": "t:names.accordion_row",
               "settings": {
-                "heading": "Do you repair your pieces?",
+                "heading": "How long does delivery take?",
                 "open_by_default": false,
                 "icon": "none",
                 "width": 20
               },
               "blocks": {
-                "text_repair": {
+                "text_faq04": {
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Yes. Every piece we make can come back to the atelier. Write to info@oberndoerferco.com with a photograph of the damage; the cost depends on what is needed, and we confirm a quote and timing before any work begins.</p>",
+                    "text": "<p>Pieces in stock are delivered within 7 days. You receive DHL tracking as soon as your order ships.</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -494,21 +258,302 @@
                 }
               },
               "block_order": [
-                "text_repair"
+                "text_faq04"
+              ]
+            },
+            "accordion_row_faq05": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_row",
+              "settings": {
+                "heading": "Will I pay import duties?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_faq05": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Within the EU, no: prices include VAT. Outside the EU, local import duties and taxes may be charged by DHL on delivery and are paid by the customer.</p>",
+                    "width": "100%",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "custom",
+                    "font": "var(--font-body--family)",
+                    "font_size": "0.875rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_faq05"
+              ]
+            },
+            "accordion_row_faq06": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_row",
+              "settings": {
+                "heading": "What is your return policy?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_faq06": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>You can return a piece within 14 days of delivery, unused and in its original packaging. Personalised and made-to-order pieces cannot be returned.</p><p><a href=\"/policies/refund-policy\">Full refund policy →</a></p>",
+                    "width": "100%",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "custom",
+                    "font": "var(--font-body--family)",
+                    "font_size": "0.875rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_faq06"
+              ]
+            },
+            "accordion_row_faq07": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_row",
+              "settings": {
+                "heading": "Can I personalise a piece or choose a different leather or colour?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_faq07": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Yes. Most pieces can be made in another leather, colour or lining, or personalised. Personalising an existing design takes 4–6 weeks.</p><p><a href=\"/pages/personalization\">Personalisation →</a></p>",
+                    "width": "100%",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "custom",
+                    "font": "var(--font-body--family)",
+                    "font_size": "0.875rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_faq07"
+              ]
+            },
+            "accordion_row_faq08": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_row",
+              "settings": {
+                "heading": "How long does a bespoke commission take?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_faq08": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Trunks take 2–6 months depending on complexity; furniture and highly detailed commissions take 4–6 months. We confirm your exact timeline before work begins.</p>",
+                    "width": "100%",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "custom",
+                    "font": "var(--font-body--family)",
+                    "font_size": "0.875rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_faq08"
+              ]
+            },
+            "accordion_row_faq09": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_row",
+              "settings": {
+                "heading": "Which payment methods do you accept?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_faq09": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Credit and debit cards, PayPal, Klarna, Shop Pay and Google Pay. All payments are encrypted.</p>",
+                    "width": "100%",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "custom",
+                    "font": "var(--font-body--family)",
+                    "font_size": "0.875rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_faq09"
+              ]
+            },
+            "accordion_row_faq10": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_row",
+              "settings": {
+                "heading": "How should I care for my leather?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_faq10": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Wipe it with a soft, dry cloth, keep it away from water, heat and direct sunlight, and condition it every 6–12 months. Store it in its dust bag when not in use.</p>",
+                    "width": "100%",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "custom",
+                    "font": "var(--font-body--family)",
+                    "font_size": "0.875rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_faq10"
+              ]
+            },
+            "accordion_row_faq11": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_row",
+              "settings": {
+                "heading": "How can I reach you?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_faq11": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Write to info@oberndoerferco.com. We reply personally.</p>",
+                    "width": "100%",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "custom",
+                    "font": "var(--font-body--family)",
+                    "font_size": "0.875rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_faq11"
               ]
             }
           },
           "block_order": [
-            "accordion_row_GpGfEt",
-            "accordion_row_BRGcRM",
-            "accordion_row_repair",
-            "accordion_row_HmCHyF",
-            "accordion_row_r8QbwT",
-            "accordion_row_JLfPwr",
-            "accordion_row_8JKnzD",
-            "accordion_row_iY8ADB",
-            "accordion_row_6eWXrm",
-            "accordion_row_emPQqc"
+            "accordion_row_faq01",
+            "accordion_row_faq02",
+            "accordion_row_faq03",
+            "accordion_row_faq04",
+            "accordion_row_faq05",
+            "accordion_row_faq06",
+            "accordion_row_faq07",
+            "accordion_row_faq08",
+            "accordion_row_faq09",
+            "accordion_row_faq10",
+            "accordion_row_faq11"
           ]
         }
       },

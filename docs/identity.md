@@ -619,3 +619,23 @@ templates and the flows are created switched off.
   on sold-out variants once the app is installed; to be switched on with the email build.
 - Email header: the owner chose between A (the site logo as it is) and D (wordmark without
   emblems); A at 260px is in, `obm-email-logo.png`. The stacked variant stays in Files unused.
+
+## Fix 15: the other session's shipping and FAQ copy, and the Himalaya SAC (3 October)
+
+The owner, after publishing fix 14: "did you also include fixes from 'fix 13 + shipping & FAQ
+copy (Claude)'?" No: that theme (207641739589) was made by another session on 2 October and
+fix 14 was copied from fix 13. A checksum comparison of every file found three that differ:
+`locales/en.default.json` (the duties and taxes lines now read "Complimentary DHL Express
+shipping worldwide. EU prices include VAT; duties outside the EU are paid on delivery."),
+`templates/page.faq.json` (eleven new questions: where made, materials, shipping cost,
+delivery time, duties, returns within 14 days, personalisation 4–6 weeks, bespoke 2–6
+months, payment methods, leather care, contact) and `snippets/oberndoerfer-faq-schema.liquid`
+(the matching search data). All three were copied, byte for byte, onto "NEW WEBSITE BUG fix
+15 - with shipping & FAQ copy" (207723790661, a copy of the live fix 14) and into `theme/`.
+Verified in the preview: FAQ shows the eleven questions, schema has eleven entries, 0 errors.
+Owner publishes.
+
+"SAC Himalaya Alligator" is retitled "SAC Alligator - Himalaya" (handle unchanged, so no
+redirect needed) so it joins the SAC Alligator family: on Bags the family now shows one card
+with six colour dots (four plus "+2"). The dot for Himalaya is the photograph's average
+colour, since the name is not in the colour table.

@@ -1,27 +1,31 @@
 {% comment %}
-  Oberndoerfer Milano - FAQPage structured data for /pages/faq (11 September 2026).
-  The questions and answers are the page's own accordion rows, word for word (all-capital rows set in sentence case so the results read normally). Edit the page and re-run scripts/seo-schemas.py to refresh.
+  Oberndoerfer Milano - FAQPage structured data for /pages/faq (updated 2 October 2026).
+  The questions and answers are the page's own accordion rows, word for word. Edit the page and update this snippet to match.
   Rendered from snippets/meta-tags.liquid. Nothing here is visible on the page.
 {% endcomment %}
 {%- liquid
-  assign q1 = "How should I care for my leather product to ensure it lasts a long time?"
-  assign a1 = "To maintain the beauty and longevity of your leather goods, we recommend the following care tips: regular cleaning: wipe your leather product with a soft, dry cloth to remove dust and dirt. Avoid using water or soap, as these can damage the leather.conditioning: use a high-quality leather conditioner every 6-12 months to keep the leather soft and prevent it from drying out or cracking. Apply the conditioner with a soft cloth, following the product instructions.storage: store your leather items in a cool, dry place away from direct sunlight, which can cause the color to fade. Use a dust bag or pillowcase to protect the leather from dust and scratches.avoid moisture: keep your leather goods away from water. If they do get wet, blot the excess water with a dry cloth and allow them to air dry naturally, away from heat sources.handling: when handling leather products, make sure your hands are clean and dry. Oils and dirt from your hands can stain the leather over time."
-  assign q2 = "What is the return policy?"
-  assign a2 = "Our goal is for every customer to be totally satisfied with their purchase. If this isn't the case, let us know and we'll do our best to work with you to make it right."
-  assign q3 = "How long does it take for your products to arrive?"
-  assign a3 = "Thanks to our direct transport methods with DHL Express, we have the possibility of delivering the products within a maximum of 7 days. In the case of product customization, it is based on the production time, which can take 4 to 6 weeks. We can provide more information about the exact duration once you have placed your order or contacted us in advance."
-  assign q4 = "What happens after placing my order?"
-  assign a4 = "You will receive an automatically generated order confirmation by email from our webshop."
-  assign q5 = "How may I get assistance with my online order?"
-  assign a5 = "Please write down your questions and contact info@oberndoerferco.com for specific details. If anything is unclear, we will contact you and do our best to fulfill your special requests."
-  assign q6 = "How much does shipping cost?"
-  assign a6 = "Shipping is calculated based on your location and the items in your order. You will always know the shipping price before you purchase."
-  assign q7 = "How long does a custom order take?"
-  assign a7 = "Timelines vary depending on complexity. Simpler custom pieces typically take 1–2 months, while more intricate or highly bespoke projects may require 4–6 months. Each piece is crafted entirely by hand, and we will keep you updated throughout the process with regular progress updates."
-  assign q8 = "What materials do you use?"
-  assign a8 = "We source our leathers exclusively from Italy, selecting only exceptional hides from trusted tanneries. All materials are chosen for their durability, beauty, and ability to age gracefully over time."
-  assign q9 = "Do you offer worldwide shipping?"
-  assign a9 = "Yes, we ship internationally. Each piece is carefully packaged to ensure it arrives in perfect condition. Shipping timelines and details will be shared with you once your order is ready."
+  assign q1 = "Where are Oberndörfer Milano pieces made?"
+  assign a1 = "Every piece is handmade in Italy by artisans in and around Milan, from Italian leather sourced from Italian tanneries."
+  assign q2 = "What materials do you use?"
+  assign a2 = "Italian leathers selected for durability and for how they age, including calf, nubuck and exotic leathers on selected pieces. Watch and jewellery boxes are built on a wood core and lined in microfiber or Alcantara."
+  assign q3 = "How much does shipping cost?"
+  assign a3 = "Shipping is complimentary on every order, worldwide, with DHL Express. There is no minimum order."
+  assign q4 = "How long does delivery take?"
+  assign a4 = "Pieces in stock are delivered within 7 days. You receive DHL tracking as soon as your order ships."
+  assign q5 = "Will I pay import duties?"
+  assign a5 = "Within the EU, no: prices include VAT. Outside the EU, local import duties and taxes may be charged by DHL on delivery and are paid by the customer."
+  assign q6 = "What is your return policy?"
+  assign a6 = "You can return a piece within 14 days of delivery, unused and in its original packaging. Personalised and made-to-order pieces cannot be returned."
+  assign q7 = "Can I personalise a piece or choose a different leather or colour?"
+  assign a7 = "Yes. Most pieces can be made in another leather, colour or lining, or personalised. Personalising an existing design takes 4–6 weeks."
+  assign q8 = "How long does a bespoke commission take?"
+  assign a8 = "Trunks take 2–6 months depending on complexity; furniture and highly detailed commissions take 4–6 months. We confirm your exact timeline before work begins."
+  assign q9 = "Which payment methods do you accept?"
+  assign a9 = "Credit and debit cards, PayPal, Klarna, Shop Pay and Google Pay. All payments are encrypted."
+  assign q10 = "How should I care for my leather?"
+  assign a10 = "Wipe it with a soft, dry cloth, keep it away from water, heat and direct sunlight, and condition it every 6–12 months. Store it in its dust bag when not in use."
+  assign q11 = "How can I reach you?"
+  assign a11 = "Write to info@oberndoerferco.com. We reply personally."
 -%}
 <script type="application/ld+json">
   {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
@@ -33,6 +37,8 @@
     {"@type": "Question", "name": {{ q6 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ a6 | json }}}},
     {"@type": "Question", "name": {{ q7 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ a7 | json }}}},
     {"@type": "Question", "name": {{ q8 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ a8 | json }}}},
-    {"@type": "Question", "name": {{ q9 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ a9 | json }}}}
+    {"@type": "Question", "name": {{ q9 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ a9 | json }}}},
+    {"@type": "Question", "name": {{ q10 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ a10 | json }}}},
+    {"@type": "Question", "name": {{ q11 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ a11 | json }}}}
   ]}
 </script>
