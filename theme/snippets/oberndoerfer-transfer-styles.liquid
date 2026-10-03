@@ -181,4 +181,5 @@
   }
 </style>
 {% render 'oberndoerfer-color-grouping' %}
+{%- if request.page_type == 'product' -%}{% render 'oberndoerfer-pdp-color-swatches' %}{%- endif -%}
 {% render 'oberndoerfer-mobile-menu' %}

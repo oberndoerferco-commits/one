@@ -639,3 +639,20 @@ Owner publishes.
 redirect needed) so it joins the SAC Alligator family: on Bags the family now shows one card
 with six colour dots (four plus "+2"). The dot for Himalaya is the photograph's average
 colour, since the name is not in the colour table.
+
+## Colour dots on product pages (fix 16, 3 October)
+
+The owner, after publishing fix 15: "why are there no color swatches on product pages? add
+it". The earlier product-page row (rendered from `blocks/_product-details.liquid` on the
+September themes) was lost in the Horizon 4.2.0 update. Rebuilt as
+`snippets/oberndoerfer-pdp-color-swatches.liquid`, rendered from
+`oberndoerfer-transfer-styles.liquid` on product pages only. It borrows everything from the
+card script through `window.obColours` (title splitter, dot painter, family lookup from the
+cached catalogue, with `family()` waiting for the catalogue when it is still loading), reads
+the title from the h1 and the handle from the URL, and inserts under the title: "Colour Black
+· 3 colours" and one dot per colour linking to that colour's page, the current one ringed.
+Ready to Wear pages, whose colours are real variants with Horizon's own swatches, are left
+alone since their titles do not match a family. On "NEW WEBSITE BUG fix 16 - colour dots on
+product pages" (207725855045, copy of fix 15), verified in the preview: Briefcase 3 dots, SAC
+Alligator 6, 8-Place Watch Box 8, the T-shirt page no row, Bags still 9 cards, 0 errors.
+Owner publishes.

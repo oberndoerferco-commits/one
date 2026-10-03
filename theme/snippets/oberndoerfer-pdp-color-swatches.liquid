@@ -1,0 +1,90 @@
+{% comment %}
+  Oberndoerfer Milano - colour dots on the product page (3 October 2026).
+  The owner: "why are there no color swatches on product pages? add it". The earlier version
+  of this row (rendered from blocks/_product-details.liquid) was lost in the Horizon 4.2.0
+  update. This one is rendered from snippets/oberndoerfer-transfer-styles.liquid on product
+  pages only and borrows everything from snippets/oberndoerfer-color-grouping.liquid through
+  window.obColours: the title splitter (so the allowlists live in one place), the dot painter
+  (named colour, two-tone split, or the photograph's average) and the family lookup from the
+  cached /products.json. It reads the title from the page's h1 and the handle from the URL, so
+  it needs no Liquid objects. Display only: nothing on the product is touched.
+{% endcomment %}
+{% style %}
+  .ob-pdp-colours {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 9px;
+    margin-block: 10px 2px;
+  }
+  .ob-pdp-colours__label {
+    width: 100%;
+    font-family: var(--font-subheading--family);
+    font-size: 0.8125rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.55);
+    margin: 0 0 2px;
+  }
+  .ob-pdp-colours__label b { font-weight: 500; color: rgba(0, 0, 0, 0.8); }
+  .ob-pdp-swatch {
+    display: block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    background-color: #F0EBE3;
+    box-shadow: inset 0 0 0 1px rgba(24, 18, 12, 0.18);
+    outline-offset: 2px;
+    transition: box-shadow 0.18s ease;
+  }
+  .ob-pdp-swatch:hover,
+  .ob-pdp-swatch:focus-visible { box-shadow: inset 0 0 0 1px rgba(24, 18, 12, 0.5); }
+  .ob-pdp-swatch[aria-current='true'] {
+    box-shadow: inset 0 0 0 1px rgba(24, 18, 12, 0.18), 0 0 0 1.5px #18120C;
+  }
+  @media (prefers-reduced-motion: reduce) { .ob-pdp-swatch { transition: none; } }
+{% endstyle %}
+<script>
+  (function () {
+    function start() {
+      var ob = window.obColours;
+      if (!ob) return;
+      var details = document.querySelector('.product-details') || document;
+      var h1 = details.querySelector('h1');
+      if (!h1 || document.querySelector('.ob-pdp-colours')) return;
+      var title = (h1.textContent || '').replace(/\s+/g, ' ').trim();
+      var m = location.pathname.match(/\/products\/([^\/?#]+)/);
+      var handle = m ? m[1] : '';
+      var parsed = ob.split(title, handle);
+      if (!parsed) return;
+      ob.family(parsed.base, function (palette) {
+        if (!palette || palette.length < 2 || document.querySelector('.ob-pdp-colours')) return;
+        var row = document.createElement('div');
+        row.className = 'ob-pdp-colours';
+        row.setAttribute('role', 'group');
+        row.setAttribute('aria-label', 'Available colours');
+        var label = document.createElement('p');
+        label.className = 'ob-pdp-colours__label';
+        label.innerHTML = 'Colour <b></b> &middot; ' + palette.length + ' colours';
+        label.querySelector('b').textContent = parsed.color;
+        row.appendChild(label);
+        palette.forEach(function (c) {
+          var a = document.createElement('a');
+          a.className = 'ob-pdp-swatch';
+          a.href = c.href;
+          a.title = c.color;
+          a.setAttribute('aria-label', c.color);
+          if (c.href.replace(/^\/products\//, '') === handle) a.setAttribute('aria-current', 'true');
+          ob.paint(a, c.color, c.img);
+          row.appendChild(a);
+        });
+        var anchor = h1.closest('.text-block') || h1;
+        anchor.insertAdjacentElement('afterend', row);
+      });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+    else start();
+  })();
+</script>

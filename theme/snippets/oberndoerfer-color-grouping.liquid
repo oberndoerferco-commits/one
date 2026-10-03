@@ -394,6 +394,7 @@
         if (cached) {
           familyIndex = indexFrom(JSON.parse(cached));
           run(true);
+          flushFamilyWaiters();
           return;
         }
       } catch (e) { /* unreadable cache: just fetch */ }
@@ -419,13 +420,30 @@
           .catch(done);
       }
       function done() {
-        if (!all.length) { run(); return; }   // fetch failed: DOM pass stands
+        if (!all.length) { run(); flushFamilyWaiters(); return; }   // fetch failed: DOM pass stands
         try { sessionStorage.setItem(CATALOG_KEY, JSON.stringify(all)); } catch (e) {}
         familyIndex = indexFrom(all);
         run(true);
+        flushFamilyWaiters();
       }
       page(1);
     }
+
+    /* ---- shared with the product page (3 Oct) ----
+       snippets/oberndoerfer-pdp-color-swatches.liquid draws the same dots under a product's
+       title. It asks here for the family so the two never disagree. */
+    var familyWaiters = [];
+    function family(base, cb) {
+      var key = String(base || '').toLowerCase();
+      if (familyIndex) { cb(familyIndex.get(key) || []); return; }
+      familyWaiters.push(function () { cb((familyIndex && familyIndex.get(key)) || []); });
+      loadCatalog();
+    }
+    function flushFamilyWaiters() {
+      var w = familyWaiters; familyWaiters = [];
+      w.forEach(function (fn) { try { fn(); } catch (e) {} });
+    }
+    window.obColours = { split: split, paint: paintSwatch, family: family };
 
     /* ---- render ---- */
 
