@@ -600,3 +600,22 @@ Klaviyo's unsubscribe, preferences and view-in-browser tags and the organisation
 Shopify Marketing automations are empty, so there is no double send. Waiting on the owner:
 Klaviyo account + Shopify app install + a private API key; then `build.mjs` uploads the
 templates and the flows are created switched off.
+
+## One card per model on collection pages; SAC and MODEL 017 sold out; email logo (3 October)
+
+- The owner: "in collection pages just show one color of the model instead of all colors".
+  `snippets/oberndoerfer-color-grouping.liquid` now carries `OB_ONE_PER_MODEL`, true on
+  collection pages other than Ready to Wear: each colour family keeps its first card in grid
+  order and hides the rest (`data-ob-hidden-colour` on the grid item, cleared and rebuilt on
+  every pass); the dots under the surviving card still link to each colour's page. Home rows
+  and Ready to Wear are unchanged. On "NEW WEBSITE BUG fix 14 - one card per model"
+  (207723233605, copy of fix 13), verified in the preview: Bags 24 cards, 10 shown, 14 hidden,
+  0 errors; Ready to Wear 28 shown; home 68 shown with 54 dot rows. Owner publishes.
+- The owner: "they are out of stock, i cant ship model 017 and Sac". Available set to 0 at
+  Schönblickweg for SAC (Brown, Black, Blue, Grey), SAC Alligator (Yellow, Black, Blue, Green,
+  Brown), SAC Himalaya Alligator, and BAG MODEL 017 (Black, Brown, Light Blue; Pink was
+  already 0). Policy was already "deny", so all show Sold out. Reversible by setting stock back.
+  The owner wants a "notify me when back in stock" button: Klaviyo's Back in Stock does this
+  on sold-out variants once the app is installed; to be switched on with the email build.
+- Email header: the owner chose between A (the site logo as it is) and D (wordmark without
+  emblems); A at 260px is in, `obm-email-logo.png`. The stacked variant stays in Files unused.

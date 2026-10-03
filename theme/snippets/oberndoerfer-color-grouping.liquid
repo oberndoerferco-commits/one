@@ -172,6 +172,12 @@
 
     var OB_SUFFIX_GROUPS = ['Leather Coaster Set', 'Leather Pouf', 'Leather Tray'];
 
+    /* ONE CARD PER MODEL (3 Oct, the owner: "in collection pages just show one color of the
+       model instead of all colors"): on a collection page, every colour family keeps its
+       first card and hides the others; the dots on the surviving card still link to each
+       colour's own page. Ready to Wear is the exception (its one-card-per-colour is the
+       owner's own choice, 7 Sept); the home page rows are not touched. */
+    var OB_ONE_PER_MODEL = {% if request.page_type == 'collection' and request.path contains 'ready-to-wear' %}false{% elsif request.page_type == 'collection' %}true{% else %}false{% endif %};
     var SWATCH_VISIBLE_CAP = 4;
     var CATALOG_KEY = 'obm-catalog-v1';
 
@@ -452,6 +458,9 @@
 
         document.querySelectorAll('.ob-swatches').forEach(function (n) { n.remove(); });
         cards.forEach(function (c) { c.setAttribute('data-ob-swatched', 'none'); });
+        document.querySelectorAll('[data-ob-hidden-colour]').forEach(function (n) {
+          n.removeAttribute('data-ob-hidden-colour'); n.style.display = '';
+        });
 
         var byBase = new Map();
         var anyGroupable = false;
@@ -481,6 +490,20 @@
               if (!m.href || seen[m.href]) return;
               seen[m.href] = true;
               palette.push(m);
+            });
+          }
+
+          if (OB_ONE_PER_MODEL && members.length > 1) {
+            var keep = {};
+            members = members.filter(function (m) {
+              var h = handleOf(m.href);
+              if (!keep.first) { keep.first = h; return true; }
+              if (h === keep.first) return true; // same product twice on a page stays as is
+              var item = m.card.closest('.product-grid__item') || m.card;
+              item.setAttribute('data-ob-hidden-colour', '');
+              item.style.display = 'none';
+              m.card.setAttribute('data-ob-swatched', 'hidden');
+              return false;
             });
           }
 
