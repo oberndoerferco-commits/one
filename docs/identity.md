@@ -767,3 +767,7 @@ menu), "for mobile".
 - Fifth pass (owner: "from pics and coloring i really liked these, for the hero image … mobile and website
   desktop"): the hero is a photograph, the Mirror Handbag in low sun on desktop and Model 017 among palm
   leaves on phones; then the buckle and the zebra, Tuscany full width, Our services.
+- Sixth pass: the owner swapped the buckle square for the Sac worn photo in the theme editor, then "put
+  the zebra pic down where there is 3 images". The zebra is now the middle service picture
+  (Personalisation); the squares are the Sac worn and the Sac with stone spheres, the pair from the
+  owner's reference screenshot; the Sac square's caption reads "The Sac" and links to Bags.

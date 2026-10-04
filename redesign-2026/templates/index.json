@@ -13,7 +13,9 @@
             "eyebrow": "Made by hand, around Milan",
             "label": "Discover the bags",
             "link": "shopify://collections/bags",
-            "image_mobile": "shopify://shop_images/IMG_7399_2.heic"
+            "image_mobile": "shopify://shop_images/IMG_7399_2.heic",
+            "video_url": "",
+            "video_url_mobile": ""
           }
         }
       },
@@ -37,25 +39,25 @@
         "panel_1": {
           "type": "panel",
           "settings": {
-            "image": "shopify://shop_images/obm-2026-buckle-stone.jpg",
+            "image": "shopify://shop_images/obm-2026-sac-worn.jpg",
             "focal_x": 50,
-            "focal_y": 50,
+            "focal_y": 30,
             "tone": "light",
-            "eyebrow": "Small leather goods",
+            "eyebrow": "The Sac",
             "label": "Discover",
-            "link": "shopify://collections/small-leather-goods"
+            "link": "shopify://collections/bags"
           }
         },
         "panel_2": {
           "type": "panel",
           "settings": {
-            "image": "shopify://shop_images/obm-2026-atelier-zebra.jpg",
+            "image": "shopify://shop_images/obm-home-sac-spheres.jpg",
             "focal_x": 50,
             "focal_y": 50,
             "tone": "light",
-            "eyebrow": "The atelier",
-            "label": "Discover",
-            "link": "shopify://pages/materials-craftsmanship"
+            "eyebrow": "Bags",
+            "label": "Discover the bags",
+            "link": "shopify://collections/bags"
           }
         }
       },
@@ -120,7 +122,7 @@
         "service_2": {
           "type": "service",
           "settings": {
-            "image": "shopify://shop_images/obm-coll-slg.jpg",
+            "image": "shopify://shop_images/obm-2026-atelier-zebra.jpg",
             "label": "Personalisation",
             "link": "shopify://pages/personalization"
           }
