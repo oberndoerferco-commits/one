@@ -40,6 +40,7 @@
     style="--padding-block-start: {{ section.settings.padding-block-start }}px; --padding-block-end: {{ section.settings.padding-block-end }}px;"
     section-id="{{ section.id }}"
     infinite-scroll="{{ section.settings.enable_infinite_scroll }}"
+    data-obm-products-count="{{ collection.products_count }}"
   >
     {% render 'skip-to-content-link', href: '#ResultsList', text: 'accessibility.skip_to_results_list' %}
 
@@ -76,12 +77,9 @@
                 product_view_context: 'collection'
               %}
             </li>
-            {% if paginate.current_page == 1 and forloop.index == 3 %}
-              {% render 'oberndoerfer-grid-lifestyle' %}
-            {% endif %}
-            {% if paginate.current_page == 1 and forloop.index == 15 %}
-              {% render 'oberndoerfer-grid-lifestyle', tile: 2 %}
-            {% endif %}
+            {% comment %} 4 Oct 2026: the photographs between the products are off, the owner
+              wants the plain grid of the Bottega Veneta reference. Restore with
+              {% render 'oberndoerfer-grid-lifestyle' %} after the 3rd and tile: 2 after the 15th. {% endcomment %}
           {% endfor %}
         {% endcapture %}
 

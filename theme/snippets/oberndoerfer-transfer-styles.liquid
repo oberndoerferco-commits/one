@@ -180,6 +180,81 @@
     }
   }
 </style>
+{%- if request.page_type == 'collection' -%}
+<style>
+  /* 4 Oct 2026, the owner, with screenshots of Bottega Veneta's collection page: "i also like
+     the layout of their collection pages". The reference: a quiet bar with the product count
+     at the left and an outlined "Filter & Sort" button at the right, then a two-column grid of
+     square tiles, the name in sentence case and the price beneath, nothing else. */
+  main[data-template^='collection'] .column-options-wrapper { display: none !important; }
+  main[data-template^='collection'] .facets__filters-wrapper { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  main[data-template^='collection'] .obm-results-count {
+    font-family: var(--font-body--family);
+    font-size: 0.9375rem; letter-spacing: 0.01em; color: #1c1714; white-space: nowrap; margin: 0;
+  }
+  main[data-template^='collection'] .facets-mobile-wrapper .obm-results-count { display: none; }
+  main[data-template^='collection'] .facets-toggle__wrapper { margin-inline-start: auto !important; }
+  @media screen and (min-width: 750px) { main[data-template^='collection'] .facets-toggle__wrapper ~ .obm-results-count, main[data-template^='collection'] .obm-results-count:has(+ .facets-toggle__wrapper) { display: none; } }
+  /* badge: a small plain word at the top-left of the photograph, as Bottega writes "New" */
+  main[data-template^='collection'] .product-badges { inset: 10px auto auto 12px !important; }
+  main[data-template^='collection'] .product-badges__badge {
+    background: transparent !important; border: 0 !important; box-shadow: none !important; padding: 0 !important;
+    font-family: var(--font-body--family) !important; font-size: 0.8125rem !important; font-weight: 400 !important;
+    letter-spacing: 0.01em !important; text-transform: none !important; color: rgba(28, 23, 20, 0.6) !important;
+  }
+  main[data-template^='collection'] .facets-toggle__button {
+    border: 1px solid rgba(28, 23, 20, 0.6) !important; border-radius: 0 !important;
+    padding: 12px 18px !important; font-size: 0.9375rem !important; letter-spacing: 0.01em !important;
+    text-transform: none !important; background: transparent !important;
+  }
+  main[data-template^='collection'] .product-grid__card .product-card__content,
+  main[data-template^='collection'] product-card [class*='product-title'],
+  main[data-template^='collection'] product-card .product-card__title,
+  main[data-template^='collection'] product-card h3,
+  main[data-template^='collection'] product-card .h6,
+  main[data-template^='collection'] product-card product-price .price {
+    font-family: var(--font-body--family) !important;
+    font-size: 0.9375rem !important; font-weight: 400 !important; letter-spacing: 0.01em !important;
+    text-transform: none !important; line-height: 1.4 !important;
+  }
+  main[data-template^='collection'] product-card [class*='product_title'],
+  main[data-template^='collection'] product-card [class*='product_title'] p {
+    font-family: var(--font-body--family) !important; font-size: 0.9375rem !important; font-weight: 400 !important;
+    letter-spacing: 0.01em !important; text-transform: none !important; line-height: 1.4 !important; color: #1c1714 !important;
+  }
+  main[data-template^='collection'] product-card product-price .price { color: #1c1714 !important; }
+  main[data-template^='collection'] .product-grid__card { --product-card-gap: 6px !important; padding-block: 10px 6px !important; }
+  @media screen and (max-width: 749px) {
+    main[data-template^='collection'] .product-grid { --product-grid-columns-mobile: 2 !important; column-gap: 12px !important; row-gap: 26px !important; }
+    main[data-template^='collection'] .facets__form-wrapper, main[data-template^='collection'] .facets__filters-wrapper { padding-inline: 16px !important; }
+  }
+</style>
+<script>
+  /* the count at the left of the filter bar, from the number Horizon already prints on the form */
+  (function () {
+    function place() {
+      var form = document.querySelector('facets-form-component[data-results-count]');
+      if (!form) return;
+      var n = parseInt(form.getAttribute('data-results-count'), 10);
+      if (!(n >= 0)) return;
+      var label = n + (n === 1 ? ' product' : ' products');
+      function make() { var p = document.createElement('p'); p.className = 'obm-results-count'; p.textContent = label; return p; }
+      /* phone: count at the left, the Filter & Sort button at the right, as in the reference */
+      var tw = document.querySelector('.facets-toggle__wrapper');
+      if (tw && tw.parentElement && !tw.parentElement.querySelector(':scope > .obm-results-count')) {
+        var row = tw.parentElement;
+        row.insertBefore(make(), tw);
+        row.style.display = 'flex'; row.style.alignItems = 'center'; row.style.justifyContent = 'space-between'; row.style.gap = '12px';
+      }
+      /* desktop: at the left of the horizontal filter bar */
+      var bar = document.querySelector('.facets__filters-wrapper');
+      if (bar && !bar.querySelector('.obm-results-count')) bar.insertBefore(make(), bar.firstChild);
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', place); else place();
+    new MutationObserver(function () { place(); }).observe(document.documentElement, { childList: true, subtree: true });
+  })();
+</script>
+{%- endif -%}
 {% render 'oberndoerfer-color-grouping' %}
 {%- if request.page_type == 'product' -%}{% render 'oberndoerfer-pdp-color-swatches' %}{%- endif -%}
 {% render 'oberndoerfer-mobile-menu' %}

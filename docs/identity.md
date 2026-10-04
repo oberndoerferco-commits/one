@@ -656,3 +656,37 @@ alone since their titles do not match a family. On "NEW WEBSITE BUG fix 16 - col
 product pages" (207725855045, copy of fix 15), verified in the preview: Briefcase 3 dots, SAC
 Alligator 6, 8-Place Watch Box 8, the T-shirt page no row, Bags still 9 cards, 0 errors.
 Owner publishes.
+
+## Fix 17: colours back, alligator one card, Bottega-style menu and collection pages (4 October)
+
+The owner, after fix 16: "remove this image from my website and i noticed that you did a big
+mistake, you see no other color of any product anymore, i just wanted the sac and model 017.
+take back all of the color options of the products, also the model 017 and sac, just show one
+model of the alligator sac." Then, with screenshots of Bottega Veneta's phone site: "I want the
+menu sidebar like in the bottega website (so remove all pictures of collection that are in the
+current menu bar), i also like the layout of their collection pages, also remove color swatches
+from collection pages and just show them in the product pages."
+
+The 3 October one-card rule misread "sold out" as "collapse every family". Corrected on "NEW
+WEBSITE BUG fix 17 - colours back, alligator one card" (207752692037, copy of the live fix 16):
+- `oberndoerfer-color-grouping.liquid`: `OB_COLLAPSE_BASES = ['sac alligator']`, so only the
+  six alligator SACs show as one card on collection pages; every other family, SAC calf and
+  MODEL 017 included, shows all its colour cards again. `OB_CARD_SWATCHES` is false on
+  collection pages: no dot rows under cards there. Home rows keep their dots; product pages keep
+  the row under the title.
+- The pool photograph (`A1603CD8-9169-4741-81AE-31BBD21B10CC.jpg`, Miramare terrace with the
+  sign) was the hero `hero_eAhQMJ` on Art of Living; that section is removed from
+  `templates/page.art-of-living.json`. The file stays in Shopify Files.
+- Menu: the header menu block's style is "text" (`sections/header-group.json`), so the drawer
+  renders no collection pictures; `oberndoerfer-mobile-menu.liquid` sets the rows like the
+  reference (17px, sentence case, light weight, tall rows, chevron at the right). This reverses
+  the 15 August decision to keep the thumbnails, at the owner's request.
+- Collection pages (`oberndoerfer-transfer-styles.liquid`, collection pages only): the count
+  ("39 products") at the left and an outlined "Filter & Sort" button at the right (locale
+  `actions.show_filters`), the grid-density toggle hidden, two-column grid, names in sentence
+  case at 15px with the price beneath, the "Sold out" badge a small plain word at the top-left.
+  The lifestyle photographs between products are off (`sections/main-collection.liquid`, the
+  render lines are in a comment for restoring).
+Verified on the preview: Bags 24 cards, 19 shown, the 5 other alligator colours hidden, 0 dot
+rows, 0 lifestyle tiles; drawer 0 images; Art of Living no longer loads the photograph; product
+page 3 dots; home 54 dot rows; 0 errors. Owner publishes.

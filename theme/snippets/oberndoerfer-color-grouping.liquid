@@ -172,11 +172,19 @@
 
     var OB_SUFFIX_GROUPS = ['Leather Coaster Set', 'Leather Pouf', 'Leather Tray'];
 
-    /* ONE CARD PER MODEL (3 Oct, the owner: "in collection pages just show one color of the
-       model instead of all colors"): on a collection page, every colour family keeps its
-       first card and hides the others; the dots on the surviving card still link to each
-       colour's own page. Ready to Wear is the exception (its one-card-per-colour is the
-       owner's own choice, 7 Sept); the home page rows are not touched. */
+    /* ONE CARD PER FAMILY, for the alligator SAC only (4 Oct). The 3 Oct version collapsed
+       every colour family on collection pages; the owner: "you see no other color of any
+       product anymore, i just wanted the sac and model 017 ... take back all of the color
+       options of the products, also the model 017 and sac, just show one model of the
+       alligator sac". So every family shows all its colour cards again, and only the bases
+       listed here keep their first card and hide the rest (the dots on the surviving card
+       still link to each colour's page). Collection pages only; Ready to Wear and the home
+       rows are never touched. */
+    var OB_COLLAPSE_BASES = ['sac alligator'];
+    /* 4 Oct, the owner: "remove color swatches from collection pages and just show them in
+       the product pages". Cards on collection pages get no dot row; the home rows keep
+       theirs; the product page has its own row (oberndoerfer-pdp-color-swatches). */
+    var OB_CARD_SWATCHES = {% if request.page_type == 'collection' %}false{% else %}true{% endif %};
     var OB_ONE_PER_MODEL = {% if request.page_type == 'collection' and request.path contains 'ready-to-wear' %}false{% elsif request.page_type == 'collection' %}true{% else %}false{% endif %};
     var SWATCH_VISIBLE_CAP = 4;
     var CATALOG_KEY = 'obm-catalog-v1';
@@ -511,7 +519,7 @@
             });
           }
 
-          if (OB_ONE_PER_MODEL && members.length > 1) {
+          if (OB_ONE_PER_MODEL && members.length > 1 && OB_COLLAPSE_BASES.indexOf(key) !== -1) {
             var keep = {};
             members = members.filter(function (m) {
               var h = handleOf(m.href);
@@ -528,7 +536,7 @@
           if (palette.length < 2) {
             // Nothing to show. If the catalog is still in flight this card
             // might still gain a row, so hold its height until we know.
-            if (!familyIndex) {
+            if (!familyIndex && OB_CARD_SWATCHES) {
               members.forEach(function (self) {
                 var hold = document.createElement('div');
                 hold.className = 'ob-swatches ob-swatches--pending';
@@ -539,6 +547,8 @@
             }
             return;
           }
+
+          if (!OB_CARD_SWATCHES) return;
 
           members.forEach(function (self) {
             var row = document.createElement('div');
