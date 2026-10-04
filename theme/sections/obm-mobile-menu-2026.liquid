@@ -1,0 +1,134 @@
+{% comment %}
+  Oberndoerfer Milano - phone menu (REDESIGN 2026). The owner, 4 October, with a screenshot of Bottega
+  Veneta's phone menu: "my menu also has to look exactly like that, for mobile". A full-screen white
+  page: the logo at the left with search, account, bag and a close cross at the right; the main menu as
+  plain rows with a chevron each; then, in grey, customer service, account, where to find us and the
+  shipping country (underlined). On phones and tablets it opens in place of the theme's drawer when the
+  menu icon is tapped; on a desktop nothing changes.
+{% endcomment %}
+{%- liquid
+  assign menu = section.settings.menu
+  assign logo = section.settings.logo | default: settings.logo
+-%}
+<div class="obm-menu" id="ObmMenu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <div class="obm-menu__bar">
+    <a class="obm-menu__logo" href="{{ routes.root_url }}">
+      {%- if logo != blank -%}
+        {{ logo | image_url: width: 600 | image_tag: alt: shop.name, loading: 'lazy' }}
+      {%- else -%}
+        {{ shop.name }}
+      {%- endif -%}
+    </a>
+    <div class="obm-menu__icons">
+      <a href="{{ routes.search_url }}" aria-label="Search"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7"/><path d="M20 20l-4.5-4.5"/></svg></a>
+      <a href="{{ routes.account_url }}" aria-label="Account"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="7.5" r="3.5"/><path d="M5.5 21v-2.5A4.5 4.5 0 0 1 10 14h4a4.5 4.5 0 0 1 4.5 4.5V21z"/></svg></a>
+      <a href="{{ routes.cart_url }}" aria-label="Bag"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 8h14v13H5z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></a>
+      <button type="button" class="obm-menu__close" aria-label="Close" data-obm-menu-close><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+    </div>
+  </div>
+
+  <nav class="obm-menu__main" aria-label="Main">
+    <ul>
+      {%- for link in menu.links -%}
+        <li><a href="{{ link.url }}">{{ link.title }}<svg width="10" height="16" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 2l6 6-6 6"/></svg></a></li>
+      {%- endfor -%}
+    </ul>
+  </nav>
+
+  <ul class="obm-menu__more">
+    {%- if section.settings.service_link != blank -%}<li><a href="{{ section.settings.service_link }}">{{ section.settings.service_label }}</a></li>{%- endif -%}
+    <li><a href="{{ routes.account_url }}">{{ section.settings.account_label }}</a></li>
+    {%- if section.settings.locator_link != blank -%}<li><a href="{{ section.settings.locator_link }}">{{ section.settings.locator_label }}</a></li>{%- endif -%}
+    <li>
+      {%- if localization.available_countries.size > 1 -%}
+        {%- form 'localization', class: 'obm-menu__country' -%}
+          <label for="ObmMenuCountry">{{ section.settings.ship_label }}</label>
+          <span class="obm-menu__select">
+            <span class="obm-menu__value">{{ localization.country.name }}</span>
+            <select id="ObmMenuCountry" name="country_code" onchange="this.form.submit()">
+              {%- for country in localization.available_countries -%}
+                <option value="{{ country.iso_code }}"{% if country.iso_code == localization.country.iso_code %} selected{% endif %}>{{ country.name }}</option>
+              {%- endfor -%}
+            </select>
+          </span>
+          <input type="hidden" name="return_to" value="{{ request.path }}">
+        {%- endform -%}
+      {%- else -%}
+        <span class="obm-menu__country">{{ section.settings.ship_label }} <span class="obm-menu__value">{{ localization.country.name }}</span></span>
+      {%- endif -%}
+    </li>
+  </ul>
+</div>
+
+<script>
+  (function () {
+    var menu = document.getElementById('ObmMenu');
+    if (!menu || menu.dataset.ready) return;
+    menu.dataset.ready = '1';
+    var small = window.matchMedia('(max-width: 989px)');
+    var opener = null;
+    function open(from) {
+      opener = from || null;
+      menu.hidden = false;
+      document.documentElement.classList.add('obm-menu-open');
+      var c = menu.querySelector('[data-obm-menu-close]'); if (c) c.focus();
+    }
+    function close() {
+      menu.hidden = true;
+      document.documentElement.classList.remove('obm-menu-open');
+      if (opener) opener.focus();
+    }
+    document.addEventListener('click', function (e) {
+      var s = e.target.closest && e.target.closest('summary.header__icon--menu');
+      if (!s || !small.matches) return;
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      open(s);
+    }, true);
+    menu.addEventListener('click', function (e) { if (e.target.closest('[data-obm-menu-close]')) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !menu.hidden) close(); });
+    small.addEventListener('change', function () { if (!small.matches && !menu.hidden) close(); });
+  })();
+</script>
+
+{% stylesheet %}
+  .obm-menu { position: fixed; inset: 0; z-index: 1000; background: #fff; color: #1c1714; overflow-y: auto; -webkit-overflow-scrolling: touch; display: flex; flex-direction: column; padding: 0 16px 48px; font-family: var(--font-body--family); }
+  .obm-menu[hidden] { display: none; }
+  html.obm-menu-open, html.obm-menu-open body { overflow: hidden; }
+  .obm-menu a { color: inherit; text-decoration: none; }
+  .obm-menu__bar { display: flex; align-items: center; justify-content: space-between; min-height: 64px; }
+  .obm-menu__logo { display: flex; align-items: center; }
+  .obm-menu__logo img { display: block; height: 30px; width: auto; }
+  .obm-menu__icons { display: flex; align-items: center; margin-right: -10px; }
+  .obm-menu__icons a, .obm-menu__close { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: #1c1714; background: none; border: 0; padding: 0; cursor: pointer; }
+  .obm-menu__main { margin-top: 36px; }
+  .obm-menu__main ul, .obm-menu__more { list-style: none; margin: 0; padding: 0; }
+  .obm-menu__main a { display: flex; align-items: center; justify-content: space-between; min-height: 56px; font-size: 18px; font-weight: 400; letter-spacing: 0.01em; }
+  .obm-menu__main a svg { flex: none; margin-right: 2px; }
+  .obm-menu__more { margin-top: 56px; display: flex; flex-direction: column; }
+  .obm-menu__more li { min-height: 46px; display: flex; align-items: center; }
+  .obm-menu__more a, .obm-menu__country { font-size: 15px; color: #6b6f75; letter-spacing: 0.01em; }
+  .obm-menu__country { display: flex; align-items: center; gap: 6px; margin: 0; }
+  .obm-menu__country label { color: inherit; }
+  .obm-menu__value { color: #6b6f75; border-bottom: 1px solid #6b6f75; padding-bottom: 2px; }
+  .obm-menu__select { position: relative; display: inline-flex; }
+  .obm-menu__select select { position: absolute; inset: 0; opacity: 0; width: 100%; font-size: 16px; cursor: pointer; }
+  @media screen and (min-width: 990px) { .obm-menu { display: none !important; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Phone menu (2026)",
+  "settings": [
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
+    { "type": "image_picker", "id": "logo", "label": "Logo (defaults to the theme logo)" },
+    { "type": "text", "id": "service_label", "label": "Customer service label", "default": "Customer service" },
+    { "type": "url", "id": "service_link", "label": "Customer service link" },
+    { "type": "text", "id": "account_label", "label": "Account label", "default": "My account" },
+    { "type": "text", "id": "locator_label", "label": "Store locator label", "default": "Where to find us" },
+    { "type": "url", "id": "locator_link", "label": "Store locator link" },
+    { "type": "text", "id": "ship_label", "label": "Shipping country label", "default": "Ship to:" }
+  ],
+  "presets": [ { "name": "Phone menu (2026)" } ]
+}
+{% endschema %}

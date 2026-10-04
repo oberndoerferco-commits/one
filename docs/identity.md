@@ -745,3 +745,17 @@ and in general what would you improve".
   only (header, footer, favicon). Options and reasoning: the "Logo options" board of the mockup and
   `redesign-2026/README.md`.
 - Draft-wide: square corners on buttons, badges, inputs and cards.
+
+## Redesign 2026: Bottega's home structure, the film, the phone menu (4 October)
+
+The owner: "bottega doesnt has the same structure on homepage, there is a video full screen (if you dont
+find a nice video just put a full screen image) then two images, then full screen image and at the end 3
+images, it all looks clean, i want to reach the same cleaness, i still think there is nicer pictures to
+use"; "for logo i like a"; "my menu also has to look exactly like that" (a screenshot of Bottega's phone
+menu), "for mobile".
+- Draft home page: full-screen film, two images, full-screen image, three images, then the footer. The film
+  is cut from the shop's own 4K video of the orange ostrich mini trunk being made. The photographs are the
+  strongest in the library: Model 017 in a garden, the Mirror Handbag open in low sun (6000px camera
+  originals), the Mirror Handbag carried in Tuscany, the croc trunk, the orange sofa, the hoodie.
+- Logo A confirmed by the owner (already in the draft header).
+- Phone menu and phone header rebuilt like Bottega's. Details: `redesign-2026/README.md`.

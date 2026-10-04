@@ -98,11 +98,24 @@
     "style_2026": {
       "type": "obm-style-2026",
       "settings": {}
+    },
+    "mobile_menu_2026": {
+      "type": "obm-mobile-menu-2026",
+      "settings": {
+        "menu": "main-menu-2026",
+        "service_label": "Customer service",
+        "service_link": "shopify://pages/contact",
+        "account_label": "My account",
+        "locator_label": "Where to find us",
+        "locator_link": "shopify://pages/where-to-find-us",
+        "ship_label": "Ship to:"
+      }
     }
   },
   "order": [
     "announce_2026",
     "header_section",
-    "style_2026"
+    "style_2026",
+    "mobile_menu_2026"
   ]
 }

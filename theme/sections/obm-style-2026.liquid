@@ -3,7 +3,8 @@
   it loads on every page and prints no markup of its own):
   - the EB Garamond italic face (assets/obm-eb-garamond-italic.woff2, SIL Open Font Licence) used for
     collection titles and the "You may also like" heading, as Hermès sets its category names;
-  - square colour chips and square buttons on product pages, as on Bottega Veneta's product page.
+  - square colour chips and square buttons on product pages, as on Bottega Veneta's product page;
+  - the phone header laid out like Bottega's: logo left, icons right, the menu icon last.
 {% endcomment %}
 <style>
   @font-face { font-family: 'OBM Garamond'; font-style: italic; font-weight: 400; font-display: swap; src: url('{{ 'obm-eb-garamond-italic.woff2' | asset_url }}') format('woff2'); }
@@ -18,6 +19,15 @@
   .shopify-section[id*='product_recommendations'] .text-block { margin-inline: auto; text-align: center; }
   .shopify-section[id*='product_recommendations'] .text-block > * { font-family: 'OBM Garamond', 'EB Garamond', Georgia, serif; font-style: italic; font-weight: 400; font-size: 26px; letter-spacing: 0; }
   @media screen and (min-width: 750px) { .shopify-section[id*='product_recommendations'] .text-block > * { font-size: 34px; } }
+  /* Phone header as on Bottega Veneta: the logo at the left, then search, account, bag and the menu
+     icon at the far right (Horizon puts the menu and search at the left and centres the logo). */
+  @media screen and (max-width: 989px) {
+    .header__row--top .header__columns { grid-template-columns: minmax(0, 1fr) auto auto auto !important; grid-template-areas: "obmlogo obmsearch obmactions obmdrawer" !important; column-gap: 0 !important; }
+    .header__row--top .header__columns .header-logo { grid-area: obmlogo !important; justify-self: start !important; margin: 0 !important; }
+    .header__row--top .header__columns search-button.search-action--hidden-on-menu { grid-area: obmsearch !important; }
+    .header__row--top .header__columns header-actions { grid-area: obmactions !important; }
+    .header__row--top .header__columns .header__drawer { grid-area: obmdrawer !important; justify-self: end; }
+  }
 {% endstylesheet %}
 {% schema %}
 { "name": "Site style (2026)", "settings": [], "presets": [ { "name": "Site style (2026)" } ] }

@@ -2,16 +2,26 @@
   Oberndoerfer Milano - full-bleed photo panels (REDESIGN 2026, 4 October).
   The owner: "the homepage i like how bottega did it". Bottega Veneta's home page is a column of
   full-bleed photographs, each with one short uppercase line and one boxed button at the foot.
-  One section holds one or two panels: on a phone they stack, on a desktop two sit side by side.
+  One section holds one to three panels: on a phone they stack, on a desktop they sit side by side.
+  A panel can carry a muted looping video (Bottega opens on a full-screen film); "Full screen" fills the
+  window under the header.
 {% endcomment %}
 {%- liquid
   assign cols = section.settings.columns_desktop | default: 1
 -%}
-<section class="obm-panels obm-panels--{{ cols }} obm-panels--show-{{ section.settings.show_on | default: 'all' }}" style="--obm-h-desktop: {{ section.settings.height_desktop }}px; --obm-h-mobile: {{ section.settings.height_mobile }}px; --obm-gap-top: {{ section.settings.gap_top }}px;">
+<section class="obm-panels obm-panels--{{ cols }} obm-panels--show-{{ section.settings.show_on | default: 'all' }}{% if section.settings.height_mode == 'screen' %} obm-panels--screen{% endif %}" style="--obm-h-desktop: {{ section.settings.height_desktop }}px; --obm-h-mobile: {{ section.settings.height_mobile }}px; --obm-gap-top: {{ section.settings.gap_top }}px; --obm-offset-desktop: {{ section.settings.offset_desktop | default: 0 }}px; --obm-offset-mobile: {{ section.settings.offset_mobile | default: 0 }}px;">
   {%- for block in section.blocks -%}
     <div class="obm-panel{% if block.settings.tone == 'dark' %} obm-panel--dark{% endif %}" {{ block.shopify_attributes }}>
       {%- if block.settings.link != blank -%}<a class="obm-panel__media" href="{{ block.settings.link }}" tabindex="-1" aria-hidden="true">{%- else -%}<div class="obm-panel__media">{%- endif -%}
-        {%- if block.settings.image != blank -%}
+        {%- assign vdesk = block.settings.video_url | strip -%}
+        {%- assign vmob = block.settings.video_url_mobile | strip | default: vdesk -%}
+        {%- if block.settings.video != blank -%}{%- assign vsrc = block.settings.video.sources | where: 'mime_type', 'video/mp4' | sort: 'width' | last -%}{%- assign vdesk = vsrc.url -%}{%- if block.settings.video_url_mobile == blank -%}{%- assign vmob = vdesk -%}{%- endif -%}{%- endif -%}
+        {%- if vdesk != blank -%}
+          {%- assign has_video = true -%}
+          {%- assign poster = block.settings.image | image_url: width: 1920 -%}
+          {%- assign poster_m = block.settings.image_mobile | default: block.settings.image | image_url: width: 900 -%}
+          <video class="obm-panel__video" muted autoplay loop playsinline preload="metadata" poster="{{ poster }}" data-src-desktop="{{ vdesk }}" data-src-mobile="{{ vmob }}" data-poster-mobile="{{ poster_m }}" aria-label="{{ block.settings.image.alt | default: block.settings.eyebrow | escape }}"></video>
+        {%- elsif block.settings.image != blank -%}
           {%- assign mobile = block.settings.image_mobile | default: block.settings.image -%}
           <picture>
             <source media="(max-width: 749px)" srcset="{{ mobile | image_url: width: 900 }} 900w, {{ mobile | image_url: width: 1400 }} 1400w" sizes="100vw">
@@ -28,15 +38,34 @@
     </div>
   {%- endfor -%}
 </section>
+{%- if has_video -%}
+<script>
+  (function () {
+    var root = document.currentScript.previousElementSibling;
+    var vids = root ? root.querySelectorAll('.obm-panel__video') : [];
+    var mobile = window.matchMedia('(max-width: 749px)').matches;
+    var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    vids.forEach(function (v) {
+      if (mobile && v.dataset.posterMobile) v.poster = v.dataset.posterMobile;
+      if (still) return;
+      v.src = mobile ? v.dataset.srcMobile : v.dataset.srcDesktop;
+      var p = v.play(); if (p && p.catch) p.catch(function () {});
+    });
+  })();
+</script>
+{%- endif -%}
 
 {% stylesheet %}
   .obm-panels { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; margin-top: var(--obm-gap-top, 12px); background: #fff; }
-  @media screen and (min-width: 750px) { .obm-panels--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media screen and (min-width: 750px) { .obm-panels--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .obm-panels--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
   @media screen and (max-width: 749px) { .obm-panels--show-desktop { display: none; } }
   @media screen and (min-width: 750px) { .obm-panels--show-mobile { display: none; } }
   .obm-panel { position: relative; overflow: hidden; height: var(--obm-h-mobile, 620px); background: #F2EFEA; }
   @media screen and (min-width: 750px) { .obm-panel { height: var(--obm-h-desktop, 820px); } }
+  .obm-panels--screen .obm-panel { height: calc(100svh - var(--obm-offset-mobile, 0px)); min-height: 520px; }
+  @media screen and (min-width: 750px) { .obm-panels--screen .obm-panel { height: calc(100svh - var(--obm-offset-desktop, 0px)); min-height: 600px; } }
   .obm-panel__media, .obm-panel__media picture { position: absolute; inset: 0; display: block; }
+  .obm-panel__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
   .obm-panel__media img, .obm-panel__placeholder { width: 100%; height: 100%; object-fit: cover; display: block; }
   .obm-panel::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 45%; background: linear-gradient(to top, rgba(20, 16, 14, 0.38), rgba(20, 16, 14, 0)); pointer-events: none; }
   .obm-panel--dark::after { display: none; }
@@ -54,7 +83,10 @@
   "name": "Photo panels",
   "class": "obm-panels-section",
   "settings": [
-    { "type": "select", "id": "columns_desktop", "label": "Panels side by side on desktop", "options": [ { "value": "1", "label": "One" }, { "value": "2", "label": "Two" } ], "default": "1" },
+    { "type": "select", "id": "columns_desktop", "label": "Panels side by side on desktop", "options": [ { "value": "1", "label": "One" }, { "value": "2", "label": "Two" }, { "value": "3", "label": "Three" } ], "default": "1" },
+    { "type": "select", "id": "height_mode", "label": "Height", "options": [ { "value": "fixed", "label": "Fixed (below)" }, { "value": "screen", "label": "Full screen" } ], "default": "fixed" },
+    { "type": "range", "id": "offset_desktop", "label": "Full screen: header height to leave on desktop", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "offset_mobile", "label": "Full screen: header height to leave on phone", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 0 },
     { "type": "range", "id": "height_desktop", "label": "Height on desktop", "min": 400, "max": 1100, "step": 20, "unit": "px", "default": 820 },
     { "type": "range", "id": "height_mobile", "label": "Height on phone", "min": 360, "max": 900, "step": 20, "unit": "px", "default": 620 },
     { "type": "select", "id": "show_on", "label": "Show on", "options": [ { "value": "all", "label": "Phone and desktop" }, { "value": "desktop", "label": "Desktop only" }, { "value": "mobile", "label": "Phone only" } ], "default": "all" },
@@ -67,6 +99,9 @@
       "settings": [
         { "type": "image_picker", "id": "image", "label": "Photograph" },
         { "type": "image_picker", "id": "image_mobile", "label": "Photograph on phone (optional)" },
+        { "type": "video", "id": "video", "label": "Video (plays muted in a loop; the photograph is its poster)" },
+        { "type": "text", "id": "video_url", "label": "Or video address (.mp4)" },
+        { "type": "text", "id": "video_url_mobile", "label": "Video address on phone (.mp4, optional)" },
         { "type": "range", "id": "focal_x", "label": "Focus left to right", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 50 },
         { "type": "range", "id": "focal_y", "label": "Focus top to bottom", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 50 },
         { "type": "select", "id": "tone", "label": "Text colour", "options": [ { "value": "light", "label": "White, for dark photographs" }, { "value": "dark", "label": "Ink, for light photographs" } ], "default": "light" },
@@ -76,7 +111,7 @@
       ]
     }
   ],
-  "max_blocks": 2,
+  "max_blocks": 3,
   "presets": [ { "name": "Photo panels", "blocks": [ { "type": "panel" } ] } ]
 }
 {% endschema %}

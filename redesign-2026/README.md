@@ -36,6 +36,31 @@ Ready to wear | Home accessories, the Miramare lobby (Art of Living), Trunks and
 goods, the atelier | Limited editions; buttons New in, Bags, Travel. Panels take a "Text colour" setting
 (white for dark photographs, ink for light product shots).
 
+## Home page (third pass, 4 October): Bottega's structure
+
+The owner: "bottega doesnt has the same structure on homepage, there is a video full screen (if you dont
+find a nice video just put a full screen image) then two images, then full screen image and at the end 3
+images, it all looks clean". The home page is now exactly that and nothing else:
+1. Full-screen film: 20 seconds, muted, looping, slowed to 0.7x, cut from the 4K atelier video of the orange
+   ostrich mini trunk (stitching, the handle hammered on, the finished bag). Desktop 1920x1080 and phone
+   720x1280 versions are in Shopify Files (`obm-atelier-film-1920.mp4`, `obm-atelier-film-720x1280.mp4`,
+   posters `obm-atelier-film-poster*.jpg`); recipe in `video/cut.sh`. Phones with reduced motion get the
+   poster.
+2. Two images: Bag Model 017 in the garden (`IMG_7399_2.heic`), the Mirror Handbag open in low sun
+   (`IMG_3273.jpg`; closed version `IMG_3258_2.jpg` on phones).
+3. Full-screen image: the Mirror Handbag carried in Tuscany (`hero-trunk-studio.jpg`), New in.
+4. Three images: Trunks (`IMG_1546.heic`), Home (`obm-lane-sofa-orange-v2.jpg`), Ready to wear (hoodie).
+The button row and "Our services" are gone from the home page (services stay in the footer).
+`obm-panels` gained: three across, full-screen height (minus the header), a video per panel.
+
+## Phone menu and header
+
+`obm-mobile-menu-2026` (header group): Bottega's phone menu. Full-screen white; logo left; search, account,
+bag and a close cross right; the main menu as rows with a chevron; then in grey Customer service, My
+account, Where to find us and "Ship to:" with the country underlined (a country picker). It replaces the
+theme drawer on screens under 990px. The phone header itself is laid out the same way (logo left, menu
+icon last) by `obm-style-2026`.
+
 ## Logo (draft only)
 
 The current logo sets a bold MILANO under a light wordmark, with two outlined crosses that turn to grey

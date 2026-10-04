@@ -14,15 +14,15 @@
       "x": 0,
       "y": 0,
       "w": 390,
-      "h": 7395,
-      "title": "Phone · Home (draft, real screenshot)"
+      "h": 5143,
+      "title": "Phone · Home (draft)"
     },
     "Menu.dc.html": {
       "x": 470,
       "y": 0,
       "w": 390,
-      "h": 844,
-      "title": "Phone · Menu"
+      "h": 664,
+      "title": "Phone · Menu (draft)"
     },
     "Collection.dc.html": {
       "x": 940,
@@ -40,10 +40,10 @@
     },
     "Desktop.dc.html": {
       "x": 0,
-      "y": 7800,
+      "y": 5600,
       "w": 1440,
-      "h": 5484,
-      "title": "Desktop · Home (draft, real screenshot)"
+      "h": 3959,
+      "title": "Desktop · Home (draft)"
     },
     "Logo.dc.html": {
       "x": 1960,
@@ -71,7 +71,7 @@
     },
     "desktop": {
       "x": 0,
-      "y": 7500,
+      "y": 5300,
       "text": "On the desktop",
       "kind": "title1",
       "maxW": 1440
