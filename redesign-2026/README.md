@@ -70,6 +70,18 @@ zebra's black and white):
    (Book an appointment, Personalisation, The art of packaging); a swipe row on phones.
 Model 017 is not on the home page any more (sold out); it is one tap away in Bags.
 
+## Home page (fifth pass): a photograph as the hero
+
+The owner, with screenshots of the earlier panels (Sac worn, Sac with spheres, the Mirror Handbag closed,
+the buckle, the zebra, Model 017 in the garden): "from pics and coloring i really liked these, for the hero
+image. I need something that looks good, mobile and website desktop." The film is off; the hero is a
+photograph, chosen per screen so each crops well:
+- desktop: the Mirror Handbag closed in low sun (`IMG_3258_2.jpg`, 6000x4000), framed low so the caption
+  sits under the bag;
+- phone: Bag Model 017 among palm leaves (`IMG_7399_2.heic`), which fills a tall screen.
+Then the buckle on stone and the zebra hide (squares), the Mirror Handbag in Tuscany full width with Bags
+and Trunks, and Our services. The hammering film stays in Shopify Files for later use.
+
 ## Phone menu and header
 
 `obm-mobile-menu-2026` (header group): Bottega's phone menu. Full-screen white; logo left; search, account,
