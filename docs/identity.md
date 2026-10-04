@@ -803,3 +803,5 @@ menu), "for mobile".
   Now evenly spaced, about 18px apart, as on Bottega's phone header (`obm-style-2026`).
 - Hero line (owner's words): "Designed to fill up the empty spaces of your house and wardrobe". Long
   captions now wrap in even lines on phones (three) and run on one line on a desktop, below the bag.
+- Hero button now "Discover more", to New in. Panel buttons smaller on phones (196px wide, 12px text,
+  12px padding; desktop unchanged), so every button on the phone home page is the smaller size.
