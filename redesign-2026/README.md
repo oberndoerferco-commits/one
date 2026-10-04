@@ -82,6 +82,25 @@ photograph, chosen per screen so each crops well:
 Then the buckle on stone and the zebra hide (squares), the Mirror Handbag in Tuscany full width with Bags
 and Trunks, and Our services. The hammering film stays in Shopify Files for later use.
 
+### Captions matched to the owner's pictures (4 October)
+
+The owner swapped pictures in the theme editor, then: "can you match description and collection to the
+images (Eg. Cap pic has bags written, change it to ready to wear)". Each caption and link now follows its
+picture:
+
+| Place | Picture | Caption | Link |
+|---|---|---|---|
+| Hero | Mirror Handbag in low sun / Model 017 (phone) | Made by hand, around Milan · Discover the bags | Bags |
+| Square 1 | The Sac worn | The Sac · Discover | Bags |
+| Square 2 | Leopard cap | Ready to wear · Discover (ink text on the light grey) | Ready to Wear |
+| Full width | Zebra hide cut by hand | Cut by hand in our atelier · Craftsmanship | Materials & Craftsmanship |
+| Row of three, heading "Explore" | Brass emblem being brazed | Personalisation | Bespoke Products |
+| | Navy Mirror Handbag carried in a garden | The Mirror Handbag | The Mirror Handbag - Blue |
+| | Jewellery box on a studded case | Home accessories | Home Accessories |
+
+The row is no longer services only, so its heading reads "Explore". Book an appointment and The art of
+packaging are still in the footer.
+
 ## Phone menu and header
 
 `obm-mobile-menu-2026` (header group): Bottega's phone menu. Full-screen white; logo left; search, account,

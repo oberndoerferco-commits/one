@@ -7,15 +7,17 @@
           "type": "panel",
           "settings": {
             "image": "shopify://shop_images/IMG_3258_2.jpg",
+            "image_mobile": "shopify://shop_images/IMG_7399_2.heic",
+            "video_url": "",
+            "video_url_mobile": "",
             "focal_x": 50,
             "focal_y": 80,
             "tone": "light",
             "eyebrow": "Made by hand, around Milan",
             "label": "Discover the bags",
             "link": "shopify://collections/bags",
-            "image_mobile": "shopify://shop_images/IMG_7399_2.heic",
-            "video_url": "",
-            "video_url_mobile": ""
+            "label_2": "",
+            "link_2": ""
           }
         }
       },
@@ -40,24 +42,32 @@
           "type": "panel",
           "settings": {
             "image": "shopify://shop_images/obm-2026-sac-worn.jpg",
+            "video_url": "",
+            "video_url_mobile": "",
             "focal_x": 50,
             "focal_y": 30,
             "tone": "light",
             "eyebrow": "The Sac",
             "label": "Discover",
-            "link": "shopify://collections/bags"
+            "link": "shopify://collections/bags",
+            "label_2": "",
+            "link_2": ""
           }
         },
         "panel_2": {
           "type": "panel",
           "settings": {
-            "image": "shopify://shop_images/obm-home-sac-spheres.jpg",
+            "image": "shopify://shop_images/obm-lane-cap-leopard-black.jpg",
+            "video_url": "",
+            "video_url_mobile": "",
             "focal_x": 50,
             "focal_y": 50,
-            "tone": "light",
-            "eyebrow": "Bags",
-            "label": "Discover the bags",
-            "link": "shopify://collections/bags"
+            "tone": "dark",
+            "eyebrow": "Ready to wear",
+            "label": "Discover",
+            "link": "shopify://collections/ready-to-wear",
+            "label_2": "",
+            "link_2": ""
           }
         }
       },
@@ -82,15 +92,17 @@
         "panel_1": {
           "type": "panel",
           "settings": {
-            "image": "shopify://shop_images/hero-trunk-studio.jpg",
+            "image": "shopify://shop_images/obm-2026-atelier-zebra.jpg",
+            "video_url": "",
+            "video_url_mobile": "",
             "focal_x": 45,
             "focal_y": 45,
             "tone": "light",
-            "eyebrow": "The Mirror Handbag",
-            "label": "Bags",
-            "link": "shopify://collections/bags",
-            "label_2": "Trunks",
-            "link_2": "shopify://collections/trunks"
+            "eyebrow": "Cut by hand in our atelier",
+            "label": "Craftsmanship",
+            "link": "shopify://pages/materials-craftsmanship",
+            "label_2": "",
+            "link_2": ""
           }
         }
       },
@@ -114,25 +126,25 @@
         "service_1": {
           "type": "service",
           "settings": {
-            "image": "shopify://shop_images/obm-coll-trunks.jpg",
-            "label": "Book an appointment",
-            "link": "shopify://pages/contact"
+            "image": "shopify://shop_images/Custom.jpg",
+            "label": "Personalisation",
+            "link": "shopify://pages/personalization"
           }
         },
         "service_2": {
           "type": "service",
           "settings": {
-            "image": "shopify://shop_images/obm-2026-atelier-zebra.jpg",
-            "label": "Personalisation",
-            "link": "shopify://pages/personalization"
+            "image": "shopify://shop_images/bag.jpg",
+            "label": "The Mirror Handbag",
+            "link": "shopify://products/blue-mirror-handbag-italian-leather"
           }
         },
         "service_3": {
           "type": "service",
           "settings": {
-            "image": "shopify://shop_images/obm-coll-home.jpg",
-            "label": "The art of packaging",
-            "link": "shopify://pages/the-art-of-packaging"
+            "image": "shopify://shop_images/oberndoerfer-bespoke-stacked-cases.jpg",
+            "label": "Home accessories",
+            "link": "shopify://collections/home-accessories"
           }
         }
       },
@@ -142,7 +154,7 @@
         "service_3"
       ],
       "settings": {
-        "heading": "Our services"
+        "heading": "Explore"
       }
     }
   },

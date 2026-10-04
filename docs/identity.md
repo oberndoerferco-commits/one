@@ -771,3 +771,8 @@ menu), "for mobile".
   the zebra pic down where there is 3 images". The zebra is now the middle service picture
   (Personalisation); the squares are the Sac worn and the Sac with stone spheres, the pair from the
   owner's reference screenshot; the Sac square's caption reads "The Sac" and links to Bags.
+- Seventh pass: the owner put the leopard cap in the second square, the zebra full width and new pictures
+  in the row of three, then asked for the words to match the pictures. Cap: "Ready to wear", links to
+  Ready to Wear. Zebra: "Cut by hand in our atelier", links to Materials & Craftsmanship. Row of three,
+  now headed "Explore": Personalisation (brass emblem), The Mirror Handbag (the navy one carried in a
+  garden, links to that product), Home accessories (jewellery box on a studded case).
