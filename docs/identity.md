@@ -778,3 +778,7 @@ menu), "for mobile".
   garden, links to that product), Home accessories (jewellery box on a studded case).
 - Eighth pass: the owner wants the cream Mirror Handbag in low sun as the phone hero too. A tall version of
   the same photograph (wall and floor extended, `redesign-2026/hero/phone.py`) replaces Model 017 there.
+- Ready to Wear copy (owner: "there is no leather on our tshirts, in general I don't like it"): the
+  collection's description and `custom.editorial_line` now read "T-shirts, hoodies, caps and twill pants,
+  made in Italy." (was "…The house mark, cut in calf leather or stitched in thread."). Store-level text, so
+  the live page shows it too. The owner approved the phone hero.
