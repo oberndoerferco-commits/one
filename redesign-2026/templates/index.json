@@ -150,9 +150,9 @@
         "service_4": {
           "type": "service",
           "settings": {
-            "image": "shopify://shop_images/gift_boxes.heic",
-            "label": "The art of packaging",
-            "link": "shopify://pages/the-art-of-packaging"
+            "image": "shopify://shop_images/obm-lane-coaster-brown.jpg",
+            "label": "Home accessories",
+            "link": "shopify://collections/home-accessories"
           }
         }
       },
@@ -163,7 +163,8 @@
         "service_4"
       ],
       "settings": {
-        "heading": "Explore"
+        "heading": "Explore",
+        "desktop_count": "3"
       }
     }
   },

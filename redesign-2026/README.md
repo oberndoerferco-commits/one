@@ -13,7 +13,7 @@ Veneta (bottegaveneta.com/it-it), with Bottega's home page, on a separate draft 
 |---|---|
 | `theme/sections/obm-panels.liquid` | Full-bleed photo panels, one or two per row, eyebrow and boxed button. "Show on" hides a row on phone or desktop. |
 | `theme/sections/obm-button-stack.liquid` | Outlined buttons, stacked on a phone, in a row on a desktop. |
-| `theme/sections/obm-services.liquid` | "Our services": four photographs with labels. |
+| `theme/sections/obm-services.liquid` | Last row: photographs with a label under each; two by two on a phone, three (or four) in a row on a desktop. |
 | `theme/sections/obm-announcement.liquid` | Black announcement line with a close button. |
 | `theme/sections/obm-footer.liquid` | Newsletter, "Where to find us", four menus (accordions on phone, columns on desktop), country, Instagram, copyright. |
 | `theme/sections/obm-collection-title.liquid` | Collection name in EB Garamond italic, centred on white. |

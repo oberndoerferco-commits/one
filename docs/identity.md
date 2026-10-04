@@ -788,3 +788,9 @@ menu), "for mobile".
   automated visits, so it could not be re-checked. A fourth tile was added anyway, as the owner asked:
   the gift boxes, "The art of packaging". Kept the owner's own editor changes (Sac square to Travel, the
   stacked cases relabelled Trunks).
+- Tenth pass, checked on Bottega's phone site (bottegaveneta.com/it-it opens on a phone, the desktop
+  site refuses automated visits): their last row is four pictures two by two on a phone (Appuntamento in
+  negozio, Personalizzazione, Certificate of Craft, Store locator), labels in sentence case; on a desktop
+  the fourth is hidden. Our row now does the same. The fourth picture is the brown leather coaster stack,
+  "Home accessories" (owner: "should be something connected to home accessories"); the gift boxes are out.
+  "Pictures on a desktop" (3 or 4) in the theme editor shows it on desktop too.
