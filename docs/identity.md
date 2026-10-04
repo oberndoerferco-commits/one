@@ -801,3 +801,5 @@ menu), "for mobile".
 - Phone header (owner: the bag "too close to the menu"): the four icons were unevenly spaced (bag 11px from
   the menu icon, 25px from account) because of Horizon's 44px boxes and an overlap on the account icon.
   Now evenly spaced, about 18px apart, as on Bottega's phone header (`obm-style-2026`).
+- Hero line (owner's words): "Designed to fill up the empty spaces of your house and wardrobe". Long
+  captions now wrap in even lines on phones (three) and run on one line on a desktop, below the bag.

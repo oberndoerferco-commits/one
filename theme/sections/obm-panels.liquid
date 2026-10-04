@@ -79,7 +79,8 @@
   .obm-panel--dark .obm-panel__eyebrow { color: #1c1714; text-shadow: none; }
   .obm-panel__foot { z-index: 1; position: absolute; left: 0; right: 0; bottom: 40px; display: flex; flex-direction: column; align-items: center; gap: 14px; padding-inline: 16px; pointer-events: none; }
   @media screen and (min-width: 750px) { .obm-panel__foot { bottom: 56px; gap: 16px; } }
-  .obm-panel__eyebrow { margin: 0; color: #fff; font-size: 15px; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35); }
+  .obm-panel__eyebrow { margin: 0; max-width: 34ch; line-height: 1.5; text-wrap: balance; color: #fff; font-size: 15px; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35); }
+  @media screen and (min-width: 750px) { .obm-panel__eyebrow { max-width: 72ch; } }
   .obm-panel__button { pointer-events: auto; display: block; box-sizing: border-box; width: 248px; max-width: 100%; padding: 16px 20px; background: #fff; color: #1c1714; border: 1px solid #1c1714; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; text-decoration: none; transition: background-color .25s ease, color .25s ease; }
   @media screen and (min-width: 750px) { .obm-panel__button { width: 290px; padding: 17px 20px; } }
   .obm-panel__button:hover, .obm-panel__button:focus-visible { background: #1c1714; color: #fff; }
