@@ -782,3 +782,9 @@ menu), "for mobile".
   collection's description and `custom.editorial_line` now read "T-shirts, hoodies, caps and twill pants,
   made in Italy." (was "…The house mark, cut in calf leather or stitched in thread."). Store-level text, so
   the live page shows it too. The owner approved the phone hero.
+- Ninth pass: zebra panel reads "The Atelier" with a "Discover more" button (Materials & Craftsmanship).
+  The owner said Bottega's last row has four pictures; their own 4 October screenshot of bottegaveneta.com
+  shows three (Prenota un appuntamento, Personalizzazione, Certificate of Craft) and the site blocks
+  automated visits, so it could not be re-checked. A fourth tile was added anyway, as the owner asked:
+  the gift boxes, "The art of packaging". Kept the owner's own editor changes (Sac square to Travel, the
+  stacked cases relabelled Trunks).

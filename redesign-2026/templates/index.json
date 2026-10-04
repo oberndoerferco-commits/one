@@ -49,7 +49,7 @@
             "tone": "light",
             "eyebrow": "The Sac",
             "label": "Discover",
-            "link": "shopify://collections/bags",
+            "link": "shopify://collections/travel",
             "label_2": "",
             "link_2": ""
           }
@@ -98,8 +98,8 @@
             "focal_x": 45,
             "focal_y": 45,
             "tone": "light",
-            "eyebrow": "Cut by hand in our atelier",
-            "label": "Craftsmanship",
+            "eyebrow": "The Atelier",
+            "label": "Discover more",
             "link": "shopify://pages/materials-craftsmanship",
             "label_2": "",
             "link_2": ""
@@ -143,15 +143,24 @@
           "type": "service",
           "settings": {
             "image": "shopify://shop_images/oberndoerfer-bespoke-stacked-cases.jpg",
-            "label": "Home accessories",
-            "link": "shopify://collections/home-accessories"
+            "label": "Trunks",
+            "link": "shopify://collections/trunks"
+          }
+        },
+        "service_4": {
+          "type": "service",
+          "settings": {
+            "image": "shopify://shop_images/gift_boxes.heic",
+            "label": "The art of packaging",
+            "link": "shopify://pages/the-art-of-packaging"
           }
         }
       },
       "block_order": [
         "service_1",
         "service_2",
-        "service_3"
+        "service_3",
+        "service_4"
       ],
       "settings": {
         "heading": "Explore"
