@@ -13,6 +13,7 @@ Veneta (bottegaveneta.com/it-it), with Bottega's home page, on a separate draft 
 |---|---|
 | `theme/sections/obm-panels.liquid` | Full-bleed photo panels, one or two per row, eyebrow and boxed button. "Show on" hides a row on phone or desktop. |
 | `theme/sections/obm-button-stack.liquid` | Outlined buttons, stacked on a phone, in a row on a desktop. |
+| `theme/sections/obm-gallery.liquid` | "The Atelier" (`/pages/the-atelier`, template `page.atelier`): an editorial gallery of projects, chapters with an italic title, a sentence and photographs in rows of one, two or three. |
 | `theme/sections/obm-services.liquid` | Last row: photographs with a label under each; two by two on a phone, three (or four) in a row on a desktop. |
 | `theme/sections/obm-announcement.liquid` | Black announcement line with a close button. |
 | `theme/sections/obm-footer.liquid` | Newsletter, "Where to find us", four menus (accordions on phone, columns on desktop), country, Instagram, copyright. |
@@ -105,6 +106,22 @@ Then the owner: "the mobile version should have the beige mirror bag shot as mai
 original is landscape and a full-height phone panel is about 1:2, so a plain crop cut the bag at the sides.
 `hero/phone.py` builds `obm-2026-mirror-sun-phone.jpg` (Shopify Files, 2400x5018): the same photograph with
 the dark wall extended upward and the sunlit floor downward. It is the hero's phone image.
+
+## The Atelier: a gallery of projects (4 October)
+
+The owner: "the part of discover more, the atelier: dont put materials & craftsmanship, put a totally new
+site that is like an elegant gallery of our projects, write a sentence explaining each". The zebra panel's
+Discover more now opens `/pages/the-atelier`:
+- Title in EB Garamond italic, a short introduction and a list of the four chapters.
+- 01 Oberndörfer × Trax NYC (9 photographs), 02 Oberndörfer × Miramare Palace Sanremo (7), 03 Made once
+  (6, custom pieces), 04 At the bench (9, the atelier at work). Each chapter: number, italic title, one
+  sentence drawn from the existing Trax, Art of Living and Bespoke pages, a link, then its photographs
+  with short captions.
+- Ends with "Something you would like us to make?" and Begin a commission.
+The page is a store page (published so the draft can show it, hidden from search engines with
+`seo.hidden = 1`, linked from nowhere on the live site). On the live theme it would show only its title,
+because the `page.atelier` template exists only in the draft. At go-live: publish the theme, then clear
+`seo.hidden` on the page.
 
 ## Phone menu and header
 

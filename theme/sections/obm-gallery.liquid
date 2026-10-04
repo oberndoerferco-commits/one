@@ -1,0 +1,184 @@
+{% comment %}
+  Oberndoerfer Milano - "The Atelier", a gallery of projects (REDESIGN 2026). The owner, 4 October: "put a
+  totally new site that is like an elegant gallery of our projects, write a sentence explaining each; for
+  example put oberndoerfer x trax with a lot of pictures, then oberndoerfer x miramare, then other custom
+  object pictures and pics from the Atelier at work".
+  Laid out as an editorial page in the house's own language (white ground, EB Garamond italic titles,
+  small spaced capitals, square buttons, 12-16px gutters as on the home page): a title and short
+  introduction, an index of the chapters, then each chapter as a number, an italic title, one or two
+  sentences and a link, followed by its photographs in rows of one, two or three. A closing line and a
+  button end the page.
+  Blocks: "Chapter" opens a chapter (and adds it to the index); "Photograph" adds a picture to the current
+  chapter: full width, half or a third (three across on a phone too), in its own shape or cropped to
+  landscape 3:2, portrait 4:5 or square, with an optional caption.
+{% endcomment %}
+<style>
+  @font-face { font-family: 'OBM Garamond'; font-style: italic; font-weight: 400; font-display: swap; src: url('{{ 'obm-eb-garamond-italic.woff2' | asset_url }}') format('woff2'); }
+</style>
+<div class="obm-gallery">
+  <header class="obm-gallery__head">
+    {%- if section.settings.eyebrow != blank -%}<p class="obm-gallery__eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+    <h1 class="obm-gallery__title">{{ section.settings.title | default: page.title }}</h1>
+    {%- if section.settings.intro != blank -%}<div class="obm-gallery__intro">{{ section.settings.intro }}</div>{%- endif -%}
+    {%- if section.settings.show_index -%}
+      <nav class="obm-gallery__index" aria-label="Chapters">
+        <ol>
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'chapter' -%}
+              <li><a href="#obm-ch-{{ block.id }}"><span>{{ block.settings.number }}</span>{{ block.settings.title }}</a></li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ol>
+      </nav>
+    {%- endif -%}
+  </header>
+
+  {%- liquid
+    assign open = false
+  -%}
+  {%- for block in section.blocks -%}
+    {%- case block.type -%}
+      {%- when 'chapter' -%}
+        {%- if open -%}</div></section>{%- endif -%}
+        <section class="obm-gallery__chapter" id="obm-ch-{{ block.id }}" {{ block.shopify_attributes }}>
+          <div class="obm-gallery__text">
+            {%- if block.settings.number != blank -%}<p class="obm-gallery__number">{{ block.settings.number }}</p>{%- endif -%}
+            <h2 class="obm-gallery__chapter-title">{{ block.settings.title }}</h2>
+            {%- if block.settings.text != blank -%}<div class="obm-gallery__chapter-text">{{ block.settings.text }}</div>{%- endif -%}
+            {%- if block.settings.link_label != blank and block.settings.link != blank -%}<a class="obm-gallery__link" href="{{ block.settings.link }}">{{ block.settings.link_label }}</a>{%- endif -%}
+          </div>
+          <div class="obm-gallery__grid">
+        {%- assign open = true -%}
+      {%- when 'photo' -%}
+        {%- unless open -%}<section class="obm-gallery__chapter"><div class="obm-gallery__grid">{%- assign open = true -%}{%- endunless -%}
+        {%- liquid
+          case block.settings.size
+            when 'half'
+              assign sizes = '(min-width: 750px) 50vw, 50vw'
+              assign w = 1400
+            when 'third'
+              assign sizes = '(min-width: 750px) 33vw, 33vw'
+              assign w = 1000
+            else
+              assign sizes = '100vw'
+              assign w = 2400
+          endcase
+          assign ratio = block.settings.ratio
+          if ratio == 'natural' and block.settings.image != blank
+            assign ratio_css = block.settings.image.aspect_ratio
+          elsif ratio == 'landscape'
+            assign ratio_css = '3 / 2'
+          elsif ratio == 'portrait'
+            assign ratio_css = '4 / 5'
+          elsif ratio == 'square'
+            assign ratio_css = '1 / 1'
+          else
+            assign ratio_css = '4 / 5'
+          endif
+          assign pos = 'object-position: ' | append: block.settings.focal_x | append: '% ' | append: block.settings.focal_y | append: '%;'
+        -%}
+        <figure class="obm-gallery__photo obm-gallery__photo--{{ block.settings.size }}" {{ block.shopify_attributes }}>
+          <div class="obm-gallery__frame" style="aspect-ratio: {{ ratio_css }};">
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: w | image_tag: loading: 'lazy', sizes: sizes, widths: '500, 800, 1200, 1600, 2400', alt: block.settings.image.alt, style: pos }}
+            {%- else -%}
+              {{ 'image' | placeholder_svg_tag: 'obm-gallery__placeholder' }}
+            {%- endif -%}
+          </div>
+          {%- if block.settings.caption != blank -%}<figcaption>{{ block.settings.caption }}</figcaption>{%- endif -%}
+        </figure>
+    {%- endcase -%}
+  {%- endfor -%}
+  {%- if open -%}</div></section>{%- endif -%}
+
+  {%- if section.settings.closing != blank or section.settings.button_label != blank -%}
+    <footer class="obm-gallery__close">
+      {%- if section.settings.closing != blank -%}<p class="obm-gallery__closing">{{ section.settings.closing }}</p>{%- endif -%}
+      {%- if section.settings.button_label != blank -%}<a class="obm-gallery__button" href="{{ section.settings.button_link | default: '#' }}">{{ section.settings.button_label }}</a>{%- endif -%}
+    </footer>
+  {%- endif -%}
+</div>
+
+{% stylesheet %}
+  .obm-gallery { background: #fff; color: #1c1714; padding-bottom: 96px; }
+  .obm-gallery__head { text-align: center; padding: 56px 20px 24px; max-width: 1100px; margin: 0 auto; }
+  @media screen and (min-width: 750px) { .obm-gallery__head { padding: 96px 40px 40px; } }
+  .obm-gallery__eyebrow, .obm-gallery__number { margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6b625b; }
+  .obm-gallery__title { margin: 14px 0 0; font-family: 'OBM Garamond', 'EB Garamond', Garamond, Georgia, serif; font-style: italic; font-weight: 400; font-size: 44px; line-height: 1.05; letter-spacing: 0; text-transform: none; }
+  @media screen and (min-width: 750px) { .obm-gallery__title { font-size: 72px; } }
+  .obm-gallery__intro { margin: 22px auto 0; max-width: 52ch; font-size: 15px; line-height: 1.7; color: #3a322c; }
+  .obm-gallery__intro p { margin: 0; }
+  .obm-gallery__index ol { list-style: none; margin: 36px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; align-items: center; }
+  @media screen and (min-width: 750px) { .obm-gallery__index ol { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 12px 36px; margin-top: 48px; } }
+  .obm-gallery__index a { color: inherit; text-decoration: none; font-size: 13px; letter-spacing: 0.06em; }
+  .obm-gallery__index a span { color: #8a8079; margin-right: 10px; font-size: 11px; letter-spacing: 0.14em; }
+  .obm-gallery__index a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .obm-gallery__chapter { scroll-margin-top: 80px; }
+  .obm-gallery__text { text-align: center; max-width: 620px; margin: 0 auto; padding: 88px 24px 40px; }
+  @media screen and (min-width: 750px) { .obm-gallery__text { padding: 150px 40px 56px; } }
+  .obm-gallery__chapter-title { margin: 14px 0 0; font-family: 'OBM Garamond', 'EB Garamond', Garamond, Georgia, serif; font-style: italic; font-weight: 400; font-size: 32px; line-height: 1.12; letter-spacing: 0; text-transform: none; }
+  @media screen and (min-width: 750px) { .obm-gallery__chapter-title { font-size: 46px; } }
+  .obm-gallery__chapter-text { margin-top: 18px; font-size: 15px; line-height: 1.7; color: #3a322c; }
+  .obm-gallery__chapter-text p { margin: 0; }
+  .obm-gallery__link { display: inline-block; margin-top: 22px; color: #1c1714; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+  .obm-gallery__grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; padding: 0 0; }
+  @media screen and (min-width: 750px) { .obm-gallery__grid { gap: 16px; padding: 0 48px; max-width: 1600px; margin: 0 auto; } }
+  .obm-gallery__photo { margin: 0; grid-column: span 6; }
+  .obm-gallery__photo--half { grid-column: span 3; }
+  .obm-gallery__photo--third { grid-column: span 2; }
+  .obm-gallery__frame { position: relative; overflow: hidden; background: #f2efea; }
+  .obm-gallery__frame img, .obm-gallery__placeholder { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .obm-gallery__photo figcaption { margin: 10px 16px 6px; font-size: 12px; line-height: 1.5; color: #6b625b; letter-spacing: 0.02em; }
+  @media screen and (min-width: 750px) { .obm-gallery__photo figcaption { margin: 12px 0 8px; font-size: 13px; } }
+  @media screen and (max-width: 749px) { .obm-gallery__photo--half figcaption, .obm-gallery__photo--third figcaption { margin-inline: 8px; font-size: 11px; } }
+  .obm-gallery__close { text-align: center; padding: 120px 24px 0; }
+  .obm-gallery__closing { margin: 0 auto; max-width: 30ch; font-family: 'OBM Garamond', 'EB Garamond', Garamond, Georgia, serif; font-style: italic; font-size: 28px; line-height: 1.25; }
+  @media screen and (min-width: 750px) { .obm-gallery__closing { font-size: 36px; } }
+  .obm-gallery__button { display: inline-block; margin-top: 28px; min-width: 196px; padding: 12px 20px; border: 1px solid #1c1714; color: #1c1714; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: background-color .25s ease, color .25s ease; }
+  @media screen and (min-width: 750px) { .obm-gallery__button { min-width: 290px; padding: 17px 20px; font-size: 14px; } }
+  .obm-gallery__button:hover { background: #1c1714; color: #fff; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Gallery of projects",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small line above the title", "default": "Projects and commissions" },
+    { "type": "text", "id": "title", "label": "Title (defaults to the page title)" },
+    { "type": "richtext", "id": "intro", "label": "Introduction" },
+    { "type": "checkbox", "id": "show_index", "label": "Show the list of chapters under the introduction", "default": true },
+    { "type": "header", "content": "End of the page" },
+    { "type": "text", "id": "closing", "label": "Closing line" },
+    { "type": "text", "id": "button_label", "label": "Button" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "blocks": [
+    {
+      "type": "chapter",
+      "name": "Chapter",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "01" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Project" },
+        { "type": "richtext", "id": "text", "label": "Description" },
+        { "type": "text", "id": "link_label", "label": "Link text" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    },
+    {
+      "type": "photo",
+      "name": "Photograph",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Photograph" },
+        { "type": "select", "id": "size", "label": "Width", "options": [ { "value": "full", "label": "Full width" }, { "value": "half", "label": "Half" }, { "value": "third", "label": "A third" } ], "default": "half" },
+        { "type": "select", "id": "ratio", "label": "Shape", "options": [ { "value": "natural", "label": "As photographed" }, { "value": "landscape", "label": "Landscape 3:2" }, { "value": "portrait", "label": "Portrait 4:5" }, { "value": "square", "label": "Square" } ], "default": "portrait" },
+        { "type": "range", "id": "focal_x", "label": "Focus, left to right", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 50 },
+        { "type": "range", "id": "focal_y", "label": "Focus, top to bottom", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 50 },
+        { "type": "text", "id": "caption", "label": "Caption" }
+      ]
+    }
+  ],
+  "max_blocks": 50,
+  "presets": [ { "name": "Gallery of projects" } ]
+}
+{% endschema %}

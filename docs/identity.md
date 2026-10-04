@@ -808,3 +808,7 @@ menu), "for mobile".
 - Phone shapes measured on Bottega's phone home at 360, 390 and 430px wide: the two middle pictures are
   square (width x width), the tall one 9:16. `obm-panels` has a "Shape on phone" choice (phone height /
   square / tall 9:16); the two squares use square, the zebra tall. Ours now measure the same at all sizes.
+- The Atelier (owner: a new page, "an elegant gallery of our projects"): `/pages/the-atelier`, four
+  chapters (Trax NYC, Miramare Palace Sanremo, Made once, At the bench), 31 photographs with captions, one
+  sentence per chapter taken from what the existing pages already state. Zebra panel links there.
+  Page hidden from search engines until go-live (seo.hidden).

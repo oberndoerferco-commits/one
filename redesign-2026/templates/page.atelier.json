@@ -1,0 +1,439 @@
+{
+  "sections": {
+    "gallery": {
+      "type": "obm-gallery",
+      "blocks": {
+        "chapter_1": {
+          "type": "chapter",
+          "settings": {
+            "number": "01",
+            "title": "Oberndörfer × Trax NYC",
+            "text": "<p>For Trax NYC, a custom jeweller in Manhattan’s Diamond District, we made four cases in full-grain calf, lined in red Alcantara, with solid brass galvanised in gold: a jewellery box, a necklace trunk, a briefcase and a mini trunk. One example of each.</p>",
+            "link_label": "Discover the line",
+            "link": "shopify://collections/oberndoerfer-traxnyc"
+          }
+        },
+        "photo_01": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/IMG_3112.jpg",
+            "size": "full",
+            "ratio": "landscape",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "Three of the four pieces"
+          }
+        },
+        "photo_02": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/IMG_2807.jpg",
+            "size": "half",
+            "ratio": "portrait",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "The plate: Oberndörfer Milano × Trax NYC"
+          }
+        },
+        "photo_03": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/6D9755E7-2049-4C04-BF56-52F31D68B202.jpg",
+            "size": "half",
+            "ratio": "portrait",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "The necklace trunk, open"
+          }
+        },
+        "photo_04": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/IMG_2790.jpg",
+            "size": "third",
+            "ratio": "square",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "Red Alcantara"
+          }
+        },
+        "photo_05": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/IMG_2910_fa219bea-5784-4100-b6bf-d3650979f5b2.jpg",
+            "size": "third",
+            "ratio": "square",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "The lock, in brass galvanised in gold"
+          }
+        },
+        "photo_06": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/IMG_2836.jpg",
+            "size": "third",
+            "ratio": "square",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "Studs, set one at a time"
+          }
+        },
+        "photo_07": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/IMG_3026.jpg",
+            "size": "full",
+            "ratio": "landscape",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "The jewellery box, fitted so nothing touches anything else"
+          }
+        },
+        "photo_08": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/186798B2-B6FF-497A-998C-6BAE17FD6799.jpg",
+            "size": "half",
+            "ratio": "square",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "The mini trunk"
+          }
+        },
+        "photo_09": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/A97CE674-56E8-4AD0-9DA6-318283C14D1D.jpg",
+            "size": "half",
+            "ratio": "square",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "The briefcase"
+          }
+        },
+        "chapter_2": {
+          "type": "chapter",
+          "settings": {
+            "number": "02",
+            "title": "Oberndörfer × Miramare Palace Sanremo",
+            "text": "<p>After living with our pieces, the Miramare Palace in Sanremo asked us to make its new furniture: sofas, armchairs, poufs and a trunk turned into a table, in full-grain leather with solid brass in palladium.</p>",
+            "link_label": "Art of Living",
+            "link": "shopify://pages/oberndorfer-x-miramare-sanremo"
+          }
+        },
+        "photo_10": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/oberndoerfer-aol-ensemble.jpg",
+            "size": "full",
+            "ratio": "landscape",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "The lobby, with the trunk table"
+          }
+        },
+        "photo_11": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/oberndoerfer-aol-daybed-arch.jpg",
+            "size": "half",
+            "ratio": "portrait",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "A daybed under the arches"
+          }
+        },
+        "photo_12": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/IMG_5793.heic",
+            "size": "half",
+            "ratio": "portrait",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "Poufs in navy"
+          }
+        },
+        "photo_13": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/IMG_56442.heic",
+            "size": "full",
+            "ratio": "landscape",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "A trunk, made into a table"
+          }
+        },
+        "photo_14": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/oberndoerfer-aol-lobby.jpg",
+            "size": "third",
+            "ratio": "portrait",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "The hall"
+          }
+        },
+        "photo_15": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/8ed7eb35-5584-4385-bb21-1dd41f74044f.jpg",
+            "size": "third",
+            "ratio": "portrait",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "A Chesterfield in teal"
+          }
+        },
+        "photo_16": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/IMG_5642_8dccfc93-d5be-4a54-a4b3-062942ac0c1a.heic",
+            "size": "third",
+            "ratio": "portrait",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "Sofa, armchairs and the trunk table"
+          }
+        },
+        "chapter_3": {
+          "type": "chapter",
+          "settings": {
+            "number": "03",
+            "title": "Made once",
+            "text": "<p>A trunk cut to the watches its owner wears, a case in a colour we will not repeat, a piece drawn around one room. Commissions made together with a client, and made only once.</p>",
+            "link_label": "Begin a commission",
+            "link": "shopify://pages/personalization"
+          }
+        },
+        "photo_17": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/oberndoerfer-trunk-hardware-detail.jpg",
+            "size": "half",
+            "ratio": "portrait",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "A trunk in olive, brass corners"
+          }
+        },
+        "photo_18": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/oberndoerfer-about-craft-detail.jpg",
+            "size": "half",
+            "ratio": "portrait",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "Navy, studs and gold locks"
+          }
+        },
+        "photo_19": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/oberndoerfer-about-watchcase.jpg",
+            "size": "third",
+            "ratio": "portrait",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "A watch case in blue"
+          }
+        },
+        "photo_20": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/IMG_3535_dbf62bc4-2168-4b05-b2a5-40ce1a98f55a.heic",
+            "size": "third",
+            "ratio": "portrait",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "A jewellery case on a studded trunk"
+          }
+        },
+        "photo_21": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/oberndoerfer-cle-croc-case-green.jpg",
+            "size": "third",
+            "ratio": "portrait",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "Crocodile, in green"
+          }
+        },
+        "photo_22": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/IMG_6101.jpg",
+            "size": "full",
+            "ratio": "landscape",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "A nameplate in brass"
+          }
+        },
+        "chapter_4": {
+          "type": "chapter",
+          "settings": {
+            "number": "04",
+            "title": "At the bench",
+            "text": "<p>Hides cut by hand, handles hammered into shape, emblems brazed in brass, studs set one at a time: the work behind every piece, in our ateliers around Milan.</p>",
+            "link_label": "Materials & Craftsmanship",
+            "link": "shopify://pages/materials-craftsmanship"
+          }
+        },
+        "photo_23": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/obm-2026-atelier-zebra.jpg",
+            "size": "full",
+            "ratio": "landscape",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "Cutting a zebra-print hide"
+          }
+        },
+        "photo_24": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/obm-atelier-hammer-poster.jpg",
+            "size": "half",
+            "ratio": "portrait",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "Setting a handle"
+          }
+        },
+        "photo_25": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/obm-atelier-film-poster.jpg",
+            "size": "half",
+            "ratio": "portrait",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "Stitching"
+          }
+        },
+        "photo_26": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/Custom.jpg",
+            "size": "third",
+            "ratio": "square",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "Brazing the emblem"
+          }
+        },
+        "photo_27": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/IMG_0306_d0e08ae2-31b4-4b9f-afe2-085c0cbfee80.jpg",
+            "size": "third",
+            "ratio": "square",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "Emblems, cut in leather"
+          }
+        },
+        "photo_28": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/IMG_6188.jpg",
+            "size": "third",
+            "ratio": "square",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "Trimming the edge"
+          }
+        },
+        "photo_29": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/IMG_7959.jpg",
+            "size": "half",
+            "ratio": "portrait",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "Buttoning a Chesterfield"
+          }
+        },
+        "photo_30": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/oberndoerfer-cle-workshop-trunks.jpg",
+            "size": "half",
+            "ratio": "portrait",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "Trunks, in progress"
+          }
+        },
+        "photo_31": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/obm-2026-atelier-bench.jpg",
+            "size": "full",
+            "ratio": "landscape",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": "The bench"
+          }
+        }
+      },
+      "block_order": [
+        "chapter_1",
+        "photo_01",
+        "photo_02",
+        "photo_03",
+        "photo_04",
+        "photo_05",
+        "photo_06",
+        "photo_07",
+        "photo_08",
+        "photo_09",
+        "chapter_2",
+        "photo_10",
+        "photo_11",
+        "photo_12",
+        "photo_13",
+        "photo_14",
+        "photo_15",
+        "photo_16",
+        "chapter_3",
+        "photo_17",
+        "photo_18",
+        "photo_19",
+        "photo_20",
+        "photo_21",
+        "photo_22",
+        "chapter_4",
+        "photo_23",
+        "photo_24",
+        "photo_25",
+        "photo_26",
+        "photo_27",
+        "photo_28",
+        "photo_29",
+        "photo_30",
+        "photo_31"
+      ],
+      "settings": {
+        "eyebrow": "Projects and commissions",
+        "title": "The Atelier",
+        "intro": "<p>Some of our work leaves the collection: a line for a jeweller in New York, the furniture of a palace on the Riviera, pieces made once for one person. Each one is cut, stitched and finished by hand in our ateliers around Milan.</p>",
+        "show_index": true,
+        "closing": "Something you would like us to make?",
+        "button_label": "Begin a commission",
+        "button_link": "shopify://pages/personalization"
+      }
+    }
+  },
+  "order": [
+    "gallery"
+  ]
+}
