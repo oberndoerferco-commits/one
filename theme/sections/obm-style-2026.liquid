@@ -33,6 +33,14 @@
     .header__row--top .header__columns search-button.search-action--hidden-on-menu { grid-area: obmsearch !important; }
     .header__row--top .header__columns header-actions { grid-area: obmactions !important; }
     .header__row--top .header__columns .header__drawer { grid-area: obmdrawer !important; justify-self: end; }
+    /* The four icons evenly spaced, about 36px apart, as on Bottega's phone header (Horizon's 44px boxes
+       and the overlap it gives the account icon left the bag 11px from the menu icon, 25px from account). */
+    .header__row--top .header__columns search-button .header-actions__action,
+    .header__row--top .header__columns header-actions .header-actions__action { width: 36px !important; min-width: 36px !important; }
+    .header__row--top .header__columns search-button .svg-wrapper,
+    .header__row--top .header__columns header-actions .svg-wrapper { width: 100% !important; }
+    .header__row--top .header__columns header-actions { margin-left: 0 !important; }
+    .header__row--top .header__columns summary.header__icon--menu { padding-left: 11px !important; box-sizing: content-box; }
   }
 {% endstylesheet %}
 {% schema %}

@@ -798,3 +798,6 @@ menu), "for mobile".
   pictures stacked, one tall full-width picture with buttons, four services two by two). Zebra panel now
   700px tall on phones (Bottega's is nearly a full screen); row labels 13px as theirs. Bottega also runs a
   thin black promo line above its phone header; ours stays off (the owner asked for no top line).
+- Phone header (owner: the bag "too close to the menu"): the four icons were unevenly spaced (bag 11px from
+  the menu icon, 25px from account) because of Horizon's 44px boxes and an overlap on the account icon.
+  Now evenly spaced, about 18px apart, as on Bottega's phone header (`obm-style-2026`).
