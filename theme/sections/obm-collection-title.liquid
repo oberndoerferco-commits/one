@@ -1,0 +1,32 @@
+{% comment %}
+  Oberndoerfer Milano - collection title (REDESIGN 2026). Replaces the dark photo header on collection
+  pages: the collection name centred in an italic serif on white, one short line under it, as on
+  Hermès's category pages (EB Garamond italic, SIL Open Font Licence, in assets/obm-eb-garamond-italic.woff2); the product grid with Bottega's "Filter & Sort" bar follows straight on.
+{% endcomment %}
+{%- liquid
+  assign c = collection | default: closest.collection
+  assign line = c.metafields.custom.editorial_line.value | default: c.description | strip_html | truncatewords: 26
+-%}
+<div class="obm-ctitle">
+  <h1 class="obm-ctitle__name">{{ c.title | default: page_title }}</h1>
+  {%- if section.settings.show_line and line != blank -%}<p class="obm-ctitle__line">{{ line }}</p>{%- endif -%}
+</div>
+<style>
+  @font-face { font-family: 'OBM Garamond'; font-style: italic; font-weight: 400; font-display: swap; src: url('{{ 'obm-eb-garamond-italic.woff2' | asset_url }}') format('woff2'); }
+</style>
+{% stylesheet %}
+  .obm-ctitle { background: #fff; color: #1c1714; text-align: center; padding: 34px 20px 26px; }
+  @media screen and (min-width: 750px) { .obm-ctitle { padding: 56px 40px 36px; } }
+  .obm-ctitle__name { font-family: 'OBM Garamond', 'EB Garamond', Garamond, Georgia, serif; font-style: italic; font-weight: 400; margin: 0; font-size: 34px; line-height: 1.1; letter-spacing: 0; text-transform: none; }
+  @media screen and (min-width: 750px) { .obm-ctitle__name { font-size: 48px; } }
+  .obm-ctitle__line { margin: 10px auto 0; max-width: 52ch; font-size: 14px; line-height: 1.6; color: #3a322c; }
+{% endstylesheet %}
+{% schema %}
+{
+  "name": "Collection title (2026)",
+  "settings": [
+    { "type": "checkbox", "id": "show_line", "label": "Show the line under the title", "default": true }
+  ],
+  "presets": [ { "name": "Collection title (2026)" } ]
+}
+{% endschema %}

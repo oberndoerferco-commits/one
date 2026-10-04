@@ -1,0 +1,29 @@
+{
+  "type": "footer",
+  "name": "Footer",
+  "sections": {
+    "footer_2026": {
+      "type": "obm-footer",
+      "settings": {
+        "newsletter_heading": "Subscribe to the newsletter",
+        "newsletter_text": "Hear of new pieces, pre-orders and news from the ateliers first.",
+        "newsletter_thanks": "Thank you. You will hear from us.",
+        "locator_heading": "Where to find us",
+        "locator_label": "Find us",
+        "locator_link": "shopify://pages/where-to-find-us",
+        "heading_1": "Can we help?",
+        "menu_1": "footer-2026-help",
+        "heading_2": "Our services",
+        "menu_2": "footer-2026-services",
+        "heading_3": "The house",
+        "menu_3": "footer-2026-house",
+        "heading_4": "Legal and cookies",
+        "menu_4": "footer-2026-legal",
+        "instagram": "https://www.instagram.com/oberndoerferco/"
+      }
+    }
+  },
+  "order": [
+    "footer_2026"
+  ]
+}

@@ -1,0 +1,262 @@
+{
+  "sections": {
+    "panels_sac": {
+      "type": "obm-panels",
+      "blocks": {
+        "panel_1": {
+          "type": "panel",
+          "settings": {
+            "image": "shopify://shop_images/obm-2026-sac-worn.jpg",
+            "focal_x": 50,
+            "focal_y": 30,
+            "eyebrow": "The Sac",
+            "label": "Discover the Sac",
+            "link": "shopify://collections/bags"
+          }
+        },
+        "panel_2": {
+          "type": "panel",
+          "settings": {
+            "image": "shopify://shop_images/obm-home-sac-spheres.jpg",
+            "focal_x": 50,
+            "focal_y": 50,
+            "eyebrow": "Bags",
+            "label": "Discover the bags",
+            "link": "shopify://collections/bags"
+          }
+        }
+      },
+      "block_order": [
+        "panel_1",
+        "panel_2"
+      ],
+      "settings": {
+        "columns_desktop": "2",
+        "height_desktop": 900,
+        "height_mobile": 660,
+        "show_on": "all",
+        "gap_top": 0
+      }
+    },
+    "panels_trunks": {
+      "type": "obm-panels",
+      "blocks": {
+        "panel_1": {
+          "type": "panel",
+          "settings": {
+            "image": "shopify://shop_images/hero-vanity-case-milano.jpg",
+            "focal_x": 50,
+            "focal_y": 80,
+            "eyebrow": "Trunks",
+            "label": "Discover the trunks",
+            "link": "shopify://collections/trunks",
+            "image_mobile": "shopify://shop_images/oberndoerfer-cle-workshop-trunks.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "panel_1"
+      ],
+      "settings": {
+        "columns_desktop": "1",
+        "height_desktop": 780,
+        "height_mobile": 600,
+        "show_on": "all",
+        "gap_top": 12
+      }
+    },
+    "panels_craft": {
+      "type": "obm-panels",
+      "blocks": {
+        "panel_1": {
+          "type": "panel",
+          "settings": {
+            "image": "shopify://shop_images/obm-2026-buckle-stone.jpg",
+            "focal_x": 50,
+            "focal_y": 50,
+            "eyebrow": "Small leather goods",
+            "label": "Discover more",
+            "link": "shopify://collections/small-leather-goods"
+          }
+        },
+        "panel_2": {
+          "type": "panel",
+          "settings": {
+            "image": "shopify://shop_images/obm-2026-atelier-zebra.jpg",
+            "focal_x": 50,
+            "focal_y": 50,
+            "eyebrow": "Made by hand, around Milan",
+            "label": "Inside the atelier",
+            "link": "shopify://pages/materials-craftsmanship"
+          }
+        }
+      },
+      "block_order": [
+        "panel_1",
+        "panel_2"
+      ],
+      "settings": {
+        "columns_desktop": "2",
+        "height_desktop": 820,
+        "height_mobile": 600,
+        "show_on": "all",
+        "gap_top": 12
+      }
+    },
+    "panels_home": {
+      "type": "obm-panels",
+      "blocks": {
+        "panel_1": {
+          "type": "panel",
+          "settings": {
+            "image": "shopify://shop_images/oberndoerfer-aol-ensemble.jpg",
+            "focal_x": 50,
+            "focal_y": 45,
+            "eyebrow": "For the home",
+            "label": "Discover the home",
+            "link": "shopify://collections/home-accessories",
+            "image_mobile": "shopify://shop_images/oberndoerfer-aol-daybed-arch.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "panel_1"
+      ],
+      "settings": {
+        "columns_desktop": "1",
+        "height_desktop": 760,
+        "height_mobile": 580,
+        "show_on": "all",
+        "gap_top": 12
+      }
+    },
+    "panels_living": {
+      "type": "obm-panels",
+      "blocks": {
+        "panel_1": {
+          "type": "panel",
+          "settings": {
+            "image": "shopify://shop_images/oberndoerfer-aol-daybed-arch.jpg",
+            "focal_x": 50,
+            "focal_y": 45,
+            "eyebrow": "The art of living",
+            "label": "Discover",
+            "link": "shopify://pages/oberndorfer-x-miramare-sanremo"
+          }
+        },
+        "panel_2": {
+          "type": "panel",
+          "settings": {
+            "image": "shopify://shop_images/oberndoerfer-cle-workshop-trunks.jpg",
+            "focal_x": 50,
+            "focal_y": 50,
+            "eyebrow": "Limited editions",
+            "label": "Discover the editions",
+            "link": "shopify://collections/oberndoerfer-traxnyc"
+          }
+        }
+      },
+      "block_order": [
+        "panel_1",
+        "panel_2"
+      ],
+      "settings": {
+        "columns_desktop": "2",
+        "height_desktop": 760,
+        "height_mobile": 600,
+        "show_on": "desktop",
+        "gap_top": 12
+      }
+    },
+    "buttons": {
+      "type": "obm-button-stack",
+      "blocks": {
+        "button_1": {
+          "type": "button",
+          "settings": {
+            "label": "New in",
+            "link": "shopify://collections/new-in"
+          }
+        },
+        "button_2": {
+          "type": "button",
+          "settings": {
+            "label": "Travel",
+            "link": "shopify://collections/travel"
+          }
+        },
+        "button_3": {
+          "type": "button",
+          "settings": {
+            "label": "Ready to wear",
+            "link": "shopify://collections/ready-to-wear"
+          }
+        }
+      },
+      "block_order": [
+        "button_1",
+        "button_2",
+        "button_3"
+      ],
+      "settings": {
+        "padding_top": 44,
+        "padding_bottom": 8
+      }
+    },
+    "services": {
+      "type": "obm-services",
+      "blocks": {
+        "service_1": {
+          "type": "service",
+          "settings": {
+            "image": "shopify://shop_images/obm-2026-atelier-bench.jpg",
+            "label": "Book an appointment",
+            "link": "shopify://pages/contact"
+          }
+        },
+        "service_2": {
+          "type": "service",
+          "settings": {
+            "image": "shopify://shop_images/Custom.jpg",
+            "label": "Personalisation",
+            "link": "shopify://pages/personalization"
+          }
+        },
+        "service_3": {
+          "type": "service",
+          "settings": {
+            "image": "shopify://shop_images/gift_boxes.heic",
+            "label": "The art of packaging",
+            "link": "shopify://pages/the-art-of-packaging"
+          }
+        },
+        "service_4": {
+          "type": "service",
+          "settings": {
+            "image": "shopify://shop_images/oberndoerfer-aol-lobby.jpg",
+            "label": "Where to find us",
+            "link": "shopify://pages/where-to-find-us"
+          }
+        }
+      },
+      "block_order": [
+        "service_1",
+        "service_2",
+        "service_3",
+        "service_4"
+      ],
+      "settings": {
+        "heading": "Our services"
+      }
+    }
+  },
+  "order": [
+    "panels_sac",
+    "panels_trunks",
+    "panels_craft",
+    "panels_home",
+    "panels_living",
+    "buttons",
+    "services"
+  ]
+}

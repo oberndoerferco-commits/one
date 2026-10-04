@@ -690,3 +690,43 @@ WEBSITE BUG fix 17 - colours back, alligator one card" (207752692037, copy of th
 Verified on the preview: Bags 24 cards, 19 shown, the 5 other alligator colours hidden, 0 dot
 rows, 0 lifestyle tiles; drawer 0 images; Art of Living no longer loads the photograph; product
 page 3 dots; home 54 dot rows; 0 errors. Owner publishes.
+
+## Redesign 2026 draft: Bottega Veneta home, Hermès touches (4 October)
+
+The owner: "okey we need to change the whole website design, i want it to look like
+hermes.com/it/it and bottegaveneta.com/it-it … Take the best from each website and make mine look
+like that. Also remove the sunglasses collection. Do me a mockup … I also noticed that hermes
+removed the section of bespoke and the story on the website. Remove and add everything that is
+necessary to achieve the same look, but create a separate draft; don't do it on the live site."
+Then: "the homepage i like how bottega did it", "also desktop and use better picture", "also check
+out all of my instagram images".
+
+Mockup (phone home, menu, collection, product; desktop home): the design canvas artifact
+https://claude.ai/artifact/Su7DMt9vDXn2os4grspuT6, sources in `redesign-2026/mockup/`.
+
+Draft theme "REDESIGN 2026 - draft (Bottega + Hermès)" (207755444549, copy of fix 17). Nothing
+on the live theme or the live menus changed. What it holds is listed in `redesign-2026/README.md`;
+in short:
+- Home: Bottega's column of full-bleed photographs, one uppercase line and one white boxed
+  button on each (`obm-panels`, two side by side on a desktop), an outlined button row
+  (`obm-button-stack`), "Our services" in four photographs (`obm-services`). No bespoke block and
+  no story block on the home page, as Hermès now does; bespoke stays under "Our services" in the
+  footer, which is where Hermès keeps "Su misura".
+- Photographs: Instagram (@oberndoerferco) gave the strongest pictures: the Sac worn, the buckle
+  on stone, the zebra leather cut by hand, the atelier bench. They are in Shopify Files as
+  `obm-2026-*.jpg`. Logged out, Instagram shows only the twelve newest posts, so older posts were
+  not reachable.
+- Header: logo left, the new menu `main-menu-2026` inline on a desktop (New in, Bags, Trunks,
+  Small leather goods, Home, Travel, Ready to wear, Limited editions; no Eyewear, About or
+  Bespoke), white, sticky; the black announcement line above it (`obm-announcement`).
+- Footer (`obm-footer`): newsletter with one underlined field, "Where to find us", then four
+  sections on new menus `footer-2026-help`, `-services`, `-house`, `-legal`: plus-accordions on
+  a phone, columns on a desktop.
+- Collection pages: the dark photo header and the editorial bands are replaced by the name in
+  EB Garamond italic, centred on white (`obm-collection-title`, font self-hosted in
+  `assets/obm-eb-garamond-italic.woff2`, SIL Open Font Licence); grid background white; card
+  names in sentence case.
+- Product pages: the "story chapter" section (media-with-content) is removed; colour chips are
+  square and the buttons square (`obm-style-2026`); "You may also like" in the italic serif.
+Sunglasses: gone from the new menus and the home page. The collection and its products stay
+published until the draft goes live, so the live site's Eyewear page keeps working until then.

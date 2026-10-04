@@ -1,0 +1,28 @@
+{% comment %}
+  Oberndoerfer Milano - announcement line (REDESIGN 2026): one line of white on ink above the header,
+  as Bottega Veneta and Hermès both do, with a close button that hides it for the visit.
+{% endcomment %}
+{%- if section.settings.text != blank -%}
+<div class="obm-announce" id="ObmAnnounce" role="region" aria-label="Announcement">
+  {%- if section.settings.link != blank -%}<a href="{{ section.settings.link }}">{{ section.settings.text }}</a>{%- else -%}<span>{{ section.settings.text }}</span>{%- endif -%}
+  <button type="button" aria-label="Close" onclick="try{sessionStorage.setItem('obmAnnounceClosed','1')}catch(e){}; this.parentElement.hidden=true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+</div>
+<script>try{if(sessionStorage.getItem('obmAnnounceClosed')==='1'){document.getElementById('ObmAnnounce').hidden=true}}catch(e){}</script>
+{%- endif -%}
+{% stylesheet %}
+  .obm-announce { background: #1c1714; color: #fff; display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 40px; padding: 0 4px 0 16px; font-size: 12px; letter-spacing: 0.02em; }
+  .obm-announce[hidden] { display: none; }
+  .obm-announce a, .obm-announce span { color: #fff; text-decoration: none; flex: 1; }
+  @media screen and (min-width: 750px) { .obm-announce { justify-content: center; } .obm-announce a, .obm-announce span { flex: 0 1 auto; text-align: center; } .obm-announce button { position: absolute; right: 12px; } .obm-announce { position: relative; } }
+  .obm-announce button { border: 0; background: none; color: #fff; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+{% endstylesheet %}
+{% schema %}
+{
+  "name": "Announcement line",
+  "settings": [
+    { "type": "text", "id": "text", "label": "Text", "default": "Complimentary DHL Express shipping worldwide" },
+    { "type": "url", "id": "link", "label": "Link" }
+  ],
+  "presets": [ { "name": "Announcement line" } ]
+}
+{% endschema %}

@@ -1,0 +1,145 @@
+{% comment %}
+  Oberndoerfer Milano - footer (REDESIGN 2026). Bottega Veneta's footer: a hairline, the newsletter
+  with a single underlined e-mail field and an arrow, a "store locator" row, then closed sections
+  with a plus on a phone (open columns on a desktop), the shipping country and the copyright.
+  The column structure (help, services, the house, legal) follows Hermès's footer, which still keeps
+  "Su misura" (bespoke) under its services column while the home page no longer shows it.
+{% endcomment %}
+{%- liquid
+  assign cols = '1,2,3,4' | split: ','
+-%}
+<div class="obm-footer">
+  <div class="obm-footer__top">
+    <div class="obm-footer__news">
+      <h2 class="obm-footer__title">{{ section.settings.newsletter_heading }}</h2>
+      {%- if section.settings.newsletter_text != blank -%}<p class="obm-footer__text">{{ section.settings.newsletter_text }}</p>{%- endif -%}
+      {%- form 'customer', id: 'ObmNewsletter', class: 'obm-footer__form' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        {%- if form.posted_successfully? -%}
+          <p class="obm-footer__text" role="status">{{ section.settings.newsletter_thanks }}</p>
+        {%- else -%}
+          <label class="obm-footer__field">
+            <span class="visually-hidden">E-mail</span>
+            <input type="email" name="contact[email]" required autocomplete="email" placeholder="E-mail*" aria-invalid="{% if form.errors %}true{% else %}false{% endif %}">
+            <button type="submit" aria-label="Subscribe"><svg width="22" height="16" viewBox="0 0 22 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1 8h19M13 1l7 7-7 7"/></svg></button>
+          </label>
+          {%- if form.errors -%}<p class="obm-footer__error">{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}</p>{%- endif -%}
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+
+    <div class="obm-footer__cols">
+      {%- if section.settings.locator_link != blank -%}
+        <div class="obm-footer__locator">
+          <span class="obm-footer__head">{{ section.settings.locator_heading }}</span>
+          <a href="{{ section.settings.locator_link }}">{{ section.settings.locator_label }}</a>
+        </div>
+      {%- endif -%}
+      {%- for i in cols -%}
+        {%- assign hk = 'heading_' | append: i -%}
+        {%- assign mk = 'menu_' | append: i -%}
+        {%- assign menu = section.settings[mk] -%}
+        {%- if menu != blank and menu.links.size > 0 -%}
+          <details class="obm-footer__group">
+            <summary><span class="obm-footer__head">{{ section.settings[hk] | default: menu.title }}</span><span class="obm-footer__plus" aria-hidden="true"></span></summary>
+            <ul>{%- for link in menu.links -%}<li><a href="{{ link.url }}">{{ link.title }}</a></li>{%- endfor -%}</ul>
+          </details>
+          <div class="obm-footer__column">
+            <span class="obm-footer__head">{{ section.settings[hk] | default: menu.title }}</span>
+            <ul>{%- for link in menu.links -%}<li><a href="{{ link.url }}">{{ link.title }}</a></li>{%- endfor -%}</ul>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <div class="obm-footer__bottom">
+    {%- if localization.available_countries.size > 1 -%}
+      {%- form 'localization', id: 'ObmFooterCountry', class: 'obm-footer__country' -%}
+        <label for="ObmCountry">Shipping to:</label>
+        <select id="ObmCountry" name="country_code" onchange="this.form.submit()">
+          {%- for country in localization.available_countries -%}
+            <option value="{{ country.iso_code }}"{% if country.iso_code == localization.country.iso_code %} selected{% endif %}>{{ country.name }}</option>
+          {%- endfor -%}
+        </select>
+        <input type="hidden" name="return_to" value="{{ request.path }}">
+      {%- endform -%}
+    {%- else -%}
+      <span class="obm-footer__country">Shipping to: {{ localization.country.name }}</span>
+    {%- endif -%}
+    {%- if section.settings.instagram != blank -%}
+      <a class="obm-footer__social" href="{{ section.settings.instagram }}" aria-label="Instagram" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg></a>
+    {%- endif -%}
+    <p class="obm-footer__copy">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</p>
+  </div>
+</div>
+
+{% stylesheet %}
+  /* The monogram band that the live theme draws above its footer is not part of the 2026 footer. */
+  .shopify-section:has(.obm-footer)::before { display: none !important; }
+  .obm-footer { background: #fff; color: #1c1714; border-top: 1px solid #1c1714; margin-top: 40px; font-family: var(--font-body--family); }
+  .obm-footer a { color: inherit; text-decoration: none; }
+  .obm-footer__top { padding: 40px 16px 0; display: flex; flex-direction: column; gap: 30px; }
+  @media screen and (min-width: 750px) { .obm-footer__top { padding: 56px 40px 0; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 4fr); column-gap: 48px; } }
+  .obm-footer__title, .obm-footer__head { margin: 0; font-size: 14px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; }
+  .obm-footer__text { margin: 14px 0 0; font-size: 13px; line-height: 1.6; }
+  .obm-footer__field { margin-top: 30px; display: flex; align-items: center; border-bottom: 1px solid #6b6259; padding-bottom: 6px; }
+  .obm-footer__field input { flex: 1; min-width: 0; border: 0; background: transparent; font: inherit; font-size: 15px; color: #1c1714; padding: 8px 0; outline: none; }
+  .obm-footer__field input::placeholder { color: #6b6259; }
+  .obm-footer__field button { border: 0; background: none; color: #1c1714; width: 44px; height: 44px; display: flex; align-items: center; justify-content: flex-end; cursor: pointer; }
+  .obm-footer__error { margin: 8px 0 0; font-size: 13px; color: #7a2e2b; }
+  .obm-footer__locator { display: flex; justify-content: space-between; align-items: center; min-height: 60px; border-bottom: 1px solid #d9dee3; }
+  .obm-footer__locator a { font-size: 15px; border-bottom: 1px solid #1c1714; }
+  .obm-footer__group { border-bottom: 1px solid #d9dee3; }
+  .obm-footer__group summary { list-style: none; display: flex; justify-content: space-between; align-items: center; min-height: 64px; cursor: pointer; }
+  .obm-footer__group summary::-webkit-details-marker { display: none; }
+  .obm-footer__plus { position: relative; width: 16px; height: 16px; }
+  .obm-footer__plus::before, .obm-footer__plus::after { content: ''; position: absolute; left: 0; top: 7.5px; width: 16px; height: 1.3px; background: #1c1714; transition: transform .25s ease; }
+  .obm-footer__plus::after { transform: rotate(90deg); }
+  .obm-footer__group[open] .obm-footer__plus::after { transform: rotate(0deg); }
+  .obm-footer__group ul, .obm-footer__column ul { list-style: none; margin: 0; padding: 0 0 18px; display: flex; flex-direction: column; gap: 12px; }
+  .obm-footer__group li a, .obm-footer__column li a { font-size: 14px; }
+  .obm-footer__column { display: none; }
+  @media screen and (min-width: 750px) {
+    .obm-footer__cols { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 48px; align-content: start; }
+    .obm-footer__group { display: none; }
+    .obm-footer__column { display: flex; flex-direction: column; gap: 16px; }
+    .obm-footer__column ul { gap: 12px; }
+    .obm-footer__column li a { font-size: 13px; }
+    .obm-footer__locator { display: none; }
+  }
+  .obm-footer__bottom { padding: 26px 16px 40px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; }
+  @media screen and (min-width: 750px) { .obm-footer__bottom { padding: 40px 40px 36px; } }
+  .obm-footer__country { display: flex; align-items: center; gap: 6px; font-size: 14px; }
+  .obm-footer__country select { border: 0; border-bottom: 1px solid #1c1714; background: transparent; font: inherit; font-size: 14px; color: #1c1714; padding: 2px 0; border-radius: 0; -webkit-appearance: none; appearance: none; cursor: pointer; }
+  .obm-footer__social { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; }
+  .obm-footer__copy { width: 100%; margin: 0; font-size: 12px; color: #6b6259; }
+  @media screen and (min-width: 750px) { .obm-footer__copy { width: auto; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Footer (2026)",
+  "settings": [
+    { "type": "header", "content": "Newsletter" },
+    { "type": "text", "id": "newsletter_heading", "label": "Heading", "default": "Subscribe to the newsletter" },
+    { "type": "text", "id": "newsletter_text", "label": "Text", "default": "Hear of new pieces, pre-orders and news from the ateliers first." },
+    { "type": "text", "id": "newsletter_thanks", "label": "Thank-you line", "default": "Thank you. You will hear from us." },
+    { "type": "header", "content": "Where to find us" },
+    { "type": "text", "id": "locator_heading", "label": "Heading", "default": "Where to find us" },
+    { "type": "text", "id": "locator_label", "label": "Link label", "default": "Find us" },
+    { "type": "url", "id": "locator_link", "label": "Link" },
+    { "type": "header", "content": "Sections" },
+    { "type": "text", "id": "heading_1", "label": "Heading 1", "default": "Can we help?" },
+    { "type": "link_list", "id": "menu_1", "label": "Menu 1" },
+    { "type": "text", "id": "heading_2", "label": "Heading 2", "default": "Our services" },
+    { "type": "link_list", "id": "menu_2", "label": "Menu 2" },
+    { "type": "text", "id": "heading_3", "label": "Heading 3", "default": "The house" },
+    { "type": "link_list", "id": "menu_3", "label": "Menu 3" },
+    { "type": "text", "id": "heading_4", "label": "Heading 4", "default": "Legal and cookies" },
+    { "type": "link_list", "id": "menu_4", "label": "Menu 4" },
+    { "type": "url", "id": "instagram", "label": "Instagram" }
+  ],
+  "presets": [ { "name": "Footer (2026)" } ]
+}
+{% endschema %}

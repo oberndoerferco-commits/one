@@ -1,0 +1,24 @@
+{% comment %}
+  Oberndoerfer Milano - REDESIGN 2026 site-wide touches (draft theme only; sits in the header group so
+  it loads on every page and prints no markup of its own):
+  - the EB Garamond italic face (assets/obm-eb-garamond-italic.woff2, SIL Open Font Licence) used for
+    collection titles and the "You may also like" heading, as Hermès sets its category names;
+  - square colour chips and square buttons on product pages, as on Bottega Veneta's product page.
+{% endcomment %}
+<style>
+  @font-face { font-family: 'OBM Garamond'; font-style: italic; font-weight: 400; font-display: swap; src: url('{{ 'obm-eb-garamond-italic.woff2' | asset_url }}') format('woff2'); }
+</style>
+{% stylesheet %}
+  .ob-pdp-swatch { width: 28px; height: 28px; border-radius: 0; box-shadow: inset 0 0 0 1px rgba(24, 18, 12, 0.12); }
+  .ob-pdp-swatch[aria-current='true'] { box-shadow: none; outline: 1px solid #1c1714; outline-offset: 3px; }
+  .product-details .button,
+  .product-details button[type='submit'],
+  .product-details .quantity-selector,
+  .product-details .variant-option__button-label { border-radius: 0 !important; }
+  .shopify-section[id*='product_recommendations'] .text-block { margin-inline: auto; text-align: center; }
+  .shopify-section[id*='product_recommendations'] .text-block > * { font-family: 'OBM Garamond', 'EB Garamond', Georgia, serif; font-style: italic; font-weight: 400; font-size: 26px; letter-spacing: 0; }
+  @media screen and (min-width: 750px) { .shopify-section[id*='product_recommendations'] .text-block > * { font-size: 34px; } }
+{% endstylesheet %}
+{% schema %}
+{ "name": "Site style (2026)", "settings": [], "presets": [ { "name": "Site style (2026)" } ] }
+{% endschema %}
