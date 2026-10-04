@@ -794,3 +794,7 @@ menu), "for mobile".
   the fourth is hidden. Our row now does the same. The fourth picture is the brown leather coaster stack,
   "Home accessories" (owner: "should be something connected to home accessories"); the gift boxes are out.
   "Pictures on a desktop" (3 or 4) in the theme editor shows it on desktop too.
+- Whole phone page compared with bottegaveneta.com/it-it on a phone: same order (full-screen hero, two
+  pictures stacked, one tall full-width picture with buttons, four services two by two). Zebra panel now
+  700px tall on phones (Bottega's is nearly a full screen); row labels 13px as theirs. Bottega also runs a
+  thin black promo line above its phone header; ours stays off (the owner asked for no top line).
