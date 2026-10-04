@@ -83,7 +83,8 @@
         "height_desktop": 720,
         "height_mobile": 500,
         "show_on": "all",
-        "gap_top": 16
+        "gap_top": 16,
+        "shape_mobile": "square"
       }
     },
     "full_mirror": {
@@ -117,7 +118,8 @@
         "height_desktop": 760,
         "height_mobile": 700,
         "show_on": "all",
-        "gap_top": 16
+        "gap_top": 16,
+        "shape_mobile": "tall"
       }
     },
     "services": {

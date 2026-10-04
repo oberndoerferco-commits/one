@@ -9,7 +9,7 @@
 {%- liquid
   assign cols = section.settings.columns_desktop | default: 1
 -%}
-<section class="obm-panels obm-panels--{{ cols }} obm-panels--show-{{ section.settings.show_on | default: 'all' }}{% if section.settings.height_mode == 'screen' %} obm-panels--screen{% endif %}" style="--obm-h-desktop: {{ section.settings.height_desktop }}px; --obm-h-mobile: {{ section.settings.height_mobile }}px; --obm-gap-top: {{ section.settings.gap_top }}px; --obm-offset-desktop: {{ section.settings.offset_desktop | default: 0 }}px; --obm-offset-mobile: {{ section.settings.offset_mobile | default: 0 }}px;">
+<section class="obm-panels obm-panels--{{ cols }} obm-panels--show-{{ section.settings.show_on | default: 'all' }}{% if section.settings.height_mode == 'screen' %} obm-panels--screen{% endif %}{% if section.settings.shape_mobile != blank and section.settings.shape_mobile != 'fixed' %} obm-panels--{{ section.settings.shape_mobile }}-m{% endif %}" style="--obm-h-desktop: {{ section.settings.height_desktop }}px; --obm-h-mobile: {{ section.settings.height_mobile }}px; --obm-gap-top: {{ section.settings.gap_top }}px; --obm-offset-desktop: {{ section.settings.offset_desktop | default: 0 }}px; --obm-offset-mobile: {{ section.settings.offset_mobile | default: 0 }}px;">
   {%- for block in section.blocks -%}
     <div class="obm-panel{% if block.settings.tone == 'dark' %} obm-panel--dark{% endif %}" {{ block.shopify_attributes }}>
       {%- if block.settings.link != blank -%}<a class="obm-panel__media" href="{{ block.settings.link }}" tabindex="-1" aria-hidden="true">{%- else -%}<div class="obm-panel__media">{%- endif -%}
@@ -69,6 +69,9 @@
   @media screen and (min-width: 750px) { .obm-panels--show-mobile { display: none; } }
   .obm-panel { position: relative; overflow: hidden; height: var(--obm-h-mobile, 620px); background: #F2EFEA; }
   @media screen and (min-width: 750px) { .obm-panel { height: var(--obm-h-desktop, 820px); } }
+  /* Phone shapes measured on Bottega's phone home (360, 390 and 430px wide): the two middle pictures are
+     square, the tall one 9:16, whatever the phone. */
+  @media screen and (max-width: 749px) { .obm-panels--square-m .obm-panel { height: auto; aspect-ratio: 1 / 1; } .obm-panels--tall-m .obm-panel { height: auto; aspect-ratio: 9 / 16; } }
   .obm-panels--screen .obm-panel { height: calc(100svh - var(--obm-offset-mobile, 0px)); min-height: 520px; }
   @media screen and (min-width: 750px) { .obm-panels--screen .obm-panel { height: calc(100svh - var(--obm-offset-desktop, 0px)); min-height: 600px; } }
   .obm-panel__media, .obm-panel__media picture { position: absolute; inset: 0; display: block; }
@@ -97,6 +100,7 @@
     { "type": "range", "id": "offset_mobile", "label": "Full screen: header height to leave on phone", "min": 0, "max": 200, "step": 2, "unit": "px", "default": 0 },
     { "type": "range", "id": "height_desktop", "label": "Height on desktop", "min": 400, "max": 1100, "step": 20, "unit": "px", "default": 820 },
     { "type": "range", "id": "height_mobile", "label": "Height on phone", "min": 360, "max": 900, "step": 20, "unit": "px", "default": 620 },
+    { "type": "select", "id": "shape_mobile", "label": "Shape on phone", "info": "Square and tall (9:16) follow the phone's width, as on Bottega; they override the phone height.", "options": [ { "value": "fixed", "label": "Phone height (above)" }, { "value": "square", "label": "Square" }, { "value": "tall", "label": "Tall (9:16)" } ], "default": "fixed" },
     { "type": "select", "id": "show_on", "label": "Show on", "options": [ { "value": "all", "label": "Phone and desktop" }, { "value": "desktop", "label": "Desktop only" }, { "value": "mobile", "label": "Phone only" } ], "default": "all" },
     { "type": "range", "id": "gap_top", "label": "Space above", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 12 }
   ],

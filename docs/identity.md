@@ -805,3 +805,6 @@ menu), "for mobile".
   captions now wrap in even lines on phones (three) and run on one line on a desktop, below the bag.
 - Hero button now "Discover more", to New in. Panel buttons smaller on phones (196px wide, 12px text,
   12px padding; desktop unchanged), so every button on the phone home page is the smaller size.
+- Phone shapes measured on Bottega's phone home at 360, 390 and 430px wide: the two middle pictures are
+  square (width x width), the tall one 9:16. `obm-panels` has a "Shape on phone" choice (phone height /
+  square / tall 9:16); the two squares use square, the zebra tall. Ours now measure the same at all sizes.
