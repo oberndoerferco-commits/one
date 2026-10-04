@@ -53,6 +53,23 @@ images, it all looks clean". The home page is now exactly that and nothing else:
 The button row and "Our services" are gone from the home page (services stay in the footer).
 `obm-panels` gained: three across, full-screen height (minus the header), a video per panel.
 
+## Home page (fourth pass, 4 October): Bottega's exact layout and one palette
+
+The owner, with four screenshots of Bottega's desktop home: "still not the same as Bottega's layout. Also,
+the video looks off, and I like the part where the bag is being hammered instead of the stitching. If not,
+take an image as the first pic instead of a video. Also, keep a color lane"; then "I actually loved the
+zebra style picture". Now, top to bottom, all in one warm lane (cream, sand, chestnut, warm grey, the
+zebra's black and white):
+1. Header without the shipping line (Bottega has none): logo left, menu centred, icons right.
+2. Full-screen film: one continuous take of the handle being hammered on (71.5-81.5 s of the 4K original),
+   slowed to 0.75x, warmed and slightly desaturated, faded in and out for the loop
+   (`obm-atelier-hammer-1920.mp4`, `obm-atelier-hammer-720x1280.mp4`, posters `obm-atelier-hammer-poster*.jpg`).
+3. Two squares, 16px apart: the Mirror Handbag in Tuscany, and the zebra hide cut by hand.
+4. Full width with two buttons (Bags, Trunks): the Mirror Handbag closed in low sun (`IMG_3260.jpg`).
+5. "Our services": three still lifes on the same warm grey with the label underneath, as Bottega does
+   (Book an appointment, Personalisation, The art of packaging); a swipe row on phones.
+Model 017 is not on the home page any more (sold out); it is one tap away in Bags.
+
 ## Phone menu and header
 
 `obm-mobile-menu-2026` (header group): Bottega's phone menu. Full-screen white; logo left; search, account,

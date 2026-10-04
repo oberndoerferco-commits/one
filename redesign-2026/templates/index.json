@@ -6,16 +6,16 @@
         "panel_1": {
           "type": "panel",
           "settings": {
-            "image": "shopify://shop_images/obm-atelier-film-poster.jpg",
+            "image": "shopify://shop_images/obm-atelier-hammer-poster.jpg",
             "focal_x": 50,
             "focal_y": 50,
             "tone": "light",
             "eyebrow": "Made by hand, around Milan",
             "label": "Discover",
             "link": "shopify://pages/materials-craftsmanship",
-            "image_mobile": "shopify://shop_images/obm-atelier-film-poster-mobile.jpg",
-            "video_url": "https://cdn.shopify.com/videos/c/vp/52ae12c2232941f6a32154a4faa6dd8d/52ae12c2232941f6a32154a4faa6dd8d.HD-1080p-3.3Mbps-96370401.mp4",
-            "video_url_mobile": "https://cdn.shopify.com/videos/c/vp/14ff5801ff3845789d144a2a2c3c4a15/14ff5801ff3845789d144a2a2c3c4a15.HD-1080p-2.5Mbps-96370403.mp4"
+            "image_mobile": "shopify://shop_images/obm-atelier-hammer-poster-mobile.jpg",
+            "video_url": "https://cdn.shopify.com/videos/c/vp/f0b8598153a14024a52ea8acac30ab98/f0b8598153a14024a52ea8acac30ab98.HD-1080p-3.3Mbps-96371849.mp4",
+            "video_url_mobile": "https://cdn.shopify.com/videos/c/vp/eb78f5b4eb784e9da2eecb30e11dc4a4/eb78f5b4eb784e9da2eecb30e11dc4a4.HD-1080p-2.5Mbps-96371850.mp4"
           }
         }
       },
@@ -25,40 +25,39 @@
       "settings": {
         "columns_desktop": "1",
         "height_mode": "screen",
-        "offset_desktop": 124,
-        "offset_mobile": 100,
+        "offset_desktop": 84,
+        "offset_mobile": 60,
         "height_desktop": 820,
         "height_mobile": 640,
         "show_on": "all",
         "gap_top": 0
       }
     },
-    "two_bags": {
+    "two_squares": {
       "type": "obm-panels",
       "blocks": {
         "panel_1": {
           "type": "panel",
           "settings": {
-            "image": "shopify://shop_images/IMG_7399_2.heic",
-            "focal_x": 50,
-            "focal_y": 50,
+            "image": "shopify://shop_images/hero-trunk-studio.jpg",
+            "focal_x": 45,
+            "focal_y": 40,
             "tone": "light",
-            "eyebrow": "Bag Model 017",
-            "label": "Discover",
-            "link": "shopify://products/brown-bag-model-017-italian-leather-tote-bag"
+            "eyebrow": "The Mirror Handbag",
+            "label": "Discover the Mirror",
+            "link": "shopify://collections/bags"
           }
         },
         "panel_2": {
           "type": "panel",
           "settings": {
-            "image": "shopify://shop_images/IMG_3273.jpg",
+            "image": "shopify://shop_images/obm-2026-atelier-zebra.jpg",
             "focal_x": 50,
             "focal_y": 50,
             "tone": "light",
-            "eyebrow": "The Mirror Handbag",
+            "eyebrow": "The atelier",
             "label": "Discover",
-            "link": "shopify://collections/bags",
-            "image_mobile": "shopify://shop_images/IMG_3258_2.jpg"
+            "link": "shopify://pages/materials-craftsmanship"
           }
         }
       },
@@ -71,25 +70,28 @@
         "height_mode": "fixed",
         "offset_desktop": 0,
         "offset_mobile": 0,
-        "height_desktop": 880,
-        "height_mobile": 620,
+        "height_desktop": 720,
+        "height_mobile": 500,
         "show_on": "all",
-        "gap_top": 12
+        "gap_top": 16
       }
     },
-    "full_tuscany": {
+    "full_mirror": {
       "type": "obm-panels",
       "blocks": {
         "panel_1": {
           "type": "panel",
           "settings": {
-            "image": "shopify://shop_images/hero-trunk-studio.jpg",
-            "focal_x": 45,
-            "focal_y": 45,
+            "image": "shopify://shop_images/IMG_3260.jpg",
+            "focal_x": 50,
+            "focal_y": 55,
             "tone": "light",
-            "eyebrow": "New in",
-            "label": "Discover",
-            "link": "shopify://collections/new-in"
+            "eyebrow": "Bags and cases",
+            "label": "Bags",
+            "link": "shopify://collections/bags",
+            "image_mobile": "shopify://shop_images/IMG_3258_2.jpg",
+            "label_2": "Trunks",
+            "link_2": "shopify://collections/trunks"
           }
         }
       },
@@ -98,76 +100,57 @@
       ],
       "settings": {
         "columns_desktop": "1",
-        "height_mode": "screen",
+        "height_mode": "fixed",
         "offset_desktop": 0,
         "offset_mobile": 0,
-        "height_desktop": 860,
-        "height_mobile": 700,
+        "height_desktop": 760,
+        "height_mobile": 560,
         "show_on": "all",
-        "gap_top": 12
+        "gap_top": 16
       }
     },
-    "three_worlds": {
-      "type": "obm-panels",
+    "services": {
+      "type": "obm-services",
       "blocks": {
-        "panel_1": {
-          "type": "panel",
+        "service_1": {
+          "type": "service",
           "settings": {
-            "image": "shopify://shop_images/IMG_1546.heic",
-            "focal_x": 50,
-            "focal_y": 50,
-            "tone": "dark",
-            "eyebrow": "Trunks",
-            "label": "Discover",
-            "link": "shopify://collections/trunks"
+            "image": "shopify://shop_images/obm-coll-trunks.jpg",
+            "label": "Book an appointment",
+            "link": "shopify://pages/contact"
           }
         },
-        "panel_2": {
-          "type": "panel",
+        "service_2": {
+          "type": "service",
           "settings": {
-            "image": "shopify://shop_images/obm-lane-sofa-orange-v2.jpg",
-            "focal_x": 50,
-            "focal_y": 50,
-            "tone": "dark",
-            "eyebrow": "Home",
-            "label": "Discover",
-            "link": "shopify://collections/home-accessories"
+            "image": "shopify://shop_images/obm-coll-slg.jpg",
+            "label": "Personalisation",
+            "link": "shopify://pages/personalization"
           }
         },
-        "panel_3": {
-          "type": "panel",
+        "service_3": {
+          "type": "service",
           "settings": {
-            "image": "shopify://shop_images/obm-hoodie-wordmark-grey-front-v2.jpg",
-            "focal_x": 50,
-            "focal_y": 50,
-            "tone": "dark",
-            "eyebrow": "Ready to wear",
-            "label": "Discover",
-            "link": "shopify://collections/ready-to-wear"
+            "image": "shopify://shop_images/obm-coll-home.jpg",
+            "label": "The art of packaging",
+            "link": "shopify://pages/the-art-of-packaging"
           }
         }
       },
       "block_order": [
-        "panel_1",
-        "panel_2",
-        "panel_3"
+        "service_1",
+        "service_2",
+        "service_3"
       ],
       "settings": {
-        "columns_desktop": "3",
-        "height_mode": "fixed",
-        "offset_desktop": 0,
-        "offset_mobile": 0,
-        "height_desktop": 660,
-        "height_mobile": 540,
-        "show_on": "all",
-        "gap_top": 12
+        "heading": "Our services"
       }
     }
   },
   "order": [
     "hero_film",
-    "two_bags",
-    "full_tuscany",
-    "three_worlds"
+    "two_squares",
+    "full_mirror",
+    "services"
   ]
 }

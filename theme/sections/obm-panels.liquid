@@ -33,7 +33,12 @@
       {%- if block.settings.link != blank -%}</a>{%- else -%}</div>{%- endif -%}
       <div class="obm-panel__foot">
         {%- if block.settings.eyebrow != blank -%}<p class="obm-panel__eyebrow">{{ block.settings.eyebrow }}</p>{%- endif -%}
-        {%- if block.settings.label != blank -%}<a class="obm-panel__button" href="{{ block.settings.link | default: '#' }}">{{ block.settings.label }}</a>{%- endif -%}
+        {%- if block.settings.label != blank or block.settings.label_2 != blank -%}
+          <div class="obm-panel__buttons">
+            {%- if block.settings.label != blank -%}<a class="obm-panel__button" href="{{ block.settings.link | default: '#' }}">{{ block.settings.label }}</a>{%- endif -%}
+            {%- if block.settings.label_2 != blank -%}<a class="obm-panel__button" href="{{ block.settings.link_2 | default: '#' }}">{{ block.settings.label_2 }}</a>{%- endif -%}
+          </div>
+        {%- endif -%}
       </div>
     </div>
   {%- endfor -%}
@@ -57,6 +62,8 @@
 
 {% stylesheet %}
   .obm-panels { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; margin-top: var(--obm-gap-top, 12px); background: #fff; }
+  @media screen and (min-width: 750px) { .obm-panels { gap: 16px; } }
+  .obm-panel__buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 16px; pointer-events: none; }
   @media screen and (min-width: 750px) { .obm-panels--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .obm-panels--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
   @media screen and (max-width: 749px) { .obm-panels--show-desktop { display: none; } }
   @media screen and (min-width: 750px) { .obm-panels--show-mobile { display: none; } }
@@ -107,7 +114,9 @@
         { "type": "select", "id": "tone", "label": "Text colour", "options": [ { "value": "light", "label": "White, for dark photographs" }, { "value": "dark", "label": "Ink, for light photographs" } ], "default": "light" },
         { "type": "text", "id": "eyebrow", "label": "Line above the button" },
         { "type": "text", "id": "label", "label": "Button", "default": "Discover" },
-        { "type": "url", "id": "link", "label": "Link" }
+        { "type": "url", "id": "link", "label": "Link" },
+        { "type": "text", "id": "label_2", "label": "Second button (optional)" },
+        { "type": "url", "id": "link_2", "label": "Second link" }
       ]
     }
   ],

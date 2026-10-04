@@ -4,11 +4,11 @@
 {% endcomment %}
 <section class="obm-services">
   {%- if section.settings.heading != blank -%}<h2 class="obm-services__heading">{{ section.settings.heading }}</h2>{%- endif -%}
-  <div class="obm-services__grid">
+  <div class="obm-services__grid" style="--obm-services-cols: {{ section.blocks.size | at_most: 4 }};">
     {%- for block in section.blocks -%}
       <a class="obm-services__item" href="{{ block.settings.link | default: '#' }}" {{ block.shopify_attributes }}>
         {%- if block.settings.image != blank -%}
-          {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '400, 600, 900', sizes: '(min-width: 750px) 25vw, 45vw', class: 'obm-services__img' }}
+          {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '400, 600, 900', sizes: '(min-width: 750px) 30vw, 78vw', class: 'obm-services__img' }}
         {%- else -%}
           {{ 'image' | placeholder_svg_tag: 'obm-services__img' }}
         {%- endif -%}
@@ -18,15 +18,19 @@
   </div>
 </section>
 {% stylesheet %}
-  .obm-services { background: #fff; padding: 56px 32px 24px; display: flex; flex-direction: column; align-items: center; }
-  @media screen and (min-width: 750px) { .obm-services { padding: 80px 120px 40px; } }
+  /* Bottega Veneta's "I nostri servizi": a centred uppercase heading, still lifes of one tone in a row
+     with the label underneath in spaced capitals; on a phone the row scrolls sideways. */
+  .obm-services { background: #fff; padding: 64px 0 32px; display: flex; flex-direction: column; align-items: center; }
+  @media screen and (min-width: 750px) { .obm-services { padding: 72px 9% 48px; } }
   .obm-services__heading { margin: 0; font-family: var(--font-body--family); font-size: 15px; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; }
-  .obm-services__grid { margin-top: 32px; width: 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 18px; row-gap: 30px; }
-  @media screen and (min-width: 750px) { .obm-services__grid { margin-top: 40px; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 28px; } }
-  .obm-services__item { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; color: #1c1714; text-decoration: none; }
-  .obm-services__img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; display: block; background: #F2EFEA; }
-  .obm-services__label { font-size: 14px; line-height: 1.4; }
-  .obm-services__item:hover .obm-services__label { text-decoration: underline; text-underline-offset: 3px; }
+  .obm-services__grid { margin-top: 40px; width: 100%; display: grid; grid-auto-flow: column; grid-auto-columns: 78%; gap: 6px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 16px; scrollbar-width: none; }
+  .obm-services__grid::-webkit-scrollbar { display: none; }
+  @media screen and (min-width: 750px) { .obm-services__grid { margin-top: 64px; grid-auto-flow: row; grid-template-columns: repeat(var(--obm-services-cols, 3), minmax(0, 1fr)); grid-auto-columns: auto; overflow: visible; padding: 0; } }
+  .obm-services__item { display: flex; flex-direction: column; align-items: center; gap: 0; text-align: center; color: #1c1714; text-decoration: none; scroll-snap-align: center; }
+  .obm-services__img { width: 100%; height: auto; aspect-ratio: 5 / 7; object-fit: cover; display: block; background: #efece7; }
+  .obm-services__label { margin-top: 28px; font-size: 14px; line-height: 1.4; letter-spacing: 0.08em; text-transform: uppercase; }
+  @media screen and (min-width: 750px) { .obm-services__label { margin-top: 56px; } }
+  .obm-services__item:hover .obm-services__label { text-decoration: underline; text-underline-offset: 4px; }
 {% endstylesheet %}
 {% schema %}
 {

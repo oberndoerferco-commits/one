@@ -7,7 +7,8 @@
       "settings": {
         "text": "Complimentary DHL Express shipping worldwide",
         "link": "shopify://policies/shipping-policy"
-      }
+      },
+      "disabled": true
     },
     "header_section": {
       "type": "header",
@@ -29,7 +30,7 @@
             "menu": "main-menu-2026",
             "background_color": "{{ settings.color_palette.background }}",
             "text_color": "",
-            "type_font_primary_size": "0.875rem",
+            "type_font_primary_size": "0.9375rem",
             "menu_font_style": "inverse",
             "type_font_primary_link": "body",
             "type_case_primary_link": "none",

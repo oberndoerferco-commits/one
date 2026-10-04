@@ -759,3 +759,8 @@ menu), "for mobile".
   originals), the Mirror Handbag carried in Tuscany, the croc trunk, the orange sofa, the hoodie.
 - Logo A confirmed by the owner (already in the draft header).
 - Phone menu and phone header rebuilt like Bottega's. Details: `redesign-2026/README.md`.
+- Fourth pass (owner: "still not the same as Bottega's layout … the video looks off, and I like the part
+  where the bag is being hammered … keep a color lane"; "I actually loved the zebra style picture"): no
+  shipping line, menu centred; the film is now one continuous hammering take, warmed; two squares
+  (Tuscany, the zebra); full-width Mirror Handbag with two buttons; "Our services" as three warm-grey
+  still lifes with labels underneath. One palette throughout: cream, sand, chestnut, warm grey.

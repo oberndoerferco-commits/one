@@ -19,6 +19,12 @@
   .shopify-section[id*='product_recommendations'] .text-block { margin-inline: auto; text-align: center; }
   .shopify-section[id*='product_recommendations'] .text-block > * { font-family: 'OBM Garamond', 'EB Garamond', Georgia, serif; font-style: italic; font-weight: 400; font-size: 26px; letter-spacing: 0; }
   @media screen and (min-width: 750px) { .shopify-section[id*='product_recommendations'] .text-block > * { font-size: 34px; } }
+  /* Desktop header as on Bottega Veneta: the menu centred on the page between logo and icons. */
+  @media screen and (min-width: 990px) {
+    .header__row--top .header__column--center { justify-content: center !important; }
+    .header__row--top .header__column--center .header-menu, .header__row--top .header__column--center .menu-list { justify-content: center !important; width: 100%; }
+    .header__row--top .header__column--center .menu-list__list, .header__row--top .header__column--center .menu-list > ul { justify-content: center !important; margin-inline: auto !important; }
+  }
   /* Phone header as on Bottega Veneta: the logo at the left, then search, account, bag and the menu
      icon at the far right (Horizon puts the menu and search at the left and centres the logo). */
   @media screen and (max-width: 989px) {

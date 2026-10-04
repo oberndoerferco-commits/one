@@ -14,7 +14,7 @@
       "x": 0,
       "y": 0,
       "w": 390,
-      "h": 5143,
+      "h": 3740,
       "title": "Phone · Home (draft)"
     },
     "Menu.dc.html": {
@@ -40,9 +40,9 @@
     },
     "Desktop.dc.html": {
       "x": 0,
-      "y": 5600,
+      "y": 4200,
       "w": 1440,
-      "h": 3959,
+      "h": 3815,
       "title": "Desktop · Home (draft)"
     },
     "Logo.dc.html": {
@@ -71,7 +71,7 @@
     },
     "desktop": {
       "x": 0,
-      "y": 5300,
+      "y": 3900,
       "text": "On the desktop",
       "kind": "title1",
       "maxW": 1440
