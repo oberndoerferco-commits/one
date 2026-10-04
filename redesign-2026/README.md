@@ -90,7 +90,7 @@ picture:
 
 | Place | Picture | Caption | Link |
 |---|---|---|---|
-| Hero | Mirror Handbag in low sun / Model 017 (phone) | Made by hand, around Milan · Discover the bags | Bags |
+| Hero | Mirror Handbag in low sun (phones too since 4 October) | Made by hand, around Milan · Discover the bags | Bags |
 | Square 1 | The Sac worn | The Sac · Discover | Bags |
 | Square 2 | Leopard cap | Ready to wear · Discover (ink text on the light grey) | Ready to Wear |
 | Full width | Zebra hide cut by hand | Cut by hand in our atelier · Craftsmanship | Materials & Craftsmanship |
@@ -100,6 +100,11 @@ picture:
 
 The row is no longer services only, so its heading reads "Explore". Book an appointment and The art of
 packaging are still in the footer.
+
+Then the owner: "the mobile version should have the beige mirror bag shot as main hero image". The camera
+original is landscape and a full-height phone panel is about 1:2, so a plain crop cut the bag at the sides.
+`hero/phone.py` builds `obm-2026-mirror-sun-phone.jpg` (Shopify Files, 2400x5018): the same photograph with
+the dark wall extended upward and the sunlit floor downward. It is the hero's phone image.
 
 ## Phone menu and header
 

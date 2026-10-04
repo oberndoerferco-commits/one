@@ -776,3 +776,5 @@ menu), "for mobile".
   Ready to Wear. Zebra: "Cut by hand in our atelier", links to Materials & Craftsmanship. Row of three,
   now headed "Explore": Personalisation (brass emblem), The Mirror Handbag (the navy one carried in a
   garden, links to that product), Home accessories (jewellery box on a studded case).
+- Eighth pass: the owner wants the cream Mirror Handbag in low sun as the phone hero too. A tall version of
+  the same photograph (wall and floor extended, `redesign-2026/hero/phone.py`) replaces Model 017 there.
