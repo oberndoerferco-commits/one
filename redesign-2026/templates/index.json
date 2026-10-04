@@ -1,28 +1,30 @@
 {
   "sections": {
-    "panels_sac": {
+    "panels_bags": {
       "type": "obm-panels",
       "blocks": {
         "panel_1": {
           "type": "panel",
           "settings": {
-            "image": "shopify://shop_images/obm-2026-sac-worn.jpg",
+            "image": "shopify://shop_images/obm-lane-017-brown.jpg",
             "focal_x": 50,
-            "focal_y": 30,
-            "eyebrow": "The Sac",
-            "label": "Discover the Sac",
-            "link": "shopify://collections/bags"
+            "focal_y": 50,
+            "eyebrow": "Bag Model 017",
+            "label": "Discover",
+            "link": "shopify://products/brown-bag-model-017-italian-leather-tote-bag",
+            "tone": "dark"
           }
         },
         "panel_2": {
           "type": "panel",
           "settings": {
-            "image": "shopify://shop_images/obm-home-sac-spheres.jpg",
+            "image": "shopify://shop_images/hero-vanity-case-milano.jpg",
             "focal_x": 50,
             "focal_y": 50,
-            "eyebrow": "Bags",
-            "label": "Discover the bags",
-            "link": "shopify://collections/bags"
+            "eyebrow": "The Mirror Handbag",
+            "label": "Discover the Mirror",
+            "link": "shopify://collections/bags",
+            "tone": "light"
           }
         }
       },
@@ -32,62 +34,37 @@
       ],
       "settings": {
         "columns_desktop": "2",
-        "height_desktop": 900,
-        "height_mobile": 660,
+        "height_desktop": 880,
+        "height_mobile": 620,
         "show_on": "all",
         "gap_top": 0
       }
     },
-    "panels_trunks": {
+    "panels_wear_home": {
       "type": "obm-panels",
       "blocks": {
         "panel_1": {
           "type": "panel",
           "settings": {
-            "image": "shopify://shop_images/hero-vanity-case-milano.jpg",
-            "focal_x": 50,
-            "focal_y": 80,
-            "eyebrow": "Trunks",
-            "label": "Discover the trunks",
-            "link": "shopify://collections/trunks",
-            "image_mobile": "shopify://shop_images/oberndoerfer-cle-workshop-trunks.jpg"
-          }
-        }
-      },
-      "block_order": [
-        "panel_1"
-      ],
-      "settings": {
-        "columns_desktop": "1",
-        "height_desktop": 780,
-        "height_mobile": 600,
-        "show_on": "all",
-        "gap_top": 12
-      }
-    },
-    "panels_craft": {
-      "type": "obm-panels",
-      "blocks": {
-        "panel_1": {
-          "type": "panel",
-          "settings": {
-            "image": "shopify://shop_images/obm-2026-buckle-stone.jpg",
+            "image": "shopify://shop_images/obm-hoodie-wordmark-grey-front-v2.jpg",
             "focal_x": 50,
             "focal_y": 50,
-            "eyebrow": "Small leather goods",
-            "label": "Discover more",
-            "link": "shopify://collections/small-leather-goods"
+            "eyebrow": "Ready to wear",
+            "label": "Discover",
+            "link": "shopify://collections/ready-to-wear",
+            "tone": "dark"
           }
         },
         "panel_2": {
           "type": "panel",
           "settings": {
-            "image": "shopify://shop_images/obm-2026-atelier-zebra.jpg",
+            "image": "shopify://shop_images/obm-studio-sofa-black-v7.jpg",
             "focal_x": 50,
             "focal_y": 50,
-            "eyebrow": "Made by hand, around Milan",
-            "label": "Inside the atelier",
-            "link": "shopify://pages/materials-craftsmanship"
+            "eyebrow": "Home accessories",
+            "label": "Discover the home",
+            "link": "shopify://collections/home-accessories",
+            "tone": "dark"
           }
         }
       },
@@ -103,7 +80,7 @@
         "gap_top": 12
       }
     },
-    "panels_home": {
+    "panels_lobby": {
       "type": "obm-panels",
       "blocks": {
         "panel_1": {
@@ -111,11 +88,12 @@
           "settings": {
             "image": "shopify://shop_images/oberndoerfer-aol-ensemble.jpg",
             "focal_x": 50,
-            "focal_y": 45,
-            "eyebrow": "For the home",
-            "label": "Discover the home",
-            "link": "shopify://collections/home-accessories",
-            "image_mobile": "shopify://shop_images/oberndoerfer-aol-daybed-arch.jpg"
+            "focal_y": 50,
+            "eyebrow": "The art of living, Miramare Sanremo",
+            "label": "Discover",
+            "link": "shopify://pages/oberndorfer-x-miramare-sanremo",
+            "image_mobile": "shopify://shop_images/oberndoerfer-aol-lobby.jpg",
+            "tone": "light"
           }
         }
       },
@@ -125,34 +103,76 @@
       "settings": {
         "columns_desktop": "1",
         "height_desktop": 760,
-        "height_mobile": 580,
+        "height_mobile": 600,
         "show_on": "all",
         "gap_top": 12
       }
     },
-    "panels_living": {
+    "panels_boxes": {
       "type": "obm-panels",
       "blocks": {
         "panel_1": {
           "type": "panel",
           "settings": {
-            "image": "shopify://shop_images/oberndoerfer-aol-daybed-arch.jpg",
+            "image": "shopify://shop_images/oberndoerfer-about-watchcase.jpg",
             "focal_x": 50,
-            "focal_y": 45,
-            "eyebrow": "The art of living",
-            "label": "Discover",
-            "link": "shopify://pages/oberndorfer-x-miramare-sanremo"
+            "focal_y": 50,
+            "eyebrow": "Trunks and watch boxes",
+            "label": "Discover the trunks",
+            "link": "shopify://collections/trunks",
+            "tone": "light"
           }
         },
         "panel_2": {
           "type": "panel",
           "settings": {
-            "image": "shopify://shop_images/oberndoerfer-cle-workshop-trunks.jpg",
+            "image": "shopify://shop_images/obm-2026-buckle-stone.jpg",
+            "focal_x": 50,
+            "focal_y": 50,
+            "eyebrow": "Small leather goods",
+            "label": "Discover more",
+            "link": "shopify://collections/small-leather-goods",
+            "tone": "light"
+          }
+        }
+      },
+      "block_order": [
+        "panel_1",
+        "panel_2"
+      ],
+      "settings": {
+        "columns_desktop": "2",
+        "height_desktop": 820,
+        "height_mobile": 600,
+        "show_on": "all",
+        "gap_top": 12
+      }
+    },
+    "panels_craft": {
+      "type": "obm-panels",
+      "blocks": {
+        "panel_1": {
+          "type": "panel",
+          "settings": {
+            "image": "shopify://shop_images/obm-2026-atelier-zebra.jpg",
+            "focal_x": 50,
+            "focal_y": 50,
+            "eyebrow": "Made by hand, around Milan",
+            "label": "Inside the atelier",
+            "link": "shopify://pages/materials-craftsmanship",
+            "tone": "light"
+          }
+        },
+        "panel_2": {
+          "type": "panel",
+          "settings": {
+            "image": "shopify://shop_images/obm-coll-trax.jpg",
             "focal_x": 50,
             "focal_y": 50,
             "eyebrow": "Limited editions",
             "label": "Discover the editions",
-            "link": "shopify://collections/oberndoerfer-traxnyc"
+            "link": "shopify://collections/oberndoerfer-traxnyc",
+            "tone": "light"
           }
         }
       },
@@ -164,7 +184,7 @@
         "columns_desktop": "2",
         "height_desktop": 760,
         "height_mobile": 600,
-        "show_on": "desktop",
+        "show_on": "all",
         "gap_top": 12
       }
     },
@@ -181,15 +201,15 @@
         "button_2": {
           "type": "button",
           "settings": {
-            "label": "Travel",
-            "link": "shopify://collections/travel"
+            "label": "Bags",
+            "link": "shopify://collections/bags"
           }
         },
         "button_3": {
           "type": "button",
           "settings": {
-            "label": "Ready to wear",
-            "link": "shopify://collections/ready-to-wear"
+            "label": "Travel",
+            "link": "shopify://collections/travel"
           }
         }
       },
@@ -251,11 +271,11 @@
     }
   },
   "order": [
-    "panels_sac",
-    "panels_trunks",
+    "panels_bags",
+    "panels_wear_home",
+    "panels_lobby",
+    "panels_boxes",
     "panels_craft",
-    "panels_home",
-    "panels_living",
     "buttons",
     "services"
   ]

@@ -730,3 +730,18 @@ in short:
   square and the buttons square (`obm-style-2026`); "You may also like" in the italic serif.
 Sunglasses: gone from the new menus and the home page. The collection and its products stay
 published until the draft goes live, so the live site's Eyewear page keeps working until then.
+
+## Redesign 2026: second pass, the logo (4 October)
+
+The owner on the first draft: "too much focus on the sac, its also sold out, what about the model 017,
+ready to wear, home accessories, also i dont like how my logo looks like, how can me make it look better
+and in general what would you improve".
+- Home page of the draft: no Sac. Bag Model 017 and the Mirror Handbag open it, then ready to wear and home
+  accessories, the Miramare lobby, trunks and watch boxes, small leather goods, the atelier and limited
+  editions. Panels can carry ink text for light product photographs.
+- Logo: the exact OBERNDÖRFER letters from the current SVG, spaced wider, MILANO light and spaced (EB
+  Garamond Regular) instead of bold, no outlined crosses in the header; the solid cross above the
+  wordmark for the footer, packaging and Instagram; the cross alone as favicon. Applied to the draft
+  only (header, footer, favicon). Options and reasoning: the "Logo options" board of the mockup and
+  `redesign-2026/README.md`.
+- Draft-wide: square corners on buttons, badges, inputs and cards.

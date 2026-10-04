@@ -28,10 +28,36 @@ Veneta (bottegaveneta.com/it-it), with Bottega's home page, on a separate draft 
 The section files live in `theme/sections/`; nothing on the live theme renders them. The JSON in this
 folder is for the draft only and must not be copied onto the live theme by itself.
 
+## Home page (second pass, 4 October)
+
+The owner: "too much focus on the sac, its also sold out, what about the model 017, ready to wear, home
+accessories". The Sac is gone from the home page. Order now: Bag Model 017 | The Mirror Handbag (in stock),
+Ready to wear | Home accessories, the Miramare lobby (Art of Living), Trunks and watch boxes | Small leather
+goods, the atelier | Limited editions; buttons New in, Bags, Travel. Panels take a "Text colour" setting
+(white for dark photographs, ink for light product shots).
+
+## Logo (draft only)
+
+The current logo sets a bold MILANO under a light wordmark, with two outlined crosses that turn to grey
+noise at header size. The 2026 versions keep the exact OBERNDÖRFER letterforms from the current SVG (the
+glyph paths are reused, only re-spaced: `logo/build.py`) and drop the outlined crosses:
+
+| File | Use |
+|---|---|
+| `logo/obm-logo-2026.svg` | Header (A): spaced wordmark, MILANO light and spaced beneath (EB Garamond Regular). Set as the draft's logo. |
+| `logo/obm-logo-2026-stacked.svg` | Footer, packaging, Instagram (C): the solid cross above. In the draft footer. |
+| `logo/obm-logo-2026-one-line.svg` | Thin headers, email (B). |
+| `logo/obm-logo-2026-wordmark.svg` | Wordmark alone (D). |
+| `logo/obm-mark-2026.svg` / `.png` | The solid cross alone: favicon (set in the draft), embossing. |
+
+All are in Shopify Files under the same names. The draft's settings also square the corners of buttons,
+badges, inputs and cards (`config/settings_data.json`).
+
 ## Store changes already made (none visible on the live site)
 
 - Shopify Files: `obm-2026-sac-worn.jpg`, `obm-2026-buckle-stone.jpg`, `obm-2026-atelier-zebra.jpg`,
   `obm-2026-atelier-bench.jpg` (from the Instagram account).
+- Shopify Files: `obm-logo-2026.svg`, `obm-logo-2026-stacked.svg`, `obm-mark-2026.svg`, `obm-mark-2026.png`.
 - New menus: `main-menu-2026`, `footer-2026-help`, `footer-2026-services`, `footer-2026-house`,
   `footer-2026-legal`. The live `main-menu` and `footer` menus are untouched.
 
