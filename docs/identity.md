@@ -821,3 +821,6 @@ menu), "for mobile".
 - Phone header (owner: "put logo in the middle, menu on the left and on the right write cart"): menu
   icon left, logo centred, the word "Cart" right, with the count in brackets when the cart has items
   ("Cart (1)"). Search and account are in the full-screen menu.
+- Leather care picture (owner: "change the brown leather tray image, is there a better option?"): now the
+  Sac on stone spheres (`obm-home-sac-spheres-mobile.jpg`), a warm taupe still life that sits with the
+  brass stamp and the zebra. Runner-up: the black grain close-up of the duffle (`Leather_Duffle_bag.jpg`).

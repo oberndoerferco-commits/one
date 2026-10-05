@@ -109,7 +109,7 @@
         "service_3": {
           "type": "service",
           "settings": {
-            "image": "shopify://shop_images/obm-lane-tray-brown.jpg",
+            "image": "shopify://shop_images/obm-home-sac-spheres-mobile.jpg",
             "label": "Leather care",
             "link": "shopify://pages/leather-care-guide"
           }
