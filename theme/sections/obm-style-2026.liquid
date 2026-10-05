@@ -4,7 +4,7 @@
   - the EB Garamond italic face (assets/obm-eb-garamond-italic.woff2, SIL Open Font Licence) used for
     collection titles and the "You may also like" heading, as Hermès sets its category names;
   - square colour chips and square buttons on product pages, as on Bottega Veneta's product page;
-  - the phone header laid out like Bottega's: logo left, icons right, the menu icon last.
+  - the phone header: menu icon left, logo centred, the word "Cart" right.
 {% endcomment %}
 <style>
   @font-face { font-family: 'OBM Garamond'; font-style: italic; font-weight: 400; font-display: swap; src: url('{{ 'obm-eb-garamond-italic.woff2' | asset_url }}') format('woff2'); }
@@ -25,22 +25,26 @@
     .header__row--top .header__column--center .header-menu, .header__row--top .header__column--center .menu-list { justify-content: center !important; width: 100%; }
     .header__row--top .header__column--center .menu-list__list, .header__row--top .header__column--center .menu-list > ul { justify-content: center !important; margin-inline: auto !important; }
   }
-  /* Phone header as on Bottega Veneta: the logo at the left, then search, account, bag and the menu
-     icon at the far right (Horizon puts the menu and search at the left and centres the logo). */
+  /* Phone header (owner, 5 October): the menu icon at the left, the logo in the middle and the word
+     "Cart" at the right. Search and account move into the full-screen menu, which has both. The cart
+     count, when there is one, follows the word in brackets. */
   @media screen and (max-width: 989px) {
-    .header__row--top .header__columns { grid-template-columns: minmax(0, 1fr) auto auto auto !important; grid-template-areas: "obmlogo obmsearch obmactions obmdrawer" !important; column-gap: 0 !important; }
-    .header__row--top .header__columns .header-logo { grid-area: obmlogo !important; justify-self: start !important; margin: 0 !important; }
-    .header__row--top .header__columns search-button.search-action--hidden-on-menu { grid-area: obmsearch !important; }
-    .header__row--top .header__columns header-actions { grid-area: obmactions !important; }
-    .header__row--top .header__columns .header__drawer { grid-area: obmdrawer !important; justify-self: end; }
-    /* The four icons evenly spaced, about 36px apart, as on Bottega's phone header (Horizon's 44px boxes
-       and the overlap it gives the account icon left the bag 11px from the menu icon, 25px from account). */
-    .header__row--top .header__columns search-button .header-actions__action,
-    .header__row--top .header__columns header-actions .header-actions__action { width: 36px !important; min-width: 36px !important; }
-    .header__row--top .header__columns search-button .svg-wrapper,
-    .header__row--top .header__columns header-actions .svg-wrapper { width: 100% !important; }
-    .header__row--top .header__columns header-actions { margin-left: 0 !important; }
-    .header__row--top .header__columns summary.header__icon--menu { padding-left: 11px !important; box-sizing: content-box; }
+    .header__row--top .header__columns { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) !important; grid-template-areas: "obmdrawer obmlogo obmactions" !important; column-gap: 8px !important; }
+    .header__row--top .header__columns .header__drawer { grid-area: obmdrawer !important; justify-self: start !important; }
+    .header__row--top .header__columns .header-logo { grid-area: obmlogo !important; justify-self: center !important; margin: 0 !important; }
+    .header__row--top .header__columns header-actions { grid-area: obmactions !important; justify-self: end !important; margin: 0 !important; }
+    .header__row--top .header__columns search-button.search-action--hidden-on-menu,
+    .header__row--top .header__columns header-actions .account-button { display: none !important; }
+    .header__row--top .header__columns header-actions .header-actions__action { width: auto !important; min-width: 44px !important; padding: 0 !important; justify-content: flex-end; }
+    .header__row--top .header-actions__cart-icon { display: flex !important; align-items: center; gap: 4px; width: auto !important; line-height: 1; }
+    .header__row--top .header-actions__cart-icon .svg-wrapper { width: auto !important; height: auto !important; }
+    .header__row--top .header-actions__cart-icon .svg-wrapper svg { display: none !important; }
+    .header__row--top .header-actions__cart-icon .svg-wrapper::before { content: 'Cart'; font-family: var(--font-body--family); font-size: 14px; letter-spacing: 0.02em; color: #1c1714; }
+    .header__row--top .header-actions__cart-icon .cart-bubble:not(.visually-hidden) { position: static !important; inset: auto !important; width: auto !important; height: auto !important; min-width: 0 !important; transform: none !important; background: none !important; color: #1c1714 !important; font-size: 14px !important; padding: 0 !important; display: flex !important; align-items: center; line-height: 1 !important; }
+    .header__row--top .header-actions__cart-icon .cart-bubble:not(.visually-hidden) .cart-bubble__background { display: none !important; }
+    .header__row--top .header-actions__cart-icon .cart-bubble:not(.visually-hidden) .cart-bubble__text { position: static !important; font-size: 14px !important; line-height: 1 !important; font-weight: 400 !important; letter-spacing: 0.02em; color: #1c1714 !important; }
+    .header__row--top .header-actions__cart-icon .cart-bubble:not(.visually-hidden) .cart-bubble__text::before { content: '('; }
+    .header__row--top .header-actions__cart-icon .cart-bubble:not(.visually-hidden) .cart-bubble__text::after { content: ')'; }
   }
 {% endstylesheet %}
 {% schema %}

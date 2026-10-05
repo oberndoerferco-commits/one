@@ -817,3 +817,7 @@ menu), "for mobile".
   (the brown leather tray, a warm still life like the stamp, to the Leather Care page), The art of
   packaging (the gift boxes). All four show on a desktop too. The full-width zebra panel is gone from
   the home page ("remove this section, its in explore now"): hero, two squares, Explore, footer.
+- Explore shows three on a desktop again, the fourth (The art of packaging) on phones only, as Bottega.
+- Phone header (owner: "put logo in the middle, menu on the left and on the right write cart"): menu
+  icon left, logo centred, the word "Cart" right, with the count in brackets when the cart has items
+  ("Cart (1)"). Search and account are in the full-screen menu.
