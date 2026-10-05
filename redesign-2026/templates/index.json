@@ -87,48 +87,13 @@
         "shape_mobile": "square"
       }
     },
-    "full_mirror": {
-      "type": "obm-panels",
-      "blocks": {
-        "panel_1": {
-          "type": "panel",
-          "settings": {
-            "image": "shopify://shop_images/obm-2026-atelier-zebra.jpg",
-            "video_url": "",
-            "video_url_mobile": "",
-            "focal_x": 45,
-            "focal_y": 45,
-            "tone": "light",
-            "eyebrow": "The Atelier",
-            "label": "Discover more",
-            "link": "shopify://pages/the-atelier",
-            "label_2": "",
-            "link_2": ""
-          }
-        }
-      },
-      "block_order": [
-        "panel_1"
-      ],
-      "settings": {
-        "columns_desktop": "1",
-        "height_mode": "fixed",
-        "offset_desktop": 0,
-        "offset_mobile": 0,
-        "height_desktop": 760,
-        "height_mobile": 700,
-        "show_on": "all",
-        "gap_top": 16,
-        "shape_mobile": "tall"
-      }
-    },
     "services": {
       "type": "obm-services",
       "blocks": {
         "service_1": {
           "type": "service",
           "settings": {
-            "image": "shopify://shop_images/Custom.jpg",
+            "image": "shopify://shop_images/obm-2026-brass-stamp.jpg",
             "label": "Personalisation",
             "link": "shopify://pages/personalization"
           }
@@ -136,25 +101,25 @@
         "service_2": {
           "type": "service",
           "settings": {
-            "image": "shopify://shop_images/bag.jpg",
-            "label": "The Mirror Handbag",
-            "link": "shopify://products/blue-mirror-handbag-italian-leather"
+            "image": "shopify://shop_images/obm-2026-atelier-zebra.jpg",
+            "label": "The Atelier",
+            "link": "shopify://pages/the-atelier"
           }
         },
         "service_3": {
           "type": "service",
           "settings": {
-            "image": "shopify://shop_images/oberndoerfer-bespoke-stacked-cases.jpg",
-            "label": "Trunks",
-            "link": "shopify://collections/trunks"
+            "image": "shopify://shop_images/obm-lane-tray-brown.jpg",
+            "label": "Leather care",
+            "link": "shopify://pages/leather-care-guide"
           }
         },
         "service_4": {
           "type": "service",
           "settings": {
-            "image": "shopify://shop_images/obm-lane-coaster-brown.jpg",
-            "label": "Home accessories",
-            "link": "shopify://collections/home-accessories"
+            "image": "shopify://shop_images/gift_boxes.heic",
+            "label": "The art of packaging",
+            "link": "shopify://pages/the-art-of-packaging"
           }
         }
       },
@@ -166,14 +131,13 @@
       ],
       "settings": {
         "heading": "Explore",
-        "desktop_count": "3"
+        "desktop_count": "4"
       }
     }
   },
   "order": [
     "hero_film",
     "two_squares",
-    "full_mirror",
     "services"
   ]
 }

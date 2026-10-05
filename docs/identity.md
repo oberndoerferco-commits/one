@@ -812,3 +812,8 @@ menu), "for mobile".
   chapters (Trax NYC, Miramare Palace Sanremo, Made once, At the bench), 31 photographs with captions, one
   sentence per chapter taken from what the existing pages already state. Zebra panel links there.
   Page hidden from search engines until go-live (seo.hidden).
+- Explore row (owner's choice of four): Personalisation (the owner's photograph of a brass stamp with the
+  house cross, `obm-2026-brass-stamp.jpg`), The Atelier (the zebra, to `/pages/the-atelier`), Leather care
+  (the brown leather tray, a warm still life like the stamp, to the Leather Care page), The art of
+  packaging (the gift boxes). All four show on a desktop too. The full-width zebra panel is gone from
+  the home page ("remove this section, its in explore now"): hero, two squares, Explore, footer.
