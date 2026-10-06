@@ -14,6 +14,7 @@ Veneta (bottegaveneta.com/it-it), with Bottega's home page, on a separate draft 
 | `theme/sections/obm-panels.liquid` | Full-bleed photo panels, one or two per row, eyebrow and boxed button. "Show on" hides a row on phone or desktop. |
 | `theme/sections/obm-button-stack.liquid` | Outlined buttons, stacked on a phone, in a row on a desktop. |
 | `theme/sections/obm-gallery.liquid` | "The Atelier" (`/pages/the-atelier`, template `page.atelier`): an editorial gallery of projects, chapters with an italic title, a sentence and photographs in rows of one, two or three. |
+| `theme/sections/obm-work-with-us.liquid` | "Work with us" (`/pages/work-with-us`, template `page.work-with-us`): kinds of partnership with a photograph each, then an enquiry form through Shopify's contact form. |
 | `theme/sections/obm-services.liquid` | Last row: photographs with a label under each; two by two on a phone, three (or four) in a row on a desktop. |
 | `theme/sections/obm-announcement.liquid` | Black announcement line with a close button. |
 | `theme/sections/obm-footer.liquid` | Newsletter, "Where to find us", four menus (accordions on phone, columns on desktop), country, Instagram, copyright. |

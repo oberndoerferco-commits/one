@@ -824,3 +824,9 @@ menu), "for mobile".
 - Leather care picture (owner: "change the brown leather tray image, is there a better option?"): now the
   Sac on stone spheres (`obm-home-sac-spheres-mobile.jpg`), a warm taupe still life that sits with the
   brass stamp and the zebra. Runner-up: the black grain close-up of the duffle (`Leather_Duffle_bag.jpg`).
+- Work with us (owner: "instead of the art of packaging ... 'work with us' where people can contact us
+  ... official distributor or ... big projects like hotels, spaces"): fourth Explore tile, the brass
+  "Oberndörfer Milano x Trax NYC" plate, to `/pages/work-with-us`. Four kinds of work: Distribution,
+  Hotels residences and spaces, Collaborations, Corporate and private gifts; then an enquiry form (sent
+  through Shopify's contact form to the store address) with "Interested in" as a choice. Page hidden
+  from search engines until go-live (seo.hidden), as The Atelier.

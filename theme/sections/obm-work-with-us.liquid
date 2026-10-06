@@ -1,0 +1,156 @@
+{% comment %}
+  Oberndoerfer Milano - "Work with us" (REDESIGN 2026). The owner, 6 October: "a section of 'work with
+  us' where people can contact us to work with us, we always look for official distributor or if they
+  want big projects like hotels, spaces etc".
+  The same editorial language as The Atelier page (white ground, EB Garamond italic, small spaced
+  capitals, square buttons): a title and introduction; then each kind of work as a photograph beside a
+  number, an italic title and a sentence (stacked on a phone, side by side and alternating on a
+  desktop); then an enquiry form sent through Shopify's contact form to the store's address, with the
+  kind of work as a choice so each message arrives already sorted.
+{% endcomment %}
+<style>
+  @font-face { font-family: 'OBM Garamond'; font-style: italic; font-weight: 400; font-display: swap; src: url('{{ 'obm-eb-garamond-italic.woff2' | asset_url }}') format('woff2'); }
+</style>
+<div class="obm-wwu">
+  <header class="obm-wwu__head">
+    {%- if section.settings.eyebrow != blank -%}<p class="obm-wwu__eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+    <h1 class="obm-wwu__title">{{ section.settings.title | default: page.title }}</h1>
+    {%- if section.settings.intro != blank -%}<div class="obm-wwu__intro">{{ section.settings.intro }}</div>{%- endif -%}
+    <a class="obm-wwu__jump" href="#obm-wwu-form">{{ section.settings.jump_label }}</a>
+  </header>
+
+  <div class="obm-wwu__kinds">
+    {%- for block in section.blocks -%}
+      <section class="obm-wwu__kind" {{ block.shopify_attributes }}>
+        <div class="obm-wwu__media">
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 1600 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 50vw, 100vw', widths: '600, 900, 1200, 1600', alt: block.settings.image.alt }}
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'obm-wwu__placeholder' }}
+          {%- endif -%}
+        </div>
+        <div class="obm-wwu__text">
+          {%- if block.settings.number != blank -%}<p class="obm-wwu__number">{{ block.settings.number }}</p>{%- endif -%}
+          <h2 class="obm-wwu__kind-title">{{ block.settings.title }}</h2>
+          {%- if block.settings.text != blank -%}<div class="obm-wwu__kind-text">{{ block.settings.text }}</div>{%- endif -%}
+        </div>
+      </section>
+    {%- endfor -%}
+  </div>
+
+  <section class="obm-wwu__form-wrap" id="obm-wwu-form">
+    <h2 class="obm-wwu__form-title">{{ section.settings.form_title }}</h2>
+    {%- if section.settings.form_text != blank -%}<div class="obm-wwu__form-text">{{ section.settings.form_text }}</div>{%- endif -%}
+    {%- form 'contact', id: 'ObmWorkWithUs', class: 'obm-wwu__form' -%}
+      {%- if form.posted_successfully? -%}
+        <p class="obm-wwu__note" role="status">{{ section.settings.thanks }}</p>
+      {%- else -%}
+        {%- if form.errors -%}<div class="obm-wwu__note obm-wwu__note--error" role="alert">{{ form.errors | default_errors }}</div>{%- endif -%}
+        <input type="hidden" name="contact[Source]" value="Work with us">
+        <label class="obm-wwu__field">
+          <span>Interested in</span>
+          <select name="contact[Interested in]" required>
+            {%- assign kinds = section.settings.kinds | split: ',' -%}
+            {%- for k in kinds -%}<option>{{ k | strip }}</option>{%- endfor -%}
+          </select>
+        </label>
+        <div class="obm-wwu__row">
+          <label class="obm-wwu__field"><span>Name</span><input type="text" name="contact[name]" autocomplete="name" required></label>
+          <label class="obm-wwu__field"><span>Company</span><input type="text" name="contact[Company]" autocomplete="organization"></label>
+        </div>
+        <div class="obm-wwu__row">
+          <label class="obm-wwu__field"><span>E-mail</span><input type="email" name="contact[email]" autocomplete="email" required></label>
+          <label class="obm-wwu__field"><span>Country</span><input type="text" name="contact[Country]" autocomplete="country-name"></label>
+        </div>
+        <label class="obm-wwu__field"><span>Tell us about the project</span><textarea name="contact[body]" rows="6" required></textarea></label>
+        <button type="submit" class="obm-wwu__button">{{ section.settings.button_label }}</button>
+        {%- if section.settings.email_line != blank -%}<div class="obm-wwu__small">{{ section.settings.email_line }}</div>{%- endif -%}
+      {%- endif -%}
+    {%- endform -%}
+  </section>
+</div>
+
+{% stylesheet %}
+  .obm-wwu { background: #fff; color: #1c1714; padding-bottom: 96px; }
+  .obm-wwu__head { text-align: center; max-width: 760px; margin: 0 auto; padding: 56px 24px 56px; }
+  @media screen and (min-width: 750px) { .obm-wwu__head { padding: 96px 40px 96px; } }
+  .obm-wwu__eyebrow, .obm-wwu__number { margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6b625b; }
+  .obm-wwu__title { margin: 14px 0 0; font-family: 'OBM Garamond', 'EB Garamond', Garamond, Georgia, serif; font-style: italic; font-weight: 400; font-size: 44px; line-height: 1.05; letter-spacing: 0; text-transform: none; }
+  @media screen and (min-width: 750px) { .obm-wwu__title { font-size: 72px; } }
+  .obm-wwu__intro { margin: 22px auto 0; max-width: 54ch; font-size: 15px; line-height: 1.7; color: #3a322c; }
+  .obm-wwu__intro p { margin: 0; }
+  .obm-wwu__jump { display: inline-block; margin-top: 26px; color: #1c1714; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+  .obm-wwu__kinds { display: flex; flex-direction: column; gap: 56px; }
+  @media screen and (min-width: 750px) { .obm-wwu__kinds { gap: 16px; padding: 0 48px; max-width: 1600px; margin: 0 auto; } }
+  .obm-wwu__kind { display: grid; grid-template-columns: 1fr; }
+  @media screen and (min-width: 750px) {
+    .obm-wwu__kind { grid-template-columns: 1fr 1fr; align-items: center; gap: 16px; }
+    .obm-wwu__kind:nth-child(even) .obm-wwu__media { order: 2; }
+  }
+  .obm-wwu__media { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: #f2efea; }
+  @media screen and (max-width: 749px) { .obm-wwu__media { aspect-ratio: 1 / 1; } }
+  .obm-wwu__media img, .obm-wwu__placeholder { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .obm-wwu__text { text-align: center; padding: 28px 28px 0; max-width: 520px; margin: 0 auto; }
+  @media screen and (min-width: 750px) { .obm-wwu__text { padding: 40px 56px; } }
+  .obm-wwu__kind-title { margin: 12px 0 0; font-family: 'OBM Garamond', 'EB Garamond', Garamond, Georgia, serif; font-style: italic; font-weight: 400; font-size: 30px; line-height: 1.15; letter-spacing: 0; text-transform: none; }
+  @media screen and (min-width: 750px) { .obm-wwu__kind-title { font-size: 40px; } }
+  .obm-wwu__kind-text { margin-top: 16px; font-size: 15px; line-height: 1.7; color: #3a322c; }
+  .obm-wwu__kind-text p { margin: 0; }
+  .obm-wwu__form-wrap { max-width: 640px; margin: 0 auto; padding: 112px 24px 0; scroll-margin-top: 80px; text-align: center; }
+  @media screen and (min-width: 750px) { .obm-wwu__form-wrap { padding-top: 150px; } }
+  .obm-wwu__form-title { margin: 0; font-family: 'OBM Garamond', 'EB Garamond', Garamond, Georgia, serif; font-style: italic; font-weight: 400; font-size: 32px; line-height: 1.15; letter-spacing: 0; text-transform: none; }
+  @media screen and (min-width: 750px) { .obm-wwu__form-title { font-size: 44px; } }
+  .obm-wwu__form-text { margin: 16px auto 0; max-width: 50ch; font-size: 15px; line-height: 1.7; color: #3a322c; }
+  .obm-wwu__form-text p { margin: 0; }
+  .obm-wwu__form { margin-top: 40px; display: flex; flex-direction: column; gap: 22px; text-align: left; }
+  .obm-wwu__row { display: grid; grid-template-columns: 1fr; gap: 22px; }
+  @media screen and (min-width: 750px) { .obm-wwu__row { grid-template-columns: 1fr 1fr; gap: 24px; } }
+  .obm-wwu__field { display: flex; flex-direction: column; gap: 6px; }
+  .obm-wwu__field span { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #6b625b; }
+  .obm-wwu__field input, .obm-wwu__field select, .obm-wwu__field textarea { width: 100%; box-sizing: border-box; border: 0; border-bottom: 1px solid #1c1714; border-radius: 0; background: transparent; padding: 10px 0; font: inherit; font-size: 16px; color: #1c1714; -webkit-appearance: none; appearance: none; }
+  .obm-wwu__field select { background-image: linear-gradient(45deg, transparent 50%, #1c1714 50%), linear-gradient(135deg, #1c1714 50%, transparent 50%); background-position: calc(100% - 10px) 55%, calc(100% - 5px) 55%; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 24px; }
+  .obm-wwu__field textarea { border: 1px solid #1c1714; padding: 12px; resize: vertical; }
+  .obm-wwu__field input:focus, .obm-wwu__field select:focus, .obm-wwu__field textarea:focus { outline: none; border-color: #8a6a3a; }
+  .obm-wwu__button { align-self: center; margin-top: 10px; min-width: 196px; padding: 12px 20px; border: 1px solid #1c1714; border-radius: 0; background: #1c1714; color: #fff; font: inherit; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background-color .25s ease, color .25s ease; }
+  @media screen and (min-width: 750px) { .obm-wwu__button { min-width: 290px; padding: 17px 20px; font-size: 14px; } }
+  .obm-wwu__button:hover { background: #fff; color: #1c1714; }
+  .obm-wwu__small { margin: 0; text-align: center; font-size: 13px; color: #6b625b; }
+  .obm-wwu__small p { margin: 0; }
+  .obm-wwu__small a { color: inherit; }
+  .obm-wwu__note { margin: 0; padding: 16px; border: 1px solid #1c1714; text-align: center; font-size: 15px; line-height: 1.6; }
+  .obm-wwu__note--error { border-color: #8a2a1a; color: #8a2a1a; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Work with us",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small line above the title", "default": "Partnerships" },
+    { "type": "text", "id": "title", "label": "Title (defaults to the page title)" },
+    { "type": "richtext", "id": "intro", "label": "Introduction" },
+    { "type": "text", "id": "jump_label", "label": "Link to the form", "default": "Write to us" },
+    { "type": "header", "content": "Form" },
+    { "type": "text", "id": "form_title", "label": "Form title", "default": "Begin a conversation" },
+    { "type": "richtext", "id": "form_text", "label": "Form introduction" },
+    { "type": "text", "id": "kinds", "label": "Choices for 'Interested in' (separated by commas)", "default": "Distribution, Hotels and spaces, Collaboration, Corporate gifts, Something else" },
+    { "type": "text", "id": "button_label", "label": "Button", "default": "Send" },
+    { "type": "text", "id": "thanks", "label": "Message after sending", "default": "Thank you. We have your message and will reply personally." },
+    { "type": "richtext", "id": "email_line", "label": "Line under the button" }
+  ],
+  "blocks": [
+    {
+      "type": "kind",
+      "name": "Kind of work",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Photograph" },
+        { "type": "text", "id": "number", "label": "Number", "default": "01" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Kind of work" },
+        { "type": "richtext", "id": "text", "label": "Description" }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [ { "name": "Work with us" } ]
+}
+{% endschema %}
