@@ -11,6 +11,14 @@
   "type": "header",
   "name": "Header",
   "sections": {
+    "announce_2026": {
+      "type": "obm-announcement",
+      "settings": {
+        "text": "Complimentary DHL Express shipping worldwide",
+        "link": "shopify://policies/shipping-policy"
+      },
+      "disabled": true
+    },
     "header_section": {
       "type": "header",
       "blocks": {
@@ -28,13 +36,13 @@
           "type": "_header-menu",
           "static": true,
           "settings": {
-            "menu": "main-menu",
+            "menu": "main-menu-2026",
             "background_color": "{{ settings.color_palette.background }}",
             "text_color": "",
-            "type_font_primary_size": "0.875rem",
+            "type_font_primary_size": "0.9375rem",
             "menu_font_style": "inverse",
             "type_font_primary_link": "body",
-            "type_case_primary_link": "uppercase",
+            "type_case_primary_link": "none",
             "menu_style": "text",
             "featured_products_aspect_ratio": "1 / 1",
             "featured_collections_aspect_ratio": "1 / 1",
@@ -50,33 +58,32 @@
         }
       },
       "custom_css": [
-        "@media (max-width: 989px) {.header {padding-top: 10px !important; }}",
-        "@media (max-width: 989px) {.header {background-color: rgba(245, 242, 237, 0.75) !important; }}",
-        ".header {background-color: rgba(245, 242, 237, 0.75) !important;}"
+        ".header:not([transparent]), .header[data-sticky-state='active'] {background-color: #ffffff !important;}",
+        ".header[transparent]:not([data-sticky-state='active']) {background-color: transparent !important;}"
       ],
       "settings": {
-        "logo_position": "center",
+        "logo_position": "left",
         "menu_position": "center",
-        "menu_row": "bottom",
+        "menu_row": "top",
         "customer_account_menu": "customer-account-main-menu",
         "show_search": true,
         "search_position": "right",
         "search_row": "top",
-        "show_country": true,
+        "show_country": false,
         "country_selector_style": false,
-        "show_language": true,
+        "show_language": false,
         "localization_font": "heading",
         "localization_font_size": "0.875rem",
         "localization_position": "right",
         "localization_row": "top",
         "section_width": "page-width",
         "section_height": "standard",
-        "enable_sticky_header": "scroll-up",
+        "enable_sticky_header": "always",
         "divider_width": 0,
         "divider_size": "page-width",
         "divider_color": "",
-        "border_width": 0,
-        "bottom_border_color": "",
+        "border_width": 1,
+        "bottom_border_color": "#ECE7DF",
         "actions_display_style": "icon",
         "actions_font_size": "0.875rem",
         "actions_font": "body",
@@ -89,8 +96,8 @@
         "bubble_background_color": "",
         "bubble_text_color": "",
         "enable_transparent_header_home": true,
-        "home_inverse_logo": false,
-        "text_color_transparent_home": "#000000cf",
+        "home_inverse_logo": true,
+        "text_color_transparent_home": "#ffffff",
         "enable_transparent_header_product": false,
         "product_inverse_logo": false,
         "text_color_transparent_product": "",
@@ -98,9 +105,28 @@
         "collection_inverse_logo": false,
         "text_color_transparent_collection": ""
       }
+    },
+    "style_2026": {
+      "type": "obm-style-2026",
+      "settings": {}
+    },
+    "mobile_menu_2026": {
+      "type": "obm-mobile-menu-2026",
+      "settings": {
+        "menu": "main-menu-2026",
+        "service_label": "Customer service",
+        "service_link": "shopify://pages/contact",
+        "account_label": "My account",
+        "locator_label": "Where to find us",
+        "locator_link": "shopify://pages/where-to-find-us",
+        "ship_label": "Ship to:"
+      }
     }
   },
   "order": [
-    "header_section"
+    "announce_2026",
+    "header_section",
+    "style_2026",
+    "mobile_menu_2026"
   ]
 }

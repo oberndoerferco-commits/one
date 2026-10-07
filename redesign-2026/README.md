@@ -173,3 +173,8 @@ badges, inputs and cards (`config/settings_data.json`).
 - Type as on gallerydept.com: Courier New for text, menus, product names and prices, Helvetica for headings (system fonts, nothing copied; Android falls back to Courier Prime, SIL OFL, from Google Fonts). The EB Garamond italic headings are gone.
 - Desktop header as on bottegaveneta.com: "Menu" at the left (opens the menu as a panel from the left over a dimmed page), logo centred, "Search", "Login" and "Cart" as words at the right. The menu bar is hidden; its links are in the panel.
 - New section `obm-lookbook` for collaborations, modelled on Gallery Dept.'s "OTW by Vans x Gallery Dept." page; used on /collections/oberndoerfer-traxnyc (template collection.oberndoerfer-traxnyc.json). The product grid is still in the template but switched off.
+
+## Transparent header on the home page (7 October)
+- The header lies over the hero film, fully clear, with the logo and words in white (the photo's top is dark); after scrolling it turns white with the black logo, as on Bottega Veneta. Uses the theme's own "transparent header on home" setting plus rules in obm-style-2026.
+- The draft had inherited `.header {background-color: #ffffff !important;}` as header custom CSS, which blocked any transparency; it now applies only when the header is not transparent or has scrolled. (The live theme's custom CSS uses a 75% cream tint, rgba(245, 242, 237, 0.75), instead.)
+- Hero offsets set to 0 so the film fills the whole screen under the header.

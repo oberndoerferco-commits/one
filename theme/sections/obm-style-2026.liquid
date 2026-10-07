@@ -80,7 +80,7 @@
     .obm-desk-menu { display: inline-flex; grid-column: 1; grid-row: 1; justify-self: start; align-items: center; min-height: 44px; padding: 0; border: 0; background: none; cursor: pointer; }
     .obm-desk-menu, .obm-desk-login,
     .header__row--top .search-action .svg-wrapper::before,
-    .header__row--top .header-actions__cart-icon .svg-wrapper::before { font-family: var(--obm-font-text); font-size: 14px; font-weight: 400; letter-spacing: 0.02em; text-transform: uppercase; color: #1c1714; text-decoration: none; }
+    .header__row--top .header-actions__cart-icon .svg-wrapper::before { font-family: var(--obm-font-text); font-size: 14px; font-weight: 400; letter-spacing: 0.02em; text-transform: uppercase; color: var(--color-foreground); text-decoration: none; }
     .obm-desk-menu:hover, .obm-desk-login:hover { text-decoration: underline; text-underline-offset: 4px; }
     .obm-desk-login { display: inline-flex; align-items: center; min-height: 44px; }
     .header__row--top header-actions { display: flex !important; align-items: center; gap: 32px; margin-left: 9px !important; }
@@ -91,14 +91,22 @@
     .header__row--top .search-action .svg-wrapper svg { display: none !important; }
     .header__row--top .search-action .svg-wrapper::before { content: 'Search'; }
   }
+  /* Home page (owner, 7 October): the header lies over the film, transparent, as on Bottega Veneta,
+     with the logo and the words in white so they read on the dark photograph. Once the page scrolls the
+     theme's sticky header turns white again and the logo goes back to black. The see-through state
+     itself is the theme's own "transparent header on the home page" setting (header-group.json). */
+  .header[transparent]:not([data-sticky-state='active']) .header-logo__image { filter: brightness(0) invert(1); }
+  .header[transparent]:not([data-sticky-state='active']),
+  .header[transparent]:not([data-sticky-state='active']) .header__row,
+  .header[transparent]:not([data-sticky-state='active']) .header__columns { background: transparent !important; border-color: transparent !important; box-shadow: none !important; }
   /* "Cart" as a word, with the count in brackets, on every screen size. */
   .header__row--top .header-actions__cart-icon { display: flex !important; align-items: center; gap: 4px; width: auto !important; line-height: 1; }
   .header__row--top .header-actions__cart-icon .svg-wrapper { width: auto !important; height: auto !important; }
   .header__row--top .header-actions__cart-icon .svg-wrapper svg { display: none !important; }
-  .header__row--top .header-actions__cart-icon .svg-wrapper::before { content: 'Cart'; font-family: var(--obm-font-text); font-size: 14px; letter-spacing: 0.02em; text-transform: uppercase; color: #1c1714; }
-  .header__row--top .header-actions__cart-icon .cart-bubble:not(.visually-hidden) { position: static !important; inset: auto !important; width: auto !important; height: auto !important; min-width: 0 !important; transform: none !important; background: none !important; color: #1c1714 !important; font-size: 14px !important; padding: 0 !important; display: flex !important; align-items: center; line-height: 1 !important; }
+  .header__row--top .header-actions__cart-icon .svg-wrapper::before { content: 'Cart'; font-family: var(--obm-font-text); font-size: 14px; letter-spacing: 0.02em; text-transform: uppercase; color: var(--color-foreground); }
+  .header__row--top .header-actions__cart-icon .cart-bubble:not(.visually-hidden) { position: static !important; inset: auto !important; width: auto !important; height: auto !important; min-width: 0 !important; transform: none !important; background: none !important; color: var(--color-foreground) !important; font-size: 14px !important; padding: 0 !important; display: flex !important; align-items: center; line-height: 1 !important; }
   .header__row--top .header-actions__cart-icon .cart-bubble:not(.visually-hidden) .cart-bubble__background { display: none !important; }
-  .header__row--top .header-actions__cart-icon .cart-bubble:not(.visually-hidden) .cart-bubble__text { position: static !important; font-family: var(--obm-font-text); font-size: 14px !important; line-height: 1 !important; font-weight: 400 !important; letter-spacing: 0.02em; color: #1c1714 !important; }
+  .header__row--top .header-actions__cart-icon .cart-bubble:not(.visually-hidden) .cart-bubble__text { position: static !important; font-family: var(--obm-font-text); font-size: 14px !important; line-height: 1 !important; font-weight: 400 !important; letter-spacing: 0.02em; color: var(--color-foreground) !important; }
   .header__row--top .header-actions__cart-icon .cart-bubble:not(.visually-hidden) .cart-bubble__text::before { content: '('; }
   .header__row--top .header-actions__cart-icon .cart-bubble:not(.visually-hidden) .cart-bubble__text::after { content: ')'; }
   /* Phone header (owner, 5 October): the menu icon at the left, the logo in the middle and the word

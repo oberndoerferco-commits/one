@@ -27,8 +27,8 @@
       "settings": {
         "columns_desktop": "1",
         "height_mode": "screen",
-        "offset_desktop": 84,
-        "offset_mobile": 60,
+        "offset_desktop": 0,
+        "offset_mobile": 0,
         "height_desktop": 820,
         "height_mobile": 640,
         "shape_mobile": "fixed",
