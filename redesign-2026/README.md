@@ -187,3 +187,12 @@ badges, inputs and cards (`config/settings_data.json`).
 - Fixed: on the home page the transparent header sat above the open menu, so its close cross could not be clicked; the menu and its shade now hang off <body>.
 - Fixed: on phones the footer's "Shipping to" country list ran past the right edge.
 - Not bugs: the 429 / "section not found" messages were Cloudflare rate-limiting the test itself; search counts are high because Shopify also matches descriptions.
+
+## Findability (7 October, owner's go: "yes go ahead with the SEO and image descriptions")
+Store-level changes, so they apply to the live site too:
+- SEO title and description written for the Crocodile Passport Holder and the wine carrier, a description for the Chrome T-shirt, and titles for two trays. (productUpdate's seo input replaces both fields, so always send title and description together.)
+- 99 first product photos (the ivory studio shots) had file-name descriptions such as "Oberndorfer 3p green ivory"; each now describes the piece from its own product facts.
+- The 14 Ready to Wear products, and the blue alligator wallet on Meta, were not on the Google & YouTube or Facebook & Instagram channels; now all 138 active products are on both.
+- The eco-leather blog article (365 visits in 90 days, no cart adds) now links to the leather care guide, the coasters, trays, a watch box and the bags.
+- New collection /collections/gifts (33 pieces: coasters, 3-watch boxes, trays, caps), published to the online store, Google and Meta, as one link for posts and ads.
+- index.json synced with the owner's edit: hero button to Bags, the Sac panel now "NEW IN" to New in.
