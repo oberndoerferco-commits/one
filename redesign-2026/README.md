@@ -163,3 +163,8 @@ badges, inputs and cards (`config/settings_data.json`).
 2. Sunglasses: set the Eyewear collection (`sunglasses`) and its products to draft or unpublish them
    from the Online Store. Until then they stay live for the current theme.
 3. Open the home page in the theme editor once: every photograph can be swapped there per panel.
+
+## Explore: smaller tiles, studio brass stamp (7 October)
+- The brass stamp photo was cut out and set on a pale grey studio ground, as in Bottega Veneta's own stamp photo (`tools/stamp.py`, file obm-2026-brass-stamp-studio.jpg).
+- Explore tiles are smaller on phone (side margin 16%) and on desktop (side margin 10%, 3% gaps).
+- index.json was rebuilt from the owner's theme-editor version before this change.

@@ -31,6 +31,7 @@
         "offset_mobile": 60,
         "height_desktop": 820,
         "height_mobile": 640,
+        "shape_mobile": "fixed",
         "show_on": "all",
         "gap_top": 0
       }
@@ -82,22 +83,14 @@
         "offset_mobile": 0,
         "height_desktop": 720,
         "height_mobile": 500,
+        "shape_mobile": "square",
         "show_on": "all",
-        "gap_top": 16,
-        "shape_mobile": "square"
+        "gap_top": 16
       }
     },
     "services": {
       "type": "obm-services",
       "blocks": {
-        "service_1": {
-          "type": "service",
-          "settings": {
-            "image": "shopify://shop_images/obm-2026-brass-stamp.jpg",
-            "label": "Personalisation",
-            "link": "shopify://pages/personalization"
-          }
-        },
         "service_2": {
           "type": "service",
           "settings": {
@@ -106,10 +99,18 @@
             "link": "shopify://pages/the-atelier"
           }
         },
+        "service_1": {
+          "type": "service",
+          "settings": {
+            "image": "shopify://shop_images/obm-2026-brass-stamp-studio.jpg",
+            "label": "Personalisation",
+            "link": "shopify://pages/personalization"
+          }
+        },
         "service_3": {
           "type": "service",
           "settings": {
-            "image": "shopify://shop_images/obm-home-sac-spheres-mobile.jpg",
+            "image": "shopify://shop_images/oberndoerfer-bespoke-stacked-cases.jpg",
             "label": "Leather care",
             "link": "shopify://pages/leather-care-guide"
           }
@@ -117,15 +118,15 @@
         "service_4": {
           "type": "service",
           "settings": {
-            "image": "shopify://shop_images/IMG_2807.jpg",
+            "image": "shopify://shop_images/IMG_6101.jpg",
             "label": "Work with us",
             "link": "shopify://pages/work-with-us"
           }
         }
       },
       "block_order": [
-        "service_1",
         "service_2",
+        "service_1",
         "service_3",
         "service_4"
       ],
