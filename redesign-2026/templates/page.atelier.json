@@ -82,10 +82,10 @@
         "b7": {
           "type": "photo",
           "settings": {
-            "image": "shopify://shop_images/obm-2026-atelier-bench.jpg",
+            "image": "shopify://shop_images/obm-atelier-film-poster.jpg",
             "size": "half",
             "ratio": "portrait",
-            "focal_x": 50,
+            "focal_x": 40,
             "focal_y": 50,
             "caption": ""
           }
@@ -286,9 +286,9 @@
         "closing": "Something you would like us to make?",
         "button_label": "Begin a commission",
         "button_link": "shopify://pages/personalization",
-        "hero_image": "shopify://shop_images/obm-atelier-film-poster.jpg",
-        "hero_focal_x": 40,
-        "hero_focal_y": 50
+        "hero_image": "shopify://shop_images/obm-2026-atelier-bench.jpg",
+        "hero_focal_x": 50,
+        "hero_focal_y": 45
       }
     }
   },
