@@ -116,8 +116,9 @@
   @media screen and (min-width: 750px) { .obm-footer__sign { padding-top: 64px; } .obm-footer__sign-img { width: 230px; } }
   .obm-footer__bottom { padding: 26px 16px 40px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; }
   @media screen and (min-width: 750px) { .obm-footer__bottom { padding: 40px 40px 36px; } }
-  .obm-footer__country { display: flex; align-items: center; gap: 6px; font-size: 14px; }
-  .obm-footer__country select { border: 0; border-bottom: 1px solid #1c1714; background: transparent; font: inherit; font-size: 14px; color: #1c1714; padding: 2px 0; border-radius: 0; -webkit-appearance: none; appearance: none; cursor: pointer; }
+  .obm-footer__country { display: flex; align-items: center; gap: 6px; min-width: 0; max-width: 100%; font-size: 14px; }
+  .obm-footer__country label { white-space: nowrap; }
+  .obm-footer__country select { min-width: 0; max-width: min(220px, 60vw); text-overflow: ellipsis; border: 0; border-bottom: 1px solid #1c1714; background: transparent; font: inherit; font-size: 14px; color: #1c1714; padding: 2px 0; border-radius: 0; -webkit-appearance: none; appearance: none; cursor: pointer; }
   .obm-footer__social { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; }
   .obm-footer__copy { width: 100%; margin: 0; font-size: 12px; color: #6b6259; }
   @media screen and (min-width: 750px) { .obm-footer__copy { width: auto; } }

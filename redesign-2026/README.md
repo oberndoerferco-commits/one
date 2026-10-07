@@ -181,3 +181,9 @@ badges, inputs and cards (`config/settings_data.json`).
 
 ## Where to find us (7 October)
 - New section `obm-locations` and template page.where-to-find-us.json: a store locator in Bottega Veneta's manner. One entry per place (photo, kind of place, name, address, note, Directions / link / Write to us, and a grey map that fits the screen), then a band for online and appointments. The text is the page's own wording, split by place. The old page's map was wider than a phone screen.
+
+## Site check (7 October)
+- Crawled 41 pages on phone and desktop, 80 internal links, and the buying flow (menu, add to cart, cart, checkout button, search, sofa enquiry). All pages load, no broken images or links, no page wider than the screen.
+- Fixed: on the home page the transparent header sat above the open menu, so its close cross could not be clicked; the menu and its shade now hang off <body>.
+- Fixed: on phones the footer's "Shipping to" country list ran past the right edge.
+- Not bugs: the 429 / "section not found" messages were Cloudflare rate-limiting the test itself; search counts are high because Shopify also matches descriptions.

@@ -67,6 +67,9 @@
     var menu = document.getElementById('ObmMenu');
     if (!menu || menu.dataset.ready) return;
     menu.dataset.ready = '1';
+    // Hang the menu (and its shade, below) straight off <body>, so no section's stacking layer, such as
+    // the transparent home-page header's, can sit over it and swallow clicks on the close cross.
+    document.body.appendChild(menu);
     var small = window.matchMedia('(max-width: 989px)');
     var opener = null;
     function open(from) {
@@ -88,7 +91,7 @@
       open(s);
     }, true);
     menu.addEventListener('click', function (e) { if (e.target.closest('[data-obm-menu-close]')) close(); });
-    var shade = document.createElement('div'); shade.className = 'obm-menu-shade'; shade.addEventListener('click', close); menu.after(shade);
+    var shade = document.createElement('div'); shade.className = 'obm-menu-shade'; shade.addEventListener('click', close); document.body.insertBefore(shade, menu);
     function addDesktop() {
       var row = document.querySelector('.header__row--top .header__columns');
       if (row && !row.querySelector('.obm-desk-menu')) {
