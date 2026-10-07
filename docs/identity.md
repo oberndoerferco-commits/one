@@ -839,3 +839,14 @@ menu), "for mobile".
   (twill pants, 3 hoodies, 5 T-shirts, 5 caps) and the home pieces (2 sofas, 4 poufs, black table trunk,
   4 coaster sets); 34 -> 59. Sunglasses left out (to be unpublished at go-live). Both show on the live
   site.
+- Sofas (owner: "put all of the sofas price upon request"): tag `price-on-request` on Leather Sofa Black,
+  Orange and the Chesterfield (draft). In the draft theme, `snippets/price.liquid` prints "Price upon
+  request" for tagged products (product pages, cards, search) and `obm-style-2026` swaps the cart buttons
+  for an Enquire button to the contact page plus the e-mail. The live theme still shows the price until
+  the draft is published.
+- Leather Watch Box colours (owner: the black photographs are the standard). Tried rebuilding each
+  colour from the black photo (`redesign-2026/watchbox/recolor.py`): good leather, but the chrome lock
+  and hasp read as flat grey cut-outs on light colours ("wrong metal color and creepy cut out"). Cognac
+  had gone live and was put back to its originals (verified). Now: a clean-up of each colour's own photos
+  (`watchbox/cleanup.py`: framing matched to the black, gentle sharpening, a little more contrast in the
+  hardware), shown to the owner before anything goes live.

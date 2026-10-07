@@ -9,6 +9,39 @@
 <style>
   @font-face { font-family: 'OBM Garamond'; font-style: italic; font-weight: 400; font-display: swap; src: url('{{ 'obm-eb-garamond-italic.woff2' | asset_url }}') format('woff2'); }
 </style>
+{%- comment -%}
+  Price upon request (owner, 7 October: "put all of the sofas price upon request"). Products tagged
+  price-on-request show "Price upon request" (snippets/price.liquid) and, on their product page, an
+  Enquire button in place of the cart buttons, to the contact page, with the e-mail as a second way.
+{%- endcomment -%}
+{%- if template.name == 'product' and product.tags contains 'price-on-request' -%}
+  <style>
+    .buy-buttons-block product-form-component { display: none !important; }
+    .obm-enquire { display: flex; flex-direction: column; gap: 12px; }
+    .obm-enquire__button { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 48px; padding: 14px 20px; border: 1px solid #1c1714; border-radius: 0; background: #1c1714; color: #fff; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: background-color .25s ease, color .25s ease; }
+    .obm-enquire__button:hover { background: #fff; color: #1c1714; }
+    .obm-enquire__note { margin: 0; font-size: 13px; line-height: 1.6; color: #6b625b; }
+    .obm-enquire__note a { color: inherit; }
+  </style>
+  <template id="ObmEnquireTpl">
+    <div class="obm-enquire">
+      <a class="obm-enquire__button" href="{{ pages['contact'].url | default: '/pages/contact' }}">Enquire</a>
+      <p class="obm-enquire__note">Made by hand to order. Write to us for the price, the leathers and the lead time, or e-mail <a href="mailto:info@oberndoerferco.com?subject={{ 'Enquiry: ' | append: product.title | url_escape }}">info@oberndoerferco.com</a>.</p>
+    </div>
+  </template>
+  <script>
+    (function () {
+      function place() {
+        var tpl = document.getElementById('ObmEnquireTpl'); if (!tpl) return;
+        document.querySelectorAll('.buy-buttons-block').forEach(function (b) {
+          if (b.querySelector('.obm-enquire')) return;
+          b.appendChild(tpl.content.cloneNode(true));
+        });
+      }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', place); else place();
+    })();
+  </script>
+{%- endif -%}
 {% stylesheet %}
   .ob-pdp-swatch { width: 28px; height: 28px; border-radius: 0; box-shadow: inset 0 0 0 1px rgba(24, 18, 12, 0.12); }
   .ob-pdp-swatch[aria-current='true'] { box-shadow: none; outline: 1px solid #1c1714; outline-offset: 3px; }
