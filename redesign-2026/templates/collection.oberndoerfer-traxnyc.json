@@ -25,14 +25,6 @@
             "link": ""
           }
         },
-        "ph_2": {
-          "type": "photo",
-          "settings": {
-            "image": "shopify://shop_images/IMG_2807.jpg",
-            "layout": "wide",
-            "link": ""
-          }
-        },
         "ch_2": {
           "type": "chapter",
           "settings": {
@@ -48,14 +40,6 @@
           "settings": {
             "image": "shopify://shop_images/6D9755E7-2049-4C04-BF56-52F31D68B202.jpg",
             "layout": "centre",
-            "link": "shopify://products/necklace-trunk-x-trax-nyc"
-          }
-        },
-        "ph_4": {
-          "type": "photo",
-          "settings": {
-            "image": "shopify://shop_images/IMG_2790.jpg",
-            "layout": "wide",
             "link": "shopify://products/necklace-trunk-x-trax-nyc"
           }
         },
@@ -103,14 +87,6 @@
             "link": "shopify://products/traxnyc-x-oberndorfer-trunk-black"
           }
         },
-        "ph_8": {
-          "type": "photo",
-          "settings": {
-            "image": "shopify://shop_images/IMG_2836.jpg",
-            "layout": "wide",
-            "link": "shopify://products/traxnyc-x-oberndorfer-trunk-black"
-          }
-        },
         "ch_5": {
           "type": "chapter",
           "settings": {
@@ -131,16 +107,13 @@
       "block_order": [
         "ch_1",
         "ph_1",
-        "ph_2",
         "ch_2",
         "ph_3",
-        "ph_4",
         "ch_3",
         "ph_5",
         "ph_6",
         "ch_4",
         "ph_7",
-        "ph_8",
         "ch_5",
         "ph_9"
       ],

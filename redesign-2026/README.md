@@ -207,3 +207,4 @@ Store-level changes, so they apply to the live site too:
 - No chapter index, no captions; one sentence per chapter. New order: At the bench, Made once, Miramare Palace, Trax NYC (closing line linking to the collaboration page).
 - Photos in rows of one or two; a "third" becomes a half on phones. The near-duplicate Miramare lobby shot at the end was dropped.
 - Owner, later: stitching photo now leads At the bench full width; the hammering shot sits beside trimming. The Atelier and Work with us are no longer hidden from search engines (seo.hidden removed). The 11 sunglasses set to Draft (hidden everywhere, reversible). Explore shows all four tiles on desktop.
+- Trax photos split (owner chose option 2): plate, red Alcantara and studs moved from the Trax page to The Atelier's Trax chapter; the Trax page keeps the product shots.

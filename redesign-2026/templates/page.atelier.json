@@ -251,6 +251,39 @@
             "link_label": "See the collaboration",
             "link": "shopify://collections/oberndoerfer-traxnyc"
           }
+        },
+        "t1": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/IMG_2807.jpg",
+            "size": "full",
+            "ratio": "landscape",
+            "focal_x": 50,
+            "focal_y": 50,
+            "caption": ""
+          }
+        },
+        "t2": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/IMG_2790.jpg",
+            "size": "half",
+            "ratio": "portrait",
+            "focal_x": 40,
+            "focal_y": 50,
+            "caption": ""
+          }
+        },
+        "t3": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/IMG_2836.jpg",
+            "size": "half",
+            "ratio": "portrait",
+            "focal_x": 55,
+            "focal_y": 50,
+            "caption": ""
+          }
         }
       },
       "block_order": [
@@ -276,7 +309,10 @@
         "r4",
         "r5",
         "r6",
-        "ch_trax"
+        "ch_trax",
+        "t1",
+        "t2",
+        "t3"
       ],
       "settings": {
         "eyebrow": "Projects and commissions",
