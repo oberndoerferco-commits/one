@@ -196,3 +196,8 @@ Store-level changes, so they apply to the live site too:
 - The eco-leather blog article (365 visits in 90 days, no cart adds) now links to the leather care guide, the coasters, trays, a watch box and the bags.
 - New collection /collections/gifts (33 pieces: coasters, 3-watch boxes, trays, caps), published to the online store, Google and Meta, as one link for posts and ads.
 - index.json synced with the owner's edit: hero button to Bags, the Sac panel now "NEW IN" to New in.
+
+## Watch box white cutout (7 October)
+- The "Leather Watch Box" covers re-framed this morning (cognac, jeans, pastel blue, pastel pink, green, yellow, navy) carried a white rectangle round the box; fixed with `tools/ivory_corners.py` (background pixels lighter than the ivory are brought down to it). Black and cognac suede covers were never affected.
+- Their other 27 photos (all nine colours) were on pure white and showed as white blocks on the ivory product-page panel; repainted to the ivory with `tools/ivory_ground.py` (background and enclosed clasp gaps only). Originals kept in the session scratchpad.
+- Lesson: check CDN images with their ?v= version; the bare URL can serve an older copy.
