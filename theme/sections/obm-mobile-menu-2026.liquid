@@ -4,7 +4,9 @@
   page: the logo at the left with search, account, bag and a close cross at the right; the main menu as
   plain rows with a chevron each; then, in grey, customer service, account, where to find us and the
   shipping country (underlined). On phones and tablets it opens in place of the theme's drawer when the
-  menu icon is tapped; on a desktop nothing changes.
+  menu icon is tapped. On a desktop (owner, 7 October, Bottega Veneta's desktop header) the header shows
+  the word "Menu" at the left and "Login" at the right, both added here, and the menu opens as a panel
+  from the left over a dimmed page.
 {% endcomment %}
 {%- liquid
   assign menu = section.settings.menu
@@ -86,6 +88,22 @@
       open(s);
     }, true);
     menu.addEventListener('click', function (e) { if (e.target.closest('[data-obm-menu-close]')) close(); });
+    var shade = document.createElement('div'); shade.className = 'obm-menu-shade'; shade.addEventListener('click', close); menu.after(shade);
+    function addDesktop() {
+      var row = document.querySelector('.header__row--top .header__columns');
+      if (row && !row.querySelector('.obm-desk-menu')) {
+        var b = document.createElement('button'); b.type = 'button'; b.className = 'obm-desk-menu'; b.textContent = {{ 'Menu' | json }};
+        b.setAttribute('aria-haspopup', 'dialog'); b.addEventListener('click', function () { open(b); });
+        row.insertBefore(b, row.firstChild);
+      }
+      var acts = document.querySelector('.header__row--top header-actions');
+      if (acts && !acts.querySelector('.obm-desk-login')) {
+        var a = document.createElement('a'); a.className = 'obm-desk-login'; a.href = {{ routes.account_url | json }};
+        a.textContent = {% if customer %}{{ 'Account' | json }}{% else %}{{ 'Login' | json }}{% endif %};
+        acts.insertBefore(a, acts.firstChild);
+      }
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addDesktop); else addDesktop();
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !menu.hidden) close(); });
     small.addEventListener('change', function () { if (!small.matches && !menu.hidden) close(); });
   })();
@@ -113,7 +131,20 @@
   .obm-menu__value { color: #6b6f75; border-bottom: 1px solid #6b6f75; padding-bottom: 2px; }
   .obm-menu__select { position: relative; display: inline-flex; }
   .obm-menu__select select { position: absolute; inset: 0; opacity: 0; width: 100%; font-size: 16px; cursor: pointer; }
-  @media screen and (min-width: 990px) { .obm-menu { display: none !important; } }
+  .obm-menu-shade { display: none; }
+  @media screen and (min-width: 990px) {
+    .obm-menu { inset: 0 auto 0 0; width: 440px; max-width: 100vw; padding: 0 40px 48px; animation: obm-menu-in .28s cubic-bezier(.33, 1, .68, 1); }
+    html.obm-menu-open .obm-menu-shade { display: block; position: fixed; inset: 0; z-index: 999; background: rgba(28, 23, 20, .28); }
+    .obm-menu__bar { flex-direction: row-reverse; justify-content: flex-end; min-height: 88px; }
+    .obm-menu__logo, .obm-menu__icons a { display: none; }
+    .obm-menu__icons { margin: 0 0 0 -11px; }
+    .obm-menu__main { margin-top: 12px; }
+    .obm-menu__main a { min-height: 48px; font-size: 15px; text-transform: uppercase; letter-spacing: 0.02em; }
+    .obm-menu__main a svg { display: none; }
+    .obm-menu__main a:hover { text-decoration: underline; text-underline-offset: 4px; }
+    .obm-menu__more a, .obm-menu__country { font-size: 13px; }
+  }
+  @keyframes obm-menu-in { from { transform: translateX(-24px); opacity: 0; } to { transform: none; opacity: 1; } }
 {% endstylesheet %}
 
 {% schema %}

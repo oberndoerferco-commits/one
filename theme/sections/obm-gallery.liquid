@@ -13,7 +13,6 @@
   landscape 3:2, portrait 4:5 or square, with an optional caption.
 {% endcomment %}
 <style>
-  @font-face { font-family: 'OBM Garamond'; font-style: italic; font-weight: 400; font-display: swap; src: url('{{ 'obm-eb-garamond-italic.woff2' | asset_url }}') format('woff2'); }
 </style>
 <div class="obm-gallery">
   <header class="obm-gallery__head">
@@ -104,8 +103,8 @@
   .obm-gallery__head { text-align: center; padding: 56px 20px 24px; max-width: 1100px; margin: 0 auto; }
   @media screen and (min-width: 750px) { .obm-gallery__head { padding: 96px 40px 40px; } }
   .obm-gallery__eyebrow, .obm-gallery__number { margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #6b625b; }
-  .obm-gallery__title { margin: 14px 0 0; font-family: 'OBM Garamond', 'EB Garamond', Garamond, Georgia, serif; font-style: italic; font-weight: 400; font-size: 44px; line-height: 1.05; letter-spacing: 0; text-transform: none; }
-  @media screen and (min-width: 750px) { .obm-gallery__title { font-size: 72px; } }
+  .obm-gallery__title { margin: 14px 0 0; font-family: var(--obm-font-display); font-style: normal; font-weight: 400; font-size: 32px; line-height: 1.1; letter-spacing: 0; text-transform: uppercase; }
+  @media screen and (min-width: 750px) { .obm-gallery__title { font-size: 40px; } }
   .obm-gallery__intro { margin: 22px auto 0; max-width: 52ch; font-size: 15px; line-height: 1.7; color: #3a322c; }
   .obm-gallery__intro p { margin: 0; }
   .obm-gallery__index ol { list-style: none; margin: 36px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px; align-items: center; }
@@ -116,8 +115,8 @@
   .obm-gallery__chapter { scroll-margin-top: 80px; }
   .obm-gallery__text { text-align: center; max-width: 620px; margin: 0 auto; padding: 88px 24px 40px; }
   @media screen and (min-width: 750px) { .obm-gallery__text { padding: 150px 40px 56px; } }
-  .obm-gallery__chapter-title { margin: 14px 0 0; font-family: 'OBM Garamond', 'EB Garamond', Garamond, Georgia, serif; font-style: italic; font-weight: 400; font-size: 32px; line-height: 1.12; letter-spacing: 0; text-transform: none; }
-  @media screen and (min-width: 750px) { .obm-gallery__chapter-title { font-size: 46px; } }
+  .obm-gallery__chapter-title { margin: 14px 0 0; font-family: var(--obm-font-display); font-style: normal; font-weight: 700; font-size: 20px; line-height: 1.2; letter-spacing: 0.01em; text-transform: uppercase; }
+  @media screen and (min-width: 750px) { .obm-gallery__chapter-title { font-size: 22px; } }
   .obm-gallery__chapter-text { margin-top: 18px; font-size: 15px; line-height: 1.7; color: #3a322c; }
   .obm-gallery__chapter-text p { margin: 0; }
   .obm-gallery__link { display: inline-block; margin-top: 22px; color: #1c1714; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
@@ -132,8 +131,8 @@
   @media screen and (min-width: 750px) { .obm-gallery__photo figcaption { margin: 12px 0 8px; font-size: 13px; } }
   @media screen and (max-width: 749px) { .obm-gallery__photo--half figcaption, .obm-gallery__photo--third figcaption { margin-inline: 8px; font-size: 11px; } }
   .obm-gallery__close { text-align: center; padding: 120px 24px 0; }
-  .obm-gallery__closing { margin: 0 auto; max-width: 30ch; font-family: 'OBM Garamond', 'EB Garamond', Garamond, Georgia, serif; font-style: italic; font-size: 28px; line-height: 1.25; }
-  @media screen and (min-width: 750px) { .obm-gallery__closing { font-size: 36px; } }
+  .obm-gallery__closing { margin: 0 auto; max-width: 30ch; font-family: var(--obm-font-display); font-style: normal; font-weight: 700; font-size: 18px; line-height: 1.35; text-transform: uppercase; }
+  @media screen and (min-width: 750px) { .obm-gallery__closing { font-size: 20px; } }
   .obm-gallery__button { display: inline-block; margin-top: 28px; min-width: 196px; padding: 12px 20px; border: 1px solid #1c1714; color: #1c1714; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: background-color .25s ease, color .25s ease; }
   @media screen and (min-width: 750px) { .obm-gallery__button { min-width: 290px; padding: 17px 20px; font-size: 14px; } }
   .obm-gallery__button:hover { background: #1c1714; color: #fff; }

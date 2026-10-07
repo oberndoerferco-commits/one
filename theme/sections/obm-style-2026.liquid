@@ -1,13 +1,28 @@
 {% comment %}
   Oberndoerfer Milano - REDESIGN 2026 site-wide touches (draft theme only; sits in the header group so
-  it loads on every page and prints no markup of its own):
-  - the EB Garamond italic face (assets/obm-eb-garamond-italic.woff2, SIL Open Font Licence) used for
-    collection titles and the "You may also like" heading, as Hermès sets its category names;
+  it loads on every page):
+  - the type, as on gallerydept.com (owner, 7 October: "i love all of the fonts of this website, can you
+    take the same"): Courier New for text, menus, product names and prices, Helvetica for headings.
+    Both are system fonts, so nothing is copied; phones without Courier New (Android) get Courier
+    Prime, a free Courier cut (SIL Open Font Licence) from Google Fonts;
   - square colour chips and square buttons on product pages, as on Bottega Veneta's product page;
-  - the phone header: menu icon left, logo centred, the word "Cart" right.
+  - the header, as on Bottega Veneta: on a phone the menu icon left, logo centred, "Cart" right; on a
+    desktop the word "Menu" left (it opens the menu panel from obm-mobile-menu-2026), the logo centred
+    and "Search", "Login" and "Cart" as words at the right.
 {% endcomment %}
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-  @font-face { font-family: 'OBM Garamond'; font-style: italic; font-weight: 400; font-display: swap; src: url('{{ 'obm-eb-garamond-italic.woff2' | asset_url }}') format('woff2'); }
+  :root {
+    --obm-font-text: 'Courier New', 'Courier Prime', Courier, monospace;
+    --obm-font-display: Helvetica, 'Helvetica Neue', Arial, sans-serif;
+    --font-body--family: var(--obm-font-text);
+    --font-subheading--family: var(--obm-font-text);
+    --font-accent--family: var(--obm-font-text);
+    --font-heading--family: var(--obm-font-display);
+    --font-heading--weight: 700;
+    --font-heading--style: normal;
+  }
 </style>
 {%- comment -%}
   Price upon request (owner, 7 October: "put all of the sofas price upon request"). Products tagged
@@ -50,14 +65,42 @@
   .product-details .quantity-selector,
   .product-details .variant-option__button-label { border-radius: 0 !important; }
   .shopify-section[id*='product_recommendations'] .text-block { margin-inline: auto; text-align: center; }
-  .shopify-section[id*='product_recommendations'] .text-block > * { font-family: 'OBM Garamond', 'EB Garamond', Georgia, serif; font-style: italic; font-weight: 400; font-size: 26px; letter-spacing: 0; }
-  @media screen and (min-width: 750px) { .shopify-section[id*='product_recommendations'] .text-block > * { font-size: 34px; } }
-  /* Desktop header as on Bottega Veneta: the menu centred on the page between logo and icons. */
+  .shopify-section[id*='product_recommendations'] .text-block > * { font-family: var(--obm-font-display); font-style: normal; font-weight: 700; font-size: 18px; letter-spacing: 0.01em; text-transform: uppercase; }
+  @media screen and (min-width: 750px) { .shopify-section[id*='product_recommendations'] .text-block > * { font-size: 20px; } }
+  /* Desktop header as on Bottega Veneta (owner, 7 October, "do the same for my desktop"): the word
+     "Menu" at the left, the logo centred, Search, Login and Cart as words at the right. The menu bar
+     itself is hidden: its links live in the menu panel. */
+  .obm-desk-menu, .obm-desk-login { display: none; }
   @media screen and (min-width: 990px) {
-    .header__row--top .header__column--center { justify-content: center !important; }
-    .header__row--top .header__column--center .header-menu, .header__row--top .header__column--center .menu-list { justify-content: center !important; width: 100%; }
-    .header__row--top .header__column--center .menu-list__list, .header__row--top .header__column--center .menu-list > ul { justify-content: center !important; margin-inline: auto !important; }
+    .header__row--top .header__columns { display: grid !important; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) !important; grid-template-areas: none !important; align-items: center !important; column-gap: 24px !important; }
+    .header__row--top .header__column--center { display: none !important; }
+    .header__row--top .header__column--left { grid-column: 2 !important; grid-row: 1 !important; justify-self: center !important; justify-content: center !important; width: auto !important; }
+    .header__row--top .header__column--right { grid-column: 3 !important; grid-row: 1 !important; justify-self: end !important; width: auto !important; gap: 32px !important; }
+    .header__row--top .header-logo__image { width: auto !important; height: 34px !important; }
+    .obm-desk-menu { display: inline-flex; grid-column: 1; grid-row: 1; justify-self: start; align-items: center; min-height: 44px; padding: 0; border: 0; background: none; cursor: pointer; }
+    .obm-desk-menu, .obm-desk-login,
+    .header__row--top .search-action .svg-wrapper::before,
+    .header__row--top .header-actions__cart-icon .svg-wrapper::before { font-family: var(--obm-font-text); font-size: 14px; font-weight: 400; letter-spacing: 0.02em; text-transform: uppercase; color: #1c1714; text-decoration: none; }
+    .obm-desk-menu:hover, .obm-desk-login:hover { text-decoration: underline; text-underline-offset: 4px; }
+    .obm-desk-login { display: inline-flex; align-items: center; min-height: 44px; }
+    .header__row--top header-actions { display: flex !important; align-items: center; gap: 32px; margin-left: 32px !important; }
+    .header__row--top .obm-desk-login { line-height: 1; padding-top: 1px; }
+    .header__row--top header-actions .account-button { display: none !important; }
+    .header__row--top .search-action .header-actions__action, .header__row--top header-actions .header-actions__action { width: auto !important; min-width: 0 !important; padding: 0 !important; }
+    .header__row--top .search-action .svg-wrapper { width: auto !important; height: auto !important; }
+    .header__row--top .search-action .svg-wrapper svg { display: none !important; }
+    .header__row--top .search-action .svg-wrapper::before { content: 'Search'; }
   }
+  /* "Cart" as a word, with the count in brackets, on every screen size. */
+  .header__row--top .header-actions__cart-icon { display: flex !important; align-items: center; gap: 4px; width: auto !important; line-height: 1; }
+  .header__row--top .header-actions__cart-icon .svg-wrapper { width: auto !important; height: auto !important; }
+  .header__row--top .header-actions__cart-icon .svg-wrapper svg { display: none !important; }
+  .header__row--top .header-actions__cart-icon .svg-wrapper::before { content: 'Cart'; font-family: var(--obm-font-text); font-size: 14px; letter-spacing: 0.02em; text-transform: uppercase; color: #1c1714; }
+  .header__row--top .header-actions__cart-icon .cart-bubble:not(.visually-hidden) { position: static !important; inset: auto !important; width: auto !important; height: auto !important; min-width: 0 !important; transform: none !important; background: none !important; color: #1c1714 !important; font-size: 14px !important; padding: 0 !important; display: flex !important; align-items: center; line-height: 1 !important; }
+  .header__row--top .header-actions__cart-icon .cart-bubble:not(.visually-hidden) .cart-bubble__background { display: none !important; }
+  .header__row--top .header-actions__cart-icon .cart-bubble:not(.visually-hidden) .cart-bubble__text { position: static !important; font-family: var(--obm-font-text); font-size: 14px !important; line-height: 1 !important; font-weight: 400 !important; letter-spacing: 0.02em; color: #1c1714 !important; }
+  .header__row--top .header-actions__cart-icon .cart-bubble:not(.visually-hidden) .cart-bubble__text::before { content: '('; }
+  .header__row--top .header-actions__cart-icon .cart-bubble:not(.visually-hidden) .cart-bubble__text::after { content: ')'; }
   /* Phone header (owner, 5 October): the menu icon at the left, the logo in the middle and the word
      "Cart" at the right. Search and account move into the full-screen menu, which has both. The cart
      count, when there is one, follows the word in brackets. */
@@ -69,15 +112,6 @@
     .header__row--top .header__columns search-button.search-action--hidden-on-menu,
     .header__row--top .header__columns header-actions .account-button { display: none !important; }
     .header__row--top .header__columns header-actions .header-actions__action { width: auto !important; min-width: 44px !important; padding: 0 !important; justify-content: flex-end; }
-    .header__row--top .header-actions__cart-icon { display: flex !important; align-items: center; gap: 4px; width: auto !important; line-height: 1; }
-    .header__row--top .header-actions__cart-icon .svg-wrapper { width: auto !important; height: auto !important; }
-    .header__row--top .header-actions__cart-icon .svg-wrapper svg { display: none !important; }
-    .header__row--top .header-actions__cart-icon .svg-wrapper::before { content: 'Cart'; font-family: var(--font-body--family); font-size: 14px; letter-spacing: 0.02em; color: #1c1714; }
-    .header__row--top .header-actions__cart-icon .cart-bubble:not(.visually-hidden) { position: static !important; inset: auto !important; width: auto !important; height: auto !important; min-width: 0 !important; transform: none !important; background: none !important; color: #1c1714 !important; font-size: 14px !important; padding: 0 !important; display: flex !important; align-items: center; line-height: 1 !important; }
-    .header__row--top .header-actions__cart-icon .cart-bubble:not(.visually-hidden) .cart-bubble__background { display: none !important; }
-    .header__row--top .header-actions__cart-icon .cart-bubble:not(.visually-hidden) .cart-bubble__text { position: static !important; font-size: 14px !important; line-height: 1 !important; font-weight: 400 !important; letter-spacing: 0.02em; color: #1c1714 !important; }
-    .header__row--top .header-actions__cart-icon .cart-bubble:not(.visually-hidden) .cart-bubble__text::before { content: '('; }
-    .header__row--top .header-actions__cart-icon .cart-bubble:not(.visually-hidden) .cart-bubble__text::after { content: ')'; }
   }
 {% endstylesheet %}
 {% schema %}

@@ -1,0 +1,304 @@
+{
+  "sections": {
+    "lookbook": {
+      "type": "obm-lookbook",
+      "blocks": {
+        "ch_1": {
+          "type": "chapter",
+          "settings": {
+            "title": "The collection",
+            "piece_1": "Jewellery box x Trax NYC",
+            "piece_link_1": "shopify://products/jewelry-box-x-trax-nyc",
+            "piece_2": "Necklace trunk x Trax NYC",
+            "piece_link_2": "shopify://products/necklace-trunk-x-trax-nyc",
+            "piece_3": "Briefcase x Trax NYC",
+            "piece_link_3": "shopify://products/traxnyc-x-oberndorfer-trunk-black",
+            "piece_4": "Mini trunk x Trax NYC",
+            "piece_link_4": "shopify://products/mini-trunk-x-traxnyc"
+          }
+        },
+        "ph_1": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/IMG_3112.jpg",
+            "layout": "full",
+            "link": ""
+          }
+        },
+        "ph_2": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/IMG_2807.jpg",
+            "layout": "wide",
+            "link": ""
+          }
+        },
+        "ch_2": {
+          "type": "chapter",
+          "settings": {
+            "title": "Necklace trunk",
+            "piece_1": "Necklace trunk x Trax NYC",
+            "piece_link_1": "shopify://products/necklace-trunk-x-trax-nyc",
+            "piece_2": "Calf leather, red Alcantara",
+            "piece_link_2": ""
+          }
+        },
+        "ph_3": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/6D9755E7-2049-4C04-BF56-52F31D68B202.jpg",
+            "layout": "centre",
+            "link": "shopify://products/necklace-trunk-x-trax-nyc"
+          }
+        },
+        "ph_4": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/IMG_2790.jpg",
+            "layout": "wide",
+            "link": "shopify://products/necklace-trunk-x-trax-nyc"
+          }
+        },
+        "ch_3": {
+          "type": "chapter",
+          "settings": {
+            "title": "Jewellery box",
+            "piece_1": "Jewellery box x Trax NYC",
+            "piece_link_1": "shopify://products/jewelry-box-x-trax-nyc",
+            "piece_2": "Brass galvanised in gold",
+            "piece_link_2": ""
+          }
+        },
+        "ph_5": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/IMG_3026.jpg",
+            "layout": "full",
+            "link": "shopify://products/jewelry-box-x-trax-nyc"
+          }
+        },
+        "ph_6": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/IMG_2910_fa219bea-5784-4100-b6bf-d3650979f5b2.jpg",
+            "layout": "wide",
+            "link": "shopify://products/jewelry-box-x-trax-nyc"
+          }
+        },
+        "ch_4": {
+          "type": "chapter",
+          "settings": {
+            "title": "Briefcase",
+            "piece_1": "Briefcase x Trax NYC",
+            "piece_link_1": "shopify://products/traxnyc-x-oberndorfer-trunk-black",
+            "piece_2": "Studs set one at a time",
+            "piece_link_2": ""
+          }
+        },
+        "ph_7": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/A97CE674-56E8-4AD0-9DA6-318283C14D1D.jpg",
+            "layout": "centre",
+            "link": "shopify://products/traxnyc-x-oberndorfer-trunk-black"
+          }
+        },
+        "ph_8": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/IMG_2836.jpg",
+            "layout": "wide",
+            "link": "shopify://products/traxnyc-x-oberndorfer-trunk-black"
+          }
+        },
+        "ch_5": {
+          "type": "chapter",
+          "settings": {
+            "title": "Mini trunk",
+            "piece_1": "Mini trunk x Trax NYC",
+            "piece_link_1": "shopify://products/mini-trunk-x-traxnyc"
+          }
+        },
+        "ph_9": {
+          "type": "photo",
+          "settings": {
+            "image": "shopify://shop_images/186798B2-B6FF-497A-998C-6BAE17FD6799.jpg",
+            "layout": "centre",
+            "link": "shopify://products/mini-trunk-x-traxnyc"
+          }
+        }
+      },
+      "block_order": [
+        "ch_1",
+        "ph_1",
+        "ph_2",
+        "ch_2",
+        "ph_3",
+        "ph_4",
+        "ch_3",
+        "ph_5",
+        "ph_6",
+        "ch_4",
+        "ph_7",
+        "ph_8",
+        "ch_5",
+        "ph_9"
+      ],
+      "settings": {
+        "title": "Oberndörfer × Trax NYC",
+        "text": "<p>For Trax NYC, a custom jeweller in Manhattan’s Diamond District, we made four cases in full-grain calf, lined in red Alcantara, with solid brass galvanised in gold: a jewellery box, a necklace trunk, a briefcase and a mini trunk. One example of each.</p>"
+      }
+    },
+    "main": {
+      "type": "main-collection",
+      "blocks": {
+        "filters": {
+          "type": "filters",
+          "static": true,
+          "settings": {
+            "enable_filtering": true,
+            "filter_style": "horizontal",
+            "filter_width": "centered",
+            "text_label_case": "uppercase",
+            "show_swatch_label": false,
+            "show_filter_label": false,
+            "enable_sorting": true,
+            "enable_grid_density": true,
+            "padding-block-start": 8,
+            "padding-block-end": 8,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "facets_margin_bottom": 8,
+            "facets_margin_right": 20
+          },
+          "blocks": {}
+        },
+        "product-card": {
+          "type": "_product-card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 4,
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "card-gallery": {
+              "type": "_product-card-gallery",
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_4nY4eT": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "0.875rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price_EzJzMm": {
+              "type": "price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "card_eyebrow": {
+              "type": "custom-liquid",
+              "settings": {
+                "custom_liquid": "{%- assign p = closest.product -%}{%- if p.tags contains 'preorder' -%}<p style=\"font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;opacity:0.6;margin:0 0 8px\">Pre-order</p>{%- endif -%}"
+              },
+              "blocks": {}
+            },
+            "swatches_card": {
+              "type": "swatches",
+              "settings": {
+                "product_swatches_alignment": "flex-start",
+                "product_swatches_alignment_mobile": "flex-start",
+                "hide_padding": false,
+                "product_swatches_padding_top": 8,
+                "product_swatches_padding_bottom": 0,
+                "product_swatches_padding_left": 0,
+                "product_swatches_padding_right": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "card_eyebrow",
+            "card-gallery",
+            "product_title_4nY4eT",
+            "price_EzJzMm",
+            "swatches_card"
+          ]
+        }
+      },
+      "settings": {
+        "layout_type": "grid",
+        "product_card_size": "medium",
+        "mobile_product_card_size": "small",
+        "enable_infinite_scroll": true,
+        "products_per_page": 24,
+        "product_grid_width": "centered",
+        "full_width_on_mobile": true,
+        "columns_gap_horizontal": 16,
+        "columns_gap_vertical": 24,
+        "padding-inline-start": 0,
+        "padding-inline-end": 0,
+        "background_color": "#FFFFFF",
+        "padding-block-start": 0,
+        "padding-block-end": 32
+      },
+      "disabled": true
+    }
+  },
+  "order": [
+    "lookbook",
+    "main"
+  ]
+}

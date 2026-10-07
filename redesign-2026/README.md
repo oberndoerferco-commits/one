@@ -168,3 +168,8 @@ badges, inputs and cards (`config/settings_data.json`).
 - The brass stamp photo was cut out and set on a pale grey studio ground, as in Bottega Veneta's own stamp photo (`tools/stamp.py`, file obm-2026-brass-stamp-studio.jpg).
 - Explore tiles are smaller on phone (side margin 16%) and on desktop (side margin 10%, 3% gaps).
 - index.json was rebuilt from the owner's theme-editor version before this change.
+
+## Desktop header, Gallery Dept type, Trax lookbook (7 October)
+- Type as on gallerydept.com: Courier New for text, menus, product names and prices, Helvetica for headings (system fonts, nothing copied; Android falls back to Courier Prime, SIL OFL, from Google Fonts). The EB Garamond italic headings are gone.
+- Desktop header as on bottegaveneta.com: "Menu" at the left (opens the menu as a panel from the left over a dimmed page), logo centred, "Search", "Login" and "Cart" as words at the right. The menu bar is hidden; its links are in the panel.
+- New section `obm-lookbook` for collaborations, modelled on Gallery Dept.'s "OTW by Vans x Gallery Dept." page; used on /collections/oberndoerfer-traxnyc (template collection.oberndoerfer-traxnyc.json). The product grid is still in the template but switched off.

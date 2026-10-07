@@ -12,13 +12,12 @@
   {%- if section.settings.show_line and line != blank -%}<p class="obm-ctitle__line">{{ line }}</p>{%- endif -%}
 </div>
 <style>
-  @font-face { font-family: 'OBM Garamond'; font-style: italic; font-weight: 400; font-display: swap; src: url('{{ 'obm-eb-garamond-italic.woff2' | asset_url }}') format('woff2'); }
 </style>
 {% stylesheet %}
   .obm-ctitle { background: #fff; color: #1c1714; text-align: center; padding: 34px 20px 26px; }
   @media screen and (min-width: 750px) { .obm-ctitle { padding: 56px 40px 36px; } }
-  .obm-ctitle__name { font-family: 'OBM Garamond', 'EB Garamond', Garamond, Georgia, serif; font-style: italic; font-weight: 400; margin: 0; font-size: 34px; line-height: 1.1; letter-spacing: 0; text-transform: none; }
-  @media screen and (min-width: 750px) { .obm-ctitle__name { font-size: 48px; } }
+  .obm-ctitle__name { font-family: var(--obm-font-display); font-style: normal; font-weight: 700; margin: 0; font-size: 22px; line-height: 1.15; letter-spacing: 0.02em; text-transform: uppercase; }
+  @media screen and (min-width: 750px) { .obm-ctitle__name { font-size: 26px; } }
   .obm-ctitle__line { margin: 10px auto 0; max-width: 52ch; font-size: 14px; line-height: 1.6; color: #3a322c; }
 {% endstylesheet %}
 {% schema %}
