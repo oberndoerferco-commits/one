@@ -201,3 +201,8 @@ Store-level changes, so they apply to the live site too:
 - The "Leather Watch Box" covers re-framed this morning (cognac, jeans, pastel blue, pastel pink, green, yellow, navy) carried a white rectangle round the box; fixed with `tools/ivory_corners.py` (background pixels lighter than the ivory are brought down to it). Black and cognac suede covers were never affected.
 - Their other 27 photos (all nine colours) were on pure white and showed as white blocks on the ivory product-page panel; repainted to the ivory with `tools/ivory_ground.py` (background and enclosed clasp gaps only). Originals kept in the session scratchpad.
 - Lesson: check CDN images with their ?v= version; the bare URL can serve an older copy.
+
+## The Atelier, second pass (7 October, owner: "go for it")
+- Opens with the stitching photograph across the full width (new `hero_image` setting in obm-gallery), then the title and one line.
+- No chapter index, no captions; one sentence per chapter. New order: At the bench, Made once, Miramare Palace, Trax NYC (closing line linking to the collaboration page).
+- Photos in rows of one or two; a "third" becomes a half on phones. The near-duplicate Miramare lobby shot at the end was dropped.
