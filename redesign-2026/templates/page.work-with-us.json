@@ -53,7 +53,7 @@
         "jump_label": "Write to us",
         "form_title": "Begin a conversation",
         "form_text": "<p>Tell us who you are and what you have in mind. We read every message and reply personally.</p>",
-        "kinds": "Distribution, Hotels and spaces, Interior design, Collaboration, Corporate gifts, Something else",
+        "kinds": "Hotels and spaces, Interior design, Collaboration, Corporate gifts, Something else",
         "button_label": "Send",
         "thanks": "Thank you. We have your message and will reply personally.",
         "email_line": "<p>Or write to <a href=\"mailto:info@oberndoerferco.com\">info@oberndoerferco.com</a></p>"
