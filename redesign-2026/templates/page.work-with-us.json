@@ -18,14 +18,14 @@
             "image": "shopify://shop_images/oberndoerfer-aol-ensemble.jpg",
             "number": "02",
             "title": "Hotels, residences and spaces",
-            "text": "<p>Sofas, armchairs, poufs, trunks and tables in full-grain leather, made for the room they will stand in. The lobby of the Miramare Palace in Sanremo began as one such conversation; we work with owners, architects and interior designers.</p>"
+            "text": "<p>Sofas, armchairs, poufs, trunks and tables in full-grain leather, made for the room they will stand in. The lobby of the Miramare Palace in Sanremo began as one such conversation.</p>"
           }
         },
         "kind_3": {
           "type": "kind",
           "settings": {
             "image": "shopify://shop_images/IMG_3112.jpg",
-            "number": "03",
+            "number": "05",
             "title": "Collaborations",
             "text": "<p>Editions made with houses from other fields, built the way they think and made the way we make everything else. For Trax NYC, a jeweller in New York, it was a line of cases for pieces of real value.</p>"
           }
@@ -34,26 +34,46 @@
           "type": "kind",
           "settings": {
             "image": "shopify://shop_images/IMG_6101.jpg",
-            "number": "04",
+            "number": "06",
             "title": "Corporate and private gifts",
             "text": "<p>Pieces for clients, teams and events, with a name or a logo stamped in gold, silver or blind, and packed in boxes made in Italy.</p>"
+          }
+        },
+        "kind_5": {
+          "type": "kind",
+          "settings": {
+            "image": "shopify://shop_images/oberndoerfer-cle-brass-fittings.jpg",
+            "number": "03",
+            "title": "Interior designers and architects",
+            "text": "<p>For designers and architects furnishing a home, a hotel or an office: hides, linings and solid brass hardware to choose from, and pieces made to your drawings and dimensions.</p>"
+          }
+        },
+        "kind_6": {
+          "type": "kind",
+          "settings": {
+            "image": "shopify://shop_images/obm-eyewear-riviera-coast.jpg",
+            "number": "04",
+            "title": "Yachts",
+            "text": "<p>Leather for life at sea: trunks and fitted cases cut to the cabin, seating and panels in full-grain hides, made together with owners, yards and their designers.</p>"
           }
         }
       },
       "block_order": [
         "kind_1",
         "kind_2",
+        "kind_5",
+        "kind_6",
         "kind_3",
         "kind_4"
       ],
       "settings": {
         "eyebrow": "Partnerships",
         "title": "Work with us",
-        "intro": "<p>Beyond the collection, we make pieces with and for others: shops that would like to carry the house, hotels and homes that need furniture made to measure, brands looking for a leather partner. Every piece is made by hand in our ateliers around Milan.</p>",
+        "intro": "<p>Beyond the collection, we make pieces with and for others: shops that would like to carry the house, hotels, homes and yachts that need pieces made to measure, designers and brands looking for a leather partner. Every piece is made by hand in our ateliers around Milan.</p>",
         "jump_label": "Write to us",
         "form_title": "Begin a conversation",
         "form_text": "<p>Tell us who you are and what you have in mind. We read every message and reply personally.</p>",
-        "kinds": "Distribution, Hotels and spaces, Collaboration, Corporate gifts, Something else",
+        "kinds": "Distribution, Hotels and spaces, Interior design, Yachts, Collaboration, Corporate gifts, Something else",
         "button_label": "Send",
         "thanks": "Thank you. We have your message and will reply personally.",
         "email_line": "<p>Or write to <a href=\"mailto:info@oberndoerferco.com\">info@oberndoerferco.com</a></p>"

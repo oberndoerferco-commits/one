@@ -830,3 +830,12 @@ menu), "for mobile".
   Hotels residences and spaces, Collaborations, Corporate and private gifts; then an enquiry form (sent
   through Shopify's contact form to the store address) with "Interested in" as a choice. Page hidden
   from search engines until go-live (seo.hidden), as The Atelier.
+- Work with us: added Interior designers and architects (the brass fittings) and Yachts (the Riviera
+  coast photograph, a stand-in until there is a yacht project to show); six kinds now, and both in the
+  form's "Interested in" list.
+- Store-level, 7 October (owner: "add more products in new in collection and remove briefcases from bag
+  collection"): the Bags smart collection lost its "title contains Briefcase" rule (53 -> 49; the
+  briefcases stay in Travel). New In (manual) gained 25 pieces at the top, newest first: Ready to Wear
+  (twill pants, 3 hoodies, 5 T-shirts, 5 caps) and the home pieces (2 sofas, 4 poufs, black table trunk,
+  4 coaster sets); 34 -> 59. Sunglasses left out (to be unpublished at go-live). Both show on the live
+  site.
