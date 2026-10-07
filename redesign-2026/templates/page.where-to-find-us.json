@@ -6,7 +6,7 @@
         "miramare": {
           "type": "place",
           "settings": {
-            "image": "shopify://shop_images/oberndoerfer-aol-ensemble.jpg",
+            "image": "shopify://shop_images/IMG_5333-miramare-exterior.jpg",
             "kind": "Hotel boutique · Sanremo",
             "name": "Miramare The Palace",
             "address": "<p>Corso Matuzia 9<br>18038 Sanremo (IM), Italy</p>",
@@ -21,7 +21,7 @@
         "trax": {
           "type": "place",
           "settings": {
-            "image": "shopify://shop_images/IMG_3112.jpg",
+            "image": "shopify://shop_images/oberndoerfer-cle-case-gold-hardware.jpg",
             "kind": "Stockist · New York",
             "name": "Trax NYC",
             "address": "<p>64 W 47th Street<br>New York, NY, United States</p>",

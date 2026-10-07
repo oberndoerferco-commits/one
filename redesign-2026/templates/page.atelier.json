@@ -9,107 +9,8 @@
             "number": "01",
             "title": "Oberndörfer × Trax NYC",
             "text": "<p>For Trax NYC, a custom jeweller in Manhattan’s Diamond District, we made four cases in full-grain calf, lined in red Alcantara, with solid brass galvanised in gold: a jewellery box, a necklace trunk, a briefcase and a mini trunk. One example of each.</p>",
-            "link_label": "Discover the line",
+            "link_label": "See the collaboration",
             "link": "shopify://collections/oberndoerfer-traxnyc"
-          }
-        },
-        "photo_01": {
-          "type": "photo",
-          "settings": {
-            "image": "shopify://shop_images/IMG_3112.jpg",
-            "size": "full",
-            "ratio": "landscape",
-            "focal_x": 50,
-            "focal_y": 50,
-            "caption": "Three of the four pieces"
-          }
-        },
-        "photo_02": {
-          "type": "photo",
-          "settings": {
-            "image": "shopify://shop_images/IMG_2807.jpg",
-            "size": "half",
-            "ratio": "portrait",
-            "focal_x": 50,
-            "focal_y": 50,
-            "caption": "The plate: Oberndörfer Milano × Trax NYC"
-          }
-        },
-        "photo_03": {
-          "type": "photo",
-          "settings": {
-            "image": "shopify://shop_images/6D9755E7-2049-4C04-BF56-52F31D68B202.jpg",
-            "size": "half",
-            "ratio": "portrait",
-            "focal_x": 50,
-            "focal_y": 50,
-            "caption": "The necklace trunk, open"
-          }
-        },
-        "photo_04": {
-          "type": "photo",
-          "settings": {
-            "image": "shopify://shop_images/IMG_2790.jpg",
-            "size": "third",
-            "ratio": "square",
-            "focal_x": 50,
-            "focal_y": 50,
-            "caption": "Red Alcantara"
-          }
-        },
-        "photo_05": {
-          "type": "photo",
-          "settings": {
-            "image": "shopify://shop_images/IMG_2910_fa219bea-5784-4100-b6bf-d3650979f5b2.jpg",
-            "size": "third",
-            "ratio": "square",
-            "focal_x": 50,
-            "focal_y": 50,
-            "caption": "The lock, in brass galvanised in gold"
-          }
-        },
-        "photo_06": {
-          "type": "photo",
-          "settings": {
-            "image": "shopify://shop_images/IMG_2836.jpg",
-            "size": "third",
-            "ratio": "square",
-            "focal_x": 50,
-            "focal_y": 50,
-            "caption": "Studs, set one at a time"
-          }
-        },
-        "photo_07": {
-          "type": "photo",
-          "settings": {
-            "image": "shopify://shop_images/IMG_3026.jpg",
-            "size": "full",
-            "ratio": "landscape",
-            "focal_x": 50,
-            "focal_y": 50,
-            "caption": "The jewellery box, fitted so nothing touches anything else"
-          }
-        },
-        "photo_08": {
-          "type": "photo",
-          "settings": {
-            "image": "shopify://shop_images/186798B2-B6FF-497A-998C-6BAE17FD6799.jpg",
-            "size": "half",
-            "ratio": "square",
-            "focal_x": 50,
-            "focal_y": 50,
-            "caption": "The mini trunk"
-          }
-        },
-        "photo_09": {
-          "type": "photo",
-          "settings": {
-            "image": "shopify://shop_images/A97CE674-56E8-4AD0-9DA6-318283C14D1D.jpg",
-            "size": "half",
-            "ratio": "square",
-            "focal_x": 50,
-            "focal_y": 50,
-            "caption": "The briefcase"
           }
         },
         "chapter_2": {
@@ -285,17 +186,6 @@
             "link": "shopify://pages/materials-craftsmanship"
           }
         },
-        "photo_23": {
-          "type": "photo",
-          "settings": {
-            "image": "shopify://shop_images/obm-2026-atelier-zebra.jpg",
-            "size": "full",
-            "ratio": "landscape",
-            "focal_x": 50,
-            "focal_y": 50,
-            "caption": "Cutting a zebra-print hide"
-          }
-        },
         "photo_24": {
           "type": "photo",
           "settings": {
@@ -387,15 +277,6 @@
       },
       "block_order": [
         "chapter_1",
-        "photo_01",
-        "photo_02",
-        "photo_03",
-        "photo_04",
-        "photo_05",
-        "photo_06",
-        "photo_07",
-        "photo_08",
-        "photo_09",
         "chapter_2",
         "photo_10",
         "photo_11",
@@ -412,7 +293,6 @@
         "photo_21",
         "photo_22",
         "chapter_4",
-        "photo_23",
         "photo_24",
         "photo_25",
         "photo_26",

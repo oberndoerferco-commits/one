@@ -118,7 +118,7 @@
         "service_4": {
           "type": "service",
           "settings": {
-            "image": "shopify://shop_images/IMG_6101.jpg",
+            "image": "shopify://shop_images/oberndoerfer-cle-atelier-bench.jpg",
             "label": "Work with us",
             "link": "shopify://pages/work-with-us"
           }
