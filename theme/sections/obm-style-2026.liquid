@@ -116,6 +116,8 @@
     .header__row--top .header__columns { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) !important; grid-template-areas: "obmdrawer obmlogo obmactions" !important; column-gap: 8px !important; }
     .header__row--top .header__columns .header__drawer { grid-area: obmdrawer !important; justify-self: start !important; }
     .header__row--top .header__columns .header-logo { grid-area: obmlogo !important; justify-self: center !important; margin: 0 !important; }
+    /* A little smaller on the phone (owner, 7 October). */
+    .header__row--top .header-logo__image { height: 28px !important; width: auto !important; }
     .header__row--top .header__columns header-actions { grid-area: obmactions !important; justify-self: end !important; margin: 0 !important; }
     .header__row--top .header__columns search-button.search-action--hidden-on-menu,
     .header__row--top .header__columns header-actions .account-button { display: none !important; }
