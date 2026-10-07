@@ -178,3 +178,6 @@ badges, inputs and cards (`config/settings_data.json`).
 - The header lies over the hero film, fully clear, with the logo and words in white (the photo's top is dark); after scrolling it turns white with the black logo, as on Bottega Veneta. Uses the theme's own "transparent header on home" setting plus rules in obm-style-2026.
 - The draft had inherited `.header {background-color: #ffffff !important;}` as header custom CSS, which blocked any transparency; it now applies only when the header is not transparent or has scrolled. (The live theme's custom CSS uses a 75% cream tint, rgba(245, 242, 237, 0.75), instead.)
 - Hero offsets set to 0 so the film fills the whole screen under the header.
+
+## Where to find us (7 October)
+- New section `obm-locations` and template page.where-to-find-us.json: a store locator in Bottega Veneta's manner. One entry per place (photo, kind of place, name, address, note, Directions / link / Write to us, and a grey map that fits the screen), then a band for online and appointments. The text is the page's own wording, split by place. The old page's map was wider than a phone screen.

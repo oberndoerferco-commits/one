@@ -1,0 +1,137 @@
+{% comment %}
+  Oberndoerfer Milano - Where to find us (REDESIGN 2026). The owner, 7 October: "make the where to find
+  us better". A store locator in the manner of Bottega Veneta's: the title and a line of text, then one
+  entry per place, with a photograph on one side and on the other the kind of place, its name, the
+  address, a note, and "Directions" (Google Maps) and "Write to us" links; under it, if set, a map that
+  fits the screen (the old page's map was wider than a phone). Last, a band for the online shop and
+  appointments.
+{% endcomment %}
+<section class="obm-loc">
+  <header class="obm-loc__head">
+    <h1 class="obm-loc__title">{{ section.settings.title }}</h1>
+    {%- if section.settings.text != blank -%}<div class="obm-loc__text">{{ section.settings.text }}</div>{%- endif -%}
+  </header>
+
+  <div class="obm-loc__list">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'place' -%}
+          {%- assign q = block.settings.map_query | default: block.settings.address | strip_html | url_encode -%}
+          {%- assign side = forloop.index0 | modulo: 2 -%}
+          <article class="obm-loc__place{% if side == 1 %} obm-loc__place--flip{% endif %}" {{ block.shopify_attributes }}>
+            <div class="obm-loc__media">
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 1600 | image_tag: loading: 'lazy', widths: '600, 900, 1200, 1600', sizes: '(min-width: 990px) 50vw, 100vw', alt: block.settings.image.alt | default: block.settings.name, style: block.settings.image.presentation.focal_point }}
+              {%- endif -%}
+            </div>
+            <div class="obm-loc__info">
+              {%- if block.settings.kind != blank -%}<p class="obm-loc__kind">{{ block.settings.kind }}</p>{%- endif -%}
+              <h2 class="obm-loc__name">{{ block.settings.name }}</h2>
+              {%- if block.settings.address != blank -%}<div class="obm-loc__address">{{ block.settings.address }}</div>{%- endif -%}
+              {%- if block.settings.note != blank -%}<div class="obm-loc__note">{{ block.settings.note }}</div>{%- endif -%}
+              <p class="obm-loc__links">
+                <a href="https://www.google.com/maps/search/?api=1&query={{ q }}" target="_blank" rel="noopener">Directions</a>
+                {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}">{{ block.settings.link_label | default: 'Discover' }}</a>{%- endif -%}
+                {%- if block.settings.email != blank -%}<a href="mailto:{{ block.settings.email }}?subject={{ block.settings.name | prepend: 'Visit: ' | url_escape }}">Write to us</a>{%- endif -%}
+              </p>
+              {%- if block.settings.show_map -%}
+                <div class="obm-loc__map">
+                  <iframe src="https://www.google.com/maps?q={{ q }}&z=15&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map: {{ block.settings.name | escape }}"></iframe>
+                </div>
+              {%- endif -%}
+            </div>
+          </article>
+        {%- when 'band' -%}
+          <aside class="obm-loc__band" {{ block.shopify_attributes }}>
+            <h2 class="obm-loc__name">{{ block.settings.title }}</h2>
+            {%- if block.settings.text != blank -%}<div class="obm-loc__band-text">{{ block.settings.text }}</div>{%- endif -%}
+            <p class="obm-loc__buttons">
+              {%- if block.settings.button_link != blank -%}<a class="obm-loc__button" href="{{ block.settings.button_link }}">{{ block.settings.button_label }}</a>{%- endif -%}
+              {%- if block.settings.button_2_link != blank -%}<a class="obm-loc__button obm-loc__button--line" href="{{ block.settings.button_2_link }}">{{ block.settings.button_2_label }}</a>{%- endif -%}
+            </p>
+          </aside>
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .obm-loc { padding: 40px 16px 96px; color: #1c1714; }
+  .obm-loc__head { max-width: 620px; margin: 0 auto; text-align: center; }
+  .obm-loc__title { margin: 0; font-family: var(--obm-font-display, Helvetica, Arial, sans-serif); font-weight: 400; font-size: 24px; line-height: 1.15; text-transform: uppercase; letter-spacing: 0; }
+  .obm-loc__text { margin-top: 20px; font-size: 13px; line-height: 1.6; }
+  .obm-loc__text p { margin: 0; }
+  .obm-loc__list { margin: 48px auto 0; max-width: 1280px; display: flex; flex-direction: column; gap: 56px; }
+  .obm-loc__place { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .obm-loc__media { margin: 0 -16px; background: #f2efea; aspect-ratio: 4 / 3; overflow: hidden; }
+  .obm-loc__media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .obm-loc__kind { margin: 0 0 10px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #6b625b; }
+  .obm-loc__name { margin: 0; font-family: var(--obm-font-display, Helvetica, Arial, sans-serif); font-weight: 700; font-size: 18px; line-height: 1.2; text-transform: uppercase; letter-spacing: 0.01em; }
+  .obm-loc__address, .obm-loc__note, .obm-loc__band-text { margin-top: 14px; font-size: 13px; line-height: 1.65; }
+  .obm-loc__address p, .obm-loc__note p, .obm-loc__band-text p { margin: 0; }
+  .obm-loc__note p + p, .obm-loc__band-text p + p { margin-top: 10px; }
+  .obm-loc__note a, .obm-loc__band-text a { color: inherit; }
+  .obm-loc__links { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 20px 0 0; font-size: 13px; text-transform: uppercase; letter-spacing: 0.02em; }
+  .obm-loc__links a { color: inherit; text-decoration: underline; text-underline-offset: 4px; }
+  .obm-loc__map { margin-top: 24px; position: relative; width: 100%; aspect-ratio: 16 / 10; background: #f2efea; }
+  .obm-loc__map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: grayscale(1) contrast(1.05); }
+  .obm-loc__band { margin: 8px -16px 0; padding: 48px 24px; background: #f5f2ed; text-align: center; }
+  .obm-loc__band-text { max-width: 560px; margin-inline: auto; }
+  .obm-loc__buttons { display: flex; flex-direction: column; align-items: center; gap: 10px; margin: 28px 0 0; }
+  .obm-loc__button { display: inline-flex; align-items: center; justify-content: center; width: 220px; min-height: 44px; padding: 12px 16px; border: 1px solid #1c1714; background: #1c1714; color: #fff; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: background-color .25s ease, color .25s ease; }
+  .obm-loc__button:hover, .obm-loc__button--line { background: transparent; color: #1c1714; }
+  .obm-loc__button--line:hover { background: #1c1714; color: #fff; }
+  @media screen and (min-width: 990px) {
+    .obm-loc { padding: 64px 40px 140px; }
+    .obm-loc__title { font-size: 34px; }
+    .obm-loc__list { margin-top: 72px; gap: 96px; }
+    .obm-loc__place { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: center; }
+    .obm-loc__place--flip .obm-loc__media { order: 2; }
+    .obm-loc__media { margin: 0; aspect-ratio: 4 / 5; }
+    .obm-loc__info { max-width: 480px; }
+    .obm-loc__place--flip .obm-loc__info { justify-self: end; }
+    .obm-loc__name { font-size: 22px; }
+    .obm-loc__band { margin: 0; padding: 72px 40px; }
+    .obm-loc__buttons { flex-direction: row; justify-content: center; }
+    .obm-loc__button { width: 260px; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Where to find us",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "Where to find us" },
+    { "type": "richtext", "id": "text", "label": "Text" }
+  ],
+  "blocks": [
+    {
+      "type": "place", "name": "Place",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Photograph" },
+        { "type": "text", "id": "kind", "label": "Kind of place", "info": "For example: Hotel boutique, Stockist" },
+        { "type": "text", "id": "name", "label": "Name" },
+        { "type": "richtext", "id": "address", "label": "Address" },
+        { "type": "richtext", "id": "note", "label": "Note" },
+        { "type": "text", "id": "map_query", "label": "Map search", "info": "What Google Maps should look for; defaults to the address" },
+        { "type": "checkbox", "id": "show_map", "label": "Show a map", "default": true },
+        { "type": "text", "id": "link_label", "label": "Link label", "default": "Discover" },
+        { "type": "url", "id": "link", "label": "Link" },
+        { "type": "text", "id": "email", "label": "E-mail for visits" }
+      ]
+    },
+    {
+      "type": "band", "name": "Band",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Heading" },
+        { "type": "richtext", "id": "text", "label": "Text" },
+        { "type": "text", "id": "button_label", "label": "Button label" },
+        { "type": "url", "id": "button_link", "label": "Button link" },
+        { "type": "text", "id": "button_2_label", "label": "Second button label" },
+        { "type": "url", "id": "button_2_link", "label": "Second button link" }
+      ]
+    }
+  ],
+  "presets": [ { "name": "Where to find us" } ]
+}
+{% endschema %}

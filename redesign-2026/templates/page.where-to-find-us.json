@@ -1,0 +1,62 @@
+{
+  "sections": {
+    "main": {
+      "type": "obm-locations",
+      "blocks": {
+        "miramare": {
+          "type": "place",
+          "settings": {
+            "image": "shopify://shop_images/oberndoerfer-aol-ensemble.jpg",
+            "kind": "Hotel boutique · Sanremo",
+            "name": "Miramare The Palace",
+            "address": "<p>Corso Matuzia 9<br>18038 Sanremo (IM), Italy</p>",
+            "note": "<p>Our pieces are on show, and for sale, at the hotel whose public rooms we furnished, and where the trunk that became a table first stood. A small series made for the hotel is available there and nowhere else, and guests of the Miramare receive a discount on everything we make.</p>",
+            "map_query": "Miramare The Palace Hotel, Corso Matuzia 9, Sanremo",
+            "show_map": true,
+            "link_label": "The Miramare pieces",
+            "link": "shopify://pages/oberndorfer-x-miramare-sanremo",
+            "email": "info@oberndoerferco.com"
+          }
+        },
+        "trax": {
+          "type": "place",
+          "settings": {
+            "image": "shopify://shop_images/IMG_3112.jpg",
+            "kind": "Stockist · New York",
+            "name": "Trax NYC",
+            "address": "<p>64 W 47th Street<br>New York, NY, United States</p>",
+            "note": "<p>The pieces made with Trax NYC, in the Diamond District.</p>",
+            "map_query": "Trax NYC, 64 W 47th St, New York",
+            "show_map": true,
+            "link_label": "The collaboration",
+            "link": "shopify://collections/oberndoerfer-traxnyc",
+            "email": ""
+          }
+        },
+        "online": {
+          "type": "band",
+          "settings": {
+            "title": "Online and by appointment",
+            "text": "<p>Everything else is here, on oberndoerferco.com, delivered free worldwide with DHL Express. To see a piece before you decide, or to talk about a commission, write to <a href=\"mailto:info@oberndoerferco.com\">info@oberndoerferco.com</a> and we will arrange it.</p>",
+            "button_label": "Book an appointment",
+            "button_link": "mailto:info@oberndoerferco.com?subject=Appointment",
+            "button_2_label": "Shop online",
+            "button_2_link": "shopify://collections/new-in"
+          }
+        }
+      },
+      "block_order": [
+        "miramare",
+        "trax",
+        "online"
+      ],
+      "settings": {
+        "title": "Where to find us",
+        "text": "<p>Two places where you can see and buy our pieces. Everything else is online, and by appointment.</p>"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
