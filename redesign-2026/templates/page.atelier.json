@@ -16,10 +16,10 @@
         "b1": {
           "type": "photo",
           "settings": {
-            "image": "shopify://shop_images/obm-atelier-hammer-poster.jpg",
+            "image": "shopify://shop_images/obm-atelier-film-poster.jpg",
             "size": "full",
             "ratio": "natural",
-            "focal_x": 50,
+            "focal_x": 40,
             "focal_y": 50,
             "caption": ""
           }
@@ -82,10 +82,10 @@
         "b7": {
           "type": "photo",
           "settings": {
-            "image": "shopify://shop_images/obm-atelier-film-poster.jpg",
+            "image": "shopify://shop_images/obm-atelier-hammer-poster.jpg",
             "size": "half",
             "ratio": "portrait",
-            "focal_x": 40,
+            "focal_x": 55,
             "focal_y": 50,
             "caption": ""
           }

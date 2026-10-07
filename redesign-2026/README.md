@@ -206,3 +206,4 @@ Store-level changes, so they apply to the live site too:
 - Opens with the working-bench photograph across the full width (new `hero_image` setting in obm-gallery; owner preferred it to the stitching shot, which went back into At the bench), then the title and one line.
 - No chapter index, no captions; one sentence per chapter. New order: At the bench, Made once, Miramare Palace, Trax NYC (closing line linking to the collaboration page).
 - Photos in rows of one or two; a "third" becomes a half on phones. The near-duplicate Miramare lobby shot at the end was dropped.
+- Owner, later: stitching photo now leads At the bench full width; the hammering shot sits beside trimming. The Atelier and Work with us are no longer hidden from search engines (seo.hidden removed). The 11 sunglasses set to Draft (hidden everywhere, reversible). Explore shows all four tiles on desktop.
