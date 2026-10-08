@@ -1,73 +1,91 @@
-# leopard_pop.py OUT.svg : a seamless leopard tile in grey shades after the owner's reference (8 October): the
-# "pop" style, thick black C-shaped rings hugging a lighter centre, small black dots between, flat colours.
-# Drawn as vector so it is crisp at any size; every shape near an edge is drawn again on the opposite side.
+# leopard_pop.py OUT.svg : seamless leopard tile in grey shades after the owner's reference (8 October): thick,
+# open black rings (C and U shapes with round ends) around lighter centres, tightly packed, plus a few small
+# black commas. Vector, so it is crisp at any size; shapes near an edge are drawn again on the opposite side.
 import sys, math, random
-T = 560
-BG, BLACK = '#2f2f2f', '#141414'
-CENTRES = ['#4b4b4b', '#565656', '#434343', '#5e5e5e']
-rnd = random.Random(23)
-
-def blob(cx, cy, r, n=8, jit=0.22, sx=1.0, sy=0.85, rot=0.0):
-    pts = []
-    for i in range(n):
-        a = 2 * math.pi * i / n
-        rr = r * (1 + rnd.uniform(-jit, jit))
-        x, y = rr * math.cos(a) * sx, rr * math.sin(a) * sy
-        pts.append((cx + x * math.cos(rot) - y * math.sin(rot), cy + x * math.sin(rot) + y * math.cos(rot)))
-    d = f'M{pts[0][0]:.1f},{pts[0][1]:.1f}'
-    for i in range(n):
-        p0, p1, p2, p3 = pts[i - 1], pts[i], pts[(i + 1) % n], pts[(i + 2) % n]
-        c1 = (p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6)
-        c2 = (p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6)
-        d += f'C{c1[0]:.1f},{c1[1]:.1f} {c2[0]:.1f},{c2[1]:.1f} {p2[0]:.1f},{p2[1]:.1f}'
-    return d + 'Z'
+T = 600
+BG, BLACK = '#363636', '#121212'
+CENTRES = ['#646464', '#6e6e6e', '#5e5e5e', '#787878', '#696969']
+rnd = random.Random(7)
 
 def tdist(a, b):
     dx = abs(a[0] - b[0]); dy = abs(a[1] - b[1])
     return math.hypot(min(dx, T - dx), min(dy, T - dy))
 
-# rosette centres: dart throwing on the torus
+def smooth(pts, closed):
+    n = len(pts)
+    d = f'M{pts[0][0]:.1f},{pts[0][1]:.1f}'
+    rng = range(n) if closed else range(n - 1)
+    for i in rng:
+        p0 = pts[i - 1] if (closed or i > 0) else pts[i]
+        p1, p2 = pts[i], pts[(i + 1) % n]
+        p3 = pts[(i + 2) % n] if (closed or i + 2 < n) else p2
+        c1 = (p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6)
+        c2 = (p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6)
+        d += f'C{c1[0]:.1f},{c1[1]:.1f} {c2[0]:.1f},{c2[1]:.1f} {p2[0]:.1f},{p2[1]:.1f}'
+    return d + ('Z' if closed else '')
+
+def rosette(x, y):
+    r = rnd.uniform(14, 19)
+    sx, sy, rot = rnd.uniform(0.9, 1.15), rnd.uniform(0.75, 0.95), rnd.uniform(0, math.pi)
+    def at(a, rr):
+        px, py = rr * math.cos(a) * sx, rr * math.sin(a) * sy
+        return (x + px * math.cos(rot) - py * math.sin(rot), y + px * math.sin(rot) + py * math.cos(rot))
+    out = []
+    # lighter centre, slightly irregular, filling the ring
+    n = 8; cen = [at(2 * math.pi * i / n, r * rnd.uniform(0.82, 1.02)) for i in range(n)]
+    out.append(('fill', rnd.choice(CENTRES), smooth(cen, True), 0))
+    # the ring: one open arc (C/U), sometimes split in two
+    w = r * rnd.uniform(0.58, 0.68)
+    start = rnd.uniform(0, 2 * math.pi)
+    sweep = rnd.uniform(3.9, 5.2)                      # 225..300 degrees
+    arcs = [(start, sweep)]
+    if rnd.random() < 0.35:                            # split into two pieces
+        cut = rnd.uniform(0.35, 0.6) * sweep
+        arcs = [(start, cut - 0.45), (start + cut + 0.15, sweep - cut - 0.15)]
+    for a0, sw in arcs:
+        k = max(4, int(sw / 0.45))
+        pts = [at(a0 + sw * i / k, r * rnd.uniform(0.95, 1.08)) for i in range(k + 1)]
+        ww = w * rnd.uniform(0.9, 1.1)
+        out.append(('stroke', BLACK, smooth(pts, False), ww))
+        # fatter in the middle of the arc, like a brush mark
+        m0, m1 = int(len(pts) * 0.25), int(len(pts) * 0.75) + 1
+        if m1 - m0 >= 2:
+            out.append(('stroke', BLACK, smooth(pts[m0:m1], False), ww * 1.22))
+    return out
+
+def comma(x, y):
+    a = rnd.uniform(0, 2 * math.pi); L = rnd.uniform(5, 11)
+    if rnd.random() < 0.5:
+        return [('stroke', BLACK, f'M{x:.1f},{y:.1f}L{x + L * math.cos(a):.1f},{y + L * math.sin(a):.1f}', rnd.uniform(10, 13))]
+    pts = [(x + rnd.uniform(-5, 5), y + rnd.uniform(-5, 5)) for _ in range(3)]
+    return [('stroke', BLACK, smooth(pts, False), rnd.uniform(10, 13))]
+
 pts = []
-for _ in range(20000):
+for _ in range(30000):
     p = (rnd.uniform(0, T), rnd.uniform(0, T))
-    if all(tdist(p, q) > 64 for q in pts):
+    if all(tdist(p, q) > 54 for q in pts):
         pts.append(p)
-dots = []
-for _ in range(20000):
+small = []
+for _ in range(30000):
     p = (rnd.uniform(0, T), rnd.uniform(0, T))
-    if all(tdist(p, q) > 40 for q in pts) and all(tdist(p, q) > 34 for q in dots):
-        dots.append(p)
+    if all(tdist(p, q) > 36 for q in pts) and all(tdist(p, q) > 48 for q in small):
+        small.append(p)
 
-shapes = []  # each: list of (fill, path) built once, drawn at 9 offsets
-for (x, y) in pts:
-    r = rnd.uniform(15, 20)
-    rot = rnd.uniform(0, math.pi)
-    sx, sy = rnd.uniform(0.95, 1.15), rnd.uniform(0.75, 0.95)
-    parts = []
-    parts.append((BLACK, lambda dx, dy, s=rnd.getstate(), x=x, y=y, r=r, rot=rot, sx=sx, sy=sy: (rnd.setstate(s), blob(x + dx, y + dy, r * 1.72, 9, 0.16, sx, sy, rot))[1]))
-    ox, oy = rnd.uniform(-2.5, 2.5), rnd.uniform(-2.5, 2.5)
-    col = rnd.choice(CENTRES)
-    parts.append((col, lambda dx, dy, s=rnd.getstate(), x=x + ox, y=y + oy, r=r, rot=rot, sx=sx, sy=sy: (rnd.setstate(s), blob(x + dx, y + dy, r * 0.95, 8, 0.25, sx, sy, rot))[1]))
-    # one or two gaps in the ring make the C shapes
-    for _ in range(rnd.choice([1, 1, 2])):
-        a = rnd.uniform(0, 2 * math.pi)
-        gx, gy = x + r * 1.62 * math.cos(a) * sx, y + r * 1.62 * math.sin(a) * sy
-        parts.append((BG, lambda dx, dy, s=rnd.getstate(), gx=gx, gy=gy, r=r: (rnd.setstate(s), blob(gx + dx, gy + dy, r * 0.58, 6, 0.25))[1]))
-        rnd.random()
-    shapes.append(parts)
-for (x, y) in dots:
-    r = rnd.uniform(3.5, 6.5)
-    shapes.append([(BLACK, lambda dx, dy, s=rnd.getstate(), x=x, y=y, r=r: (rnd.setstate(s), blob(x + dx, y + dy, r, 6, 0.35, 1.0, 0.8, rnd.uniform(0, 3)))[1])])
-    rnd.random()
-
-out = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{T}" height="{T}" viewBox="0 0 {T} {T}">', f'<rect width="{T}" height="{T}" fill="{BG}"/>']
-centres = [(x, y) for x, y in pts] + [(x, y) for x, y in dots]
-for (cx, cy), parts in zip(centres, shapes):
+items = [(p, rosette(*p)) for p in pts] + [(p, comma(*p)) for p in small]
+svg = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{T}" height="{T}" viewBox="0 0 {T} {T}">',
+       f'<rect width="{T}" height="{T}" fill="{BG}"/>']
+for (cx, cy), shapes in items:
     for dx in (-T, 0, T):
         for dy in (-T, 0, T):
-            if -50 < cx + dx < T + 50 and -50 < cy + dy < T + 50:  # only copies that reach into the tile
-                out.extend(f'<path fill="{f}" d="{mk(dx, dy)}"/>' for f, mk in parts)
-out.append('</svg>')
-svg = ''.join(out)
-open(sys.argv[1], 'w').write(svg)
-print(len(pts), 'rosettes', len(dots), 'dots', len(svg), 'bytes')
+            if -60 < cx + dx < T + 60 and -60 < cy + dy < T + 60:
+                svg.append(f'<g transform="translate({dx} {dy})">')
+                for kind, col, d, w in shapes:
+                    if kind == 'fill':
+                        svg.append(f'<path fill="{col}" d="{d}"/>')
+                    else:
+                        svg.append(f'<path fill="none" stroke="{col}" stroke-width="{w:.1f}" stroke-linecap="round" stroke-linejoin="round" d="{d}"/>')
+                svg.append('</g>')
+svg.append('</svg>')
+s = ''.join(svg)
+open(sys.argv[1], 'w').write(s)
+print(len(pts), 'rosettes', len(small), 'commas', len(s), 'bytes')
