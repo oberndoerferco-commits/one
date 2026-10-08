@@ -8,9 +8,10 @@
 {%- liquid
   assign cols = '1,2,3,4' | split: ','
 -%}
-{%- comment -%} Grey leopard print under the dark grey (owner, 8 October); tile from tools/leopard.py. {%- endcomment -%}
+{%- comment -%} The owner's leopard print in dark greys (8 October): tools/leopard_grey.py + leopard_tile.py.
+  Full width (at least 900px, centred on phones), repeating downwards without a seam. {%- endcomment -%}
 {% style %}
-  .obm-footer { background-image: url({{ 'obm-leopard-grey.svg' | asset_url }}); background-size: 640px 640px; background-repeat: repeat; }
+  .obm-footer { background-image: url({{ 'obm-leopard-grey.jpg' | asset_url }}); background-size: max(100%, 900px) auto; background-position: center top; background-repeat: repeat-y; }
 {% endstyle %}
 <div class="obm-footer">
   <div class="obm-footer__top">
