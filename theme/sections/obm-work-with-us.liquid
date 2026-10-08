@@ -1,4 +1,6 @@
 {% comment %}
+  Also used for Personalisation (owner, 8 October): the source name, the company field and the message
+  label are settings, so the same layout serves both pages.
   Oberndoerfer Milano - "Work with us" (REDESIGN 2026). The owner, 6 October: "a section of 'work with
   us' where people can contact us to work with us, we always look for official distributor or if they
   want big projects like hotels, spaces etc".
@@ -45,7 +47,7 @@
         <p class="obm-wwu__note" role="status">{{ section.settings.thanks }}</p>
       {%- else -%}
         {%- if form.errors -%}<div class="obm-wwu__note obm-wwu__note--error" role="alert">{{ form.errors | default_errors }}</div>{%- endif -%}
-        <input type="hidden" name="contact[Source]" value="Work with us">
+        <input type="hidden" name="contact[Source]" value="{{ section.settings.source | default: 'Work with us' | escape }}">
         <label class="obm-wwu__field">
           <span>Interested in</span>
           <select name="contact[Interested in]" required>
@@ -55,13 +57,15 @@
         </label>
         <div class="obm-wwu__row">
           <label class="obm-wwu__field"><span>Name</span><input type="text" name="contact[name]" autocomplete="name" required></label>
+          {%- if section.settings.show_company -%}
           <label class="obm-wwu__field"><span>Company</span><input type="text" name="contact[Company]" autocomplete="organization"></label>
+          {%- endif -%}
         </div>
         <div class="obm-wwu__row">
           <label class="obm-wwu__field"><span>E-mail</span><input type="email" name="contact[email]" autocomplete="email" required></label>
           <label class="obm-wwu__field"><span>Country</span><input type="text" name="contact[Country]" autocomplete="country-name"></label>
         </div>
-        <label class="obm-wwu__field"><span>Tell us about the project</span><textarea name="contact[body]" rows="6" required></textarea></label>
+        <label class="obm-wwu__field"><span>{{ section.settings.message_label | default: 'Tell us about the project' }}</span><textarea name="contact[body]" rows="6" required></textarea></label>
         <button type="submit" class="obm-wwu__button">{{ section.settings.button_label }}</button>
         {%- if section.settings.email_line != blank -%}<div class="obm-wwu__small">{{ section.settings.email_line }}</div>{%- endif -%}
       {%- endif -%}
@@ -133,6 +137,9 @@
     { "type": "text", "id": "form_title", "label": "Form title", "default": "Begin a conversation" },
     { "type": "richtext", "id": "form_text", "label": "Form introduction" },
     { "type": "text", "id": "kinds", "label": "Choices for 'Interested in' (separated by commas)", "default": "Distribution, Hotels and spaces, Collaboration, Corporate gifts, Something else" },
+    { "type": "text", "id": "source", "label": "Name the messages arrive under", "default": "Work with us" },
+    { "type": "checkbox", "id": "show_company", "label": "Ask for a company", "default": true },
+    { "type": "text", "id": "message_label", "label": "Label of the message field", "default": "Tell us about the project" },
     { "type": "text", "id": "button_label", "label": "Button", "default": "Send" },
     { "type": "text", "id": "thanks", "label": "Message after sending", "default": "Thank you. We have your message and will reply personally." },
     { "type": "richtext", "id": "email_line", "label": "Line under the button" }

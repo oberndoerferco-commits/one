@@ -208,3 +208,7 @@ Store-level changes, so they apply to the live site too:
 - Photos in rows of one or two; a "third" becomes a half on phones. The near-duplicate Miramare lobby shot at the end was dropped.
 - Owner, later: stitching photo now leads At the bench full width; the hammering shot sits beside trimming. The Atelier and Work with us are no longer hidden from search engines (seo.hidden removed). The 11 sunglasses set to Draft (hidden everywhere, reversible). Explore shows all four tiles on desktop.
 - Trax photos split (owner chose option 2): plate, red Alcantara and studs moved from the Trax page to The Atelier's Trax chapter; the Trax page keeps the product shots.
+
+## Personalisation (8 October)
+- page.bespoke.json rebuilt on the Work with us layout: Initials (stamped by hand, black, gold, silver or blind, on request), Made to order, Bespoke (link to The Atelier), then the enquiry form (Initials / Made to order / Bespoke / Something else, no company field, messages arrive as "Personalisation"). Jewellery removed (owner: no jewellery). Old template kept as page.bespoke.before-2026-10-08.json.
+- obm-work-with-us gained settings: source, show_company, message_label.

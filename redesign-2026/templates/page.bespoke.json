@@ -1,0 +1,59 @@
+{
+  "sections": {
+    "main": {
+      "type": "obm-work-with-us",
+      "blocks": {
+        "initials": {
+          "type": "kind",
+          "settings": {
+            "image": "shopify://shop_images/obm-2026-brass-stamp.jpg",
+            "number": "01",
+            "title": "Initials",
+            "text": "<p>Your initials, stamped by hand with our brass tools, in black, gold, silver or blind. On request.</p>"
+          }
+        },
+        "made_to_order": {
+          "type": "kind",
+          "settings": {
+            "image": "shopify://shop_images/obm-coll-featured.jpg",
+            "number": "02",
+            "title": "Made to order",
+            "text": "<p>A piece from the collection in another leather, colour or lining, made for you.</p>"
+          }
+        },
+        "bespoke": {
+          "type": "kind",
+          "settings": {
+            "image": "shopify://shop_images/oberndoerfer-aol-gallery.jpg",
+            "number": "03",
+            "title": "Bespoke",
+            "text": "<p>A piece made once, from your idea or drawing. <a href=\"/pages/the-atelier\">See past commissions</a>.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "initials",
+        "made_to_order",
+        "bespoke"
+      ],
+      "settings": {
+        "eyebrow": "Services",
+        "title": "Personalisation",
+        "intro": "<p>Three ways to make a piece yours, all made by hand in our ateliers around Milan.</p>",
+        "jump_label": "Write to us",
+        "form_title": "Begin a conversation",
+        "form_text": "<p>Tell us which piece and what you have in mind. We read every message and reply personally.</p>",
+        "kinds": "Initials, Made to order, Bespoke, Something else",
+        "source": "Personalisation",
+        "show_company": false,
+        "message_label": "Tell us about the piece",
+        "button_label": "Send",
+        "thanks": "Thank you. We have your message and will reply personally.",
+        "email_line": "<p>Or write to <a href=\"mailto:info@oberndoerferco.com\">info@oberndoerferco.com</a></p>"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
