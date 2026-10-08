@@ -8,6 +8,7 @@
 {% endcomment %}
 {%- liquid
   assign cols = section.settings.columns_desktop | default: 1
+  assign ncols = cols | plus: 0
 -%}
 <section class="obm-panels obm-panels--{{ cols }} obm-panels--show-{{ section.settings.show_on | default: 'all' }}{% if section.settings.height_mode == 'screen' %} obm-panels--screen{% endif %}{% if section.settings.shape_mobile != blank and section.settings.shape_mobile != 'fixed' %} obm-panels--{{ section.settings.shape_mobile }}-m{% endif %}" style="--obm-h-desktop: {{ section.settings.height_desktop }}px; --obm-h-mobile: {{ section.settings.height_mobile }}px; --obm-gap-top: {{ section.settings.gap_top }}px; --obm-offset-desktop: {{ section.settings.offset_desktop | default: 0 }}px; --obm-offset-mobile: {{ section.settings.offset_mobile | default: 0 }}px;">
   {%- for block in section.blocks -%}
@@ -18,14 +19,21 @@
         {%- if block.settings.video != blank -%}{%- assign vsrc = block.settings.video.sources | where: 'mime_type', 'video/mp4' | sort: 'width' | last -%}{%- assign vdesk = vsrc.url -%}{%- if block.settings.video_url_mobile == blank -%}{%- assign vmob = vdesk -%}{%- endif -%}{%- endif -%}
         {%- if vdesk != blank -%}
           {%- assign has_video = true -%}
-          {%- assign poster = block.settings.image | image_url: width: 1920 -%}
-          {%- assign poster_m = block.settings.image_mobile | default: block.settings.image | image_url: width: 900 -%}
+          {%- assign poster = block.settings.image | image_url: width: 1920, format: 'pjpg' -%}
+          {%- assign poster_m = block.settings.image_mobile | default: block.settings.image | image_url: width: 1400, format: 'pjpg' -%}
           <video class="obm-panel__video" muted autoplay loop playsinline preload="metadata" poster="{{ poster }}" data-src-desktop="{{ vdesk }}" data-src-mobile="{{ vmob }}" data-poster-mobile="{{ poster_m }}" aria-label="{{ block.settings.image.alt | default: block.settings.eyebrow | escape }}"></video>
         {%- elsif block.settings.image != blank -%}
           {%- assign mobile = block.settings.image_mobile | default: block.settings.image -%}
           <picture>
+            {%- comment -%} Full-width heroes are served as progressive JPEG: the CDN's automatic WebP broke the dark
+              wall of the mirror-bag hero into visible blocks on phones (owner, 8 October). {%- endcomment -%}
+            {%- if ncols == 1 -%}
+            <source media="(max-width: 749px)" srcset="{{ mobile | image_url: width: 900, format: 'pjpg' }} 900w, {{ mobile | image_url: width: 1400, format: 'pjpg' }} 1400w, {{ mobile | image_url: width: 1800, format: 'pjpg' }} 1800w" sizes="100vw">
+            <img src="{{ block.settings.image | image_url: width: 1800, format: 'pjpg' }}" srcset="{{ block.settings.image | image_url: width: 1200, format: 'pjpg' }} 1200w, {{ block.settings.image | image_url: width: 1800, format: 'pjpg' }} 1800w, {{ block.settings.image | image_url: width: 2600, format: 'pjpg' }} 2600w"
+            {%- else -%}
             <source media="(max-width: 749px)" srcset="{{ mobile | image_url: width: 900 }} 900w, {{ mobile | image_url: width: 1400 }} 1400w" sizes="100vw">
-            <img src="{{ block.settings.image | image_url: width: 1800 }}" srcset="{{ block.settings.image | image_url: width: 1200 }} 1200w, {{ block.settings.image | image_url: width: 1800 }} 1800w, {{ block.settings.image | image_url: width: 2600 }} 2600w" sizes="{% if cols == 2 %}50vw{% else %}100vw{% endif %}" alt="{{ block.settings.image.alt | escape }}" loading="{% if section.index <= 2 %}eager{% else %}lazy{% endif %}" style="object-position: {{ block.settings.focal_x }}% {{ block.settings.focal_y }}%;">
+            <img src="{{ block.settings.image | image_url: width: 1800 }}" srcset="{{ block.settings.image | image_url: width: 1200 }} 1200w, {{ block.settings.image | image_url: width: 1800 }} 1800w, {{ block.settings.image | image_url: width: 2600 }} 2600w"
+            {%- endif %} sizes="{% if ncols == 2 %}50vw{% else %}100vw{% endif %}" alt="{{ block.settings.image.alt | escape }}" loading="{% if section.index <= 2 %}eager{% else %}lazy{% endif %}" style="object-position: {{ block.settings.focal_x }}% {{ block.settings.focal_y }}%;">
           </picture>
         {%- else -%}
           {{ 'hero-apparel-1' | placeholder_svg_tag: 'obm-panel__placeholder' }}
