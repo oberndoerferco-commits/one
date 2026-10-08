@@ -533,6 +533,12 @@
                 "custom_liquid": "{%- assign p = product -%}{%- assign fam = '' -%}{%- for c in p.collections -%}{%- unless c.handle == 'new-in' or c.handle == 'signature-pieces' or c.handle == 'featured-products' or c.handle == 'collections-2' or c.handle == 'collections' -%}{%- assign fam = c.title -%}{%- break -%}{%- endunless -%}{%- endfor -%}{%- assign t = p.title | downcase -%}{%- assign leather = '' -%}{%- if t contains 'ostrich' -%}{%- assign leather = 'Ostrich' -%}{%- elsif t contains 'crocodile' -%}{%- assign leather = 'Crocodile' -%}{%- elsif t contains 'alligator' -%}{%- assign leather = 'Alligator' -%}{%- elsif t contains 'nabuk' -%}{%- assign leather = 'Nabuk calf' -%}{%- elsif t contains 'saffiano' -%}{%- assign leather = 'Saffiano calf' -%}{%- elsif t contains 'togo' or p.description contains 'Togo' -%}{%- assign leather = 'Togo calf' -%}{%- endif -%}{%- if p.title contains 'Trax' -%}{%- assign fam = 'Limited edition' -%}{%- endif -%}<p style=\"font-family:var(--font-subheading--family);font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(28,23,20,0.6);margin:0\">{{ fam }}{% if fam != '' and leather != '' %} &middot; {% endif %}{{ leather }}</p>"
               },
               "blocks": {}
+            },
+            "obm_notify_me": {
+              "type": "custom-liquid",
+              "settings": {
+                "custom_liquid": "{% render 'obm-notify-me', product: product %}"
+              }
             }
           },
           "block_order": [
@@ -542,6 +548,7 @@
             "divider_VJhene",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
+            "obm_notify_me",
             "custom_liquid_atelier",
             "text_aEtTtq",
             "accordion_info"

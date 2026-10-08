@@ -59,7 +59,8 @@
 {%- endif -%}
 {% stylesheet %}
   .ob-pdp-swatch { width: 28px; height: 28px; border-radius: 0; box-shadow: inset 0 0 0 1px rgba(24, 18, 12, 0.12); }
-  .ob-pdp-swatch[aria-current='true'] { box-shadow: none; outline: 1px solid #1c1714; outline-offset: 3px; }
+  /* The chosen colour carries the add-to-cart button's colour (owner, 8 October). */
+  .ob-pdp-swatch[aria-current='true'] { box-shadow: none; outline: 1.5px solid var(--color-primary-button-background, #000); outline-offset: 3px; }
   .product-details .button,
   .product-details button[type='submit'],
   .product-details .quantity-selector,

@@ -536,9 +536,15 @@
             "obm_picker_css": {
               "type": "custom-liquid",
               "settings": {
-                "custom_liquid": "<style>.variant-option legend{font-family:var(--font-subheading--family);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(28,23,20,.6);margin:0 0 10px}.variant-option--buttons{display:flex;flex-wrap:wrap;gap:0 26px;row-gap:8px}.variant-option--buttons legend{width:100%;flex:0 0 100%}.variant-option--buttons .variant-option__button-label{position:relative;display:inline-flex;align-items:center;justify-content:flex-start;min-width:0;width:auto;height:auto;min-height:0;padding:0;margin:0;background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0}.variant-option--buttons .variant-option__button-label__pill{display:none!important}.variant-option--buttons .variant-option__button-label__text{font-family:var(--font-body--family);font-size:.875rem;letter-spacing:.08em;color:rgba(28,23,20,.5);padding:2px 0 6px;border-bottom:1px solid transparent;transition:color .15s,border-color .15s}.variant-option--buttons .variant-option__button-label:hover .variant-option__button-label__text{color:#1c1714}.variant-option--buttons .variant-option__button-label:has(input:checked) .variant-option__button-label__text{color:#1c1714;border-bottom-color:#1c1714}.variant-option--buttons .variant-option__button-label:has(input[data-option-available=\"false\"]) .variant-option__button-label__text{color:rgba(28,23,20,.3);text-decoration:line-through}.variant-option--buttons .variant-option__button-label:has(input:focus-visible) .variant-option__button-label__text{outline:1px solid #1c1714;outline-offset:4px}</style>"
+                "custom_liquid": "<style>.variant-option legend{font-family:var(--font-subheading--family);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(28,23,20,.6);margin:0 0 10px}.variant-option--buttons{display:flex;flex-wrap:wrap;gap:8px}.variant-option--buttons legend{width:100%;flex:0 0 100%}.variant-option--buttons .variant-option__button-label{position:relative;display:inline-flex;align-items:center;justify-content:center;min-width:48px;width:auto;height:44px;min-height:0;padding:0 12px;margin:0;background:#fff!important;border:1px solid rgba(0,0,0,.15)!important;box-shadow:none!important;border-radius:0;transition:border-color .15s,background-color .15s}.variant-option--buttons .variant-option__button-label__pill{display:none!important}.variant-option--buttons .variant-option__button-label__text{font-family:var(--font-body--family);font-size:.8125rem;letter-spacing:.08em;color:#000;padding:0;border:0;transition:color .15s}.variant-option--buttons .variant-option__button-label:hover{border-color:#000!important}.variant-option--buttons .variant-option__button-label:has(input:checked){background:var(--color-primary-button-background,#000)!important;border-color:var(--color-primary-button-background,#000)!important}.variant-option--buttons .variant-option__button-label:has(input:checked) .variant-option__button-label__text{color:var(--color-primary-button-text,#fff)}.variant-option--buttons .variant-option__button-label:has(input[data-option-available=\"false\"]) .variant-option__button-label__text{color:rgba(0,0,0,.3);text-decoration:line-through}.variant-option--buttons .variant-option__button-label:has(input[data-option-available=\"false\"]:checked) .variant-option__button-label__text{color:rgba(255,255,255,.75)}.variant-option--buttons .variant-option__button-label:has(input:focus-visible){outline:1px solid #000;outline-offset:3px}</style>"
               },
               "blocks": {}
+            },
+            "obm_notify_me": {
+              "type": "custom-liquid",
+              "settings": {
+                "custom_liquid": "{% render 'obm-notify-me', product: product %}"
+              }
             }
           },
           "block_order": [
@@ -550,6 +556,7 @@
             "variant_picker_R3rGDr",
             "preorder_note",
             "buy_buttons_eYQEYi",
+            "obm_notify_me",
             "text_aEtTtq",
             "accordion_info"
           ]

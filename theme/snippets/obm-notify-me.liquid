@@ -1,0 +1,171 @@
+{%- comment -%}
+  Notify me: replaces the disabled "Sold out" button on a sold-out variant
+  with a "Notify me" button that opens an email field. The request is sent
+  through the Shopify contact form, so it arrives in the store's inbox.
+  Rendered from a custom-liquid block placed after the buy buttons.
+{%- endcomment -%}
+{%- liquid
+  assign any_soldout = false
+  for v in product.variants
+    unless v.available
+      assign any_soldout = true
+    endunless
+  endfor
+
+  case request.locale.iso_code
+    when 'de'
+      assign t_notify = 'Benachrichtigen Sie mich'
+      assign t_intro = 'Hinterlassen Sie Ihre E-Mail-Adresse. Wir schreiben Ihnen, sobald dieses Stück wieder verfügbar ist.'
+      assign t_email = 'E-Mail-Adresse'
+      assign t_send = 'Senden'
+      assign t_thanks = 'Vielen Dank. Wir schreiben Ihnen, sobald dieses Stück wieder verfügbar ist.'
+    when 'it'
+      assign t_notify = 'Avvisami'
+      assign t_intro = 'Lasci il suo indirizzo email. Le scriveremo non appena questo pezzo sarà di nuovo disponibile.'
+      assign t_email = 'Indirizzo email'
+      assign t_send = 'Invia'
+      assign t_thanks = 'Grazie. Le scriveremo non appena questo pezzo sarà di nuovo disponibile.'
+    else
+      assign t_notify = 'Notify me'
+      assign t_intro = 'Leave your email address and we will write to you as soon as this piece is available again.'
+      assign t_email = 'Email address'
+      assign t_send = 'Send'
+      assign t_thanks = 'Thank you. We will write to you as soon as this piece is available again.'
+  endcase
+-%}
+{%- if any_soldout -%}
+  {%- form 'contact', id: 'ObmNotify', class: 'obm-notify__form' -%}
+    {%- assign posted = form.posted_successfully? -%}
+    <div
+      class="obm-notify{% if posted %} is-posted{% endif %}"
+      data-obm-notify
+      data-label="{{ t_notify | escape }}"
+      {% unless posted %}hidden{% endunless %}
+    >
+      {%- if posted -%}
+        <p class="obm-notify__thanks" role="status">{{ t_thanks }}</p>
+      {%- else -%}
+        <button type="button" class="button obm-notify__open" aria-expanded="false" aria-controls="ObmNotifyPanel"{% if form.errors != blank %} hidden{% endif %}>
+          {{- t_notify -}}
+        </button>
+        <div class="obm-notify__panel" id="ObmNotifyPanel"{% if form.errors == blank %} hidden{% endif %}>
+          <p class="obm-notify__intro">{{ t_intro }}</p>
+          {{ form.errors | default_errors }}
+          <input type="hidden" name="contact[Source]" value="Notify me">
+          <input type="hidden" name="contact[Product]" value="{{ product.title | escape }}" data-obm-notify-product>
+          <input type="hidden" name="contact[Link]" value="{{ shop.url }}{{ product.url }}" data-obm-notify-link>
+          <input type="hidden" name="contact[body]" value="Please notify me when {{ product.title | escape }} is available again." data-obm-notify-body>
+          <label class="visually-hidden" for="ObmNotifyEmail">{{ t_email }}</label>
+          <input
+            class="obm-notify__email"
+            id="ObmNotifyEmail"
+            type="email"
+            name="contact[email]"
+            autocomplete="email"
+            placeholder="{{ t_email }}"
+            required
+          >
+          <button type="submit" class="button obm-notify__send">{{ t_send }}</button>
+        </div>
+      {%- endif -%}
+    </div>
+  {%- endform -%}
+
+  <script type="application/json" data-obm-notify-variants>
+    {
+      {%- for v in product.variants -%}
+        "{{ v.id }}": { "available": {{ v.available | json }}, "title": {{ v.title | json }} }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    }
+  </script>
+
+  <style>
+    .obm-notify { margin-top: 4px; }
+    .obm-notify__open, .obm-notify__send { width: 100%; }
+    .obm-notify__panel { margin-top: 18px; }
+    .obm-notify__intro { font-size: 0.8125rem; line-height: 1.6; margin: 0 0 14px; }
+    .obm-notify__email {
+      width: 100%; border: 0; border-bottom: 1px solid var(--color-foreground);
+      background: transparent; padding: 10px 0; margin: 0 0 18px;
+      font: inherit; font-size: 0.875rem; color: var(--color-foreground); border-radius: 0;
+    }
+    .obm-notify__email:focus { outline: none; border-bottom-width: 2px; }
+    .obm-notify__thanks { font-size: 0.875rem; line-height: 1.6; margin: 0; padding: 14px 0; border-top: 1px solid currentColor; border-bottom: 1px solid currentColor; }
+    .buy-buttons-block.obm-soldout .product-form-buttons { display: none; }
+    sticky-add-to-cart[data-variant-available='false'] .sticky-add-to-cart__button { display: none; }
+    sticky-add-to-cart:not([data-variant-available='false']) .obm-notify-sticky { display: none; }
+    .obm-notify-sticky { white-space: nowrap; }
+  </style>
+
+  <script>
+    (function () {
+      var block = document.querySelector('[data-obm-notify]');
+      if (!block) return;
+      var variants = {};
+      try { variants = JSON.parse(document.querySelector('[data-obm-notify-variants]').textContent); } catch (e) {}
+      var label = block.getAttribute('data-label');
+      var openBtn = block.querySelector('.obm-notify__open');
+      var panel = block.querySelector('.obm-notify__panel');
+      var root = block.closest('.shopify-section') || document;
+
+      function open() {
+        if (!panel) return;
+        panel.hidden = false;
+        openBtn.setAttribute('aria-expanded', 'true');
+        openBtn.hidden = true;
+        var email = panel.querySelector('input[type=email]');
+        if (email) email.focus({ preventScroll: true });
+      }
+      if (openBtn) openBtn.addEventListener('click', open);
+
+      // Only write when the value changes: hidden inputs reflect .value into the
+      // value attribute, which the observer below watches.
+      function setVal(el, v) { if (el && el.value !== v) el.value = v; }
+
+      function update() {
+        var buy = root.querySelector('.buy-buttons-block');
+        var idInput = buy && buy.querySelector('input[name="id"]');
+        var v = idInput && variants[idInput.value];
+        var soldOut = !!(v && v.available === false);
+        if (buy) buy.classList.toggle('obm-soldout', soldOut);
+        if (!block.classList.contains('is-posted')) block.hidden = !soldOut;
+        if (soldOut) {
+          var title = v.title && v.title !== 'Default Title' ? ' (' + v.title + ')' : '';
+          var p = block.querySelector('[data-obm-notify-product]');
+          var l = block.querySelector('[data-obm-notify-link]');
+          var b = block.querySelector('[data-obm-notify-body]');
+          var base = p ? p.getAttribute('data-base') || p.value : '';
+          if (p && !p.hasAttribute('data-base')) p.setAttribute('data-base', base);
+          setVal(p, base + title);
+          setVal(l, l ? l.defaultValue.split('?')[0] + '?variant=' + idInput.value : '');
+          setVal(b, 'Please notify me when ' + base + title + ' is available again.');
+        }
+        var sticky = document.querySelector('sticky-add-to-cart');
+        if (sticky && openBtn && !sticky.querySelector('.obm-notify-sticky')) {
+          var s = document.createElement('button');
+          s.type = 'button';
+          s.className = 'button obm-notify-sticky';
+          s.textContent = label;
+          s.addEventListener('click', function () {
+            open();
+            block.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          });
+          var target = sticky.querySelector('.sticky-add-to-cart__button');
+          if (target) target.insertAdjacentElement('afterend', s);
+        }
+      }
+
+      update();
+      var queued = false;
+      function schedule() {
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(function () { queued = false; update(); });
+      }
+      new MutationObserver(schedule).observe(root, { subtree: true, childList: true, attributes: true, attributeFilter: ['value', 'disabled'] });
+      ['change', 'variant:update'].forEach(function (ev) {
+        document.addEventListener(ev, function () { setTimeout(update, 60); });
+      });
+    })();
+  </script>
+{%- endif -%}

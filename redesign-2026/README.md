@@ -212,3 +212,8 @@ Store-level changes, so they apply to the live site too:
 ## Personalisation (8 October)
 - page.bespoke.json rebuilt on the Work with us layout: Initials (stamped by hand, black, gold, silver or blind, on request), Made to order, Bespoke (link to The Atelier), then the enquiry form (Initials / Made to order / Bespoke / Something else, no company field, messages arrive as "Personalisation"). Jewellery removed (owner: no jewellery). Old template kept as page.bespoke.before-2026-10-08.json.
 - obm-work-with-us gained settings: source, show_company, message_label.
+
+## 8 October 2026: Notify me, chosen size and colour
+
+- Sold-out pieces: "Notify me" replaces "Sold out" (button, card badge, sticky bar; DE "Benachrichtigen Sie mich", IT "Avvisami" via theme translations). The button opens an email field; the request goes through the Shopify contact form (Source "Notify me", product, variant link) to the store inbox. Code: theme/snippets/obm-notify-me.liquid, rendered by the custom-liquid block `obm_notify_me` after the buy buttons in product.json and product.ready-to-wear.json.
+- Chosen size on ready-to-wear: filled with the add-to-cart button colour (black, white text); other sizes are outlined boxes. Chosen colour square: outline in the same black (obm-style-2026.liquid).
