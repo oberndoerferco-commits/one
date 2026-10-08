@@ -217,3 +217,10 @@ Store-level changes, so they apply to the live site too:
 
 - Sold-out pieces: "Notify me" replaces "Sold out" (button, card badge, sticky bar; DE "Benachrichtigen Sie mich", IT "Avvisami" via theme translations). The button opens an email field; the request goes through the Shopify contact form (Source "Notify me", product, variant link) to the store inbox. Code: theme/snippets/obm-notify-me.liquid, rendered by the custom-liquid block `obm_notify_me` after the buy buttons in product.json and product.ready-to-wear.json.
 - Chosen size on ready-to-wear: filled with the add-to-cart button colour (black, white text); other sizes are outlined boxes. Chosen colour square: outline in the same black (obm-style-2026.liquid).
+
+## 8 October 2026, after launch (live theme 207755444549 is now MAIN)
+
+- New working draft: 208132407621 "REDESIGN 2026 - fixes (draft)" (copy of live, made by themeDuplicate). All fixes below are in it; the owner publishes it.
+- Colour dots on ready-to-wear: the size-box style had also boxed the colour swatches. Sizes and colours are styled separately now; the chosen colour gets a round ring in the add-to-cart black (label overflow made visible so the ring is not clipped).
+- Homepage "Ready to wear" tile: cap replaced by the black Chrome T-shirt (back), white label.
+- Files replaced in place (live at once): obm-2026-mirror-sun-phone.jpg rebuilt by hero/phone.py with a smooth, dithered wall (the old extension had streaks and blocks that read as pixelation); obm-2026-brass-stamp-studio.jpg rebuilt by tools/stamp_extend.py from the original photograph, keeping its own shadow and table.

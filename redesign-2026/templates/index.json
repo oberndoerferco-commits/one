@@ -58,12 +58,12 @@
         "panel_2": {
           "type": "panel",
           "settings": {
-            "image": "shopify://shop_images/obm-lane-cap-leopard-black.jpg",
+            "image": "shopify://shop_images/obm-tee-chrome-black-back_8382327d-41e9-4415-a581-39e8bab7ca0f.jpg",
             "video_url": "",
             "video_url_mobile": "",
             "focal_x": 50,
             "focal_y": 50,
-            "tone": "dark",
+            "tone": "light",
             "eyebrow": "Ready to wear",
             "label": "Discover",
             "link": "shopify://collections/ready-to-wear",
