@@ -224,3 +224,5 @@ Store-level changes, so they apply to the live site too:
 - Colour dots on ready-to-wear: the size-box style had also boxed the colour swatches. Sizes and colours are styled separately now; the chosen colour gets a round ring in the add-to-cart black (label overflow made visible so the ring is not clipped).
 - Homepage "Ready to wear" tile: cap replaced by the black Chrome T-shirt (back), white label.
 - Files replaced in place (live at once): obm-2026-mirror-sun-phone.jpg rebuilt by hero/phone.py with a smooth, dithered wall (the old extension had streaks and blocks that read as pixelation); obm-2026-brass-stamp-studio.jpg rebuilt by tools/stamp_extend.py from the original photograph, keeping its own shadow and table.
+- Footer: dark grey (#2b2b2b) with white writing and a soft grey leopard print (assets/obm-leopard-grey.svg, 640px tile, from tools/leopard.py); the logo is turned white with a CSS filter. In the fixes draft.
+- About us / Art of Living / Leather care: the owner chose the first mockup layout with new photographs (mockups-favourite-layout-new-photos.jpg); not built yet.
