@@ -8,11 +8,12 @@
 {%- liquid
   assign cols = '1,2,3,4' | split: ','
 -%}
-{%- comment -%} Leopard in grey shades after the owner's chosen reference (8 October): black C-shaped rings
-  around lighter centres, drawn as a seamless vector tile (tools/leopard_pop.py). {%- endcomment -%}
+{%- comment -%} The owner's own leopard reference in grey shades (8 October): the exact spots of the picture,
+  doubled in size with crisp edges and made to repeat without seams (tools/leopard_ref.py). A soft shadow keeps
+  the white writing readable over the lighter centres. {%- endcomment -%}
 {% style %}
-  .obm-footer { background-image: url({{ 'obm-leopard-pop.svg' | asset_url }}); background-size: 460px 460px; background-position: 0 0; background-repeat: repeat; }
-  @media screen and (min-width: 750px) { .obm-footer { background-size: 560px 560px; } }
+  .obm-footer { background-image: url({{ 'obm-leopard-ref.jpg' | asset_url }}); background-size: 290px auto; background-position: 0 0; background-repeat: repeat; text-shadow: 0 0 6px rgba(0, 0, 0, 0.55), 0 0 2px rgba(0, 0, 0, 0.6); }
+  @media screen and (min-width: 750px) { .obm-footer { background-size: 380px auto; } }
 {% endstyle %}
 <div class="obm-footer">
   <div class="obm-footer__top">
