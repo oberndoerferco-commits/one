@@ -256,3 +256,8 @@ The owner: "definitely another picture ... especially the main hero. Find the be
 - Art of Living: the tall blue armchair (IMG_5638) replaced by the orange trunk table (IMG_5650_3); the owner likes the rest of the page.
 - About us, small photographs: Material IMG_2653 (alligator wallets), Hand ecf41f42 (hands opening a red-lined case), Time IMG_4191 (brass studs, corners and mallet).
 - Art of Living: the owner loves image 11 of the old Miramare page, IMG_7959 (hand on the turquoise tufted chair); it replaces the trunk table next to the vanity case. The Atelier's slot that used it now shows IMG_1566_2 (green alligator studded trunk).
+
+## 9 October 2026 (evening): theme update broke six pages
+
+The owner updated the theme; Shopify made "Updated copy of REDESIGN 2026" (208208363845, now MAIN). The update reset six page templates to the default Horizon page (title and body only): page.about-us, page.art-of-living, page.leather-care, page.where-to-find-us, page.work-with-us and page.bespoke (used by /pages/personalization). Everything else checked the same as the draft (homepage, product, FAQ, bags), apart from the owner's own edits (collection templates, product templates, Ready to wear shows 25 instead of 29 products). layout/theme.liquid is the new Horizon version, without `render 'fonts'`; fonts render the same.
+Fix: MAIN duplicated to 208209281349 "REDESIGN 2026 - pages restored (draft)" and the six templates uploaded from redesign-2026/templates (checksums match). Screens: pages-restored.jpg. To publish by the owner.
