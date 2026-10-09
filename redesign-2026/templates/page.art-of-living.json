@@ -1,0 +1,61 @@
+{
+  "sections": {
+    "main": {
+      "type": "obm-story",
+      "blocks": {
+        "hero": {
+          "type": "hero",
+          "settings": {
+            "image": "shopify://shop_images/IMG_5628.heic",
+            "focal_x": 50,
+            "focal_y": 60,
+            "height": "tall"
+          }
+        },
+        "intro": {
+          "type": "intro",
+          "settings": {
+            "eyebrow": "Home",
+            "title": "Art of living",
+            "text": "<p>The care we give a card holder, carried to the scale of a room. Sofas, armchairs, poufs and trunk tables, made to measure, as for the Miramare Palace in Sanremo.</p>"
+          }
+        },
+        "pair": {
+          "type": "pair",
+          "settings": {
+            "image_1": "shopify://shop_images/IMG_0949.heic",
+            "image_2": "shopify://shop_images/IMG_5638.heic"
+          }
+        },
+        "products": {
+          "type": "products",
+          "settings": {
+            "heading": "Shop the pieces",
+            "product_1": "blue-leather-pouf",
+            "product_2": "tabel-trunk-black",
+            "product_3": "italian-leather-sofa-calf-leather-orange"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "label": "Furniture to measure",
+            "link": "shopify://pages/work-with-us",
+            "style": "outline"
+          }
+        }
+      },
+      "block_order": [
+        "hero",
+        "intro",
+        "pair",
+        "products",
+        "button"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

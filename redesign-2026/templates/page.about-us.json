@@ -1,0 +1,71 @@
+{
+  "sections": {
+    "main": {
+      "type": "obm-story",
+      "blocks": {
+        "hero": {
+          "type": "hero",
+          "settings": {
+            "image": "shopify://shop_images/IMG_7337.heic",
+            "focal_x": 50,
+            "focal_y": 55,
+            "height": "tall"
+          }
+        },
+        "intro": {
+          "type": "intro",
+          "settings": {
+            "eyebrow": "About us",
+            "title": "Oberndörfer Milano",
+            "text": "<p>Leather goods and objects for the home, made by hand in Milan. Few pieces, in chosen materials, made without hurry: to be used every day and kept for a lifetime.</p>"
+          }
+        },
+        "material": {
+          "type": "pillar",
+          "settings": {
+            "image": "shopify://shop_images/IMG_7580.heic",
+            "title": "Material",
+            "text": "Full-grain calf, alligator and solid brass, selected hide by hide."
+          }
+        },
+        "hand": {
+          "type": "pillar",
+          "settings": {
+            "image": "shopify://shop_images/IMG_0815.jpg",
+            "title": "Hand",
+            "text": "Cut, stitched and finished in our ateliers around Milan."
+          }
+        },
+        "time": {
+          "type": "pillar",
+          "settings": {
+            "image": "shopify://shop_images/IMG_6449.heic",
+            "title": "Time",
+            "text": "Made to be used, and repaired rather than replaced."
+          }
+        },
+        "links": {
+          "type": "links",
+          "settings": {
+            "label_1": "The Atelier",
+            "link_1": "shopify://pages/the-atelier",
+            "label_2": "Where to find us",
+            "link_2": "shopify://pages/where-to-find-us"
+          }
+        }
+      },
+      "block_order": [
+        "hero",
+        "intro",
+        "material",
+        "hand",
+        "time",
+        "links"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -1,0 +1,211 @@
+{
+  "sections": {
+    "main": {
+      "type": "obm-story",
+      "blocks": {
+        "hero": {
+          "type": "hero",
+          "settings": {
+            "image": "shopify://shop_images/IMG_7344.heic",
+            "focal_x": 50,
+            "focal_y": 45,
+            "height": "short"
+          }
+        },
+        "intro": {
+          "type": "intro",
+          "settings": {
+            "eyebrow": "Services",
+            "title": "Leather care",
+            "text": "<p>Full-grain leather is made to age. A little care keeps it beautiful.</p>"
+          }
+        },
+        "rule_1": {
+          "type": "rule",
+          "settings": {
+            "title": "Every day",
+            "text": "Wipe with a soft, dry cotton cloth. No water, alcohol, solvents or household cleaners."
+          }
+        },
+        "rule_2": {
+          "type": "rule",
+          "settings": {
+            "title": "Rain and spills",
+            "text": "Blot at once with a dry cloth; never rub. Let it dry slowly at room temperature, away from radiators, hairdryers and sun."
+          }
+        },
+        "rule_3": {
+          "type": "rule",
+          "settings": {
+            "title": "Nourishing",
+            "text": "Once or twice a year, a thin layer of colourless leather cream on a cloth. Test on a hidden spot first. Not for nubuck or exotic leathers."
+          }
+        },
+        "rule_4": {
+          "type": "rule",
+          "settings": {
+            "title": "Exotic leathers",
+            "text": "Alligator and crocodile: a dry cloth only. Keep away from heat and humidity."
+          }
+        },
+        "rule_5": {
+          "type": "rule",
+          "settings": {
+            "title": "Storing",
+            "text": "Fill with tissue paper to keep the shape, then into the dust bag, in a dry, airy room. Never in plastic; never hang by the handles."
+          }
+        },
+        "rule_6": {
+          "type": "rule",
+          "settings": {
+            "title": "Brass",
+            "text": "Solid brass darkens with time. Polish with a dry cloth, or let it keep its patina."
+          }
+        },
+        "rule_7": {
+          "type": "rule",
+          "settings": {
+            "title": "Repairs",
+            "text": "Stitching, edges, linings and hardware. Send us a photograph; we quote before any work begins."
+          }
+        },
+        "q_1": {
+          "type": "question",
+          "settings": {
+            "question": "How do you clean a leather bag?",
+            "answer": "<p>To clean a leather bag, gently remove dust using a soft, dry cloth. For light cleaning, use a slightly damp cloth and wipe the surface carefully without saturating the leather. Allow it to air dry naturally. Avoid harsh chemicals or unsuitable cleaning products, as they may damage fine leather. For delicate or valuable pieces, professional leather care is recommended.</p>"
+          }
+        },
+        "q_2": {
+          "type": "question",
+          "settings": {
+            "question": "Can leather get wet?",
+            "answer": "<p>Leather can tolerate small amounts of moisture, but excessive exposure to water may cause stains, stiffness, or changes in color. If your leather bag becomes wet, gently pat it dry with a soft cloth and allow it to dry at room temperature. Avoid direct heat, which can damage the material.</p>"
+          }
+        },
+        "q_3": {
+          "type": "question",
+          "settings": {
+            "question": "How often should you condition leather?",
+            "answer": "<p>High-quality full-grain leather requires minimal conditioning. Depending on use, applying a suitable conditioner every few months helps maintain softness and prevent drying. Over-conditioning should be avoided, as it may alter the natural character and patina of the leather.</p>"
+          }
+        },
+        "q_4": {
+          "type": "question",
+          "settings": {
+            "question": "What is full-grain leather?",
+            "answer": "<p>Full-grain leather is the highest quality leather available, taken from the outermost layer of the hide where the fibers are the most dense and durable. This layer, often referred to as the “grain,” remains completely intact and unaltered, preserving the leather’s natural surface. Because the grain is not sanded or corrected, full-grain leather retains its original characteristics — including pores, veins, and subtle variations in texture. These natural features are a sign of authenticity and contribute to the strength and longevity of the material. Beneath the grain lies a tightly structured network of fibers, which gives full-grain leather its exceptional resistance to wear while allowing it to remain breathable. Over time, this structure enables the leather to soften and develop a rich patina. In contrast, top-grain leather is lightly sanded to remove surface irregularities and often finished with coatings to create a more uniform appearance. While still high quality, this process reduces the natural strength and prevents the leather from aging in the same way as full-grain leather. Lower layers of the hide are used for genuine leather, which is typically processed and coated. These materials lack the durability, breathability, and character of full-grain leather. For this reason, full-grain leather is used in luxury leather goods and handmade leather bags, where material integrity, longevity, and natural beauty are essential.</p>"
+          }
+        },
+        "q_5": {
+          "type": "question",
+          "settings": {
+            "question": "Why is full-grain leather considered the best?",
+            "answer": "<p>Full-grain leather preserves the strongest part of the hide, making it highly resistant and long-lasting. Unlike corrected leather, it ages naturally and develops character, which is why it is used in luxury leather goods and handmade leather products.</p>"
+          }
+        },
+        "q_6": {
+          "type": "question",
+          "settings": {
+            "question": "What is patina in leather?",
+            "answer": "<p>Patina refers to the natural aging process of leather, resulting in a deeper color, soft sheen, and enhanced texture. It develops through use, light exposure, and handling, making each piece unique.</p>"
+          }
+        },
+        "q_7": {
+          "type": "question",
+          "settings": {
+            "question": "What is nubuck leather?",
+            "answer": "<p>Nubuck is a type of top-grain leather that has been lightly sanded to create a soft, velvety surface. It is more delicate than smooth leather but offers a refined appearance.</p>"
+          }
+        },
+        "q_8": {
+          "type": "question",
+          "settings": {
+            "question": "How do you care for nubuck leather?",
+            "answer": "<p>Nubuck should be cleaned using a soft brush designed for delicate leather. Avoid water and liquid cleaners, as they may leave marks. Protective sprays specifically made for nubuck can help prevent staining.</p>"
+          }
+        },
+        "q_9": {
+          "type": "question",
+          "settings": {
+            "question": "Can you use regular leather products on nubuck?",
+            "answer": "<p>No, traditional leather creams and conditioners should not be used on nubuck. They may darken or damage the surface. Always use products specifically designed for nubuck or suede.</p>"
+          }
+        },
+        "q_10": {
+          "type": "question",
+          "settings": {
+            "question": "How do you remove stains from nubuck leather?",
+            "answer": "<p>Light stains can be removed using a nubuck brush or eraser. For more stubborn stains, professional cleaning is recommended. Avoid household cleaning products, as they may worsen the damage.</p>"
+          }
+        },
+        "q_11": {
+          "type": "question",
+          "settings": {
+            "question": "How should leather be stored long-term?",
+            "answer": "<p>Leather should be stored in a dry, breathable environment away from direct sunlight. Use a dust bag and maintain the shape with soft filling. Proper storage helps preserve both structure and appearance.</p>"
+          }
+        },
+        "q_12": {
+          "type": "question",
+          "settings": {
+            "question": "Does leather last a lifetime?",
+            "answer": "<p>High-quality full-grain leather products can last for decades when properly maintained. Over time, they develop character rather than deteriorate, making them a long-term investment.</p>"
+          }
+        },
+        "q_13": {
+          "type": "question",
+          "settings": {
+            "question": "Why does leather change color over time?",
+            "answer": "<p>Leather naturally reacts to light, air, and use. This gradual change in tone is part of its evolution and contributes to the unique identity of each piece.</p>"
+          }
+        },
+        "q_14": {
+          "type": "question",
+          "settings": {
+            "question": "How do you maintain a leather bag?",
+            "answer": "<p>Maintaining a leather bag requires consistent, minimal care to preserve its structure, texture, and appearance over time. High-quality leather, especially full-grain leather, improves with proper handling rather than intensive treatment. For daily and long-term leather maintenance, follow these principles: Gently wipe the surface with a soft, dry cloth to remove dust Avoid prolonged exposure to sunlight, heat, or humidity Handle with clean hands to prevent oils and stains Keep away from water and harsh surfaces Store the bag in a dust bag when not in use Maintain its shape with soft filling Condition occasionally using products suitable for fine leather Rather than frequent intervention, leather benefits from careful use and a stable environment. With the right care, it will develop a natural patina and retain its elegance for many years.</p>"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "label": "Ask about a repair",
+            "link": "shopify://pages/contact",
+            "style": "dark"
+          }
+        }
+      },
+      "block_order": [
+        "hero",
+        "intro",
+        "rule_1",
+        "rule_2",
+        "rule_3",
+        "rule_4",
+        "rule_5",
+        "rule_6",
+        "rule_7",
+        "q_1",
+        "q_2",
+        "q_3",
+        "q_4",
+        "q_5",
+        "q_6",
+        "q_7",
+        "q_8",
+        "q_9",
+        "q_10",
+        "q_11",
+        "q_12",
+        "q_13",
+        "q_14",
+        "button"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
