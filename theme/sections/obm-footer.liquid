@@ -9,11 +9,11 @@
   assign cols = '1,2,3,4' | split: ','
 -%}
 {%- comment -%} The owner's own leopard reference in grey shades (8 October): the exact spots of the picture,
-  doubled in size with crisp edges and made to repeat without seams (tools/leopard_ref.py). A soft shadow keeps
-  the white writing readable over the lighter centres. {%- endcomment -%}
+  doubled in size with crisp edges and made to repeat without seams (tools/leopard_ref.py). A darker layer over the
+  pattern and a soft text shadow keep the white writing readable (owner, 9 October). {%- endcomment -%}
 {% style %}
-  .obm-footer { background-image: url({{ 'obm-leopard-ref.jpg' | asset_url }}); background-size: 290px auto; background-position: 0 0; background-repeat: repeat; text-shadow: 0 0 6px rgba(0, 0, 0, 0.55), 0 0 2px rgba(0, 0, 0, 0.6); }
-  @media screen and (min-width: 750px) { .obm-footer { background-size: 380px auto; } }
+  .obm-footer { background-image: linear-gradient(rgba(0, 0, 0, 0.38), rgba(0, 0, 0, 0.38)), url({{ 'obm-leopard-ref.jpg' | asset_url }}); background-size: auto, 290px auto; background-position: 0 0; background-repeat: no-repeat, repeat; text-shadow: 0 0 6px rgba(0, 0, 0, 0.55), 0 0 2px rgba(0, 0, 0, 0.6); }
+  @media screen and (min-width: 750px) { .obm-footer { background-size: auto, 380px auto; } }
 {% endstyle %}
 <div class="obm-footer">
   <div class="obm-footer__top">
@@ -96,12 +96,12 @@
   .obm-footer__text { margin: 14px 0 0; font-size: 13px; line-height: 1.6; }
   .obm-footer__field { margin-top: 30px; display: flex; align-items: center; border-bottom: 1px solid rgba(255, 255, 255, 0.55); padding-bottom: 6px; }
   .obm-footer__field input { flex: 1; min-width: 0; border: 0; background: transparent; font: inherit; font-size: 15px; color: #fff; padding: 8px 0; outline: none; }
-  .obm-footer__field input::placeholder { color: rgba(255, 255, 255, 0.6); }
+  .obm-footer__field input::placeholder { color: rgba(255, 255, 255, 0.8); }
   .obm-footer__field button { border: 0; background: none; color: #fff; width: 44px; height: 44px; display: flex; align-items: center; justify-content: flex-end; cursor: pointer; }
   .obm-footer__error { margin: 8px 0 0; font-size: 13px; color: #f0b4ae; }
-  .obm-footer__locator { display: flex; justify-content: space-between; align-items: center; min-height: 60px; border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
+  .obm-footer__locator { display: flex; justify-content: space-between; align-items: center; min-height: 60px; border-bottom: 1px solid rgba(255, 255, 255, 0.35); }
   .obm-footer__locator a { font-size: 15px; border-bottom: 1px solid #fff; }
-  .obm-footer__group { border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
+  .obm-footer__group { border-bottom: 1px solid rgba(255, 255, 255, 0.35); }
   .obm-footer__group summary { list-style: none; display: flex; justify-content: space-between; align-items: center; min-height: 64px; cursor: pointer; }
   .obm-footer__group summary::-webkit-details-marker { display: none; }
   .obm-footer__plus { position: relative; width: 16px; height: 16px; }
@@ -128,7 +128,7 @@
   .obm-footer__country label { white-space: nowrap; }
   .obm-footer__country select { min-width: 0; max-width: min(220px, 60vw); text-overflow: ellipsis; border: 0; border-bottom: 1px solid #fff; background: transparent; font: inherit; font-size: 14px; color: #fff; padding: 2px 0; border-radius: 0; -webkit-appearance: none; appearance: none; cursor: pointer; }
   .obm-footer__social { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; }
-  .obm-footer__copy { width: 100%; margin: 0; font-size: 12px; color: rgba(255, 255, 255, 0.6); }
+  .obm-footer__copy { width: 100%; margin: 0; font-size: 12px; color: rgba(255, 255, 255, 0.75); }
   .obm-footer__country select option { color: #1c1714; background: #fff; }
   .obm-footer svg { color: #fff; }
   .obm-footer :focus-visible { outline: 1px solid #fff; outline-offset: 3px; }
