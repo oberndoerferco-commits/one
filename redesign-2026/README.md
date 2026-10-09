@@ -255,3 +255,4 @@ The owner: "definitely another picture ... especially the main hero. Find the be
 - Ready to wear removed from the homepage; the tile is now Trunks (IMG_9745, the watch trunk in Central Park, focus 50/75) linking to /collections/trunks.
 - Art of Living: the tall blue armchair (IMG_5638) replaced by the orange trunk table (IMG_5650_3); the owner likes the rest of the page.
 - About us, small photographs: Material IMG_2653 (alligator wallets), Hand ecf41f42 (hands opening a red-lined case), Time IMG_4191 (brass studs, corners and mallet).
+- Art of Living: the owner loves image 11 of the old Miramare page, IMG_7959 (hand on the turquoise tufted chair); it replaces the trunk table next to the vanity case. The Atelier's slot that used it now shows IMG_1566_2 (green alligator studded trunk).
