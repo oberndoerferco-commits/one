@@ -17,7 +17,7 @@
           "settings": {
             "eyebrow": "About us",
             "title": "Oberndörfer Milano",
-            "text": "<p>Leather goods and objects for the home, made by hand in Milan. Few pieces, in chosen materials, made without hurry: to be used every day and kept for a lifetime.</p>"
+            "text": "<p>A house of leather in Milan. Bags, small leather goods and pieces for the home, made by hand in our ateliers, in small numbers.</p><p>Made to be used every day, and kept for a lifetime.</p>"
           }
         },
         "material": {
@@ -33,7 +33,7 @@
           "settings": {
             "image": "shopify://shop_images/ecf41f42-06ea-41f6-9ad4-33f7342e0aa3.jpg",
             "title": "Hand",
-            "text": "Cut, stitched and finished in our ateliers around Milan."
+            "text": "Cut, stitched and finished by hand in our ateliers around Milan."
           }
         },
         "time": {
@@ -41,7 +41,7 @@
           "settings": {
             "image": "shopify://shop_images/IMG_4191.heic",
             "title": "Time",
-            "text": "Made to be used, and repaired rather than replaced."
+            "text": "Leather that gains a patina with use. Pieces we repair rather than replace."
           }
         },
         "links": {
