@@ -6,9 +6,9 @@
         "hero": {
           "type": "hero",
           "settings": {
-            "image": "shopify://shop_images/IMG_5628.heic",
+            "image": "shopify://shop_images/IMG_5077.heic",
             "focal_x": 50,
-            "focal_y": 60,
+            "focal_y": 70,
             "height": "tall"
           }
         },
@@ -23,7 +23,7 @@
         "pair": {
           "type": "pair",
           "settings": {
-            "image_1": "shopify://shop_images/IMG_0949.heic",
+            "image_1": "shopify://shop_images/IMG_5344.heic",
             "image_2": "shopify://shop_images/IMG_5638.heic"
           }
         },

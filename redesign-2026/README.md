@@ -239,3 +239,15 @@ Store-level changes, so they apply to the live site too:
 - templates/page.art-of-living.json: IMG_5628 (orange sofa, blue chairs, trunk table), pair IMG_0949 (Miramare from the pool) + IMG_5638 (tall blue armchair), products blue-leather-pouf, tabel-trunk-black, italian-leather-sofa-calf-leather-orange with their real prices, button to Work with us.
 - templates/page.leather-care.json: IMG_7344 (SAC on red marble), seven care rules, all 14 questions folded, word for word as in snippets/oberndoerfer-care-schema.liquid (the FAQ structured data must match the page), button to Contact.
 - The old versions of the three templates are still in the live theme 208132407621 until "fixes 2" is published.
+
+## 9 October 2026 (later): new photographs everywhere (draft 208139747653 "fixes 2")
+
+The owner: "definitely another picture ... especially the main hero. Find the best picture." Searched Google Drive (no photographs), Canva (200px previews only) and all 2006 files in Shopify (586 lifestyle photographs reviewed). Picks, none used twice:
+- Homepage hero: IMG_4981 (navy vanity case on marble under a gilded mirror), one picture for phone and desktop, focus 50/55. Full-screen panels now have a deeper shade under the line (55% black at the bottom) and a light one under the header, so the white logo and line hold over the gold and the pale marble (sections/obm-panels.liquid).
+- Ready to wear tile: the black tee on taupe, with white text (the ink text disappeared on the black tee).
+- About us: 449EA146 (black studded watch trunk, olive tree, morning light); Material B4C40D7E_2 (choosing a hide from the colour cards), Hand MADE_IN_ITALY (cutting the pattern), Time IMG_7604 (trunks in the workshop).
+- Art of Living: IMG_5077 (orange daybed under the arched window, Miramare); pair IMG_5344 (vanity case by the pool) + IMG_5638 (tall blue armchair).
+- Leather care: Leather_Duffle_bag (close-up of grained black calf) in place of the busy workbench.
+- The Atelier: the daybed slot now shows IMG_5628, as the daybed photograph moved to Art of Living.
+- Range settings step by 5: a focus of 42 made the About us upload fail silently; now 40. Always compare checksums after an upload.
+- Screens: new-photos-phone.jpg, new-photos-desktop.jpg.

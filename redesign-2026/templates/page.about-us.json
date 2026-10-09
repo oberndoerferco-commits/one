@@ -6,9 +6,9 @@
         "hero": {
           "type": "hero",
           "settings": {
-            "image": "shopify://shop_images/IMG_7337.heic",
-            "focal_x": 50,
-            "focal_y": 55,
+            "image": "shopify://shop_images/449EA146-2B08-4638-949E-43942F063F80.jpg",
+            "focal_x": 40,
+            "focal_y": 50,
             "height": "tall"
           }
         },
@@ -23,7 +23,7 @@
         "material": {
           "type": "pillar",
           "settings": {
-            "image": "shopify://shop_images/IMG_7580.heic",
+            "image": "shopify://shop_images/B4C40D7E-0A40-45B2-AFE9-707AF3E7F7DA_2.jpg",
             "title": "Material",
             "text": "Full-grain calf, alligator and solid brass, selected hide by hide."
           }
@@ -31,7 +31,7 @@
         "hand": {
           "type": "pillar",
           "settings": {
-            "image": "shopify://shop_images/IMG_0815.jpg",
+            "image": "shopify://shop_images/MADE_IN_ITALY.heic",
             "title": "Hand",
             "text": "Cut, stitched and finished in our ateliers around Milan."
           }
@@ -39,7 +39,7 @@
         "time": {
           "type": "pillar",
           "settings": {
-            "image": "shopify://shop_images/IMG_6449.heic",
+            "image": "shopify://shop_images/IMG_7604.heic",
             "title": "Time",
             "text": "Made to be used, and repaired rather than replaced."
           }

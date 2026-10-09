@@ -6,9 +6,9 @@
         "hero": {
           "type": "hero",
           "settings": {
-            "image": "shopify://shop_images/IMG_7344.heic",
+            "image": "shopify://shop_images/Leather_Duffle_bag.jpg",
             "focal_x": 50,
-            "focal_y": 45,
+            "focal_y": 50,
             "height": "short"
           }
         },
