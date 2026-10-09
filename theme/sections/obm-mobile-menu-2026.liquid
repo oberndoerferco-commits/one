@@ -105,6 +105,9 @@
         a.textContent = {% if customer %}{{ 'Account' | json }}{% else %}{{ 'Login' | json }}{% endif %};
         acts.insertBefore(a, acts.firstChild);
       }
+      // Drawer header (touch screens): the theme puts Search beside the logo; keep it with Login and Cart.
+      var srch = document.querySelector('.header__row--top .header__column--left search-button');
+      if (acts && srch && !acts.contains(srch)) acts.insertBefore(srch, acts.firstChild);
     }
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addDesktop); else addDesktop();
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !menu.hidden) close(); });

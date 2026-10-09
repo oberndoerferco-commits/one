@@ -28,7 +28,7 @@
             {%- comment -%} Full-width heroes are served as progressive JPEG: the CDN's automatic WebP broke the dark
               wall of the mirror-bag hero into visible blocks on phones (owner, 8 October). {%- endcomment -%}
             {%- if ncols == 1 -%}
-            <source media="(max-width: 749px)" srcset="{{ mobile | image_url: width: 900, format: 'pjpg' }} 900w, {{ mobile | image_url: width: 1400, format: 'pjpg' }} 1400w, {{ mobile | image_url: width: 1800, format: 'pjpg' }} 1800w" sizes="100vw">
+            <source media="(max-width: 749px), (max-width: 1100px) and (orientation: portrait)" srcset="{{ mobile | image_url: width: 900, format: 'pjpg' }} 900w, {{ mobile | image_url: width: 1400, format: 'pjpg' }} 1400w, {{ mobile | image_url: width: 1800, format: 'pjpg' }} 1800w" sizes="100vw">
             <img src="{{ block.settings.image | image_url: width: 1800, format: 'pjpg' }}" srcset="{{ block.settings.image | image_url: width: 1200, format: 'pjpg' }} 1200w, {{ block.settings.image | image_url: width: 1800, format: 'pjpg' }} 1800w, {{ block.settings.image | image_url: width: 2600, format: 'pjpg' }} 2600w"
             {%- else -%}
             <source media="(max-width: 749px)" srcset="{{ mobile | image_url: width: 900 }} 900w, {{ mobile | image_url: width: 1400 }} 1400w" sizes="100vw">

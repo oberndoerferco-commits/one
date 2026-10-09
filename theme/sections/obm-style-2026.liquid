@@ -91,6 +91,15 @@
     .header__row--top .search-action .svg-wrapper { width: auto !important; height: auto !important; }
     .header__row--top .search-action .svg-wrapper svg { display: none !important; }
     .header__row--top .search-action .svg-wrapper::before { content: 'Search'; }
+    /* Touch screens this wide (iPad in landscape) get the theme's drawer header, whose grid places
+       the logo and the words differently; lay it out the same way: Menu, logo, Search Login Cart.
+       The theme's menu icon is not needed: the word Menu opens the same panel. */
+    .header[data-menu-style='drawer'] .header__row--top .header__columns { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) !important; grid-template-areas: "obmmenu obmlogo obmactions" !important; }
+    .header[data-menu-style='drawer'] .header__row--top .header__drawer { display: none !important; }
+    .header[data-menu-style='drawer'] .header__row--top .obm-desk-menu { grid-area: obmmenu !important; }
+    .header[data-menu-style='drawer'] .header__row--top .header-logo { grid-area: obmlogo !important; justify-self: center !important; margin: 0 !important; }
+    .header[data-menu-style='drawer'] .header__row--top header-actions { grid-area: obmactions !important; justify-self: end !important; }
+    .header[data-menu-style='drawer'] .header__row--top header-actions search-button { display: flex !important; }
   }
   /* Home page (owner, 7 October): the header lies over the film, transparent, as on Bottega Veneta,
      with the logo and the words in white so they read on the dark photograph. Once the page scrolls the
