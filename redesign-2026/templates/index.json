@@ -58,15 +58,15 @@
         "panel_2": {
           "type": "panel",
           "settings": {
-            "image": "shopify://shop_images/IMG_9745.heic",
+            "image": "shopify://shop_images/obm-coll-home.jpg",
             "video_url": "",
             "video_url_mobile": "",
             "focal_x": 50,
             "focal_y": 75,
             "tone": "light",
-            "eyebrow": "Trunks",
+            "eyebrow": "Home accessories",
             "label": "Discover",
-            "link": "shopify://collections/trunks",
+            "link": "shopify://collections/home-accessories",
             "label_2": "",
             "link_2": ""
           }
