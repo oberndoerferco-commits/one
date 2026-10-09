@@ -6,12 +6,12 @@
         "panel_1": {
           "type": "panel",
           "settings": {
-            "image": "shopify://shop_images/IMG_4981.heic",
-            "image_mobile": "",
+            "image": "shopify://shop_images/IMG_3258_2.jpg",
+            "image_mobile": "shopify://shop_images/obm-2026-mirror-sun-phone.jpg",
             "video_url": "",
             "video_url_mobile": "",
             "focal_x": 50,
-            "focal_y": 55,
+            "focal_y": 80,
             "tone": "light",
             "eyebrow": "Designed to fill up the empty spaces of your house and wardrobe",
             "label": "Discover more",
@@ -58,15 +58,15 @@
         "panel_2": {
           "type": "panel",
           "settings": {
-            "image": "shopify://shop_images/oberndoerfer-coll-ready-to-wear-tee.jpg",
+            "image": "shopify://shop_images/IMG_9745.heic",
             "video_url": "",
             "video_url_mobile": "",
             "focal_x": 50,
-            "focal_y": 50,
+            "focal_y": 75,
             "tone": "light",
-            "eyebrow": "Ready to wear",
+            "eyebrow": "Trunks",
             "label": "Discover",
-            "link": "shopify://collections/ready-to-wear",
+            "link": "shopify://collections/trunks",
             "label_2": "",
             "link_2": ""
           }

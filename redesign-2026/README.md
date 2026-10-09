@@ -251,3 +251,7 @@ The owner: "definitely another picture ... especially the main hero. Find the be
 - The Atelier: the daybed slot now shows IMG_5628, as the daybed photograph moved to Art of Living.
 - Range settings step by 5: a focus of 42 made the About us upload fail silently; now 40. Always compare checksums after an upload.
 - Screens: new-photos-phone.jpg, new-photos-desktop.jpg.
+- (owner, same day) "Why did you change the hero image": the homepage hero is back as live (IMG_3258_2 on desktop, obm-2026-mirror-sun-phone on phones, focus 50/80), and the extra hero shading in obm-panels.liquid is removed again.
+- Ready to wear removed from the homepage; the tile is now Trunks (IMG_9745, the watch trunk in Central Park, focus 50/75) linking to /collections/trunks.
+- Art of Living: the tall blue armchair (IMG_5638) replaced by the orange trunk table (IMG_5650_3); the owner likes the rest of the page.
+- About us, small photographs: Material IMG_2653 (alligator wallets), Hand ecf41f42 (hands opening a red-lined case), Time IMG_4191 (brass studs, corners and mallet).
