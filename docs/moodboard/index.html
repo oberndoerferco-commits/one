@@ -1,0 +1,177 @@
+<title>Oberndörfer Mood Board</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+  /* Layout: a quiet editorial wall. Title block, a dense image wall with mixed spans, then palette, light, surfaces, references, and the "not this" list. */
+  :root {
+    --paper: #F7F5F1; --paper-sunk: #ECE8E1; --ink: #17181A; --ink-soft: #5C5F66; --ink-faint: #8E9298;
+    --rule: #DAD5CC; --accent: #274038; --accent-tint: #E1E8E3;
+    --display: "Newsreader", "Iowan Old Style", Georgia, serif;
+    --body: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #121311; --paper-sunk: #1A1C19; --ink: #EDEBE6; --ink-soft: #A5A7A1; --ink-faint: #767872;
+      --rule: #2B2E2A; --accent: #8FB3A2; --accent-tint: #1D2622; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #121311; --paper-sunk: #1A1C19; --ink: #EDEBE6; --ink-soft: #A5A7A1; --ink-faint: #767872;
+    --rule: #2B2E2A; --accent: #8FB3A2; --accent-tint: #1D2622; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.5; padding-inline: 16px; padding-block: 32px 64px; }
+  .wrap { max-width: 1200px; margin: 0 auto; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap: balance; letter-spacing: -0.012em; }
+  h1 { font-size: clamp(2.4rem, 6vw, 4.2rem); line-height: 0.98; }
+  h2 { font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.15; }
+  h3 { font-size: 1.15rem; line-height: 1.3; }
+  .eyebrow { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-faint); font-weight: 500; }
+  p { margin: 0; }
+
+  .top { display: grid; gap: 18px; padding-bottom: 36px; }
+  @media (min-width: 860px) { .top { grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: end; } }
+  .thesis { font-family: var(--display); font-size: clamp(1.15rem, 2vw, 1.4rem); line-height: 1.4; color: var(--ink); max-width: 34ch; }
+  .thesis em { font-style: italic; color: var(--accent); }
+  .lede { color: var(--ink-soft); max-width: 58ch; }
+
+  /* Wall */
+  .wall { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; grid-auto-flow: dense; margin-top: 8px; }
+  @media (min-width: 700px) { .wall { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; } }
+  figure { margin: 0; display: grid; gap: 8px; min-width: 0; }
+  figure.wide { grid-column: span 2; }
+  figure .ph { position: relative; width: 100%; max-width: 100%; overflow: hidden; background: var(--paper-sunk); border-radius: 2px; }
+  figure .ph.p45 { aspect-ratio: 4 / 5; }
+  figure .ph.p32 { aspect-ratio: 3 / 2; }
+  figure .ph.sq  { aspect-ratio: 1 / 1; }
+  figure img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  figcaption { display: grid; gap: 2px; }
+  figcaption .k { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); font-weight: 600; }
+  figcaption .t { color: var(--ink-soft); font-size: 0.9rem; line-height: 1.4; }
+
+  section { margin-top: 64px; }
+  .sec-head { display: grid; gap: 8px; padding-bottom: 22px; border-bottom: 1px solid var(--rule); margin-bottom: 26px; }
+
+  /* Palette */
+  .swatches { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+  @media (min-width: 700px) { .swatches { grid-template-columns: repeat(4, minmax(0,1fr)); } }
+  @media (min-width: 1000px) { .swatches { grid-template-columns: repeat(7, minmax(0,1fr)); } }
+  .sw { display: grid; gap: 8px; min-width: 0; }
+  .sw .c { aspect-ratio: 1 / 1; max-width: 100%; border-radius: 2px; border: 1px solid rgba(0,0,0,.06); }
+  .sw b { font-weight: 600; font-size: 0.92rem; }
+  .sw span { color: var(--ink-soft); font-size: 0.84rem; line-height: 1.35; display: block; }
+  .sw code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.74rem; color: var(--ink-faint); }
+
+  /* Rules grids */
+  .rules { display: grid; gap: 22px; }
+  @media (min-width: 760px) { .rules { grid-template-columns: repeat(3, minmax(0,1fr)); gap: 28px; } }
+  .rule { display: grid; gap: 8px; min-width: 0; }
+  .rule p { color: var(--ink-soft); }
+  .rule p b { color: var(--ink); font-weight: 600; }
+
+  /* References */
+  .refs { display: grid; gap: 0; }
+  .ref { display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px; padding: 16px 0; border-top: 1px solid var(--rule); min-width: 0; }
+  @media (min-width: 760px) { .ref { grid-template-columns: 260px minmax(0, 1fr); gap: 24px; } }
+  .ref a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rule); font-weight: 600; }
+  .ref a:hover, .ref a:focus-visible { border-bottom-color: var(--accent); outline: none; }
+  .ref .who { color: var(--ink-faint); font-size: 0.84rem; display: block; margin-top: 2px; }
+  .ref .take { color: var(--ink-soft); }
+
+  .not { display: grid; gap: 10px; }
+  @media (min-width: 760px) { .not { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px 40px; } }
+  .not div { display: grid; grid-template-columns: 22px minmax(0,1fr); gap: 10px; color: var(--ink-soft); }
+  .not div::before { content: "×"; color: var(--accent); font-family: var(--display); font-size: 1.3rem; line-height: 1; }
+  .not b { color: var(--ink); font-weight: 600; }
+
+  .note { margin-top: 56px; padding: 16px 18px; background: var(--paper-sunk); border-radius: 6px; color: var(--ink-soft); font-size: 0.9rem; max-width: 74ch; }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="eyebrow">Oberndörfer Milano · mood board · October 2026</div>
+      <h1 style="margin-top:12px">Proof of hand</h1>
+      <p class="thesis" style="margin-top:18px">A box is a quiet object. The feed should feel like the room it lives in: <em>north light, a worn bench, walnut and stone, one brass detail, nothing shouting.</em></p>
+    </div>
+    <p class="lede">Twelve references made for this board, one per situation the brand photographs. Below them: the palette, the light, the surfaces, the people whose work to look at, and the things the feed stops doing. Nothing here is from the existing grid.</p>
+  </header>
+
+  <div class="wall">
+    <figure class="wide"><div class="ph p32"><img src="img/09-atelier.jpg" alt="A leather atelier with a worn bench, tools and hides on a rack under a tall window"></div><figcaption><span class="k">Atelier</span><span class="t">The establishing shot. Dust in the air, tools left where they fall. This is the set every Reel opens on.</span></figcaption></figure>
+    <figure><div class="ph p45"><img src="img/01-bench.jpg" alt="Hands setting a brass stud into a black leather box with a mallet"></div><figcaption><span class="k">Process</span><span class="t">Mallet mid-swing. Hands, never a face. The frame the audience rewards.</span></figcaption></figure>
+    <figure><div class="ph p45"><img src="img/10-maker.jpg" alt="An artisan in a leather apron seen from behind at the workbench"></div><figcaption><span class="k">Maker</span><span class="t">From behind, at work. Presence without a portrait.</span></figcaption></figure>
+    <figure><div class="ph p45"><img src="img/03-evening.jpg" alt="A green watch box open on a walnut desk under a brass lamp"></div><figcaption><span class="k">Evening</span><span class="t">One lamp, one watch coming off. The moment the box is bought for.</span></figcaption></figure>
+    <figure><div class="ph p45"><img src="img/06-velvet.jpg" alt="Burnt orange velvet lining meeting a black leather edge and brass lock"></div><figcaption><span class="k">Interior</span><span class="t">The colour lives inside. Open the lid and the palette changes.</span></figcaption></figure>
+    <figure class="wide"><div class="ph p32"><img src="img/02-grain.jpg" alt="Macro of Saffiano cross-hatch leather meeting smooth cognac calf"></div><figcaption><span class="k">Material</span><span class="t">Two centimetres of leather in raking light. The educational carousel in one frame.</span></figcaption></figure>
+    <figure><div class="ph sq"><img src="img/12-brass.jpg" alt="A polished brass lock and corner cap on black pebbled leather"></div><figcaption><span class="k">Hardware</span><span class="t">The one bright thing in a dark frame. Hard side light, nothing else lit.</span></figcaption></figure>
+    <figure><div class="ph sq"><img src="img/04-tray.jpg" alt="A dark green leather valet tray on marble with keys and reading glasses"></div><figcaption><span class="k">In use</span><span class="t">Dropped, not arranged. Overhead, morning. The €129 way in.</span></figcaption></figure>
+    <figure class="wide"><div class="ph p32"><img src="img/05-room.jpg" alt="A quiet Milanese apartment with a tall window, parquet and a low walnut console"></div><figcaption><span class="k">Room</span><span class="t">Where the object goes home to. Empty surfaces, sheer curtain, parquet. The Art of Living header.</span></figcaption></figure>
+    <figure><div class="ph p45"><img src="img/08-riviera.jpg" alt="A cognac leather box on a marble windowsill with the sea and a palm beyond"></div><figcaption><span class="k">Riviera</span><span class="t">Sanremo, morning. The hotel partnership with the product in frame.</span></figcaption></figure>
+    <figure><div class="ph sq"><img src="img/11-swatches.jpg" alt="Stacked leather swatches in forest green, black, cognac, taupe and oxblood"></div><figcaption><span class="k">Palette</span><span class="t">The range, as leather. Green, black, cognac, taupe, oxblood.</span></figcaption></figure>
+    <figure class="wide"><div class="ph p32"><img src="img/07-shelf.jpg" alt="A closed black leather watch box on a dark bookshelf beside a small lamp"></div><figcaption><span class="k">Collector</span><span class="t">On their shelf, among their books. The community post, shot by them.</span></figcaption></figure>
+    <figure><div class="ph p45"><img src="img/00-window.jpg" alt="A black leather box on a walnut table by a Milan window"></div><figcaption><span class="k">Milan</span><span class="t">The city through the window, out of focus. Place without a postcard.</span></figcaption></figure>
+  </div>
+
+  <section>
+    <div class="sec-head"><div class="eyebrow">Palette</div><h2>Seven colours, and what each one is for</h2></div>
+    <div class="swatches">
+      <div class="sw"><div class="c" style="background:#17181A"></div><b>Ink</b><span>The box. Most frames are mostly this.</span><code>#17181A</code></div>
+      <div class="sw"><div class="c" style="background:#274038"></div><b>Forest</b><span>The brand green. Leather, lining, the site accent.</span><code>#274038</code></div>
+      <div class="sw"><div class="c" style="background:#8B5A2B"></div><b>Cognac</b><span>Calf, walnut, the warm half of every frame.</span><code>#8B5A2B</code></div>
+      <div class="sw"><div class="c" style="background:#B8411E"></div><b>Velvet</b><span>Inside the lid only. The surprise colour.</span><code>#B8411E</code></div>
+      <div class="sw"><div class="c" style="background:#B08D57"></div><b>Brass</b><span>Hardware. One highlight per frame, never two.</span><code>#B08D57</code></div>
+      <div class="sw"><div class="c" style="background:#C9C1B4"></div><b>Stone</b><span>Marble, plaster, the daytime surface.</span><code>#C9C1B4</code></div>
+      <div class="sw"><div class="c" style="background:#F7F5F1"></div><b>Paper</b><span>Captions and the site. Never a backdrop.</span><code>#F7F5F1</code></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><div class="eyebrow">Light</div><h2>Three kinds of light, and no fourth</h2></div>
+    <div class="rules">
+      <div class="rule"><h3>North window, from the left</h3><p><b>Daytime and process.</b> One large soft source, falloff to the right, a white card to lift the shadow side. Rotate the box until the hot spot walks off the lid.</p></div>
+      <div class="rule"><h3>Raking side light</h3><p><b>Material and hardware.</b> Low and hard, almost parallel to the surface, so grain and cross-hatch cast their own shadows. The only time contrast goes up.</p></div>
+      <div class="rule"><h3>One lamp, evening</h3><p><b>In use.</b> A single warm pool, everything else falls to black. Tungsten, not LED white. The watch comes off the wrist here.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><div class="eyebrow">Surfaces</div><h2>Four surfaces the product sits on</h2></div>
+    <div class="rules">
+      <div class="rule"><h3>Walnut</h3><p>Desks, consoles, the evening frame. Oiled, not glossy. Grain visible, never reflective.</p></div>
+      <div class="rule"><h3>Marble and stone</h3><p>Sills, bathroom shelves, the tray's home. Pale, veined, cool against cognac leather.</p></div>
+      <div class="rule"><h3>The bench</h3><p>Scarred wood, tools in frame. The only surface that is allowed to be messy, because the mess is the proof.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><div class="eyebrow">Look at</div><h2>People and places doing this well</h2></div>
+    <div class="refs">
+      <div class="ref"><div><a href="https://www.hermes.com/" target="_blank" rel="noopener">Hermès, the craft films</a><span class="who">Les Mains d'Hermès, the In the Making exhibitions</span></div><p class="take">Hands and tools, no voiceover, no music under the sound of the work. The house that proved process content sells at any price.</p></div>
+      <div class="ref"><div><a href="https://craftprize.loewe.com/" target="_blank" rel="noopener">Loewe Foundation Craft Prize</a><span class="who">Annual, with a travelling exhibition</span></div><p class="take">How a luxury house photographs craft objects: single object, plain ground, light that explains the material. Study the catalogue photography.</p></div>
+      <div class="ref"><div><a href="https://www.goyard.com/" target="_blank" rel="noopener">Goyard</a><span class="who">Malletier, Paris, since 1853</span></div><p class="take">Trunks and boxes with almost no social presence and no e-commerce. Restraint as the whole strategy. Note what they refuse to show.</p></div>
+      <div class="ref"><div><a href="https://www.globe-trotter.com/" target="_blank" rel="noopener">Globe-Trotter</a><span class="who">Hertfordshire, vulcanised fibreboard cases since 1897</span></div><p class="take">The closest product cousin. Watch how they shoot corners, locks and leather trim, and how the workshop sits in the feed.</p></div>
+      <div class="ref"><div><a href="https://villanecchicampiglio.fondoambiente.it/" target="_blank" rel="noopener">Villa Necchi Campiglio</a><span class="who">Piero Portaluppi, Milan, 1935. Open to visit</span></div><p class="take">The Milanese interior the brand belongs in: walnut, marble, brass, parchment, restraint. Book a visit and shoot nothing. Just look.</p></div>
+      <div class="ref"><div><a href="https://www.fondazioneprada.org/" target="_blank" rel="noopener">Fondazione Prada</a><span class="who">Bar Luce, Largo Isarco, Milan</span></div><p class="take">Wes Anderson's Milanese café: Formica, veneer, pastel. Proof that a Milan reference can be warm without being nostalgic.</p></div>
+      <div class="ref"><div><a href="https://www.paoloroversi.com/" target="_blank" rel="noopener">Paolo Roversi</a><span class="who">Photographer, Milan studio</span></div><p class="take">Long exposures, soft light, grain. The reference for the Evening frames and for what film grain is for.</p></div>
+      <div class="ref"><div><a href="https://www.guidotaroni.com/" target="_blank" rel="noopener">Guido Taroni</a><span class="who">Interiors photographer, Milan</span></div><p class="take">How a Milanese room is photographed now: daylight, true colour, no styling tricks. The Room and Riviera frames follow him.</p></div>
+      <div class="ref"><div><a href="https://www.tiktok.com/@red.forest.leather" target="_blank" rel="noopener">Red Forest Leather</a><span class="who">TikTok, 768K followers, process only</span></div><p class="take">The leather bench as pure sound and motion. No talking, no music, cutting and stitching at a million likes a clip.</p></div>
+      <div class="ref"><div><a href="https://delugs.com/" target="_blank" rel="noopener">Delugs</a><span class="who">Straps and cases, Singapore</span></div><p class="take">How a small watch-accessory brand enters the collector community: founder as collector, named tanneries, hours per piece, collaborations earned not bought.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><div class="eyebrow">Not this</div><h2>What the feed stops doing</h2></div>
+    <div class="not">
+      <div><span><b>White sweeps.</b> Catalogue stills on grey or white are the lowest posts on the account.</span></div>
+      <div><span><b>Cash, boats, sunglasses.</b> Millions of views, zero buyers, and the opposite register.</span></div>
+      <div><span><b>Logos or title cards in the first frame.</b> The first second is texture or motion.</span></div>
+      <div><span><b>Two highlights in one frame.</b> One brass detail, everything else falls away.</span></div>
+      <div><span><b>Rooms without the product.</b> Hotel interiors on their own are not the brand.</span></div>
+      <div><span><b>"Passion and tradition".</b> A named maker, a stud count, a cutting order. Specifics or nothing.</span></div>
+      <div><span><b>Music over process.</b> The lock closing is the soundtrack.</span></div>
+      <div><span><b>Products the store doesn't sell.</b> Until it does.</span></div>
+    </div>
+  </section>
+
+  <p class="note">The twelve images on this board were generated as references for the brief, one per situation. They are for looking at, not for posting: the real frames are shot at the bench, with the real boxes, under the light described above.</p>
+</div>
