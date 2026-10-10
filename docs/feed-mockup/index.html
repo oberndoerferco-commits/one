@@ -1,0 +1,314 @@
+<title>Oberndörfer Next Nine</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+  /* Layout: a phone showing the profile on the left, the nine-post plan on the right; stacks on narrow screens. */
+  :root {
+    --paper: #FBFBFA; --paper-sunk: #F2F2F0; --ink: #17181A; --ink-soft: #5C5F66; --ink-faint: #8E9298;
+    --rule: #DFDFDD; --accent: #274038; --accent-tint: #E4EAE6;
+    --ig-bg: #000; --ig-fg: #F5F5F5; --ig-muted: #A8A8A8; --ig-line: #262626; --ig-chip: #262626; --ig-link: #E0F1FF;
+    --display: "Newsreader", "Iowan Old Style", Georgia, serif;
+    --body: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #131413; --paper-sunk: #1B1D1C; --ink: #EDEDEB; --ink-soft: #A2A6A5; --ink-faint: #74797A;
+      --rule: #2C2F2D; --accent: #8FB3A2; --accent-tint: #1E2723; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #131413; --paper-sunk: #1B1D1C; --ink: #EDEDEB; --ink-soft: #A2A6A5; --ink-faint: #74797A;
+    --rule: #2C2F2D; --accent: #8FB3A2; --accent-tint: #1E2723; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.5;
+         padding-inline: 16px; padding-block: 28px 56px; }
+  .wrap { max-width: 1120px; margin: 0 auto; }
+  h1, h2, h3 { font-family: var(--display); font-weight: 500; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+  h1 { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.05; }
+  h2 { font-size: 1.5rem; line-height: 1.2; }
+  h3 { font-size: 1.2rem; line-height: 1.25; }
+  .eyebrow { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-faint); font-weight: 500; }
+  .stand { max-width: 60ch; color: var(--ink-soft); font-size: 1.02rem; }
+  header.top { display: grid; gap: 12px; padding-bottom: 28px; border-bottom: 1px solid var(--rule); margin-bottom: 32px; }
+
+  .main { display: grid; grid-template-columns: 1fr; gap: 36px; align-items: start; }
+  @media (min-width: 900px) { .main { grid-template-columns: 430px minmax(0, 1fr); gap: 56px; } .phone-col { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 20px); } }
+
+  /* Phone: a fixed dark Instagram surface, as the account is used in dark mode. */
+  .phone { background: var(--ig-bg); color: var(--ig-fg); border-radius: 40px; border: 1px solid var(--rule);
+           padding: 18px 12px 22px; max-width: 430px; margin: 0 auto; width: 100%;
+           font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.35; }
+  .ig-bar { display: flex; align-items: center; justify-content: space-between; padding: 6px 8px 14px; }
+  .ig-handle { font-weight: 700; font-size: 16px; display: inline-flex; align-items: center; gap: 6px; }
+  .ig-verified { width: 14px; height: 14px; border-radius: 50%; background: #0095f6; display: inline-grid; place-items: center; }
+  .ig-verified::after { content: ""; width: 5px; height: 8px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg) translate(-1px,-1px); }
+  .ig-icons { display: flex; gap: 18px; color: var(--ig-fg); }
+  .ig-icons svg { width: 22px; height: 22px; }
+  .ig-head { display: grid; grid-template-columns: 86px 1fr; gap: 18px; align-items: center; padding: 0 8px; }
+  .avatar { width: 86px; height: 86px; border-radius: 50%; background: #fff; color: #111; display: grid; place-items: center; text-align: center;
+            font-family: var(--display); font-size: 9.5px; letter-spacing: 0.08em; line-height: 1.1; border: 2px solid var(--ig-line); }
+  .avatar small { display: block; font-size: 6px; letter-spacing: 0.2em; margin-top: 2px; }
+  .stats { display: flex; justify-content: space-around; text-align: center; }
+  .stats b { display: block; font-size: 17px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .stats span { color: var(--ig-fg); font-size: 13px; }
+  .bio { padding: 12px 8px 0; display: grid; gap: 2px; }
+  .bio .name { font-weight: 600; }
+  .bio .cat { color: var(--ig-muted); }
+  .bio .link { color: var(--ig-link); display: inline-flex; align-items: center; gap: 6px; }
+  .bio .link svg { width: 14px; height: 14px; }
+  .ig-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 14px 8px 8px; }
+  .ig-buttons span { background: var(--ig-chip); border-radius: 8px; text-align: center; padding: 8px; font-weight: 600; font-size: 13px; }
+  .tabs { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--ig-line); margin-top: 10px; }
+  .tabs span { display: grid; place-items: center; padding: 11px 0; color: var(--ig-muted); }
+  .tabs span.on { color: var(--ig-fg); box-shadow: inset 0 1px 0 var(--ig-fg); }
+  .tabs svg { width: 22px; height: 22px; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 2px; }
+  .tile { position: relative; aspect-ratio: 3 / 4; max-width: 100%; overflow: hidden; border: 0; padding: 0; background: #111; cursor: pointer; display: block; }
+  .tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .tile .badge { position: absolute; top: 8px; right: 8px; width: 18px; height: 18px; color: #fff; filter: drop-shadow(0 1px 2px rgba(0,0,0,.6)); }
+  .tile .n { position: absolute; left: 8px; bottom: 8px; min-width: 22px; height: 22px; padding: 0 6px; border-radius: 11px; display: grid; place-items: center;
+             background: rgba(0,0,0,.55); color: #fff; font-size: 11px; font-weight: 600; font-variant-numeric: tabular-nums; backdrop-filter: blur(4px); }
+  .tile:focus-visible, .tile.hi { outline: 3px solid var(--accent); outline-offset: -3px; }
+  .tile.hi::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 0 0 3px var(--accent); }
+
+  /* Plan */
+  .plan { display: grid; gap: 0; }
+  .plan-head { display: grid; gap: 8px; padding-bottom: 18px; }
+  .post { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 14px; padding: 20px 0; border-top: 1px solid var(--rule); scroll-margin-top: 20px; transition: background .4s; }
+  .post.flash { background: var(--accent-tint); }
+  .post .num { font-family: var(--display); font-size: 1.6rem; line-height: 1; color: var(--ink-faint); font-variant-numeric: tabular-nums; padding-top: 2px; }
+  .post .body { display: grid; gap: 10px; min-width: 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { font-size: 0.72rem; letter-spacing: 0.04em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; border: 1px solid var(--rule); color: var(--ink-soft); font-weight: 500; }
+  .chip.reel { background: var(--accent); color: var(--paper); border-color: var(--accent); }
+  .chip.car { background: var(--accent-tint); border-color: var(--accent-tint); color: var(--accent); }
+  .row { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 10px; }
+  .row .k { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); font-weight: 500; padding-top: 3px; }
+  .caption { font-family: var(--display); font-size: 1.12rem; line-height: 1.4; color: var(--ink); }
+  .why { color: var(--ink-soft); }
+  .why b { color: var(--ink); font-weight: 600; }
+
+  .rules { margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--rule); display: grid; gap: 28px; }
+  @media (min-width: 760px) { .rules { grid-template-columns: 1fr 1fr; } }
+  .rules ul { margin: 10px 0 0; padding-left: 18px; display: grid; gap: 8px; color: var(--ink-soft); }
+  .rules li b { color: var(--ink); font-weight: 600; }
+  .diff { display: grid; gap: 10px; margin-top: 10px; }
+  .diff div { display: grid; grid-template-columns: 56px minmax(0,1fr); gap: 10px; }
+  .diff .k { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-faint); font-weight: 500; padding-top: 3px; }
+  .diff s { color: var(--ink-faint); }
+  .note { margin-top: 36px; padding: 16px 18px; background: var(--paper-sunk); border-radius: 10px; color: var(--ink-soft); font-size: 0.92rem; max-width: 70ch; }
+  @media (prefers-reduced-motion: reduce) { .post { transition: none; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="eyebrow">Oberndörfer Milano · @oberndoerferco · proposal</div>
+    <h1>The next nine posts</h1>
+    <p class="stand">Three Reels from the bench, six carousels built on detail and use, nothing shot on a white sweep. Every tile points at a product the store actually sells. Tap a tile to read its brief.</p>
+  </header>
+
+  <div class="main">
+    <div class="phone-col">
+      <div class="phone" aria-label="Instagram profile mockup">
+        <div class="ig-bar">
+          <span class="ig-handle">oberndoerferco <span class="ig-verified" aria-label="verified"></span> <span style="color:var(--ig-muted);font-size:12px">⌄</span></span>
+          <span class="ig-icons" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </span>
+        </div>
+        <div class="ig-head">
+          <div class="avatar">OBERNDÖRFER<small>MILANO</small></div>
+          <div class="stats">
+            <div><b>175</b><span>posts</span></div>
+            <div><b>118K</b><span>followers</span></div>
+            <div><b>240</b><span>following</span></div>
+          </div>
+        </div>
+        <div class="bio">
+          <div class="name">Oberndörfer Milano</div>
+          <div class="cat">Brand</div>
+          <div>Leather watch boxes and valet trays, built by hand in our Milan atelier.</div>
+          <div>Three-place from €395. Eight-place from €1,490.</div>
+          <div>Ask us about the leather.</div>
+          <div class="link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>oberndoerferco.com/watch-boxes</div>
+        </div>
+        <div class="ig-buttons"><span>Edit profile</span><span>Share profile</span></div>
+        <div class="tabs" aria-hidden="true">
+          <span class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3h18v18H3zM3 9h18M3 15h18M9 3v18M15 3v18"/></svg></span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M10 8.5v7l6-3.5z" fill="currentColor" stroke="none"/></svg></span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 2l4 4-4 4M3 11V8a2 2 0 0 1 2-2h16M7 22l-4-4 4-4M21 13v3a2 2 0 0 1-2 2H3"/></svg></span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="10" r="3"/><path d="M6 20c1.5-3 4-4 6-4s4.5 1 6 4"/></svg></span>
+        </div>
+
+        <div class="grid" id="grid">
+          <button class="tile" data-n="1" aria-label="Post 1, Reel: At the bench"><img src="tiles/1.jpg" alt="Hands set brass studs into a black leather box with a mallet"><svg class="badge" viewBox="0 0 24 24" fill="currentColor"><path d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm6 5.5v7l6-3.5z" fill-rule="evenodd"/></svg><span class="n">1</span></button>
+          <button class="tile" data-n="2" aria-label="Post 2, Carousel: On leather"><img src="tiles/2.jpg" alt="Close crop of a black studded lid and lock"><svg class="badge" viewBox="0 0 24 24" fill="currentColor"><path d="M8 6h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><path d="M4 16V5a1 1 0 0 1 1-1h11" fill="none" stroke="currentColor" stroke-width="2"/></svg><span class="n">2</span></button>
+          <button class="tile" data-n="3" aria-label="Post 3, Carousel: Evening"><img src="tiles/3.jpg" alt="Three-place watch box open under warm lamp light, orange velvet interior"><svg class="badge" viewBox="0 0 24 24" fill="currentColor"><path d="M8 6h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><path d="M4 16V5a1 1 0 0 1 1-1h11" fill="none" stroke="currentColor" stroke-width="2"/></svg><span class="n">3</span></button>
+          <button class="tile" data-n="4" aria-label="Post 4, Carousel: The tray"><img src="tiles/4.jpg" alt="Dark green leather valet tray on a stone surface"><svg class="badge" viewBox="0 0 24 24" fill="currentColor"><path d="M8 6h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><path d="M4 16V5a1 1 0 0 1 1-1h11" fill="none" stroke="currentColor" stroke-width="2"/></svg><span class="n">4</span></button>
+          <button class="tile" data-n="5" aria-label="Post 5, Reel: Lid close"><img src="tiles/5.jpg" alt="The lock of a grey eight-place box in low light"><svg class="badge" viewBox="0 0 24 24" fill="currentColor"><path d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm6 5.5v7l6-3.5z" fill-rule="evenodd"/></svg><span class="n">5</span></button>
+          <button class="tile" data-n="6" aria-label="Post 6, Carousel: In the box"><img src="tiles/6.jpg" alt="Green eight-place watch box on an oak surface"><svg class="badge" viewBox="0 0 24 24" fill="currentColor"><path d="M8 6h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><path d="M4 16V5a1 1 0 0 1 1-1h11" fill="none" stroke="currentColor" stroke-width="2"/></svg><span class="n">6</span></button>
+          <button class="tile" data-n="7" aria-label="Post 7, Reel: Cutting the lining"><img src="tiles/7.jpg" alt="Navy leather, a set square and cutting tools on the bench"><svg class="badge" viewBox="0 0 24 24" fill="currentColor"><path d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm6 5.5v7l6-3.5z" fill-rule="evenodd"/></svg><span class="n">7</span></button>
+          <button class="tile" data-n="8" aria-label="Post 8, Carousel: The maker"><img src="tiles/8.jpg" alt="An artisan's hands fitting hardware at a worn wooden bench"><svg class="badge" viewBox="0 0 24 24" fill="currentColor"><path d="M8 6h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><path d="M4 16V5a1 1 0 0 1 1-1h11" fill="none" stroke="currentColor" stroke-width="2"/></svg><span class="n">8</span></button>
+          <button class="tile" data-n="9" aria-label="Post 9, Carousel: Sanremo, morning"><img src="tiles/9.jpg" alt="Brown leather tray on a pale marble sill in morning light"><svg class="badge" viewBox="0 0 24 24" fill="currentColor"><path d="M8 6h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><path d="M4 16V5a1 1 0 0 1 1-1h11" fill="none" stroke="currentColor" stroke-width="2"/></svg><span class="n">9</span></button>
+        </div>
+      </div>
+    </div>
+
+    <section class="plan" aria-label="Post briefs">
+      <div class="plan-head">
+        <div class="eyebrow">Briefs, newest first</div>
+        <h2>What each tile is and why it is there</h2>
+      </div>
+
+      <article class="post" id="p1" data-n="1">
+        <div class="num">1</div>
+        <div class="body">
+          <h3>At the bench</h3>
+          <div class="chips"><span class="chip reel">Reel · 18 s</span><span class="chip">Pillar: process</span><span class="chip">Natural sound</span></div>
+          <div class="row"><span class="k">First frame</span><span>The mallet already in motion. Brass studs scattered on the cloth. No logo, no title card.</span></div>
+          <div class="row"><span class="k">Caption</span><span class="caption">Forty-eight studs on an eight-place. Set by hand, checked twice. Sound on.</span></div>
+          <div class="row"><span class="k">Why</span><span class="why"><b>Your ten bench Reels sit between 50K and 75K views.</b> Nothing else on the account comes close. This is the spine of the feed.</span></div>
+        </div>
+      </article>
+
+      <article class="post" id="p2" data-n="2">
+        <div class="num">2</div>
+        <div class="body">
+          <h3>On leather</h3>
+          <div class="chips"><span class="chip car">Carousel · 5 slides</span><span class="chip">Pillar: material</span></div>
+          <div class="row"><span class="k">Slides</span><span>Cross-hatch at two centimetres. Smooth calf at two centimetres. The painted edge. The velvet. The box closed.</span></div>
+          <div class="row"><span class="k">Caption</span><span class="caption">Saffiano is calf pressed under heat into a cross-hatch. It takes a scratch and keeps the secret. Five frames on how we choose it.</span></div>
+          <div class="row"><span class="k">Why</span><span class="why"><b>Detail close-ups are your best stills.</b> The buckle reached 36.7K and the studded box 50.4K while catalogue shots sit near 1K. Educational carousels earn saves.</span></div>
+        </div>
+      </article>
+
+      <article class="post" id="p3" data-n="3">
+        <div class="num">3</div>
+        <div class="body">
+          <h3>Evening</h3>
+          <div class="chips"><span class="chip car">Carousel · 3 slides</span><span class="chip">Pillar: in use</span></div>
+          <div class="row"><span class="k">Slides</span><span>The three-place open on a walnut desk under one lamp. A watch coming off the wrist. The lid closing.</span></div>
+          <div class="row"><span class="k">Caption</span><span class="caption">One watch comes off. The box is where it sleeps.</span></div>
+          <div class="row"><span class="k">Why</span><span class="why"><b>A scene people send to each other.</b> Sends per reach is one of three ranking signals Instagram names. This is the €395 product in the moment it is bought for.</span></div>
+        </div>
+      </article>
+
+      <article class="post" id="p4" data-n="4">
+        <div class="num">4</div>
+        <div class="body">
+          <h3>The tray</h3>
+          <div class="chips"><span class="chip car">Carousel · 3 slides</span><span class="chip">Pillar: in use</span></div>
+          <div class="row"><span class="k">Slides</span><span>Overhead. Keys and reading glasses dropped in, not arranged. Then the tray empty on the same stone. Then the stitch at the corner.</span></div>
+          <div class="row"><span class="k">Caption</span><span class="caption">Keys, glasses, the day. A place for them to land.</span></div>
+          <div class="row"><span class="k">Why</span><span class="why"><b>The tray is on the store and has never appeared on the feed.</b> Nine colours at €129, the lowest-friction way in for a new follower.</span></div>
+        </div>
+      </article>
+
+      <article class="post" id="p5" data-n="5">
+        <div class="num">5</div>
+        <div class="body">
+          <h3>Lid close</h3>
+          <div class="chips"><span class="chip reel">Reel · 12 s</span><span class="chip">Pillar: process</span><span class="chip">No music</span></div>
+          <div class="row"><span class="k">One take</span><span>A hand lowers the lid. The lock catches. Hold two seconds on the hardware. Nothing else.</span></div>
+          <div class="row"><span class="k">Caption</span><span class="caption">Twelve seconds. The sound of the lock.</span></div>
+          <div class="row"><span class="k">Why</span><span class="why"><b>Clips of 15 to 30 seconds carry the highest engagement rate</b> in TikTok's 2026 brand data, and the same cut posts to both platforms. Sound-only is the register the leather niche already rewards.</span></div>
+        </div>
+      </article>
+
+      <article class="post" id="p6" data-n="6">
+        <div class="num">6</div>
+        <div class="body">
+          <h3>In the box</h3>
+          <div class="chips"><span class="chip car">Carousel · 4 slides</span><span class="chip">Pillar: collectors</span><span class="chip">Collab post</span></div>
+          <div class="row"><span class="k">Slides</span><span>A collector's eight-place, shot by them on their phone. Their rotation. The one piece with a story. The box closed on their shelf.</span></div>
+          <div class="row"><span class="k">Caption</span><span class="caption">[Collector]'s eight-place. Three chronographs and the one his father wore. His words, below.</span></div>
+          <div class="row"><span class="k">Why</span><span class="why"><b>Premium watch storage is visually empty on WatchTok</b>; the search surface is acrylic organisers. Collectors hold the camera, you tag the post as a collaboration and both audiences see it.</span></div>
+        </div>
+      </article>
+
+      <article class="post" id="p7" data-n="7">
+        <div class="num">7</div>
+        <div class="body">
+          <h3>Cutting the lining</h3>
+          <div class="chips"><span class="chip reel">Reel · 22 s</span><span class="chip">Pillar: process</span><span class="chip">Natural sound</span></div>
+          <div class="row"><span class="k">First frame</span><span>Shears entering velvet. Then the piece lifted and laid into the box, and the fit checked with a thumb.</span></div>
+          <div class="row"><span class="k">Caption</span><span class="caption">The velvet is cut last, after the box is built, so it fits the box it lives in.</span></div>
+          <div class="row"><span class="k">Why</span><span class="why"><b>A new step keeps the bench series alive.</b> Same format, same hands, same sound. One fact per Reel is what the leather accounts at 700K followers do.</span></div>
+        </div>
+      </article>
+
+      <article class="post" id="p8" data-n="8">
+        <div class="num">8</div>
+        <div class="body">
+          <h3>The maker</h3>
+          <div class="chips"><span class="chip car">Carousel · 4 slides</span><span class="chip">Pillar: atelier</span></div>
+          <div class="row"><span class="k">Slides</span><span>Hands at the bench. The bench itself, tools left where they fall. A portrait from behind, at work. The maker's mark inside the lid.</span></div>
+          <div class="row"><span class="k">Caption</span><span class="caption">[Name], [31] years at the bench. Every box we have sold was built here, Via [street], Milano.</span></div>
+          <div class="row"><span class="k">Why</span><span class="why"><b>Every peer with documented growth pairs a visible maker with a named series.</b> It is also the checkable answer to "is it really made in Italy", which generic badges no longer settle.</span></div>
+        </div>
+      </article>
+
+      <article class="post" id="p9" data-n="9">
+        <div class="num">9</div>
+        <div class="body">
+          <h3>Sanremo, morning</h3>
+          <div class="chips"><span class="chip car">Carousel · 3 slides</span><span class="chip">Pillar: Art of Living</span></div>
+          <div class="row"><span class="k">Slides</span><span>The tray and the three-place on the Miramare sill, Corso Matuzia. The sea behind, out of focus. Then the tray alone. Then the view.</span></div>
+          <div class="row"><span class="k">Caption</span><span class="caption">Miramare the Palace, Corso Matuzia. Morning.</span></div>
+          <div class="row"><span class="k">Why</span><span class="why"><b>Your Tuscany campaign stills were your best photography at 2K to 5K views.</b> This points that treatment at what the store sells, and keeps the hotel partnership in the feed with product in frame.</span></div>
+        </div>
+      </article>
+    </section>
+  </div>
+
+  <section class="rules">
+    <div>
+      <h2>Rules the grid follows</h2>
+      <ul>
+        <li><b>Three Reels, six carousels.</b> Reels reach strangers; carousels out-view Reels for followers and earn saves.</li>
+        <li><b>Nothing on a white sweep.</b> Your white-background product shots are the lowest posts on the account at 500 to 650 views.</li>
+        <li><b>Dark, warm, dark.</b> Each row alternates a bench frame, a warm interior, a quiet surface, so the grid reads as one room.</li>
+        <li><b>Every tile is a product the store sells.</b> Watch boxes and trays only. The vanity cases and trunks return when the store carries them.</li>
+        <li><b>One fact per post.</b> Stud count, leather type, cutting order. Specific beats "passion and tradition".</li>
+        <li><b>No prices in the image, no urgency, five hashtags at most.</b> Prices live in the bio and the caption.</li>
+      </ul>
+    </div>
+    <div>
+      <h2>What changed on the profile</h2>
+      <div class="diff">
+        <div><span class="k">Bio</span><span><s>Milan-based artisanal leather house. Handmade in Italy with passion &amp; tradition.</s><br>Leather watch boxes and valet trays, built by hand in our Milan atelier. Three-place from €395. Eight-place from €1,490. Ask us about the leather.</span></div>
+        <div><span class="k">Link</span><span><s>oberndoerferco.com</s> (369 of 413 Instagram visits landed on the homepage)<br>oberndoerferco.com/watch-boxes, a collection page to be created</span></div>
+        <div><span class="k">Reels</span><span>No more cash-and-boat videos. They brought 3.6M views and zero cart additions. The bench brings 50K and the right people.</span></div>
+        <div><span class="k">Grid</span><span>Pin posts 1, 2 and 8 so the first screen is process, material, maker.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <p class="note">Tiles 1, 7 and 8 use frames from your existing Reels as stand-ins. Tiles 2 to 6 and 9 are your Shopify product photographs cut out and re-staged on warm surfaces to show the direction. Final imagery for all nine is shot at the bench; none of this is AI-generated and nothing here should be posted as is.</p>
+</div>
+
+<script>
+  (function () {
+    var tiles = document.querySelectorAll('.tile');
+    var posts = document.querySelectorAll('.post');
+    function tileFor(n) { return document.querySelector('.tile[data-n="' + n + '"]'); }
+    tiles.forEach(function (t) {
+      t.addEventListener('click', function () {
+        var n = t.getAttribute('data-n');
+        var p = document.getElementById('p' + n);
+        tiles.forEach(function (x) { x.classList.remove('hi'); });
+        t.classList.add('hi');
+        posts.forEach(function (x) { x.classList.remove('flash'); });
+        p.classList.add('flash');
+        p.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(function () { p.classList.remove('flash'); }, 1800);
+      });
+    });
+    posts.forEach(function (p) {
+      p.addEventListener('mouseenter', function () { var t = tileFor(p.getAttribute('data-n')); if (t) t.classList.add('hi'); });
+      p.addEventListener('mouseleave', function () { var t = tileFor(p.getAttribute('data-n')); if (t) t.classList.remove('hi'); });
+    });
+  })();
+</script>
