@@ -88,6 +88,15 @@ Follow `03-mvp-spec.md` §9. The order matters: **validate → measure → proto
 
 **Stop/go after the pilot:** paying pilot clinics → phase 3 and integrations. Otherwise the website and research remain a valuable, low-cost asset.
 
+### 1d. Digital pet passport (built, local-first)
+
+Owners asked for one thing above all: never losing a vaccination date or a
+microchip number again. `/passport` does that at €0 and with no privacy risk:
+everything is stored in the owner's browser, with backup/restore to a file and
+a print view. No account, no server, nothing for us to protect yet. Accounts,
+sync, sharing with the vet and expiry reminders come in phase 3, after the
+legal setup for owner data exists.
+
 ## Phase 3 — Owners, animal profile, network (year 2+)
 
 Only after paying vets exist. In this order, because each step reuses the last:

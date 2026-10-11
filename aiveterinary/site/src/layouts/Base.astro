@@ -9,6 +9,7 @@ const { title, description, lang = 'en' } = Astro.props;
 const path = Astro.url.pathname.replace(/\.html$/, '');
 const nav = [
   { href: '/animals', label: 'Animals' },
+  { href: '/passport', label: 'Pet passport' },
   { href: '/vets', label: 'For vets' },
   { href: '/about', label: 'About' },
   { href: '/newsletter', label: 'Newsletter' },
@@ -56,6 +57,7 @@ const current = (href: string) => path === href || path.startsWith(href + '/');
         </div>
         <ul>
           <li><a href="/animals">Animal information</a></li>
+          <li><a href="/passport">Digital pet passport</a></li>
           <li><a href="/vets">For veterinary teams</a></li>
           <li><a href="/vets/research">Research</a></li>
         </ul>

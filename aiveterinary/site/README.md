@@ -16,7 +16,7 @@ npm run build      # output in dist/
 
 | Path | What |
 |---|---|
-| `src/pages/` | Pages: home, about, newsletter, privacy, `animals/`, `vets/` |
+| `src/pages/` | Pages: home, about, newsletter, privacy, `passport` (local-first digital pet passport), `animals/`, `vets/` |
 | `src/content/animals/*.md` | Animal-health articles (one file each) |
 | `src/content.config.ts` | Article fields and allowed values |
 | `src/layouts/Base.astro` | Header, footer, `<head>` |
