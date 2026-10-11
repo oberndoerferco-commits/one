@@ -225,8 +225,18 @@ def write_pdf(path, layers, w, h, scale):
     open(path, 'wb').write(bytes(out))
 
 
+def parse_map(spec):
+    """'aabbcc=112233,ddeeff=445566' -> {(170,187,204): (17,34,51), ...}"""
+    out = {}
+    for pair in filter(None, (p.strip() for p in (spec or '').split(','))):
+        a, b = pair.split('=')
+        h = lambda v: tuple(int(v.lstrip('#')[i:i + 2], 16) for i in (0, 2, 4))
+        out[h(a)] = h(b)
+    return out
+
+
 def vectorise(src, out_svg=None, out_pdf=None, pdf_size=512.0, drop_background=True,
-              min_area=64, use_coverage=False, sigma=1.2, **fit):
+              min_area=64, use_coverage=False, sigma=1.2, recolour=None, **fit):
     from PIL import Image
     rgb = np.asarray(Image.open(src).convert('RGB'))
     h, w, _ = rgb.shape
@@ -245,7 +255,13 @@ def vectorise(src, out_svg=None, out_pdf=None, pdf_size=512.0, drop_background=T
         paths = outline(field, sigma=sigma, **fit)
         if not paths:
             continue
-        c = pal[ci].astype(int)
+        c = tuple(int(v) for v in pal[ci])
+        if recolour:
+            # nearest mapped source colour, so anti-alias-derived palette
+            # entries follow the flat colour they belong to
+            best = min(recolour, key=lambda k: sum((a - b) ** 2 for a, b in zip(k, c)))
+            if sum((a - b) ** 2 for a, b in zip(best, c)) <= 48 ** 2:
+                c = recolour[best]
         layers_svg.append(('#%02x%02x%02x' % tuple(c), paths))
         layers_pdf.append((tuple(c), paths))
 
@@ -274,6 +290,8 @@ def main(argv=None):
                     help='polygon vertices that must turn the same way before a run '
                          'is treated as a genuine curve rather than a straight edge')
     ap.add_argument('--sigma', type=float, default=1.2)
+    ap.add_argument('--map', default=None,
+                    help="recolour, as 'srchex=dsthex,srchex=dsthex'")
     ap.add_argument('--coverage', action='store_true',
                     help='derive sub-pixel edges from the source anti-aliasing')
     a = ap.parse_args(argv)
@@ -283,6 +301,7 @@ def main(argv=None):
                      os.path.join(a.outdir, name + '.svg'),
                      os.path.join(a.outdir, name + '.pdf'),
                      pdf_size=a.pdf_size, use_coverage=a.coverage, sigma=a.sigma,
+                     recolour=parse_map(a.map),
                      line_tol=a.line_tol, curve_tol=a.curve_tol,
                      min_smooth_run=a.min_smooth_run)
     print(f"{name}: palette {info['palette']}")

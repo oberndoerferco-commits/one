@@ -1,6 +1,6 @@
 # Motif tiles — vectorised
 
-The ten colourways, vectorised from the 2048 × 2048 px PNGs.
+Ten colourways vectorised from the 2048 × 2048 px PNGs, plus four recoloured from one of them.
 
 ![preview](preview.png)
 ![preview](preview-2.png)
@@ -17,6 +17,34 @@ The ten colourways, vectorised from the 2048 × 2048 px PNGs.
 | Blue / tan | `motif-blue-tan.svg` / `.pdf` | `#6cb8e2`, `#e9ac67`, black outline |
 | Black / white | `motif-black-white.svg` / `.pdf` | `#000000` on white, `#404249` rule |
 | Olive / tan | `motif-olive-tan.svg` / `.pdf` | `#534d3a`, `#e9ac67`, `#615840` |
+
+Four more, **recoloured** from the blue/tan master rather than traced — the path
+data is byte-identical to it, so they are exactly consistent with each other:
+
+| Colourway | Files | Palette |
+| --- | --- | --- |
+| Grey / black | `motif-grey-black.svg` / `.pdf` | `#8c8c8c`, `#141414` |
+| Brown / dark blue | `motif-brown-darkblue.svg` / `.pdf` | `#7a5230`, `#1c3461` |
+| Burgundy / dark green | `motif-burgundy-darkgreen.svg` / `.pdf` | `#7b1f3a`, `#1e4d2b` |
+| Light grey / green | `motif-lightgrey-green.svg` / `.pdf` | `#d9d9d9`, `#3f8f4a` |
+
+![new colourways](preview-new-colours.png)
+
+In each pair the first colour takes the role of the circle disc, the cross
+outline and the square's motif; the second takes the circle's motif, the cross
+fill and the square's background. Outlines stay black, which means they
+disappear into the dark half of grey/black — that is how the supplied
+black/white tile behaves too.
+
+The ten supplied PNGs are **not** one design in ten colourways: comparing their
+edges groups them into seven distinct compositions, differing slightly in the
+placement and scale of the three elements. The four recoloured files therefore
+follow the blue/tan layout specifically. Recolour from a different master with:
+
+```sh
+python3 scripts/vectorize_flat_art.py source-blue-tan.png . --name motif-x \
+    --map "6cb8e2=aabbcc,e9ac67=ddeeff"
+```
 
 SVGs carry `viewBox="0 0 2048 2048"` so they scale to anything; the PDFs are
 512 × 512 pt. Backgrounds are transparent — the paper is not painted. Each file
