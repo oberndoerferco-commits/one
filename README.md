@@ -36,3 +36,5 @@ Diff the two JSON files to see exactly which strings changed.
 | `scripts/solidify_crest.py` | Rebuilds that crest's frame from exact circles with enforced 4-fold symmetry |
 | `assets/motif-tiles/` | Fourteen motif colourways — ten vectorised from PNG, four recoloured (SVG + PDF) |
 | `scripts/vectorize_flat_art.py` | Flat-colour vectoriser — paints nested regions largest-first so edges cannot gap |
+| `assets/tuscan-letters/` | Tuscan display capitals O and M, drawn to match the 1936 "PREMIUM" lettering |
+| `scripts/tuscan_letters.py` | Parametric generator for those letterforms |
