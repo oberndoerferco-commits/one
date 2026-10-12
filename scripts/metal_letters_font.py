@@ -300,6 +300,43 @@ def build_otf(glyphs, widths, path, family, style='Regular', version='1.000'):
 # -------------------------------------------------------------------- the main
 
 
+def build(image, trim=9.0, symmetry='x', inset=18.0, groove=8.0,
+          chroma=25.0, sidebearing_px=20.5, **fit):
+    """Trace both letters and return font-unit outlines, inlines and widths."""
+    fields = letter_fields(image, chroma)
+    traced, boxes = {}, {}
+    for name in ('M', 'O'):
+        ink = fields[name][0]
+        if name == 'O' and symmetry != 'none':
+            cx, cy = centroid(ink)
+            ink = symmetrise(ink, cx, cy if symmetry == 'xy' else None)
+        cs = contours_of(ink, **fit)
+        if trim > 0:
+            cs = refit(as_polygon(cs).buffer(-trim, join_style=1, quad_segs=64).buffer(0),
+                       line_tol=0.45, curve_tol=0.28, smooth_deg=34.0, min_smooth_run=3)
+        traced[name] = cs
+        pts = np.vstack([_pts(c) for c in cs])
+        boxes[name] = (pts[:, 0].min(), pts[:, 1].min(), pts[:, 0].max(), pts[:, 1].max())
+    cap_px = boxes['M'][3] - boxes['M'][1]
+    scale = CAP / cap_px
+    side = int(round(sidebearing_px * scale))
+    glyphs, inlines = {}, {}
+    widths = {'.notdef': 400, 'space': int(round(UPM * 0.30))}
+    for name in ('O', 'M'):
+        x0, y0, x1, y1 = boxes[name]
+        base = boxes['M'][3] if name == 'M' else (y0 + y1) / 2 + CAP / 2 / scale
+        fn = (lambda b, xx0: (lambda p: ((p[0] - xx0) * scale + side,
+                                         (b - p[1]) * scale)))(base, x0)
+        glyphs[name] = orient_for_cff([transform(c, fn) for c in traced[name]])
+        widths[name] = int(round((x1 - x0) * scale)) + 2 * side
+        poly = as_polygon(traced[name])
+        rings = refit(poly.difference(inline_cut(poly, max(2.0, inset - trim), groove)).buffer(0),
+                      line_tol=0.5, curve_tol=0.3, smooth_deg=34.0, min_smooth_run=3)
+        inlines[name] = orient_for_cff([transform(c, fn) for c in rings])
+    return dict(glyphs=glyphs, inlines=inlines, widths=widths, scale=scale,
+                side=side, cap_px=cap_px, traced=traced, boxes=boxes)
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split('\n')[0])
     ap.add_argument('image')
@@ -313,8 +350,13 @@ def main(argv=None):
     ap.add_argument('--curve-tol', type=float, default=0.40)
     ap.add_argument('--smooth-deg', type=float, default=34.0)
     ap.add_argument('--min-smooth-run', type=int, default=3)
+    ap.add_argument('--trim', type=float, default=9.0,
+                    help='pull the outline in by this many source pixels, so the '
+                         'letter carries the weight the bevelled casting reads at '
+                         'rather than the weight of its base silhouette')
     ap.add_argument('--inset', type=float, default=18.0,
-                    help='groove centreline, in source pixels inside the outline')
+                    help='groove centreline, in source pixels inside the *untrimmed* '
+                         'outline; the trim is subtracted automatically')
     ap.add_argument('--groove', type=float, default=8.0,
                     help='groove width, in source pixels')
     ap.add_argument('--symmetry', choices=('x', 'xy', 'none'), default='x',
@@ -335,6 +377,17 @@ def main(argv=None):
                   % (cx, (', y=%.2f' % cy) if a.symmetry == 'xy' else ''))
             ink = symmetrise(ink, cx, cy if a.symmetry == 'xy' else None)
         cs = contours_of(ink, **fit)
+        if a.trim > 0:
+            # The casting is bevelled, and the bevel makes the eye read a letter
+            # narrower than the silhouette - at the M's waist, 25 px of flat top
+            # against a 61 px silhouette.  Filling the silhouette therefore comes
+            # out far bolder than the gold looks.  Pulling the outline in by half
+            # the bevel puts the weight where the metal reads it.  Round joins,
+            # because that is what a chamfer physically does to an inner corner:
+            # it rounds it at the chamfer's own radius.
+            P = as_polygon(cs).buffer(-a.trim, join_style=1, quad_segs=64)
+            cs = refit(P.buffer(0), line_tol=0.45, curve_tol=0.28,
+                       smooth_deg=34.0, min_smooth_run=3)
         traced[name] = cs
         pts = np.vstack([_pts(c) for c in cs])
         boxes[name] = (pts[:, 0].min(), pts[:, 1].min(), pts[:, 0].max(), pts[:, 1].max())
@@ -362,7 +415,7 @@ def main(argv=None):
         widths[name] = int(round((x1 - x0) * scale)) + 2 * side
         # the groove, cut in pixel space where it was measured, then re-fitted
         poly = as_polygon(traced[name])
-        cut = inline_cut(poly, a.inset, a.groove)
+        cut = inline_cut(poly, max(2.0, a.inset - a.trim), a.groove)
         rings = refit(poly.difference(cut).buffer(0), line_tol=0.5, curve_tol=0.3,
                       smooth_deg=34.0, min_smooth_run=3)
         inlines[name] = orient_for_cff([transform(c, fn) for c in rings])
@@ -370,8 +423,10 @@ def main(argv=None):
               % (name, len(rings),
                  sum(1 for c in inlines[name] for q in c[1] if q[0] == 'L'),
                  sum(1 for c in inlines[name] for q in c[1] if q[0] == 'C')))
-    print('   groove: %.0f px inset, %.0f px wide -> %d / %d units at cap %d'
-          % (a.inset, a.groove, round(a.inset * scale), round(a.groove * scale), CAP))
+    print('   groove: %.0f px inside the untrimmed outline (%.0f px inside the '
+          'trimmed one), %.0f px wide -> %d units at cap %d'
+          % (a.inset, a.inset - a.trim, a.groove,
+             round(a.groove * scale), CAP))
 
     for style, gl in (('Regular', glyphs), ('Inline', inlines)):
         font = build_otf(gl, widths, os.path.join(
