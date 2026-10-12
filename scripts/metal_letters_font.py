@@ -142,17 +142,93 @@ def transform(contour, fn):
                        else ('C', fn(s[1]), fn(s[2]), fn(s[3])) for s in segs]
 
 
+# ------------------------------------------------------------------ the inline
+
+
+def _flatten(contour, step=0.35):
+    """Dense polyline for one Bezier contour."""
+    start, segs = contour
+    cur = np.asarray(start, float)
+    out = [cur]
+    for sg in segs:
+        if sg[0] == 'L':
+            cur = np.asarray(sg[1], float)
+            out.append(cur)
+        else:
+            b = [cur] + [np.asarray(q, float) for q in sg[1:]]
+            n = max(4, int(np.linalg.norm(b[3] - b[0]) / step) + 4)
+            t = np.linspace(0, 1, n)[1:, None]
+            out += list((1 - t) ** 3 * b[0] + 3 * (1 - t) ** 2 * t * b[1]
+                        + 3 * (1 - t) * t ** 2 * b[2] + t ** 3 * b[3])
+            cur = b[3]
+    return np.array(out)
+
+
+def as_polygon(contours):
+    """Shapely polygon for a glyph: largest contour outer, the rest holes."""
+    from shapely.geometry import Polygon
+    from shapely.ops import unary_union
+    rings = sorted((_flatten(c) for c in contours), key=lambda r: -_ring_area(r))
+    poly = Polygon(rings[0]).buffer(0)
+    for r in rings[1:]:
+        poly = poly.difference(Polygon(r).buffer(0))
+    return poly.buffer(0)
+
+
+def _ring_area(r):
+    x, y = r[:, 0], r[:, 1]
+    return abs(float(np.dot(x, np.roll(y, -1)) - np.dot(y, np.roll(x, -1))) / 2.0)
+
+
+def inline_cut(poly, inset, weight):
+    """The bevel's groove: a band of constant width riding a constant inset
+    inside the whole outline, counters included - which is what the casting
+    does, the groove being a moulded chamfer rather than a drawn line."""
+    inner = poly.buffer(-inset, join_style=1, quad_segs=48)
+    if inner.is_empty:
+        return inner
+    return inner.buffer(weight / 2.0, join_style=1, quad_segs=48).difference(
+        inner.buffer(-weight / 2.0, join_style=1, quad_segs=48)).buffer(0)
+
+
+def refit(geom, **fit):
+    """Re-fit a shapely polygon's rings as Bezier contours."""
+    out = []
+    for g in (geom.geoms if hasattr(geom, 'geoms') else [geom]):
+        if g.is_empty or g.geom_type != 'Polygon':
+            continue
+        for ring in [g.exterior] + list(g.interiors):
+            pts = np.asarray(ring.coords)[:-1]
+            if len(pts) < 8:
+                continue
+            out.append(vl.fit_contour(pts, **fit))
+    return out
+
+
 # -------------------------------------------------------------------- the font
 
 
 def orient_for_cff(contours):
-    """CFF fills non-zero with outer contours counter-clockwise."""
-    ordered = sorted(contours, key=lambda c: -abs(signed_area(c)))
+    """CFF fills non-zero, so direction has to alternate with nesting depth.
+
+    An inline glyph nests four deep - outline, groove outside, groove inside,
+    counter - so simply calling the biggest contour the outer one and every
+    other one a hole fills the counters in.  Depth is counted by containment
+    instead: even depth runs counter-clockwise, odd depth clockwise.
+    """
+    from matplotlib.path import Path as MPath
+    rings = [_flatten(c, step=1.0) for c in contours]
+    paths = [MPath(r) for r in rings]
     out = []
-    for i, c in enumerate(ordered):
-        want_ccw = (i == 0)
-        is_ccw = signed_area(c) > 0
-        out.append(c if is_ccw == want_ccw else reverse(c))
+    for i, c in enumerate(contours):
+        probe = rings[i].mean(axis=0)
+        if not paths[i].contains_point(probe):
+            probe = rings[i][0] * 0.999 + rings[i].mean(axis=0) * 0.001
+        depth = sum(1 for j, pth in enumerate(paths)
+                    if j != i and pth.contains_point(rings[i][0])
+                    and abs(signed_area(contours[j])) > abs(signed_area(c)))
+        want_ccw = (depth % 2 == 0)
+        out.append(c if (signed_area(c) > 0) == want_ccw else reverse(c))
     return out
 
 
@@ -232,6 +308,10 @@ def main(argv=None):
     ap.add_argument('--curve-tol', type=float, default=0.85)
     ap.add_argument('--smooth-deg', type=float, default=34.0)
     ap.add_argument('--min-smooth-run', type=int, default=3)
+    ap.add_argument('--inset', type=float, default=18.0,
+                    help='groove centreline, in source pixels inside the outline')
+    ap.add_argument('--groove', type=float, default=8.0,
+                    help='groove width, in source pixels')
     ap.add_argument('--no-symmetry', action='store_true')
     a = ap.parse_args(argv)
     os.makedirs(a.outdir, exist_ok=True)
@@ -264,7 +344,7 @@ def main(argv=None):
     print('   cap %.1f px -> %d units (scale %.4f), sidebearing %d units'
           % (cap_px, CAP, scale, side))
 
-    glyphs, widths = {}, {'.notdef': 400, 'space': int(round(UPM * 0.30))}
+    glyphs, inlines, widths = {}, {}, {'.notdef': 400, 'space': int(round(UPM * 0.30))}
     for name in ('O', 'M'):
         x0, y0, x1, y1 = boxes[name]
         base = boxes['M'][3] if name == 'M' else (y0 + y1) / 2 + CAP / 2 / scale
@@ -272,12 +352,26 @@ def main(argv=None):
                                          (b - p[1]) * scale)))(base, x0)
         glyphs[name] = orient_for_cff([transform(c, fn) for c in traced[name]])
         widths[name] = int(round((x1 - x0) * scale)) + 2 * side
+        # the groove, cut in pixel space where it was measured, then re-fitted
+        poly = as_polygon(traced[name])
+        cut = inline_cut(poly, a.inset, a.groove)
+        rings = refit(poly.difference(cut).buffer(0), line_tol=0.5, curve_tol=0.3,
+                      smooth_deg=34.0, min_smooth_run=3)
+        inlines[name] = orient_for_cff([transform(c, fn) for c in rings])
+        print('   %s inline: %d contours, %d lines + %d curves'
+              % (name, len(rings),
+                 sum(1 for c in inlines[name] for q in c[1] if q[0] == 'L'),
+                 sum(1 for c in inlines[name] for q in c[1] if q[0] == 'C')))
+    print('   groove: %.0f px inset, %.0f px wide -> %d / %d units at cap %d'
+          % (a.inset, a.groove, round(a.inset * scale), round(a.groove * scale), CAP))
 
-    font = build_otf(glyphs, widths, os.path.join(
-        a.outdir, a.family.replace(' ', '') + '-Regular.otf'), a.family)
-    for f in (font, font[:-4] + '.woff2'):
-        if os.path.exists(f):
-            print('   %-32s %6d bytes' % (os.path.basename(f), os.path.getsize(f)))
+    for style, gl in (('Regular', glyphs), ('Inline', inlines)):
+        font = build_otf(gl, widths, os.path.join(
+            a.outdir, '%s-%s.otf' % (a.family.replace(' ', ''), style)),
+            a.family, style)
+        for f in (font, font[:-4] + '.woff2'):
+            if os.path.exists(f):
+                print('   %-34s %6d bytes' % (os.path.basename(f), os.path.getsize(f)))
     print('   advance widths: O %d, M %d, space %d (UPM %d, cap %d)'
           % (widths['O'], widths['M'], widths['space'], UPM, CAP))
 
@@ -285,22 +379,23 @@ def main(argv=None):
     k = a.size / CAP
     pad = 0.09 * a.size
     for nm, items in (('O', ['O']), ('M', ['M']), ('OM', ['O', 'M'])):
+      for suffix, src in (('', glyphs), ('-inline', inlines)):
         placed, pen = [], 0.0
         for q in items:
             dx = pen - side
             placed += [transform(c, (lambda d: lambda p: ((p[0] + d) * k, p[1] * k))(dx))
-                       for c in glyphs[q]]
+                       for c in src[q]]
             pen += widths[q]
         xs = [p[0] for c in placed for p in _pts(c)]
         ys = [p[1] for c in placed for p in _pts(c)]
         ox, oy = min(xs) - pad, min(ys) - pad
         w, h = (max(xs) - min(xs)) + 2 * pad, (max(ys) - min(ys)) + 2 * pad
-        base = os.path.join(a.outdir, 'om-%s' % nm.lower())
+        base = os.path.join(a.outdir, 'om-%s%s' % (nm.lower(), suffix))
         vl.write_pdf(base + '.pdf',
                      vl.emit(placed, lambda p: (p[0] - ox, p[1] - oy))[1], w, h)
         vl.write_svg(base + '.svg',
                      vl.emit(placed, lambda p: (p[0] - ox, h + oy - p[1]))[0], w, h)
-        print('   om-%s.pdf / .svg  %.1f x %.1f pt' % (nm.lower(), w, h))
+        print('   %-22s %.1f x %.1f pt' % (os.path.basename(base) + '.pdf/.svg', w, h))
 
     return 0
 

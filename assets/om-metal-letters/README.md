@@ -5,13 +5,18 @@ built into a working font and vector artwork.
 
 ![preview](preview.png)
 
+Two styles: **Inline**, which carries the groove the metal is cast with, and
+**Regular**, the plain silhouette.
+
 | File | What it is |
 | --- | --- |
-| `OberndorferOM-Regular.otf` | The font — installs, maps to O and M, sets and spaces |
-| `OberndorferOM-Regular.woff2` | Same outlines for the web, 1.2 kB, for `@font-face` |
-| `om-o.pdf`, `om-m.pdf`, `om-om.pdf` | Vector artwork, 480 pt cap height |
-| `om-o.svg`, `om-m.svg`, `om-om.svg` | The same as SVG |
-| `specimen.pdf` | A specimen set in the font itself |
+| `OberndorferOM-Inline.otf` | The font with the groove — installs, maps to O and M, sets and spaces |
+| `OberndorferOM-Regular.otf` | The same letters, solid |
+| `*-Inline.woff2`, `*-Regular.woff2` | Same outlines for the web, 1–3 kB, for `@font-face` |
+| `om-o-inline.pdf`, `om-m-inline.pdf`, `om-om-inline.pdf` | Vector artwork, 480 pt cap height |
+| `om-o.pdf`, `om-m.pdf`, `om-om.pdf` | The solid versions |
+| `om-*.svg` | All of the above as SVG |
+| `specimen.pdf` | A specimen set in both styles |
 | `reference-gold-om.jpg` | The source photograph |
 
 Rebuild with:
@@ -49,6 +54,25 @@ not design — the mirror residual is 0.011 px mean on the vertical axis and 0.0
 on the horizontal. The **M is left alone**: its V is deliberately thick on the
 left stroke and thin on the right, and mirroring it would destroy that.
 
+## The inline
+
+The castings are bevelled, and the bevel leaves a groove running parallel to the
+whole outline — counters included. Measuring it rather than guessing: take the
+luminance inside each letter, divide out the lighting gradient with a heavily
+blurred copy of itself, and plot the result against distance from the outline.
+The profile is unambiguous — a bright peak at 3–4 px (the raised rim catching
+the light), then a trough bottoming out at 17–20 px (the groove), then back to
+field level by 26 px.
+
+So the groove is cut at **18 px inset, 8 px wide** — 39 and 18 units at a cap
+height of 700. It is a constant offset because the casting's is: the groove is a
+moulded chamfer, not a drawn line, which is why it holds its distance around
+every bracket and serif.
+
+The inline nests four contours deep — outline, groove outside, groove inside,
+counter — so contour direction has to alternate with nesting depth rather than
+simply "biggest one is the outer". Getting that wrong fills the counters in.
+
 ## Font metrics
 
 | | |
@@ -65,3 +89,8 @@ M rather than copied from where the letter happened to lie on the velvet.
 
 The family name is a default. Pass `--family "Your Name"` to change it; the
 PostScript name, full name and unique identifier all follow from it.
+
+`--inset` and `--groove` move the inline, in source pixels. `--sigma`,
+`--line-tol` and `--curve-tol` set how much of the casting's irregularity the
+outline keeps — lower them for a trace that follows the metal more literally,
+at the cost of a wobblier letter.
