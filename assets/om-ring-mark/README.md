@@ -29,28 +29,37 @@ python3 scripts/om_lockup.py \
 
 ## What survives at this size
 
-Measured off the artwork — narrowest black feature and tightest white gap, as a
-fraction of the mark height and then in millimetres:
+Two things can fail on a small mark: a stroke erodes through, or a gap fills in.
+Both measured off the artwork, by eroding the black until a stroke breaks and by
+measuring the closest approach between separate pieces.
+
+**Thinnest black** — erode until a stroke breaks:
 
 | | of cap | 3 mm | 4 mm | 5 mm |
 | --- | --- | --- | --- | --- |
-| **O** black | 0.0886 | 0.266 | 0.354 | 0.443 |
-| **O** gap | 0.0836 | 0.251 | 0.334 | 0.418 |
-| **M** black | 0.0464 | 0.139 | 0.186 | 0.232 |
-| **M** gap | 0.0803 | 0.241 | 0.321 | 0.401 |
+| O | 0.0907 | 0.272 | 0.363 | 0.453 |
+| M | 0.1270 | 0.381 | 0.508 | 0.635 |
+| **lockup** | **0.0969** | **0.291** | **0.388** | **0.485** |
+
+The lockup's figure is the binding one, and it is the cross's arms rather than
+anything in the letters.
+
+**Gaps** — closest approach between the four separate pieces, and the O's
+counter across its waist:
+
+| | of cap | 3 mm | 4 mm | 5 mm |
+| --- | --- | --- | --- | --- |
+| tightest piece-to-piece gap | 0.1997 | 0.599 | 0.799 | 0.998 |
+| O counter at its waist | 0.2310 | 0.693 | 0.924 | 1.155 |
 
 Laser engraving generally holds about 0.10 mm; a steel stamp about 0.15–0.20 mm.
 
-So:
-
-- **At 4 mm and up, everything clears both processes.** The M's thinnest stroke
-  — the top of its thin right diagonal — is the limiting feature at 0.186 mm.
-- **At 3 mm that stroke falls to 0.139 mm**, which is fine for a laser but under
-  what a steel stamp reliably holds. If it has to be stamped at 3 mm, the M wants
-  that one stroke thickened; say the word and I'll do a stamp-specific cut.
-- **The cross tapers to true points.** Those will round over slightly at any of
-  these sizes whatever the process — normal, and usually reads fine, but it is
-  the first thing that will soften.
+**So all three sizes clear both processes**, including 3 mm, where the tightest
+feature in the whole mark is 0.291 mm — still well over a stamp's limit. The
+only caveat is cosmetic: the cross tapers to true points, and those will round
+over slightly at any of these sizes whatever the process. It is the first thing
+that will soften, and nothing can be done about it short of blunting the points
+on purpose.
 
 ## A note on weight
 
