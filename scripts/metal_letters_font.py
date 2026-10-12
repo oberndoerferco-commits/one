@@ -33,6 +33,7 @@ from scipy import ndimage as ndi
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import vectorize_lineart as vl
+from regularise import regularise
 
 UPM = 1000
 CAP = 700
@@ -77,8 +78,15 @@ def letter_fields(path, chroma_t=25, open_iter=2, edge=3):
     return out
 
 
-def symmetrise(ink, axis_x=None, axis_y=None):
-    """Average the field with its mirror about a sub-pixel axis."""
+def symmetrise(ink, axis_x=None, axis_y=None, protect=None):
+    """Average the field with its mirror about a sub-pixel axis.
+
+    `protect` is (inner, outer) as fractions of the half-width: inside `inner`
+    the field is left alone, outside `outer` it is fully mirrored, and the two
+    blend between.  The M needs this - its serifs and stems are symmetric and
+    want averaging, but the V is deliberately thick on the left stroke and thin
+    on the right, and mirroring would flatten that out.
+    """
     yy, xx = np.mgrid[0:ink.shape[0], 0:ink.shape[1]].astype(np.float64)
     out = ink
     for axis, coord in (('x', axis_x), ('y', axis_y)):
@@ -87,9 +95,18 @@ def symmetrise(ink, axis_x=None, axis_y=None):
         sx = (2 * coord - xx) if axis == 'x' else xx
         sy = (2 * coord - yy) if axis == 'y' else yy
         mir = ndi.map_coordinates(out, [sy, sx], order=3, mode='nearest')
-        print('      %s-mirror residual: mean %.3f px-equivalent, max %.3f'
-              % (axis, float(np.abs(out - mir).mean()), float(np.abs(out - mir).max())))
-        out = 0.5 * (out + mir)
+        if protect is not None and axis == 'x':
+            half = max(coord, out.shape[1] - coord)
+            u = np.abs(xx - coord) / max(half, 1e-9)
+            inner, outer = protect
+            w = np.clip((u - inner) / max(outer - inner, 1e-9), 0.0, 1.0)
+            w = w * w * (3 - 2 * w)
+        else:
+            w = 1.0
+        print('      %s-mirror residual: mean %.3f px-equivalent, max %.3f%s'
+              % (axis, float(np.abs(out - mir).mean()), float(np.abs(out - mir).max()),
+                 '' if protect is None or axis != 'x' else ' (blended, V protected)'))
+        out = out + 0.5 * w * (mir - out)
     return out
 
 
@@ -121,6 +138,10 @@ def contours_of(ink, sigma=1.8, **fit):
 def _pts(contour):
     start, segs = contour
     return np.array([start] + [s[1] if s[0] == 'L' else s[3] for s in segs])
+
+
+def _area(contour):
+    return abs(signed_area(contour))
 
 
 def signed_area(contour):
@@ -301,19 +322,40 @@ def build_otf(glyphs, widths, path, family, style='Regular', version='1.000'):
 
 
 def build(image, trim=9.0, symmetry='x', inset=18.0, groove=8.0,
-          chroma=25.0, sidebearing_px=20.5, **fit):
-    """Trace both letters and return font-unit outlines, inlines and widths."""
+          chroma=25.0, sidebearing_px=20.5, draw=True, **fit):
+    """Trace both letters and return font-unit outlines, inlines and widths.
+
+    With draw=True the traced outline is rebuilt as drawn curves - nodes only at
+    corners and at the extremes in x and y, one cubic per span - which is what
+    takes the casting's dents out.  Smoothing cannot do that: a dent is a
+    low-frequency deviation, so a tolerant fit just follows it more gently.  The
+    O keeps a lower corner threshold than the M because its flanks each carry a
+    real but shallow vertex that a 36-degree test misses.
+    """
+    # The O's flanks carry a real but shallow vertex, so its outer contour needs
+    # a lower corner threshold; its counter does not have them and must stay a
+    # smooth oval, so that one keeps the ordinary threshold.
+    CORNERS = {('O', 0): dict(corner_deg=20.0, corner_span=14),
+               ('O', 1): dict(corner_deg=38.0, corner_span=10),
+               ('M', 0): dict(corner_deg=36.0, corner_span=9)}
     fields = letter_fields(image, chroma)
     traced, boxes = {}, {}
     for name in ('M', 'O'):
         ink = fields[name][0]
-        if name == 'O' and symmetry != 'none':
+        if symmetry != 'none':
             cx, cy = centroid(ink)
-            ink = symmetrise(ink, cx, cy if symmetry == 'xy' else None)
+            if name == 'O':
+                ink = symmetrise(ink, cx, cy if symmetry == 'xy' else None)
+            else:
+                ink = symmetrise(ink, cx, None, protect=(0.42, 0.62))
         cs = contours_of(ink, **fit)
         if trim > 0:
             cs = refit(as_polygon(cs).buffer(-trim, join_style=1, quad_segs=64).buffer(0),
                        line_tol=0.45, curve_tol=0.28, smooth_deg=34.0, min_smooth_run=3)
+        if draw:
+            order = sorted(range(len(cs)), key=lambda k: -_area(cs[k]))
+            cs = [regularise(cs[k], **CORNERS.get((name, r), CORNERS[(name, 0)]))
+                  for r, k in enumerate(order)]
         traced[name] = cs
         pts = np.vstack([_pts(c) for c in cs])
         boxes[name] = (pts[:, 0].min(), pts[:, 1].min(), pts[:, 0].max(), pts[:, 1].max())
@@ -332,6 +374,8 @@ def build(image, trim=9.0, symmetry='x', inset=18.0, groove=8.0,
         poly = as_polygon(traced[name])
         rings = refit(poly.difference(inline_cut(poly, max(2.0, inset - trim), groove)).buffer(0),
                       line_tol=0.5, curve_tol=0.3, smooth_deg=34.0, min_smooth_run=3)
+        if draw:
+            rings = [regularise(c, **CORNERS[(name, 0)]) for c in rings]
         inlines[name] = orient_for_cff([transform(c, fn) for c in rings])
     return dict(glyphs=glyphs, inlines=inlines, widths=widths, scale=scale,
                 side=side, cap_px=cap_px, traced=traced, boxes=boxes)
@@ -367,66 +411,18 @@ def main(argv=None):
     fit = dict(sigma=a.sigma, line_tol=a.line_tol, curve_tol=a.curve_tol,
                smooth_deg=a.smooth_deg, min_smooth_run=a.min_smooth_run)
 
-    fields = letter_fields(a.image, a.chroma)
-    traced, boxes = {}, {}
-    for name in ('M', 'O'):
-        ink, origin, bbox = fields[name]
-        if name == 'O' and a.symmetry != 'none':
-            cx, cy = centroid(ink)
-            print('   O: mirroring about x=%.2f%s'
-                  % (cx, (', y=%.2f' % cy) if a.symmetry == 'xy' else ''))
-            ink = symmetrise(ink, cx, cy if a.symmetry == 'xy' else None)
-        cs = contours_of(ink, **fit)
-        if a.trim > 0:
-            # The casting is bevelled, and the bevel makes the eye read a letter
-            # narrower than the silhouette - at the M's waist, 25 px of flat top
-            # against a 61 px silhouette.  Filling the silhouette therefore comes
-            # out far bolder than the gold looks.  Pulling the outline in by half
-            # the bevel puts the weight where the metal reads it.  Round joins,
-            # because that is what a chamfer physically does to an inner corner:
-            # it rounds it at the chamfer's own radius.
-            P = as_polygon(cs).buffer(-a.trim, join_style=1, quad_segs=64)
-            cs = refit(P.buffer(0), line_tol=0.45, curve_tol=0.28,
-                       smooth_deg=34.0, min_smooth_run=3)
-        traced[name] = cs
-        pts = np.vstack([_pts(c) for c in cs])
-        boxes[name] = (pts[:, 0].min(), pts[:, 1].min(), pts[:, 0].max(), pts[:, 1].max())
-        print('   %s: %d contour(s), %d lines + %d curves, bbox %.1f x %.1f px'
-              % (name, len(cs),
-                 sum(1 for c in cs for q in c[1] if q[0] == 'L'),
-                 sum(1 for c in cs for q in c[1] if q[0] == 'C'),
-                 boxes[name][2] - boxes[name][0], boxes[name][3] - boxes[name][1]))
-
-    # M's flat top and foot set the cap height and the baseline; the O keeps the
-    # overshoot it was cast with, centred on the same band.
-    cap_px = boxes['M'][3] - boxes['M'][1]
-    scale = CAP / cap_px
-    side = int(round(20.5 * scale))          # half the letter gap in the photo
+    b = build(a.image, trim=a.trim, symmetry=a.symmetry, inset=a.inset,
+              groove=a.groove, chroma=a.chroma, **fit)
+    glyphs, inlines, widths = b['glyphs'], b['inlines'], b['widths']
+    scale, side = b['scale'], b['side']
+    for nm in ('O', 'M'):
+        print('   %s: %d contour(s), %d lines + %d curves   inline %d contours, %d seg'
+              % (nm, len(glyphs[nm]),
+                 sum(1 for c in glyphs[nm] for q in c[1] if q[0] == 'L'),
+                 sum(1 for c in glyphs[nm] for q in c[1] if q[0] == 'C'),
+                 len(inlines[nm]), sum(len(c[1]) for c in inlines[nm])))
     print('   cap %.1f px -> %d units (scale %.4f), sidebearing %d units'
-          % (cap_px, CAP, scale, side))
-
-    glyphs, inlines, widths = {}, {}, {'.notdef': 400, 'space': int(round(UPM * 0.30))}
-    for name in ('O', 'M'):
-        x0, y0, x1, y1 = boxes[name]
-        base = boxes['M'][3] if name == 'M' else (y0 + y1) / 2 + CAP / 2 / scale
-        fn = (lambda b, xx0: (lambda p: ((p[0] - xx0) * scale + side,
-                                         (b - p[1]) * scale)))(base, x0)
-        glyphs[name] = orient_for_cff([transform(c, fn) for c in traced[name]])
-        widths[name] = int(round((x1 - x0) * scale)) + 2 * side
-        # the groove, cut in pixel space where it was measured, then re-fitted
-        poly = as_polygon(traced[name])
-        cut = inline_cut(poly, max(2.0, a.inset - a.trim), a.groove)
-        rings = refit(poly.difference(cut).buffer(0), line_tol=0.5, curve_tol=0.3,
-                      smooth_deg=34.0, min_smooth_run=3)
-        inlines[name] = orient_for_cff([transform(c, fn) for c in rings])
-        print('   %s inline: %d contours, %d lines + %d curves'
-              % (name, len(rings),
-                 sum(1 for c in inlines[name] for q in c[1] if q[0] == 'L'),
-                 sum(1 for c in inlines[name] for q in c[1] if q[0] == 'C')))
-    print('   groove: %.0f px inside the untrimmed outline (%.0f px inside the '
-          'trimmed one), %.0f px wide -> %d units at cap %d'
-          % (a.inset, a.inset - a.trim, a.groove,
-             round(a.groove * scale), CAP))
+          % (b['cap_px'], CAP, scale, side))
 
     for style, gl in (('Regular', glyphs), ('Inline', inlines)):
         font = build_otf(gl, widths, os.path.join(
