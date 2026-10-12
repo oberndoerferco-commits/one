@@ -13,10 +13,13 @@ than from the binary mask, so edge positions are sub-pixel; the interior and
 exterior are forced solid a few pixels either side so the hammered texture
 inside the metal cannot raise a contour of its own.
 
-The O is symmetrised about both axes.  It is drawn with a vertical stress and
-measures symmetric to within 1-2 px in the photograph, so the residual is
-camera, not design.  The M is left alone: its V is deliberately thick on the
-left stroke and thin on the right, and mirroring it would destroy that.
+The O is mirrored left-right only.  It is drawn with a vertical stress and
+measures symmetric to within 1-2 px across, so that residual is camera rather
+than design.  It is NOT mirrored top-to-bottom: doing so costs it 3.8 px of
+height, and that height is its overshoot - the amount a round letter has to
+exceed the cap line by to look the same size as a flat-topped one.  The M is
+left alone entirely: its V is deliberately thick on the left stroke and thin on
+the right, and mirroring would destroy that.
 """
 
 import argparse
@@ -103,11 +106,13 @@ def centroid(ink):
 def contours_of(ink, sigma=1.8, **fit):
     """Trace one letter; returns contours in the crop's pixel coordinates.
 
-    These letters are cast and hammered, so the silhouette carries about two
-    pixels of physical irregularity at this scale.  A font wants deliberate
-    curves, so the tolerances are set to absorb that wobble rather than trace
-    it - while the corner-preserving fit keeps what is real, including the
-    angular vertex on each of the O's flanks, which the casting genuinely has.
+    The hammering is inside the metal; the cast *outline* is crisp, with real
+    corners - the sharpest being where each serif's tip turns into its bracket.
+    Smoothing hard enough to erase the outline's small irregularities rounds
+    those corners off and the serifs stop reading as serifs, so the tolerances
+    here are tight and the corner-preserving fit is left to do the work.  It
+    also keeps the angular vertex on each of the O's flanks, which the casting
+    genuinely has.
     """
     return vl.trace(ink, level=0.5, sigma=sigma, dot_area=0, min_area=40,
                     min_contour_area=30.0, **fit)
@@ -303,16 +308,18 @@ def main(argv=None):
     ap.add_argument('--chroma', type=float, default=25.0)
     ap.add_argument('--size', type=float, default=480.0,
                     help='cap height in points for the artwork')
-    ap.add_argument('--sigma', type=float, default=1.8)
-    ap.add_argument('--line-tol', type=float, default=1.3)
-    ap.add_argument('--curve-tol', type=float, default=0.85)
+    ap.add_argument('--sigma', type=float, default=0.8)
+    ap.add_argument('--line-tol', type=float, default=0.6)
+    ap.add_argument('--curve-tol', type=float, default=0.40)
     ap.add_argument('--smooth-deg', type=float, default=34.0)
     ap.add_argument('--min-smooth-run', type=int, default=3)
     ap.add_argument('--inset', type=float, default=18.0,
                     help='groove centreline, in source pixels inside the outline')
     ap.add_argument('--groove', type=float, default=8.0,
                     help='groove width, in source pixels')
-    ap.add_argument('--no-symmetry', action='store_true')
+    ap.add_argument('--symmetry', choices=('x', 'xy', 'none'), default='x',
+                    help="mirror the O left-right ('x', the default), both ways, "
+                         "or not at all")
     a = ap.parse_args(argv)
     os.makedirs(a.outdir, exist_ok=True)
     fit = dict(sigma=a.sigma, line_tol=a.line_tol, curve_tol=a.curve_tol,
@@ -322,10 +329,11 @@ def main(argv=None):
     traced, boxes = {}, {}
     for name in ('M', 'O'):
         ink, origin, bbox = fields[name]
-        if name == 'O' and not a.no_symmetry:
+        if name == 'O' and a.symmetry != 'none':
             cx, cy = centroid(ink)
-            print('   O: symmetrising about (%.2f, %.2f)' % (cx, cy))
-            ink = symmetrise(ink, cx, cy)
+            print('   O: mirroring about x=%.2f%s'
+                  % (cx, (', y=%.2f' % cy) if a.symmetry == 'xy' else ''))
+            ink = symmetrise(ink, cx, cy if a.symmetry == 'xy' else None)
         cs = contours_of(ink, **fit)
         traced[name] = cs
         pts = np.vstack([_pts(c) for c in cs])

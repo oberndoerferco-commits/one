@@ -17,6 +17,7 @@ Two styles: **Inline**, which carries the groove the metal is cast with, and
 | `om-o.pdf`, `om-m.pdf`, `om-om.pdf` | The solid versions |
 | `om-*.svg` | All of the above as SVG |
 | `specimen.pdf` | A specimen set in both styles |
+| `serif-check.png` | The M's top serifs, photo above, traced glyph below, on the photo's own pixel grid |
 | `reference-gold-om.jpg` | The source photograph |
 
 Rebuild with:
@@ -39,20 +40,32 @@ hammered texture inside the metal cannot raise a contour of its own.
 
 ## What was smoothed, and what was kept
 
-These letters are cast and hammered, so the silhouette carries roughly two
-pixels of physical irregularity at this resolution. A font wants deliberate
-curves, so the fit tolerances are set to absorb that wobble rather than trace
-it — the M comes out as 23 straight segments and 75 curves, the O as 2 and 35.
+Very little. The hammering is *inside* the metal; the cast **outline** is crisp,
+and it has real corners — the sharpest being where each serif's tip turns into
+its bracket. An earlier version of this smoothed hard enough to erase the
+outline's small irregularities, and that rounded those corners off; the serifs
+stopped reading as serifs. The tolerances are now tight (`sigma 0.8`,
+`line-tol 0.6`, `curve-tol 0.4`) and the corner-preserving fit does the work.
+The M comes out as 22 straight segments and 127 curves, the O as 4 and 90.
 
-The corner-preserving fit keeps what is real. In particular the **O is not an
-oval**: each flank has a genuine angular vertex, which is clearly there in the
-casting, and the trace keeps it.
+Checked by round-trip rather than by eye: rasterising the finished PDF back onto
+the photograph's own pixel grid and comparing against the mask gives an **IoU of
+0.991 for the M and 0.972 for the O**. The O's residual is the left-right mirror
+below, which is deliberate.
 
-The **O is symmetrised** about both axes. It is drawn with a vertical stress and
-measures symmetric to within 1–2 px in the photograph, so the residual is camera,
-not design — the mirror residual is 0.011 px mean on the vertical axis and 0.019
-on the horizontal. The **M is left alone**: its V is deliberately thick on the
-left stroke and thin on the right, and mirroring it would destroy that.
+The fit also keeps what is real. The **O is not an oval**: each flank has a
+genuine angular vertex, clearly there in the casting.
+
+The **O is mirrored left-right**. It is drawn with a vertical stress and
+measures symmetric to within 1–2 px across, so that residual is camera rather
+than design (mean mirror residual 0.011 px). It is **not** mirrored
+top-to-bottom: doing that costs it 3.8 px of height, and that height is its
+overshoot — the amount a round letter has to exceed the cap line by to look the
+same size as a flat-topped one. As cast it overshoots by 1.05% of the cap height
+at each end, which is right where a type designer would put it.
+
+The **M is left alone entirely**: its V is deliberately thick on the left stroke
+and thin on the right, and mirroring would destroy that.
 
 ## The inline
 
@@ -79,8 +92,8 @@ simply "biggest one is the outer". Getting that wrong fills the counters in.
 | --- | --- |
 | Units per em | 1000 |
 | Cap height | 700 (set by the M's flat top and foot) |
-| O | 691 units wide, overshooting the cap band by 11 units top and bottom |
-| M | 753 units wide |
+| O | 687 units wide, overshooting the cap band by 7 units top and bottom |
+| M | 755 units wide |
 | Sidebearings | 45 units a side — half the letter gap in the photograph |
 | Space | 300 units |
 
@@ -91,6 +104,6 @@ The family name is a default. Pass `--family "Your Name"` to change it; the
 PostScript name, full name and unique identifier all follow from it.
 
 `--inset` and `--groove` move the inline, in source pixels. `--sigma`,
-`--line-tol` and `--curve-tol` set how much of the casting's irregularity the
-outline keeps — lower them for a trace that follows the metal more literally,
-at the cost of a wobblier letter.
+`--line-tol` and `--curve-tol` set how closely the outline follows the metal;
+raising them smooths more, at the cost of the serif corners. `--symmetry`
+takes `x` (the default), `xy` or `none`.
