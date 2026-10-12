@@ -1,30 +1,34 @@
 #!/usr/bin/env python3
-"""Draw Tuscan (French Clarendon) display capitals in the circus-woodtype style.
+"""Draw Tuscan (French Clarendon) display capitals matching the 1936 "PREMIUM".
 
-The reference art is ~90 px per letter, so its bifurcated serifs are below the
-resolution at which they could be traced - a trace would only reproduce blur.
-The letters are therefore *constructed* from the style's rules rather than
-copied, which also means O and M come out consistent with each other even
-though only M appears in the source word.
+M is in the source word and every proportion below was measured off it.  It is
+redrawn rather than auto-traced: at 245 px cap height the scan's point spread
+closes the counters, so a threshold-and-trace of the silhouette comes out as a
+solid slab (see assets/tuscan-letters/README.md).  The measurements are the
+copy; the drawing just reopens what the blur shut.
 
-Style, read off the reference:
-  * heavy slab stems, very slightly tapered towards the foot
-  * wide flat top slabs, with a short spur turning down at the outer corners
-  * at the baseline, the serif splits into curling claws that hang below it and
-    terminate in balls - the signature of the genre
-  * a thin inline following the stroke, inset from the outline
-  * a drop shadow down and to the right
+Frame: cap height 1000 units, y = 0 at the foot of the ornaments, letter
+centred on x = 0.  Measured from the word's M (cap = 245 px in the scan):
 
-Everything is built in a 1000-unit cap height with the baseline at y=0, so the
-glyphs can be scaled to any size.
+    letter width     1550      stem centres      +/-497
+    stem width        310      top slabs         y 755..1000, |x| 45..775
+    inner strokes    near-vertical, counters a sliver 100-140 wide
+    ornament band    the three feet merge into one bar at y 330..490
+    claws            y 0..490
+
+The claw is the signature of the genre and is built in four pieces per side:
+a shouldered flare off the stem, a waist, a volute that sweeps out and curls
+back under itself far enough to leave an open eye, and a ball toe - with a
+pendant drop hanging on the axis between the two volutes.
 """
 
 import argparse
 import math
+import os
 
 import numpy as np
 from shapely import affinity
-from shapely.geometry import Polygon, Point, box
+from shapely.geometry import Polygon, Point
 from shapely.ops import unary_union
 
 CAP = 1000.0
@@ -33,152 +37,168 @@ CAP = 1000.0
 # ----------------------------------------------------------------- primitives
 
 
-def curl(cx, cy, radius, a0, a1, w0, w1, ball=True, n=96):
-    """A tapering arc band ending in a ball - one claw of a split serif."""
-    ts = np.linspace(0.0, 1.0, n)
-    ang = np.radians(a0 + (a1 - a0) * ts)
-    wid = w0 + (w1 - w0) * ts
-    outer = [(cx + (radius + w / 2) * math.cos(a), cy + (radius + w / 2) * math.sin(a))
-             for a, w in zip(ang, wid)]
-    inner = [(cx + (radius - w / 2) * math.cos(a), cy + (radius - w / 2) * math.sin(a))
-             for a, w in zip(ang, wid)]
-    poly = Polygon(outer + inner[::-1]).buffer(0)
-    if ball:
-        a = ang[-1]
-        poly = poly.union(Point(cx + radius * math.cos(a),
-                                cy + radius * math.sin(a)).buffer(wid[-1] * 0.62,
-                                                                  quad_segs=64))
+def band(P, w, caps=True):
+    """Polygon following a centreline with a varying width."""
+    P = np.asarray(P, float)
+    w = np.asarray(w, float)
+    d = np.gradient(P, axis=0)
+    n = np.stack([-d[:, 1], d[:, 0]], 1)
+    n /= np.linalg.norm(n, axis=1, keepdims=True) + 1e-12
+    poly = Polygon(np.vstack([P + n * (w[:, None] / 2),
+                              (P - n * (w[:, None] / 2))[::-1]])).buffer(0)
+    if caps:
+        for q, ww in ((P[0], w[0]), (P[-1], w[-1])):
+            poly = poly.union(Point(q).buffer(ww / 2, quad_segs=48))
     return poly.buffer(0)
 
 
-def top_slab(cx, stem, over, thick, spur=0.42):
-    """Wide flat top serif with a short spur turning down at each outer corner."""
-    half = stem / 2 + over
-    slab = box(cx - half, CAP - thick, cx + half, CAP)
-    sp = thick * spur
-    for s in (-1, 1):
-        x = cx + s * half
-        slab = slab.union(Polygon([(x, CAP - thick),
-                                   (x - s * thick * 0.78, CAP - thick),
-                                   (x, CAP - thick - sp)]))
-    return slab.buffer(0)
+def volute(cx, cy, r0, r1, a0, a1, w0, w1, n=240):
+    """A scroll: a band on a tightening arc.  Sweeping past ~270 deg leaves an eye."""
+    t = np.linspace(0, 1, n)
+    a = np.radians(a0 + (a1 - a0) * t)
+    r = r0 + (r1 - r0) * t
+    w = w0 + (w1 - w0) * t
+    return band(np.stack([cx + r * np.cos(a), cy + r * np.sin(a)], 1), w)
 
 
-def claw_foot(cx, stem, over, thick, reach=1.0, drop=1.0):
-    """Baseline serif: a slab whose ends split into claws hooking below it.
+def taper(cx, prof, C=CAP):
+    """Closed symmetric outline from (height, half-width) pairs, both as
+    fractions of the cap height."""
+    return Polygon([(cx - w * C, h * C) for h, w in prof] +
+                   [(cx + w * C, h * C) for h, w in prof[::-1]]).buffer(0)
 
-    The claw leaves the end of the slab heading downward, then hooks back
-    inwards under the stem and finishes in a ball, so the ornament reads as a
-    paw gripping the baseline rather than a scroll lying on its side.
+
+# -------------------------------------------------------------------- ornament
+
+
+def claw(cx, k=1.0, top=0.490, C=CAP):
+    """The clawed foot: the stem flares into a shelf, then swells into a solid
+    lobed bracket with a pendant drop hanging lowest on the axis.
+
+    The lobes are solid.  What makes the ornament read as scrollwork is the
+    inline curling inside each one (see `scrolls_of`) - in the source those light
+    spirals are the inline, not holes in the letter, which is why an earlier
+    drawing that cut them as holes came out looking like jewellery.
     """
-    half = stem / 2 + over
-    foot = box(cx - half, 0.0, cx + half, thick)
-    r = over * 0.92 * reach
-    for s_ in (-1, 1):
-        x = cx + s_ * half
-        # centre of curvature inboard and level with the slab, so the sweep
-        # starts at the slab end pointing down and curls under towards the stem
-        foot = foot.union(spiral(x - s_ * r, thick * 0.52, r,
-                                 0 if s_ > 0 else 180,
-                                 -s_ * 152 if s_ > 0 else 180 + 152,
-                                 thick * 1.02, thick * 0.34, s_, tighten=0.46))
-    return foot.buffer(0)
+    R, P = k * C, []
+    P.append(taper(cx, [(top, 0.150 * k), (0.448, 0.182 * k), (0.410, 0.238 * k),
+                        (0.374, 0.250 * k), (0.340, 0.238 * k),
+                        (0.312, 0.206 * k), (0.298, 0.188 * k)], C))
+    P.append(band([(cx, 0.330 * C), (cx, 0.210 * R), (cx, 0.068 * R)],
+                  [0.124 * R, 0.100 * R, 0.072 * R]))
+    for s in (-1, 1):
+        P.append(Point(cx + s * 0.116 * R, 0.168 * R)
+                 .buffer(0.108 * R, quad_segs=96))
+        P.append(band([(cx + s * 0.060 * R, 0.330 * C),
+                       (cx + s * 0.116 * R, 0.248 * R)],
+                      [0.146 * R, 0.132 * R]))
+    return unary_union(P).buffer(0)
 
 
-def spiral(cx, cy, radius, a0, a1, w0, w1, side, tighten=0.42, n=120):
-    """Tapering band on a tightening arc, finished with a ball terminal."""
-    ts = np.linspace(0.0, 1.0, n)
-    ang = np.radians(a0 + (a1 - a0) * ts)
-    rad = radius * (1.0 - tighten * ts)
-    wid = w0 + (w1 - w0) * ts
-    outer, inner = [], []
-    for a, rr, w in zip(ang, rad, wid):
-        outer.append((cx + (rr + w / 2) * math.cos(a), cy + (rr + w / 2) * math.sin(a)))
-        inner.append((cx + (rr - w / 2) * math.cos(a), cy + (rr - w / 2) * math.sin(a)))
-    poly = Polygon(outer + inner[::-1]).buffer(0)
-    a, rr, w = ang[-1], rad[-1], wid[-1]
-    poly = poly.union(Point(cx + rr * math.cos(a), cy + rr * math.sin(a))
-                      .buffer(w * 0.70, quad_segs=64))
-    return poly.buffer(0)
+def scrolls_of(cx, k=1.0, C=CAP):
+    """The inline's spirals inside a claw's two lobes."""
+    R, P = k * C, []
+    for s in (-1, 1):
+        P.append(volute(cx + s * 0.116 * R, 0.166 * R, 0.064 * R, 0.014 * R,
+                        115 if s > 0 else 65, (115 - 335) if s > 0 else (65 + 335),
+                        0.022 * R, 0.017 * R))
+    return unary_union(P).buffer(0)
 
 
-def taper_stem(cx, top_w, bot_w, y0, y1):
-    """A stem that narrows slightly towards the foot."""
-    return Polygon([(cx - top_w / 2, y1), (cx + top_w / 2, y1),
-                    (cx + bot_w / 2, y0), (cx - bot_w / 2, y0)])
+def barb(cx, cy, s, reach=0.130, C=CAP):
+    """A small outward scroll perched on the side of a stroke, as on the P and R."""
+    return volute(cx + s * reach * 0.42 * C, cy, reach * 0.54 * C, reach * 0.17 * C,
+                  120 if s > 0 else 60, (120 - 300) if s > 0 else (60 + 300),
+                  reach * 0.52 * C, reach * 0.26 * C)
+
+
+def hook(x, s, y, drop=0.100, C=CAP):
+    """The short spur that turns down, then inwards, under a slab's outer end."""
+    return band([(x - s * 0.040 * C, y + 0.008 * C),
+                 (x - s * 0.046 * C, y - drop * C * 0.52),
+                 (x - s * 0.078 * C, y - drop * C * 0.86),
+                 (x - s * 0.124 * C, y - drop * C * 0.94)],
+                [0.072 * C, 0.064 * C, 0.054 * C, 0.044 * C])
 
 
 # -------------------------------------------------------------------- glyphs
 
 
-def glyph_M(stem=172.0, width=900.0, over=92.0, slab=132.0):
-    """M: two upright outer stems, a V between them meeting near the baseline."""
-    left, right = stem / 2 + 40, width - stem / 2 - 40
-    parts = [taper_stem(left, stem, stem * 0.94, 0, CAP - slab * 0.2),
-             taper_stem(right, stem, stem * 0.94, 0, CAP - slab * 0.2)]
-
-    # the V: two diagonals from the inner top corners down to a point on the baseline
-    apex = (left + right) / 2
-    vy = CAP * 0.16
-    dw = stem * 0.86
-    for s, x_top in ((1, left), (-1, right)):
-        dx = apex - x_top
-        n = math.hypot(dx, vy - (CAP - slab))
-        ox = abs((vy - (CAP - slab)) / n) * dw / 2
-        parts.append(Polygon([(x_top - ox, CAP - slab * 0.1),
-                              (x_top + ox, CAP - slab * 0.1),
-                              (apex + ox * 0.35, vy),
-                              (apex - ox * 0.35, vy)]))
-    # inner peaks of the V meet the top slabs; outer tops get the wide slabs
-    parts.append(top_slab(left, stem, over, slab))
-    parts.append(top_slab(right, stem, over, slab))
-    parts.append(claw_foot(left, stem, over, slab))
-    parts.append(claw_foot(right, stem, over, slab))
-    # a small foot where the V lands
-    parts.append(claw_foot(apex, stem * 0.8, over * 0.52, slab * 0.82, reach=0.72))
+def glyph_M():
+    """M: two slabbed outer stems, two near-vertical inner strokes closing on a
+    thin wedge, and three clawed feet merging into one ornamental band."""
+    C = CAP
+    sx, sw = 0.497 * C, 0.310 * C
+    y_sl, y_bd = 0.755 * C, 0.490 * C       # slab underside / top of the band
+    out, inn = 0.775 * C, 0.045 * C         # slab outer / inner edge at y_sl
+    ch = 0.038 * C                          # top-corner chamfer
+    parts = []
+    for s in (-1, 1):
+        # top slab, chamfered outside, its inner edge raking in towards the wedge
+        parts.append(Polygon([(s * out, C - ch), (s * (out - ch), C),
+                              (s * 0.098 * C, C), (s * inn, y_sl),
+                              (s * out, y_sl)]).buffer(0))
+        parts.append(hook(s * out, s, y_sl))
+        # outer stem
+        parts.append(Polygon([(s * (sx + sw / 2), y_sl + 0.01 * C),
+                              (s * (sx - sw / 2), y_sl + 0.01 * C),
+                              (s * (sx - sw / 2 + 0.010 * C), y_bd),
+                              (s * (sx + sw / 2), y_bd)]).buffer(0))
+        # inner stroke: leans in, leaving a sliver counter beside the stem
+        parts.append(Polygon([(s * 0.240 * C, y_sl + 0.01 * C),
+                              (s * inn, y_sl + 0.01 * C),
+                              (0.0, y_bd), (s * 0.185 * C, y_bd)]).buffer(0))
+        parts.append(claw(s * sx))
+    # the three feet are tied together by one ornamental bar, as in the source
+    parts.append(taper(0.0, [(0.495, 0.690), (0.470, 0.716), (0.430, 0.728),
+                             (0.395, 0.724), (0.360, 0.702), (0.336, 0.668)]))
+    parts.append(claw(0.0, 0.88))
     return unary_union(parts).buffer(0)
 
 
-def glyph_O(side=215.0, tb=150.0, width=900.0, over=96.0, slab=128.0):
-    """O: heavy ring, thick at the sides and lighter over the crown.
+def detail_M():
+    sx = 0.497 * CAP
+    return unary_union([scrolls_of(-sx), scrolls_of(0.0, 0.88),
+                        scrolls_of(sx)]).buffer(0)
 
-    The barb at the crown is a short spur, not a cap - in this genre the split
-    serif reads as a small fork on the outer contour, and the weight of the
-    ornament is carried by the claws at the foot, as it is on every other
-    letter in the word.
-    """
-    cx, cy = width / 2, CAP / 2
-    rx, ry = width / 2, CAP / 2
-    outer = affinity.scale(Point(cx, cy).buffer(1.0, quad_segs=256), rx, ry)
-    inner = affinity.scale(Point(cx, cy).buffer(1.0, quad_segs=256),
-                           rx - side, ry - tb)
+
+def glyph_O(width=1.090, side=0.300, crown=0.220, rise=0.215):
+    """O: a heavy ring on the M's weights - the side stroke is the M's stem, the
+    crown lighter - standing on the same clawed foot, with a forked spur at the
+    crown and the small side scrolls the P and R wear at mid height."""
+    C = CAP
+    rx = width / 2 * C
+    ry = (1.0 - rise) / 2 * C
+    cy = rise * C + ry
+    outer = affinity.scale(Point(0, cy).buffer(1.0, quad_segs=360), rx, ry)
+    inner = affinity.scale(Point(0, cy).buffer(1.0, quad_segs=360),
+                           rx - side * C, ry - crown * C)
     parts = [outer.difference(inner)]
-
-    # crown spur: a short forked barb sitting on the outer contour
-    w = over * 0.78
-    parts.append(Polygon([(cx - w, CAP - tb * 0.30), (cx + w, CAP - tb * 0.30),
-                          (cx + w * 0.30, CAP + tb * 0.34),
-                          (cx - w * 0.30, CAP + tb * 0.34)]))
-
-    # claws hanging from the foot of the bowl, matching the other letters
-    for s_ in (-1, 1):
-        x = cx + s_ * (rx - side * 0.34)
-        r = over * 1.05
-        parts.append(spiral(x - s_ * r, ry * 0.26, r,
-                            0 if s_ > 0 else 180,
-                            -152 if s_ > 0 else 332,
-                            slab * 1.00, slab * 0.34, s_, tighten=0.46))
+    w = 0.112 * C
+    parts.append(Polygon([(-w, C - crown * C * 0.78), (w, C - crown * C * 0.78),
+                          (w * 0.52, C + 0.050 * C),
+                          (-w * 0.52, C + 0.050 * C)]).buffer(0))
+    for s in (-1, 1):
+        parts.append(Point(s * w * 0.54, C + 0.044 * C)
+                     .buffer(0.032 * C, quad_segs=48))
+    parts.append(claw(0.0, 0.98, top=0.345))
     return unary_union(parts).buffer(0)
+
+
+def detail_O():
+    return scrolls_of(0.0, 0.98)
 
 
 # -------------------------------------------------------------------- output
 
 
-def inline_of(glyph, inset=34.0, weight=26.0):
+def inline_of(glyph, inset=0.034 * CAP, weight=0.019 * CAP):
     """The thin light line that runs inside the stroke."""
-    a = glyph.buffer(-inset)
-    b = glyph.buffer(-inset - weight)
-    return a.difference(b).buffer(0)
+    return glyph.buffer(-inset).difference(glyph.buffer(-inset - weight)).buffer(0)
+
+
+def shadow_of(glyph, dx=0.048 * CAP, dy=-0.054 * CAP):
+    return affinity.translate(glyph, dx, dy).difference(glyph).buffer(0)
 
 
 def _poly_list(geom):
@@ -229,13 +249,7 @@ def write_pdf(path, layers, w, h, to_xy):
     open(path, 'wb').write(bytes(out))
 
 
-def shadow_of(glyph, dx=48.0, dy=-54.0):
-    """The offset drop shadow the reference lettering sits on."""
-    return affinity.translate(glyph, dx, dy).difference(glyph).buffer(0)
-
-
-def sheet(glyphs, gap=120.0, pad=110.0):
-    """Lay glyphs out on a line; returns (placed, width, height)."""
+def sheet(glyphs, gap=0.120 * CAP, pad=0.110 * CAP):
     placed, x = [], pad
     for g in glyphs:
         b = g.bounds
@@ -254,27 +268,31 @@ def main(argv=None):
     ap.add_argument('--ink', default='2b2218')
     ap.add_argument('--paper', default='f2ece0')
     a = ap.parse_args(argv)
-    import os
     os.makedirs(a.outdir, exist_ok=True)
     hexes = lambda h: tuple(int(h.lstrip('#')[i:i + 2], 16) for i in (0, 2, 4))
     ink, paper = hexes(a.ink), hexes(a.paper)
 
     letters = {'O': glyph_O(), 'M': glyph_M()}
+    details = {'O': detail_O(), 'M': detail_M()}
     scale = a.size / CAP
     out = []
-    for name, gl in list(letters.items()) + [('OM', None)]:
+    for name in ('O', 'M', 'OM'):
         for shaded in (False, True):
-            gs = [letters['O'], letters['M']] if name == 'OM' else [gl]
+            keys = ['O', 'M'] if name == 'OM' else [name]
+            gs = [letters[q] for q in keys]
             placed, w, h = sheet(gs)
-            body = unary_union(placed)
+            shifted = [affinity.translate(details[q], p.bounds[0] - g.bounds[0],
+                                          p.bounds[1] - g.bounds[1])
+                       for q, g, p in zip(keys, gs, placed)]
             to = lambda p: (p[0] * scale, p[1] * scale)
             layers = []
             if shaded:
                 layers.append((ink, unary_union([shadow_of(p) for p in placed])))
-            layers.append((ink, body))
-            layers.append((paper, unary_union([inline_of(p) for p in placed])))
-            suffix = '-shadow' if shaded else ''
-            f = os.path.join(a.outdir, f'tuscan-{name}{suffix}.pdf')
+            layers.append((ink, unary_union(placed)))
+            layers.append((paper, unary_union(
+                [inline_of(p) for p in placed] + shifted).buffer(0)))
+            f = os.path.join(a.outdir,
+                             f"tuscan-{name}{'-shadow' if shaded else ''}.pdf")
             write_pdf(f, layers, w * scale, h * scale, to)
             out.append((f, w * scale, h * scale))
     for f, w, h in out:
