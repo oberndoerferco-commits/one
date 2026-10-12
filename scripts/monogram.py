@@ -137,7 +137,7 @@ def glyph_O(cap=CAP, w=0.86, side=0.172, thin=0.118):
 
 
 def glyph_M(cap=CAP, width=0.90, stem=0.166, over=0.065, slab=0.095,
-            ya=0.42, yb=0.30, pix=0.022, piy=0.30, bracket=0.052, tip=0.010):
+            ya=0.54, yb=0.40, pix=0.038, piy=0.12, bracket=0.085, tip=0.022):
     """Slab-serif M, written out as an explicit vertex list.
 
     Two upright stems with square serifs, and a V between them whose outer edges
@@ -164,3 +164,79 @@ def glyph_M(cap=CAP, width=0.90, stem=0.166, over=0.065, slab=0.095,
 def centred(contours, cap=CAP):
     x0, y0, x1, y1 = bbox(contours)
     return [tr(c, 1.0, -(x0 + x1) / 2, 0.0) for c in contours]
+
+
+# ------------------------------------------------- node-and-tangent splines
+
+
+def node(x, y, ang, lin=0.0, lout=None):
+    """A point on an outline with a chosen tangent direction, in degrees."""
+    a = math.radians(ang)
+    return dict(p=(x, y), d=(math.cos(a), math.sin(a)),
+                lin=lin, lout=lin if lout is None else lout)
+
+
+def corner(x, y, ang_in, ang_out, lin=0.0, lout=0.0):
+    ai, ao = math.radians(ang_in), math.radians(ang_out)
+    return dict(p=(x, y), d=(math.cos(ao), math.sin(ao)),
+                din=(math.cos(ai), math.sin(ai)), lin=lin, lout=lout)
+
+
+def spline(nodes):
+    """Closed outline through nodes, each span one cubic with chosen tangents.
+
+    Nothing is fitted - the handles are set from the tangent directions and
+    lengths given, so each span is smooth because of how it is specified.
+    """
+    segs = []
+    n = len(nodes)
+    for i in range(n):
+        a, b = nodes[i], nodes[(i + 1) % n]
+        p0, p3 = a['p'], b['p']
+        da = a['d']
+        db = b.get('din', b['d'])
+        if a['lout'] == 0 and b['lin'] == 0:
+            segs.append(('L', p3))
+            continue
+        p1 = (p0[0] + da[0] * a['lout'], p0[1] + da[1] * a['lout'])
+        p2 = (p3[0] - db[0] * b['lin'], p3[1] - db[1] * b['lin'])
+        segs.append(('C', p1, p2, p3))
+    return (nodes[0]['p'], segs)
+
+
+def glyph_O2(cap=CAP, rx=0.428, ry=0.500, facet=12.0, run=0.34,
+             cx_i=0.158, cy_i=0.385, waist=0.138, lobe=0.165,
+             h_top=0.55, h_flank=0.50):
+    """The reference O, constructed: faceted flanks and a waisted counter.
+
+    Two features carry this letter and a plain ellipse has neither.  Each flank
+    runs dead straight for a stretch and meets its opposite number in a shallow
+    vertex; the counter pinches at half height.  Both are drawn on purpose - the
+    facet is a real straight line between two tangent points, and the waist is a
+    pair of vertical-tangent nodes with the curve between them an S.
+    """
+    RX, RY, cy = rx * cap, ry * cap, cap / 2
+    t = math.radians(facet)
+    dx, dy = math.sin(t) * run * RY, math.cos(t) * run * RY
+    ht, hf = RX * h_top, RY * h_flank
+    outer = [node(0, cy + RY, 0, ht),
+             node(RX - dx, cy + dy, facet - 90, hf, 0),
+             node(RX, cy, facet - 90, 0, 0),
+             node(RX - dx, cy - dy, -90 - facet, 0, hf),
+             node(0, cy - RY, 180, ht),
+             node(-RX + dx, cy - dy, 90 + facet, hf, 0),
+             node(-RX, cy, 90 + facet, 0, 0),
+             node(-RX + dx, cy + dy, 90 - facet, 0, hf)]
+    rxi, ryi = cx_i * cap, cy_i * cap
+    w, lo = waist * cap, lobe * cap
+    ha, hb, hc = rxi * 0.58, (ryi - lo) * 0.55, lo * 0.62
+    # wound the opposite way to the outer, so the fill knocks it out
+    inner = [node(0, cy + ryi, 180, ha),
+             node(-rxi, cy + lo, -90, hb, hc),
+             node(-w, cy, -90, hc, hc),
+             node(-rxi, cy - lo, -90, hc, hb),
+             node(0, cy - ryi, 0, ha),
+             node(rxi, cy - lo, 90, hb, hc),
+             node(w, cy, 90, hc, hc),
+             node(rxi, cy + lo, 90, hc, hb)]
+    return [spline(outer), spline(inner)]
