@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#fbfaf7"/>
+  <circle cx="120" cy="120" r="44" fill="#14655e"/>
+  <path transform="translate(76,76) scale(2.75)" d="M11 12.5a2.2 2.2 0 1 1 0 .1zm10 0a2.2 2.2 0 1 1 0 .1zM8.5 17a2 2 0 1 1 0 .1zm15 0a2 2 0 1 1 0 .1zM16 15.5c2.9 0 5.5 2.6 5.5 5.2 0 1.7-1.2 2.8-2.7 2.8-1.1 0-1.9-.6-2.8-.6s-1.7.6-2.8.6c-1.5 0-2.7-1.1-2.7-2.8 0-2.6 2.6-5.2 5.5-5.2z" fill="#fff"/>
+  <text x="190" y="138" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif" font-size="40" font-weight="700" fill="#1f2a2e">AI Veterinary</text>
+  <text x="76" y="330" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif" font-size="78" font-weight="700" fill="#1f2a2e">Less paperwork.</text>
+  <text x="76" y="420" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif" font-size="78" font-weight="700" fill="#14655e">More animal care.</text>
+  <text x="76" y="520" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif" font-size="30" fill="#4b5a60">Animal-health information reviewed by vets · Digital pet passport · AI documentation for veterinary teams</text>
+  <text x="76" y="580" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif" font-size="28" fill="#7b8a90">aiveterinary.org</text>
+</svg>
