@@ -27,7 +27,7 @@ an account or a signature. Everything here costs €0 unless marked.
 - [x] Pre-visit brief for owners (/visit-brief, prefills from the passport)
 - [ ] Vaccination-expiry reminders (needs accounts + email)
 - [ ] Share-with-vet link for the passport (read-only, expiring)
-- [ ] Public quality page for the vet tool
+- [x] Public quality page for the vet tool (/vets/quality, fed by eval results)
 - [ ] Clinic letterhead + PDF export in the vet tool
 
 ## Needs you (cannot be done from the repo)

@@ -5,7 +5,7 @@
  *
  * Exit code 1 if any blocking finding appears on a case that is not marked fixture_must_fail.
  */
-import { readdirSync, readFileSync } from 'node:fs';
+import { readdirSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { ClinicalRecord, PatientHeader } from '../schema.js';
@@ -67,6 +67,10 @@ export async function runEval(extractorName = process.env.AIVET_EXTRACTOR ?? 'fi
   }
   console.log(`AI Veterinary eval — extractor=${extractor.name} prompt=${PROMPT_VERSION}\n`);
   console.log(rows.join('\n'));
+  // machine-readable result for the public quality page (site/src/pages/vets/quality.astro)
+  const outDir = join(here, '..', '..', 'eval', 'results'); mkdirSync(outDir, { recursive: true });
+  const result = { run_at: new Date().toISOString(), extractor: extractor.name, prompt: PROMPT_VERSION, cases: totals.cases, failed: failures, blocking: totals.blocks, warnings: totals.warns, unsourced: totals.unsourced, drug_mismatch: totals.drugMismatch, missing_recall: totals.missTotal ? totals.missRecall / totals.missTotal : null, languages: [...new Set(cases.map((c) => c.language))].sort(), per_case: rows.filter((r) => /^(PASS|FAIL)/.test(r)).map((r) => ({ id: r.slice(6).split('\n')[0].replace(' (must-fail fixture)', ''), pass: r.startsWith('PASS') })) };
+  writeFileSync(join(outDir, `${extractor.name}.json`), JSON.stringify(result, null, 2) + '\n');
   console.log(`\n${totals.cases} cases, ${failures} failed. blocking=${totals.blocks} warnings=${totals.warns} unsourced=${totals.unsourced} drug-mismatch=${totals.drugMismatch} missing-recall=${totals.missTotal ? Math.round((100 * totals.missRecall) / totals.missTotal) + '%' : 'n/a'}${totals.input_tokens ? ` tokens in/out=${totals.input_tokens}/${totals.output_tokens}` : ''}`);
   return failures;
 }
