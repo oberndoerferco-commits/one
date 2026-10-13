@@ -1,5 +1,5 @@
 ---
-interface Props { lang?: 'en' | 'it' }
+interface Props { lang?: 'en' | 'it' | 'de' }
 const { lang = 'en' } = Astro.props;
 const T = {
   en: {
@@ -40,11 +40,31 @@ const T = {
     species_opts: { Dog: 'Cane', Cat: 'Gatto', Rabbit: 'Coniglio', 'Guinea pig': 'Porcellino d\'India', Horse: 'Cavallo', Bird: 'Uccello', Other: 'Altro' },
     sex_opts: { Female: 'Femmina', Male: 'Maschio', 'Female, spayed': 'Femmina sterilizzata', 'Male, neutered': 'Maschio castrato' },
   },
+  de: {
+    eyebrow: 'Für Tierhalter', h1: 'Den Tierarztbesuch vorbereiten',
+    lead: 'Tierärzte stellen bei jedem Besuch dieselben Fragen: seit wann, wie oft, was hat sich geändert, was frisst das Tier, welche Medikamente. Beantworten Sie sie in Ruhe zu Hause und bringen Sie eine Seite mit. Der Besuch geht schneller, und nichts wird vergessen.',
+    notDiag: '<strong>Das ist keine Diagnose.</strong> Die Übersicht ordnet, was Sie wissen. Sie sagt Ihnen nicht, was Ihr Tier hat, und ersetzt keinen Anruf in der Praxis. Trifft eines der Notfallzeichen unten zu, hören Sie auf und rufen Sie sofort eine Klinik an.',
+    goNow: '<strong>Sofort fahren, keine Formulare:</strong> Atemnot, Zusammenbruch, unstillbare Blutung, Krampfanfälle, harter aufgeblähter Bauch, Verdacht auf Vergiftung, ein Kater, der beim Urinieren presst, ein Kaninchen, das seit 12 Stunden nicht frisst.',
+    about: 'Ihr Tier', passportHint: 'Wenn Sie auf diesem Gerät einen <a href="/de/passport">digitalen Heimtierausweis</a> führen, wählen Sie das Tier aus; die Felder füllen sich von selbst.',
+    fromPassport: 'Aus dem Ausweis', name: 'Name', species: 'Tierart', breed: 'Rasse', age: 'Alter', agePh: 'z. B. 6 Jahre', sex: 'Geschlecht', weight: 'Gewicht (kg), falls bekannt',
+    going: 'Was ist los', concern: 'Das Hauptproblem, in Ihren Worten', concernPh: 'z. B. Sie erbricht seit gestern Abend, dreimal, und will ihr Futter nicht.',
+    since: 'Seit wann', sincePh: 'z. B. gestern Abend / 3 Tage / 2 Wochen', freq: 'Wie oft / wie schlimm', freqPh: 'z. B. 3-mal, wird schlimmer',
+    trend: 'Besser, schlimmer oder gleich?', trendOpts: ['Besser', 'Gleich', 'Schlimmer', 'Kommt und geht'], trigger: 'Ist vorher etwas passiert?', triggerPh: 'neues Futter, Waldspaziergang, Besuch, etwas gefressen…',
+    noticed: 'Was Ihnen sonst aufgefallen ist',
+    signs: ['Frisst weniger', 'Frisst gar nicht', 'Trinkt mehr', 'Trinkt weniger', 'Erbrechen', 'Durchfall', 'Verstopfung', 'Pressen beim Urinieren', 'Uriniert häufiger', 'Husten', 'Niesen', 'Atmet anders', 'Lahmt', 'Kratzt sich / Juckreiz', 'Matt, schläft mehr', 'Unruhig, läuft umher', 'Versteckt sich', 'Aggressives oder ungewohntes Verhalten', 'Gewichtsverlust', 'Gewichtszunahme', 'Knoten oder Schwellung', 'Übler Geruch (Maul, Ohren, Haut)'],
+    other: 'Sonstiges', food: 'Futter, Medikamente, Vorgeschichte', diet: 'Was frisst Ihr Tier (Marke, Art, Leckerlis, Reste)?', meds: 'Aktuelle Medikamente oder Ergänzungsmittel, genau wie auf dem Etikett', medsPh: 'Name, Stärke, wie oft, seit wann',
+    history: 'Bekannte Erkrankungen, Allergien, frühere Operationen', vacc: 'Impfungen aktuell?', vaccOpts: ['Ja', 'Nein', 'Nicht sicher'], parasite: 'Letzte Parasitenbehandlung (Floh/Zecke/Wurm)', parasitePh: 'z. B. vor 3 Wochen, Präparatname',
+    lifestyle: 'Wohnung / Freigang / kürzlich gereist?', others: 'Andere Tiere im Haushalt, geht es ihnen gut?', forVet: 'Für die Praxis', questions: 'Fragen, die Sie stellen möchten', media: 'Fotos oder Videos, die Sie zeigen (was und wann)', mediaPh: 'z. B. Video vom Lahmen heute Morgen auf dem Handy',
+    make: 'Übersicht erstellen', clear: 'Leeren', copy: 'Kopieren', print: 'Drucken / als PDF speichern', briefTitle: 'Übersicht für den Tierarztbesuch', footer: 'Vom Halter mit aiveterinary.org vorbereitet. Dies ist die Schilderung des Halters, keine klinische Akte.',
+    species_opts: { Dog: 'Hund', Cat: 'Katze', Rabbit: 'Kaninchen', 'Guinea pig': 'Meerschweinchen', Horse: 'Pferd', Bird: 'Vogel', Other: 'Sonstiges' },
+    sex_opts: { Female: 'Weiblich', Male: 'Männlich', 'Female, spayed': 'Weiblich, kastriert', 'Male, neutered': 'Männlich, kastriert' },
+  },
 } as const;
 const t = T[lang];
 const J = {
   en: { unnamed: 'Unnamed', animal: 'Animal', notDescribed: 'not described', main: 'Main concern', since: 'Since', freq: 'How often / how bad', trend: 'Trend', trigger: 'Possible trigger', signs: 'Other signs noticed', none: 'None ticked', food: 'Food, medication, history', diet: 'Diet', meds: 'Medications', hist: 'Known conditions', vacc: 'Vaccinations up to date', par: 'Last parasite treatment', life: 'Lifestyle', others: 'Other animals', q: 'Questions for the vet', media: 'Photos / videos to show', title: 'Veterinary visit brief', copied: 'Copied.', months: 'months', years: 'years', since2: 'since', spayed: 'spayed', neutered: 'neutered', locale: 'en-GB' },
   it: { unnamed: 'Senza nome', animal: 'Animale', notDescribed: 'non descritto', main: 'Problema principale', since: 'Da quando', freq: 'Quanto spesso / quanto grave', trend: 'Andamento', trigger: 'Possibile causa scatenante', signs: 'Altri segni notati', none: 'Nessuno', food: 'Alimentazione, farmaci, storia', diet: 'Alimentazione', meds: 'Farmaci', hist: 'Malattie note', vacc: 'Vaccinazioni in regola', par: 'Ultimo antiparassitario', life: 'Stile di vita', others: 'Altri animali', q: 'Domande per il veterinario', media: 'Foto / video da mostrare', title: 'Riepilogo per la visita veterinaria', copied: 'Copiato.', months: 'mesi', years: 'anni', since2: 'dal', spayed: 'sterilizzata', neutered: 'castrato', locale: 'it-IT' },
+  de: { unnamed: 'Ohne Namen', animal: 'Tier', notDescribed: 'nicht beschrieben', main: 'Hauptproblem', since: 'Seit wann', freq: 'Wie oft / wie schlimm', trend: 'Verlauf', trigger: 'Möglicher Auslöser', signs: 'Weitere Anzeichen', none: 'Keine angekreuzt', food: 'Futter, Medikamente, Vorgeschichte', diet: 'Fütterung', meds: 'Medikamente', hist: 'Bekannte Erkrankungen', vacc: 'Impfungen aktuell', par: 'Letzte Parasitenbehandlung', life: 'Haltung', others: 'Andere Tiere', q: 'Fragen an die Praxis', media: 'Fotos / Videos zum Zeigen', title: 'Übersicht für den Tierarztbesuch', copied: 'Kopiert.', months: 'Monate', years: 'Jahre', since2: 'seit', spayed: 'kastriert', neutered: 'kastriert', locale: 'de-DE' },
 }[lang];
 ---
 <section class="wrap hero">

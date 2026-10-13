@@ -1,5 +1,5 @@
 ---
-interface Props { lang?: 'en' | 'it' }
+interface Props { lang?: 'en' | 'it' | 'de' }
 const { lang = 'en' } = Astro.props;
 const T = {
  "en": {
@@ -29,6 +29,20 @@ const T = {
   "copy": "Copia per il gestionale",
   "print": "Stampa",
   "vetsHref": "/it/vets"
+ },
+ "de": {
+  "eyebrowLink": "Für Tierärzte",
+  "eyebrowRest": "Vorschau mit synthetischen Patienten",
+  "caseLabel": "Beispielfall",
+  "notice": "<strong>Vorschau.</strong> Die Beispielfälle laufen offline auf vorbereiteten Akten, damit Sie genau sehen, wie die Prüfung funktioniert: Quellenmarkierung, Hinweise auf fehlende Angaben, die Medikamententabelle aus Ihren eigenen Worten. Im echten Produkt strukturiert das Modell Ihre eigenen Notizen mit denselben Prüfungen. Hier wird nichts gespeichert.",
+  "notes": "Notizen",
+  "notesHint": "im echten Produkt frei editierbar; hier ist das Beispiel fest",
+  "report": "Behandlungsbericht",
+  "before": "Vor der Freigabe",
+  "approve": "Freigeben &amp; speichern",
+  "copy": "Für die Praxissoftware kopieren",
+  "print": "Drucken",
+  "vetsHref": "/de/vets"
  }
 } as const;
 const JS = {
@@ -85,6 +99,33 @@ const JS = {
    "004-adversarial-pregnant-owner": "Bruno, cane, controllo annuale — note insidiose (EN)"
   },
   "first": "003-gatto-inappetenza-it"
+ },
+ "de": {
+  "blocked": "Blockiert",
+  "check": "Prüfen",
+  "missing": "Fehlt",
+  "setAside": "Zurückgestellt",
+  "placeholder": "Wert eingeben…",
+  "valueFor": "Wert für",
+  "add": "Hinzufügen",
+  "notRecorded": "Nicht erfasst",
+  "nothing": "✓ Nichts zu klären.",
+  "nothingRest": "Jeder Satz hat eine Quelle in Ihren Notizen.",
+  "approvedStatus": "Freigegeben. Dies ist eine Vorschau, nichts wurde gespeichert.",
+  "blocking": "{n} blockierende(r) Punkt(e): die Akte enthält etwas, das nicht in den Notizen steht.",
+  "unresolved": "{n} fehlende Angabe(n) ergänzen oder als nicht erfasst markieren.",
+  "ready": "Bereit zur Freigabe.",
+  "copied": "Als Klartext kopiert.",
+  "copyFail": "Kopieren fehlgeschlagen; Bericht markieren und manuell kopieren.",
+  "approved": "FREIGEGEBEN",
+  "draft": "ENTWURF",
+  "cases": {
+   "002-milo-otitis-de": "Milo, Hund, Otitis (DE)",
+   "001-luna-vomiting": "Luna, Hund, Erbrechen (EN)",
+   "003-gatto-inappetenza-it": "Romeo, Katze, Inappetenz (IT)",
+   "004-adversarial-pregnant-owner": "Bruno, Hund, Jahrescheck — heikle Notizen (EN)"
+  },
+  "first": "002-milo-otitis-de"
  }
 } as const;
 const t = T[lang]; const j = JS[lang];

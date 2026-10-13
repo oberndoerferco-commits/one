@@ -1,5 +1,5 @@
 /** Labels for the animal-information section, per language. Article content lives in src/content/animals/<lang>/. */
-export type Lang = 'en' | 'it';
+export type Lang = 'en' | 'it' | 'de';
 
 export const ANIMALS = {
   en: {
@@ -55,6 +55,33 @@ export const ANIMALS = {
       care: ['Cura quotidiana', 'Alimentazione, vaccinazioni, le cose di routine'],
     },
     locale: 'it-IT',
+  },
+  de: {
+    base: '/de/animals', visitBrief: '/de/visit-brief', title: 'Tiergesundheit',
+    desc: 'Verständliche Informationen zur Tiergesundheit für Halterinnen und Halter, von Tierärzten geprüft.',
+    lead: 'Für Halter geschrieben, von Tierärzten geprüft. Jeder Artikel nennt, wer ihn geprüft hat und wann. Wenn etwas in die Praxis gehört, steht es oben im Artikel, nicht unten.',
+    prepare: 'Den Tierarztbesuch vorbereiten →',
+    emergency: '<strong>Notfall?</strong> Zusammenbruch, Atemnot, starke Blutung, aufgeblähter harter Bauch, Krampfanfälle, die nicht aufhören, Vergiftung oder ein Kater, der nicht urinieren kann: Fahren Sie sofort in eine Tierklinik. Rufen Sie vorher an, damit man sich vorbereiten kann.',
+    byTopic: 'Nach Thema', byAnimal: 'Nach Tierart', latest: 'Neueste Artikel', articles: 'Artikel', draft: 'Entwurf, tierärztliche Prüfung steht aus',
+    nothing: 'Hier gibt es noch nichts. Die Artikel werden geschrieben und geprüft; schauen Sie bald wieder vorbei oder <a href="/de/newsletter">abonnieren Sie den Newsletter</a>.',
+    reviewedBy: 'Geprüft von', updated: 'Aktualisiert', draftLong: 'Entwurf, tierärztliche Prüfung steht aus', whenToSee: 'Wann zum Tierarzt:',
+    footer: 'Dieser Artikel ist eine allgemeine Information und kann Vorgeschichte, Rasse oder Medikamente Ihres Tieres nicht berücksichtigen. Er ist keine Diagnose und ersetzt keine Untersuchung. Wenn Sie sich Sorgen machen, rufen Sie Ihre Praxis an; sie hört lieber früh von Ihnen.',
+    urgency: {
+      emergency: 'Das kann ein Notfall sein. Wenn Sie es gerade beobachten, wenden Sie sich sofort an eine Tierklinik.',
+      today: 'Gehen Sie heute zum Tierarzt. Meist kein Notfall, aber es sollte nicht warten.',
+      'this-week': 'Vereinbaren Sie diese Woche einen Termin, wenn es anhält oder schlimmer wird.',
+      routine: 'Routineinformation. Sprechen Sie es beim nächsten Besuch an, wenn Sie Fragen haben.',
+    },
+    species: { dog: 'Hunde', cat: 'Katzen', rabbit: 'Kaninchen und Kleinsäuger', horse: 'Pferde', bird: 'Vögel', general: 'Alle Tiere' },
+    categories: {
+      symptoms: ['Symptome', 'Was ein Anzeichen bedeuten kann und wann Sie anrufen sollten'],
+      conditions: ['Erkrankungen', 'Häufige Diagnosen verständlich erklärt'],
+      medications: ['Medikamente', 'Wofür ein verordnetes Medikament ist und wie man es gibt'],
+      'first-aid': ['Erste Hilfe und Notfälle', 'Was jetzt zu tun ist, und was nicht'],
+      travel: ['Reisen und Papiere', 'Ausweise, Mikrochips, Umzug zwischen Ländern'],
+      care: ['Alltägliche Pflege', 'Fütterung, Impfungen, die Routinedinge'],
+    },
+    locale: 'de-DE',
   },
 } as const;
 
