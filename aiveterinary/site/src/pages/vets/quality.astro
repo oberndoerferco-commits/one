@@ -1,8 +1,11 @@
 ---
 import Base from '../../layouts/Base.astro';
-import fixture from 'aiveterinary-app/eval/results/fixture.json';
-let model: typeof fixture | null = null;
-try { model = (await import('aiveterinary-app/eval/results/claude.json')).default as typeof fixture; } catch { model = null; }
+import { readFileSync, existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+const resultsDir = fileURLToPath(new URL('../../../../app/eval/results/', import.meta.url));
+const read = (name: string) => (existsSync(resultsDir + name) ? JSON.parse(readFileSync(resultsDir + name, 'utf8')) : null);
+const fixture = read('fixture.json');
+const model = read('claude.json');
 const pct = (x: number | null) => (x == null ? 'n/a' : Math.round(x * 100) + ' %');
 const fmt = (iso: string) => new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 const runs = [{ label: 'Validators on prepared records', note: 'Proves the checks themselves: a record with an invented drug, dose or diagnosis must be blocked. Offline, no model.', r: fixture }, ...(model ? [{ label: 'Model output on the same cases', note: 'The model structures the raw notes; the same checks then run on its output.', r: model }] : [])];
