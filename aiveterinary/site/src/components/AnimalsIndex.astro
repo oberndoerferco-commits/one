@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import { ANIMALS, slugOf, type Lang } from '../lib/animals-i18n';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = ANIMALS[lang];
+const all = (await getCollection('animals')).filter((e) => e.data.lang === lang).sort((a, b) => b.data.updated.valueOf() - a.data.updated.valueOf());
+const count = (f: (d: any) => boolean) => all.filter((e) => f(e.data)).length;
+---
+<section class="wrap hero">
+  <h1>{t.title}</h1>
+  <p class="lead">{t.lead}</p>
+  <p><a class="btn secondary" href={t.visitBrief}>{t.prepare}</a></p>
+  <div class="notice danger"><p set:html={t.emergency} /></div>
+</section>
+
+<section class="wrap">
+  <h2>{t.byTopic}</h2>
+  <div class="grid3">
+    {Object.entries(t.categories).map(([key, [label, d]]) => (
+      <a class="tile" href={`${t.base}/${key}`}>
+        <div class="t">{label}</div>
+        <div class="d">{d}</div>
+        <div class="d" style="margin-top:6px">{count((x) => x.category === key)} {t.articles}</div>
+      </a>
+    ))}
+  </div>
+  <h2>{t.byAnimal}</h2>
+  <div class="grid3">
+    {Object.entries(t.species).map(([key, label]) => (
+      <a class="tile" href={`${t.base}/${key}`}>
+        <div class="t">{label}</div>
+        <div class="d">{count((x) => x.species === key)} {t.articles}</div>
+      </a>
+    ))}
+  </div>
+  <h2>{t.latest}</h2>
+  <div class="grid3">
+    {all.slice(0, 6).map((e) => (
+      <a class="tile" href={`${t.base}/${slugOf(e.id)}`}>
+        <div class="t">{e.data.title}</div>
+        <div class="d">{e.data.description}</div>
+        {e.data.draft && <span class="badge draft" style="margin-top:8px">{t.draft}</span>}
+      </a>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,25 @@
+---
+import { render } from 'astro:content';
+import { ANIMALS, type Lang } from '../lib/animals-i18n';
+interface Props { lang: Lang; entry: any }
+const { lang, entry } = Astro.props;
+const t = ANIMALS[lang];
+const { Content } = await render(entry);
+const d = entry.data;
+const fmt = (x: Date) => x.toLocaleDateString(t.locale, { day: 'numeric', month: 'long', year: 'numeric' });
+const cls: Record<string, string> = { emergency: 'danger', today: 'warn', 'this-week': '', routine: 'ok' };
+---
+<article class="wrap narrow hero">
+  <p class="eyebrow"><a href={t.base}>{t.title}</a> · <a href={`${t.base}/${d.category}`}>{(t.categories as any)[d.category]?.[0] ?? d.category}</a> · <a href={`${t.base}/${d.species}`}>{(t.species as any)[d.species] ?? d.species}</a></p>
+  <h1>{d.title}</h1>
+  <p class="lead">{d.description}</p>
+  <div class="article-meta">
+    {d.draft
+      ? <span class="badge draft">{t.draftLong}</span>
+      : <span class="badge reviewed">{t.reviewedBy} {d.reviewedBy}{d.reviewedOn && `, ${fmt(d.reviewedOn)}`}</span>}
+    <span>{t.updated} {fmt(d.updated)}</span>
+  </div>
+  {d.urgency && <div class={`notice ${cls[d.urgency]}`}><p><strong>{t.whenToSee}</strong> {(t.urgency as any)[d.urgency]}</p></div>}
+  <div class="prose"><Content /></div>
+  <div class="notice" style="margin-top:40px"><p>{t.footer}</p></div>
+</article>

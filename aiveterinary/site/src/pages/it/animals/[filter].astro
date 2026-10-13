@@ -1,0 +1,13 @@
+---
+import Base from '../../../layouts/Base.astro';
+import AnimalsFilter from '../../../components/AnimalsFilter.astro';
+import { ANIMALS } from '../../../lib/animals-i18n';
+export async function getStaticPaths() {
+  return [...Object.keys(ANIMALS.it.species), ...Object.keys(ANIMALS.it.categories)].map((filter) => ({ params: { filter } }));
+}
+const { filter } = Astro.params;
+const label = (ANIMALS.it.species as any)[filter!] ?? (ANIMALS.it.categories as any)[filter!]?.[0];
+---
+<Base title={label} description={`Articoli sulla salute degli animali: ${label}.`} lang="it">
+  <AnimalsFilter lang="it" filter={filter!} />
+</Base>
