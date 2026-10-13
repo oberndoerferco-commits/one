@@ -114,9 +114,11 @@ def main(argv=None):
                      for c in cs]
     W, Hh = (x1 - x0) + 2 * pad, (y1 - y0) + 2 * pad
     C, K, B = mv(out['cyan']), mv(out['cream']), mv(out['black'])
+    # the one-colour version keeps the halo; the keyline's area simply stays
+    # white, which works because no hatch stroke touches a letter in the drawing
     sets = {'om-colour': [(CYAN, C), (CREAM, K), (BLACK, B)],
-            'om-black': [(BLACK, B)],
-            'om-black-shadow': [(BLACK, C), (BLACK, B)]}
+            'om-black': [(BLACK, C), (BLACK, B)],
+            'om-black-letters': [(BLACK, B)]}
     for nm, lay in sets.items():
         write_pdf(os.path.join(a.outdir, nm + '.pdf'), lay, W, Hh)
         write_svg(os.path.join(a.outdir, nm + '.svg'), lay, W, Hh)

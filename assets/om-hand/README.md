@@ -7,8 +7,8 @@ Your drawing, traced. All three layers, as drawn.
 | File | What it is |
 | --- | --- |
 | `om-colour.pdf` / `.svg` | Full artwork — cyan hatch, cream keyline, black letters |
-| `om-black.pdf` / `.svg` | One-colour: the letterforms, solid black |
-| `om-black-shadow.pdf` / `.svg` | One-colour with the hatch, also black |
+| `om-black.pdf` / `.svg` | One-colour: letters **and halo**, all black |
+| `om-black-letters.pdf` / `.svg` | Letters only — for stamping or engraving small |
 | `source-drawing.jpg` | The drawing as supplied |
 
 ```sh
@@ -19,6 +19,17 @@ Colours sampled from the drawing: cyan `#6cd7e1`, cream `#f4c88b`.
 
 Layer separation is by colour, which is clean here: the three are far apart in
 RGB and separate with no overlap.
+
+## How the one-colour version keeps its gap
+
+In the black version the halo is the same hatch, painted black, and the keyline
+is simply dropped — its area stays white, which is what separates the letters
+from the halo. That works because **no hatch stroke touches a letter anywhere in
+the drawing** (0 px of contact, measured), so the gap is already there in the
+artwork and does not have to be manufactured.
+
+`om-black-letters.pdf` drops the halo as well. At ring scale the hatch is far
+too fine to survive being struck, so that is the one to send a jeweller.
 
 ## The one change: the M is symmetrical
 
