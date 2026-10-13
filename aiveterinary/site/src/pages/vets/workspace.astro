@@ -1,0 +1,232 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base title="Workspace preview" description="Try the AI Veterinary documentation workspace on synthetic patients: notes on the left, report on the right, nothing on the page you didn't write.">
+  <section class="wrap" style="padding-top:24px">
+    <p class="eyebrow"><a href="/vets">For veterinary teams</a> · preview on synthetic patients</p>
+    <div class="ws-top">
+      <div>
+        <label for="ws-case" class="ws-label">Example case</label>
+        <select id="ws-case"></select>
+      </div>
+      <div class="ws-patient" id="ws-patient"></div>
+      <div class="ws-state" id="ws-state"><span class="badge draft">● DRAFT</span></div>
+    </div>
+    <p class="notice" style="margin-top:12px"><strong>Preview.</strong> The example cases run offline on prepared records, so you can see exactly how the review works: source highlighting, missing-information flags, the medication table built from your own words. In the real product your own notes are structured by the model with the same checks. Nothing here is stored.</p>
+  </section>
+
+  <section class="wrap ws" aria-label="Workspace">
+    <div class="ws-pane">
+      <div class="ws-h">Notes <span class="ws-hint">edit freely in the real product; here the example is fixed</span></div>
+      <pre id="ws-notes" class="ws-notes" tabindex="0"></pre>
+    </div>
+    <div class="ws-pane">
+      <div class="ws-h">Consultation report <span class="ws-hint" id="ws-lang"></span></div>
+      <div id="ws-report" class="ws-report"></div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="ws-flags card">
+      <h2 style="margin-top:0">Before you approve</h2>
+      <ul id="ws-flaglist" class="ws-flaglist"></ul>
+      <div class="ws-actions">
+        <button class="btn" id="ws-approve" type="button" disabled>Approve &amp; save <kbd>Ctrl+Shift+Enter</kbd></button>
+        <button class="btn secondary" id="ws-copy" type="button">Copy for your practice software <kbd>Ctrl+Shift+C</kbd></button>
+        <button class="btn secondary" id="ws-print" type="button">Print</button>
+      </div>
+      <p class="pp-status" id="ws-status" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <style is:global>
+    .ws-top { display: flex; gap: 20px; align-items: flex-end; flex-wrap: wrap; }
+    .ws-label { display: block; font-size: .8rem; color: var(--ink-3); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
+    #ws-case { padding: 9px 12px; font: inherit; border: 1.5px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); min-width: 260px; }
+    .ws-patient { font-weight: 600; }
+    .ws-state { margin-left: auto; }
+    .ws { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--surface); margin-top: 16px; min-height: 420px; }
+    .ws-pane { padding: 16px 20px; }
+    .ws-pane + .ws-pane { border-left: 1px solid var(--line); }
+    .ws-h { font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); font-weight: 600; margin-bottom: 10px; }
+    .ws-hint { text-transform: none; letter-spacing: 0; font-weight: 400; margin-left: 8px; }
+    .ws-notes { margin: 0; white-space: pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .95rem; line-height: 1.7; }
+    .ws-notes mark { background: transparent; color: inherit; border-radius: 3px; }
+    .ws-notes mark.on { background: var(--accent-soft); box-shadow: 0 2px 0 var(--accent); }
+    .ws-report h2 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); margin: 18px 0 6px; }
+    .ws-report h2:first-child { margin-top: 0; }
+    .ws-report p, .ws-report li { margin: 0 0 4px; }
+    .ws-report ul { padding-left: 1.2em; margin: 0; }
+    .ws-report .src { cursor: pointer; border-bottom: 1px dotted var(--ink-3); }
+    .ws-report .src:hover, .ws-report .src.on { background: var(--accent-soft); border-bottom-color: var(--accent); }
+    .ws-report .flag { color: var(--warn); font-weight: 600; }
+    .ws-report .flag.resolved { color: var(--ok); }
+    .ws-report .own { color: var(--ink-3); font-style: italic; }
+    .ws-report table { border-collapse: collapse; width: 100%; font-size: .92rem; margin-top: 6px; }
+    .ws-report th, .ws-report td { border: 1px solid var(--line); padding: 5px 8px; text-align: left; }
+    .ws-flags { margin-top: 20px; }
+    .ws-flaglist { list-style: none; padding: 0; margin: 0 0 14px; display: grid; gap: 8px; }
+    .ws-flaglist li { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .ws-flaglist .f-block { color: var(--danger); font-weight: 600; }
+    .ws-flaglist .f-miss { color: var(--warn); font-weight: 600; }
+    .ws-flaglist .f-warn { color: var(--ink-2); }
+    .ws-flaglist input { padding: 6px 8px; font: inherit; border: 1.5px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--ink); }
+    .ws-flaglist button { font: inherit; font-size: .85rem; padding: 4px 10px; border-radius: 6px; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink-2); cursor: pointer; }
+    .ws-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    kbd { font: inherit; font-size: .75rem; opacity: .7; margin-left: 6px; }
+    .ws-approved .badge.draft { display: none; }
+    @media (max-width: 820px) { .ws { grid-template-columns: 1fr; } .ws-pane + .ws-pane { border-left: 0; border-top: 1px solid var(--line); } }
+    @media print { .site-header, .site-footer, .ws-top, .notice, .ws-pane:first-child, .ws-flags, .eyebrow { display: none !important; } .ws { border: 0; } }
+  </style>
+
+  <script>
+    import { ClinicalRecord, PatientHeader, type ClinicalRecord as Rec } from 'aiveterinary-app/src/schema.ts';
+    import { normalizeNotes } from 'aiveterinary-app/src/normalize.ts';
+    import { validateAll, requiredMissing, type Finding } from 'aiveterinary-app/src/validators.ts';
+    import { renderConsultReport } from 'aiveterinary-app/src/render.ts';
+    import c1 from 'aiveterinary-app/eval/cases/001-luna-vomiting.json';
+    import c2 from 'aiveterinary-app/eval/cases/002-milo-otitis-de.json';
+    import c3 from 'aiveterinary-app/eval/cases/003-gatto-inappetenza-it.json';
+    import c4 from 'aiveterinary-app/eval/cases/004-adversarial-pregnant-owner.json';
+
+    type Case = { id: string; language: 'en' | 'de' | 'it'; header: any; notes: string; fixture_record: any };
+    const cases = [c1, c2, c3, c4] as Case[];
+    const labels: Record<string, string> = { '001-luna-vomiting': 'Luna, dog, vomiting (EN)', '002-milo-otitis-de': 'Milo, Hund, Otitis (DE)', '003-gatto-inappetenza-it': 'Romeo, gatto, inappetenza (IT)', '004-adversarial-pregnant-owner': 'Bruno, dog, annual check — tricky notes (EN)' };
+    const $ = (s: string) => document.querySelector(s) as HTMLElement;
+
+    let cur: { notes: string; header: any; record: Rec; lang: 'en' | 'de' | 'it'; resolved: Record<string, string>; approved: boolean };
+
+    const sel = $('#ws-case') as HTMLSelectElement;
+    for (const c of cases) { const o = document.createElement('option'); o.value = c.id; o.textContent = labels[c.id] ?? c.id; sel.appendChild(o); }
+    sel.addEventListener('change', () => load(sel.value));
+
+    function load(id: string) {
+      const c = cases.find((x) => x.id === id)!;
+      cur = { notes: normalizeNotes(c.notes), header: PatientHeader.parse(c.header), record: ClinicalRecord.parse(c.fixture_record), lang: c.language, resolved: {}, approved: false };
+      const h = cur.header;
+      $('#ws-patient').textContent = [h.name, h.species, h.breed, h.sex, h.age && `${h.age.value} ${h.age.unit}${h.age.value === 1 ? '' : 's'}`, h.weight_kg && `${h.weight_kg} kg`].filter(Boolean).join(' · ');
+      $('#ws-lang').textContent = { en: 'English', de: 'Deutsch', it: 'Italiano' }[cur.lang];
+      document.body.classList.remove('ws-approved');
+      $('#ws-state').innerHTML = '<span class="badge draft">● DRAFT</span>';
+      $('#ws-status').textContent = '';
+      render();
+    }
+
+    // Collect every span-bearing item so report text can link back to the notes.
+    function spanItems(r: Rec): { text: string; spans: [number, number][] }[] {
+      const out: { text: string; spans: [number, number][] }[] = [];
+      const push = (text: string | null | undefined, spans?: [number, number][]) => { if (text && spans?.length) out.push({ text, spans }); };
+      push(r.presenting_complaint?.text, r.presenting_complaint?.source_spans);
+      r.history.forEach((h) => push(h.value, h.source_spans));
+      for (const k of ['temperature', 'heart_rate', 'respiratory_rate', 'weight'] as const) { const q = r.examination.vitals[k]; if (q) push(String(q.value), q.source_spans); }
+      r.examination.findings.forEach((f) => push(f.text, f.source_spans));
+      r.diagnostics.forEach((d) => { push(d.test, d.source_spans); push(d.result, d.source_spans); });
+      push(r.assessment.text, r.assessment.source_spans);
+      r.treatments.forEach((t) => push(t.text, t.source_spans));
+      r.medications.forEach((m) => { push(m.drug, m.source_spans); push(m.class_as_written, m.source_spans); push(m.duration, m.source_spans); push(m.frequency, m.source_spans); });
+      push(r.plan.follow_up?.text, r.plan.follow_up?.source_spans);
+      r.plan.instructions.forEach((i) => push(i.text, i.source_spans));
+      return out;
+    }
+
+    function render() {
+      const { notes, header, record, lang } = cur;
+      // notes with one <mark> per character run, so any span can be lit
+      const notesEl = $('#ws-notes'); notesEl.innerHTML = '';
+      const frag = document.createDocumentFragment();
+      [...notes].forEach((ch, i) => { const m = document.createElement('mark'); m.textContent = ch; m.dataset.i = String(i); frag.appendChild(m); });
+      notesEl.appendChild(frag);
+
+      // report: markdown from the renderer → minimal HTML, then wrap sourced phrases
+      const md = renderConsultReport(record, header, lang, { approved: cur.approved });
+      let html = md.split('\n').map((line) => {
+        if (line.startsWith('# ')) return '';
+        if (line.startsWith('_')) return '';
+        if (line.startsWith('### ')) return `<h2>${esc(line.slice(4))}</h2>`;
+        if (line.startsWith('## ')) return `<h2>${esc(line.slice(3))}</h2>`;
+        if (line.startsWith('|')) return line;
+        if (line.startsWith('- ')) return `<li>${esc(line.slice(2))}</li>`;
+        if (!line.trim()) return '';
+        return `<p>${esc(line)}</p>`;
+      }).join('\n');
+      html = html.replace(/((?:^\|.*\n?)+)/gm, (t) => table(t));
+      html = html.replace(/(<li>[\s\S]*?<\/li>\n?)+/g, (t) => `<ul>${t}</ul>`);
+      html = html.replace(/▲ ([^<|]+)/g, (_m, t) => `<span class="flag">▲ ${t}</span>`);
+      html = html.replace(/(Owner reports|Laut Besitzer|Il proprietario riferisce):/g, '<span class="own">$1:</span>');
+      for (const it of spanItems(record)) {
+        const e = esc(it.text);
+        html = html.replace(new RegExp(`(?<![\\w-])${escRe(e)}(?![\\w-])`), `<span class="src" data-spans='${JSON.stringify(it.spans)}'>${e}</span>`);
+      }
+      $('#ws-report').innerHTML = html;
+      for (const s of document.querySelectorAll<HTMLElement>('.ws-report .src')) {
+        s.addEventListener('mouseenter', () => light(JSON.parse(s.dataset.spans!), true));
+        s.addEventListener('mouseleave', () => light(JSON.parse(s.dataset.spans!), false));
+        s.addEventListener('click', () => { light(JSON.parse(s.dataset.spans!), true); setTimeout(() => light(JSON.parse(s.dataset.spans!), false), 1500); });
+      }
+      renderFlags();
+    }
+
+    function light(spans: [number, number][], on: boolean) {
+      for (const [a, b] of spans) for (let i = a; i < b; i++) document.querySelector(`#ws-notes mark[data-i="${i}"]`)?.classList.toggle('on', on);
+    }
+
+    function renderFlags() {
+      const { notes, header, record } = cur;
+      const findings: Finding[] = validateAll(record, notes, header);
+      const blocks = findings.filter((f) => f.severity === 'block');
+      const warns = findings.filter((f) => f.severity === 'warn');
+      const missing = requiredMissing(record, 'consult_report');
+      const list = $('#ws-flaglist'); list.innerHTML = '';
+      const li = (html: string) => { const el = document.createElement('li'); el.innerHTML = html; list.appendChild(el); return el; };
+      for (const b of blocks) li(`<span class="f-block">Blocked</span> ${esc(b.field)}: ${esc(b.message)}`);
+      for (const w of warns) li(`<span class="f-warn">Check</span> ${esc(w.field)}: ${esc(w.message)}`);
+      for (const m of missing) {
+        const done = cur.resolved[m];
+        const el = li(`<span class="f-miss">${done ? '✓' : '▲'} Missing</span> <code>${esc(m)}</code> ${done ? `<em>${esc(done)}</em>` : ''}`);
+        if (!done) {
+          const input = document.createElement('input'); input.placeholder = 'type the value…'; input.setAttribute('aria-label', `Value for ${m}`);
+          const add = document.createElement('button'); add.textContent = 'Add'; add.type = 'button';
+          const nr = document.createElement('button'); nr.textContent = 'Not recorded'; nr.type = 'button';
+          add.addEventListener('click', () => { if (input.value.trim()) { cur.resolved[m] = input.value.trim(); renderFlags(); } });
+          input.addEventListener('keydown', (e) => { if (e.key === 'Enter') add.click(); });
+          nr.addEventListener('click', () => { cur.resolved[m] = 'Not recorded'; renderFlags(); });
+          el.append(input, add, nr);
+        }
+      }
+      for (const u of record.uncertain) li(`<span class="f-warn">Set aside</span> “${esc(u.original_text)}” — ${esc(u.reason)}`);
+      if (!blocks.length && !warns.length && !missing.length && !record.uncertain.length) li('<span style="color:var(--ok);font-weight:600">✓ Nothing to resolve.</span> Every sentence has a source in your notes.');
+      const unresolved = missing.filter((m) => !cur.resolved[m]).length;
+      ($('#ws-approve') as HTMLButtonElement).disabled = cur.approved || blocks.length > 0 || unresolved > 0;
+      $('#ws-status').textContent = cur.approved ? 'Approved. This is a preview, nothing was stored.' : blocks.length ? `${blocks.length} blocking item(s): the record contains something that is not in the notes.` : unresolved ? `${unresolved} missing item(s) to add or mark as not recorded.` : 'Ready to approve.';
+    }
+
+    function approve() {
+      if (($('#ws-approve') as HTMLButtonElement).disabled) return;
+      cur.approved = true; document.body.classList.add('ws-approved');
+      $('#ws-state').innerHTML = `<span class="badge reviewed">✓ APPROVED · ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>`;
+      render();
+    }
+    function copyOut() {
+      const txt = renderConsultReport(cur.record, cur.header, cur.lang, { approved: cur.approved })
+        .replace(/^#+ /gm, '').replace(/^_|_$/gm, '').replace(/\|/g, ' ').replace(/^-{3,}.*$/gm, '').replace(/\n{3,}/g, '\n\n').toUpperCase().split('\n').map((l, i, a) => l).join('\n');
+      navigator.clipboard?.writeText(txt).then(() => { $('#ws-status').textContent = 'Copied as plain text.'; }, () => { $('#ws-status').textContent = 'Copy failed; select the report and copy manually.'; });
+    }
+    $('#ws-approve').addEventListener('click', approve);
+    $('#ws-copy').addEventListener('click', copyOut);
+    $('#ws-print').addEventListener('click', () => window.print());
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.shiftKey && e.key === 'Enter') { e.preventDefault(); approve(); }
+      if (e.ctrlKey && e.shiftKey && (e.key === 'C' || e.key === 'c')) { e.preventDefault(); copyOut(); }
+    });
+
+    const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
+    const escRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    function table(block: string) {
+      const rows = block.trim().split('\n').filter((r) => !/^\|\s*-/.test(r)).map((r) => r.slice(1, -1).split('|').map((c) => c.trim()));
+      const [head, ...body] = rows;
+      return `<table><thead><tr>${head.map((h) => `<th>${h}</th>`).join('')}</tr></thead><tbody>${body.map((r) => `<tr>${r.map((c) => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+    }
+
+    load(cases[0].id);
+  </script>
+</Base>

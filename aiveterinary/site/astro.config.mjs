@@ -6,4 +6,5 @@ export default defineConfig({
   trailingSlash: 'never',
   build: { format: 'file' },
   integrations: [sitemap()],
+  vite: { server: { fs: { allow: ['..'] } }, optimizeDeps: { exclude: ['aiveterinary-app'] } },
 });

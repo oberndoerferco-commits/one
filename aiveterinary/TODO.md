@@ -19,7 +19,7 @@ an account or a signature. Everything here costs €0 unless marked.
 - [x] 10 more animal articles (drafts, awaiting vet review)
 - [x] Vet tool core: clinical record schema, validators (nothing you didn't write), synthetic cases, offline test runner
 - [x] Vet tool: extraction prompt + model adapter + demo on synthetic cases
-- [ ] Vet tool: one-screen browser workspace prototype
+- [x] Vet tool: one-screen browser workspace prototype (preview at /vets/workspace, synthetic cases)
 
 ## Next (me)
 
