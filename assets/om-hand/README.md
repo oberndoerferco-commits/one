@@ -1,7 +1,6 @@
 # OM — the hand-drawn mark, vectorised
 
-Your iPad drawing, traced and tidied. The letterforms are yours; what changed is
-that everything is now regular.
+Your drawing, traced. All three layers, as drawn.
 
 ![preview](preview.png)
 
@@ -9,46 +8,42 @@ that everything is now regular.
 | --- | --- |
 | `om-colour.pdf` / `.svg` | Full artwork — cyan hatch, cream keyline, black letters |
 | `om-black.pdf` / `.svg` | One-colour: the letterforms, solid black |
-| `om-black-shadow.pdf` / `.svg` | One-colour with the hatch shadow, also black |
+| `om-black-shadow.pdf` / `.svg` | One-colour with the hatch, also black |
 | `source-drawing.jpg` | The drawing as supplied |
 
 ```sh
-python3 scripts/om_hand.py assets/om-hand/source-drawing.jpg assets/om-hand --size 480
+python3 scripts/om_artwork.py assets/om-hand/source-drawing.jpg assets/om-hand --size 480
 ```
 
-## What was done
+Colours sampled from the drawing: cyan `#6cd7e1`, cream `#f4c88b`.
 
-**The letterforms are traced from your drawing** and rebuilt on structural nodes
-— one curve per span between corners and extremes — so the finger-wobble comes
-out while the shapes stay yours. O is 17 straight segments and 22 curves; M is
-29 and 44.
+Layer separation is by colour, which is clean here: the three are far apart in
+RGB and separate with no overlap.
 
-**The M is symmetrical.** It is mirrored about its own axis, and the axis is
-solved for rather than assumed: the centroid was 0.2 px off, which is enough to
-ghost every edge if you average without checking. Residual between the halves
-after alignment is 0.003.
+## The one change: the M is symmetrical
 
-**The keyline and the hatch are rebuilt, not traced.** Both were measured off the
-drawing and then regenerated geometrically, so they are even:
+That is the only thing altered. The M is mirrored about its own axis, and the
+axis is solved for rather than assumed — the centroid was 0.2 px off, which is
+enough to ghost every edge if you average without checking.
 
-| | measured in the drawing | rebuilt as |
-| --- | --- | --- |
-| Keyline | 1–8 px outside the black, median 5 | a constant band, 0.0115 cap |
-| Shadow offset | dx −80, dy +67 px (down-left) | −0.115, −0.096 cap |
-| Hatch angle | 135° in image space | 45°, exactly |
-| Hatch pitch | 21 px | 0.0301 cap, constant |
-| Hatch stroke | 16 px, duty 0.79 | 0.0215 cap |
+Black and cream are mirrored **together**, so the keyline keeps hugging the
+letter. The cyan is left alone: mirroring a 45° hatch folds it into a chevron.
 
-## One thing I changed on purpose
+Measured against the drawing, the traced black layer registers at **IoU 0.961**.
 
-In the drawing the hatch is made of **short separate dashes**; here it is
-**continuous strokes**, because that is what "make everything fit together"
-asks for and it holds up when the mark is scaled down. If you want the dashed
-texture kept, that is a change to `hatch()` and I can put it back.
+## What an earlier version of this got wrong
 
-## The O's open tail is deliberate
+It traced the letterforms but **rebuilt** the keyline and the hatch from
+measurements, which was not asked for. Worse, it modelled the hatch as a drop
+shadow — the letters translated by a fitted offset — when the drawing's hatch is
+a **halo that follows the letter all the way round**. The result threw a blob
+down-left and left the top-right bare, which changed the design completely.
 
-The O has no enclosed counter — the ring's upper right splits into a pointed
-wedge and the counter escapes through the gap. The trace keeps it as the single
-open contour it is, since the cream keyline in your drawing runs round both
-prongs, which is how you can tell it was meant.
+The fitted offset came from a correlation that looked convincing: a halo
+correlates well enough with a translated copy to produce a confident number. The
+check that would have caught it is the one now in this file — render both at
+matched scale and look. That took the black layer from IoU 0.924 to 0.961 and
+fixed the shadow entirely.
+
+`scripts/om_hand.py` keeps only the layer separation and the file writers; the
+rebuild code has been deleted so it cannot be run by accident.
