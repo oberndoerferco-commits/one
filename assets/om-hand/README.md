@@ -23,10 +23,36 @@ RGB and separate with no overlap.
 ## How the one-colour version keeps its gap
 
 In the black version the halo is the same hatch, painted black, and the keyline
-is simply dropped — its area stays white, which is what separates the letters
-from the halo. That works because **no hatch stroke touches a letter anywhere in
-the drawing** (0 px of contact, measured), so the gap is already there in the
-artwork and does not have to be manufactured.
+is dropped. An earlier version stopped there and let the keyline's own area stay
+white. That was wrong, and it showed up as seven marked defects:
+
+**The keyline's footprint is hand-drawn, so leaving it white leaves a ragged
+white channel.** At its narrowest the hatch came within 8 source px of a letter,
+so in places the channel read as a crack rather than an outline, and because
+every stroke ended wherever the pen had left it, the channel's edge was stepped.
+
+**Worse, the keyline had bitten pieces out of the letters.** The three layers are
+separated by colour and are therefore disjoint: wherever the cream strayed over
+the edge of a letter or a hatch stroke, those pixels were classed cream and the
+layer underneath lost them. In the colour artwork that is invisible, because the
+cream sits in the bite and fills it. With the cream gone, every bite became a
+white nick chewed out of the letterform.
+
+Both are now fixed:
+
+- `repair()` gives the bites back — a concavity no deeper than the keyline is
+  wide **and** actually covered by cream ink, which is found by closing at that
+  radius and intersecting with the cream, so no ink is invented anywhere the
+  drawing left white. It returned 150 px to the letters and 15 px to the hatch.
+- `clear_of()` holds the one-colour hatch a constant 14 source px off the
+  letters, so the white channel is even and does the keyline's job instead of
+  inheriting its raggedness. The gap went from a 8 px minimum to **33 px at
+  300 dpi, 5th percentile 49 px**. Cutting a diagonal stroke against a curved
+  boundary orphans the far corner as a thin wedge, so anything left under a
+  quarter of a median stroke goes too — 20 such splinters were dropped.
+
+The colour artwork keeps the hatch exactly as drawn, since there the cream fills
+the channel and there is nothing to even out.
 
 `om-black-letters.pdf` drops the halo as well. At ring scale the hatch is far
 too fine to survive being struck, so that is the one to send a jeweller.
