@@ -1,6 +1,6 @@
-# OM — the hand-drawn mark, vectorised
+# OM — the hand-drawn mark, redrawn clean
 
-Your drawing, traced. All three layers, as drawn.
+Your iPad drawing is the design. This is that design drawn properly.
 
 ![preview](preview.png)
 
@@ -12,116 +12,92 @@ Your drawing, traced. All three layers, as drawn.
 | `source-drawing.jpg` | The drawing as supplied |
 
 ```sh
-python3 scripts/om_artwork.py assets/om-hand/source-drawing.jpg assets/om-hand --size 480
+python3 scripts/om_clean.py assets/om-hand/source-drawing.jpg assets/om-hand
 ```
 
 Colours sampled from the drawing: cyan `#6cd7e1`, cream `#f4c88b`.
 
-Layer separation is by colour, which is clean here: the three are far apart in
-RGB and separate with no overlap.
+## Why this is not a trace
 
-## How the one-colour version keeps its gap
+Earlier versions traced the drawing as exactly as possible and were checked by
+how closely they matched it. That was the wrong target, and it guaranteed the
+faults: a pen edge wobbles, a hatch stroke stops wherever the hand lifted, and
+the keyline strays over an outline and takes a bite out of it. Reproducing all
+of that accurately still produces a rough sketch. Every defect marked on those
+versions was a faithfully reproduced feature of the drawing.
 
-In the black version the halo is the same hatch, painted black, and the keyline
-is dropped. An earlier version stopped there and let the keyline's own area stay
-white. That was wrong, and it showed up as seven marked defects:
+So nothing here is traced for its own sake. The drawing is **measured**, and the
+measurements are drawn clean.
 
-**The keyline's footprint is hand-drawn, so leaving it white leaves a ragged
-white channel.** At its narrowest the hatch came within 8 source px of a letter,
-so in places the channel read as a crack rather than an outline, and because
-every stroke ended wherever the pen had left it, the channel's edge was stepped.
+### The letters
 
-**Worse, the keyline had bitten pieces out of the letters.** The three layers are
-separated by colour and are therefore disjoint: wherever the cream strayed over
-the edge of a letter or a hatch stroke, those pixels were classed cream and the
-layer underneath lost them. In the colour artwork that is invisible, because the
-cream sits in the bite and fills it. With the cream gone, every bite became a
-white nick chewed out of the letterform.
+The outline is rebuilt on structural nodes only — corners, and the extremes in x
+and y — with **one cubic per span**, which cannot dent in the middle because it
+has no interior control of its own. That took the two letters from 299 traced
+segments to **108 nodes**, which is a type-design node count rather than a
+tracing one.
 
-Both are now fixed:
+The M is drawn as one half and reflected. Symmetrising the *mask* is not enough:
+rebuilding on structural nodes does not place those nodes symmetrically even when
+the shape is, so the M was symmetrical as pixels and not as curves. Drawing one
+half and mirroring it took the M from **self-IoU 0.9719 to 0.9992**. The seam
+nodes — the top notch and the centre vertex — are snapped onto the axis, where
+they belong.
 
-- `repair()` gives the bites back — a concavity no deeper than the keyline is
-  wide **and** actually covered by cream ink, which is found by closing at that
-  radius and intersecting with the cream, so no ink is invented anywhere the
-  drawing left white. It returned 150 px to the letters and 15 px to the hatch.
-- `clear_of()` holds the one-colour hatch a constant 14 source px off the
-  letters, so the white channel is even and does the keyline's job instead of
-  inheriting its raggedness. The gap went from a 8 px minimum to **33 px at
-  300 dpi, 5th percentile 49 px**. Cutting a diagonal stroke against a curved
-  boundary orphans the far corner as a thin wedge, so anything left under a
-  quarter of a median stroke goes too — 20 such splinters were dropped.
+The O is left unmirrored: its flourish is one-sided by design.
 
-The colour artwork keeps the hatch exactly as drawn, since there the cream fills
-the channel and there is nothing to even out.
+Neither letter's counter is an enclosed hole. The O's opens through the channel
+beside its flourish and the M's open at the bottom, so the two letters are two
+closed contours and no more.
 
-`om-black-letters.pdf` drops the halo as well. At ring scale the hatch is far
-too fine to survive being struck, so that is the one to send a jeweller.
+### The halo
 
-## The one change: the M is symmetrical
+Measured off the drawing's 136 strokes:
 
-That is the only thing altered. The M is mirrored about its own axis, and the
-axis is solved for rather than assumed — the centroid was 0.2 px off, which is
-enough to ghost every edge if you average without checking.
+| | drawing | drawn clean |
+| --- | --- | --- |
+| angle | 135.0° ± 2.65° | **135.00° ± 0.016°** |
+| width | 14.3–15.7 px (two methods) | **15.0 px ± 1.4%** |
+| pitch | 21.4 px between neighbours, 22.6 px by scan | **22.0 px** |
+| white gap | 5.7–7.1 px | **7.0 px** |
 
-Black and cream are mirrored **together**, so the keyline keeps hugging the
-letter. The cyan is left alone: mirroring a 45° hatch folds it into a chevron.
+The angle and the width are plainly meant to be constant, so they are made
+constant. At exactly 135° the strokes are the anti-diagonals `x + y = c`, so the
+hatch is generated as one true parallel family — even pitch everywhere, no
+accumulated drift — and clipped to the band the drawing's own strokes imply.
+Each stroke is a real stadium: a rectangle closed by two semicircular caps built
+from quarter-circle cubics.
 
-## Checked against the drawing
+Length is **not** regularised: it varies 1.4× across the deciles because the halo
+is deeper in some places than others, and that is the shape of the thing.
 
-Every layer rendered back out at 300 dpi, re-separated by the same colour rules
-and laid over the drawing, scaled so the black bounding boxes match:
+Three details that matter:
 
-| Layer | Stroke width | IoU | Median deviation | 90th pct |
-| --- | --- | --- | --- | --- |
-| black | 134 px | **0.971** | 0.0 px | 1.0 px |
-| cyan hatch | 22 px | **0.860** | 0.0 px | 1.0 px |
-| cream keyline | 13 px | **0.740** | 0.0 px | 1.0 px |
+- **The band is not eroded in all directions.** Doing that eats the places where
+  the halo is only one stroke deep — the O's upper left — and shortens every
+  stroke besides. A stroke only has to clear the letters along its own length,
+  and end just inside the halo's outer edge, which is a trim of one radius at
+  that end alone.
+- **The letters are cleared by construction**, not patched afterwards: the band
+  has the letters-plus-gap dilated out of it before any stroke is cut, so a
+  stroke cannot touch a letter. Measured clearance in the finished file: 24 px
+  minimum at 400 dpi.
+- **Orphans are dropped.** A stroke with no neighbour within 2.2 pitches is a
+  speck the band tapered down to, not part of the hatch, which reads as a run.
+  Five went.
 
-The three IoUs look very different and the deviations are identical, because
-IoU on a thin band is mostly a measure of how thin the band is: a 1 px edge
-placement on a 13 px keyline costs ~15% of its area and on a 134 px letter
-stroke costs ~1.5%. The deviation columns are the honest figure — **the median
-distance from any point on a traced edge to the drawing's own edge is 0 px, and
-the 90th percentile is 1 px**, at a scale where the mark is 4780 px wide. 1 px
-there is 0.02% of the width.
+### The keyline
 
-Two places deviate by more than 25 px. Both are at the M's right-hand terminal,
-which is where making the M symmetrical moves the edge off the hand-drawn
-original. That is the requested change, not a tracing error.
+An even ring: the letters grown by the 6 px the drawing's cream measures, traced
+and rebuilt the same way, painted under the letters so only the ring shows. In
+the one-colour version it is dropped and the hatch's constant 9 px standoff does
+its job, so there is no hand-drawn white channel to go ragged.
 
-Smoothness, measured as the turn angle between successive steps along an edge:
-the drawing's black outline turns a median of 6.1° per step, the trace 0.0° —
-straight runs come out straight. The 99th percentile is unchanged (26.6° vs
-25.8°), so the real corners survive: the wobble is removed and the structure is
-not.
+## Checked
 
-### The hatch is traced less smoothed than the letters
+At 400 dpi, with the mark 6926 px wide:
 
-The letters and keyline are traced at σ 1.2, the hatch at σ 0.7, which is the
-one genuine defect this check turned up. At σ 1.2 the blur closed the narrow
-white gaps where two hatch strokes nearly touch and **fused three strokes into
-one** — the largest connected stroke came out at 45767 px against the drawing's
-21011. At σ 0.7 the count is 125 strokes against the drawing's 124 and the
-largest is 21382, with the total hatch area unchanged. The lower σ also traces
-the hatch *smoother* (median turn 20.9° → 14.7°), because the fused strokes had
-sharp necks where they bridged.
-
-The letters are not traced at the lower σ: there it adds nodes without adding
-shape — the keyline goes from 622 to 850 segments chasing pen wobble.
-
-## What an earlier version of this got wrong
-
-It traced the letterforms but **rebuilt** the keyline and the hatch from
-measurements, which was not asked for. Worse, it modelled the hatch as a drop
-shadow — the letters translated by a fitted offset — when the drawing's hatch is
-a **halo that follows the letter all the way round**. The result threw a blob
-down-left and left the top-right bare, which changed the design completely.
-
-The fitted offset came from a correlation that looked convincing: a halo
-correlates well enough with a translated copy to produce a confident number. The
-check that would have caught it is the one now in this file — render both at
-matched scale and look. That took the black layer from IoU 0.924 to 0.961 and
-fixed the shadow entirely.
-
-`scripts/om_hand.py` keeps only the layer separation and the file writers; the
-rebuild code has been deleted so it cannot be run by accident.
+- hatch angle **135.00° ± 0.016°**, width **54.6 px ± 0.79** (± 1.4%)
+- 117 strokes, none closer than **24 px** to a letter
+- M mirror self-IoU **0.9992**
+- two letter contours, 108 nodes
