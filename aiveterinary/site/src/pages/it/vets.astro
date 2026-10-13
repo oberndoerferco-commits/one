@@ -1,0 +1,77 @@
+---
+import Base from '../../layouts/Base.astro';
+import Newsletter from '../../components/Newsletter.astro';
+---
+<Base title="Per i team veterinari" description="Un assistente AI per la documentazione pensato per la tastiera: digiti appunti grezzi, approvi la cartella finita, generi da essa le istruzioni per il proprietario e le lettere di riferimento." lang="it">
+  <section class="wrap hero">
+    <p class="eyebrow">Assistente per la documentazione · in sviluppo</p>
+    <h1>Tu visiti. Noi scriviamo.<br />Tu approvi.</h1>
+    <p class="lead">Dopo la visita si digitano poche righe grezze. Si riceve una cartella strutturata e professionale da rivedere. Niente sulla pagina che non sia stato scritto da Lei. Poi, dalla stessa cartella approvata, si generano le istruzioni per il proprietario, la lettera di riferimento e una traduzione, senza digitare nulla due volte.</p>
+    <p><a class="btn" href="#waitlist">Iscriviti alla lista per l'accesso anticipato</a> <a class="btn secondary" href="/vets/workspace" style="margin-left:8px">Prova l'anteprima</a></p>
+  </section>
+
+  <section class="wrap">
+    <h2>Come si presenta</h2>
+    <div class="mock" aria-label="Esempio: appunti a sinistra, referto generato a destra">
+      <div>
+        <div class="h">I Suoi appunti</div>
+<pre>Luna, Labrador, F, 6 a
+vomito 3x da ieri
+no diarrea
+appetito ridotto, beve ok
+T 39,1
+addome morbido, lieve dolore
+esami sangue + eco fatti
+fluidi + antiemetico
+ricontrollo 48h</pre>
+      </div>
+      <div>
+        <div class="h">Referto della visita · bozza</div>
+        <div class="sec">Motivo della visita</div>
+        <div>Vomito dal giorno precedente, circa tre episodi.</div>
+        <div class="sec">Anamnesi</div>
+        <div>Il proprietario riferisce appetito ridotto; beve normalmente. Nessuna diarrea.</div>
+        <div class="sec">Esame clinico</div>
+        <div>Temperatura 39,1 °C. Addome morbido, lieve dolorabilità alla palpazione.</div>
+        <div class="sec">Diagnostica</div>
+        <div>Eseguiti esami ematologici ed ecografia addominale. <span class="flag">▲ Mancante: risultati non registrati</span></div>
+        <div class="sec">Trattamento</div>
+        <div>Fluidoterapia. Somministrato antiemetico. <span class="flag">▲ Mancante: farmaco, dose e via di somministrazione non registrati</span></div>
+        <div class="sec">Follow-up</div>
+        <div>Ricontrollo tra 48 ore.</div>
+      </div>
+    </div>
+    <p>Le segnalazioni sono il punto centrale. L'assistente non riempie i vuoti con testo plausibile. Mostra cosa manca; si aggiunge o si contrassegna come "non registrato", e si approva con un solo tasto.</p>
+  </section>
+
+  <section class="wrap">
+    <h2>I nostri impegni</h2>
+    <p>Abbiamo studiato più di trenta strumenti AI per la stesura di appunti e ciò che i veterinari dicono di loro. Queste sono le risposte.</p>
+    <ol class="commit">
+      <li><b>Niente sulla pagina che non abbia scritto Lei.</b> Nessun farmaco, dose, via di somministrazione, numero o diagnosi compare se non è nei Suoi appunti.</li>
+      <li><b>Ogni frase mostra la sua fonte.</b> Cliccando una riga del referto si vede l'appunto da cui proviene.</li>
+      <li><b>Le informazioni mancanti vengono segnalate, mai inventate.</b> Prima di firmare, si vede cosa non c'è.</li>
+      <li><b>Le parole del proprietario restano le parole del proprietario.</b> "Il proprietario riferisce…" non viene mai trasformato in un Suo rilievo.</li>
+      <li><b>I dati del paziente sono bloccati.</b> Specie, sesso e stato riproduttivo provengono dalla scheda del paziente, mai dal testo.</li>
+      <li><b>Una cartella approvata, ogni documento.</b> Dimissione, istruzioni per il proprietario, lettera di riferimento e traduzioni derivano solo da ciò che ha firmato.</li>
+      <li><b>Le Sue modifiche non vanno mai perse.</b> Rigenerare una sezione mostra le differenze e conserva il Suo testo.</li>
+      <li><b>Nessuna registrazione audio.</b> Niente consensi da raccogliere, niente da archiviare, nessun problema di cani che abbaiano. Funziona con la tastiera.</li>
+      <li><b>Tedesco, italiano e inglese nativi.</b> Documenti per il proprietario nella lingua del proprietario, con i dettagli dei farmaci copiati esattamente.</li>
+      <li><b>I Suoi dati restano nell'UE e non vengono mai usati per addestrare l'AI.</b> In ogni piano.</li>
+      <li><b>Disdetta in qualsiasi mese.</b> Prezzi chiari per veterinario; infermieri e reception sono gratuiti.</li>
+      <li><b>Una pagina pubblica sulla qualità.</b> Pubblichiamo come viene testato l'assistente, su tipi di documento reali, con i numeri.</li>
+    </ol>
+  </section>
+
+  <section class="wrap">
+    <h2>Funziona accanto al Suo gestionale</h2>
+    <p>Gira nel browser accanto a qualsiasi sistema usi la Sua clinica. I documenti approvati si copiano in modo pulito nei campi della cartella, si esportano in PDF su carta intestata o si stampano. Le integrazioni dirette arriveranno solo attraverso programmi ufficiali dei fornitori, mai tramite soluzioni improvvisate.</p>
+  </section>
+
+  <section class="wrap narrow" id="waitlist" style="margin-top:56px">
+    <h2>Accesso anticipato</h2>
+    <p>Cerchiamo un piccolo numero di cliniche in Germania, Austria, Svizzera e Italia con cui fare i test. Se digita personalmente i Suoi appunti e vorrebbe che la documentazione occupasse meno delle Sue serate, lasci la Sua email e selezioni "professionista veterinario".</p>
+    <Newsletter compact lang="it" />
+    <p style="margin-top:16px"><a href="/vets/research">Leggi la nostra ricerca sugli strumenti esistenti →</a></p>
+  </section>
+</Base>

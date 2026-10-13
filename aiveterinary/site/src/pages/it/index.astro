@@ -1,0 +1,49 @@
+---
+import Base from '../../layouts/Base.astro';
+import Newsletter from '../../components/Newsletter.astro';
+---
+<Base title="AI Veterinary" description="Informazioni chiare sulla salute degli animali per i proprietari, riviste da veterinari, e un assistente AI per la documentazione che restituisce tempo ai veterinari." lang="it">
+  <section class="hero">
+    <div class="wrap">
+      <h1>Meno burocrazia.<br />Più cura degli animali.</h1>
+      <p class="lead">Un luogo per chi ha a cuore gli animali: informazioni sulla salute in linguaggio semplice, riviste da veterinari, e strumenti che permettono ai veterinari di passare meno tempo al computer e più tempo con l'animale.</p>
+      <div class="two">
+        <div class="card">
+          <div class="eyebrow">Per i proprietari di animali</div>
+          <h2>Capire cosa sta succedendo</h2>
+          <p>Cosa può significare un sintomo, quando può aspettare e quando no, come somministrare un farmaco, come viaggiare con il tuo animale. Scritto in modo semplice, rivisto da veterinari, mai un sostituto del veterinario.</p>
+          <a class="btn cta" href="/animals">Sfoglia le informazioni sugli animali</a>
+          <a class="btn cta secondary" href="/passport" style="margin-left:8px">Passaporto digitale</a>
+        </div>
+        <div class="card">
+          <div class="eyebrow">Per i team veterinari</div>
+          <h2>Scrivi cinque righe. Approva il referto.</h2>
+          <p>Un assistente per la documentazione pensato per la tastiera: appunti grezzi in entrata, cartella strutturata in uscita, niente sulla pagina che non abbia scritto Lei. Rivede, approva, ha finito.</p>
+          <a class="btn cta secondary" href="/it/vets">Scopri come funziona</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <h2>Come lavoriamo</h2>
+    <div class="grid3">
+      <div class="tile">
+        <div class="t">I veterinari firmano ciò che pubblichiamo</div>
+        <div class="d">Ogni articolo sulla salute indica il veterinario che lo ha rivisto e quando. Le bozze non ancora riviste sono contrassegnate come bozze.</div>
+      </div>
+      <div class="tile">
+        <div class="t">L'AI prepara. Le persone decidono.</div>
+        <div class="d">La stessa regola per i nostri articoli e per i nostri strumenti: il software prepara, un professionista controlla e approva.</div>
+      </div>
+      <div class="tile">
+        <div class="t">Onesti sui limiti</div>
+        <div class="d">Nessuna diagnosi via internet, nessun dosaggio, nessun fatto inventato. Se serve un veterinario, lo diciamo.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap narrow" style="margin-top:56px">
+    <Newsletter lang="it" />
+  </section>
+</Base>

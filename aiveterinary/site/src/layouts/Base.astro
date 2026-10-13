@@ -7,12 +7,100 @@ interface Props {
 }
 const { title, description, lang = 'en' } = Astro.props;
 const path = Astro.url.pathname.replace(/\.html$/, '');
-const nav = [
-  { href: '/animals', label: 'Animals' },
-  { href: '/passport', label: 'Pet passport' },
-  { href: '/vets', label: 'For vets' },
-  { href: '/about', label: 'About' },
-  { href: '/newsletter', label: 'Newsletter' },
+
+type Lang = 'en' | 'it' | 'de';
+const L: Lang = lang === 'it' || lang === 'de' ? lang : 'en';
+
+const strings = {
+  en: {
+    home: '/',
+    nav: [
+      { href: '/animals', label: 'Animals' },
+      { href: '/passport', label: 'Pet passport' },
+      { href: '/vets', label: 'For vets' },
+      { href: '/about', label: 'About' },
+      { href: '/newsletter', label: 'Newsletter' },
+    ],
+    tagline: 'Less paperwork. More animal care.',
+    disclaimer: 'Information on this site is general and reviewed by veterinarians where marked. It does not replace an examination by a vet. In an emergency, contact a veterinary clinic immediately.',
+    footer1: [
+      { href: '/animals', label: 'Animal information' },
+      { href: '/passport', label: 'Digital pet passport' },
+      { href: '/vets', label: 'For veterinary teams' },
+      { href: '/vets/research', label: 'Research' },
+    ],
+    footer2: [
+      { href: '/about', label: 'About' },
+      { href: '/newsletter', label: 'Newsletter' },
+      { href: '/privacy', label: 'Privacy' },
+      { href: '/terms', label: 'Terms' },
+    ],
+    brandAria: 'AI Veterinary home',
+    navAria: 'Main',
+    langAria: 'Language',
+  },
+  it: {
+    home: '/it',
+    nav: [
+      { href: '/animals', label: 'Animali' },
+      { href: '/passport', label: 'Passaporto' },
+      { href: '/it/vets', label: 'Per i veterinari' },
+      { href: '/it/about', label: 'Chi siamo' },
+      { href: '/newsletter', label: 'Newsletter' },
+    ],
+    tagline: 'Meno burocrazia. Più cura degli animali.',
+    disclaimer: 'Le informazioni su questo sito sono di carattere generale e, dove indicato, sono state riviste da veterinari. Non sostituiscono la visita di un veterinario. In caso di emergenza, contatta subito una clinica veterinaria.',
+    footer1: [
+      { href: '/animals', label: 'Informazioni sugli animali' },
+      { href: '/passport', label: 'Passaporto digitale' },
+      { href: '/it/vets', label: 'Per i team veterinari' },
+      { href: '/vets/research', label: 'Ricerca' },
+    ],
+    footer2: [
+      { href: '/it/about', label: 'Chi siamo' },
+      { href: '/newsletter', label: 'Newsletter' },
+      { href: '/privacy', label: 'Privacy' },
+      { href: '/terms', label: 'Termini' },
+    ],
+    brandAria: 'AI Veterinary, pagina iniziale',
+    navAria: 'Principale',
+    langAria: 'Lingua',
+  },
+  de: {
+    home: '/de',
+    nav: [
+      { href: '/animals', label: 'Tiere' },
+      { href: '/passport', label: 'Heimtierausweis' },
+      { href: '/de/vets', label: 'Für Tierärzte' },
+      { href: '/de/about', label: 'Über uns' },
+      { href: '/newsletter', label: 'Newsletter' },
+    ],
+    tagline: 'Weniger Papierkram. Mehr Zeit für Tiere.',
+    disclaimer: 'Die Informationen auf dieser Website sind allgemeiner Art und, wo gekennzeichnet, von Tierärztinnen und Tierärzten geprüft. Sie ersetzen keine tierärztliche Untersuchung. Wenden Sie sich im Notfall sofort an eine Tierarztpraxis oder Tierklinik.',
+    footer1: [
+      { href: '/animals', label: 'Tierinformationen' },
+      { href: '/passport', label: 'Digitaler Heimtierausweis' },
+      { href: '/de/vets', label: 'Für Praxisteams' },
+      { href: '/vets/research', label: 'Recherche' },
+    ],
+    footer2: [
+      { href: '/de/about', label: 'Über uns' },
+      { href: '/newsletter', label: 'Newsletter' },
+      { href: '/privacy', label: 'Datenschutz' },
+      { href: '/terms', label: 'Nutzungsbedingungen' },
+    ],
+    brandAria: 'AI Veterinary Startseite',
+    navAria: 'Hauptnavigation',
+    langAria: 'Sprache',
+  },
+} as const;
+
+const t = strings[L];
+const nav = t.nav;
+const languages: { code: Lang; href: string; label: string }[] = [
+  { code: 'en', href: '/', label: 'EN' },
+  { code: 'it', href: '/it', label: 'IT' },
+  { code: 'de', href: '/de', label: 'DE' },
 ];
 const current = (href: string) => path === href || path.startsWith(href + '/');
 ---
@@ -34,14 +122,22 @@ const current = (href: string) => path === href || path.startsWith(href + '/');
   <body>
     <header class="site-header">
       <div class="wrap">
-        <a class="brand" href="/" aria-label="AI Veterinary home">
+        <a class="brand" href={t.home} aria-label={t.brandAria}>
           <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="var(--accent)"/><path d="M11 12.5a2.2 2.2 0 1 1 0 .1zm10 0a2.2 2.2 0 1 1 0 .1zM8.5 17a2 2 0 1 1 0 .1zm15 0a2 2 0 1 1 0 .1zM16 15.5c2.9 0 5.5 2.6 5.5 5.2 0 1.7-1.2 2.8-2.7 2.8-1.1 0-1.9-.6-2.8-.6s-1.7.6-2.8.6c-1.5 0-2.7-1.1-2.7-2.8 0-2.6 2.6-5.2 5.5-5.2z" fill="var(--accent-ink)"/></svg>
           AI Veterinary
         </a>
-        <nav class="nav" aria-label="Main">
+        <nav class="nav" aria-label={t.navAria}>
           {nav.map((n) => (
             <a href={n.href} aria-current={current(n.href) ? 'page' : undefined}>{n.label}</a>
           ))}
+          <span class="lang-switch" aria-label={t.langAria} style="display:inline-flex;gap:6px;align-items:center;font-size:.85rem;color:var(--ink-2)">
+            {languages.map((l, i) => (
+              <>
+                {i > 0 && <span aria-hidden="true">·</span>}
+                <a href={l.href} hreflang={l.code} lang={l.code} aria-current={L === l.code ? 'true' : undefined} style={L === l.code ? 'color:var(--ink);font-weight:600' : undefined}>{l.label}</a>
+              </>
+            ))}
+          </span>
         </nav>
       </div>
     </header>
@@ -54,20 +150,14 @@ const current = (href: string) => path === href || path.startsWith(href + '/');
       <div class="wrap">
         <div>
           <strong>AI Veterinary</strong><br />
-          Less paperwork. More animal care.<br />
-          <span style="font-size:.88rem">Information on this site is general and reviewed by veterinarians where marked. It does not replace an examination by a vet. In an emergency, contact a veterinary clinic immediately.</span>
+          {t.tagline}<br />
+          <span style="font-size:.88rem">{t.disclaimer}</span>
         </div>
         <ul>
-          <li><a href="/animals">Animal information</a></li>
-          <li><a href="/passport">Digital pet passport</a></li>
-          <li><a href="/vets">For veterinary teams</a></li>
-          <li><a href="/vets/research">Research</a></li>
+          {t.footer1.map((f) => <li><a href={f.href}>{f.label}</a></li>)}
         </ul>
         <ul>
-          <li><a href="/about">About</a></li>
-          <li><a href="/newsletter">Newsletter</a></li>
-          <li><a href="/privacy">Privacy</a></li>
-          <li><a href="/terms">Terms</a></li>
+          {t.footer2.map((f) => <li><a href={f.href}>{f.label}</a></li>)}
         </ul>
       </div>
     </footer>

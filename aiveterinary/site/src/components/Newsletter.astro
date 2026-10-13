@@ -1,20 +1,54 @@
 ---
-interface Props { compact?: boolean }
-const { compact = false } = Astro.props;
+interface Props { compact?: boolean; lang?: 'en' | 'it' | 'de' }
+const { compact = false, lang = 'en' } = Astro.props;
 // Form posts to a free newsletter service once one is connected (see site/README.md).
 // Until then the action is a placeholder; the form is inert but the layout is final.
 const action = import.meta.env.PUBLIC_NEWSLETTER_ACTION ?? '#newsletter';
+
+const strings = {
+  en: {
+    heading: 'Stay in touch',
+    text: 'One short email when something worth reading is published. No spam, easy to leave.',
+    group: 'I am',
+    owner: 'An animal owner',
+    vet: 'A veterinary professional',
+    emailLabel: 'Email address',
+    placeholder: 'you@example.com',
+    button: 'Subscribe',
+  },
+  it: {
+    heading: 'Restiamo in contatto',
+    text: 'Una breve email quando pubblichiamo qualcosa che vale la pena leggere. Niente spam, ci si disiscrive facilmente.',
+    group: 'Sono',
+    owner: 'Un proprietario di animali',
+    vet: 'Un professionista veterinario',
+    emailLabel: 'Indirizzo email',
+    placeholder: 'tu@esempio.it',
+    button: 'Iscriviti',
+  },
+  de: {
+    heading: 'In Kontakt bleiben',
+    text: 'Eine kurze E-Mail, wenn etwas Lesenswertes erscheint. Kein Spam, jederzeit abbestellbar.',
+    group: 'Ich bin',
+    owner: 'Tierhalterin / Tierhalter',
+    vet: 'Tierärztin / Tierarzt oder Praxisteam',
+    emailLabel: 'E-Mail-Adresse',
+    placeholder: 'sie@beispiel.de',
+    button: 'Abonnieren',
+  },
+} as const;
+const t = strings[lang] ?? strings.en;
 ---
 <form class="card" action={action} method="post" id="newsletter">
-  {!compact && <h2>Stay in touch</h2>}
-  <p>One short email when something worth reading is published. No spam, easy to leave.</p>
-  <div class="choice" role="group" aria-label="I am">
-    <label><input type="radio" name="audience" value="owner" checked /> An animal owner</label>
-    <label><input type="radio" name="audience" value="vet" /> A veterinary professional</label>
+  {!compact && <h2>{t.heading}</h2>}
+  <p>{t.text}</p>
+  <div class="choice" role="group" aria-label={t.group}>
+    <label><input type="radio" name="audience" value="owner" checked /> {t.owner}</label>
+    <label><input type="radio" name="audience" value="vet" /> {t.vet}</label>
   </div>
   <div class="form-row">
-    <label class="sr" for="nl-email">Email address</label>
-    <input id="nl-email" type="email" name="email" placeholder="you@example.com" required autocomplete="email" />
-    <button class="btn" type="submit">Subscribe</button>
+    <label class="sr" for="nl-email">{t.emailLabel}</label>
+    <input id="nl-email" type="email" name="email" placeholder={t.placeholder} required autocomplete="email" />
+    <button class="btn" type="submit">{t.button}</button>
   </div>
 </form>

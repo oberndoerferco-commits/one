@@ -1,0 +1,77 @@
+---
+import Base from '../../layouts/Base.astro';
+import Newsletter from '../../components/Newsletter.astro';
+---
+<Base title="Für Praxisteams" description="Ein KI-Dokumentationsassistent für die Tastatur: grobe Notizen tippen, den fertigen Befund freigeben, daraus Halteranweisungen und Überweisungsschreiben erzeugen." lang="de">
+  <section class="wrap hero">
+    <p class="eyebrow">Dokumentationsassistent · in Entwicklung</p>
+    <h1>Sie untersuchen. Wir schreiben.<br />Sie geben frei.</h1>
+    <p class="lead">Tippen Sie nach der Konsultation ein paar grobe Zeilen. Sie erhalten einen strukturierten, professionellen Befund zur Prüfung. Nichts auf der Seite, was Sie nicht geschrieben haben. Dann erstellen Sie aus demselben freigegebenen Befund die Halteranweisungen, das Überweisungsschreiben und eine Übersetzung, ohne etwas zweimal zu tippen.</p>
+    <p><a class="btn" href="#waitlist">Auf die Early-Access-Liste</a> <a class="btn secondary" href="/vets/workspace" style="margin-left:8px">Vorschau ausprobieren</a></p>
+  </section>
+
+  <section class="wrap">
+    <h2>So sieht es aus</h2>
+    <div class="mock" aria-label="Beispiel: Notizen links, erzeugter Bericht rechts">
+      <div>
+        <div class="h">Ihre Notizen</div>
+<pre>Luna, Labrador, w, 6 J
+Erbrechen 3x seit gestern
+kein Durchfall
+Appetit reduziert, trinkt ok
+T 39,1
+Abdomen weich, leicht schmerzhaft
+Blut + US gemacht
+Infusion + Antiemetikum
+Kontrolle 48h</pre>
+      </div>
+      <div>
+        <div class="h">Untersuchungsbericht · Entwurf</div>
+        <div class="sec">Vorstellungsgrund</div>
+        <div>Erbrechen seit dem Vortag, etwa drei Episoden.</div>
+        <div class="sec">Anamnese</div>
+        <div>Halter berichtet reduzierten Appetit; Trinkverhalten normal. Kein Durchfall.</div>
+        <div class="sec">Klinische Untersuchung</div>
+        <div>Temperatur 39,1 °C. Abdomen weich, leichte Schmerzhaftigkeit bei Palpation.</div>
+        <div class="sec">Diagnostik</div>
+        <div>Blutuntersuchung und Abdomen-Ultraschall durchgeführt. <span class="flag">▲ Fehlt: Befunde nicht erfasst</span></div>
+        <div class="sec">Therapie</div>
+        <div>Infusionstherapie. Antiemetikum verabreicht. <span class="flag">▲ Fehlt: Wirkstoff, Dosis und Applikationsweg nicht erfasst</span></div>
+        <div class="sec">Weiteres Vorgehen</div>
+        <div>Kontrolle in 48 Stunden.</div>
+      </div>
+    </div>
+    <p>Die Markierungen sind der Kern. Der Assistent füllt Lücken nicht mit plausiblem Text. Er zeigt Ihnen, was fehlt; Sie ergänzen es oder markieren es als „nicht erfasst“, und geben mit einem Tastendruck frei.</p>
+  </section>
+
+  <section class="wrap">
+    <h2>Wozu wir uns verpflichten</h2>
+    <p>Wir haben mehr als dreißig KI-Werkzeuge für Notizen untersucht und was Tierärzte über sie sagen. Das sind die Antworten.</p>
+    <ol class="commit">
+      <li><b>Nichts auf der Seite, was Sie nicht geschrieben haben.</b> Kein Wirkstoff, keine Dosis, kein Applikationsweg, keine Zahl und keine Diagnose erscheint, wenn sie nicht in Ihren Notizen steht.</li>
+      <li><b>Jeder Satz zeigt seine Quelle.</b> Klicken Sie auf eine Zeile im Bericht und sehen Sie die Notiz, aus der sie stammt.</li>
+      <li><b>Fehlende Informationen werden markiert, nie erfunden.</b> Bevor Sie unterschreiben, sehen Sie, was nicht da ist.</li>
+      <li><b>Die Worte des Halters bleiben die Worte des Halters.</b> „Halter berichtet…“ wird nie zu Ihrem Befund umgeschrieben.</li>
+      <li><b>Patientendaten sind gesperrt.</b> Tierart, Geschlecht und Kastrationsstatus kommen aus der Patientenakte, nie aus dem Fließtext.</li>
+      <li><b>Ein freigegebener Befund, jedes Dokument.</b> Entlassungsbrief, Halteranweisungen, Überweisungsschreiben und Übersetzungen entstehen nur aus dem, was Sie unterschrieben haben.</li>
+      <li><b>Ihre Änderungen gehen nie verloren.</b> Beim Neuerzeugen eines Abschnitts sehen Sie die Unterschiede, und Ihr Text bleibt erhalten.</li>
+      <li><b>Keine Aufzeichnung.</b> Keine Einwilligung einzuholen, nichts zu speichern, kein Problem mit bellenden Hunden. Es funktioniert mit der Tastatur.</li>
+      <li><b>Deutsch, Italienisch und Englisch als Muttersprachen.</b> Halterdokumente in der Sprache des Halters, mit exakt übernommenen Medikamentenangaben.</li>
+      <li><b>Ihre Daten bleiben in der EU und werden nie zum Trainieren von KI verwendet.</b> In jedem Tarif.</li>
+      <li><b>Monatlich kündbar.</b> Klare Preise pro Tierärztin oder Tierarzt; TFA und Empfang sind kostenlos.</li>
+      <li><b>Eine öffentliche Qualitätsseite.</b> Wir veröffentlichen, wie der Assistent getestet wird, an echten Dokumenttypen, mit Zahlen.</li>
+    </ol>
+  </section>
+
+  <section class="wrap">
+    <h2>Läuft neben Ihrer Praxissoftware</h2>
+    <p>Es läuft im Browser neben dem System, das Ihre Praxis verwendet. Freigegebene Dokumente lassen sich sauber in Ihre Aktenfelder kopieren, als PDF auf Ihrem Briefpapier exportieren oder drucken. Direkte Integrationen folgen nur über offizielle Anbieterprogramme, nie über Umwege.</p>
+  </section>
+
+  <section class="wrap narrow" id="waitlist" style="margin-top:56px">
+    <h2>Early Access</h2>
+    <p>Wir suchen eine kleine Zahl von Praxen in Deutschland, Österreich, der Schweiz und Italien, mit denen wir testen können. Wenn Sie Ihre Notizen selbst tippen und möchten, dass die Dokumentation weniger von Ihrem Abend beansprucht, hinterlassen Sie Ihre E-Mail-Adresse und wählen Sie „Tierärztin / Tierarzt oder Praxisteam“.</p>
+    <Newsletter compact lang="de" />
+    <p style="margin-top:16px"><a href="/vets/research">Unsere Recherche zu bestehenden Werkzeugen lesen →</a></p>
+  </section>
+</Base>

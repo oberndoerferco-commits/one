@@ -23,7 +23,7 @@ an account or a signature. Everything here costs €0 unless marked.
 
 ## Next (me)
 
-- [ ] Italian and German site versions
+- [x] Italian and German site versions (home, about, vets; articles still EN)
 - [x] Pre-visit brief for owners (/visit-brief, prefills from the passport)
 - [ ] Vaccination-expiry reminders (needs accounts + email)
 - [ ] Share-with-vet link for the passport (read-only, expiring)
