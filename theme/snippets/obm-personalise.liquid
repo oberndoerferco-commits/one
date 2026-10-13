@@ -1,0 +1,131 @@
+{%- comment -%}
+  Personalisation (owner, 13 October): an option above the buy buttons on pieces tagged
+  "personalisable" (a tag, not the product type, because types are translated in DE/IT).
+  Ticking it shows initials and a stamping colour. On "Add to cart" the hidden "Personalisation"
+  product (handle personalisation, 60 EUR, no shipping) is added first, with the initials, colour
+  and piece as line properties, then the theme adds the piece itself; the initials also travel
+  with the piece through the form attribute. Rendered from a custom-liquid block in product.json.
+{%- endcomment -%}
+{%- liquid
+  assign service = all_products['personalisation']
+  assign service_variant = service.selected_or_first_available_variant
+  assign form_id = 'BuyButtons-ProductForm-' | append: section.id
+
+  case request.locale.iso_code
+    when 'de'
+      assign t_add = 'Personalisierung hinzufügen'
+      assign t_initials = 'Initialen'
+      assign t_colour = 'Farbe der Prägung'
+      assign t_colours = 'Schwarz,Gold,Silber,Blindprägung'
+      assign t_note = 'Von Hand mit unseren Messingwerkzeugen geprägt.'
+      assign t_missing = 'Bitte geben Sie die Initialen ein.'
+    when 'it'
+      assign t_add = 'Aggiungi personalizzazione'
+      assign t_initials = 'Iniziali'
+      assign t_colour = 'Colore della stampa'
+      assign t_colours = 'Nero,Oro,Argento,A secco'
+      assign t_note = 'Stampate a mano con i nostri strumenti in ottone.'
+      assign t_missing = 'Inserisca le iniziali.'
+    else
+      assign t_add = 'Add personalisation'
+      assign t_initials = 'Initials'
+      assign t_colour = 'Stamping colour'
+      assign t_colours = 'Black,Gold,Silver,Blind'
+      assign t_note = 'Stamped by hand with our brass tools.'
+      assign t_missing = 'Please enter the initials.'
+  endcase
+  assign colours = t_colours | split: ','
+-%}
+{%- if service_variant and service.available and product.tags contains 'personalisable' -%}
+  <div class="obm-pers" data-obm-pers data-variant="{{ service_variant.id }}" data-form="{{ form_id }}" data-title="{{ product.title | escape }}" data-missing="{{ t_missing | escape }}">
+    <label class="obm-pers__toggle">
+      <input type="checkbox" data-obm-pers-on>
+      <span>{{ t_add }} <span class="obm-pers__price">(+{{ service_variant.price | money }})</span></span>
+    </label>
+    <div class="obm-pers__fields" hidden>
+      <label class="obm-pers__label" for="ObmPersInitials">{{ t_initials }}</label>
+      <input class="obm-pers__input" id="ObmPersInitials" type="text" maxlength="5" autocomplete="off" autocapitalize="characters" spellcheck="false" data-obm-pers-initials disabled form="{{ form_id }}" name="properties[Initials]">
+      <label class="obm-pers__label" for="ObmPersColour">{{ t_colour }}</label>
+      <select class="obm-pers__input" id="ObmPersColour" data-obm-pers-colour disabled form="{{ form_id }}" name="properties[Stamping colour]">
+        {%- for c in colours -%}<option value="{{ c | escape }}">{{ c }}</option>{%- endfor -%}
+      </select>
+      <p class="obm-pers__note">{{ t_note }}</p>
+      <p class="obm-pers__error" data-obm-pers-error role="alert" hidden></p>
+    </div>
+  </div>
+
+  <style>
+    .obm-pers { margin: 4px 0 20px; font-size: 0.875rem; }
+    .obm-pers__toggle { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+    .obm-pers__toggle input { width: 16px; height: 16px; margin: 0; accent-color: var(--color-primary-button-background, #000); }
+    .obm-pers__price { opacity: 0.7; }
+    .obm-pers__fields { margin-top: 14px; display: grid; gap: 6px; }
+    .obm-pers__label { font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.75; margin-top: 6px; }
+    .obm-pers__input { width: 100%; border: 0; border-bottom: 1px solid var(--color-foreground); border-radius: 0; background: transparent; padding: 8px 0; font: inherit; font-size: 0.9375rem; color: var(--color-foreground); }
+    .obm-pers__input[data-obm-pers-initials] { text-transform: uppercase; letter-spacing: 0.2em; }
+    .obm-pers__input:focus { outline: none; border-bottom-width: 2px; }
+    .obm-pers__note { margin: 6px 0 0; font-size: 0.75rem; opacity: 0.7; }
+    .obm-pers__error { margin: 4px 0 0; font-size: 0.8125rem; color: #a3261c; }
+  </style>
+
+  <script>
+    (function () {
+      // Delegated listeners with fresh look-ups: the theme re-renders the product details after
+      // load and on variant changes, which replaces these elements.
+      if (window.__obmPers) return;
+      window.__obmPers = true;
+      function parts() {
+        var box = document.querySelector('[data-obm-pers]');
+        if (!box) return null;
+        return {
+          box: box,
+          on: box.querySelector('[data-obm-pers-on]'),
+          fields: box.querySelector('.obm-pers__fields'),
+          initials: box.querySelector('[data-obm-pers-initials]'),
+          colour: box.querySelector('[data-obm-pers-colour]'),
+          error: box.querySelector('[data-obm-pers-error]'),
+          form: document.getElementById(box.dataset.form)
+        };
+      }
+      function sync(x) {
+        x.fields.hidden = !x.on.checked;
+        // Disabled fields are left out of the form, so the piece carries no initials unless chosen.
+        x.initials.disabled = x.colour.disabled = !x.on.checked;
+      }
+      document.addEventListener('change', function (e) {
+        if (!e.target.matches || !e.target.matches('[data-obm-pers-on]')) return;
+        var x = parts(); if (!x) return;
+        sync(x); x.error.hidden = true;
+        if (x.on.checked) x.initials.focus();
+      });
+      document.addEventListener('input', function (e) {
+        if (e.target.matches && e.target.matches('[data-obm-pers-initials]')) e.target.value = e.target.value.toUpperCase();
+      });
+
+      var passing = false;
+      document.addEventListener('submit', function (e) {
+        if (passing) return;
+        var x = parts();
+        if (!x || !x.form || e.target !== x.form || !x.on.checked) return;
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        sync(x);
+        var value = x.initials.value.trim();
+        if (!value) { x.error.textContent = x.box.dataset.missing; x.error.hidden = false; x.initials.focus(); return; }
+        x.error.hidden = true;
+        var qtyField = x.form.querySelector('[name="quantity"]');
+        var qty = Math.max(1, parseInt(qtyField && qtyField.value, 10) || 1);
+        var form = x.form;
+        fetch((window.Shopify && Shopify.routes ? Shopify.routes.root : '/') + 'cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ items: [{ id: Number(x.box.dataset.variant), quantity: qty, properties: { For: x.box.dataset.title, Initials: value.toUpperCase(), 'Stamping colour': x.colour.value } }] })
+        }).catch(function () {}).then(function () {
+          // Let the theme add the piece itself and open the cart as usual.
+          passing = true;
+          try { form.requestSubmit(); } finally { passing = false; }
+        });
+      }, true);
+    })();
+  </script>
+{%- endif -%}

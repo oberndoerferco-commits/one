@@ -335,7 +335,7 @@
                     "text_care": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>Free worldwide with DHL Express. Pieces in stock are delivered in 7–14 days.</p><p>Returns within 14 days of delivery, unused and in their original condition. Personalised and bespoke pieces cannot be returned. <a href=\"/policies/refund-policy\">Return policy</a> · <a href=\"/policies/shipping-policy\">Shipping policy</a>.</p>",
+                        "text": "<p>DHL Standard is free on every order. DHL Express is free from €300; below that it is €5 for small pieces and €20 for larger ones within the EU, €50 and €65 elsewhere. Pieces in stock are delivered in 7–14 days.</p><p>Returns within 14 days of delivery, unused and in their original condition. Personalised and bespoke pieces cannot be returned. <a href=\"/policies/refund-policy\">Return policy</a> · <a href=\"/policies/shipping-policy\">Shipping policy</a>.</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -539,6 +539,12 @@
               "settings": {
                 "custom_liquid": "{% render 'obm-notify-me', product: product %}"
               }
+            },
+            "obm_personalise": {
+              "type": "custom-liquid",
+              "settings": {
+                "custom_liquid": "{% render 'obm-personalise', product: product, section: section %}"
+              }
             }
           },
           "block_order": [
@@ -547,6 +553,7 @@
             "group_icgrde",
             "divider_VJhene",
             "variant_picker_R3rGDr",
+            "obm_personalise",
             "buy_buttons_eYQEYi",
             "obm_notify_me",
             "custom_liquid_atelier",

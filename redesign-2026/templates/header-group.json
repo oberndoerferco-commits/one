@@ -1,0 +1,132 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header",
+  "sections": {
+    "announce_2026": {
+      "type": "obm-announcement",
+      "disabled": true,
+      "settings": {
+        "text": "Free DHL Standard worldwide · Free DHL Express from €300",
+        "link": "shopify://policies/shipping-policy"
+      }
+    },
+    "header_section": {
+      "type": "header",
+      "blocks": {
+        "header-logo": {
+          "type": "_header-logo",
+          "static": true,
+          "settings": {
+            "hide_logo_on_home_page": false,
+            "padding-block-start": 0,
+            "padding-block-end": 15
+          },
+          "blocks": {}
+        },
+        "header-menu": {
+          "type": "_header-menu",
+          "static": true,
+          "settings": {
+            "menu": "main-menu-2026",
+            "background_color": "{{ settings.color_palette.background }}",
+            "text_color": "",
+            "type_font_primary_size": "0.9375rem",
+            "menu_font_style": "inverse",
+            "type_font_primary_link": "body",
+            "type_case_primary_link": "none",
+            "menu_style": "text",
+            "featured_products_aspect_ratio": "1 / 1",
+            "featured_collections_aspect_ratio": "1 / 1",
+            "image_border_radius": 5,
+            "navigation_bar": false,
+            "background_color_navigation_bar": "{{ settings.color_palette.background }}",
+            "text_color_navigation_bar": "",
+            "drawer_accordion": false,
+            "drawer_accordion_expand_first": false,
+            "drawer_dividers": true
+          },
+          "blocks": {}
+        }
+      },
+      "custom_css": [
+        ".header:not([transparent]), .header[data-sticky-state='active'] {background-color: #ffffff !important;}",
+        ".header[transparent]:not([data-sticky-state='active']) {background-color: transparent !important;}"
+      ],
+      "settings": {
+        "logo_position": "left",
+        "menu_position": "center",
+        "menu_row": "top",
+        "customer_account_menu": "customer-account-main-menu",
+        "show_search": true,
+        "search_position": "right",
+        "search_row": "top",
+        "show_country": false,
+        "country_selector_style": false,
+        "show_language": false,
+        "localization_font": "heading",
+        "localization_font_size": "0.875rem",
+        "localization_position": "right",
+        "localization_row": "top",
+        "section_width": "page-width",
+        "section_height": "standard",
+        "enable_sticky_header": "always",
+        "divider_width": 0,
+        "divider_size": "page-width",
+        "divider_color": "",
+        "border_width": 1,
+        "bottom_border_color": "#ECE7DF",
+        "actions_display_style": "icon",
+        "actions_font_size": "0.875rem",
+        "actions_font": "body",
+        "actions_text_case": "none",
+        "background_color_top": "{{ settings.color_palette.background }}",
+        "text_color_top": "",
+        "background_color_bottom": "{{ settings.color_palette.background }}",
+        "text_color_bottom": "",
+        "bubble_style": "default",
+        "bubble_background_color": "",
+        "bubble_text_color": "",
+        "enable_transparent_header_home": true,
+        "home_inverse_logo": true,
+        "text_color_transparent_home": "#ffffff",
+        "enable_transparent_header_product": false,
+        "product_inverse_logo": false,
+        "text_color_transparent_product": "",
+        "enable_transparent_header_collection": false,
+        "collection_inverse_logo": false,
+        "text_color_transparent_collection": ""
+      }
+    },
+    "style_2026": {
+      "type": "obm-style-2026",
+      "settings": {}
+    },
+    "mobile_menu_2026": {
+      "type": "obm-mobile-menu-2026",
+      "settings": {
+        "menu": "main-menu-2026",
+        "service_label": "Customer service",
+        "service_link": "shopify://pages/contact",
+        "account_label": "My account",
+        "locator_label": "Where to find us",
+        "locator_link": "shopify://pages/where-to-find-us",
+        "ship_label": "Ship to:"
+      }
+    }
+  },
+  "order": [
+    "announce_2026",
+    "header_section",
+    "style_2026",
+    "mobile_menu_2026"
+  ]
+}
