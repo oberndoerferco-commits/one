@@ -29,6 +29,7 @@ Cloudflare, Supabase) and vets to go live. See `TODO.md`.
 | — | [Roadmap](docs/09-roadmap.md) | Step-by-step plan: website + animal information first, vet tool validated before built, owner tools later |
 | — | [Owner accounts](docs/10-owner-accounts.md) | Privacy design for pet-passport accounts, breach procedure |
 | — | [Processing register](docs/11-processing-register.md) | GDPR Art. 30 record, draft |
+| — | [Gaps and ideas](docs/12-gaps-and-ideas.md) | Every document vets must produce per country, owner-app gaps, feature parity vs 14 scribes, 12 ideas nobody has, go-to-market at €0 |
 | — | [TODO](TODO.md) | The living backlog, incl. what needs the owner |
 
 ## Code
