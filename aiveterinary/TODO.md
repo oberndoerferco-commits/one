@@ -13,12 +13,12 @@ an account or a signature. Everything here costs €0 unless marked.
 
 ## Now (me)
 
-- [ ] Site basics: sitemap, robots.txt, social preview image, build workflow
-- [ ] Owner accounts: privacy design (doc 10) + drafts of privacy policy, terms, processing register, breach procedure
-- [ ] Owner accounts: database schema with per-user isolation, email-link login, sync, export, delete
-- [ ] 10 more animal articles (drafts, awaiting vet review)
-- [ ] Vet tool core: clinical record schema, validators (nothing you didn't write), synthetic cases, offline test runner
-- [ ] Vet tool: extraction prompt + model adapter + demo on synthetic cases
+- [x] Site basics: sitemap, robots.txt, social preview image, build workflow
+- [x] Owner accounts: privacy design (doc 10) + drafts of privacy policy, terms, processing register, breach procedure
+- [x] Owner accounts: database schema with per-user isolation, email-link login, sync, export, delete
+- [x] 10 more animal articles (drafts, awaiting vet review)
+- [x] Vet tool core: clinical record schema, validators (nothing you didn't write), synthetic cases, offline test runner
+- [x] Vet tool: extraction prompt + model adapter + demo on synthetic cases
 - [ ] Vet tool: one-screen browser workspace prototype
 
 ## Next (me)

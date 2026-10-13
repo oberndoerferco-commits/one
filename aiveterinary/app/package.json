@@ -1,0 +1,23 @@
+{
+  "name": "aiveterinary-app",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "AI Veterinary documentation core: clinical record schema, validators, rendering, evaluation harness.",
+  "scripts": {
+    "test": "vitest run",
+    "eval": "tsx src/cli/eval.ts",
+    "demo": "tsx src/cli/demo.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.80.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  }
+}

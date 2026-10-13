@@ -10,8 +10,9 @@ owner instructions, referral letters and translations. The vet stays in charge.
 This folder is independent of the Shopify theme content in the rest of this
 repository.
 
-**Status:** research and design. No application code yet, and deliberately so
-(see the brief, §21–22).
+**Status:** website and passport built; vet tool core (schema, validators,
+eval harness) built and tested offline; waiting on accounts (GitHub,
+Cloudflare, Supabase) and vets to go live. See `TODO.md`.
 
 ## Documents
 
@@ -26,6 +27,16 @@ repository.
 | — | [Costs](docs/07-costs.md) | Competitor prices, our AI cost per consultation, running and build costs |
 | A+ | [Competitor teardown](docs/08-competitor-teardown.md) | Every competitor's promises vs reality, what vets complain about, and our 12 commitments to do better |
 | — | [Roadmap](docs/09-roadmap.md) | Step-by-step plan: website + animal information first, vet tool validated before built, owner tools later |
+| — | [Owner accounts](docs/10-owner-accounts.md) | Privacy design for pet-passport accounts, breach procedure |
+| — | [Processing register](docs/11-processing-register.md) | GDPR Art. 30 record, draft |
+| — | [TODO](TODO.md) | The living backlog, incl. what needs the owner |
+
+## Code
+
+| Folder | What |
+|---|---|
+| [`site/`](site/) | The website (Astro, static): animal information, digital pet passport, vets page |
+| [`app/`](app/) | Vet tool core: clinical record schema, validators, rendering, evaluation harness |
 
 ## Product principles (from the brief)
 
