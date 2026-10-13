@@ -25,7 +25,7 @@ an account or a signature. Everything here costs €0 unless marked.
 
 - [x] Italian and German site versions (home, about, vets)
 - [x] Italian: passport, visit brief, animal section, all 13 articles (drafts), workspace preview, newsletter
-- [ ] German: passport, visit brief, animal section, articles
+- [x] German: passport, visit brief, animal section, all 13 articles (drafts), workspace preview, newsletter
 - [x] Pre-visit brief for owners (/visit-brief, prefills from the passport)
 - [ ] Vaccination-expiry reminders (needs accounts + email)
 - [ ] Share-with-vet link for the passport (read-only, expiring)
