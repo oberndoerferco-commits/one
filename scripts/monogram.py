@@ -204,8 +204,8 @@ def spline(nodes):
     return (nodes[0]['p'], segs)
 
 
-def glyph_O2(cap=CAP, rx=0.428, ry=0.500, facet=12.0, run=0.34,
-             cx_i=0.158, cy_i=0.385, waist=0.138, lobe=0.165,
+def glyph_O2(cap=CAP, rx=0.410, ry=0.500, facet=4.0, run=0.22,
+             cx_i=0.101, cy_i=0.350, waist=0.081, lobe=0.145,
              h_top=0.55, h_flank=0.50):
     """The reference O, constructed: faceted flanks and a waisted counter.
 
@@ -289,9 +289,9 @@ def _cove_stem(x, y, up, lin):
                 lin=lin, lout=0.0)
 
 
-def glyph_M_west(cap=CAP, width=0.92, stem=0.195, over=0.104, slab=0.160,
-                 br=0.080, ya=0.58, yb=0.48, pix=0.040, piy=0.40,
-                 spur=0.16, dip=0.08, cove_x=0.48):
+def glyph_M_west(cap=CAP, width=0.947, stem=0.195, over=0.080, slab=0.112,
+                 br=0.045, ya=0.48, yb=0.48, pix=0.010, piy=0.63,
+                 apex=0.17, spur=0.10, dip=0.05, cove_x=0.30):
     """M in the western / French Clarendon manner of the reference: big spurred
     serifs with a waved edge, long concave coves into the stems, and a V heavy on
     the left stroke and light on the right."""
@@ -305,8 +305,9 @@ def glyph_M_west(cap=CAP, width=0.92, stem=0.195, over=0.104, slab=0.160,
     ns += serif_run(xl, H, T, False, cap, **kw)
     ns.append(_cove_stem(xl + S / 2, T + BR, True, cl))
     ns.append(corner(xl + S / 2, ya * cap, 90.0,
-                     math.degrees(math.atan2(-ya * cap, mid - xl - S / 2)), 0, 0))
-    ns.append(corner(mid, 0.0, 0.0, 0.0, 0, 0))
+                     math.degrees(math.atan2(apex * cap - ya * cap,
+                                             mid - xl - S / 2)), 0, 0))
+    ns.append(corner(mid, apex * cap, 0.0, 0.0, 0, 0))
     ns.append(corner(xr - S / 2, yb * cap, 0.0, -90.0, 0, 0))
     ns.append(_cove_stem(xr - S / 2, T + BR, False, 0.0))
     ns[-1]['lout'] = cl

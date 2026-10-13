@@ -64,6 +64,35 @@ features, so they are drawn deliberately:
 - **The M's thick-left, thin-right V**, from putting the inner apex right of
   centre.
 
+## Measured, then verified by overlay
+
+The failure that ran through every earlier attempt was not the method, it was
+the **magnitudes**. A real feature would get spotted and then drawn at three to
+five times its actual size, so each one was individually "correct" and the whole
+letter was a caricature. The numbers, measured off the photograph:
+
+| | reference | an earlier draft |
+| --- | --- | --- |
+| M stem waist | 6% narrowing | ~30% |
+| M serif thickness | 0.120 cap | 0.160 cap |
+| O flank facet | 2% off an ellipse | a visible corner |
+| O counter width | 0.203 cap | 0.316 cap |
+
+Three structural facts about the M had also been drawn wrong, and only showed up
+once they were measured rather than eyeballed:
+
+- **The V's apex floats above the baseline**, at about 0.17 cap. It does not
+  touch down.
+- **The top notch bottoms out at 0.63 cap**, much higher than it looks.
+- **The V merges into the stems at 0.48 cap**, so the counters are small
+  triangles rather than tall wedges.
+
+Everything is now checked by drawing the glyph over the photograph at matched cap
+height (`overlay-check.png`) rather than by describing it. That is the only test
+that has caught anything.
+
+![overlay](overlay-check.png)
+
 ## Deliberately not copied
 
 Contrast is **lower** than the gold reference's. At three millimetres the thin
