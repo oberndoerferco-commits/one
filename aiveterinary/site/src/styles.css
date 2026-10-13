@@ -128,3 +128,11 @@ p { margin: 0 0 1em; }
 .mock .flag { color: var(--warn); font-weight: 600; }
 @media (max-width: 640px) { .mock { grid-template-columns: 1fr; } .mock > div + div { border-left: 0; border-top: 1px solid var(--line); } }
 .sr { position: absolute; left: -9999px; }
+
+/* shared form styles (passport, visit brief, workspace) */
+.pp-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 16px; }
+@media (max-width: 520px) { .pp-fields { grid-template-columns: 1fr; } }
+.pp-fields label { display: block; font-size: .85rem; color: var(--ink-2); font-weight: 600; }
+.pp-fields input, .pp-fields select, .pp-fields textarea, textarea { width: 100%; margin-top: 4px; padding: 8px 10px; font: inherit; border: 1.5px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); }
+.pp-hint { color: var(--ink-3); font-size: .9rem; margin: -4px 0 8px; }
+.pp-status { color: var(--ink-3); font-size: .9rem; min-height: 1.4em; }
