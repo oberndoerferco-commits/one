@@ -240,3 +240,88 @@ def glyph_O2(cap=CAP, rx=0.428, ry=0.500, facet=12.0, run=0.34,
              node(w, cy, 90, hc, hc),
              node(rxi, cy + lo, 90, hc, hb)]
     return [spline(outer), spline(inner)]
+
+
+# -------------------------------------------------------------- western serifs
+
+
+def serif_run(cx, H, T, at_top, cap, rtl=False, spur=0.26, dip=0.17,
+              hump=0.76, soft=0.55, cove_h=0.70):
+    """A western serif's outer edge, as a run of nodes in traversal order.
+
+    Not a straight slab.  The tip turns up into a spur, and between the tips the
+    edge rides over a hump, dips in the middle and rises again.  That wave, and
+    the long cove into the stem that the caller joins on, are what make the face
+    read as wood type rather than a modern slab.
+    """
+    sp, dp, hx = spur * T, dip * T, hump * H
+    y = (lambda v: cap - v) if at_top else (lambda v: v)
+    h1, h2 = (H - hx) * soft, hx * soft
+    ch = T * cove_h
+    sgn = -1 if at_top else 1
+    a_mid = 180.0 if rtl else 0.0
+    a_up, a_dn = (90.0, -90.0) if not at_top else (-90.0, 90.0)
+    xs = [cx - H, cx - hx, cx, cx + hx, cx + H]
+    ys = [y(sp), y(0), y(dp), y(0), y(sp)]
+    ns = [corner(xs[0], ys[0], a_dn, 0.0, ch, h1),
+          node(xs[1], ys[1], 0.0, h1, h2),
+          node(xs[2], ys[2], 0.0, h2, h2),
+          node(xs[3], ys[3], 0.0, h2, h1),
+          corner(xs[4], ys[4], 0.0, a_up, h1, ch)]
+    if not rtl:
+        return ns
+    out = []
+    for n in reversed(ns):
+        d = dict(n)
+        ai = math.degrees(math.atan2(n['d'][1], n['d'][0])) + 180.0
+        ao = math.degrees(math.atan2(*reversed(n.get('din', n['d'])))) + 180.0
+        d['d'] = (math.cos(math.radians(ao)), math.sin(math.radians(ao)))
+        d['din'] = (math.cos(math.radians(ai)), math.sin(math.radians(ai)))
+        d['lin'], d['lout'] = n['lout'], n['lin']
+        out.append(d)
+    return out
+
+
+def _cove_stem(x, y, up, lin):
+    """The stem end of a cove: vertical tangent, handle pointing down the sweep."""
+    a = 90.0 if up else -90.0
+    return dict(p=(x, y), d=(math.cos(math.radians(a)), math.sin(math.radians(a))),
+                lin=lin, lout=0.0)
+
+
+def glyph_M_west(cap=CAP, width=0.92, stem=0.195, over=0.104, slab=0.160,
+                 br=0.080, ya=0.58, yb=0.48, pix=0.040, piy=0.40,
+                 spur=0.16, dip=0.08, cove_x=0.48):
+    """M in the western / French Clarendon manner of the reference: big spurred
+    serifs with a waved edge, long concave coves into the stems, and a V heavy on
+    the left stroke and light on the right."""
+    W, S, V, T = width * cap, stem * cap, over * cap, slab * cap
+    BR = br * cap
+    xl, xr = V + S / 2, W - V - S / 2
+    H, mid = S / 2 + V, W / 2
+    kw = dict(spur=spur, dip=dip)
+    cl = (H - S / 2) * cove_x
+    ns = []
+    ns += serif_run(xl, H, T, False, cap, **kw)
+    ns.append(_cove_stem(xl + S / 2, T + BR, True, cl))
+    ns.append(corner(xl + S / 2, ya * cap, 90.0,
+                     math.degrees(math.atan2(-ya * cap, mid - xl - S / 2)), 0, 0))
+    ns.append(corner(mid, 0.0, 0.0, 0.0, 0, 0))
+    ns.append(corner(xr - S / 2, yb * cap, 0.0, -90.0, 0, 0))
+    ns.append(_cove_stem(xr - S / 2, T + BR, False, 0.0))
+    ns[-1]['lout'] = cl
+    ns += serif_run(xr, H, T, False, cap, **kw)
+    ns.append(_cove_stem(xr + S / 2, T + BR, True, cl))
+    ns.append(_cove_stem(xr + S / 2, cap - T - BR, True, 0.0))
+    ns[-1]['lout'] = cl
+    ns += serif_run(xr, H, T, True, cap, rtl=True, **kw)
+    ns.append(_cove_stem(xr - S / 2, cap - T - BR, False, cl))
+    ns.append(dict(p=(mid + pix * cap, piy * cap),
+                   d=(0.0, 1.0), din=(0.0, -1.0), lin=0.0, lout=0.0))
+    ns.append(_cove_stem(xl + S / 2, cap - T - BR, True, 0.0))
+    ns[-1]['lout'] = cl
+    ns += serif_run(xl, H, T, True, cap, rtl=True, **kw)
+    ns.append(_cove_stem(xl - S / 2, cap - T - BR, False, cl))
+    ns.append(_cove_stem(xl - S / 2, T + BR, False, 0.0))
+    ns[-1]['lout'] = cl
+    return [spline(ns)]

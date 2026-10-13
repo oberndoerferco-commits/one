@@ -24,7 +24,7 @@ def letters(cap_units=CAP):
     """O and M in font units: baseline y=0, cap height cap_units."""
     k = cap_units / mg.CAP
     out = {}
-    for name, cs in (('O', mg.glyph_O2()), ('M', mg.glyph_M())):
+    for name, cs in (('O', mg.glyph_O2()), ('M', mg.glyph_M_west())):
         x0, y0, x1, y1 = mg.bbox(cs)
         out[name] = [mg.tr(c, k, -x0 * k, -y0 * k) for c in cs]
     return out

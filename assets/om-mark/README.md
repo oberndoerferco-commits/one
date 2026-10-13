@@ -32,6 +32,22 @@ because the method carried the scan's noise floor through to the output.
 There is no sampled data in this pipeline at all. Dents are not filtered out —
 they are impossible.
 
+## Western, not Didone
+
+The decisive note, and the one it took far too long to hear: the gold letters,
+the 1936 "PREMIUM" lettering and the cross are all **one vocabulary — western /
+French Clarendon wood type**. Earlier drafts here were a Didone-ish slab, which
+is a different century and a different attitude, and no amount of tuning a slab
+makes it western.
+
+What actually separates them, read off the reference:
+
+- A western serif **does not meet the stem in a fillet.** It flares into it on a
+  long concave **cove**, and the serif is huge.
+- The serif's tip turns up into a **spur**.
+- The serif's edge is **waved** - it rides over a hump, dips in the middle and
+  rises again, rather than running flat.
+
 ## What gives the letters their character
 
 A plain Didone O and a plain slab M come out clean but generic, which was the
@@ -43,8 +59,8 @@ features, so they are drawn deliberately:
   two tangent points, not a curve that happens to flatten.
 - **The O's waisted counter.** It pinches at half height. Built as a pair of
   vertical-tangent nodes with an S between them.
-- **The M's bracketed slab serifs**, with the ends softly swollen — the bracket
-  radius is what makes it read as Clarendon rather than a plain slab.
+- **The M's spurred, waved, coved serifs** — see above. This is the single
+  biggest thing separating the mark from a generic slab.
 - **The M's thick-left, thin-right V**, from putting the inner apex right of
   centre.
 
