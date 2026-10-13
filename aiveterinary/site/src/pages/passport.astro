@@ -9,6 +9,31 @@ import Base from '../layouts/Base.astro';
     <div class="notice"><p><strong>Private by design.</strong> Nothing you enter here leaves your browser. We never see it. That also means it is your copy: use <em>Back up</em> regularly and keep the file somewhere safe (your email, cloud drive or phone). This is a companion to, not a replacement for, the official EU pet passport issued by your vet.</p></div>
   </section>
 
+  <section class="wrap" id="pp-account" hidden>
+    <div class="card pp-acct">
+      <div id="pp-acct-out">
+        <div>
+          <strong>Save to an account</strong>
+          <p class="pp-hint" style="margin:4px 0 0">Optional. Log in with a link sent to your email and your passports follow you to every device. <a href="/privacy">What we store</a> · <a href="/terms">Terms</a></p>
+        </div>
+        <form id="pp-login" class="form-row">
+          <label class="sr" for="pp-login-email">Email</label>
+          <input id="pp-login-email" type="email" placeholder="you@example.com" required autocomplete="email" />
+          <button class="btn" type="submit">Send login link</button>
+        </form>
+      </div>
+      <div id="pp-acct-in" hidden>
+        <div><strong>Logged in</strong> as <span id="pp-acct-email"></span> · <span id="pp-sync-state">synced</span></div>
+        <div class="pp-acct-actions">
+          <button class="btn secondary" id="pp-acct-export" type="button">Export everything</button>
+          <button class="btn secondary" id="pp-acct-logout" type="button">Sign out</button>
+          <button class="btn secondary pp-danger" id="pp-acct-delete" type="button">Delete my account</button>
+        </div>
+      </div>
+      <p class="pp-status" id="pp-acct-status" aria-live="polite"></p>
+    </div>
+  </section>
+
   <section class="wrap" id="pp-app">
     <div class="pp-toolbar">
       <label class="sr" for="pp-select">Animal</label>
@@ -147,6 +172,11 @@ import Base from '../layouts/Base.astro';
     .pp-list .pp-rm:hover { color: var(--danger); }
     .pp-hint { color: var(--ink-3); font-size: .9rem; margin: -4px 0 8px; }
     .pp-status { color: var(--ink-3); font-size: .9rem; min-height: 1.4em; }
+    .pp-acct { margin-bottom: 20px; }
+    #pp-acct-out { display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap; }
+    #pp-acct-out > div:first-child { flex: 1 1 280px; }
+    #pp-login { flex: 1 1 320px; }
+    .pp-acct-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
     @media (max-width: 720px) {
       .pp-list table, .pp-list thead, .pp-list tbody, .pp-list tr, .pp-list td { display: block; }
       .pp-list thead { display: none; }
@@ -157,7 +187,7 @@ import Base from '../layouts/Base.astro';
     }
     /* print */
     @media print {
-      .site-header, .site-footer, .pp-toolbar, .pp-add, .pp-rm, #pp-faq, .pp-hint, .notice, label[for="pp-photo-input"], #pp-photo-remove, .pp-status { display: none !important; }
+      .site-header, .site-footer, .pp-toolbar, #pp-account, .pp-add, .pp-rm, #pp-faq, .pp-hint, .notice, label[for="pp-photo-input"], #pp-photo-remove, .pp-status { display: none !important; }
       .pp-list th:last-child, .pp-list td:last-child { display: none; }
       body { font-size: 11pt; background: #fff; color: #000; }
       .card { border: 1px solid #999; break-inside: avoid; padding: 12px; }
@@ -204,8 +234,9 @@ import Base from '../layouts/Base.astro';
     let store: Store = load();
     let saveTimer: number | undefined;
     function save(msg = 'Saved on this device') {
-      try { localStorage.setItem(KEY, JSON.stringify(store)); status(msg); }
+      try { localStorage.setItem(KEY, JSON.stringify(store)); status(acct.user ? 'Saved on this device and in your account' : msg); }
       catch { status('Could not save: browser storage is full or blocked. Back up to a file.'); }
+      acct.push();
     }
     function scheduleSave() { clearTimeout(saveTimer); saveTimer = window.setTimeout(() => save(), 400); }
     function status(t: string) { const el = $('#pp-status'); if (el) el.textContent = t; }
@@ -293,7 +324,7 @@ import Base from '../layouts/Base.astro';
       const a = current(); if (!a) return;
       if (!confirm(`Delete the passport for ${a.name || 'this animal'} from this device? Make a backup first if you want to keep it.`)) return;
       store.animals = store.animals.filter((x) => x.id !== a.id);
-      store.current = store.animals[0]?.id ?? null; render(); save('Deleted');
+      store.current = store.animals[0]?.id ?? null; render(); save('Deleted'); acct.remove(a.id);
     });
     $('#pp-print')!.addEventListener('click', () => window.print());
 
@@ -332,6 +363,84 @@ import Base from '../layouts/Base.astro';
       (e.target as HTMLInputElement).value = '';
     });
 
+    // ---------- Optional account sync (Supabase). Dormant unless PUBLIC_SUPABASE_URL is set. ----------
+    const SB_URL = import.meta.env.PUBLIC_SUPABASE_URL as string | undefined;
+    const SB_KEY = import.meta.env.PUBLIC_SUPABASE_ANON_KEY as string | undefined;
+    const acct = {
+      client: null as any,
+      user: null as null | { id: string; email?: string },
+      dirty: new Set<string>(),
+      pushTimer: undefined as number | undefined,
+      st(t: string) { const el = $('#pp-acct-status'); if (el) el.textContent = t; },
+      async init() {
+        if (!SB_URL || !SB_KEY) return;
+        const { createClient } = await import('@supabase/supabase-js');
+        this.client = createClient(SB_URL, SB_KEY);
+        ($('#pp-account') as HTMLElement).hidden = false;
+        $('#pp-login')!.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const email = $<HTMLInputElement>('#pp-login-email').value.trim();
+          const { error } = await this.client.auth.signInWithOtp({ email, options: { emailRedirectTo: location.origin + '/passport' } });
+          this.st(error ? 'Could not send the link: ' + error.message : 'Check your email and open the link to log in.');
+        });
+        $('#pp-acct-logout')!.addEventListener('click', async () => {
+          const wipe = confirm('Also remove the passports from this device? Choose OK to remove, Cancel to keep a local copy.');
+          await this.client.auth.signOut();
+          if (wipe) { store = { version: 1, animals: [], current: null }; localStorage.removeItem(KEY); render(); }
+          this.setUser(null); this.st('Signed out.');
+        });
+        $('#pp-acct-export')!.addEventListener('click', () => $('#pp-export')!.dispatchEvent(new Event('click')));
+        $('#pp-acct-delete')!.addEventListener('click', async () => {
+          if (!confirm('Delete your account and every passport stored in it? This cannot be undone. Export first if you want to keep a copy.')) return;
+          const { error } = await this.client.rpc('delete_my_account');
+          if (error) { this.st('Could not delete: ' + error.message); return; }
+          await this.client.auth.signOut(); this.setUser(null); this.st('Account deleted. Local copy kept on this device.');
+        });
+        this.client.auth.onAuthStateChange((_evt: string, session: any) => { this.setUser(session?.user ?? null); if (session?.user) this.pull(); });
+        const { data } = await this.client.auth.getSession();
+        this.setUser(data.session?.user ?? null); if (this.user) this.pull();
+      },
+      setUser(u: any) {
+        this.user = u ? { id: u.id, email: u.email } : null;
+        ($('#pp-acct-out') as HTMLElement).hidden = !!this.user;
+        ($('#pp-acct-in') as HTMLElement).hidden = !this.user;
+        if (this.user) $('#pp-acct-email')!.textContent = this.user.email ?? '';
+      },
+      async pull() {
+        const { data, error } = await this.client.from('passports').select('id, animal, updated_at');
+        if (error) { this.st('Could not load your account: ' + error.message); return; }
+        const remote: Animal[] = (data ?? []).map((r: any) => ({ ...blank(), ...r.animal, id: r.id, _updated: r.updated_at }));
+        if (remote.length === 0 && store.animals.length > 0) {
+          if (confirm(`Upload the ${store.animals.length} passport(s) on this device to your account?`)) { store.animals.forEach((a) => this.dirty.add(a.id)); this.push(true); }
+          return;
+        }
+        for (const r of remote) {
+          const i = store.animals.findIndex((x) => x.id === r.id);
+          if (i >= 0) { if (!store.animals[i]._updated || store.animals[i]._updated <= r._updated) store.animals[i] = r; }
+          else store.animals.push(r);
+        }
+        // local-only animals (created while offline) go up
+        for (const a of store.animals) if (!remote.find((r) => r.id === a.id)) this.dirty.add(a.id);
+        store.current = store.current && store.animals.find((a) => a.id === store.current) ? store.current : store.animals[0]?.id ?? null;
+        render(); localStorage.setItem(KEY, JSON.stringify(store)); this.push(true); this.st('Loaded from your account.');
+      },
+      push(now = false) {
+        if (!this.user) return;
+        const a = current(); if (a && !now) this.dirty.add(a.id);
+        clearTimeout(this.pushTimer);
+        this.pushTimer = window.setTimeout(async () => {
+          const rows = store.animals.filter((x) => this.dirty.has(x.id)).map((x) => { const { _updated, ...animal } = x; return { id: x.id, user_id: this.user!.id, animal }; });
+          if (!rows.length) return;
+          $('#pp-sync-state')!.textContent = 'saving…';
+          const { error } = await this.client.from('passports').upsert(rows);
+          $('#pp-sync-state')!.textContent = error ? 'not saved: ' + error.message : 'synced';
+          if (!error) this.dirty.clear();
+        }, now ? 0 : 800);
+      },
+      async remove(id: string) { if (this.user) await this.client.from('passports').delete().eq('id', id); },
+    };
+
     render();
+    acct.init();
   </script>
 </Base>
