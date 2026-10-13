@@ -34,8 +34,16 @@ measurements are drawn clean.
 The outline is rebuilt on structural nodes only — corners, and the extremes in x
 and y — with **one cubic per span**, which cannot dent in the middle because it
 has no interior control of its own. That took the two letters from 299 traced
-segments to **108 nodes**, which is a type-design node count rather than a
+segments to **116 nodes**, which is a type-design node count rather than a
 tracing one.
+
+A span is split and refitted when its single cubic strays more than 8 px from
+the traced run. One cubic cannot dent, which is the point of it, but for the
+same reason it cannot follow a span that genuinely bends twice — it bows
+instead. On the O's flourish that bowed the thin slit between bowl and tail
+into a leaf, leaving the slit at **0.73× the drawing's**; splitting brings it to
+**0.96×**. The tolerance matters in both directions: at 1.6 px the splits chase
+the pen wobble the rebuild exists to remove, and the O's flank goes lumpy.
 
 The M is drawn as one half and reflected. Symmetrising the *mask* is not enough:
 rebuilding on structural nodes does not place those nodes symmetrically even when
@@ -116,6 +124,9 @@ At 400 dpi, with the mark 6926 px wide:
 
 And against the drawing, at matched letter size:
 
-- letters **+0.4%** of its ink, IoU **0.944**
+- O IoU **0.974**, M IoU **0.963**
+- the O's flourish slit **0.96×** the drawing's
+- edge turn per step: the drawing 6.12°, this **0.00°** — straight runs stay
+  straight, while the 99th percentile keeps the corners
 - halo **−11%** of its ink, median stroke length **83.5 px against 85.6**
 - keyline **0.345%** of the letters box against **0.360%**

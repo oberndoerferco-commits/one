@@ -107,8 +107,53 @@ def _fit_one(d, t1, t2, iters=4):
     return bez
 
 
+def _dev(run, bez, n=60):
+    """Worst distance from the traced run to the cubic fitted through it."""
+    t = np.linspace(0.0, 1.0, n)[:, None]
+    b = [np.asarray(q, float) for q in bez]
+    cur = ((1 - t) ** 3 * b[0] + 3 * (1 - t) ** 2 * t * b[1]
+           + 3 * (1 - t) * t ** 2 * b[2] + t ** 3 * b[3])
+    d = np.linalg.norm(run[:, None, :] - cur[None, :, :], axis=2)
+    return float(d.min(1).max())
+
+
+def _fit_run(run, t1, t2, tol, depth=0, win=14):
+    """One cubic per span, unless that cubic strays - then split and refit.
+
+    A single cubic cannot dent in the middle, which is the point of it, but for
+    the same reason it cannot follow a long span that genuinely changes
+    direction twice: it bows instead.  On the O's flourish that bowed the thin
+    slit between bowl and tail into a leaf nearly 2.5x too wide.  Splitting at
+    the worst-fitting point and refitting both halves keeps the no-dent property
+    and loses the bow.
+    """
+    bez = _fit_one(run, t1, t2)
+    if bez is None:
+        return [('L', tuple(run[-1]))]
+    if depth >= 4 or len(run) < 3 * win or _dev(run, bez) <= tol:
+        return [('C', tuple(bez[1]), tuple(bez[2]), tuple(run[-1]))]
+    i = len(run) // 2
+    t = np.linspace(0.0, 1.0, 60)[:, None]
+    b = [np.asarray(q, float) for q in bez]
+    cur = ((1 - t) ** 3 * b[0] + 3 * (1 - t) ** 2 * t * b[1]
+           + 3 * (1 - t) * t ** 2 * b[2] + t ** 3 * b[3])
+    i = int(np.argmax(np.linalg.norm(run[:, None, :] - cur[None, :, :],
+                                     axis=2).min(1)))
+    i = min(max(i, win), len(run) - 1 - win)
+    # the tangent at the split is measured over a wide window.  Over a few
+    # samples it picks up the pen wobble and the join shows as a kink, which is
+    # the whole fault this rebuild exists to remove.
+    mid = vl._unit(run[min(i + win, len(run) - 1)] - run[max(i - win, 0)])
+    # _fit_one takes the end tangent pointing BACK along the span, so the half
+    # that ends at the split gets -mid and the half that leaves it gets +mid.
+    # Passing the same direction to both is what put a kink at every split.
+    return (_fit_run(run[:i + 1], t1, -mid, tol, depth + 1, win)
+            + _fit_run(run[i:], mid, t2, tol, depth + 1, win))
+
+
 def regularise(contour, step=0.5, corner_deg=36.0, corner_span=9,
-               extreme_span=7, min_run=7, straight_tol=0.9, merge=6.0):
+               extreme_span=7, min_run=7, straight_tol=0.9, merge=6.0,
+               fit_tol=1.6):
     """(start, segs) -> (start, segs), rebuilt on corner and extreme nodes."""
     pts = _resample(np.asarray(_poly(contour), float), step)
     n = len(pts)
@@ -153,11 +198,7 @@ def regularise(contour, step=0.5, corner_deg=36.0, corner_span=9,
             if dev <= straight_tol:
                 segs.append(('L', tuple(run[-1])))
                 continue
-        bez = _fit_one(run, t1, t2)
-        if bez is None:
-            segs.append(('L', tuple(run[-1])))
-        else:
-            segs.append(('C', tuple(bez[1]), tuple(bez[2]), tuple(run[-1])))
+        segs += _fit_run(run, t1, t2, fit_tol)
     return tuple(pts[idx[0]]), segs
 
 

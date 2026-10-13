@@ -429,6 +429,12 @@ def main(argv=None):
                     help='shortest stroke to keep, in stroke widths')
     ap.add_argument('--smooth-win', type=int, default=5)
     ap.add_argument('--corner-deg', type=float, default=38.0)
+    ap.add_argument('--fit-tol', type=float, default=8.0,
+                    help='how far a span\'s single cubic may stray from the '
+                         'traced run before the span is split and refitted. '
+                         'Too large and a long span bows - it cannot follow a '
+                         'double bend; too small and the splits chase the pen '
+                         'wobble the rebuild exists to remove')
     ap.add_argument('--no-even', action='store_true')
     a = ap.parse_args(argv)
     os.makedirs(a.outdir, exist_ok=True)
@@ -452,7 +458,7 @@ def main(argv=None):
     bl = np.where(right, mirror_pair([black & right], 0)[0], black.astype(float))
 
     reg = dict(corner_deg=a.corner_deg, corner_span=11, extreme_span=9,
-               min_run=9, straight_tol=1.1, merge=9.0)
+               min_run=9, straight_tol=1.1, merge=9.0, fit_tol=a.fit_tol)
     B = clean_letters(bl > 0.5, a.sigma, fit, **reg)
     axis = _axis_of(bl > 0.5, right)
     on_m = lambda c: np.mean([p[0] for q in [('L', c[0])] + c[1]
