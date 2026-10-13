@@ -58,8 +58,11 @@ Measured off the drawing's 136 strokes:
 | --- | --- | --- |
 | angle | 135.0° ± 2.65° | **135.00° ± 0.016°** |
 | width | 14.3–15.7 px (two methods) | **15.0 px ± 1.4%** |
-| pitch | 21.4 px between neighbours, 22.6 px by scan | **22.0 px** |
-| white gap | 5.7–7.1 px | **7.0 px** |
+| pitch | 21.4 px between neighbours | **21.0 px** |
+| white gap | 5.7–7.1 px | **6.0 px** |
+| stroke count | 136 | **127** |
+| median length | 85.6 px | **83.5 px** |
+| total ink | — | **89% of the drawing's** |
 
 The angle and the width are plainly meant to be constant, so they are made
 constant. At exactly 135° the strokes are the anti-diagonals `x + y = c`, so the
@@ -76,8 +79,14 @@ Three details that matter:
 - **The band is not eroded in all directions.** Doing that eats the places where
   the halo is only one stroke deep — the O's upper left — and shortens every
   stroke besides. A stroke only has to clear the letters along its own length,
-  and end just inside the halo's outer edge, which is a trim of one radius at
-  that end alone.
+  which the dilation below guarantees.
+- **The envelope is thresholded below its midpoint** (0.30, not 0.50). Smoothing
+  the band's edge at the midpoint settles it on the *mean* of the drawing's
+  stroke tips, so every stroke that reached past that mean loses the difference.
+  The first version of this did exactly that and came out **33% short of the
+  drawing's halo ink**, with every stroke 18% too short. Smoothing at a lower
+  threshold keeps the edge smooth without pulling it in: the halo is now within
+  **11%** on ink and **2.5%** on median stroke length.
 - **The letters are cleared by construction**, not patched afterwards: the band
   has the letters-plus-gap dilated out of it before any stroke is cut, so a
   stroke cannot touch a letter. Measured clearance in the finished file: 24 px
@@ -88,8 +97,11 @@ Three details that matter:
 
 ### The keyline
 
-An even ring: the letters grown by the 6 px the drawing's cream measures, traced
-and rebuilt the same way, painted under the letters so only the ring shows. In
+An even ring: the letters grown and rebuilt the same way, painted under the
+letters so only the ring shows. The drawing's cream measures 6.0 px, but
+rebuilding the grown outline on structural nodes rounds it back in, so 6 px of
+growth lands a ring only 0.63× the right weight. 10 px of growth is what
+measures correctly — **0.345% of the letters box against the drawing's 0.360%**. In
 the one-colour version it is dropped and the hatch's constant 9 px standoff does
 its job, so there is no hand-drawn white channel to go ragged.
 
@@ -97,7 +109,13 @@ its job, so there is no hand-drawn white channel to go ragged.
 
 At 400 dpi, with the mark 6926 px wide:
 
-- hatch angle **135.00° ± 0.016°**, width **54.6 px ± 0.79** (± 1.4%)
-- 117 strokes, none closer than **24 px** to a letter
+- hatch angle **135.00° ± 0.016°**, width ± 1.4%
+- **127 strokes**, none touching a letter
 - M mirror self-IoU **0.9992**
 - two letter contours, 108 nodes
+
+And against the drawing, at matched letter size:
+
+- letters **+0.4%** of its ink, IoU **0.944**
+- halo **−11%** of its ink, median stroke length **83.5 px against 85.6**
+- keyline **0.345%** of the letters box against **0.360%**

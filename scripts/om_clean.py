@@ -234,7 +234,7 @@ def clip_clear(cx, cy, ang, length, width, dl, gap, min_len):
     return cx + (t0 + t1) / 2 * ca, cy + (t0 + t1) / 2 * sa, t1 - t0
 
 
-def halo_band(cyan, pitch, smooth):
+def halo_band(cyan, pitch, smooth, level=0.5):
     """The area the halo covers, as one solid shape with a smooth edge.
 
     Closing by the pitch merges the separate strokes into the band they imply;
@@ -246,11 +246,17 @@ def halo_band(cyan, pitch, smooth):
     b = ndi.binary_fill_holes(b)
     # a light opening takes the pen's stray ends off the envelope; a heavy one
     # eats the band itself, which is only one or two strokes deep in places
-    b = ndi.binary_opening(b, _disk(max(2, int(round(pitch * 0.18)))))
-    return ndi.gaussian_filter(b.astype(float), smooth) > 0.5
+    if smooth > 0:
+        b = ndi.binary_opening(b, _disk(max(2, int(round(pitch * 0.18)))))
+        # thresholding below the midpoint smooths the edge without pulling it
+        # in: at 0.5 the envelope settles on the mean of the drawing's stroke
+        # tips and every stroke that reached past it loses that reach
+        b = ndi.gaussian_filter(b.astype(float), smooth) > level
+    return b
 
 
-def hatch(region, pitch, width, min_len, dl=None, phase=None, cyan=None):
+def hatch(region, pitch, width, min_len, dl=None, phase=None, cyan=None,
+          trim=0.5):
     """A true parallel hatch across a region: one family, one pitch, one angle.
 
     At 135 degrees the lines are the anti-diagonals x + y = c, so stepping c by
@@ -301,7 +307,7 @@ def hatch(region, pitch, width, min_len, dl=None, phase=None, cyan=None):
                 # the cap on that end may sit where the run ends.  The other end
                 # is the halo's outer edge, where the cap belongs just inside it.
                 ux, uy = (xj - xi) / L, (yj - yi) / L
-                r = width / 2.0
+                r = width / 2.0 * trim
                 if dl[int(yi), int(xi)] > dl[int(yj), int(xj)]:
                     xi, yi = xi + ux * r, yi + uy * r
                 else:
@@ -397,8 +403,8 @@ def main(argv=None):
     ap.add_argument('--angle', type=float, default=135.0,
                     help='the hatch angle, in degrees; the drawing measures '
                          '135.0 with a 2.6 deg spread, so it is held exactly')
-    ap.add_argument('--gap', type=float, default=9.0)
-    ap.add_argument('--pitch', type=float, default=22.0,
+    ap.add_argument('--gap', type=float, default=8.0)
+    ap.add_argument('--pitch', type=float, default=21.0,
                     help='perpendicular spacing of the hatch; the drawing '
                          'measures 21.4 px between neighbours, and scanning '
                          'across it gives 22.6')
@@ -406,9 +412,20 @@ def main(argv=None):
                     help='hatch stroke width; the drawing measures 14.3 px by '
                          'area over length and 15.6 px by scan run-length')
     ap.add_argument('--band-smooth', type=float, default=6.0)
-    ap.add_argument('--keyline', type=float, default=6.0,
-                    help='keyline ring width; the drawing measures 6.0 px')
-    ap.add_argument('--min-len', type=float, default=1.4,
+    ap.add_argument('--band-level', type=float, default=0.30)
+    ap.add_argument('--keyline', type=float, default=10.0,
+                    help='how far the keyline ring is grown off the letters. '
+                         'The drawing\'s cream measures 6.0 px, but rebuilding '
+                         'the grown outline on structural nodes rounds it back '
+                         'in, so 10 px of growth is what lands a ring of the '
+                         'right weight: 0.345%% of the letters box against the '
+                         'drawing\'s 0.360%%')
+    ap.add_argument('--trim', type=float, default=0.0,
+                    help='how far inside the halo edge a stroke ends, in cap '
+                         'radii; 1.0 puts the cap exactly on the smoothed edge, '
+                         'which sits at the mean of the drawing\'s stroke tips '
+                         'and so loses the reach of every stroke that went past it')
+    ap.add_argument('--min-len', type=float, default=0.4,
                     help='shortest stroke to keep, in stroke widths')
     ap.add_argument('--smooth-win', type=int, default=5)
     ap.add_argument('--corner-deg', type=float, default=38.0)
@@ -450,7 +467,7 @@ def main(argv=None):
     r = measure_strokes(cyan)
     width = float(np.median(r[:, 4])) if a.width is None else a.width
     pitch = a.pitch
-    band = halo_band(cyan, pitch, a.band_smooth)
+    band = halo_band(cyan, pitch, a.band_smooth, a.band_level)
     rad = int(round(width / 2.0))
     # no all-direction erosion of the band: that eats the places where the halo
     # is only one stroke deep, and shortens every stroke besides.  A stroke only
@@ -459,7 +476,8 @@ def main(argv=None):
     # radius at that end alone.
     region = band & ~ndi.binary_dilation(bl > 0.5, _disk(int(round(a.gap)) + rad))
     dl = ndi.distance_transform_edt(~(bl > 0.5))
-    C = hatch(region, pitch, width, a.min_len * width, dl=dl, cyan=cyan)
+    C = hatch(region, pitch, width, a.min_len * width, dl=dl, cyan=cyan,
+              trim=a.trim)
 
     # the keyline, as an even ring rather than the hand's varying band: the
     # letters grown by the width the drawing's cream measures, traced and
