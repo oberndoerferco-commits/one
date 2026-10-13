@@ -61,6 +61,10 @@ def main(argv=None):
     ap.add_argument('outdir')
     ap.add_argument('--size', type=float, default=480.0)
     ap.add_argument('--sigma', type=float, default=1.2)
+    ap.add_argument('--cyan-sigma', type=float, default=0.7,
+                    help='the hatch is traced less smoothed than the letters: '
+                         'at 1.2 the blur closes the narrow white gaps where two '
+                         'strokes nearly touch and fuses them into one')
     ap.add_argument('--line-tol', type=float, default=1.1)
     ap.add_argument('--curve-tol', type=float, default=0.7)
     a = ap.parse_args(argv)
@@ -93,7 +97,7 @@ def main(argv=None):
     k = a.size / cap_px
     H = black.shape[0]
     out = {}
-    for nm, f, sg in (('cyan', cyan.astype(float), a.sigma),
+    for nm, f, sg in (('cyan', cyan.astype(float), a.cyan_sigma),
                       ('cream', cr, a.sigma),
                       ('black', bl, a.sigma)):
         cs = trace_layer(f, sg, **fit)
