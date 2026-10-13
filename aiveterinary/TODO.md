@@ -1,53 +1,182 @@
-# AI Veterinary — to-do list
+# AI Veterinary — the backlog
 
-The living backlog. Ordered by what unblocks the most. "Me" = Claude working in
-this repo; "You" = the owner of the project, for things that need a human,
-an account or a signature. Everything here costs €0 unless marked.
+The living to-do list. Research behind it: `docs/12-gaps-and-ideas.md`.
+Everything costs €0 unless marked €. Legend:
 
-## Done
+- **Value** ★★★ must-have · ★★ strong · ★ nice
+- **Effort** S (hours) · M (days) · L (weeks)
+- **Only us** = no competitor has it, fits "nothing you didn't write"
+- **Me** = Claude builds it in this repo · **You** = needs a person, an account or a signature
 
-- [x] Research: competitors, PIMS market, user complaints, costs (docs 01, 07, 08)
-- [x] Architecture, MVP spec, UX, security model, brand, roadmap (docs 02–06, 09)
-- [x] Website v1: home, animals section, 3 draft articles, vets page, research, about, newsletter, privacy draft
-- [x] Digital pet passport, local-first, with backup/restore/print
+---
 
-## Now (me)
+## 0. Done
 
-- [x] Site basics: sitemap, robots.txt, social preview image, build workflow
-- [x] Owner accounts: privacy design (doc 10) + drafts of privacy policy, terms, processing register, breach procedure
-- [x] Owner accounts: database schema with per-user isolation, email-link login, sync, export, delete
-- [x] 10 more animal articles (drafts, awaiting vet review)
-- [x] Vet tool core: clinical record schema, validators (nothing you didn't write), synthetic cases, offline test runner
-- [x] Vet tool: extraction prompt + model adapter + demo on synthetic cases
-- [x] Vet tool: one-screen browser workspace prototype (preview at /vets/workspace, synthetic cases)
+- [x] Research: competitors, PIMS market, user complaints, costs, teardown, gaps (docs 01, 07, 08, 12)
+- [x] Architecture, MVP spec, UX, security model, brand, roadmap, owner-accounts design, processing register (docs 02–06, 09–11)
+- [x] Website: home, about, vets, research, quality, newsletter, privacy + terms drafts, sitemap, robots, social image, CI
+- [x] 13 vet-reviewable articles × EN/IT/DE (39 drafts)
+- [x] Digital pet passport (local-first, backup/restore/print) × EN/IT/DE; optional account sync coded and dormant
+- [x] Pre-visit brief × EN/IT/DE, prefilled from the passport
+- [x] Vet tool core: record schema, validators, EN/DE/IT renderer, model adapter, eval harness, 15 tests, CI
+- [x] Workspace preview × EN/IT/DE on synthetic cases
+- [x] Public quality page fed by the eval results
 
-## Next (me)
+---
 
-- [x] Italian and German site versions (home, about, vets)
-- [x] Italian: passport, visit brief, animal section, all 13 articles (drafts), workspace preview, newsletter
-- [x] German: passport, visit brief, animal section, all 13 articles (drafts), workspace preview, newsletter
-- [x] Pre-visit brief for owners (/visit-brief, prefills from the passport)
-- [ ] Vaccination-expiry reminders (needs accounts + email)
-- [ ] Share-with-vet link for the passport (read-only, expiring)
-- [x] Public quality page for the vet tool (/vets/quality, fed by eval results)
-- [ ] Clinic letterhead + PDF export in the vet tool
+## 1. Launch blockers — **You** (none can be done from the repo)
 
-## Needs you (cannot be done from the repo)
+- [ ] **GitHub**: confirm `oberndoerferco-commits` is yours or create an account; merge `claude/modest-dirac-s1uvdm`
+- [ ] **Cloudflare Pages**: connect the repo (root `aiveterinary/site`, build `npm run build`, output `dist`); add `aiveterinary.org`
+- [ ] **GoDaddy**: nameservers to Cloudflare or CNAME; check `.com/.de/.it`; 2FA on
+- [ ] **Company details** for Impressum/privacy/terms: legal name, address, VAT/tax id, register, contact email (DE §5 DDG; IT D.Lgs 70/2003)
+- [ ] **Newsletter provider** (free tier, **double opt-in on**, EU-hosted): paste form URL into `PUBLIC_NEWSLETTER_ACTION`
+- [ ] **Supabase** free project in Frankfurt; paste URL + anon key; run `site/supabase/schema.sql`
+- [ ] **Lawyer, one hour** (€): privacy, terms, Impressum, AI-disclosure wording — before real sign-ups
+- [ ] **Two vets** (ideally one IT, one DE) who will put name + Ordine/Kammer number on reviewed articles and try `/it/vets/workspace`
+- [ ] **Anthropic API key** when the model should run on the eval set (cents per case)
+- [ ] **Ten questions** your vets hear most from owners (to prioritise articles)
 
-- [ ] **GitHub**: confirm the `oberndoerferco-commits` account is yours, or create one; merge branch `claude/modest-dirac-s1uvdm`
-- [ ] **Cloudflare Pages**: connect the repo (root `aiveterinary/site`, build `npm run build`, output `dist`), add domain `aiveterinary.org`
-- [ ] **GoDaddy**: point DNS at Cloudflare (nameservers) or add the CNAME; check `aiveterinary.com/.de/.it`; turn on 2FA
-- [ ] **Newsletter**: free account (Buttondown / MailerLite / Brevo), paste form URL into `PUBLIC_NEWSLETTER_ACTION`
-- [ ] **Supabase**: free project in EU (Frankfurt) for owner accounts; paste URL + anon key into site env vars; run `supabase/schema.sql`
-- [ ] **Company details**: legal entity name, address, contact email for the privacy policy and terms (data controller)
-- [ ] **Lawyer, one hour**: read the privacy policy and terms before real sign-ups (the only likely spend before the vet pilot)
-- [ ] **Language**: Italian or German first
-- [ ] **Vets**: 1–2 who will put their name on reviewed articles; 5 who will do the typing test
-- [ ] **Owner questions**: the 10 questions your vets hear most (for articles)
-- [ ] **Anthropic API key** when the vet tool should run on real model calls (free during development with synthetic cases; a few euros/month in testing)
+## 2. Legal and trust musts — **Me**, as soon as company details exist
 
-## Later (needs money or partners)
+- [ ] Impressum page (DE §5 DDG) + Italian site-information block (D.Lgs 70/2003) — S ★★★
+- [ ] Rename passport wording: "digital health booklet / libretto sanitario digitale / digitaler Heimtierpass (inoffiziell)", one line "does not replace the official EU passport or registry entries" — S ★★★
+- [ ] AI-disclosure line on every AI output and on the pre-visit brief (AI Act Art. 50; L. 132/2025) — S ★★★
+- [ ] Cookie banner only if a non-essential cookie ever appears; Garante-compliant (reject = accept prominence) — S ★★
+- [ ] Newsletter double opt-in flow + timestamped consent log (Garante 330/2025; §7 UWG) — S ★★★
+- [ ] Article author + reviewer block with chamber/Ordine registration number, "reviewed on / next review", numbered references — S ★★★ (trust differentiator)
+- [ ] Editorial policy, corrections policy, conflict-of-interest and funding page — S ★★
+- [ ] "Informativa uso IA" template for Italian vets; AVV/DPA template for German practices (Art. 28) — S ★★★
+- [ ] Public DPA, subprocessor list, retention policy page for the vet tool — S ★★★ (only Curala/Tandem/Petleo are clear today)
+- [ ] Accessibility pass to WCAG 2.2 AA (BFSG-safe) — M ★★
 
-- [ ] Penetration test and DPIA before any clinic puts real records in
-- [ ] Provet / ezyVet partner programme applications
-- [ ] Trademark registration
+## 3. Website and content — **Me**
+
+### Articles (drafts; vets review)
+- [ ] Cost explainers, highest intent: **"Tierarzt Kosten Tabelle 2026 (GOT)"**, **"Kastration Hund Kosten 2026"**, **"Quanto costa una visita veterinaria"**, "sterilizzazione cane costo" — M ★★★
+- [ ] **Italian top-40** (exact search phrasing): cane vomita giallo/schiuma bianca · gatto vomita schiuma bianca/pelo · gatto non mangia ma beve · cane diarrea con sangue · gatto non fa pipì da 12/24 ore · cane non mangia ma beve · cane trema senza motivo · cane zoppica zampa anteriore/posteriore · cane ha mangiato ossa di pollo/cioccolato/uva/veleno per topi · cane cioccolato dose tossica · gatto cistite da stress · colpo di calore cane · zecca cane come toglierla · pulci cane in casa · **leishmaniosi cane sintomi** · **processionaria cane** · cane si gratta sempre · cane febbre · gatto diarrea · cane tosse come se avesse qualcosa in gola · gatto starnutisce · gatto insufficienza renale · cane beve tanto e fa tanta pipì · cane anziano non mangia · gatto FIV · **vaccini cane obbligatori in Italia** · sverminazione cane ogni quanto · visita veterinaria costo · gatto avvelenato · cane respira male · cane punto da ape · displasia anca · ansia da separazione · gatto perde pelo a ciuffi · cane alito cattivo · gatto stitico · coniglio non mangia e non fa cacca · coniglio diarrea · coniglio denti lunghi · **come iscrivere il gatto al SINAC** — L ★★★
+- [ ] **German top-40**: hund durchfall was tun/hausmittel/blut · hund erbricht gelb/schaum/unverdautes futter · katze erbricht schaum · katze frisst nicht mehr · mein hund frisst nicht und schläft viel · warum frisst mein hund gras/kot/erde · hund zittert und hechelt · hund humpelt · hund hat schokolade gefressen · hund rattengift/weintrauben · hund vergiftung symptome · katze blasenentzündung · katze pinkelt ins bett · hund hechelt viel · hund atmet schnell im schlaf · hitzschlag hund · **hund giardien** · hund zecke entfernen · hund flöhe · hund milben · hund juckt sich · hund ohrenentzündung · hund hustet und würgt · katze niest/katzenschnupfen · katze niereninsuffizienz · hund trinkt viel · hund fieber (Novalgin warning) · **katze FIP** · hund impfung kosten/leptospirose/italien · hund entwurmen wie oft · katze impfung · katze zahnstein · hund arthrose · hündin läufig · katze giftige pflanzen/hund giftige lebensmittel · katze verstopfung · kaninchen frisst nicht · kaninchen durchfall/zähne — L ★★★
+- [ ] Conditions and medications categories (currently empty): 10 plain-language condition pages, 8 "what this drug is for and how to give it" pages (no doses) — M ★★
+- [ ] A–Z index, species hubs, "share with your vet" button, print stylesheet for articles — S ★★
+- [ ] Illustrations (simple line drawings, own, no stock) — M ★
+- [ ] Translate privacy/terms/research/quality into IT/DE after the lawyer pass — M ★★
+- [ ] Vet-facing landing pages per country: `/de/vets` with GOT/TÄHAV angle, `/it/vets` with REV/preventivo angle — S ★★
+
+### Site mechanics
+- [ ] `hreflang` links between language versions; language auto-suggest banner — S ★★
+- [ ] Cookie-free analytics (Plausible self-host or Cloudflare Web Analytics) — S ★★
+- [ ] Search (static index, Pagefind) — S ★★
+- [ ] Open-graph image per article — S ★
+
+## 4. Owner side — **Me**
+
+### Passport (local-first) — value against the #1 complaint, data lock-in
+- [ ] Rename + "your data stays yours: free, no lock-in, export anytime" statement on the page — S ★★★
+- [ ] **Import from photo/PDF of the paper passport, libretto, Impfpass** (on-device OCR, user confirms each field) — L ★★★ *only us in EU*
+- [ ] **Reminders** for vaccinations, parasite treatments, medications with country-aware intervals; local notifications first, email once accounts exist — M ★★★
+- [ ] **Share a read-only report** (PDF now; expiring link once accounts exist) for vet, sitter, kennel — S/M ★★★
+- [ ] **Emergency card**: print + Apple/Google Wallet pass (chip, meds, allergies, vet, ICE) — M ★★ *only us*
+- [ ] **Lost-pet mode**: poster PDF, QR flyer, per-country registry checklist, Europetnet link — M ★★ *registry-aware: only us*
+- [ ] **Registry navigator**: which registry (IT anagrafe/SINAC, DE TASSO/FINDEFIX, AT Heimtierdatenbank, CH AMICUS/ANIS, FR I-CAD), deadlines when moving (AT 1 month, CH 10 d, FR 8 d, IT 10 d) — S ★★ *only us*
+- [ ] **Travel checklist per destination** under Reg. 2026/131: residents-only passport, 5-pet cap, tapeworm FI/IE/MT/NO/UK 24–120 h, rabies titre for unlisted countries, puppy age — M ★★★
+- [ ] Chip-number validation (15-digit ISO, manufacturer prefix) — S ★
+- [ ] Weight log with chart and body-condition score — S ★★
+- [ ] Symptom diary (date, note, photo) that feeds the pre-visit brief — M ★★
+- [ ] Puppy/kitten first-year schedule; senior-care checklist — S ★★
+- [ ] Toxic foods and plants offline reference (dog, cat, rabbit) — S ★★
+- [ ] Insurance claim helper: bundle invoice photo + record extract + onset date in the insurer's format (Agila, HanseMerkur, Uelzener, Poste, Santévet) — M ★★ *only us*
+- [ ] End-of-life module: quality-of-life scale, decision aid, after-death checklist incl. deregistration — S ★★
+- [ ] Multilingual print labels (EN/DE/IT/FR) so the booklet reads abroad — S ★★
+- [ ] Backup to own cloud (file picker to iCloud/Drive) + encrypted export — M ★★
+- [ ] Multi-owner/family sharing; pet-sitter mode (time-boxed, meds + feeding + emergency only) — L ★★ (needs accounts)
+- [ ] Owner accounts live (needs Supabase) → sync, email reminders, share links — M ★★★
+
+### Pre-visit brief
+- [ ] Species-specific question sets (cat urinary, rabbit gut, senior) — S ★★
+- [ ] Send to clinic by email/PDF; later: accept at the vet side as *owner-reported* input with its own provenance tag — M ★★★ *only us: brief flows into the record as "owner says"*
+
+## 5. Vet tool — **Me**
+
+### Correctness first
+- [ ] Grow the eval set to **300 cases × EN/DE/IT** (shorthand, typos, contradictions, multi-pet, dictated-later notes), written with vets — L ★★★
+- [ ] Run the model on the set (needs key), publish numbers on `/vets/quality` — S ★★★
+- [ ] **Country field packs** as missing-flags: DE (TÄHAV: product, ZNR, batch, quantity, dose/route/duration, antibiotic justification), IT (owner codice fiscale, microchip, lot on vaccines, consent "modi e tempi", REV number), CH (antibiotic → IS ABV fields), AT (TAMG fields) — M ★★★ *only us*
+- [ ] Add structured fields: microchip, owner tax/ID, product code + batch + pack + quantity/unit, author, consent — S ★★★
+- [ ] Adversarial cases: owner's pregnancy, other pet, dose mentioned but not given, "was" vs "planned", decimal commas, German compound drug names — M ★★★
+- [ ] External vet panel review of 50 outputs (names on the quality page) — **You** + M ★★★
+
+### Documents from the approved record (each S–M unless noted)
+- [ ] Owner summary, home-care instructions, discharge, referral (exists in spec; align referral to AniCura/TiHo/LMU field sets) ★★★
+- [ ] **Prescription per dispensed Rx drug (DE Art. 105(5))** → PDF in record ★★★ *only us*
+- [ ] **Italian REV payload** from the medication table; store number + PIN ★★★ *only us*
+- [ ] **Preventivo / Kostenvoranschlag**: plan items × clinic price list (DE: GOT positions + factor; IT: listino, liability-policy data) ★★★ *only us*
+- [ ] **Procedure-specific consent forms** (anaesthesia, surgery, euthanasia, hospitalisation, AMA refusal, referral) with FNOVI-required elements ★★★ *only us*
+- [ ] **Insurance-ready invoice annotation** (diagnosis, chip, DOB/breed, GOT no. + factor) and **claim pack** per insurer ★★★ *only us*
+- [ ] Vaccination visit: batch/lot/site/expiry flags → passport page print + reminder ★★★
+- [ ] Surgery/anaesthesia record with required-field checklist (ASA, protocol, monitoring values, implants) ★★★
+- [ ] **Text-first dental chart** drawn by code from typed findings ★★ *only us*
+- [ ] Home-care schedule (calendar of doses) rendered from the medication table ★★
+- [ ] Callback / phone-call note (typed) and email-to-record ★★
+- [ ] History recap of the patient's own approved records, every line linked ★★
+- [ ] Euthanasia record + condolence letter from vet-entered facts ★
+- [ ] Controlled-drugs book draft entry + monthly check reminder ★★
+- [ ] Registry export (AT Heimtierdatenbank, IT anagrafe dataset) ★★
+- [ ] Dog-bite report letter (CH, IT) ★
+- [ ] Third-country certificate pre-fill from record ★
+- [ ] Antibiotic structured block now; **IS ABV (CH) push** later via BLV REST; HI-Tier (DE) 2029 ★★ (M–L)
+- [ ] Lab-result explanation for owners from vet-entered interpretation only ★★
+
+### Editor and review features
+- [ ] **Provenance badge** on every document (AI-added 0 / vet fields n / not recorded n) — S ★★★ *only us*
+- [ ] Owner-reported vs vet-observed toggle with distinct rendering — S ★★★ *only us*
+- [ ] **Declined-care register** (signed paragraph + per-patient log) — S ★★★ *only us*
+- [ ] Medication reconciliation table with tick per cell before sign-off; cross-document identity check for translations — S ★★★ *only us*
+- [ ] "Not recorded" as a first-class printed value — S ★★★ *only us*
+- [ ] Amendment propagation map ("generated from v1 — regenerate?") — M ★★ *only us*
+- [ ] Bilingual side-by-side owner letter (DE/IT/EN + TR/AR/UK), meds table identical — M ★★★ *only us*
+- [ ] Snippets / dot-phrases incl. "otherwise unremarkable" (clinic-written, never auto) — S ★★★
+- [ ] Clinic abbreviation + glossary manager — S ★★★
+- [ ] Template builder (sections, order, required fields, per-vet defaults); specialty sets: derm, ortho, dental, ophtho, cardio, exotics, equine — M ★★
+- [ ] Multi-pet consultation UI (assign bullets, split documents, one owner letter) — M ★★
+- [ ] Image attachment (stored, referenced, never interpreted) — S ★★
+- [ ] Nurse draft → vet co-sign with stamp and audit — S ★★★
+- [ ] Keyboard-only review with time counter; clinic median time-to-approved on quality page — S ★★
+- [ ] Optional vet-only dictation → bullets, audio discarded immediately, shown as the vet's own input — M ★★
+- [ ] Mobile layout + local autosave for after-the-fact entry — M ★★
+- [ ] Handouts: link our reviewed articles to a vet-typed diagnosis (linked, never inserted) — S ★★
+
+### Getting it into the practice software
+- [ ] **Export formats** tested against Vetera, easyVET, VET7, Provet Cloud, dr.veto, VetsGo free-text fields — M ★★★
+- [ ] Browser helper (extension) that pastes sections into the right fields and **reads the patient header to lock patient facts** — L ★★★
+- [ ] Provet MCP read (history, meds) as context — M ★★
+- [ ] Partner-programme applications: Provet, ezyVet, Covetrus; Petleo-style agreement with Vetera/Nordhealth; VetZ — **You** + L ★★
+
+### Platform
+- [ ] Vet accounts (email link + MFA), clinic settings (letterhead, language, units, SOAP on/off, abbreviations) — M ★★★
+- [ ] Letterhead PDF + print — S ★★★
+- [ ] Retention controls (auto-delete drafts/raw notes), immutable approved versions (§16 TÄHAV) — S ★★★
+- [ ] Clinic-owner analytics (time-to-approved, edit ratio, open flags) — no clinical text — S ★★
+- [ ] Rate limits, spend caps, prompt caching, model fallback — S ★★★
+- [ ] Cross-tenant isolation test suite; pen test (€) and DPIA before real data — M ★★★
+- [ ] SSO (Google/Microsoft) and multi-clinic groups — L ★ (later, for chains)
+
+## 6. Go-to-market — mostly **You**, prepared by **Me**
+
+- [ ] **Free tier for students, TFA/tecnici and nurses**; list as university "convenzione" — Me S, You: bvvd (bvvd@bvvd.de), IVSA Italy chapters, vmf, ATAV
+- [ ] **Willingness-to-pay survey** for DE/IT vets (none exists) — Me S (form), You distribute
+- [ ] Editorial pitches: Vetline "Praxismanagement", Vetjournal "Praxismanager", vetjournal.it ufficio stampa, Ordini newsletters; podcasts FutureVetBusiness (DE), Che Razza di Podcast (IT) — Me drafts, You send
+- [ ] Congresses (walk the floor, poster via a university co-author): bpt-Kongress Hannover **19–21 Nov 2026**; VetMed Fellbach **5–6 Feb 2027**; bpt-INTENSIV Bielefeld **25–28 Feb 2027**; SCIVAC Rimini **4–6 Jun 2027**; ECVIM Rimini 23–25 Sep 2027
+- [ ] Grants (€0 to apply): **Piemonte voucher digitalizzazione 22 Oct–15 Dec 2026** (if a Piedmont entity), **Smart&Start Italia** (rolling), **Unleashed by Purina** (~Jul 2027, wants vet tools), Leap Venture Studio cohort 11 (~Q1 2027), EXIST via a vet faculty, EIC 4 Nov 2026 / ~3 Feb 2027
+- [ ] Insurer partnerships: Agila direct billing (claim-friendly export), Figo affiliate (disclosed) — Me prepares the export, You contact
+- [ ] Clinic groups for a pilot: AniCura Italia (Medical Operations Manager), Ca'Zampa/BluVet, IVC Evidensia — You
+- [ ] Shelters/breeders: passport as adoption handover; Tierheim/canile pilots — You
+- [ ] Launch checklist (Product Hunt, Vetline newsletter, Ordini mailing) — Me drafts
+
+## 7. Open research (unverified, confirm before building)
+
+- [ ] CH GST retention rule for records; AMICUS vet duties; AT Standesregeln and bite-report duty
+- [ ] IT: final text of D.Lgs 218/2023 on registering dispensing to pet owners; Sistema TS optionality for vets
+- [ ] DE: Petplan/Barmenia/Allianz claim forms; HABS status between TASSO and FINDEFIX
+- [ ] Whether a third-party SaaS may connect to Provet MCP on a clinic's behalf; ezyVet/Provet/Digitail free-text write-back permissions
+- [ ] L. 132/2025 health-sector decrees adopted?
+- [ ] Vet-forum complaints about Vetera/easyVET/Italian PIMS (needs interviews or group access)
