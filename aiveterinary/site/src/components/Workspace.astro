@@ -8,7 +8,7 @@ const T = {
   "caseLabel": "Example case",
   "countryLabel": "Country rules",
   "roleLabel": "I am",
-  "docLabel": "Document","docReport": "Consultation report","docOwner": "Owner summary","docReferral": "Referral letter","docRx": "Prescription","docVacc": "Vaccination entry","referralReason": "Reason for referral (your words)",
+  "docLabel": "Document","docReport": "Consultation report","docOwner": "Owner summary","docReferral": "Referral letter","docRx": "Prescription","docVacc": "Vaccination entry","docConsent": "Consent form","referralReason": "Reason for referral (your words)",
   "attachLabel": "Attach a photo or document","attachHint": "Stored with the record and referenced in the report. Never read or interpreted by the assistant.",
   "abbrTitle": "Abbreviations in your notes","abbrHint": "Expanded from the default list and your clinic glossary. Correct a meaning once and it is remembered on this device.","abbrNone": "No abbreviations recognised.","abbrSave": "Save","roleNurse": "Nurse / assistant","roleVet": "Veterinarian",
   "notice": "<strong>Preview.</strong> The example cases run offline on prepared records, so you can see exactly how the review works: source highlighting, missing-information flags, the medication table built from your own words. In the real product your own notes are structured by the model with the same checks. Nothing here is stored.",
@@ -27,7 +27,7 @@ const T = {
   "caseLabel": "Caso di esempio",
   "countryLabel": "Regole del Paese",
   "roleLabel": "Sono",
-  "docLabel": "Documento","docReport": "Referto di visita","docOwner": "Riepilogo per il proprietario","docReferral": "Lettera di riferimento","docRx": "Prescrizione","docVacc": "Registrazione vaccinale","referralReason": "Motivo dell'invio (parole Sue)",
+  "docLabel": "Documento","docReport": "Referto di visita","docOwner": "Riepilogo per il proprietario","docReferral": "Lettera di riferimento","docRx": "Prescrizione","docVacc": "Registrazione vaccinale","docConsent": "Consenso informato","referralReason": "Motivo dell'invio (parole Sue)",
   "attachLabel": "Allega foto o documento","attachHint": "Conservato con la cartella e citato nel referto. Mai letto né interpretato dall'assistente.",
   "abbrTitle": "Abbreviazioni nelle note","abbrHint": "Espanse dalla lista predefinita e dal glossario della clinica. Correggi un significato una volta e viene ricordato su questo dispositivo.","abbrNone": "Nessuna abbreviazione riconosciuta.","abbrSave": "Salva","roleNurse": "Assistente / infermiere","roleVet": "Veterinario",
   "notice": "<strong>Anteprima.</strong> I casi di esempio girano offline su cartelle già preparate, così puoi vedere esattamente come funziona la revisione: evidenziazione della fonte, segnalazione delle informazioni mancanti, tabella dei farmaci costruita con le tue stesse parole. Nel prodotto reale le tue note vengono strutturate dal modello con gli stessi controlli. Qui non viene salvato nulla.",
@@ -46,7 +46,7 @@ const T = {
   "caseLabel": "Beispielfall",
   "countryLabel": "Länderregeln",
   "roleLabel": "Ich bin",
-  "docLabel": "Dokument","docReport": "Behandlungsbericht","docOwner": "Halterinformation","docReferral": "Überweisungsschreiben","docRx": "Verschreibung","docVacc": "Impfeintrag","referralReason": "Überweisungsgrund (Ihre Worte)",
+  "docLabel": "Dokument","docReport": "Behandlungsbericht","docOwner": "Halterinformation","docReferral": "Überweisungsschreiben","docRx": "Verschreibung","docVacc": "Impfeintrag","docConsent": "Einwilligung","referralReason": "Überweisungsgrund (Ihre Worte)",
   "attachLabel": "Foto oder Dokument anhängen","attachHint": "Wird mit dem Datensatz gespeichert und im Bericht genannt. Vom Assistenten nie gelesen oder interpretiert.",
   "abbrTitle": "Abkürzungen in Ihren Notizen","abbrHint": "Aufgelöst aus der Standardliste und Ihrem Praxisglossar. Eine Bedeutung einmal korrigieren, und sie bleibt auf diesem Gerät gespeichert.","abbrNone": "Keine Abkürzungen erkannt.","abbrSave": "Speichern","roleNurse": "TFA / Assistenz","roleVet": "Tierärztin / Tierarzt",
   "notice": "<strong>Vorschau.</strong> Die Beispielfälle laufen offline auf vorbereiteten Akten, damit Sie genau sehen, wie die Prüfung funktioniert: Quellenmarkierung, Hinweise auf fehlende Angaben, die Medikamententabelle aus Ihren eigenen Worten. Im echten Produkt strukturiert das Modell Ihre eigenen Notizen mit denselben Prüfungen. Hier wird nichts gespeichert.",
@@ -185,7 +185,7 @@ const t = T[lang]; const j = JS[lang];
       </div>
       <div>
         <label for="ws-doc" class="ws-label">{t.docLabel}</label>
-        <select id="ws-doc"><option value="report">{t.docReport}</option><option value="owner">{t.docOwner}</option><option value="referral">{t.docReferral}</option><option value="rx">{t.docRx}</option><option value="vacc">{t.docVacc}</option></select>
+        <select id="ws-doc"><option value="report">{t.docReport}</option><option value="owner">{t.docOwner}</option><option value="referral">{t.docReferral}</option><option value="rx">{t.docRx}</option><option value="vacc">{t.docVacc}</option><option value="consent">{t.docConsent}</option></select>
       </div>
       <div id="ws-referral-wrap" hidden>
         <label for="ws-referral" class="ws-label">{t.referralReason}</label>
@@ -301,7 +301,7 @@ const t = T[lang]; const j = JS[lang];
     import { ClinicalRecord, PatientHeader, type ClinicalRecord as Rec } from 'aiveterinary-app/src/schema.ts';
     import { normalizeNotes, findAbbreviations, DEFAULT_ABBREVIATIONS } from 'aiveterinary-app/src/normalize.ts';
     import { validateAll, requiredMissing, type Finding } from 'aiveterinary-app/src/validators.ts';
-    import { renderConsultReport, renderOwnerSummary, renderReferralLetter, renderPrescription, renderVaccinationEntry } from 'aiveterinary-app/src/render.ts';
+    import { renderConsultReport, renderOwnerSummary, renderReferralLetter, renderPrescription, renderVaccinationEntry, renderConsentForm } from 'aiveterinary-app/src/render.ts';
     import { countryMissing, VisitContext } from 'aiveterinary-app/src/country.ts';
     import c1 from 'aiveterinary-app/eval/cases/001-luna-vomiting.json';
     import c2 from 'aiveterinary-app/eval/cases/002-milo-otitis-de.json';
@@ -360,6 +360,7 @@ const t = T[lang]; const j = JS[lang];
       const { record, header, lang } = cur;
       if (dsel.value === 'owner') return renderOwnerSummary(record, header, lang, { approved });
       if (dsel.value === 'referral') return renderReferralLetter(record, header, lang, { approved, reason: refIn.value.trim() || null });
+      if (dsel.value === 'consent') return renderConsentForm(record, header, VisitContext.parse({ country: csel.value, author: { name: 'Dr. Demo' } }), lang);
       if (dsel.value === 'vacc') return renderVaccinationEntry(record, header, VisitContext.parse({ country: csel.value, author: { name: 'Dr. Demo' } }), lang, { approved });
       if (dsel.value === 'rx') return renderPrescription(record, header, VisitContext.parse({ country: csel.value, author: { name: 'Dr. Demo' } }), lang, { approved });
       return renderConsultReport(record, header, lang, { approved });
