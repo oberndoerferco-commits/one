@@ -107,7 +107,7 @@ Everything costs €0 unless marked €. Legend:
 
 ### Documents from the approved record (each S–M unless noted)
 - [x] Owner summary and referral letter rendered from the approved record (discharge and the AniCura/TiHo/LMU referral field alignment still open)
-- [ ] **Prescription per dispensed Rx drug (DE Art. 105(5))** → PDF in record ★★★ *only us*
+- [x] **Prescription per dispensed Rx drug (Art. 105(5))** rendered from record + visit context with flags for keeper, chip, product, quantity, vet (PDF/letterhead still open)
 - [ ] **Italian REV payload** from the medication table; store number + PIN ★★★ *only us*
 - [ ] **Preventivo / Kostenvoranschlag**: plan items × clinic price list (DE: GOT positions + factor; IT: listino, liability-policy data) ★★★ *only us*
 - [ ] **Procedure-specific consent forms** (anaesthesia, surgery, euthanasia, hospitalisation, AMA refusal, referral) with FNOVI-required elements ★★★ *only us*

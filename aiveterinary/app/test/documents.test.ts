@@ -49,4 +49,17 @@ describe('documents from the approved record', () => {
     const md = renderDoseChecklist(meds, 'de');
     expect(md).toContain('| Tag | morgens | abends |'); expect((md.match(/☐/g) ?? []).length).toBe(14); expect(md).toContain('nicht eindeutig');
   });
+  it('prescription lists each dispensed medicine and flags what the keeper record lacks', async () => {
+    const { renderPrescription } = await import('../src/render.js');
+    const { VisitContext } = await import('../src/country.js');
+    const { record, header } = prep('002-milo-otitis-de');
+    const r = structuredClone(record); r.medications.forEach((m) => (m.status = 'dispensed'));
+    const bare = renderPrescription(r, header, VisitContext.parse({ country: 'DE' }), 'de', { date: '2026-10-14' });
+    expect(bare).toContain('# Tierärztliche Verschreibung');
+    expect(bare).toContain('Name und Anschrift'); expect(bare).toContain('abzugebende Menge'); expect(bare).toContain('verschreibende');
+    const full = renderPrescription(r, header, VisitContext.parse({ country: 'DE', microchip: '276000000000001', owner: { name: 'Anna Beispiel, Musterstraße 1, Berlin' }, author: { name: 'Dr. Vet', registration: 'TÄK Berlin' }, dispensings: [{ medication_index: 0, product: 'Surolan Ohrentropfen', quantity: { value: 1, unit: 'Flasche' }, authorisation_number: '12345.00.00', batch: 'L123' }] }), 'de', { date: '2026-10-14' });
+    expect(full).toContain('## Surolan Ohrentropfen'); expect(full).toContain('1 Flasche'); expect(full).toContain('Lot L123'); expect(full).not.toContain('## ▲');
+    const luna = prep('001-luna-vomiting');
+    expect(renderPrescription(luna.record, luna.header, VisitContext.parse({ country: 'IT' }), 'it')).toContain('Nessun medicinale');
+  });
 });

@@ -249,3 +249,56 @@ export function renderDoseChecklist(meds: Medication[], lang: Lang): string {
   }
   return out.join('\n');
 }
+
+/* ------------------------------------------------------------------ */
+/* Prescription per dispensed or prescribed medicine (Art. 105(5)       */
+/* Reg. (EU) 2019/6 content). Every line comes from the record or the   */
+/* vet-entered visit context; anything absent is a flag, never a guess. */
+
+import type { VisitContext } from './country.js';
+
+const P = {
+  en: { title: 'Veterinary prescription', keeper: 'Animal keeper', animal: 'Animal', product: 'Medicinal product', dose: 'Dosage regimen', quantity: 'Quantity', duration: 'Duration of treatment', route: 'Route', date: 'Date', vet: 'Prescribing veterinarian', signature: 'Signature', withdrawal: 'Withdrawal period', notApplicable: 'not applicable (non food-producing animal)', nothing: 'No dispensed or prescribed medicine in this record.', missingKeeper: 'keeper name and address required on a prescription', missingProduct: 'product name as on the pack', missingQty: 'quantity to dispense', missingVet: 'prescribing veterinarian', missingChip: 'animal identification (microchip)' },
+  de: { title: 'Tierärztliche Verschreibung', keeper: 'Tierhalterin / Tierhalter', animal: 'Tier', product: 'Arzneimittel', dose: 'Dosierung', quantity: 'Menge', duration: 'Anwendungsdauer', route: 'Applikation', date: 'Datum', vet: 'Verschreibende Tierärztin / verschreibender Tierarzt', signature: 'Unterschrift', withdrawal: 'Wartezeit', notApplicable: 'entfällt (kein Lebensmittel lieferndes Tier)', nothing: 'Keine abgegebenen oder verschriebenen Arzneimittel in diesem Datensatz.', missingKeeper: 'Name und Anschrift der Tierhalterin / des Tierhalters', missingProduct: 'Arzneimittelbezeichnung wie auf der Packung', missingQty: 'abzugebende Menge', missingVet: 'verschreibende Tierärztin / verschreibender Tierarzt', missingChip: 'Tieridentifikation (Chipnummer)' },
+  it: { title: 'Prescrizione veterinaria', keeper: 'Proprietario / detentore', animal: 'Animale', product: 'Medicinale', dose: 'Posologia', quantity: 'Quantità', duration: 'Durata del trattamento', route: 'Via', date: 'Data', vet: 'Veterinario prescrittore', signature: 'Firma', withdrawal: 'Tempo di sospensione', notApplicable: 'non applicabile (animale non destinato alla produzione di alimenti)', nothing: 'Nessun medicinale consegnato o prescritto in questa cartella.', missingKeeper: 'nome e indirizzo del proprietario', missingProduct: 'nome del medicinale come sulla confezione', missingQty: 'quantità da consegnare', missingVet: 'veterinario prescrittore', missingChip: 'identificazione dell\'animale (microchip)' },
+};
+
+export function renderPrescription(record: ClinicalRecord, header: PatientHeader, ctx: VisitContext, lang: Lang = 'en', opts: { approved?: boolean; date?: string } = {}): string {
+  const t = L[lang], p = P[lang];
+  const out: string[] = [];
+  out.push(`# ${p.title}`);
+  if (!opts.approved) out.push(`_${t.draft}_`);
+  out.push('');
+  const miss: Missing[] = [];
+  const keeper = [ctx.owner.name, ctx.owner.tax_id].filter(Boolean).join(' · ');
+  if (!ctx.owner.name) miss.push({ field: 'owner.name', reason: p.missingKeeper });
+  out.push(`**${p.keeper}:** ${keeper || flag(p.missingKeeper)}`);
+  out.push(`**${p.animal}:** ${headerLine(header)}${ctx.microchip ? ` · ${ctx.microchip}` : ` · ${flag(p.missingChip)}`}`);
+  if (!ctx.microchip) miss.push({ field: 'microchip', reason: p.missingChip });
+  out.push(`**${p.date}:** ${opts.date ?? new Date().toISOString().slice(0, 10)}`);
+  out.push('');
+  const give = record.medications.map((m, i) => ({ m, i })).filter(({ m }) => m.status === 'dispensed' || m.status === 'prescribed');
+  if (!give.length) out.push(p.nothing);
+  for (const { m, i } of give) {
+    const d = ctx.dispensings.find((x) => x.medication_index === i);
+    const product = d?.product ?? null;
+    if (!product) miss.push({ field: `dispensings[${i}].product`, reason: p.missingProduct });
+    if (!d?.quantity) miss.push({ field: `dispensings[${i}].quantity`, reason: p.missingQty });
+    out.push(`## ${product ?? `${m.drug ?? m.class_as_written ?? t.drug} ${flag(p.missingProduct)}`}`);
+    out.push(`- ${p.dose}: ${m.dose != null ? `${m.dose} ${m.dose_unit ?? ''}`.trim() : flag(`${t.missing}: ${t.dose.toLowerCase()}`)}${m.frequency ? `, ${m.frequency}` : ` ${flag(`${t.missing}: ${t.freq.toLowerCase()}`)}`}`);
+    out.push(`- ${p.route}: ${m.route ?? flag(`${t.missing}: ${t.route.toLowerCase()}`)}`);
+    out.push(`- ${p.duration}: ${m.duration ?? flag(`${t.missing}: ${t.dur.toLowerCase()}`)}`);
+    out.push(`- ${p.quantity}: ${d?.quantity ? `${d.quantity.value} ${d.quantity.unit}` : flag(p.missingQty)}${d?.pack ? ` (${d.pack})` : ''}`);
+    if (d?.authorisation_number || d?.batch) out.push(`- ${[d.authorisation_number && `Zul.-Nr./AIC ${d.authorisation_number}`, d.batch && `Lot ${d.batch}`].filter(Boolean).join(' · ')}`);
+    out.push(`- ${p.withdrawal}: ${p.notApplicable}`);
+    out.push('');
+  }
+  out.push(`**${p.vet}:** ${[ctx.author.name, ctx.author.registration].filter(Boolean).join(', ') || flag(p.missingVet)}`);
+  if (!ctx.author.name) miss.push({ field: 'author.name', reason: p.missingVet });
+  out.push(`${p.signature}: ______________________`);
+  if (miss.length) { out.push(''); out.push(`## ${flag(t.missing)}`); for (const x of miss) out.push(`- ${x.field}: ${x.reason}`); }
+  const pr = provenance(record, miss);
+  out.push(''); out.push(`_${t.provenance.replace('{f}', String(pr.facts)).replace('{n}', String(pr.not_recorded))}_`);
+  if (opts.approved) { out.push(''); out.push(`_${t.disclosure}_`); }
+  return out.join('\n');
+}
