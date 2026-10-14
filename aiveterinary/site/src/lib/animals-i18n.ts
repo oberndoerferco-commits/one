@@ -28,6 +28,7 @@ export const ANIMALS = {
       care: ['Everyday care', 'Feeding, vaccinations, the routine things'],
     },
     locale: 'en-GB',
+    allTitle: 'All articles, A to Z', allLead: '{n} articles, grouped by animal and sorted by title. Reviewed articles name their veterinarian; drafts say so.',
     search: { placeholder: 'Search symptoms, conditions, questions…', zero: 'No results for [SEARCH_TERM]', results: '[COUNT] results for [SEARCH_TERM]', loading: 'Searching…' },
   },
   it: {
@@ -56,6 +57,7 @@ export const ANIMALS = {
       care: ['Cura quotidiana', 'Alimentazione, vaccinazioni, le cose di routine'],
     },
     locale: 'it-IT',
+    allTitle: 'Tutti gli articoli, dalla A alla Z', allLead: '{n} articoli, raggruppati per animale e in ordine alfabetico. Gli articoli revisionati indicano il veterinario; le bozze lo dicono.',
     search: { placeholder: 'Cerca sintomi, malattie, domande…', zero: 'Nessun risultato per [SEARCH_TERM]', results: '[COUNT] risultati per [SEARCH_TERM]', loading: 'Ricerca in corso…' },
   },
   de: {
@@ -84,6 +86,7 @@ export const ANIMALS = {
       care: ['Alltägliche Pflege', 'Fütterung, Impfungen, die Routinedinge'],
     },
     locale: 'de-DE',
+    allTitle: 'Alle Artikel von A bis Z', allLead: '{n} Artikel, nach Tierart gruppiert und alphabetisch sortiert. Geprüfte Artikel nennen die Tierärztin oder den Tierarzt; Entwürfe sagen es.',
     search: { placeholder: 'Symptome, Krankheiten, Fragen suchen…', zero: 'Keine Treffer für [SEARCH_TERM]', results: '[COUNT] Treffer für [SEARCH_TERM]', loading: 'Suche läuft…' },
   },
 } as const;

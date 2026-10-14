@@ -81,7 +81,7 @@ const speciesKeys = ['dog', 'cat', 'rabbit', 'horse', 'bird', 'general'] as cons
 </section>
 
 <section class="wrap section">
-  <div class="section-row"><h2 class="section-h">{T.latest}</h2><a class="more" href={a.base}>{T.all}</a></div>
+  <div class="section-row"><h2 class="section-h">{T.latest}</h2><a class="more" href={`${a.base}/all`}>{T.all}</a></div>
   <div class="cards3">
     {latest.map((e) => (
       <a class="card2" href={`${a.base}/${slugOf(e.id)}`}>
