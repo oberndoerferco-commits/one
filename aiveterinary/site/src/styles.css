@@ -136,3 +136,7 @@ p { margin: 0 0 1em; }
 .pp-fields input, .pp-fields select, .pp-fields textarea, textarea { width: 100%; margin-top: 4px; padding: 8px 10px; font: inherit; border: 1.5px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); }
 .pp-hint { color: var(--ink-3); font-size: .9rem; margin: -4px 0 8px; }
 .pp-status { color: var(--ink-3); font-size: .9rem; min-height: 1.4em; }
+
+.article-refs { margin-top: 32px; font-size: .92rem; color: var(--ink-2); }
+.article-refs h2 { font-size: 1rem; margin: 0 0 6px; }
+.article-refs ol { padding-left: 1.3em; margin: 0; }

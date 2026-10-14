@@ -16,10 +16,16 @@ const cls: Record<string, string> = { emergency: 'danger', today: 'warn', 'this-
   <div class="article-meta">
     {d.draft
       ? <span class="badge draft">{t.draftLong}</span>
-      : <span class="badge reviewed">{t.reviewedBy} {d.reviewedBy}{d.reviewedOn && `, ${fmt(d.reviewedOn)}`}</span>}
+      : <span class="badge reviewed">{t.reviewedBy} {d.reviewedBy}{d.reviewerRegistration && ` (${d.reviewerRegistration})`}{d.reviewedOn && `, ${fmt(d.reviewedOn)}`}</span>}
+    {d.author && <span>{t.author} {d.author}</span>}
     <span>{t.updated} {fmt(d.updated)}</span>
+    {d.nextReview && <span>{t.nextReview} {fmt(d.nextReview)}</span>}
   </div>
   {d.urgency && <div class={`notice ${cls[d.urgency]}`}><p><strong>{t.whenToSee}</strong> {(t.urgency as any)[d.urgency]}</p></div>}
   <div class="prose"><Content /></div>
-  <div class="notice" style="margin-top:40px"><p>{t.footer}</p></div>
+  {d.references?.length && (
+    <section class="article-refs"><h2>{t.references}</h2><ol>{d.references.map((r: any) => <li>{r.url ? <a href={r.url} rel="noopener">{r.title}</a> : r.title}</li>)}</ol></section>
+  )}
+  <p style="margin-top:28px"><a class="btn secondary" href={`mailto:?subject=${encodeURIComponent(d.title)}&body=${encodeURIComponent(Astro.url.href)}`}>{t.share}</a></p>
+  <div class="notice" style="margin-top:24px"><p>{t.footer}</p></div>
 </article>
