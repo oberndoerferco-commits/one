@@ -84,7 +84,7 @@ Everything costs €0 unless marked €. Legend:
 - [x] Symptom diary (date, note) in the booklet, last entries pulled into the pre-visit brief (photo per entry still open) — M ★★
 - [x] Puppy/kitten first-year schedule; senior-care checklist — S ★★
 - [x] Toxic foods and plants offline reference (dog, cat, rabbit) — S ★★
-- [ ] Insurance claim helper: bundle invoice photo + record extract + onset date in the insurer's format (Agila, HanseMerkur, Uelzener, Poste, Santévet) — M ★★ *only us*
+- [x] Insurance claim pack printed from the booklet (identity, chip, policy, visits, medications, conditions, blanks for invoice and onset) — per-insurer formats and invoice photo still open
 - [x] End-of-life module: quality-of-life scale, decision aid, after-death checklist incl. deregistration — S ★★
 - [x] Multilingual print labels (EN/DE/IT; FR still open) so the booklet reads abroad — S ★★
 - [x] Backup to own cloud via the browser save dialog where supported (encrypted export still open) — M ★★

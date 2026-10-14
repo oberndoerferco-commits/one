@@ -26,6 +26,7 @@ const T = {
   "print": "Print",
   "card": "Emergency card",
   "poster": "Lost-pet poster",
+  "claim": "Insurance claim pack","claimTitle": "Insurance claim: supporting information","claimIntro": "Attach to the insurer's claim form together with the invoice. Everything below comes from the owner's health booklet; the clinic confirms diagnosis and treatment on its own documents.","claimPolicy": "Policy","claimVisits": "Visits","claimMeds": "Current medications","claimCond": "Known conditions (pre-existing conditions matter for cover)","claimFill": "Invoice number(s) and amounts: ______________________  Date of first signs: ____________","claimSign": "Owner signature / date",
   "printLang": "Second language on the printout","printLangNone": "None","posterLost": "LOST","posterSeen": "Last seen","posterWhere": "Where and when was the animal last seen?","posterReward": "Please call, any time:","posterChip": "Microchipped, registered","cardTitle": "Emergency card","cardFoot": "Full health booklet on the owner's phone · aiveterinary.org",
   "delete": "Delete",
   "emptyTitle": "No animal yet",
@@ -143,6 +144,7 @@ const T = {
   "print": "Stampa",
   "card": "Scheda d'emergenza",
   "poster": "Manifesto smarrimento",
+  "claim": "Pratica assicurativa","claimTitle": "Richiesta di rimborso: informazioni di supporto","claimIntro": "Da allegare al modulo dell'assicurazione insieme alla fattura. Tutto ciò che segue proviene dal libretto del proprietario; diagnosi e cure sono confermate dalla clinica sui propri documenti.","claimPolicy": "Polizza","claimVisits": "Visite","claimMeds": "Farmaci in corso","claimCond": "Patologie note (le patologie pregresse incidono sulla copertura)","claimFill": "Numero/i fattura e importi: ______________________  Data dei primi sintomi: ____________","claimSign": "Firma del proprietario / data",
   "printLang": "Seconda lingua sulla stampa","printLangNone": "Nessuna","posterLost": "SMARRITO","posterSeen": "Visto l'ultima volta","posterWhere": "Dove e quando è stato visto l'ultima volta?","posterReward": "Chiamate, a qualsiasi ora:","posterChip": "Microchip registrato","cardTitle": "Scheda d'emergenza","cardFoot": "Libretto sanitario completo sul telefono del proprietario · aiveterinary.org",
   "delete": "Elimina",
   "emptyTitle": "Nessun animale ancora",
@@ -253,6 +255,7 @@ const T = {
   "print": "Drucken",
   "card": "Notfallkarte",
   "poster": "Vermisst-Plakat",
+  "claim": "Unterlagen für die Versicherung","claimTitle": "Versicherungsfall: ergänzende Angaben","claimIntro": "Dem Formular des Versicherers zusammen mit der Rechnung beilegen. Alles Folgende stammt aus dem Heimtierpass der Halterin / des Halters; Diagnose und Behandlung bestätigt die Praxis auf ihren eigenen Unterlagen.","claimPolicy": "Police","claimVisits": "Besuche","claimMeds": "Aktuelle Medikamente","claimCond": "Bekannte Erkrankungen (Vorerkrankungen sind für den Schutz relevant)","claimFill": "Rechnungsnummer(n) und Beträge: ______________________  Datum der ersten Anzeichen: ____________","claimSign": "Unterschrift Halter/in / Datum",
   "printLang": "Zweite Sprache auf dem Ausdruck","printLangNone": "Keine","posterLost": "VERMISST","posterSeen": "Zuletzt gesehen","posterWhere": "Wo und wann wurde das Tier zuletzt gesehen?","posterReward": "Bitte anrufen, jederzeit:","posterChip": "Gechippt und registriert","cardTitle": "Notfallkarte","cardFoot": "Vollständiger Heimtierpass auf dem Handy der Halterin/des Halters · aiveterinary.org",
   "delete": "Löschen",
   "emptyTitle": "Noch kein Tier",
@@ -576,6 +579,7 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
       <button class="btn secondary" id="pp-print" type="button">{t.print}</button>
       <button class="btn secondary" id="pp-card" type="button" hidden>{t.card}</button>
       <button class="btn secondary" id="pp-poster" type="button" hidden>{t.poster}</button>
+      <button class="btn secondary" id="pp-claim" type="button" hidden>{t.claim}</button>
       <label class="pp-print-lang" hidden><span class="sr">{t.printLang}</span><select id="pp-print-lang" aria-label={t.printLang}><option value="">{t.printLang}: {t.printLangNone}</option>{(['en', 'it', 'de'] as const).filter((l) => l !== lang).map((l) => <option value={l}>{t.printLang}: {({ en: 'English', it: 'Italiano', de: 'Deutsch' })[l]}</option>)}</select></label>
       <button class="btn secondary pp-danger" id="pp-delete" type="button">{t.delete}</button>
     </div>
@@ -696,6 +700,24 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
     </div>
   </section>
 
+  <section id="pp-claim-view" class="wrap narrow" hidden aria-hidden="true">
+    <div class="pp-claim">
+      <h1>{t.claimTitle}</h1>
+      <p>{t.claimIntro}</p>
+      <p><b data-q="name"></b> <span data-q="animal"></span></p>
+      <p><b>{t.microchip}:</b> <span data-q="microchip"></span> · <b>{t.ownerName}:</b> <span data-q="owner"></span></p>
+      <p><b>{t.claimPolicy}:</b> <span data-q="insurance"></span></p>
+      <h2>{t.claimVisits}</h2>
+      <table><thead><tr><th>{t.thDate}</th><th>{t.thReason}</th><th>{t.thOutcome}</th><th>{t.thClinic}</th></tr></thead><tbody data-q="visits"></tbody></table>
+      <h2>{t.claimMeds}</h2>
+      <ul data-q="meds"></ul>
+      <h2>{t.claimCond}</h2>
+      <ul data-q="conds"></ul>
+      <p>{t.claimFill}</p>
+      <p>{t.claimSign}: ______________________</p>
+    </div>
+  </section>
+
   <section id="pp-poster-view" class="wrap" hidden aria-hidden="true">
     <div class="pp-poster">
       <div class="pp-poster-lost">{t.posterLost}</div>
@@ -793,6 +815,15 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
     .pp-l2 { color: var(--ink-3); font-weight: 400; }
     .pp-print-lang select { padding: 9px 12px; font: inherit; border: 1.5px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); }
     @media print { .pp-l2 { color: #333; } .pp-print-lang { display: none !important; } }
+    #pp-claim-view { display: none; }
+    .pp-claim { color: #000; background: #fff; padding: 10mm; font-size: 11pt; }
+    .pp-claim h1 { font-size: 18pt; } .pp-claim h2 { font-size: 13pt; margin-top: 14pt; }
+    .pp-claim table { border-collapse: collapse; width: 100%; } .pp-claim th, .pp-claim td { border: 1px solid #999; padding: 4px 6px; text-align: left; }
+    @media print {
+      body.pp-print-claim main > *:not(#pp-claim-view), body.pp-print-claim .site-header, body.pp-print-claim .site-footer { display: none !important; }
+      body.pp-print-claim #pp-claim-view { display: block !important; }
+      body.pp-print-claim .hero h1::after { content: none; }
+    }
     #pp-poster-view { display: none; }
     .pp-poster { width: 190mm; min-height: 270mm; margin: 0 auto; padding: 12mm; box-sizing: border-box; border: 2mm solid #000; text-align: center; color: #000; background: #fff; display: flex; flex-direction: column; align-items: center; gap: 6mm; }
     .pp-poster-lost { font-family: var(--font-display); font-size: 64pt; font-weight: 700; letter-spacing: .04em; line-height: 1; }
@@ -916,6 +947,7 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
       $('#pp-print')!.toggleAttribute('hidden', !a);
       $('#pp-card')!.toggleAttribute('hidden', !a);
       $('#pp-poster')!.toggleAttribute('hidden', !a);
+      $('#pp-claim')!.toggleAttribute('hidden', !a);
       $('.pp-print-lang')!.toggleAttribute('hidden', !a);
       $('h1')!.setAttribute('data-animal', a?.name ?? '');
       if (!a) return;
@@ -1026,6 +1058,21 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
       store.current = store.animals[0]?.id ?? null; render(); save(J.deleted); acct.remove(a.id);
     });
     $('#pp-print')!.addEventListener('click', () => window.print());
+    $('#pp-claim')!.addEventListener('click', () => {
+      const a = current(); if (!a) return;
+      const q = (k: string) => $(`[data-q="${k}"]`) as HTMLElement;
+      const esc = (v: any) => String(v ?? '').replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' } as any)[c]);
+      q('name').textContent = a.name || J.unnamed; q('animal').textContent = [a.species, a.breed, a.sex, a.dob && `${J.cols?.['Date'] ?? ''} ${a.dob}`.trim()].filter(Boolean).join(' · ');
+      q('microchip').textContent = a.microchip || '—'; q('owner').textContent = [a.ownerName, a.ownerAddress].filter(Boolean).join(', ') || '—'; q('insurance').textContent = a.insurance || '—';
+      q('visits').innerHTML = (a.visits ?? []).filter((v: any) => v.date || v.reason).map((v: any) => `<tr><td>${esc(v.date)}</td><td>${esc(v.reason)}</td><td>${esc(v.outcome)}</td><td>${esc(v.clinic)}</td></tr>`).join('') || '<tr><td colspan="4">—</td></tr>';
+      q('meds').innerHTML = (a.medications ?? []).filter((m: any) => m.name).map((m: any) => `<li>${esc(m.name)} ${esc(m.dose)}${m.started ? ` (${esc(m.started)})` : ''}</li>`).join('') || '<li>—</li>';
+      q('conds').innerHTML = (a.conditions ?? []).filter((c: any) => c.description || c.type).map((c: any) => `<li>${esc([c.type, c.description].filter(Boolean).join(': '))}${c.date ? ` (${esc(c.date)})` : ''}</li>`).join('') || '<li>—</li>';
+      const view = $('#pp-claim-view') as HTMLElement; view.hidden = false; view.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('pp-print-claim');
+      const done = () => { document.body.classList.remove('pp-print-claim'); view.hidden = true; view.setAttribute('aria-hidden', 'true'); window.removeEventListener('afterprint', done); };
+      window.addEventListener('afterprint', done);
+      window.print();
+    });
     $('#pp-poster')!.addEventListener('click', () => {
       const a = current(); if (!a) return;
       const seen = window.prompt(J.posterWhere ?? 'Where and when was the animal last seen?', '') ?? '';
