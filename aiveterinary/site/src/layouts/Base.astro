@@ -16,11 +16,10 @@ const strings = {
     home: '/',
     nav: [
       { href: '/animals', label: 'Animals' },
-      { href: '/passport', label: 'Health booklet' },
+      { href: '/passport', label: 'Health booklet', cta: true },
       { href: '/vets', label: 'For vets' },
       { href: '/about', label: 'About' },
-      { href: '/editorial', label: 'Editorial policy' },
-      { href: '/newsletter', label: 'Newsletter' },
+            { href: '/newsletter', label: 'Newsletter' },
     ],
     tagline: 'Less paperwork. More animal care.',
     disclaimer: 'Information on this site is general and reviewed by veterinarians where marked. It does not replace an examination by a vet. In an emergency, contact a veterinary clinic immediately.',
@@ -45,11 +44,10 @@ const strings = {
     home: '/it',
     nav: [
       { href: '/it/animals', label: 'Animali' },
-      { href: '/it/passport', label: 'Libretto' },
+      { href: '/it/passport', label: 'Libretto', cta: true },
       { href: '/it/vets', label: 'Per i veterinari' },
       { href: '/it/about', label: 'Chi siamo' },
-      { href: '/it/editorial', label: 'Politica editoriale' },
-      { href: '/it/newsletter', label: 'Newsletter' },
+            { href: '/it/newsletter', label: 'Newsletter' },
     ],
     tagline: 'Meno burocrazia. Più cura degli animali.',
     disclaimer: 'Le informazioni su questo sito sono di carattere generale e, dove indicato, sono state riviste da veterinari. Non sostituiscono la visita di un veterinario. In caso di emergenza, contatta subito una clinica veterinaria.',
@@ -74,11 +72,10 @@ const strings = {
     home: '/de',
     nav: [
       { href: '/de/animals', label: 'Tiere' },
-      { href: '/de/passport', label: 'Heimtierpass' },
+      { href: '/de/passport', label: 'Heimtierpass', cta: true },
       { href: '/de/vets', label: 'Für Tierärzte' },
       { href: '/de/about', label: 'Über uns' },
-      { href: '/de/editorial', label: 'Redaktionelle Grundsätze' },
-      { href: '/de/newsletter', label: 'Newsletter' },
+            { href: '/de/newsletter', label: 'Newsletter' },
     ],
     tagline: 'Weniger Papierkram. Mehr Zeit für Tiere.',
     disclaimer: 'Die Informationen auf dieser Website sind allgemeiner Art und, wo gekennzeichnet, von Tierärztinnen und Tierärzten geprüft. Sie ersetzen keine tierärztliche Untersuchung. Wenden Sie sich im Notfall sofort an eine Tierarztpraxis oder Tierklinik.',
@@ -118,6 +115,9 @@ const current = (href: string) => path === href || path.startsWith(href + '/');
     <title>{title === 'AI Veterinary' ? title : `${title} · AI Veterinary`}</title>
     <meta name="description" content={description} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500..700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" />
     <link rel="canonical" href={new URL(path === '/' ? '/' : path, Astro.site)} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -134,7 +134,7 @@ const current = (href: string) => path === href || path.startsWith(href + '/');
         </a>
         <nav class="nav" aria-label={t.navAria}>
           {nav.map((n) => (
-            <a href={n.href} aria-current={current(n.href) ? 'page' : undefined}>{n.label}</a>
+            <a href={n.href} class={(n as any).cta ? 'nav-cta' : undefined} aria-current={current(n.href) ? 'page' : undefined}>{n.label}</a>
           ))}
           <span class="lang-switch" aria-label={t.langAria} style="display:inline-flex;gap:6px;align-items:center;font-size:.85rem;color:var(--ink-2)">
             {languages.map((l, i) => (

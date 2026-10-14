@@ -1,0 +1,129 @@
+---
+import { getCollection } from 'astro:content';
+import { ANIMALS, slugOf, type Lang } from '../lib/animals-i18n';
+import AnimalIcon from './AnimalIcon.astro';
+import HeroScene from './HeroScene.astro';
+import Newsletter from './Newsletter.astro';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const a = ANIMALS[lang];
+const P = { en: { passport: '/passport', brief: '/visit-brief', vets: '/vets', about: '/about', editorial: '/editorial' },
+            it: { passport: '/it/passport', brief: '/it/visit-brief', vets: '/it/vets', about: '/it/about', editorial: '/it/editorial' },
+            de: { passport: '/de/passport', brief: '/de/visit-brief', vets: '/de/vets', about: '/de/about', editorial: '/de/editorial' } }[lang];
+const T = {
+  en: {
+    kicker: 'Vet-reviewed animal health, in plain language',
+    h1: 'Know what to do for your animal.',
+    sub: 'Clear answers written for owners and checked by veterinarians, a health booklet you cannot lose, and a one-page brief to bring to the vet. Free, no ads.',
+    cta: 'Find help by animal', cta2: 'Open the health booklet',
+    proof: [['Vets sign', 'Every article names the vet who reviewed it. Until then it is labelled a draft.'], ['Free, no ads', 'No sponsors, no affiliate links, no tracking pixels.'], ['Your data stays yours', 'The booklet lives on your device. Export it any time.'], ['Honest limits', 'No diagnoses over the internet and no doses. If it needs a vet, we say so.']],
+    species: 'Which animal?', latest: 'Latest articles', all: 'All articles →', draft: a.draft, reviewed: a.reviewedBy,
+    how: 'How it works', steps: [['Read', 'Find the symptom or question. Each article tells you at the top whether it can wait.'], ['Keep', 'Vaccinations, medications, microchip and your vet\'s number in one booklet, on your phone.'], ['Bring', 'Before a visit, make a one-page brief so the vet sees the whole picture in a minute.']],
+    vetsKicker: 'For veterinary teams', vetsH: 'Type five lines. Approve the report.', vetsP: 'A documentation assistant for the keyboard: rough notes in, structured record out, nothing on the page you did not write. Built in Europe, data stays in the EU.', vetsCta: 'See how it works',
+    faq: 'Questions', faqs: [['Is this a replacement for my vet?', 'No. It helps you understand what is going on and decide when to go. The examination, diagnosis and treatment are the vet\'s.'], ['Who writes the articles?', 'Drafts are prepared from veterinary guidelines and then reviewed, corrected and signed by a practising veterinarian. Unsigned articles say so clearly.'], ['What does it cost?', 'Nothing for owners, and that will not change. The vet tool will be paid per vet, which is how the site is funded.'], ['Where is my booklet stored?', 'In your browser on your device. Nothing is sent to us. Back it up to a file and open it on any device.']],
+  },
+  it: {
+    kicker: 'Salute degli animali rivista da veterinari, in parole semplici',
+    h1: 'Sapere cosa fare per il tuo animale.',
+    sub: 'Risposte chiare scritte per i proprietari e controllate da veterinari, un libretto sanitario che non puoi perdere e un riepilogo di una pagina da portare alla visita. Gratis, senza pubblicità.',
+    cta: 'Cerca per animale', cta2: 'Apri il libretto sanitario',
+    proof: [['I veterinari firmano', 'Ogni articolo indica il veterinario che lo ha rivisto. Fino ad allora è segnato come bozza.'], ['Gratis, senza pubblicità', 'Nessuno sponsor, nessun link di affiliazione, nessun tracciamento.'], ['I tuoi dati restano tuoi', 'Il libretto vive sul tuo dispositivo. Esportalo quando vuoi.'], ['Limiti chiari', 'Nessuna diagnosi via internet e nessuna dose. Se serve il veterinario, lo diciamo.']],
+    species: 'Quale animale?', latest: 'Ultimi articoli', all: 'Tutti gli articoli →', draft: a.draft, reviewed: a.reviewedBy,
+    how: 'Come funziona', steps: [['Leggi', 'Trova il sintomo o la domanda. Ogni articolo dice subito se può aspettare.'], ['Conserva', 'Vaccini, farmaci, microchip e il numero del veterinario in un unico libretto, sul telefono.'], ['Porta', 'Prima della visita prepara un riepilogo di una pagina: il veterinario vede tutto in un minuto.']],
+    vetsKicker: 'Per i team veterinari', vetsH: 'Cinque righe. Referto approvato.', vetsP: 'Un assistente di documentazione da tastiera: note grezze in entrata, cartella strutturata in uscita, niente sulla pagina che non abbia scritto Lei. Fatto in Europa, dati nell\'UE.', vetsCta: 'Scopri come funziona',
+    faq: 'Domande', faqs: [['Sostituisce il mio veterinario?', 'No. Ti aiuta a capire cosa sta succedendo e a decidere quando andare. Visita, diagnosi e terapia sono del veterinario.'], ['Chi scrive gli articoli?', 'Le bozze nascono dalle linee guida veterinarie e vengono poi riviste, corrette e firmate da un veterinario in attività. Gli articoli non firmati lo dicono chiaramente.'], ['Quanto costa?', 'Niente per i proprietari, e non cambierà. Lo strumento per i veterinari sarà a pagamento per veterinario: è così che il sito si sostiene.'], ['Dove è salvato il libretto?', 'Nel tuo browser, sul tuo dispositivo. Non ci viene inviato nulla. Fai una copia su file e aprila su qualsiasi dispositivo.']],
+  },
+  de: {
+    kicker: 'Tiergesundheit, tierärztlich geprüft, verständlich erklärt',
+    h1: 'Wissen, was Ihrem Tier jetzt hilft.',
+    sub: 'Klare Antworten für Halter, von Tierärztinnen und Tierärzten geprüft, ein Heimtierpass, der nicht verloren geht, und eine Seite Vorbereitung für den Praxisbesuch. Kostenlos, ohne Werbung.',
+    cta: 'Hilfe nach Tierart', cta2: 'Heimtierpass öffnen',
+    proof: [['Tierärzte zeichnen', 'Jeder Artikel nennt die prüfende Tierärztin oder den Tierarzt. Bis dahin ist er als Entwurf markiert.'], ['Kostenlos, ohne Werbung', 'Keine Sponsoren, keine Affiliate-Links, kein Tracking.'], ['Ihre Daten bleiben Ihre', 'Der Pass liegt auf Ihrem Gerät. Jederzeit exportierbar.'], ['Ehrliche Grenzen', 'Keine Diagnosen übers Internet, keine Dosierungen. Wenn es in die Praxis gehört, sagen wir es.']],
+    species: 'Welches Tier?', latest: 'Neueste Artikel', all: 'Alle Artikel →', draft: a.draft, reviewed: a.reviewedBy,
+    how: 'So funktioniert es', steps: [['Lesen', 'Symptom oder Frage finden. Jeder Artikel sagt oben, ob es warten kann.'], ['Aufbewahren', 'Impfungen, Medikamente, Chipnummer und die Nummer der Praxis in einem Pass, auf dem Handy.'], ['Mitbringen', 'Vor dem Besuch eine Seite Übersicht erstellen, damit die Praxis in einer Minute das ganze Bild hat.']],
+    vetsKicker: 'Für Praxisteams', vetsH: 'Fünf Zeilen tippen. Bericht freigeben.', vetsP: 'Ein Dokumentationsassistent für die Tastatur: grobe Notizen hinein, strukturierter Befund heraus, nichts auf der Seite, was Sie nicht geschrieben haben. In Europa gebaut, Daten bleiben in der EU.', vetsCta: 'So funktioniert es',
+    faq: 'Fragen', faqs: [['Ersetzt das meine Praxis?', 'Nein. Es hilft zu verstehen, was los ist, und zu entscheiden, wann Sie gehen sollten. Untersuchung, Diagnose und Behandlung gehören in die Praxis.'], ['Wer schreibt die Artikel?', 'Entwürfe entstehen aus tierärztlichen Leitlinien und werden dann von einer praktizierenden Tierärztin oder einem Tierarzt geprüft, korrigiert und gezeichnet. Ungezeichnete Artikel sagen das deutlich.'], ['Was kostet es?', 'Für Halter nichts, und das bleibt so. Das Werkzeug für Praxen wird pro Tierarzt bezahlt; so finanziert sich die Seite.'], ['Wo liegt mein Heimtierpass?', 'In Ihrem Browser auf Ihrem Gerät. An uns wird nichts gesendet. Sichern Sie ihn als Datei und öffnen Sie ihn auf jedem Gerät.']],
+  },
+}[lang];
+const all = (await getCollection('animals')).filter((e) => e.data.lang === lang && !e.data.draft).sort((a, b) => b.data.updated.valueOf() - a.data.updated.valueOf());
+const latest = (all.length >= 3 ? all : (await getCollection('animals')).filter((e) => e.data.lang === lang).sort((a, b) => b.data.updated.valueOf() - a.data.updated.valueOf())).slice(0, 3);
+const speciesKeys = ['dog', 'cat', 'rabbit', 'horse', 'bird', 'general'] as const;
+---
+<section class="hero2">
+  <div class="wrap hero2-grid">
+    <div class="hero2-text">
+      <p class="kicker">{T.kicker}</p>
+      <h1>{T.h1}</h1>
+      <p class="lead">{T.sub}</p>
+      <div class="hero2-ctas">
+        <a class="btn lg" href="#species">{T.cta}</a>
+        <a class="btn lg secondary" href={P.passport}>{T.cta2}</a>
+      </div>
+    </div>
+    <div class="hero2-art"><HeroScene /></div>
+  </div>
+</section>
+
+<section class="wrap proof" aria-label="What you can count on">
+  {T.proof.map(([h, p]) => <div class="proof-item"><div class="proof-h">{h}</div><div class="proof-p">{p}</div></div>)}
+</section>
+
+<section class="wrap section" id="species">
+  <h2 class="section-h">{T.species}</h2>
+  <div class="animal-buttons">
+    {speciesKeys.map((k) => (
+      <a class="animal-btn" href={`${a.base}/${k}`}>
+        <AnimalIcon kind={k} size={64} />
+        <span class="t">{(a.species as any)[k]}</span>
+      </a>
+    ))}
+  </div>
+</section>
+
+<section class="wrap section">
+  <div class="section-row"><h2 class="section-h">{T.latest}</h2><a class="more" href={a.base}>{T.all}</a></div>
+  <div class="cards3">
+    {latest.map((e) => (
+      <a class="card2" href={`${a.base}/${slugOf(e.id)}`}>
+        <span class="card2-species"><AnimalIcon kind={e.data.species} size={28} /> {(a.species as any)[e.data.species]}</span>
+        <span class="card2-t">{e.data.title}</span>
+        <span class="card2-d">{e.data.description}</span>
+        <span class={`badge ${e.data.draft ? 'draft' : 'reviewed'}`}>{e.data.draft ? T.draft : `${T.reviewed} ${e.data.reviewedBy}`}</span>
+      </a>
+    ))}
+  </div>
+</section>
+
+<section class="wrap section">
+  <h2 class="section-h">{T.how}</h2>
+  <ol class="steps">
+    {T.steps.map(([h, p], i) => <li><span class="step-n">{i + 1}</span><span class="step-h">{h}</span><span class="step-p">{p}</span></li>)}
+  </ol>
+</section>
+
+<section class="wrap section">
+  <div class="vet-band">
+    <div>
+      <p class="kicker light">{T.vetsKicker}</p>
+      <h2>{T.vetsH}</h2>
+      <p>{T.vetsP}</p>
+      <a class="btn lg invert" href={P.vets}>{T.vetsCta}</a>
+    </div>
+    <div class="vet-band-mock" aria-hidden="true">
+      <div class="mock-line">vomiting x2 since yest, eating less, T 38.6, abd soft</div>
+      <div class="mock-arrow">↓</div>
+      <div class="mock-doc"><b>History</b> Owner reports: vomiting, twice since yesterday · appetite reduced<br /><b>Examination</b> Temperature 38.6 °C · abdomen soft<br /><span class="mock-flag">▲ Missing: weight</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap section narrow">
+  <h2 class="section-h">{T.faq}</h2>
+  <div class="faq">
+    {T.faqs.map(([q, ans]) => <details><summary>{q}</summary><p>{ans}</p></details>)}
+  </div>
+</section>
+
+<section class="wrap section narrow">
+  <Newsletter lang={lang} />
+</section>

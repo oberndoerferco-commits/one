@@ -1,53 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
-import Newsletter from '../../components/Newsletter.astro';
-import AnimalIcon from '../../components/AnimalIcon.astro';
+import Home from '../../components/Home.astro';
 ---
 <Base title="AI Veterinary" description="Klare Informationen zur Tiergesundheit für Halterinnen und Halter, geprüft von Tierärzten, und ein KI-Dokumentationsassistent, der Tierärzten ihre Zeit zurückgibt." lang="de">
-  <section class="hero">
-    <div class="wrap">
-      <h1>Weniger Papierkram.<br />Mehr Zeit für Tiere.</h1>
-      <p class="lead">Ein Ort für Menschen, denen Tiere am Herzen liegen: verständliche Gesundheitsinformationen, geprüft von Tierärztinnen und Tierärzten, und Werkzeuge, mit denen Tierärzte weniger Zeit am Computer und mehr Zeit beim Tier verbringen.</p>
-      <div class="two">
-        <div class="card">
-          <div class="eyebrow">Für Tierhalterinnen und Tierhalter</div>
-          <h2>Verstehen, was los ist</h2>
-          <p>Was ein Symptom bedeuten kann, wann es warten kann und wann nicht, wie Sie ein Medikament geben, wie Sie mit Ihrem Tier reisen. Verständlich geschrieben, von Tierärzten geprüft, nie ein Ersatz für den Tierarztbesuch.</p>
-          <a class="btn cta" href="/de/animals">Tierinformationen ansehen</a>
-          <a class="btn cta secondary" href="/de/passport" style="margin-left:8px">Digitaler Heimtierpass</a>
-        </div>
-        <div class="card">
-          <div class="eyebrow">Für Praxisteams</div>
-          <h2>Fünf Zeilen tippen. Bericht freigeben.</h2>
-          <p>Ein Dokumentationsassistent für die Tastatur: grobe Notizen hinein, strukturierter Befund heraus, nichts auf der Seite, was Sie nicht geschrieben haben. Sie prüfen, Sie geben frei, fertig.</p>
-          <a class="btn cta secondary" href="/de/vets">So funktioniert es</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="wrap">
-    <div class="animal-row" aria-hidden="true">
-      <AnimalIcon kind="dog" size={44} /><AnimalIcon kind="cat" size={44} /><AnimalIcon kind="rabbit" size={44} /><AnimalIcon kind="horse" size={44} /><AnimalIcon kind="bird" size={44} />
-    </div>
-    <h2>Wie wir arbeiten</h2>
-    <div class="grid3">
-      <div class="tile">
-        <div class="t">Tierärzte zeichnen, was wir veröffentlichen</div>
-        <div class="d">Jeder Gesundheitsartikel zeigt, welche Tierärztin oder welcher Tierarzt ihn geprüft hat und wann. Ungeprüfte Entwürfe sind als Entwürfe gekennzeichnet.</div>
-      </div>
-      <div class="tile">
-        <div class="t">KI bereitet vor. Menschen entscheiden.</div>
-        <div class="d">Dieselbe Regel für unsere Artikel und unsere Werkzeuge: Software bereitet vor, eine Fachperson prüft und gibt frei.</div>
-      </div>
-      <div class="tile">
-        <div class="t">Ehrlich über Grenzen</div>
-        <div class="d">Keine Diagnosen über das Internet, keine Dosierungen, keine erfundenen Fakten. Wenn etwas zum Tierarzt gehört, sagen wir das.</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="wrap narrow" style="margin-top:56px">
-    <Newsletter lang="de" />
-  </section>
+  <Home lang="de" />
 </Base>

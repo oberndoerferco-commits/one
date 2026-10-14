@@ -1,0 +1,21 @@
+---
+/** Hero illustration: the animals peeking over a hill, built from the shared icon shapes. */
+import { ICONS } from '../lib/animal-icons';
+interface Props { class?: string }
+const { class: cls = '' } = Astro.props;
+const g = (k: string, x: number, y: number, s: number) => `<g transform="translate(${x} ${y}) scale(${s})">${ICONS[k]}</g>`;
+const scene = `
+<circle cx="200" cy="40" r="14" fill="var(--ic-sun)" stroke="none"/>
+<path d="M232 22l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="var(--warm)" stroke="none"/>
+<path d="M30 30l1.5 3.5 3.5 1.5-3.5 1.5-1.5 3.5-1.5-3.5-3.5-1.5 3.5-1.5z" fill="var(--warm)" stroke="none"/>
+${g('cat', 14, 58, 2.2)}
+${g('dog', 86, 44, 2.6)}
+${g('rabbit', 168, 34, 2.2)}
+<path d="M-10 172c30-26 70-32 110-26 40 6 80 10 140 2 20-3 25 0 30 20v50h-280z" fill="var(--ic-hill)" stroke="none"/>
+<path d="M-10 172c30-26 70-32 110-26 40 6 80 10 140 2 20-3 25 0 30 20" stroke-width="2"/>
+${g('bird', 198, 124, 1.5)}
+`;
+---
+<svg class={`hero-scene ${cls}`} viewBox="0 10 260 185" fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="A cat, a dog, a rabbit and a bird looking over a hill">
+  <Fragment set:html={scene} />
+</svg>
