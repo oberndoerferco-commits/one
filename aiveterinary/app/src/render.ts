@@ -13,21 +13,21 @@ const L = {
     diagnostics: 'Diagnostics', assessment: 'Assessment', treatment: 'Treatment', medication: 'Medication', plan: 'Follow-up and plan',
     notRecorded: 'Not recorded', missing: 'Missing', ownerReports: 'Owner reports', performed: 'performed', planned: 'planned', declined: 'declined by owner',
     recommended: 'recommended', dispensed: 'dispensed', prescribed: 'prescribed', drug: 'Drug', dose: 'Dose', route: 'Route', freq: 'Frequency', dur: 'Duration',
-    temp: 'Temperature', hr: 'Heart rate', rr: 'Respiratory rate', weight: 'Weight', provenance: 'Facts from the notes: {f} · Not recorded: {n} · Added by AI: 0', draft: 'DRAFT — AI-assisted, not yet reviewed', disclosure: 'Structured with AI assistance from the veterinarian\'s own notes; reviewed and approved by the veterinarian. No content was added by the AI.',
+    temp: 'Temperature', hr: 'Heart rate', rr: 'Respiratory rate', weight: 'Weight', provenance: 'Facts from the notes: {f} · Not recorded: {n} · Added by AI: 0', declinedCare: 'Declined care', declinedIntro: 'The following recommended care was declined by the owner. Acknowledged by the owner:', signature: 'Signature / date', draft: 'DRAFT — AI-assisted, not yet reviewed', disclosure: 'Structured with AI assistance from the veterinarian\'s own notes; reviewed and approved by the veterinarian. No content was added by the AI.',
   },
   de: {
     title: 'Behandlungsbericht', patient: 'Patient', reason: 'Vorstellungsgrund', history: 'Anamnese', exam: 'Klinische Untersuchung',
     diagnostics: 'Diagnostik', assessment: 'Beurteilung', treatment: 'Behandlung', medication: 'Medikation', plan: 'Weiteres Vorgehen',
     notRecorded: 'Nicht erfasst', missing: 'Fehlt', ownerReports: 'Laut Besitzer', performed: 'durchgeführt', planned: 'geplant', declined: 'vom Besitzer abgelehnt',
     recommended: 'empfohlen', dispensed: 'abgegeben', prescribed: 'verschrieben', drug: 'Wirkstoff', dose: 'Dosis', route: 'Applikation', freq: 'Häufigkeit', dur: 'Dauer',
-    temp: 'Temperatur', hr: 'Herzfrequenz', rr: 'Atemfrequenz', weight: 'Gewicht', provenance: 'Fakten aus den Notizen: {f} · Nicht erfasst: {n} · Von KI hinzugefügt: 0', draft: 'ENTWURF — KI-unterstützt, noch nicht geprüft', disclosure: 'Mit KI-Unterstützung aus den eigenen Notizen der Tierärztin/des Tierarztes strukturiert; tierärztlich geprüft und freigegeben. Die KI hat keine Inhalte hinzugefügt.',
+    temp: 'Temperatur', hr: 'Herzfrequenz', rr: 'Atemfrequenz', weight: 'Gewicht', provenance: 'Fakten aus den Notizen: {f} · Nicht erfasst: {n} · Von KI hinzugefügt: 0', declinedCare: 'Abgelehnte Maßnahmen', declinedIntro: 'Die folgenden empfohlenen Maßnahmen wurden vom Besitzer abgelehnt. Zur Kenntnis genommen durch den Besitzer:', signature: 'Unterschrift / Datum', draft: 'ENTWURF — KI-unterstützt, noch nicht geprüft', disclosure: 'Mit KI-Unterstützung aus den eigenen Notizen der Tierärztin/des Tierarztes strukturiert; tierärztlich geprüft und freigegeben. Die KI hat keine Inhalte hinzugefügt.',
   },
   it: {
     title: 'Referto di visita', patient: 'Paziente', reason: 'Motivo della visita', history: 'Anamnesi', exam: 'Esame clinico',
     diagnostics: 'Esami diagnostici', assessment: 'Valutazione', treatment: 'Trattamento', medication: 'Terapia farmacologica', plan: 'Controlli e piano',
     notRecorded: 'Non registrato', missing: 'Mancante', ownerReports: 'Il proprietario riferisce', performed: 'eseguito', planned: 'pianificato', declined: 'rifiutato dal proprietario',
     recommended: 'consigliato', dispensed: 'consegnato', prescribed: 'prescritto', drug: 'Farmaco', dose: 'Dose', route: 'Via', freq: 'Frequenza', dur: 'Durata',
-    temp: 'Temperatura', hr: 'Frequenza cardiaca', rr: 'Frequenza respiratoria', weight: 'Peso', provenance: 'Fatti dalle note: {f} · Non registrato: {n} · Aggiunto dall\'IA: 0', draft: 'BOZZA — assistita da IA, non ancora verificata', disclosure: 'Strutturato con assistenza IA a partire dalle note del veterinario; verificato e approvato dal veterinario. L\'IA non ha aggiunto contenuti.',
+    temp: 'Temperatura', hr: 'Frequenza cardiaca', rr: 'Frequenza respiratoria', weight: 'Peso', provenance: 'Fatti dalle note: {f} · Non registrato: {n} · Aggiunto dall\'IA: 0', declinedCare: 'Prestazioni rifiutate', declinedIntro: 'Le seguenti prestazioni consigliate sono state rifiutate dal proprietario. Preso atto dal proprietario:', signature: 'Firma / data', draft: 'BOZZA — assistita da IA, non ancora verificata', disclosure: 'Strutturato con assistenza IA a partire dalle note del veterinario; verificato e approvato dal veterinario. L\'IA non ha aggiunto contenuti.',
   },
 };
 export type Lang = keyof typeof L;
@@ -88,6 +88,19 @@ export function renderConsultReport(record: ClinicalRecord, header: PatientHeade
   if (record.plan.follow_up) out.push(`- ${cap(record.plan.follow_up.text)}`);
   for (const i of record.plan.instructions) out.push(`- ${cap(i.text)}`);
   if (!record.plan.follow_up && record.plan.instructions.length === 0) out.push(t.notRecorded);
+  const declined = [
+    ...record.diagnostics.filter((d) => d.status === 'declined').map((d) => cap(d.test)),
+    ...record.treatments.filter((x) => x.status === 'declined').map((x) => cap(x.text)),
+    ...record.medications.filter((m) => m.status === 'declined').map((m) => m.drug ?? m.class_as_written ?? t.drug),
+  ];
+  if (declined.length) {
+    out.push('');
+    out.push(`## ${t.declinedCare}`);
+    out.push(t.declinedIntro);
+    for (const d of declined) out.push(`- ${d}`);
+    out.push('');
+    out.push(`${t.signature}: ______________________`);
+  }
   const allMissing = [...record.missing, ...(opts.extraMissing ?? [])];
   if (allMissing.length) {
     out.push('');

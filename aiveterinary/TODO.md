@@ -47,7 +47,7 @@ Everything costs €0 unless marked €. Legend:
 - [x] Article author + reviewer block with chamber/Ordine registration number, "reviewed on / next review", numbered references — S ★★★ (trust differentiator)
 - [x] Editorial policy, corrections policy, conflict-of-interest and funding page — S ★★
 - [ ] "Informativa uso IA" template for Italian vets; AVV/DPA template for German practices (Art. 28) — S ★★★
-- [ ] Public DPA, subprocessor list, retention policy page for the vet tool — S ★★★ (only Curala/Tandem/Petleo are clear today)
+- [x] Public DPA, subprocessor list, retention policy page for the vet tool — S ★★★ (only Curala/Tandem/Petleo are clear today)
 - [ ] Accessibility pass to WCAG 2.2 AA (BFSG-safe) — M ★★
 
 ## 3. Website and content — **Me**
@@ -129,7 +129,7 @@ Everything costs €0 unless marked €. Legend:
 ### Editor and review features
 - [x] **Provenance badge** on every document (AI-added 0 / vet fields n / not recorded n) — S ★★★ *only us*
 - [ ] Owner-reported vs vet-observed toggle with distinct rendering — S ★★★ *only us*
-- [ ] **Declined-care register** (signed paragraph + per-patient log) — S ★★★ *only us*
+- [x] **Declined-care register** (signed paragraph + per-patient log) — S ★★★ *only us*
 - [ ] Medication reconciliation table with tick per cell before sign-off; cross-document identity check for translations — S ★★★ *only us*
 - [x] "Not recorded" as a first-class printed value — S ★★★ *only us*
 - [ ] Amendment propagation map ("generated from v1 — regenerate?") — M ★★ *only us*

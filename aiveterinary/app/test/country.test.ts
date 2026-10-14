@@ -58,4 +58,12 @@ describe('country field packs', () => {
     const md = renderConsultReport(record, header, 'en', { extraMissing: [{ field: 'microchip', reason: 'test' }] });
     expect(md).toContain('Added by AI: 0'); expect(md).toContain('microchip: test');
   });
+  it('declined items get their own signed section in every language', () => {
+    const { record, header } = prep('001-luna-vomiting');
+    const r = structuredClone(record); r.diagnostics.push({ test: 'abdominal x-ray', status: 'declined', result: null, source_spans: [[0, 1]] });
+    expect(renderConsultReport(r, header, 'en')).toContain('## Declined care');
+    expect(renderConsultReport(r, header, 'de')).toContain('Abgelehnte Maßnahmen');
+    expect(renderConsultReport(r, header, 'it')).toContain('Abdominal x-ray');
+    expect(renderConsultReport(record, header, 'en')).not.toContain('Declined care');
+  });
 });
