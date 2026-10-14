@@ -93,7 +93,7 @@ Everything costs €0 unless marked €. Legend:
 
 ### Pre-visit brief
 - [x] Species-specific question sets (cat urinary, rabbit gut, senior) — S ★★
-- [ ] Send to clinic by email/PDF; later: accept at the vet side as *owner-reported* input with its own provenance tag — M ★★★ *only us: brief flows into the record as "owner says"*
+- [x] Send to clinic by email/PDF (done); accept at the vet side as *owner-reported* input with its own provenance tag still open — M ★★★ *only us: brief flows into the record as "owner says"*
 
 ## 5. Vet tool — **Me**
 
