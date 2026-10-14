@@ -7,7 +7,8 @@ const T = {
   "eyebrowRest": "preview on synthetic patients",
   "caseLabel": "Example case",
   "countryLabel": "Country rules",
-  "roleLabel": "I am","roleNurse": "Nurse / assistant","roleVet": "Veterinarian",
+  "roleLabel": "I am",
+  "abbrTitle": "Abbreviations in your notes","abbrHint": "Expanded from the default list and your clinic glossary. Correct a meaning once and it is remembered on this device.","abbrNone": "No abbreviations recognised.","abbrSave": "Save","roleNurse": "Nurse / assistant","roleVet": "Veterinarian",
   "notice": "<strong>Preview.</strong> The example cases run offline on prepared records, so you can see exactly how the review works: source highlighting, missing-information flags, the medication table built from your own words. In the real product your own notes are structured by the model with the same checks. Nothing here is stored.",
   "notes": "Notes",
   "notesHint": "edit freely in the real product; here the example is fixed",
@@ -23,7 +24,8 @@ const T = {
   "eyebrowRest": "anteprima su pazienti sintetici",
   "caseLabel": "Caso di esempio",
   "countryLabel": "Regole del Paese",
-  "roleLabel": "Sono","roleNurse": "Assistente / infermiere","roleVet": "Veterinario",
+  "roleLabel": "Sono",
+  "abbrTitle": "Abbreviazioni nelle note","abbrHint": "Espanse dalla lista predefinita e dal glossario della clinica. Correggi un significato una volta e viene ricordato su questo dispositivo.","abbrNone": "Nessuna abbreviazione riconosciuta.","abbrSave": "Salva","roleNurse": "Assistente / infermiere","roleVet": "Veterinario",
   "notice": "<strong>Anteprima.</strong> I casi di esempio girano offline su cartelle già preparate, così puoi vedere esattamente come funziona la revisione: evidenziazione della fonte, segnalazione delle informazioni mancanti, tabella dei farmaci costruita con le tue stesse parole. Nel prodotto reale le tue note vengono strutturate dal modello con gli stessi controlli. Qui non viene salvato nulla.",
   "notes": "Note",
   "notesHint": "nel prodotto reale si modificano liberamente; qui l'esempio è fisso",
@@ -39,7 +41,8 @@ const T = {
   "eyebrowRest": "Vorschau mit synthetischen Patienten",
   "caseLabel": "Beispielfall",
   "countryLabel": "Länderregeln",
-  "roleLabel": "Ich bin","roleNurse": "TFA / Assistenz","roleVet": "Tierärztin / Tierarzt",
+  "roleLabel": "Ich bin",
+  "abbrTitle": "Abkürzungen in Ihren Notizen","abbrHint": "Aufgelöst aus der Standardliste und Ihrem Praxisglossar. Eine Bedeutung einmal korrigieren, und sie bleibt auf diesem Gerät gespeichert.","abbrNone": "Keine Abkürzungen erkannt.","abbrSave": "Speichern","roleNurse": "TFA / Assistenz","roleVet": "Tierärztin / Tierarzt",
   "notice": "<strong>Vorschau.</strong> Die Beispielfälle laufen offline auf vorbereiteten Akten, damit Sie genau sehen, wie die Prüfung funktioniert: Quellenmarkierung, Hinweise auf fehlende Angaben, die Medikamententabelle aus Ihren eigenen Worten. Im echten Produkt strukturiert das Modell Ihre eigenen Notizen mit denselben Prüfungen. Hier wird nichts gespeichert.",
   "notes": "Notizen",
   "notesHint": "im echten Produkt frei editierbar; hier ist das Beispiel fest",
@@ -175,6 +178,14 @@ const t = T[lang]; const j = JS[lang];
   </section>
 
   <section class="wrap">
+    <div class="card ws-abbr">
+      <h2 style="margin-top:0;font-size:1.1rem">{t.abbrTitle}</h2>
+      <p class="pp-hint">{t.abbrHint}</p>
+      <ul id="ws-abbr-list" class="ws-abbr-list"></ul>
+    </div>
+  </section>
+
+  <section class="wrap">
     <div class="ws-flags card">
       <h2 style="margin-top:0">{t.before}</h2>
       <ul id="ws-flaglist" class="ws-flaglist"></ul>
@@ -210,6 +221,12 @@ const t = T[lang]; const j = JS[lang];
     .ws-report .flag { color: var(--warn); font-weight: 600; }
     .ws-report .flag.resolved { color: var(--ok); }
     .ws-report .own { color: var(--ink-3); font-style: italic; }
+    .ws-abbr-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 8px 16px; }
+    .ws-abbr-list li { display: flex; gap: 8px; align-items: center; }
+    .ws-abbr-list code { background: var(--accent-soft); border-radius: 6px; padding: 2px 8px; font-weight: 600; min-width: 48px; text-align: center; }
+    .ws-abbr-list input { flex: 1; min-width: 0; padding: 6px 10px; font: inherit; border: 1.5px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); }
+    .ws-abbr-save { font: inherit; font-weight: 600; border: 0; background: var(--accent); color: #fff; border-radius: 999px; padding: 6px 12px; cursor: pointer; }
+    @media print { .ws-abbr { display: none; } }
     .ws-tick label { white-space: nowrap; font-size: .85rem; color: var(--ink-3); cursor: pointer; }
     @media print { .ws-tick { display: none; } }
     .ws-report table { border-collapse: collapse; width: 100%; font-size: .92rem; margin-top: 6px; }
@@ -229,11 +246,11 @@ const t = T[lang]; const j = JS[lang];
     @media print { .site-header, .site-footer, .ws-top, .notice, .ws-pane:first-child, .ws-flags, .eyebrow { display: none !important; } .ws { border: 0; } }
   </style>
 
-  <script type="application/json" id="ws-i18n" set:html={JSON.stringify(j)} />
+  <script type="application/json" id="ws-i18n" set:html={JSON.stringify({ ...j, abbrNone: t.abbrNone, abbrSave: t.abbrSave })} />
 
   <script>
     import { ClinicalRecord, PatientHeader, type ClinicalRecord as Rec } from 'aiveterinary-app/src/schema.ts';
-    import { normalizeNotes } from 'aiveterinary-app/src/normalize.ts';
+    import { normalizeNotes, findAbbreviations, DEFAULT_ABBREVIATIONS } from 'aiveterinary-app/src/normalize.ts';
     import { validateAll, requiredMissing, type Finding } from 'aiveterinary-app/src/validators.ts';
     import { renderConsultReport } from 'aiveterinary-app/src/render.ts';
     import { countryMissing, VisitContext } from 'aiveterinary-app/src/country.ts';
@@ -245,6 +262,28 @@ const t = T[lang]; const j = JS[lang];
     type Case = { id: string; language: 'en' | 'de' | 'it'; header: any; notes: string; fixture_record: any };
     const cases = [c1, c2, c3, c4] as Case[];
     const J = JSON.parse(document.getElementById('ws-i18n')!.textContent!);
+    const GLOSSARY_KEY = 'aiveterinary.glossary.v1';
+    const loadGlossary = (): Record<string, string> => { try { return JSON.parse(localStorage.getItem(GLOSSARY_KEY) ?? '{}'); } catch { return {}; } };
+    const saveGlossary = (g: Record<string, string>) => { try { localStorage.setItem(GLOSSARY_KEY, JSON.stringify(g)); } catch {} };
+    function renderAbbr() {
+      const list = $('#ws-abbr-list'); list.innerHTML = '';
+      const table = { ...DEFAULT_ABBREVIATIONS, ...loadGlossary() };
+      const seen = new Map<string, { meaning: string; spans: [number, number][] }>();
+      for (const x of findAbbreviations(cur.notes, table)) {
+        const k = x.abbr.toLowerCase(); const e = seen.get(k) ?? { meaning: x.meaning, spans: [] }; e.spans.push([x.index, x.index + x.abbr.length]); seen.set(k, e);
+      }
+      if (!seen.size) { const li = document.createElement('li'); li.className = 'pp-hint'; li.textContent = J.abbrNone; list.appendChild(li); return; }
+      for (const [k, e] of seen) {
+        const li = document.createElement('li');
+        const code = document.createElement('code'); code.textContent = k; li.appendChild(code);
+        const input = document.createElement('input'); input.value = e.meaning; input.setAttribute('aria-label', k);
+        const btn = document.createElement('button'); btn.type = 'button'; btn.textContent = J.abbrSave; btn.className = 'ws-abbr-save'; btn.hidden = true;
+        input.addEventListener('input', () => { btn.hidden = input.value.trim() === e.meaning; });
+        btn.addEventListener('click', () => { const g = loadGlossary(); g[k] = input.value.trim(); saveGlossary(g); renderAbbr(); });
+        li.addEventListener('mouseenter', () => light(e.spans, true)); li.addEventListener('mouseleave', () => light(e.spans, false));
+        li.append(input, btn); list.appendChild(li);
+      }
+    }
     const labels: Record<string, string> = J.cases;
     const $ = (s: string) => document.querySelector(s) as HTMLElement;
 
@@ -325,6 +364,7 @@ const t = T[lang]; const j = JS[lang];
       }
       document.querySelectorAll<HTMLInputElement>('.ws-med-tick').forEach((cb) => cb.addEventListener('change', () => { cur.meds[Number(cb.dataset.i)] = cb.checked; renderFlags(); }));
       renderFlags();
+      renderAbbr();
     }
 
     function light(spans: [number, number][], on: boolean) {

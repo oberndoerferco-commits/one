@@ -135,7 +135,7 @@ Everything costs €0 unless marked €. Legend:
 - [ ] Amendment propagation map ("generated from v1 — regenerate?") — M ★★ *only us*
 - [ ] Bilingual side-by-side owner letter (DE/IT/EN + TR/AR/UK), meds table identical — M ★★★ *only us*
 - [ ] Snippets / dot-phrases incl. "otherwise unremarkable" (clinic-written, never auto) — S ★★★
-- [ ] Clinic abbreviation + glossary manager — S ★★★
+- [x] Clinic abbreviation + glossary manager — S ★★★
 - [ ] Template builder (sections, order, required fields, per-vet defaults); specialty sets: derm, ortho, dental, ophtho, cardio, exotics, equine — M ★★
 - [ ] Multi-pet consultation UI (assign bullets, split documents, one owner letter) — M ★★
 - [ ] Image attachment (stored, referenced, never interpreted) — S ★★
