@@ -76,7 +76,14 @@ def symmetrise_o(O, flourish_min=400):
     bowl = left | mirrored
     # The flourish is a slit cut INTO the bowl, not a spur sticking out of it,
     # so it shows up as ink the mirrored bowl has and the drawing does not.
+    # The slit stops above the flares.  In the drawing it runs down into the
+    # right-hand flare, which leaves that flare a different shape from its
+    # mirror on the left; on a finished letter the two are one shape used twice.
+    wid = [np.ptp(np.nonzero(r)[0]) if r.any() else 0 for r in bowl]
+    flare_top = int(np.argmax(wid)) - int(0.11 * (ys.max() - ys.min()))
     cut = bowl & ~O
+    cut[flare_top:] = False
+    cut = ndi.binary_opening(cut, _disk(3))       # soften the cut end
     lab, n = ndi.label(cut)
     area = 0
     if n:
@@ -85,7 +92,7 @@ def symmetrise_o(O, flourish_min=400):
             if sz[i] < flourish_min:
                 break
             ys2, xs2 = np.nonzero(lab == i + 1)
-            if xs2.mean() > bc and ys2.mean() < ys.mean():   # upper right only
+            if xs2.mean() > bc:
                 bowl = bowl & ~(lab == i + 1)
                 area += int(sz[i])
     print('      O: bowl mirrored about x=%.1f, flourish cut back in (%d px)'

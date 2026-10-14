@@ -62,7 +62,13 @@ found by scoring the left half alone.
 
 The flourish is then put back. It is a **slit cut into** the bowl, not a spur
 sticking out of it, so it shows up as ink the mirrored bowl has and the drawing
-does not; that region in the upper right is cut away again, 32,405 px of it.
+does not; that region in the upper right is cut away again.
+
+The slit **stops above the flares**. In the drawing it runs down into the
+right-hand flare, which leaves that flare a different shape from its mirror on
+the left — they matched at only **IoU 0.57**. On a finished letter the two
+flares are one shape used twice; stopping the slit above them brings the match
+to **0.96**.
 
 Neither letter's counter is an enclosed hole. The O's opens through the channel
 beside its flourish and the M's open at the bottom, so the two letters are two
