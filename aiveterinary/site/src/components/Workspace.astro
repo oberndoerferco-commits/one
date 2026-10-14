@@ -70,7 +70,8 @@ const JS = {
   "blocking": "{n} blocking item(s): the record contains something that is not in the notes.",
   "unresolved": "{n} missing item(s) to add or mark as not recorded.",
   "ready": "Ready to approve.",
-  "handOver": "Hand over to the vet","handedStatus": "Draft prepared and handed to the veterinarian for co-signature. Nothing was stored.","nurseDraft": "NURSE DRAFT · AWAITING VET","cosigned": "co-signed, drafted by nurse",
+  "handOver": "Hand over to the vet",
+  "toVet": "Mark as observed by the vet","toOwner": "Mark as reported by the owner","handedStatus": "Draft prepared and handed to the veterinarian for co-signature. Nothing was stored.","nurseDraft": "NURSE DRAFT · AWAITING VET","cosigned": "co-signed, drafted by nurse",
   "medsTick": "Checked","medsUnchecked": "{n} medication row(s) to tick against your notes before approval.",
   "copied": "Copied as plain text.",
   "copyFail": "Copy failed; select the report and copy manually.",
@@ -99,7 +100,8 @@ const JS = {
   "blocking": "{n} elemento/i bloccante/i: la cartella contiene qualcosa che non è nelle note.",
   "unresolved": "{n} elemento/i mancante/i da aggiungere o segnare come non registrato.",
   "ready": "Pronto per l'approvazione.",
-  "handOver": "Passa al veterinario","handedStatus": "Bozza preparata e passata al veterinario per la controfirma. Non è stato salvato nulla.","nurseDraft": "BOZZA ASSISTENTE · IN ATTESA DEL VETERINARIO","cosigned": "controfirmato, bozza dell'assistente",
+  "handOver": "Passa al veterinario",
+  "toVet": "Segna come osservato dal veterinario","toOwner": "Segna come riferito dal proprietario","handedStatus": "Bozza preparata e passata al veterinario per la controfirma. Non è stato salvato nulla.","nurseDraft": "BOZZA ASSISTENTE · IN ATTESA DEL VETERINARIO","cosigned": "controfirmato, bozza dell'assistente",
   "medsTick": "Verificato","medsUnchecked": "{n} riga/e della terapia da spuntare rispetto alle tue note prima dell'approvazione.",
   "copied": "Copiato come testo semplice.",
   "copyFail": "Copia non riuscita; seleziona il referto e copia manualmente.",
@@ -128,7 +130,8 @@ const JS = {
   "blocking": "{n} blockierende(r) Punkt(e): die Akte enthält etwas, das nicht in den Notizen steht.",
   "unresolved": "{n} fehlende Angabe(n) ergänzen oder als nicht erfasst markieren.",
   "ready": "Bereit zur Freigabe.",
-  "handOver": "An Tierärztin/Tierarzt übergeben","handedStatus": "Entwurf vorbereitet und zur Gegenzeichnung übergeben. Nichts wurde gespeichert.","nurseDraft": "TFA-ENTWURF · WARTET AUF FREIGABE","cosigned": "gegengezeichnet, Entwurf der TFA",
+  "handOver": "An Tierärztin/Tierarzt übergeben",
+  "toVet": "Als tierärztlich beobachtet markieren","toOwner": "Als vom Besitzer berichtet markieren","handedStatus": "Entwurf vorbereitet und zur Gegenzeichnung übergeben. Nichts wurde gespeichert.","nurseDraft": "TFA-ENTWURF · WARTET AUF FREIGABE","cosigned": "gegengezeichnet, Entwurf der TFA",
   "medsTick": "Geprüft","medsUnchecked": "{n} Medikationszeile(n) vor der Freigabe gegen die Notizen abhaken.",
   "copied": "Als Klartext kopiert.",
   "copyFail": "Kopieren fehlgeschlagen; Bericht markieren und manuell kopieren.",
@@ -221,6 +224,9 @@ const t = T[lang]; const j = JS[lang];
     .ws-report .flag { color: var(--warn); font-weight: 600; }
     .ws-report .flag.resolved { color: var(--ok); }
     .ws-report .own { color: var(--ink-3); font-style: italic; }
+    .ws-role-toggle { margin-left: 8px; font: inherit; font-size: .75rem; border: 1px solid var(--line); background: var(--surface); color: var(--ink-3); border-radius: 999px; padding: 1px 8px; cursor: pointer; vertical-align: middle; }
+    .ws-role-toggle:hover { color: var(--accent); border-color: var(--accent); }
+    @media print { .ws-role-toggle { display: none; } }
     .ws-abbr-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 8px 16px; }
     .ws-abbr-list li { display: flex; gap: 8px; align-items: center; }
     .ws-abbr-list code { background: var(--accent-soft); border-radius: 6px; padding: 2px 8px; font-weight: 600; min-width: 48px; text-align: center; }
@@ -363,6 +369,17 @@ const t = T[lang]; const j = JS[lang];
         s.addEventListener('click', () => { light(JSON.parse(s.dataset.spans!), true); setTimeout(() => light(JSON.parse(s.dataset.spans!), false), 1500); });
       }
       document.querySelectorAll<HTMLInputElement>('.ws-med-tick').forEach((cb) => cb.addEventListener('change', () => { cur.meds[Number(cb.dataset.i)] = cb.checked; renderFlags(); }));
+      // owner-reported vs vet-observed: one click flips a history line; the renderer then drops or adds the prefix
+      if (!cur.approved) for (const h of record.history) {
+        const needle = `${h.finding}: ${h.value}`;
+        const li = Array.from(document.querySelectorAll<HTMLElement>('.ws-report li')).find((el) => el.textContent?.includes(needle));
+        if (!li) continue;
+        const b = document.createElement('button'); b.type = 'button'; b.className = 'ws-role-toggle';
+        const owner = h.source_role === 'owner_reported';
+        b.textContent = owner ? '→ vet' : '→ owner'; b.title = owner ? J.toVet : J.toOwner; b.setAttribute('aria-label', b.title);
+        b.addEventListener('click', () => { h.source_role = owner ? 'vet_observed' : 'owner_reported'; render(); });
+        li.appendChild(b);
+      }
       renderFlags();
       renderAbbr();
     }
