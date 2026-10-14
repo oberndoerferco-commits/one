@@ -13,7 +13,7 @@ const path = Astro.url.pathname.replace(/\.html$/, '');
 type Lang = 'en' | 'it' | 'de';
 const L: Lang = lang === 'it' || lang === 'de' ? lang : 'en';
 // hreflang: pages that exist under the same path in all three languages.
-const shared = new Set(['', '/about', '/passport', '/visit-brief', '/newsletter', '/vets', '/vets/workspace', '/vets/data', '/vets/quality', '/vets/research', '/editorial', '/animals', '/animals/all', '/registry', '/end-of-life']);
+const shared = new Set(['', '/about', '/passport', '/visit-brief', '/newsletter', '/vets', '/vets/workspace', '/vets/data', '/vets/quality', '/vets/research', '/editorial', '/animals', '/animals/all', '/registry', '/end-of-life', '/impressum']);
 const basePath = path.replace(/^\/(it|de)(?=\/|$)/, '').replace(/^\/$/, '');
 const isSharedAnimals = /^\/animals\/(dog|cat|rabbit|horse|bird|general|symptoms|conditions|medications|first-aid|travel|care)$/.test(basePath);
 const alternates = shared.has(basePath) || isSharedAnimals
@@ -46,6 +46,7 @@ const strings = {
       { href: '/newsletter', label: 'Newsletter' },
       { href: '/privacy', label: 'Privacy' },
       { href: '/terms', label: 'Terms' },
+      { href: '/impressum', label: 'Legal notice' },
     ],
     brandAria: 'AI Veterinary home',
     navAria: 'Main',
@@ -76,6 +77,7 @@ const strings = {
       { href: '/it/newsletter', label: 'Newsletter' },
       { href: '/privacy', label: 'Privacy' },
       { href: '/terms', label: 'Termini' },
+      { href: '/it/impressum', label: 'Note legali' },
     ],
     brandAria: 'AI Veterinary, pagina iniziale',
     navAria: 'Principale',
@@ -106,6 +108,7 @@ const strings = {
       { href: '/de/newsletter', label: 'Newsletter' },
       { href: '/privacy', label: 'Datenschutz' },
       { href: '/terms', label: 'Nutzungsbedingungen' },
+      { href: '/de/impressum', label: 'Impressum' },
     ],
     brandAria: 'AI Veterinary Startseite',
     navAria: 'Hauptnavigation',

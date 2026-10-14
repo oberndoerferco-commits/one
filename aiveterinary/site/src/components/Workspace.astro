@@ -1,4 +1,6 @@
 ---
+import { getCollection } from 'astro:content';
+import { slugOf } from '../lib/animals-i18n';
 interface Props { lang?: 'en' | 'it' | 'de' }
 const { lang = 'en' } = Astro.props;
 const T = {
@@ -9,7 +11,7 @@ const T = {
   "countryLabel": "Country rules",
   "roleLabel": "I am",
   "docLabel": "Document","docReport": "Consultation report","docOwner": "Owner summary","docReferral": "Referral letter","docRx": "Prescription","docVacc": "Vaccination entry","docConsent": "Consent form","docEstimate": "Cost estimate","referralReason": "Reason for referral (your words)",
-  "attachLabel": "Attach a photo or document","clinicTitle": "Your letterhead","clinicHint": "Printed on top of every document and used as the responsible veterinarian. Stored on this device only.","clinicName": "Practice name","clinicAddress": "Address and phone","clinicVet": "Veterinarian","clinicReg": "Registration (chamber / Ordine)","attachHint": "Stored with the record and referenced in the report. Never read or interpreted by the assistant.",
+  "attachLabel": "Attach a photo or document","clinicTitle": "Your letterhead","handouts": "Handouts you could give (linked, never inserted)","handoutsNone": "No matching reviewed article for this assessment.","timer": "Time to approval","clinicHint": "Printed on top of every document and used as the responsible veterinarian. Stored on this device only.","clinicName": "Practice name","clinicAddress": "Address and phone","clinicVet": "Veterinarian","clinicReg": "Registration (chamber / Ordine)","attachHint": "Stored with the record and referenced in the report. Never read or interpreted by the assistant.",
   "abbrTitle": "Abbreviations in your notes","abbrHint": "Expanded from the default list and your clinic glossary. Correct a meaning once and it is remembered on this device.","abbrNone": "No abbreviations recognised.","abbrSave": "Save","roleNurse": "Nurse / assistant","roleVet": "Veterinarian",
   "notice": "<strong>Preview.</strong> The example cases run offline on prepared records, so you can see exactly how the review works: source highlighting, missing-information flags, the medication table built from your own words. In the real product your own notes are structured by the model with the same checks. Nothing here is stored.",
   "notes": "Notes",
@@ -28,7 +30,7 @@ const T = {
   "countryLabel": "Regole del Paese",
   "roleLabel": "Sono",
   "docLabel": "Documento","docReport": "Referto di visita","docOwner": "Riepilogo per il proprietario","docReferral": "Lettera di riferimento","docRx": "Prescrizione","docVacc": "Registrazione vaccinale","docConsent": "Consenso informato","docEstimate": "Preventivo","referralReason": "Motivo dell'invio (parole Sue)",
-  "attachLabel": "Allega foto o documento","clinicTitle": "La Sua intestazione","clinicHint": "Stampata in testa a ogni documento e usata come veterinario responsabile. Salvata solo su questo dispositivo.","clinicName": "Nome della clinica","clinicAddress": "Indirizzo e telefono","clinicVet": "Veterinario","clinicReg": "Iscrizione (Ordine)","attachHint": "Conservato con la cartella e citato nel referto. Mai letto né interpretato dall'assistente.",
+  "attachLabel": "Allega foto o documento","clinicTitle": "La Sua intestazione","handouts": "Materiale da consegnare (collegato, mai inserito)","handoutsNone": "Nessun articolo revisionato corrisponde alla valutazione.","timer": "Tempo all'approvazione","clinicHint": "Stampata in testa a ogni documento e usata come veterinario responsabile. Salvata solo su questo dispositivo.","clinicName": "Nome della clinica","clinicAddress": "Indirizzo e telefono","clinicVet": "Veterinario","clinicReg": "Iscrizione (Ordine)","attachHint": "Conservato con la cartella e citato nel referto. Mai letto né interpretato dall'assistente.",
   "abbrTitle": "Abbreviazioni nelle note","abbrHint": "Espanse dalla lista predefinita e dal glossario della clinica. Correggi un significato una volta e viene ricordato su questo dispositivo.","abbrNone": "Nessuna abbreviazione riconosciuta.","abbrSave": "Salva","roleNurse": "Assistente / infermiere","roleVet": "Veterinario",
   "notice": "<strong>Anteprima.</strong> I casi di esempio girano offline su cartelle già preparate, così puoi vedere esattamente come funziona la revisione: evidenziazione della fonte, segnalazione delle informazioni mancanti, tabella dei farmaci costruita con le tue stesse parole. Nel prodotto reale le tue note vengono strutturate dal modello con gli stessi controlli. Qui non viene salvato nulla.",
   "notes": "Note",
@@ -47,7 +49,7 @@ const T = {
   "countryLabel": "Länderregeln",
   "roleLabel": "Ich bin",
   "docLabel": "Dokument","docReport": "Behandlungsbericht","docOwner": "Halterinformation","docReferral": "Überweisungsschreiben","docRx": "Verschreibung","docVacc": "Impfeintrag","docConsent": "Einwilligung","docEstimate": "Kostenvoranschlag","referralReason": "Überweisungsgrund (Ihre Worte)",
-  "attachLabel": "Foto oder Dokument anhängen","clinicTitle": "Ihr Briefkopf","clinicHint": "Steht über jedem Dokument und dient als verantwortliche Tierärztin / verantwortlicher Tierarzt. Nur auf diesem Gerät gespeichert.","clinicName": "Praxisname","clinicAddress": "Anschrift und Telefon","clinicVet": "Tierärztin / Tierarzt","clinicReg": "Kammer / Registrierung","attachHint": "Wird mit dem Datensatz gespeichert und im Bericht genannt. Vom Assistenten nie gelesen oder interpretiert.",
+  "attachLabel": "Foto oder Dokument anhängen","clinicTitle": "Ihr Briefkopf","handouts": "Infoblätter zum Mitgeben (verlinkt, nie eingefügt)","handoutsNone": "Kein geprüfter Artikel passt zur Beurteilung.","timer": "Zeit bis zur Freigabe","clinicHint": "Steht über jedem Dokument und dient als verantwortliche Tierärztin / verantwortlicher Tierarzt. Nur auf diesem Gerät gespeichert.","clinicName": "Praxisname","clinicAddress": "Anschrift und Telefon","clinicVet": "Tierärztin / Tierarzt","clinicReg": "Kammer / Registrierung","attachHint": "Wird mit dem Datensatz gespeichert und im Bericht genannt. Vom Assistenten nie gelesen oder interpretiert.",
   "abbrTitle": "Abkürzungen in Ihren Notizen","abbrHint": "Aufgelöst aus der Standardliste und Ihrem Praxisglossar. Eine Bedeutung einmal korrigieren, und sie bleibt auf diesem Gerät gespeichert.","abbrNone": "Keine Abkürzungen erkannt.","abbrSave": "Speichern","roleNurse": "TFA / Assistenz","roleVet": "Tierärztin / Tierarzt",
   "notice": "<strong>Vorschau.</strong> Die Beispielfälle laufen offline auf vorbereiteten Akten, damit Sie genau sehen, wie die Prüfung funktioniert: Quellenmarkierung, Hinweise auf fehlende Angaben, die Medikamententabelle aus Ihren eigenen Worten. Im echten Produkt strukturiert das Modell Ihre eigenen Notizen mit denselben Prüfungen. Hier wird nichts gespeichert.",
   "notes": "Notizen",
@@ -171,6 +173,7 @@ const JS = {
  }
 } as const;
 const t = T[lang]; const j = JS[lang];
+const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang === lang).map((e) => ({ title: e.data.title, href: `${({ en: '/animals', it: '/it/animals', de: '/de/animals' })[lang]}/${slugOf(e.id)}`, species: e.data.species, draft: e.data.draft }));
 ---
   <section class="wrap" style="padding-top:24px">
     <p class="eyebrow"><a href={t.vetsHref}>{t.eyebrowLink}</a> · {t.eyebrowRest}</p>
@@ -250,6 +253,7 @@ const t = T[lang]; const j = JS[lang];
         <button class="btn secondary" id="ws-print" type="button">{t.print}</button>
       </div>
       <p class="pp-status" id="ws-status" aria-live="polite"></p>
+      <div class="ws-handouts"><div class="ws-h">{t.handouts}</div><ul id="ws-handouts"></ul></div>
     </div>
   </section>
 
@@ -276,6 +280,8 @@ const t = T[lang]; const j = JS[lang];
     .ws-report .flag { color: var(--warn); font-weight: 600; }
     .ws-report .flag.resolved { color: var(--ok); }
     .ws-report .own { color: var(--ink-3); font-style: italic; }
+    .ws-handouts { margin-top: 16px; } .ws-handouts ul { margin: 6px 0 0; padding-left: 1.2em; }
+    @media print { .ws-handouts { display: none; } }
     .ws-clinic summary { cursor: pointer; font-weight: 600; }
     .ws-letterhead { border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 14px; font-size: .9rem; color: var(--ink-2); }
     .ws-letterhead .lh-name { font-family: var(--font-display); font-size: 1.15rem; color: var(--ink); font-weight: 600; }
@@ -313,7 +319,7 @@ const t = T[lang]; const j = JS[lang];
     @media print { .site-header, .site-footer, .ws-top, .notice, .ws-pane:first-child, .ws-flags, .eyebrow { display: none !important; } .ws { border: 0; } }
   </style>
 
-  <script type="application/json" id="ws-i18n" set:html={JSON.stringify({ ...j, abbrNone: t.abbrNone, abbrSave: t.abbrSave })} />
+  <script type="application/json" id="ws-i18n" set:html={JSON.stringify({ ...j, abbrNone: t.abbrNone, abbrSave: t.abbrSave, handouts: t.handouts, handoutsNone: t.handoutsNone, timer: t.timer, handoutIndex })} />
 
   <script>
     import { ClinicalRecord, PatientHeader, type ClinicalRecord as Rec } from 'aiveterinary-app/src/schema.ts';
@@ -353,6 +359,18 @@ const t = T[lang]; const j = JS[lang];
       const ul = $('#ws-attach-list'); ul.innerHTML = '';
       for (const f of cur.files) { const li = document.createElement('li'); li.textContent = `${f.name} · ${Math.max(1, Math.round(f.size / 1024))} KB`; ul.appendChild(li); }
     }
+    function renderHandouts() {
+      const ul = $('#ws-handouts'); ul.innerHTML = '';
+      const text = [cur.record.assessment.text ?? '', ...cur.record.assessment.differentials.map((d: any) => d.text), cur.record.presenting_complaint?.text ?? ''].join(' ').toLowerCase();
+      const words = text.split(/[^a-zäöüßàèéìòù]+/).filter((w) => w.length > 4);
+      const species = cur.header.species;
+      const hits = (J.handoutIndex as { title: string; href: string; species: string; draft: boolean }[])
+        .filter((h) => h.species === species || h.species === 'general')
+        .map((h) => ({ h, score: words.filter((w) => h.title.toLowerCase().includes(w)).length }))
+        .filter((x) => x.score > 0).sort((a, b) => b.score - a.score).slice(0, 3);
+      if (!hits.length) { const li = document.createElement('li'); li.className = 'pp-hint'; li.textContent = J.handoutsNone; ul.appendChild(li); return; }
+      for (const { h } of hits) { const li = document.createElement('li'); const a = document.createElement('a'); a.href = h.href; a.target = '_blank'; a.rel = 'noopener'; a.textContent = h.title; li.appendChild(a); if (h.draft) { const sp = document.createElement('span'); sp.className = 'pp-hint'; sp.textContent = ' · draft'; li.appendChild(sp); } ul.appendChild(li); }
+    }
     function renderAbbr() {
       const list = $('#ws-abbr-list'); list.innerHTML = '';
       const table = { ...DEFAULT_ABBREVIATIONS, ...loadGlossary() };
@@ -375,7 +393,7 @@ const t = T[lang]; const j = JS[lang];
     const labels: Record<string, string> = J.cases;
     const $ = (s: string) => document.querySelector(s) as HTMLElement;
 
-    let cur: { notes: string; header: any; record: Rec; lang: 'en' | 'de' | 'it'; resolved: Record<string, string>; approved: boolean; meds: boolean[]; handed: boolean; files: { name: string; size: number; type: string }[] };
+    let cur: { notes: string; header: any; record: Rec; lang: 'en' | 'de' | 'it'; resolved: Record<string, string>; approved: boolean; meds: boolean[]; handed: boolean; files: { name: string; size: number; type: string }[]; started: number };
 
     const sel = $('#ws-case') as HTMLSelectElement;
     for (const c of [...cases].sort((a, b) => Object.keys(labels).indexOf(a.id) - Object.keys(labels).indexOf(b.id))) { const o = document.createElement('option'); o.value = c.id; o.textContent = labels[c.id] ?? c.id; sel.appendChild(o); }
@@ -402,7 +420,7 @@ const t = T[lang]; const j = JS[lang];
 
     function load(id: string) {
       const c = cases.find((x) => x.id === id)!;
-      cur = { notes: normalizeNotes(c.notes), header: PatientHeader.parse(c.header), record: ClinicalRecord.parse(c.fixture_record), lang: c.language, resolved: {}, approved: false, meds: [], handed: false, files: [] };
+      cur = { notes: normalizeNotes(c.notes), header: PatientHeader.parse(c.header), record: ClinicalRecord.parse(c.fixture_record), lang: c.language, resolved: {}, approved: false, meds: [], handed: false, files: [], started: Date.now() };
       const h = cur.header;
       $('#ws-patient').textContent = [h.name, h.species, h.breed, h.sex, h.age && `${h.age.value} ${h.age.unit}${h.age.value === 1 ? '' : 's'}`, h.weight_kg && `${h.weight_kg} kg`].filter(Boolean).join(' · ');
       $('#ws-lang').textContent = { en: 'English', de: 'Deutsch', it: 'Italiano' }[cur.lang];
@@ -481,6 +499,7 @@ const t = T[lang]; const j = JS[lang];
       renderFlags();
       renderAbbr();
       renderLetterhead();
+      renderHandouts();
     }
 
     function light(spans: [number, number][], on: boolean) {
@@ -531,8 +550,9 @@ const t = T[lang]; const j = JS[lang];
         $('#ws-status').textContent = J.handedStatus;
         return;
       }
+      const secs = Math.round((Date.now() - cur.started) / 1000);
       cur.approved = true; document.body.classList.add('ws-approved');
-      $('#ws-state').innerHTML = `<span class="badge reviewed">✓ ${J.approved}${cur.handed ? ` (${J.cosigned})` : ''} · ${time}</span>`;
+      $('#ws-state').innerHTML = `<span class="badge reviewed">✓ ${J.approved}${cur.handed ? ` (${J.cosigned})` : ''} · ${time} · ${J.timer}: ${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}</span>`;
       render();
     }
     function copyOut() {

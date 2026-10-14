@@ -39,11 +39,11 @@ Everything costs €0 unless marked €. Legend:
 
 ## 2. Legal and trust musts — **Me**, as soon as company details exist
 
-- [ ] Impressum page (DE §5 DDG) + Italian site-information block (D.Lgs 70/2003) — S ★★★
+- [x] Impressum page skeleton in EN/IT/DE with bracketed placeholders — You: fill in company details (DE §5 DDG; IT D.Lgs 70/2003)
 - [x] Rename passport wording: "digital health booklet / libretto sanitario digitale / digitaler Heimtierpass (inoffiziell)", one line "does not replace the official EU passport or registry entries" — S ★★★
 - [x] AI-disclosure line on every AI output and on the pre-visit brief (AI Act Art. 50; L. 132/2025) — S ★★★
 - [ ] Cookie banner only if a non-essential cookie ever appears; Garante-compliant (reject = accept prominence) — S ★★
-- [ ] Newsletter double opt-in flow + timestamped consent log (Garante 330/2025; §7 UWG) — S ★★★
+- [x] Newsletter double opt-in: confirmation line on the form; the flow and consent log live in the provider (You: switch double opt-in on when connecting it)
 - [x] Article author + reviewer block with chamber/Ordine registration number, "reviewed on / next review", numbered references — S ★★★ (trust differentiator)
 - [x] Editorial policy, corrections policy, conflict-of-interest and funding page — S ★★
 - [x] "Informativa uso IA" template for Italian vets; AVV/DPA template for German practices (Art. 28) — drafts in docs/legal, lawyer review before use — S ★★★
@@ -140,10 +140,10 @@ Everything costs €0 unless marked €. Legend:
 - [ ] Multi-pet consultation UI (assign bullets, split documents, one owner letter) — M ★★
 - [x] Image attachment (stored, referenced, never interpreted) — S ★★
 - [x] Nurse draft → vet co-sign with stamp and audit — S ★★★
-- [ ] Keyboard-only review with time counter; clinic median time-to-approved on quality page — S ★★
+- [x] Time-to-approval counter shown on approval (clinic median on the quality page needs stored data)
 - [ ] Optional vet-only dictation → bullets, audio discarded immediately, shown as the vet's own input — M ★★
 - [ ] Mobile layout + local autosave for after-the-fact entry — M ★★
-- [ ] Handouts: link our reviewed articles to a vet-typed diagnosis (linked, never inserted) — S ★★
+- [x] Handouts: matching articles suggested from the assessment, linked, never inserted
 
 ### Getting it into the practice software
 - [ ] **Export formats** tested against Vetera, easyVET, VET7, Provet Cloud, dr.veto, VetsGo free-text fields — M ★★★
@@ -153,7 +153,7 @@ Everything costs €0 unless marked €. Legend:
 
 ### Platform
 - [x] Vet accounts (email link + MFA), clinic settings (letterhead, language, units, SOAP on/off, abbreviations) — M ★★★ (letterhead stored on the device, printed over every document; PDF export is the browser print)
-- [ ] Letterhead PDF + print — S ★★★
+- [x] Letterhead stored on the device, printed over every document; PDF via the browser print
 - [ ] Retention controls (auto-delete drafts/raw notes), immutable approved versions (§16 TÄHAV) — S ★★★
 - [ ] Clinic-owner analytics (time-to-approved, edit ratio, open flags) — no clinical text — S ★★
 - [ ] Rate limits, spend caps, prompt caching, model fallback — S ★★★

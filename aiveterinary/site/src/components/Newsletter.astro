@@ -15,6 +15,7 @@ const strings = {
     emailLabel: 'Email address',
     placeholder: 'you@example.com',
     button: 'Subscribe',
+    doi: 'You will get one email to confirm. Nothing is sent before you click it.',
   },
   it: {
     heading: 'Restiamo in contatto',
@@ -25,6 +26,7 @@ const strings = {
     emailLabel: 'Indirizzo email',
     placeholder: 'tu@esempio.it',
     button: 'Iscriviti',
+    doi: 'Riceverai una email di conferma. Non invieremo nulla prima che tu la confermi.',
   },
   de: {
     heading: 'In Kontakt bleiben',
@@ -35,6 +37,7 @@ const strings = {
     emailLabel: 'E-Mail-Adresse',
     placeholder: 'sie@beispiel.de',
     button: 'Abonnieren',
+    doi: 'Sie erhalten eine E-Mail zur Bestätigung. Vorher wird nichts verschickt.',
   },
 } as const;
 const t = strings[lang] ?? strings.en;
@@ -51,4 +54,5 @@ const t = strings[lang] ?? strings.en;
     <input id="nl-email" type="email" name="email" placeholder={t.placeholder} required autocomplete="email" />
     <button class="btn" type="submit">{t.button}</button>
   </div>
+    <p class="pp-hint" style="margin-top:8px">{t.doi}</p>
 </form>
