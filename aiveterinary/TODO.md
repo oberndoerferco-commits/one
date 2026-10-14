@@ -110,7 +110,7 @@ Everything costs €0 unless marked €. Legend:
 - [x] **Prescription per dispensed Rx drug (Art. 105(5))** rendered from record + visit context with flags for keeper, chip, product, quantity, vet (PDF/letterhead still open)
 - [ ] **Italian REV payload** from the medication table; store number + PIN ★★★ *only us*
 - [ ] **Preventivo / Kostenvoranschlag**: plan items × clinic price list (DE: GOT positions + factor; IT: listino, liability-policy data) ★★★ *only us*
-- [ ] **Procedure-specific consent forms** (anaesthesia, surgery, euthanasia, hospitalisation, AMA refusal, referral) with FNOVI-required elements ★★★ *only us*
+- [x] **Consent form** rendered per planned procedure with the FNOVI/chamber elements as sections the vet completes; risks never pre-written (procedure-specific variants: anaesthesia, euthanasia, hospitalisation, AMA still open)
 - [ ] **Insurance-ready invoice annotation** (diagnosis, chip, DOB/breed, GOT no. + factor) and **claim pack** per insurer ★★★ *only us*
 - [x] Vaccination entry rendered from the record with batch/site/validity from the dispensing record, flags when absent (booklet import and reminder hand-off still open)
 - [ ] Surgery/anaesthesia record with required-field checklist (ASA, protocol, monitoring values, implants) ★★★

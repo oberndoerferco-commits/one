@@ -74,4 +74,14 @@ describe('documents from the approved record', () => {
     expect(full).toContain('| Nobivac Rabies | 2026-10-14 | A123B | sc dx | 2029-10-14 |'); expect(full).not.toContain('## ▲');
     expect(renderVaccinationEntry(record, header, VisitContext.parse({ country: 'DE', author: { name: 'x' }, microchip: '1' }), 'de')).toContain('keine Impfung');
   });
+  it('consent form lists planned procedures and leaves risks and alternatives to the vet', async () => {
+    const { renderConsentForm } = await import('../src/render.js');
+    const { VisitContext } = await import('../src/country.js');
+    const { record, header } = prep('008-adversarial-it-performed-vs-planned');
+    const r = structuredClone(record); r.treatments.push({ type: 'procedure', text: 'artroscopia anca dx', status: 'planned', source_spans: [[0, 1]] });
+    const md = renderConsentForm(r, header, VisitContext.parse({ country: 'IT', author: { name: 'Dr. B', registration: 'Ordine MI 9' } }), 'it', { date: '2026-10-14' });
+    expect(md).toContain('- Artroscopia anca dx'); expect(md).toContain('## Rischi e possibili complicanze'); expect(md).toContain('Modi e tempi');
+    expect(md).toContain('a cura del veterinario'); expect(md).not.toMatch(/infezione|emorragia/i);
+    expect(renderConsentForm(record, header, VisitContext.parse({ country: 'DE' }), 'de')).toContain('Kein geplanter Eingriff');
+  });
 });

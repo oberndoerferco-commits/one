@@ -345,3 +345,43 @@ export function renderVaccinationEntry(record: ClinicalRecord, header: PatientHe
   if (opts.approved) { out.push(''); out.push(`_${t.disclosure}_`); }
   return out.join('\n');
 }
+
+/* ------------------------------------------------------------------ */
+/* Consent form for a planned procedure. The elements FNOVI and the     */
+/* German/Austrian chambers expect are the headings; the content under  */
+/* them is the vet's to write. The form never pre-writes risks or       */
+/* alternatives.                                                        */
+
+const K = {
+  en: { title: 'Informed consent', procedure: 'Procedure', planned: 'Planned procedures in this record', noProcedure: 'No planned procedure in this record; name the procedure yourself.', diagnosis: 'Diagnosis or reason', what: 'What will be done', alternatives: 'Alternatives, including doing nothing', risks: 'Risks and possible complications', anaesthesia: 'Anaesthesia and its risks', cost: 'Estimated cost and what it covers', timing: 'When and how the information was given', contact: 'Who to contact afterwards', declaration: 'I have understood the above, my questions were answered, and I consent to the procedure described. I know I can withdraw consent before it starts.', owner: 'Owner / keeper', vet: 'Veterinarian', date: 'Date', signature: 'Signature', fill: 'to be completed by the veterinarian' },
+  de: { title: 'Einwilligung nach Aufklärung', procedure: 'Eingriff', planned: 'Geplante Eingriffe in diesem Datensatz', noProcedure: 'Kein geplanter Eingriff im Datensatz; bitte den Eingriff benennen.', diagnosis: 'Diagnose oder Grund', what: 'Was gemacht wird', alternatives: 'Alternativen, einschließlich Abwarten', risks: 'Risiken und mögliche Komplikationen', anaesthesia: 'Narkose und ihre Risiken', cost: 'Voraussichtliche Kosten und was sie umfassen', timing: 'Wann und wie die Aufklärung erfolgte', contact: 'Ansprechpartner danach', declaration: 'Ich habe das Vorstehende verstanden, meine Fragen wurden beantwortet, und ich willige in den beschriebenen Eingriff ein. Ich weiß, dass ich die Einwilligung vor Beginn widerrufen kann.', owner: 'Halterin / Halter', vet: 'Tierärztin / Tierarzt', date: 'Datum', signature: 'Unterschrift', fill: 'von der Tierärztin / dem Tierarzt auszufüllen' },
+  it: { title: 'Consenso informato', procedure: 'Procedura', planned: 'Procedure pianificate in questa cartella', noProcedure: 'Nessuna procedura pianificata nella cartella; indicare la procedura.', diagnosis: 'Diagnosi o motivo', what: 'In cosa consiste', alternatives: 'Alternative, compreso non intervenire', risks: 'Rischi e possibili complicanze', anaesthesia: 'Anestesia e relativi rischi', cost: 'Costo previsto e cosa comprende', timing: 'Modi e tempi dell\'informazione fornita', contact: 'Chi contattare dopo', declaration: 'Ho compreso quanto sopra, le mie domande hanno avuto risposta e acconsento alla procedura descritta. So di poter revocare il consenso prima dell\'inizio.', owner: 'Proprietario / detentore', vet: 'Veterinario', date: 'Data', signature: 'Firma', fill: 'a cura del veterinario' },
+};
+
+export function renderConsentForm(record: ClinicalRecord, header: PatientHeader, ctx: VisitContext, lang: Lang = 'en', opts: { procedure?: string | null; date?: string } = {}): string {
+  const t = L[lang], k = K[lang];
+  const out: string[] = [];
+  out.push(`# ${k.title}`);
+  out.push('');
+  out.push(`**${headerLine(header)}**${ctx.microchip ? ` · ${ctx.microchip}` : ''}`);
+  out.push(`**${k.owner}:** ${ctx.owner.name ?? '______________________'}`);
+  out.push(`**${k.date}:** ${opts.date ?? new Date().toISOString().slice(0, 10)}`);
+  out.push('');
+  const planned = record.treatments.filter((x) => x.type === 'procedure' && x.status === 'planned').map((x) => cap(x.text));
+  out.push(`## ${k.procedure}`);
+  if (opts.procedure) out.push(cap(opts.procedure));
+  else if (planned.length) { out.push(`${k.planned}:`); for (const p of planned) out.push(`- ${p}`); }
+  else out.push(flag(k.noProcedure));
+  out.push('');
+  out.push(`## ${k.diagnosis}`);
+  out.push(record.assessment.text ? cap(record.assessment.text) : `_${k.fill}_`);
+  for (const h of [k.what, k.alternatives, k.risks, k.anaesthesia, k.cost, k.timing, k.contact]) { out.push(''); out.push(`## ${h}`); out.push(`_${k.fill}_`); out.push(''); out.push('______________________________________________'); }
+  out.push('');
+  out.push(k.declaration);
+  out.push('');
+  out.push(`${k.owner} — ${k.signature}: ______________________   ${k.date}: ____________`);
+  out.push(`${k.vet} — ${[ctx.author.name, ctx.author.registration].filter(Boolean).join(', ') || '______________________'} — ${k.signature}: ______________________`);
+  out.push('');
+  out.push(`_${t.provenance.replace('{f}', String(provenance(record).facts)).replace('{n}', String(record.missing.length))}_`);
+  return out.join('\n');
+}
