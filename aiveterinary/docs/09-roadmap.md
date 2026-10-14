@@ -8,6 +8,25 @@ second full-time business.
 
 ---
 
+## Status, 14 October 2026
+
+Phase 1 is built and waits on three things only the owner can do: merge the
+pull request, create the Cloudflare Pages project and switch the GoDaddy
+nameservers, and enter the company details in the privacy page and Impressum.
+Phase 2's core exists as a tested library with a public preview; it waits on
+pilot clinics and an API key.
+
+| Part | State | What exists | What is missing |
+|---|---|---|---|
+| Website + animal information | ready to launch | 163 pages in EN/IT/DE on a researched design system; 90 articles with sources, all labelled draft; search, A–Z, registries, travel (in progress), end-of-life, editorial policy; WCAG AA audit clean | one vet reviewer to sign the first articles; company details; the three launch steps above |
+| Owner tools | ready to launch | health booklet with reminders, weight chart, symptom diary, emergency card, lost-pet poster, insurance claim pack, bilingual print, calendar export, save-dialog backup; pre-visit brief with species questions and email-to-clinic | accounts (Supabase project, owner's call), photo per diary entry, Wallet pass |
+| Vet documentation tool | preview + library | record schema with source spans, validators, 10 eval cases, country field packs (DE/IT/CH/AT), nurse co-sign, glossary; ten documents rendered from one approved record (report, owner summary with dose checklist, referral, prescription, vaccination entry, consent, estimate, anaesthesia record, controlled-drugs entry, lab explanation, antibiotic block) | model runs on the eval set (needs key), pilot clinics under the AVV/DPA, letterhead PDF, templates per clinic, multi-pet, amendment propagation |
+| Legal and trust | drafted | editorial policy, public data-handling page, processing register, Informativa IA (IT) and AVV (DE/AT) drafts, go-to-market kit | lawyer pass on privacy, terms, Informativa and AVV |
+
+The ranked backlog with effort and value per item is `TODO.md` (62 done, 68 open).
+
+---
+
 ## The three parts, in the order to build them
 
 | Part | For | Why this order |
