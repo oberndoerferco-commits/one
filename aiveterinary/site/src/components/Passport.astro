@@ -24,7 +24,8 @@ const T = {
   "backup": "Back up",
   "restore": "Restore",
   "print": "Print",
-  "card": "Emergency card","cardTitle": "Emergency card","cardFoot": "Full health booklet on the owner's phone · aiveterinary.org",
+  "card": "Emergency card",
+  "poster": "Lost-pet poster","posterLost": "LOST","posterSeen": "Last seen","posterWhere": "Where and when was the animal last seen?","posterReward": "Please call, any time:","posterChip": "Microchipped, registered","cardTitle": "Emergency card","cardFoot": "Full health booklet on the owner's phone · aiveterinary.org",
   "delete": "Delete",
   "emptyTitle": "No animal yet",
   "emptyText": "Create a passport for your first animal, or restore one from a backup file.",
@@ -137,7 +138,8 @@ const T = {
   "backup": "Copia di sicurezza",
   "restore": "Ripristina",
   "print": "Stampa",
-  "card": "Scheda d'emergenza","cardTitle": "Scheda d'emergenza","cardFoot": "Libretto sanitario completo sul telefono del proprietario · aiveterinary.org",
+  "card": "Scheda d'emergenza",
+  "poster": "Manifesto smarrimento","posterLost": "SMARRITO","posterSeen": "Visto l'ultima volta","posterWhere": "Dove e quando è stato visto l'ultima volta?","posterReward": "Chiamate, a qualsiasi ora:","posterChip": "Microchip registrato","cardTitle": "Scheda d'emergenza","cardFoot": "Libretto sanitario completo sul telefono del proprietario · aiveterinary.org",
   "delete": "Elimina",
   "emptyTitle": "Nessun animale ancora",
   "emptyText": "Crea il passaporto del tuo primo animale, oppure ripristinalo da una copia di sicurezza.",
@@ -243,7 +245,8 @@ const T = {
   "backup": "Sichern",
   "restore": "Wiederherstellen",
   "print": "Drucken",
-  "card": "Notfallkarte","cardTitle": "Notfallkarte","cardFoot": "Vollständiger Heimtierpass auf dem Handy der Halterin/des Halters · aiveterinary.org",
+  "card": "Notfallkarte",
+  "poster": "Vermisst-Plakat","posterLost": "VERMISST","posterSeen": "Zuletzt gesehen","posterWhere": "Wo und wann wurde das Tier zuletzt gesehen?","posterReward": "Bitte anrufen, jederzeit:","posterChip": "Gechippt und registriert","cardTitle": "Notfallkarte","cardFoot": "Vollständiger Heimtierpass auf dem Handy der Halterin/des Halters · aiveterinary.org",
   "delete": "Löschen",
   "emptyTitle": "Noch kein Tier",
   "emptyText": "Legen Sie den Ausweis für Ihr erstes Tier an oder stellen Sie ihn aus einer Sicherungsdatei wieder her.",
@@ -551,6 +554,7 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
       <label class="btn secondary" for="pp-import">{t.restore}<input id="pp-import" type="file" accept="application/json,.json" class="sr" /></label>
       <button class="btn secondary" id="pp-print" type="button">{t.print}</button>
       <button class="btn secondary" id="pp-card" type="button" hidden>{t.card}</button>
+      <button class="btn secondary" id="pp-poster" type="button" hidden>{t.poster}</button>
       <button class="btn secondary pp-danger" id="pp-delete" type="button">{t.delete}</button>
     </div>
 
@@ -655,6 +659,19 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
     </div>
   </section>
 
+  <section id="pp-poster-view" class="wrap" hidden aria-hidden="true">
+    <div class="pp-poster">
+      <div class="pp-poster-lost">{t.posterLost}</div>
+      <img class="pp-poster-photo" data-p="photo" alt="" hidden />
+      <div class="pp-poster-name" data-p="name"></div>
+      <div class="pp-poster-desc" data-p="desc"></div>
+      <div class="pp-poster-seen"><b>{t.posterSeen}:</b> <span data-p="seen"></span></div>
+      <div class="pp-poster-chip" data-p="chip" hidden>{t.posterChip}</div>
+      <div class="pp-poster-call">{t.posterReward}</div>
+      <div class="pp-poster-phone" data-p="phone"></div>
+    </div>
+  </section>
+
   <section id="pp-card-view" class="wrap" hidden aria-hidden="true">
     {[0, 1].map(() => (
       <div class="pp-card">
@@ -736,6 +753,22 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
     .pp-card-row { display: block; } .pp-card-row b { font-weight: 600; color: #333; }
     .pp-card-row span { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
     .pp-card-foot { margin-top: auto; font-size: 6.5pt; color: #666; }
+    #pp-poster-view { display: none; }
+    .pp-poster { width: 190mm; min-height: 270mm; margin: 0 auto; padding: 12mm; box-sizing: border-box; border: 2mm solid #000; text-align: center; color: #000; background: #fff; display: flex; flex-direction: column; align-items: center; gap: 6mm; }
+    .pp-poster-lost { font-family: var(--font-display); font-size: 64pt; font-weight: 700; letter-spacing: .04em; line-height: 1; }
+    .pp-poster-photo[hidden] { display: none; }
+    .pp-poster-photo { max-width: 150mm; max-height: 110mm; object-fit: contain; border: 1px solid #999; }
+    .pp-poster-name { font-family: var(--font-display); font-size: 34pt; font-weight: 600; }
+    .pp-poster-desc { font-size: 16pt; }
+    .pp-poster-seen { font-size: 15pt; }
+    .pp-poster-chip { font-size: 13pt; color: #333; }
+    .pp-poster-call { margin-top: auto; font-size: 16pt; }
+    .pp-poster-phone { font-family: var(--font-display); font-size: 36pt; font-weight: 700; }
+    @media print {
+      body.pp-print-poster main > *:not(#pp-poster-view), body.pp-print-poster .site-header, body.pp-print-poster .site-footer { display: none !important; }
+      body.pp-print-poster #pp-poster-view { display: block !important; }
+      body.pp-print-poster .hero h1::after { content: none; }
+    }
     @media print {
       body.pp-print-card main > *:not(#pp-card-view), body.pp-print-card .site-header, body.pp-print-card .site-footer { display: none !important; }
       body.pp-print-card #pp-card-view { display: block !important; padding-top: 10mm; }
@@ -743,7 +776,7 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
     }
   </style>
 
-  <script type="application/json" id="pp-i18n" set:html={JSON.stringify({ ...j, locale: ({ en: 'en-GB', it: 'it-IT', de: 'de-DE' } as any)[lang], upcoming: { overdue: t.overdue, dueIn: t.dueIn, dueToday: t.dueToday, none: t.noUpcoming, vacc: t.vaccinations, treat: t.treatments } })} />
+  <script type="application/json" id="pp-i18n" set:html={JSON.stringify({ ...j, posterWhere: t.posterWhere, locale: ({ en: 'en-GB', it: 'it-IT', de: 'de-DE' } as any)[lang], upcoming: { overdue: t.overdue, dueIn: t.dueIn, dueToday: t.dueToday, none: t.noUpcoming, vacc: t.vaccinations, treat: t.treatments } })} />
 
   <script>
     // Digital pet passport. Local-first: all data lives in localStorage under one key.
@@ -836,6 +869,7 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
       $('#pp-delete')!.toggleAttribute('hidden', !a);
       $('#pp-print')!.toggleAttribute('hidden', !a);
       $('#pp-card')!.toggleAttribute('hidden', !a);
+      $('#pp-poster')!.toggleAttribute('hidden', !a);
       $('h1')!.setAttribute('data-animal', a?.name ?? '');
       if (!a) return;
       for (const el of $$<HTMLInputElement>('[data-f]', form)) el.value = a[el.dataset.f!] ?? '';
@@ -907,6 +941,22 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
       store.current = store.animals[0]?.id ?? null; render(); save(J.deleted); acct.remove(a.id);
     });
     $('#pp-print')!.addEventListener('click', () => window.print());
+    $('#pp-poster')!.addEventListener('click', () => {
+      const a = current(); if (!a) return;
+      const seen = window.prompt(J.posterWhere ?? 'Where and when was the animal last seen?', '') ?? '';
+      const set = (k: string, v: string) => { const el = $(`[data-p="${k}"]`) as HTMLElement | null; if (el) el.textContent = v; };
+      set('name', a.name || J.unnamed);
+      set('desc', [a.species, a.breed, a.colour, a.sex, a.weight && `${a.weight} kg`].filter(Boolean).join(' · '));
+      set('seen', seen || '—');
+      set('phone', [a.ownerPhone, a.ownerName].filter(Boolean).join(' · ') || '—');
+      const chip = $('[data-p="chip"]') as HTMLElement; chip.hidden = !a.microchip;
+      const img = $('[data-p="photo"]') as HTMLImageElement; img.hidden = !a.photo; if (a.photo) img.src = a.photo;
+      const view = $('#pp-poster-view') as HTMLElement; view.hidden = false; view.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('pp-print-poster');
+      const done = () => { document.body.classList.remove('pp-print-poster'); view.hidden = true; view.setAttribute('aria-hidden', 'true'); window.removeEventListener('afterprint', done); };
+      window.addEventListener('afterprint', done);
+      window.print();
+    });
     $('#pp-card')!.addEventListener('click', () => {
       const a = current(); if (!a) return;
       const set = (k: string, v: string) => { for (const el of $$(`[data-c="${k}"]`)) el.textContent = v || '—'; };
