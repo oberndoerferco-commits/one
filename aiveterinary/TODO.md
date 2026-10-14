@@ -40,12 +40,12 @@ Everything costs €0 unless marked €. Legend:
 ## 2. Legal and trust musts — **Me**, as soon as company details exist
 
 - [ ] Impressum page (DE §5 DDG) + Italian site-information block (D.Lgs 70/2003) — S ★★★
-- [ ] Rename passport wording: "digital health booklet / libretto sanitario digitale / digitaler Heimtierpass (inoffiziell)", one line "does not replace the official EU passport or registry entries" — S ★★★
-- [ ] AI-disclosure line on every AI output and on the pre-visit brief (AI Act Art. 50; L. 132/2025) — S ★★★
+- [x] Rename passport wording: "digital health booklet / libretto sanitario digitale / digitaler Heimtierpass (inoffiziell)", one line "does not replace the official EU passport or registry entries" — S ★★★
+- [x] AI-disclosure line on every AI output and on the pre-visit brief (AI Act Art. 50; L. 132/2025) — S ★★★
 - [ ] Cookie banner only if a non-essential cookie ever appears; Garante-compliant (reject = accept prominence) — S ★★
 - [ ] Newsletter double opt-in flow + timestamped consent log (Garante 330/2025; §7 UWG) — S ★★★
-- [ ] Article author + reviewer block with chamber/Ordine registration number, "reviewed on / next review", numbered references — S ★★★ (trust differentiator)
-- [ ] Editorial policy, corrections policy, conflict-of-interest and funding page — S ★★
+- [x] Article author + reviewer block with chamber/Ordine registration number, "reviewed on / next review", numbered references — S ★★★ (trust differentiator)
+- [x] Editorial policy, corrections policy, conflict-of-interest and funding page — S ★★
 - [ ] "Informativa uso IA" template for Italian vets; AVV/DPA template for German practices (Art. 28) — S ★★★
 - [ ] Public DPA, subprocessor list, retention policy page for the vet tool — S ★★★ (only Curala/Tandem/Petleo are clear today)
 - [ ] Accessibility pass to WCAG 2.2 AA (BFSG-safe) — M ★★

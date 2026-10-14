@@ -33,7 +33,7 @@ Im tierärztlichen Notdienst gelten andere Regeln. Die GOT definiert den Notdien
 
 In diesen Zeiten erhöht sich jede Position auf mindestens das Zweifache und höchstens das Vierfache des Gebührensatzes. Zusätzlich darf die Praxis eine Notdienstgebühr von 50 Euro (zuzüglich Umsatzsteuer) berechnen, aber nur einmal pro Angelegenheit, auch wenn mehrere Tiere desselben Halters behandelt werden. Im begründeten Einzelfall kann die Praxis auf die Notdienstgebühr verzichten.
 
-Ein Notfallbesuch mit Untersuchung, Röntgen und Injektion kann so leicht das Doppelte bis Dreifache eines Tagesbesuchs kosten. Das ist kein Abzocken, sondern die gesetzlich vorgesehene Vergütung für die Bereitschaft rund um die Uhr.
+Ein Notfallbesuch mit Untersuchung, Röntgen und Injektion kann so leicht das Doppelte bis Dreifache eines Tagesbesuchs kosten.
 
 ## Wann eine Vereinbarung in Textform nötig ist
 
@@ -73,7 +73,7 @@ Es gibt zwei Typen: reine OP-Versicherungen, die nur Operationen und meist die z
 - **Selbstbeteiligung und Jahreshöchstgrenze.**
 - **Ausschlüsse:** Vorerkrankungen und rassetypische Leiden sind häufig ausgeschlossen.
 
-Die Stiftung Warentest vergleicht solche Tarife regelmäßig. Rechnen Sie ehrlich: Für ein junges, gesundes Tier kann ein Notgroschen die Versicherung ersetzen, für ein großes oder krankheitsanfälliges Tier eher nicht.
+Die Stiftung Warentest vergleicht solche Tarife regelmäßig. Für manche Halter ist ein Notgroschen die bessere Lösung, für andere nicht.
 
 ## Der Steuer-Mythos
 

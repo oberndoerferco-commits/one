@@ -16,7 +16,7 @@ Schokoladenvergiftung ist einer der Fälle, in denen Sie nicht warten sollten, b
 **Rufen Sie sofort Ihre Tierarztpraxis oder den tierärztlichen Notdienst an**, wenn Ihr Hund Schokolade gefressen hat und Sie nicht sicher sind, dass es nur eine winzige Menge Vollmilch bei einem großen Hund war. Halten Sie bereit:
 
 - die Verpackung oder den Namen des Produkts (Vollmilch, Zartbitter, Backschokolade, Kakaopulver, Pralinen, Kuchen)
-- wie viel ungefähr gefessen wurde (Riegel, halbe Tafel, Packungsgröße, Rest in der Tüte)
+- wie viel ungefähr gefressen wurde (Riegel, halbe Tafel, Packungsgröße, Rest in der Tüte)
 - wann es passiert ist
 - das Gewicht Ihres Hundes
 
