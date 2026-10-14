@@ -27,7 +27,7 @@ Questi segni possono indicare una **crisi renale acuta**, che è un'emergenza di
 
 I reni filtrano il sangue, eliminano le sostanze di scarto e regolano l'acqua e i sali. Nel gatto, con l'età, il tessuto renale può perdere a poco a poco la sua funzione. Il termine corretto è **malattia renale cronica** (si usa anche "insufficienza renale"): è progressiva, non si guarisce, ma nella maggior parte dei casi si può **rallentare** e il gatto può vivere bene per anni.
 
-Colpisce circa un gatto su tre sopra i 10-12 anni, ed è più frequente in alcune razze. I reni hanno una grande riserva: i segni compaiono quando buona parte della funzione è già persa. Per questo nei gatti anziani vale la pena fare controlli prima che qualcosa si noti.
+Colpisce circa un gatto su tre sopra i 10-12 anni. I reni hanno una grande riserva: i segni compaiono quando buona parte della funzione è già persa. Per questo nei gatti anziani vale la pena fare controlli prima che qualcosa si noti.
 
 ## I primi segni, quelli facili da ignorare
 
@@ -50,12 +50,12 @@ Servono un **esame del sangue** e un **esame delle urine**, spesso una misurazio
 
 La gestione è un lavoro di squadra tra te e il veterinario, e si costruisce su pochi pilastri.
 
-- **Alimentazione.** Esistono diete formulate per i reni, con meno fosforo e proteine di alta qualità. Sono lo strumento con le prove più solide per rallentare la malattia. Il passaggio va fatto gradualmente e, se il gatto le rifiuta, il veterinario ha alternative: un gatto che non mangia peggiora più in fretta di uno che mangia il cibo sbagliato.
+- **Alimentazione.** Esistono diete formulate per i reni, con meno fosforo e proteine di alta qualità: sono lo strumento con le prove più solide per rallentare la malattia. Il passaggio va fatto gradualmente e, se il gatto le rifiuta, il veterinario ha alternative: un gatto che non mangia peggiora più in fretta.
 - **Acqua.** Più ciotole, fontanelle, cibo umido, acqua aggiunta alle crocchette. Un gatto renale si disidrata facilmente. In alcuni stadi il veterinario può insegnarti a somministrare fluidi sotto la pelle a casa.
 - **Fosforo, pressione, proteine nelle urine.** Il veterinario può aggiungere trattamenti per tenere sotto controllo questi tre aspetti, che influenzano molto la progressione.
 - **Nausea e appetito.** Esistono trattamenti per ridurre la nausea e stimolare l'appetito quando serve.
 - **Controlli regolari.** In genere ogni 3-6 mesi, con peso, sangue, urine e pressione. Servono per aggiustare il piano prima che il gatto stia male.
-- **Peso in casa.** Pesalo ogni due settimane con una bilancia da cucina o pesandoti con e senza di lui: il peso è il segnale più precoce che qualcosa cambia.
+- **Peso in casa.** Pesalo ogni due settimane: il peso è il segnale più precoce che qualcosa cambia.
 
 Evita i farmaci per uso umano, in particolare gli antinfiammatori, e di' sempre a ogni veterinario, anche per una cosa diversa, che il tuo gatto ha i reni fragili: alcune sedazioni e trattamenti vanno adattati.
 
@@ -69,9 +69,9 @@ Prenota una visita questa settimana se noti uno o più dei primi segni elencati 
 - Peso attuale e peso di un anno fa, se lo sai
 - Cosa mangia, quanto, e se ha cambiato gusti
 - Vomito, feci, stitichezza
-- Farmaci e integratori in corso, compresi quelli dati "una volta"
+- Farmaci e integratori in corso
 - Piante in casa, soprattutto gigli
-- Altri gatti in casa e come condividono le ciotole
+- Altri gatti in casa
 - Controlli e esami precedenti
 
 ## Cause e condizioni da distinguere
