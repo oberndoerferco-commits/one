@@ -10,6 +10,13 @@ const path = Astro.url.pathname.replace(/\.html$/, '');
 
 type Lang = 'en' | 'it' | 'de';
 const L: Lang = lang === 'it' || lang === 'de' ? lang : 'en';
+// hreflang: pages that exist under the same path in all three languages.
+const shared = new Set(['', '/about', '/passport', '/visit-brief', '/newsletter', '/vets', '/vets/workspace', '/vets/data', '/editorial', '/animals']);
+const basePath = path.replace(/^\/(it|de)(?=\/|$)/, '').replace(/^\/$/, '');
+const isSharedAnimals = /^\/animals\/(dog|cat|rabbit|horse|bird|general|symptoms|conditions|medications|first-aid|travel|care)$/.test(basePath);
+const alternates = shared.has(basePath) || isSharedAnimals
+  ? [['en', basePath || '/'], ['it', `/it${basePath}`], ['de', `/de${basePath}`]]
+  : [];
 
 const strings = {
   en: {
@@ -119,6 +126,8 @@ const current = (href: string) => path === href || path.startsWith(href + '/');
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500..700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" />
     <link rel="canonical" href={new URL(path === '/' ? '/' : path, Astro.site)} />
+    {alternates.map(([l, href]) => <link rel="alternate" hreflang={l} href={new URL(href, Astro.site)} />)}
+    {alternates.length > 0 && <link rel="alternate" hreflang="x-default" href={new URL(alternates[0][1], Astro.site)} />}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />

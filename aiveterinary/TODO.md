@@ -63,7 +63,7 @@ Everything costs €0 unless marked €. Legend:
 - [ ] Vet-facing landing pages per country: `/de/vets` with GOT/TÄHAV angle, `/it/vets` with REV/preventivo angle — S ★★
 
 ### Site mechanics
-- [ ] `hreflang` links between language versions; language auto-suggest banner — S ★★
+- [x] `hreflang` links between language versions (done; language auto-suggest banner still open) — S ★★
 - [ ] Cookie-free analytics (Plausible self-host or Cloudflare Web Analytics) — S ★★
 - [ ] Search (static index, Pagefind) — S ★★
 - [x] Open-graph image (one PNG for the site; per-article images still open) — S ★
