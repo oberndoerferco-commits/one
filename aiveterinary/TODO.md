@@ -74,7 +74,7 @@ Everything costs €0 unless marked €. Legend:
 - [x] Rename + "your data stays yours: free, no lock-in, export anytime" statement on the page — S ★★★
 - [ ] **Import from photo/PDF of the paper passport, libretto, Impfpass** (on-device OCR, user confirms each field) — L ★★★ *only us in EU*
 - [x] **Reminders** v1: upcoming-dates panel in the booklet + .ics calendar export with 7-day alarm (country-aware intervals and email reminders still open) — M ★★★
-- [ ] **Share a read-only report** (PDF now; expiring link once accounts exist) for vet, sitter, kennel — S/M ★★★
+- [x] **Share a read-only report**: print/PDF of the booklet, emergency card and claim pack (expiring link once accounts exist)
 - [x] **Emergency card**: printable credit-card size, two copies, from booklet data (Wallet pass still open) — M ★★ *only us*
 - [x] **Lost-pet mode** v1: A4 poster from booklet data with photo, description, last seen, phone (QR flyer, registry checklist, Europetnet link still open) — M ★★ *registry-aware: only us*
 - [x] **Registry navigator** (/registry in EN/IT/DE with sourced tables for IT, DE, AT, CH, FR; a few regional deadlines flagged as secondary-source) — S ★★ *only us*
@@ -114,7 +114,7 @@ Everything costs €0 unless marked €. Legend:
 - [ ] **Insurance-ready invoice annotation** (diagnosis, chip, DOB/breed, GOT no. + factor) and **claim pack** per insurer ★★★ *only us*
 - [x] Vaccination entry rendered from the record with batch/site/validity from the dispensing record, flags when absent (booklet import and reminder hand-off still open)
 - [x] Surgery/anaesthesia record with required-field checklist (ASA, protocol, monitoring values, implants) ★★★
-- [ ] **Text-first dental chart** drawn by code from typed findings ★★ *only us*
+- [x] **Text-first dental chart** from typed Triadan findings; unmarked teeth shown as not recorded, never as healthy
 - [x] Home-care schedule (calendar of doses) rendered from the medication table ★★
 - [ ] Callback / phone-call note (typed) and email-to-record ★★
 - [ ] History recap of the patient's own approved records, every line linked ★★

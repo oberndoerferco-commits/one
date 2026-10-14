@@ -584,3 +584,53 @@ export function renderAntibioticBlock(record: ClinicalRecord, header: PatientHea
   if (miss.length) { out.push(`### ${flag(t.missing)}`); for (const x of miss) out.push(`- ${x.field}: ${x.reason}`); }
   return out.join('\n');
 }
+
+/* ------------------------------------------------------------------ */
+/* Text-first dental chart: typed findings with modified Triadan tooth  */
+/* numbers become a quadrant chart. Only numbers and findings that are   */
+/* in the text appear; nothing is assumed healthy.                       */
+
+const DENT = {
+  en: { title: 'Dental chart', upperRight: 'Upper right (1xx)', upperLeft: 'Upper left (2xx)', lowerLeft: 'Lower left (3xx)', lowerRight: 'Lower right (4xx)', none: 'No tooth-numbered findings in the notes.', legend: 'Only teeth named in the notes are marked; unmarked teeth are not recorded, not healthy.', tooth: 'Tooth', finding: 'Finding' },
+  de: { title: 'Zahnschema', upperRight: 'Oben rechts (1xx)', upperLeft: 'Oben links (2xx)', lowerLeft: 'Unten links (3xx)', lowerRight: 'Unten rechts (4xx)', none: 'Keine zahnnummerierten Befunde in den Notizen.', legend: 'Nur in den Notizen genannte Zähne sind markiert; nicht markierte Zähne sind nicht erfasst, nicht gesund.', tooth: 'Zahn', finding: 'Befund' },
+  it: { title: 'Schema dentale', upperRight: 'Superiore destro (1xx)', upperLeft: 'Superiore sinistro (2xx)', lowerLeft: 'Inferiore sinistro (3xx)', lowerRight: 'Inferiore destro (4xx)', none: 'Nessun reperto con numero di dente nelle note.', legend: 'Solo i denti citati nelle note sono segnati; i denti non segnati non sono registrati, non sani.', tooth: 'Dente', finding: 'Reperto' },
+};
+
+/** Finds "104 fractured", "309, 310 missing", "208: calculus 2/4" style entries. Returns tooth → finding, in text order. */
+export function parseDentalFindings(text: string): { tooth: number; finding: string }[] {
+  const out: { tooth: number; finding: string }[] = [];
+  // a run of tooth numbers (modified Triadan: 101–111, 201–211, 301–311, 401–411; deciduous 5xx–8xx) followed by the finding until end of line or next tooth group
+  const re = /\b((?:[1-8](?:0[1-9]|1[01]))(?:\s*[,/+&]\s*(?:[1-8](?:0[1-9]|1[01])))*)\s*[:\-–]?\s*([^\n;.]*?)(?=(?:\s*[;.]|\n|$|\s+(?:[1-8](?:0[1-9]|1[01]))\b))/g;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(text))) {
+    const teeth = m[1].split(/\s*[,/+&]\s*/).map(Number);
+    const finding = m[2].trim();
+    if (!finding) continue;
+    for (const tooth of teeth) out.push({ tooth, finding });
+  }
+  return out;
+}
+
+export function renderDentalChart(text: string, lang: Lang = 'en'): string {
+  const d = DENT[lang];
+  const items = parseDentalFindings(text);
+  const out: string[] = [`## ${d.title}`];
+  if (!items.length) { out.push(d.none); return out.join('\n'); }
+  const q = (n: number) => Math.floor(n / 100);
+  const quadrants: [number, string][] = [[1, d.upperRight], [2, d.upperLeft], [3, d.lowerLeft], [4, d.lowerRight]];
+  const marks = new Map<number, string[]>();
+  for (const it of items) marks.set(it.tooth, [...(marks.get(it.tooth) ?? []), it.finding]);
+  // chart row per quadrant: 11 positions, marked teeth shown with a dot, others as a faint number
+  for (const [qn, label] of quadrants) {
+    const perm = Array.from({ length: 11 }, (_, i) => qn * 100 + i + 1);
+    const decid = (qn + 4) * 100;
+    const cells = perm.map((n) => (marks.has(n) ? `**${n}●**` : marks.has(n - 100 + decid) ? `**${n - 100 + decid}●**` : `${n}`));
+    out.push(`- ${label}: ${cells.join(' ')}`);
+  }
+  out.push('');
+  out.push(`| ${d.tooth} | ${d.finding} |`); out.push('|---|---|');
+  for (const [tooth, fs] of [...marks.entries()].sort((a, b) => a[0] - b[0])) out.push(`| ${tooth} | ${fs.join('; ')} |`);
+  out.push('');
+  out.push(`_${d.legend}_`);
+  return out.join('\n');
+}

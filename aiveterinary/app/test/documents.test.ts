@@ -129,4 +129,14 @@ describe('documents from the approved record', () => {
     const md = renderAntibioticBlock(record, header, VisitContext.parse({ country: 'DE', dispensings: [{ medication_index: 0, is_antibiotic: true, product: 'Surolan' }] }), 'de', { culture_done: true });
     expect(md).toContain('### Surolan'); expect(md).toContain('Antibiogramm: erstellt'); expect(md).toContain('Begründung der Antibiotika-Anwendung nicht erfasst');
   });
+  it('dental chart marks only the teeth named in the notes', async () => {
+    const { parseDentalFindings, renderDentalChart } = await import('../src/render.js');
+    const notes = 'dental: 104 fractured crown, pulp exposed; 309, 310 missing; 208: calculus 2/4\nabdomen soft';
+    const f = parseDentalFindings(notes);
+    expect(f.map((x) => x.tooth)).toEqual([104, 309, 310, 208]);
+    expect(f[0].finding).toBe('fractured crown, pulp exposed');
+    const md = renderDentalChart(notes, 'de');
+    expect(md).toContain('**104●**'); expect(md).toContain('**309●**'); expect(md).toContain('| 208 | calculus 2/4 |'); expect(md).not.toContain('**105●**');
+    expect(renderDentalChart('abdomen soft, no dental findings noted', 'en')).toContain('No tooth-numbered findings');
+  });
 });
