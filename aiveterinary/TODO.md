@@ -83,7 +83,7 @@ Everything costs €0 unless marked €. Legend:
 - [ ] Weight log with chart and body-condition score — S ★★
 - [ ] Symptom diary (date, note, photo) that feeds the pre-visit brief — M ★★
 - [ ] Puppy/kitten first-year schedule; senior-care checklist — S ★★
-- [ ] Toxic foods and plants offline reference (dog, cat, rabbit) — S ★★
+- [x] Toxic foods and plants offline reference (dog, cat, rabbit) — S ★★
 - [ ] Insurance claim helper: bundle invoice photo + record extract + onset date in the insurer's format (Agila, HanseMerkur, Uelzener, Poste, Santévet) — M ★★ *only us*
 - [ ] End-of-life module: quality-of-life scale, decision aid, after-death checklist incl. deregistration — S ★★
 - [ ] Multilingual print labels (EN/DE/IT/FR) so the booklet reads abroad — S ★★
