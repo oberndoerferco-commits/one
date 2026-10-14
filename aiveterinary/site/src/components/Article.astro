@@ -14,7 +14,7 @@ const minLabel = ({ en: 'min read', it: 'min di lettura', de: 'Min. Lesezeit' } 
 const fmt = (x: Date) => x.toLocaleDateString(t.locale, { day: 'numeric', month: 'long', year: 'numeric' });
 const cls: Record<string, string> = { emergency: 'danger', today: 'warn', 'this-week': '', routine: 'ok' };
 ---
-<article class="wrap narrow hero">
+<article class="wrap narrow hero" data-pagefind-body data-pagefind-meta={`species:${d.species}`}>
   <p class="eyebrow article-eyebrow"><AnimalIcon kind={d.species} size={30} /> <a href={t.base}>{t.title}</a> · <a href={`${t.base}/${d.category}`}>{(t.categories as any)[d.category]?.[0] ?? d.category}</a> · <a href={`${t.base}/${d.species}`}>{(t.species as any)[d.species] ?? d.species}</a></p>
   <h1>{d.title}</h1>
   <p class="lead">{d.description}</p>
@@ -35,6 +35,6 @@ const cls: Record<string, string> = { emergency: 'danger', today: 'warn', 'this-
   {d.references?.length && (
     <section class="article-refs"><h2>{t.references}</h2><ol>{d.references.map((r: any) => <li>{r.url ? <a href={r.url} rel="noopener">{r.title}</a> : r.title}</li>)}</ol></section>
   )}
-  <p class="article-actions"><a class="btn secondary" href={`mailto:?subject=${encodeURIComponent(d.title)}&body=${encodeURIComponent(Astro.url.href)}`}>{t.share}</a> <a class="more" href={`mailto:hello@aiveterinary.org?subject=${encodeURIComponent('Correction: ' + d.title)}&body=${encodeURIComponent(Astro.url.href)}`}>{L.report}</a></p>
-  <div class="notice" style="margin-top:24px"><p>{t.footer}</p></div>
+  <p class="article-actions" data-pagefind-ignore><a class="btn secondary" href={`mailto:?subject=${encodeURIComponent(d.title)}&body=${encodeURIComponent(Astro.url.href)}`}>{t.share}</a> <a class="more" href={`mailto:hello@aiveterinary.org?subject=${encodeURIComponent('Correction: ' + d.title)}&body=${encodeURIComponent(Astro.url.href)}`}>{L.report}</a></p>
+  <div class="notice" style="margin-top:24px" data-pagefind-ignore><p>{t.footer}</p></div>
 </article>

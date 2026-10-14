@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && pagefind --site dist",
     "preview": "astro preview"
   },
   "dependencies": {
@@ -14,5 +14,8 @@
     "aiveterinary-app": "file:../app",
     "astro": "^5.0.0",
     "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "pagefind": "^1.5.2"
   }
 }

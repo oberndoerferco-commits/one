@@ -28,6 +28,7 @@ export const ANIMALS = {
       care: ['Everyday care', 'Feeding, vaccinations, the routine things'],
     },
     locale: 'en-GB',
+    search: { placeholder: 'Search symptoms, conditions, questions…', zero: 'No results for [SEARCH_TERM]', results: '[COUNT] results for [SEARCH_TERM]', loading: 'Searching…' },
   },
   it: {
     base: '/it/animals', visitBrief: '/it/visit-brief', title: 'Informazioni sugli animali',
@@ -55,6 +56,7 @@ export const ANIMALS = {
       care: ['Cura quotidiana', 'Alimentazione, vaccinazioni, le cose di routine'],
     },
     locale: 'it-IT',
+    search: { placeholder: 'Cerca sintomi, malattie, domande…', zero: 'Nessun risultato per [SEARCH_TERM]', results: '[COUNT] risultati per [SEARCH_TERM]', loading: 'Ricerca in corso…' },
   },
   de: {
     base: '/de/animals', visitBrief: '/de/visit-brief', title: 'Tiergesundheit',
@@ -82,6 +84,7 @@ export const ANIMALS = {
       care: ['Alltägliche Pflege', 'Fütterung, Impfungen, die Routinedinge'],
     },
     locale: 'de-DE',
+    search: { placeholder: 'Symptome, Krankheiten, Fragen suchen…', zero: 'Keine Treffer für [SEARCH_TERM]', results: '[COUNT] Treffer für [SEARCH_TERM]', loading: 'Suche läuft…' },
   },
 } as const;
 

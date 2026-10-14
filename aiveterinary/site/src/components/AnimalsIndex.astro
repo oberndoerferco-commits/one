@@ -13,6 +13,7 @@ const count = (f: (d: any) => boolean) => all.filter((e) => f(e.data)).length;
   <div>
     <h1>{t.title}</h1>
     <p class="lead">{t.lead}</p>
+    <div id="site-search" class="site-search" data-lang={lang}></div>
     <p><a class="btn secondary" href={t.visitBrief}>{t.prepare}</a></p>
   </div>
   <div class="hero-side"><HeroScene /></div>
@@ -52,3 +53,15 @@ const count = (f: (d: any) => boolean) => all.filter((e) => f(e.data)).length;
     ))}
   </div>
 </section>
+
+<link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+<script is:inline src="/pagefind/pagefind-ui.js"></script>
+<script is:inline type="application/json" id="search-i18n" set:html={JSON.stringify(t.search)} />
+<script is:inline>
+  window.addEventListener('DOMContentLoaded', () => {
+    const el = document.getElementById('site-search'); const i18n = JSON.parse(document.getElementById('search-i18n').textContent);
+    if (!el || !window.PagefindUI) return;
+    new window.PagefindUI({ element: '#site-search', showSubResults: true, showImages: false, resetStyles: false,
+      translations: { placeholder: i18n.placeholder, zero_results: i18n.zero, many_results: i18n.results, one_result: '[COUNT] · [SEARCH_TERM]', searching: i18n.loading, clear_search: '×' } });
+  });
+</script>

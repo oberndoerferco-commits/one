@@ -65,7 +65,7 @@ Everything costs €0 unless marked €. Legend:
 ### Site mechanics
 - [x] `hreflang` links between language versions (done; language auto-suggest banner still open) — S ★★
 - [ ] Cookie-free analytics (Plausible self-host or Cloudflare Web Analytics) — S ★★
-- [ ] Search (static index, Pagefind) — S ★★
+- [x] Search (static index, Pagefind) — S ★★
 - [x] Open-graph image (one PNG for the site; per-article images still open) — S ★
 
 ## 4. Owner side — **Me**

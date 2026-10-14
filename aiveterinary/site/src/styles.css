@@ -244,3 +244,10 @@ p { margin: 0 0 1em; }
 .toc a:hover { color: var(--accent); text-decoration: underline; }
 @media (max-width: 600px) { .toc ol { columns: 1; } }
 .article-actions { margin-top: 28px; display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+
+/* search (Pagefind UI) */
+.site-search { margin: 8px 0 18px; max-width: 560px; --pagefind-ui-primary: var(--accent); --pagefind-ui-text: var(--ink); --pagefind-ui-background: var(--surface); --pagefind-ui-border: var(--line); --pagefind-ui-tag: var(--accent-soft); --pagefind-ui-border-width: 1.5px; --pagefind-ui-border-radius: 999px; --pagefind-ui-font: var(--font); --pagefind-ui-scale: .9; }
+.site-search .pagefind-ui__search-input { font-weight: 500; }
+.site-search .pagefind-ui__result-title { font-family: var(--font-display); }
+.site-search .pagefind-ui__result { border-top-color: var(--line); }
+.site-search .pagefind-ui__result-link { color: var(--ink); }
