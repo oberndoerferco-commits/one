@@ -40,10 +40,87 @@ from om_hand import layers, write_pdf, write_svg, CYAN, CREAM, BLACK
 
 # ---------------------------------------------------------------- the letters
 
-def clean_letters(mask, sigma, fit, **reg):
-    """Trace, then rebuild each outline on corner and extreme nodes."""
+def _dense(contour, step=1.0):
+    start, segs = contour
+    cur = np.asarray(start, float)
+    pts = [cur]
+    for q in segs:
+        if q[0] == 'L':
+            cur = np.asarray(q[1], float)
+            pts.append(cur)
+        else:
+            b = [cur] + [np.asarray(v, float) for v in q[1:]]
+            t = np.linspace(0, 1, 24)[1:, None]
+            pts += list((1 - t) ** 3 * b[0] + 3 * (1 - t) ** 2 * t * b[1]
+                        + 3 * (1 - t) * t ** 2 * b[2] + t ** 3 * b[3])
+            cur = b[3]
+    P = np.asarray(pts)
+    d = np.r_[0.0, np.cumsum(np.linalg.norm(np.diff(P, axis=0), axis=1))]
+    n = max(32, int(d[-1] / step))
+    u = np.linspace(0, d[-1], n, endpoint=False)
+    return np.column_stack([np.interp(u, d, P[:, 0]), np.interp(u, d, P[:, 1])])
+
+
+def _corner_idx(P, span, deg):
+    f = np.roll(P, -span, 0) - P
+    b = P - np.roll(P, span, 0)
+    u = lambda v: v / (np.linalg.norm(v, axis=1, keepdims=True) + 1e-12)
+    turn = np.degrees(np.arccos(np.clip((u(f) * u(b)).sum(1), -1, 1)))
+    out = []
+    for i in np.flatnonzero(turn >= deg):
+        w = [turn[(i + k) % len(P)] for k in range(-span, span + 1)]
+        if turn[i] >= max(w) - 1e-9:
+            out.append(int(i))
+    keep = []
+    for i in out:
+        if not keep or min((i - keep[-1]) % len(P), (keep[-1] - i) % len(P)) > span:
+            keep.append(i)
+    return keep
+
+
+def smooth_outline(contour, sigma, corner_deg=40.0, corner_span=14):
+    """Low-pass the outline along its own arc length; hold the corners.
+
+    This is the whole of "remove the wobble", and it is the one thing the rest
+    of this file was not doing.  Rebuilding on structural nodes constrains how
+    many curves there are, but each curve is still solved against the traced
+    points, so a wobble that is slow compared with the node spacing survives it
+    untouched - which is exactly the wobble a hand draws.  Smoothing the
+    coordinates as functions of arc length removes it by construction, at any
+    amplitude, and corners stay sharp because each run between them is smoothed
+    on its own with its ends pinned.
+    """
+    P = _dense(contour)
+    n = len(P)
+    cs = _corner_idx(P, corner_span, corner_deg)
+    if len(cs) < 2:
+        out = np.column_stack([ndi.gaussian_filter1d(P[:, 0], sigma, mode='wrap'),
+                               ndi.gaussian_filter1d(P[:, 1], sigma, mode='wrap')])
+        return out
+    out = P.copy()
+    for k, i in enumerate(cs):
+        j = cs[(k + 1) % len(cs)]
+        idx = np.arange(i, j + 1) % n if j > i else np.r_[np.arange(i, n), np.arange(0, j + 1)]
+        run = P[idx]
+        if len(run) < 8:
+            continue
+        sm = np.column_stack([ndi.gaussian_filter1d(run[:, 0], sigma, mode='nearest'),
+                              ndi.gaussian_filter1d(run[:, 1], sigma, mode='nearest')])
+        # pin the ends, and ramp the correction in so there is no step at a corner
+        w = np.minimum(np.arange(len(run)), np.arange(len(run))[::-1]).astype(float)
+        w = np.clip(w / max(sigma, 1.0), 0, 1)[:, None]
+        out[idx] = run * (1 - w) + sm * w
+    return out
+
+
+
+def clean_letters(mask, sigma, fit, arc_sigma=0.0, **reg):
+    """Trace, low-pass the outline, then rebuild it on structural nodes."""
     out = []
     for c in trace_layer(mask.astype(float), sigma, **fit):
+        if arc_sigma > 0:
+            P = smooth_outline(c, arc_sigma)
+            c = vl.fit_contour(P, **fit)
         out.append(regularise(c, **reg))
     return out
 
@@ -495,6 +572,9 @@ def main(argv=None):
                          'wobble the rebuild exists to remove')
     ap.add_argument('--no-even', action='store_true')
     ap.add_argument('--no-symmetric-o', action='store_true')
+    ap.add_argument('--arc-sigma', type=float, default=0.0,
+                    help='low-pass the outline along its arc length by '
+                         'this many source px before rebuilding it')
     a = ap.parse_args(argv)
     os.makedirs(a.outdir, exist_ok=True)
     fit = dict(line_tol=a.line_tol, curve_tol=a.curve_tol,
@@ -521,7 +601,7 @@ def main(argv=None):
 
     reg = dict(corner_deg=a.corner_deg, corner_span=11, extreme_span=9,
                min_run=9, straight_tol=1.1, merge=9.0, fit_tol=a.fit_tol)
-    B = clean_letters(bl > 0.5, a.sigma, fit, **reg)
+    B = clean_letters(bl > 0.5, a.sigma, fit, arc_sigma=a.arc_sigma, **reg)
     axis = _axis_of(bl > 0.5, right)
     on_m = lambda c: np.mean([p[0] for q in [('L', c[0])] + c[1]
                               for p in q[1:]]) >= split_x
@@ -551,7 +631,7 @@ def main(argv=None):
     # letters grown by the width the drawing's cream measures, traced and
     # rebuilt the same way, and painted under the letters so only the ring shows
     key = ndi.binary_dilation(bl > 0.5, _disk(int(round(a.keyline))))
-    K = clean_letters(key, a.sigma, fit, **reg)
+    K = clean_letters(key, a.sigma, fit, arc_sigma=a.arc_sigma, **reg)
     K = [symmetrise_contour(c, axis) if on_m(c) else c for c in K]
     print('   keyline: even ring %.0f px wide, %d contours'
           % (a.keyline, len(K)))

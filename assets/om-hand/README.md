@@ -39,6 +39,23 @@ measurements are drawn clean.
 
 ### The letters
 
+**The wobble is removed by low-passing the outline along its own arc length.**
+This is the one thing the rest of the pipeline was not doing, and it is why the
+bowl kept reading as uneven through round after round of other fixes.
+
+Rebuilding on structural nodes constrains how *many* curves there are, but each
+curve is still solved against the traced points — so a wobble that is slow
+compared with the node spacing passes straight through it, and that is exactly
+the wobble a hand draws. Smoothing x and y as functions of arc length removes it
+by construction, at any amplitude. Corners stay sharp because each run between
+two corners is smoothed on its own, with the correction ramped to zero at both
+ends so no step appears at a corner.
+
+At σ 45 source px the counter goes from egg-shaped to a fair oval and the node
+count drops from 314 traced segments to **95**. Below about 20 the wobble
+survives; above about 65 the flares begin to thin.
+
+
 The outline is rebuilt on structural nodes only — corners, and the extremes in x
 and y — with **one cubic per span**, which cannot dent in the middle because it
 has no interior control of its own. That took the two letters from 299 traced
