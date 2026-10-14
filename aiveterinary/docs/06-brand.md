@@ -33,7 +33,44 @@ Plain, precise, clinical-grade. Short sentences. No hype words ("revolutionary",
 "magic", "superpowers"), no human-like AI persona, no claims of accuracy
 percentages we haven't measured. Say what it doesn't do.
 
-## Visual direction
+## Visual system (decided 14 Oct 2026, from a benchmark of 22 sites)
+
+Research: `docs/13-design-research.md`. The patterns below are the ones the
+best-designed owner and vet sites share and that a zero-budget static site can
+reproduce. Everything is implemented in `site/src/styles.css`.
+
+| Token | Value | Role |
+|---|---|---|
+| `--bg` | `#fbf7f2` | warm cream page (Figo, Small Door, FirstVet, VetRec, Curala all use off-white, never pure white) |
+| `--surface` | `#ffffff` | cards, so they lift off the page |
+| `--ink` | `#12304a` | text, headings, illustration outlines; never `#000` |
+| `--accent` | `#14655e` | primary buttons, links, nav CTA |
+| `--accent-soft` | `#e6f1ef` | tints, chips |
+| `--coral` / `--warm` | `#e8735a` / `#ffb400` | step numbers, blush, sparkles; decoration only |
+
+- **Type**: Fraunces (display, `opsz` 72, `SOFT` 50, 600) for h1/h2 and card
+  titles; Plus Jakarta Sans for body (17 px / 1.55) and UI. Same pairing as
+  HappyDoc; Petleo uses Fraunces + Karla. Loaded from Google Fonts, three
+  weights.
+- **Buttons**: pill (`999px`), 44–48 px tall, 600 weight; primary filled
+  accent, secondary accent outline; hover lifts 1 px.
+- **Cards**: 16–20 px radius, 1 px tinted border `#e6e0d8`, no resting shadow.
+- **Nav**: sticky, 4 items + one filled CTA (Health booklet) + language switch.
+- **Hero**: kicker, display headline (max 12 words), one-sentence sub, primary
+  pill + secondary, illustration right. Vet pages add trust chips under the
+  CTAs (GDPR · EU hosting · no training · nothing recorded), the pattern
+  Curala and VetRec use.
+- **Section rhythm**: hero → proof strip (only claims we can defend) → species
+  buttons → latest → three steps → vet band → FAQ → newsletter.
+- **Illustration**: own SVG faces built from circles and ellipses on a 48-unit
+  grid, 2.2 stroke in ink, soft fills, eyes ≈ 20 % of head width placed below
+  the centre line, small nose and mouth, one blush per cheek. Shapes live in
+  `site/src/lib/animal-icons.ts`; the hero scene reuses them. Owner side only;
+  the vet workspace stays calm.
+- **Tone**: owner pages informal where the language allows (IT "tu"); vet
+  pages formal (DE "Sie"), proof over adjectives.
+
+## Visual direction (original note, superseded above where they differ)
 
 - Calm neutrals, one deep teal or ink-blue accent. Avoid the purple-gradient
   "AI" look and the cartoon-paw pet-shop look.
