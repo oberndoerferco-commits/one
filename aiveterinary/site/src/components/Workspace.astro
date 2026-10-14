@@ -8,6 +8,7 @@ const T = {
   "caseLabel": "Example case",
   "countryLabel": "Country rules",
   "roleLabel": "I am",
+  "docLabel": "Document","docReport": "Consultation report","docOwner": "Owner summary","docReferral": "Referral letter","referralReason": "Reason for referral (your words)",
   "attachLabel": "Attach a photo or document","attachHint": "Stored with the record and referenced in the report. Never read or interpreted by the assistant.",
   "abbrTitle": "Abbreviations in your notes","abbrHint": "Expanded from the default list and your clinic glossary. Correct a meaning once and it is remembered on this device.","abbrNone": "No abbreviations recognised.","abbrSave": "Save","roleNurse": "Nurse / assistant","roleVet": "Veterinarian",
   "notice": "<strong>Preview.</strong> The example cases run offline on prepared records, so you can see exactly how the review works: source highlighting, missing-information flags, the medication table built from your own words. In the real product your own notes are structured by the model with the same checks. Nothing here is stored.",
@@ -26,6 +27,7 @@ const T = {
   "caseLabel": "Caso di esempio",
   "countryLabel": "Regole del Paese",
   "roleLabel": "Sono",
+  "docLabel": "Documento","docReport": "Referto di visita","docOwner": "Riepilogo per il proprietario","docReferral": "Lettera di riferimento","referralReason": "Motivo dell'invio (parole Sue)",
   "attachLabel": "Allega foto o documento","attachHint": "Conservato con la cartella e citato nel referto. Mai letto né interpretato dall'assistente.",
   "abbrTitle": "Abbreviazioni nelle note","abbrHint": "Espanse dalla lista predefinita e dal glossario della clinica. Correggi un significato una volta e viene ricordato su questo dispositivo.","abbrNone": "Nessuna abbreviazione riconosciuta.","abbrSave": "Salva","roleNurse": "Assistente / infermiere","roleVet": "Veterinario",
   "notice": "<strong>Anteprima.</strong> I casi di esempio girano offline su cartelle già preparate, così puoi vedere esattamente come funziona la revisione: evidenziazione della fonte, segnalazione delle informazioni mancanti, tabella dei farmaci costruita con le tue stesse parole. Nel prodotto reale le tue note vengono strutturate dal modello con gli stessi controlli. Qui non viene salvato nulla.",
@@ -44,6 +46,7 @@ const T = {
   "caseLabel": "Beispielfall",
   "countryLabel": "Länderregeln",
   "roleLabel": "Ich bin",
+  "docLabel": "Dokument","docReport": "Behandlungsbericht","docOwner": "Halterinformation","docReferral": "Überweisungsschreiben","referralReason": "Überweisungsgrund (Ihre Worte)",
   "attachLabel": "Foto oder Dokument anhängen","attachHint": "Wird mit dem Datensatz gespeichert und im Bericht genannt. Vom Assistenten nie gelesen oder interpretiert.",
   "abbrTitle": "Abkürzungen in Ihren Notizen","abbrHint": "Aufgelöst aus der Standardliste und Ihrem Praxisglossar. Eine Bedeutung einmal korrigieren, und sie bleibt auf diesem Gerät gespeichert.","abbrNone": "Keine Abkürzungen erkannt.","abbrSave": "Speichern","roleNurse": "TFA / Assistenz","roleVet": "Tierärztin / Tierarzt",
   "notice": "<strong>Vorschau.</strong> Die Beispielfälle laufen offline auf vorbereiteten Akten, damit Sie genau sehen, wie die Prüfung funktioniert: Quellenmarkierung, Hinweise auf fehlende Angaben, die Medikamententabelle aus Ihren eigenen Worten. Im echten Produkt strukturiert das Modell Ihre eigenen Notizen mit denselben Prüfungen. Hier wird nichts gespeichert.",
@@ -178,6 +181,14 @@ const t = T[lang]; const j = JS[lang];
         <select id="ws-country"><option value="DE">DE</option><option value="IT">IT</option><option value="CH">CH</option><option value="AT">AT</option></select>
       </div>
       <div>
+        <label for="ws-doc" class="ws-label">{t.docLabel}</label>
+        <select id="ws-doc"><option value="report">{t.docReport}</option><option value="owner">{t.docOwner}</option><option value="referral">{t.docReferral}</option></select>
+      </div>
+      <div id="ws-referral-wrap" hidden>
+        <label for="ws-referral" class="ws-label">{t.referralReason}</label>
+        <input id="ws-referral" type="text" />
+      </div>
+      <div>
         <label for="ws-role" class="ws-label">{t.roleLabel}</label>
         <select id="ws-role"><option value="vet">{t.roleVet}</option><option value="nurse">{t.roleNurse}</option></select>
       </div>
@@ -228,7 +239,7 @@ const t = T[lang]; const j = JS[lang];
   <style is:global>
     .ws-top { display: flex; gap: 20px; align-items: flex-end; flex-wrap: wrap; }
     .ws-label { display: block; font-size: .8rem; color: var(--ink-3); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
-    #ws-case, #ws-country, #ws-role { padding: 9px 12px; font: inherit; border: 1.5px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); min-width: 260px; }
+    #ws-case, #ws-country, #ws-role, #ws-doc, #ws-referral { padding: 9px 12px; font: inherit; border: 1.5px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); min-width: 260px; }
     .ws-patient { font-weight: 600; }
     .ws-state { margin-left: auto; }
     .ws { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--surface); margin-top: 16px; min-height: 420px; }
@@ -287,7 +298,7 @@ const t = T[lang]; const j = JS[lang];
     import { ClinicalRecord, PatientHeader, type ClinicalRecord as Rec } from 'aiveterinary-app/src/schema.ts';
     import { normalizeNotes, findAbbreviations, DEFAULT_ABBREVIATIONS } from 'aiveterinary-app/src/normalize.ts';
     import { validateAll, requiredMissing, type Finding } from 'aiveterinary-app/src/validators.ts';
-    import { renderConsultReport } from 'aiveterinary-app/src/render.ts';
+    import { renderConsultReport, renderOwnerSummary, renderReferralLetter } from 'aiveterinary-app/src/render.ts';
     import { countryMissing, VisitContext } from 'aiveterinary-app/src/country.ts';
     import c1 from 'aiveterinary-app/eval/cases/001-luna-vomiting.json';
     import c2 from 'aiveterinary-app/eval/cases/002-milo-otitis-de.json';
@@ -337,6 +348,15 @@ const t = T[lang]; const j = JS[lang];
     sel.addEventListener('change', () => load(sel.value));
     const csel = $('#ws-country') as HTMLSelectElement;
     csel.addEventListener('change', () => { if (cur) renderFlags(); });
+    const dsel = $('#ws-doc') as HTMLSelectElement; const refIn = $('#ws-referral') as HTMLInputElement;
+    dsel.addEventListener('change', () => { ($('#ws-referral-wrap') as HTMLElement).hidden = dsel.value !== 'referral'; if (cur) render(); });
+    refIn.addEventListener('input', () => { if (cur) render(); });
+    function renderDoc(approved: boolean) {
+      const { record, header, lang } = cur;
+      if (dsel.value === 'owner') return renderOwnerSummary(record, header, lang, { approved });
+      if (dsel.value === 'referral') return renderReferralLetter(record, header, lang, { approved, reason: refIn.value.trim() || null });
+      return renderConsultReport(record, header, lang, { approved });
+    }
     const rsel = $('#ws-role') as HTMLSelectElement;
     const approveBtn = $('#ws-approve') as HTMLButtonElement; const approveLabel = approveBtn.innerHTML;
     rsel.addEventListener('change', () => { approveBtn.innerHTML = rsel.value === 'nurse' ? `${J.handOver} <kbd>Ctrl+Shift+Enter</kbd>` : approveLabel; if (cur) renderFlags(); });
@@ -380,7 +400,7 @@ const t = T[lang]; const j = JS[lang];
       notesEl.appendChild(frag);
 
       // report: markdown from the renderer → minimal HTML, then wrap sourced phrases
-      const md = renderConsultReport(record, header, lang, { approved: cur.approved });
+      const md = renderDoc(cur.approved);
       let html = md.split('\n').map((line) => {
         if (line.startsWith('# ')) return '';
         if (line.startsWith('_')) return '';
@@ -476,7 +496,7 @@ const t = T[lang]; const j = JS[lang];
       render();
     }
     function copyOut() {
-      const txt = renderConsultReport(cur.record, cur.header, cur.lang, { approved: cur.approved })
+      const txt = renderDoc(cur.approved)
         .replace(/^#+ /gm, '').replace(/^_|_$/gm, '').replace(/\|/g, ' ').replace(/^-{3,}.*$/gm, '').replace(/\n{3,}/g, '\n\n').toUpperCase().split('\n').map((l, i, a) => l).join('\n');
       navigator.clipboard?.writeText(txt).then(() => { $('#ws-status').textContent = J.copied; }, () => { $('#ws-status').textContent = J.copyFail; });
     }
