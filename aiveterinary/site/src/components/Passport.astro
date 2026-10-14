@@ -70,7 +70,8 @@ const T = {
   "condHint": "Anything a new vet should know in the first minute: allergies, chronic conditions, past surgeries, reactions to drugs or anaesthesia.",
   "addCond": "+ Add entry",
   "visits": "Vet visits",
-  "weights": "Weight log","weightHint": "Weigh at the same time of day, same scale. A steady drift of a few hundred grams is the earliest sign vets look for. Body condition: 1 = very thin, 5 = ideal, 9 = obese.","addWeight": "Add weighing",
+  "weights": "Weight log",
+  "diary": "Symptom diary","diaryHint": "A dated line whenever something is off: what you saw, how often, what changed. The pre-visit brief pulls the last entries in automatically.","addDiary": "Add entry","weightHint": "Weigh at the same time of day, same scale. A steady drift of a few hundred grams is the earliest sign vets look for. Body condition: 1 = very thin, 5 = ideal, 9 = obese.","addWeight": "Add weighing",
   "visitHint": "A short line per visit keeps the history readable: reason, what was found, what was done.",
   "addVisit": "+ Add visit",
   "notes": "Notes",
@@ -207,7 +208,8 @@ const T = {
   "thSince": "Dal / data",
   "addCond": "+ Aggiungi voce",
   "visits": "Visite veterinarie",
-  "weights": "Diario del peso","weightHint": "Pesa alla stessa ora e con la stessa bilancia. Una deriva costante di qualche centinaio di grammi è il primo segnale che i veterinari cercano. Condizione corporea: 1 = molto magro, 5 = ideale, 9 = obeso.","addWeight": "Aggiungi pesata",
+  "weights": "Diario del peso",
+  "diary": "Diario dei sintomi","diaryHint": "Una riga con la data ogni volta che qualcosa non va: cosa hai visto, quante volte, cosa è cambiato. Il riepilogo per la visita recupera automaticamente le ultime voci.","addDiary": "Aggiungi voce","weightHint": "Pesa alla stessa ora e con la stessa bilancia. Una deriva costante di qualche centinaio di grammi è il primo segnale che i veterinari cercano. Condizione corporea: 1 = molto magro, 5 = ideale, 9 = obeso.","addWeight": "Aggiungi pesata",
   "visitHint": "Una riga breve per visita mantiene la storia leggibile: motivo, cosa è stato trovato, cosa è stato fatto.",
   "thReason": "Motivo",
   "thOutcome": "Esito / note",
@@ -316,7 +318,8 @@ const T = {
   "thSince": "Seit / Datum",
   "addCond": "+ Eintrag hinzufügen",
   "visits": "Tierarztbesuche",
-  "weights": "Gewichtsverlauf","weightHint": "Immer zur gleichen Tageszeit auf derselben Waage wiegen. Ein stetiger Drift von ein paar hundert Gramm ist das früheste Zeichen, auf das Praxen achten. Körperkondition: 1 = sehr dünn, 5 = ideal, 9 = adipös.","addWeight": "Wiegung hinzufügen",
+  "weights": "Gewichtsverlauf",
+  "diary": "Symptomtagebuch","diaryHint": "Eine Zeile mit Datum, wann immer etwas nicht stimmt: was Sie gesehen haben, wie oft, was sich geändert hat. Die Übersicht für den Praxisbesuch übernimmt die letzten Einträge automatisch.","addDiary": "Eintrag hinzufügen","weightHint": "Immer zur gleichen Tageszeit auf derselben Waage wiegen. Ein stetiger Drift von ein paar hundert Gramm ist das früheste Zeichen, auf das Praxen achten. Körperkondition: 1 = sehr dünn, 5 = ideal, 9 = adipös.","addWeight": "Wiegung hinzufügen",
   "visitHint": "Eine kurze Zeile pro Besuch hält die Geschichte lesbar: Grund, Befund, was gemacht wurde.",
   "thReason": "Grund",
   "thOutcome": "Ergebnis / Notizen",
@@ -371,6 +374,7 @@ const JS = {
    "Other"
   ],
   "cols": {
+   "Observation": "Observation",
    "Weight (kg)": "Weight (kg)",
    "Body condition (1–9)": "Body condition (1–9)",
    "Note": "Note",
@@ -433,6 +437,7 @@ const JS = {
    "Altro"
   ],
   "cols": {
+   "Observation": "Osservazione",
    "Weight (kg)": "Peso (kg)",
    "Body condition (1–9)": "Condizione corporea (1–9)",
    "Note": "Nota",
@@ -495,6 +500,7 @@ const JS = {
    "Sonstiges"
   ],
   "cols": {
+   "Observation": "Beobachtung",
    "Weight (kg)": "Gewicht (kg)",
    "Body condition (1–9)": "Körperkondition (1–9)",
    "Note": "Notiz",
@@ -666,6 +672,13 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
         <button class="btn secondary pp-add" type="button">{t.addVisit}</button>
       </section>
 
+      <section class="card pp-list" data-list="diary">
+        <h2>{t.diary}</h2>
+        <p class="pp-hint">{t.diaryHint}</p>
+        <table><thead><tr><th>{t.thDate}</th><th>{(j as any).cols?.["Observation"]}</th><th></th></tr></thead><tbody></tbody></table>
+        <button class="btn secondary pp-add" type="button">{t.addDiary}</button>
+      </section>
+
       <section class="card pp-list" data-list="weights">
         <h2>{t.weights}</h2>
         <p class="pp-hint">{t.weightHint}</p>
@@ -810,7 +823,7 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
     // Digital pet passport. Local-first: all data lives in localStorage under one key.
     // Shape: { version: 1, animals: [ { id, name, ..., vaccinations: [], treatments: [], medications: [], conditions: [], visits: [], notes, photo } ], current }
     type Row = Record<string, string>;
-    type Animal = Record<string, any> & { id: string; vaccinations: Row[]; treatments: Row[]; medications: Row[]; conditions: Row[]; visits: Row[]; weights: Row[] };
+    type Animal = Record<string, any> & { id: string; vaccinations: Row[]; treatments: Row[]; medications: Row[]; conditions: Row[]; visits: Row[]; weights: Row[]; diary: Row[] };
     type Store = { version: number; animals: Animal[]; current: string | null };
 
     const KEY = 'aiveterinary.passport.v1';
@@ -825,6 +838,7 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
         { key: 'name', label: J.cols["Medication"] }, { key: 'dose', label: J.cols["Dose & how often"] }, { key: 'started', label: J.cols["Started"], type: 'date' }, { key: 'prescribedBy', label: J.cols["Prescribed by"] } ] },
       conditions: { cols: [
         { key: 'type', label: J.cols["Type"], type: 'select', options: J.condTypes }, { key: 'description', label: J.cols["Description"] }, { key: 'date', label: J.cols["Since / date"], type: 'date' } ] },
+      diary: { cols: [ { key: 'date', label: J.cols['Date'], type: 'date' }, { key: 'note', label: J.cols['Observation'] } ] },
       weights: { cols: [
         { key: 'date', label: J.cols['Date'], type: 'date' }, { key: 'kg', label: J.cols['Weight (kg)'], type: 'number' }, { key: 'bcs', label: J.cols['Body condition (1–9)'], type: 'number' }, { key: 'note', label: J.cols['Note'] } ] },
       visits: { cols: [
@@ -854,7 +868,7 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
     window.addEventListener('pagehide', () => { if (saveTimer) { clearTimeout(saveTimer); saveTimer = 0; try { localStorage.setItem(KEY, JSON.stringify(store)); } catch {} } });
     function status(t: string) { const el = $('#pp-status'); if (el) el.textContent = t; }
 
-    const blank = (): Animal => ({ id: uid(), name: '', vaccinations: [], treatments: [], medications: [], conditions: [], visits: [], weights: [], notes: '' });
+    const blank = (): Animal => ({ id: uid(), name: '', vaccinations: [], treatments: [], medications: [], conditions: [], visits: [], weights: [], diary: [], notes: '' });
     const current = () => store.animals.find((a) => a.id === store.current) ?? null;
 
     function renderSelect() {

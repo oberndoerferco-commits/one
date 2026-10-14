@@ -18,7 +18,7 @@ const T = {
     other: 'Anything else', food: 'Food, medication, history', diet: 'What does your animal eat (brand, type, treats, scraps)?', meds: 'Current medications or supplements, exactly as on the label', medsPh: 'name, strength, how often, since when',
     history: 'Known conditions, allergies, past surgeries', vacc: 'Vaccinations up to date?', vaccOpts: ['Yes', 'No', 'Not sure'], parasite: 'Parasite treatment (flea/tick/worm) last given', parasitePh: 'e.g. 3 weeks ago, product name',
     lifestyle: 'Indoor / outdoor / travel recently?', others: 'Other animals at home, are they well?', forVet: 'For the vet', questions: 'Questions you want to ask', media: 'Photos or videos you will show (note what and when)', mediaPh: 'e.g. video of the limp from this morning on my phone',
-    make: 'Make the brief', clear: 'Clear', copy: 'Copy', print: 'Print / save as PDF', email: 'Email to the clinic', briefTitle: 'Veterinary visit brief', footer: 'Prepared by the owner with aiveterinary.org. This is the owner\'s account, not a clinical record. This page organises your answers with software; it contains no AI-generated medical content and no diagnosis.',
+    make: 'Make the brief', clear: 'Clear', copy: 'Copy', print: 'Print / save as PDF', email: 'Email to the clinic', diary: 'From the symptom diary (last entries)', briefTitle: 'Veterinary visit brief', footer: 'Prepared by the owner with aiveterinary.org. This is the owner\'s account, not a clinical record. This page organises your answers with software; it contains no AI-generated medical content and no diagnosis.',
     speciesTitle: 'Questions vets ask about this animal',
     speciesQ: {
       Dog: [['stool', 'Stool: normal, soft, blood, none?', ''], ['exercise', 'Tiring faster on walks?', 'yes / no / not sure'], ['scavenge', 'Could it have eaten something (bin, bones, chocolate, grapes, plants)?', '']],
@@ -46,7 +46,7 @@ const T = {
     other: 'Altro', food: 'Alimentazione, farmaci, storia', diet: 'Cosa mangia il tuo animale (marca, tipo, snack, avanzi)?', meds: 'Farmaci o integratori in corso, esattamente come sull\'etichetta', medsPh: 'nome, dosaggio, quante volte, da quando',
     history: 'Malattie note, allergie, interventi passati', vacc: 'Vaccinazioni in regola?', vaccOpts: ['Sì', 'No', 'Non so'], parasite: 'Ultimo antiparassitario (pulci/zecche/vermi)', parasitePh: 'es. 3 settimane fa, nome del prodotto',
     lifestyle: 'Vive in casa / fuori / ha viaggiato di recente?', others: 'Altri animali in casa: stanno bene?', forVet: 'Per il veterinario', questions: 'Domande che vuoi fare', media: 'Foto o video che mostrerai (cosa e quando)', mediaPh: 'es. video della zoppia di stamattina sul telefono',
-    make: 'Crea il riepilogo', clear: 'Cancella', copy: 'Copia', print: 'Stampa / salva come PDF', email: 'Invia alla clinica via email', briefTitle: 'Riepilogo per la visita veterinaria', footer: 'Preparato dal proprietario con aiveterinary.org. È il racconto del proprietario, non una cartella clinica. Questa pagina ordina le tue risposte con un software; non contiene contenuti medici generati da IA né diagnosi.',
+    make: 'Crea il riepilogo', clear: 'Cancella', copy: 'Copia', print: 'Stampa / salva come PDF', email: 'Invia alla clinica via email', diary: 'Dal diario dei sintomi (ultime voci)', briefTitle: 'Riepilogo per la visita veterinaria', footer: 'Preparato dal proprietario con aiveterinary.org. È il racconto del proprietario, non una cartella clinica. Questa pagina ordina le tue risposte con un software; non contiene contenuti medici generati da IA né diagnosi.',
     speciesTitle: 'Domande che il veterinario fa su questo animale',
     speciesQ: {
       Dog: [['stool', 'Feci: normali, molli, con sangue, assenti?', ''], ['exercise', 'Si stanca prima durante le passeggiate?', 'sì / no / non so'], ['scavenge', 'Può aver mangiato qualcosa (spazzatura, ossa, cioccolato, uva, piante)?', '']],
@@ -74,7 +74,7 @@ const T = {
     other: 'Sonstiges', food: 'Futter, Medikamente, Vorgeschichte', diet: 'Was frisst Ihr Tier (Marke, Art, Leckerlis, Reste)?', meds: 'Aktuelle Medikamente oder Ergänzungsmittel, genau wie auf dem Etikett', medsPh: 'Name, Stärke, wie oft, seit wann',
     history: 'Bekannte Erkrankungen, Allergien, frühere Operationen', vacc: 'Impfungen aktuell?', vaccOpts: ['Ja', 'Nein', 'Nicht sicher'], parasite: 'Letzte Parasitenbehandlung (Floh/Zecke/Wurm)', parasitePh: 'z. B. vor 3 Wochen, Präparatname',
     lifestyle: 'Wohnung / Freigang / kürzlich gereist?', others: 'Andere Tiere im Haushalt, geht es ihnen gut?', forVet: 'Für die Praxis', questions: 'Fragen, die Sie stellen möchten', media: 'Fotos oder Videos, die Sie zeigen (was und wann)', mediaPh: 'z. B. Video vom Lahmen heute Morgen auf dem Handy',
-    make: 'Übersicht erstellen', clear: 'Leeren', copy: 'Kopieren', print: 'Drucken / als PDF speichern', email: 'Per E-Mail an die Praxis', briefTitle: 'Übersicht für den Tierarztbesuch', footer: 'Vom Halter mit aiveterinary.org vorbereitet. Dies ist die Schilderung des Halters, keine klinische Akte. Diese Seite ordnet Ihre Antworten per Software; sie enthält keine KI-generierten medizinischen Inhalte und keine Diagnose.',
+    make: 'Übersicht erstellen', clear: 'Leeren', copy: 'Kopieren', print: 'Drucken / als PDF speichern', email: 'Per E-Mail an die Praxis', diary: 'Aus dem Symptomtagebuch (letzte Einträge)', briefTitle: 'Übersicht für den Tierarztbesuch', footer: 'Vom Halter mit aiveterinary.org vorbereitet. Dies ist die Schilderung des Halters, keine klinische Akte. Diese Seite ordnet Ihre Antworten per Software; sie enthält keine KI-generierten medizinischen Inhalte und keine Diagnose.',
     speciesTitle: 'Fragen, die die Praxis zu diesem Tier stellt',
     speciesQ: {
       Dog: [['stool', 'Kot: normal, weich, blutig, keiner?', ''], ['exercise', 'Beim Spaziergang schneller müde?', 'ja / nein / unsicher'], ['scavenge', 'Könnte es etwas gefressen haben (Müll, Knochen, Schokolade, Trauben, Pflanzen)?', '']],
@@ -124,6 +124,7 @@ const J = {
       <label>{t.freq}<input name="frequency" placeholder={t.freqPh} /></label>
       <label>{t.trend}<select name="trend"><option value="">—</option>{t.trendOpts.map((o) => <option>{o}</option>)}</select></label>
       <label>{t.trigger}<input name="trigger" placeholder={t.triggerPh} /></label>
+      <label class="wide">{t.diary}<textarea name="diary" rows="3"></textarea></label>
     </div>
 
     <div id="vb-species" hidden>
@@ -190,7 +191,7 @@ const J = {
   @media print { .site-header, .site-footer, .hero, #vb-form, .vb-out .ws-actions, .pp-hint { display: none !important; } .vb-out { border: 0; } }
 </style>
 
-<script type="application/json" id="vb-i18n" set:html={JSON.stringify({ ...J, species_opts: t.species_opts, sex_opts: t.sex_opts, speciesQ: t.speciesQ, speciesTitle: t.speciesTitle })} />
+<script type="application/json" id="vb-i18n" set:html={JSON.stringify({ ...J, species_opts: t.species_opts, sex_opts: t.sex_opts, speciesQ: t.speciesQ, speciesTitle: t.speciesTitle, diary: t.diary })} />
 <script>
   const J = JSON.parse(document.getElementById('vb-i18n')!.textContent!);
   const $ = (s: string) => document.querySelector(s) as HTMLElement;
@@ -211,6 +212,7 @@ const J = {
         (form.querySelector('[name="species"]') as HTMLSelectElement).dispatchEvent(new Event('change'));
         set('sex', a.sex && a.neutered === 'Yes' ? `${a.sex}, ${a.sex === 'Female' ? 'spayed' : 'neutered'}` : a.sex);
         if (a.dob) { const y = (Date.now() - new Date(a.dob).getTime()) / 31557600000; set('age', y < 1 ? `${Math.round(y * 12)} ${J.months}` : `${Math.floor(y)} ${J.years}`); }
+        set('diary', (a.diary ?? []).filter((d: any) => d.date || d.note).slice(-8).map((d: any) => [d.date, d.note].filter(Boolean).join(': ')).join('\n'));
         set('meds', (a.medications ?? []).map((m: any) => [m.name, m.dose, m.started && `${J.since2} ${m.started}`].filter(Boolean).join(', ')).join('\n'));
         set('history', (a.conditions ?? []).map((c: any) => [c.type, c.description].filter(Boolean).join(': ')).join('; '));
         const lastVac = (a.vaccinations ?? []).map((v: any) => v.validUntil).filter(Boolean).sort().pop();
@@ -248,6 +250,7 @@ const J = {
       <h3>${J.main}</h3>
       <p>${esc(g('concern')) || `<em>${J.notDescribed}</em>`}</p>
       <dl>${row(J.since, g('since'))}${row(J.freq, g('frequency'))}${row(J.trend, g('trend'))}${row(J.trigger, g('trigger'))}</dl>
+      ${g('diary') ? `<h3>${esc(J.diary)}</h3><p>${esc(g('diary')).replace(/\n/g, '<br>')}</p>` : ''}
       ${(() => { const rows = Array.from(form.querySelectorAll<HTMLInputElement>('#vb-species-fields input')).filter((i) => i.value.trim()).map((i) => row(i.dataset.label ?? i.name, i.value)).join(''); return rows ? `<h3>${esc(J.speciesTitle)}</h3><dl>${rows}</dl>` : ''; })()}
       <h3>${J.signs}</h3>
       <p>${signs.length ? esc(signs.join(', ')) : J.none}${g('other') ? '. ' + esc(g('other')) : ''}</p>

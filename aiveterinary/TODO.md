@@ -81,7 +81,7 @@ Everything costs €0 unless marked €. Legend:
 - [ ] **Travel checklist per destination** under Reg. 2026/131: residents-only passport, 5-pet cap, tapeworm FI/IE/MT/NO/UK 24–120 h, rabies titre for unlisted countries, puppy age — M ★★★
 - [x] Chip-number validation (15-digit ISO, manufacturer prefix) — S ★
 - [x] Weight log with chart and body-condition score — S ★★
-- [ ] Symptom diary (date, note, photo) that feeds the pre-visit brief — M ★★
+- [x] Symptom diary (date, note) in the booklet, last entries pulled into the pre-visit brief (photo per entry still open) — M ★★
 - [x] Puppy/kitten first-year schedule; senior-care checklist — S ★★
 - [x] Toxic foods and plants offline reference (dog, cat, rabbit) — S ★★
 - [ ] Insurance claim helper: bundle invoice photo + record extract + onset date in the insurer's format (Agila, HanseMerkur, Uelzener, Poste, Santévet) — M ★★ *only us*
