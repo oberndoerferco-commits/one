@@ -64,6 +64,7 @@ const JS = {
   "blocking": "{n} blocking item(s): the record contains something that is not in the notes.",
   "unresolved": "{n} missing item(s) to add or mark as not recorded.",
   "ready": "Ready to approve.",
+  "medsTick": "Checked","medsUnchecked": "{n} medication row(s) to tick against your notes before approval.",
   "copied": "Copied as plain text.",
   "copyFail": "Copy failed; select the report and copy manually.",
   "approved": "APPROVED",
@@ -91,6 +92,7 @@ const JS = {
   "blocking": "{n} elemento/i bloccante/i: la cartella contiene qualcosa che non è nelle note.",
   "unresolved": "{n} elemento/i mancante/i da aggiungere o segnare come non registrato.",
   "ready": "Pronto per l'approvazione.",
+  "medsTick": "Verificato","medsUnchecked": "{n} riga/e della terapia da spuntare rispetto alle tue note prima dell'approvazione.",
   "copied": "Copiato come testo semplice.",
   "copyFail": "Copia non riuscita; seleziona il referto e copia manualmente.",
   "approved": "APPROVATO",
@@ -118,6 +120,7 @@ const JS = {
   "blocking": "{n} blockierende(r) Punkt(e): die Akte enthält etwas, das nicht in den Notizen steht.",
   "unresolved": "{n} fehlende Angabe(n) ergänzen oder als nicht erfasst markieren.",
   "ready": "Bereit zur Freigabe.",
+  "medsTick": "Geprüft","medsUnchecked": "{n} Medikationszeile(n) vor der Freigabe gegen die Notizen abhaken.",
   "copied": "Als Klartext kopiert.",
   "copyFail": "Kopieren fehlgeschlagen; Bericht markieren und manuell kopieren.",
   "approved": "FREIGEGEBEN",
@@ -177,7 +180,7 @@ const t = T[lang]; const j = JS[lang];
   <style is:global>
     .ws-top { display: flex; gap: 20px; align-items: flex-end; flex-wrap: wrap; }
     .ws-label { display: block; font-size: .8rem; color: var(--ink-3); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
-    #ws-case { padding: 9px 12px; font: inherit; border: 1.5px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); min-width: 260px; }
+    #ws-case, #ws-country { padding: 9px 12px; font: inherit; border: 1.5px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); min-width: 260px; }
     .ws-patient { font-weight: 600; }
     .ws-state { margin-left: auto; }
     .ws { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--surface); margin-top: 16px; min-height: 420px; }
@@ -197,6 +200,8 @@ const t = T[lang]; const j = JS[lang];
     .ws-report .flag { color: var(--warn); font-weight: 600; }
     .ws-report .flag.resolved { color: var(--ok); }
     .ws-report .own { color: var(--ink-3); font-style: italic; }
+    .ws-tick label { white-space: nowrap; font-size: .85rem; color: var(--ink-3); cursor: pointer; }
+    @media print { .ws-tick { display: none; } }
     .ws-report table { border-collapse: collapse; width: 100%; font-size: .92rem; margin-top: 6px; }
     .ws-report th, .ws-report td { border: 1px solid var(--line); padding: 5px 8px; text-align: left; }
     .ws-flags { margin-top: 20px; }
@@ -233,7 +238,7 @@ const t = T[lang]; const j = JS[lang];
     const labels: Record<string, string> = J.cases;
     const $ = (s: string) => document.querySelector(s) as HTMLElement;
 
-    let cur: { notes: string; header: any; record: Rec; lang: 'en' | 'de' | 'it'; resolved: Record<string, string>; approved: boolean };
+    let cur: { notes: string; header: any; record: Rec; lang: 'en' | 'de' | 'it'; resolved: Record<string, string>; approved: boolean; meds: boolean[] };
 
     const sel = $('#ws-case') as HTMLSelectElement;
     for (const c of [...cases].sort((a, b) => Object.keys(labels).indexOf(a.id) - Object.keys(labels).indexOf(b.id))) { const o = document.createElement('option'); o.value = c.id; o.textContent = labels[c.id] ?? c.id; sel.appendChild(o); }
@@ -243,7 +248,7 @@ const t = T[lang]; const j = JS[lang];
 
     function load(id: string) {
       const c = cases.find((x) => x.id === id)!;
-      cur = { notes: normalizeNotes(c.notes), header: PatientHeader.parse(c.header), record: ClinicalRecord.parse(c.fixture_record), lang: c.language, resolved: {}, approved: false };
+      cur = { notes: normalizeNotes(c.notes), header: PatientHeader.parse(c.header), record: ClinicalRecord.parse(c.fixture_record), lang: c.language, resolved: {}, approved: false, meds: [] };
       const h = cur.header;
       $('#ws-patient').textContent = [h.name, h.species, h.breed, h.sex, h.age && `${h.age.value} ${h.age.unit}${h.age.value === 1 ? '' : 's'}`, h.weight_kg && `${h.weight_kg} kg`].filter(Boolean).join(' · ');
       $('#ws-lang').textContent = { en: 'English', de: 'Deutsch', it: 'Italiano' }[cur.lang];
@@ -305,6 +310,7 @@ const t = T[lang]; const j = JS[lang];
         s.addEventListener('mouseleave', () => light(JSON.parse(s.dataset.spans!), false));
         s.addEventListener('click', () => { light(JSON.parse(s.dataset.spans!), true); setTimeout(() => light(JSON.parse(s.dataset.spans!), false), 1500); });
       }
+      document.querySelectorAll<HTMLInputElement>('.ws-med-tick').forEach((cb) => cb.addEventListener('change', () => { cur.meds[Number(cb.dataset.i)] = cb.checked; renderFlags(); }));
       renderFlags();
     }
 
@@ -341,8 +347,9 @@ const t = T[lang]; const j = JS[lang];
       for (const u of record.uncertain) li(`<span class="f-warn">${J.setAside}</span> “${esc(u.original_text)}” — ${esc(u.reason)}`);
       if (!blocks.length && !warns.length && !missing.length && !record.uncertain.length) li(`<span style="color:var(--ok);font-weight:600">${J.nothing}</span> ${J.nothingRest}`);
       const unresolved = missing.filter((m) => !cur.resolved[m]).length;
-      ($('#ws-approve') as HTMLButtonElement).disabled = cur.approved || blocks.length > 0 || unresolved > 0;
-      $('#ws-status').textContent = cur.approved ? J.approvedStatus : blocks.length ? J.blocking.replace('{n}', String(blocks.length)) : unresolved ? J.unresolved.replace('{n}', String(unresolved)) : J.ready;
+      const unticked = record.medications.filter((_, i) => !cur.meds[i]).length;
+      ($('#ws-approve') as HTMLButtonElement).disabled = cur.approved || blocks.length > 0 || unresolved > 0 || unticked > 0;
+      $('#ws-status').textContent = cur.approved ? J.approvedStatus : blocks.length ? J.blocking.replace('{n}', String(blocks.length)) : unresolved ? J.unresolved.replace('{n}', String(unresolved)) : unticked ? J.medsUnchecked.replace('{n}', String(unticked)) : J.ready;
     }
 
     function approve() {
@@ -369,7 +376,8 @@ const t = T[lang]; const j = JS[lang];
     function table(block: string) {
       const rows = block.trim().split('\n').filter((r) => !/^\|\s*-/.test(r)).map((r) => r.slice(1, -1).split('|').map((c) => c.trim()));
       const [head, ...body] = rows;
-      return `<table><thead><tr>${head.map((h) => `<th>${h}</th>`).join('')}</tr></thead><tbody>${body.map((r) => `<tr>${r.map((c) => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+      const tick = (i: number) => `<td class="ws-tick"><label><input type="checkbox" class="ws-med-tick" data-i="${i}" ${cur.meds[i] ? 'checked' : ''} ${cur.approved ? 'disabled' : ''} aria-label="${J.medsTick}"> ${J.medsTick}</label></td>`;
+      return `<table><thead><tr>${head.map((h) => `<th>${h}</th>`).join('')}<th>${J.medsTick}</th></tr></thead><tbody>${body.map((r, i) => `<tr>${r.map((c) => `<td>${c}</td>`).join('')}${tick(i)}</tr>`).join('')}</tbody></table>`;
     }
 
     load(J.first);

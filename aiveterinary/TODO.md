@@ -130,7 +130,7 @@ Everything costs €0 unless marked €. Legend:
 - [x] **Provenance badge** on every document (AI-added 0 / vet fields n / not recorded n) — S ★★★ *only us*
 - [ ] Owner-reported vs vet-observed toggle with distinct rendering — S ★★★ *only us*
 - [x] **Declined-care register** (signed paragraph + per-patient log) — S ★★★ *only us*
-- [ ] Medication reconciliation table with tick per cell before sign-off; cross-document identity check for translations — S ★★★ *only us*
+- [x] Medication reconciliation table with tick per cell before sign-off; cross-document identity check for translations — S ★★★ *only us*
 - [x] "Not recorded" as a first-class printed value — S ★★★ *only us*
 - [ ] Amendment propagation map ("generated from v1 — regenerate?") — M ★★ *only us*
 - [ ] Bilingual side-by-side owner letter (DE/IT/EN + TR/AR/UK), meds table identical — M ★★★ *only us*
