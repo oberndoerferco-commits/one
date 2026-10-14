@@ -15,7 +15,7 @@ const fmt = (x: Date) => x.toLocaleDateString(t.locale, { day: 'numeric', month:
   <p class="lead">{t.allLead.replace('{n}', String(all.length))}</p>
 </section>
 <section class="wrap">
-  <nav class="chips" aria-label={t.byAnimal}>{bySpecies.map((g) => <li><a href={`#${g.key}`}>{g.label} ({g.items.length})</a></li>)}</nav>
+  <nav aria-label={t.byAnimal}><ul class="chips">{bySpecies.map((g) => <li><a href={`#${g.key}`}>{g.label} ({g.items.length})</a></li>)}</ul></nav>
   {bySpecies.map((g) => (
     <div class="az-group" id={g.key}>
       <h2 class="az-h"><AnimalIcon kind={g.key as any} size={36} /> {g.label}</h2>
