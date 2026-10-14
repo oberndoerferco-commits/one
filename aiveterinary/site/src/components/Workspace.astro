@@ -349,7 +349,8 @@ const t = T[lang]; const j = JS[lang];
     const csel = $('#ws-country') as HTMLSelectElement;
     csel.addEventListener('change', () => { if (cur) renderFlags(); });
     const dsel = $('#ws-doc') as HTMLSelectElement; const refIn = $('#ws-referral') as HTMLInputElement;
-    dsel.addEventListener('change', () => { ($('#ws-referral-wrap') as HTMLElement).hidden = dsel.value !== 'referral'; if (cur) render(); });
+    const docHead = $('.ws-pane + .ws-pane .ws-h') as HTMLElement; const docHeadDefault = docHead.firstChild?.textContent ?? '';
+    dsel.addEventListener('change', () => { ($('#ws-referral-wrap') as HTMLElement).hidden = dsel.value !== 'referral'; if (docHead.firstChild) docHead.firstChild.textContent = dsel.value === 'report' ? docHeadDefault : dsel.options[dsel.selectedIndex].text + ' '; if (cur) render(); });
     refIn.addEventListener('input', () => { if (cur) render(); });
     function renderDoc(approved: boolean) {
       const { record, header, lang } = cur;
@@ -409,7 +410,7 @@ const t = T[lang]; const j = JS[lang];
         if (line.startsWith('|')) return line;
         if (line.startsWith('- ')) return `<li>${esc(line.slice(2))}</li>`;
         if (!line.trim()) return '';
-        return `<p>${esc(line)}</p>`;
+        return `<p>${esc(line).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')}</p>`;
       }).join('\n');
       html = html.replace(/((?:^\|.*\n?)+)/gm, (t) => table(t));
       html = html.replace(/(<li>[\s\S]*?<\/li>\n?)+/g, (t) => `<ul>${t}</ul>`);
