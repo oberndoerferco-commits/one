@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Newsletter from '../../components/Newsletter.astro';
+import AnimalIcon from '../../components/AnimalIcon.astro';
 ---
 <Base title="AI Veterinary" description="Informazioni chiare sulla salute degli animali per i proprietari, riviste da veterinari, e un assistente AI per la documentazione che restituisce tempo ai veterinari." lang="it">
   <section class="hero">
@@ -26,6 +27,9 @@ import Newsletter from '../../components/Newsletter.astro';
   </section>
 
   <section class="wrap">
+    <div class="animal-row" aria-hidden="true">
+      <AnimalIcon kind="dog" size={44} /><AnimalIcon kind="cat" size={44} /><AnimalIcon kind="rabbit" size={44} /><AnimalIcon kind="horse" size={44} /><AnimalIcon kind="bird" size={44} /><AnimalIcon kind="ferret" size={44} />
+    </div>
     <h2>Come lavoriamo</h2>
     <div class="grid3">
       <div class="tile">

@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import { ANIMALS, slugOf, type Lang } from '../lib/animals-i18n';
+import AnimalIcon from './AnimalIcon.astro';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = ANIMALS[lang];
@@ -26,11 +27,12 @@ const count = (f: (d: any) => boolean) => all.filter((e) => f(e.data)).length;
     ))}
   </div>
   <h2>{t.byAnimal}</h2>
-  <div class="grid3">
+  <div class="animal-buttons">
     {Object.entries(t.species).map(([key, label]) => (
-      <a class="tile" href={`${t.base}/${key}`}>
-        <div class="t">{label}</div>
-        <div class="d">{count((x) => x.species === key)} {t.articles}</div>
+      <a class="animal-btn" href={`${t.base}/${key}`}>
+        <AnimalIcon kind={key as any} size={56} />
+        <span class="t">{label}</span>
+        <span class="d">{count((x) => x.species === key)} {t.articles}</span>
       </a>
     ))}
   </div>

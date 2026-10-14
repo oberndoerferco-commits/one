@@ -1,0 +1,44 @@
+---
+/** Loading indicator: a cat batting a ball of yarn. Pure SVG + CSS, respects reduced motion. */
+interface Props { label?: string; size?: number; class?: string }
+const { label = 'Loading…', size = 96, class: cls = '' } = Astro.props;
+---
+<div class={`yarn-cat ${cls}`} role="status" aria-live="polite">
+  <svg width={size} height={size * 0.75} viewBox="0 0 128 96" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <!-- cat, sitting, facing the ball -->
+    <g class="yc-cat">
+      <path d="M28 70c-6 0-10-5-10-12 0-10 7-18 18-18h8c10 0 16 6 16 14v16H28z"/>
+      <path d="M52 44l10-16h-6"/>
+      <path d="M40 44l-8-14 7 2"/>
+      <path d="M38 44c0-3 3-5 7-5s7 2 7 5v6c0 5-3 8-7 8s-7-3-7-8v-6z"/>
+      <circle cx="43" cy="49" r="1.2" fill="currentColor" stroke="none"/>
+      <circle cx="48" cy="49" r="1.2" fill="currentColor" stroke="none"/>
+      <path d="M45 52h1.5l-.75 1.2z" fill="currentColor"/>
+      <path d="M18 60c-6 2-10 8-6 12"/>
+      <!-- paw that bats -->
+      <g class="yc-paw"><path d="M58 64c4 0 8-2 10-5"/><ellipse cx="69" cy="58" rx="3" ry="2.2"/></g>
+      <path d="M28 70h32"/>
+    </g>
+    <!-- yarn ball -->
+    <g class="yc-ball">
+      <circle cx="92" cy="66" r="12"/>
+      <path d="M82 60c6 2 14 2 20 0M81 68c7 3 15 3 22 0M86 56c3 6 3 14 0 20M98 56c-3 6-3 14 0 20"/>
+    </g>
+    <!-- loose strand -->
+    <path class="yc-strand" d="M104 66c8-2 14 2 16 8"/>
+    <path d="M10 80h108"/>
+  </svg>
+  <span class="yc-label">{label}</span>
+</div>
+
+<style is:global>
+  .yarn-cat { display: inline-flex; flex-direction: column; align-items: center; gap: 6px; color: var(--accent); }
+  .yc-label { font-size: .9rem; color: var(--ink-3); }
+  .yc-ball { transform-origin: 92px 66px; animation: yc-roll 1.6s ease-in-out infinite; }
+  .yc-paw { transform-origin: 58px 64px; animation: yc-bat 1.6s ease-in-out infinite; }
+  .yc-strand { stroke-dasharray: 30; animation: yc-strand 1.6s ease-in-out infinite; }
+  @keyframes yc-roll { 0%, 100% { transform: translateX(0) rotate(0deg); } 50% { transform: translateX(10px) rotate(40deg); } }
+  @keyframes yc-bat { 0%, 70%, 100% { transform: rotate(0deg); } 80% { transform: rotate(-25deg); } 90% { transform: rotate(10deg); } }
+  @keyframes yc-strand { 0%, 100% { stroke-dashoffset: 0; } 50% { stroke-dashoffset: 8; } }
+  @media (prefers-reduced-motion: reduce) { .yc-ball, .yc-paw, .yc-strand { animation: none; } }
+</style>

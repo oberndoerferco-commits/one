@@ -1,4 +1,5 @@
 ---
+import YarnCat from './YarnCat.astro';
 interface Props { lang?: 'en' | 'it' | 'de' }
 const { lang = 'en' } = Astro.props;
 const T = {
@@ -542,6 +543,7 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
       <button class="btn secondary pp-danger" id="pp-delete" type="button">{t.delete}</button>
     </div>
 
+    <div id="pp-loading" hidden style="margin:12px 0"><YarnCat label={({ en: 'Restoring…', it: 'Ripristino in corso…', de: 'Wird wiederhergestellt…' } as any)[lang]} /></div>
     <div id="pp-empty" class="card" hidden>
       <h2>{t.emptyTitle}</h2>
       <p>{t.emptyText}</p>
@@ -851,6 +853,9 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
     });
     $<HTMLInputElement>('#pp-import').addEventListener('change', async (e) => {
       const file = (e.target as HTMLInputElement).files?.[0]; if (!file) return;
+      const loading = $('#pp-loading') as HTMLElement; loading.hidden = false;
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) await new Promise((r) => setTimeout(r, 900));
+      loading.hidden = true;
       try {
         const data = JSON.parse(await file.text());
         if (!data || !Array.isArray(data.animals)) throw new Error('bad');
