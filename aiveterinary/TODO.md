@@ -59,7 +59,7 @@ Everything costs €0 unless marked €. Legend:
 - [ ] Conditions and medications categories (currently empty): 10 plain-language condition pages, 8 "what this drug is for and how to give it" pages (no doses) — M ★★
 - [x] A–Z index, species hubs, "share with your vet" button, print stylesheet for articles — S ★★
 - [x] Illustrations (own SVG faces, hero scene, loader; design system in docs/06 and research in docs/13) — M ★
-- [ ] Translate privacy/terms/research/quality into IT/DE after the lawyer pass — M ★★
+- [ ] Translate privacy/terms into IT/DE after the lawyer pass (research and quality pages done in IT/DE)
 - [x] Vet-facing landing pages per country: /de/vets with TÄHAV §13/§15/§16 and GOT §7, /it/vets with REV, consenso, preventivo, SINAC (sources cited)
 
 ### Site mechanics

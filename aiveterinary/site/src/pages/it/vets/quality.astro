@@ -1,0 +1,57 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { readFileSync, existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+const resultsDir = fileURLToPath(new URL('../../../../../app/eval/results/', import.meta.url));
+const read = (name: string) => (existsSync(resultsDir + name) ? JSON.parse(readFileSync(resultsDir + name, 'utf8')) : null);
+const fixture = read('fixture.json');
+const model = read('claude.json');
+const pct = (x: number | null) => (x == null ? 'n/d' : Math.round(x * 100) + ' %');
+const fmt = (iso: string) => new Date(iso).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
+const runs = [{ label: 'Validatori su cartelle preparate', note: 'Dimostra il funzionamento dei controlli stessi: una cartella con un farmaco, una dose o una diagnosi inventati deve essere bloccata. Offline, senza modello.', r: fixture }, ...(model ? [{ label: 'Output del modello sugli stessi casi', note: 'Il modello struttura le note grezze; gli stessi controlli vengono poi eseguiti sul suo output.', r: model }] : [])];
+---
+<Base title="Qualità" description="Come viene testato l'assistente alla documentazione di AI Veterinary, con i numeri attuali. Pubblicato con ogni release." lang="it">
+  <article class="wrap narrow hero prose">
+    <p class="eyebrow"><a href="/it/vets">Per i team veterinari</a></p>
+    <h1>Qualità, con i numeri</h1>
+    <p class="lead">Ogni strumento in questo mercato dichiara la propria accuratezza; quasi nessuno dice come la misura. Questa pagina è la nostra risposta: il set di test, le regole e i risultati attuali, rigenerati dall'esecuzione reale dei test a ogni release.</p>
+
+    <h2>Cosa misuriamo</h2>
+    <table>
+      <tr><th>Misura</th><th>Significato</th><th>Regola di rilascio</th></tr>
+      <tr><td>Rilievi bloccanti</td><td>Qualsiasi cosa nella cartella che non è nelle note del veterinario: un farmaco, una dose, un numero, una diagnosi o un elemento senza fonte</td><td><strong>0</strong> sull'output del modello, altrimenti nessuna release</td></tr>
+      <tr><td>Farmaci non corrispondenti</td><td>Un nome di farmaco nella cartella che il veterinario non ha scritto</td><td><strong>0</strong></td></tr>
+      <tr><td>Elementi senza fonte</td><td>Fatti senza un riferimento valido alle note</td><td><strong>0</strong></td></tr>
+      <tr><td>Recall delle informazioni mancanti</td><td>Delle lacune che un veterinario vorrebbe segnalate (farmaco senza dose, esame senza risultato…), quante ne segnaliamo</td><td>≥ 95 %</td></tr>
+      <tr><td>Caso che deve fallire</td><td>Una cartella deliberatamente sbagliata (farmaco, dose e diagnosi inventati) che i controlli devono bloccare</td><td>Sempre bloccato</td></tr>
+    </table>
+    <p>Le regole possono solo diventare più severe: una release può alzare una soglia minima, mai abbassarla.</p>
+
+    <h2>Risultati attuali</h2>
+    {runs.map(({ label, note, r }) => (
+      <div class="card" style="margin:16px 0">
+        <h3 style="margin-top:0">{label}</h3>
+        <p class="pp-hint">{note}</p>
+        <table>
+          <tr><th>Esecuzione</th><td>{fmt(r.run_at)} · prompt <code>{r.prompt}</code> · lingue {r.languages.join(', ').toUpperCase()}</td></tr>
+          <tr><th>Casi</th><td>{r.cases} ({r.failed} falliti)</td></tr>
+          <tr><th>Rilievi bloccanti</th><td>{r.blocking}{r.extractor === 'fixture' ? ' (tutti dal caso che deve fallire, come previsto)' : ''}</td></tr>
+          <tr><th>Farmaci non corrispondenti</th><td>{r.drug_mismatch}</td></tr>
+          <tr><th>Elementi senza fonte</th><td>{r.unsourced}{r.extractor === 'fixture' ? ' (il caso che deve fallire)' : ''}</td></tr>
+          <tr><th>Recall delle informazioni mancanti</th><td>{pct(r.missing_recall)}</td></tr>
+          <tr><th>Per caso</th><td>{r.per_case.map((c: any) => `${c.pass ? '✓' : '✗'} ${c.id}`).join(' · ')}</td></tr>
+        </table>
+      </div>
+    ))}
+    {!model && <p class="notice warn">Le esecuzioni del modello non sono ancora pubblicate. Il set di test è ancora piccolo (casi sintetici scritti internamente) e l'esecuzione del modello è in attesa di una chiave di sviluppo. Prima che qualsiasi clinica usi il prodotto, il set cresce ad almeno 300 casi in inglese, tedesco e italiano, scritti con veterinari in attività, e un panel esterno di veterinari esamina un campione dell'output. Quei risultati compariranno qui.</p>}
+
+    <h2>Lacune note, onestamente</h2>
+    <ul>
+      <li>Il set di test è piccolo e sintetico. Le note reali sono più disordinate.</li>
+      <li>I controlli sui numeri sono severi per scelta: una dose scritta "5mg" e registrata come "5 mg" passa, ma "cinque" scritto in lettere non conta come numero nelle note, quindi la cartella deve mantenere "cinque". Preferiamo un falso allarme a un'invenzione silenziosa.</li>
+      <li>La corrispondenza dei nomi dei farmaci tollera errori di battitura per prefisso; nomi commerciali insoliti possono richiedere la correzione del veterinario, che viene poi registrata come modifica umana.</li>
+      <li>Non è ancora stata effettuata alcuna valutazione indipendente.</li>
+    </ul>
+    <p>L'ambiente di test, le regole e i casi sono nel repository del progetto, così che un revisore possa rieseguirli.</p>
+  </article>
+</Base>

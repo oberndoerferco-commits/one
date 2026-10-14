@@ -13,7 +13,7 @@ const path = Astro.url.pathname.replace(/\.html$/, '');
 type Lang = 'en' | 'it' | 'de';
 const L: Lang = lang === 'it' || lang === 'de' ? lang : 'en';
 // hreflang: pages that exist under the same path in all three languages.
-const shared = new Set(['', '/about', '/passport', '/visit-brief', '/newsletter', '/vets', '/vets/workspace', '/vets/data', '/editorial', '/animals', '/animals/all', '/registry', '/end-of-life']);
+const shared = new Set(['', '/about', '/passport', '/visit-brief', '/newsletter', '/vets', '/vets/workspace', '/vets/data', '/vets/quality', '/vets/research', '/editorial', '/animals', '/animals/all', '/registry', '/end-of-life']);
 const basePath = path.replace(/^\/(it|de)(?=\/|$)/, '').replace(/^\/$/, '');
 const isSharedAnimals = /^\/animals\/(dog|cat|rabbit|horse|bird|general|symptoms|conditions|medications|first-aid|travel|care)$/.test(basePath);
 const alternates = shared.has(basePath) || isSharedAnimals
@@ -66,7 +66,7 @@ const strings = {
       { href: '/it/animals', label: 'Informazioni sugli animali' },
       { href: '/it/passport', label: 'Libretto sanitario digitale' },
       { href: '/it/vets', label: 'Per i team veterinari' },
-      { href: '/vets/research', label: 'Ricerca' },
+      { href: '/it/vets/research', label: 'Ricerca' },
       { href: '/it/registry', label: 'Anagrafi e registri per Paese' },
       { href: '/it/end-of-life', label: 'Quando arriva il momento' },
     ],
@@ -96,7 +96,7 @@ const strings = {
       { href: '/de/animals', label: 'Tierinformationen' },
       { href: '/de/passport', label: 'Digitaler Heimtierpass' },
       { href: '/de/vets', label: 'Für Praxisteams' },
-      { href: '/vets/research', label: 'Recherche' },
+      { href: '/de/vets/research', label: 'Recherche' },
       { href: '/de/registry', label: 'Heimtierregister nach Land' },
       { href: '/de/end-of-life', label: 'Wenn die Zeit kommt' },
     ],
