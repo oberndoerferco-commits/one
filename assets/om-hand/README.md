@@ -12,8 +12,16 @@ Your iPad drawing is the design. This is that design drawn properly.
 | `source-drawing.jpg` | The drawing as supplied |
 
 ```sh
-python3 scripts/om_clean.py assets/om-hand/source-drawing.jpg assets/om-hand
+python3 scripts/om_clean.py assets/om-hand/source-drawing.jpg assets/om-hand \
+  --no-symmetric-o --pitch 30.8 --width 22.0 --gap 11.7 --keyline 15 \
+  --repair 9 --sigma 2.3 --fit-tol 11.7 --band-smooth 8.8 \
+  --line-tol 1.6 --curve-tol 1.0
 ```
+
+The drawing is traced at **3010 px**, from the PDF rather than a 2048 px
+raster — the earlier source. Every pixel-denominated option above is the
+default scaled by 3010/2048, since none of them are resolution-independent.
+The full 4655 px render is better still but the trace does not finish in time.
 
 Colours sampled from the drawing: cyan `#6cd7e1`, cream `#f4c88b`.
 
@@ -52,27 +60,11 @@ half and mirroring it took the M from **self-IoU 0.9719 to 0.9992**. The seam
 nodes — the top notch and the centre vertex — are snapped onto the axis, where
 they belong.
 
-**The O is mirrored too.** This was the last thing to fix and the one that
-mattered most. Everything before it chased agreement with the drawing, and that
-is the wrong target for a finished letter: a sketch reproduced faithfully is
-still a sketch, and the O's bowl read as uneven because your hand did not draw a
-symmetrical one. The left half is mirrored onto the right, about an axis solved
-for rather than assumed — the flourish drags the centroid right, so the axis is
-found by scoring the left half alone.
-
-The flourish is then put back. It is a **slit cut into** the bowl, not a spur
-sticking out of it, so it shows up as ink the mirrored bowl has and the drawing
-does not; that region in the upper right is cut away again.
-
-The slit **stops above the flares**. In the drawing it runs down into the
-right-hand flare, which leaves that flare a different shape from its mirror on
-the left — they matched at only **IoU 0.57**. On a finished letter the two
-flares are one shape used twice; stopping the slit above them brings the match
-to **0.96**.
-
-Neither letter's counter is an enclosed hole. The O's opens through the channel
-beside its flourish and the M's open at the bottom, so the two letters are two
-closed contours and no more.
+**The O is not mirrored.** It was, for one round, and that was a mistake: the
+mirrored bowl came out visibly wider and rounder than the drawing's and the
+letter stopped being yours. Symmetry is right in the abstract and wrong here —
+the brief was your drawing, finished, not a letter rebuilt to a rule. The M is
+still mirrored, because you asked for that one specifically.
 
 ### The halo
 
