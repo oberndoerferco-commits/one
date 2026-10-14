@@ -58,7 +58,7 @@ Everything costs €0 unless marked €. Legend:
 - [ ] **German top-40** (10 of 40 written, bold ones done): hund durchfall was tun/hausmittel/blut · hund erbricht gelb/schaum/unverdautes futter · katze erbricht schaum · katze frisst nicht mehr · mein hund frisst nicht und schläft viel · warum frisst mein hund gras/kot/erde · hund zittert und hechelt · hund humpelt · hund hat schokolade gefressen · hund rattengift/weintrauben · hund vergiftung symptome · katze blasenentzündung · katze pinkelt ins bett · hund hechelt viel · hund atmet schnell im schlaf · hitzschlag hund · **hund giardien** · hund zecke entfernen · hund flöhe · hund milben · hund juckt sich · hund ohrenentzündung · hund hustet und würgt · katze niest/katzenschnupfen · katze niereninsuffizienz · hund trinkt viel · hund fieber (Novalgin warning) · **katze FIP** · hund impfung kosten/leptospirose/italien · hund entwurmen wie oft · katze impfung · katze zahnstein · hund arthrose · hündin läufig · katze giftige pflanzen/hund giftige lebensmittel · katze verstopfung · kaninchen frisst nicht · kaninchen durchfall/zähne — L ★★★
 - [ ] Conditions and medications categories (currently empty): 10 plain-language condition pages, 8 "what this drug is for and how to give it" pages (no doses) — M ★★
 - [ ] A–Z index, species hubs, "share with your vet" button, print stylesheet for articles — S ★★
-- [ ] Illustrations (simple line drawings, own, no stock) — M ★
+- [x] Illustrations (own SVG faces, hero scene, loader; design system in docs/06 and research in docs/13) — M ★
 - [ ] Translate privacy/terms/research/quality into IT/DE after the lawyer pass — M ★★
 - [ ] Vet-facing landing pages per country: `/de/vets` with GOT/TÄHAV angle, `/it/vets` with REV/preventivo angle — S ★★
 
@@ -66,7 +66,7 @@ Everything costs €0 unless marked €. Legend:
 - [ ] `hreflang` links between language versions; language auto-suggest banner — S ★★
 - [ ] Cookie-free analytics (Plausible self-host or Cloudflare Web Analytics) — S ★★
 - [ ] Search (static index, Pagefind) — S ★★
-- [ ] Open-graph image per article — S ★
+- [x] Open-graph image (one PNG for the site; per-article images still open) — S ★
 
 ## 4. Owner side — **Me**
 
