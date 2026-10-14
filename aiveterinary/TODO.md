@@ -79,7 +79,7 @@ Everything costs €0 unless marked €. Legend:
 - [ ] **Lost-pet mode**: poster PDF, QR flyer, per-country registry checklist, Europetnet link — M ★★ *registry-aware: only us*
 - [ ] **Registry navigator**: which registry (IT anagrafe/SINAC, DE TASSO/FINDEFIX, AT Heimtierdatenbank, CH AMICUS/ANIS, FR I-CAD), deadlines when moving (AT 1 month, CH 10 d, FR 8 d, IT 10 d) — S ★★ *only us*
 - [ ] **Travel checklist per destination** under Reg. 2026/131: residents-only passport, 5-pet cap, tapeworm FI/IE/MT/NO/UK 24–120 h, rabies titre for unlisted countries, puppy age — M ★★★
-- [ ] Chip-number validation (15-digit ISO, manufacturer prefix) — S ★
+- [x] Chip-number validation (15-digit ISO, manufacturer prefix) — S ★
 - [ ] Weight log with chart and body-condition score — S ★★
 - [ ] Symptom diary (date, note, photo) that feeds the pre-visit brief — M ★★
 - [ ] Puppy/kitten first-year schedule; senior-care checklist — S ★★
@@ -139,7 +139,7 @@ Everything costs €0 unless marked €. Legend:
 - [ ] Template builder (sections, order, required fields, per-vet defaults); specialty sets: derm, ortho, dental, ophtho, cardio, exotics, equine — M ★★
 - [ ] Multi-pet consultation UI (assign bullets, split documents, one owner letter) — M ★★
 - [ ] Image attachment (stored, referenced, never interpreted) — S ★★
-- [ ] Nurse draft → vet co-sign with stamp and audit — S ★★★
+- [x] Nurse draft → vet co-sign with stamp and audit — S ★★★
 - [ ] Keyboard-only review with time counter; clinic median time-to-approved on quality page — S ★★
 - [ ] Optional vet-only dictation → bullets, audio discarded immediately, shown as the vet's own input — M ★★
 - [ ] Mobile layout + local autosave for after-the-fact entry — M ★★

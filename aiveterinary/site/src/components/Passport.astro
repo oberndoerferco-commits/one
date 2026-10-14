@@ -574,7 +574,7 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
             <label>{t.dob}<input data-f="dob" type="date" /></label>
             <label>{t.colour}<input data-f="colour" /></label>
             <label>{t.weight}<input data-f="weight" type="number" step="0.1" min="0" /></label>
-            <label>{t.microchip}<input data-f="microchip" inputmode="numeric" placeholder={t.phChip} /></label>
+            <label>{t.microchip}<input data-f="microchip" inputmode="numeric" placeholder={t.phChip} /><span class="pp-hint pp-chip-hint" hidden>{({ en: "A microchip number has 15 digits (ISO 11784/11785). Check the number on the implant certificate or the registry.", it: "Il numero del microchip ha 15 cifre (ISO 11784/11785). Controlla il numero sul certificato di impianto o nell'anagrafe.", de: "Eine Chipnummer hat 15 Ziffern (ISO 11784/11785). Prüfen Sie die Nummer auf dem Implantationsnachweis oder im Register." } as any)[lang]}</span></label>
             <label>{t.microchipDate}<input data-f="microchipDate" type="date" /></label>
             <label>{t.microchipRegistry}<input data-f="microchipRegistry" placeholder={t.phRegistry} /></label>
             <label>{t.passportNo}<input data-f="passportNo" placeholder={t.phPassport} /></label>
@@ -951,3 +951,17 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
     render();
     acct.init();
   </script>
+
+<script>
+  // Microchip numbers are 15 digits under ISO 11784/11785; anything else is almost always a typo.
+  document.addEventListener('input', (e) => {
+    const el = e.target as HTMLInputElement;
+    if (!el.matches('[data-f="microchip"]')) return;
+    const digits = el.value.replace(/[\s-]/g, '');
+    const bad = digits.length > 0 && !/^\d{15}$/.test(digits);
+    el.setCustomValidity(bad ? 'invalid' : '');
+    el.classList.toggle('pp-invalid', bad);
+    const hint = el.parentElement?.querySelector('.pp-chip-hint') as HTMLElement | null;
+    if (hint) hint.hidden = !bad;
+  });
+</script>

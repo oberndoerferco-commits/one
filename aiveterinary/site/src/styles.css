@@ -251,3 +251,6 @@ p { margin: 0 0 1em; }
 .site-search .pagefind-ui__result-title { font-family: var(--font-display); }
 .site-search .pagefind-ui__result { border-top-color: var(--line); }
 .site-search .pagefind-ui__result-link { color: var(--ink); }
+
+.pp-invalid { border-color: var(--danger) !important; }
+.pp-chip-hint { display: block; color: var(--danger); margin-top: 4px; }

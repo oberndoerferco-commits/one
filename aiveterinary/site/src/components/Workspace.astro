@@ -7,6 +7,7 @@ const T = {
   "eyebrowRest": "preview on synthetic patients",
   "caseLabel": "Example case",
   "countryLabel": "Country rules",
+  "roleLabel": "I am","roleNurse": "Nurse / assistant","roleVet": "Veterinarian",
   "notice": "<strong>Preview.</strong> The example cases run offline on prepared records, so you can see exactly how the review works: source highlighting, missing-information flags, the medication table built from your own words. In the real product your own notes are structured by the model with the same checks. Nothing here is stored.",
   "notes": "Notes",
   "notesHint": "edit freely in the real product; here the example is fixed",
@@ -22,6 +23,7 @@ const T = {
   "eyebrowRest": "anteprima su pazienti sintetici",
   "caseLabel": "Caso di esempio",
   "countryLabel": "Regole del Paese",
+  "roleLabel": "Sono","roleNurse": "Assistente / infermiere","roleVet": "Veterinario",
   "notice": "<strong>Anteprima.</strong> I casi di esempio girano offline su cartelle già preparate, così puoi vedere esattamente come funziona la revisione: evidenziazione della fonte, segnalazione delle informazioni mancanti, tabella dei farmaci costruita con le tue stesse parole. Nel prodotto reale le tue note vengono strutturate dal modello con gli stessi controlli. Qui non viene salvato nulla.",
   "notes": "Note",
   "notesHint": "nel prodotto reale si modificano liberamente; qui l'esempio è fisso",
@@ -37,6 +39,7 @@ const T = {
   "eyebrowRest": "Vorschau mit synthetischen Patienten",
   "caseLabel": "Beispielfall",
   "countryLabel": "Länderregeln",
+  "roleLabel": "Ich bin","roleNurse": "TFA / Assistenz","roleVet": "Tierärztin / Tierarzt",
   "notice": "<strong>Vorschau.</strong> Die Beispielfälle laufen offline auf vorbereiteten Akten, damit Sie genau sehen, wie die Prüfung funktioniert: Quellenmarkierung, Hinweise auf fehlende Angaben, die Medikamententabelle aus Ihren eigenen Worten. Im echten Produkt strukturiert das Modell Ihre eigenen Notizen mit denselben Prüfungen. Hier wird nichts gespeichert.",
   "notes": "Notizen",
   "notesHint": "im echten Produkt frei editierbar; hier ist das Beispiel fest",
@@ -64,6 +67,7 @@ const JS = {
   "blocking": "{n} blocking item(s): the record contains something that is not in the notes.",
   "unresolved": "{n} missing item(s) to add or mark as not recorded.",
   "ready": "Ready to approve.",
+  "handOver": "Hand over to the vet","handedStatus": "Draft prepared and handed to the veterinarian for co-signature. Nothing was stored.","nurseDraft": "NURSE DRAFT · AWAITING VET","cosigned": "co-signed, drafted by nurse",
   "medsTick": "Checked","medsUnchecked": "{n} medication row(s) to tick against your notes before approval.",
   "copied": "Copied as plain text.",
   "copyFail": "Copy failed; select the report and copy manually.",
@@ -92,6 +96,7 @@ const JS = {
   "blocking": "{n} elemento/i bloccante/i: la cartella contiene qualcosa che non è nelle note.",
   "unresolved": "{n} elemento/i mancante/i da aggiungere o segnare come non registrato.",
   "ready": "Pronto per l'approvazione.",
+  "handOver": "Passa al veterinario","handedStatus": "Bozza preparata e passata al veterinario per la controfirma. Non è stato salvato nulla.","nurseDraft": "BOZZA ASSISTENTE · IN ATTESA DEL VETERINARIO","cosigned": "controfirmato, bozza dell'assistente",
   "medsTick": "Verificato","medsUnchecked": "{n} riga/e della terapia da spuntare rispetto alle tue note prima dell'approvazione.",
   "copied": "Copiato come testo semplice.",
   "copyFail": "Copia non riuscita; seleziona il referto e copia manualmente.",
@@ -120,6 +125,7 @@ const JS = {
   "blocking": "{n} blockierende(r) Punkt(e): die Akte enthält etwas, das nicht in den Notizen steht.",
   "unresolved": "{n} fehlende Angabe(n) ergänzen oder als nicht erfasst markieren.",
   "ready": "Bereit zur Freigabe.",
+  "handOver": "An Tierärztin/Tierarzt übergeben","handedStatus": "Entwurf vorbereitet und zur Gegenzeichnung übergeben. Nichts wurde gespeichert.","nurseDraft": "TFA-ENTWURF · WARTET AUF FREIGABE","cosigned": "gegengezeichnet, Entwurf der TFA",
   "medsTick": "Geprüft","medsUnchecked": "{n} Medikationszeile(n) vor der Freigabe gegen die Notizen abhaken.",
   "copied": "Als Klartext kopiert.",
   "copyFail": "Kopieren fehlgeschlagen; Bericht markieren und manuell kopieren.",
@@ -146,6 +152,10 @@ const t = T[lang]; const j = JS[lang];
       <div>
         <label for="ws-country" class="ws-label">{t.countryLabel}</label>
         <select id="ws-country"><option value="DE">DE</option><option value="IT">IT</option><option value="CH">CH</option><option value="AT">AT</option></select>
+      </div>
+      <div>
+        <label for="ws-role" class="ws-label">{t.roleLabel}</label>
+        <select id="ws-role"><option value="vet">{t.roleVet}</option><option value="nurse">{t.roleNurse}</option></select>
       </div>
       <div class="ws-patient" id="ws-patient"></div>
       <div class="ws-state" id="ws-state"><span class="badge draft">● {j.draft}</span></div>
@@ -180,7 +190,7 @@ const t = T[lang]; const j = JS[lang];
   <style is:global>
     .ws-top { display: flex; gap: 20px; align-items: flex-end; flex-wrap: wrap; }
     .ws-label { display: block; font-size: .8rem; color: var(--ink-3); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
-    #ws-case, #ws-country { padding: 9px 12px; font: inherit; border: 1.5px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); min-width: 260px; }
+    #ws-case, #ws-country, #ws-role { padding: 9px 12px; font: inherit; border: 1.5px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); min-width: 260px; }
     .ws-patient { font-weight: 600; }
     .ws-state { margin-left: auto; }
     .ws { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--surface); margin-top: 16px; min-height: 420px; }
@@ -238,17 +248,20 @@ const t = T[lang]; const j = JS[lang];
     const labels: Record<string, string> = J.cases;
     const $ = (s: string) => document.querySelector(s) as HTMLElement;
 
-    let cur: { notes: string; header: any; record: Rec; lang: 'en' | 'de' | 'it'; resolved: Record<string, string>; approved: boolean; meds: boolean[] };
+    let cur: { notes: string; header: any; record: Rec; lang: 'en' | 'de' | 'it'; resolved: Record<string, string>; approved: boolean; meds: boolean[]; handed: boolean };
 
     const sel = $('#ws-case') as HTMLSelectElement;
     for (const c of [...cases].sort((a, b) => Object.keys(labels).indexOf(a.id) - Object.keys(labels).indexOf(b.id))) { const o = document.createElement('option'); o.value = c.id; o.textContent = labels[c.id] ?? c.id; sel.appendChild(o); }
     sel.addEventListener('change', () => load(sel.value));
     const csel = $('#ws-country') as HTMLSelectElement;
     csel.addEventListener('change', () => { if (cur) renderFlags(); });
+    const rsel = $('#ws-role') as HTMLSelectElement;
+    const approveBtn = $('#ws-approve') as HTMLButtonElement; const approveLabel = approveBtn.innerHTML;
+    rsel.addEventListener('change', () => { approveBtn.innerHTML = rsel.value === 'nurse' ? `${J.handOver} <kbd>Ctrl+Shift+Enter</kbd>` : approveLabel; if (cur) renderFlags(); });
 
     function load(id: string) {
       const c = cases.find((x) => x.id === id)!;
-      cur = { notes: normalizeNotes(c.notes), header: PatientHeader.parse(c.header), record: ClinicalRecord.parse(c.fixture_record), lang: c.language, resolved: {}, approved: false, meds: [] };
+      cur = { notes: normalizeNotes(c.notes), header: PatientHeader.parse(c.header), record: ClinicalRecord.parse(c.fixture_record), lang: c.language, resolved: {}, approved: false, meds: [], handed: false };
       const h = cur.header;
       $('#ws-patient').textContent = [h.name, h.species, h.breed, h.sex, h.age && `${h.age.value} ${h.age.unit}${h.age.value === 1 ? '' : 's'}`, h.weight_kg && `${h.weight_kg} kg`].filter(Boolean).join(' · ');
       $('#ws-lang').textContent = { en: 'English', de: 'Deutsch', it: 'Italiano' }[cur.lang];
@@ -354,8 +367,16 @@ const t = T[lang]; const j = JS[lang];
 
     function approve() {
       if (($('#ws-approve') as HTMLButtonElement).disabled) return;
+      const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      if (rsel.value === 'nurse') {
+        // A nurse or assistant prepares the draft; only a veterinarian can approve.
+        cur.handed = true;
+        $('#ws-state').innerHTML = `<span class="badge draft">● ${J.nurseDraft} · ${time}</span>`;
+        $('#ws-status').textContent = J.handedStatus;
+        return;
+      }
       cur.approved = true; document.body.classList.add('ws-approved');
-      $('#ws-state').innerHTML = `<span class="badge reviewed">✓ ${J.approved} · ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>`;
+      $('#ws-state').innerHTML = `<span class="badge reviewed">✓ ${J.approved}${cur.handed ? ` (${J.cosigned})` : ''} · ${time}</span>`;
       render();
     }
     function copyOut() {
