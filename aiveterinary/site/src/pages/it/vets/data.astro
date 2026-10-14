@@ -1,0 +1,60 @@
+---
+import Base from '../../../layouts/Base.astro';
+---
+<Base title="Gestione dei dati per le cliniche" description="Dove risiedono i dati della clinica, chi li tratta, per quanto tempo e come si esportano. La versione pubblica del nostro accordo sul trattamento dei dati." lang="it">
+  <article class="wrap narrow hero prose">
+    <p class="eyebrow"><a href="/it/vets">Per i team veterinari</a> · Gestione dei dati</p>
+    <h1>Dove vanno i Suoi dati, e dove no</h1>
+    <p class="lead">Questa pagina è la versione pubblica dell'accordo sul trattamento dei dati che ogni clinica firma con noi. Se qualcosa scritto qui non è nel contratto, è il contratto a essere sbagliato. Stato: bozza fino alla firma della prima clinica pilota; le modifiche saranno elencate in fondo.</p>
+
+    <h2>Ruoli</h2>
+    <p>La clinica è titolare del trattamento delle proprie cartelle cliniche. AI Veterinary è responsabile del trattamento e agisce sulla base delle istruzioni documentate della clinica (art. 28 GDPR). Non usiamo mai i dati della clinica per scopi nostri e nulla viene usato per addestrare modelli di IA, nostri o di altri.</p>
+
+    <h2>Cosa viene trattato</h2>
+    <ul>
+      <li>Le note digitate, la cartella strutturata che ne deriva e i documenti approvati. Sono un'unità: un documento non viene mai conservato senza le note da cui proviene.</li>
+      <li>Identità del paziente: nome, specie, razza, sesso, data di nascita, microchip. Identità del proprietario solo per quanto serve a un documento (nome e codice fiscale dove una fattura o una ricetta lo richiede).</li>
+      <li>Dati dell'account dei membri del team (nome, email, ruolo) e un registro di audit, non modificabile, di chi ha approvato cosa e quando.</li>
+    </ul>
+    <p>Nessun audio. L'assistente non ha una funzione microfono: non si registra nulla e non c'è nulla per cui chiedere il consenso ai proprietari.</p>
+
+    <h2>Sub-responsabili</h2>
+    <p>L'elenco completo. Ogni aggiunta viene comunicata con 30 giorni di anticipo e la clinica può opporsi.</p>
+    <table>
+      <thead><tr><th>Fornitore</th><th>Scopo</th><th>Sede</th><th>Contenuti clinici?</th></tr></thead>
+      <tbody>
+        <tr><td>Cloudflare</td><td>Hosting del sito e dell'applicazione, TLS, protezione DDoS</td><td>Edge UE, rete globale per i file statici</td><td>Transitano cifrati; non conservati</td></tr>
+        <tr><td>Supabase</td><td>Database, autenticazione, archiviazione file</td><td>Francoforte, Germania</td><td>Sì, cifrati a riposo; accesso separato per clinica (row-level security)</td></tr>
+        <tr><td>Anthropic</td><td>Modello linguistico che struttura le note nella cartella</td><td>Regione UE dove disponibile; altrimenti con clausole contrattuali standard</td><td>Sì, per la durata della richiesta; nessun addestramento; conservazione più breve offerta dal fornitore (zero dove disponibile)</td></tr>
+        <tr><td>Fornitore email (da scegliere, UE)</td><td>Email transazionali: link di accesso, notifiche di approvazione</td><td>UE</td><td>No</td></tr>
+      </tbody>
+    </table>
+    <p>Nell'applicazione non ci sono script di analisi, pixel pubblicitari o registrazioni di sessione.</p>
+
+    <h2>Conservazione</h2>
+    <table>
+      <thead><tr><th>Dati</th><th>Conservati per</th></tr></thead>
+      <tbody>
+        <tr><td>Cartelle cliniche, note, documenti approvati, generazioni IA</td><td>Quanto decide la clinica; molti ordinamenti richiedono la conservazione pluriennale delle cartelle veterinarie e il periodo lo fissa la clinica</td></tr>
+        <tr><td>Registro di audit</td><td>Almeno quanto la cartella a cui appartiene</td></tr>
+        <tr><td>Log applicativi (anonimizzati, senza contenuti clinici)</td><td>30 giorni</td></tr>
+        <tr><td>Backup (cifrati, nella stessa regione)</td><td>35 giorni, poi sovrascritti</td></tr>
+        <tr><td>Dopo la chiusura dell'account</td><td>Prima l'esportazione completa; cancellazione entro 30 giorni; i backup scadono entro 35 giorni; confermato per iscritto</td></tr>
+      </tbody>
+    </table>
+
+    <h2>I diritti della clinica</h2>
+    <ul class="paw-list">
+      <li><strong>Esportare tutto, in qualsiasi momento.</strong> Ogni cartella e documento, con note e audit, in JSON e PDF. Senza costi né preavviso.</li>
+      <li><strong>Le richieste dei proprietari passano dalla clinica.</strong> Quando un proprietario chiede accesso o cancellazione decide la clinica; noi forniamo gli strumenti.</li>
+      <li><strong>Verificarci.</strong> Su richiesta forniamo la documentazione di sicurezza, i contratti con i sub-responsabili e, quando disponibili, i rapporti di audit di terze parti.</li>
+      <li><strong>Notifica di violazione entro 24 ore</strong> da quando ne veniamo a conoscenza, con ciò che sappiamo e ciò che stiamo facendo.</li>
+    </ul>
+
+    <h2>Modelli per i Suoi obblighi</h2>
+    <p>Disponibili con l'accordo pilota: un'<em>Informativa sull'uso dell'intelligenza artificiale</em> per informare i proprietari della documentazione assistita da IA, e l'accordo ex art. 28 GDPR già compilato con i dati di questa pagina.</p>
+
+    <h2>Modifiche a questa pagina</h2>
+    <p>Nessuna finora. Ogni modifica sarà datata qui. Domande: <a href="mailto:privacy@aiveterinary.org">privacy@aiveterinary.org</a>.</p>
+  </article>
+</Base>
