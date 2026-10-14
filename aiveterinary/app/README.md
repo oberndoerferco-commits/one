@@ -57,3 +57,14 @@ Target before any pilot: ≥ 300 cases across EN/DE/IT written with vets,
 Facts the vet enters at sign-off, never extracted from prose: microchip, owner name and tax id, author and registration, consent (obtained, scope, method), Italian REV number, and one dispensing record per medication (product, authorisation number, batch, pack, quantity, antibiotic flag and justification). `countryMissing(record, header, ctx)` returns flags for DE (TÄHAV dispensing record, antibiotic justification, prescription names the keeper), IT (microchip, codice fiscale, REV number, consent modi e tempi), CH (TAMV product and quantity, IS ABV pack and indication for antibiotics) and AT (TAMG product, batch, quantity). Common to all: responsible vet named, vaccine batch, consent for performed procedures, declined care documented. Flags are printed in the report's missing section; nothing is filled in.
 
 `provenance(record)` gives the counts printed under every document: facts from the notes, not recorded, added by AI (always 0, every fact carries a span).
+
+## Documents from the approved record (`src/render.ts`)
+
+All documents are rendered by code from the record's own sentences; headings, tables and flags are code, nothing else is added.
+
+- `renderConsultReport` — the clinical report with the medication table, declined-care section and provenance line.
+- `renderOwnerSummary` — the same facts grouped for the person acting at home: why you came, what we found, what we did, medication to give (identical table), a dose checklist when frequency and duration parse unambiguously (`parseDosesPerDay`, `parseDurationDays`), at home, next appointment, discussed and declined.
+- `renderReferralLetter` — clinical letter to a colleague; the referral reason is the vet's own words passed in, flagged when absent.
+- `renderPrescription` — one section per dispensed or prescribed medicine with the Art. 105(5) Reg. (EU) 2019/6 content, taking product, quantity, authorisation number and batch from the `VisitContext` dispensing record; keeper, microchip and prescribing vet flagged when absent.
+
+The workspace preview on the site exposes all four through its document selector.
