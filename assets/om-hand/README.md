@@ -141,3 +141,22 @@ And against the drawing, at matched letter size:
   straight, while the 99th percentile keeps the corners
 - halo **−7%** of its ink, 136 strokes against 136
 - keyline **0.345%** of the letters box against **0.360%**
+
+## Approaches tried and discarded
+
+Recorded so they are not tried again. Each one made the letter worse, and each
+was reverted:
+
+| Approach | What happened |
+| --- | --- |
+| Fit the bowl to a superellipse | The counter is egg-shaped — wider low, narrower at the top — and a centred superellipse cannot represent that. The fit diverged to b=8046, n=3.8, which is a vertical strip; the beaks were mangled. |
+| Mirror the O's bowl | Came out visibly wider and rounder than the drawing's. Symmetry is right in the abstract and wrong here: the letter stopped being the drawn one. |
+| Draw each span as a true circular arc | Handles set by geometry rather than fitted. Long spans overshoot, and the bowl goes pointed at the bottom. |
+| Taper the flourish slit to a point, row by row | Either bridges separate runs into a solid block, or forks the slit in two. |
+| Drop "orphan" hatch strokes | Wherever the halo is one stroke deep the rule ate real halo, emptying the O's upper left. |
+
+The common thread in the first three: every curve is ultimately **fitted to the
+traced points**, so it carries the drawing's low-frequency wobble, and the
+attempts to escape that by imposing a shape instead all impose the wrong shape.
+Closing the last of that gap is eye-work — moving control points by hand — not
+something this pipeline can decide.
