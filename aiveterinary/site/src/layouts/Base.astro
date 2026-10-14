@@ -140,6 +140,7 @@ const current = (href: string) => path === href || path.startsWith(href + '/');
     <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body>
+    <a class="skip" href="#main">{({ en: 'Skip to content', it: 'Vai al contenuto', de: 'Zum Inhalt springen' } as any)[L]}</a>
     <header class="site-header">
       <div class="wrap">
         <a class="brand" href={t.home} aria-label={t.brandAria}>
@@ -162,7 +163,7 @@ const current = (href: string) => path === href || path.startsWith(href + '/');
       </div>
     </header>
 
-    <main>
+    <main id="main" tabindex="-1">
       <slot />
     </main>
 

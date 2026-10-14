@@ -289,3 +289,10 @@ p { margin: 0 0 1em; }
   h2 { font-size: 15pt; break-after: avoid; }
   .article-refs { break-inside: avoid; }
 }
+
+/* keyboard users */
+.skip { position: absolute; left: 16px; top: -60px; background: var(--accent); color: #fff; padding: 10px 16px; border-radius: 999px; z-index: 100; font-weight: 600; text-decoration: none; transition: top .15s ease; }
+.skip:focus { top: 12px; outline: 3px solid var(--ink); outline-offset: 2px; }
+.btn:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+.nav a.nav-cta:focus-visible, .btn:focus-visible { outline-offset: 3px; border-radius: 999px; }
+main:focus { outline: none; }
