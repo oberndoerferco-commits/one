@@ -48,6 +48,51 @@ def clean_letters(mask, sigma, fit, **reg):
     return out
 
 
+def symmetrise_o(O, flourish_min=400):
+    """Make the O's bowl symmetrical and put its flourish back on top.
+
+    A finished letter is symmetrical; a sketch is not.  The bowl and the two
+    beaks are mirror images by design, so the left half is mirrored onto the
+    right and the flourish - the one genuinely one-sided part - is lifted off
+    the original and laid back over the result.
+    """
+    ys, xs = np.nonzero(O)
+    x0, x1 = xs.min(), xs.max()
+    # the axis is solved for, not assumed: the flourish drags the centroid right
+    lo = O[:, : (x0 + x1) // 2]
+    best, bc = None, (x0 + x1) / 2.0
+    for c in np.arange((x0 + x1) / 2.0 - 25, (x0 + x1) / 2.0 + 25.1, 0.5):
+        yy, xx = np.mgrid[0:O.shape[0], 0:O.shape[1]].astype(float)
+        mir = ndi.map_coordinates(O.astype(float), [yy, 2 * c - xx], order=1,
+                                  mode='constant')
+        keep = xx < c - 2                       # score on the left half only
+        e = float(np.abs(O.astype(float) - mir)[keep].sum())
+        if best is None or e < best:
+            best, bc = e, c
+    yy, xx = np.mgrid[0:O.shape[0], 0:O.shape[1]].astype(float)
+    left = O & (xx < bc)
+    mirrored = ndi.map_coordinates(left.astype(float), [yy, 2 * bc - xx],
+                                   order=1, mode='constant') > 0.5
+    bowl = left | mirrored
+    # The flourish is a slit cut INTO the bowl, not a spur sticking out of it,
+    # so it shows up as ink the mirrored bowl has and the drawing does not.
+    cut = bowl & ~O
+    lab, n = ndi.label(cut)
+    area = 0
+    if n:
+        sz = ndi.sum(cut, lab, range(1, n + 1))
+        for i in np.argsort(sz)[::-1]:
+            if sz[i] < flourish_min:
+                break
+            ys2, xs2 = np.nonzero(lab == i + 1)
+            if xs2.mean() > bc and ys2.mean() < ys.mean():   # upper right only
+                bowl = bowl & ~(lab == i + 1)
+                area += int(sz[i])
+    print('      O: bowl mirrored about x=%.1f, flourish cut back in (%d px)'
+          % (bc, area))
+    return bowl
+
+
 def _axis_of(mask, right):
     """The M's own mirror axis, as the centroid of the symmetrised half."""
     xs = np.nonzero(mask & right)[1]
@@ -442,6 +487,7 @@ def main(argv=None):
                          'double bend; too small and the splits chase the pen '
                          'wobble the rebuild exists to remove')
     ap.add_argument('--no-even', action='store_true')
+    ap.add_argument('--no-symmetric-o', action='store_true')
     a = ap.parse_args(argv)
     os.makedirs(a.outdir, exist_ok=True)
     fit = dict(line_tol=a.line_tol, curve_tol=a.curve_tol,
@@ -462,6 +508,9 @@ def main(argv=None):
     right[:, split_x:] = True
     print('   splitting O from M at x=%d; symmetrising the M' % split_x)
     bl = np.where(right, mirror_pair([black & right], 0)[0], black.astype(float))
+    if not a.no_symmetric_o:
+        o = symmetrise_o((bl > 0.5) & ~right)
+        bl = np.where(right, bl, o.astype(float))
 
     reg = dict(corner_deg=a.corner_deg, corner_span=11, extreme_span=9,
                min_run=9, straight_tol=1.1, merge=9.0, fit_tol=a.fit_tol)
