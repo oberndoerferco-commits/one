@@ -20,6 +20,7 @@ export const Dispensing = z.object({
   quantity: z.object({ value: z.number(), unit: z.string() }).nullable().default(null),
   is_antibiotic: z.boolean().default(false),
   antibiotic_justification: z.string().nullable().default(null),
+  is_controlled: z.boolean().default(false),           // narcotics / controlled substances (BtMVV, Tab. II etc.)
   valid_until: z.string().nullable().default(null),   // vaccines: validity end as the vet states it (ISO date)
   site: z.string().nullable().default(null),          // vaccines: injection site
 });

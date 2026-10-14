@@ -119,7 +119,7 @@ Everything costs €0 unless marked €. Legend:
 - [ ] Callback / phone-call note (typed) and email-to-record ★★
 - [ ] History recap of the patient's own approved records, every line linked ★★
 - [ ] Euthanasia record + condolence letter from vet-entered facts ★
-- [ ] Controlled-drugs book draft entry + monthly check reminder ★★
+- [x] Controlled-drugs register entry prepared from the dispensing record (monthly check reminder still open)
 - [ ] Registry export (AT Heimtierdatenbank, IT anagrafe dataset) ★★
 - [ ] Dog-bite report letter (CH, IT) ★
 - [ ] Third-country certificate pre-fill from record ★

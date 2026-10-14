@@ -104,4 +104,12 @@ describe('documents from the approved record', () => {
     const full = renderAnaesthesiaRecord(AnaesthesiaRecord.parse({ procedure: 'Ovariektomie', asa: '1', premedication: 'x', induction: 'y', maintenance: 'z', monitoring: [{ time: '10:00', hr: 90, rr: 14, temp: 37.8, spo2: 98 }], implants: [{ description: 'Naht', batch: 'B1' }], recovery: 'ruhig', anaesthetist: 'A', surgeon: 'B' }), header, 'de', { date: '2026-10-14' });
     expect(full).not.toContain('## ▲'); expect(full).toContain('| 10:00 | 90 | 14 | 37.8 | 98 |');
   });
+  it('controlled-drugs entry lists only substances marked controlled and flags a missing quantity', async () => {
+    const { renderControlledDrugsEntry } = await import('../src/render.js');
+    const { VisitContext } = await import('../src/country.js');
+    const { record, header } = prep('002-milo-otitis-de');
+    expect(renderControlledDrugsEntry(record, header, VisitContext.parse({ country: 'DE' }), 'de')).toContain('kein Betäubungsmittel');
+    const md = renderControlledDrugsEntry(record, header, VisitContext.parse({ country: 'DE', author: { name: 'Dr. V' }, dispensings: [{ medication_index: 0, product: 'Butorphanol 10 mg/ml', is_controlled: true }] }), 'de', { date: '2026-10-14' });
+    expect(md).toContain('| 2026-10-14 | Butorphanol 10 mg/ml | ▲'); expect(md).toContain('Menge für das BtM-Buch');
+  });
 });

@@ -481,3 +481,33 @@ export function renderAnaesthesiaRecord(an: AnaesthesiaRecord, header: PatientHe
   if (opts.approved) { out.push(''); out.push(`_${t.disclosure}_`); }
   return out.join('\n');
 }
+
+/* ------------------------------------------------------------------ */
+/* Controlled-drugs register entry: one line per controlled substance   */
+/* dispensed or administered today, from the dispensing record only.    */
+
+const B = {
+  en: { title: 'Controlled-drugs register entry', date: 'Date', product: 'Product', quantity: 'Quantity', balance: 'Balance after', patient: 'Patient / keeper', vet: 'Veterinarian', none: 'No controlled substance marked in today\'s dispensing record.', missingQty: 'quantity required for the register', missingVet: 'responsible veterinarian required', fill: 'to be entered from the register', note: 'Entries are made in the clinic\'s own register; this line is prepared from the record so nothing is retyped.' },
+  de: { title: 'Eintrag Betäubungsmittelbuch', date: 'Datum', product: 'Betäubungsmittel', quantity: 'Menge (Zugang/Abgang)', balance: 'Bestand danach', patient: 'Patient / Halter', vet: 'Tierärztin / Tierarzt', none: 'Heute kein Betäubungsmittel im Abgabe-Nachweis markiert.', missingQty: 'Menge für das BtM-Buch erforderlich', missingVet: 'verantwortliche Tierärztin / verantwortlicher Tierarzt erforderlich', fill: 'aus dem BtM-Buch zu übernehmen', note: 'Die Eintragung erfolgt im BtM-Buch der Praxis (§13 BtMVV); diese Zeile wird aus dem Datensatz vorbereitet, damit nichts abgetippt wird.' },
+  it: { title: 'Registro stupefacenti: voce', date: 'Data', product: 'Sostanza', quantity: 'Quantità (carico/scarico)', balance: 'Giacenza dopo', patient: 'Paziente / proprietario', vet: 'Veterinario', none: 'Nessuna sostanza stupefacente segnata nel registro di consegna di oggi.', missingQty: 'quantità necessaria per il registro', missingVet: 'veterinario responsabile necessario', fill: 'da riportare dal registro', note: 'La registrazione avviene nel registro di carico e scarico della clinica (D.P.R. 309/1990); questa voce è preparata dalla cartella per non ribattere nulla.' },
+};
+
+export function renderControlledDrugsEntry(record: ClinicalRecord, header: PatientHeader, ctx: VisitContext, lang: Lang = 'en', opts: { date?: string } = {}): string {
+  const t = L[lang], b = B[lang];
+  const out: string[] = []; const miss: Missing[] = [];
+  out.push(`# ${b.title}`); out.push('');
+  const rows = ctx.dispensings.filter((d) => d.is_controlled);
+  if (!rows.length) out.push(b.none);
+  else {
+    out.push(`| ${b.date} | ${b.product} | ${b.quantity} | ${b.balance} | ${b.patient} | ${b.vet} |`); out.push('|---|---|---|---|---|---|');
+    for (const d of rows) {
+      const m = record.medications[d.medication_index];
+      if (!d.quantity) miss.push({ field: `dispensings[${d.medication_index}].quantity`, reason: b.missingQty });
+      out.push(`| ${opts.date ?? new Date().toISOString().slice(0, 10)} | ${d.product ?? m?.drug ?? '?'} | ${d.quantity ? `−${d.quantity.value} ${d.quantity.unit}` : flag(b.missingQty)} | _${b.fill}_ | ${header.name}${ctx.owner.name ? ` / ${ctx.owner.name}` : ''} | ${ctx.author.name ?? flag(b.missingVet)} |`);
+    }
+    if (!ctx.author.name) miss.push({ field: 'author.name', reason: b.missingVet });
+  }
+  out.push(''); out.push(`_${b.note}_`);
+  if (miss.length) { out.push(''); out.push(`## ${flag(t.missing)}`); for (const x of miss) out.push(`- ${x.field}: ${x.reason}`); }
+  return out.join('\n');
+}
