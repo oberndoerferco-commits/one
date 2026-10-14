@@ -1059,12 +1059,23 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
     $('#pp-photo-remove')!.addEventListener('click', () => { const a = current(); if (!a) return; delete a.photo; renderForm(); save(J.photoRemoved); });
 
     // backup / restore
-    $('#pp-export')!.addEventListener('click', () => {
-      const blob = new Blob([JSON.stringify(store, null, 2)], { type: 'application/json' });
+    $('#pp-export')!.addEventListener('click', async () => {
+      const json = JSON.stringify(store, null, 2);
+      const names = store.animals.map((x) => x.name).filter(Boolean).join('-') || 'passport';
+      const fileName = `aiveterinary-passport-${names}-${new Date().toISOString().slice(0, 10)}.json`;
+      // Where the browser offers a save dialog (Chrome, Edge), the owner picks the folder, including a synced cloud folder.
+      const picker = (window as any).showSaveFilePicker as undefined | ((o: any) => Promise<any>);
+      if (picker) {
+        try {
+          const handle = await picker({ suggestedName: fileName, types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }] });
+          const w = await handle.createWritable(); await w.write(json); await w.close();
+          status(J.backupDone); return;
+        } catch (e: any) { if (e?.name === 'AbortError') return; /* fall through to download */ }
+      }
+      const blob = new Blob([json], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       const aEl = document.createElement('a');
-      const names = store.animals.map((x) => x.name).filter(Boolean).join('-') || 'passport';
-      aEl.href = url; aEl.download = `aiveterinary-passport-${names}-${new Date().toISOString().slice(0, 10)}.json`;
+      aEl.href = url; aEl.download = fileName;
       document.body.appendChild(aEl); aEl.click(); aEl.remove(); URL.revokeObjectURL(url);
       status(J.backupDone);
     });

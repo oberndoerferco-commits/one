@@ -87,7 +87,7 @@ Everything costs €0 unless marked €. Legend:
 - [ ] Insurance claim helper: bundle invoice photo + record extract + onset date in the insurer's format (Agila, HanseMerkur, Uelzener, Poste, Santévet) — M ★★ *only us*
 - [ ] End-of-life module: quality-of-life scale, decision aid, after-death checklist incl. deregistration — S ★★
 - [x] Multilingual print labels (EN/DE/IT; FR still open) so the booklet reads abroad — S ★★
-- [ ] Backup to own cloud (file picker to iCloud/Drive) + encrypted export — M ★★
+- [x] Backup to own cloud via the browser save dialog where supported (encrypted export still open) — M ★★
 - [ ] Multi-owner/family sharing; pet-sitter mode (time-boxed, meds + feeding + emergency only) — L ★★ (needs accounts)
 - [ ] Owner accounts live (needs Supabase) → sync, email reminders, share links — M ★★★
 
