@@ -514,6 +514,8 @@ const t = T[lang]; const j = JS[lang];
     function table(block: string) {
       const rows = block.trim().split('\n').filter((r) => !/^\|\s*-/.test(r)).map((r) => r.slice(1, -1).split('|').map((c) => c.trim()));
       const [head, ...body] = rows;
+      const isMeds = ['Drug', 'Wirkstoff', 'Farmaco'].includes(head[0]);
+      if (!isMeds) return `<table><thead><tr>${head.map((h) => `<th>${h}</th>`).join('')}</tr></thead><tbody>${body.map((r) => `<tr>${r.map((c) => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
       const tick = (i: number) => `<td class="ws-tick"><label><input type="checkbox" class="ws-med-tick" data-i="${i}" ${cur.meds[i] ? 'checked' : ''} ${cur.approved ? 'disabled' : ''} aria-label="${J.medsTick}"> ${J.medsTick}</label></td>`;
       return `<table><thead><tr>${head.map((h) => `<th>${h}</th>`).join('')}<th>${J.medsTick}</th></tr></thead><tbody>${body.map((r, i) => `<tr>${r.map((c) => `<td>${c}</td>`).join('')}${tick(i)}</tr>`).join('')}</tbody></table>`;
     }
