@@ -19,6 +19,15 @@ const T = {
     history: 'Known conditions, allergies, past surgeries', vacc: 'Vaccinations up to date?', vaccOpts: ['Yes', 'No', 'Not sure'], parasite: 'Parasite treatment (flea/tick/worm) last given', parasitePh: 'e.g. 3 weeks ago, product name',
     lifestyle: 'Indoor / outdoor / travel recently?', others: 'Other animals at home, are they well?', forVet: 'For the vet', questions: 'Questions you want to ask', media: 'Photos or videos you will show (note what and when)', mediaPh: 'e.g. video of the limp from this morning on my phone',
     make: 'Make the brief', clear: 'Clear', copy: 'Copy', print: 'Print / save as PDF', briefTitle: 'Veterinary visit brief', footer: 'Prepared by the owner with aiveterinary.org. This is the owner\'s account, not a clinical record. This page organises your answers with software; it contains no AI-generated medical content and no diagnosis.',
+    speciesTitle: 'Questions vets ask about this animal',
+    speciesQ: {
+      Dog: [['stool', 'Stool: normal, soft, blood, none?', ''], ['exercise', 'Tiring faster on walks?', 'yes / no / not sure'], ['scavenge', 'Could it have eaten something (bin, bones, chocolate, grapes, plants)?', '']],
+      Cat: [['litter', 'Litter box: urinating normally, straining, going outside the box?', ''], ['water', 'Drinking more than usual?', 'yes / no / not sure'], ['hiding', 'Hiding, less grooming, or more vocal?', ''], ['outdoor', 'Indoor only or goes outside?', '']],
+      Rabbit: [['droppings', 'Droppings in the last 12 hours: normal, smaller, fewer, none?', ''], ['hay', 'Still eating hay?', 'yes / less / no'], ['teeth', 'Drooling, wet chin, dropping food?', ''], ['lastate', 'When did it last eat?', 'e.g. this morning']],
+      'Guinea pig': [['droppings', 'Droppings in the last 12 hours: normal, smaller, fewer, none?', ''], ['hay', 'Still eating hay?', 'yes / less / no'], ['teeth', 'Drooling, wet chin, dropping food?', ''], ['lastate', 'When did it last eat?', 'e.g. this morning']],
+      Horse: [['manure', 'Manure: normal amount and consistency?', ''], ['colic', 'Pawing, looking at the flank, lying down and getting up?', ''], ['feed', 'Any change in feed, pasture or water?', '']],
+      Bird: [['droppings', 'Droppings: colour, consistency, amount?', ''], ['fluffed', 'Sitting fluffed up, on the cage floor, or tail bobbing?', ''], ['diet', 'Diet: seeds, pellets, fresh food?', '']],
+    },
     species_opts: { Dog: 'Dog', Cat: 'Cat', Rabbit: 'Rabbit', 'Guinea pig': 'Guinea pig', Horse: 'Horse', Bird: 'Bird', Other: 'Other' },
     sex_opts: { Female: 'Female', Male: 'Male', 'Female, spayed': 'Female, spayed', 'Male, neutered': 'Male, neutered' },
   },
@@ -38,6 +47,15 @@ const T = {
     history: 'Malattie note, allergie, interventi passati', vacc: 'Vaccinazioni in regola?', vaccOpts: ['Sì', 'No', 'Non so'], parasite: 'Ultimo antiparassitario (pulci/zecche/vermi)', parasitePh: 'es. 3 settimane fa, nome del prodotto',
     lifestyle: 'Vive in casa / fuori / ha viaggiato di recente?', others: 'Altri animali in casa: stanno bene?', forVet: 'Per il veterinario', questions: 'Domande che vuoi fare', media: 'Foto o video che mostrerai (cosa e quando)', mediaPh: 'es. video della zoppia di stamattina sul telefono',
     make: 'Crea il riepilogo', clear: 'Cancella', copy: 'Copia', print: 'Stampa / salva come PDF', briefTitle: 'Riepilogo per la visita veterinaria', footer: 'Preparato dal proprietario con aiveterinary.org. È il racconto del proprietario, non una cartella clinica. Questa pagina ordina le tue risposte con un software; non contiene contenuti medici generati da IA né diagnosi.',
+    speciesTitle: 'Domande che il veterinario fa su questo animale',
+    speciesQ: {
+      Dog: [['stool', 'Feci: normali, molli, con sangue, assenti?', ''], ['exercise', 'Si stanca prima durante le passeggiate?', 'sì / no / non so'], ['scavenge', 'Può aver mangiato qualcosa (spazzatura, ossa, cioccolato, uva, piante)?', '']],
+      Cat: [['litter', 'Lettiera: urina normalmente, si sforza, fa fuori dalla lettiera?', ''], ['water', 'Beve più del solito?', 'sì / no / non so'], ['hiding', 'Si nasconde, si pulisce meno o miagola di più?', ''], ['outdoor', 'Vive solo in casa o esce?', '']],
+      Rabbit: [['droppings', 'Feci nelle ultime 12 ore: normali, più piccole, meno, assenti?', ''], ['hay', 'Mangia ancora il fieno?', 'sì / meno / no'], ['teeth', 'Saliva, mento bagnato, fa cadere il cibo?', ''], ['lastate', 'Quando ha mangiato l\'ultima volta?', 'es. stamattina']],
+      'Guinea pig': [['droppings', 'Feci nelle ultime 12 ore: normali, più piccole, meno, assenti?', ''], ['hay', 'Mangia ancora il fieno?', 'sì / meno / no'], ['teeth', 'Saliva, mento bagnato, fa cadere il cibo?', ''], ['lastate', 'Quando ha mangiato l\'ultima volta?', 'es. stamattina']],
+      Horse: [['manure', 'Feci: quantità e consistenza normali?', ''], ['colic', 'Raspa, guarda il fianco, si sdraia e si rialza?', ''], ['feed', 'Cambiamenti di mangime, pascolo o acqua?', '']],
+      Bird: [['droppings', 'Feci: colore, consistenza, quantità?', ''], ['fluffed', 'Sta gonfio, sul fondo della gabbia, muove la coda respirando?', ''], ['diet', 'Dieta: semi, pellet, cibo fresco?', '']],
+    },
     species_opts: { Dog: 'Cane', Cat: 'Gatto', Rabbit: 'Coniglio', 'Guinea pig': 'Porcellino d\'India', Horse: 'Cavallo', Bird: 'Uccello', Other: 'Altro' },
     sex_opts: { Female: 'Femmina', Male: 'Maschio', 'Female, spayed': 'Femmina sterilizzata', 'Male, neutered': 'Maschio castrato' },
   },
@@ -57,6 +75,15 @@ const T = {
     history: 'Bekannte Erkrankungen, Allergien, frühere Operationen', vacc: 'Impfungen aktuell?', vaccOpts: ['Ja', 'Nein', 'Nicht sicher'], parasite: 'Letzte Parasitenbehandlung (Floh/Zecke/Wurm)', parasitePh: 'z. B. vor 3 Wochen, Präparatname',
     lifestyle: 'Wohnung / Freigang / kürzlich gereist?', others: 'Andere Tiere im Haushalt, geht es ihnen gut?', forVet: 'Für die Praxis', questions: 'Fragen, die Sie stellen möchten', media: 'Fotos oder Videos, die Sie zeigen (was und wann)', mediaPh: 'z. B. Video vom Lahmen heute Morgen auf dem Handy',
     make: 'Übersicht erstellen', clear: 'Leeren', copy: 'Kopieren', print: 'Drucken / als PDF speichern', briefTitle: 'Übersicht für den Tierarztbesuch', footer: 'Vom Halter mit aiveterinary.org vorbereitet. Dies ist die Schilderung des Halters, keine klinische Akte. Diese Seite ordnet Ihre Antworten per Software; sie enthält keine KI-generierten medizinischen Inhalte und keine Diagnose.',
+    speciesTitle: 'Fragen, die die Praxis zu diesem Tier stellt',
+    speciesQ: {
+      Dog: [['stool', 'Kot: normal, weich, blutig, keiner?', ''], ['exercise', 'Beim Spaziergang schneller müde?', 'ja / nein / unsicher'], ['scavenge', 'Könnte es etwas gefressen haben (Müll, Knochen, Schokolade, Trauben, Pflanzen)?', '']],
+      Cat: [['litter', 'Katzenklo: normaler Urinabsatz, Pressen, unsauber?', ''], ['water', 'Trinkt mehr als sonst?', 'ja / nein / unsicher'], ['hiding', 'Versteckt sich, putzt sich weniger, miaut mehr?', ''], ['outdoor', 'Nur Wohnung oder Freigang?', '']],
+      Rabbit: [['droppings', 'Köttel in den letzten 12 Stunden: normal, kleiner, weniger, keine?', ''], ['hay', 'Frisst noch Heu?', 'ja / weniger / nein'], ['teeth', 'Speicheln, nasses Kinn, lässt Futter fallen?', ''], ['lastate', 'Wann zuletzt gefressen?', 'z. B. heute Morgen']],
+      'Guinea pig': [['droppings', 'Köttel in den letzten 12 Stunden: normal, kleiner, weniger, keine?', ''], ['hay', 'Frisst noch Heu?', 'ja / weniger / nein'], ['teeth', 'Speicheln, nasses Kinn, lässt Futter fallen?', ''], ['lastate', 'Wann zuletzt gefressen?', 'z. B. heute Morgen']],
+      Horse: [['manure', 'Kot: Menge und Konsistenz normal?', ''], ['colic', 'Scharren, zur Flanke schauen, Hinlegen und Aufstehen?', ''], ['feed', 'Änderung bei Futter, Weide oder Wasser?', '']],
+      Bird: [['droppings', 'Kot: Farbe, Konsistenz, Menge?', ''], ['fluffed', 'Aufgeplustert, am Käfigboden, Schwanzwippen beim Atmen?', ''], ['diet', 'Futter: Körner, Pellets, Frischfutter?', '']],
+    },
     species_opts: { Dog: 'Hund', Cat: 'Katze', Rabbit: 'Kaninchen', 'Guinea pig': 'Meerschweinchen', Horse: 'Pferd', Bird: 'Vogel', Other: 'Sonstiges' },
     sex_opts: { Female: 'Weiblich', Male: 'Männlich', 'Female, spayed': 'Weiblich, kastriert', 'Male, neutered': 'Männlich, kastriert' },
   },
@@ -97,6 +124,11 @@ const J = {
       <label>{t.freq}<input name="frequency" placeholder={t.freqPh} /></label>
       <label>{t.trend}<select name="trend"><option value="">—</option>{t.trendOpts.map((o) => <option>{o}</option>)}</select></label>
       <label>{t.trigger}<input name="trigger" placeholder={t.triggerPh} /></label>
+    </div>
+
+    <div id="vb-species" hidden>
+      <h2>{t.speciesTitle}</h2>
+      <div class="pp-fields" id="vb-species-fields"></div>
     </div>
 
     <h2>{t.noticed}</h2>
@@ -157,7 +189,7 @@ const J = {
   @media print { .site-header, .site-footer, .hero, #vb-form, .vb-out .ws-actions, .pp-hint { display: none !important; } .vb-out { border: 0; } }
 </style>
 
-<script type="application/json" id="vb-i18n" set:html={JSON.stringify({ ...J, species_opts: t.species_opts, sex_opts: t.sex_opts })} />
+<script type="application/json" id="vb-i18n" set:html={JSON.stringify({ ...J, species_opts: t.species_opts, sex_opts: t.sex_opts, speciesQ: t.speciesQ, speciesTitle: t.speciesTitle })} />
 <script>
   const J = JSON.parse(document.getElementById('vb-i18n')!.textContent!);
   const $ = (s: string) => document.querySelector(s) as HTMLElement;
@@ -175,6 +207,7 @@ const J = {
         const a = store.animals.find((x: any) => x.id === sel.value); if (!a) return;
         const set = (n: string, v: string) => { const el = form.elements.namedItem(n) as HTMLInputElement | null; if (el && v) el.value = v; };
         set('name', a.name); set('species', a.species); set('breed', a.breed); set('weight', a.weight);
+        (form.querySelector('[name="species"]') as HTMLSelectElement).dispatchEvent(new Event('change'));
         set('sex', a.sex && a.neutered === 'Yes' ? `${a.sex}, ${a.sex === 'Female' ? 'spayed' : 'neutered'}` : a.sex);
         if (a.dob) { const y = (Date.now() - new Date(a.dob).getTime()) / 31557600000; set('age', y < 1 ? `${Math.round(y * 12)} ${J.months}` : `${Math.floor(y)} ${J.years}`); }
         set('meds', (a.medications ?? []).map((m: any) => [m.name, m.dose, m.started && `${J.since2} ${m.started}`].filter(Boolean).join(', ')).join('\n'));
@@ -192,6 +225,17 @@ const J = {
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     setTimeout(() => { loading.hidden = true; makeBrief(); }, reduce ? 0 : 900);
   });
+  const speciesSel = form.querySelector('[name="species"]') as HTMLSelectElement;
+  function renderSpeciesQ() {
+    const qs = (J.speciesQ ?? {})[speciesSel.value] ?? [];
+    const box = $('#vb-species') as HTMLElement; const fields = $('#vb-species-fields') as HTMLElement;
+    const keep: Record<string, string> = {}; fields.querySelectorAll('input').forEach((i) => { keep[i.name] = i.value; });
+    fields.innerHTML = qs.map(([k, label, ph]: string[]) => `<label class="wide">${esc(label)}<input name="sq_${k}" data-label="${esc(label)}" placeholder="${esc(ph)}" value="${esc(keep['sq_' + k] ?? '')}"></label>`).join('');
+    box.hidden = qs.length === 0;
+  }
+  speciesSel.addEventListener('change', renderSpeciesQ);
+  form.addEventListener('reset', () => setTimeout(renderSpeciesQ, 0));
+  renderSpeciesQ();
   function makeBrief() {
     const d = new FormData(form);
     const g = (n: string) => String(d.get(n) ?? '').trim();
@@ -203,6 +247,7 @@ const J = {
       <h3>${J.main}</h3>
       <p>${esc(g('concern')) || `<em>${J.notDescribed}</em>`}</p>
       <dl>${row(J.since, g('since'))}${row(J.freq, g('frequency'))}${row(J.trend, g('trend'))}${row(J.trigger, g('trigger'))}</dl>
+      ${(() => { const rows = Array.from(form.querySelectorAll<HTMLInputElement>('#vb-species-fields input')).filter((i) => i.value.trim()).map((i) => row(i.dataset.label ?? i.name, i.value)).join(''); return rows ? `<h3>${esc(J.speciesTitle)}</h3><dl>${rows}</dl>` : ''; })()}
       <h3>${J.signs}</h3>
       <p>${signs.length ? esc(signs.join(', ')) : J.none}${g('other') ? '. ' + esc(g('other')) : ''}</p>
       <h3>${J.food}</h3>

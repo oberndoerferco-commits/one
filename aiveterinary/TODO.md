@@ -92,7 +92,7 @@ Everything costs €0 unless marked €. Legend:
 - [ ] Owner accounts live (needs Supabase) → sync, email reminders, share links — M ★★★
 
 ### Pre-visit brief
-- [ ] Species-specific question sets (cat urinary, rabbit gut, senior) — S ★★
+- [x] Species-specific question sets (cat urinary, rabbit gut, senior) — S ★★
 - [ ] Send to clinic by email/PDF; later: accept at the vet side as *owner-reported* input with its own provenance tag — M ★★★ *only us: brief flows into the record as "owner says"*
 
 ## 5. Vet tool — **Me**
