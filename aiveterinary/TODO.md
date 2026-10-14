@@ -46,7 +46,7 @@ Everything costs €0 unless marked €. Legend:
 - [ ] Newsletter double opt-in flow + timestamped consent log (Garante 330/2025; §7 UWG) — S ★★★
 - [x] Article author + reviewer block with chamber/Ordine registration number, "reviewed on / next review", numbered references — S ★★★ (trust differentiator)
 - [x] Editorial policy, corrections policy, conflict-of-interest and funding page — S ★★
-- [ ] "Informativa uso IA" template for Italian vets; AVV/DPA template for German practices (Art. 28) — S ★★★
+- [x] "Informativa uso IA" template for Italian vets; AVV/DPA template for German practices (Art. 28) — drafts in docs/legal, lawyer review before use — S ★★★
 - [x] Public DPA, subprocessor list, retention policy page for the vet tool — S ★★★ (only Curala/Tandem/Petleo are clear today)
 - [x] Accessibility pass to WCAG 2.2 AA (automated axe audit on 11 pages: 0 violations after the contrast fix; manual keyboard/screen-reader pass still open) — M ★★
 

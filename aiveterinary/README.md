@@ -63,3 +63,5 @@ Cloudflare, Supabase) and vets to go live. See `TODO.md`.
 3. A clickable prototype on synthetic patients, timed with 5 vets.
 4. Contact PIMS vendors' partner programmes early. Integration agreements take
    months (see competitive analysis).
+
+- `docs/legal/` — draft Informativa sull'uso dell'IA (IT) and Auftragsverarbeitungsvertrag (DE/AT); lawyer review before use
