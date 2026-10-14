@@ -274,3 +274,18 @@ p { margin: 0 0 1em; }
 .az-list a:hover { color: var(--accent); text-decoration: underline; }
 .az-meta { color: var(--ink-3); font-size: .88rem; margin-left: 6px; }
 .chips a { text-decoration: none; color: inherit; }
+
+/* print: articles and plain pages */
+@media print {
+  .site-header, .site-footer, .article-actions, .toc, .nav, .animal-row, .hero2-art, .hero-side, .site-search, .chips, .btn { display: none !important; }
+  body { background: #fff; color: #000; font-size: 11pt; }
+  a { color: #000; text-decoration: none; }
+  .prose a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .85em; color: #555; }
+  .notice { border: 1px solid #999; background: #fff; }
+  .badge { border-color: #999; color: #000; }
+  .article-meta { color: #333; }
+  .wrap { max-width: none; padding: 0; }
+  h1 { font-size: 22pt; }
+  h2 { font-size: 15pt; break-after: avoid; }
+  .article-refs { break-inside: avoid; }
+}
