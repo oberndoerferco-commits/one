@@ -256,7 +256,7 @@ def halo_band(cyan, pitch, smooth, level=0.5):
 
 
 def hatch(region, pitch, width, min_len, dl=None, phase=None, cyan=None,
-          trim=0.5):
+          trim=0.5, lone=2.2):
     """A true parallel hatch across a region: one family, one pitch, one angle.
 
     At 135 degrees the lines are the anti-diagonals x + y = c, so stepping c by
@@ -323,7 +323,7 @@ def hatch(region, pitch, width, min_len, dl=None, phase=None, cyan=None,
         P = np.array([(o[0], o[1]) for o in out])
         d = np.linalg.norm(P[:, None, :] - P[None, :, :], axis=2)
         np.fill_diagonal(d, 1e18)
-        alone = d.min(1) > 2.2 * pitch
+        alone = d.min(1) > lone * pitch
         if alone.any():
             print('      dropped %d isolated speck(s)' % int(alone.sum()))
         out = [o for o, bad in zip(out, alone) if not bad]
@@ -420,6 +420,12 @@ def main(argv=None):
                          'in, so 10 px of growth is what lands a ring of the '
                          'right weight: 0.345%% of the letters box against the '
                          'drawing\'s 0.360%%')
+    ap.add_argument('--lone', type=float, default=999.0,
+                    help="a stroke with no neighbour within this many pitches "
+                         "is dropped as a speck. Effectively off: at 2.2 it ate "
+                         "the halo wherever the band is only one stroke deep, "
+                         "which emptied the O's upper left entirely. The minimum "
+                         "stroke length already removes real specks.")
     ap.add_argument('--trim', type=float, default=0.0,
                     help='how far inside the halo edge a stroke ends, in cap '
                          'radii; 1.0 puts the cap exactly on the smoothed edge, '
@@ -483,7 +489,7 @@ def main(argv=None):
     region = band & ~ndi.binary_dilation(bl > 0.5, _disk(int(round(a.gap)) + rad))
     dl = ndi.distance_transform_edt(~(bl > 0.5))
     C = hatch(region, pitch, width, a.min_len * width, dl=dl, cyan=cyan,
-              trim=a.trim)
+              trim=a.trim, lone=a.lone)
 
     # the keyline, as an even ring rather than the hand's varying band: the
     # letters grown by the width the drawing's cream measures, traced and

@@ -68,9 +68,9 @@ Measured off the drawing's 136 strokes:
 | width | 14.3–15.7 px (two methods) | **15.0 px ± 1.4%** |
 | pitch | 21.4 px between neighbours | **21.0 px** |
 | white gap | 5.7–7.1 px | **6.0 px** |
-| stroke count | 136 | **127** |
+| stroke count | 136 | **136** |
 | median length | 85.6 px | **83.5 px** |
-| total ink | — | **89% of the drawing's** |
+| total ink | — | **93% of the drawing's** |
 
 The angle and the width are plainly meant to be constant, so they are made
 constant. At exactly 135° the strokes are the anti-diagonals `x + y = c`, so the
@@ -99,9 +99,12 @@ Three details that matter:
   has the letters-plus-gap dilated out of it before any stroke is cut, so a
   stroke cannot touch a letter. Measured clearance in the finished file: 24 px
   minimum at 400 dpi.
-- **Orphans are dropped.** A stroke with no neighbour within 2.2 pitches is a
-  speck the band tapered down to, not part of the hatch, which reads as a run.
-  Five went.
+- **Orphan-dropping is off.** A stroke with no near neighbour looked like a
+  speck the band had tapered down to, so it was dropped. It is not: wherever the
+  halo is genuinely one stroke deep the rule ate it, and it emptied the O's
+  upper left completely — 0 px there against the drawing's 18,163. With it off
+  the halo is **136 strokes, exactly the drawing's count**, and 93% of its ink.
+  The minimum stroke length already removes real specks.
 
 ### The keyline
 
@@ -128,5 +131,5 @@ And against the drawing, at matched letter size:
 - the O's flourish slit **0.96×** the drawing's
 - edge turn per step: the drawing 6.12°, this **0.00°** — straight runs stay
   straight, while the 99th percentile keeps the corners
-- halo **−11%** of its ink, median stroke length **83.5 px against 85.6**
+- halo **−7%** of its ink, 136 strokes against 136
 - keyline **0.345%** of the letters box against **0.360%**
