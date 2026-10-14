@@ -258,7 +258,8 @@ const t = T[lang]; const j = JS[lang];
     .ws-flaglist input { padding: 6px 8px; font: inherit; border: 1.5px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--ink); }
     .ws-flaglist button { font: inherit; font-size: .85rem; padding: 4px 10px; border-radius: 6px; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink-2); cursor: pointer; }
     .ws-actions { display: flex; gap: 10px; flex-wrap: wrap; }
-    kbd { font: inherit; font-size: .75rem; opacity: .7; margin-left: 6px; }
+    kbd { font: inherit; font-size: .75rem; margin-left: 6px; }
+    .btn.secondary kbd { color: var(--ink-2); }
     .ws-approved .badge.draft { display: none; }
     @media (max-width: 820px) { .ws { grid-template-columns: 1fr; } .ws-pane + .ws-pane { border-left: 0; border-top: 1px solid var(--line); } }
     @media print { .site-header, .site-footer, .ws-top, .notice, .ws-pane:first-child, .ws-flags, .eyebrow { display: none !important; } .ws { border: 0; } }
