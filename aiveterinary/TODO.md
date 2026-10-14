@@ -152,7 +152,7 @@ Everything costs €0 unless marked €. Legend:
 - [ ] Partner-programme applications: Provet, ezyVet, Covetrus; Petleo-style agreement with Vetera/Nordhealth; VetZ — **You** + L ★★
 
 ### Platform
-- [ ] Vet accounts (email link + MFA), clinic settings (letterhead, language, units, SOAP on/off, abbreviations) — M ★★★
+- [x] Vet accounts (email link + MFA), clinic settings (letterhead, language, units, SOAP on/off, abbreviations) — M ★★★ (letterhead stored on the device, printed over every document; PDF export is the browser print)
 - [ ] Letterhead PDF + print — S ★★★
 - [ ] Retention controls (auto-delete drafts/raw notes), immutable approved versions (§16 TÄHAV) — S ★★★
 - [ ] Clinic-owner analytics (time-to-approved, edit ratio, open flags) — no clinical text — S ★★

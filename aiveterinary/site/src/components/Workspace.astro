@@ -9,7 +9,7 @@ const T = {
   "countryLabel": "Country rules",
   "roleLabel": "I am",
   "docLabel": "Document","docReport": "Consultation report","docOwner": "Owner summary","docReferral": "Referral letter","docRx": "Prescription","docVacc": "Vaccination entry","docConsent": "Consent form","docEstimate": "Cost estimate","referralReason": "Reason for referral (your words)",
-  "attachLabel": "Attach a photo or document","attachHint": "Stored with the record and referenced in the report. Never read or interpreted by the assistant.",
+  "attachLabel": "Attach a photo or document","clinicTitle": "Your letterhead","clinicHint": "Printed on top of every document and used as the responsible veterinarian. Stored on this device only.","clinicName": "Practice name","clinicAddress": "Address and phone","clinicVet": "Veterinarian","clinicReg": "Registration (chamber / Ordine)","attachHint": "Stored with the record and referenced in the report. Never read or interpreted by the assistant.",
   "abbrTitle": "Abbreviations in your notes","abbrHint": "Expanded from the default list and your clinic glossary. Correct a meaning once and it is remembered on this device.","abbrNone": "No abbreviations recognised.","abbrSave": "Save","roleNurse": "Nurse / assistant","roleVet": "Veterinarian",
   "notice": "<strong>Preview.</strong> The example cases run offline on prepared records, so you can see exactly how the review works: source highlighting, missing-information flags, the medication table built from your own words. In the real product your own notes are structured by the model with the same checks. Nothing here is stored.",
   "notes": "Notes",
@@ -28,7 +28,7 @@ const T = {
   "countryLabel": "Regole del Paese",
   "roleLabel": "Sono",
   "docLabel": "Documento","docReport": "Referto di visita","docOwner": "Riepilogo per il proprietario","docReferral": "Lettera di riferimento","docRx": "Prescrizione","docVacc": "Registrazione vaccinale","docConsent": "Consenso informato","docEstimate": "Preventivo","referralReason": "Motivo dell'invio (parole Sue)",
-  "attachLabel": "Allega foto o documento","attachHint": "Conservato con la cartella e citato nel referto. Mai letto né interpretato dall'assistente.",
+  "attachLabel": "Allega foto o documento","clinicTitle": "La Sua intestazione","clinicHint": "Stampata in testa a ogni documento e usata come veterinario responsabile. Salvata solo su questo dispositivo.","clinicName": "Nome della clinica","clinicAddress": "Indirizzo e telefono","clinicVet": "Veterinario","clinicReg": "Iscrizione (Ordine)","attachHint": "Conservato con la cartella e citato nel referto. Mai letto né interpretato dall'assistente.",
   "abbrTitle": "Abbreviazioni nelle note","abbrHint": "Espanse dalla lista predefinita e dal glossario della clinica. Correggi un significato una volta e viene ricordato su questo dispositivo.","abbrNone": "Nessuna abbreviazione riconosciuta.","abbrSave": "Salva","roleNurse": "Assistente / infermiere","roleVet": "Veterinario",
   "notice": "<strong>Anteprima.</strong> I casi di esempio girano offline su cartelle già preparate, così puoi vedere esattamente come funziona la revisione: evidenziazione della fonte, segnalazione delle informazioni mancanti, tabella dei farmaci costruita con le tue stesse parole. Nel prodotto reale le tue note vengono strutturate dal modello con gli stessi controlli. Qui non viene salvato nulla.",
   "notes": "Note",
@@ -47,7 +47,7 @@ const T = {
   "countryLabel": "Länderregeln",
   "roleLabel": "Ich bin",
   "docLabel": "Dokument","docReport": "Behandlungsbericht","docOwner": "Halterinformation","docReferral": "Überweisungsschreiben","docRx": "Verschreibung","docVacc": "Impfeintrag","docConsent": "Einwilligung","docEstimate": "Kostenvoranschlag","referralReason": "Überweisungsgrund (Ihre Worte)",
-  "attachLabel": "Foto oder Dokument anhängen","attachHint": "Wird mit dem Datensatz gespeichert und im Bericht genannt. Vom Assistenten nie gelesen oder interpretiert.",
+  "attachLabel": "Foto oder Dokument anhängen","clinicTitle": "Ihr Briefkopf","clinicHint": "Steht über jedem Dokument und dient als verantwortliche Tierärztin / verantwortlicher Tierarzt. Nur auf diesem Gerät gespeichert.","clinicName": "Praxisname","clinicAddress": "Anschrift und Telefon","clinicVet": "Tierärztin / Tierarzt","clinicReg": "Kammer / Registrierung","attachHint": "Wird mit dem Datensatz gespeichert und im Bericht genannt. Vom Assistenten nie gelesen oder interpretiert.",
   "abbrTitle": "Abkürzungen in Ihren Notizen","abbrHint": "Aufgelöst aus der Standardliste und Ihrem Praxisglossar. Eine Bedeutung einmal korrigieren, und sie bleibt auf diesem Gerät gespeichert.","abbrNone": "Keine Abkürzungen erkannt.","abbrSave": "Speichern","roleNurse": "TFA / Assistenz","roleVet": "Tierärztin / Tierarzt",
   "notice": "<strong>Vorschau.</strong> Die Beispielfälle laufen offline auf vorbereiteten Akten, damit Sie genau sehen, wie die Prüfung funktioniert: Quellenmarkierung, Hinweise auf fehlende Angaben, die Medikamententabelle aus Ihren eigenen Worten. Im echten Produkt strukturiert das Modell Ihre eigenen Notizen mit denselben Prüfungen. Hier wird nichts gespeichert.",
   "notes": "Notizen",
@@ -214,8 +214,22 @@ const t = T[lang]; const j = JS[lang];
     </div>
     <div class="ws-pane">
       <div class="ws-h">{t.report} <span class="ws-hint" id="ws-lang"></span></div>
+      <div id="ws-letterhead" class="ws-letterhead" hidden></div>
       <div id="ws-report" class="ws-report"></div>
     </div>
+  </section>
+
+  <section class="wrap">
+    <details class="card ws-clinic">
+      <summary>{t.clinicTitle}</summary>
+      <p class="pp-hint">{t.clinicHint}</p>
+      <div class="pp-fields">
+        <label>{t.clinicName}<input data-c="name" /></label>
+        <label>{t.clinicAddress}<input data-c="address" /></label>
+        <label>{t.clinicVet}<input data-c="vet" /></label>
+        <label>{t.clinicReg}<input data-c="reg" /></label>
+      </div>
+    </details>
   </section>
 
   <section class="wrap">
@@ -262,6 +276,10 @@ const t = T[lang]; const j = JS[lang];
     .ws-report .flag { color: var(--warn); font-weight: 600; }
     .ws-report .flag.resolved { color: var(--ok); }
     .ws-report .own { color: var(--ink-3); font-style: italic; }
+    .ws-clinic summary { cursor: pointer; font-weight: 600; }
+    .ws-letterhead { border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 14px; font-size: .9rem; color: var(--ink-2); }
+    .ws-letterhead .lh-name { font-family: var(--font-display); font-size: 1.15rem; color: var(--ink); font-weight: 600; }
+    @media print { .ws-clinic { display: none; } .ws-letterhead { color: #000; border-color: #999; } }
     .ws-attach { margin-top: 14px; display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
     .ws-attach .btn { font-size: .85rem; padding: 7px 14px; }
     .ws-attach-list { list-style: none; padding: 0; margin: 0; font-size: .88rem; color: var(--ink-2); }
@@ -316,6 +334,18 @@ const t = T[lang]; const j = JS[lang];
     type Case = { id: string; language: 'en' | 'de' | 'it'; header: any; notes: string; fixture_record: any };
     const cases = [c1, c2, c3, c4, c6, c7, c8, c9, c10] as Case[];
     const J = JSON.parse(document.getElementById('ws-i18n')!.textContent!);
+    const CLINIC_KEY = 'aiveterinary.clinic.v1';
+    const loadClinic = (): Record<string, string> => { try { return JSON.parse(localStorage.getItem(CLINIC_KEY) ?? '{}'); } catch { return {}; } };
+    const clinicAuthor = () => { const c = loadClinic(); return { name: c.vet || 'Dr. Demo', registration: c.reg || null }; };
+    function renderLetterhead() {
+      const c = loadClinic(); const el = $('#ws-letterhead') as HTMLElement;
+      const lines = [c.name, c.address, [c.vet, c.reg].filter(Boolean).join(' · ')].filter(Boolean);
+      el.hidden = lines.length === 0; el.innerHTML = lines.map((l, i) => `<div class="${i === 0 ? 'lh-name' : ''}">${esc(l)}</div>`).join('');
+    }
+    for (const input of document.querySelectorAll<HTMLInputElement>('.ws-clinic [data-c]')) {
+      input.value = loadClinic()[input.dataset.c!] ?? '';
+      input.addEventListener('input', () => { const c = loadClinic(); c[input.dataset.c!] = input.value.trim(); try { localStorage.setItem(CLINIC_KEY, JSON.stringify(c)); } catch {} renderLetterhead(); if (cur) render(); });
+    }
     const GLOSSARY_KEY = 'aiveterinary.glossary.v1';
     const loadGlossary = (): Record<string, string> => { try { return JSON.parse(localStorage.getItem(GLOSSARY_KEY) ?? '{}'); } catch { return {}; } };
     const saveGlossary = (g: Record<string, string>) => { try { localStorage.setItem(GLOSSARY_KEY, JSON.stringify(g)); } catch {} };
@@ -360,10 +390,10 @@ const t = T[lang]; const j = JS[lang];
       const { record, header, lang } = cur;
       if (dsel.value === 'owner') return renderOwnerSummary(record, header, lang, { approved });
       if (dsel.value === 'referral') return renderReferralLetter(record, header, lang, { approved, reason: refIn.value.trim() || null });
-      if (dsel.value === 'estimate') return renderCostEstimate(record, header, VisitContext.parse({ country: csel.value, author: { name: 'Dr. Demo' } }), lang);
-      if (dsel.value === 'consent') return renderConsentForm(record, header, VisitContext.parse({ country: csel.value, author: { name: 'Dr. Demo' } }), lang);
-      if (dsel.value === 'vacc') return renderVaccinationEntry(record, header, VisitContext.parse({ country: csel.value, author: { name: 'Dr. Demo' } }), lang, { approved });
-      if (dsel.value === 'rx') return renderPrescription(record, header, VisitContext.parse({ country: csel.value, author: { name: 'Dr. Demo' } }), lang, { approved });
+      if (dsel.value === 'estimate') return renderCostEstimate(record, header, VisitContext.parse({ country: csel.value, author: clinicAuthor() }), lang);
+      if (dsel.value === 'consent') return renderConsentForm(record, header, VisitContext.parse({ country: csel.value, author: clinicAuthor() }), lang);
+      if (dsel.value === 'vacc') return renderVaccinationEntry(record, header, VisitContext.parse({ country: csel.value, author: clinicAuthor() }), lang, { approved });
+      if (dsel.value === 'rx') return renderPrescription(record, header, VisitContext.parse({ country: csel.value, author: clinicAuthor() }), lang, { approved });
       return renderConsultReport(record, header, lang, { approved });
     }
     const rsel = $('#ws-role') as HTMLSelectElement;
@@ -450,6 +480,7 @@ const t = T[lang]; const j = JS[lang];
       }
       renderFlags();
       renderAbbr();
+      renderLetterhead();
     }
 
     function light(spans: [number, number][], on: boolean) {
@@ -461,7 +492,7 @@ const t = T[lang]; const j = JS[lang];
       const findings: Finding[] = validateAll(record, notes, header);
       const blocks = findings.filter((f) => f.severity === 'block');
       const warns = findings.filter((f) => f.severity === 'warn');
-      const ctx = VisitContext.parse({ country: csel.value, author: { name: 'Dr. Demo' } });
+      const ctx = VisitContext.parse({ country: csel.value, author: clinicAuthor() });
       const cflags = countryMissing(record, header, ctx);
       const reasons: Record<string, string> = {}; for (const f of cflags) reasons[f.field] = f.reason;
       const missing = [...requiredMissing(record, 'consult_report'), ...cflags.map((f) => f.field).filter((f, i, a) => a.indexOf(f) === i)];
