@@ -81,7 +81,11 @@ const JS = {
    "001-luna-vomiting": "Luna, dog, vomiting (EN)",
    "002-milo-otitis-de": "Milo, Hund, Otitis (DE)",
    "003-gatto-inappetenza-it": "Romeo, gatto, inappetenza (IT)",
-   "004-adversarial-pregnant-owner": "Bruno, dog, annual check — tricky notes (EN)"
+   "004-adversarial-pregnant-owner": "Bruno, dog, annual check — tricky notes (EN)",
+   "006-adversarial-dose-not-given": "Max, dog, dose discussed but declined (EN)",
+   "007-adversarial-de-decimal-comma": "Bella, Katze, Dezimalkomma und geplante Kotprobe (DE)",
+   "008-adversarial-it-performed-vs-planned": "Rocky, cane, eseguito / programmato / rifiutato (IT)",
+   "009-adversarial-other-pet": "Nala, cat, the other cat's antibiotics (EN)"
   },
   "first": "001-luna-vomiting"
  },
@@ -111,7 +115,11 @@ const JS = {
    "003-gatto-inappetenza-it": "Romeo, gatto, inappetenza (IT)",
    "001-luna-vomiting": "Luna, cane, vomito (EN)",
    "002-milo-otitis-de": "Milo, cane, otite (DE)",
-   "004-adversarial-pregnant-owner": "Bruno, cane, controllo annuale — note insidiose (EN)"
+   "004-adversarial-pregnant-owner": "Bruno, cane, controllo annuale — note insidiose (EN)",
+   "006-adversarial-dose-not-given": "Max, cane, dose discussa ma rifiutata (EN)",
+   "007-adversarial-de-decimal-comma": "Bella, gatta, virgola decimale ed esame pianificato (DE)",
+   "008-adversarial-it-performed-vs-planned": "Rocky, cane, eseguito / programmato / rifiutato (IT)",
+   "009-adversarial-other-pet": "Nala, gatta, gli antibiotici dell'altro gatto (EN)"
   },
   "first": "003-gatto-inappetenza-it"
  },
@@ -141,7 +149,11 @@ const JS = {
    "002-milo-otitis-de": "Milo, Hund, Otitis (DE)",
    "001-luna-vomiting": "Luna, Hund, Erbrechen (EN)",
    "003-gatto-inappetenza-it": "Romeo, Katze, Inappetenz (IT)",
-   "004-adversarial-pregnant-owner": "Bruno, Hund, Jahrescheck — heikle Notizen (EN)"
+   "004-adversarial-pregnant-owner": "Bruno, Hund, Jahrescheck — heikle Notizen (EN)",
+   "006-adversarial-dose-not-given": "Max, Hund, Dosis besprochen, aber abgelehnt (EN)",
+   "007-adversarial-de-decimal-comma": "Bella, Katze, Dezimalkomma und geplante Kotprobe (DE)",
+   "008-adversarial-it-performed-vs-planned": "Rocky, Hund, durchgeführt / geplant / abgelehnt (IT)",
+   "009-adversarial-other-pet": "Nala, Katze, die Antibiotika der anderen Katze (EN)"
   },
   "first": "002-milo-otitis-de"
  }
@@ -264,9 +276,13 @@ const t = T[lang]; const j = JS[lang];
     import c2 from 'aiveterinary-app/eval/cases/002-milo-otitis-de.json';
     import c3 from 'aiveterinary-app/eval/cases/003-gatto-inappetenza-it.json';
     import c4 from 'aiveterinary-app/eval/cases/004-adversarial-pregnant-owner.json';
+    import c6 from 'aiveterinary-app/eval/cases/006-adversarial-dose-not-given.json';
+    import c7 from 'aiveterinary-app/eval/cases/007-adversarial-de-decimal-comma.json';
+    import c8 from 'aiveterinary-app/eval/cases/008-adversarial-it-performed-vs-planned.json';
+    import c9 from 'aiveterinary-app/eval/cases/009-adversarial-other-pet.json';
 
     type Case = { id: string; language: 'en' | 'de' | 'it'; header: any; notes: string; fixture_record: any };
-    const cases = [c1, c2, c3, c4] as Case[];
+    const cases = [c1, c2, c3, c4, c6, c7, c8, c9] as Case[];
     const J = JSON.parse(document.getElementById('ws-i18n')!.textContent!);
     const GLOSSARY_KEY = 'aiveterinary.glossary.v1';
     const loadGlossary = (): Record<string, string> => { try { return JSON.parse(localStorage.getItem(GLOSSARY_KEY) ?? '{}'); } catch { return {}; } };
