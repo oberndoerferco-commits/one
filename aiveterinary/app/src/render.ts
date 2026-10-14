@@ -302,3 +302,46 @@ export function renderPrescription(record: ClinicalRecord, header: PatientHeader
   if (opts.approved) { out.push(''); out.push(`_${t.disclosure}_`); }
   return out.join('\n');
 }
+
+/* ------------------------------------------------------------------ */
+/* Vaccination entry: the booklet/passport page line for each vaccine  */
+/* given today. Batch, site and validity come from the vet's dispensing */
+/* record; absent values are flags so the booklet is never filled with  */
+/* guesses.                                                            */
+
+const V = {
+  en: { title: 'Vaccination entry', vaccine: 'Vaccine', batch: 'Batch / lot', site: 'Site', date: 'Date given', valid: 'Valid until', vet: 'Veterinarian', chip: 'Microchip', none: 'No vaccine recorded as given today.', missingBatch: 'batch/lot number is required for every vaccination entry', missingValid: 'validity end not stated', missingChip: 'animal identification (microchip)', missingVet: 'veterinarian name and registration' },
+  de: { title: 'Impfeintrag', vaccine: 'Impfstoff', batch: 'Charge', site: 'Applikationsort', date: 'Impfdatum', valid: 'Gültig bis', vet: 'Tierärztin / Tierarzt', chip: 'Chipnummer', none: 'Heute keine Impfung als durchgeführt erfasst.', missingBatch: 'Chargenbezeichnung ist für jeden Impfeintrag erforderlich', missingValid: 'Gültigkeitsende nicht angegeben', missingChip: 'Tieridentifikation (Chipnummer)', missingVet: 'Name und Kammer der Tierärztin / des Tierarztes' },
+  it: { title: 'Registrazione vaccinale', vaccine: 'Vaccino', batch: 'Lotto', site: 'Sede', date: 'Data', valid: 'Valido fino al', vet: 'Veterinario', chip: 'Microchip', none: 'Nessun vaccino registrato come somministrato oggi.', missingBatch: 'il numero di lotto è obbligatorio per ogni registrazione vaccinale', missingValid: 'scadenza della validità non indicata', missingChip: 'identificazione dell\'animale (microchip)', missingVet: 'nome e iscrizione del veterinario' },
+};
+const isVaccineName = (m: Medication) => /vacc|impf|vakzin/i.test(`${m.drug ?? ''} ${m.class_as_written ?? ''}`);
+
+export function renderVaccinationEntry(record: ClinicalRecord, header: PatientHeader, ctx: VisitContext, lang: Lang = 'en', opts: { approved?: boolean; date?: string } = {}): string {
+  const t = L[lang], v = V[lang];
+  const out: string[] = [];
+  out.push(`# ${v.title}`);
+  if (!opts.approved) out.push(`_${t.draft}_`);
+  out.push('');
+  out.push(`**${headerLine(header)}** · ${v.chip}: ${ctx.microchip ?? flag(v.missingChip)}`);
+  out.push('');
+  const miss: Missing[] = [];
+  if (!ctx.microchip) miss.push({ field: 'microchip', reason: v.missingChip });
+  const given = record.medications.map((m, i) => ({ m, i })).filter(({ m }) => isVaccineName(m) && (m.status === 'performed' || m.status === 'dispensed'));
+  if (!given.length) out.push(v.none);
+  else {
+    out.push(`| ${v.vaccine} | ${v.date} | ${v.batch} | ${v.site} | ${v.valid} |`);
+    out.push('|---|---|---|---|---|');
+    for (const { m, i } of given) {
+      const d = ctx.dispensings.find((x) => x.medication_index === i);
+      if (!d?.batch) miss.push({ field: `dispensings[${i}].batch`, reason: v.missingBatch });
+      if (!d?.valid_until) miss.push({ field: `dispensings[${i}].valid_until`, reason: v.missingValid });
+      out.push(`| ${d?.product ?? m.drug ?? m.class_as_written} | ${opts.date ?? new Date().toISOString().slice(0, 10)} | ${d?.batch ?? flag(v.missingBatch)} | ${d?.site ?? '—'} | ${d?.valid_until ?? flag(v.missingValid)} |`);
+    }
+  }
+  out.push('');
+  out.push(`**${v.vet}:** ${[ctx.author.name, ctx.author.registration].filter(Boolean).join(', ') || flag(v.missingVet)}`);
+  if (!ctx.author.name) miss.push({ field: 'author.name', reason: v.missingVet });
+  if (miss.length) { out.push(''); out.push(`## ${flag(t.missing)}`); for (const x of miss) out.push(`- ${x.field}: ${x.reason}`); }
+  if (opts.approved) { out.push(''); out.push(`_${t.disclosure}_`); }
+  return out.join('\n');
+}

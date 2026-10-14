@@ -62,4 +62,16 @@ describe('documents from the approved record', () => {
     const luna = prep('001-luna-vomiting');
     expect(renderPrescription(luna.record, luna.header, VisitContext.parse({ country: 'IT' }), 'it')).toContain('Nessun medicinale');
   });
+  it('vaccination entry needs batch and validity from the dispensing record', async () => {
+    const { renderVaccinationEntry } = await import('../src/render.js');
+    const { VisitContext } = await import('../src/country.js');
+    const { record, header } = prep('001-luna-vomiting');
+    const r = structuredClone(record);
+    r.medications.push({ drug: 'rabies vaccine', class_as_written: null, dose: 1, dose_unit: 'ml', route: 's.c.', frequency: null, duration: null, status: 'performed', source_spans: [[0, 1]] });
+    const bare = renderVaccinationEntry(r, header, VisitContext.parse({ country: 'IT', author: { name: 'Dr. A' } }), 'it', { date: '2026-10-14' });
+    expect(bare).toContain('| rabies vaccine | 2026-10-14 | ▲'); expect(bare).toContain('lotto'); expect(bare).toContain('microchip');
+    const full = renderVaccinationEntry(r, header, VisitContext.parse({ country: 'IT', microchip: '380260000000001', author: { name: 'Dr. A', registration: 'Ordine MI 123' }, dispensings: [{ medication_index: r.medications.length - 1, product: 'Nobivac Rabies', batch: 'A123B', site: 'sc dx', valid_until: '2029-10-14' }] }), 'it', { date: '2026-10-14' });
+    expect(full).toContain('| Nobivac Rabies | 2026-10-14 | A123B | sc dx | 2029-10-14 |'); expect(full).not.toContain('## ▲');
+    expect(renderVaccinationEntry(record, header, VisitContext.parse({ country: 'DE', author: { name: 'x' }, microchip: '1' }), 'de')).toContain('keine Impfung');
+  });
 });

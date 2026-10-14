@@ -112,7 +112,7 @@ Everything costs €0 unless marked €. Legend:
 - [ ] **Preventivo / Kostenvoranschlag**: plan items × clinic price list (DE: GOT positions + factor; IT: listino, liability-policy data) ★★★ *only us*
 - [ ] **Procedure-specific consent forms** (anaesthesia, surgery, euthanasia, hospitalisation, AMA refusal, referral) with FNOVI-required elements ★★★ *only us*
 - [ ] **Insurance-ready invoice annotation** (diagnosis, chip, DOB/breed, GOT no. + factor) and **claim pack** per insurer ★★★ *only us*
-- [ ] Vaccination visit: batch/lot/site/expiry flags → passport page print + reminder ★★★
+- [x] Vaccination entry rendered from the record with batch/site/validity from the dispensing record, flags when absent (booklet import and reminder hand-off still open)
 - [ ] Surgery/anaesthesia record with required-field checklist (ASA, protocol, monitoring values, implants) ★★★
 - [ ] **Text-first dental chart** drawn by code from typed findings ★★ *only us*
 - [x] Home-care schedule (calendar of doses) rendered from the medication table ★★
