@@ -163,14 +163,14 @@ Everything costs €0 unless marked €. Legend:
 ## 6. Go-to-market — mostly **You**, prepared by **Me**
 
 - [ ] **Free tier for students, TFA/tecnici and nurses**; list as university "convenzione" — Me S, You: bvvd (bvvd@bvvd.de), IVSA Italy chapters, vmf, ATAV
-- [ ] **Willingness-to-pay survey** for DE/IT vets (none exists) — Me S (form), You distribute
-- [ ] Editorial pitches: Vetline "Praxismanagement", Vetjournal "Praxismanager", vetjournal.it ufficio stampa, Ordini newsletters; podcasts FutureVetBusiness (DE), Che Razza di Podcast (IT) — Me drafts, You send
+- [x] **Willingness-to-pay survey** drafted in docs/14-gtm-kit.md — You: create the form and distribute
+- [x] Editorial pitches drafted (DE/IT) in docs/14-gtm-kit.md — You send
 - [ ] Congresses (walk the floor, poster via a university co-author): bpt-Kongress Hannover **19–21 Nov 2026**; VetMed Fellbach **5–6 Feb 2027**; bpt-INTENSIV Bielefeld **25–28 Feb 2027**; SCIVAC Rimini **4–6 Jun 2027**; ECVIM Rimini 23–25 Sep 2027
 - [ ] Grants (€0 to apply): **Piemonte voucher digitalizzazione 22 Oct–15 Dec 2026** (if a Piedmont entity), **Smart&Start Italia** (rolling), **Unleashed by Purina** (~Jul 2027, wants vet tools), Leap Venture Studio cohort 11 (~Q1 2027), EXIST via a vet faculty, EIC 4 Nov 2026 / ~3 Feb 2027
 - [ ] Insurer partnerships: Agila direct billing (claim-friendly export), Figo affiliate (disclosed) — Me prepares the export, You contact
 - [ ] Clinic groups for a pilot: AniCura Italia (Medical Operations Manager), Ca'Zampa/BluVet, IVC Evidensia — You
 - [ ] Shelters/breeders: passport as adoption handover; Tierheim/canile pilots — You
-- [ ] Launch checklist (Product Hunt, Vetline newsletter, Ordini mailing) — Me drafts
+- [x] Launch checklist drafted in docs/14-gtm-kit.md — You run it
 
 ## 7. Open research (unverified, confirm before building)
 

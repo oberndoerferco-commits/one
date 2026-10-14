@@ -64,4 +64,5 @@ Cloudflare, Supabase) and vets to go live. See `TODO.md`.
 4. Contact PIMS vendors' partner programmes early. Integration agreements take
    months (see competitive analysis).
 
+- `docs/14-gtm-kit.md` — survey, editorial pitches, student free tier, launch checklist, pilot terms
 - `docs/legal/` — draft Informativa sull'uso dell'IA (IT) and Auftragsverarbeitungsvertrag (DE/AT); lawyer review before use
