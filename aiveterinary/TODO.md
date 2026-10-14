@@ -113,7 +113,7 @@ Everything costs €0 unless marked €. Legend:
 - [x] **Consent form** rendered per planned procedure with the FNOVI/chamber elements as sections the vet completes; risks never pre-written (procedure-specific variants: anaesthesia, euthanasia, hospitalisation, AMA still open)
 - [ ] **Insurance-ready invoice annotation** (diagnosis, chip, DOB/breed, GOT no. + factor) and **claim pack** per insurer ★★★ *only us*
 - [x] Vaccination entry rendered from the record with batch/site/validity from the dispensing record, flags when absent (booklet import and reminder hand-off still open)
-- [ ] Surgery/anaesthesia record with required-field checklist (ASA, protocol, monitoring values, implants) ★★★
+- [x] Surgery/anaesthesia record with required-field checklist (ASA, protocol, monitoring values, implants) ★★★
 - [ ] **Text-first dental chart** drawn by code from typed findings ★★ *only us*
 - [x] Home-care schedule (calendar of doses) rendered from the medication table ★★
 - [ ] Callback / phone-call note (typed) and email-to-record ★★

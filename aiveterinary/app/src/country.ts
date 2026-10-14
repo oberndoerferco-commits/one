@@ -108,3 +108,25 @@ export function provenance(record: ClinicalRecord, extra: Missing[] = []): { fac
     + Object.values(record.examination.vitals).filter(Boolean).length;
   return { facts, not_recorded: record.missing.length + extra.length, ai_added: 0 };
 }
+
+/** Anaesthesia / surgery record as the team enters it during the procedure. Nothing here is extracted from prose. */
+export const AnaesthesiaRecord = z.object({
+  procedure: z.string().nullable().default(null),
+  asa: z.enum(['1', '2', '3', '4', '5', 'E']).nullable().default(null),
+  fasted_hours: z.number().nullable().default(null),
+  premedication: z.string().nullable().default(null),
+  induction: z.string().nullable().default(null),
+  maintenance: z.string().nullable().default(null),
+  airway: z.string().nullable().default(null),
+  iv_access: z.boolean().nullable().default(null),
+  fluids: z.string().nullable().default(null),
+  monitoring: z.array(z.object({ time: z.string(), hr: z.number().nullable().default(null), rr: z.number().nullable().default(null), temp: z.number().nullable().default(null), spo2: z.number().nullable().default(null), map: z.number().nullable().default(null), note: z.string().nullable().default(null) })).default([]),
+  implants: z.array(z.object({ description: z.string(), batch: z.string().nullable().default(null) })).default([]),
+  complications: z.string().nullable().default(null),
+  recovery: z.string().nullable().default(null),
+  anaesthetist: z.string().nullable().default(null),
+  surgeon: z.string().nullable().default(null),
+  start: z.string().nullable().default(null),
+  end: z.string().nullable().default(null),
+});
+export type AnaesthesiaRecord = z.infer<typeof AnaesthesiaRecord>;

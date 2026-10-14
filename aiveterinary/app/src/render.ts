@@ -424,3 +424,60 @@ export function renderCostEstimate(record: ClinicalRecord, header: PatientHeader
   out.push(`_${L[lang].provenance.replace('{f}', String(provenance(record).facts)).replace('{n}', String(record.missing.length))}_`);
   return out.join('\n');
 }
+
+/* ------------------------------------------------------------------ */
+/* Anaesthesia and surgery record: the team's entries as a table, with  */
+/* the fields a complete record needs flagged when absent.              */
+
+import type { AnaesthesiaRecord } from './country.js';
+
+const A = {
+  en: { title: 'Anaesthesia and surgery record', procedure: 'Procedure', asa: 'ASA status', fasted: 'Fasted (hours)', premed: 'Premedication', induction: 'Induction', maintenance: 'Maintenance', airway: 'Airway', iv: 'IV access', fluids: 'Fluids', monitoring: 'Monitoring', time: 'Time', implants: 'Implants and materials', batch: 'batch', complications: 'Complications', recovery: 'Recovery', team: 'Team', anaesthetist: 'Anaesthetist', surgeon: 'Surgeon', times: 'Start / end', none: 'none recorded', yes: 'yes', no: 'no', missingAsa: 'ASA status not recorded', missingProtocol: 'anaesthetic protocol (premedication, induction, maintenance) incomplete', missingMonitoring: 'no monitoring values recorded', missingRecovery: 'recovery not documented', missingProcedure: 'procedure not named', missingTeam: 'anaesthetist or surgeon not named', missingImplantBatch: 'implant without batch number' },
+  de: { title: 'Narkose- und OP-Protokoll', procedure: 'Eingriff', asa: 'ASA-Status', fasted: 'Nüchtern (Stunden)', premed: 'Prämedikation', induction: 'Einleitung', maintenance: 'Erhaltung', airway: 'Atemweg', iv: 'Venenzugang', fluids: 'Infusion', monitoring: 'Überwachung', time: 'Zeit', implants: 'Implantate und Material', batch: 'Charge', complications: 'Komplikationen', recovery: 'Aufwachphase', team: 'Team', anaesthetist: 'Narkoseführung', surgeon: 'Operateur/in', times: 'Beginn / Ende', none: 'nichts erfasst', yes: 'ja', no: 'nein', missingAsa: 'ASA-Status nicht erfasst', missingProtocol: 'Narkoseprotokoll (Prämedikation, Einleitung, Erhaltung) unvollständig', missingMonitoring: 'keine Überwachungswerte erfasst', missingRecovery: 'Aufwachphase nicht dokumentiert', missingProcedure: 'Eingriff nicht benannt', missingTeam: 'Narkoseführung oder Operateur/in nicht benannt', missingImplantBatch: 'Implantat ohne Chargenbezeichnung' },
+  it: { title: 'Cartella anestesiologica e chirurgica', procedure: 'Procedura', asa: 'Stato ASA', fasted: 'Digiuno (ore)', premed: 'Premedicazione', induction: 'Induzione', maintenance: 'Mantenimento', airway: 'Vie aeree', iv: 'Accesso venoso', fluids: 'Fluidi', monitoring: 'Monitoraggio', time: 'Ora', implants: 'Impianti e materiali', batch: 'lotto', complications: 'Complicanze', recovery: 'Risveglio', team: 'Équipe', anaesthetist: 'Anestesista', surgeon: 'Chirurgo', times: 'Inizio / fine', none: 'nulla registrato', yes: 'sì', no: 'no', missingAsa: 'stato ASA non registrato', missingProtocol: 'protocollo anestesiologico (premedicazione, induzione, mantenimento) incompleto', missingMonitoring: 'nessun valore di monitoraggio registrato', missingRecovery: 'risveglio non documentato', missingProcedure: 'procedura non indicata', missingTeam: 'anestesista o chirurgo non indicati', missingImplantBatch: 'impianto senza numero di lotto' },
+};
+
+export function renderAnaesthesiaRecord(an: AnaesthesiaRecord, header: PatientHeader, lang: Lang = 'en', opts: { approved?: boolean; date?: string } = {}): string {
+  const t = L[lang], a = A[lang];
+  const out: string[] = []; const miss: Missing[] = [];
+  const v = (x: string | number | null | undefined, missingField?: string, reason?: string) => { if (x == null || x === '') { if (missingField && reason) miss.push({ field: missingField, reason }); return flag(t.missing); } return String(x); };
+  out.push(`# ${a.title}`);
+  if (!opts.approved) out.push(`_${t.draft}_`);
+  out.push('');
+  out.push(`**${headerLine(header)}** · ${opts.date ?? new Date().toISOString().slice(0, 10)}`);
+  out.push('');
+  out.push(`- ${a.procedure}: ${v(an.procedure, 'procedure', a.missingProcedure)}`);
+  out.push(`- ${a.asa}: ${v(an.asa, 'asa', a.missingAsa)}`);
+  out.push(`- ${a.fasted}: ${an.fasted_hours ?? '—'}`);
+  out.push(`- ${a.times}: ${an.start ?? '—'} / ${an.end ?? '—'}`);
+  out.push('');
+  out.push(`## ${a.premed} · ${a.induction} · ${a.maintenance}`);
+  const protoMissing = !an.premedication || !an.induction || !an.maintenance;
+  if (protoMissing) miss.push({ field: 'protocol', reason: a.missingProtocol });
+  out.push(`- ${a.premed}: ${an.premedication ?? flag(t.missing)}`);
+  out.push(`- ${a.induction}: ${an.induction ?? flag(t.missing)}`);
+  out.push(`- ${a.maintenance}: ${an.maintenance ?? flag(t.missing)}`);
+  out.push(`- ${a.airway}: ${an.airway ?? '—'} · ${a.iv}: ${an.iv_access == null ? '—' : an.iv_access ? a.yes : a.no} · ${a.fluids}: ${an.fluids ?? '—'}`);
+  out.push('');
+  out.push(`## ${a.monitoring}`);
+  if (!an.monitoring.length) { miss.push({ field: 'monitoring', reason: a.missingMonitoring }); out.push(flag(a.missingMonitoring)); }
+  else {
+    out.push(`| ${a.time} | HR | RR | T | SpO₂ | MAP | |`); out.push('|---|---|---|---|---|---|---|');
+    for (const m of an.monitoring) out.push(`| ${m.time} | ${m.hr ?? ''} | ${m.rr ?? ''} | ${m.temp ?? ''} | ${m.spo2 ?? ''} | ${m.map ?? ''} | ${m.note ?? ''} |`);
+  }
+  out.push('');
+  out.push(`## ${a.implants}`);
+  if (!an.implants.length) out.push(a.none);
+  for (const im of an.implants) { if (!im.batch) miss.push({ field: 'implants.batch', reason: a.missingImplantBatch }); out.push(`- ${im.description} (${a.batch}: ${im.batch ?? flag(t.missing)})`); }
+  out.push('');
+  out.push(`## ${a.complications}`); out.push(an.complications ?? a.none);
+  out.push('');
+  out.push(`## ${a.recovery}`); out.push(v(an.recovery, 'recovery', a.missingRecovery));
+  out.push('');
+  out.push(`## ${a.team}`);
+  if (!an.anaesthetist || !an.surgeon) miss.push({ field: 'team', reason: a.missingTeam });
+  out.push(`- ${a.anaesthetist}: ${an.anaesthetist ?? flag(t.missing)}`); out.push(`- ${a.surgeon}: ${an.surgeon ?? flag(t.missing)}`);
+  if (miss.length) { out.push(''); out.push(`## ${flag(t.missing)}`); for (const x of miss) out.push(`- ${x.field}: ${x.reason}`); }
+  if (opts.approved) { out.push(''); out.push(`_${t.disclosure}_`); }
+  return out.join('\n');
+}

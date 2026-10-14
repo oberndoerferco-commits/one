@@ -95,4 +95,13 @@ describe('documents from the approved record', () => {
     const de = renderCostEstimate(record, header, VisitContext.parse({ country: 'DE' }), 'de');
     expect(de).toContain('GOT-Nr. | Faktor');
   });
+  it('anaesthesia record flags ASA, protocol, monitoring, recovery, team and implant batch', async () => {
+    const { renderAnaesthesiaRecord } = await import('../src/render.js');
+    const { AnaesthesiaRecord } = await import('../src/country.js');
+    const { header } = prep('002-milo-otitis-de');
+    const empty = renderAnaesthesiaRecord(AnaesthesiaRecord.parse({}), header, 'de', { date: '2026-10-14' });
+    for (const s of ['ASA-Status nicht erfasst', 'Narkoseprotokoll', 'keine Überwachungswerte', 'Aufwachphase nicht dokumentiert', 'Eingriff nicht benannt', 'Operateur/in nicht benannt']) expect(empty).toContain(s);
+    const full = renderAnaesthesiaRecord(AnaesthesiaRecord.parse({ procedure: 'Ovariektomie', asa: '1', premedication: 'x', induction: 'y', maintenance: 'z', monitoring: [{ time: '10:00', hr: 90, rr: 14, temp: 37.8, spo2: 98 }], implants: [{ description: 'Naht', batch: 'B1' }], recovery: 'ruhig', anaesthetist: 'A', surgeon: 'B' }), header, 'de', { date: '2026-10-14' });
+    expect(full).not.toContain('## ▲'); expect(full).toContain('| 10:00 | 90 | 14 | 37.8 | 98 |');
+  });
 });
