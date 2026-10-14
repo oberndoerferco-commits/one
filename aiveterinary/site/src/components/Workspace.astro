@@ -8,6 +8,7 @@ const T = {
   "caseLabel": "Example case",
   "countryLabel": "Country rules",
   "roleLabel": "I am",
+  "attachLabel": "Attach a photo or document","attachHint": "Stored with the record and referenced in the report. Never read or interpreted by the assistant.",
   "abbrTitle": "Abbreviations in your notes","abbrHint": "Expanded from the default list and your clinic glossary. Correct a meaning once and it is remembered on this device.","abbrNone": "No abbreviations recognised.","abbrSave": "Save","roleNurse": "Nurse / assistant","roleVet": "Veterinarian",
   "notice": "<strong>Preview.</strong> The example cases run offline on prepared records, so you can see exactly how the review works: source highlighting, missing-information flags, the medication table built from your own words. In the real product your own notes are structured by the model with the same checks. Nothing here is stored.",
   "notes": "Notes",
@@ -25,6 +26,7 @@ const T = {
   "caseLabel": "Caso di esempio",
   "countryLabel": "Regole del Paese",
   "roleLabel": "Sono",
+  "attachLabel": "Allega foto o documento","attachHint": "Conservato con la cartella e citato nel referto. Mai letto né interpretato dall'assistente.",
   "abbrTitle": "Abbreviazioni nelle note","abbrHint": "Espanse dalla lista predefinita e dal glossario della clinica. Correggi un significato una volta e viene ricordato su questo dispositivo.","abbrNone": "Nessuna abbreviazione riconosciuta.","abbrSave": "Salva","roleNurse": "Assistente / infermiere","roleVet": "Veterinario",
   "notice": "<strong>Anteprima.</strong> I casi di esempio girano offline su cartelle già preparate, così puoi vedere esattamente come funziona la revisione: evidenziazione della fonte, segnalazione delle informazioni mancanti, tabella dei farmaci costruita con le tue stesse parole. Nel prodotto reale le tue note vengono strutturate dal modello con gli stessi controlli. Qui non viene salvato nulla.",
   "notes": "Note",
@@ -42,6 +44,7 @@ const T = {
   "caseLabel": "Beispielfall",
   "countryLabel": "Länderregeln",
   "roleLabel": "Ich bin",
+  "attachLabel": "Foto oder Dokument anhängen","attachHint": "Wird mit dem Datensatz gespeichert und im Bericht genannt. Vom Assistenten nie gelesen oder interpretiert.",
   "abbrTitle": "Abkürzungen in Ihren Notizen","abbrHint": "Aufgelöst aus der Standardliste und Ihrem Praxisglossar. Eine Bedeutung einmal korrigieren, und sie bleibt auf diesem Gerät gespeichert.","abbrNone": "Keine Abkürzungen erkannt.","abbrSave": "Speichern","roleNurse": "TFA / Assistenz","roleVet": "Tierärztin / Tierarzt",
   "notice": "<strong>Vorschau.</strong> Die Beispielfälle laufen offline auf vorbereiteten Akten, damit Sie genau sehen, wie die Prüfung funktioniert: Quellenmarkierung, Hinweise auf fehlende Angaben, die Medikamententabelle aus Ihren eigenen Worten. Im echten Produkt strukturiert das Modell Ihre eigenen Notizen mit denselben Prüfungen. Hier wird nichts gespeichert.",
   "notes": "Notizen",
@@ -71,7 +74,8 @@ const JS = {
   "unresolved": "{n} missing item(s) to add or mark as not recorded.",
   "ready": "Ready to approve.",
   "handOver": "Hand over to the vet",
-  "toVet": "Mark as observed by the vet","toOwner": "Mark as reported by the owner","handedStatus": "Draft prepared and handed to the veterinarian for co-signature. Nothing was stored.","nurseDraft": "NURSE DRAFT · AWAITING VET","cosigned": "co-signed, drafted by nurse",
+  "toVet": "Mark as observed by the vet",
+  "attachments": "Attachments (not interpreted)","toOwner": "Mark as reported by the owner","handedStatus": "Draft prepared and handed to the veterinarian for co-signature. Nothing was stored.","nurseDraft": "NURSE DRAFT · AWAITING VET","cosigned": "co-signed, drafted by nurse",
   "medsTick": "Checked","medsUnchecked": "{n} medication row(s) to tick against your notes before approval.",
   "copied": "Copied as plain text.",
   "copyFail": "Copy failed; select the report and copy manually.",
@@ -105,7 +109,8 @@ const JS = {
   "unresolved": "{n} elemento/i mancante/i da aggiungere o segnare come non registrato.",
   "ready": "Pronto per l'approvazione.",
   "handOver": "Passa al veterinario",
-  "toVet": "Segna come osservato dal veterinario","toOwner": "Segna come riferito dal proprietario","handedStatus": "Bozza preparata e passata al veterinario per la controfirma. Non è stato salvato nulla.","nurseDraft": "BOZZA ASSISTENTE · IN ATTESA DEL VETERINARIO","cosigned": "controfirmato, bozza dell'assistente",
+  "toVet": "Segna come osservato dal veterinario",
+  "attachments": "Allegati (non interpretati)","toOwner": "Segna come riferito dal proprietario","handedStatus": "Bozza preparata e passata al veterinario per la controfirma. Non è stato salvato nulla.","nurseDraft": "BOZZA ASSISTENTE · IN ATTESA DEL VETERINARIO","cosigned": "controfirmato, bozza dell'assistente",
   "medsTick": "Verificato","medsUnchecked": "{n} riga/e della terapia da spuntare rispetto alle tue note prima dell'approvazione.",
   "copied": "Copiato come testo semplice.",
   "copyFail": "Copia non riuscita; seleziona il referto e copia manualmente.",
@@ -139,7 +144,8 @@ const JS = {
   "unresolved": "{n} fehlende Angabe(n) ergänzen oder als nicht erfasst markieren.",
   "ready": "Bereit zur Freigabe.",
   "handOver": "An Tierärztin/Tierarzt übergeben",
-  "toVet": "Als tierärztlich beobachtet markieren","toOwner": "Als vom Besitzer berichtet markieren","handedStatus": "Entwurf vorbereitet und zur Gegenzeichnung übergeben. Nichts wurde gespeichert.","nurseDraft": "TFA-ENTWURF · WARTET AUF FREIGABE","cosigned": "gegengezeichnet, Entwurf der TFA",
+  "toVet": "Als tierärztlich beobachtet markieren",
+  "attachments": "Anhänge (nicht interpretiert)","toOwner": "Als vom Besitzer berichtet markieren","handedStatus": "Entwurf vorbereitet und zur Gegenzeichnung übergeben. Nichts wurde gespeichert.","nurseDraft": "TFA-ENTWURF · WARTET AUF FREIGABE","cosigned": "gegengezeichnet, Entwurf der TFA",
   "medsTick": "Geprüft","medsUnchecked": "{n} Medikationszeile(n) vor der Freigabe gegen die Notizen abhaken.",
   "copied": "Als Klartext kopiert.",
   "copyFail": "Kopieren fehlgeschlagen; Bericht markieren und manuell kopieren.",
@@ -185,6 +191,12 @@ const t = T[lang]; const j = JS[lang];
     <div class="ws-pane">
       <div class="ws-h">{t.notes} <span class="ws-hint">{t.notesHint}</span></div>
       <pre id="ws-notes" class="ws-notes" tabindex="0"></pre>
+      <div class="ws-attach">
+        <label class="btn secondary" for="ws-file">{t.attachLabel}</label>
+        <input id="ws-file" type="file" accept="image/*,.pdf" multiple class="sr" />
+        <span class="ws-hint">{t.attachHint}</span>
+        <ul id="ws-attach-list" class="ws-attach-list"></ul>
+      </div>
     </div>
     <div class="ws-pane">
       <div class="ws-h">{t.report} <span class="ws-hint" id="ws-lang"></span></div>
@@ -236,6 +248,10 @@ const t = T[lang]; const j = JS[lang];
     .ws-report .flag { color: var(--warn); font-weight: 600; }
     .ws-report .flag.resolved { color: var(--ok); }
     .ws-report .own { color: var(--ink-3); font-style: italic; }
+    .ws-attach { margin-top: 14px; display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+    .ws-attach .btn { font-size: .85rem; padding: 7px 14px; }
+    .ws-attach-list { list-style: none; padding: 0; margin: 0; font-size: .88rem; color: var(--ink-2); }
+    @media print { .ws-attach { display: none; } }
     .ws-role-toggle { margin-left: 8px; font: inherit; font-size: .75rem; border: 1px solid var(--line); background: var(--surface); color: var(--ink-3); border-radius: 999px; padding: 1px 8px; cursor: pointer; vertical-align: middle; }
     .ws-role-toggle:hover { color: var(--accent); border-color: var(--accent); }
     @media print { .ws-role-toggle { display: none; } }
@@ -288,6 +304,10 @@ const t = T[lang]; const j = JS[lang];
     const GLOSSARY_KEY = 'aiveterinary.glossary.v1';
     const loadGlossary = (): Record<string, string> => { try { return JSON.parse(localStorage.getItem(GLOSSARY_KEY) ?? '{}'); } catch { return {}; } };
     const saveGlossary = (g: Record<string, string>) => { try { localStorage.setItem(GLOSSARY_KEY, JSON.stringify(g)); } catch {} };
+    function renderAttachments() {
+      const ul = $('#ws-attach-list'); ul.innerHTML = '';
+      for (const f of cur.files) { const li = document.createElement('li'); li.textContent = `${f.name} · ${Math.max(1, Math.round(f.size / 1024))} KB`; ul.appendChild(li); }
+    }
     function renderAbbr() {
       const list = $('#ws-abbr-list'); list.innerHTML = '';
       const table = { ...DEFAULT_ABBREVIATIONS, ...loadGlossary() };
@@ -310,7 +330,7 @@ const t = T[lang]; const j = JS[lang];
     const labels: Record<string, string> = J.cases;
     const $ = (s: string) => document.querySelector(s) as HTMLElement;
 
-    let cur: { notes: string; header: any; record: Rec; lang: 'en' | 'de' | 'it'; resolved: Record<string, string>; approved: boolean; meds: boolean[]; handed: boolean };
+    let cur: { notes: string; header: any; record: Rec; lang: 'en' | 'de' | 'it'; resolved: Record<string, string>; approved: boolean; meds: boolean[]; handed: boolean; files: { name: string; size: number; type: string }[] };
 
     const sel = $('#ws-case') as HTMLSelectElement;
     for (const c of [...cases].sort((a, b) => Object.keys(labels).indexOf(a.id) - Object.keys(labels).indexOf(b.id))) { const o = document.createElement('option'); o.value = c.id; o.textContent = labels[c.id] ?? c.id; sel.appendChild(o); }
@@ -323,7 +343,7 @@ const t = T[lang]; const j = JS[lang];
 
     function load(id: string) {
       const c = cases.find((x) => x.id === id)!;
-      cur = { notes: normalizeNotes(c.notes), header: PatientHeader.parse(c.header), record: ClinicalRecord.parse(c.fixture_record), lang: c.language, resolved: {}, approved: false, meds: [], handed: false };
+      cur = { notes: normalizeNotes(c.notes), header: PatientHeader.parse(c.header), record: ClinicalRecord.parse(c.fixture_record), lang: c.language, resolved: {}, approved: false, meds: [], handed: false, files: [] };
       const h = cur.header;
       $('#ws-patient').textContent = [h.name, h.species, h.breed, h.sex, h.age && `${h.age.value} ${h.age.unit}${h.age.value === 1 ? '' : 's'}`, h.weight_kg && `${h.weight_kg} kg`].filter(Boolean).join(' · ');
       $('#ws-lang').textContent = { en: 'English', de: 'Deutsch', it: 'Italiano' }[cur.lang];
@@ -379,7 +399,9 @@ const t = T[lang]; const j = JS[lang];
         const e = esc(it.text);
         html = html.replace(new RegExp(`(?<![\\w-])${escRe(e)}(?![\\w-])`), `<span class="src" data-spans='${JSON.stringify(it.spans)}'>${e}</span>`);
       }
+      if (cur.files.length) html += `<h2>${esc(J.attachments)}</h2><ul>${cur.files.map((f) => `<li>${esc(f.name)}</li>`).join('')}</ul>`;
       $('#ws-report').innerHTML = html;
+      renderAttachments();
       for (const s of document.querySelectorAll<HTMLElement>('.ws-report .src')) {
         s.addEventListener('mouseenter', () => light(JSON.parse(s.dataset.spans!), true));
         s.addEventListener('mouseleave', () => light(JSON.parse(s.dataset.spans!), false));
@@ -475,5 +497,10 @@ const t = T[lang]; const j = JS[lang];
       return `<table><thead><tr>${head.map((h) => `<th>${h}</th>`).join('')}<th>${J.medsTick}</th></tr></thead><tbody>${body.map((r, i) => `<tr>${r.map((c) => `<td>${c}</td>`).join('')}${tick(i)}</tr>`).join('')}</tbody></table>`;
     }
 
+    const fileInput = $('#ws-file') as HTMLInputElement;
+    fileInput.addEventListener('change', () => {
+      for (const f of Array.from(fileInput.files ?? [])) cur.files.push({ name: f.name, size: f.size, type: f.type });
+      fileInput.value = ''; render();
+    });
     load(J.first);
   </script>

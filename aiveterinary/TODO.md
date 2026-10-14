@@ -64,7 +64,7 @@ Everything costs €0 unless marked €. Legend:
 
 ### Site mechanics
 - [x] `hreflang` links between language versions (done; language auto-suggest banner still open) — S ★★
-- [ ] Cookie-free analytics (Plausible self-host or Cloudflare Web Analytics) — S ★★
+- [x] Cookie-free analytics: Cloudflare Web Analytics beacon loads only when PUBLIC_CF_ANALYTICS_TOKEN is set (You: create the site in Cloudflare and set the token) — S ★★
 - [x] Search (static index, Pagefind) — S ★★
 - [x] Open-graph image (one PNG for the site; per-article images still open) — S ★
 
@@ -138,7 +138,7 @@ Everything costs €0 unless marked €. Legend:
 - [x] Clinic abbreviation + glossary manager — S ★★★
 - [ ] Template builder (sections, order, required fields, per-vet defaults); specialty sets: derm, ortho, dental, ophtho, cardio, exotics, equine — M ★★
 - [ ] Multi-pet consultation UI (assign bullets, split documents, one owner letter) — M ★★
-- [ ] Image attachment (stored, referenced, never interpreted) — S ★★
+- [x] Image attachment (stored, referenced, never interpreted) — S ★★
 - [x] Nurse draft → vet co-sign with stamp and audit — S ★★★
 - [ ] Keyboard-only review with time counter; clinic median time-to-approved on quality page — S ★★
 - [ ] Optional vet-only dictation → bullets, audio discarded immediately, shown as the vet's own input — M ★★

@@ -6,6 +6,8 @@ interface Props {
   lang?: string;
 }
 const { title, description, lang = 'en' } = Astro.props;
+// Cookie-free analytics (Cloudflare Web Analytics) is loaded only when a token is configured at build time.
+const cfToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN as string | undefined;
 const path = Astro.url.pathname.replace(/\.html$/, '');
 
 type Lang = 'en' | 'it' | 'de';
@@ -138,6 +140,7 @@ const current = (href: string) => path === href || path.startsWith(href + '/');
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
+    {cfToken && <script is:inline defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={JSON.stringify({ token: cfToken })}></script>}
   </head>
   <body>
     <a class="skip" href="#main">{({ en: 'Skip to content', it: 'Vai al contenuto', de: 'Zum Inhalt springen' } as any)[L]}</a>
