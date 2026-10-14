@@ -147,7 +147,7 @@ export function renderOwnerSummary(record: ClinicalRecord, header: PatientHeader
   const done = [...record.treatments.filter((x) => x.status === 'performed').map((x) => `- ${cap(x.text)}`), ...record.medications.filter((m) => m.status === 'performed').map((m) => `- ${m.drug ?? m.class_as_written ?? t.drug}`)];
   out.push(...(done.length ? done : [d.nothingNoted]));
   const toGive = record.medications.filter((m) => m.status === 'dispensed' || m.status === 'prescribed');
-  if (toGive.length) { out.push(''); out.push(`## ${d.meds}`); out.push(renderMedicationTable(toGive, lang)); }
+  if (toGive.length) { out.push(''); out.push(`## ${d.meds}`); out.push(renderMedicationTable(toGive, lang)); const cl = renderDoseChecklist(toGive, lang); if (cl) { out.push(''); out.push(cl); } }
   const home = [...record.plan.instructions.map((i) => `- ${cap(i.text)}`), ...record.treatments.filter((x) => x.status === 'recommended' && x.type === 'advice').map((x) => `- ${cap(x.text)}`)];
   if (home.length) { out.push(''); out.push(`## ${d.home}`); out.push(...home); }
   if (record.plan.follow_up) { out.push(''); out.push(`## ${d.next}`); out.push(cap(record.plan.follow_up.text)); }
@@ -195,5 +195,57 @@ export function renderReferralLetter(record: ClinicalRecord, header: PatientHead
   const p = provenance(record, opts.extraMissing ?? []);
   out.push(''); out.push(`_${t.provenance.replace('{f}', String(p.facts)).replace('{n}', String(p.not_recorded + (opts.reason ? 0 : 1)))}_`);
   if (opts.approved) { out.push(''); out.push(`_${t.disclosure}_`); }
+  return out.join('\n');
+}
+
+/* ------------------------------------------------------------------ */
+/* Home-care dose checklist: a grid drawn from the medication table.    */
+/* Only when frequency and duration parse unambiguously; otherwise the  */
+/* medication is listed with a flag and no grid is invented.           */
+
+const SLOTS = {
+  en: ['morning', 'midday', 'evening', 'night'], de: ['morgens', 'mittags', 'abends', 'nachts'], it: ['mattina', 'mezzogiorno', 'sera', 'notte'],
+};
+const C = {
+  en: { title: 'Dose checklist', day: 'Day', unparsed: 'Frequency or duration not clear enough for a checklist; follow the table above', once: 'once' },
+  de: { title: 'Gabeplan zum Abhaken', day: 'Tag', unparsed: 'Häufigkeit oder Dauer nicht eindeutig genug für einen Plan; bitte Tabelle oben beachten', once: 'einmalig' },
+  it: { title: 'Piano delle somministrazioni', day: 'Giorno', unparsed: 'Frequenza o durata non abbastanza chiare per un piano; seguire la tabella sopra', once: 'una volta' },
+};
+
+/** Parses "2x daily", "2x tgl", "BID", "q12h", "ogni 12 ore", "3 volte al giorno" → doses per day; returns null when unsure. */
+export function parseDosesPerDay(frequency: string | null | undefined): number | null {
+  if (!frequency) return null;
+  const f = frequency.toLowerCase().replace(/\s+/g, ' ').trim();
+  if (/\b(sid|od|once daily|once a day|1 ?x|1 ?mal|einmal|una volta|1 volta)\b/.test(f) && !/\b(bid|tid|qid)\b/.test(f)) return 1;
+  if (/\bbid\b|\b2 ?x\b|\b2 ?mal\b|zweimal|twice|2 volte|due volte|q ?12 ?h|ogni 12|alle 12|every 12/.test(f)) return 2;
+  if (/\btid\b|\b3 ?x\b|\b3 ?mal\b|dreimal|three times|3 volte|tre volte|q ?8 ?h|ogni 8|alle 8|every 8/.test(f)) return 3;
+  if (/\bqid\b|\b4 ?x\b|\b4 ?mal\b|viermal|four times|4 volte|q ?6 ?h|ogni 6|alle 6|every 6/.test(f)) return 4;
+  return null;
+}
+
+/** Parses "7 days", "7 Tage", "7 giorni", "7d", "1 week" → days; null when unsure. */
+export function parseDurationDays(duration: string | null | undefined): number | null {
+  if (!duration) return null;
+  const d = duration.toLowerCase();
+  const m = /(\d+)\s*(d|days?|tage?|tg|giorn[oi]|gg)\b/.exec(d); if (m) return Number(m[1]);
+  const w = /(\d+)\s*(w|weeks?|wochen?|settimane?|sett)\b/.exec(d); if (w) return Number(w[1]) * 7;
+  return null;
+}
+
+export function renderDoseChecklist(meds: Medication[], lang: Lang): string {
+  const c = C[lang], slots = SLOTS[lang];
+  const out: string[] = [];
+  const give = meds.filter((m) => m.status === 'dispensed' || m.status === 'prescribed');
+  if (!give.length) return '';
+  out.push(`### ${c.title}`);
+  for (const m of give) {
+    const name = m.drug ?? m.class_as_written ?? '?';
+    const perDay = parseDosesPerDay(m.frequency), days = parseDurationDays(m.duration);
+    if (!perDay || !days || days > 60) { out.push(`- **${name}**: ${flag(c.unparsed)}`); continue; }
+    const use = perDay === 1 ? [slots[0]] : perDay === 2 ? [slots[0], slots[2]] : perDay === 3 ? [slots[0], slots[1], slots[2]] : slots;
+    out.push(''); out.push(`**${name}** — ${m.dose != null ? `${m.dose} ${m.dose_unit ?? ''}`.trim() + ', ' : ''}${perDay} × ${days} ${lang === 'en' ? 'days' : lang === 'de' ? 'Tage' : 'giorni'}`);
+    out.push(`| ${c.day} | ${use.join(' | ')} |`); out.push(`|---|${use.map(() => '---').join('|')}|`);
+    for (let i = 1; i <= days; i++) out.push(`| ${i} | ${use.map(() => '☐').join(' | ')} |`);
+  }
   return out.join('\n');
 }

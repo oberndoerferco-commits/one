@@ -115,7 +115,7 @@ Everything costs €0 unless marked €. Legend:
 - [ ] Vaccination visit: batch/lot/site/expiry flags → passport page print + reminder ★★★
 - [ ] Surgery/anaesthesia record with required-field checklist (ASA, protocol, monitoring values, implants) ★★★
 - [ ] **Text-first dental chart** drawn by code from typed findings ★★ *only us*
-- [ ] Home-care schedule (calendar of doses) rendered from the medication table ★★
+- [x] Home-care schedule (calendar of doses) rendered from the medication table ★★
 - [ ] Callback / phone-call note (typed) and email-to-record ★★
 - [ ] History recap of the patient's own approved records, every line linked ★★
 - [ ] Euthanasia record + condolence letter from vet-entered facts ★

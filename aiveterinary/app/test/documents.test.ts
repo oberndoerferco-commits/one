@@ -41,4 +41,12 @@ describe('documents from the approved record', () => {
     expect(md).toContain('meloxicam');
     expect(md).not.toContain('## Medication to give');
   });
+  it('dose checklist parses common frequency and duration forms and refuses unclear ones', async () => {
+    const { parseDosesPerDay, parseDurationDays, renderDoseChecklist } = await import('../src/render.js');
+    expect(parseDosesPerDay('2x tgl')).toBe(2); expect(parseDosesPerDay('BID')).toBe(2); expect(parseDosesPerDay('ogni 8 ore')).toBe(3); expect(parseDosesPerDay('once daily')).toBe(1); expect(parseDosesPerDay('as needed')).toBeNull();
+    expect(parseDurationDays('7 Tage')).toBe(7); expect(parseDurationDays('10 giorni')).toBe(10); expect(parseDurationDays('2 weeks')).toBe(14); expect(parseDurationDays('until recheck')).toBeNull();
+    const meds: any = [{ drug: 'Surolan', class_as_written: null, dose: 5, dose_unit: 'drops', route: 'ear', frequency: '2x tgl', duration: '7 Tage', status: 'dispensed', source_spans: [[0, 1]] }, { drug: 'X', class_as_written: null, dose: null, dose_unit: null, route: null, frequency: 'as needed', duration: null, status: 'prescribed', source_spans: [[0, 1]] }];
+    const md = renderDoseChecklist(meds, 'de');
+    expect(md).toContain('| Tag | morgens | abends |'); expect((md.match(/☐/g) ?? []).length).toBe(14); expect(md).toContain('nicht eindeutig');
+  });
 });
