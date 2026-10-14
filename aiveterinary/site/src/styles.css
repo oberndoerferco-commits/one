@@ -262,3 +262,5 @@ p { margin: 0 0 1em; }
 .pp-upcoming li.overdue .pp-due-date, .pp-upcoming li.overdue .pp-hint { color: var(--danger); }
 .pp-due-date { font-variant-numeric: tabular-nums; font-weight: 600; min-width: 110px; }
 @media print { #pp-ics { display: none; } }
+
+.pp-chart { width: 100%; height: auto; max-height: 220px; margin: 4px 0 12px; }

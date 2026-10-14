@@ -80,7 +80,7 @@ Everything costs €0 unless marked €. Legend:
 - [ ] **Registry navigator**: which registry (IT anagrafe/SINAC, DE TASSO/FINDEFIX, AT Heimtierdatenbank, CH AMICUS/ANIS, FR I-CAD), deadlines when moving (AT 1 month, CH 10 d, FR 8 d, IT 10 d) — S ★★ *only us*
 - [ ] **Travel checklist per destination** under Reg. 2026/131: residents-only passport, 5-pet cap, tapeworm FI/IE/MT/NO/UK 24–120 h, rabies titre for unlisted countries, puppy age — M ★★★
 - [x] Chip-number validation (15-digit ISO, manufacturer prefix) — S ★
-- [ ] Weight log with chart and body-condition score — S ★★
+- [x] Weight log with chart and body-condition score — S ★★
 - [ ] Symptom diary (date, note, photo) that feeds the pre-visit brief — M ★★
 - [ ] Puppy/kitten first-year schedule; senior-care checklist — S ★★
 - [x] Toxic foods and plants offline reference (dog, cat, rabbit) — S ★★

@@ -69,6 +69,7 @@ const T = {
   "condHint": "Anything a new vet should know in the first minute: allergies, chronic conditions, past surgeries, reactions to drugs or anaesthesia.",
   "addCond": "+ Add entry",
   "visits": "Vet visits",
+  "weights": "Weight log","weightHint": "Weigh at the same time of day, same scale. A steady drift of a few hundred grams is the earliest sign vets look for. Body condition: 1 = very thin, 5 = ideal, 9 = obese.","addWeight": "Add weighing",
   "visitHint": "A short line per visit keeps the history readable: reason, what was found, what was done.",
   "addVisit": "+ Add visit",
   "notes": "Notes",
@@ -204,6 +205,7 @@ const T = {
   "thSince": "Dal / data",
   "addCond": "+ Aggiungi voce",
   "visits": "Visite veterinarie",
+  "weights": "Diario del peso","weightHint": "Pesa alla stessa ora e con la stessa bilancia. Una deriva costante di qualche centinaio di grammi è il primo segnale che i veterinari cercano. Condizione corporea: 1 = molto magro, 5 = ideale, 9 = obeso.","addWeight": "Aggiungi pesata",
   "visitHint": "Una riga breve per visita mantiene la storia leggibile: motivo, cosa è stato trovato, cosa è stato fatto.",
   "thReason": "Motivo",
   "thOutcome": "Esito / note",
@@ -311,6 +313,7 @@ const T = {
   "thSince": "Seit / Datum",
   "addCond": "+ Eintrag hinzufügen",
   "visits": "Tierarztbesuche",
+  "weights": "Gewichtsverlauf","weightHint": "Immer zur gleichen Tageszeit auf derselben Waage wiegen. Ein stetiger Drift von ein paar hundert Gramm ist das früheste Zeichen, auf das Praxen achten. Körperkondition: 1 = sehr dünn, 5 = ideal, 9 = adipös.","addWeight": "Wiegung hinzufügen",
   "visitHint": "Eine kurze Zeile pro Besuch hält die Geschichte lesbar: Grund, Befund, was gemacht wurde.",
   "thReason": "Grund",
   "thOutcome": "Ergebnis / Notizen",
@@ -365,6 +368,9 @@ const JS = {
    "Other"
   ],
   "cols": {
+   "Weight (kg)": "Weight (kg)",
+   "Body condition (1–9)": "Body condition (1–9)",
+   "Note": "Note",
    "Vaccine": "Vaccine",
    "Date given": "Date given",
    "Valid until": "Valid until",
@@ -424,6 +430,9 @@ const JS = {
    "Altro"
   ],
   "cols": {
+   "Weight (kg)": "Peso (kg)",
+   "Body condition (1–9)": "Condizione corporea (1–9)",
+   "Note": "Nota",
    "Vaccine": "Vaccino",
    "Date given": "Data",
    "Valid until": "Valido fino al",
@@ -483,6 +492,9 @@ const JS = {
    "Sonstiges"
   ],
   "cols": {
+   "Weight (kg)": "Gewicht (kg)",
+   "Body condition (1–9)": "Körperkondition (1–9)",
+   "Note": "Notiz",
    "Vaccine": "Impfstoff",
    "Date given": "Datum",
    "Valid until": "Gültig bis",
@@ -650,6 +662,14 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
         <button class="btn secondary pp-add" type="button">{t.addVisit}</button>
       </section>
 
+      <section class="card pp-list" data-list="weights">
+        <h2>{t.weights}</h2>
+        <p class="pp-hint">{t.weightHint}</p>
+        <svg id="pp-weight-chart" class="pp-chart" viewBox="0 0 600 180" role="img" aria-label={t.weights} hidden></svg>
+        <table><thead><tr><th>{t.thDate}</th><th>{t.cols ? '' : ''}{(j as any).cols?.["Weight (kg)"]}</th><th>{(j as any).cols?.["Body condition (1–9)"]}</th><th>{(j as any).cols?.["Note"]}</th><th></th></tr></thead><tbody></tbody></table>
+        <button class="btn secondary pp-add" type="button">{t.addWeight}</button>
+      </section>
+
       <section class="card">
         <h2>{t.notes}</h2>
         <textarea data-f="notes" rows="4" placeholder={t.phNotes}></textarea>
@@ -782,7 +802,7 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
     // Digital pet passport. Local-first: all data lives in localStorage under one key.
     // Shape: { version: 1, animals: [ { id, name, ..., vaccinations: [], treatments: [], medications: [], conditions: [], visits: [], notes, photo } ], current }
     type Row = Record<string, string>;
-    type Animal = Record<string, any> & { id: string; vaccinations: Row[]; treatments: Row[]; medications: Row[]; conditions: Row[]; visits: Row[] };
+    type Animal = Record<string, any> & { id: string; vaccinations: Row[]; treatments: Row[]; medications: Row[]; conditions: Row[]; visits: Row[]; weights: Row[] };
     type Store = { version: number; animals: Animal[]; current: string | null };
 
     const KEY = 'aiveterinary.passport.v1';
@@ -797,6 +817,8 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
         { key: 'name', label: J.cols["Medication"] }, { key: 'dose', label: J.cols["Dose & how often"] }, { key: 'started', label: J.cols["Started"], type: 'date' }, { key: 'prescribedBy', label: J.cols["Prescribed by"] } ] },
       conditions: { cols: [
         { key: 'type', label: J.cols["Type"], type: 'select', options: J.condTypes }, { key: 'description', label: J.cols["Description"] }, { key: 'date', label: J.cols["Since / date"], type: 'date' } ] },
+      weights: { cols: [
+        { key: 'date', label: J.cols['Date'], type: 'date' }, { key: 'kg', label: J.cols['Weight (kg)'], type: 'number' }, { key: 'bcs', label: J.cols['Body condition (1–9)'], type: 'number' }, { key: 'note', label: J.cols['Note'] } ] },
       visits: { cols: [
         { key: 'date', label: J.cols['Date'], type: 'date' }, { key: 'reason', label: J.cols["Reason"] }, { key: 'outcome', label: J.cols["Outcome / notes"] }, { key: 'clinic', label: J.cols["Clinic"] } ] },
     };
@@ -820,9 +842,11 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
       acct.push();
     }
     function scheduleSave() { clearTimeout(saveTimer); saveTimer = window.setTimeout(() => save(), 400); }
+    // Flush a pending debounced save when the page is hidden or closed, so a quick tab close never loses the last edit.
+    window.addEventListener('pagehide', () => { if (saveTimer) { clearTimeout(saveTimer); saveTimer = 0; try { localStorage.setItem(KEY, JSON.stringify(store)); } catch {} } });
     function status(t: string) { const el = $('#pp-status'); if (el) el.textContent = t; }
 
-    const blank = (): Animal => ({ id: uid(), name: '', vaccinations: [], treatments: [], medications: [], conditions: [], visits: [], notes: '' });
+    const blank = (): Animal => ({ id: uid(), name: '', vaccinations: [], treatments: [], medications: [], conditions: [], visits: [], weights: [], notes: '' });
     const current = () => store.animals.find((a) => a.id === store.current) ?? null;
 
     function renderSelect() {
@@ -852,12 +876,12 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
           } else { input = document.createElement('input'); input.type = c.type ?? 'text'; }
           input.value = row[c.key] ?? '';
           input.setAttribute('aria-label', c.label);
-          input.addEventListener('input', () => { row[c.key] = input.value; scheduleSave(); if (name === 'vaccinations' || name === 'treatments') renderUpcoming(a); });
+          input.addEventListener('input', () => { row[c.key] = input.value; scheduleSave(); if (name === 'vaccinations' || name === 'treatments') renderUpcoming(a); if (name === 'weights') renderChart(a); });
           td.appendChild(input); tr.appendChild(td);
         }
         const td = document.createElement('td');
         const rm = document.createElement('button'); rm.type = 'button'; rm.className = 'pp-rm'; rm.textContent = '×'; rm.setAttribute('aria-label', J.removeRow);
-        rm.addEventListener('click', () => { a[name].splice(i, 1); renderList(name, a); renderUpcoming(a); save(J.rowRemoved); });
+        rm.addEventListener('click', () => { a[name].splice(i, 1); renderList(name, a); renderUpcoming(a); renderChart(a); save(J.rowRemoved); });
         td.appendChild(rm); tr.appendChild(td); tbody.appendChild(tr);
       });
     }
@@ -876,8 +900,9 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
       const img = $<HTMLImageElement>('#pp-photo');
       img.hidden = !a.photo; if (a.photo) img.src = a.photo;
       $('#pp-photo-remove')!.toggleAttribute('hidden', !a.photo);
-      for (const name of Object.keys(LISTS)) renderList(name, a);
+      for (const name of Object.keys(LISTS)) { a[name] ??= []; renderList(name, a); }
       renderUpcoming(a);
+      renderChart(a);
     }
 
     function dueItems(a: Animal) {
@@ -910,6 +935,23 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
       const blob = new Blob([ics], { type: 'text/calendar' }); const url = URL.createObjectURL(blob);
       const link = document.createElement('a'); link.href = url; link.download = `${(a.name || 'animal').replace(/[^\w-]+/g, '_')}-reminders.ics`; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
     });
+    function renderChart(a: Animal) {
+      const svg = $('#pp-weight-chart') as unknown as SVGSVGElement; if (!svg) return;
+      const pts = (a.weights ?? []).filter((r: Row) => r.date && !isNaN(parseFloat(r.kg))).map((r: Row) => ({ t: Date.parse(r.date), kg: parseFloat(r.kg) })).filter((p: any) => !isNaN(p.t)).sort((x: any, y: any) => x.t - y.t);
+      svg.toggleAttribute('hidden', pts.length < 2); if (pts.length < 2) return;
+      const W = 600, H = 180, L = 44, R = 12, T = 14, B = 28;
+      const t0 = pts[0].t, t1 = pts[pts.length - 1].t || t0 + 1;
+      let min = Math.min(...pts.map((p: any) => p.kg)), max = Math.max(...pts.map((p: any) => p.kg));
+      const pad = Math.max((max - min) * 0.15, 0.2); min -= pad; max += pad;
+      const x = (t: number) => L + ((t - t0) / Math.max(t1 - t0, 1)) * (W - L - R);
+      const y = (kg: number) => T + (1 - (kg - min) / (max - min)) * (H - T - B);
+      const ticks = [min, (min + max) / 2, max].map((v) => `<text x="${L - 6}" y="${y(v) + 4}" text-anchor="end" font-size="11" fill="var(--ink-3)">${v.toFixed(1)}</text><line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" stroke-dasharray="3 4"/>`).join('');
+      const fmt = (t: number) => new Date(t).toLocaleDateString(J.locale, { month: 'short', year: '2-digit' });
+      const labels = `<text x="${L}" y="${H - 8}" font-size="11" fill="var(--ink-3)">${fmt(t0)}</text><text x="${W - R}" y="${H - 8}" text-anchor="end" font-size="11" fill="var(--ink-3)">${fmt(t1)}</text>`;
+      const path = pts.map((p: any, i: number) => `${i ? 'L' : 'M'}${x(p.t).toFixed(1)} ${y(p.kg).toFixed(1)}`).join(' ');
+      const dots = pts.map((p: any) => `<circle cx="${x(p.t).toFixed(1)}" cy="${y(p.kg).toFixed(1)}" r="4" fill="var(--surface)" stroke="var(--accent)" stroke-width="2"><title>${fmt(p.t)}: ${p.kg} kg</title></circle>`).join('');
+      svg.innerHTML = `${ticks}${labels}<path d="${path}" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>${dots}`;
+    }
     function render() { renderSelect(); renderForm(); }
 
     // field bindings
