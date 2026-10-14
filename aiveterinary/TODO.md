@@ -77,7 +77,7 @@ Everything costs €0 unless marked €. Legend:
 - [ ] **Share a read-only report** (PDF now; expiring link once accounts exist) for vet, sitter, kennel — S/M ★★★
 - [x] **Emergency card**: printable credit-card size, two copies, from booklet data (Wallet pass still open) — M ★★ *only us*
 - [x] **Lost-pet mode** v1: A4 poster from booklet data with photo, description, last seen, phone (QR flyer, registry checklist, Europetnet link still open) — M ★★ *registry-aware: only us*
-- [ ] **Registry navigator**: which registry (IT anagrafe/SINAC, DE TASSO/FINDEFIX, AT Heimtierdatenbank, CH AMICUS/ANIS, FR I-CAD), deadlines when moving (AT 1 month, CH 10 d, FR 8 d, IT 10 d) — S ★★ *only us*
+- [x] **Registry navigator** (/registry in EN/IT/DE with sourced tables for IT, DE, AT, CH, FR; a few regional deadlines flagged as secondary-source) — S ★★ *only us*
 - [ ] **Travel checklist per destination** under Reg. 2026/131: residents-only passport, 5-pet cap, tapeworm FI/IE/MT/NO/UK 24–120 h, rabies titre for unlisted countries, puppy age — M ★★★
 - [x] Chip-number validation (15-digit ISO, manufacturer prefix) — S ★
 - [x] Weight log with chart and body-condition score — S ★★
@@ -102,7 +102,7 @@ Everything costs €0 unless marked €. Legend:
 - [ ] Run the model on the set (needs key), publish numbers on `/vets/quality` — S ★★★
 - [x] **Country field packs** as missing-flags: DE (TÄHAV: product, ZNR, batch, quantity, dose/route/duration, antibiotic justification), IT (owner codice fiscale, microchip, lot on vaccines, consent "modi e tempi", REV number), CH (antibiotic → IS ABV fields), AT (TAMG fields) — M ★★★ *only us*
 - [x] Add structured fields: microchip, owner tax/ID, product code + batch + pack + quantity/unit, author, consent — S ★★★
-- [ ] Adversarial cases: owner's pregnancy, other pet, dose mentioned but not given, "was" vs "planned", decimal commas, German compound drug names — M ★★★
+- [x] Adversarial cases (4 of 6 scenario types in the eval: pregnancy, dose not given, was vs planned, decimal commas + compound names; other pet and multi-pet still open) — M ★★★
 - [ ] External vet panel review of 50 outputs (names on the quality page) — **You** + M ★★★
 
 ### Documents from the approved record (each S–M unless noted)

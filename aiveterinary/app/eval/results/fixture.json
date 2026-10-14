@@ -1,8 +1,8 @@
 {
-  "run_at": "2026-10-14T10:03:23.236Z",
+  "run_at": "2026-10-14T13:15:06.738Z",
   "extractor": "fixture",
   "prompt": "extract-v1",
-  "cases": 5,
+  "cases": 8,
   "failed": 0,
   "blocking": 4,
   "warnings": 0,
@@ -33,6 +33,18 @@
     },
     {
       "id": "005-hallucinated-fixture",
+      "pass": true
+    },
+    {
+      "id": "006-adversarial-dose-not-given",
+      "pass": true
+    },
+    {
+      "id": "007-adversarial-de-decimal-comma",
+      "pass": true
+    },
+    {
+      "id": "008-adversarial-it-performed-vs-planned",
       "pass": true
     }
   ]

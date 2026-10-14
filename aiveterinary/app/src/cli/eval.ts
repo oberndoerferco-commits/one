@@ -51,6 +51,10 @@ export async function runEval(extractorName = process.env.AIVET_EXTRACTOR ?? 'fi
         if (c.expect?.assessment_text !== undefined && (record.assessment.text ?? null) !== c.expect.assessment_text) problems.push(`assessment "${record.assessment.text}" ≠ expected "${c.expect.assessment_text}"`);
         if (c.expect?.temperature !== undefined && record.examination.vitals.temperature?.value !== c.expect.temperature) problems.push(`temperature ${record.examination.vitals.temperature?.value} ≠ ${c.expect.temperature}`);
         const json = JSON.stringify({ ...record, uncertain: [] }).toLowerCase();
+        for (const [path, st] of Object.entries(c.expect?.statuses ?? {})) {
+          const m = /^(\w+)\[(\d+)\]$/.exec(path); const item = m ? (record as any)[m[1]]?.[Number(m[2])] : undefined;
+          if (!item) problems.push(`statuses: ${path} not found`); else if (item.status !== st) problems.push(`statuses: ${path} is ${item.status}, expected ${st}`);
+        }
         for (const bad of c.expect?.must_not_contain ?? []) if (json.includes(bad)) problems.push(`record contains forbidden text "${bad}" outside 'uncertain'`);
         if (c.expect?.uncertain_min && record.uncertain.length < c.expect.uncertain_min) problems.push(`expected ≥${c.expect.uncertain_min} uncertain entries`);
       }
