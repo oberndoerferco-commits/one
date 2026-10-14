@@ -84,4 +84,15 @@ describe('documents from the approved record', () => {
     expect(md).toContain('a cura del veterinario'); expect(md).not.toMatch(/infezione|emorragia/i);
     expect(renderConsentForm(record, header, VisitContext.parse({ country: 'DE' }), 'de')).toContain('Kein geplanter Eingriff');
   });
+  it('cost estimate lists planned items with empty price cells and never a number', async () => {
+    const { renderCostEstimate } = await import('../src/render.js');
+    const { VisitContext } = await import('../src/country.js');
+    const { record, header } = prep('008-adversarial-it-performed-vs-planned');
+    const md = renderCostEstimate(record, header, VisitContext.parse({ country: 'IT' }), 'it', { date: '2026-10-14' });
+    expect(md).toContain('| Ecografia addome | esame | | |'); expect(md).not.toContain('RX anca'); expect(md).toContain('art. 9 c. 4');
+    const priced = md.split('\n').filter((l) => l.startsWith('| ') && !l.includes('Voce')).map((l) => l.split('|')[3].trim());
+    expect(priced.every((p) => p === '' || p === '______')).toBe(true);
+    const de = renderCostEstimate(record, header, VisitContext.parse({ country: 'DE' }), 'de');
+    expect(de).toContain('GOT-Nr. | Faktor');
+  });
 });

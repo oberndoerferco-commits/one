@@ -385,3 +385,42 @@ export function renderConsentForm(record: ClinicalRecord, header: PatientHeader,
   out.push(`_${t.provenance.replace('{f}', String(provenance(record).facts)).replace('{n}', String(record.missing.length))}_`);
   return out.join('\n');
 }
+
+/* ------------------------------------------------------------------ */
+/* Cost estimate skeleton: planned items from the record as rows, price */
+/* columns empty for the clinic's own list. Nothing priced by code.     */
+
+const E = {
+  en: { title: 'Cost estimate', intro: 'Planned items from today\'s record. Prices come from the clinic\'s own price list; this document contains none until the clinic fills them in.', item: 'Item', kind: 'Type', price: 'Price', note: 'Note', none: 'No planned items in this record.', total: 'Estimated total', validity: 'This estimate is valid for', legal: '', diagnostics: 'diagnostic', procedure: 'procedure', medication: 'medication', advice: 'advice' },
+  de: { title: 'Kostenvoranschlag', intro: 'Geplante Positionen aus dem heutigen Datensatz. Die Preise stammen aus der Preisliste der Praxis; dieses Dokument enthält keine, bis die Praxis sie einträgt.', item: 'Position', kind: 'Art', price: 'Preis', note: 'Hinweis', none: 'Keine geplanten Positionen im Datensatz.', total: 'Voraussichtliche Summe', validity: 'Gültig für', legal: 'GOT: Nummer des Gebührenverzeichnisses und Faktor (1- bis 3-fach, §2 GOT) je Position; Angaben nach §7 Abs. 4 GOT auf der Rechnung.', diagnostics: 'Diagnostik', procedure: 'Eingriff', medication: 'Arzneimittel', advice: 'Beratung' },
+  it: { title: 'Preventivo', intro: 'Voci pianificate dalla cartella di oggi. I prezzi provengono dal listino della clinica; questo documento non ne contiene finché la clinica non li inserisce.', item: 'Voce', kind: 'Tipo', price: 'Prezzo', note: 'Nota', none: 'Nessuna voce pianificata nella cartella.', total: 'Totale stimato', validity: 'Validità del preventivo', legal: 'Preventivo di massima in forma scritta o digitale (art. 9 c. 4 D.L. 1/2012, L. 124/2017); importi IVA inclusa o esclusa da indicare; estremi della polizza RC professionale.', diagnostics: 'esame', procedure: 'procedura', medication: 'farmaco', advice: 'consulenza' },
+};
+
+export function renderCostEstimate(record: ClinicalRecord, header: PatientHeader, ctx: VisitContext, lang: Lang = 'en', opts: { date?: string } = {}): string {
+  const e = E[lang];
+  const out: string[] = [];
+  out.push(`# ${e.title}`);
+  out.push('');
+  out.push(`**${headerLine(header)}**${ctx.owner.name ? ` · ${ctx.owner.name}` : ''} · ${opts.date ?? new Date().toISOString().slice(0, 10)}`);
+  out.push('');
+  out.push(e.intro);
+  out.push('');
+  const rows: string[] = [];
+  for (const d of record.diagnostics) if (d.status === 'planned' || d.status === 'recommended') rows.push(`| ${cap(d.test)} | ${e.diagnostics} | | |`);
+  for (const x of record.treatments) if (x.status === 'planned' || x.status === 'recommended') rows.push(`| ${cap(x.text)} | ${x.type === 'procedure' ? e.procedure : e.advice} | | |`);
+  for (const m of record.medications) if (m.status === 'prescribed' || m.status === 'recommended') rows.push(`| ${m.drug ?? m.class_as_written ?? '?'} | ${e.medication} | | |`);
+  if (!rows.length) out.push(e.none);
+  else {
+    const extra = lang === 'de' ? ' GOT-Nr. | Faktor |' : '';
+    out.push(`| ${e.item} | ${e.kind} |${extra} ${e.price} | ${e.note} |`);
+    out.push(`|---|---|${lang === 'de' ? '---|---|' : ''}---|---|`);
+    for (const r of rows) out.push(lang === 'de' ? r.replace(' | | |', ' | | | | |') : r);
+    out.push(`| **${e.total}** | | ${lang === 'de' ? '| | ' : ''}______ | |`);
+  }
+  out.push('');
+  out.push(`${e.validity}: ______________`);
+  if (e.legal) { out.push(''); out.push(`_${e.legal}_`); }
+  out.push('');
+  out.push(`_${L[lang].provenance.replace('{f}', String(provenance(record).facts)).replace('{n}', String(record.missing.length))}_`);
+  return out.join('\n');
+}
