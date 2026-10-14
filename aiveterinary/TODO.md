@@ -60,7 +60,7 @@ Everything costs €0 unless marked €. Legend:
 - [x] A–Z index, species hubs, "share with your vet" button, print stylesheet for articles — S ★★
 - [x] Illustrations (own SVG faces, hero scene, loader; design system in docs/06 and research in docs/13) — M ★
 - [ ] Translate privacy/terms/research/quality into IT/DE after the lawyer pass — M ★★
-- [ ] Vet-facing landing pages per country: `/de/vets` with GOT/TÄHAV angle, `/it/vets` with REV/preventivo angle — S ★★
+- [x] Vet-facing landing pages per country: /de/vets with TÄHAV §13/§15/§16 and GOT §7, /it/vets with REV, consenso, preventivo, SINAC (sources cited)
 
 ### Site mechanics
 - [x] `hreflang` links between language versions; language auto-suggest bar (once per device) — S ★★
@@ -106,7 +106,7 @@ Everything costs €0 unless marked €. Legend:
 - [ ] External vet panel review of 50 outputs (names on the quality page) — **You** + M ★★★
 
 ### Documents from the approved record (each S–M unless noted)
-- [ ] Owner summary, home-care instructions, discharge, referral (exists in spec; align referral to AniCura/TiHo/LMU field sets) ★★★
+- [x] Owner summary and referral letter rendered from the approved record (discharge and the AniCura/TiHo/LMU referral field alignment still open)
 - [ ] **Prescription per dispensed Rx drug (DE Art. 105(5))** → PDF in record ★★★ *only us*
 - [ ] **Italian REV payload** from the medication table; store number + PIN ★★★ *only us*
 - [ ] **Preventivo / Kostenvoranschlag**: plan items × clinic price list (DE: GOT positions + factor; IT: listino, liability-policy data) ★★★ *only us*

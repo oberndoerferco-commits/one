@@ -113,3 +113,87 @@ export function renderConsultReport(record: ClinicalRecord, header: PatientHeade
   if (opts.approved) { out.push(''); out.push(`_${t.disclosure}_`); }
   return out.join('\n');
 }
+
+/* ------------------------------------------------------------------ */
+/* Documents derived from the approved record. Same rule as the report: */
+/* headings are code, sentences are the record's own, nothing is added. */
+
+const D = {
+  en: { ownerTitle: 'What happened today, and what to do at home', forOwner: 'For the owner of', reason: 'Why you came', found: 'What we found', done: 'What we did', meds: 'Medication to give', home: 'At home', next: 'Next appointment', call: 'Call us if', declined: 'Discussed and declined', nothingNoted: 'Nothing further was noted.', referralTitle: 'Referral letter', dear: 'Dear colleague', referralIntro: 'I am referring the following patient to you.', referralReason: 'Reason for referral', historyHdr: 'History and findings', diagHdr: 'Diagnostics', treatHdr: 'Treatment so far', thanks: 'Thank you for seeing this patient. Please send your findings back to us.', missingReason: 'Reason for referral not stated in the notes' },
+  de: { ownerTitle: 'Was heute war, und was zu Hause zu tun ist', forOwner: 'Für die Halterin / den Halter von', reason: 'Warum Sie gekommen sind', found: 'Was wir festgestellt haben', done: 'Was wir gemacht haben', meds: 'Medikamente geben', home: 'Zu Hause', next: 'Nächster Termin', call: 'Rufen Sie an, wenn', declined: 'Besprochen und abgelehnt', nothingNoted: 'Weiteres wurde nicht notiert.', referralTitle: 'Überweisungsschreiben', dear: 'Liebe Kollegin, lieber Kollege', referralIntro: 'Ich überweise Ihnen folgenden Patienten.', referralReason: 'Überweisungsgrund', historyHdr: 'Vorbericht und Befunde', diagHdr: 'Diagnostik', treatHdr: 'Bisherige Behandlung', thanks: 'Vielen Dank für die Übernahme. Bitte senden Sie uns Ihre Befunde zurück.', missingReason: 'Überweisungsgrund in den Notizen nicht angegeben' },
+  it: { ownerTitle: 'Cosa è successo oggi e cosa fare a casa', forOwner: 'Per il proprietario di', reason: 'Perché siete venuti', found: 'Cosa abbiamo trovato', done: 'Cosa abbiamo fatto', meds: 'Farmaci da somministrare', home: 'A casa', next: 'Prossimo appuntamento', call: 'Chiamateci se', declined: 'Discusso e rifiutato', nothingNoted: 'Non è stato annotato altro.', referralTitle: 'Lettera di riferimento', dear: 'Gentile collega', referralIntro: 'Le invio il seguente paziente.', referralReason: 'Motivo dell\'invio', historyHdr: 'Anamnesi e reperti', diagHdr: 'Esami', treatHdr: 'Trattamento finora', thanks: 'Grazie per la presa in carico. La prego di inviarci i Suoi referti.', missingReason: 'Motivo dell\'invio non indicato nelle note' },
+};
+
+const headerLine = (header: PatientHeader) => [header.name, header.species, header.breed, header.sex, header.age ? `${header.age.value} ${header.age.unit}${header.age.value === 1 ? '' : 's'}` : null, header.weight_kg ? `${header.weight_kg} kg` : null].filter(Boolean).join(' — ');
+
+/** Owner summary: the same facts in the same words, grouped for the person who has to act at home. */
+export function renderOwnerSummary(record: ClinicalRecord, header: PatientHeader, lang: Lang = 'en', opts: { approved?: boolean; extraMissing?: Missing[] } = {}): string {
+  const t = L[lang], d = D[lang];
+  const out: string[] = [];
+  out.push(`# ${d.ownerTitle}`);
+  if (!opts.approved) out.push(`_${t.draft}_`);
+  out.push('');
+  out.push(`**${d.forOwner} ${header.name}** — ${headerLine(header)}`);
+  out.push('');
+  out.push(`## ${d.reason}`);
+  out.push(record.presenting_complaint ? cap(record.presenting_complaint.text) : flag(t.missing));
+  out.push('');
+  out.push(`## ${d.found}`);
+  const found = [...record.examination.findings.map((f) => `- ${cap(f.system)}: ${f.text}`), ...record.diagnostics.filter((x) => x.status === 'performed').map((x) => `- ${cap(x.test)}: ${x.result ?? flag(`${t.missing}: result`)}`)];
+  if (record.assessment.text) found.push(`- ${cap(record.assessment.text)}`);
+  out.push(...(found.length ? found : [d.nothingNoted]));
+  out.push('');
+  out.push(`## ${d.done}`);
+  const done = [...record.treatments.filter((x) => x.status === 'performed').map((x) => `- ${cap(x.text)}`), ...record.medications.filter((m) => m.status === 'performed').map((m) => `- ${m.drug ?? m.class_as_written ?? t.drug}`)];
+  out.push(...(done.length ? done : [d.nothingNoted]));
+  const toGive = record.medications.filter((m) => m.status === 'dispensed' || m.status === 'prescribed');
+  if (toGive.length) { out.push(''); out.push(`## ${d.meds}`); out.push(renderMedicationTable(toGive, lang)); }
+  const home = [...record.plan.instructions.map((i) => `- ${cap(i.text)}`), ...record.treatments.filter((x) => x.status === 'recommended' && x.type === 'advice').map((x) => `- ${cap(x.text)}`)];
+  if (home.length) { out.push(''); out.push(`## ${d.home}`); out.push(...home); }
+  if (record.plan.follow_up) { out.push(''); out.push(`## ${d.next}`); out.push(cap(record.plan.follow_up.text)); }
+  const declined = [...record.diagnostics.filter((x) => x.status === 'declined').map((x) => cap(x.test)), ...record.treatments.filter((x) => x.status === 'declined').map((x) => cap(x.text)), ...record.medications.filter((m) => m.status === 'declined').map((m) => m.drug ?? m.class_as_written ?? t.drug)];
+  if (declined.length) { out.push(''); out.push(`## ${d.declined}`); out.push(...declined.map((x) => `- ${x}`)); }
+  const allMissing = [...record.missing, ...(opts.extraMissing ?? [])];
+  if (allMissing.length) { out.push(''); out.push(`## ${flag(t.missing)}`); for (const m of allMissing) out.push(`- ${m.field}: ${m.reason}`); }
+  const p = provenance(record, opts.extraMissing ?? []);
+  out.push(''); out.push(`_${t.provenance.replace('{f}', String(p.facts)).replace('{n}', String(p.not_recorded))}_`);
+  if (opts.approved) { out.push(''); out.push(`_${t.disclosure}_`); }
+  return out.join('\n');
+}
+
+/** Referral letter: clinical, complete, with the referral reason flagged when the vet did not state one. */
+export function renderReferralLetter(record: ClinicalRecord, header: PatientHeader, lang: Lang = 'en', opts: { approved?: boolean; reason?: string | null; extraMissing?: Missing[] } = {}): string {
+  const t = L[lang], d = D[lang];
+  const out: string[] = [];
+  out.push(`# ${d.referralTitle}`);
+  if (!opts.approved) out.push(`_${t.draft}_`);
+  out.push('');
+  out.push(`${d.dear},`);
+  out.push('');
+  out.push(`${d.referralIntro} **${headerLine(header)}**`);
+  out.push('');
+  out.push(`## ${d.referralReason}`);
+  out.push(opts.reason ? cap(opts.reason) : flag(d.missingReason));
+  out.push('');
+  out.push(`## ${d.historyHdr}`);
+  out.push(record.presenting_complaint ? `- ${cap(record.presenting_complaint.text)}` : `- ${flag(t.missing)}`);
+  for (const h of record.history) out.push(`- ${h.source_role === 'owner_reported' ? t.ownerReports + ': ' : ''}${h.finding}: ${h.value}`);
+  const v = record.examination.vitals;
+  const vitals = [v.temperature && `${t.temp} ${v.temperature.value} °${v.temperature.unit}`, v.heart_rate && `${t.hr} ${v.heart_rate.value}/min`, v.respiratory_rate && `${t.rr} ${v.respiratory_rate.value}/min`, v.weight && `${t.weight} ${v.weight.value} ${v.weight.unit}`].filter(Boolean);
+  if (vitals.length) out.push(`- ${vitals.join('. ')}.`);
+  for (const f of record.examination.findings) out.push(`- ${cap(f.system)}: ${f.text}`);
+  if (record.assessment.text) out.push(`- ${t.assessment}: ${record.assessment.text}`);
+  if (record.diagnostics.length) { out.push(''); out.push(`## ${d.diagHdr}`); for (const x of record.diagnostics) out.push(`- ${cap(x.test)} (${t[x.status] ?? x.status})${x.result ? `: ${x.result}` : x.status === 'performed' ? `: ${flag(`${t.missing}: result`)}` : ''}`); }
+  if (record.treatments.length || record.medications.length) {
+    out.push(''); out.push(`## ${d.treatHdr}`);
+    for (const x of record.treatments) out.push(`- ${cap(x.text)} (${t[x.status] ?? x.status})`);
+    if (record.medications.length) { out.push(''); out.push(renderMedicationTable(record.medications, lang)); }
+  }
+  out.push(''); out.push(d.thanks);
+  const allMissing = [...record.missing, ...(opts.extraMissing ?? []), ...(opts.reason ? [] : [{ field: 'referral.reason', reason: d.missingReason }])];
+  if (allMissing.length) { out.push(''); out.push(`## ${flag(t.missing)}`); for (const m of allMissing) out.push(`- ${m.field}: ${m.reason}`); }
+  const p = provenance(record, opts.extraMissing ?? []);
+  out.push(''); out.push(`_${t.provenance.replace('{f}', String(p.facts)).replace('{n}', String(p.not_recorded + (opts.reason ? 0 : 1)))}_`);
+  if (opts.approved) { out.push(''); out.push(`_${t.disclosure}_`); }
+  return out.join('\n');
+}

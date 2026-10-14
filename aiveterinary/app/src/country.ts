@@ -61,7 +61,7 @@ function common(record: ClinicalRecord, ctx: VisitContext): CountryFlag[] {
 
 /** Per-medication dispensing record fields: which ones a country requires. */
 const dispensingFields: Record<Country, { fields: Array<keyof Dispensing>; rule: string; reason: string }> = {
-  DE: { fields: ['product', 'authorisation_number', 'batch', 'quantity'], rule: 'de_taehav_abgabebeleg', reason: 'TÄHAV dispensing record (Abgabebeleg) requires product, authorisation no., batch and quantity' },
+  DE: { fields: ['product', 'authorisation_number', 'batch', 'quantity'], rule: 'de_taehav_abgabebeleg', reason: 'TÄHAV §15 with Art. 103(3) Reg. (EU) 2019/6: dispensing record requires product, authorisation no., batch and quantity' },
   AT: { fields: ['product', 'batch', 'quantity'], rule: 'at_tamg_abgabe', reason: 'TAMG dispensing documentation requires product, batch and quantity' },
   CH: { fields: ['product', 'quantity'], rule: 'ch_tamv_abgabe', reason: 'TAMV requires product and quantity for dispensed medicines' },
   IT: { fields: ['product'], rule: 'it_rev_prodotto', reason: 'The electronic prescription (REV) is issued per product' },
@@ -76,9 +76,9 @@ export function countryMissing(record: ClinicalRecord, _header: PatientHeader, c
     for (const f of pack.fields) {
       if (!d || d[f] == null) out.push(F(`dispensings[${i}].${f}`, pack.reason, pack.rule));
     }
-    if (ctx.country === 'DE' && (m.dose == null || !m.route || !m.duration)) out.push(F(`medications[${i}]`, 'TÄHAV: dose, route and duration of use must be on the dispensing record', 'de_taehav_anwendung'));
+    if (ctx.country === 'DE' && (m.dose == null || !m.route || !m.duration)) out.push(F(`medications[${i}]`, 'TÄHAV §15(3) with Art. 105(5) Reg. (EU) 2019/6: dosage regimen must be on the dispensing record', 'de_taehav_anwendung'));
     if (d?.is_antibiotic && !d.antibiotic_justification) {
-      const why = { DE: 'TÄHAV §12c: justification for antibiotic use (and antibiogram where required)', IT: 'Antibiotic use must be justified on the REV', CH: 'IS ABV: indication required for every antibiotic dispensed', AT: 'TAMG: justification required for antibiotic use' }[ctx.country];
+      const why = { DE: 'TÄHAV §13: antibiogram for the listed cases in dogs and cats, otherwise documented reasons for antibiotic use', IT: 'Antibiotic use must be justified on the REV', CH: 'IS ABV: indication required for every antibiotic dispensed', AT: 'TAMG: justification required for antibiotic use' }[ctx.country];
       out.push(F(`dispensings[${i}].antibiotic_justification`, why, `${ctx.country.toLowerCase()}_antibiotic_justification`, 'block'));
     }
     if (ctx.country === 'CH' && d?.is_antibiotic && !d.pack) out.push(F(`dispensings[${i}].pack`, 'IS ABV reporting needs the pack size', 'ch_isabv_pack'));
