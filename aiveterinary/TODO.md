@@ -100,8 +100,8 @@ Everything costs €0 unless marked €. Legend:
 ### Correctness first
 - [ ] Grow the eval set to **300 cases × EN/DE/IT** (shorthand, typos, contradictions, multi-pet, dictated-later notes), written with vets — L ★★★
 - [ ] Run the model on the set (needs key), publish numbers on `/vets/quality` — S ★★★
-- [ ] **Country field packs** as missing-flags: DE (TÄHAV: product, ZNR, batch, quantity, dose/route/duration, antibiotic justification), IT (owner codice fiscale, microchip, lot on vaccines, consent "modi e tempi", REV number), CH (antibiotic → IS ABV fields), AT (TAMG fields) — M ★★★ *only us*
-- [ ] Add structured fields: microchip, owner tax/ID, product code + batch + pack + quantity/unit, author, consent — S ★★★
+- [x] **Country field packs** as missing-flags: DE (TÄHAV: product, ZNR, batch, quantity, dose/route/duration, antibiotic justification), IT (owner codice fiscale, microchip, lot on vaccines, consent "modi e tempi", REV number), CH (antibiotic → IS ABV fields), AT (TAMG fields) — M ★★★ *only us*
+- [x] Add structured fields: microchip, owner tax/ID, product code + batch + pack + quantity/unit, author, consent — S ★★★
 - [ ] Adversarial cases: owner's pregnancy, other pet, dose mentioned but not given, "was" vs "planned", decimal commas, German compound drug names — M ★★★
 - [ ] External vet panel review of 50 outputs (names on the quality page) — **You** + M ★★★
 
@@ -127,11 +127,11 @@ Everything costs €0 unless marked €. Legend:
 - [ ] Lab-result explanation for owners from vet-entered interpretation only ★★
 
 ### Editor and review features
-- [ ] **Provenance badge** on every document (AI-added 0 / vet fields n / not recorded n) — S ★★★ *only us*
+- [x] **Provenance badge** on every document (AI-added 0 / vet fields n / not recorded n) — S ★★★ *only us*
 - [ ] Owner-reported vs vet-observed toggle with distinct rendering — S ★★★ *only us*
 - [ ] **Declined-care register** (signed paragraph + per-patient log) — S ★★★ *only us*
 - [ ] Medication reconciliation table with tick per cell before sign-off; cross-document identity check for translations — S ★★★ *only us*
-- [ ] "Not recorded" as a first-class printed value — S ★★★ *only us*
+- [x] "Not recorded" as a first-class printed value — S ★★★ *only us*
 - [ ] Amendment propagation map ("generated from v1 — regenerate?") — M ★★ *only us*
 - [ ] Bilingual side-by-side owner letter (DE/IT/EN + TR/AR/UK), meds table identical — M ★★★ *only us*
 - [ ] Snippets / dot-phrases incl. "otherwise unremarkable" (clinic-written, never auto) — S ★★★

@@ -92,6 +92,7 @@ export const FollowUp = z.object({
 });
 
 export const Missing = z.object({ field: z.string(), reason: z.string() });
+export type Missing = z.infer<typeof Missing>;
 export const Uncertain = z.object({ field: z.string(), original_text: z.string(), reason: z.string(), ...sourced });
 
 export const ClinicalRecord = z.object({

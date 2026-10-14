@@ -51,3 +51,9 @@ node -e 'const n=process.argv[1];let p=0;for(const l of n.split("\n")){console.l
 
 Target before any pilot: ≥ 300 cases across EN/DE/IT written with vets,
 0 blocking findings on the model's output, missing-recall ≥ 95 %.
+
+## Country field packs (`src/country.ts`)
+
+Facts the vet enters at sign-off, never extracted from prose: microchip, owner name and tax id, author and registration, consent (obtained, scope, method), Italian REV number, and one dispensing record per medication (product, authorisation number, batch, pack, quantity, antibiotic flag and justification). `countryMissing(record, header, ctx)` returns flags for DE (TÄHAV dispensing record, antibiotic justification, prescription names the keeper), IT (microchip, codice fiscale, REV number, consent modi e tempi), CH (TAMV product and quantity, IS ABV pack and indication for antibiotics) and AT (TAMG product, batch, quantity). Common to all: responsible vet named, vaccine batch, consent for performed procedures, declined care documented. Flags are printed in the report's missing section; nothing is filled in.
+
+`provenance(record)` gives the counts printed under every document: facts from the notes, not recorded, added by AI (always 0, every fact carries a span).
