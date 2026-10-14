@@ -1,5 +1,6 @@
 ---
 import YarnCat from './YarnCat.astro';
+import AnimalIcon from './AnimalIcon.astro';
 interface Props { lang?: 'en' | 'it' | 'de' }
 const { lang = 'en' } = Astro.props;
 const T = {
@@ -499,11 +500,14 @@ const OPT = {"en": {"Dog": "Dog", "Cat": "Cat", "Ferret": "Ferret", "Rabbit": "R
 const speciesOpts = ['Dog','Cat','Ferret','Rabbit','Guinea pig','Hamster','Horse','Bird','Reptile','Other'] as const;
 const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
 ---
-  <section class="wrap hero" id="pp-intro">
+  <section class="wrap hero hero-split" id="pp-intro">
+    <div>
     <p class="eyebrow">{t.eyebrow}</p>
     <h1>{t.h1}</h1>
     <p class="lead">{t.lead}</p>
-    <div class="notice"><p><strong>Private by design.</strong> Nothing you enter here leaves your browser. We never see it. That also means it is your copy: use <em>{t.backup}</em> regularly and keep the file somewhere safe (your email, cloud drive or phone). This is your own copy. It does not replace the official EU pet passport issued by an authorised vet, nor the microchip registry entry; keep those up to date too. Free, no lock-in: export your data any time.</p></div>
+    <div class="notice"><p set:html={t.privText} /></div>
+    </div>
+    <div class="hero-side" aria-hidden="true"><AnimalIcon kind="dog" size={190} /><AnimalIcon kind="cat" size={150} /></div>
   </section>
 
   <section class="wrap" id="pp-account" hidden>
@@ -640,11 +644,11 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
   <section class="wrap narrow" id="pp-faq" style="margin-top:48px">
     <h2>{t.faqTitle}</h2>
     <h3>{t.faq1q}</h3>
-    <p>{t.faq1a}</p>
+    <p set:html={t.faq1a} />
     <h3>{t.faq2q}</h3>
-    <p>{t.faq2a}</p>
+    <p set:html={t.faq2a} />
     <h3>{t.faq3q}</h3>
-    <p>{t.faq3a}</p>
+    <p set:html={t.faq3a} />
   </section>
 
   <style is:global>
