@@ -24,6 +24,7 @@ const T = {
   "backup": "Back up",
   "restore": "Restore",
   "print": "Print",
+  "card": "Emergency card","cardTitle": "Emergency card","cardFoot": "Full health booklet on the owner's phone · aiveterinary.org",
   "delete": "Delete",
   "emptyTitle": "No animal yet",
   "emptyText": "Create a passport for your first animal, or restore one from a backup file.",
@@ -136,6 +137,7 @@ const T = {
   "backup": "Copia di sicurezza",
   "restore": "Ripristina",
   "print": "Stampa",
+  "card": "Scheda d'emergenza","cardTitle": "Scheda d'emergenza","cardFoot": "Libretto sanitario completo sul telefono del proprietario · aiveterinary.org",
   "delete": "Elimina",
   "emptyTitle": "Nessun animale ancora",
   "emptyText": "Crea il passaporto del tuo primo animale, oppure ripristinalo da una copia di sicurezza.",
@@ -241,6 +243,7 @@ const T = {
   "backup": "Sichern",
   "restore": "Wiederherstellen",
   "print": "Drucken",
+  "card": "Notfallkarte","cardTitle": "Notfallkarte","cardFoot": "Vollständiger Heimtierpass auf dem Handy der Halterin/des Halters · aiveterinary.org",
   "delete": "Löschen",
   "emptyTitle": "Noch kein Tier",
   "emptyText": "Legen Sie den Ausweis für Ihr erstes Tier an oder stellen Sie ihn aus einer Sicherungsdatei wieder her.",
@@ -547,6 +550,7 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
       <button class="btn secondary" id="pp-export" type="button">{t.backup}</button>
       <label class="btn secondary" for="pp-import">{t.restore}<input id="pp-import" type="file" accept="application/json,.json" class="sr" /></label>
       <button class="btn secondary" id="pp-print" type="button">{t.print}</button>
+      <button class="btn secondary" id="pp-card" type="button" hidden>{t.card}</button>
       <button class="btn secondary pp-danger" id="pp-delete" type="button">{t.delete}</button>
     </div>
 
@@ -651,6 +655,21 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
     </div>
   </section>
 
+  <section id="pp-card-view" class="wrap" hidden aria-hidden="true">
+    {[0, 1].map(() => (
+      <div class="pp-card">
+        <div class="pp-card-h"><span class="pp-card-name" data-c="name"></span><span class="pp-card-sub" data-c="animal"></span></div>
+        <div class="pp-card-row"><b>{t.microchip}</b> <span data-c="microchip"></span></div>
+        <div class="pp-card-row"><b>{t.conditions}</b> <span data-c="conditions"></span></div>
+        <div class="pp-card-row"><b>{t.medications}</b> <span data-c="medications"></span></div>
+        <div class="pp-card-row"><b>{t.ownerPhone}</b> <span data-c="owner"></span></div>
+        <div class="pp-card-row"><b>{t.vetClinic}</b> <span data-c="vet"></span></div>
+        <div class="pp-card-row"><b>{t.emergencyClinic}</b> <span data-c="emergency"></span></div>
+        <div class="pp-card-foot">{t.cardTitle} · {t.cardFoot}</div>
+      </div>
+    ))}
+  </section>
+
   <section class="wrap narrow" id="pp-faq" style="margin-top:48px">
     <h2>{t.faqTitle}</h2>
     <h3>{t.faq1q}</h3>
@@ -707,6 +726,20 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
       input, select, textarea { border: 0 !important; border-bottom: 1px solid #bbb !important; border-radius: 0 !important; padding: 2px 0 !important; background: #fff !important; color: #000 !important; -webkit-appearance: none; appearance: none; }
       .hero { padding: 0 0 12px; }
       .hero h1::after { content: " — " attr(data-animal); font-weight: 500; }
+    }
+    /* emergency card: credit-card size, two copies, only printed when requested */
+    #pp-card-view { display: none; }
+    .pp-card { width: 85.6mm; min-height: 54mm; border: 1px solid #999; border-radius: 3mm; padding: 4mm 5mm; box-sizing: border-box; font-size: 8pt; line-height: 1.3; color: #000; background: #fff; margin: 0 0 6mm; display: flex; flex-direction: column; gap: 1mm; break-inside: avoid; }
+    .pp-card-h { display: flex; align-items: baseline; gap: 6px; border-bottom: 1px solid #999; padding-bottom: 1.5mm; margin-bottom: 1mm; }
+    .pp-card-name { font-family: var(--font-display); font-size: 13pt; font-weight: 600; }
+    .pp-card-sub { color: #444; }
+    .pp-card-row { display: block; } .pp-card-row b { font-weight: 600; color: #333; }
+    .pp-card-row span { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+    .pp-card-foot { margin-top: auto; font-size: 6.5pt; color: #666; }
+    @media print {
+      body.pp-print-card main > *:not(#pp-card-view), body.pp-print-card .site-header, body.pp-print-card .site-footer { display: none !important; }
+      body.pp-print-card #pp-card-view { display: block !important; padding-top: 10mm; }
+      body.pp-print-card .hero h1::after { content: none; }
     }
   </style>
 
@@ -802,6 +835,7 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
       form.hidden = !a; empty.hidden = !!a;
       $('#pp-delete')!.toggleAttribute('hidden', !a);
       $('#pp-print')!.toggleAttribute('hidden', !a);
+      $('#pp-card')!.toggleAttribute('hidden', !a);
       $('h1')!.setAttribute('data-animal', a?.name ?? '');
       if (!a) return;
       for (const el of $$<HTMLInputElement>('[data-f]', form)) el.value = a[el.dataset.f!] ?? '';
@@ -873,6 +907,23 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
       store.current = store.animals[0]?.id ?? null; render(); save(J.deleted); acct.remove(a.id);
     });
     $('#pp-print')!.addEventListener('click', () => window.print());
+    $('#pp-card')!.addEventListener('click', () => {
+      const a = current(); if (!a) return;
+      const set = (k: string, v: string) => { for (const el of $$(`[data-c="${k}"]`)) el.textContent = v || '—'; };
+      set('name', a.name || J.unnamed);
+      set('animal', [a.species, a.breed, a.sex, a.dob].filter(Boolean).join(' · '));
+      set('microchip', a.microchip);
+      set('conditions', (a.conditions ?? []).map((c: any) => [c.type, c.description].filter(Boolean).join(': ')).join('; '));
+      set('medications', (a.medications ?? []).map((m: any) => [m.name, m.dose].filter(Boolean).join(' ')).join('; '));
+      set('owner', [a.ownerName, a.ownerPhone].filter(Boolean).join(' '));
+      set('vet', [a.vetClinic, a.vetPhone].filter(Boolean).join(' '));
+      set('emergency', [a.emergencyClinic, a.emergencyPhone].filter(Boolean).join(' '));
+      const view = $('#pp-card-view') as HTMLElement; view.hidden = false; view.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('pp-print-card');
+      const done = () => { document.body.classList.remove('pp-print-card'); view.hidden = true; view.setAttribute('aria-hidden', 'true'); window.removeEventListener('afterprint', done); };
+      window.addEventListener('afterprint', done);
+      window.print();
+    });
 
     // photo: resize to 320px max side before storing, to keep localStorage small
     $<HTMLInputElement>('#pp-photo-input').addEventListener('change', async (e) => {

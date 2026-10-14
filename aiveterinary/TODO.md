@@ -75,7 +75,7 @@ Everything costs €0 unless marked €. Legend:
 - [ ] **Import from photo/PDF of the paper passport, libretto, Impfpass** (on-device OCR, user confirms each field) — L ★★★ *only us in EU*
 - [x] **Reminders** v1: upcoming-dates panel in the booklet + .ics calendar export with 7-day alarm (country-aware intervals and email reminders still open) — M ★★★
 - [ ] **Share a read-only report** (PDF now; expiring link once accounts exist) for vet, sitter, kennel — S/M ★★★
-- [ ] **Emergency card**: print + Apple/Google Wallet pass (chip, meds, allergies, vet, ICE) — M ★★ *only us*
+- [x] **Emergency card**: printable credit-card size, two copies, from booklet data (Wallet pass still open) — M ★★ *only us*
 - [ ] **Lost-pet mode**: poster PDF, QR flyer, per-country registry checklist, Europetnet link — M ★★ *registry-aware: only us*
 - [ ] **Registry navigator**: which registry (IT anagrafe/SINAC, DE TASSO/FINDEFIX, AT Heimtierdatenbank, CH AMICUS/ANIS, FR I-CAD), deadlines when moving (AT 1 month, CH 10 d, FR 8 d, IT 10 d) — S ★★ *only us*
 - [ ] **Travel checklist per destination** under Reg. 2026/131: residents-only passport, 5-pet cap, tapeworm FI/IE/MT/NO/UK 24–120 h, rabies titre for unlisted countries, puppy age — M ★★★
