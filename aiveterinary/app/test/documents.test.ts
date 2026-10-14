@@ -121,4 +121,12 @@ describe('documents from the approved record', () => {
     const withText = renderLabExplanation(record, header, VisitContext.parse({ country: 'IT', interpretations: [{ diagnostic_index: 0, text: 'le anche mostrano usura; gestiamo il dolore e la mobilità' }] }), 'it');
     expect(withText).toContain('Cosa dice il tuo veterinario: Le anche mostrano usura'); expect(withText).not.toContain('## ▲');
   });
+  it('antibiotic block lists marked antibiotics with justification and duration flags', async () => {
+    const { renderAntibioticBlock } = await import('../src/render.js');
+    const { VisitContext } = await import('../src/country.js');
+    const { record, header } = prep('002-milo-otitis-de');
+    expect(renderAntibioticBlock(record, header, VisitContext.parse({ country: 'DE' }), 'de')).toContain('kein Antibiotikum');
+    const md = renderAntibioticBlock(record, header, VisitContext.parse({ country: 'DE', dispensings: [{ medication_index: 0, is_antibiotic: true, product: 'Surolan' }] }), 'de', { culture_done: true });
+    expect(md).toContain('### Surolan'); expect(md).toContain('Antibiogramm: erstellt'); expect(md).toContain('Begründung der Antibiotika-Anwendung nicht erfasst');
+  });
 });

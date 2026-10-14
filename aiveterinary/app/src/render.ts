@@ -546,3 +546,41 @@ export function renderLabExplanation(record: ClinicalRecord, header: PatientHead
   if (opts.approved) { out.push(''); out.push(`_${t.disclosure}_`); }
   return out.join('\n');
 }
+
+/* ------------------------------------------------------------------ */
+/* Antibiotic use block: the structured entry stewardship rules and     */
+/* registries (TÄHAV §13, IS ABV, REV) ask for, per antibiotic given or */
+/* prescribed today. Nothing inferred: agent from the record, the rest  */
+/* from the dispensing record.                                          */
+
+const AB = {
+  en: { title: 'Antibiotic use', agent: 'Agent', product: 'Product', indication: 'Indication / justification', culture: 'Culture and sensitivity', route: 'Route', dose: 'Dose and frequency', duration: 'Duration', quantity: 'Quantity dispensed', none: 'No antibiotic marked in today\'s dispensing record.', missingJust: 'indication or justification for antibiotic use not recorded', missingDur: 'duration of the course not recorded', notDone: 'not done', done: 'done', rec: 'result pending or recorded elsewhere' },
+  de: { title: 'Antibiotika-Anwendung', agent: 'Wirkstoff', product: 'Präparat', indication: 'Indikation / Begründung', culture: 'Antibiogramm', route: 'Applikation', dose: 'Dosis und Häufigkeit', duration: 'Dauer', quantity: 'Abgegebene Menge', none: 'Heute kein Antibiotikum im Abgabe-Nachweis markiert.', missingJust: 'Indikation oder Begründung der Antibiotika-Anwendung nicht erfasst', missingDur: 'Behandlungsdauer nicht erfasst', notDone: 'nicht erstellt', done: 'erstellt', rec: 'Ergebnis ausstehend oder andernorts dokumentiert' },
+  it: { title: 'Uso di antibiotici', agent: 'Principio attivo', product: 'Prodotto', indication: 'Indicazione / motivazione', culture: 'Antibiogramma', route: 'Via', dose: 'Dose e frequenza', duration: 'Durata', quantity: 'Quantità consegnata', none: 'Nessun antibiotico segnato nel registro di consegna di oggi.', missingJust: 'indicazione o motivazione dell\'uso di antibiotici non registrata', missingDur: 'durata del trattamento non registrata', notDone: 'non eseguito', done: 'eseguito', rec: 'risultato in attesa o registrato altrove' },
+};
+
+export function renderAntibioticBlock(record: ClinicalRecord, header: PatientHeader, ctx: VisitContext, lang: Lang = 'en', opts: { culture_done?: boolean | null } = {}): string {
+  const t = L[lang], a = AB[lang];
+  const out: string[] = []; const miss: Missing[] = [];
+  out.push(`## ${a.title}`);
+  const rows = ctx.dispensings.filter((d) => d.is_antibiotic);
+  if (!rows.length) { out.push(a.none); return out.join('\n'); }
+  out.push(`**${headerLine(header)}**`); out.push('');
+  for (const d of rows) {
+    const m = record.medications[d.medication_index];
+    if (!m) continue;
+    out.push(`### ${m.drug ?? m.class_as_written ?? '?'}`);
+    out.push(`- ${a.product}: ${d.product ?? flag(`${t.missing}: ${a.product.toLowerCase()}`)}`);
+    out.push(`- ${a.indication}: ${d.antibiotic_justification ?? flag(a.missingJust)}`);
+    if (!d.antibiotic_justification) miss.push({ field: `dispensings[${d.medication_index}].antibiotic_justification`, reason: a.missingJust });
+    out.push(`- ${a.culture}: ${opts.culture_done == null ? a.rec : opts.culture_done ? a.done : a.notDone}`);
+    out.push(`- ${a.dose}: ${m.dose != null ? `${m.dose} ${m.dose_unit ?? ''}`.trim() : flag(`${t.missing}: ${t.dose.toLowerCase()}`)}${m.frequency ? `, ${m.frequency}` : ''}`);
+    out.push(`- ${a.route}: ${m.route ?? flag(`${t.missing}: ${t.route.toLowerCase()}`)}`);
+    out.push(`- ${a.duration}: ${m.duration ?? flag(a.missingDur)}`);
+    if (!m.duration) miss.push({ field: `medications[${d.medication_index}].duration`, reason: a.missingDur });
+    out.push(`- ${a.quantity}: ${d.quantity ? `${d.quantity.value} ${d.quantity.unit}` : '—'}`);
+    out.push('');
+  }
+  if (miss.length) { out.push(`### ${flag(t.missing)}`); for (const x of miss) out.push(`- ${x.field}: ${x.reason}`); }
+  return out.join('\n');
+}

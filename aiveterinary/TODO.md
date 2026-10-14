@@ -123,7 +123,7 @@ Everything costs €0 unless marked €. Legend:
 - [ ] Registry export (AT Heimtierdatenbank, IT anagrafe dataset) ★★
 - [ ] Dog-bite report letter (CH, IT) ★
 - [ ] Third-country certificate pre-fill from record ★
-- [ ] Antibiotic structured block now; **IS ABV (CH) push** later via BLV REST; HI-Tier (DE) 2029 ★★ (M–L)
+- [x] Antibiotic structured block rendered per marked antibiotic (IS ABV push via BLV REST and HI-Tier 2029 still open)
 - [x] Lab-result explanation for owners from vet-entered interpretation only ★★
 
 ### Editor and review features
