@@ -63,7 +63,7 @@ Everything costs €0 unless marked €. Legend:
 - [ ] Vet-facing landing pages per country: `/de/vets` with GOT/TÄHAV angle, `/it/vets` with REV/preventivo angle — S ★★
 
 ### Site mechanics
-- [x] `hreflang` links between language versions (done; language auto-suggest banner still open) — S ★★
+- [x] `hreflang` links between language versions; language auto-suggest bar (once per device) — S ★★
 - [x] Cookie-free analytics: Cloudflare Web Analytics beacon loads only when PUBLIC_CF_ANALYTICS_TOKEN is set (You: create the site in Cloudflare and set the token) — S ★★
 - [x] Search (static index, Pagefind) — S ★★
 - [x] Open-graph image (one PNG for the site; per-article images still open) — S ★

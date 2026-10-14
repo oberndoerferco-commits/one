@@ -296,3 +296,9 @@ p { margin: 0 0 1em; }
 .btn:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
 .nav a.nav-cta:focus-visible, .btn:focus-visible { outline-offset: 3px; border-radius: 999px; }
 main:focus { outline: none; }
+
+/* language suggestion bar */
+.lang-suggest { display: flex; gap: 12px; align-items: center; justify-content: center; flex-wrap: wrap; padding: 10px 16px; background: var(--accent-soft); color: var(--ink); font-size: .95rem; }
+.lang-suggest .btn { padding: 7px 14px; font-size: .9rem; }
+.lang-suggest-close { font: inherit; font-size: 1.2rem; line-height: 1; border: 0; background: transparent; color: var(--ink-2); cursor: pointer; padding: 4px 8px; }
+@media print { .lang-suggest { display: none; } }

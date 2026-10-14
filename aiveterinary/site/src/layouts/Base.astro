@@ -169,6 +169,11 @@ const current = (href: string) => path === href || path.startsWith(href + '/');
       </div>
     </header>
 
+    <div id="lang-suggest" class="lang-suggest" hidden role="region" aria-label="Language">
+      <span id="lang-suggest-text"></span>
+      <a id="lang-suggest-link" class="btn" href="/"></a>
+      <button id="lang-suggest-close" type="button" class="lang-suggest-close" aria-label="Dismiss">×</button>
+    </div>
     <main id="main" tabindex="-1">
       <slot />
     </main>
@@ -188,5 +193,26 @@ const current = (href: string) => path === href || path.startsWith(href + '/');
         </ul>
       </div>
     </footer>
+  <script is:inline define:vars={{ pageLang: L, alternates }}>
+    // Offer the page in the browser's language once; remembered on this device.
+    (function () {
+      try {
+        if (!alternates || !alternates.length || localStorage.getItem('aiveterinary.langSuggest') === 'off') return;
+        var wanted = (navigator.languages || [navigator.language || '']).map(function (l) { return String(l).slice(0, 2).toLowerCase(); });
+        var target = null;
+        for (var i = 0; i < wanted.length; i++) { if (['en', 'it', 'de'].indexOf(wanted[i]) >= 0) { target = wanted[i]; break; } }
+        if (!target || target === pageLang) return;
+        var alt = alternates.filter(function (a) { return a[0] === target; })[0]; if (!alt) return;
+        var text = { en: 'This page is also available in English.', it: 'Questa pagina è disponibile anche in italiano.', de: 'Diese Seite gibt es auch auf Deutsch.' }[target];
+        var label = { en: 'Switch to English', it: 'Passa all\'italiano', de: 'Zu Deutsch wechseln' }[target];
+        var box = document.getElementById('lang-suggest'); document.getElementById('lang-suggest-text').textContent = text;
+        var link = document.getElementById('lang-suggest-link'); link.textContent = label; link.href = alt[1]; link.setAttribute('hreflang', target);
+        box.hidden = false;
+        var off = function () { try { localStorage.setItem('aiveterinary.langSuggest', 'off'); } catch (e) {} box.hidden = true; };
+        document.getElementById('lang-suggest-close').addEventListener('click', off);
+        link.addEventListener('click', off);
+      } catch (e) {}
+    })();
+  </script>
   </body>
 </html>
