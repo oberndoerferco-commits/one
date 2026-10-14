@@ -254,3 +254,11 @@ p { margin: 0 0 1em; }
 
 .pp-invalid { border-color: var(--danger) !important; }
 .pp-chip-hint { display: block; color: var(--danger); margin-top: 4px; }
+
+/* booklet reminders */
+.pp-upcoming { list-style: none; padding: 0; margin: 0 0 12px; }
+.pp-upcoming li { padding: 8px 0; border-bottom: 1px solid var(--line); display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.pp-upcoming li.soon .pp-due-date { color: var(--warn); }
+.pp-upcoming li.overdue .pp-due-date, .pp-upcoming li.overdue .pp-hint { color: var(--danger); }
+.pp-due-date { font-variant-numeric: tabular-nums; font-weight: 600; min-width: 110px; }
+@media print { #pp-ics { display: none; } }

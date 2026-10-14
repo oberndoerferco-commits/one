@@ -73,7 +73,7 @@ Everything costs €0 unless marked €. Legend:
 ### Passport (local-first) — value against the #1 complaint, data lock-in
 - [x] Rename + "your data stays yours: free, no lock-in, export anytime" statement on the page — S ★★★
 - [ ] **Import from photo/PDF of the paper passport, libretto, Impfpass** (on-device OCR, user confirms each field) — L ★★★ *only us in EU*
-- [ ] **Reminders** for vaccinations, parasite treatments, medications with country-aware intervals; local notifications first, email once accounts exist — M ★★★
+- [x] **Reminders** v1: upcoming-dates panel in the booklet + .ics calendar export with 7-day alarm (country-aware intervals and email reminders still open) — M ★★★
 - [ ] **Share a read-only report** (PDF now; expiring link once accounts exist) for vet, sitter, kennel — S/M ★★★
 - [ ] **Emergency card**: print + Apple/Google Wallet pass (chip, meds, allergies, vet, ICE) — M ★★ *only us*
 - [ ] **Lost-pet mode**: poster PDF, QR flyer, per-country registry checklist, Europetnet link — M ★★ *registry-aware: only us*

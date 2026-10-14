@@ -54,6 +54,7 @@ const T = {
   "emergencyPhone": "Emergency phone",
   "insurance": "Insurance",
   "vaccinations": "Vaccinations",
+  "upcoming": "Coming up","upcomingHint": "Due dates from the vaccination and parasite tables. Add them to your calendar so nothing slips.","overdue": "overdue","dueIn": "in {n} days","dueToday": "today","addCalendar": "Add to calendar (.ics)","noUpcoming": "Nothing due. Add a \"valid until\" or \"next due\" date to see reminders here.",
   "vaccHint": "Copy from the official passport or the clinic invoice. The \"valid until\" date is what border staff and kennels ask for.",
   "addVacc": "+ Add vaccination",
   "treatments": "Parasite treatments",
@@ -170,6 +171,7 @@ const T = {
   "emergencyPhone": "Telefono di emergenza",
   "insurance": "Assicurazione",
   "vaccinations": "Vaccinazioni",
+  "upcoming": "In scadenza","upcomingHint": "Date di scadenza prese dalle tabelle di vaccinazioni e antiparassitari. Aggiungile al calendario così non dimentichi nulla.","overdue": "scaduto","dueIn": "tra {n} giorni","dueToday": "oggi","addCalendar": "Aggiungi al calendario (.ics)","noUpcoming": "Nessuna scadenza. Inserisci una data \"valido fino a\" o \"prossima dose\" per vedere qui i promemoria.",
   "vaccHint": "Copia dal passaporto ufficiale o dalla fattura della clinica. La data \"valido fino al\" è quella che chiedono alle frontiere e nelle pensioni.",
   "thVaccine": "Vaccino",
   "thDateGiven": "Data",
@@ -274,6 +276,7 @@ const T = {
   "emergencyPhone": "Notfallnummer",
   "insurance": "Versicherung",
   "vaccinations": "Impfungen",
+  "upcoming": "Demnächst fällig","upcomingHint": "Fälligkeiten aus den Tabellen Impfungen und Parasitenschutz. In den Kalender übernehmen, damit nichts durchrutscht.","overdue": "überfällig","dueIn": "in {n} Tagen","dueToday": "heute","addCalendar": "In den Kalender (.ics)","noUpcoming": "Nichts fällig. Tragen Sie ein \"gültig bis\" oder \"nächste Gabe\" ein, um hier Erinnerungen zu sehen.",
   "vaccHint": "Aus dem offiziellen Ausweis oder der Praxisrechnung übertragen. Das Datum „gültig bis“ wird an Grenzen und in Tierpensionen verlangt.",
   "thVaccine": "Impfstoff",
   "thDateGiven": "Datum",
@@ -597,6 +600,13 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
         </section>
       </div>
 
+      <section class="card" id="pp-upcoming">
+        <h2>{t.upcoming}</h2>
+        <p class="pp-hint">{t.upcomingHint}</p>
+        <ul id="pp-upcoming-list" class="pp-upcoming"></ul>
+        <button class="btn secondary" type="button" id="pp-ics" hidden>{t.addCalendar}</button>
+      </section>
+
       <section class="card pp-list" data-list="vaccinations">
         <h2>{t.vaccinations}</h2>
         <p class="pp-hint">{t.vaccHint}</p>
@@ -700,7 +710,7 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
     }
   </style>
 
-  <script type="application/json" id="pp-i18n" set:html={JSON.stringify(j)} />
+  <script type="application/json" id="pp-i18n" set:html={JSON.stringify({ ...j, locale: ({ en: 'en-GB', it: 'it-IT', de: 'de-DE' } as any)[lang], upcoming: { overdue: t.overdue, dueIn: t.dueIn, dueToday: t.dueToday, none: t.noUpcoming, vacc: t.vaccinations, treat: t.treatments } })} />
 
   <script>
     // Digital pet passport. Local-first: all data lives in localStorage under one key.
@@ -776,12 +786,12 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
           } else { input = document.createElement('input'); input.type = c.type ?? 'text'; }
           input.value = row[c.key] ?? '';
           input.setAttribute('aria-label', c.label);
-          input.addEventListener('input', () => { row[c.key] = input.value; scheduleSave(); });
+          input.addEventListener('input', () => { row[c.key] = input.value; scheduleSave(); if (name === 'vaccinations' || name === 'treatments') renderUpcoming(a); });
           td.appendChild(input); tr.appendChild(td);
         }
         const td = document.createElement('td');
         const rm = document.createElement('button'); rm.type = 'button'; rm.className = 'pp-rm'; rm.textContent = '×'; rm.setAttribute('aria-label', J.removeRow);
-        rm.addEventListener('click', () => { a[name].splice(i, 1); renderList(name, a); save(J.rowRemoved); });
+        rm.addEventListener('click', () => { a[name].splice(i, 1); renderList(name, a); renderUpcoming(a); save(J.rowRemoved); });
         td.appendChild(rm); tr.appendChild(td); tbody.appendChild(tr);
       });
     }
@@ -799,8 +809,39 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
       img.hidden = !a.photo; if (a.photo) img.src = a.photo;
       $('#pp-photo-remove')!.toggleAttribute('hidden', !a.photo);
       for (const name of Object.keys(LISTS)) renderList(name, a);
+      renderUpcoming(a);
     }
 
+    function dueItems(a: Animal) {
+      const items: { label: string; date: string; kind: string }[] = [];
+      for (const r of a.vaccinations) if (r.validUntil) items.push({ label: r.vaccine || J.upcoming.vacc, date: r.validUntil, kind: J.upcoming.vacc });
+      for (const r of a.treatments) if (r.nextDue) items.push({ label: r.product || J.upcoming.treat, date: r.nextDue, kind: J.upcoming.treat });
+      return items.filter((x) => !isNaN(Date.parse(x.date))).sort((x, y) => x.date.localeCompare(y.date));
+    }
+    function renderUpcoming(a: Animal) {
+      const ul = $('#pp-upcoming-list') as HTMLElement; ul.innerHTML = '';
+      const items = dueItems(a);
+      ($('#pp-ics') as HTMLElement).hidden = items.length === 0;
+      if (!items.length) { const li = document.createElement('li'); li.className = 'pp-hint'; li.textContent = J.upcoming.none; ul.appendChild(li); return; }
+      const today = new Date(); today.setHours(0, 0, 0, 0);
+      for (const it of items) {
+        const d = new Date(it.date); const days = Math.round((d.getTime() - today.getTime()) / 86400000);
+        const when = days < 0 ? J.upcoming.overdue : days === 0 ? J.upcoming.dueToday : J.upcoming.dueIn.replace('{n}', String(days));
+        const li = document.createElement('li'); li.className = days < 0 ? 'overdue' : days <= 30 ? 'soon' : '';
+        li.innerHTML = `<span class="pp-due-date">${d.toLocaleDateString(J.locale ?? undefined)}</span> <strong>${it.label.replace(/</g, '&lt;')}</strong> <span class="pp-hint">${it.kind} · ${when}</span>`;
+        ul.appendChild(li);
+      }
+    }
+    $('#pp-ics')?.addEventListener('click', () => {
+      const a = current(); if (!a) return;
+      const fmt = (iso: string) => iso.slice(0, 10).replace(/-/g, '');
+      const esc = (x: string) => x.replace(/[\\;,]/g, (m) => '\\' + m).replace(/\n/g, '\\n');
+      const stamp = new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';
+      const events = dueItems(a).map((it, i) => ['BEGIN:VEVENT', `UID:${a.id}-${i}-${fmt(it.date)}@aiveterinary.org`, `DTSTAMP:${stamp}`, `DTSTART;VALUE=DATE:${fmt(it.date)}`, `SUMMARY:${esc((a.name || J.unnamed) + ': ' + it.label)}`, `DESCRIPTION:${esc(it.kind)}`, 'BEGIN:VALARM', 'TRIGGER:-P7D', 'ACTION:DISPLAY', `DESCRIPTION:${esc(it.label)}`, 'END:VALARM', 'END:VEVENT'].join('\r\n'));
+      const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//aiveterinary.org//health booklet//EN', ...events, 'END:VCALENDAR'].join('\r\n') + '\r\n';
+      const blob = new Blob([ics], { type: 'text/calendar' }); const url = URL.createObjectURL(blob);
+      const link = document.createElement('a'); link.href = url; link.download = `${(a.name || 'animal').replace(/[^\w-]+/g, '_')}-reminders.ics`; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+    });
     function render() { renderSelect(); renderForm(); }
 
     // field bindings
