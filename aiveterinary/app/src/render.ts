@@ -511,3 +511,38 @@ export function renderControlledDrugsEntry(record: ClinicalRecord, header: Patie
   if (miss.length) { out.push(''); out.push(`## ${flag(t.missing)}`); for (const x of miss) out.push(`- ${x.field}: ${x.reason}`); }
   return out.join('\n');
 }
+
+/* ------------------------------------------------------------------ */
+/* Lab-result explanation for the owner: the test, the result as        */
+/* recorded, and the vet's own interpretation. No interpretation, no     */
+/* explanation; the line is flagged instead.                            */
+
+const X = {
+  en: { title: 'Your animal\'s test results, explained', intro: 'Each result below is followed by what your veterinarian concluded from it, in their own words.', test: 'Test', result: 'Result', says: 'What your vet says', none: 'No test results were recorded at this visit.', missingInterp: 'the veterinarian has not yet written an explanation for this result', pending: 'result not yet available', planned: 'planned', close: 'If anything here is unclear, ask your vet; these are the words to use.' },
+  de: { title: 'Die Untersuchungsergebnisse Ihres Tieres, erklärt', intro: 'Auf jedes Ergebnis folgt, was Ihre Tierärztin oder Ihr Tierarzt daraus schließt, in eigenen Worten.', test: 'Untersuchung', result: 'Ergebnis', says: 'Was Ihre Praxis dazu sagt', none: 'Bei diesem Besuch wurden keine Ergebnisse erfasst.', missingInterp: 'die Praxis hat zu diesem Ergebnis noch keine Erklärung geschrieben', pending: 'Ergebnis noch nicht verfügbar', planned: 'geplant', close: 'Wenn etwas unklar ist, fragen Sie in der Praxis nach; das sind die Begriffe, die Sie verwenden können.' },
+  it: { title: 'I risultati degli esami del tuo animale, spiegati', intro: 'Ogni risultato è seguito da ciò che il tuo veterinario ne ha concluso, con parole sue.', test: 'Esame', result: 'Risultato', says: 'Cosa dice il tuo veterinario', none: 'In questa visita non sono stati registrati risultati.', missingInterp: 'il veterinario non ha ancora scritto una spiegazione per questo risultato', pending: 'risultato non ancora disponibile', planned: 'programmato', close: 'Se qualcosa non è chiaro, chiedi al tuo veterinario: queste sono le parole da usare.' },
+};
+
+export function renderLabExplanation(record: ClinicalRecord, header: PatientHeader, ctx: VisitContext, lang: Lang = 'en', opts: { approved?: boolean } = {}): string {
+  const t = L[lang], x = X[lang];
+  const out: string[] = []; const miss: Missing[] = [];
+  out.push(`# ${x.title}`);
+  if (!opts.approved) out.push(`_${t.draft}_`);
+  out.push(''); out.push(`**${headerLine(header)}**`); out.push(''); out.push(x.intro); out.push('');
+  if (!record.diagnostics.length) out.push(x.none);
+  record.diagnostics.forEach((d, i) => {
+    out.push(`## ${cap(d.test)}`);
+    const interp = ctx.interpretations.find((p) => p.diagnostic_index === i)?.text ?? null;
+    if (d.status === 'planned' || d.status === 'recommended') { out.push(`- ${x.result}: ${x.planned}`); out.push(''); return; }
+    if (d.status === 'declined') { out.push(`- ${x.result}: ${t.declined}`); out.push(''); return; }
+    out.push(`- ${x.result}: ${d.result ?? x.pending}`);
+    if (interp) out.push(`- ${x.says}: ${cap(interp)}`);
+    else { out.push(`- ${x.says}: ${flag(x.missingInterp)}`); miss.push({ field: `interpretations[${i}]`, reason: x.missingInterp }); }
+    out.push('');
+  });
+  out.push(x.close);
+  if (miss.length) { out.push(''); out.push(`## ${flag(t.missing)}`); for (const m of miss) out.push(`- ${m.field}: ${m.reason}`); }
+  out.push(''); out.push(`_${t.provenance.replace('{f}', String(provenance(record).facts)).replace('{n}', String(record.missing.length + miss.length))}_`);
+  if (opts.approved) { out.push(''); out.push(`_${t.disclosure}_`); }
+  return out.join('\n');
+}

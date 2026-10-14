@@ -68,6 +68,9 @@ All documents are rendered by code from the record's own sentences; headings, ta
 - `renderVaccinationEntry` — booklet line per vaccine given, with batch, site and validity from the dispensing record, flags when absent.
 - `renderConsentForm` — planned procedures with the FNOVI/chamber consent elements as headings; risks, alternatives and costs are left for the vet to write.
 - `renderCostEstimate` — planned diagnostics, procedures and medicines as rows with empty price cells (GOT number and factor columns for DE, the written-estimate note for IT).
+- `renderAnaesthesiaRecord` — the team's anaesthesia and surgery entries (`AnaesthesiaRecord`) as a record with ASA, protocol, monitoring, implants, recovery and team flagged when absent.
+- `renderControlledDrugsEntry` — one register line per dispensing marked controlled; quantity and responsible vet flagged when absent.
+- `renderLabExplanation` — owner-facing explanation of each result using only the vet's own interpretation from `VisitContext.interpretations`; results without one are flagged, never explained by code.
 - `renderPrescription` — one section per dispensed or prescribed medicine with the Art. 105(5) Reg. (EU) 2019/6 content, taking product, quantity, authorisation number and batch from the `VisitContext` dispensing record; keeper, microchip and prescribing vet flagged when absent.
 
 The workspace preview on the site exposes all of them through its document selector.

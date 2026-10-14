@@ -124,7 +124,7 @@ Everything costs €0 unless marked €. Legend:
 - [ ] Dog-bite report letter (CH, IT) ★
 - [ ] Third-country certificate pre-fill from record ★
 - [ ] Antibiotic structured block now; **IS ABV (CH) push** later via BLV REST; HI-Tier (DE) 2029 ★★ (M–L)
-- [ ] Lab-result explanation for owners from vet-entered interpretation only ★★
+- [x] Lab-result explanation for owners from vet-entered interpretation only ★★
 
 ### Editor and review features
 - [x] **Provenance badge** on every document (AI-added 0 / vet fields n / not recorded n) — S ★★★ *only us*

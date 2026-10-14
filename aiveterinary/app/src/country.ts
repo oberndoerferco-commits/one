@@ -33,6 +33,7 @@ export const VisitContext = z.object({
   author: z.object({ name: z.string().nullable().default(null), registration: z.string().nullable().default(null) }).default({}),
   consent: z.object({ obtained: z.boolean(), scope: z.string().nullable().default(null), method: z.enum(['written', 'verbal', 'electronic']).nullable().default(null) }).nullable().default(null),
   prescription_number: z.string().nullable().default(null), // IT REV number
+  interpretations: z.array(z.object({ diagnostic_index: z.number().int().nonnegative(), text: z.string() })).default([]), // vet's own words per result, for the owner explanation
   dispensings: z.array(Dispensing).default([]),
 });
 export type VisitContext = z.infer<typeof VisitContext>;

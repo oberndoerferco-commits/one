@@ -112,4 +112,13 @@ describe('documents from the approved record', () => {
     const md = renderControlledDrugsEntry(record, header, VisitContext.parse({ country: 'DE', author: { name: 'Dr. V' }, dispensings: [{ medication_index: 0, product: 'Butorphanol 10 mg/ml', is_controlled: true }] }), 'de', { date: '2026-10-14' });
     expect(md).toContain('| 2026-10-14 | Butorphanol 10 mg/ml | ▲'); expect(md).toContain('Menge für das BtM-Buch');
   });
+  it('lab explanation uses only the vet\'s own interpretation and flags results without one', async () => {
+    const { renderLabExplanation } = await import('../src/render.js');
+    const { VisitContext } = await import('../src/country.js');
+    const { record, header } = prep('008-adversarial-it-performed-vs-planned');
+    const bare = renderLabExplanation(record, header, VisitContext.parse({ country: 'IT' }), 'it');
+    expect(bare).toContain('## RX anca'); expect(bare).toContain('displasia bilaterale, artrosi'); expect(bare).toContain('non ha ancora scritto'); expect(bare).toContain('programmato');
+    const withText = renderLabExplanation(record, header, VisitContext.parse({ country: 'IT', interpretations: [{ diagnostic_index: 0, text: 'le anche mostrano usura; gestiamo il dolore e la mobilità' }] }), 'it');
+    expect(withText).toContain('Cosa dice il tuo veterinario: Le anche mostrano usura'); expect(withText).not.toContain('## ▲');
+  });
 });
