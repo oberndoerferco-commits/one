@@ -572,6 +572,9 @@ def main(argv=None):
                          'wobble the rebuild exists to remove')
     ap.add_argument('--no-even', action='store_true')
     ap.add_argument('--no-symmetric-o', action='store_true')
+    ap.add_argument('--trace-halo', action='store_true',
+                    help="redraw the drawing's own strokes instead of "
+                         'generating an even family')
     ap.add_argument('--arc-sigma', type=float, default=0.0,
                     help='low-pass the outline along its arc length by '
                          'this many source px before rebuilding it')
@@ -624,8 +627,28 @@ def main(argv=None):
     # radius at that end alone.
     region = band & ~ndi.binary_dilation(bl > 0.5, _disk(int(round(a.gap)) + rad))
     dl = ndi.distance_transform_edt(~(bl > 0.5))
-    C = hatch(region, pitch, width, a.min_len * width, dl=dl, cyan=cyan,
-              trim=a.trim, lone=a.lone)
+    if a.trace_halo:
+        # Redraw each of the drawing's own strokes, rather than generating a
+        # fresh family and clipping it to a band.  The generated family is
+        # perfectly even but places strokes by rule, so in a small pocket - under
+        # the M's upper-right flare, say - it cannot put them where the hand
+        # deliberately did.  Taking each stroke's own centre, angle and length
+        # and drawing it as a clean stadium of the median width keeps the
+        # placement exactly and still loses the 23% width variation.
+        import math as _m
+        ang = _m.radians(a.angle)
+        keep = []
+        for cx, cy, _, L, _w in r:
+            c = clip_clear(cx, cy, ang, L, width, dl, a.gap,
+                           min_len=a.min_len * width)
+            if c is not None:
+                keep.append(stadium(c[0], c[1], ang, c[2], width))
+        C = keep
+        print('   halo: %d of the drawing\'s %d strokes redrawn at %.1f deg, '
+              'width %.1f px' % (len(C), len(r), a.angle, width))
+    else:
+        C = hatch(region, pitch, width, a.min_len * width, dl=dl, cyan=cyan,
+                  trim=a.trim, lone=a.lone)
 
     # the keyline, as an even ring rather than the hand's varying band: the
     # letters grown by the width the drawing's cream measures, traced and
