@@ -600,7 +600,7 @@ def main(argv=None):
         bl = np.where(right, bl, o.astype(float))
 
     reg = dict(corner_deg=a.corner_deg, corner_span=11, extreme_span=9,
-               min_run=9, straight_tol=1.1, merge=9.0, fit_tol=a.fit_tol)
+               min_run=9, straight_tol=0.4, merge=34.0, fit_tol=a.fit_tol)
     B = clean_letters(bl > 0.5, a.sigma, fit, arc_sigma=a.arc_sigma, **reg)
     axis = _axis_of(bl > 0.5, right)
     on_m = lambda c: np.mean([p[0] for q in [('L', c[0])] + c[1]
