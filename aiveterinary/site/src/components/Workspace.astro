@@ -79,6 +79,7 @@ const JS = {
   "unresolved": "{n} missing item(s) to add or mark as not recorded.",
   "ready": "Ready to approve.",
   "handOver": "Hand over to the vet",
+  "amend": "Amend","amendReason": "Reason for the amendment (kept with version {n}):","amending": "AMENDING v{n}","version": "v{n}","staleDocs": "Generated from an earlier version, regenerate: {list}","noStale": "No documents were generated from the earlier version.",
   "toVet": "Mark as observed by the vet",
   "attachments": "Attachments (not interpreted)","toOwner": "Mark as reported by the owner","handedStatus": "Draft prepared and handed to the veterinarian for co-signature. Nothing was stored.","nurseDraft": "NURSE DRAFT · AWAITING VET","cosigned": "co-signed, drafted by nurse",
   "medsTick": "Checked","medsUnchecked": "{n} medication row(s) to tick against your notes before approval.",
@@ -116,6 +117,7 @@ const JS = {
   "unresolved": "{n} elemento/i mancante/i da aggiungere o segnare come non registrato.",
   "ready": "Pronto per l'approvazione.",
   "handOver": "Passa al veterinario",
+  "amend": "Rettifica","amendReason": "Motivo della rettifica (conservato con la versione {n}):","amending": "IN RETTIFICA v{n}","version": "v{n}","staleDocs": "Generati da una versione precedente, da rigenerare: {list}","noStale": "Nessun documento generato dalla versione precedente.",
   "toVet": "Segna come osservato dal veterinario",
   "attachments": "Allegati (non interpretati)","toOwner": "Segna come riferito dal proprietario","handedStatus": "Bozza preparata e passata al veterinario per la controfirma. Non è stato salvato nulla.","nurseDraft": "BOZZA ASSISTENTE · IN ATTESA DEL VETERINARIO","cosigned": "controfirmato, bozza dell'assistente",
   "medsTick": "Verificato","medsUnchecked": "{n} riga/e della terapia da spuntare rispetto alle tue note prima dell'approvazione.",
@@ -153,6 +155,7 @@ const JS = {
   "unresolved": "{n} fehlende Angabe(n) ergänzen oder als nicht erfasst markieren.",
   "ready": "Bereit zur Freigabe.",
   "handOver": "An Tierärztin/Tierarzt übergeben",
+  "amend": "Berichtigen","amendReason": "Grund der Berichtigung (wird mit Version {n} gespeichert):","amending": "BERICHTIGUNG v{n}","version": "v{n}","staleDocs": "Aus einer früheren Version erzeugt, neu erstellen: {list}","noStale": "Aus der früheren Version wurden keine Dokumente erzeugt.",
   "toVet": "Als tierärztlich beobachtet markieren",
   "attachments": "Anhänge (nicht interpretiert)","toOwner": "Als vom Besitzer berichtet markieren","handedStatus": "Entwurf vorbereitet und zur Gegenzeichnung übergeben. Nichts wurde gespeichert.","nurseDraft": "TFA-ENTWURF · WARTET AUF FREIGABE","cosigned": "gegengezeichnet, Entwurf der TFA",
   "medsTick": "Geprüft","medsUnchecked": "{n} Medikationszeile(n) vor der Freigabe gegen die Notizen abhaken.",
@@ -252,6 +255,7 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
       <ul id="ws-flaglist" class="ws-flaglist"></ul>
       <div class="ws-actions">
         <button class="btn" id="ws-approve" type="button" disabled><Fragment set:html={t.approve} /> <kbd>Ctrl+Shift+Enter</kbd></button>
+        <button class="btn secondary" id="ws-amend" type="button" hidden>{(JS[lang] as any).amend}</button>
         <button class="btn secondary" id="ws-copy" type="button">{t.copy} <kbd>Ctrl+Shift+C</kbd></button>
         <button class="btn secondary" id="ws-print" type="button">{t.print}</button>
       </div>
@@ -330,6 +334,7 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
     import { validateAll, requiredMissing, type Finding } from 'aiveterinary-app/src/validators.ts';
     import { renderConsultReport, renderOwnerSummary, renderReferralLetter, renderPrescription, renderVaccinationEntry, renderConsentForm, renderCostEstimate, renderDentalChart } from 'aiveterinary-app/src/render.ts';
     import { countryMissing, VisitContext } from 'aiveterinary-app/src/country.ts';
+    import { approve as approveVersion, amend as amendVersion, documentFrom, propagationMap, type ApprovedVersion, type GeneratedDocument } from 'aiveterinary-app/src/versions.ts';
     import c1 from 'aiveterinary-app/eval/cases/001-luna-vomiting.json';
     import c2 from 'aiveterinary-app/eval/cases/002-milo-otitis-de.json';
     import c3 from 'aiveterinary-app/eval/cases/003-gatto-inappetenza-it.json';
@@ -397,7 +402,7 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
     const labels: Record<string, string> = J.cases;
     const $ = (s: string) => document.querySelector(s) as HTMLElement;
 
-    let cur: { notes: string; header: any; record: Rec; lang: 'en' | 'de' | 'it'; resolved: Record<string, string>; approved: boolean; meds: boolean[]; handed: boolean; files: { name: string; size: number; type: string }[]; started: number };
+    let cur: { notes: string; header: any; record: Rec; lang: 'en' | 'de' | 'it'; resolved: Record<string, string>; approved: boolean; meds: boolean[]; handed: boolean; files: { name: string; size: number; type: string }[]; started: number; v: ApprovedVersion | null; docs: GeneratedDocument[] };
 
     const sel = $('#ws-case') as HTMLSelectElement;
     for (const c of [...cases].sort((a, b) => Object.keys(labels).indexOf(a.id) - Object.keys(labels).indexOf(b.id))) { const o = document.createElement('option'); o.value = c.id; o.textContent = labels[c.id] ?? c.id; sel.appendChild(o); }
@@ -425,12 +430,12 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
 
     function load(id: string) {
       const c = cases.find((x) => x.id === id)!;
-      cur = { notes: normalizeNotes(c.notes), header: PatientHeader.parse(c.header), record: ClinicalRecord.parse(c.fixture_record), lang: c.language, resolved: {}, approved: false, meds: [], handed: false, files: [], started: Date.now() };
+      cur = { notes: normalizeNotes(c.notes), header: PatientHeader.parse(c.header), record: ClinicalRecord.parse(c.fixture_record), lang: c.language, resolved: {}, approved: false, meds: [], handed: false, files: [], started: Date.now(), v: null, docs: [] };
       const h = cur.header;
       $('#ws-patient').textContent = [h.name, h.species, h.breed, h.sex, h.age && `${h.age.value} ${h.age.unit}${h.age.value === 1 ? '' : 's'}`, h.weight_kg && `${h.weight_kg} kg`].filter(Boolean).join(' · ');
       $('#ws-lang').textContent = { en: 'English', de: 'Deutsch', it: 'Italiano' }[cur.lang];
       csel.value = { en: 'DE', de: 'DE', it: 'IT' }[cur.lang];
-      document.body.classList.remove('ws-approved');
+      document.body.classList.remove('ws-approved'); ($('#ws-amend') as HTMLElement).hidden = true;
       $('#ws-state').innerHTML = `<span class="badge draft">● ${J.draft}</span>`;
       $('#ws-status').textContent = '';
       render();
@@ -505,6 +510,7 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
       renderAbbr();
       renderLetterhead();
       renderHandouts();
+      trackDoc();
     }
 
     function light(spans: [number, number][], on: boolean) {
@@ -556,13 +562,38 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
         return;
       }
       const secs = Math.round((Date.now() - cur.started) / 1000);
+      const who = clinicAuthor().name;
+      let staleNote = '';
+      if (!cur.v) cur.v = approveVersion(cur.record, who);
+      else {
+        const reason = window.prompt(J.amendReason.replace('{n}', String(cur.v.version + 1)), '');
+        if (reason === null) return;
+        try { cur.v = amendVersion(cur.v, cur.record, who, reason); }
+        catch (e: any) { $('#ws-status').textContent = e.message; return; }
+        const { stale } = propagationMap(cur.v, cur.docs);
+        staleNote = stale.length ? J.staleDocs.replace('{list}', [...new Set(stale.map((d) => d.kind))].join(', ')) : J.noStale;
+      }
       cur.approved = true; document.body.classList.add('ws-approved');
-      $('#ws-state').innerHTML = `<span class="badge reviewed">✓ ${J.approved}${cur.handed ? ` (${J.cosigned})` : ''} · ${time} · ${J.timer}: ${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}</span>`;
+      $('#ws-state').innerHTML = `<span class="badge reviewed">✓ ${J.approved} ${J.version.replace('{n}', String(cur.v.version))}${cur.handed ? ` (${J.cosigned})` : ''} · ${time} · ${J.timer}: ${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}</span>`;
+      ($('#ws-amend') as HTMLElement).hidden = false;
       render();
+      if (staleNote) $('#ws-status').textContent = staleNote;
     }
+    function trackDoc() {
+      if (!cur.approved || !cur.v) return;
+      const kind = dsel.value;
+      if (!cur.docs.some((d) => d.kind === kind && d.lang === cur.lang && d.from_version === cur.v!.version)) cur.docs.push(documentFrom(cur.v, kind, cur.lang));
+    }
+    $('#ws-amend').addEventListener('click', () => {
+      if (!cur.v) return;
+      cur.approved = false; document.body.classList.remove('ws-approved');
+      $('#ws-state').innerHTML = `<span class="badge draft">● ${J.amending.replace('{n}', String(cur.v.version + 1))}</span>`;
+      ($('#ws-amend') as HTMLElement).hidden = true;
+      render();
+    });
     function copyOut() {
       const txt = renderDoc(cur.approved)
-        .replace(/^#+ /gm, '').replace(/^_|_$/gm, '').replace(/\|/g, ' ').replace(/^-{3,}.*$/gm, '').replace(/\n{3,}/g, '\n\n').toUpperCase().split('\n').map((l, i, a) => l).join('\n');
+        .replace(/^#+ (.*)$/gm, (_m, h) => h.toUpperCase()).replace(/^_|_$/gm, '').replace(/\*\*/g, '').replace(/\|/g, ' ').replace(/^ *-{3,}.*$/gm, '').replace(/\n{3,}/g, '\n\n');
       navigator.clipboard?.writeText(txt).then(() => { $('#ws-status').textContent = J.copied; }, () => { $('#ws-status').textContent = J.copyFail; });
     }
     $('#ws-approve').addEventListener('click', approve);
