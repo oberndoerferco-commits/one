@@ -156,7 +156,7 @@ Everything costs €0 unless marked €. Legend:
 - [x] Letterhead stored on the device, printed over every document; PDF via the browser print
 - [ ] Retention controls (auto-delete drafts/raw notes) — immutable approved versions with amendment reason done in `versions.ts`
 - [ ] Clinic-owner analytics (time-to-approved, edit ratio, open flags) — no clinical text — S ★★
-- [ ] Rate limits, spend caps, prompt caching, model fallback — S ★★★
+- [x] Rate limits, spend caps, prompt caching, model fallback — S ★★★
 - [ ] Cross-tenant isolation test suite; pen test (€) and DPIA before real data — M ★★★
 - [ ] SSO (Google/Microsoft) and multi-clinic groups — L ★ (later, for chains)
 

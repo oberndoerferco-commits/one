@@ -29,8 +29,8 @@ export type Dispensing = z.infer<typeof Dispensing>;
 export const VisitContext = z.object({
   country: Country,
   microchip: z.string().nullable().default(null),
-  owner: z.object({ name: z.string().nullable().default(null), tax_id: z.string().nullable().default(null) }).default({}),
-  author: z.object({ name: z.string().nullable().default(null), registration: z.string().nullable().default(null) }).default({}),
+  owner: z.object({ name: z.string().nullable().default(null), tax_id: z.string().nullable().default(null) }).prefault({}),
+  author: z.object({ name: z.string().nullable().default(null), registration: z.string().nullable().default(null) }).prefault({}),
   consent: z.object({ obtained: z.boolean(), scope: z.string().nullable().default(null), method: z.enum(['written', 'verbal', 'electronic']).nullable().default(null) }).nullable().default(null),
   prescription_number: z.string().nullable().default(null), // IT REV number
   interpretations: z.array(z.object({ diagnostic_index: z.number().int().nonnegative(), text: z.string() })).default([]), // vet's own words per result, for the owner explanation
