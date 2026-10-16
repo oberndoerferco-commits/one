@@ -38,6 +38,36 @@ from om_artwork import mirror_pair, repair, _disk, trace_layer
 from om_hand import layers, write_pdf, write_svg, CYAN, CREAM, BLACK
 
 
+def offset_ring(contours, w, step=1.2, quad=32):
+    """A true parallel offset of the finished letter curves.
+
+    The keyline used to be made by dilating the letter MASK and then tracing and
+    smoothing that separately from the letters themselves.  Two outlines smoothed
+    independently drift apart, so the ring came out anywhere between 7 and 38 px
+    wide.  Offsetting the finished curves instead gives one source shape and a
+    constant distance from it by construction, so it cannot drift; a convex
+    corner still reads wider, which is what an offset does and is correct.
+    """
+    from shapely.geometry import Polygon
+    out = []
+    for c in contours:
+        g = Polygon(_dense(c, step)).buffer(0)
+        if g.is_empty:
+            continue
+        g = g.buffer(w, join_style=1, resolution=quad)
+        for gg in ([g] if g.geom_type == 'Polygon' else list(g.geoms)):
+            for ring in [gg.exterior] + list(gg.interiors):
+                pts = list(ring.coords)
+                if len(pts) < 4:
+                    continue
+                if pts[0] == pts[-1]:
+                    pts = pts[:-1]
+                out.append((tuple(pts[0]),
+                            [('L', tuple(q)) for q in pts[1:]] +
+                            [('L', tuple(pts[0]))]))
+    return out
+
+
 # ---------------------------------------------------------------- the letters
 
 def _dense(contour, step=1.0):
@@ -650,14 +680,10 @@ def main(argv=None):
         C = hatch(region, pitch, width, a.min_len * width, dl=dl, cyan=cyan,
                   trim=a.trim, lone=a.lone)
 
-    # the keyline, as an even ring rather than the hand's varying band: the
-    # letters grown by the width the drawing's cream measures, traced and
-    # rebuilt the same way, and painted under the letters so only the ring shows
-    key = ndi.binary_dilation(bl > 0.5, _disk(int(round(a.keyline))))
-    K = clean_letters(key, a.sigma, fit, arc_sigma=a.arc_sigma, **reg)
-    K = [symmetrise_contour(c, axis) if on_m(c) else c for c in K]
-    print('   keyline: even ring %.0f px wide, %d contours'
-          % (a.keyline, len(K)))
+    # the keyline: a true parallel offset of the finished letters, painted under
+    # them so only the ring shows
+    K = offset_ring(B, a.keyline)
+    print('   keyline: %.0f px parallel offset, %d contours' % (a.keyline, len(K)))
     print('   halo: %d strokes, one family at %.1f deg, pitch %.1f px, '
           'width %.1f px (white gap %.1f px)'
           % (len(C), a.angle, pitch, width, pitch - width))
