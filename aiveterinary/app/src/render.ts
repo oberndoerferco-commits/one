@@ -634,3 +634,33 @@ export function renderDentalChart(text: string, lang: Lang = 'en'): string {
   out.push(`_${d.legend}_`);
   return out.join('\n');
 }
+
+/* ------------------------------------------------------------------ */
+/* Bilingual owner letter and the cross-document identity check.       */
+/* Headings and the medication table are code, so they exist in both    */
+/* languages; the vet's own sentences stay as written. The check makes  */
+/* sure every medication detail is identical in every document.         */
+
+export function renderOwnerSummaryBilingual(record: ClinicalRecord, header: PatientHeader, first: Lang, second: Lang, opts: { approved?: boolean } = {}): string {
+  const a = renderOwnerSummary(record, header, first, opts);
+  const b = renderOwnerSummary(record, header, second, opts);
+  return `${a}\n\n---\n\n${b}`;
+}
+
+/** Every medication's drug, dose, route, frequency and duration must appear in every document, character for character. */
+export function crossDocumentMedicationCheck(record: ClinicalRecord, documents: Record<string, string>): { doc: string; medication: number; field: string; value: string }[] {
+  const problems: { doc: string; medication: number; field: string; value: string }[] = [];
+  record.medications.forEach((m, i) => {
+    if (m.status === 'declined') return;
+    const fields: [string, string | null][] = [['drug', m.drug], ['dose', m.dose != null ? `${m.dose} ${m.dose_unit ?? ''}`.trim() : null], ['route', m.route], ['frequency', m.frequency], ['duration', m.duration]];
+    const name0 = m.drug ?? m.class_as_written;
+    for (const [name, value] of Object.entries(documents)) {
+      // Where the document has a medication table, the drug's own row must carry every value;
+      // a matching value elsewhere in the text (a checklist, the follow-up) does not count.
+      const rows = name0 ? value.split('\n').filter((l) => l.startsWith('|') && l.includes(name0)) : [];
+      const haystacks = rows.length ? rows : [value];
+      for (const [field, v] of fields) if (v && !haystacks.some((h) => h.includes(v))) problems.push({ doc: name, medication: i, field, value: v });
+    }
+  });
+  return problems;
+}

@@ -78,3 +78,7 @@ The workspace preview on the site exposes all of them through its document selec
 ## Approved versions (`src/versions.ts`)
 
 `approve` freezes a copy of the record with a fingerprint; it cannot be edited afterwards. `amend` requires a reason and a real change and returns the next version pointing back to the one it supersedes. `documentFrom` stamps each generated document with the version it came from, and `propagationMap` lists the documents that are stale after an amendment. The fingerprint is for change detection; tamper evidence comes from append-only storage on the server.
+
+## Snippets and the identity check
+
+`expandSnippets(notes, snippets)` expands clinic-written dot-phrases (`.ou` → "otherwise unremarkable") only where the vet typed the trigger, before structuring, so every fact taken from the expanded text still has a source span. `crossDocumentMedicationCheck(record, documents)` verifies that each medication's drug, dose, route, frequency and duration appear unchanged in every generated document; where a document has a medication table, the drug's own row must carry them.

@@ -57,3 +57,28 @@ export function detectLanguage(text: string): 'en' | 'de' | 'it' | 'unknown' {
   if (best === 0) return 'unknown';
   return best === de ? 'de' : best === it ? 'it' : 'en';
 }
+
+/**
+ * Clinic snippets ("dot-phrases"). The clinic writes every snippet itself;
+ * nothing expands unless the vet typed its trigger, so "otherwise
+ * unremarkable" never appears on a page by default. Expansion happens on the
+ * notes before structuring, so the expanded words are the vet's notes and
+ * every fact taken from them still carries a source span.
+ */
+export type Snippet = { trigger: string; text: string };
+export type SnippetUse = { trigger: string; start: number; end: number };
+
+export function expandSnippets(notes: string, snippets: Snippet[]): { text: string; used: SnippetUse[] } {
+  const byTrigger = new Map(snippets.filter((s) => /^\.[a-z0-9]{1,12}$/i.test(s.trigger) && s.text.trim()).map((s) => [s.trigger.toLowerCase(), s.text]));
+  const used: SnippetUse[] = [];
+  let out = '';
+  let last = 0;
+  for (const m of notes.matchAll(/(^|[\s(])(\.[a-z0-9]{1,12})(?=$|[\s,;:)])/gim)) {
+    const trig = m[2].toLowerCase(); const text = byTrigger.get(trig); if (!text) continue;
+    const at = (m.index ?? 0) + m[1].length;
+    out += notes.slice(last, at); const start = out.length; out += text; used.push({ trigger: trig, start, end: out.length });
+    last = at + m[2].length;
+  }
+  out += notes.slice(last);
+  return { text: out, used };
+}

@@ -130,11 +130,11 @@ Everything costs €0 unless marked €. Legend:
 - [x] **Provenance badge** on every document (AI-added 0 / vet fields n / not recorded n) — S ★★★ *only us*
 - [x] Owner-reported vs vet-observed toggle with distinct rendering — S ★★★ *only us*
 - [x] **Declined-care register** (signed paragraph + per-patient log) — S ★★★ *only us*
-- [x] Medication reconciliation table with tick per cell before sign-off; cross-document identity check for translations — S ★★★ *only us*
+- [x] Medication reconciliation ticks before sign-off; cross-document identity check across report, owner letter (both languages), referral and prescription
 - [x] "Not recorded" as a first-class printed value — S ★★★ *only us*
 - [x] Amendment propagation map: every document remembers its version; after an amendment the stale ones are listed (`app/src/versions.ts`)
-- [ ] Bilingual side-by-side owner letter (DE/IT/EN + TR/AR/UK), meds table identical — M ★★★ *only us*
-- [ ] Snippets / dot-phrases incl. "otherwise unremarkable" (clinic-written, never auto) — S ★★★
+- [x] Bilingual owner letter (EN/IT/DE) with the medication rows checked identical across every document (TR/AR/UK still open)
+- [x] Snippets / dot-phrases: clinic-written, expand only on a typed trigger, before structuring so spans still hold (`expandSnippets`)
 - [x] Clinic abbreviation + glossary manager — S ★★★
 - [ ] Template builder (sections, order, required fields, per-vet defaults); specialty sets: derm, ortho, dental, ophtho, cardio, exotics, equine — M ★★
 - [ ] Multi-pet consultation UI (assign bullets, split documents, one owner letter) — M ★★
