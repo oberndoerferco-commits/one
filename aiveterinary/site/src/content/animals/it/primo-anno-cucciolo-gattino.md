@@ -22,7 +22,7 @@ references:
     url: "https://regione.lazio.it/enti/salute/sanit-veterinaria-sicurezz-alimentare/animali-daffezione"
   - title: "ASL Rieti: FAQ anagrafe canina, maggio 2024"
     url: "https://aslrieti.dev.laserromae.it/wp-content/uploads/fileadmin/user_upload/FAG_ANAGRAFE_CANINA_15_maggio_2024.pdf"
-  - title: "Regolamento (UE) 576/2013 sui movimenti a carattere non commerciale di animali da compagnia"
+  - title: "Regolamento delegato (UE) 2026/131 sui movimenti a carattere non commerciale di animali da compagnia (in vigore dal 22 aprile 2026, sostituisce il Reg. 576/2013)"
   - title: "AAHA: 2019 Canine Life Stage Guidelines"
 ---
 
@@ -77,5 +77,5 @@ Il tuo veterinario conosce il tuo animale, la tua zona e le regole della tua Reg
 - ESCCAP, linee guida 01 (vermi) e 03 (ectoparassiti)
 - WSAVA Global Dental Guidelines
 - Regione Toscana e Regione Lazio, anagrafe degli animali d'affezione; ASL Rieti, FAQ anagrafe canina 2024
-- Regolamento (UE) 576/2013 sui movimenti non commerciali di animali da compagnia
+- Regolamento delegato (UE) 2026/131 sui movimenti non commerciali di animali da compagnia (dal 22 aprile 2026, sostituisce il Reg. 576/2013)
 - AAHA 2019 Canine Life Stage Guidelines

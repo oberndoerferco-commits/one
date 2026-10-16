@@ -13,7 +13,7 @@ const path = Astro.url.pathname.replace(/\.html$/, '');
 type Lang = 'en' | 'it' | 'de';
 const L: Lang = lang === 'it' || lang === 'de' ? lang : 'en';
 // hreflang: pages that exist under the same path in all three languages.
-const shared = new Set(['', '/about', '/passport', '/visit-brief', '/newsletter', '/vets', '/vets/workspace', '/vets/data', '/vets/quality', '/vets/research', '/editorial', '/animals', '/animals/all', '/registry', '/end-of-life', '/impressum']);
+const shared = new Set(['', '/about', '/passport', '/visit-brief', '/newsletter', '/vets', '/vets/workspace', '/vets/data', '/vets/quality', '/vets/research', '/editorial', '/animals', '/animals/all', '/registry', '/travel', '/end-of-life', '/impressum']);
 const basePath = path.replace(/^\/(it|de)(?=\/|$)/, '').replace(/^\/$/, '');
 const isSharedAnimals = /^\/animals\/(dog|cat|rabbit|horse|bird|general|symptoms|conditions|medications|first-aid|travel|care)$/.test(basePath);
 const alternates = shared.has(basePath) || isSharedAnimals
@@ -38,6 +38,7 @@ const strings = {
       { href: '/vets', label: 'For veterinary teams' },
       { href: '/vets/research', label: 'Research' },
       { href: '/registry', label: 'Pet registries by country' },
+      { href: '/travel', label: 'Travelling with a pet in Europe' },
       { href: '/end-of-life', label: 'When the time comes' },
     ],
     footer2: [
@@ -69,6 +70,7 @@ const strings = {
       { href: '/it/vets', label: 'Per i team veterinari' },
       { href: '/it/vets/research', label: 'Ricerca' },
       { href: '/it/registry', label: 'Anagrafi e registri per Paese' },
+      { href: '/it/travel', label: 'Viaggiare con un animale in Europa' },
       { href: '/it/end-of-life', label: 'Quando arriva il momento' },
     ],
     footer2: [
@@ -100,6 +102,7 @@ const strings = {
       { href: '/de/vets', label: 'Für Praxisteams' },
       { href: '/de/vets/research', label: 'Recherche' },
       { href: '/de/registry', label: 'Heimtierregister nach Land' },
+      { href: '/de/travel', label: 'Mit Haustier in Europa reisen' },
       { href: '/de/end-of-life', label: 'Wenn die Zeit kommt' },
     ],
     footer2: [

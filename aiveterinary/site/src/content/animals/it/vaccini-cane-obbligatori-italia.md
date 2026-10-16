@@ -73,4 +73,4 @@ Il calendario giusto per il tuo cane, e i vaccini non-core che hanno senso nella
 
 - WSAVA, Vaccination Guidelines for the owners and breeders of dogs and cats (wsava.org)
 - Ministero della Salute, comunicazione del 2013 sul riacquisto dello status di Paese indenne da rabbia e revoca dell'obbligo vaccinale nel Nord-Est (salute.gov.it, anmvi.it)
-- Regolamento (UE) 576/2013 sui movimenti a carattere non commerciale di animali da compagnia
+- Regolamento delegato (UE) 2026/131 sui movimenti a carattere non commerciale di animali da compagnia (in vigore dal 22 aprile 2026, sostituisce il Reg. 576/2013)
