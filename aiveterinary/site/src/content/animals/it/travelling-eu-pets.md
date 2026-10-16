@@ -4,7 +4,7 @@ description: "Cosa ti serve prima di attraversare un confine: microchip, vaccina
 species: general
 category: travel
 urgency: routine
-updated: 2026-09-29
+updated: 2026-10-16
 draft: true
 lang: it
 ---
@@ -17,11 +17,15 @@ Per cani, gatti e furetti che si spostano tra paesi dell'UE con il proprietario 
 2. **Una vaccinazione antirabbica valida.** La prima vaccinazione deve essere stata fatta almeno 21 giorni prima del viaggio, e l'animale deve avere almeno 12 settimane di età al momento della vaccinazione. I richiami devono essere fatti prima della scadenza del precedente per restare validi senza un nuovo periodo di attesa.
 3. **Un passaporto europeo per animali da compagnia**, rilasciato da un veterinario autorizzato, in cui sono registrati il numero di microchip, la vaccinazione antirabbica e i dati del proprietario.
 
+## Dal 22 aprile 2026 cambia la base giuridica
+
+Dal 22 aprile 2026 queste regole sono fissate dal Regolamento delegato (UE) 2026/131, che ha sostituito il Regolamento (UE) 576/2013. I requisiti di base non cambiano. Due punti da sapere: il passaporto europeo viene rilasciato solo ad animali il cui proprietario risiede nell'UE, e una persona può viaggiare con al massimo cinque cani, gatti o furetti (eccezioni per mostre e gare, con prova scritta). La lista completa è nella nostra [pagina viaggi](/it/travel).
+
 ## Requisiti aggiuntivi dei singoli paesi
 
 Alcuni paesi aggiungono requisiti. Controlla le regole ufficiali della destinazione prima di ogni viaggio, perché cambiano. Esempi noti:
 
-- **Trattamento contro la tenia per i cani** che entrano in Finlandia, Irlanda, Malta e Norvegia: somministrato da un veterinario tra 24 e 120 ore prima dell'arrivo e registrato sul passaporto.
+- **Trattamento contro la tenia per i cani** che entrano in Finlandia, Irlanda, Malta, Irlanda del Nord e Norvegia: somministrato da un veterinario tra 24 e 120 ore prima dell'arrivo e registrato sul passaporto.
 - **Regole sulle razze**: alcuni paesi limitano o vietano certe razze di cani, o richiedono museruola e guinzaglio in pubblico.
 - **Animali giovani**: cuccioli e gattini sotto le 12 settimane, o tra le 12 e le 16 settimane senza una vaccinazione antirabbica valida, possono entrare in alcuni paesi solo a condizioni specifiche, e alcuni paesi non lo consentono affatto.
 

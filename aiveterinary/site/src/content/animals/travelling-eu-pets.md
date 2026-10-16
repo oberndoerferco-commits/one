@@ -4,7 +4,7 @@ description: "What you need before you cross a border: microchip, rabies vaccina
 species: general
 category: travel
 urgency: routine
-updated: 2026-09-29
+updated: 2026-10-16
 draft: true
 ---
 
@@ -16,11 +16,15 @@ For dogs, cats and ferrets moving between EU countries with their owner (non-com
 2. **A valid rabies vaccination.** The first vaccination must be at least 21 days old before travel, and the animal must be at least 12 weeks old when vaccinated. Boosters must be given before the previous one expires to stay valid without a new waiting period.
 3. **An EU pet passport**, issued by an authorised vet, recording the chip number, the rabies vaccination and the owner's details.
 
+## The legal basis changed in April 2026
+
+Since 22 April 2026 these rules come from Commission Delegated Regulation (EU) 2026/131, which replaced Regulation (EU) 576/2013. The core requirements stayed the same. Two points worth knowing: the EU pet passport is issued only to animals whose owner lives in the EU, and one person can travel with at most five dogs, cats or ferrets (exceptions for shows and competitions, with written proof). The full checklist is on our [travel page](/travel).
+
 ## Country extras
 
 Some countries add requirements. Check the destination's official rules before every trip, because they change. Well-known examples:
 
-- **Tapeworm treatment for dogs** entering Finland, Ireland, Malta and Norway: given by a vet between 24 and 120 hours before arrival and recorded in the passport.
+- **Tapeworm treatment for dogs** entering Finland, Ireland, Malta, Northern Ireland and Norway: given by a vet between 24 and 120 hours before arrival and recorded in the passport.
 - **Breed rules**: some countries restrict or ban certain dog breeds or require muzzles and leads in public.
 - **Young animals**: puppies and kittens under 12 weeks, or between 12 and 16 weeks without a valid rabies vaccination, can only enter some countries under specific conditions, and some do not allow it at all.
 
