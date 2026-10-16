@@ -16,7 +16,7 @@
           "type": "kind",
           "settings": {
             "image": "shopify://shop_images/oberndoerfer-cle-brass-emblem.jpg",
-            "number": "03",
+            "number": "02",
             "title": "Collaborations",
             "text": "<p>Editions made with houses from other fields, built the way they think and made the way we make everything else. For Trax NYC, a jeweller in New York, it was a line of cases for pieces of real value.</p>"
           }
@@ -25,24 +25,14 @@
           "type": "kind",
           "settings": {
             "image": "shopify://shop_images/gift_boxes.heic",
-            "number": "04",
+            "number": "03",
             "title": "Corporate and private gifts",
             "text": "<p>Pieces for clients, teams and events, with a name or a logo stamped in gold, silver or blind, and packed in boxes made in Italy.</p>"
-          }
-        },
-        "kind_5": {
-          "type": "kind",
-          "settings": {
-            "image": "shopify://shop_images/oberndoerfer-cle-brass-fittings.jpg",
-            "number": "02",
-            "title": "Interior designers and architects",
-            "text": "<p>For designers and architects furnishing a home, a hotel or an office: pieces made to your drawings and dimensions.</p>"
           }
         }
       },
       "block_order": [
         "kind_2",
-        "kind_5",
         "kind_3",
         "kind_4"
       ],
@@ -53,7 +43,7 @@
         "jump_label": "Write to us",
         "form_title": "Begin a conversation",
         "form_text": "<p>Tell us who you are and what you have in mind. We read every message and reply personally.</p>",
-        "kinds": "Hotels and spaces, Interior design, Collaboration, Corporate gifts, Something else",
+        "kinds": "Hotels and spaces, Collaboration, Corporate gifts, Something else",
         "button_label": "Send",
         "thanks": "Thank you. We have your message and will reply personally.",
         "email_line": "<p>Or write to <a href=\"mailto:info@oberndoerferco.com\">info@oberndoerferco.com</a></p>"
