@@ -552,18 +552,19 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
       }
       for (const u of record.uncertain) li(`<span class="f-warn">${J.setAside}</span> “${esc(u.original_text)}” — ${esc(u.reason)}`);
       if (!blocks.length && !warns.length && !missing.length && !record.uncertain.length) li(`<span style="color:var(--ok);font-weight:600">${J.nothing}</span> ${J.nothingRest}`);
+      let identityProblems = 0;
       {
         const ctx = VisitContext.parse({ country: csel.value, author: clinicAuthor() });
         const docsAll: Record<string, string> = { report: renderConsultReport(record, header, cur.lang), owner: renderOwnerSummary(record, header, cur.lang), referral: renderReferralLetter(record, header, cur.lang), rx: renderPrescription(record, header, ctx, cur.lang) };
         const l2 = ($('#ws-lang2') as HTMLSelectElement).value as any; if (l2 && l2 !== cur.lang) docsAll[`owner_${l2}`] = renderOwnerSummary(record, header, l2);
         if (record.medications.some((m: any) => m.status !== 'declined')) {
-          const probs = crossDocumentMedicationCheck(record, docsAll);
+          const probs = crossDocumentMedicationCheck(record, docsAll); identityProblems = probs.length;
           li(probs.length ? `<span class="f-block">${J.blocked}</span> ${esc(J.identityFail)} ${esc(probs.map((p) => `${p.doc}: ${p.field} "${p.value}"`).join('; '))}` : `<span style="color:var(--ok);font-weight:600">✓</span> ${esc(J.identityOk)}`);
         }
       }
       const unresolved = missing.filter((m) => !cur.resolved[m]).length;
       const unticked = record.medications.filter((_, i) => !cur.meds[i]).length;
-      ($('#ws-approve') as HTMLButtonElement).disabled = cur.approved || blocks.length > 0 || unresolved > 0 || unticked > 0;
+      ($('#ws-approve') as HTMLButtonElement).disabled = cur.approved || blocks.length > 0 || identityProblems > 0 || unresolved > 0 || unticked > 0;
       $('#ws-status').textContent = cur.approved ? J.approvedStatus : blocks.length ? J.blocking.replace('{n}', String(blocks.length)) : unresolved ? J.unresolved.replace('{n}', String(unresolved)) : unticked ? J.medsUnchecked.replace('{n}', String(unticked)) : J.ready;
     }
 
