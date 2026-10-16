@@ -8,7 +8,7 @@ import { ICONS } from '../lib/animal-icons';
 interface Props { kind: 'dog' | 'cat' | 'rabbit' | 'horse' | 'bird' | 'general' | 'paw' | 'ferret'; size?: number; class?: string; title?: string }
 const { kind, size = 40, class: cls = '', title } = Astro.props;
 ---
-<svg class={`ai-icon ${cls}`} width={size} height={size} viewBox="0 0 48 48" fill="none" stroke="var(--ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden={title ? undefined : 'true'} role={title ? 'img' : undefined}>
+<svg class={`ai-icon ${cls}`} width={size} height={size} viewBox="0 0 48 48" fill="none" stroke="var(--art-ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden={title ? undefined : 'true'} role={title ? 'img' : undefined}>
   {title && <title>{title}</title>}
   <Fragment set:html={ICONS[kind] ?? ICONS.paw} />
 </svg>

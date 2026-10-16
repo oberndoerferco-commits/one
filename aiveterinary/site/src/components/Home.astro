@@ -14,8 +14,8 @@ const T = {
   en: {
     kicker: 'Vet-reviewed animal health, in plain language',
     h1: 'Know what to do for your animal.',
-    sub: 'Clear answers written for owners and checked by veterinarians, a health booklet you cannot lose, and a one-page brief to bring to the vet. Free, no ads.',
-    cta: 'Find help by animal', cta2: 'Open the health booklet',
+    sub: 'Clear answers checked by vets, a health booklet on your phone, and a one-page brief for the visit. Free, no ads.',
+    cta: 'Find help by animal', cta2: 'Open the health booklet', search: 'Search', or: 'or pick an animal', proofShort: ['Signed by vets', 'Free, no ads', 'Your data stays on your device', 'No online diagnoses, no doses'],
     proof: [['Vets sign', 'Every article names the vet who reviewed it. Until then it is labelled a draft.'], ['Free, no ads', 'No sponsors, no affiliate links, no tracking pixels.'], ['Your data stays yours', 'The booklet lives on your device. Export it any time.'], ['Honest limits', 'No diagnoses over the internet and no doses. If it needs a vet, we say so.']],
     species: 'Which animal?', latest: 'Latest articles', all: 'All articles →', draft: a.draft, reviewed: a.reviewedBy,
     how: 'How it works', steps: [['Read', 'Find the symptom or question. Each article tells you at the top whether it can wait.'], ['Keep', 'Vaccinations, medications, microchip and your vet\'s number in one booklet, on your phone.'], ['Bring', 'Before a visit, make a one-page brief so the vet sees the whole picture in a minute.']],
@@ -25,8 +25,8 @@ const T = {
   it: {
     kicker: 'Salute degli animali rivista da veterinari, in parole semplici',
     h1: 'Sapere cosa fare per il tuo animale.',
-    sub: 'Risposte chiare scritte per i proprietari e controllate da veterinari, un libretto sanitario che non puoi perdere e un riepilogo di una pagina da portare alla visita. Gratis, senza pubblicità.',
-    cta: 'Cerca per animale', cta2: 'Apri il libretto sanitario',
+    sub: 'Risposte chiare controllate da veterinari, il libretto sanitario sul telefono e un riepilogo di una pagina per la visita. Gratis, senza pubblicità.',
+    cta: 'Cerca per animale', cta2: 'Apri il libretto sanitario', search: 'Cerca', or: 'oppure scegli un animale', proofShort: ['Firmato da veterinari', 'Gratis, senza pubblicità', 'I dati restano sul tuo dispositivo', 'Nessuna diagnosi online, nessuna dose'],
     proof: [['I veterinari firmano', 'Ogni articolo indica il veterinario che lo ha rivisto. Fino ad allora è segnato come bozza.'], ['Gratis, senza pubblicità', 'Nessuno sponsor, nessun link di affiliazione, nessun tracciamento.'], ['I tuoi dati restano tuoi', 'Il libretto vive sul tuo dispositivo. Esportalo quando vuoi.'], ['Limiti chiari', 'Nessuna diagnosi via internet e nessuna dose. Se serve il veterinario, lo diciamo.']],
     species: 'Quale animale?', latest: 'Ultimi articoli', all: 'Tutti gli articoli →', draft: a.draft, reviewed: a.reviewedBy,
     how: 'Come funziona', steps: [['Leggi', 'Trova il sintomo o la domanda. Ogni articolo dice subito se può aspettare.'], ['Conserva', 'Vaccini, farmaci, microchip e il numero del veterinario in un unico libretto, sul telefono.'], ['Porta', 'Prima della visita prepara un riepilogo di una pagina: il veterinario vede tutto in un minuto.']],
@@ -36,8 +36,8 @@ const T = {
   de: {
     kicker: 'Tiergesundheit, tierärztlich geprüft, verständlich erklärt',
     h1: 'Wissen, was Ihrem Tier jetzt hilft.',
-    sub: 'Klare Antworten für Halter, von Tierärztinnen und Tierärzten geprüft, ein Heimtierpass, der nicht verloren geht, und eine Seite Vorbereitung für den Praxisbesuch. Kostenlos, ohne Werbung.',
-    cta: 'Hilfe nach Tierart', cta2: 'Heimtierpass öffnen',
+    sub: 'Klare Antworten, tierärztlich geprüft, der Heimtierpass auf dem Handy und eine Seite Vorbereitung für den Praxisbesuch. Kostenlos, ohne Werbung.',
+    cta: 'Hilfe nach Tierart', cta2: 'Heimtierpass öffnen', search: 'Suchen', or: 'oder Tierart wählen', proofShort: ['Von Tierärzten gezeichnet', 'Kostenlos, ohne Werbung', 'Daten bleiben auf Ihrem Gerät', 'Keine Online-Diagnosen, keine Dosierungen'],
     proof: [['Tierärzte zeichnen', 'Jeder Artikel nennt die prüfende Tierärztin oder den Tierarzt. Bis dahin ist er als Entwurf markiert.'], ['Kostenlos, ohne Werbung', 'Keine Sponsoren, keine Affiliate-Links, kein Tracking.'], ['Ihre Daten bleiben Ihre', 'Der Pass liegt auf Ihrem Gerät. Jederzeit exportierbar.'], ['Ehrliche Grenzen', 'Keine Diagnosen übers Internet, keine Dosierungen. Wenn es in die Praxis gehört, sagen wir es.']],
     species: 'Welches Tier?', latest: 'Neueste Artikel', all: 'Alle Artikel →', draft: a.draft, reviewed: a.reviewedBy,
     how: 'So funktioniert es', steps: [['Lesen', 'Symptom oder Frage finden. Jeder Artikel sagt oben, ob es warten kann.'], ['Aufbewahren', 'Impfungen, Medikamente, Chipnummer und die Nummer der Praxis in einem Pass, auf dem Handy.'], ['Mitbringen', 'Vor dem Besuch eine Seite Übersicht erstellen, damit die Praxis in einer Minute das ganze Bild hat.']],
@@ -47,48 +47,50 @@ const T = {
 }[lang];
 const all = (await getCollection('animals')).filter((e) => e.data.lang === lang && !e.data.draft).sort((a, b) => b.data.updated.valueOf() - a.data.updated.valueOf());
 const latest = (all.length >= 3 ? all : (await getCollection('animals')).filter((e) => e.data.lang === lang).sort((a, b) => b.data.updated.valueOf() - a.data.updated.valueOf())).slice(0, 3);
+const ph = a.search.placeholder;
+const short = { en: { rabbit: 'Rabbits', general: 'All' }, it: { rabbit: 'Conigli', general: 'Tutti' }, de: { rabbit: 'Kaninchen', general: 'Alle' } }[lang] as Record<string, string>;
+const SPOTS = [
+  `<rect x="12" y="10" width="40" height="46" rx="6" fill="var(--surface)"/><path d="M20 22h20M20 30h24M20 38h14"/><circle cx="46" cy="44" r="10" fill="var(--accent-soft)"/><path d="M53 51l7 7" stroke-width="4"/>`,
+  `<rect x="14" y="8" width="36" height="48" rx="6" fill="var(--coral-soft)"/><path d="M20 8v48"/><ellipse cx="34" cy="36" rx="6" ry="5" fill="var(--hs-dog)"/><circle cx="27" cy="27" r="2.6" fill="var(--hs-dog)"/><circle cx="32" cy="23" r="2.6" fill="var(--hs-dog)"/><circle cx="37" cy="23" r="2.6" fill="var(--hs-dog)"/><circle cx="42" cy="27" r="2.6" fill="var(--hs-dog)"/>`,
+  `<rect x="14" y="12" width="36" height="46" rx="6" fill="var(--ic-sun)"/><rect x="24" y="7" width="16" height="10" rx="3" fill="var(--surface)"/><path d="M22 32l5 5 10-11M22 46h20"/>`,
+];
 const speciesKeys = ['dog', 'cat', 'rabbit', 'horse', 'bird', 'general'] as const;
 ---
-<section class="hero2">
-  <div class="wrap hero2-grid">
-    <div class="hero2-text">
-      <p class="kicker">{T.kicker}</p>
+<section class="h3ro">
+  <div class="wrap h3ro-grid">
+    <div class="h3ro-text">
       <h1>{T.h1}</h1>
       <p class="lead">{T.sub}</p>
-      <div class="hero2-ctas">
-        <a class="btn lg" href="#species">{T.cta}</a>
-        <a class="btn lg secondary" href={P.passport}>{T.cta2}</a>
-      </div>
+      <form class="h3ro-search" action={a.base} method="get" role="search">
+        <label class="sr-only" for="hq">{ph}</label>
+        <input id="hq" name="q" type="search" placeholder={ph} autocomplete="off" />
+        <button class="btn" type="submit">{T.search}</button>
+      </form>
+      <p class="h3ro-or">{T.or}</p>
+      <ul class="pets" id="species">
+        {speciesKeys.map((k) => (
+          <li><a class={`pet pet-${k}`} href={`${a.base}/${k}`}><span class="pet-c"><AnimalIcon kind={k} size={44} /></span><span class="pet-t">{short[k] ?? (a.species as any)[k]}</span></a></li>
+        ))}
+      </ul>
     </div>
-    <div class="hero2-art"><HeroScene /></div>
+    <div class="h3ro-art"><HeroScene /></div>
   </div>
-</section>
-
-<section class="wrap proof" aria-label="What you can count on">
-  {T.proof.map(([h, p]) => <div class="proof-item"><div class="proof-h">{h}</div><div class="proof-p">{p}</div></div>)}
-</section>
-
-<section class="wrap section" id="species">
-  <h2 class="section-h">{T.species}</h2>
-  <div class="animal-buttons">
-    {speciesKeys.map((k) => (
-      <a class="animal-btn" href={`${a.base}/${k}`}>
-        <AnimalIcon kind={k} size={64} />
-        <span class="t">{(a.species as any)[k]}</span>
-      </a>
-    ))}
-  </div>
+  <ul class="wrap ticks" aria-label="What you can count on">
+    {T.proofShort.map((x) => <li>{x}</li>)}
+  </ul>
 </section>
 
 <section class="wrap section">
   <div class="section-row"><h2 class="section-h">{T.latest}</h2><a class="more" href={`${a.base}/all`}>{T.all}</a></div>
   <div class="cards3">
     {latest.map((e) => (
-      <a class="card2" href={`${a.base}/${slugOf(e.id)}`}>
-        <span class="card2-species"><AnimalIcon kind={e.data.species} size={28} /> {(a.species as any)[e.data.species]}</span>
-        <span class="card2-t">{e.data.title}</span>
-        <span class="card2-d">{e.data.description}</span>
-        <span class={`badge ${e.data.draft ? 'draft' : 'reviewed'}`}>{e.data.draft ? T.draft : `${T.reviewed} ${e.data.reviewedBy}`}</span>
+      <a class={`card3 tint-${e.data.species}`} href={`${a.base}/${slugOf(e.id)}`}>
+        <span class="card3-art">{e.data.species === 'general' ? <><AnimalIcon kind="dog" size={72} /><AnimalIcon kind="cat" size={72} /></> : <AnimalIcon kind={e.data.species} size={84} />}</span>
+        <span class="card3-body">
+          <span class="card3-t">{e.data.title}</span>
+          <span class="card3-d">{e.data.description}</span>
+          <span class={`badge ${e.data.draft ? 'draft' : 'reviewed'}`}>{e.data.draft ? T.draft : `${T.reviewed} ${e.data.reviewedBy}`}</span>
+        </span>
       </a>
     ))}
   </div>
@@ -96,9 +98,16 @@ const speciesKeys = ['dog', 'cat', 'rabbit', 'horse', 'bird', 'general'] as cons
 
 <section class="wrap section">
   <h2 class="section-h">{T.how}</h2>
-  <ol class="steps">
-    {T.steps.map(([h, p], i) => <li><span class="step-n">{i + 1}</span><span class="step-h">{h}</span><span class="step-p">{p}</span></li>)}
+  <ol class="steps3">
+    {T.steps.map(([h, p], i) => (
+      <li>
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="var(--art-ink)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={SPOTS[i]} />
+        <span class="step3-h"><span class="step3-n">{i + 1}</span> {h}</span>
+        <span class="step3-p">{p}</span>
+      </li>
+    ))}
   </ol>
+  <p class="steps3-cta"><a class="btn lg secondary" href={P.passport}>{T.cta2}</a></p>
 </section>
 
 <section class="wrap section">

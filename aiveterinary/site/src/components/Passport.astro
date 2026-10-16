@@ -1,6 +1,7 @@
 ---
 import YarnCat from './YarnCat.astro';
 import AnimalIcon from './AnimalIcon.astro';
+import BookletArt from './BookletArt.astro';
 interface Props { lang?: 'en' | 'it' | 'de' }
 const { lang = 'en' } = Astro.props;
 const T = {
@@ -86,6 +87,7 @@ const T = {
   "title": "Digital pet health booklet",
   "desc": "Keep your animal's identity, vaccinations, medications and vet contacts in one place, on your own device. Back it up, restore it anywhere, print it for the vet.",
   "privTitle": "Private by design.",
+  "privTicks": ["Stays on your device, we never see it", "Back up to a file, open it anywhere", "Free, no account needed"],
   "privText": "Nothing you enter here leaves your browser. We never see it. That also means it is your copy: use <em>Back up</em> regularly and keep the file somewhere safe (your email, cloud drive or phone). This is your own copy. It does not replace the official EU pet passport issued by an authorised vet, nor the microchip registry entry; keep those up to date too. Free, no lock-in: export your data any time.",
   "synced": "synced",
   "phChip": "15 digits",
@@ -122,6 +124,7 @@ const T = {
   "h1": "Libretto sanitario digitale",
   "lead": "Tutto sul tuo animale in un unico posto: identità, microchip, vaccinazioni, farmaci, allergie, il numero del veterinario. Salvato sul tuo dispositivo, non sui nostri server. Fai una copia su file, aprila su qualsiasi dispositivo, stampala prima della visita.",
   "privTitle": "Privato per costruzione.",
+  "privTicks": ["Resta sul tuo dispositivo, noi non lo vediamo", "Copia su file, aprila ovunque", "Gratis, senza account"],
   "privText": "Niente di ciò che inserisci qui esce dal tuo browser. Noi non lo vediamo mai. Significa anche che è la tua copia: usa <em>Copia di sicurezza</em> regolarmente e conserva il file in un posto sicuro (email, cloud o telefono). È la tua copia personale. Non sostituisce il passaporto europeo ufficiale rilasciato da un veterinario autorizzato, né l'iscrizione all'anagrafe: tienili aggiornati. Gratis, senza vincoli: esporti i tuoi dati quando vuoi.",
   "acctTitle": "Salva in un account",
   "acctText": "Facoltativo. Accedi con un link inviato alla tua email e i passaporti ti seguono su ogni dispositivo.",
@@ -233,6 +236,7 @@ const T = {
   "h1": "Digitaler Heimtierpass (inoffiziell)",
   "lead": "Alles über Ihr Tier an einem Ort: Identität, Mikrochip, Impfungen, Medikamente, Allergien, die Nummer Ihrer Tierarztpraxis. Gespeichert auf Ihrem Gerät, nicht auf unseren Servern. Als Datei sichern, auf jedem Gerät öffnen, vor dem Besuch ausdrucken.",
   "privTitle": "Privat von Anfang an.",
+  "privTicks": ["Bleibt auf Ihrem Gerät, wir sehen nichts", "Als Datei sichern, überall öffnen", "Kostenlos, ohne Konto"],
   "privText": "Nichts, was Sie hier eingeben, verlässt Ihren Browser. Wir sehen es nie. Das heißt auch: Es ist Ihre Kopie. Nutzen Sie <em>Sichern</em> regelmäßig und bewahren Sie die Datei sicher auf (E-Mail, Cloud oder Telefon). Dies ist Ihre eigene Kopie. Sie ersetzt weder den offiziellen EU-Heimtierausweis einer berechtigten Tierärztin oder eines Tierarztes noch die Registrierung im Haustierregister; halten Sie beides aktuell. Kostenlos, ohne Bindung: Sie können Ihre Daten jederzeit exportieren.",
   "acctTitle": "In einem Konto speichern",
   "acctText": "Optional. Melden Sie sich mit einem Link an, der an Ihre E-Mail geht, und Ihre Ausweise folgen Ihnen auf jedes Gerät.",
@@ -538,9 +542,9 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
     <p class="eyebrow">{t.eyebrow}</p>
     <h1>{t.h1}</h1>
     <p class="lead">{t.lead}</p>
-    <div class="notice"><p set:html={t.privText} /></div>
+    <ul class="ticks ticks-plain">{t.privTicks.map((x: string) => <li>{x}</li>)}</ul>
     </div>
-    <div class="hero-side" aria-hidden="true"><AnimalIcon kind="dog" size={190} /><AnimalIcon kind="cat" size={150} /></div>
+    <div class="hero-side"><BookletArt /></div>
   </section>
 
   <section class="wrap" id="pp-account" hidden>
@@ -577,18 +581,23 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
       <button class="btn secondary" id="pp-export" type="button">{t.backup}</button>
       <label class="btn secondary" for="pp-import">{t.restore}<input id="pp-import" type="file" accept="application/json,.json" class="sr" /></label>
       <button class="btn secondary" id="pp-print" type="button">{t.print}</button>
+      <details class="pp-more">
+        <summary class="btn secondary">{({ en: 'More', it: 'Altro', de: 'Mehr' } as any)[lang]}</summary>
+        <div class="pp-more-menu">
       <button class="btn secondary" id="pp-card" type="button" hidden>{t.card}</button>
       <button class="btn secondary" id="pp-poster" type="button" hidden>{t.poster}</button>
       <button class="btn secondary" id="pp-claim" type="button" hidden>{t.claim}</button>
       <label class="pp-print-lang" hidden><span class="sr">{t.printLang}</span><select id="pp-print-lang" aria-label={t.printLang}><option value="">{t.printLang}: {t.printLangNone}</option>{(['en', 'it', 'de'] as const).filter((l) => l !== lang).map((l) => <option value={l}>{t.printLang}: {({ en: 'English', it: 'Italiano', de: 'Deutsch' })[l]}</option>)}</select></label>
       <button class="btn secondary pp-danger" id="pp-delete" type="button">{t.delete}</button>
+        </div>
+      </details>
     </div>
 
     <div id="pp-loading" hidden style="margin:12px 0"><YarnCat label={({ en: 'Restoring…', it: 'Ripristino in corso…', de: 'Wird wiederhergestellt…' } as any)[lang]} /></div>
-    <div id="pp-empty" class="card" hidden>
+    <div id="pp-empty" class="pp-empty" hidden>
       <h2>{t.emptyTitle}</h2>
       <p>{t.emptyText}</p>
-      <button class="btn" id="pp-empty-new" type="button">{t.emptyBtn}</button>
+      <p class="pp-empty-actions"><button class="btn lg" id="pp-empty-new" type="button">{t.emptyBtn}</button> <label class="pp-empty-restore" for="pp-import">{t.restore}</label></p>
     </div>
 
     <div id="pp-form" hidden>
@@ -942,7 +951,7 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
     function renderForm() {
       const a = current();
       const form = $('#pp-form') as HTMLElement, empty = $('#pp-empty') as HTMLElement;
-      form.hidden = !a; empty.hidden = !!a;
+      form.hidden = !a; empty.hidden = !!a; ($('.pp-toolbar') as HTMLElement).hidden = !a;
       $('#pp-delete')!.toggleAttribute('hidden', !a);
       $('#pp-print')!.toggleAttribute('hidden', !a);
       $('#pp-card')!.toggleAttribute('hidden', !a);
