@@ -116,9 +116,9 @@ Everything costs €0 unless marked €. Legend:
 - [x] Surgery/anaesthesia record with required-field checklist (ASA, protocol, monitoring values, implants) ★★★
 - [x] **Text-first dental chart** from typed Triadan findings; unmarked teeth shown as not recorded, never as healthy
 - [x] Home-care schedule (calendar of doses) rendered from the medication table ★★
-- [ ] Callback / phone-call note (typed) and email-to-record ★★
+- [x] Callback / phone-call note (typed) (`app/src/letters.ts`); email-to-record still open ★★
 - [x] History recap of the patient's own approved records, every line linked (`app/src/history.ts`) ★★
-- [ ] Euthanasia record + condolence letter from vet-entered facts ★
+- [x] Euthanasia record + condolence letter from vet-entered facts (`app/src/letters.ts`) ★
 - [x] Controlled-drugs register entry prepared from the dispensing record (monthly check reminder still open)
 - [ ] Registry export (AT Heimtierdatenbank, IT anagrafe dataset) ★★
 - [ ] Dog-bite report letter (CH, IT) ★
