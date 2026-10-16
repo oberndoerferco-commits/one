@@ -1,14 +1,18 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Newsletter from '../../components/Newsletter.astro';
+import NotesToRecord from '../../components/NotesToRecord.astro';
 ---
 <Base title="Per i team veterinari" description="Un assistente AI per la documentazione pensato per la tastiera: digiti appunti grezzi, approvi la cartella finita, generi da essa le istruzioni per il proprietario e le lettere di riferimento." lang="it">
-  <section class="wrap hero">
+  <section class="wrap hero hero-split vets-hero">
+    <div>
     <p class="eyebrow">Assistente per la documentazione · in sviluppo</p>
     <h1>Tu visiti. Noi scriviamo.<br />Tu approvi.</h1>
     <p class="lead">Dopo la visita si digitano poche righe grezze. Si riceve una cartella strutturata e professionale da rivedere. Niente sulla pagina che non sia stato scritto da Lei. Poi, dalla stessa cartella approvata, si generano le istruzioni per il proprietario, la lettera di riferimento e una traduzione, senza digitare nulla due volte.</p>
     <p><a class="btn" href="#waitlist">Iscriviti alla lista per l'accesso anticipato</a> <a class="btn secondary" href="/it/vets/workspace" style="margin-left:8px">Prova l'anteprima</a></p>
     <ul class="chips"><li>Conforme al GDPR</li><li>Dati ospitati nell'UE</li><li>Nessun addestramento sui Suoi dati</li><li>Nessuna registrazione, nessun microfono</li></ul>
+    </div>
+    <div class="vets-hero-art"><NotesToRecord lang="it" /></div>
   </section>
 
   <section class="wrap">

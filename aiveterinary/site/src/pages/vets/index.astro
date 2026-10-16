@@ -1,14 +1,18 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Newsletter from '../../components/Newsletter.astro';
+import NotesToRecord from '../../components/NotesToRecord.astro';
 ---
 <Base title="For veterinary teams" description="An AI documentation assistant built for the keyboard: type rough notes, approve the finished record, generate owner instructions and referral letters from it.">
-  <section class="wrap hero">
+  <section class="wrap hero hero-split vets-hero">
+    <div>
     <p class="eyebrow">Documentation assistant · in development</p>
     <h1>You examine. We write it up.<br />You approve.</h1>
     <p class="lead">Type a few rough lines after the consultation. Get a structured, professional record to review. Nothing on the page you didn't write. Then make the owner's instructions, the referral letter and a translation from the same approved record, without typing anything twice.</p>
     <p><a class="btn" href="#waitlist">Join the early-access list</a> <a class="btn secondary" href="/vets/workspace" style="margin-left:8px">Try the preview</a></p>
     <ul class="chips"><li>GDPR by design</li><li>Hosted in the EU</li><li>Never trains on your data</li><li>Nothing recorded, no microphone</li></ul>
+    </div>
+    <div class="vets-hero-art"><NotesToRecord lang="en" /></div>
   </section>
 
   <section class="wrap">

@@ -396,3 +396,18 @@ h1, h2 { font-variation-settings: "opsz" 96, "SOFT" 100, "WONK" 0; }
 .booklet-art { max-width: 100%; height: auto; }
 @media print { .pp-more-menu { display: none; } }
 .pp-toolbar[hidden] { display: none; }
+
+/* vets v3 */
+.vets-hero { grid-template-columns: 1.1fr .9fr; align-items: center; }
+.vets-hero h1 { font-size: clamp(2.1rem, 4vw, 3rem); }
+.vets-hero-art { display: flex; justify-content: center; padding: 10px 0 24px; }
+.commit { grid-template-columns: 1fr 1fr; column-gap: 36px; row-gap: 4px; }
+.commit li { background: transparent; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; padding: 14px 0 14px 44px; }
+.commit li::before { left: 0; top: 14px; background: var(--ink); color: var(--bg); }
+@media (max-width: 820px) { .commit { grid-template-columns: 1fr; } }
+@media (max-width: 820px) { .vets-hero { grid-template-columns: 1fr; } .vets-hero-art { order: 0; } .n2r-doc { margin-left: 0; } .nav a { white-space: nowrap; } }
+.hero.wrap, .wrap.hero { padding-left: 16px; padding-right: 16px; }
+@media (max-width: 480px) { .nav a.nav-3rd { display: none; } }
+html, body { overflow-x: clip; }
+.h3ro-grid > *, .hero-split > * { min-width: 0; }
+@media (max-width: 640px) { select, input, textarea { max-width: 100%; } .ws-label { flex-wrap: wrap; max-width: 100%; } }

@@ -160,7 +160,7 @@ const current = (href: string) => path === href || path.startsWith(href + '/');
         </a>
         <nav class="nav" aria-label={t.navAria}>
           {nav.map((n) => (
-            <a href={n.href} class={(n as any).cta ? 'nav-cta' : /\/(about|newsletter)$/.test(n.href) ? 'nav-2nd' : undefined} aria-current={current(n.href) ? 'page' : undefined}>{n.label}</a>
+            <a href={n.href} class={(n as any).cta ? 'nav-cta' : /\/(about|newsletter)$/.test(n.href) ? 'nav-2nd' : /\/vets$/.test(n.href) ? 'nav-3rd' : undefined} aria-current={current(n.href) ? 'page' : undefined}>{n.label}</a>
           ))}
           <span class="lang-switch" aria-label={t.langAria} style="display:inline-flex;gap:6px;align-items:center;font-size:.85rem;color:var(--ink-2)">
             {languages.map((l, i) => (

@@ -270,12 +270,14 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
 
   <style is:global>
     .ws-top { display: flex; gap: 20px; align-items: flex-end; flex-wrap: wrap; }
+    .ws-top > * { min-width: 0; max-width: 100%; }
+    .ws-top select { max-width: 100%; }
     .ws-label { display: block; font-size: .8rem; color: var(--ink-3); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
     #ws-case, #ws-country, #ws-role, #ws-doc, #ws-referral, #ws-lang2 { padding: 9px 12px; font: inherit; border: 1.5px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); min-width: 260px; }
     .ws-patient { font-weight: 600; }
     .ws-state { margin-left: auto; }
     .ws { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--surface); margin-top: 16px; min-height: 420px; }
-    .ws-pane { padding: 16px 20px; }
+    .ws-pane { padding: 16px 20px; min-width: 0; overflow-wrap: anywhere; }
     .ws-pane + .ws-pane { border-left: 1px solid var(--line); }
     .ws-h { font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); font-weight: 600; margin-bottom: 10px; }
     .ws-hint { text-transform: none; letter-spacing: 0; font-weight: 400; margin-left: 8px; }
@@ -304,7 +306,7 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
     .ws-role-toggle { margin-left: 8px; font: inherit; font-size: .75rem; border: 1px solid var(--line); background: var(--surface); color: var(--ink-3); border-radius: 999px; padding: 1px 8px; cursor: pointer; vertical-align: middle; }
     .ws-role-toggle:hover { color: var(--accent); border-color: var(--accent); }
     @media print { .ws-role-toggle { display: none; } }
-    .ws-abbr-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 8px 16px; }
+    .ws-abbr-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); gap: 8px 16px; }
     .ws-abbr-list li { display: flex; gap: 8px; align-items: center; }
     .ws-abbr-list code { background: var(--accent-soft); border-radius: 6px; padding: 2px 8px; font-weight: 600; min-width: 48px; text-align: center; }
     .ws-abbr-list input { flex: 1; min-width: 0; padding: 6px 10px; font: inherit; border: 1.5px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); }
@@ -315,7 +317,7 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
     .ws-report table { border-collapse: collapse; width: 100%; font-size: .92rem; margin-top: 6px; }
     .ws-report th, .ws-report td { border: 1px solid var(--line); padding: 5px 8px; text-align: left; }
     .ws-flags { margin-top: 20px; }
-    .ws-flaglist { list-style: none; padding: 0; margin: 0 0 14px; display: grid; gap: 8px; }
+    .ws-flaglist { list-style: none; padding: 0; margin: 0 0 14px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
     .ws-flaglist li { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
     .ws-flaglist .f-block { color: var(--danger); font-weight: 600; }
     .ws-flaglist .f-miss { color: var(--warn); font-weight: 600; }

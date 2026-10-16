@@ -1,0 +1,45 @@
+---
+/**
+ * Small looping demo for the vet pages: rough notes appear line by line, then
+ * the structured record fills in with one missing-information flag. Pure CSS;
+ * under reduced motion everything is shown at once.
+ */
+interface Props { lang?: 'en' | 'it' | 'de' }
+const { lang = 'en' } = Astro.props;
+const D = {
+  en: { notes: ['Luna, Lab, F, 6y', 'vomiting 3x since yest', 'T 39.1, abd soft', 'fluids + antiemetic', 'recheck 48h'], doc: 'Consultation report', rows: [['History', 'Owner reports vomiting, three times since yesterday.'], ['Examination', 'Temperature 39.1 °C. Abdomen soft.'], ['Treatment', 'Fluid therapy. Antiemetic administered.'], ['Follow-up', 'Recheck in 48 hours.']], flag: 'Missing: drug, dose and route', ok: 'Approve', aria: 'Example: five lines of notes become a structured report with one missing-information flag' },
+  it: { notes: ['Luna, Labrador, F, 6a', 'vomito 3x da ieri', 'T 39,1, addome morbido', 'fluidi + antiemetico', 'controllo 48h'], doc: 'Referto di visita', rows: [['Anamnesi', 'Il proprietario riferisce vomito, tre volte da ieri.'], ['Esame clinico', 'Temperatura 39,1 °C. Addome morbido.'], ['Trattamento', 'Fluidoterapia. Antiemetico somministrato.'], ['Controllo', 'Ricontrollo tra 48 ore.']], flag: 'Mancante: farmaco, dose e via', ok: 'Approva', aria: 'Esempio: cinque righe di appunti diventano un referto strutturato con un dato mancante segnalato' },
+  de: { notes: ['Luna, Labrador, w, 6J', 'Erbrechen 3x seit gestern', 'T 39,1, Abdomen weich', 'Infusion + Antiemetikum', 'Kontrolle 48h'], doc: 'Behandlungsbericht', rows: [['Anamnese', 'Laut Besitzer Erbrechen, dreimal seit gestern.'], ['Untersuchung', 'Temperatur 39,1 °C. Abdomen weich.'], ['Behandlung', 'Infusionstherapie. Antiemetikum verabreicht.'], ['Kontrolle', 'Wiedervorstellung in 48 Stunden.']], flag: 'Fehlt: Wirkstoff, Dosis und Applikation', ok: 'Freigeben', aria: 'Beispiel: fünf Zeilen Notizen werden zu einem strukturierten Bericht mit einem markierten fehlenden Punkt' },
+}[lang];
+---
+<div class="n2r" role="img" aria-label={D.aria}>
+  <div class="n2r-notes">
+    {D.notes.map((l, i) => <div class="n2r-line" style={`--i:${i}`}>{l}</div>)}
+    <span class="n2r-caret"></span>
+  </div>
+  <div class="n2r-doc">
+    <div class="n2r-h">{D.doc}</div>
+    {D.rows.map(([h, p], i) => <div class="n2r-row" style={`--i:${i}`}><b>{h}</b> {p}{i === 2 && <span class="n2r-flag">▲ {D.flag}</span>}</div>)}
+    <span class="n2r-ok">✓ {D.ok}</span>
+  </div>
+</div>
+
+<style is:global>
+  .n2r { display: grid; gap: 14px; max-width: 460px; width: 100%; }
+  .n2r-notes { background: #12304a; color: #e9f1ef; border-radius: 18px; padding: 18px 20px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .9rem; line-height: 1.75; transform: rotate(-1.5deg); box-shadow: 0 14px 30px rgba(18, 48, 74, .18); position: relative; }
+  .n2r-doc { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 18px 20px; font-size: .9rem; box-shadow: 0 14px 30px rgba(18, 48, 74, .08); margin-left: 24px; position: relative; }
+  .n2r-h { font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; margin-bottom: 8px; }
+  .n2r-row { padding: 4px 0; }
+  .n2r-row b { color: var(--ink); }
+  .n2r-flag { display: block; color: var(--warn); font-weight: 600; font-size: .85rem; }
+  .n2r-ok { position: absolute; right: 14px; bottom: -14px; background: var(--accent); color: var(--accent-ink); border-radius: 999px; padding: 6px 14px; font-weight: 700; font-size: .85rem; }
+  @media (prefers-reduced-motion: no-preference) {
+    .n2r-line { opacity: 0; animation: n2r-in 10s infinite; animation-delay: calc(var(--i) * .5s); }
+    .n2r-row { opacity: 0; animation: n2r-in 10s infinite; animation-delay: calc(3s + var(--i) * .45s); }
+    .n2r-ok { opacity: 0; transform: scale(.8); animation: n2r-pop 10s infinite; animation-delay: 5.2s; }
+    .n2r-caret { display: inline-block; width: 8px; height: 1em; background: #6cc3b7; vertical-align: -2px; animation: n2r-blink 1s steps(2) infinite; }
+  }
+  @keyframes n2r-in { 0% { opacity: 0; transform: translateY(4px); } 4%, 88% { opacity: 1; transform: none; } 96%, 100% { opacity: 0; } }
+  @keyframes n2r-pop { 0% { opacity: 0; transform: scale(.8); } 4%, 70% { opacity: 1; transform: scale(1); } 78%, 100% { opacity: 0; } }
+  @keyframes n2r-blink { 50% { opacity: 0; } }
+</style>
