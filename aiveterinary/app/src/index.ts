@@ -4,3 +4,4 @@ export * from './validators.js';
 export * from './render.js';
 export * from './extract.js';
 export * from './country.js';
+export * from './versions.js';

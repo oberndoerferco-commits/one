@@ -132,7 +132,7 @@ Everything costs €0 unless marked €. Legend:
 - [x] **Declined-care register** (signed paragraph + per-patient log) — S ★★★ *only us*
 - [x] Medication reconciliation table with tick per cell before sign-off; cross-document identity check for translations — S ★★★ *only us*
 - [x] "Not recorded" as a first-class printed value — S ★★★ *only us*
-- [ ] Amendment propagation map ("generated from v1 — regenerate?") — M ★★ *only us*
+- [x] Amendment propagation map: every document remembers its version; after an amendment the stale ones are listed (`app/src/versions.ts`)
 - [ ] Bilingual side-by-side owner letter (DE/IT/EN + TR/AR/UK), meds table identical — M ★★★ *only us*
 - [ ] Snippets / dot-phrases incl. "otherwise unremarkable" (clinic-written, never auto) — S ★★★
 - [x] Clinic abbreviation + glossary manager — S ★★★
@@ -154,7 +154,7 @@ Everything costs €0 unless marked €. Legend:
 ### Platform
 - [x] Vet accounts (email link + MFA), clinic settings (letterhead, language, units, SOAP on/off, abbreviations) — M ★★★ (letterhead stored on the device, printed over every document; PDF export is the browser print)
 - [x] Letterhead stored on the device, printed over every document; PDF via the browser print
-- [ ] Retention controls (auto-delete drafts/raw notes), immutable approved versions (§16 TÄHAV) — S ★★★
+- [ ] Retention controls (auto-delete drafts/raw notes) — immutable approved versions with amendment reason done in `versions.ts`
 - [ ] Clinic-owner analytics (time-to-approved, edit ratio, open flags) — no clinical text — S ★★
 - [ ] Rate limits, spend caps, prompt caching, model fallback — S ★★★
 - [ ] Cross-tenant isolation test suite; pen test (€) and DPIA before real data — M ★★★

@@ -74,3 +74,7 @@ All documents are rendered by code from the record's own sentences; headings, ta
 - `renderPrescription` — one section per dispensed or prescribed medicine with the Art. 105(5) Reg. (EU) 2019/6 content, taking product, quantity, authorisation number and batch from the `VisitContext` dispensing record; keeper, microchip and prescribing vet flagged when absent.
 
 The workspace preview on the site exposes all of them through its document selector.
+
+## Approved versions (`src/versions.ts`)
+
+`approve` freezes a copy of the record with a fingerprint; it cannot be edited afterwards. `amend` requires a reason and a real change and returns the next version pointing back to the one it supersedes. `documentFrom` stamps each generated document with the version it came from, and `propagationMap` lists the documents that are stale after an amendment. The fingerprint is for change detection; tamper evidence comes from append-only storage on the server.
