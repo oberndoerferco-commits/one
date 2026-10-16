@@ -33,7 +33,7 @@ Untersuchen Sie Ihr Tier nach Spaziergängen, vor allem an Kopf, Ohren, Hals, Ac
 
 1. Verwenden Sie eine Zeckenzange oder einen Zeckenhaken (ein kleiner Plastikhaken) oder eine Pinzette mit feinen Spitzen. Benutzen Sie nicht die Finger und verwenden Sie weder Vaseline, Öl, Alkohol noch Hitze, da die Zecke dadurch in die Wunde erbrechen kann.
 2. Schieben Sie den Haken dicht an der Haut unter die Zecke oder fassen Sie die Zecke mit der Pinzette so nah wie möglich an der Haut.
-3. Mit dem Haken drehen Sie vorsichtig und heben ab. Mit der Pinzette ziehen Sie gleichmäßig nach oben, ohne den Körper zu quetschen.
+3. Fassen Sie die Zecke möglichst nah an der Haut und ziehen Sie sie langsam und gleichmäßig heraus, ohne den Körper zu quetschen. ESCCAP rät vom Drehen ab; wenn Ihr Zeckenwerkzeug eine eigene Anleitung hat, folgen Sie dieser.
 4. Prüfen Sie, ob die Mundwerkzeuge mit entfernt wurden. Eine kleine rote Stelle ist normal.
 5. Reinigen Sie die Stelle und waschen Sie sich die Hände. Notieren Sie das Datum.
 

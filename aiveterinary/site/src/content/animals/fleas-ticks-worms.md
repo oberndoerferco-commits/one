@@ -32,7 +32,7 @@ Check your animal after walks, especially around the head, ears, neck, armpits a
 
 1. Use a tick-removal tool (a small plastic hook) or fine-tipped tweezers. Do not use fingers, and do not use petroleum jelly, oil, alcohol, or heat, which can make the tick regurgitate into the wound.
 2. Slide the hook under the tick close to the skin, or grip the tick as close to the skin as possible with tweezers.
-3. With a hook, twist gently and lift. With tweezers, pull steadily upward without squeezing the body.
+3. Grip the tick as close to the skin as possible and pull it out slowly and steadily, without squeezing the body. ESCCAP advises against twisting; if your tick tool comes with its own instructions, follow them.
 4. Check that the mouthparts have come away. A small red mark is normal.
 5. Clean the spot and wash your hands. Note the date.
 

@@ -33,7 +33,7 @@ Controlla il tuo animale dopo le passeggiate, soprattutto intorno a testa, orecc
 
 1. Usa un levazecche (un piccolo gancio di plastica) o una pinzetta a punta fine. Non usare le dita, e non usare vaselina, olio, alcol o calore: possono far rigurgitare la zecca nella ferita.
 2. Infila il gancio sotto la zecca vicino alla pelle, oppure afferra la zecca con la pinzetta il più vicino possibile alla pelle.
-3. Con il gancio, ruota delicatamente e solleva. Con la pinzetta, tira verso l'alto con un movimento costante senza schiacciare il corpo.
+3. Afferra la zecca il più vicino possibile alla pelle e tirala fuori lentamente e con un movimento costante, senza schiacciarne il corpo. ESCCAP sconsiglia di ruotarla; se il tuo strumento ha istruzioni proprie, seguile.
 4. Controlla che l'apparato boccale sia venuto via. Un piccolo segno rosso è normale.
 5. Pulisci il punto e lavati le mani. Annota la data.
 
