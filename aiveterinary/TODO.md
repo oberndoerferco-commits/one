@@ -78,7 +78,7 @@ Everything costs €0 unless marked €. Legend:
 - [x] **Emergency card**: printable credit-card size, two copies, from booklet data (Wallet pass still open) — M ★★ *only us*
 - [x] **Lost-pet mode** v1: A4 poster from booklet data with photo, description, last seen, phone (QR flyer, registry checklist, Europetnet link still open) — M ★★ *registry-aware: only us*
 - [x] **Registry navigator** (/registry in EN/IT/DE with sourced tables for IT, DE, AT, CH, FR; a few regional deadlines flagged as secondary-source) — S ★★ *only us*
-- [ ] **Travel checklist per destination** under Reg. 2026/131: residents-only passport, 5-pet cap, tapeworm FI/IE/MT/NO/UK 24–120 h, rabies titre for unlisted countries, puppy age — M ★★★
+- [x] **Travel checklist per destination** under Reg. 2026/131: residents-only passport, 5-pet cap, tapeworm FI/IE/MT/NO/UK 24–120 h, rabies titre for unlisted countries, puppy age — done: `/travel` EN/IT/DE — M ★★★
 - [x] Chip-number validation (15-digit ISO, manufacturer prefix) — S ★
 - [x] Weight log with chart and body-condition score — S ★★
 - [x] Symptom diary (date, note) in the booklet, last entries pulled into the pre-visit brief (photo per entry still open) — M ★★
@@ -154,7 +154,7 @@ Everything costs €0 unless marked €. Legend:
 ### Platform
 - [x] Vet accounts (email link + MFA), clinic settings (letterhead, language, units, SOAP on/off, abbreviations) — M ★★★ (letterhead stored on the device, printed over every document; PDF export is the browser print)
 - [x] Letterhead stored on the device, printed over every document; PDF via the browser print
-- [ ] Retention controls (auto-delete drafts/raw notes) — immutable approved versions with amendment reason done in `versions.ts`
+- [x] Retention controls (auto-delete drafts/raw notes): rule in `app/src/retention.ts`, approved records never auto-deleted — immutable approved versions with amendment reason done in `versions.ts`
 - [ ] Clinic-owner analytics (time-to-approved, edit ratio, open flags) — no clinical text — S ★★
 - [x] Rate limits, spend caps, prompt caching, model fallback — S ★★★
 - [ ] Cross-tenant isolation test suite; pen test (€) and DPIA before real data — M ★★★
