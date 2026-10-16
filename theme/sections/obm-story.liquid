@@ -76,7 +76,7 @@
                     {%- endif -%}
                   </span>
                   <span class="obm-story__product-name">{{ p.title }}</span>
-                  <span class="obm-story__product-price">{{ p.price | money }}</span>
+                  <span class="obm-story__product-price">{%- if p.tags contains 'price-on-request' -%}{%- case request.locale.iso_code -%}{%- when 'de' -%}Preis auf Anfrage{%- when 'it' -%}Prezzo su richiesta{%- else -%}Price on request{%- endcase -%}{%- else -%}{{ p.price | money }}{%- endif -%}</span>
                 </a>
               {%- endif -%}
             {%- endfor -%}

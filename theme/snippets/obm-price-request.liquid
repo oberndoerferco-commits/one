@@ -1,0 +1,35 @@
+{%- comment -%}
+  Price on request (owner, 16 October): for pieces tagged "price-on-request" (the sofas) the price
+  block shows "Price on request" (blocks/price.liquid) and, here, the buy buttons give way to a
+  button that writes to the atelier about the piece. Rendered from a custom-liquid block in product.json.
+{%- endcomment -%}
+{%- if product.tags contains 'price-on-request' -%}
+  {%- liquid
+    case request.locale.iso_code
+      when 'de'
+        assign t_btn = 'Preis anfragen'
+        assign t_subject = 'Preisanfrage: '
+        assign t_note = 'Jedes Stück wird auf Maß gefertigt. Wir senden Ihnen Preis und Lieferzeit.'
+      when 'it'
+        assign t_btn = 'Richiedi il prezzo'
+        assign t_subject = 'Richiesta di prezzo: '
+        assign t_note = 'Ogni pezzo è realizzato su misura. Le invieremo prezzo e tempi di consegna.'
+      else
+        assign t_btn = 'Request the price'
+        assign t_subject = 'Price request: '
+        assign t_note = 'Each piece is made to measure. We will send you the price and lead time.'
+    endcase
+    assign subject = t_subject | append: product.title | url_encode | replace: '+', '%20'
+    assign body = shop.url | append: product.url | url_encode | replace: '+', '%20'
+  -%}
+  <div class="obm-request">
+    <a class="button obm-request__btn" href="mailto:info@oberndoerferco.com?subject={{ subject }}&body={{ body }}">{{ t_btn }}</a>
+    <p class="obm-request__note">{{ t_note }}</p>
+  </div>
+  <style>
+    .buy-buttons-block, sticky-add-to-cart, .sticky-add-to-cart, [data-obm-notify] { display: none !important; }
+    .obm-request { margin: 4px 0 20px; }
+    .obm-request__btn { display: flex; width: 100%; justify-content: center; text-align: center; }
+    .obm-request__note { margin: 12px 0 0; font-size: 0.8125rem; opacity: 0.75; }
+  </style>
+{%- endif -%}

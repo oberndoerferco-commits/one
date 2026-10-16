@@ -545,6 +545,12 @@
               "settings": {
                 "custom_liquid": "{% render 'obm-personalise', product: product, section: section %}"
               }
+            },
+            "obm_price_request": {
+              "type": "custom-liquid",
+              "settings": {
+                "custom_liquid": "{% render 'obm-price-request', product: product %}"
+              }
             }
           },
           "block_order": [
@@ -554,6 +560,7 @@
             "divider_VJhene",
             "variant_picker_R3rGDr",
             "obm_personalise",
+            "obm_price_request",
             "buy_buttons_eYQEYi",
             "obm_notify_me",
             "custom_liquid_atelier",
