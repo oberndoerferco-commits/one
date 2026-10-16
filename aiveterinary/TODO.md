@@ -117,7 +117,7 @@ Everything costs €0 unless marked €. Legend:
 - [x] **Text-first dental chart** from typed Triadan findings; unmarked teeth shown as not recorded, never as healthy
 - [x] Home-care schedule (calendar of doses) rendered from the medication table ★★
 - [ ] Callback / phone-call note (typed) and email-to-record ★★
-- [ ] History recap of the patient's own approved records, every line linked ★★
+- [x] History recap of the patient's own approved records, every line linked (`app/src/history.ts`) ★★
 - [ ] Euthanasia record + condolence letter from vet-entered facts ★
 - [x] Controlled-drugs register entry prepared from the dispensing record (monthly check reminder still open)
 - [ ] Registry export (AT Heimtierdatenbank, IT anagrafe dataset) ★★
