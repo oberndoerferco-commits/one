@@ -54,7 +54,7 @@ Everything costs €0 unless marked €. Legend:
 
 ### Articles (drafts; vets review)
 - [x] Cost explainers, highest intent: **"Tierarzt Kosten Tabelle 2026 (GOT)"**, **"Kastration Hund Kosten 2026"**, **"Quanto costa una visita veterinaria"**, "sterilizzazione cane costo" — M ★★★
-- [ ] **Italian top-40** (37 topics covered as of 17 Oct; list below is only what is still missing, exact search phrasing): cane anziano non mangia · displasia anca cane · gatto perde pelo a ciuffi · cane ha mangiato ossa di pollo — L ★★★
+- [x] **Italian top-40** — all 40 covered as of 17 Oct 2026 (drafts, pending vet review) — L ★★★
 - [ ] **German top-40** (36 topics covered as of 17 Oct; list below is only what is still missing): hund atmet schnell im schlaf · hund milben · hündin läufig · leptospirose hund — L ★★★
 - [x] Conditions and medications categories: diabetes, CKD/thyroid, antibiotics, NSAIDs in EN/IT/DE (more condition and drug-class pages still open)
 - [x] A–Z index, species hubs, "share with your vet" button, print stylesheet for articles — S ★★
