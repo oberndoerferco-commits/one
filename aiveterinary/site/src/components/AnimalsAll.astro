@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import { ANIMALS, slugOf, type Lang } from '../lib/animals-i18n';
+import AnimalIcon from './AnimalIcon.astro';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = ANIMALS[lang];
+const all = (await getCollection('animals')).filter((e) => e.data.lang === lang);
+const bySpecies = Object.keys(t.species).map((k) => ({ key: k, label: (t.species as any)[k], items: all.filter((e) => e.data.species === k).sort((a, b) => a.data.title.localeCompare(b.data.title, t.locale)) })).filter((g) => g.items.length);
+const fmt = (x: Date) => x.toLocaleDateString(t.locale, { day: 'numeric', month: 'short', year: 'numeric' });
+---
+<section class="wrap hero" style="padding-bottom:8px">
+  <p class="eyebrow"><a href={t.base}>{t.title}</a></p>
+  <h1>{t.allTitle}</h1>
+  <p class="lead">{t.allLead.replace('{n}', String(all.length))}</p>
+</section>
+<section class="wrap">
+  <nav aria-label={t.byAnimal}><ul class="chips">{bySpecies.map((g) => <li><a href={`#${g.key}`}>{g.label} ({g.items.length})</a></li>)}</ul></nav>
+  {bySpecies.map((g) => (
+    <div class="az-group" id={g.key}>
+      <h2 class="az-h"><AnimalIcon kind={g.key as any} size={36} /> {g.label}</h2>
+      <ul class="az-list">
+        {g.items.map((e) => (
+          <li><a href={`${t.base}/${slugOf(e.id)}`}>{e.data.title}</a> <span class="az-meta">{(t.categories as any)[e.data.category]?.[0]} · {fmt(e.data.updated)}{e.data.draft ? ` · ${t.draft}` : e.data.reviewedBy ? ` · ${t.reviewedBy} ${e.data.reviewedBy}` : ''}</span></li>
+        ))}
+      </ul>
+    </div>
+  ))}
+</section>

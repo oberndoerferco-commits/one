@@ -1,0 +1,14 @@
+---
+import Base from '../../../layouts/Base.astro';
+import Article from '../../../components/Article.astro';
+import { getCollection } from 'astro:content';
+import { slugOf } from '../../../lib/animals-i18n';
+export async function getStaticPaths() {
+  const entries = (await getCollection('animals')).filter((e) => e.data.lang === 'it');
+  return entries.map((entry) => ({ params: { slug: slugOf(entry.id) }, props: { entry } }));
+}
+const { entry } = Astro.props;
+---
+<Base title={entry.data.title} description={entry.data.description} lang="it">
+  <Article lang="it" entry={entry} />
+</Base>

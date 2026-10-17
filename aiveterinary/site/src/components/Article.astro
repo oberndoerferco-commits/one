@@ -1,0 +1,40 @@
+---
+import { render } from 'astro:content';
+import { ANIMALS, type Lang } from '../lib/animals-i18n';
+import AnimalIcon from './AnimalIcon.astro';
+interface Props { lang: Lang; entry: any }
+const { lang, entry } = Astro.props;
+const t = ANIMALS[lang];
+const { Content, headings } = await render(entry);
+const toc = headings.filter((h: any) => h.depth === 2);
+const L = ({ en: { toc: 'In this article', report: 'Found an error? Tell us' }, it: { toc: 'In questo articolo', report: 'Hai trovato un errore? Scrivici' }, de: { toc: 'In diesem Artikel', report: 'Fehler gefunden? Sagen Sie es uns' } } as any)[lang];
+const d = entry.data;
+const minutes = Math.max(1, Math.round(((entry.body ?? '').split(/\s+/).length) / 200));
+const minLabel = ({ en: 'min read', it: 'min di lettura', de: 'Min. Lesezeit' } as any)[lang];
+const fmt = (x: Date) => x.toLocaleDateString(t.locale, { day: 'numeric', month: 'long', year: 'numeric' });
+const cls: Record<string, string> = { emergency: 'danger', today: 'warn', 'this-week': '', routine: 'ok' };
+---
+<article class="wrap narrow hero" data-pagefind-body data-pagefind-meta={`species:${d.species}`}>
+  <p class="eyebrow article-eyebrow"><AnimalIcon kind={d.species} size={30} /> <a href={t.base}>{t.title}</a> · <a href={`${t.base}/${d.category}`}>{(t.categories as any)[d.category]?.[0] ?? d.category}</a> · <a href={`${t.base}/${d.species}`}>{(t.species as any)[d.species] ?? d.species}</a></p>
+  <h1>{d.title}</h1>
+  <p class="lead">{d.description}</p>
+  <div class="article-meta">
+    {d.draft
+      ? <span class="badge draft">{t.draftLong}</span>
+      : <span class="badge reviewed">{t.reviewedBy} {d.reviewedBy}{d.reviewerRegistration && ` (${d.reviewerRegistration})`}{d.reviewedOn && `, ${fmt(d.reviewedOn)}`}</span>}
+    {d.author && <span>{t.author} {d.author}</span>}
+    <span>{t.updated} {fmt(d.updated)}</span>
+    <span>{minutes} {minLabel}</span>
+    {d.nextReview && <span>{t.nextReview} {fmt(d.nextReview)}</span>}
+  </div>
+  {d.urgency && <div class={`notice ${cls[d.urgency]}`}><p><strong>{t.whenToSee}</strong> {(t.urgency as any)[d.urgency]}</p></div>}
+  {toc.length >= 3 && (
+    <nav class="toc" aria-label={L.toc}><div class="toc-h">{L.toc}</div><ol>{toc.map((h: any) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol></nav>
+  )}
+  <div class="prose"><Content /></div>
+  {d.references?.length && (
+    <section class="article-refs"><h2>{t.references}</h2><ol>{d.references.map((r: any) => <li>{r.url ? <a href={r.url} rel="noopener">{r.title}</a> : r.title}</li>)}</ol></section>
+  )}
+  <p class="article-actions" data-pagefind-ignore><a class="btn secondary" href={`mailto:?subject=${encodeURIComponent(d.title)}&body=${encodeURIComponent(Astro.url.href)}`}>{t.share}</a> <a class="more" href={`mailto:hello@aiveterinary.org?subject=${encodeURIComponent('Correction: ' + d.title)}&body=${encodeURIComponent(Astro.url.href)}`}>{L.report}</a></p>
+  <div class="notice" style="margin-top:24px" data-pagefind-ignore><p>{t.footer}</p></div>
+</article>

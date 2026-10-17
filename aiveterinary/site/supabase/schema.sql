@@ -1,0 +1,42 @@
+-- AI Veterinary — owner accounts schema
+-- Run once in the Supabase SQL editor of a project in an EU region.
+-- Login: enable "Email" provider with magic links in Authentication settings.
+
+create table if not exists public.profiles (
+  user_id uuid primary key references auth.users (id) on delete cascade,
+  reminders_enabled boolean not null default false,
+  created_at timestamptz not null default now()
+);
+
+create table if not exists public.passports (
+  id text primary key,                     -- same id as the local store
+  user_id uuid not null references auth.users (id) on delete cascade,
+  animal jsonb not null,                   -- full animal object, same shape as the browser store
+  updated_at timestamptz not null default now()
+);
+create index if not exists passports_user_idx on public.passports (user_id);
+
+-- Row-level security: a user sees and changes only their own rows.
+alter table public.profiles enable row level security;
+alter table public.passports enable row level security;
+
+create policy "profiles: own row" on public.profiles
+  for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
+
+create policy "passports: own rows" on public.passports
+  for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
+
+-- Keep updated_at honest.
+create or replace function public.touch_updated_at() returns trigger language plpgsql as $$
+begin new.updated_at = now(); return new; end $$;
+drop trigger if exists passports_touch on public.passports;
+create trigger passports_touch before update on public.passports
+  for each row execute function public.touch_updated_at();
+
+-- Account deletion from the browser: deletes the auth user, which cascades to all rows.
+create or replace function public.delete_my_account() returns void
+language sql security definer set search_path = public as $$
+  delete from auth.users where id = auth.uid();
+$$;
+revoke all on function public.delete_my_account() from public;
+grant execute on function public.delete_my_account() to authenticated;

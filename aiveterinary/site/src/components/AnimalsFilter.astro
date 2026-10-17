@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import { ANIMALS, slugOf, type Lang } from '../lib/animals-i18n';
+interface Props { lang: Lang; filter: string }
+const { lang, filter } = Astro.props;
+const t = ANIMALS[lang];
+const label = (t.species as any)[filter] ?? (t.categories as any)[filter]?.[0] ?? filter;
+const entries = (await getCollection('animals'))
+  .filter((e) => e.data.lang === lang && (e.data.species === filter || e.data.category === filter))
+  .sort((a, b) => b.data.updated.valueOf() - a.data.updated.valueOf());
+---
+<section class="wrap hero">
+  <p class="eyebrow"><a href={t.base}>{t.title}</a></p>
+  <h1>{label}</h1>
+  {entries.length === 0 && <p class="lead" set:html={t.nothing} />}
+  <div class="grid3">
+    {entries.map((e) => (
+      <a class="tile" href={`${t.base}/${slugOf(e.id)}`}>
+        <div class="t">{e.data.title}</div>
+        <div class="d">{e.data.description}</div>
+        {e.data.draft && <span class="badge draft" style="margin-top:8px">{t.draft}</span>}
+      </a>
+    ))}
+  </div>
+</section>

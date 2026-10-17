@@ -1,0 +1,13 @@
+---
+import Base from '../../layouts/Base.astro';
+import AnimalsFilter from '../../components/AnimalsFilter.astro';
+import { ANIMALS } from '../../lib/animals-i18n';
+export async function getStaticPaths() {
+  return [...Object.keys(ANIMALS.en.species), ...Object.keys(ANIMALS.en.categories)].map((filter) => ({ params: { filter } }));
+}
+const { filter } = Astro.params;
+const label = (ANIMALS.en.species as any)[filter!] ?? (ANIMALS.en.categories as any)[filter!]?.[0];
+---
+<Base title={label} description={`Animal-health articles: ${label}.`}>
+  <AnimalsFilter lang="en" filter={filter!} />
+</Base>

@@ -1,0 +1,223 @@
+---
+import '@fontsource-variable/fraunces/full.css';
+import '@fontsource-variable/plus-jakarta-sans/index.css';
+import '../styles.css';
+interface Props {
+  title: string;
+  description: string;
+  lang?: string;
+}
+const { title, description, lang = 'en' } = Astro.props;
+// Cookie-free analytics (Cloudflare Web Analytics) is loaded only when a token is configured at build time.
+const cfToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN as string | undefined;
+const path = Astro.url.pathname.replace(/\.html$/, '');
+
+type Lang = 'en' | 'it' | 'de';
+const L: Lang = lang === 'it' || lang === 'de' ? lang : 'en';
+// hreflang: pages that exist under the same path in all three languages.
+const shared = new Set(['', '/about', '/passport', '/visit-brief', '/newsletter', '/vets', '/vets/workspace', '/vets/data', '/vets/quality', '/vets/research', '/editorial', '/animals', '/animals/all', '/registry', '/travel', '/end-of-life', '/impressum']);
+const basePath = path.replace(/^\/(it|de)(?=\/|$)/, '').replace(/^\/$/, '');
+const isSharedAnimals = /^\/animals\/(dog|cat|rabbit|horse|bird|general|symptoms|conditions|medications|first-aid|travel|care)$/.test(basePath);
+const alternates = shared.has(basePath) || isSharedAnimals
+  ? [['en', basePath || '/'], ['it', `/it${basePath}`], ['de', `/de${basePath}`]]
+  : [];
+
+const strings = {
+  en: {
+    home: '/',
+    nav: [
+      { href: '/animals', label: 'Animals' },
+      { href: '/passport', label: 'Health booklet', cta: true },
+      { href: '/vets', label: 'For vets' },
+      { href: '/about', label: 'About' },
+            { href: '/newsletter', label: 'Newsletter' },
+    ],
+    tagline: 'Less paperwork. More animal care.',
+    disclaimer: 'Information on this site is general and reviewed by veterinarians where marked. It does not replace an examination by a vet. In an emergency, contact a veterinary clinic immediately.',
+    footer1: [
+      { href: '/animals', label: 'Animal information' },
+      { href: '/passport', label: 'Digital health booklet' },
+      { href: '/vets', label: 'For veterinary teams' },
+      { href: '/vets/research', label: 'Research' },
+      { href: '/registry', label: 'Pet registries by country' },
+      { href: '/travel', label: 'Travelling with a pet in Europe' },
+      { href: '/end-of-life', label: 'When the time comes' },
+    ],
+    footer2: [
+      { href: '/about', label: 'About' },
+      { href: '/editorial', label: 'Editorial policy' },
+      { href: '/newsletter', label: 'Newsletter' },
+      { href: '/privacy', label: 'Privacy' },
+      { href: '/terms', label: 'Terms' },
+      { href: '/impressum', label: 'Legal notice' },
+    ],
+    brandAria: 'AI Veterinary home',
+    navAria: 'Main',
+    langAria: 'Language',
+  },
+  it: {
+    home: '/it',
+    nav: [
+      { href: '/it/animals', label: 'Animali' },
+      { href: '/it/passport', label: 'Libretto', cta: true },
+      { href: '/it/vets', label: 'Per i veterinari' },
+      { href: '/it/about', label: 'Chi siamo' },
+            { href: '/it/newsletter', label: 'Newsletter' },
+    ],
+    tagline: 'Meno burocrazia. Più cura degli animali.',
+    disclaimer: 'Le informazioni su questo sito sono di carattere generale e, dove indicato, sono state riviste da veterinari. Non sostituiscono la visita di un veterinario. In caso di emergenza, contatta subito una clinica veterinaria.',
+    footer1: [
+      { href: '/it/animals', label: 'Informazioni sugli animali' },
+      { href: '/it/passport', label: 'Libretto sanitario digitale' },
+      { href: '/it/vets', label: 'Per i team veterinari' },
+      { href: '/it/vets/research', label: 'Ricerca' },
+      { href: '/it/registry', label: 'Anagrafi e registri per Paese' },
+      { href: '/it/travel', label: 'Viaggiare con un animale in Europa' },
+      { href: '/it/end-of-life', label: 'Quando arriva il momento' },
+    ],
+    footer2: [
+      { href: '/it/about', label: 'Chi siamo' },
+      { href: '/it/editorial', label: 'Politica editoriale' },
+      { href: '/it/newsletter', label: 'Newsletter' },
+      { href: '/privacy', label: 'Privacy' },
+      { href: '/terms', label: 'Termini' },
+      { href: '/it/impressum', label: 'Note legali' },
+    ],
+    brandAria: 'AI Veterinary, pagina iniziale',
+    navAria: 'Principale',
+    langAria: 'Lingua',
+  },
+  de: {
+    home: '/de',
+    nav: [
+      { href: '/de/animals', label: 'Tiere' },
+      { href: '/de/passport', label: 'Heimtierpass', cta: true },
+      { href: '/de/vets', label: 'Für Tierärzte' },
+      { href: '/de/about', label: 'Über uns' },
+            { href: '/de/newsletter', label: 'Newsletter' },
+    ],
+    tagline: 'Weniger Papierkram. Mehr Zeit für Tiere.',
+    disclaimer: 'Die Informationen auf dieser Website sind allgemeiner Art und, wo gekennzeichnet, von Tierärztinnen und Tierärzten geprüft. Sie ersetzen keine tierärztliche Untersuchung. Wenden Sie sich im Notfall sofort an eine Tierarztpraxis oder Tierklinik.',
+    footer1: [
+      { href: '/de/animals', label: 'Tierinformationen' },
+      { href: '/de/passport', label: 'Digitaler Heimtierpass' },
+      { href: '/de/vets', label: 'Für Praxisteams' },
+      { href: '/de/vets/research', label: 'Recherche' },
+      { href: '/de/registry', label: 'Heimtierregister nach Land' },
+      { href: '/de/travel', label: 'Mit Haustier in Europa reisen' },
+      { href: '/de/end-of-life', label: 'Wenn die Zeit kommt' },
+    ],
+    footer2: [
+      { href: '/de/about', label: 'Über uns' },
+      { href: '/de/editorial', label: 'Redaktionelle Grundsätze' },
+      { href: '/de/newsletter', label: 'Newsletter' },
+      { href: '/privacy', label: 'Datenschutz' },
+      { href: '/terms', label: 'Nutzungsbedingungen' },
+      { href: '/de/impressum', label: 'Impressum' },
+    ],
+    brandAria: 'AI Veterinary Startseite',
+    navAria: 'Hauptnavigation',
+    langAria: 'Sprache',
+  },
+} as const;
+
+const t = strings[L];
+const nav = [...t.nav.filter((n: any) => !n.cta), ...t.nav.filter((n: any) => n.cta)];
+const languages: { code: Lang; href: string; label: string }[] = [
+  { code: 'en', href: '/', label: 'EN' },
+  { code: 'it', href: '/it', label: 'IT' },
+  { code: 'de', href: '/de', label: 'DE' },
+];
+const current = (href: string) => path === href || path.startsWith(href + '/');
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title === 'AI Veterinary' ? title : `${title} · AI Veterinary`}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={new URL(path === '/' ? '/' : path, Astro.site)} />
+    {alternates.map(([l, href]) => <link rel="alternate" hreflang={l} href={new URL(href, Astro.site)} />)}
+    {alternates.length > 0 && <link rel="alternate" hreflang="x-default" href={new URL(alternates[0][1], Astro.site)} />}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={new URL('/og.png', Astro.site)} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    {cfToken && <script is:inline defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={JSON.stringify({ token: cfToken })}></script>}
+  </head>
+  <body>
+    <a class="skip" href="#main">{({ en: 'Skip to content', it: 'Vai al contenuto', de: 'Zum Inhalt springen' } as any)[L]}</a>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href={t.home} aria-label={t.brandAria}>
+          <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="var(--accent)"/><path d="M11 12.5a2.2 2.2 0 1 1 0 .1zm10 0a2.2 2.2 0 1 1 0 .1zM8.5 17a2 2 0 1 1 0 .1zm15 0a2 2 0 1 1 0 .1zM16 15.5c2.9 0 5.5 2.6 5.5 5.2 0 1.7-1.2 2.8-2.7 2.8-1.1 0-1.9-.6-2.8-.6s-1.7.6-2.8.6c-1.5 0-2.7-1.1-2.7-2.8 0-2.6 2.6-5.2 5.5-5.2z" fill="var(--accent-ink)"/></svg>
+          <span class="brand-name">AI Veterinary</span>
+        </a>
+        <nav class="nav" aria-label={t.navAria}>
+          {nav.map((n) => (
+            <a href={n.href} class={(n as any).cta ? 'nav-cta' : /\/(about|newsletter)$/.test(n.href) ? 'nav-2nd' : /\/vets$/.test(n.href) ? 'nav-3rd' : undefined} aria-current={current(n.href) ? 'page' : undefined}>{n.label}</a>
+          ))}
+          <span class="lang-switch" aria-label={t.langAria} style="display:inline-flex;gap:6px;align-items:center;font-size:.85rem;color:var(--ink-2)">
+            {languages.map((l, i) => (
+              <>
+                {i > 0 && <span aria-hidden="true">·</span>}
+                <a href={l.href} hreflang={l.code} lang={l.code} aria-current={L === l.code ? 'true' : undefined} style={L === l.code ? 'color:var(--ink);font-weight:600' : undefined}>{l.label}</a>
+              </>
+            ))}
+          </span>
+        </nav>
+      </div>
+    </header>
+
+    <div id="lang-suggest" class="lang-suggest" hidden role="region" aria-label="Language">
+      <span id="lang-suggest-text"></span>
+      <a id="lang-suggest-link" class="btn" href="/"></a>
+      <button id="lang-suggest-close" type="button" class="lang-suggest-close" aria-label="Dismiss">×</button>
+    </div>
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <div>
+          <strong>AI Veterinary</strong><br />
+          {t.tagline}<br />
+          <span style="font-size:.88rem">{t.disclaimer}</span>
+        </div>
+        <ul>
+          {t.footer1.map((f) => <li><a href={f.href}>{f.label}</a></li>)}
+        </ul>
+        <ul>
+          {t.footer2.map((f) => <li><a href={f.href}>{f.label}</a></li>)}
+        </ul>
+      </div>
+    </footer>
+  <script is:inline define:vars={{ pageLang: L, alternates }}>
+    // Offer the page in the browser's language once; remembered on this device.
+    (function () {
+      try {
+        if (!alternates || !alternates.length || localStorage.getItem('aiveterinary.langSuggest') === 'off') return;
+        var wanted = (navigator.languages || [navigator.language || '']).map(function (l) { return String(l).slice(0, 2).toLowerCase(); });
+        var target = null;
+        for (var i = 0; i < wanted.length; i++) { if (['en', 'it', 'de'].indexOf(wanted[i]) >= 0) { target = wanted[i]; break; } }
+        if (!target || target === pageLang) return;
+        var alt = alternates.filter(function (a) { return a[0] === target; })[0]; if (!alt) return;
+        var text = { en: 'This page is also available in English.', it: 'Questa pagina è disponibile anche in italiano.', de: 'Diese Seite gibt es auch auf Deutsch.' }[target];
+        var label = { en: 'Switch to English', it: 'Passa all\'italiano', de: 'Zu Deutsch wechseln' }[target];
+        var box = document.getElementById('lang-suggest'); document.getElementById('lang-suggest-text').textContent = text;
+        var link = document.getElementById('lang-suggest-link'); link.textContent = label; link.href = alt[1]; link.setAttribute('hreflang', target);
+        box.hidden = false;
+        var off = function () { try { localStorage.setItem('aiveterinary.langSuggest', 'off'); } catch (e) {} box.hidden = true; };
+        document.getElementById('lang-suggest-close').addEventListener('click', off);
+        link.addEventListener('click', off);
+      } catch (e) {}
+    })();
+  </script>
+  </body>
+</html>

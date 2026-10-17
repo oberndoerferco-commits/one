@@ -1,0 +1,138 @@
+{
+  "id": "008-adversarial-it-performed-vs-planned",
+  "language": "it",
+  "header": {
+    "name": "Rocky",
+    "species": "dog",
+    "age": {
+      "value": 12,
+      "unit": "year"
+    }
+  },
+  "notes": "Rocky, cane, 12 anni\nzoppia posteriore dx da 1 mese, peggiora\ndolore alla manipolazione anca dx\nRX anca eseguita: displasia bilaterale, artrosi\necografia addome programmata la prossima settimana\nproprietario rifiuta esami del sangue per ora\ncontrollo tra 2 settimane",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "numbers_allowed": [
+      "12",
+      "1",
+      "2"
+    ],
+    "assessment_text": "displasia bilaterale, artrosi",
+    "statuses": {
+      "diagnostics[0]": "performed",
+      "diagnostics[1]": "planned",
+      "diagnostics[2]": "declined"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "zoppia posteriore dx da 1 mese, peggiora",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          21,
+          61
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "musculoskeletal",
+          "text": "dolore alla manipolazione anca dx",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              62,
+              95
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "RX anca",
+        "status": "performed",
+        "result": "displasia bilaterale, artrosi",
+        "source_spans": [
+          [
+            96,
+            143
+          ]
+        ]
+      },
+      {
+        "test": "ecografia addome",
+        "status": "planned",
+        "result": null,
+        "source_spans": [
+          [
+            144,
+            194
+          ]
+        ]
+      },
+      {
+        "test": "esami del sangue",
+        "status": "declined",
+        "result": null,
+        "source_spans": [
+          [
+            195,
+            240
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": "displasia bilaterale, artrosi",
+      "differentials": [],
+      "source_spans": [
+        [
+          114,
+          143
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "controllo tra 2 settimane",
+        "interval": {
+          "value": 2,
+          "unit": "week"
+        },
+        "source_spans": [
+          [
+            241,
+            266
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

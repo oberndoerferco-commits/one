@@ -1,0 +1,80 @@
+---
+title: "Mein Hund hat Durchfall: worauf Sie achten sollten und wann es ernst wird"
+description: "Leichter Durchfall bei einem ansonsten gesunden Hund legt sich meist in ein bis zwei Tagen. So unterscheiden Sie ihn von den Fällen, die sofort zum Tierarzt müssen."
+species: dog
+category: symptoms
+urgency: today
+updated: 2026-10-13
+draft: true
+lang: de
+---
+
+## Zuerst: die Anzeichen, bei denen Sie sofort fahren sollten
+
+Fahren Sie sofort in eine Tierarztpraxis und rufen Sie vorher an, wenn Ihr Hund:
+
+- Durchfall hat, der überwiegend aus Blut besteht oder wie Himbeermarmelade aussieht
+- zusätzlich wiederholt erbricht und kein Wasser bei sich behalten kann
+- sehr schwach oder wackelig ist oder zusammenbricht
+- blasses, graues oder sehr dunkelrotes Zahnfleisch hat
+- einen aufgetriebenen, harten oder schmerzhaften Bauch hat
+- möglicherweise etwas Giftiges gefressen oder einen Gegenstand verschluckt hat
+- ein Welpe ist, vor allem einer, der noch nicht vollständig geimpft ist (Parvovirose ist ein echtes Risiko)
+- sehr alt ist oder bereits eine Erkrankung wie Diabetes, Nieren- oder Herzerkrankung hat
+
+Ein Welpe mit Durchfall, der zusätzlich ruhig ist und nicht frisst, sollte noch am selben Tag vorgestellt werden, auch wenn keines der anderen Anzeichen zutrifft.
+
+## Wenn nichts davon zutrifft
+
+Weicher oder wässriger Kot über einen Tag bei einem Hund, der weiterhin munter ist, frisst und trinkt, ist häufig. Abfälle beim Spaziergang, ein plötzlicher Futterwechsel, Stress oder eine leichte Darminfektion sind die üblichen Gründe.
+
+Was Sie in den ersten 24 Stunden zu Hause tun können:
+
+- Halten Sie jederzeit frisches Wasser bereit. Durchfall entzieht Flüssigkeit, und Austrocknung ist das Hauptrisiko.
+- Viele Tierärztinnen und Tierärzte empfehlen kleine, häufige Mahlzeiten mit einem schonenden, leicht verdaulichen Futter, statt das Futter zu entziehen. Lassen Sie einen Welpen oder einen kleinen Hund nicht hungern.
+- Verzichten Sie auf Leckerlis, Essensreste und fettreiches Futter, bis der Kot wieder normal ist.
+- Gehen Sie an der Leine spazieren, damit Sie sehen, was abgesetzt wird, und Ihr Hund nichts fressen kann.
+- Notieren Sie Farbe, Konsistenz und Häufigkeit. Ein Foto hilft Ihrer Tierärztin oder Ihrem Tierarzt mehr als eine Beschreibung.
+- Geben Sie keine Durchfallmittel für Menschen. Einige sind für Hunde gefährlich, und ob überhaupt ein Medikament angebracht ist, ist eine tierärztliche Entscheidung.
+
+## Wann zum Tierarzt
+
+Vereinbaren Sie noch heute einen Termin, wenn:
+
+- der Durchfall länger als 48 Stunden anhält, oder länger als 24 Stunden bei einem Welpen oder kleinen Hund
+- Streifen frischen Blutes zu sehen sind oder der Kot schwarz und teerartig ist
+- Ihr Hund zusätzlich erbricht, nicht frisst oder deutlich mehr trinkt als sonst
+- Ihr Hund wiederholt presst und nur kleine Mengen Schleim oder Flüssigkeit absetzt
+- Ihr Hund an Gewicht verliert oder dies alle paar Wochen wiederkehrt
+- andere Tiere im Haushalt ebenfalls betroffen sind
+- Ihr Hund kürzlich im Ausland war oder seit längerem nicht entwurmt wurde
+
+Wiederkehrender oder lang anhaltender Durchfall ist nichts, was Sie zu Hause auf unbestimmte Zeit selbst behandeln sollten. Er kann auf Parasiten, eine Futterunverträglichkeit oder eine Darmerkrankung hinweisen, die Ihre Tierärztin oder Ihr Tierarzt abklären muss.
+
+## Was die Tierärztin oder der Tierarzt wissen will
+
+- Wann es begonnen hat, wie oft Ihr Hund Kot absetzt und wie er aussieht
+- Ob Blut oder Schleim dabei ist
+- Futterwechsel, Leckerlis oder das Fressen von Abfällen, auch aus Mülleimern und Kompost
+- Erbrechen, Appetit, Trinken und Energieniveau
+- Impf- und Entwurmungsstatus
+- Medikamente oder Nahrungsergänzungsmittel
+- Kürzliche Reisen, Tierpensionen, Hundewiesen oder Kontakt zu anderen Hunden
+- Ob jemand im Haushalt erkrankt ist
+
+Bringen Sie wenn möglich eine frische Kotprobe in einem sauberen Behälter oder Beutel mit. Ihre Tierärztin oder Ihr Tierarzt möchte sie möglicherweise untersuchen.
+
+## Häufige Ursachen
+
+| Wahrscheinlich | Seltener, aber wichtig |
+|---|---|
+| Abfälle oder Ungeeignetes gefressen | Parvovirose (vor allem ungeimpfte Welpen) |
+| Plötzlicher Futterwechsel | Fremdkörper, der den Darm teilweise verlegt |
+| Stress (Tierpension, Reise, neues Zuhause) | Pankreatitis |
+| Leichte Darminfektion | Chronisch-entzündliche Darmerkrankung |
+| Darmwürmer oder Giardien | Vergiftung |
+| Futterunverträglichkeit | Morbus Addison, Leber- oder Nierenerkrankung |
+
+Ihre Tierärztin oder Ihr Tierarzt entscheidet anhand der Untersuchung und eventueller Tests, was bei *Ihrem* Hund wahrscheinlich ist. Diese Liste soll Ihnen helfen, das Gespräch zu verstehen, nicht eine Diagnose zu stellen.
+
+Wenn Sie unsicher sind, ob Sie abwarten oder fahren sollen, rufen Sie Ihre eigene Tierarztpraxis an und beschreiben Sie, was Sie beobachten; dort hört man lieber früh von Ihnen.

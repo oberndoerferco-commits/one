@@ -1,0 +1,82 @@
+---
+title: "Antibiotika für Hund und Katze: warum die ganze Behandlung zählt und wie Sie sie richtig geben"
+description: "Was Antibiotika können und was nicht, wie Tabletten und Säfte in Hund oder Katze kommen, was bei einer vergessenen Dosis zu tun ist, welche Nebenwirkungen einen Anruf wert sind und warum Reste nie zurück in den Schrank gehören."
+species: general
+category: medications
+urgency: routine
+updated: 2026-10-14
+draft: true
+lang: de
+references:
+  - title: "Bundestierärztekammer: Antibiotika verantwortungsvoll einsetzen, auch bei Klein- und Heimtieren. Tipps für Tierhalter (PDF)"
+    url: "https://www.bundestieraerztekammer.de/presse/archiv/2013/PM_16_13_AntibiotikaeinsatzKleintiere.pdf"
+  - title: "FECAVA: Advice to Companion Animal Owners on Responsible Use of Antibiotics and Infection Control (PDF)"
+    url: "https://www.fecava.org/wp-content/uploads/2020/01/FECAVA-Advice-to-Companion-Animal-Owners-on-Responsible-use-of-Antibiotics-and-Infection-Control-ENGLISH.pdf"
+  - title: "BVL: Unerwünschte Ereignisse nach Anwendung von Tierarzneimitteln (Pharmakovigilanz)"
+    url: "https://www.bvl.bund.de/DE/Arbeitsbereiche/05_Tierarzneimittel/02_Verbraucher/02_UAW/tam_uaw_node.html"
+  - title: "BVL: Antibiotikaresistenzen, Aufgaben im Bereich Tierarzneimittel"
+    url: "https://www.bvl.bund.de/DE/Arbeitsbereiche/05_Tierarzneimittel/01_Aufgaben/05_AufgAntibiotikaResistenz/Aufgaben_Antibiotika_Resistenz_node.html"
+  - title: "EMA: Antimicrobial resistance in veterinary medicine"
+    url: "https://www.ema.europa.eu/en/veterinary-regulatory-overview/antimicrobial-resistance-veterinary-medicine"
+---
+
+## Wofür Antibiotika da sind, und wofür nicht
+
+Antibiotika töten Bakterien oder hindern sie an der Vermehrung. Gegen Viren richten sie nichts aus, und auch nichts gegen die meisten Gründe, aus denen ein Tier ein paar Tage juckt, hustet, erbricht oder Durchfall hat. Deshalb verschreibt Ihre Tierärztin nicht immer eines, und deshalb bitten die Bundestierärztekammer und die europäischen Kleintierverbände Halter, keine Antibiotika „zur Sicherheit“ zu verlangen. Viele Wunden und Hautentzündungen heilen mit Reinigung und örtlicher Behandlung; viele Magen-Darm-Verstimmungen vergehen mit Zeit und Schonkost.
+
+Ist eine bakterielle Infektion wahrscheinlich, will die Praxis vielleicht zuerst eine Probe: einen Abstrich, Urin, ein Hautgeschabsel. Werden die Bakterien im Labor angezüchtet (Resistenztest), zeigt sich, welches Antibiotikum wirklich wirkt. Das ist besser für Ihr Tier und für alle anderen, denn jede unnötige oder halbherzige Behandlung lehrt Bakterien, Widerstand zu leisten.
+
+## Warum die ganze Behandlung zählt
+
+Die Verordnung nennt eine Dosis, eine Häufigkeit pro Tag und eine Zahl von Tagen. Alle drei zählen. Zu wenig, zu selten oder zu früh abgesetzt lässt die zähesten Bakterien übrig: Ihr Tier wirkt gesund, erkrankt erneut, und die zweite Infektion ist schwerer zu behandeln. Resistente Bakterien wandern auch zwischen Tieren und Menschen im selben Haushalt.
+
+Also:
+
+- Geben Sie jede Dosis zu den angegebenen Zeiten, bis die Packung oder die verordneten Tage aufgebraucht sind, auch wenn Ihr Tier nach zwei Tagen völlig gesund wirkt.
+- Ändern Sie die Dosis nicht selbst und hören Sie nicht vorzeitig auf, ohne mit der Praxis gesprochen zu haben.
+- Bessert sich nichts in der Zeit, die Ihre Tierärztin genannt hat, oder wird es schlimmer, rufen Sie an. Machen Sie nicht einfach weiter.
+- Halten Sie den Kontrolltermin ein, wenn einer vereinbart wurde; manche Infektionen werden vor dem Absetzen mit einer zweiten Probe überprüft.
+
+## Tabletten geben
+
+- Fragen Sie, ob die Tablette mit Futter gegeben werden darf. Bei vielen geht das, und in einem Stück von etwas Unwiderstehlichem versteckt, vor der Hauptmahlzeit, klappt es bei den meisten Hunden. Manche Antibiotika wirken besser auf nüchternen Magen oder dürfen nicht zerteilt werden; das sagt Ihnen der Beipackzettel oder die Praxis.
+- Prüfen Sie, ob die Tablette wirklich unten ist. Hunde und Katzen sind Meister darin, das Leckerli zu schlucken und die Tablette eine Minute später auszuspucken.
+- Bei Katzen und bei Hunden, die um die Tablette herumkauen, geben Sie sie direkt: Kopf sanft nach oben neigen, Maul öffnen, Tablette weit hinten auf die Zunge legen, Maul schließen und die Kehle streicheln, bis Sie das Schlucken sehen. Danach etwas Wasser oder ein Leckerli, denn eine Tablette, die im Hals hängen bleibt, tut weh und wird womöglich nicht aufgenommen.
+- Tablettengeber und weiche Leckerlis zum Füllen helfen. Hände hinter dem Kopf, ruhige Stimme, kurze Sitzung.
+
+## Säfte und Suspensionen geben
+
+Ziehen Sie die Dosis mit der mitgelieferten Spritze auf, schieben Sie die Spitze im Mundwinkel hinter den Fangzahn und drücken Sie langsam, damit Ihr Tier zwischen den Portionen schlucken kann. Zielen Sie in Richtung Backe, nicht in den Rachen. Schütteln Sie die Flasche, wenn das Etikett es verlangt, und lagern Sie sie wie angegeben; manche Suspensionen gehören in den Kühlschrank und sind nach dem Anmischen nur wenige Tage haltbar.
+
+## Wenn eine Dosis vergessen wurde
+
+Das passiert. Geben Sie die nächste Dosis nicht doppelt, um aufzuholen, und raten Sie nicht. Rufen Sie Ihre Praxis an und fragen Sie, was bei genau diesem Medikament zu tun ist, denn die richtige Antwort hängt vom Wirkstoff ab und davon, wie spät Sie dran sind.
+
+## Nebenwirkungen, die Sie melden sollten
+
+Die meisten Behandlungen verlaufen ohne Probleme. Rufen Sie in der Praxis an, wenn Sie sehen:
+
+- Erbrechen, Durchfall oder Futterverweigerung, die länger als einen Tag anhalten
+- Schwellung des Gesichts, Quaddeln, plötzlichen Juckreiz, Atemnot (absetzen und sofort fahren)
+- ungewöhnliche Müdigkeit, Schwanken, gelbes Zahnfleisch oder gelbe Augen
+- alles, was Sie beunruhigt, auch wenn es nicht auf dieser Liste steht
+
+Setzen Sie das Antibiotikum nicht eigenmächtig ab; Ihre Tierärztin kann es wechseln, die Gabe anpassen oder etwas für den Magen dazugeben. Nebenwirkungen und Behandlungen, die nicht gewirkt haben, sollten gemeldet werden: Das Bundesamt für Verbraucherschutz und Lebensmittelsicherheit (BVL) sammelt diese Meldungen, auch von Tierhaltern, und sie fließen in die Überwachung der Tierarzneimittel ein.
+
+## Warum Reste nie wiederverwendet werden
+
+Wenn Sie die Behandlung wie verordnet beenden, sollte nichts übrig bleiben. Bleibt doch etwas, weil die Praxis das Mittel abgesetzt oder gewechselt hat, bringen Sie es in die Praxis oder Apotheke zurück. Heben Sie es nicht für das nächste Mal auf, geben Sie es keinem anderen Tier und nehmen Sie es nicht selbst. Das Antibiotikum, das bei der Hautinfektion im letzten Jahr richtig war, kann bei der Ohr- oder Blasenentzündung in diesem Jahr falsch und schädlich sein, und ein paar Tage mit dem falschen Mittel machen die nächste Infektion für alle schwerer behandelbar.
+
+## Hygiene während der Behandlung
+
+Waschen Sie sich die Hände, nachdem Sie ein Tier mit einer Infektion gestreichelt oder seine Wunden, Ohren oder Decken angefasst haben, und tragen Sie Handschuhe beim Verbandwechsel. Halten Sie ein infiziertes Tier vom Bett, von kleinen Kindern und von Menschen mit geschwächtem Immunsystem fern, bis die Praxis sagt, dass die Infektion unter Kontrolle ist.
+
+Welches Antibiotikum, wie lange und mit oder ohne Futter entscheidet die Tierärztin oder der Tierarzt, der Ihr Tier untersucht hat. Bei Zweifeln zu Dosis, Verspätung oder Nebenwirkung rufen Sie Ihre eigene Praxis an, statt nach einer Regel zu suchen.
+
+## Quellen
+
+- [Bundestierärztekammer: Antibiotika verantwortungsvoll einsetzen, auch bei Klein- und Heimtieren](https://www.bundestieraerztekammer.de/presse/archiv/2013/PM_16_13_AntibiotikaeinsatzKleintiere.pdf)
+- [FECAVA: Advice to companion animal owners on responsible use of antibiotics and infection control](https://www.fecava.org/wp-content/uploads/2020/01/FECAVA-Advice-to-Companion-Animal-Owners-on-Responsible-use-of-Antibiotics-and-Infection-Control-ENGLISH.pdf)
+- [BVL: Unerwünschte Ereignisse nach Anwendung von Tierarzneimitteln](https://www.bvl.bund.de/DE/Arbeitsbereiche/05_Tierarzneimittel/02_Verbraucher/02_UAW/tam_uaw_node.html)
+- [BVL: Antibiotikaresistenzen](https://www.bvl.bund.de/DE/Arbeitsbereiche/05_Tierarzneimittel/01_Aufgaben/05_AufgAntibiotikaResistenz/Aufgaben_Antibiotika_Resistenz_node.html)
+- [EMA: Antimicrobial resistance in veterinary medicine](https://www.ema.europa.eu/en/veterinary-regulatory-overview/antimicrobial-resistance-veterinary-medicine)

@@ -1,0 +1,644 @@
+---
+import { getCollection } from 'astro:content';
+import { slugOf } from '../lib/animals-i18n';
+interface Props { lang?: 'en' | 'it' | 'de' }
+const { lang = 'en' } = Astro.props;
+const T = {
+ "en": {
+  "eyebrowLink": "For veterinary teams",
+  "eyebrowRest": "preview on synthetic patients",
+  "caseLabel": "Example case",
+  "countryLabel": "Country rules",
+  "roleLabel": "I am",
+  "docLabel": "Document","docReport": "Consultation report","docOwner": "Owner summary","docReferral": "Referral letter","docRx": "Prescription","docVacc": "Vaccination entry","docConsent": "Consent form","docEstimate": "Cost estimate","docDental": "Dental chart","secondLang": "Second language","none": "none","identityOk": "Medication details identical in all documents.","identityFail": "Medication detail differs between documents:","referralReason": "Reason for referral (your words)",
+  "attachLabel": "Attach a photo or document","clinicTitle": "Your letterhead","handouts": "Handouts you could give (linked, never inserted)","handoutsNone": "No matching reviewed article for this assessment.","timer": "Time to approval","clinicHint": "Printed on top of every document and used as the responsible veterinarian. Stored on this device only.","clinicName": "Practice name","clinicAddress": "Address and phone","clinicVet": "Veterinarian","clinicReg": "Registration (chamber / Ordine)","attachHint": "Stored with the record and referenced in the report. Never read or interpreted by the assistant.",
+  "abbrTitle": "Abbreviations in your notes","abbrHint": "Expanded from the default list and your clinic glossary. Correct a meaning once and it is remembered on this device.","abbrNone": "No abbreviations recognised.","abbrSave": "Save","roleNurse": "Nurse / assistant","roleVet": "Veterinarian",
+  "notice": "<strong>Preview.</strong> The example cases run offline on prepared records, so you can see exactly how the review works: source highlighting, missing-information flags, the medication table built from your own words. In the real product your own notes are structured by the model with the same checks. Nothing here is stored.",
+  "notes": "Notes",
+  "notesHint": "edit freely in the real product; here the example is fixed",
+  "report": "Consultation report",
+  "before": "Before you approve",
+  "approve": "Approve &amp; save",
+  "copy": "Copy for your practice software",
+  "print": "Print",
+  "vetsHref": "/vets"
+ },
+ "it": {
+  "eyebrowLink": "Per i team veterinari",
+  "eyebrowRest": "anteprima su pazienti sintetici",
+  "caseLabel": "Caso di esempio",
+  "countryLabel": "Regole del Paese",
+  "roleLabel": "Sono",
+  "docLabel": "Documento","docReport": "Referto di visita","docOwner": "Riepilogo per il proprietario","docReferral": "Lettera di riferimento","docRx": "Prescrizione","docVacc": "Registrazione vaccinale","docConsent": "Consenso informato","docEstimate": "Preventivo","docDental": "Schema dentale","secondLang": "Seconda lingua","none": "nessuna","identityOk": "Dettagli dei farmaci identici in tutti i documenti.","identityFail": "Dettagli dei farmaci diversi tra documenti:","referralReason": "Motivo dell'invio (parole Sue)",
+  "attachLabel": "Allega foto o documento","clinicTitle": "La Sua intestazione","handouts": "Materiale da consegnare (collegato, mai inserito)","handoutsNone": "Nessun articolo revisionato corrisponde alla valutazione.","timer": "Tempo all'approvazione","clinicHint": "Stampata in testa a ogni documento e usata come veterinario responsabile. Salvata solo su questo dispositivo.","clinicName": "Nome della clinica","clinicAddress": "Indirizzo e telefono","clinicVet": "Veterinario","clinicReg": "Iscrizione (Ordine)","attachHint": "Conservato con la cartella e citato nel referto. Mai letto né interpretato dall'assistente.",
+  "abbrTitle": "Abbreviazioni nelle note","abbrHint": "Espanse dalla lista predefinita e dal glossario della clinica. Correggi un significato una volta e viene ricordato su questo dispositivo.","abbrNone": "Nessuna abbreviazione riconosciuta.","abbrSave": "Salva","roleNurse": "Assistente / infermiere","roleVet": "Veterinario",
+  "notice": "<strong>Anteprima.</strong> I casi di esempio girano offline su cartelle già preparate, così puoi vedere esattamente come funziona la revisione: evidenziazione della fonte, segnalazione delle informazioni mancanti, tabella dei farmaci costruita con le tue stesse parole. Nel prodotto reale le tue note vengono strutturate dal modello con gli stessi controlli. Qui non viene salvato nulla.",
+  "notes": "Note",
+  "notesHint": "nel prodotto reale si modificano liberamente; qui l'esempio è fisso",
+  "report": "Referto di visita",
+  "before": "Prima di approvare",
+  "approve": "Approva e salva",
+  "copy": "Copia per il gestionale",
+  "print": "Stampa",
+  "vetsHref": "/it/vets"
+ },
+ "de": {
+  "eyebrowLink": "Für Tierärzte",
+  "eyebrowRest": "Vorschau mit synthetischen Patienten",
+  "caseLabel": "Beispielfall",
+  "countryLabel": "Länderregeln",
+  "roleLabel": "Ich bin",
+  "docLabel": "Dokument","docReport": "Behandlungsbericht","docOwner": "Halterinformation","docReferral": "Überweisungsschreiben","docRx": "Verschreibung","docVacc": "Impfeintrag","docConsent": "Einwilligung","docEstimate": "Kostenvoranschlag","docDental": "Zahnschema","secondLang": "Zweite Sprache","none": "keine","identityOk": "Medikationsangaben in allen Dokumenten identisch.","identityFail": "Medikationsangabe weicht zwischen Dokumenten ab:","referralReason": "Überweisungsgrund (Ihre Worte)",
+  "attachLabel": "Foto oder Dokument anhängen","clinicTitle": "Ihr Briefkopf","handouts": "Infoblätter zum Mitgeben (verlinkt, nie eingefügt)","handoutsNone": "Kein geprüfter Artikel passt zur Beurteilung.","timer": "Zeit bis zur Freigabe","clinicHint": "Steht über jedem Dokument und dient als verantwortliche Tierärztin / verantwortlicher Tierarzt. Nur auf diesem Gerät gespeichert.","clinicName": "Praxisname","clinicAddress": "Anschrift und Telefon","clinicVet": "Tierärztin / Tierarzt","clinicReg": "Kammer / Registrierung","attachHint": "Wird mit dem Datensatz gespeichert und im Bericht genannt. Vom Assistenten nie gelesen oder interpretiert.",
+  "abbrTitle": "Abkürzungen in Ihren Notizen","abbrHint": "Aufgelöst aus der Standardliste und Ihrem Praxisglossar. Eine Bedeutung einmal korrigieren, und sie bleibt auf diesem Gerät gespeichert.","abbrNone": "Keine Abkürzungen erkannt.","abbrSave": "Speichern","roleNurse": "TFA / Assistenz","roleVet": "Tierärztin / Tierarzt",
+  "notice": "<strong>Vorschau.</strong> Die Beispielfälle laufen offline auf vorbereiteten Akten, damit Sie genau sehen, wie die Prüfung funktioniert: Quellenmarkierung, Hinweise auf fehlende Angaben, die Medikamententabelle aus Ihren eigenen Worten. Im echten Produkt strukturiert das Modell Ihre eigenen Notizen mit denselben Prüfungen. Hier wird nichts gespeichert.",
+  "notes": "Notizen",
+  "notesHint": "im echten Produkt frei editierbar; hier ist das Beispiel fest",
+  "report": "Behandlungsbericht",
+  "before": "Vor der Freigabe",
+  "approve": "Freigeben &amp; speichern",
+  "copy": "Für die Praxissoftware kopieren",
+  "print": "Drucken",
+  "vetsHref": "/de/vets"
+ }
+} as const;
+const JS = {
+ "en": {
+  "blocked": "Blocked",
+  "check": "Check",
+  "missing": "Missing",
+  "setAside": "Set aside",
+  "placeholder": "type the value…",
+  "valueFor": "Value for",
+  "add": "Add",
+  "notRecorded": "Not recorded",
+  "nothing": "✓ Nothing to resolve.",
+  "nothingRest": "Every sentence has a source in your notes.",
+  "approvedStatus": "Approved. This is a preview, nothing was stored.",
+  "blocking": "{n} blocking item(s): the record contains something that is not in the notes.",
+  "unresolved": "{n} missing item(s) to add or mark as not recorded.",
+  "ready": "Ready to approve.",
+  "handOver": "Hand over to the vet",
+  "amend": "Amend","amendReason": "Reason for the amendment (kept with version {n}):","amending": "AMENDING v{n}","version": "v{n}","staleDocs": "Generated from an earlier version, regenerate: {list}","noStale": "No documents were generated from the earlier version.",
+  "toVet": "Mark as observed by the vet",
+  "attachments": "Attachments (not interpreted)","toOwner": "Mark as reported by the owner","handedStatus": "Draft prepared and handed to the veterinarian for co-signature. Nothing was stored.","nurseDraft": "NURSE DRAFT · AWAITING VET","cosigned": "co-signed, drafted by nurse",
+  "medsTick": "Checked","medsUnchecked": "{n} medication row(s) to tick against your notes before approval.",
+  "copied": "Copied as plain text.",
+  "copyFail": "Copy failed; select the report and copy manually.",
+  "approved": "APPROVED",
+  "draft": "DRAFT",
+  "cases": {
+   "001-luna-vomiting": "Luna, dog, vomiting (EN)",
+   "002-milo-otitis-de": "Milo, Hund, Otitis (DE)",
+   "003-gatto-inappetenza-it": "Romeo, gatto, inappetenza (IT)",
+   "004-adversarial-pregnant-owner": "Bruno, dog, annual check — tricky notes (EN)",
+   "006-adversarial-dose-not-given": "Max, dog, dose discussed but declined (EN)",
+   "007-adversarial-de-decimal-comma": "Bella, Katze, Dezimalkomma und geplante Kotprobe (DE)",
+   "008-adversarial-it-performed-vs-planned": "Rocky, cane, eseguito / programmato / rifiutato (IT)",
+   "009-adversarial-other-pet": "Nala, cat, the other cat's antibiotics (EN)",
+   "010-vaccination-visit": "Bruno, dog, annual vaccination (EN)",
+   "011-dental-de-triadan": "Kira, dog, dental findings by tooth number (EN)"
+  },
+  "first": "001-luna-vomiting"
+ },
+ "it": {
+  "blocked": "Bloccato",
+  "check": "Verifica",
+  "missing": "Mancante",
+  "setAside": "Messo da parte",
+  "placeholder": "scrivi il valore…",
+  "valueFor": "Valore per",
+  "add": "Aggiungi",
+  "notRecorded": "Non registrato",
+  "nothing": "✓ Niente da risolvere.",
+  "nothingRest": "Ogni frase ha una fonte nelle tue note.",
+  "approvedStatus": "Approvato. È un'anteprima, non è stato salvato nulla.",
+  "blocking": "{n} elemento/i bloccante/i: la cartella contiene qualcosa che non è nelle note.",
+  "unresolved": "{n} elemento/i mancante/i da aggiungere o segnare come non registrato.",
+  "ready": "Pronto per l'approvazione.",
+  "handOver": "Passa al veterinario",
+  "amend": "Rettifica","amendReason": "Motivo della rettifica (conservato con la versione {n}):","amending": "IN RETTIFICA v{n}","version": "v{n}","staleDocs": "Generati da una versione precedente, da rigenerare: {list}","noStale": "Nessun documento generato dalla versione precedente.",
+  "toVet": "Segna come osservato dal veterinario",
+  "attachments": "Allegati (non interpretati)","toOwner": "Segna come riferito dal proprietario","handedStatus": "Bozza preparata e passata al veterinario per la controfirma. Non è stato salvato nulla.","nurseDraft": "BOZZA ASSISTENTE · IN ATTESA DEL VETERINARIO","cosigned": "controfirmato, bozza dell'assistente",
+  "medsTick": "Verificato","medsUnchecked": "{n} riga/e della terapia da spuntare rispetto alle tue note prima dell'approvazione.",
+  "copied": "Copiato come testo semplice.",
+  "copyFail": "Copia non riuscita; seleziona il referto e copia manualmente.",
+  "approved": "APPROVATO",
+  "draft": "BOZZA",
+  "cases": {
+   "003-gatto-inappetenza-it": "Romeo, gatto, inappetenza (IT)",
+   "001-luna-vomiting": "Luna, cane, vomito (EN)",
+   "002-milo-otitis-de": "Milo, cane, otite (DE)",
+   "004-adversarial-pregnant-owner": "Bruno, cane, controllo annuale — note insidiose (EN)",
+   "006-adversarial-dose-not-given": "Max, cane, dose discussa ma rifiutata (EN)",
+   "007-adversarial-de-decimal-comma": "Bella, gatta, virgola decimale ed esame pianificato (DE)",
+   "008-adversarial-it-performed-vs-planned": "Rocky, cane, eseguito / programmato / rifiutato (IT)",
+   "009-adversarial-other-pet": "Nala, gatta, gli antibiotici dell'altro gatto (EN)",
+   "010-vaccination-visit": "Bruno, cane, vaccinazione annuale (EN)",
+   "011-dental-de-triadan": "Kira, cane, reperti dentali per numero di dente (EN)"
+  },
+  "first": "003-gatto-inappetenza-it"
+ },
+ "de": {
+  "blocked": "Blockiert",
+  "check": "Prüfen",
+  "missing": "Fehlt",
+  "setAside": "Zurückgestellt",
+  "placeholder": "Wert eingeben…",
+  "valueFor": "Wert für",
+  "add": "Hinzufügen",
+  "notRecorded": "Nicht erfasst",
+  "nothing": "✓ Nichts zu klären.",
+  "nothingRest": "Jeder Satz hat eine Quelle in Ihren Notizen.",
+  "approvedStatus": "Freigegeben. Dies ist eine Vorschau, nichts wurde gespeichert.",
+  "blocking": "{n} blockierende(r) Punkt(e): die Akte enthält etwas, das nicht in den Notizen steht.",
+  "unresolved": "{n} fehlende Angabe(n) ergänzen oder als nicht erfasst markieren.",
+  "ready": "Bereit zur Freigabe.",
+  "handOver": "An Tierärztin/Tierarzt übergeben",
+  "amend": "Berichtigen","amendReason": "Grund der Berichtigung (wird mit Version {n} gespeichert):","amending": "BERICHTIGUNG v{n}","version": "v{n}","staleDocs": "Aus einer früheren Version erzeugt, neu erstellen: {list}","noStale": "Aus der früheren Version wurden keine Dokumente erzeugt.",
+  "toVet": "Als tierärztlich beobachtet markieren",
+  "attachments": "Anhänge (nicht interpretiert)","toOwner": "Als vom Besitzer berichtet markieren","handedStatus": "Entwurf vorbereitet und zur Gegenzeichnung übergeben. Nichts wurde gespeichert.","nurseDraft": "TFA-ENTWURF · WARTET AUF FREIGABE","cosigned": "gegengezeichnet, Entwurf der TFA",
+  "medsTick": "Geprüft","medsUnchecked": "{n} Medikationszeile(n) vor der Freigabe gegen die Notizen abhaken.",
+  "copied": "Als Klartext kopiert.",
+  "copyFail": "Kopieren fehlgeschlagen; Bericht markieren und manuell kopieren.",
+  "approved": "FREIGEGEBEN",
+  "draft": "ENTWURF",
+  "cases": {
+   "002-milo-otitis-de": "Milo, Hund, Otitis (DE)",
+   "001-luna-vomiting": "Luna, Hund, Erbrechen (EN)",
+   "003-gatto-inappetenza-it": "Romeo, Katze, Inappetenz (IT)",
+   "004-adversarial-pregnant-owner": "Bruno, Hund, Jahrescheck — heikle Notizen (EN)",
+   "006-adversarial-dose-not-given": "Max, Hund, Dosis besprochen, aber abgelehnt (EN)",
+   "007-adversarial-de-decimal-comma": "Bella, Katze, Dezimalkomma und geplante Kotprobe (DE)",
+   "008-adversarial-it-performed-vs-planned": "Rocky, Hund, durchgeführt / geplant / abgelehnt (IT)",
+   "009-adversarial-other-pet": "Nala, Katze, die Antibiotika der anderen Katze (EN)",
+   "010-vaccination-visit": "Bruno, Hund, Jahresimpfung (EN)",
+   "011-dental-de-triadan": "Kira, Hund, Zahnbefunde nach Zahnnummer (EN)"
+  },
+  "first": "002-milo-otitis-de"
+ }
+} as const;
+const t = T[lang]; const j = JS[lang];
+const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang === lang).map((e) => ({ title: e.data.title, href: `${({ en: '/animals', it: '/it/animals', de: '/de/animals' })[lang]}/${slugOf(e.id)}`, species: e.data.species, draft: e.data.draft }));
+---
+  <section class="wrap" style="padding-top:24px">
+    <p class="eyebrow"><a href={t.vetsHref}>{t.eyebrowLink}</a> · {t.eyebrowRest}</p>
+    <div class="ws-top">
+      <div>
+        <label for="ws-case" class="ws-label">{t.caseLabel}</label>
+        <select id="ws-case"></select>
+      </div>
+      <div>
+        <label for="ws-country" class="ws-label">{t.countryLabel}</label>
+        <select id="ws-country"><option value="DE">DE</option><option value="IT">IT</option><option value="CH">CH</option><option value="AT">AT</option></select>
+      </div>
+      <div>
+        <label for="ws-doc" class="ws-label">{t.docLabel}</label>
+        <select id="ws-doc"><option value="report">{t.docReport}</option><option value="owner">{t.docOwner}</option><option value="referral">{t.docReferral}</option><option value="rx">{t.docRx}</option><option value="vacc">{t.docVacc}</option><option value="consent">{t.docConsent}</option><option value="estimate">{t.docEstimate}</option><option value="dental">{t.docDental}</option></select>
+      </div>
+      <div id="ws-lang2-wrap" hidden>
+        <label for="ws-lang2" class="ws-label">{t.secondLang}</label>
+        <select id="ws-lang2"><option value="">{t.none}</option><option value="en">English</option><option value="it">Italiano</option><option value="de">Deutsch</option></select>
+      </div>
+      <div id="ws-referral-wrap" hidden>
+        <label for="ws-referral" class="ws-label">{t.referralReason}</label>
+        <input id="ws-referral" type="text" />
+      </div>
+      <div>
+        <label for="ws-role" class="ws-label">{t.roleLabel}</label>
+        <select id="ws-role"><option value="vet">{t.roleVet}</option><option value="nurse">{t.roleNurse}</option></select>
+      </div>
+      <div class="ws-patient" id="ws-patient"></div>
+      <div class="ws-state" id="ws-state"><span class="badge draft">● {j.draft}</span></div>
+    </div>
+    <p class="notice" style="margin-top:12px" set:html={t.notice} />
+  </section>
+
+  <section class="wrap ws" aria-label="Workspace">
+    <div class="ws-pane">
+      <div class="ws-h">{t.notes} <span class="ws-hint">{t.notesHint}</span></div>
+      <pre id="ws-notes" class="ws-notes" tabindex="0"></pre>
+      <div class="ws-attach">
+        <label class="btn secondary" for="ws-file">{t.attachLabel}</label>
+        <input id="ws-file" type="file" accept="image/*,.pdf" multiple class="sr" />
+        <span class="ws-hint">{t.attachHint}</span>
+        <ul id="ws-attach-list" class="ws-attach-list"></ul>
+      </div>
+    </div>
+    <div class="ws-pane">
+      <div class="ws-h">{t.report} <span class="ws-hint" id="ws-lang"></span></div>
+      <div id="ws-letterhead" class="ws-letterhead" hidden></div>
+      <div id="ws-report" class="ws-report"></div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <details class="card ws-clinic">
+      <summary>{t.clinicTitle}</summary>
+      <p class="pp-hint">{t.clinicHint}</p>
+      <div class="pp-fields">
+        <label>{t.clinicName}<input data-c="name" /></label>
+        <label>{t.clinicAddress}<input data-c="address" /></label>
+        <label>{t.clinicVet}<input data-c="vet" /></label>
+        <label>{t.clinicReg}<input data-c="reg" /></label>
+      </div>
+    </details>
+  </section>
+
+  <section class="wrap">
+    <div class="card ws-abbr">
+      <h2 style="margin-top:0;font-size:1.1rem">{t.abbrTitle}</h2>
+      <p class="pp-hint">{t.abbrHint}</p>
+      <ul id="ws-abbr-list" class="ws-abbr-list"></ul>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="ws-flags card">
+      <h2 style="margin-top:0">{t.before}</h2>
+      <ul id="ws-flaglist" class="ws-flaglist"></ul>
+      <div class="ws-actions">
+        <button class="btn" id="ws-approve" type="button" disabled><Fragment set:html={t.approve} /> <kbd>Ctrl+Shift+Enter</kbd></button>
+        <button class="btn secondary" id="ws-amend" type="button" hidden>{(JS[lang] as any).amend}</button>
+        <button class="btn secondary" id="ws-copy" type="button">{t.copy} <kbd>Ctrl+Shift+C</kbd></button>
+        <button class="btn secondary" id="ws-print" type="button">{t.print}</button>
+      </div>
+      <p class="pp-status" id="ws-status" aria-live="polite"></p>
+      <div class="ws-handouts"><div class="ws-h">{t.handouts}</div><ul id="ws-handouts"></ul></div>
+    </div>
+  </section>
+
+  <style is:global>
+    .ws-top { display: flex; gap: 20px; align-items: flex-end; flex-wrap: wrap; }
+    .ws-top > * { min-width: 0; max-width: 100%; }
+    .ws-top select { max-width: 100%; }
+    .ws-label { display: block; font-size: .8rem; color: var(--ink-3); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
+    #ws-case, #ws-country, #ws-role, #ws-doc, #ws-referral, #ws-lang2 { padding: 9px 12px; font: inherit; border: 1.5px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); min-width: 260px; }
+    .ws-patient { font-weight: 600; }
+    .ws-state { margin-left: auto; }
+    .ws { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--surface); margin-top: 16px; min-height: 420px; }
+    .ws-pane { padding: 16px 20px; min-width: 0; overflow-wrap: anywhere; }
+    .ws-pane + .ws-pane { border-left: 1px solid var(--line); }
+    .ws-h { font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); font-weight: 600; margin-bottom: 10px; }
+    .ws-hint { text-transform: none; letter-spacing: 0; font-weight: 400; margin-left: 8px; }
+    .ws-notes { margin: 0; white-space: pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .95rem; line-height: 1.7; }
+    .ws-notes mark { background: transparent; color: inherit; border-radius: 3px; }
+    .ws-notes mark.on { background: var(--accent-soft); box-shadow: 0 2px 0 var(--accent); }
+    .ws-report h2 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3); margin: 18px 0 6px; }
+    .ws-report h2:first-child { margin-top: 0; }
+    .ws-report p, .ws-report li { margin: 0 0 4px; }
+    .ws-report ul { padding-left: 1.2em; margin: 0; }
+    .ws-report .src { cursor: pointer; border-bottom: 1px dotted var(--ink-3); }
+    .ws-report .src:hover, .ws-report .src.on { background: var(--accent-soft); border-bottom-color: var(--accent); }
+    .ws-report .flag { color: var(--warn); font-weight: 600; }
+    .ws-report .flag.resolved { color: var(--ok); }
+    .ws-report .own { color: var(--ink-3); font-style: italic; }
+    .ws-handouts { margin-top: 16px; } .ws-handouts ul { margin: 6px 0 0; padding-left: 1.2em; }
+    @media print { .ws-handouts { display: none; } }
+    .ws-clinic summary { cursor: pointer; font-weight: 600; }
+    .ws-letterhead { border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 14px; font-size: .9rem; color: var(--ink-2); }
+    .ws-letterhead .lh-name { font-family: var(--font-display); font-size: 1.15rem; color: var(--ink); font-weight: 600; }
+    @media print { .ws-clinic { display: none; } .ws-letterhead { color: #000; border-color: #999; } }
+    .ws-attach { margin-top: 14px; display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+    .ws-attach .btn { font-size: .85rem; padding: 7px 14px; }
+    .ws-attach-list { list-style: none; padding: 0; margin: 0; font-size: .88rem; color: var(--ink-2); }
+    @media print { .ws-attach { display: none; } }
+    .ws-role-toggle { margin-left: 8px; font: inherit; font-size: .75rem; border: 1px solid var(--line); background: var(--surface); color: var(--ink-3); border-radius: 999px; padding: 1px 8px; cursor: pointer; vertical-align: middle; }
+    .ws-role-toggle:hover { color: var(--accent); border-color: var(--accent); }
+    @media print { .ws-role-toggle { display: none; } }
+    .ws-abbr-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); gap: 8px 16px; }
+    .ws-abbr-list li { display: flex; gap: 8px; align-items: center; }
+    .ws-abbr-list code { background: var(--accent-soft); border-radius: 6px; padding: 2px 8px; font-weight: 600; min-width: 48px; text-align: center; }
+    .ws-abbr-list input { flex: 1; min-width: 0; padding: 6px 10px; font: inherit; border: 1.5px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); }
+    .ws-abbr-save { font: inherit; font-weight: 600; border: 0; background: var(--accent); color: #fff; border-radius: 999px; padding: 6px 12px; cursor: pointer; }
+    @media print { .ws-abbr { display: none; } }
+    .ws-tick label { white-space: nowrap; font-size: .85rem; color: var(--ink-3); cursor: pointer; }
+    @media print { .ws-tick { display: none; } }
+    .ws-report table { border-collapse: collapse; width: 100%; font-size: .92rem; margin-top: 6px; }
+    .ws-report th, .ws-report td { border: 1px solid var(--line); padding: 5px 8px; text-align: left; }
+    .ws-flags { margin-top: 20px; }
+    .ws-flags code, .ws code { overflow-wrap: anywhere; word-break: break-word; white-space: normal; }
+    .ws-flaglist { list-style: none; padding: 0; margin: 0 0 14px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+    .ws-flaglist li { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .ws-flaglist .f-block { color: var(--danger); font-weight: 600; }
+    .ws-flaglist .f-miss { color: var(--warn); font-weight: 600; }
+    .ws-flaglist .f-warn { color: var(--ink-2); }
+    .ws-flaglist input { padding: 6px 8px; font: inherit; border: 1.5px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--ink); }
+    .ws-flaglist button { font: inherit; font-size: .85rem; padding: 4px 10px; border-radius: 6px; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink-2); cursor: pointer; }
+    .ws-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    kbd { font: inherit; font-size: .75rem; margin-left: 6px; }
+    .btn.secondary kbd { color: var(--ink-2); }
+    .ws-approved .badge.draft { display: none; }
+    @media (max-width: 820px) { .ws { grid-template-columns: 1fr; } .ws-pane + .ws-pane { border-left: 0; border-top: 1px solid var(--line); } }
+    @media print { .site-header, .site-footer, .ws-top, .notice, .ws-pane:first-child, .ws-flags, .eyebrow { display: none !important; } .ws { border: 0; } }
+  </style>
+
+  <script type="application/json" id="ws-i18n" set:html={JSON.stringify({ ...j, abbrNone: t.abbrNone, abbrSave: t.abbrSave, handouts: t.handouts, handoutsNone: t.handoutsNone, timer: t.timer, identityOk: t.identityOk, identityFail: t.identityFail, handoutIndex })} />
+
+  <script>
+    import { ClinicalRecord, PatientHeader, type ClinicalRecord as Rec } from 'aiveterinary-app/src/schema.ts';
+    import { normalizeNotes, findAbbreviations, DEFAULT_ABBREVIATIONS } from 'aiveterinary-app/src/normalize.ts';
+    import { validateAll, requiredMissing, type Finding } from 'aiveterinary-app/src/validators.ts';
+    import { renderConsultReport, renderOwnerSummary, renderReferralLetter, renderPrescription, renderVaccinationEntry, renderConsentForm, renderCostEstimate, renderDentalChart, renderOwnerSummaryBilingual, crossDocumentMedicationCheck } from 'aiveterinary-app/src/render.ts';
+    import { countryMissing, VisitContext } from 'aiveterinary-app/src/country.ts';
+    import { approve as approveVersion, amend as amendVersion, documentFrom, propagationMap, type ApprovedVersion, type GeneratedDocument } from 'aiveterinary-app/src/versions.ts';
+    import c1 from 'aiveterinary-app/eval/cases/001-luna-vomiting.json';
+    import c2 from 'aiveterinary-app/eval/cases/002-milo-otitis-de.json';
+    import c3 from 'aiveterinary-app/eval/cases/003-gatto-inappetenza-it.json';
+    import c4 from 'aiveterinary-app/eval/cases/004-adversarial-pregnant-owner.json';
+    import c6 from 'aiveterinary-app/eval/cases/006-adversarial-dose-not-given.json';
+    import c7 from 'aiveterinary-app/eval/cases/007-adversarial-de-decimal-comma.json';
+    import c8 from 'aiveterinary-app/eval/cases/008-adversarial-it-performed-vs-planned.json';
+    import c9 from 'aiveterinary-app/eval/cases/009-adversarial-other-pet.json';
+    import c10 from 'aiveterinary-app/eval/cases/010-vaccination-visit.json';
+    import c11 from 'aiveterinary-app/eval/cases/011-dental-de-triadan.json';
+
+    type Case = { id: string; language: 'en' | 'de' | 'it'; header: any; notes: string; fixture_record: any };
+    const cases = [c1, c2, c3, c4, c6, c7, c8, c9, c10, c11] as Case[];
+    const J = JSON.parse(document.getElementById('ws-i18n')!.textContent!);
+    const CLINIC_KEY = 'aiveterinary.clinic.v1';
+    const loadClinic = (): Record<string, string> => { try { return JSON.parse(localStorage.getItem(CLINIC_KEY) ?? '{}'); } catch { return {}; } };
+    const clinicAuthor = () => { const c = loadClinic(); return { name: c.vet || 'Dr. Demo', registration: c.reg || null }; };
+    function renderLetterhead() {
+      const c = loadClinic(); const el = $('#ws-letterhead') as HTMLElement;
+      const lines = [c.name, c.address, [c.vet, c.reg].filter(Boolean).join(' · ')].filter(Boolean);
+      el.hidden = lines.length === 0; el.innerHTML = lines.map((l, i) => `<div class="${i === 0 ? 'lh-name' : ''}">${esc(l)}</div>`).join('');
+    }
+    for (const input of document.querySelectorAll<HTMLInputElement>('.ws-clinic [data-c]')) {
+      input.value = loadClinic()[input.dataset.c!] ?? '';
+      input.addEventListener('input', () => { const c = loadClinic(); c[input.dataset.c!] = input.value.trim(); try { localStorage.setItem(CLINIC_KEY, JSON.stringify(c)); } catch {} renderLetterhead(); if (cur) render(); });
+    }
+    const GLOSSARY_KEY = 'aiveterinary.glossary.v1';
+    const loadGlossary = (): Record<string, string> => { try { return JSON.parse(localStorage.getItem(GLOSSARY_KEY) ?? '{}'); } catch { return {}; } };
+    const saveGlossary = (g: Record<string, string>) => { try { localStorage.setItem(GLOSSARY_KEY, JSON.stringify(g)); } catch {} };
+    function renderAttachments() {
+      const ul = $('#ws-attach-list'); ul.innerHTML = '';
+      for (const f of cur.files) { const li = document.createElement('li'); li.textContent = `${f.name} · ${Math.max(1, Math.round(f.size / 1024))} KB`; ul.appendChild(li); }
+    }
+    function renderHandouts() {
+      const ul = $('#ws-handouts'); ul.innerHTML = '';
+      const text = [cur.record.assessment.text ?? '', ...cur.record.assessment.differentials.map((d: any) => d.text), cur.record.presenting_complaint?.text ?? ''].join(' ').toLowerCase();
+      const words = text.split(/[^a-zäöüßàèéìòù]+/).filter((w) => w.length > 4);
+      const species = cur.header.species;
+      const hits = (J.handoutIndex as { title: string; href: string; species: string; draft: boolean }[])
+        .filter((h) => h.species === species || h.species === 'general')
+        .map((h) => ({ h, score: words.filter((w) => h.title.toLowerCase().includes(w)).length }))
+        .filter((x) => x.score > 0).sort((a, b) => b.score - a.score).slice(0, 3);
+      if (!hits.length) { const li = document.createElement('li'); li.className = 'pp-hint'; li.textContent = J.handoutsNone; ul.appendChild(li); return; }
+      for (const { h } of hits) { const li = document.createElement('li'); const a = document.createElement('a'); a.href = h.href; a.target = '_blank'; a.rel = 'noopener'; a.textContent = h.title; li.appendChild(a); if (h.draft) { const sp = document.createElement('span'); sp.className = 'pp-hint'; sp.textContent = ' · draft'; li.appendChild(sp); } ul.appendChild(li); }
+    }
+    function renderAbbr() {
+      const list = $('#ws-abbr-list'); list.innerHTML = '';
+      const table = { ...DEFAULT_ABBREVIATIONS, ...loadGlossary() };
+      const seen = new Map<string, { meaning: string; spans: [number, number][] }>();
+      for (const x of findAbbreviations(cur.notes, table)) {
+        const k = x.abbr.toLowerCase(); const e = seen.get(k) ?? { meaning: x.meaning, spans: [] }; e.spans.push([x.index, x.index + x.abbr.length]); seen.set(k, e);
+      }
+      if (!seen.size) { const li = document.createElement('li'); li.className = 'pp-hint'; li.textContent = J.abbrNone; list.appendChild(li); return; }
+      for (const [k, e] of seen) {
+        const li = document.createElement('li');
+        const code = document.createElement('code'); code.textContent = k; li.appendChild(code);
+        const input = document.createElement('input'); input.value = e.meaning; input.setAttribute('aria-label', k);
+        const btn = document.createElement('button'); btn.type = 'button'; btn.textContent = J.abbrSave; btn.className = 'ws-abbr-save'; btn.hidden = true;
+        input.addEventListener('input', () => { btn.hidden = input.value.trim() === e.meaning; });
+        btn.addEventListener('click', () => { const g = loadGlossary(); g[k] = input.value.trim(); saveGlossary(g); renderAbbr(); });
+        li.addEventListener('mouseenter', () => light(e.spans, true)); li.addEventListener('mouseleave', () => light(e.spans, false));
+        li.append(input, btn); list.appendChild(li);
+      }
+    }
+    const labels: Record<string, string> = J.cases;
+    const $ = (s: string) => document.querySelector(s) as HTMLElement;
+
+    let cur: { notes: string; header: any; record: Rec; lang: 'en' | 'de' | 'it'; resolved: Record<string, string>; approved: boolean; meds: boolean[]; handed: boolean; files: { name: string; size: number; type: string }[]; started: number; v: ApprovedVersion | null; docs: GeneratedDocument[] };
+
+    const sel = $('#ws-case') as HTMLSelectElement;
+    for (const c of [...cases].sort((a, b) => Object.keys(labels).indexOf(a.id) - Object.keys(labels).indexOf(b.id))) { const o = document.createElement('option'); o.value = c.id; o.textContent = labels[c.id] ?? c.id; sel.appendChild(o); }
+    sel.addEventListener('change', () => load(sel.value));
+    const csel = $('#ws-country') as HTMLSelectElement;
+    csel.addEventListener('change', () => { if (cur) renderFlags(); });
+    const dsel = $('#ws-doc') as HTMLSelectElement; const refIn = $('#ws-referral') as HTMLInputElement;
+    const docHead = $('.ws-pane + .ws-pane .ws-h') as HTMLElement; const docHeadDefault = docHead.firstChild?.textContent ?? '';
+    ($('#ws-lang2') as HTMLSelectElement).addEventListener('change', () => { if (cur) render(); });
+    dsel.addEventListener('change', () => { ($('#ws-lang2-wrap') as HTMLElement).hidden = dsel.value !== 'owner'; ($('#ws-referral-wrap') as HTMLElement).hidden = dsel.value !== 'referral'; if (docHead.firstChild) docHead.firstChild.textContent = dsel.value === 'report' ? docHeadDefault : dsel.options[dsel.selectedIndex].text + ' '; if (cur) render(); });
+    refIn.addEventListener('input', () => { if (cur) render(); });
+    function renderDoc(approved: boolean) {
+      const { record, header, lang } = cur;
+      const l2 = ($('#ws-lang2') as HTMLSelectElement).value as any;
+      if (dsel.value === 'owner' && l2 && l2 !== lang) return renderOwnerSummaryBilingual(record, header, lang, l2, { approved });
+      if (dsel.value === 'owner') return renderOwnerSummary(record, header, lang, { approved });
+      if (dsel.value === 'referral') return renderReferralLetter(record, header, lang, { approved, reason: refIn.value.trim() || null });
+      if (dsel.value === 'dental') return renderDentalChart(cur.notes, lang);
+      if (dsel.value === 'estimate') return renderCostEstimate(record, header, VisitContext.parse({ country: csel.value, author: clinicAuthor() }), lang);
+      if (dsel.value === 'consent') return renderConsentForm(record, header, VisitContext.parse({ country: csel.value, author: clinicAuthor() }), lang);
+      if (dsel.value === 'vacc') return renderVaccinationEntry(record, header, VisitContext.parse({ country: csel.value, author: clinicAuthor() }), lang, { approved });
+      if (dsel.value === 'rx') return renderPrescription(record, header, VisitContext.parse({ country: csel.value, author: clinicAuthor() }), lang, { approved });
+      return renderConsultReport(record, header, lang, { approved });
+    }
+    const rsel = $('#ws-role') as HTMLSelectElement;
+    const approveBtn = $('#ws-approve') as HTMLButtonElement; const approveLabel = approveBtn.innerHTML;
+    rsel.addEventListener('change', () => { approveBtn.innerHTML = rsel.value === 'nurse' ? `${J.handOver} <kbd>Ctrl+Shift+Enter</kbd>` : approveLabel; if (cur) renderFlags(); });
+
+    function load(id: string) {
+      const c = cases.find((x) => x.id === id)!;
+      cur = { notes: normalizeNotes(c.notes), header: PatientHeader.parse(c.header), record: ClinicalRecord.parse(c.fixture_record), lang: c.language, resolved: {}, approved: false, meds: [], handed: false, files: [], started: Date.now(), v: null, docs: [] };
+      const h = cur.header;
+      $('#ws-patient').textContent = [h.name, h.species, h.breed, h.sex, h.age && `${h.age.value} ${h.age.unit}${h.age.value === 1 ? '' : 's'}`, h.weight_kg && `${h.weight_kg} kg`].filter(Boolean).join(' · ');
+      $('#ws-lang').textContent = { en: 'English', de: 'Deutsch', it: 'Italiano' }[cur.lang];
+      csel.value = { en: 'DE', de: 'DE', it: 'IT' }[cur.lang];
+      document.body.classList.remove('ws-approved'); ($('#ws-amend') as HTMLElement).hidden = true;
+      $('#ws-state').innerHTML = `<span class="badge draft">● ${J.draft}</span>`;
+      $('#ws-status').textContent = '';
+      render();
+    }
+
+    // Collect every span-bearing item so report text can link back to the notes.
+    function spanItems(r: Rec): { text: string; spans: [number, number][] }[] {
+      const out: { text: string; spans: [number, number][] }[] = [];
+      const push = (text: string | null | undefined, spans?: [number, number][]) => { if (text && spans?.length) out.push({ text, spans }); };
+      push(r.presenting_complaint?.text, r.presenting_complaint?.source_spans);
+      r.history.forEach((h) => push(h.value, h.source_spans));
+      for (const k of ['temperature', 'heart_rate', 'respiratory_rate', 'weight'] as const) { const q = r.examination.vitals[k]; if (q) push(String(q.value), q.source_spans); }
+      r.examination.findings.forEach((f) => push(f.text, f.source_spans));
+      r.diagnostics.forEach((d) => { push(d.test, d.source_spans); push(d.result, d.source_spans); });
+      push(r.assessment.text, r.assessment.source_spans);
+      r.treatments.forEach((t) => push(t.text, t.source_spans));
+      r.medications.forEach((m) => { push(m.drug, m.source_spans); push(m.class_as_written, m.source_spans); push(m.duration, m.source_spans); push(m.frequency, m.source_spans); });
+      push(r.plan.follow_up?.text, r.plan.follow_up?.source_spans);
+      r.plan.instructions.forEach((i) => push(i.text, i.source_spans));
+      return out;
+    }
+
+    function render() {
+      const { notes, header, record, lang } = cur;
+      // notes with one <mark> per character run, so any span can be lit
+      const notesEl = $('#ws-notes'); notesEl.innerHTML = '';
+      const frag = document.createDocumentFragment();
+      [...notes].forEach((ch, i) => { const m = document.createElement('mark'); m.textContent = ch; m.dataset.i = String(i); frag.appendChild(m); });
+      notesEl.appendChild(frag);
+
+      // report: markdown from the renderer → minimal HTML, then wrap sourced phrases
+      const md = renderDoc(cur.approved);
+      let html = md.split('\n').map((line) => {
+        if (line.startsWith('# ')) return '';
+        if (line.startsWith('_')) return '';
+        if (line.startsWith('### ')) return `<h2>${esc(line.slice(4))}</h2>`;
+        if (line.startsWith('## ')) return `<h2>${esc(line.slice(3))}</h2>`;
+        if (line.startsWith('|')) return line;
+        if (line.startsWith('- ')) return `<li>${esc(line.slice(2))}</li>`;
+        if (!line.trim()) return '';
+        return `<p>${esc(line).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')}</p>`;
+      }).join('\n');
+      html = html.replace(/((?:^\|.*\n?)+)/gm, (t) => table(t));
+      html = html.replace(/(<li>[\s\S]*?<\/li>\n?)+/g, (t) => `<ul>${t}</ul>`);
+      html = html.replace(/▲ ([^<|]+)/g, (_m, t) => `<span class="flag">▲ ${t}</span>`);
+      html = html.replace(/(Owner reports|Laut Besitzer|Il proprietario riferisce):/g, '<span class="own">$1:</span>');
+      for (const it of spanItems(record)) {
+        const e = esc(it.text);
+        html = html.replace(new RegExp(`(?<![\\w-])${escRe(e)}(?![\\w-])`), `<span class="src" data-spans='${JSON.stringify(it.spans)}'>${e}</span>`);
+      }
+      if (cur.files.length) html += `<h2>${esc(J.attachments)}</h2><ul>${cur.files.map((f) => `<li>${esc(f.name)}</li>`).join('')}</ul>`;
+      $('#ws-report').innerHTML = html;
+      renderAttachments();
+      for (const s of document.querySelectorAll<HTMLElement>('.ws-report .src')) {
+        s.addEventListener('mouseenter', () => light(JSON.parse(s.dataset.spans!), true));
+        s.addEventListener('mouseleave', () => light(JSON.parse(s.dataset.spans!), false));
+        s.addEventListener('click', () => { light(JSON.parse(s.dataset.spans!), true); setTimeout(() => light(JSON.parse(s.dataset.spans!), false), 1500); });
+      }
+      document.querySelectorAll<HTMLInputElement>('.ws-med-tick').forEach((cb) => cb.addEventListener('change', () => { cur.meds[Number(cb.dataset.i)] = cb.checked; renderFlags(); }));
+      // owner-reported vs vet-observed: one click flips a history line; the renderer then drops or adds the prefix
+      if (!cur.approved) for (const h of record.history) {
+        const needle = `${h.finding}: ${h.value}`;
+        const li = Array.from(document.querySelectorAll<HTMLElement>('.ws-report li')).find((el) => el.textContent?.includes(needle));
+        if (!li) continue;
+        const b = document.createElement('button'); b.type = 'button'; b.className = 'ws-role-toggle';
+        const owner = h.source_role === 'owner_reported';
+        b.textContent = owner ? '→ vet' : '→ owner'; b.title = owner ? J.toVet : J.toOwner; b.setAttribute('aria-label', b.title);
+        b.addEventListener('click', () => { h.source_role = owner ? 'vet_observed' : 'owner_reported'; render(); });
+        li.appendChild(b);
+      }
+      renderFlags();
+      renderAbbr();
+      renderLetterhead();
+      renderHandouts();
+      trackDoc();
+    }
+
+    function light(spans: [number, number][], on: boolean) {
+      for (const [a, b] of spans) for (let i = a; i < b; i++) document.querySelector(`#ws-notes mark[data-i="${i}"]`)?.classList.toggle('on', on);
+    }
+
+    function renderFlags() {
+      const { notes, header, record } = cur;
+      const findings: Finding[] = validateAll(record, notes, header);
+      const blocks = findings.filter((f) => f.severity === 'block');
+      const warns = findings.filter((f) => f.severity === 'warn');
+      const ctx = VisitContext.parse({ country: csel.value, author: clinicAuthor() });
+      const cflags = countryMissing(record, header, ctx);
+      const reasons: Record<string, string> = {}; for (const f of cflags) reasons[f.field] = f.reason;
+      const missing = [...requiredMissing(record, 'consult_report'), ...cflags.map((f) => f.field).filter((f, i, a) => a.indexOf(f) === i)];
+      const list = $('#ws-flaglist'); list.innerHTML = '';
+      const li = (html: string) => { const el = document.createElement('li'); el.innerHTML = html; list.appendChild(el); return el; };
+      for (const b of blocks) li(`<span class="f-block">${J.blocked}</span> ${esc(b.field)}: ${esc(b.message)}`);
+      for (const w of warns) li(`<span class="f-warn">${J.check}</span> ${esc(w.field)}: ${esc(w.message)}`);
+      for (const m of missing) {
+        const done = cur.resolved[m];
+        const el = li(`<span class="f-miss">${done ? '✓' : '▲'} ${J.missing}</span> <code>${esc(m)}</code> ${reasons[m] ? `<span class="ws-hint">${esc(reasons[m])}</span> ` : ''}${done ? `<em>${esc(done)}</em>` : ''}`);
+        if (!done) {
+          const input = document.createElement('input'); input.placeholder = J.placeholder; input.setAttribute('aria-label', `${J.valueFor} ${m}`);
+          const add = document.createElement('button'); add.textContent = J.add; add.type = 'button';
+          const nr = document.createElement('button'); nr.textContent = J.notRecorded; nr.type = 'button';
+          add.addEventListener('click', () => { if (input.value.trim()) { cur.resolved[m] = input.value.trim(); renderFlags(); } });
+          input.addEventListener('keydown', (e) => { if (e.key === 'Enter') add.click(); });
+          nr.addEventListener('click', () => { cur.resolved[m] = J.notRecorded; renderFlags(); });
+          el.append(input, add, nr);
+        }
+      }
+      for (const u of record.uncertain) li(`<span class="f-warn">${J.setAside}</span> “${esc(u.original_text)}” — ${esc(u.reason)}`);
+      if (!blocks.length && !warns.length && !missing.length && !record.uncertain.length) li(`<span style="color:var(--ok);font-weight:600">${J.nothing}</span> ${J.nothingRest}`);
+      let identityProblems = 0;
+      {
+        const ctx = VisitContext.parse({ country: csel.value, author: clinicAuthor() });
+        const docsAll: Record<string, string> = { report: renderConsultReport(record, header, cur.lang), owner: renderOwnerSummary(record, header, cur.lang), referral: renderReferralLetter(record, header, cur.lang), rx: renderPrescription(record, header, ctx, cur.lang) };
+        const l2 = ($('#ws-lang2') as HTMLSelectElement).value as any; if (l2 && l2 !== cur.lang) docsAll[`owner_${l2}`] = renderOwnerSummary(record, header, l2);
+        if (record.medications.some((m: any) => m.status !== 'declined')) {
+          const probs = crossDocumentMedicationCheck(record, docsAll); identityProblems = probs.length;
+          li(probs.length ? `<span class="f-block">${J.blocked}</span> ${esc(J.identityFail)} ${esc(probs.map((p) => `${p.doc}: ${p.field} "${p.value}"`).join('; '))}` : `<span style="color:var(--ok);font-weight:600">✓</span> ${esc(J.identityOk)}`);
+        }
+      }
+      const unresolved = missing.filter((m) => !cur.resolved[m]).length;
+      const unticked = record.medications.filter((_, i) => !cur.meds[i]).length;
+      ($('#ws-approve') as HTMLButtonElement).disabled = cur.approved || blocks.length > 0 || identityProblems > 0 || unresolved > 0 || unticked > 0;
+      $('#ws-status').textContent = cur.approved ? J.approvedStatus : blocks.length ? J.blocking.replace('{n}', String(blocks.length)) : unresolved ? J.unresolved.replace('{n}', String(unresolved)) : unticked ? J.medsUnchecked.replace('{n}', String(unticked)) : J.ready;
+    }
+
+    function approve() {
+      if (($('#ws-approve') as HTMLButtonElement).disabled) return;
+      const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      if (rsel.value === 'nurse') {
+        // A nurse or assistant prepares the draft; only a veterinarian can approve.
+        cur.handed = true;
+        $('#ws-state').innerHTML = `<span class="badge draft">● ${J.nurseDraft} · ${time}</span>`;
+        $('#ws-status').textContent = J.handedStatus;
+        return;
+      }
+      const secs = Math.round((Date.now() - cur.started) / 1000);
+      const who = clinicAuthor().name;
+      let staleNote = '';
+      if (!cur.v) cur.v = approveVersion(cur.record, who);
+      else {
+        const reason = window.prompt(J.amendReason.replace('{n}', String(cur.v.version + 1)), '');
+        if (reason === null) return;
+        try { cur.v = amendVersion(cur.v, cur.record, who, reason); }
+        catch (e: any) { $('#ws-status').textContent = e.message; return; }
+        const { stale } = propagationMap(cur.v, cur.docs);
+        staleNote = stale.length ? J.staleDocs.replace('{list}', [...new Set(stale.map((d) => d.kind))].join(', ')) : J.noStale;
+      }
+      cur.approved = true; document.body.classList.add('ws-approved');
+      $('#ws-state').innerHTML = `<span class="badge reviewed">✓ ${J.approved} ${J.version.replace('{n}', String(cur.v.version))}${cur.handed ? ` (${J.cosigned})` : ''} · ${time} · ${J.timer}: ${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}</span>`;
+      ($('#ws-amend') as HTMLElement).hidden = false;
+      render();
+      if (staleNote) $('#ws-status').textContent = staleNote;
+    }
+    function trackDoc() {
+      if (!cur.approved || !cur.v) return;
+      const kind = dsel.value;
+      if (!cur.docs.some((d) => d.kind === kind && d.lang === cur.lang && d.from_version === cur.v!.version)) cur.docs.push(documentFrom(cur.v, kind, cur.lang));
+    }
+    $('#ws-amend').addEventListener('click', () => {
+      if (!cur.v) return;
+      cur.approved = false; document.body.classList.remove('ws-approved');
+      $('#ws-state').innerHTML = `<span class="badge draft">● ${J.amending.replace('{n}', String(cur.v.version + 1))}</span>`;
+      ($('#ws-amend') as HTMLElement).hidden = true;
+      render();
+    });
+    function copyOut() {
+      const txt = renderDoc(cur.approved)
+        .replace(/^#+ (.*)$/gm, (_m, h) => h.toUpperCase()).replace(/^_|_$/gm, '').replace(/\*\*/g, '').replace(/\|/g, ' ').replace(/^ *-{3,}.*$/gm, '').replace(/\n{3,}/g, '\n\n');
+      navigator.clipboard?.writeText(txt).then(() => { $('#ws-status').textContent = J.copied; }, () => { $('#ws-status').textContent = J.copyFail; });
+    }
+    $('#ws-approve').addEventListener('click', approve);
+    $('#ws-copy').addEventListener('click', copyOut);
+    $('#ws-print').addEventListener('click', () => window.print());
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.shiftKey && e.key === 'Enter') { e.preventDefault(); approve(); }
+      if (e.ctrlKey && e.shiftKey && (e.key === 'C' || e.key === 'c')) { e.preventDefault(); copyOut(); }
+    });
+
+    const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
+    const escRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    function table(block: string) {
+      const rows = block.trim().split('\n').filter((r) => !/^\|\s*-/.test(r)).map((r) => r.slice(1, -1).split('|').map((c) => c.trim()));
+      const [head, ...body] = rows;
+      const isMeds = ['Drug', 'Wirkstoff', 'Farmaco'].includes(head[0]);
+      if (!isMeds) return `<table><thead><tr>${head.map((h) => `<th>${h}</th>`).join('')}</tr></thead><tbody>${body.map((r) => `<tr>${r.map((c) => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+      const tick = (i: number) => `<td class="ws-tick"><label><input type="checkbox" class="ws-med-tick" data-i="${i}" ${cur.meds[i] ? 'checked' : ''} ${cur.approved ? 'disabled' : ''} aria-label="${J.medsTick}"> ${J.medsTick}</label></td>`;
+      return `<table><thead><tr>${head.map((h) => `<th>${h}</th>`).join('')}<th>${J.medsTick}</th></tr></thead><tbody>${body.map((r, i) => `<tr>${r.map((c) => `<td>${c}</td>`).join('')}${tick(i)}</tr>`).join('')}</tbody></table>`;
+    }
+
+    const fileInput = $('#ws-file') as HTMLInputElement;
+    fileInput.addEventListener('change', () => {
+      for (const f of Array.from(fileInput.files ?? [])) cur.files.push({ name: f.name, size: f.size, type: f.type });
+      fileInput.value = ''; render();
+    });
+    load(J.first);
+  </script>

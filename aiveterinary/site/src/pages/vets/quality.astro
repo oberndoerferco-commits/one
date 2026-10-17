@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro';
+import { readFileSync, existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+const resultsDir = fileURLToPath(new URL('../../../../app/eval/results/', import.meta.url));
+const read = (name: string) => (existsSync(resultsDir + name) ? JSON.parse(readFileSync(resultsDir + name, 'utf8')) : null);
+const fixture = read('fixture.json');
+const model = read('claude.json');
+const pct = (x: number | null) => (x == null ? 'n/a' : Math.round(x * 100) + ' %');
+const fmt = (iso: string) => new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+const runs = [{ label: 'Validators on prepared records', note: 'Proves the checks themselves: a record with an invented drug, dose or diagnosis must be blocked. Offline, no model.', r: fixture }, ...(model ? [{ label: 'Model output on the same cases', note: 'The model structures the raw notes; the same checks then run on its output.', r: model }] : [])];
+---
+<Base title="Quality" description="How the AI Veterinary documentation assistant is tested, with the current numbers. Published with every release.">
+  <article class="wrap narrow hero prose">
+    <p class="eyebrow"><a href="/vets">For veterinary teams</a></p>
+    <h1>Quality, with numbers</h1>
+    <p class="lead">Every tool in this market claims accuracy; almost none says how it is measured. This page is our answer: the test set, the rules, and the current results, regenerated from the actual test run with every release.</p>
+
+    <h2>What we measure</h2>
+    <table>
+      <tr><th>Measure</th><th>Meaning</th><th>Release rule</th></tr>
+      <tr><td>Blocking findings</td><td>Anything in the record that is not in the vet's notes: a drug, a dose, a number, a diagnosis, or an item with no source</td><td><strong>0</strong> on model output, or no release</td></tr>
+      <tr><td>Drug mismatches</td><td>A drug name in the record that the vet did not write</td><td><strong>0</strong></td></tr>
+      <tr><td>Unsourced items</td><td>Facts without a valid pointer into the notes</td><td><strong>0</strong></td></tr>
+      <tr><td>Missing-information recall</td><td>Of the gaps a vet would want flagged (drug without dose, test without result…), how many we flag</td><td>≥ 95 %</td></tr>
+      <tr><td>Must-fail case</td><td>A deliberately wrong record (invented drug, dose and diagnosis) that the checks must block</td><td>Always blocked</td></tr>
+    </table>
+    <p>Rules can only get stricter: a release may raise a floor, never lower one.</p>
+
+    <h2>Current results</h2>
+    {runs.map(({ label, note, r }) => (
+      <div class="card" style="margin:16px 0">
+        <h3 style="margin-top:0">{label}</h3>
+        <p class="pp-hint">{note}</p>
+        <table>
+          <tr><th>Run</th><td>{fmt(r.run_at)} · prompt <code>{r.prompt}</code> · languages {r.languages.join(', ').toUpperCase()}</td></tr>
+          <tr><th>Cases</th><td>{r.cases} ({r.failed} failed)</td></tr>
+          <tr><th>Blocking findings</th><td>{r.blocking}{r.extractor === 'fixture' ? ' (all from the must-fail case, as intended)' : ''}</td></tr>
+          <tr><th>Drug mismatches</th><td>{r.drug_mismatch}</td></tr>
+          <tr><th>Unsourced items</th><td>{r.unsourced}{r.extractor === 'fixture' ? ' (the must-fail case)' : ''}</td></tr>
+          <tr><th>Missing-information recall</th><td>{pct(r.missing_recall)}</td></tr>
+          <tr><th>Per case</th><td>{r.per_case.map((c: any) => `${c.pass ? '✓' : '✗'} ${c.id}`).join(' · ')}</td></tr>
+        </table>
+      </div>
+    ))}
+    {!model && <p class="notice warn">Model runs are not published yet. The test set is still small (synthetic cases written in-house) and the model run is pending a development key. Before any clinic uses the product, the set grows to at least 300 cases across English, German and Italian, written with practising vets, and an external vet panel reviews a sample of the output. Those results will appear here.</p>}
+
+    <h2>Known gaps, honestly</h2>
+    <ul>
+      <li>The test set is small and synthetic. Real notes are messier.</li>
+      <li>Number checks are strict by design: a dose written as "5mg" and recorded as "5 mg" passes, but "five" written in words does not count as a number in the notes, so the record must keep "five". We prefer a false alarm to a silent invention.</li>
+      <li>Drug-name matching tolerates typos by prefix; unusual brand names may need the vet's correction, which is then recorded as a human edit.</li>
+      <li>No independent evaluation has taken place yet.</li>
+    </ul>
+    <p>The test harness, the rules and the cases are in the project repository, so a reviewer can rerun them.</p>
+  </article>
+</Base>

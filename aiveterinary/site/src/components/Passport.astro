@@ -1,0 +1,1261 @@
+---
+import YarnCat from './YarnCat.astro';
+import AnimalIcon from './AnimalIcon.astro';
+import BookletArt from './BookletArt.astro';
+interface Props { lang?: 'en' | 'it' | 'de' }
+const { lang = 'en' } = Astro.props;
+const T = {
+ "en": {
+  "eyebrow": "For animal owners",
+  "h1": "Digital pet health booklet",
+  "lead": "Everything about your animal in one place: identity, microchip, vaccinations, medications, allergies, your vet's number. Stored on your own device, not on our servers. Back it up to a file, open it on any device, print it before a visit.",
+  "acctTitle": "Save to an account",
+  "acctText": "Optional. Log in with a link sent to your email and your passports follow you to every device.",
+  "acctPrivacy": "What we store",
+  "acctTerms": "Terms",
+  "acctEmail": "Email",
+  "acctSend": "Send login link",
+  "acctIn": "Logged in",
+  "acctExport": "Export everything",
+  "acctLogout": "Sign out",
+  "acctDelete": "Delete my account",
+  "selAria": "Animal",
+  "selChoose": "Choose animal",
+  "newAnimal": "+ New animal",
+  "backup": "Back up",
+  "restore": "Restore",
+  "print": "Print",
+  "card": "Emergency card",
+  "poster": "Lost-pet poster",
+  "claim": "Insurance claim pack","claimTitle": "Insurance claim: supporting information","claimIntro": "Attach to the insurer's claim form together with the invoice. Everything below comes from the owner's health booklet; the clinic confirms diagnosis and treatment on its own documents.","claimPolicy": "Policy","claimVisits": "Visits","claimMeds": "Current medications","claimCond": "Known conditions (pre-existing conditions matter for cover)","claimFill": "Invoice number(s) and amounts: ______________________  Date of first signs: ____________","claimSign": "Owner signature / date",
+  "printLang": "Second language on the printout","printLangNone": "None","posterLost": "LOST","posterSeen": "Last seen","posterWhere": "Where and when was the animal last seen?","posterReward": "Please call, any time:","posterChip": "Microchipped, registered","cardTitle": "Emergency card","cardFoot": "Full health booklet on the owner's phone · aiveterinary.org",
+  "delete": "Delete",
+  "emptyTitle": "No animal yet",
+  "emptyText": "Create a passport for your first animal, or restore one from a backup file.",
+  "emptyBtn": "Create passport",
+  "identity": "Identity",
+  "addPhoto": "Add photo",
+  "removePhoto": "Remove photo",
+  "name": "Name",
+  "species": "Species",
+  "breed": "Breed",
+  "sex": "Sex",
+  "neutered": "Neutered / spayed",
+  "dob": "Date of birth",
+  "colour": "Colour / markings",
+  "weight": "Weight (kg)",
+  "microchip": "Microchip number",
+  "microchipDate": "Chip implanted on",
+  "microchipRegistry": "Chip registered with",
+  "passportNo": "Passport / ID number",
+  "ownerVet": "Owner & vet",
+  "ownerName": "Owner name",
+  "ownerPhone": "Owner phone",
+  "ownerEmail": "Owner email",
+  "ownerAddress": "Address",
+  "vetClinic": "Veterinary clinic",
+  "vetPhone": "Clinic phone",
+  "emergencyClinic": "Emergency clinic (after hours)",
+  "emergencyPhone": "Emergency phone",
+  "insurance": "Insurance",
+  "vaccinations": "Vaccinations",
+  "upcoming": "Coming up","upcomingHint": "Due dates from the vaccination and parasite tables. Add them to your calendar so nothing slips.","overdue": "overdue","dueIn": "in {n} days","dueToday": "today","addCalendar": "Add to calendar (.ics)","noUpcoming": "Nothing due. Add a \"valid until\" or \"next due\" date to see reminders here.",
+  "vaccHint": "Copy from the official passport or the clinic invoice. The \"valid until\" date is what border staff and kennels ask for.",
+  "addVacc": "+ Add vaccination",
+  "treatments": "Parasite treatments",
+  "treatHint": "Worming, flea and tick products. Tapeworm treatment is required before entering some countries.",
+  "addTreat": "+ Add treatment",
+  "medications": "Current medications",
+  "medHint": "Exactly as your vet wrote it. Never change a dose without asking the vet.",
+  "addMed": "+ Add medication",
+  "conditions": "Allergies, conditions & surgeries",
+  "condHint": "Anything a new vet should know in the first minute: allergies, chronic conditions, past surgeries, reactions to drugs or anaesthesia.",
+  "addCond": "+ Add entry",
+  "visits": "Vet visits",
+  "weights": "Weight log",
+  "diary": "Symptom diary","diaryHint": "A dated line whenever something is off: what you saw, how often, what changed. The pre-visit brief pulls the last entries in automatically.","addDiary": "Add entry","weightHint": "Weigh at the same time of day, same scale. A steady drift of a few hundred grams is the earliest sign vets look for. Body condition: 1 = very thin, 5 = ideal, 9 = obese.","addWeight": "Add weighing",
+  "visitHint": "A short line per visit keeps the history readable: reason, what was found, what was done.",
+  "addVisit": "+ Add visit",
+  "notes": "Notes",
+  "faqTitle": "Questions",
+  "faq1q": "Where is the data?",
+  "faq1a": "In your browser's storage on this device. If you clear the browser data, use a private window, or switch phone, it is gone unless you have a backup file. Press <em>Back up</em> after every change that matters and keep the file in your email or a cloud drive. <em>Restore</em> loads it on any device.",
+  "faq2q": "Is this the official pet passport?",
+  "faq2a": "No. The official EU pet passport is a paper document issued by an authorised veterinarian and is what you need at borders. This is your own organised copy so you never have to search for a vaccination date or a microchip number again.",
+  "faq3q": "Will there be accounts and sharing with my vet?",
+  "faq3a": "That is the plan: an owner account, a secure link you can give your vet or a pet-sitter, and reminders when a vaccination is about to expire. We will only build it with proper data protection in place, which is why this first version keeps everything on your device.",
+  "title": "Digital pet health booklet",
+  "desc": "Keep your animal's identity, vaccinations, medications and vet contacts in one place, on your own device. Back it up, restore it anywhere, print it for the vet.",
+  "privTitle": "Private by design.",
+  "privTicks": ["Stays on your device, we never see it", "Back up to a file, open it anywhere", "Free, no account needed"],
+  "privText": "Nothing you enter here leaves your browser. We never see it. That also means it is your copy: use <em>Back up</em> regularly and keep the file somewhere safe (your email, cloud drive or phone). This is your own copy. It does not replace the official EU pet passport issued by an authorised vet, nor the microchip registry entry; keep those up to date too. Free, no lock-in: export your data any time.",
+  "synced": "synced",
+  "phChip": "15 digits",
+  "phRegistry": "Registry name",
+  "phPassport": "Official EU pet passport number",
+  "phInsurance": "Company and policy number",
+  "phNotes": "Diet, behaviour, things to tell a pet-sitter or a new vet…",
+  "phEmail": "you@example.com",
+  "thVaccine": "Vaccine",
+  "thDateGiven": "Date given",
+  "thValidUntil": "Valid until",
+  "thClinicVet": "Clinic / vet",
+  "thBatch": "Batch",
+  "thProduct": "Product",
+  "thDate": "Date",
+  "thNextDue": "Next due",
+  "thGivenBy": "Given by",
+  "thMedication": "Medication",
+  "thDose": "Dose & how often",
+  "thStarted": "Started",
+  "thPrescribedBy": "Prescribed by",
+  "thType": "Type",
+  "thDescription": "Description",
+  "thSince": "Since / date",
+  "thReason": "Reason",
+  "thOutcome": "Outcome / notes",
+  "thClinic": "Clinic",
+  "as": "as"
+ },
+ "it": {
+  "title": "Libretto sanitario digitale",
+  "desc": "Identità, vaccinazioni, farmaci e contatti del veterinario del tuo animale in un unico posto, sul tuo dispositivo. Fai una copia, ripristinala ovunque, stampala per il veterinario.",
+  "eyebrow": "Per chi ha un animale",
+  "h1": "Libretto sanitario digitale",
+  "lead": "Tutto sul tuo animale in un unico posto: identità, microchip, vaccinazioni, farmaci, allergie, il numero del veterinario. Salvato sul tuo dispositivo, non sui nostri server. Fai una copia su file, aprila su qualsiasi dispositivo, stampala prima della visita.",
+  "privTitle": "Privato per costruzione.",
+  "privTicks": ["Resta sul tuo dispositivo, noi non lo vediamo", "Copia su file, aprila ovunque", "Gratis, senza account"],
+  "privText": "Niente di ciò che inserisci qui esce dal tuo browser. Noi non lo vediamo mai. Significa anche che è la tua copia: usa <em>Copia di sicurezza</em> regolarmente e conserva il file in un posto sicuro (email, cloud o telefono). È la tua copia personale. Non sostituisce il passaporto europeo ufficiale rilasciato da un veterinario autorizzato, né l'iscrizione all'anagrafe: tienili aggiornati. Gratis, senza vincoli: esporti i tuoi dati quando vuoi.",
+  "acctTitle": "Salva in un account",
+  "acctText": "Facoltativo. Accedi con un link inviato alla tua email e i passaporti ti seguono su ogni dispositivo.",
+  "acctPrivacy": "Cosa conserviamo",
+  "acctTerms": "Termini",
+  "acctEmail": "Email",
+  "acctSend": "Invia link di accesso",
+  "acctIn": "Hai effettuato l'accesso",
+  "as": "come",
+  "acctExport": "Esporta tutto",
+  "acctLogout": "Esci",
+  "acctDelete": "Elimina il mio account",
+  "synced": "sincronizzato",
+  "phEmail": "tu@esempio.it",
+  "selAria": "Animale",
+  "selChoose": "Scegli animale",
+  "newAnimal": "+ Nuovo animale",
+  "backup": "Copia di sicurezza",
+  "restore": "Ripristina",
+  "print": "Stampa",
+  "card": "Scheda d'emergenza",
+  "poster": "Manifesto smarrimento",
+  "claim": "Pratica assicurativa","claimTitle": "Richiesta di rimborso: informazioni di supporto","claimIntro": "Da allegare al modulo dell'assicurazione insieme alla fattura. Tutto ciò che segue proviene dal libretto del proprietario; diagnosi e cure sono confermate dalla clinica sui propri documenti.","claimPolicy": "Polizza","claimVisits": "Visite","claimMeds": "Farmaci in corso","claimCond": "Patologie note (le patologie pregresse incidono sulla copertura)","claimFill": "Numero/i fattura e importi: ______________________  Data dei primi sintomi: ____________","claimSign": "Firma del proprietario / data",
+  "printLang": "Seconda lingua sulla stampa","printLangNone": "Nessuna","posterLost": "SMARRITO","posterSeen": "Visto l'ultima volta","posterWhere": "Dove e quando è stato visto l'ultima volta?","posterReward": "Chiamate, a qualsiasi ora:","posterChip": "Microchip registrato","cardTitle": "Scheda d'emergenza","cardFoot": "Libretto sanitario completo sul telefono del proprietario · aiveterinary.org",
+  "delete": "Elimina",
+  "emptyTitle": "Nessun animale ancora",
+  "emptyText": "Crea il passaporto del tuo primo animale, oppure ripristinalo da una copia di sicurezza.",
+  "emptyBtn": "Crea passaporto",
+  "identity": "Identità",
+  "addPhoto": "Aggiungi foto",
+  "removePhoto": "Rimuovi foto",
+  "name": "Nome",
+  "species": "Specie",
+  "breed": "Razza",
+  "sex": "Sesso",
+  "neutered": "Sterilizzato/a",
+  "dob": "Data di nascita",
+  "colour": "Colore / segni particolari",
+  "weight": "Peso (kg)",
+  "microchip": "Numero microchip",
+  "microchipDate": "Microchip impiantato il",
+  "microchipRegistry": "Registrato presso",
+  "passportNo": "Numero passaporto / documento",
+  "phChip": "15 cifre",
+  "phRegistry": "Anagrafe (es. regionale)",
+  "phPassport": "Numero del passaporto europeo",
+  "phInsurance": "Compagnia e numero di polizza",
+  "phNotes": "Alimentazione, comportamento, cose da dire a un pet-sitter o a un nuovo veterinario…",
+  "ownerVet": "Proprietario e veterinario",
+  "ownerName": "Nome del proprietario",
+  "ownerPhone": "Telefono del proprietario",
+  "ownerEmail": "Email del proprietario",
+  "ownerAddress": "Indirizzo",
+  "vetClinic": "Clinica veterinaria",
+  "vetPhone": "Telefono della clinica",
+  "emergencyClinic": "Clinica di emergenza (fuori orario)",
+  "emergencyPhone": "Telefono di emergenza",
+  "insurance": "Assicurazione",
+  "vaccinations": "Vaccinazioni",
+  "upcoming": "In scadenza","upcomingHint": "Date di scadenza prese dalle tabelle di vaccinazioni e antiparassitari. Aggiungile al calendario così non dimentichi nulla.","overdue": "scaduto","dueIn": "tra {n} giorni","dueToday": "oggi","addCalendar": "Aggiungi al calendario (.ics)","noUpcoming": "Nessuna scadenza. Inserisci una data \"valido fino a\" o \"prossima dose\" per vedere qui i promemoria.",
+  "vaccHint": "Copia dal passaporto ufficiale o dalla fattura della clinica. La data \"valido fino al\" è quella che chiedono alle frontiere e nelle pensioni.",
+  "thVaccine": "Vaccino",
+  "thDateGiven": "Data",
+  "thValidUntil": "Valido fino al",
+  "thClinicVet": "Clinica / veterinario",
+  "thBatch": "Lotto",
+  "addVacc": "+ Aggiungi vaccinazione",
+  "treatments": "Antiparassitari",
+  "treatHint": "Vermifughi, prodotti contro pulci e zecche. Il trattamento contro la tenia è richiesto per entrare in alcuni paesi.",
+  "thProduct": "Prodotto",
+  "thDate": "Data",
+  "thNextDue": "Prossima scadenza",
+  "thGivenBy": "Somministrato da",
+  "addTreat": "+ Aggiungi trattamento",
+  "medications": "Farmaci in corso",
+  "medHint": "Esattamente come l'ha scritto il veterinario. Non cambiare mai una dose senza chiedere al veterinario.",
+  "thMedication": "Farmaco",
+  "thDose": "Dose e frequenza",
+  "thStarted": "Dal",
+  "thPrescribedBy": "Prescritto da",
+  "addMed": "+ Aggiungi farmaco",
+  "conditions": "Allergie, patologie e interventi",
+  "condHint": "Tutto ciò che un nuovo veterinario deve sapere nel primo minuto: allergie, malattie croniche, interventi passati, reazioni a farmaci o anestesia.",
+  "thType": "Tipo",
+  "thDescription": "Descrizione",
+  "thSince": "Dal / data",
+  "addCond": "+ Aggiungi voce",
+  "visits": "Visite veterinarie",
+  "weights": "Diario del peso",
+  "diary": "Diario dei sintomi","diaryHint": "Una riga con la data ogni volta che qualcosa non va: cosa hai visto, quante volte, cosa è cambiato. Il riepilogo per la visita recupera automaticamente le ultime voci.","addDiary": "Aggiungi voce","weightHint": "Pesa alla stessa ora e con la stessa bilancia. Una deriva costante di qualche centinaio di grammi è il primo segnale che i veterinari cercano. Condizione corporea: 1 = molto magro, 5 = ideale, 9 = obeso.","addWeight": "Aggiungi pesata",
+  "visitHint": "Una riga breve per visita mantiene la storia leggibile: motivo, cosa è stato trovato, cosa è stato fatto.",
+  "thReason": "Motivo",
+  "thOutcome": "Esito / note",
+  "thClinic": "Clinica",
+  "addVisit": "+ Aggiungi visita",
+  "notes": "Note",
+  "faqTitle": "Domande",
+  "faq1q": "Dove sono i dati?",
+  "faq1a": "Nella memoria del browser di questo dispositivo. Se cancelli i dati del browser, usi una finestra privata o cambi telefono, spariscono, a meno che tu non abbia un file di copia. Premi <em>Copia di sicurezza</em> dopo ogni modifica importante e conserva il file nella tua email o in un cloud. <em>Ripristina</em> lo carica su qualsiasi dispositivo.",
+  "faq2q": "È il passaporto ufficiale?",
+  "faq2a": "No. Il passaporto europeo ufficiale è un documento cartaceo rilasciato da un veterinario autorizzato ed è quello che serve alle frontiere. Questa è la tua copia organizzata, per non dover più cercare una data di vaccinazione o un numero di microchip.",
+  "faq3q": "Ci saranno account e condivisione con il veterinario?",
+  "faq3a": "È il piano: un account per il proprietario, un link sicuro da dare al veterinario o al pet-sitter, e promemoria quando una vaccinazione sta per scadere. Lo costruiremo solo con una protezione dei dati adeguata: per questo la prima versione tiene tutto sul tuo dispositivo."
+ },
+ "de": {
+  "title": "Digitaler Heimtierpass (inoffiziell)",
+  "desc": "Identität, Impfungen, Medikamente und Tierarztkontakte Ihres Tieres an einem Ort, auf Ihrem eigenen Gerät. Sichern, überall wiederherstellen, für den Tierarzt ausdrucken.",
+  "eyebrow": "Für Tierhalter",
+  "h1": "Digitaler Heimtierpass (inoffiziell)",
+  "lead": "Alles über Ihr Tier an einem Ort: Identität, Mikrochip, Impfungen, Medikamente, Allergien, die Nummer Ihrer Tierarztpraxis. Gespeichert auf Ihrem Gerät, nicht auf unseren Servern. Als Datei sichern, auf jedem Gerät öffnen, vor dem Besuch ausdrucken.",
+  "privTitle": "Privat von Anfang an.",
+  "privTicks": ["Bleibt auf Ihrem Gerät, wir sehen nichts", "Als Datei sichern, überall öffnen", "Kostenlos, ohne Konto"],
+  "privText": "Nichts, was Sie hier eingeben, verlässt Ihren Browser. Wir sehen es nie. Das heißt auch: Es ist Ihre Kopie. Nutzen Sie <em>Sichern</em> regelmäßig und bewahren Sie die Datei sicher auf (E-Mail, Cloud oder Telefon). Dies ist Ihre eigene Kopie. Sie ersetzt weder den offiziellen EU-Heimtierausweis einer berechtigten Tierärztin oder eines Tierarztes noch die Registrierung im Haustierregister; halten Sie beides aktuell. Kostenlos, ohne Bindung: Sie können Ihre Daten jederzeit exportieren.",
+  "acctTitle": "In einem Konto speichern",
+  "acctText": "Optional. Melden Sie sich mit einem Link an, der an Ihre E-Mail geht, und Ihre Ausweise folgen Ihnen auf jedes Gerät.",
+  "acctPrivacy": "Was wir speichern",
+  "acctTerms": "Nutzungsbedingungen",
+  "acctEmail": "E-Mail",
+  "acctSend": "Anmeldelink senden",
+  "acctIn": "Angemeldet",
+  "as": "als",
+  "acctExport": "Alles exportieren",
+  "acctLogout": "Abmelden",
+  "acctDelete": "Mein Konto löschen",
+  "synced": "synchronisiert",
+  "phEmail": "sie@beispiel.de",
+  "selAria": "Tier",
+  "selChoose": "Tier wählen",
+  "newAnimal": "+ Neues Tier",
+  "backup": "Sichern",
+  "restore": "Wiederherstellen",
+  "print": "Drucken",
+  "card": "Notfallkarte",
+  "poster": "Vermisst-Plakat",
+  "claim": "Unterlagen für die Versicherung","claimTitle": "Versicherungsfall: ergänzende Angaben","claimIntro": "Dem Formular des Versicherers zusammen mit der Rechnung beilegen. Alles Folgende stammt aus dem Heimtierpass der Halterin / des Halters; Diagnose und Behandlung bestätigt die Praxis auf ihren eigenen Unterlagen.","claimPolicy": "Police","claimVisits": "Besuche","claimMeds": "Aktuelle Medikamente","claimCond": "Bekannte Erkrankungen (Vorerkrankungen sind für den Schutz relevant)","claimFill": "Rechnungsnummer(n) und Beträge: ______________________  Datum der ersten Anzeichen: ____________","claimSign": "Unterschrift Halter/in / Datum",
+  "printLang": "Zweite Sprache auf dem Ausdruck","printLangNone": "Keine","posterLost": "VERMISST","posterSeen": "Zuletzt gesehen","posterWhere": "Wo und wann wurde das Tier zuletzt gesehen?","posterReward": "Bitte anrufen, jederzeit:","posterChip": "Gechippt und registriert","cardTitle": "Notfallkarte","cardFoot": "Vollständiger Heimtierpass auf dem Handy der Halterin/des Halters · aiveterinary.org",
+  "delete": "Löschen",
+  "emptyTitle": "Noch kein Tier",
+  "emptyText": "Legen Sie den Ausweis für Ihr erstes Tier an oder stellen Sie ihn aus einer Sicherungsdatei wieder her.",
+  "emptyBtn": "Ausweis anlegen",
+  "identity": "Identität",
+  "addPhoto": "Foto hinzufügen",
+  "removePhoto": "Foto entfernen",
+  "name": "Name",
+  "species": "Tierart",
+  "breed": "Rasse",
+  "sex": "Geschlecht",
+  "neutered": "Kastriert / sterilisiert",
+  "dob": "Geburtsdatum",
+  "colour": "Farbe / Kennzeichen",
+  "weight": "Gewicht (kg)",
+  "microchip": "Mikrochip-Nummer",
+  "microchipDate": "Chip implantiert am",
+  "microchipRegistry": "Registriert bei",
+  "passportNo": "Ausweis- / ID-Nummer",
+  "phChip": "15 Ziffern",
+  "phRegistry": "z. B. TASSO, FINDEFIX",
+  "phPassport": "Nummer des EU-Heimtierausweises",
+  "phInsurance": "Versicherung und Policennummer",
+  "phNotes": "Fütterung, Verhalten, Hinweise für Tiersitter oder einen neuen Tierarzt…",
+  "ownerVet": "Halter und Tierarzt",
+  "ownerName": "Name des Halters",
+  "ownerPhone": "Telefon des Halters",
+  "ownerEmail": "E-Mail des Halters",
+  "ownerAddress": "Adresse",
+  "vetClinic": "Tierarztpraxis",
+  "vetPhone": "Telefon der Praxis",
+  "emergencyClinic": "Notfallklinik (außerhalb der Sprechzeiten)",
+  "emergencyPhone": "Notfallnummer",
+  "insurance": "Versicherung",
+  "vaccinations": "Impfungen",
+  "upcoming": "Demnächst fällig","upcomingHint": "Fälligkeiten aus den Tabellen Impfungen und Parasitenschutz. In den Kalender übernehmen, damit nichts durchrutscht.","overdue": "überfällig","dueIn": "in {n} Tagen","dueToday": "heute","addCalendar": "In den Kalender (.ics)","noUpcoming": "Nichts fällig. Tragen Sie ein \"gültig bis\" oder \"nächste Gabe\" ein, um hier Erinnerungen zu sehen.",
+  "vaccHint": "Aus dem offiziellen Ausweis oder der Praxisrechnung übertragen. Das Datum „gültig bis“ wird an Grenzen und in Tierpensionen verlangt.",
+  "thVaccine": "Impfstoff",
+  "thDateGiven": "Datum",
+  "thValidUntil": "Gültig bis",
+  "thClinicVet": "Praxis / Tierarzt",
+  "thBatch": "Charge",
+  "addVacc": "+ Impfung hinzufügen",
+  "treatments": "Parasitenbehandlungen",
+  "treatHint": "Entwurmung, Floh- und Zeckenmittel. Für die Einreise in manche Länder ist eine Bandwurmbehandlung vorgeschrieben.",
+  "thProduct": "Präparat",
+  "thDate": "Datum",
+  "thNextDue": "Nächste fällig",
+  "thGivenBy": "Gegeben von",
+  "addTreat": "+ Behandlung hinzufügen",
+  "medications": "Aktuelle Medikamente",
+  "medHint": "Genau so, wie es die Tierärztin oder der Tierarzt aufgeschrieben hat. Ändern Sie nie eine Dosis ohne Rücksprache.",
+  "thMedication": "Medikament",
+  "thDose": "Dosis und wie oft",
+  "thStarted": "Seit",
+  "thPrescribedBy": "Verordnet von",
+  "addMed": "+ Medikament hinzufügen",
+  "conditions": "Allergien, Erkrankungen und Operationen",
+  "condHint": "Alles, was ein neuer Tierarzt in der ersten Minute wissen sollte: Allergien, chronische Erkrankungen, frühere Operationen, Reaktionen auf Medikamente oder Narkosen.",
+  "thType": "Art",
+  "thDescription": "Beschreibung",
+  "thSince": "Seit / Datum",
+  "addCond": "+ Eintrag hinzufügen",
+  "visits": "Tierarztbesuche",
+  "weights": "Gewichtsverlauf",
+  "diary": "Symptomtagebuch","diaryHint": "Eine Zeile mit Datum, wann immer etwas nicht stimmt: was Sie gesehen haben, wie oft, was sich geändert hat. Die Übersicht für den Praxisbesuch übernimmt die letzten Einträge automatisch.","addDiary": "Eintrag hinzufügen","weightHint": "Immer zur gleichen Tageszeit auf derselben Waage wiegen. Ein stetiger Drift von ein paar hundert Gramm ist das früheste Zeichen, auf das Praxen achten. Körperkondition: 1 = sehr dünn, 5 = ideal, 9 = adipös.","addWeight": "Wiegung hinzufügen",
+  "visitHint": "Eine kurze Zeile pro Besuch hält die Geschichte lesbar: Grund, Befund, was gemacht wurde.",
+  "thReason": "Grund",
+  "thOutcome": "Ergebnis / Notizen",
+  "thClinic": "Praxis",
+  "addVisit": "+ Besuch hinzufügen",
+  "notes": "Notizen",
+  "faqTitle": "Fragen",
+  "faq1q": "Wo liegen die Daten?",
+  "faq1a": "Im Speicher des Browsers auf diesem Gerät. Wenn Sie die Browserdaten löschen, ein privates Fenster nutzen oder das Telefon wechseln, sind sie weg, es sei denn, Sie haben eine Sicherungsdatei. Drücken Sie nach jeder wichtigen Änderung <em>Sichern</em> und bewahren Sie die Datei in Ihrer E-Mail oder Cloud auf. <em>Wiederherstellen</em> lädt sie auf jedem Gerät.",
+  "faq2q": "Ist das der offizielle Heimtierausweis?",
+  "faq2a": "Nein. Der offizielle EU-Heimtierausweis ist ein Papierdokument, das eine berechtigte Tierärztin oder ein Tierarzt ausstellt, und das brauchen Sie an Grenzen. Dies ist Ihre eigene geordnete Kopie, damit Sie nie wieder ein Impfdatum oder eine Chipnummer suchen müssen.",
+  "faq3q": "Wird es Konten und das Teilen mit dem Tierarzt geben?",
+  "faq3a": "Das ist der Plan: ein Halterkonto, ein sicherer Link für Tierarzt oder Tiersitter und Erinnerungen, wenn eine Impfung abläuft. Wir bauen das nur mit angemessenem Datenschutz, deshalb bleibt in dieser ersten Version alles auf Ihrem Gerät."
+ }
+} as const;
+const JS = {
+ "en": {
+  "saved": "Saved on this device",
+  "savedAcct": "Saved on this device and in your account",
+  "saveFail": "Could not save: browser storage is full or blocked. Back up to a file.",
+  "removeRow": "Remove row",
+  "confirmDelete": "Delete the passport for {name} from this device? Make a backup first if you want to keep it.",
+  "thisAnimal": "this animal",
+  "unnamed": "Unnamed",
+  "newCreated": "New passport created",
+  "deleted": "Deleted",
+  "rowRemoved": "Row removed",
+  "photoAdded": "Photo added",
+  "photoRemoved": "Photo removed",
+  "backupDone": "Backup file downloaded. Keep it somewhere safe.",
+  "confirmRestore": "Restore {n} animal(s) from the file? Animals with the same ID will be replaced; others are added.",
+  "restored": "Restored from backup",
+  "notBackup": "That file is not an AI Veterinary passport backup.",
+  "linkFail": "Could not send the link: ",
+  "linkSent": "Check your email and open the link to log in.",
+  "confirmWipe": "Also remove the passports from this device? Choose OK to remove, Cancel to keep a local copy.",
+  "signedOut": "Signed out.",
+  "confirmAcctDelete": "Delete your account and every passport stored in it? This cannot be undone. Export first if you want to keep a copy.",
+  "deleteFail": "Could not delete: ",
+  "acctDeleted": "Account deleted. Local copy kept on this device.",
+  "loadFail": "Could not load your account: ",
+  "confirmUpload": "Upload the {n} passport(s) on this device to your account?",
+  "loaded": "Loaded from your account.",
+  "saving": "saving…",
+  "notSaved": "not saved: ",
+  "synced": "synced",
+  "condTypes": [
+   "Allergy",
+   "Condition",
+   "Surgery",
+   "Drug reaction",
+   "Other"
+  ],
+  "cols": {
+   "Observation": "Observation",
+   "Weight (kg)": "Weight (kg)",
+   "Body condition (1–9)": "Body condition (1–9)",
+   "Note": "Note",
+   "Vaccine": "Vaccine",
+   "Date given": "Date given",
+   "Valid until": "Valid until",
+   "Clinic / vet": "Clinic / vet",
+   "Batch": "Batch",
+   "Product": "Product",
+   "Date": "Date",
+   "Next due": "Next due",
+   "Given by": "Given by",
+   "Medication": "Medication",
+   "Dose & how often": "Dose & how often",
+   "Started": "Started",
+   "Prescribed by": "Prescribed by",
+   "Type": "Type",
+   "Description": "Description",
+   "Since / date": "Since / date",
+   "Reason": "Reason",
+   "Outcome / notes": "Outcome / notes",
+   "Clinic": "Clinic"
+  }
+ },
+ "it": {
+  "saved": "Salvato su questo dispositivo",
+  "savedAcct": "Salvato su questo dispositivo e nel tuo account",
+  "saveFail": "Impossibile salvare: la memoria del browser è piena o bloccata. Fai una copia su file.",
+  "removeRow": "Rimuovi riga",
+  "confirmDelete": "Eliminare il passaporto di {name} da questo dispositivo? Fai prima una copia se vuoi conservarlo.",
+  "thisAnimal": "questo animale",
+  "unnamed": "Senza nome",
+  "newCreated": "Nuovo passaporto creato",
+  "deleted": "Eliminato",
+  "rowRemoved": "Riga rimossa",
+  "photoAdded": "Foto aggiunta",
+  "photoRemoved": "Foto rimossa",
+  "backupDone": "File di copia scaricato. Conservalo in un posto sicuro.",
+  "confirmRestore": "Ripristinare {n} animale/i dal file? Gli animali con lo stesso ID saranno sostituiti; gli altri aggiunti.",
+  "restored": "Ripristinato dalla copia",
+  "notBackup": "Questo file non è una copia di un passaporto AI Veterinary.",
+  "linkFail": "Impossibile inviare il link: ",
+  "linkSent": "Controlla la tua email e apri il link per accedere.",
+  "confirmWipe": "Rimuovere anche i passaporti da questo dispositivo? OK per rimuovere, Annulla per tenere una copia locale.",
+  "signedOut": "Disconnesso.",
+  "confirmAcctDelete": "Eliminare il tuo account e tutti i passaporti salvati? Non si può annullare. Esporta prima se vuoi tenere una copia.",
+  "deleteFail": "Impossibile eliminare: ",
+  "acctDeleted": "Account eliminato. Copia locale conservata su questo dispositivo.",
+  "loadFail": "Impossibile caricare il tuo account: ",
+  "confirmUpload": "Caricare nel tuo account i {n} passaporti presenti su questo dispositivo?",
+  "loaded": "Caricato dal tuo account.",
+  "saving": "salvataggio…",
+  "notSaved": "non salvato: ",
+  "synced": "sincronizzato",
+  "condTypes": [
+   "Allergia",
+   "Patologia",
+   "Intervento",
+   "Reazione a farmaco",
+   "Altro"
+  ],
+  "cols": {
+   "Observation": "Osservazione",
+   "Weight (kg)": "Peso (kg)",
+   "Body condition (1–9)": "Condizione corporea (1–9)",
+   "Note": "Nota",
+   "Vaccine": "Vaccino",
+   "Date given": "Data",
+   "Valid until": "Valido fino al",
+   "Clinic / vet": "Clinica / veterinario",
+   "Batch": "Lotto",
+   "Product": "Prodotto",
+   "Date": "Data",
+   "Next due": "Prossima scadenza",
+   "Given by": "Somministrato da",
+   "Medication": "Farmaco",
+   "Dose & how often": "Dose e frequenza",
+   "Started": "Dal",
+   "Prescribed by": "Prescritto da",
+   "Type": "Tipo",
+   "Description": "Descrizione",
+   "Since / date": "Dal / data",
+   "Reason": "Motivo",
+   "Outcome / notes": "Esito / note",
+   "Clinic": "Clinica"
+  }
+ },
+ "de": {
+  "saved": "Auf diesem Gerät gespeichert",
+  "savedAcct": "Auf diesem Gerät und in Ihrem Konto gespeichert",
+  "saveFail": "Speichern nicht möglich: Browserspeicher voll oder blockiert. Sichern Sie als Datei.",
+  "removeRow": "Zeile entfernen",
+  "confirmDelete": "Den Ausweis von {name} von diesem Gerät löschen? Sichern Sie ihn vorher, wenn Sie ihn behalten möchten.",
+  "thisAnimal": "diesem Tier",
+  "unnamed": "Ohne Namen",
+  "newCreated": "Neuer Ausweis angelegt",
+  "deleted": "Gelöscht",
+  "rowRemoved": "Zeile entfernt",
+  "photoAdded": "Foto hinzugefügt",
+  "photoRemoved": "Foto entfernt",
+  "backupDone": "Sicherungsdatei heruntergeladen. Bewahren Sie sie sicher auf.",
+  "confirmRestore": "{n} Tier(e) aus der Datei wiederherstellen? Tiere mit derselben ID werden ersetzt, andere hinzugefügt.",
+  "restored": "Aus Sicherung wiederhergestellt",
+  "notBackup": "Diese Datei ist keine Sicherung eines AI-Veterinary-Ausweises.",
+  "linkFail": "Link konnte nicht gesendet werden: ",
+  "linkSent": "Prüfen Sie Ihre E-Mail und öffnen Sie den Link, um sich anzumelden.",
+  "confirmWipe": "Die Ausweise auch von diesem Gerät entfernen? OK zum Entfernen, Abbrechen, um eine lokale Kopie zu behalten.",
+  "signedOut": "Abgemeldet.",
+  "confirmAcctDelete": "Ihr Konto und alle darin gespeicherten Ausweise löschen? Das lässt sich nicht rückgängig machen. Exportieren Sie vorher, wenn Sie eine Kopie behalten möchten.",
+  "deleteFail": "Löschen nicht möglich: ",
+  "acctDeleted": "Konto gelöscht. Lokale Kopie bleibt auf diesem Gerät.",
+  "loadFail": "Konto konnte nicht geladen werden: ",
+  "confirmUpload": "Die {n} Ausweise auf diesem Gerät in Ihr Konto hochladen?",
+  "loaded": "Aus Ihrem Konto geladen.",
+  "saving": "speichert…",
+  "notSaved": "nicht gespeichert: ",
+  "synced": "synchronisiert",
+  "condTypes": [
+   "Allergie",
+   "Erkrankung",
+   "Operation",
+   "Arzneimittelreaktion",
+   "Sonstiges"
+  ],
+  "cols": {
+   "Observation": "Beobachtung",
+   "Weight (kg)": "Gewicht (kg)",
+   "Body condition (1–9)": "Körperkondition (1–9)",
+   "Note": "Notiz",
+   "Vaccine": "Impfstoff",
+   "Date given": "Datum",
+   "Valid until": "Gültig bis",
+   "Clinic / vet": "Praxis / Tierarzt",
+   "Batch": "Charge",
+   "Product": "Präparat",
+   "Date": "Datum",
+   "Next due": "Nächste fällig",
+   "Given by": "Gegeben von",
+   "Medication": "Medikament",
+   "Dose & how often": "Dosis und wie oft",
+   "Started": "Seit",
+   "Prescribed by": "Verordnet von",
+   "Type": "Art",
+   "Description": "Beschreibung",
+   "Since / date": "Seit / Datum",
+   "Reason": "Grund",
+   "Outcome / notes": "Ergebnis / Notizen",
+   "Clinic": "Praxis"
+  }
+ }
+} as const;
+const OPT = {"en": {"Dog": "Dog", "Cat": "Cat", "Ferret": "Ferret", "Rabbit": "Rabbit", "Guinea pig": "Guinea pig", "Hamster": "Hamster", "Horse": "Horse", "Bird": "Bird", "Reptile": "Reptile", "Other": "Other", "Female": "Female", "Male": "Male", "Yes": "Yes", "No": "No"}, "it": {"Dog": "Cane", "Cat": "Gatto", "Ferret": "Furetto", "Rabbit": "Coniglio", "Guinea pig": "Porcellino d'India", "Hamster": "Criceto", "Horse": "Cavallo", "Bird": "Uccello", "Reptile": "Rettile", "Other": "Altro", "Female": "Femmina", "Male": "Maschio", "Yes": "Sì", "No": "No"}, "de": {"Dog": "Hund", "Cat": "Katze", "Ferret": "Frettchen", "Rabbit": "Kaninchen", "Guinea pig": "Meerschweinchen", "Hamster": "Hamster", "Horse": "Pferd", "Bird": "Vogel", "Reptile": "Reptil", "Other": "Sonstiges", "Female": "Weiblich", "Male": "Männlich", "Yes": "Ja", "No": "Nein"}} as const;
+const speciesOpts = ['Dog','Cat','Ferret','Rabbit','Guinea pig','Hamster','Horse','Bird','Reptile','Other'] as const;
+const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
+---
+  <section class="wrap hero hero-split" id="pp-intro">
+    <div>
+    <p class="eyebrow">{t.eyebrow}</p>
+    <h1>{t.h1}</h1>
+    <p class="lead">{t.lead}</p>
+    <ul class="ticks ticks-plain">{t.privTicks.map((x: string) => <li>{x}</li>)}</ul>
+    </div>
+    <div class="hero-side"><BookletArt /></div>
+  </section>
+
+  <section class="wrap" id="pp-account" hidden>
+    <div class="card pp-acct">
+      <div id="pp-acct-out">
+        <div>
+          <strong>{t.acctTitle}</strong>
+          <p class="pp-hint" style="margin:4px 0 0">Optional. Log in with a link sent to your email and your passports follow you to every device. <a href="/privacy">{t.acctPrivacy}</a> · <a href="/terms">{t.acctTerms}</a></p>
+        </div>
+        <form id="pp-login" class="form-row">
+          <label class="sr" for="pp-login-email">{t.acctEmail}</label>
+          <input id="pp-login-email" type="email" placeholder={t.phEmail} required autocomplete="email" />
+          <button class="btn" type="submit">{t.acctSend}</button>
+        </form>
+      </div>
+      <div id="pp-acct-in" hidden>
+        <div><strong>{t.acctIn}</strong> {t.as} <span id="pp-acct-email"></span> · <span id="pp-sync-state">{t.synced}</span></div>
+        <div class="pp-acct-actions">
+          <button class="btn secondary" id="pp-acct-export" type="button">{t.acctExport}</button>
+          <button class="btn secondary" id="pp-acct-logout" type="button">{t.acctLogout}</button>
+          <button class="btn secondary pp-danger" id="pp-acct-delete" type="button">{t.acctDelete}</button>
+        </div>
+      </div>
+      <p class="pp-status" id="pp-acct-status" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="wrap" id="pp-app">
+    <div class="pp-toolbar">
+      <label class="sr" for="pp-select">{t.selAria}</label>
+      <select id="pp-select" aria-label={t.selChoose}></select>
+      <button class="btn secondary" id="pp-new" type="button">{t.newAnimal}</button>
+      <span class="pp-spacer"></span>
+      <button class="btn secondary" id="pp-export" type="button">{t.backup}</button>
+      <label class="btn secondary" for="pp-import">{t.restore}<input id="pp-import" type="file" accept="application/json,.json" class="sr" /></label>
+      <button class="btn secondary" id="pp-print" type="button">{t.print}</button>
+      <details class="pp-more">
+        <summary class="btn secondary">{({ en: 'More', it: 'Altro', de: 'Mehr' } as any)[lang]}</summary>
+        <div class="pp-more-menu">
+      <button class="btn secondary" id="pp-card" type="button" hidden>{t.card}</button>
+      <button class="btn secondary" id="pp-poster" type="button" hidden>{t.poster}</button>
+      <button class="btn secondary" id="pp-claim" type="button" hidden>{t.claim}</button>
+      <label class="pp-print-lang" hidden><span class="sr">{t.printLang}</span><select id="pp-print-lang" aria-label={t.printLang}><option value="">{t.printLang}: {t.printLangNone}</option>{(['en', 'it', 'de'] as const).filter((l) => l !== lang).map((l) => <option value={l}>{t.printLang}: {({ en: 'English', it: 'Italiano', de: 'Deutsch' })[l]}</option>)}</select></label>
+      <button class="btn secondary pp-danger" id="pp-delete" type="button">{t.delete}</button>
+        </div>
+      </details>
+    </div>
+
+    <div id="pp-loading" hidden style="margin:12px 0"><YarnCat label={({ en: 'Restoring…', it: 'Ripristino in corso…', de: 'Wird wiederhergestellt…' } as any)[lang]} /></div>
+    <div id="pp-empty" class="pp-empty" hidden>
+      <h2>{t.emptyTitle}</h2>
+      <p>{t.emptyText}</p>
+      <p class="pp-empty-actions"><button class="btn lg" id="pp-empty-new" type="button">{t.emptyBtn}</button> <label class="pp-empty-restore" for="pp-import">{t.restore}</label></p>
+    </div>
+
+    <div id="pp-form" hidden>
+      <div class="pp-grid">
+        <section class="card">
+          <h2>{t.identity}</h2>
+          <div class="pp-photo-row">
+            <img id="pp-photo" alt="" hidden />
+            <div>
+              <label class="btn secondary" for="pp-photo-input">{t.addPhoto}<input id="pp-photo-input" type="file" accept="image/*" class="sr" /></label>
+              <button class="btn secondary" id="pp-photo-remove" type="button" hidden>{t.removePhoto}</button>
+            </div>
+          </div>
+          <div class="pp-fields">
+            <label>{t.name}<input data-f="name" required /></label>
+            <label>{t.species}<select data-f="species"><option value="">—</option>{speciesOpts.map((o) => <option value={o}>{opt[o]}</option>)}</select></label>
+            <label>{t.breed}<input data-f="breed" /></label>
+            <label>{t.sex}<select data-f="sex"><option value="">—</option><option value="Female">{opt.Female}</option><option value="Male">{opt.Male}</option></select></label>
+            <label>{t.neutered}<select data-f="neutered"><option value="">—</option><option value="Yes">{opt.Yes}</option><option value="No">{opt.No}</option></select></label>
+            <label>{t.dob}<input data-f="dob" type="date" /></label>
+            <label>{t.colour}<input data-f="colour" /></label>
+            <label>{t.weight}<input data-f="weight" type="number" step="0.1" min="0" /></label>
+            <label>{t.microchip}<input data-f="microchip" inputmode="numeric" placeholder={t.phChip} /><span class="pp-hint pp-chip-hint" hidden>{({ en: "A microchip number has 15 digits (ISO 11784/11785). Check the number on the implant certificate or the registry.", it: "Il numero del microchip ha 15 cifre (ISO 11784/11785). Controlla il numero sul certificato di impianto o nell'anagrafe.", de: "Eine Chipnummer hat 15 Ziffern (ISO 11784/11785). Prüfen Sie die Nummer auf dem Implantationsnachweis oder im Register." } as any)[lang]}</span></label>
+            <label>{t.microchipDate}<input data-f="microchipDate" type="date" /></label>
+            <label>{t.microchipRegistry}<input data-f="microchipRegistry" placeholder={t.phRegistry} /></label>
+            <label>{t.passportNo}<input data-f="passportNo" placeholder={t.phPassport} /></label>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>{t.ownerVet}</h2>
+          <div class="pp-fields">
+            <label>{t.ownerName}<input data-f="ownerName" /></label>
+            <label>{t.ownerPhone}<input data-f="ownerPhone" type="tel" /></label>
+            <label>{t.ownerEmail}<input data-f="ownerEmail" type="email" /></label>
+            <label>{t.ownerAddress}<input data-f="ownerAddress" /></label>
+            <label>{t.vetClinic}<input data-f="vetClinic" /></label>
+            <label>{t.vetPhone}<input data-f="vetPhone" type="tel" /></label>
+            <label>{t.emergencyClinic}<input data-f="emergencyClinic" /></label>
+            <label>{t.emergencyPhone}<input data-f="emergencyPhone" type="tel" /></label>
+            <label>{t.insurance}<input data-f="insurance" placeholder={t.phInsurance} /></label>
+          </div>
+        </section>
+      </div>
+
+      <section class="card" id="pp-upcoming">
+        <h2>{t.upcoming}</h2>
+        <p class="pp-hint">{t.upcomingHint}</p>
+        <ul id="pp-upcoming-list" class="pp-upcoming"></ul>
+        <button class="btn secondary" type="button" id="pp-ics" hidden>{t.addCalendar}</button>
+      </section>
+
+      <section class="card pp-list" data-list="vaccinations">
+        <h2>{t.vaccinations}</h2>
+        <p class="pp-hint">{t.vaccHint}</p>
+        <table><thead><tr><th>{t.thVaccine}</th><th>{t.thDateGiven}</th><th>{t.thValidUntil}</th><th>{t.thClinicVet}</th><th>{t.thBatch}</th><th></th></tr></thead><tbody></tbody></table>
+        <button class="btn secondary pp-add" type="button">{t.addVacc}</button>
+      </section>
+
+      <section class="card pp-list" data-list="treatments">
+        <h2>{t.treatments}</h2>
+        <p class="pp-hint">{t.treatHint}</p>
+        <table><thead><tr><th>{t.thProduct}</th><th>{t.thDate}</th><th>{t.thNextDue}</th><th>{t.thGivenBy}</th><th></th></tr></thead><tbody></tbody></table>
+        <button class="btn secondary pp-add" type="button">{t.addTreat}</button>
+      </section>
+
+      <section class="card pp-list" data-list="medications">
+        <h2>{t.medications}</h2>
+        <p class="pp-hint">{t.medHint}</p>
+        <table><thead><tr><th>{t.thMedication}</th><th>{t.thDose}</th><th>{t.thStarted}</th><th>{t.thPrescribedBy}</th><th></th></tr></thead><tbody></tbody></table>
+        <button class="btn secondary pp-add" type="button">{t.addMed}</button>
+      </section>
+
+      <section class="card pp-list" data-list="conditions">
+        <h2>{t.conditions}</h2>
+        <p class="pp-hint">{t.condHint}</p>
+        <table><thead><tr><th>{t.thType}</th><th>{t.thDescription}</th><th>{t.thSince}</th><th></th></tr></thead><tbody></tbody></table>
+        <button class="btn secondary pp-add" type="button">{t.addCond}</button>
+      </section>
+
+      <section class="card pp-list" data-list="visits">
+        <h2>{t.visits}</h2>
+        <p class="pp-hint">{t.visitHint}</p>
+        <table><thead><tr><th>{t.thDate}</th><th>{t.thReason}</th><th>{t.thOutcome}</th><th>{t.thClinic}</th><th></th></tr></thead><tbody></tbody></table>
+        <button class="btn secondary pp-add" type="button">{t.addVisit}</button>
+      </section>
+
+      <section class="card pp-list" data-list="diary">
+        <h2>{t.diary}</h2>
+        <p class="pp-hint">{t.diaryHint}</p>
+        <table><thead><tr><th>{t.thDate}</th><th>{(j as any).cols?.["Observation"]}</th><th></th></tr></thead><tbody></tbody></table>
+        <button class="btn secondary pp-add" type="button">{t.addDiary}</button>
+      </section>
+
+      <section class="card pp-list" data-list="weights">
+        <h2>{t.weights}</h2>
+        <p class="pp-hint">{t.weightHint}</p>
+        <svg id="pp-weight-chart" class="pp-chart" viewBox="0 0 600 180" role="img" aria-label={t.weights} hidden></svg>
+        <table><thead><tr><th>{t.thDate}</th><th>{t.cols ? '' : ''}{(j as any).cols?.["Weight (kg)"]}</th><th>{(j as any).cols?.["Body condition (1–9)"]}</th><th>{(j as any).cols?.["Note"]}</th><th></th></tr></thead><tbody></tbody></table>
+        <button class="btn secondary pp-add" type="button">{t.addWeight}</button>
+      </section>
+
+      <section class="card">
+        <h2>{t.notes}</h2>
+        <textarea data-f="notes" rows="4" placeholder={t.phNotes}></textarea>
+      </section>
+
+      <p class="pp-status" id="pp-status" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section id="pp-claim-view" class="wrap narrow" hidden aria-hidden="true">
+    <div class="pp-claim">
+      <h1>{t.claimTitle}</h1>
+      <p>{t.claimIntro}</p>
+      <p><b data-q="name"></b> <span data-q="animal"></span></p>
+      <p><b>{t.microchip}:</b> <span data-q="microchip"></span> · <b>{t.ownerName}:</b> <span data-q="owner"></span></p>
+      <p><b>{t.claimPolicy}:</b> <span data-q="insurance"></span></p>
+      <h2>{t.claimVisits}</h2>
+      <table><thead><tr><th>{t.thDate}</th><th>{t.thReason}</th><th>{t.thOutcome}</th><th>{t.thClinic}</th></tr></thead><tbody data-q="visits"></tbody></table>
+      <h2>{t.claimMeds}</h2>
+      <ul data-q="meds"></ul>
+      <h2>{t.claimCond}</h2>
+      <ul data-q="conds"></ul>
+      <p>{t.claimFill}</p>
+      <p>{t.claimSign}: ______________________</p>
+    </div>
+  </section>
+
+  <section id="pp-poster-view" class="wrap" hidden aria-hidden="true">
+    <div class="pp-poster">
+      <div class="pp-poster-lost">{t.posterLost}</div>
+      <img class="pp-poster-photo" data-p="photo" alt="" hidden />
+      <div class="pp-poster-name" data-p="name"></div>
+      <div class="pp-poster-desc" data-p="desc"></div>
+      <div class="pp-poster-seen"><b>{t.posterSeen}:</b> <span data-p="seen"></span></div>
+      <div class="pp-poster-chip" data-p="chip" hidden>{t.posterChip}</div>
+      <div class="pp-poster-call">{t.posterReward}</div>
+      <div class="pp-poster-phone" data-p="phone"></div>
+    </div>
+  </section>
+
+  <section id="pp-card-view" class="wrap" hidden aria-hidden="true">
+    {[0, 1].map(() => (
+      <div class="pp-card">
+        <div class="pp-card-h"><span class="pp-card-name" data-c="name"></span><span class="pp-card-sub" data-c="animal"></span></div>
+        <div class="pp-card-row"><b>{t.microchip}</b> <span data-c="microchip"></span></div>
+        <div class="pp-card-row"><b>{t.conditions}</b> <span data-c="conditions"></span></div>
+        <div class="pp-card-row"><b>{t.medications}</b> <span data-c="medications"></span></div>
+        <div class="pp-card-row"><b>{t.ownerPhone}</b> <span data-c="owner"></span></div>
+        <div class="pp-card-row"><b>{t.vetClinic}</b> <span data-c="vet"></span></div>
+        <div class="pp-card-row"><b>{t.emergencyClinic}</b> <span data-c="emergency"></span></div>
+        <div class="pp-card-foot">{t.cardTitle} · {t.cardFoot}</div>
+      </div>
+    ))}
+  </section>
+
+  <section class="wrap narrow" id="pp-faq" style="margin-top:48px">
+    <h2>{t.faqTitle}</h2>
+    <h3>{t.faq1q}</h3>
+    <p set:html={t.faq1a} />
+    <h3>{t.faq2q}</h3>
+    <p set:html={t.faq2a} />
+    <h3>{t.faq3q}</h3>
+    <p set:html={t.faq3a} />
+  </section>
+
+  <style is:global>
+    .pp-toolbar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 20px; }
+    .pp-toolbar select { padding: 10px 12px; font: inherit; border: 1.5px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); min-width: 180px; }
+    .pp-spacer { flex: 1; }
+    .pp-danger { color: var(--danger); border-color: var(--danger); }
+    .pp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+    @media (max-width: 760px) { .pp-grid { grid-template-columns: 1fr; } }
+    .pp-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 16px; }
+    @media (max-width: 520px) { .pp-fields { grid-template-columns: 1fr; } }
+    .pp-fields label, .pp-list td label { display: block; font-size: .85rem; color: var(--ink-2); font-weight: 600; }
+    .pp-fields input, .pp-fields select, .pp-list input, .pp-list select, textarea { width: 100%; margin-top: 4px; padding: 8px 10px; font: inherit; border: 1.5px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); }
+    textarea { width: 100%; }
+    .pp-photo-row { display: flex; gap: 16px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
+    .pp-photo-row img { width: 96px; height: 96px; object-fit: cover; border-radius: 50%; border: 1px solid var(--line); }
+    .pp-list { margin-bottom: 20px; }
+    .pp-list table { width: 100%; border-collapse: collapse; margin: 8px 0 12px; }
+    .pp-list th { text-align: left; font-size: .8rem; color: var(--ink-3); text-transform: uppercase; letter-spacing: .05em; padding: 6px 6px 6px 0; }
+    .pp-list td { padding: 4px 6px 4px 0; vertical-align: top; }
+    .pp-list td:last-child { width: 36px; }
+    .pp-list .pp-rm { background: none; border: 0; color: var(--ink-3); cursor: pointer; font-size: 1.1rem; padding: 8px 4px; }
+    .pp-list .pp-rm:hover { color: var(--danger); }
+    .pp-hint { color: var(--ink-3); font-size: .9rem; margin: -4px 0 8px; }
+    .pp-status { color: var(--ink-3); font-size: .9rem; min-height: 1.4em; }
+    .pp-acct { margin-bottom: 20px; }
+    #pp-acct-out { display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap; }
+    #pp-acct-out > div:first-child { flex: 1 1 280px; }
+    #pp-login { flex: 1 1 320px; }
+    .pp-acct-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+    @media (max-width: 720px) {
+      .pp-list table, .pp-list thead, .pp-list tbody, .pp-list tr, .pp-list td { display: block; }
+      .pp-list thead { display: none; }
+      .pp-list tr { border: 1px solid var(--line); border-radius: 8px; padding: 10px; margin-bottom: 10px; position: relative; }
+      .pp-list td { padding: 4px 0; }
+      .pp-list td:last-child { position: absolute; top: 4px; right: 4px; width: auto; }
+      .pp-list td::before { content: attr(data-label); display: block; font-size: .78rem; color: var(--ink-3); font-weight: 600; }
+    }
+    /* print */
+    @media print {
+      .site-header, .site-footer, .pp-toolbar, #pp-account, .pp-add, .pp-rm, #pp-faq, .pp-hint, .notice, label[for="pp-photo-input"], #pp-photo-remove, .pp-status { display: none !important; }
+      .pp-list th:last-child, .pp-list td:last-child { display: none; }
+      body { font-size: 11pt; background: #fff; color: #000; }
+      .card { border: 1px solid #999; break-inside: avoid; padding: 12px; }
+      .pp-grid { grid-template-columns: 1fr 1fr; }
+      input, select, textarea { border: 0 !important; border-bottom: 1px solid #bbb !important; border-radius: 0 !important; padding: 2px 0 !important; background: #fff !important; color: #000 !important; -webkit-appearance: none; appearance: none; }
+      .hero { padding: 0 0 12px; }
+      .hero h1::after { content: " — " attr(data-animal); font-weight: 500; }
+    }
+    /* emergency card: credit-card size, two copies, only printed when requested */
+    #pp-card-view { display: none; }
+    .pp-card { width: 85.6mm; min-height: 54mm; border: 1px solid #999; border-radius: 3mm; padding: 4mm 5mm; box-sizing: border-box; font-size: 8pt; line-height: 1.3; color: #000; background: #fff; margin: 0 0 6mm; display: flex; flex-direction: column; gap: 1mm; break-inside: avoid; }
+    .pp-card-h { display: flex; align-items: baseline; gap: 6px; border-bottom: 1px solid #999; padding-bottom: 1.5mm; margin-bottom: 1mm; }
+    .pp-card-name { font-family: var(--font-display); font-size: 13pt; font-weight: 600; }
+    .pp-card-sub { color: #444; }
+    .pp-card-row { display: block; } .pp-card-row b { font-weight: 600; color: #333; }
+    .pp-card-row span { overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+    .pp-card-foot { margin-top: auto; font-size: 6.5pt; color: #666; }
+    .pp-l2 { color: var(--ink-3); font-weight: 400; }
+    .pp-print-lang select { padding: 9px 12px; font: inherit; border: 1.5px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); }
+    @media print { .pp-l2 { color: #333; } .pp-print-lang { display: none !important; } }
+    #pp-claim-view { display: none; }
+    .pp-claim { color: #000; background: #fff; padding: 10mm; font-size: 11pt; }
+    .pp-claim h1 { font-size: 18pt; } .pp-claim h2 { font-size: 13pt; margin-top: 14pt; }
+    .pp-claim table { border-collapse: collapse; width: 100%; } .pp-claim th, .pp-claim td { border: 1px solid #999; padding: 4px 6px; text-align: left; }
+    @media print {
+      body.pp-print-claim main > *:not(#pp-claim-view), body.pp-print-claim .site-header, body.pp-print-claim .site-footer { display: none !important; }
+      body.pp-print-claim #pp-claim-view { display: block !important; }
+      body.pp-print-claim .hero h1::after { content: none; }
+    }
+    #pp-poster-view { display: none; }
+    .pp-poster { width: 190mm; min-height: 270mm; margin: 0 auto; padding: 12mm; box-sizing: border-box; border: 2mm solid #000; text-align: center; color: #000; background: #fff; display: flex; flex-direction: column; align-items: center; gap: 6mm; }
+    .pp-poster-lost { font-family: var(--font-display); font-size: 64pt; font-weight: 700; letter-spacing: .04em; line-height: 1; }
+    .pp-poster-photo[hidden] { display: none; }
+    .pp-poster-photo { max-width: 150mm; max-height: 110mm; object-fit: contain; border: 1px solid #999; }
+    .pp-poster-name { font-family: var(--font-display); font-size: 34pt; font-weight: 600; }
+    .pp-poster-desc { font-size: 16pt; }
+    .pp-poster-seen { font-size: 15pt; }
+    .pp-poster-chip { font-size: 13pt; color: #333; }
+    .pp-poster-call { margin-top: auto; font-size: 16pt; }
+    .pp-poster-phone { font-family: var(--font-display); font-size: 36pt; font-weight: 700; }
+    @media print {
+      body.pp-print-poster main > *:not(#pp-poster-view), body.pp-print-poster .site-header, body.pp-print-poster .site-footer { display: none !important; }
+      body.pp-print-poster #pp-poster-view { display: block !important; }
+      body.pp-print-poster .hero h1::after { content: none; }
+    }
+    @media print {
+      body.pp-print-card main > *:not(#pp-card-view), body.pp-print-card .site-header, body.pp-print-card .site-footer { display: none !important; }
+      body.pp-print-card #pp-card-view { display: block !important; padding-top: 10mm; }
+      body.pp-print-card .hero h1::after { content: none; }
+    }
+  </style>
+
+  <script type="application/json" id="pp-l2" set:html={JSON.stringify(Object.fromEntries((["en", "it", "de"] as const).map((l) => [l, { ...Object.fromEntries(Object.entries(T[l]).filter(([, v]) => typeof v === "string")), cols: (JS[l] as any).cols }])))} />
+  <script type="application/json" id="pp-i18n" set:html={JSON.stringify({ ...j, posterWhere: t.posterWhere, locale: ({ en: 'en-GB', it: 'it-IT', de: 'de-DE' } as any)[lang], upcoming: { overdue: t.overdue, dueIn: t.dueIn, dueToday: t.dueToday, none: t.noUpcoming, vacc: t.vaccinations, treat: t.treatments } })} />
+
+  <script>
+    // Digital pet passport. Local-first: all data lives in localStorage under one key.
+    // Shape: { version: 1, animals: [ { id, name, ..., vaccinations: [], treatments: [], medications: [], conditions: [], visits: [], notes, photo } ], current }
+    type Row = Record<string, string>;
+    type Animal = Record<string, any> & { id: string; vaccinations: Row[]; treatments: Row[]; medications: Row[]; conditions: Row[]; visits: Row[]; weights: Row[]; diary: Row[] };
+    type Store = { version: number; animals: Animal[]; current: string | null };
+
+    const KEY = 'aiveterinary.passport.v1';
+    const J = JSON.parse(document.getElementById('pp-i18n')!.textContent!);
+    const LISTS: Record<string, { cols: { key: string; label: string; type?: string; options?: string[] }[] }> = {
+      vaccinations: { cols: [
+        { key: 'vaccine', label: J.cols["Vaccine"] }, { key: 'date', label: J.cols["Date given"], type: 'date' }, { key: 'validUntil', label: J.cols["Valid until"], type: 'date' },
+        { key: 'clinic', label: J.cols["Clinic / vet"] }, { key: 'batch', label: J.cols["Batch"] } ] },
+      treatments: { cols: [
+        { key: 'product', label: J.cols["Product"] }, { key: 'date', label: J.cols['Date'], type: 'date' }, { key: 'nextDue', label: J.cols["Next due"], type: 'date' }, { key: 'givenBy', label: J.cols["Given by"] } ] },
+      medications: { cols: [
+        { key: 'name', label: J.cols["Medication"] }, { key: 'dose', label: J.cols["Dose & how often"] }, { key: 'started', label: J.cols["Started"], type: 'date' }, { key: 'prescribedBy', label: J.cols["Prescribed by"] } ] },
+      conditions: { cols: [
+        { key: 'type', label: J.cols["Type"], type: 'select', options: J.condTypes }, { key: 'description', label: J.cols["Description"] }, { key: 'date', label: J.cols["Since / date"], type: 'date' } ] },
+      diary: { cols: [ { key: 'date', label: J.cols['Date'], type: 'date' }, { key: 'note', label: J.cols['Observation'] } ] },
+      weights: { cols: [
+        { key: 'date', label: J.cols['Date'], type: 'date' }, { key: 'kg', label: J.cols['Weight (kg)'], type: 'number' }, { key: 'bcs', label: J.cols['Body condition (1–9)'], type: 'number' }, { key: 'note', label: J.cols['Note'] } ] },
+      visits: { cols: [
+        { key: 'date', label: J.cols['Date'], type: 'date' }, { key: 'reason', label: J.cols["Reason"] }, { key: 'outcome', label: J.cols["Outcome / notes"] }, { key: 'clinic', label: J.cols["Clinic"] } ] },
+    };
+
+    const $ = <T extends Element>(s: string, root: ParentNode = document) => root.querySelector(s) as T;
+    const $$ = <T extends Element>(s: string, root: ParentNode = document) => Array.from(root.querySelectorAll(s)) as T[];
+    const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
+
+    function load(): Store {
+      try {
+        const raw = localStorage.getItem(KEY);
+        if (raw) { const s = JSON.parse(raw); if (s && Array.isArray(s.animals)) return s; }
+      } catch {}
+      return { version: 1, animals: [], current: null };
+    }
+    let store: Store = load();
+    let saveTimer: number | undefined;
+    function save(msg = J.saved) {
+      try { localStorage.setItem(KEY, JSON.stringify(store)); status(acct.user ? J.savedAcct : msg); }
+      catch { status(J.saveFail); }
+      acct.push();
+    }
+    function scheduleSave() { clearTimeout(saveTimer); saveTimer = window.setTimeout(() => save(), 400); }
+    // Flush a pending debounced save when the page is hidden or closed, so a quick tab close never loses the last edit.
+    window.addEventListener('pagehide', () => { if (saveTimer) { clearTimeout(saveTimer); saveTimer = 0; try { localStorage.setItem(KEY, JSON.stringify(store)); } catch {} } });
+    function status(t: string) { const el = $('#pp-status'); if (el) el.textContent = t; }
+
+    const blank = (): Animal => ({ id: uid(), name: '', vaccinations: [], treatments: [], medications: [], conditions: [], visits: [], weights: [], diary: [], notes: '' });
+    const current = () => store.animals.find((a) => a.id === store.current) ?? null;
+
+    function renderSelect() {
+      const sel = $<HTMLSelectElement>('#pp-select');
+      sel.innerHTML = '';
+      for (const a of store.animals) {
+        const o = document.createElement('option');
+        o.value = a.id; o.textContent = a.name || J.unnamed; sel.appendChild(o);
+      }
+      sel.value = store.current ?? '';
+      sel.hidden = store.animals.length === 0;
+    }
+
+    function renderList(name: string, a: Animal) {
+      const sec = $(`[data-list="${name}"]`);
+      const tbody = $('tbody', sec)!;
+      tbody.innerHTML = '';
+      const { cols } = LISTS[name];
+      a[name].forEach((row: Row, i: number) => {
+        const tr = document.createElement('tr');
+        for (const c of cols) {
+          const td = document.createElement('td'); td.dataset.label = c.label;
+          let input: HTMLInputElement | HTMLSelectElement;
+          if (c.type === 'select') {
+            input = document.createElement('select');
+            for (const opt of ['', ...(c.options ?? [])]) { const o = document.createElement('option'); o.value = opt; o.textContent = opt || '—'; input.appendChild(o); }
+          } else { input = document.createElement('input'); input.type = c.type ?? 'text'; }
+          input.value = row[c.key] ?? '';
+          input.setAttribute('aria-label', c.label);
+          input.addEventListener('input', () => { row[c.key] = input.value; scheduleSave(); if (name === 'vaccinations' || name === 'treatments') renderUpcoming(a); if (name === 'weights') renderChart(a); });
+          td.appendChild(input); tr.appendChild(td);
+        }
+        const td = document.createElement('td');
+        const rm = document.createElement('button'); rm.type = 'button'; rm.className = 'pp-rm'; rm.textContent = '×'; rm.setAttribute('aria-label', J.removeRow);
+        rm.addEventListener('click', () => { a[name].splice(i, 1); renderList(name, a); renderUpcoming(a); renderChart(a); save(J.rowRemoved); });
+        td.appendChild(rm); tr.appendChild(td); tbody.appendChild(tr);
+      });
+    }
+
+    function renderForm() {
+      const a = current();
+      const form = $('#pp-form') as HTMLElement, empty = $('#pp-empty') as HTMLElement;
+      form.hidden = !a; empty.hidden = !!a; ($('.pp-toolbar') as HTMLElement).hidden = !a;
+      $('#pp-delete')!.toggleAttribute('hidden', !a);
+      $('#pp-print')!.toggleAttribute('hidden', !a);
+      $('#pp-card')!.toggleAttribute('hidden', !a);
+      $('#pp-poster')!.toggleAttribute('hidden', !a);
+      $('#pp-claim')!.toggleAttribute('hidden', !a);
+      $('.pp-print-lang')!.toggleAttribute('hidden', !a);
+      $('h1')!.setAttribute('data-animal', a?.name ?? '');
+      if (!a) return;
+      for (const el of $$<HTMLInputElement>('[data-f]', form)) el.value = a[el.dataset.f!] ?? '';
+      const img = $<HTMLImageElement>('#pp-photo');
+      img.hidden = !a.photo; if (a.photo) img.src = a.photo;
+      $('#pp-photo-remove')!.toggleAttribute('hidden', !a.photo);
+      for (const name of Object.keys(LISTS)) { a[name] ??= []; renderList(name, a); }
+      renderUpcoming(a);
+      renderChart(a);
+    }
+
+    function dueItems(a: Animal) {
+      const items: { label: string; date: string; kind: string }[] = [];
+      for (const r of a.vaccinations) if (r.validUntil) items.push({ label: r.vaccine || J.upcoming.vacc, date: r.validUntil, kind: J.upcoming.vacc });
+      for (const r of a.treatments) if (r.nextDue) items.push({ label: r.product || J.upcoming.treat, date: r.nextDue, kind: J.upcoming.treat });
+      return items.filter((x) => !isNaN(Date.parse(x.date))).sort((x, y) => x.date.localeCompare(y.date));
+    }
+    function renderUpcoming(a: Animal) {
+      const ul = $('#pp-upcoming-list') as HTMLElement; ul.innerHTML = '';
+      const items = dueItems(a);
+      ($('#pp-ics') as HTMLElement).hidden = items.length === 0;
+      if (!items.length) { const li = document.createElement('li'); li.className = 'pp-hint'; li.textContent = J.upcoming.none; ul.appendChild(li); return; }
+      const today = new Date(); today.setHours(0, 0, 0, 0);
+      for (const it of items) {
+        const d = new Date(it.date); const days = Math.round((d.getTime() - today.getTime()) / 86400000);
+        const when = days < 0 ? J.upcoming.overdue : days === 0 ? J.upcoming.dueToday : J.upcoming.dueIn.replace('{n}', String(days));
+        const li = document.createElement('li'); li.className = days < 0 ? 'overdue' : days <= 30 ? 'soon' : '';
+        li.innerHTML = `<span class="pp-due-date">${d.toLocaleDateString(J.locale ?? undefined)}</span> <strong>${it.label.replace(/</g, '&lt;')}</strong> <span class="pp-hint">${it.kind} · ${when}</span>`;
+        ul.appendChild(li);
+      }
+    }
+    $('#pp-ics')?.addEventListener('click', () => {
+      const a = current(); if (!a) return;
+      const fmt = (iso: string) => iso.slice(0, 10).replace(/-/g, '');
+      const esc = (x: string) => x.replace(/[\\;,]/g, (m) => '\\' + m).replace(/\n/g, '\\n');
+      const stamp = new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';
+      const events = dueItems(a).map((it, i) => ['BEGIN:VEVENT', `UID:${a.id}-${i}-${fmt(it.date)}@aiveterinary.org`, `DTSTAMP:${stamp}`, `DTSTART;VALUE=DATE:${fmt(it.date)}`, `SUMMARY:${esc((a.name || J.unnamed) + ': ' + it.label)}`, `DESCRIPTION:${esc(it.kind)}`, 'BEGIN:VALARM', 'TRIGGER:-P7D', 'ACTION:DISPLAY', `DESCRIPTION:${esc(it.label)}`, 'END:VALARM', 'END:VEVENT'].join('\r\n'));
+      const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//aiveterinary.org//health booklet//EN', ...events, 'END:VCALENDAR'].join('\r\n') + '\r\n';
+      const blob = new Blob([ics], { type: 'text/calendar' }); const url = URL.createObjectURL(blob);
+      const link = document.createElement('a'); link.href = url; link.download = `${(a.name || 'animal').replace(/[^\w-]+/g, '_')}-reminders.ics`; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+    });
+    function renderChart(a: Animal) {
+      const svg = $('#pp-weight-chart') as unknown as SVGSVGElement; if (!svg) return;
+      const pts = (a.weights ?? []).filter((r: Row) => r.date && !isNaN(parseFloat(r.kg))).map((r: Row) => ({ t: Date.parse(r.date), kg: parseFloat(r.kg) })).filter((p: any) => !isNaN(p.t)).sort((x: any, y: any) => x.t - y.t);
+      svg.toggleAttribute('hidden', pts.length < 2); if (pts.length < 2) return;
+      const W = 600, H = 180, L = 44, R = 12, T = 14, B = 28;
+      const t0 = pts[0].t, t1 = pts[pts.length - 1].t || t0 + 1;
+      let min = Math.min(...pts.map((p: any) => p.kg)), max = Math.max(...pts.map((p: any) => p.kg));
+      const pad = Math.max((max - min) * 0.15, 0.2); min -= pad; max += pad;
+      const x = (t: number) => L + ((t - t0) / Math.max(t1 - t0, 1)) * (W - L - R);
+      const y = (kg: number) => T + (1 - (kg - min) / (max - min)) * (H - T - B);
+      const ticks = [min, (min + max) / 2, max].map((v) => `<text x="${L - 6}" y="${y(v) + 4}" text-anchor="end" font-size="11" fill="var(--ink-3)">${v.toFixed(1)}</text><line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="var(--line)" stroke-dasharray="3 4"/>`).join('');
+      const fmt = (t: number) => new Date(t).toLocaleDateString(J.locale, { month: 'short', year: '2-digit' });
+      const labels = `<text x="${L}" y="${H - 8}" font-size="11" fill="var(--ink-3)">${fmt(t0)}</text><text x="${W - R}" y="${H - 8}" text-anchor="end" font-size="11" fill="var(--ink-3)">${fmt(t1)}</text>`;
+      const path = pts.map((p: any, i: number) => `${i ? 'L' : 'M'}${x(p.t).toFixed(1)} ${y(p.kg).toFixed(1)}`).join(' ');
+      const dots = pts.map((p: any) => `<circle cx="${x(p.t).toFixed(1)}" cy="${y(p.kg).toFixed(1)}" r="4" fill="var(--surface)" stroke="var(--accent)" stroke-width="2"><title>${fmt(p.t)}: ${p.kg} kg</title></circle>`).join('');
+      svg.innerHTML = `${ticks}${labels}<path d="${path}" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>${dots}`;
+    }
+    const L2 = JSON.parse(document.getElementById('pp-l2')!.textContent!);
+    const PRINT_LANG_KEY = 'aiveterinary.passport.printlang';
+    const plSel = $('#pp-print-lang') as HTMLSelectElement | null;
+    function applyPrintLang() {
+      const l = plSel?.value ?? ''; const tbl = l ? L2[l] : null;
+      document.querySelectorAll('.pp-l2').forEach((e) => e.remove());
+      if (!tbl) return;
+      for (const input of $$<HTMLElement>('#pp-form [data-f]')) {
+        const key = input.dataset.f!; const label = input.closest('label'); const l2 = tbl[key];
+        if (label && l2 && l2 !== label.firstChild?.textContent) { const sp = document.createElement('span'); sp.className = 'pp-l2'; sp.textContent = ` / ${l2}`; label.insertBefore(sp, input); }
+      }
+      for (const sec of $$<HTMLElement>('.pp-list')) {
+        const name = sec.dataset.list!; const cols = LISTS[name]?.cols ?? [];
+        const ths = sec.querySelectorAll('th');
+        cols.forEach((c: any, i: number) => { const en = Object.entries(J.cols).find(([, v]) => v === c.label)?.[0]; const l2 = en && tbl.cols?.[en]; if (ths[i] && l2 && l2 !== c.label) { const sp = document.createElement('span'); sp.className = 'pp-l2'; sp.textContent = ` / ${l2}`; ths[i].appendChild(sp); } });
+        const h2 = sec.querySelector('h2'); const l2h = tbl[name]; if (h2 && l2h && l2h !== h2.firstChild?.textContent) { const sp = document.createElement('span'); sp.className = 'pp-l2'; sp.textContent = ` / ${l2h}`; h2.appendChild(sp); }
+      }
+    }
+    plSel?.addEventListener('change', () => { try { localStorage.setItem(PRINT_LANG_KEY, plSel.value); } catch {} applyPrintLang(); });
+    try { if (plSel) plSel.value = localStorage.getItem(PRINT_LANG_KEY) ?? ''; } catch {}
+    function render() { renderSelect(); renderForm(); applyPrintLang(); }
+
+    // field bindings
+    for (const el of $$<HTMLInputElement>('#pp-form [data-f]')) {
+      el.addEventListener('input', () => {
+        const a = current(); if (!a) return;
+        a[el.dataset.f!] = el.value;
+        if (el.dataset.f === 'name') { renderSelect(); $('h1')!.setAttribute('data-animal', el.value); }
+        scheduleSave();
+      });
+    }
+    for (const sec of $$('.pp-list')) {
+      $('.pp-add', sec)!.addEventListener('click', () => {
+        const a = current(); if (!a) return;
+        const name = (sec as HTMLElement).dataset.list!;
+        a[name].push({}); renderList(name, a); save();
+        const last = $$('tbody tr', sec).pop(); (last?.querySelector('input,select') as HTMLElement)?.focus();
+      });
+    }
+
+    const newAnimal = () => { const a = blank(); store.animals.push(a); store.current = a.id; render(); save(J.newCreated); $<HTMLInputElement>('#pp-form [data-f="name"]').focus(); };
+    $('#pp-new')!.addEventListener('click', newAnimal);
+    $('#pp-empty-new')!.addEventListener('click', newAnimal);
+    $<HTMLSelectElement>('#pp-select').addEventListener('change', (e) => { store.current = (e.target as HTMLSelectElement).value; renderForm(); save(); });
+    $('#pp-delete')!.addEventListener('click', () => {
+      const a = current(); if (!a) return;
+      if (!confirm(J.confirmDelete.replace('{name}', a.name || J.thisAnimal))) return;
+      store.animals = store.animals.filter((x) => x.id !== a.id);
+      store.current = store.animals[0]?.id ?? null; render(); save(J.deleted); acct.remove(a.id);
+    });
+    $('#pp-print')!.addEventListener('click', () => window.print());
+    $('#pp-claim')!.addEventListener('click', () => {
+      const a = current(); if (!a) return;
+      const q = (k: string) => $(`[data-q="${k}"]`) as HTMLElement;
+      const esc = (v: any) => String(v ?? '').replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' } as any)[c]);
+      q('name').textContent = a.name || J.unnamed; q('animal').textContent = [a.species, a.breed, a.sex, a.dob && `${J.cols?.['Date'] ?? ''} ${a.dob}`.trim()].filter(Boolean).join(' · ');
+      q('microchip').textContent = a.microchip || '—'; q('owner').textContent = [a.ownerName, a.ownerAddress].filter(Boolean).join(', ') || '—'; q('insurance').textContent = a.insurance || '—';
+      q('visits').innerHTML = (a.visits ?? []).filter((v: any) => v.date || v.reason).map((v: any) => `<tr><td>${esc(v.date)}</td><td>${esc(v.reason)}</td><td>${esc(v.outcome)}</td><td>${esc(v.clinic)}</td></tr>`).join('') || '<tr><td colspan="4">—</td></tr>';
+      q('meds').innerHTML = (a.medications ?? []).filter((m: any) => m.name).map((m: any) => `<li>${esc(m.name)} ${esc(m.dose)}${m.started ? ` (${esc(m.started)})` : ''}</li>`).join('') || '<li>—</li>';
+      q('conds').innerHTML = (a.conditions ?? []).filter((c: any) => c.description || c.type).map((c: any) => `<li>${esc([c.type, c.description].filter(Boolean).join(': '))}${c.date ? ` (${esc(c.date)})` : ''}</li>`).join('') || '<li>—</li>';
+      const view = $('#pp-claim-view') as HTMLElement; view.hidden = false; view.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('pp-print-claim');
+      const done = () => { document.body.classList.remove('pp-print-claim'); view.hidden = true; view.setAttribute('aria-hidden', 'true'); window.removeEventListener('afterprint', done); };
+      window.addEventListener('afterprint', done);
+      window.print();
+    });
+    $('#pp-poster')!.addEventListener('click', () => {
+      const a = current(); if (!a) return;
+      const seen = window.prompt(J.posterWhere ?? 'Where and when was the animal last seen?', '') ?? '';
+      const set = (k: string, v: string) => { const el = $(`[data-p="${k}"]`) as HTMLElement | null; if (el) el.textContent = v; };
+      set('name', a.name || J.unnamed);
+      set('desc', [a.species, a.breed, a.colour, a.sex, a.weight && `${a.weight} kg`].filter(Boolean).join(' · '));
+      set('seen', seen || '—');
+      set('phone', [a.ownerPhone, a.ownerName].filter(Boolean).join(' · ') || '—');
+      const chip = $('[data-p="chip"]') as HTMLElement; chip.hidden = !a.microchip;
+      const img = $('[data-p="photo"]') as HTMLImageElement; img.hidden = !a.photo; if (a.photo) img.src = a.photo;
+      const view = $('#pp-poster-view') as HTMLElement; view.hidden = false; view.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('pp-print-poster');
+      const done = () => { document.body.classList.remove('pp-print-poster'); view.hidden = true; view.setAttribute('aria-hidden', 'true'); window.removeEventListener('afterprint', done); };
+      window.addEventListener('afterprint', done);
+      window.print();
+    });
+    $('#pp-card')!.addEventListener('click', () => {
+      const a = current(); if (!a) return;
+      const set = (k: string, v: string) => { for (const el of $$(`[data-c="${k}"]`)) el.textContent = v || '—'; };
+      set('name', a.name || J.unnamed);
+      set('animal', [a.species, a.breed, a.sex, a.dob].filter(Boolean).join(' · '));
+      set('microchip', a.microchip);
+      set('conditions', (a.conditions ?? []).map((c: any) => [c.type, c.description].filter(Boolean).join(': ')).join('; '));
+      set('medications', (a.medications ?? []).map((m: any) => [m.name, m.dose].filter(Boolean).join(' ')).join('; '));
+      set('owner', [a.ownerName, a.ownerPhone].filter(Boolean).join(' '));
+      set('vet', [a.vetClinic, a.vetPhone].filter(Boolean).join(' '));
+      set('emergency', [a.emergencyClinic, a.emergencyPhone].filter(Boolean).join(' '));
+      const view = $('#pp-card-view') as HTMLElement; view.hidden = false; view.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('pp-print-card');
+      const done = () => { document.body.classList.remove('pp-print-card'); view.hidden = true; view.setAttribute('aria-hidden', 'true'); window.removeEventListener('afterprint', done); };
+      window.addEventListener('afterprint', done);
+      window.print();
+    });
+
+    // photo: resize to 320px max side before storing, to keep localStorage small
+    $<HTMLInputElement>('#pp-photo-input').addEventListener('change', async (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0]; const a = current(); if (!file || !a) return;
+      const bmp = await createImageBitmap(file);
+      const scale = Math.min(1, 320 / Math.max(bmp.width, bmp.height));
+      const c = document.createElement('canvas'); c.width = Math.round(bmp.width * scale); c.height = Math.round(bmp.height * scale);
+      c.getContext('2d')!.drawImage(bmp, 0, 0, c.width, c.height);
+      a.photo = c.toDataURL('image/jpeg', 0.8); renderForm(); save(J.photoAdded);
+      (e.target as HTMLInputElement).value = '';
+    });
+    $('#pp-photo-remove')!.addEventListener('click', () => { const a = current(); if (!a) return; delete a.photo; renderForm(); save(J.photoRemoved); });
+
+    // backup / restore
+    $('#pp-export')!.addEventListener('click', async () => {
+      const json = JSON.stringify(store, null, 2);
+      const names = store.animals.map((x) => x.name).filter(Boolean).join('-') || 'passport';
+      const fileName = `aiveterinary-passport-${names}-${new Date().toISOString().slice(0, 10)}.json`;
+      // Where the browser offers a save dialog (Chrome, Edge), the owner picks the folder, including a synced cloud folder.
+      const picker = (window as any).showSaveFilePicker as undefined | ((o: any) => Promise<any>);
+      if (picker) {
+        try {
+          const handle = await picker({ suggestedName: fileName, types: [{ description: 'JSON', accept: { 'application/json': ['.json'] } }] });
+          const w = await handle.createWritable(); await w.write(json); await w.close();
+          status(J.backupDone); return;
+        } catch (e: any) { if (e?.name === 'AbortError') return; /* fall through to download */ }
+      }
+      const blob = new Blob([json], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const aEl = document.createElement('a');
+      aEl.href = url; aEl.download = fileName;
+      document.body.appendChild(aEl); aEl.click(); aEl.remove(); URL.revokeObjectURL(url);
+      status(J.backupDone);
+    });
+    $<HTMLInputElement>('#pp-import').addEventListener('change', async (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0]; if (!file) return;
+      const loading = $('#pp-loading') as HTMLElement; loading.hidden = false;
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) await new Promise((r) => setTimeout(r, 900));
+      loading.hidden = true;
+      try {
+        const data = JSON.parse(await file.text());
+        if (!data || !Array.isArray(data.animals)) throw new Error('bad');
+        const incoming: Animal[] = data.animals.map((x: any) => ({ ...blank(), ...x, id: x.id || uid() }));
+        if (store.animals.length && !confirm(J.confirmRestore.replace('{n}', String(incoming.length)))) return;
+        for (const inc of incoming) { const i = store.animals.findIndex((x) => x.id === inc.id); if (i >= 0) store.animals[i] = inc; else store.animals.push(inc); }
+        store.current = incoming[0]?.id ?? store.current; render(); save(J.restored);
+      } catch { status(J.notBackup); }
+      (e.target as HTMLInputElement).value = '';
+    });
+
+    // ---------- Optional account sync (Supabase). Dormant unless PUBLIC_SUPABASE_URL is set. ----------
+    const SB_URL = import.meta.env.PUBLIC_SUPABASE_URL as string | undefined;
+    const SB_KEY = import.meta.env.PUBLIC_SUPABASE_ANON_KEY as string | undefined;
+    const acct = {
+      client: null as any,
+      user: null as null | { id: string; email?: string },
+      dirty: new Set<string>(),
+      pushTimer: undefined as number | undefined,
+      st(t: string) { const el = $('#pp-acct-status'); if (el) el.textContent = t; },
+      async init() {
+        if (!SB_URL || !SB_KEY) return;
+        const { createClient } = await import('@supabase/supabase-js');
+        this.client = createClient(SB_URL, SB_KEY);
+        ($('#pp-account') as HTMLElement).hidden = false;
+        $('#pp-login')!.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const email = $<HTMLInputElement>('#pp-login-email').value.trim();
+          const { error } = await this.client.auth.signInWithOtp({ email, options: { emailRedirectTo: location.origin + '/passport' } });
+          this.st(error ? J.linkFail + error.message : J.linkSent);
+        });
+        $('#pp-acct-logout')!.addEventListener('click', async () => {
+          const wipe = confirm(J.confirmWipe);
+          await this.client.auth.signOut();
+          if (wipe) { store = { version: 1, animals: [], current: null }; localStorage.removeItem(KEY); render(); }
+          this.setUser(null); this.st(J.signedOut);
+        });
+        $('#pp-acct-export')!.addEventListener('click', () => $('#pp-export')!.dispatchEvent(new Event('click')));
+        $('#pp-acct-delete')!.addEventListener('click', async () => {
+          if (!confirm(J.confirmAcctDelete)) return;
+          const { error } = await this.client.rpc('delete_my_account');
+          if (error) { this.st(J.deleteFail + error.message); return; }
+          await this.client.auth.signOut(); this.setUser(null); this.st(J.acctDeleted);
+        });
+        this.client.auth.onAuthStateChange((_evt: string, session: any) => { this.setUser(session?.user ?? null); if (session?.user) this.pull(); });
+        const { data } = await this.client.auth.getSession();
+        this.setUser(data.session?.user ?? null); if (this.user) this.pull();
+      },
+      setUser(u: any) {
+        this.user = u ? { id: u.id, email: u.email } : null;
+        ($('#pp-acct-out') as HTMLElement).hidden = !!this.user;
+        ($('#pp-acct-in') as HTMLElement).hidden = !this.user;
+        if (this.user) $('#pp-acct-email')!.textContent = this.user.email ?? '';
+      },
+      async pull() {
+        const { data, error } = await this.client.from('passports').select('id, animal, updated_at');
+        if (error) { this.st(J.loadFail + error.message); return; }
+        const remote: Animal[] = (data ?? []).map((r: any) => ({ ...blank(), ...r.animal, id: r.id, _updated: r.updated_at }));
+        if (remote.length === 0 && store.animals.length > 0) {
+          if (confirm(J.confirmUpload.replace('{n}', String(store.animals.length)))) { store.animals.forEach((a) => this.dirty.add(a.id)); this.push(true); }
+          return;
+        }
+        for (const r of remote) {
+          const i = store.animals.findIndex((x) => x.id === r.id);
+          if (i >= 0) { if (!store.animals[i]._updated || store.animals[i]._updated <= r._updated) store.animals[i] = r; }
+          else store.animals.push(r);
+        }
+        // local-only animals (created while offline) go up
+        for (const a of store.animals) if (!remote.find((r) => r.id === a.id)) this.dirty.add(a.id);
+        store.current = store.current && store.animals.find((a) => a.id === store.current) ? store.current : store.animals[0]?.id ?? null;
+        render(); localStorage.setItem(KEY, JSON.stringify(store)); this.push(true); this.st(J.loaded);
+      },
+      push(now = false) {
+        if (!this.user) return;
+        const a = current(); if (a && !now) this.dirty.add(a.id);
+        clearTimeout(this.pushTimer);
+        this.pushTimer = window.setTimeout(async () => {
+          const rows = store.animals.filter((x) => this.dirty.has(x.id)).map((x) => { const { _updated, ...animal } = x; return { id: x.id, user_id: this.user!.id, animal }; });
+          if (!rows.length) return;
+          $('#pp-sync-state')!.textContent = J.saving;
+          const { error } = await this.client.from('passports').upsert(rows);
+          $('#pp-sync-state')!.textContent = error ? J.notSaved + error.message : J.synced;
+          if (!error) this.dirty.clear();
+        }, now ? 0 : 800);
+      },
+      async remove(id: string) { if (this.user) await this.client.from('passports').delete().eq('id', id); },
+    };
+
+    render();
+    acct.init();
+  </script>
+
+<script>
+  // Microchip numbers are 15 digits under ISO 11784/11785; anything else is almost always a typo.
+  document.addEventListener('input', (e) => {
+    const el = e.target as HTMLInputElement;
+    if (!el.matches('[data-f="microchip"]')) return;
+    const digits = el.value.replace(/[\s-]/g, '');
+    const bad = digits.length > 0 && !/^\d{15}$/.test(digits);
+    el.setCustomValidity(bad ? 'invalid' : '');
+    el.classList.toggle('pp-invalid', bad);
+    const hint = el.parentElement?.querySelector('.pp-chip-hint') as HTMLElement | null;
+    if (hint) hint.hidden = !bad;
+  });
+</script>

@@ -1,0 +1,173 @@
+{
+  "id": "003-gatto-inappetenza-it",
+  "language": "it",
+  "header": {
+    "name": "Romeo",
+    "species": "cat",
+    "breed": "Europeo",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 11,
+      "unit": "year"
+    },
+    "weight_kg": 4.2
+  },
+  "notes": "inappetenza da 2 giorni\nbeve di più da qualche settimana\nnessun vomito\nTR 38.4\nmucose rosee, disidratazione lieve\nreni piccoli alla palpazione\nemocromo + biochimico prelevati, esito domani\nfluidi SC\ncontrollo domani con esiti",
+  "expect": {
+    "missing_includes": [
+      "diagnostics[0].result"
+    ],
+    "drugs": [],
+    "numbers_allowed": [
+      "2",
+      "38.4"
+    ],
+    "assessment_text": null,
+    "temperature": 38.4
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "inappetenza da 2 giorni",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          23
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "sete",
+        "value": "beve di più da qualche settimana",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            24,
+            56
+          ]
+        ]
+      },
+      {
+        "finding": "vomito",
+        "value": "nessuno",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            57,
+            70
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.4,
+          "unit": "C",
+          "source_spans": [
+            [
+              71,
+              78
+            ]
+          ]
+        },
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "mucose",
+          "text": "rosee, disidratazione lieve",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              79,
+              113
+            ]
+          ]
+        },
+        {
+          "system": "reni",
+          "text": "piccoli alla palpazione",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              114,
+              142
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "emocromo + biochimico",
+        "status": "performed",
+        "result": null,
+        "source_spans": [
+          [
+            143,
+            188
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": null,
+      "differentials": [],
+      "source_spans": []
+    },
+    "treatments": [
+      {
+        "type": "procedure",
+        "text": "fluidi SC",
+        "status": "performed",
+        "source_spans": [
+          [
+            189,
+            198
+          ]
+        ]
+      }
+    ],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "controllo domani con esiti",
+        "interval": null,
+        "source_spans": [
+          [
+            199,
+            225
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [
+      {
+        "field": "diagnostics[0].result",
+        "reason": "esito atteso domani"
+      },
+      {
+        "field": "assessment",
+        "reason": "nessuna valutazione annotata"
+      }
+    ],
+    "uncertain": []
+  }
+}

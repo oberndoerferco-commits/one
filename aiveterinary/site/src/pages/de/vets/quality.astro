@@ -1,0 +1,57 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { readFileSync, existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+const resultsDir = fileURLToPath(new URL('../../../../../app/eval/results/', import.meta.url));
+const read = (name: string) => (existsSync(resultsDir + name) ? JSON.parse(readFileSync(resultsDir + name, 'utf8')) : null);
+const fixture = read('fixture.json');
+const model = read('claude.json');
+const pct = (x: number | null) => (x == null ? 'k. A.' : Math.round(x * 100) + ' %');
+const fmt = (iso: string) => new Date(iso).toLocaleDateString('de-DE', { day: 'numeric', month: 'long', year: 'numeric' });
+const runs = [{ label: 'Validatoren auf vorbereiteten Datensätzen', note: 'Belegt die Prüfungen selbst: ein Datensatz mit erfundenem Medikament, erfundener Dosis oder Diagnose muss blockiert werden. Offline, ohne Modell.', r: fixture }, ...(model ? [{ label: 'Modellausgabe auf denselben Fällen', note: 'Das Modell strukturiert die Rohnotizen; dieselben Prüfungen laufen anschließend über seine Ausgabe.', r: model }] : [])];
+---
+<Base title="Qualität" description="Wie der Dokumentationsassistent von AI Veterinary getestet wird, mit den aktuellen Zahlen. Veröffentlicht mit jedem Release." lang="de">
+  <article class="wrap narrow hero prose">
+    <p class="eyebrow"><a href="/de/vets">Für Praxisteams</a></p>
+    <h1>Qualität, mit Zahlen</h1>
+    <p class="lead">Jedes Werkzeug in diesem Markt beansprucht Genauigkeit; fast keines sagt, wie sie gemessen wird. Diese Seite ist unsere Antwort: das Testset, die Regeln und die aktuellen Ergebnisse, mit jedem Release aus dem tatsächlichen Testlauf neu erzeugt.</p>
+
+    <h2>Was wir messen</h2>
+    <table>
+      <tr><th>Messgröße</th><th>Bedeutung</th><th>Release-Regel</th></tr>
+      <tr><td>Blockierende Befunde</td><td>Alles im Datensatz, was nicht in den Notizen der Tierärztin oder des Tierarztes steht: ein Medikament, eine Dosis, eine Zahl, eine Diagnose oder ein Eintrag ohne Quelle</td><td><strong>0</strong> auf der Modellausgabe, sonst kein Release</td></tr>
+      <tr><td>Medikamenten-Abweichungen</td><td>Ein Medikamentenname im Datensatz, den die Tierärztin oder der Tierarzt nicht geschrieben hat</td><td><strong>0</strong></td></tr>
+      <tr><td>Einträge ohne Quelle</td><td>Fakten ohne gültigen Verweis auf die Notizen</td><td><strong>0</strong></td></tr>
+      <tr><td>Recall fehlender Informationen</td><td>Von den Lücken, die eine Tierärztin oder ein Tierarzt markiert haben möchte (Medikament ohne Dosis, Untersuchung ohne Ergebnis…), wie viele wir markieren</td><td>≥ 95 %</td></tr>
+      <tr><td>Muss-fehlschlagen-Fall</td><td>Ein absichtlich falscher Datensatz (erfundenes Medikament, erfundene Dosis und Diagnose), den die Prüfungen blockieren müssen</td><td>Immer blockiert</td></tr>
+    </table>
+    <p>Regeln können nur strenger werden: ein Release darf eine Untergrenze anheben, nie senken.</p>
+
+    <h2>Aktuelle Ergebnisse</h2>
+    {runs.map(({ label, note, r }) => (
+      <div class="card" style="margin:16px 0">
+        <h3 style="margin-top:0">{label}</h3>
+        <p class="pp-hint">{note}</p>
+        <table>
+          <tr><th>Lauf</th><td>{fmt(r.run_at)} · Prompt <code>{r.prompt}</code> · Sprachen {r.languages.join(', ').toUpperCase()}</td></tr>
+          <tr><th>Fälle</th><td>{r.cases} ({r.failed} fehlgeschlagen)</td></tr>
+          <tr><th>Blockierende Befunde</th><td>{r.blocking}{r.extractor === 'fixture' ? ' (alle aus dem Muss-fehlschlagen-Fall, wie beabsichtigt)' : ''}</td></tr>
+          <tr><th>Medikamenten-Abweichungen</th><td>{r.drug_mismatch}</td></tr>
+          <tr><th>Einträge ohne Quelle</th><td>{r.unsourced}{r.extractor === 'fixture' ? ' (der Muss-fehlschlagen-Fall)' : ''}</td></tr>
+          <tr><th>Recall fehlender Informationen</th><td>{pct(r.missing_recall)}</td></tr>
+          <tr><th>Je Fall</th><td>{r.per_case.map((c: any) => `${c.pass ? '✓' : '✗'} ${c.id}`).join(' · ')}</td></tr>
+        </table>
+      </div>
+    ))}
+    {!model && <p class="notice warn">Modellläufe sind noch nicht veröffentlicht. Das Testset ist noch klein (synthetische, intern geschriebene Fälle), und der Modelllauf wartet auf einen Entwicklungsschlüssel. Bevor eine Praxis das Produkt nutzt, wächst das Set auf mindestens 300 Fälle in Englisch, Deutsch und Italienisch, geschrieben mit praktizierenden Tierärztinnen und Tierärzten, und ein externes tierärztliches Gremium prüft eine Stichprobe der Ausgabe. Diese Ergebnisse erscheinen dann hier.</p>}
+
+    <h2>Bekannte Lücken, ehrlich</h2>
+    <ul>
+      <li>Das Testset ist klein und synthetisch. Echte Notizen sind unordentlicher.</li>
+      <li>Zahlenprüfungen sind absichtlich streng: eine Dosis, die als „5mg“ geschrieben und als „5 mg“ erfasst wird, besteht; „fünf“ in Worten zählt in den Notizen aber nicht als Zahl, also muss der Datensatz „fünf“ beibehalten. Uns ist ein Fehlalarm lieber als eine stille Erfindung.</li>
+      <li>Der Abgleich von Medikamentennamen toleriert Tippfehler per Präfix; ungewöhnliche Handelsnamen brauchen unter Umständen Ihre Korrektur, die dann als menschliche Bearbeitung protokolliert wird.</li>
+      <li>Eine unabhängige Bewertung hat noch nicht stattgefunden.</li>
+    </ul>
+    <p>Die Testumgebung, die Regeln und die Fälle liegen im Projekt-Repository, damit ein Prüfer sie erneut ausführen kann.</p>
+  </article>
+</Base>

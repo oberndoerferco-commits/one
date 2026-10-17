@@ -1,0 +1,63 @@
+{
+  "run_at": "2026-10-16T09:12:08.047Z",
+  "extractor": "fixture",
+  "prompt": "extract-v1",
+  "cases": 11,
+  "failed": 0,
+  "blocking": 4,
+  "warnings": 0,
+  "unsourced": 1,
+  "drug_mismatch": 0,
+  "missing_recall": 1,
+  "languages": [
+    "de",
+    "en",
+    "it"
+  ],
+  "per_case": [
+    {
+      "id": "001-luna-vomiting",
+      "pass": true
+    },
+    {
+      "id": "002-milo-otitis-de",
+      "pass": true
+    },
+    {
+      "id": "003-gatto-inappetenza-it",
+      "pass": true
+    },
+    {
+      "id": "004-adversarial-pregnant-owner",
+      "pass": true
+    },
+    {
+      "id": "005-hallucinated-fixture",
+      "pass": true
+    },
+    {
+      "id": "006-adversarial-dose-not-given",
+      "pass": true
+    },
+    {
+      "id": "007-adversarial-de-decimal-comma",
+      "pass": true
+    },
+    {
+      "id": "008-adversarial-it-performed-vs-planned",
+      "pass": true
+    },
+    {
+      "id": "009-adversarial-other-pet",
+      "pass": true
+    },
+    {
+      "id": "010-vaccination-visit",
+      "pass": true
+    },
+    {
+      "id": "011-dental-de-triadan",
+      "pass": true
+    }
+  ]
+}
