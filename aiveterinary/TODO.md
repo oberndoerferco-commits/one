@@ -55,7 +55,7 @@ Everything costs €0 unless marked €. Legend:
 ### Articles (drafts; vets review)
 - [x] Cost explainers, highest intent: **"Tierarzt Kosten Tabelle 2026 (GOT)"**, **"Kastration Hund Kosten 2026"**, **"Quanto costa una visita veterinaria"**, "sterilizzazione cane costo" — M ★★★
 - [ ] **Italian top-40** (32 topics covered as of 17 Oct; list below is only what is still missing, exact search phrasing): cane febbre · cane anziano non mangia · gatto FIV · displasia anca cane · ansia da separazione cane · gatto perde pelo a ciuffi · coniglio denti lunghi · cane ha mangiato ossa di pollo · cane ha mangiato veleno per topi — L ★★★
-- [ ] **German top-40** (31 topics covered as of 17 Oct; list below is only what is still missing): warum frisst mein hund kot · hund hat weintrauben gefressen · hund atmet schnell im schlaf · hund milben · katze zahnstein · hündin läufig · kaninchen durchfall · kaninchen zähne · leptospirose hund — L ★★★
+- [ ] **German top-40** (36 topics covered as of 17 Oct; list below is only what is still missing): hund atmet schnell im schlaf · hund milben · hündin läufig · leptospirose hund — L ★★★
 - [x] Conditions and medications categories: diabetes, CKD/thyroid, antibiotics, NSAIDs in EN/IT/DE (more condition and drug-class pages still open)
 - [x] A–Z index, species hubs, "share with your vet" button, print stylesheet for articles — S ★★
 - [x] Illustrations (own SVG faces, hero scene, loader; design system in docs/06 and research in docs/13) — M ★
