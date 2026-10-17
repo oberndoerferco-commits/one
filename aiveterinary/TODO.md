@@ -55,7 +55,7 @@ Everything costs €0 unless marked €. Legend:
 ### Articles (drafts; vets review)
 - [x] Cost explainers, highest intent: **"Tierarzt Kosten Tabelle 2026 (GOT)"**, **"Kastration Hund Kosten 2026"**, **"Quanto costa una visita veterinaria"**, "sterilizzazione cane costo" — M ★★★
 - [x] **Italian top-40** — all 40 covered as of 17 Oct 2026 (drafts, pending vet review) — L ★★★
-- [ ] **German top-40** (36 topics covered as of 17 Oct; list below is only what is still missing): hund atmet schnell im schlaf · hund milben · hündin läufig · leptospirose hund — L ★★★
+- [x] **German top-40** — all 40 covered as of 17 Oct 2026 (drafts, pending vet review; StIKo Vet guideline cited is the 2019 edition, check for a newer one) — L ★★★
 - [x] Conditions and medications categories: diabetes, CKD/thyroid, antibiotics, NSAIDs in EN/IT/DE (more condition and drug-class pages still open)
 - [x] A–Z index, species hubs, "share with your vet" button, print stylesheet for articles — S ★★
 - [x] Illustrations (own SVG faces, hero scene, loader; design system in docs/06 and research in docs/13) — M ★
