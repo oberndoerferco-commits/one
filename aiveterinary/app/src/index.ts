@@ -8,3 +8,4 @@ export * from './versions.js';
 export * from './retention.js';
 export * from './history.js';
 export * from './letters.js';
+export * from './analytics.js';
