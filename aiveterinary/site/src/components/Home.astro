@@ -15,7 +15,7 @@ const T = {
     kicker: 'Vet-reviewed animal health, in plain language',
     h1: 'Know what to do for your animal.',
     sub: 'Clear answers checked by vets, a health booklet on your phone, and a one-page brief for the visit. Free, no ads.',
-    cta: 'Find help by animal', cta2: 'Open the health booklet', search: 'Search', or: 'or pick an animal', proofShort: ['Signed by vets', 'Free, no ads', 'Your data stays on your device', 'No online diagnoses, no doses'],
+    cta: 'Find help by animal', cta2: 'Open the health booklet', emerg: 'Worried right now? Check if it is an emergency', search: 'Search', or: 'or pick an animal', proofShort: ['Signed by vets', 'Free, no ads', 'Your data stays on your device', 'No online diagnoses, no doses'],
     proof: [['Vets sign', 'Every article names the vet who reviewed it. Until then it is labelled a draft.'], ['Free, no ads', 'No sponsors, no affiliate links, no tracking pixels.'], ['Your data stays yours', 'The booklet lives on your device. Export it any time.'], ['Honest limits', 'No diagnoses over the internet and no doses. If it needs a vet, we say so.']],
     species: 'Which animal?', latest: 'Latest articles', all: 'All articles →', draft: a.draft, reviewed: a.reviewedBy,
     how: 'How it works', steps: [['Read', 'Find the symptom or question. Each article tells you at the top whether it can wait.'], ['Keep', 'Vaccinations, medications, microchip and your vet\'s number in one booklet, on your phone.'], ['Bring', 'Before a visit, make a one-page brief so the vet sees the whole picture in a minute.']],
@@ -26,7 +26,7 @@ const T = {
     kicker: 'Salute degli animali rivista da veterinari, in parole semplici',
     h1: 'Sapere cosa fare per il tuo animale.',
     sub: 'Risposte chiare controllate da veterinari, il libretto sanitario sul telefono e un riepilogo di una pagina per la visita. Gratis, senza pubblicità.',
-    cta: 'Cerca per animale', cta2: 'Apri il libretto sanitario', search: 'Cerca', or: 'oppure scegli un animale', proofShort: ['Firmato da veterinari', 'Gratis, senza pubblicità', 'I dati restano sul tuo dispositivo', 'Nessuna diagnosi online, nessuna dose'],
+    cta: 'Cerca per animale', cta2: 'Apri il libretto sanitario', emerg: "Preoccupato adesso? Controlla se è un'emergenza", search: 'Cerca', or: 'oppure scegli un animale', proofShort: ['Firmato da veterinari', 'Gratis, senza pubblicità', 'I dati restano sul tuo dispositivo', 'Nessuna diagnosi online, nessuna dose'],
     proof: [['I veterinari firmano', 'Ogni articolo indica il veterinario che lo ha rivisto. Fino ad allora è segnato come bozza.'], ['Gratis, senza pubblicità', 'Nessuno sponsor, nessun link di affiliazione, nessun tracciamento.'], ['I tuoi dati restano tuoi', 'Il libretto vive sul tuo dispositivo. Esportalo quando vuoi.'], ['Limiti chiari', 'Nessuna diagnosi via internet e nessuna dose. Se serve il veterinario, lo diciamo.']],
     species: 'Quale animale?', latest: 'Ultimi articoli', all: 'Tutti gli articoli →', draft: a.draft, reviewed: a.reviewedBy,
     how: 'Come funziona', steps: [['Leggi', 'Trova il sintomo o la domanda. Ogni articolo dice subito se può aspettare.'], ['Conserva', 'Vaccini, farmaci, microchip e il numero del veterinario in un unico libretto, sul telefono.'], ['Porta', 'Prima della visita prepara un riepilogo di una pagina: il veterinario vede tutto in un minuto.']],
@@ -37,7 +37,7 @@ const T = {
     kicker: 'Tiergesundheit, tierärztlich geprüft, verständlich erklärt',
     h1: 'Wissen, was Ihrem Tier jetzt hilft.',
     sub: 'Klare Antworten, tierärztlich geprüft, der Heimtierpass auf dem Handy und eine Seite Vorbereitung für den Praxisbesuch. Kostenlos, ohne Werbung.',
-    cta: 'Hilfe nach Tierart', cta2: 'Heimtierpass öffnen', search: 'Suchen', or: 'oder Tierart wählen', proofShort: ['Von Tierärzten gezeichnet', 'Kostenlos, ohne Werbung', 'Daten bleiben auf Ihrem Gerät', 'Keine Online-Diagnosen, keine Dosierungen'],
+    cta: 'Hilfe nach Tierart', cta2: 'Heimtierpass öffnen', emerg: 'Gerade besorgt? Prüfen, ob es ein Notfall ist', search: 'Suchen', or: 'oder Tierart wählen', proofShort: ['Von Tierärzten gezeichnet', 'Kostenlos, ohne Werbung', 'Daten bleiben auf Ihrem Gerät', 'Keine Online-Diagnosen, keine Dosierungen'],
     proof: [['Tierärzte zeichnen', 'Jeder Artikel nennt die prüfende Tierärztin oder den Tierarzt. Bis dahin ist er als Entwurf markiert.'], ['Kostenlos, ohne Werbung', 'Keine Sponsoren, keine Affiliate-Links, kein Tracking.'], ['Ihre Daten bleiben Ihre', 'Der Pass liegt auf Ihrem Gerät. Jederzeit exportierbar.'], ['Ehrliche Grenzen', 'Keine Diagnosen übers Internet, keine Dosierungen. Wenn es in die Praxis gehört, sagen wir es.']],
     species: 'Welches Tier?', latest: 'Neueste Artikel', all: 'Alle Artikel →', draft: a.draft, reviewed: a.reviewedBy,
     how: 'So funktioniert es', steps: [['Lesen', 'Symptom oder Frage finden. Jeder Artikel sagt oben, ob es warten kann.'], ['Aufbewahren', 'Impfungen, Medikamente, Chipnummer und die Nummer der Praxis in einem Pass, auf dem Handy.'], ['Mitbringen', 'Vor dem Besuch eine Seite Übersicht erstellen, damit die Praxis in einer Minute das ganze Bild hat.']],
@@ -61,6 +61,7 @@ const speciesKeys = ['dog', 'cat', 'rabbit', 'horse', 'bird', 'general'] as cons
     <div class="h3ro-text">
       <h1>{T.h1}</h1>
       <p class="lead">{T.sub}</p>
+      <a class="emerg-pill" href={({ en: "/emergency", it: "/it/emergency", de: "/de/emergency" } as any)[lang]}>{T.emerg} →</a>
       <form class="h3ro-search" action={a.base} method="get" role="search">
         <label class="sr-only" for="hq">{ph}</label>
         <input id="hq" name="q" type="search" placeholder={ph} autocomplete="off" />

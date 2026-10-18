@@ -20,7 +20,7 @@ const count = (f: (d: any) => boolean) => all.filter((e) => f(e.data)).length;
     })}
   </ul>
 </section>
-<section class="wrap"><div class="notice danger"><p set:html={t.emergency} /></div></section>
+<section class="wrap"><div class="notice danger"><p set:html={t.emergency} /><p><a class="btn secondary" href={({ en: "/emergency", it: "/it/emergency", de: "/de/emergency" } as any)[lang]}>{({ en: "Is it an emergency? Check the signs", it: "È un'emergenza? Controlla i segni", de: "Ist es ein Notfall? Zeichen prüfen" } as any)[lang]} →</a></p></div></section>
 
 <section class="wrap section">
   <h2 class="section-h">{t.byTopic}</h2>
