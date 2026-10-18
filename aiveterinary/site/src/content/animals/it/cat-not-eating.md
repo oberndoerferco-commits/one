@@ -1,5 +1,5 @@
 ---
-title: "Il mio gatto non mangia da ieri"
+title: "Il gatto non mangia da ieri: cause, cosa fare e quando preoccuparsi"
 description: "I gatti nascondono bene la malattia, e un gatto che smette di mangiare va preso sul serio prima di un cane. Ecco cosa controllare e quando chiamare."
 species: cat
 category: symptoms

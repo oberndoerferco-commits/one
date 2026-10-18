@@ -1,5 +1,5 @@
 ---
-title: "Il gatto vomita schiuma bianca: boli di pelo o qualcos'altro?"
+title: "Il gatto vomita schiuma bianca: cause, cosa fare e quando preoccuparsi"
 description: "La schiuma bianca è di solito succo gastrico e saliva a stomaco vuoto, e a volte accompagna un bolo di pelo. Come distinguere l'episodio isolato dal problema che va visto, perché la tosse può sembrare vomito, e quando andare subito dal veterinario."
 species: cat
 category: symptoms

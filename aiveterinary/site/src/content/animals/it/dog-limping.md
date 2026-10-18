@@ -1,5 +1,5 @@
 ---
-title: "Il mio cane zoppica: distorsione o qualcosa di più?"
+title: "Il cane zoppica: cause, cosa fare e quando preoccuparsi"
 description: "La maggior parte delle zoppie nel cane è lieve e migliora con qualche giorno di riposo. Ecco come controllare il tuo cane, cosa richiede una visita urgente, e cosa ti chiederà il veterinario."
 species: dog
 category: symptoms

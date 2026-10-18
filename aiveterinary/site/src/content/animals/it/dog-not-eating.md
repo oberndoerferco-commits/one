@@ -1,5 +1,5 @@
 ---
-title: "Il mio cane non mangia: quando un pasto saltato conta"
+title: "Il cane non mangia: cause, cosa fare e quando preoccuparsi"
 description: "I cani saltano un pasto per tanti motivi innocui. Ecco come distinguere una giornata di capricci da un segno che il tuo cane sta male, e quando chiamare il veterinario."
 species: dog
 category: symptoms

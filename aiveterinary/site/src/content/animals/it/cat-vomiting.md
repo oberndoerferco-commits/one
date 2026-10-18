@@ -1,5 +1,5 @@
 ---
-title: "Il mio gatto vomita: bolo di pelo o qualcosa di più?"
+title: "Il gatto vomita: boli di pelo, altre cause e quando preoccuparsi"
 description: "I gatti ogni tanto rigurgitano boli di pelo, e i proprietari imparano ad accettarlo. Ma vomitare regolarmente non è normale per un gatto. Ecco come distinguere le due cose."
 species: cat
 category: symptoms

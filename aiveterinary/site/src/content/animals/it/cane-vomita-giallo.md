@@ -1,5 +1,5 @@
 ---
-title: "Il cane vomita giallo o schiuma bianca: cosa significa"
+title: "Il cane vomita giallo o schiuma bianca: cause e quando preoccuparsi"
 description: "Il vomito giallo è quasi sempre bile, la schiuma bianca è spesso saliva e succhi gastrici. Ecco cosa raccontano, quando puoi osservare a casa e quando serve il veterinario in giornata."
 species: dog
 category: symptoms

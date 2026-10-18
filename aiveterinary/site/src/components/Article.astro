@@ -18,6 +18,13 @@ const F = ({
 // Tool links shown beside the article, kept out of the body so signed reviews are not invalidated.
 const slug = String(entry.id).split('/').pop();
 const CHOC = new Set(['dog-toxic-foods', 'cane-ha-mangiato-cioccolato', 'alimenti-tossici-cane', 'hund-schokolade-gefressen', 'giftige-lebensmittel-hund']);
+// One next step matched to the article's urgency, at the end of every article.
+const NEXT = ({
+  en: { emergency: ['Call your vet or an emergency clinic now. Unsure? Check the signs', '/emergency'], today: ['Seeing the vet today? Prepare a one-page brief', '/visit-brief'], 'this-week': ['Keep notes until the visit in the symptom diary', '/passport'], routine: ['Keep dates and notes in the health booklet', '/passport'], h: 'Next step' },
+  it: { emergency: ['Chiama ora il veterinario o un pronto soccorso veterinario. Hai dubbi? Controlla i segnali', '/it/emergency'], today: ['Vai dal veterinario oggi? Prepara una scheda di una pagina', '/it/visit-brief'], 'this-week': ['Fino alla visita, annota tutto nel diario dei sintomi', '/it/passport'], routine: ['Tieni date e note nel libretto sanitario', '/it/passport'], h: 'Il prossimo passo' },
+  de: { emergency: ['Rufen Sie jetzt Ihre Praxis oder eine Notdienstklinik an. Unsicher? Zeichen prüfen', '/de/emergency'], today: ['Heute zur Praxis? Einseitige Übersicht vorbereiten', '/de/visit-brief'], 'this-week': ['Bis zum Termin im Symptomtagebuch notieren', '/de/passport'], routine: ['Termine und Notizen im Gesundheitspass festhalten', '/de/passport'], h: 'Nächster Schritt' },
+} as any)[lang];
+const next = d.urgency ? NEXT[d.urgency] : null;
 const toolLink = CHOC.has(slug!) ? ({ en: ['Ate chocolate? Work out the dose for your dog', '/chocolate'], it: ['Ha mangiato cioccolato? Calcola la dose per il tuo cane', '/it/chocolate'], de: ['Schokolade gefressen? Dosis für Ihren Hund berechnen', '/de/chocolate'] } as any)[lang] : null;
 const minutes = Math.max(1, Math.round(((entry.body ?? '').split(/\s+/).length) / 200));
 const minLabel = ({ en: 'min read', it: 'min di lettura', de: 'Min. Lesezeit' } as any)[lang];
@@ -76,6 +83,7 @@ const ld = [
   )}
   {toolLink && <p class="tool-link" data-pagefind-ignore><a class="btn" href={toolLink[1]}>{toolLink[0]}</a></p>}
   <div class="prose"><Content /></div>
+  {next && <div class={`next-step ns-${d.urgency}`} data-pagefind-ignore><span class="ns-h">{NEXT.h}</span> <a href={next[1]}>{next[0]} →</a></div>}
   {d.references?.length && (
     <section class="article-refs"><h2>{t.references}</h2><ol>{d.references.map((r: any) => <li>{r.url ? <a href={r.url} rel="noopener">{r.title}</a> : r.title}</li>)}</ol></section>
   )}
@@ -101,6 +109,10 @@ const ld = [
   }));
 </script>
 <style is:global>
+  .next-step { margin: 28px 0 8px; padding: 16px 20px; border-radius: 18px; background: var(--accent-soft); font-weight: 600; }
+  .next-step.ns-emergency { background: var(--danger-soft); }
+  .next-step.ns-today { background: var(--warn-soft); }
+  .next-step .ns-h { display: block; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-2); margin-bottom: 4px; }
   .fb { margin-top: 28px; }
   .fb fieldset { border: 0; margin: 0; padding: 18px 20px; border-radius: 20px; background: var(--surface); box-shadow: 0 1px 0 var(--line); display: grid; gap: 12px; }
   .fb legend { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; padding: 0 6px; }
