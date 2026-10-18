@@ -29,6 +29,13 @@ const next = d.urgency ? NEXT[d.urgency] : null;
 const others = (await getCollection('animals')).filter((e) => e.data.lang === lang && e.id !== entry.id);
 const score = (e: any) => (e.data.species === d.species ? 2 : e.data.species === 'general' || d.species === 'general' ? 1 : 0) + (e.data.category === d.category ? 2 : 0);
 const related = others.map((e) => ({ e, s: score(e) })).filter((x) => x.s >= 2).sort((x, y) => y.s - x.s || y.e.data.updated.valueOf() - x.e.data.updated.valueOf()).slice(0, 3).map((x) => x.e);
+// Provenance in plain words: how the article was made, who checked it, and how to correct it.
+const nRefs = d.references?.length ?? 0;
+const PV = ({
+  en: { h: 'About this article', made: `Drafted with AI assistance from the ${nRefs} sources listed below.`, draft: 'Not yet reviewed by a veterinarian.', rev: (who: string, when: string) => `Checked and approved by ${who}${when ? ` on ${when}` : ''}; no AI changes after sign-off.`, upd: 'Last updated', policy: 'How we write and review', href: '/editorial' },
+  it: { h: 'Su questo articolo', made: `Redatto con l'assistenza dell'IA a partire dalle ${nRefs} fonti elencate qui sotto.`, draft: 'Non ancora rivisto da un veterinario.', rev: (who: string, when: string) => `Controllato e approvato da ${who}${when ? ` il ${when}` : ''}; nessuna modifica dell'IA dopo la firma.`, upd: 'Ultimo aggiornamento', policy: 'Come scriviamo e rivediamo', href: '/it/editorial' },
+  de: { h: 'Über diesen Artikel', made: `Mit KI-Unterstützung aus den ${nRefs} unten genannten Quellen entworfen.`, draft: 'Noch nicht tierärztlich geprüft.', rev: (who: string, when: string) => `Geprüft und freigegeben von ${who}${when ? ` am ${when}` : ''}; keine KI-Änderungen nach der Freigabe.`, upd: 'Zuletzt aktualisiert', policy: 'So schreiben und prüfen wir', href: '/de/editorial' },
+} as any)[lang];
 const RL = ({ en: 'Related articles', it: 'Articoli correlati', de: 'Verwandte Artikel' } as any)[lang];
 const VACC = new Set(['puppy-kitten-first-year', 'vaccinations-dogs-cats', 'primo-anno-cucciolo-gattino', 'vaccini-cane-obbligatori-italia', 'erstes-jahr-welpe-kitten', 'hund-impfung-kosten', 'leptospirose-hund']);
 const vaccLink = ({ en: ['Plan the first-year vaccination dates', '/vaccine-planner'], it: ['Pianifica le date dei vaccini del primo anno', '/it/vaccine-planner'], de: ['Impftermine im ersten Jahr planen', '/de/vaccine-planner'] } as any)[lang];
@@ -91,6 +98,10 @@ const ld = [
   {toolLink && <p class="tool-link" data-pagefind-ignore><a class="btn" href={toolLink[1]}>{toolLink[0]}</a></p>}
   <div class="prose"><Content /></div>
   {next && <div class={`next-step ns-${d.urgency}`} data-pagefind-ignore><span class="ns-h">{NEXT.h}</span> <a href={next[1]}>{next[0]} →</a></div>}
+  <aside class="provenance" aria-labelledby="pv-h" data-pagefind-ignore>
+    <h2 id="pv-h">{PV.h}</h2>
+    <p>{nRefs > 0 && PV.made} {d.draft ? <strong>{PV.draft}</strong> : PV.rev(`${d.reviewedBy}${d.reviewerRegistration ? ` (${d.reviewerRegistration})` : ''}`, d.reviewedOn ? fmt(d.reviewedOn) : '')} {PV.upd}: {fmt(d.updated)}. <a href={PV.href}>{PV.policy} →</a></p>
+  </aside>
   {d.references?.length && (
     <section class="article-refs"><h2>{t.references}</h2><ol>{d.references.map((r: any) => <li>{r.url ? <a href={r.url} rel="noopener">{r.title}</a> : r.title}</li>)}</ol></section>
   )}
@@ -122,6 +133,9 @@ const ld = [
   }));
 </script>
 <style is:global>
+  .provenance { margin: 28px 0 0; padding: 14px 18px; border-left: 4px solid var(--accent); background: var(--accent-soft); border-radius: 0 14px 14px 0; }
+  .provenance h2 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; margin: 0 0 4px; color: var(--ink-2); font-family: var(--font); }
+  .provenance p { margin: 0; }
   .related { margin: 32px 0 8px; }
   .related h2 { font-size: 1.2rem; margin: 0 0 12px; }
   .related ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
