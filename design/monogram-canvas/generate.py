@@ -10,14 +10,13 @@ canvas, built only from Oberndörfer marks:
     python3 -I design/monogram-canvas/extract_motifs.py  # once
     python3 -I design/monogram-canvas/generate.py
 
-Layout: motifs sit on a diagonal grid (spacing D/2 along both diagonals).
-One repeat is 2D x 2D and holds two of each motif; the OMs run in diagonal
-lines, the roundels in the opposite diagonals, the halos and tiles between.
+Layout (from the owner's sketch): every OM is the centre of a rosette.
+Motifs sit on a square grid of spacing A; one repeat is 2A x 2A:
 
-    y = 0      OM ....... halo .....
-    y = D/2    .. roundel ...... tile
-    y = D      halo ..... OM .......
-    y = 3D/2   .. tile ......... roundel
+    OM       at (0, 0)            the centre of each rosette
+    square   at (A, 0), (0, A)    above, below and either side of the OM
+    disc     at (A, A)            the corners of the rosette
+    outline  at (A/2, A/2) etc.   four close around every OM (and every disc)
 
 Writes canvas-<colourway>-tile.svg (one repeat, true size in mm).
 """
@@ -25,19 +24,20 @@ import os
 import re
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-D = 40.0            # mm between motifs in a row
-T = 2 * D           # repeat
+A = 36.0            # mm grid spacing
+T = 2 * A           # repeat
 SIZE = {            # motif width in mm
-    'om': 22.0,
-    'roundel': 15.5,
-    'halo': 16.5,
-    'tile': 13.0,
+    'om': 21.0,
+    'roundel': 15.0,
+    'halo': 15.0,
+    'tile': 12.5,
 }
 LAYOUT = [
-    ('om', 0, 0), ('halo', D, 0),
-    ('roundel', D / 2, D / 2), ('tile', 3 * D / 2, D / 2),
-    ('halo', 0, D), ('om', D, D),
-    ('tile', D / 2, 3 * D / 2), ('roundel', 3 * D / 2, 3 * D / 2),
+    ('om', 0, 0),
+    ('tile', A, 0), ('tile', 0, A),
+    ('roundel', A, A),
+    ('halo', A / 2, A / 2), ('halo', 3 * A / 2, A / 2),
+    ('halo', A / 2, 3 * A / 2), ('halo', 3 * A / 2, 3 * A / 2),
 ]
 # ground, light (main motif colour), dark (fills inside motifs), edge
 COLOURWAYS = {

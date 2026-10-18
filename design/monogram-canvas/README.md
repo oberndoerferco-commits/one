@@ -13,16 +13,17 @@ An all-over repeat laid out like a classic monogram canvas (reference:
 The three star-cross motifs are your PDF's vector paths, unchanged; only their
 colours are swapped per colourway.
 
-Layout: motifs on a diagonal grid, 40 mm apart in a row. The OMs run in
-diagonal lines alternating with the discs; the outline and square motifs sit
-in the rows between. One repeat is 80 × 80 mm and holds two of each motif.
-OM 22 mm wide, disc 15.5 mm, outline motif 16.5 mm, square 13 mm, which leaves
-at least about 7 mm of clear ground between neighbouring motifs.
+Layout (from `layout-sketch.png`): every OM is the centre of a rosette. Four
+outline motifs sit close around it on the diagonals, square motifs above,
+below and to either side, and disc motifs at the corners. Grid spacing 36 mm;
+one repeat is 72 × 72 mm. OM 21 mm wide, disc and outline motifs 15 mm,
+square 12.5 mm.
 
 ## Files
 
 - `canvas-<colourway>-tile.svg`: one repeat at true size (mm), for print, jacquard or plate artwork.
 - `canvas-colourways.jpg`: graphite (your PDF's greys), denim, cognac, ivory.
+- `canvas-sketch-vs-pattern.jpg`: the sketch next to the generated pattern.
 
 ## Regenerate
 
