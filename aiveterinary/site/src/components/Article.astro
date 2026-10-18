@@ -13,7 +13,31 @@ const minutes = Math.max(1, Math.round(((entry.body ?? '').split(/\s+/).length) 
 const minLabel = ({ en: 'min read', it: 'min di lettura', de: 'Min. Lesezeit' } as any)[lang];
 const fmt = (x: Date) => x.toLocaleDateString(t.locale, { day: 'numeric', month: 'long', year: 'numeric' });
 const cls: Record<string, string> = { emergency: 'danger', today: 'warn', 'this-week': '', routine: 'ok' };
+// Structured data mirrors only what the page shows: same dates, a reviewer only when one is named on the page.
+const iso = (x: Date) => x.toISOString().slice(0, 10);
+const url = new URL(Astro.url.pathname.replace(/\.html$/, ''), Astro.site).href;
+const catLabel = (t.categories as any)[d.category]?.[0] ?? d.category;
+const ld = [
+  {
+    '@context': 'https://schema.org', '@type': 'MedicalWebPage', '@id': url, url,
+    headline: d.title, name: d.title, description: d.description, inLanguage: lang,
+    dateModified: iso(d.updated),
+    ...(d.reviewedBy && d.reviewedOn ? { lastReviewed: iso(d.reviewedOn), reviewedBy: { '@type': 'Person', name: d.reviewedBy, ...(d.reviewerRegistration ? { description: d.reviewerRegistration } : {}) } } : {}),
+    ...(d.author ? { author: { '@type': 'Person', name: d.author } } : { author: { '@type': 'Organization', name: 'AI Veterinary', url: 'https://aiveterinary.org' } }),
+    publisher: { '@type': 'Organization', name: 'AI Veterinary', url: 'https://aiveterinary.org' },
+    ...(d.references?.length ? { citation: d.references.filter((r: any) => r.url).map((r: any) => ({ '@type': 'CreativeWork', name: r.title, url: r.url })) } : {}),
+  },
+  {
+    '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: t.title, item: new URL(t.base, Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: catLabel, item: new URL(`${t.base}/${d.category}`, Astro.site).href },
+      { '@type': 'ListItem', position: 3, name: d.title, item: url },
+    ],
+  },
+];
 ---
+<script type="application/ld+json" set:html={JSON.stringify(ld)} />
 <div data-pagefind-body data-pagefind-meta={`species:${d.species}`}>
 <header class={`art-head tint-${d.species}`}>
   <div class="wrap narrow art-head-in">
