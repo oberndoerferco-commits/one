@@ -29,11 +29,15 @@ L'ansia da separazione di solito non è un'emergenza, ma alcune situazioni richi
 
 Il motivo è semplice: la RSPCA, la principale associazione britannica per il benessere animale, spiega che **problemi di salute possono causare o peggiorare** questi comportamenti. L'MSD Veterinary Manual ricorda che prima di parlare di ansia da separazione bisogna escludere **dolore, calo della vista o dell'udito, disfunzione cognitiva** (una sorta di "demenza" del cane anziano) e altre malattie che possono far sporcare in casa.
 
-## Che cos'è l'ansia da separazione
+## Che cos'è l'ansia da separazione nel cane?
+
+È una condizione in cui il cane va nel panico quando resta solo, anche se non tutti i cani che faticano a stare soli sono davvero ansiosi.
 
 L'MSD Veterinary Manual la descrive come una condizione in cui il cane **va nel panico quando resta solo**. La PDSA spiega che oggi i veterinari parlano spesso di **"problemi legati alla separazione"**, perché non tutti i cani che faticano a stare soli sono ansiosi: alcuni sono spaventati, frustrati, annoiati o troppo eccitati. Capire quale di questi è il caso del tuo cane cambia il modo di aiutarlo.
 
-## I segnali da riconoscere
+## Quali sono i segnali dell'ansia da separazione?
+
+Quando è solo il cane può abbaiare o guaire, distruggere oggetti, sporcare in casa, sbavare, ansimare, agitarsi o non toccare cibo e giochi.
 
 Secondo la PDSA, la RSPCA e l'MSD Veterinary Manual, quando il cane è solo (o lontano dalla persona a cui è più legato) può:
 
@@ -50,11 +54,15 @@ Alcuni segnali compaiono già **prima che tu esca**, quando prendi le chiavi o m
 
 Attenzione anche ai cani "silenziosi": la RSPCA avverte che alcuni restano fermi e molto preoccupati, e il problema passa inosservato. La PDSA ricorda che anche un cane **apatico o giù di morale** può soffrire.
 
-## Filma il tuo cane
+## Come capisco cosa fa il cane quando è solo?
+
+Riprendilo con una videocamera o il telefono mentre sei fuori e mostra i video al veterinario.
 
 Il modo migliore per capire cosa succede è **riprenderlo** con una videocamera o il telefono mentre sei fuori. Lo consigliano PDSA e RSPCA, e l'MSD Veterinary Manual indica il video come utile per distinguere l'ansia da separazione da altri problemi, come la paura dei rumori o l'educazione incompleta. Mostra i video al veterinario.
 
-## Perché succede
+## Perché il cane soffre di ansia da separazione?
+
+Tra le possibili cause ci sono esperienze negative vissute da solo, non aver imparato da cucciolo a stare solo, un attaccamento molto forte, insicurezza, un ambiente con poco da fare e la paura dei rumori.
 
 La PDSA elenca tra le possibili cause:
 
@@ -65,11 +73,15 @@ La PDSA elenca tra le possibili cause:
 - un ambiente con **poco da fare**
 - la **paura dei rumori**, come temporali o botti, quando capitano mentre il cane è solo. L'MSD Veterinary Manual segnala che paura dei rumori e ansia da separazione si presentano spesso insieme
 
-## Non punirlo
+## Devo punire il cane se combina guai quando è solo?
+
+No: sgridarlo o mostrarti arrabbiato può spaventarlo e peggiorare l'ansia.
 
 È la regola più importante. La RSPCA spiega che sgridarlo o mostrarsi arrabbiati può **spaventarlo e peggiorare l'ansia**. Il cane che "sembra colpevole" quando torni sta reagendo alla tua rabbia, non collega la punizione a quello che ha fatto ore prima. L'MSD Veterinary Manual sconsiglia le punizioni anche perché possono causare **paura e ansia verso il proprietario**.
 
-## Cosa puoi fare a casa
+## Cosa posso fare a casa per aiutare il cane?
+
+Lascialo solo il meno possibile, allenalo a stare solo a piccoli passi, togli significato ai segnali di partenza e crea un posto sicuro dove possa rilassarsi.
 
 Questi accorgimenti, da PDSA, RSPCA e MSD Veterinary Manual, aiutano molti cani, ma nei casi seri non sostituiscono un piano costruito con un professionista.
 
@@ -82,7 +94,9 @@ Questi accorgimenti, da PDSA, RSPCA e MSD Veterinary Manual, aiutano molti cani,
 
 Prima di usare **diffusori o collari ai feromoni**, la PDSA consiglia di parlarne con il veterinario.
 
-## Quando chiedere aiuto a un professionista
+## Quando chiedere aiuto a un professionista?
+
+Se dopo qualche settimana non vedi miglioramenti o il cane è molto in difficoltà, vai prima dal veterinario e poi, su sua indicazione, da un professionista del comportamento.
 
 Se dopo qualche settimana non vedi miglioramenti, o se il cane è molto in difficoltà, il percorso consigliato dalla RSPCA è: **prima dal veterinario**, per escludere problemi di salute, poi da un **professionista del comportamento** su indicazione del veterinario. In Italia puoi chiedere al tuo veterinario di indirizzarti a un **medico veterinario esperto in comportamento** (comportamentalista), che può visitare il cane, valutare anche gli aspetti medici e prescrivere una terapia se serve.
 
@@ -95,7 +109,7 @@ Secondo la PDSA, un piano di trattamento di solito comprende:
 
 I farmaci per l'ansia del cane si usano solo su prescrizione del veterinario, che sceglie il prodotto e la dose. **Non dare mai al cane tranquillanti, sonniferi o calmanti per uso umano**: possono essere pericolosi e non risolvono il problema.
 
-## Con il cucciolo: prevenire
+## Come prevenire l'ansia da separazione nel cucciolo?
 
 La PDSA consiglia di **insegnare presto l'indipendenza**: brevi momenti da solo, aumentati a poco a poco, premiando la calma.
 

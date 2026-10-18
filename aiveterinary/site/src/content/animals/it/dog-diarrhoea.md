@@ -24,7 +24,9 @@ Vai immediatamente in una clinica veterinaria, avvisando per telefono, se il tuo
 
 Un cucciolo con la diarrea che è anche spento e non mangia va visitato il giorno stesso, anche se nessuno degli altri segni è presente.
 
-## Se nessuno di questi segni è presente
+## Cosa posso fare a casa se il cane ha la diarrea ma sta bene?
+
+Nelle prime 24 ore lascia sempre acqua fresca, dai pasti piccoli di cibo leggero, evita premi e avanzi e non dare antidiarroici per uso umano.
 
 Feci molli o acquose per un giorno in un cane che resta vivace, mangia e beve sono frequenti. Rovistare durante la passeggiata, un cambio improvviso di cibo, lo stress, o una lieve infezione intestinale sono le cause più comuni.
 
@@ -37,7 +39,9 @@ Cosa puoi fare a casa nelle prime 24 ore:
 - Annota colore, consistenza e frequenza. Una foto aiuta il veterinario più di una descrizione.
 - Non dare nessun antidiarroico per uso umano. Alcuni sono pericolosi per i cani, e se un farmaco è indicato lo decide il veterinario.
 
-## Quando andare dal veterinario
+## Quando portare dal veterinario il cane con la diarrea?
+
+Prenota una visita oggi se la diarrea dura più di 48 ore, o più di 24 in un cucciolo o in un cane piccolo, se c'è sangue o se compaiono altri sintomi.
 
 Prenota una visita oggi se:
 
@@ -51,7 +55,9 @@ Prenota una visita oggi se:
 
 Una diarrea ripetuta o che dura a lungo non è qualcosa da gestire a casa all'infinito. Può indicare parassiti, un'intolleranza alimentare o una malattia intestinale che il veterinario deve indagare.
 
-## Cosa vorrà sapere il veterinario
+## Cosa vorrà sapere il veterinario?
+
+Da quando ha la diarrea e com'è, se c'è sangue o muco, cosa ha mangiato, come sta, vaccinazioni, sverminazioni, farmaci e contatti recenti.
 
 - Quando è iniziata, quante volte al giorno il cane evacua, e come sono le feci
 - Se c'è sangue o muco
@@ -64,7 +70,9 @@ Una diarrea ripetuta o che dura a lungo non è qualcosa da gestire a casa all'in
 
 Se puoi, porta un campione fresco di feci in un contenitore o sacchetto pulito. Il veterinario potrebbe volerlo analizzare.
 
-## Cause più comuni
+## Perché il cane ha la diarrea?
+
+Le cause più probabili sono aver mangiato qualcosa di inadatto, un cambio di cibo, stress, lievi infezioni, vermi o giardia e intolleranze, ma ci sono anche cause più serie come la parvovirosi.
 
 | Probabili | Meno comuni ma importanti |
 |---|---|

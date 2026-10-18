@@ -9,7 +9,9 @@ draft: true
 lang: it
 ---
 
-## Cos'è il SINAC
+## Cos'è il SINAC?
+
+È l'anagrafe nazionale degli animali da compagnia identificati con microchip, ma l'iscrizione la fa ancora il veterinario accreditato o la ASL nella banca dati della tua Regione.
 
 Il **SINAC** (Sistema di Identificazione Nazionale degli Animali da Compagnia) è la banca dati nazionale del Ministero della Salute in cui vengono registrati cani, gatti e furetti identificati con microchip, insieme ai dati del proprietario. È stato previsto dal decreto legislativo 134/2022 e reso operativo con il decreto ministeriale del 2 novembre 2023. Sta sostituendo progressivamente le vecchie anagrafi regionali, che in passato non si parlavano tra loro: un gatto smarrito in una regione diversa da quella in cui era registrato poteva non essere rintracciabile.
 
@@ -25,7 +27,9 @@ Per i cani sì, in tutta Italia, da anni. Per i gatti la regola la stabilisce og
 
 Il microchip è comunque **obbligatorio per viaggiare** fuori dall'Italia, perché il passaporto europeo viene rilasciato solo a un animale identificato e registrato. Le regole regionali le trovi sul sito della tua Regione, alla voce "anagrafe degli animali d'affezione" o "igiene urbana veterinaria", oppure te le spiega il veterinario.
 
-## Come si fa, passo per passo
+## Come si iscrive il gatto al SINAC?
+
+Prenoti una visita dal veterinario accreditato o alla ASL, porti documento e codice fiscale, e il veterinario impianta il microchip e registra il numero con i tuoi dati.
 
 1. **Prenota una visita** dal tuo veterinario, chiedendo se è accreditato per l'anagrafe (la maggior parte lo è), oppure dal servizio veterinario della ASL.
 2. Porta un **documento d'identità** e il **codice fiscale**. In alcune Regioni serve anche un modulo di richiesta.
@@ -35,7 +39,9 @@ Il microchip è comunque **obbligatorio per viaggiare** fuori dall'Italia, perch
 
 Il costo dell'iscrizione è in molte Regioni gratuito o simbolico; il costo del microchip e dell'impianto è stabilito dal veterinario. Se hai adottato un gatto da un canile, un gattile o un'associazione, spesso ha già il microchip: chiedi che l'iscrizione venga **intestata a te**, altrimenti il gatto risulta ancora dell'associazione.
 
-## Cosa comunicare, e entro quando
+## Cosa devo comunicare, e entro quando?
+
+Cambio di residenza o di proprietario, smarrimento, furto, ritrovamento, decesso e trasferimento, nei termini della tua Regione, spesso entro 15 giorni.
 
 Una registrazione serve solo se è aggiornata. Devi comunicare, con i termini della tua Regione (spesso **entro 15 giorni**, in alcuni casi 10):
 
@@ -48,7 +54,9 @@ Una registrazione serve solo se è aggiornata. Devi comunicare, con i termini de
 
 Molte Regioni permettono di fare queste comunicazioni online o tramite il veterinario. Anche un semplice **cambio di numero di telefono** va aggiornato: un gatto trovato viene restituito in fretta solo se chi legge il chip raggiunge un numero funzionante.
 
-## Perché conviene anche se non è obbligatorio
+## Perché conviene iscriverlo anche se non è obbligatorio?
+
+Perché se si perde torna a casa, dimostra che è tuo, serve per viaggiare all'estero e ti mette già in regola se l'obbligo arriva nella tua Regione.
 
 - **Se si perde, torna a casa.** Veterinari, ASL, canili e molti Comuni hanno il lettore. Un gatto senza chip che finisce in un gattile viene considerato senza proprietario.
 - **Dimostra che è tuo** in caso di contestazione, furto o separazione.
@@ -56,11 +64,15 @@ Molte Regioni permettono di fare queste comunicazioni online o tramite il veteri
 - **È più facile sterilizzare e curare** un gatto di cui si conosce la storia; alcune Regioni e Comuni legano agevolazioni all'iscrizione.
 - **Se un giorno diventa obbligatorio nella tua Regione**, sei già in regola e non rischi sanzioni.
 
-## Cosa fa e cosa non fa il microchip
+## Il microchip localizza il gatto?
+
+No: è solo un numero, senza GPS né storia clinica, che funziona perché è legato al tuo nome nella banca dati.
 
 Il microchip è solo un numero. Non ha GPS, non localizza il gatto, non contiene la sua storia clinica. Funziona perché quel numero è legato al tuo nome in una banca dati: senza l'iscrizione, il chip da solo non serve a nulla.
 
-## Cosa vorrà sapere il veterinario
+## Cosa vorrà sapere il veterinario?
+
+Età e provenienza del gatto, se ha già un microchip, i tuoi dati, se viaggerete all'estero e se è sterilizzato e vaccinato.
 
 - Età del gatto e provenienza (nato in casa, adottato, acquistato, trovato)
 - Se ha già un microchip, e a chi risulta intestato

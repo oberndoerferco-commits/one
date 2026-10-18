@@ -32,19 +32,25 @@ Vai in clinica **immediatamente**, avvisando per telefono, se il cane:
 
 Un cane che non fa più pipì dopo aver mangiato uva è in una situazione molto grave. Ma l'obiettivo è arrivare **molto prima**, quando il cane sembra ancora stare bene.
 
-## Perché l'uva è pericolosa per il cane
+## Perché l'uva è pericolosa per il cane?
+
+Uva, uvetta e uva di Corinto possono provocare un danno acuto ai reni, probabilmente a causa dell'acido tartarico.
 
 L'uva e i suoi derivati secchi possono provocare un **danno acuto ai reni**. Secondo il Merck Veterinary Manual, sono stati collegati all'insufficienza renale nel cane l'uva, l'uvetta e l'uva di Corinto (quella piccola e scura spesso usata nei dolci). Anche il **tamarindo** ha causato insufficienza renale nel cane.
 
 Per anni non si è saputo quale fosse la sostanza responsabile. Oggi l'ipotesi principale è l'**acido tartarico**: il cane elimina male questo tipo di acidi, che si accumulano nelle cellule dei reni. A rafforzare l'ipotesi c'è una serie di casi pubblicata nel 2022, in cui alcuni cani hanno sviluppato un danno renale dopo aver mangiato **cremor tartaro** (usato in cucina e in alcune ricette di pasta da modellare fatta in casa) o pasta di tamarindo. Gli autori stessi sottolineano che i casi sono pochi, quindi è un'ipotesi forte ma non ancora una certezza.
 
-## Non esiste una quantità sicura
+## Quanta uva è pericolosa per il cane?
+
+Non esiste una quantità sicura: è impossibile prevedere quale cane si ammalerà, anche se in passato ne ha mangiata senza problemi.
 
 Questo è il punto che sorprende di più i proprietari. Alcuni cani mangiano uva senza conseguenze apparenti, altri si ammalano gravemente con poco. La PDSA spiega che **è impossibile prevedere** se un cane sarà colpito in modo grave, **anche se in passato ne ha mangiata senza problemi**. Il contenuto di acido tartarico, inoltre, varia da frutto a frutto.
 
 Per questo i veterinari trattano ogni ingestione come potenzialmente seria. Non fare calcoli in base al peso del cane e non aspettare per "vedere come va".
 
-## Dove si nasconde l'uva
+## Dove si nasconde l'uva?
+
+Nell'uvetta sfusa, nei cereali e nelle barrette, in dolci come il panettone, nei mix di frutta secca e nella pasta da modellare fatta in casa con cremor tartaro.
 
 Non solo il grappolo sul tavolo. Attenzione a:
 
@@ -55,7 +61,9 @@ Non solo il grappolo sul tavolo. Attenzione a:
 
 La PDSA osserva che questi avvelenamenti sono più frequenti durante le **feste**, quando i dolci con l'uvetta girano per casa.
 
-## Cosa fare nei primi minuti
+## Cosa devo fare se il cane ha mangiato uva?
+
+Allontanalo dal cibo, cerca di capire cosa, quanto e quando ha mangiato e chiama il veterinario.
 
 1. **Allontana il cane** dal resto del cibo e raccogli quello che è rimasto.
 2. **Cerca di capire cosa e quanto ha mangiato**, e a che ora. Conserva la confezione o la ricetta del dolce.
@@ -69,7 +77,9 @@ La PDSA osserva che questi avvelenamenti sono più frequenti durante le **feste*
 - **Non aspettare i sintomi.** Quando il danno ai reni diventa evidente, si è già perso tempo prezioso.
 - **Non fidarti di consigli trovati in rete** che dicono che "qualche acino non fa nulla". Chi decide è il veterinario.
 
-## Quali sono i sintomi e quando compaiono
+## Quali sono i sintomi e quando compaiono?
+
+La maggior parte dei cani colpiti vomita o ha diarrea entro 6-12 ore, e nei casi gravi l'insufficienza renale si sviluppa nei 1-3 giorni successivi.
 
 Secondo il Merck Veterinary Manual, la maggior parte dei cani colpiti inizia a **vomitare o ad avere diarrea entro 6-12 ore** dall'ingestione. Possono comparire anche:
 
@@ -82,7 +92,9 @@ Secondo il Merck Veterinary Manual, la maggior parte dei cani colpiti inizia a *
 
 La PDSA aggiunge che possono esserci **sangue nelle feci** e che, nei casi gravi, l'insufficienza renale si sviluppa **nei 1-3 giorni successivi**. Il segno più preoccupante è quando il cane produce poca urina o smette del tutto di farne.
 
-## Cosa fa il veterinario
+## Cosa fa il veterinario se il cane ha mangiato uva?
+
+Se l'ingestione è recente cerca di farlo vomitare, poi spesso consiglia una flebo ed esami del sangue ripetuti per controllare i reni.
 
 Il trattamento dipende da quanto tempo è passato e dalle condizioni del cane. Se il cane sta ancora bene e l'ingestione è recente, il veterinario di solito cerca di **eliminare il frutto dallo stomaco** con un farmaco che provoca il vomito. La PDSA precisa che questo ha senso soprattutto se si interviene presto.
 
@@ -94,7 +106,9 @@ Le probabilità di cavarsela sono buone quando il cane viene trattato in fretta.
 
 Il Merck Veterinary Manual riporta solo segnalazioni aneddotiche di danno renale nel gatto dopo aver mangiato uva o uvetta, senza casi pubblicati. Per prudenza, se il tuo gatto ne ha mangiata, chiama comunque il veterinario.
 
-## Prevenire
+## Come evitare che il cane mangi uva?
+
+Tieni uva, uvetta e dolci che le contengono fuori portata, spiega a bambini e ospiti che l'uva non è un premio e fai attenzione durante le feste.
 
 - Tieni uva, uvetta e dolci che le contengono **fuori dalla portata** del cane, anche sul tavolo basso o nelle borse della spesa.
 - Spiega a bambini e ospiti che l'uva **non è un premio** per il cane.

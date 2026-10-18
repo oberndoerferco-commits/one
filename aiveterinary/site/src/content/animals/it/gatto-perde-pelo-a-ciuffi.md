@@ -40,7 +40,9 @@ Spesso è il gatto che **se lo toglie** leccandosi troppo. International Cat Car
 
 Le zone più colpite, secondo International Cat Care, sono **pancia, zampe** (soprattutto l'interno delle posteriori) e **fianchi**, spesso in modo simmetrico.
 
-## Le cause più comuni
+## Perché il gatto perde pelo a ciuffi?
+
+Le cause più comuni sono pulci e allergie, tigna, dolore, stress e alcune malattie ormonali.
 
 ### Pulci e allergie
 
@@ -85,11 +87,13 @@ Per aiutare un gatto stressato, International Cat Care suggerisce di mantenere u
 
 La PDSA cita alcune **malattie ormonali**, come l'**ipertiroidismo**, tra le possibili cause di perdita di pelo. L'MSD Veterinary Manual spiega che la perdita di pelo dovuta a problemi ormonali **all'inizio di solito non prude** e che, se il veterinario sospetta un problema ormonale, può chiedere **esami del sangue e delle urine**.
 
-## Cosa fa il veterinario
+## Cosa fa il veterinario se il gatto perde pelo?
+
+Cerca la causa con storia, visita ed esami come controllo delle pulci, esami di peli e pelle, test per la tigna ed esami del sangue o delle urine, e intanto può dare sollievo al prurito.
 
 L'MSD Veterinary Manual ricorda che la perdita di pelo è un **segno, non una malattia**: per curarla bisogna trovare la causa, e servono una storia dettagliata e una visita accurata. Il veterinario può proporre controllo delle pulci, esami dei peli e raschiati della pelle, esami per la tigna, esami del sangue o delle urine e, se serve, esami di diagnostica per immagini. Poiché trovare la causa può richiedere tempo, spesso prescrive intanto qualcosa per dare sollievo al prurito.
 
-## Cosa non fare
+## Cosa non devo fare se il gatto perde pelo?
 
 **Non usare farmaci, pomate o shampoo per uso umano**, né prodotti per cani, e non aspettare che il pelo "ricresca da solo".
 

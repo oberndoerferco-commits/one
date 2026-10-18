@@ -28,11 +28,15 @@ Le malattie della tiroide si curano con calma, nel giro di una settimana. Vai su
 
 Sono le complicazioni di un ipertiroidismo trascurato sul cuore e sulla circolazione.
 
-## Due malattie speculari
+## Che differenza c'è tra i problemi di tiroide del cane e del gatto?
+
+Nel cane la tiroide di solito lavora troppo poco (ipotiroidismo), nel gatto troppo (ipertiroidismo).
 
 La tiroide, nel collo, produce gli ormoni che regolano la velocità del metabolismo. Nel **cane** il problema più frequente è una tiroide che lavora troppo poco (**ipotiroidismo**): quasi sempre perché il sistema immunitario la distrugge lentamente. Nel **gatto** succede il contrario: una tiroide che lavora troppo (**ipertiroidismo**), quasi sempre per un ingrossamento benigno di una o di entrambe le metà della ghiandola; i tumori maligni sono una rarità. L'ipotiroidismo nel gatto e l'ipertiroidismo nel cane esistono, ma sono eccezioni.
 
-## Il cane ipotiroideo: i segni
+## Quali sono i segni dell'ipotiroidismo nel cane?
+
+Tutto rallenta: il cane ingrassa senza mangiare di più, è pigro, cerca il caldo e ha pelo e pelle che peggiorano.
 
 Colpisce soprattutto cani adulti tra 4 e 10 anni, di taglia media e grande; è raro nelle razze toy. Tutto rallenta:
 
@@ -46,7 +50,9 @@ Colpisce soprattutto cani adulti tra 4 e 10 anni, di taglia media e grande; è r
 
 Sono segni lenti e vaghi, facili da scambiare per l'età.
 
-## Il gatto ipertiroideo: i segni
+## Quali sono i segni dell'ipertiroidismo nel gatto?
+
+Tutto accelera: il gatto dimagrisce pur mangiando molto, beve e urina di più, è irrequieto e ha il cuore veloce.
 
 Colpisce gatti di mezza età e anziani, raramente sotto i 7 anni. Tutto accelera:
 
@@ -59,7 +65,9 @@ Colpisce gatti di mezza età e anziani, raramente sotto i 7 anni. Tutto accelera
 
 Il veterinario spesso sente al tatto la ghiandola ingrossata nel collo.
 
-## Come si fa la diagnosi
+## Come si diagnosticano i problemi di tiroide?
+
+Con un esame del sangue che misura l'ormone tiroideo T4, a cui nel cane si aggiungono spesso altri esami perché la lettura è più delicata.
 
 In entrambi i casi la diagnosi parte da un **esame del sangue che misura l'ormone tiroideo (T4)**.
 
@@ -67,7 +75,9 @@ Nel gatto un T4 alto, insieme ai sintomi, conferma; nei casi dubbi si ripete o s
 
 Nel cane la lettura è più delicata: molte malattie e alcuni farmaci (i cortisonici in particolare) abbassano il T4 anche con una tiroide sana, e alcune razze come i levrieri hanno valori normalmente più bassi. Per questo il veterinario abbina il T4 ad altri esami (TSH, T4 libero, anticorpi) e a un profilo completo, e a volte propone una prova terapeutica.
 
-## Cosa comporta la terapia
+## Come si curano i problemi di tiroide?
+
+Il cane prende per tutta la vita compresse di ormone tiroideo, mentre per il gatto si sceglie tra farmaco antitiroideo, iodio radioattivo, chirurgia e dieta povera di iodio.
 
 **Cane.** Si sostituisce l'ormone mancante con una compressa di ormone tiroideo, di solito una o due volte al giorno, per tutta la vita. L'energia torna in poche settimane, pelo e peso in uno o due mesi. Un controllo del sangue dopo le prime settimane permette di aggiustare la dose; poi basta una o due volte l'anno. Il cibo influenza l'assorbimento, quindi dai la compressa sempre nello stesso modo. Se il cane diventa iperattivo, beve e ansima molto o dimagrisce, la dose è probabilmente troppo alta: chiama.
 
@@ -80,11 +90,15 @@ Nel cane la lettura è più delicata: molte malattie e alcuni farmaci (i cortiso
 | Chirurgia | Rimozione della ghiandola malata; rischio per le paratiroidi, che regolano il calcio |
 | Dieta a basso contenuto di iodio | Funziona solo se il gatto mangia esclusivamente quella, senza premi né caccia |
 
-## Il monitoraggio
+## Quali controlli servono durante la cura?
+
+Nel gatto si controllano T4, reni e pressione prima e dopo l'inizio della cura, nel cane gli esami del sangue insieme al peso mensile e al pelo.
 
 Nel gatto, prima e dopo l'inizio della cura si controllano T4, **reni** e pressione: un ipertiroidismo spinge i reni a lavorare di più e può nascondere un'insufficienza renale che emerge quando la tiroide torna normale. Per questo il veterinario spesso inizia con il farmaco, anche quando poi si punta a una cura definitiva. Nel cane, oltre al sangue, pesa il tuo animale ogni mese e segna i cambiamenti del pelo.
 
-## Cosa aspettarsi
+## Un animale con problemi di tiroide può vivere bene?
+
+Sì: entrambe le malattie hanno una prognosi buona se curate, anche se nel gatto molto dipende dallo stato di reni e cuore.
 
 Entrambe le malattie hanno una prognosi buona se curate. Il cane ipotiroideo in terapia vive una vita normale. Il gatto ipertiroideo trattato recupera peso e carattere nella grande maggioranza dei casi; il futuro dipende soprattutto dallo stato dei reni e del cuore al momento della diagnosi, un motivo in più per non aspettare.
 

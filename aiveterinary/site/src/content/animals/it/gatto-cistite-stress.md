@@ -20,13 +20,17 @@ La cistite nel gatto può evolvere in **ostruzione dell'uretra**, soprattutto ne
 
 Un gatto che non riesce a urinare è in pericolo di vita nel giro di 24-48 ore. Non aspettare il mattino.
 
-## Cos'è la cistite "da stress"
+## Che cos'è la cistite da stress nel gatto?
+
+È un'infiammazione della vescica senza infezione o calcoli, spesso legata a un cambiamento nella vita del gatto, che provoca urgenza e dolore veri.
 
 Il nome tecnico è **cistite idiopatica felina**: "idiopatica" significa che non si trova un'infezione, un calcolo o un'altra causa precisa. La parete della vescica si infiamma, i nervi diventano ipersensibili, e il gatto sente urgenza e dolore. Nella maggior parte dei casi, se si cerca bene, si trova un **cambiamento** nella vita del gatto nei giorni precedenti: un trasloco, un nuovo animale o un bambino, lavori in casa, ospiti, un cambio di lettiera, conflitti con un altro gatto, il proprietario assente, perfino il freddo che riduce la voglia di muoversi e bere.
 
 Non è un "capriccio" e non è il gatto che fa dispetti. È dolore vero, e il gatto associa la lettiera al dolore, per questo spesso urina altrove.
 
-## I sintomi tipici
+## Quali sono i sintomi della cistite nel gatto?
+
+Urina spesso e poco, resta a lungo in lettiera, può avere sangue nelle urine e fare pipì fuori dalla lettiera.
 
 - Urina più spesso, ma poco alla volta
 - Resta a lungo in lettiera, o ci entra e esce
@@ -38,7 +42,9 @@ Non è un "capriccio" e non è il gatto che fa dispetti. È dolore vero, e il ga
 
 Colpisce soprattutto gatti tra 2 e 7 anni, spesso in sovrappeso, che vivono solo in casa, mangiano quasi solo secco e condividono lo spazio con altri gatti. Gli episodi durano in genere da 3 a 7 giorni e tendono a **ripetersi**.
 
-## Cosa puoi fare a casa
+## Cosa posso fare a casa per il gatto con cistite?
+
+Offrigli acqua ovunque e più cibo umido, tieni lettiere pulite e sufficienti, riduci lo stress e non dargli antidolorifici per uso umano.
 
 Mentre aspetti la visita, e nei giorni seguenti:
 
@@ -49,7 +55,9 @@ Mentre aspetti la visita, e nei giorni seguenti:
 - Non sgridarlo per la pipì fuori posto: peggiora lo stress e quindi la cistite.
 - Non dare antidolorifici per uso umano: nel gatto alcuni sono mortali.
 
-## Quando andare dal veterinario
+## Quando portare dal veterinario il gatto con cistite?
+
+Prenota una visita oggi se vedi sangue nelle urine, pipì fuori dalla lettiera o sforzi frequenti, e chiama subito se smette di produrre urina.
 
 Prenota una visita oggi se vedi sangue nelle urine, pipì fuori dalla lettiera o sforzi frequenti. Serve perché:
 
@@ -59,7 +67,9 @@ Prenota una visita oggi se vedi sangue nelle urine, pipì fuori dalla lettiera o
 
 Torna o chiama subito se, in qualunque momento, il gatto smette di produrre urina.
 
-## Cosa vorrà sapere il veterinario
+## Cosa vorrà sapere il veterinario?
+
+Da quando e quante volte va in lettiera, se c'è sangue, sesso, età e peso, cosa mangia e beve, com'è organizzata la casa e cosa è cambiato di recente.
 
 - Da quando ha iniziato e quante volte al giorno va in lettiera
 - Se vedi sangue e dove urina fuori dalla lettiera
@@ -70,7 +80,9 @@ Torna o chiama subito se, in qualunque momento, il gatto smette di produrre urin
 - Cosa è cambiato nelle ultime due settimane
 - Episodi precedenti e come sono stati trattati
 
-## Cause da escludere
+## Quali altre cause vanno escluse?
+
+Oltre alla cistite idiopatica, il veterinario deve considerare cristalli, tappo uretrale, calcoli, infezioni, tumori e malattie che aumentano la quantità di urina.
 
 | Probabili in un gatto giovane o adulto | Meno comuni ma importanti |
 |---|---|

@@ -32,7 +32,9 @@ references:
 
 I piccoli erbivori nascondono bene la malattia e peggiorano in fretta: un coniglio che "sembra solo un po' spento" dopo aver rosicchiato una pianta è una telefonata da fare oggi. Se nessun veterinario risponde, il **Centro Antiveleni di Milano (Ospedale Niguarda) è attivo 24 ore su 24 al 02 66101029** e dichiara di rispondere anche per le intossicazioni negli animali. La prima chiamata resta alla tua clinica.
 
-## Cosa è pericoloso
+## Cosa è velenoso per conigli e cavie?
+
+Tra i pericoli maggiori ci sono avocado, esche per topi, antipulci per cani o gatti con fipronil, molte piante da giardino e d'appartamento, bulbi, cipolla e aglio e dolci.
 
 | Sostanza | Perché è pericolosa | Cosa fare per primo |
 |---|---|---|
@@ -48,14 +50,18 @@ I piccoli erbivori nascondono bene la malattia e peggiorano in fretta: un conigl
 | Uva e uvetta | Nel coniglio l'effetto sui reni è sospettato ma poco documentato; i centri antiveleni consigliano di evitarli. | Chiama. |
 | Erba tagliata dal tosaerba, erbacce trattate (glifosato), agrumi in quantità, verdura non fresca | L'erba che fermenta gonfia la pancia; i residui di diserbante danno debolezza e fatica a respirare; frutta acida e verdura vecchia irritano l'intestino. | Togli tutto, osserva l'appetito, chiama se qualcosa cambia. |
 
-## Cosa non fare
+## Cosa non devo fare se il coniglio o la cavia ha mangiato qualcosa di tossico?
+
+Non provare a farli vomitare, non dare latte, olio, pane o farmaci umani e non aspettare per vedere come va.
 
 - **Non provare a farli vomitare.** Coniglio e cavia non possono vomitare, e tutto quello che spingi in bocca può finire nei polmoni.
 - **Non dare acqua salata, latte, yogurt, olio o pane.** Latticini e zuccheri peggiorano il problema intestinale.
 - **Non dare farmaci umani o per cani**, antidolorifici compresi: diversi sono velenosi per il coniglio.
 - Non "aspettare e vedere": la RSPCA lo scrive con queste parole. Il rischio lo calcola il veterinario dal peso dell'animale, dalla sostanza e dalla quantità; una telefonata costa meno di un coniglio malato.
 
-## Cosa ti chiederà il veterinario
+## Cosa mi chiederà il veterinario?
+
+Cosa ha mangiato o cosa gli è stato applicato, quanto, quando, e peso, età e farmaci in corso.
 
 1. **Cosa** ha mangiato o cosa gli è stato applicato: nome o foto della pianta, confezione del prodotto, colore dell'esca.
 2. **Quanto**: una foglia rosicchiata, una pianta intera, per quanto tempo ha avuto accesso.
@@ -64,7 +70,9 @@ I piccoli erbivori nascondono bene la malattia e peggiorano in fretta: un conigl
 
 Porta un campione della pianta in un sacchetto e la confezione di qualsiasi prodotto.
 
-## Prevenzione
+## Come proteggere conigli e cavie da piante e sostanze tossiche?
+
+Controlla recinto e giardino, tieni le piante d'appartamento in alto, usa solo antiparassitari indicati per la loro specie e tieni avocado e cioccolato fuori portata.
 
 Fai un giro del recinto e del giardino prima di lasciarli liberi: digitale, edera e bulbi sono comuni nei giardini, e le esche per topi attirano i conigli. Tieni le piante d'appartamento sopra l'altezza della gabbia e raccogli le foglie cadute. Compra antiparassitari solo dal veterinario e solo quelli indicati per coniglio o cavia. Alimenta con fieno, acqua fresca, una piccola porzione di verdura a foglia e una razione misurata di pellet: gli avanzi di cucina che fanno danno sono i premi, non le verdure. Tieni avocado e cioccolato fuori portata e non tagliare il prato con gli animali sopra.
 

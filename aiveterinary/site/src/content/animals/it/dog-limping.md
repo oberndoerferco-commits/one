@@ -24,7 +24,9 @@ Vai immediatamente in una clinica veterinaria, avvisando per telefono, se il tuo
 
 Anche un cane che zoppica su una zampa anteriore e ha anche il collo o la schiena gonfi o dolenti va visitato con urgenza: non tutte le zoppie partono dalla zampa.
 
-## Se nessuno di questi segni è presente
+## Cosa posso fare a casa se il cane zoppica ma sta bene?
+
+Controlla zampa e cuscinetti, palpa con delicatezza l'arto, fallo riposare sul serio e non dargli antidolorifici per uso umano.
 
 Un cane che zoppica ma appoggia ancora un po' di peso, è vivace, mangia ed è tranquillo a riposo può di solito essere osservato per un paio di giorni.
 
@@ -36,7 +38,9 @@ Cosa puoi fare a casa:
 - Non dare antidolorifici per uso umano. Ibuprofene e paracetamolo possono essere pericolosi per i cani. Se il tuo cane ha bisogno di un antidolorifico, è una decisione del veterinario e serve una prescrizione.
 - Se puoi, filma la zoppia. Le zoppie spesso spariscono in ambulatorio, e un breve video aiuta il veterinario a vedere quale zampa è coinvolta e quanto.
 
-## Quando andare dal veterinario
+## Quando portare dal veterinario il cane che zoppica?
+
+Prenota una visita se la zoppia non migliora dopo due o tre giorni di riposo, torna con l'attività, dura da settimane o si accompagna a gonfiore, rigidità o leccamento.
 
 Prenota una visita questa settimana, o prima, se:
 
@@ -49,7 +53,9 @@ Prenota una visita questa settimana, o prima, se:
 - il tuo cane è un cucciolo o un giovane di taglia grande con una zoppia di qualsiasi tipo che dura più di uno o due giorni
 - il tuo cane è anziano e la zoppia è nuova
 
-## Cosa vorrà sapere il veterinario
+## Cosa vorrà sapere il veterinario?
+
+Quale zampa, quando è iniziata e cosa è successo, come cambia con riposo ed esercizio, cosa hai notato e la storia di traumi, farmaci e viaggi.
 
 - Quale zampa, e se è sempre la stessa
 - Quando è iniziata, e se è successo qualcosa (un salto, una scivolata, un gioco di riporto)
@@ -61,7 +67,9 @@ Prenota una visita questa settimana, o prima, se:
 - Eventuali farmaci o integratori
 - Eventuali morsi di zecca, o viaggi all'estero
 
-## Cause più comuni
+## Perché il cane zoppica?
+
+Le cause più probabili sono tagli, spine o forasacchi, distorsioni, unghie rotte, contusioni, artrosi e ustioni dei cuscinetti, ma sono possibili anche fratture o la rottura del crociato.
 
 | Probabili | Meno comuni ma importanti |
 |---|---|

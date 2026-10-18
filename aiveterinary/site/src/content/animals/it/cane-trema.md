@@ -21,7 +21,9 @@ Vai immediatamente in una clinica veterinaria, avvisando per telefono, se il tuo
 - ha una temperatura molto alta dopo il caldo o l'attività fisica, o molto bassa dopo esposizione al freddo o all'acqua
 - il tremore è comparso insieme a dolore evidente: lamenti, schiena inarcata, non vuole muoversi, grida quando lo prendi in braccio
 
-## Tremare non è sempre preoccupante
+## È normale che il cane tremi?
+
+Spesso sì: può tremare per freddo, paura, ansia o eccitazione, nel sonno o, se è anziano, per debolezza delle zampe posteriori.
 
 Un cane può tremare per molti motivi che non sono malattia:
 
@@ -34,7 +36,9 @@ Un cane può tremare per molti motivi che non sono malattia:
 
 Il punto importante è il **contesto**: un cane che trema ma mangia, gioca, cammina normalmente e smette quando la situazione cambia è molto diverso da un cane che trema a riposo, in casa al caldo, e sembra spento o dolorante.
 
-## Cosa osservare a casa
+## Cosa devo osservare a casa?
+
+Filma il tremore, nota dove e quando compare, controlla se c'è dolore e tieni il cane al caldo e tranquillo.
 
 Nelle ore in cui aspetti la visita:
 
@@ -46,7 +50,9 @@ Nelle ore in cui aspetti la visita:
 - Tienilo al caldo, in un posto tranquillo, con acqua a disposizione.
 - Non dare farmaci di uso umano contro il dolore o l'ansia.
 
-## Quando andare dal veterinario
+## Quando portare dal veterinario il cane che trema?
+
+Prenota una visita entro pochi giorni se il tremore è nuovo e si ripete, compare a riposo o si accompagna ad altri segni, e anticipala a oggi se peggiora nel giro di ore.
 
 Prenota una visita entro pochi giorni se:
 
@@ -59,7 +65,9 @@ Prenota una visita entro pochi giorni se:
 
 Anticipa la visita a oggi se il tremore peggiora nel giro di ore o se compaiono altri segni.
 
-## Cosa vorrà sapere il veterinario
+## Cosa vorrà sapere il veterinario?
+
+Da quando e dove trema, se hai un video, se può aver ingerito qualcosa, eventuali traumi, come mangia e beve e quali farmaci prende.
 
 - Da quando trema e in quali situazioni
 - Quale parte del corpo è coinvolta, e se hai un video
@@ -69,7 +77,9 @@ Anticipa la visita a oggi se il tremore peggiora nel giro di ore o se compaiono 
 - Farmaci, integratori, antiparassitari recenti
 - Se è già seguito per problemi di schiena, articolazioni, reni, fegato o ormoni
 
-## Cause più comuni
+## Quali sono le cause più comuni del tremore nel cane?
+
+Le più probabili sono freddo, paura, ansia o eccitazione e debolezza muscolare o artrosi nel cane anziano, ma vanno considerati anche avvelenamenti, dolore alla colonna e ipoglicemia.
 
 | Probabili | Meno comuni ma importanti |
 |---|---|

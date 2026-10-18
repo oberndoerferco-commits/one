@@ -20,7 +20,9 @@ Vai immediatamente in una clinica veterinaria, avvisando per telefono, se il tuo
 - potrebbe aver ingoiato un oggetto, un osso, o qualcosa di tossico
 - è un cucciolo di pochi mesi, un cane molto anziano, o ha già una malattia cronica (reni, fegato, diabete, cuore)
 
-## Giallo o bianco: cosa stai guardando
+## Cosa significa se il cane vomita giallo o schiuma bianca?
+
+Il giallo è quasi sempre bile che irrita lo stomaco vuoto, mentre la schiuma bianca di solito è saliva mista a succhi gastrici e aria, ma a volte è tosse.
 
 **Il vomito giallo** è quasi sempre **bile**, il liquido prodotto dal fegato che arriva nell'intestino per digerire i grassi. Quando lo stomaco è vuoto da molte ore, un po' di bile può risalire e irritarlo. Per questo molti cani vomitano giallo la mattina presto o a notte fonda, prima del pasto: è la cosiddetta "sindrome del vomito biliare". Se succede ogni tanto, il cane è vivace e mangia normalmente, in genere non è grave.
 
@@ -28,7 +30,7 @@ Vai immediatamente in una clinica veterinaria, avvisando per telefono, se il tuo
 
 Il colore da solo non dice la causa. Dice però da quanto tempo lo stomaco è vuoto e se c'è irritazione.
 
-## Se nessuno dei segni urgenti è presente
+## Cosa faccio se non c'è nessun segno urgente?
 
 Un episodio isolato di vomito giallo o schiumoso in un cane che per il resto sta bene si può osservare a casa per le prime 12-24 ore.
 
@@ -38,7 +40,9 @@ Un episodio isolato di vomito giallo o schiumoso in un cane che per il resto sta
 - Annota quando vomita, quante volte, com'è il materiale, e se ha mangiato qualcosa di insolito. Una foto sul telefono aiuta.
 - Controlla che faccia le feci normalmente e che non abbia dolore quando gli tocchi la pancia.
 
-## Quando andare dal veterinario
+## Quando portare dal veterinario il cane che vomita giallo?
+
+Prenota una visita oggi se il vomito si ripete più di due o tre volte in un giorno, dura più di 24 ore, il cane non mangia, ha diarrea, è spento o sospetti che sia tosse.
 
 Prenota una visita oggi se:
 
@@ -49,7 +53,9 @@ Prenota una visita oggi se:
 - il cane è spento, dimagrisce, o ha la pancia dolente
 - sospetti che si tratti di tosse e non di vomito, soprattutto se il cane è anziano, di razza piccola o ha il cuore già in osservazione
 
-## Cosa vorrà sapere il veterinario
+## Cosa vorrà sapere il veterinario?
+
+Quando e da quanto vomita, quanto tempo dopo il pasto, com'è il materiale, cosa mangia e come vanno appetito, sete, feci ed energia.
 
 - A che ora del giorno vomita e da quanto tempo
 - Quanto tempo passa tra l'ultimo pasto e l'episodio
@@ -60,7 +66,9 @@ Prenota una visita oggi se:
 - Appetito, sete, feci, energia
 - Se ci sono altri animali in casa con sintomi simili
 
-## Cause più comuni
+## Perché il cane vomita giallo?
+
+Le cause più probabili sono lo stomaco vuoto da molte ore, l'irritazione da erba o rifiuti, i cambi di cibo e il mangiare troppo in fretta, ma vanno considerati anche corpi estranei, pancreatite e altre malattie.
 
 | Probabili | Meno comuni ma importanti |
 |---|---|

@@ -9,7 +9,9 @@ draft: true
 lang: it
 ---
 
-## Core e non-core: cosa significano le parole
+## Cosa vuol dire vaccini core e non-core?
+
+I core servono a ogni cane o gatto ovunque viva, i non-core si scelgono con il veterinario in base a stile di vita e zona.
 
 Gli organismi veterinari europei dividono i vaccini in due gruppi.
 
@@ -17,7 +19,9 @@ Gli organismi veterinari europei dividono i vaccini in due gruppi.
 
 **I vaccini non-core** sono consigliati a seconda di dove vivi, se il tuo animale esce, viaggia, va in pensione, o incontra molti altri animali. È il veterinario a decidere quali di questi si applicano al tuo animale, in base al suo stile di vita e al rischio di malattia nella tua zona.
 
-## Vaccini core per il cane
+## Quali sono i vaccini core per il cane?
+
+Cimurro, parvovirosi e adenovirus, più la rabbia in molti paesi europei e per viaggiare, mentre la leptospirosi è considerata core in gran parte d'Europa.
 
 - **Cimurro**: una malattia virale che colpisce polmoni, intestino e sistema nervoso. Spesso mortale.
 - **Parvovirosi**: diarrea grave con sangue e vomito, soprattutto nei cuccioli. Si diffonde facilmente nell'ambiente e può sopravvivervi a lungo.
@@ -28,7 +32,9 @@ Gli organismi veterinari europei dividono i vaccini in due gruppi.
 
 I vaccini non-core più comuni per il cane includono la tosse dei canili (Bordetella e parainfluenza) e, in alcune regioni, la leishmaniosi o la malattia di Lyme.
 
-## Vaccini core per il gatto
+## Quali sono i vaccini core per il gatto?
+
+Panleucopenia, herpesvirus e calicivirus, più la rabbia per viaggiare, mentre la FeLV è ampiamente consigliata ai gatti che escono.
 
 - **Panleucopenia felina** (parvovirus felino): vomito, diarrea grave e collasso, soprattutto nei gattini.
 - **Herpesvirus felino e calicivirus felino**: le cause principali della "rinotracheite" o "influenza del gatto". Raramente mortali negli adulti, ma possono lasciare problemi duraturi a occhi e bocca.
@@ -36,13 +42,17 @@ I vaccini non-core più comuni per il cane includono la tosse dei canili (Bordet
 
 **Il virus della leucemia felina (FeLV)** è ampiamente consigliato per ogni gatto che esce o vive con gatti di stato sconosciuto, e molti veterinari lo considerano core per i gattini.
 
-## Perché cuccioli e gattini hanno bisogno di un ciclo, non di una sola iniezione
+## Perché cuccioli e gattini hanno bisogno di più iniezioni?
+
+Perché gli anticorpi del latte materno bloccano i vaccini e svaniscono a un'età diversa in ogni animale, quindi serve una serie di iniezioni fino a 16 settimane o più.
 
 Gli animali giovani ricevono anticorpi dal latte materno. Questi li proteggono nelle prime settimane di vita, ma impediscono anche ai vaccini di funzionare. Gli anticorpi svaniscono a un'età diversa in ogni animale, quindi una singola iniezione potrebbe arrivare troppo presto.
 
 Per questo il primo ciclo è una serie di iniezioni, che in genere inizia intorno alle 8 settimane e termina a 16 settimane o più tardi, seguita da un richiamo circa un anno dopo. Finché il ciclo non è completo, un cucciolo o un gattino non è protetto in modo affidabile, e il veterinario ti consiglierà quanto contatto con altri animali e con gli spazi esterni è ragionevole nel frattempo.
 
-## Cosa fa un richiamo
+## A cosa serve il richiamo del vaccino?
+
+Mantiene alta la protezione, perché l'immunità del vaccino non dura per sempre, con intervalli che il veterinario stabilisce per il tuo animale.
 
 L'immunità data da un vaccino non dura per sempre, e dura per periodi diversi a seconda della malattia. Un richiamo "ricorda" al sistema immunitario e mantiene alta la protezione.
 
@@ -50,7 +60,9 @@ Per alcuni vaccini core, l'intervallo dopo il richiamo del primo anno è oggi di
 
 Se un richiamo viene saltato per molto tempo, l'animale potrebbe dover ricominciare il ciclo. Per la rabbia, una vaccinazione scaduta rende anche il passaporto europeo per animali da compagnia non valido per viaggiare finché una nuova vaccinazione non ha fatto effetto.
 
-## Cosa registra il veterinario
+## Cosa registra il veterinario dopo una vaccinazione?
+
+La malattia, il prodotto e il lotto, la data e la scadenza successiva, con firma e timbro, nella cartella clinica e nel passaporto o libretto.
 
 Ogni vaccinazione viene scritta nella cartella clinica del tuo animale e, se ce l'ha, nel passaporto o nel libretto delle vaccinazioni:
 
@@ -61,11 +73,15 @@ Ogni vaccinazione viene scritta nella cartella clinica del tuo animale e, se ce 
 
 Conserva con cura questo documento. Pensioni per cani, pensioni per gatti, scuole di addestramento, assicurazioni e funzionari di frontiera possono tutti chiedere di vederlo, e il veterinario può garantire solo le vaccinazioni di cui ha una registrazione.
 
-## Effetti collaterali
+## Quali effetti collaterali può dare il vaccino?
+
+Di solito nessuno o solo un po' di stanchezza, meno appetito o dolore nel punto dell'iniezione per un giorno, mentre gonfiore del muso, vomito, difficoltà respiratorie o collasso vanno segnalati al veterinario il giorno stesso.
 
 La maggior parte degli animali non ha alcuna reazione. Alcuni sono un po' spenti, mangiano meno o hanno dolore nel punto dell'iniezione per un giorno. Un piccolo gonfiore nel punto dell'iniezione che scompare in poche settimane non è insolito. Contatta il veterinario il giorno stesso se il tuo animale ha gonfiore del muso, vomito, difficoltà respiratorie o collasso dopo una vaccinazione, e segnala qualsiasi reazione precedente prima della successiva.
 
-## Titolazione anticorpale
+## Cos'è la titolazione anticorpale?
+
+È un esame del sangue che misura gli anticorpi e mostra se l'animale è ancora protetto contro alcune malattie, ma non sostituisce l'antirabbica per viaggiare.
 
 Gli esami del sangue che misurano il livello di anticorpi possono mostrare se un cane o un gatto è ancora protetto contro alcune malattie. Sono un'opzione di cui il veterinario può parlarti, in particolare per gli animali che hanno avuto reazioni ai vaccini in passato. Non coprono tutte le malattie e non sono accettati al posto della vaccinazione antirabbica per viaggiare.
 

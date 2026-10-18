@@ -37,13 +37,17 @@ Non aspettare nemmeno così tanto, e chiama **subito**, se oltre a non mangiare 
 - perde l'equilibrio, ha la **testa inclinata**, gli occhi che si muovono a scatti, o ha **convulsioni**
 - è diabetico, ha una malattia cronica o prende farmaci tutti i giorni
 
-## Non è "solo l'età"
+## Un cane anziano mangia meno solo perché è vecchio?
+
+No: quando le abitudini alimentari cambiano spesso c'è un problema, e il calo dell'appetito può essere il primo segnale di una malattia.
 
 È facile pensare che un cane vecchio mangi meno perché è vecchio. In realtà la PDSA ricorda che, quando le abitudini alimentari di un cane cambiano, **spesso c'è un problema** e conviene sempre farlo controllare. Nel cane anziano molte malattie compaiono in modo lento e silenzioso, e il calo dell'appetito può essere il primo segnale.
 
 Il Cornell Riney Canine Health Center fa un discorso simile per il peso: perdere un po' di muscolo può far parte dell'invecchiamento, ma può anche indicare una **malattia nascosta** come un tumore, una malattia del cuore o dei reni.
 
-## Le cause più comuni
+## Perché un cane anziano smette di mangiare?
+
+Le cause più importanti sono denti e gengive, dolore, malattie di fegato, reni, cuore, polmoni o ormoni, infezioni, disturbi intestinali, stress, cambi di cibo e sensi indeboliti.
 
 La PDSA elenca diverse ragioni per cui un cane smette di mangiare. Nel cane anziano le più importanti sono:
 
@@ -61,7 +65,9 @@ Il Cornell aggiunge una causa tipica dell'età: con gli anni **i sensi si indebo
 
 Un'altra situazione da conoscere è la **sindrome vestibolare**, che il Cornell descrive come spesso confusa con la demenza senile: il cane perde l'equilibrio, può sembrare nauseato quando gli dai da mangiare e fa fatica a mangiare e bere. Anche in questo caso serve il veterinario.
 
-## Cosa osservare a casa
+## Cosa devo osservare a casa?
+
+Fai caso a dimagrimento, stanchezza, bocca dolorante, bava, pelle o occhi gialli, vomito e diarrea, e pesa il cane regolarmente.
 
 La PDSA suggerisce di fare attenzione a questi segni, che aiutano il veterinario a capire la causa:
 
@@ -76,7 +82,9 @@ Se hai più cani che mangiano insieme, la PDSA fa notare che può essere diffici
 
 Il Cornell consiglia di **pesare il cane regolarmente**, perché i cambiamenti lenti sono difficili da notare quando lo vedi tutti i giorni, e di controllare i muscoli di cosce e spalle.
 
-## Cosa puoi fare (dopo aver parlato con il veterinario)
+## Come posso aiutare un cane anziano a mangiare?
+
+Dopo che il veterinario ha escluso un problema urgente, prova cibo più profumato, cambi graduali e una ciotola in un posto tranquillo, senza avanzi della tavola.
 
 Quando il veterinario ha escluso un problema urgente, ci sono piccoli accorgimenti che possono aiutare:
 
@@ -87,15 +95,21 @@ Quando il veterinario ha escluso un problema urgente, ci sono piccoli accorgimen
 
 Questi trucchi servono a sostenere il cane, **non a sostituire la visita**. Se il cane continua a mangiare poco, rivolgiti di nuovo al veterinario.
 
-## Non dare medicinali per uso umano
+## Posso dare al cane medicinali per uso umano?
+
+No: farmaci come ibuprofene e paracetamolo possono danneggiare stomaco, reni e fegato del cane, e i farmaci adatti li prescrive solo il veterinario.
 
 **Non dare al cane farmaci che usi per te**, come antidolorifici, antinfiammatori o medicine per lo stomaco, nemmeno se pensi che abbia "mal di pancia" o male alle ossa. Il Merck Veterinary Manual spiega che l'**ibuprofene** può causare nel cane **ulcere dello stomaco, emorragie e danni ai reni**, e che il **paracetamolo** può danneggiare il **fegato**. In un cane anziano, che magari ha già un problema a reni o fegato, il rischio è ancora più serio. Esistono stimolanti dell'appetito e farmaci per il dolore adatti al cane, ma li può prescrivere solo il veterinario, dopo aver capito la causa.
 
-## Cosa fa il veterinario
+## Cosa fa il veterinario se il cane anziano non mangia?
+
+Controlla bocca, peso, pancia, cuore e polmoni, spesso propone esami del sangue e delle urine e cura la causa che trova.
 
 Il veterinario controlla la bocca, il peso, la pancia, il cuore e i polmoni, e chiede come mangia, beve e si comporta il cane. Spesso propone **esami del sangue e delle urine** e, se serve, **radiografie** o **ecografia**. La cura dipende da cosa trova: una pulizia dei denti o l'estrazione di un dente malato, per esempio, possono restituire l'appetito a un cane che sembrava "solo vecchio".
 
-## Visite regolari
+## Ogni quanto devo portare il cane anziano dal veterinario?
+
+Per i cani anziani è consigliata una visita almeno ogni sei mesi.
 
 Per i cani anziani il Cornell consiglia una visita **almeno ogni sei mesi**. Secondo la PDSA, in media un cane è considerato anziano intorno ai **sette anni**, anche se dipende da razza, taglia e salute. Le visite regolari aiutano a scoprire presto denti malati, dimagrimento e malattie che tolgono l'appetito.
 

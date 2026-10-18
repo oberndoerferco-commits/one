@@ -9,13 +9,17 @@ draft: true
 lang: it
 ---
 
-## Perché prevenire invece di curare
+## Perché prevenire pulci, zecche e vermi invece di curarli?
+
+Perché prevenirli è più facile che eliminarli, e quando li vedi l'infestazione è spesso già avanzata.
 
 Pulci, zecche e vermi sono più facili da prevenire che da eliminare. Quando vedi una pulce, di solito ci sono già uova e larve nei tappeti e nelle cucce. Quando trovi una zecca, potrebbe essersi già nutrita per un giorno o più. E molti vermi non danno segni visibili finché l'infestazione non è pesante.
 
 La maggior parte dei veterinari consiglia una routine per tutto l'anno per cani e gatti, adattata a età, peso, stile di vita dell'animale e zona in cui vivi. Quale prodotto, con che frequenza e se serve un prodotto con obbligo di ricetta sono decisioni del veterinario. I prodotti per cani possono essere pericolosi per i gatti: non scambiarli mai tra le specie.
 
-## Pulci
+## Come riconoscere e prevenire le pulci?
+
+Prurito, crosticine, perdita di pelo e sporco di pulce sono i segni tipici, e la prevenzione è un trattamento regolare prescritto dal veterinario per tutti gli animali di casa.
 
 Le pulci sono il parassita più comune degli animali da compagnia in Europa e sono attive in casa tutto l'anno a causa del riscaldamento.
 
@@ -23,7 +27,9 @@ Segni: prurito, mordicchiamento della schiena e della base della coda, piccole c
 
 Prevenzione: un trattamento regolare prescritto dal tuo veterinario, applicato o somministrato come indicato e nei tempi giusti. Tratta tutti gli animali della casa. Se le pulci ci sono già, il veterinario può consigliarti anche di trattare la casa, perché la maggior parte della popolazione di pulci vive fuori dall'animale.
 
-## Zecche
+## Come proteggere il cane o il gatto dalle zecche?
+
+Controlla l'animale dopo le passeggiate, togli subito le zecche nel modo giusto e chiedi al veterinario un prodotto che copra anche le zecche.
 
 Le zecche si attaccano nell'erba, nei boschi e nella macchia, si nutrono per diversi giorni, e possono trasmettere malattie, tra cui la malattia di Lyme e, in alcune zone d'Europa, la babesiosi e l'ehrlichiosi. Il rischio è più alto in primavera e in autunno, ma le zecche sono in giro ogni volta che il clima è mite.
 
@@ -41,7 +47,9 @@ Se una parte della zecca resta dentro, non scavare per tirarla fuori. Di solito 
 
 Prevenzione: molti antipulci coprono anche le zecche, ma non tutti. Chiedi al tuo veterinario, soprattutto prima di un viaggio.
 
-## Vermi
+## Quali vermi colpiscono cani e gatti?
+
+I più importanti sono ascaridi, tenie e, nel cane, la filaria polmonare, e si prevengono con una sverminazione regolare decisa dal veterinario.
 
 **Gli ascaridi** sono frequenti in cuccioli e gattini, che possono essere infestati prima della nascita o attraverso il latte. Possono infestare anche le persone, soprattutto i bambini, ed è uno dei motivi principali per cui si consiglia la sverminazione regolare.
 
@@ -51,7 +59,9 @@ Prevenzione: molti antipulci coprono anche le zecche, ma non tutti. Chiedi al tu
 
 Prevenzione: sverminazione regolare secondo un calendario stabilito dal tuo veterinario. Cuccioli e gattini vanno sverminati più spesso degli adulti. Gatti che cacciano, cani che rovistano e animali alimentati con diete crude possono aver bisogno di trattamenti più frequenti.
 
-## Quando andare dal veterinario
+## Quando andare dal veterinario per pulci, zecche o vermi?
+
+Prenota una visita se il prurito continua nonostante il trattamento, se un morso di zecca si infiamma o è seguito da febbre o zoppia, o se compaiono vermi, tosse, dimagrimento o diarrea ricorrente.
 
 Prenota una visita se il tuo animale:
 
@@ -65,7 +75,9 @@ Prenota una visita se il tuo animale:
 
 Vai con urgenza se un gatto mostra tremori, contrazioni o salivazione abbondante dopo l'applicazione di un qualsiasi prodotto spot-on, o se per errore è stato usato su un gatto un prodotto per soli cani.
 
-## Cosa vorrà sapere il veterinario
+## Cosa vorrà sapere il veterinario?
+
+Quali prodotti usi e quando, se tutti gli animali sono trattati, viaggi, dieta e abitudini e i cambiamenti che hai notato.
 
 - Quali prodotti usi, con che frequenza, e quando è stata l'ultima dose
 - Se tutti gli animali della casa sono trattati

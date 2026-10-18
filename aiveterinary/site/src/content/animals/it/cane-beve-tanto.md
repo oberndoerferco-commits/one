@@ -29,7 +29,9 @@ Bere e urinare di più non è quasi mai un'emergenza da solo, ma in alcune situa
 
 In tutti gli altri casi, se noti che beve o urina più del solito, **prenota una visita**: la PDSA consiglia di contattare sempre il veterinario quando pensi che il cane beva o faccia pipì più del normale.
 
-## Non togliergli l'acqua
+## Devo togliere l'acqua al cane che beve tanto?
+
+No: lasciagli sempre acqua fresca a disposizione, perché limitarla può causare disidratazione o pericolosi squilibri dei sali minerali.
 
 È la tentazione più comune, soprattutto quando il cane comincia a fare pipì in casa. **Non farlo.** La PDSA raccomanda di non limitare mai l'acqua per controllare il problema e di lasciare sempre a disposizione acqua fresca. Il Cornell Riney Canine Health Center spiega che, finché il cane non è stato visitato, bisogna pensare che **quell'acqua gli serva davvero**: limitarla può causare disidratazione o pericolosi squilibri dei sali minerali.
 
@@ -48,7 +50,9 @@ Sono valori indicativi. La PDSA ricorda che il fabbisogno cambia con la taglia, 
 - è un cucciolo
 - un cambio di alimentazione, soprattutto verso cibi più salati o secchi: passare dall'umido al secco aumenta la sete
 
-## I segni da notare
+## Come capisco se il cane beve e urina più del solito?
+
+Riempi la ciotola più spesso, lo vedi bere da rubinetti o pozzanghere, fa pipì più spesso o in casa, o perde urina mentre dorme.
 
 La PDSA elenca i segnali che dovrebbero farti pensare a un aumento di sete e urina:
 
@@ -61,11 +65,15 @@ La PDSA elenca i segnali che dovrebbero farti pensare a un aumento di sete e uri
 
 Il Cornell aggiunge le **perdite di urina mentre dorme** e il fatto che chieda di uscire più spesso.
 
-## Misurare quanto beve
+## Come misuro quanto beve il cane?
+
+Annota quanta acqua metti nella ciotola, comprese le aggiunte, e dopo 24 ore sottrai quella rimasta.
 
 Il veterinario può chiederti di misurare l'acqua bevuta in **24 ore**, e la PDSA consiglia di portare anche un **campione di urina** alla visita. In pratica: annota quanta acqua metti nella ciotola (comprese le aggiunte) e, dopo 24 ore, sottrai quella rimasta. Chiedi al veterinario come preferisce ricevere il campione di urina.
 
-## Le cause più comuni
+## Perché il cane beve tanto?
+
+Tra le cause più frequenti ci sono diabete, malattie dei reni o del fegato, piometra, sindrome di Cushing, infezioni urinarie, leptospirosi, alcuni tumori e alcuni farmaci.
 
 Le cause possibili sono molte, e solo il veterinario può distinguerle con la visita e gli esami. Le fonti citano, tra le più frequenti:
 
@@ -81,7 +89,9 @@ Le cause possibili sono molte, e solo il veterinario può distinguerle con la vi
 
 Il Cornell segnala anche casi in cui il problema di partenza è proprio la sete, per esempio con **dolore, stress o caldo**, e una forma rara di origine comportamentale.
 
-## Problemi che possono sembrare simili
+## Se fa pipì in casa vuol dire che urina di più?
+
+Non sempre: anche incontinenza, educazione incompleta, pipì da sottomissione, dolore o declino cognitivo possono far sporcare in casa.
 
 Non sempre un cane che fa pipì in casa sta urinando di più. La PDSA elenca situazioni che si confondono facilmente:
 
@@ -93,11 +103,15 @@ Non sempre un cane che fa pipì in casa sta urinando di più. La PDSA elenca sit
 
 Anche per questo è importante una visita: il veterinario capirà se il problema è la quantità di urina o qualcos'altro.
 
-## Cosa fa il veterinario
+## Cosa fa il veterinario se il cane beve tanto?
+
+Parte da visita, storia del cane e farmaci che prende, di solito con esami delle urine e del sangue, e sceglie il trattamento in base alla causa.
 
 Il Cornell spiega che il percorso parte dalla visita, dalla storia del cane (alimentazione compresa) e dalla revisione dei farmaci che prende. Gli esami iniziali di solito includono **esame delle urine, emocromo, profilo biochimico** e, se serve, **radiografie o ecografia**. In alcuni casi servono esami più specifici. Il trattamento dipende interamente dalla causa: per esempio, nel diabete l'MSD Veterinary Manual descrive una combinazione di dieta, controllo del peso e insulina, con controlli regolari. Non modificare mai dosi o orari di una terapia senza il veterinario.
 
-## Cosa vorrà sapere il veterinario
+## Cosa vorrà sapere il veterinario?
+
+Da quando beve di più, quanto beve in 24 ore, come mangia, se è una femmina non sterilizzata e quali farmaci prende.
 
 - da quando hai notato che beve di più e se è successo all'improvviso o poco a poco
 - quanto beve in 24 ore, se sei riuscito a misurarlo

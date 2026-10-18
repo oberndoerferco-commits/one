@@ -34,7 +34,9 @@ Se la tosse è comparsa all'improvviso mentre masticava un gioco, un osso o un b
 
 Fatti vedere **oggi** se la tosse lo fa stare male, gli impedisce di dormire, se **tossisce sangue** o se dopo un accesso di tosse è **svenuto** o crollato a terra: la PDSA indica tutti questi casi come motivo per una visita.
 
-## Perché sembra che abbia qualcosa in gola
+## Perché sembra che il cane abbia qualcosa in gola?
+
+Spesso in gola non c'è nulla: il conato fa parte della tosse stessa, come succede nella tosse dei canili.
 
 Molti proprietari descrivono la stessa scena: il cane tossisce forte, allunga il collo, poi fa un **conato**, come se dovesse vomitare o tirare fuori qualcosa, ma non esce niente o solo un po' di schiuma. Spesso, però, in gola non c'è nulla: il conato fa parte della tosse stessa.
 
@@ -44,7 +46,9 @@ L'MSD Veterinary Manual descrive proprio così la **tosse dei canili** (tracheob
 
 La tosse del cane somiglia molto a quella umana, ma può essere confusa con altri gesti, come il **conato di vomito** o lo **starnuto inverso**. La PDSA consiglia, se hai dubbi, di **fare un breve video** dell'episodio da mostrare al veterinario, e di annotare quanto spesso succede, in che momento della giornata e se ci sono altri sintomi.
 
-## La tosse dei canili
+## Che cos'è la tosse dei canili?
+
+È una tracheobronchite infettiva molto contagiosa che dà accessi di tosse secca e di solito dura 1-3 settimane, mentre per il resto il cane sta bene.
 
 Nonostante il nome, non riguarda solo i cani che vanno in pensione. Le cose principali da sapere:
 
@@ -55,7 +59,9 @@ Nonostante il nome, non riguarda solo i cani che vanno in pensione. Le cose prin
 - **Isolamento.** La PDSA consiglia di tenere il cane lontano da altri cani e dai luoghi pubblici finché tossisce e per **2-3 settimane** dopo la fine dei sintomi.
 - **Prevenzione.** Esistono vaccini contro i principali agenti coinvolti. La PDSA precisa che non garantiscono una protezione totale, ma riducono la probabilità di ammalarsi e la gravità dei sintomi. Chiedi al veterinario se sono indicati per il tuo cane, soprattutto se frequenta pensioni, aree cani o corsi.
 
-## Altre cause di tosse
+## Quali altre cause possono far tossire il cane?
+
+Anche tirare al guinzaglio, collasso tracheale, bronchite cronica, paralisi della laringe, malattie del cuore, vermi polmonari, sostanze irritanti e corpi estranei possono dare una tosse strozzata.
 
 La PDSA elenca molte altre cause possibili. Tra quelle che più spesso danno una tosse "strozzata":
 
@@ -71,7 +77,9 @@ La PDSA elenca molte altre cause possibili. Tra quelle che più spesso danno una
 
 Capire quale sia la causa richiede una visita, e a volte radiografie o altri esami.
 
-## Cosa fare a casa, in attesa della visita
+## Cosa posso fare a casa in attesa della visita?
+
+Tienilo a riposo, al caldo e lontano da fumo e altri cani, usa la pettorina e non dargli sciroppi per uso umano.
 
 - **Riposo.** La PDSA ricorda che il movimento può peggiorare molto la tosse: niente corse, giochi intensi o lunghe passeggiate.
 - **Usa la pettorina** al posto del collare.
@@ -79,7 +87,9 @@ Capire quale sia la causa richiede una visita, e a volte radiografie o altri esa
 - **Tienilo lontano dagli altri cani** finché non sai di cosa si tratta.
 - **Non dargli sciroppi o farmaci per la tosse per uso umano.** Il Merck Veterinary Manual avverte che molti prodotti per tosse e raffreddore contengono **paracetamolo o antinfiammatori come l'ibuprofene**: il paracetamolo può danneggiare il fegato del cane, e l'ibuprofene può causare ulcere e perforazioni dello stomaco. Lo stesso manuale nota che a volte sono proprio i proprietari, in buona fede, a dare all'animale un farmaco umano. Se e cosa dare lo decide il veterinario.
 
-## Cosa vorrà sapere il veterinario
+## Cosa vorrà sapere il veterinario?
+
+Da quando tossisce, se è stato con altri cani, se è vaccinato, quando peggiora la tosse, se ha altri sintomi e se ha malattie note o prende farmaci.
 
 - da quando tossisce e se è iniziato all'improvviso
 - se è stato di recente in pensione, in un'area cani, a una gara o con cani che tossivano

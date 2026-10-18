@@ -29,13 +29,17 @@ Il diabete in sé è un problema "da questa settimana". Diventa un'emergenza qua
 
 E se il tuo animale è già in terapia con insulina: debolezza, andatura barcollante, tremori, comportamento strano, convulsioni o collasso possono voler dire glicemia troppo bassa. Strofina miele o sciroppo di glucosio sulle gengive e chiama subito il veterinario.
 
-## Che cos'è il diabete
+## Che cos'è il diabete nel cane e nel gatto?
+
+Lo zucchero si accumula nel sangue perché manca insulina o le cellule non rispondono più, e l'animale beve, urina e mangia di più ma dimagrisce.
 
 Nel diabete mellito l'organismo non riesce a portare lo zucchero dal sangue dentro le cellule, perché il pancreas non produce più abbastanza insulina o perché le cellule hanno smesso di rispondere. Lo zucchero si accumula nel sangue, passa nelle urine e si trascina dietro acqua: per questo l'animale urina di più, beve di più e dimagrisce pur mangiando con fame.
 
 Nel cane il quadro tipico è una carenza di insulina che non torna indietro, soprattutto in cani di mezza età o anziani. Nel gatto somiglia al diabete di tipo 2 delle persone: gatti in sovrappeso, di mezza età o anziani, più spesso maschi sterilizzati, a volte dopo lunghe cure con cortisonici.
 
-## I segni che il proprietario nota per primo
+## Quali sono i primi segni del diabete?
+
+Di solito l'animale beve di più, urina di più, mangia di più e dimagrisce lo stesso.
 
 - **Beve di più**, dal rubinetto, dalle pozzanghere, ovunque
 - **Urina di più**: palline più grandi nella lettiera, pipì in casa, un cane che chiede di uscire di notte
@@ -47,13 +51,17 @@ Nel cane il quadro tipico è una carenza di insulina che non torna indietro, sop
 
 I primi tre segni possono indicare anche una malattia renale o, nel gatto, una tiroide iperattiva: per questo il veterinario deve guardare, non indovinare.
 
-## Come si fa la diagnosi
+## Come si fa la diagnosi di diabete?
+
+Servono insieme sintomi tipici, glicemia alta in modo persistente e zucchero nelle urine, più un profilo completo di sangue e urine.
 
 La diagnosi si basa su tre cose insieme: i sintomi tipici, una glicemia alta in modo persistente e zucchero nelle urine. Un solo valore alto non basta, soprattutto nel gatto, dove lo stress della visita da solo può far salire la glicemia. Il veterinario può aggiungere un esame del sangue che riflette la media delle settimane precedenti (fruttosamina).
 
 Aspettati anche un profilo completo di sangue e urine, per cercare i compagni di viaggio del diabete: infezione urinaria, valori di reni e fegato, pancreatite e, nel gatto, altre malattie ormonali che rendono il diabete difficile da controllare.
 
-## Cosa comporta la terapia, giorno per giorno
+## Come si cura il diabete giorno per giorno?
+
+Quasi sempre con iniezioni di insulina, di solito due volte al giorno, e un'alimentazione regolare concordata con il veterinario.
 
 **Insulina.** Quasi tutti i cani diabetici e la maggior parte dei gatti hanno bisogno di insulina per iniezione sottocute, di solito due volte al giorno a circa dodici ore di distanza. Gli aghi sono minuscoli; in clinica ti mostreranno come fare.
 
@@ -68,11 +76,15 @@ Poche regole che contano:
 
 **Altre opzioni.** Per alcuni gatti altrimenti sani, una nuova classe di farmaci orali da dare una volta al giorno è un'alternativa all'insulina; non è adatta a tutti i gatti. In una cagna intera la sterilizzazione è di solito consigliata, perché gli ormoni del ciclo lavorano contro l'insulina.
 
-## Il monitoraggio a casa
+## Come si controlla il diabete a casa?
+
+Tieni un diario quotidiano con insulina, appetito, sete, pipì, energia e peso settimanale, che il veterinario unisce ai suoi controlli periodici.
 
 Tieni un diario quotidiano semplice: insulina data e a che ora, appetito, sete (misura l'acqua che metti giù), pipì, energia, vomito o diarrea, e il peso una volta a settimana. Molti proprietari controllano anche le urine con le strisce per zucchero e chetoni, o imparano a prelevare una goccia di sangue dall'orecchio con un glucometro; alcune cliniche usano sensori sulla pelle che leggono la glicemia in continuo. Il veterinario unisce il tuo diario a curve glicemiche o fruttosamina periodiche, più spesso all'inizio e ogni volta che qualcosa cambia.
 
-## Cosa aspettarsi nel tempo
+## Con il diabete si può vivere bene a lungo?
+
+Sì: con insulina, cibo e monitoraggio la maggior parte dei cani e dei gatti diabetici vive bene per anni, e nel gatto è possibile perfino la remissione.
 
 Con insulina, cibo e monitoraggio, la maggior parte dei cani e dei gatti diabetici vive bene per anni, e la routine diventa presto un'abitudine. Nel gatto, una terapia iniziata presto e ben controllata può perfino portare alla remissione: il diabete si spegne e l'insulina si può sospendere, anche se può tornare e la dieta va mantenuta. Nel cane la remissione è rara. I rischi principali sono la chetoacidosi, quando il diabete non viene trattato o un'altra malattia lo fa precipitare, e la glicemia bassa da troppa insulina; entrambi si possono in gran parte prevenire.
 

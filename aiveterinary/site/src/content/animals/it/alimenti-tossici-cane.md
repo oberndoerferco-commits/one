@@ -32,7 +32,9 @@ references:
 
 Chiama il veterinario mentre esci. Se nessuno risponde, in Italia il **Centro Antiveleni di Milano (Ospedale Niguarda) risponde 24 ore su 24 al 02 66101029** e, come dichiara nelle sue FAQ, risponde anche per le intossicazioni negli animali. La prima telefonata resta comunque alla tua clinica.
 
-## I veleni da cucina più comuni
+## Quali alimenti sono tossici per il cane?
+
+I più comuni sono cioccolato e caffeina, uva e uvetta, xilitolo, cipolla e aglio, noci di macadamia, alcol, impasto crudo lievitato, sale e avanzi grassi o ossa.
 
 | Sostanza | Perché è pericolosa | Cosa fare per primo |
 |---|---|---|
@@ -48,14 +50,18 @@ Chiama il veterinario mentre esci. Se nessuno risponde, in Italia il **Centro An
 
 La polpa di avocado non è tossica per il cane, ma il nocciolo può bloccare l'intestino e il grasso irrita lo stomaco. Il latte non è un veleno, ma molti cani adulti lo digeriscono male.
 
-## Cosa non fare
+## Cosa non devo fare se il cane ha mangiato qualcosa di tossico?
+
+Non farlo vomitare a casa, non dargli latte, olio o pane e non aspettare che compaiano i sintomi.
 
 - **Non far vomitare il cane a casa.** Sale, acqua ossigenata, senape e gli altri rimedi che trovi in rete possono ustionare l'esofago, causare un'intossicazione da sale o mandare il vomito nei polmoni. Il veterinario induce il vomito con farmaci sicuri, e solo quando è la scelta giusta.
 - **Non dare latte, olio, pane o "qualcosa che assorba".** Nessuno neutralizza un veleno, e alcuni aggiungono un secondo problema.
 - **Non aspettare i sintomi.** Con uva, xilitolo e cipolla il danno è già fatto quando si vede qualcosa.
 - Non usare una tabella di dosi trovata online per decidere di restare a casa. Il rischio lo calcola il veterinario dal peso del cane, dalla sostanza e dalla quantità: quel calcolo spetta a lui.
 
-## Cosa ti chiederà il veterinario
+## Cosa mi chiederà il veterinario?
+
+Ti chiederà cosa ha mangiato il cane, quanto, quando, e il suo peso, l'età, la razza, le malattie e i farmaci in corso.
 
 1. **Cosa** esattamente: nome del prodotto, tipo di cioccolato, se la gomma contiene xilitolo. Tieni la confezione.
 2. **Quanto**: grammi, numero di quadretti, quanti pezzi mancano dalla ciotola.
@@ -64,7 +70,9 @@ La polpa di avocado non è tossica per il cane, ma il nocciolo può bloccare l'i
 
 Con questi dati pronti, anche come nota sul telefono, una telefonata lunga diventa breve.
 
-## Prevenzione
+## Come posso evitare che il cane mangi cibi tossici?
+
+Tieni cioccolato, uvetta e gomme in armadietti chiusi, leggi le etichette, chiudi i bidoni e spiega a bambini e ospiti che "solo un pezzettino" non è una regola sicura.
 
 La maggior parte degli incidenti capita a Natale, Pasqua, alle grigliate e alle feste, quando il cibo resta ad altezza di cane. Tieni cioccolato, panettone con uvetta e gomme in armadietti chiusi, non in borse sul pavimento. Leggi l'etichetta del burro di arachidi prima di usarlo per un premio. Chiudi i bidoni e metti l'impasto a lievitare fuori portata. Spiega a bambini e ospiti che "solo un pezzettino" non è una regola sicura per un cane piccolo.
 

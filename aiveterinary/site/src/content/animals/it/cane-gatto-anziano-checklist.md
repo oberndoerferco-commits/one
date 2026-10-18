@@ -26,15 +26,21 @@ references:
     url: "https://www.veterinarypracticenews.com/quality-of-life-scale/"
 ---
 
-## Quando inizia la vecchiaia
+## Quando un cane o un gatto diventa anziano?
+
+Il cane è anziano nell'ultimo 25% della vita attesa, quindi prima se è di taglia grande, mentre per il gatto la soglia è 10 anni.
 
 Più tardi di quanto pensi per i cani piccoli, prima per quelli grandi. L'AAHA definisce anziano il cane che si trova nell'ultimo 25% della vita attesa: un cane piccolo che può arrivare a 15 anni è anziano verso gli 11, un gigante che arriva a 9 lo è già a 6 o 7. Per il gatto le linee guida AAHA/AAFP fissano la soglia a 10 anni; quelle feline sulla terza età distinguono maturo (7-10), anziano (11-14) e geriatrico (dai 15). L'etichetta cambia cosa cerca il veterinario, e ogni quanto.
 
-## Due visite l'anno, non una
+## Ogni quanto va visitato un animale anziano?
+
+Ogni sei mesi se è sano, ogni quattro mesi se è un gatto oltre i 15 anni o un animale con una malattia cronica.
 
 AAHA e linee guida feline raccomandano un controllo ogni sei mesi per l'anziano sano, e ogni quattro mesi per il gatto oltre i 15 anni o per qualsiasi animale con una malattia cronica. Sei mesi di un anziano valgono due o tre anni dei tuoi. Aspettati che il veterinario pesi l'animale, valuti la condizione corporea e quella muscolare, passi in rassegna ogni articolazione, apra bene la bocca, palpi la tiroide nel gatto, e ti chieda di sete, appetito, sonno, bisogni, scale e salti.
 
-## Gli esami di screening, in parole semplici
+## Quali esami servono a un cane o a un gatto anziano?
+
+Il pacchetto minimo, da ripetere ogni 6-12 mesi, comprende emocromo, biochimica, esame delle urine, pressione e, nel gatto, tiroide.
 
 Le linee guida descrivono un "pacchetto minimo" per l'anziano, da ripetere ogni 6-12 mesi. Niente di esotico:
 
@@ -46,11 +52,15 @@ Le linee guida descrivono un "pacchetto minimo" per l'anziano, da ripetere ogni 
 
 Chiedi i numeri e conservali: l'andamento dice più di qualsiasi singolo risultato.
 
-## Il peso: il numero che puoi seguire a casa
+## Perché pesare a casa l'animale anziano?
+
+Pesarlo una volta al mese sulla stessa bilancia aiuta a notare presto un calo di peso nel gatto e a tenere magro il cane.
 
 Pesa l'animale una volta al mese, sulla stessa bilancia. Nel gatto un calo lento di peso è il segno precoce più comune di malattia renale, tiroidea e tumorale, ed è più facile da notare di un cambiamento nella ciotola dell'acqua. Nel cane il rischio va nella direzione opposta: AAHA ricorda che tenere il cane magro è una delle poche cose dimostrate per allungare la vita, e il peso peggiora le articolazioni artrosiche.
 
-## I segni di dolore che sfuggono
+## Come capisco se il mio animale anziano ha dolore?
+
+Il dolore si vede come un cambio di abitudini: il gatto salta meno e ha il pelo arruffato, il cane è rigido dopo il riposo e fa fatica con scale e auto.
 
 Gli animali anziani raramente si lamentano. Il dolore si vede come un cambio di abitudini: per questo AAHA e ISFM chiedono di osservare il comportamento, non la zoppia.
 
@@ -60,21 +70,29 @@ Gli animali anziani raramente si lamentano. Il dolore si vede come un cambio di 
 
 Un breve video del gatto che sale sul divano o del cane che si alza spesso dice più della visita sul tavolo.
 
-## Le due grandi malattie
+## Quali sono le malattie più comuni della vecchiaia?
+
+Le due grandi sono la malattia renale cronica nel gatto e l'artrosi nel cane.
 
 **La malattia renale cronica nel gatto** è tra le più comuni della vecchiaia. I primi segni sono appetito scarso, più sete, più urina, calo di peso e stanchezza. Si diagnostica con sangue e urine insieme, misurando anche la pressione, perché il rene malato è la prima causa di ipertensione nel gatto. Non si guarisce, ma presa in tempo si rallenta per anni, ed è proprio questo lo scopo dell'esame delle urine semestrale; ISFM ha pubblicato nuove linee guida nel 2026.
 
 **L'artrosi nel cane** è la causa più comune di dolore cronico. Si gestisce come un pacchetto: peso, movimento regolare, una cuccia calda e imbottita, e i farmaci che il veterinario sceglie e controlla. Tappeti sui pavimenti lisci, una rampa per l'auto e ciotole rialzate fanno una differenza visibile in poche settimane.
 
-## I denti
+## Perché i denti contano nell'animale anziano?
+
+La malattia parodontale peggiora con l'età, e alito cattivo, cibo che cade di bocca e masticazione da un lato solo sono segni di dolore, non di età.
 
 La malattia parodontale peggiora con l'età ed è più grave nei cani piccoli, dove AAHA avverte che può consumare tanto osso mandibolare da causare fratture. Alito cattivo, cibo che cade di bocca e masticazione da un lato solo sono dolore, non età. L'età da sola non è un motivo per rinunciare all'anestesia: gli esami pre-anestetici servono proprio a decidere in sicurezza.
 
-## Adattare la casa
+## Come adattare la casa a un cane o a un gatto anziano?
+
+Tappeti antiscivolo, cucce morbide e calde, gradini, una lettiera con un lato basso e cibo e acqua senza scale di mezzo aiutano, lasciando i mobili dove sono.
 
 Tappeti antiscivolo sui pavimenti lisci. Cucce morbide, calde e facili da raggiungere. Gradini per arrivare alla finestra o al divano preferiti. Una lettiera con un lato basso, sul piano in cui il gatto già vive. Cibo e acqua senza scale di mezzo. Una luce notturna per il cane che ci vede meno. Lascia i mobili dove sono: con i sensi che calano, gli animali si affidano alla mappa che hanno in testa.
 
-## Parlare di qualità della vita
+## Quando parlare di qualità della vita con il veterinario?
+
+Prima di averne bisogno, per esempio con la scala HHHHHMM ripetuta ogni mese.
 
 Fallo prima di averne bisogno. Uno strumento molto usato è la scala HHHHHMM della dottoressa Alice Villalobos, che dà un punteggio da 0 a 10 a sette aree: dolore, fame, idratazione, igiene, felicità, mobilità, e se i giorni buoni superano quelli cattivi. Ripeterla ogni mese trasforma una preoccupazione vaga in qualcosa di visibile. Le linee guida feline chiedono inoltre al veterinario di pesare con onestà i tuoi quattro budget, economico, di tempo, emotivo e fisico, perché un piano che non riesci a sostenere non è un buon piano.
 

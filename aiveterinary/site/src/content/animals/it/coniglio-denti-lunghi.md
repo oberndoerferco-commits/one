@@ -32,7 +32,7 @@ La PDSA, un'importante associazione veterinaria britannica, consiglia di contatt
 
 Un coniglio che smette di mangiare rischia la **stasi intestinale**, cioè il blocco dell'intestino, che può mettere a rischio la vita. La PDSA ricorda che i problemi ai denti non curati possono portare proprio alla stasi.
 
-## Perché i denti del coniglio crescono sempre
+## Perché i denti del coniglio crescono sempre?
 
 Il Merck Veterinary Manual spiega che **tutti i denti del coniglio**, sia gli incisivi davanti sia i molari e premolari dietro, **crescono per tutta la vita**. Normalmente la masticazione li consuma alla stessa velocità con cui crescono.
 
@@ -40,21 +40,27 @@ Una revisione scientifica pubblicata nel 2025 sulla rivista *Animals* riporta ch
 
 Secondo la PDSA, il coniglio ha **28 denti**. Gli incisivi sono quelli che vedi; i denti posteriori non si vedono senza strumenti, ed è lì che spesso si nascondono i problemi.
 
-## Le cause più comuni
+## Perché al coniglio crescono troppo i denti?
+
+Le cause più comuni sono una dieta povera di fibre, il mangime tipo muesli, la malocclusione ereditaria e i traumi.
 
 - **Una dieta povera di fibre.** Per la PDSA è la causa principale. Il Merck Veterinary Manual spiega che i conigli alimentati soprattutto con **pellet** possono sviluppare denti troppo lunghi, perché i pellet non consumano i denti come il fieno.
 - **Il mangime tipo "muesli".** La PDSA sconsiglia questi mix: il coniglio sceglie i pezzi più dolci e meno fibrosi, e questo porta spesso a **denti troppo lunghi**, obesità e problemi intestinali.
 - **Malocclusione ereditaria.** Il Merck Veterinary Manual la definisce uno dei problemi ereditari più comuni del coniglio: i denti superiori e inferiori non combaciano, quindi non si consumano in modo uniforme. Può comparire già a **3-8 settimane** di età.
 - **Traumi**, per esempio rosicchiare le sbarre della gabbia, che il Merck Veterinary Manual indica come possibile causa nei conigli giovani, o denti rotti in una lotta o rosicchiando qualcosa di troppo duro, come indica la PDSA.
 
-## Cosa succede quando i denti diventano troppo lunghi
+## Cosa succede quando i denti del coniglio diventano troppo lunghi?
+
+Il coniglio fa fatica a mangiare e a pulirsi, e possono formarsi punte che feriscono lingua e guance, ascessi dentali e occhi che lacrimano.
 
 - **Incisivi lunghi**: il coniglio fa fatica a mangiare, bere, pulirsi e chiudere la bocca. Secondo la PDSA, quando gli incisivi sono troppo lunghi spesso lo sono anche i denti posteriori.
 - **Punte sui molari**: i denti posteriori formano **punte taglienti** che feriscono la lingua e le guance, causando piaghe dolorose.
 - **Ascessi dentali**: tasche di pus intorno alla radice di un dente. Il Merck Veterinary Manual spiega che spesso coinvolgono più denti, tendono a **ritornare** e la guarigione completa è meno probabile. La revisione su *Animals* descrive come il problema possa estendersi all'osso e, intorno all'occhio, causare problemi alla vista.
 - **Occhi che lacrimano**: le radici troppo lunghe possono premere sul canale lacrimale, come spiega la stessa revisione.
 
-## I segnali da notare
+## Quali sono i segnali di problemi ai denti nel coniglio?
+
+Perdita di peso, sedere sporco, ciecotrofi non mangiati, occhi che lacrimano, bava, meno appetito, denti digrignati e bozzi sulla mandibola.
 
 La PDSA elenca segni che spesso compaiono poco a poco:
 
@@ -69,13 +75,17 @@ La PDSA elenca segni che spesso compaiono poco a poco:
 
 Il coniglio **nasconde il dolore**: per questo, avverte la PDSA, i problemi dentali spesso si notano solo quando sono già avanzati.
 
-## Non tagliare mai i denti da solo
+## Posso tagliare i denti al coniglio da solo?
+
+No: tagliarli a casa può incrinare la radice, spezzare il dente o accorciarlo troppo esponendo il nervo.
 
 Sembra una soluzione rapida, ma **non farlo**. La PDSA spiega che tagliare i denti a casa può **incrinare la radice**, causando un dolore forte e problemi a lungo termine, oppure **spezzare il dente** o accorciarlo troppo, esponendo il nervo. In tutti questi casi il dente potrebbe dover essere tolto. Il Merck Veterinary Manual aggiunge che un dente tagliato troppo corto è una delle possibili cause di **ascessi**.
 
 Non dare nemmeno **antidolorifici per uso umano** o rimasti da altre terapie: solo il veterinario può scegliere un farmaco sicuro per il coniglio.
 
-## Cosa fa il veterinario
+## Cosa fa il veterinario per i denti del coniglio?
+
+Controlla tutta la bocca, spesso in anestesia, accorcia e lima i denti, toglie quelli danneggiati se serve e prescrive antidolorifici.
 
 - **Controlla tutta la bocca.** Secondo la PDSA, alcuni conigli molto tranquilli si lasciano visitare da svegli, ma la maggior parte ha bisogno di **anestesia** per un esame completo. Per gli ascessi, il Merck Veterinary Manual indica che servono spesso radiografie o TAC.
 - **Accorcia e lima i denti** con strumenti appositi, in sedazione o anestesia, per togliere le punte e ridare al coniglio la possibilità di mangiare.
@@ -85,7 +95,9 @@ Non dare nemmeno **antidolorifici per uso umano** o rimasti da altre terapie: so
 
 Molti conigli con problemi ai denti hanno bisogno di **controlli e trattamenti ripetuti per tutta la vita**. La PDSA consiglia di parlarne apertamente con il veterinario, anche per quanto riguarda i costi.
 
-## Prevenire: il fieno prima di tutto
+## Come prevenire i denti lunghi nel coniglio?
+
+Con fieno o erba a volontà come base della dieta, verdure a foglia, poco pellet, niente muesli e controlli regolari dei denti.
 
 La prevenzione migliore è un'alimentazione corretta. La PDSA raccomanda ogni giorno:
 

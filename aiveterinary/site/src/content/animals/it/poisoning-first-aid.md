@@ -23,7 +23,9 @@ Vai subito, e chiama durante il tragitto, se il tuo animale:
 - ha le gengive pallide, bluastre, giallastre o rosso mattone, o sanguina dal naso, dalla bocca o nelle urine
 - è un gatto che ha avuto un qualsiasi contatto con un giglio, anche solo sfiorando il polline
 
-## Cosa fare
+## Cosa devo fare se il mio animale ha ingerito un veleno?
+
+Allontanalo dalla fonte, chiama subito il veterinario con la confezione in mano, segui le sue istruzioni e porta le prove in clinica.
 
 1. **Allontana l'animale dalla fonte** e, se è sicuro, togli la fonte dall'animale. Controlla che non abbia ancora qualcosa in bocca.
 2. **Chiama subito un veterinario.** Di' cosa ha ingerito, quanto, quando, e il peso del tuo animale. Tieni la confezione in mano.
@@ -31,7 +33,9 @@ Vai subito, e chiama durante il tragitto, se il tuo animale:
 4. **Porta le prove**: la confezione, la pianta, un campione di ciò che ha vomitato, in un sacchetto chiuso.
 5. **Tieni il tuo animale calmo e al caldo** durante il tragitto.
 
-## Cosa NON fare
+## Cosa non devo fare?
+
+Non provocare il vomito, non dare latte, olio, antidoti casalinghi o farmaci umani e non aspettare solo perché sembra stare bene.
 
 - **Non provocare il vomito a casa.** Sale, senape, detersivo per piatti e rimedi simili sono pericolosi, e il vomito è dannoso per alcuni veleni (sostanze caustiche, derivati del petrolio) e per gli animali sonnolenti o in convulsione. Se serve far vomitare l'animale, il veterinario lo farà in sicurezza. È una decisione del veterinario.
 - **Non dare latte, olio, compresse di carbone o nessun antidoto casalingo.**
@@ -39,7 +43,9 @@ Vai subito, e chiama durante il tragitto, se il tuo animale:
 - **Non stare a guardare** perché l'animale sembra stare bene. Con esche per topi, antigelo e gigli, il danno grave avviene prima di qualsiasi sintomo.
 - **Non limitarti a lavare via il polline da un gatto.** Impediscigli di leccarsi e vai dal veterinario.
 
-## I veleni che i veterinari vedono più spesso
+## Quali sono i veleni più comuni per cani e gatti?
+
+I più frequenti sono cioccolato, xilitolo, uva e uvetta, gigli, esche per topi, antigelo, antidolorifici umani, cipolle e aglio e antipulci con permetrina per cani usati sul gatto.
 
 | Veleno | Colpisce soprattutto | Perché è importante |
 |---|---|---|
@@ -55,13 +61,15 @@ Vai subito, e chiama durante il tragitto, se il tuo animale:
 
 Altri pericoli sono le noci di macadamia, l'alcol, l'impasto crudo del pane, la cannabis, la nicotina, molte piante da casa e da giardino, e i farmaci con prescrizione per uso umano. Nel dubbio, telefona.
 
-## Quando andare dal veterinario
+## Quando andare dal veterinario per un sospetto avvelenamento?
 
 Per un sospetto avvelenamento la risposta è sempre: adesso. Non esiste la categoria "aspetta fino a domani".
 
 Se il tuo veterinario, dopo una telefonata, decide che la quantità era troppo piccola per preoccuparsi, è una decisione che spetta a lui, non a te.
 
-## Cosa vorrà sapere il veterinario
+## Cosa vorrà sapere il veterinario?
+
+Cosa ha ingerito, quanto e quando, peso, età e malattie, i sintomi notati, i farmaci che prende e se hai la confezione.
 
 - Cosa è stato ingerito (nome esatto del prodotto e ingredienti, se possibile)
 - Quanto, e quando

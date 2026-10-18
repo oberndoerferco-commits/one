@@ -33,7 +33,9 @@ Vai in clinica **immediatamente**, telefonando durante il tragitto, se il cane:
 
 L'Istituto Zooprofilattico Sperimentale delle Venezie (IZSVe) ricorda che in caso di avvelenamento la rapidità delle cure è fondamentale: **anche poche ore possono fare la differenza** tra una guarigione e un esito grave.
 
-## Cosa fare nei primi minuti
+## Cosa devo fare subito se il cane ha mangiato veleno per topi?
+
+Allontanalo dal veleno, recupera la confezione, annota ora e quantità e chiama il veterinario.
 
 1. **Allontana il cane dal veleno** e raccogli quello che è rimasto, usando dei guanti.
 2. **Recupera la confezione** o fotografa l'etichetta. La PDSA spiega che il tipo di veleno è difficile da riconoscere a occhio, e l'etichetta aiuta il veterinario a capire quale sostanza è coinvolta. Se la confezione era già aperta, porta il veleno rimasto in un contenitore chiuso.
@@ -42,13 +44,17 @@ L'Istituto Zooprofilattico Sperimentale delle Venezie (IZSVe) ricorda che in cas
 
 Se in casa, in giardino o in condominio c'è stata da poco una **derattizzazione**, dillo al veterinario: l'IZSVe raccomanda di segnalare sempre interventi di derattizzazione o l'uso recente di pesticidi nei luoghi frequentati dal cane.
 
-## Non farlo vomitare da solo
+## Devo far vomitare il cane?
+
+No, non di tua iniziativa: è il veterinario a decidere se e come farlo vomitare.
 
 È la cosa che molti provano a fare, ma **non farlo di tua iniziativa**. L'MSD Veterinary Manual raccomanda di **non provocare il vomito se non è il veterinario a dirtelo**. Per alcuni veleni, come il fosfuro di zinco, far vomitare l'animale richiede precauzioni particolari.
 
 Niente acqua e sale, latte, olio o altri rimedi casalinghi: fanno perdere tempo e possono fare danni. Il veterinario decide se e come far vomitare il cane: la PDSA spiega che il vomito indotto e il carbone attivo funzionano di solito **solo se il veleno è stato mangiato da poco**, per cui conta arrivare presto.
 
-## I diversi tipi di veleno per topi
+## Quali tipi di veleno per topi esistono?
+
+I principali sono gli anticoagulanti, i più comuni, il bromethalin, il colecalciferolo e il fosfuro di zinco, e ognuno agisce in modo diverso.
 
 Non tutti i veleni per topi sono uguali. L'MSD Veterinary Manual descrive diversi gruppi:
 
@@ -59,7 +65,9 @@ Non tutti i veleni per topi sono uguali. L'MSD Veterinary Manual descrive divers
 
 Per questo la confezione è così importante: dal principio attivo dipendono gli esami, la cura e i tempi.
 
-## Perché il cane può sembrare stare bene
+## Perché il cane sembra stare bene dopo aver mangiato il veleno?
+
+Con gli anticoagulanti i segni possono comparire solo dopo alcuni giorni, e il sangue può raccogliersi dentro il corpo senza che tu veda nulla.
 
 Con i veleni anticoagulanti il pericolo è proprio questo: per qualche giorno può non succedere nulla. La PDSA indica che i segni possono comparire **dopo circa 3-5 giorni**; l'IZSVe riporta che possono comparire già in 1-2 giorni, ma di solito si sviluppano **5-7 giorni dopo** l'ingestione. Secondo l'MSD Veterinary Manual, prima delle perdite di sangue visibili il cane può essere solo **abbattuto e mangiare meno**.
 
@@ -67,11 +75,13 @@ Il sangue può anche raccogliersi **dentro il corpo**, nella pancia, nel torace,
 
 Altri veleni invece agiscono in fretta. Secondo l'MSD Veterinary Manual, il bromethalin può causare tremori e convulsioni gravi in poche ore, e il colecalciferolo dà segni come abbattimento, poco appetito e sete aumentata di solito **entro 18-36 ore**. Il fosfuro di zinco, secondo l'IZSVe, può dare sintomi anche **15 minuti** dopo l'ingestione.
 
-## Anche un topo avvelenato è un rischio
+## Il cane può avvelenarsi mangiando un topo avvelenato?
 
 Il cane può avvelenarsi anche **mangiando un topo o un ratto** che ha mangiato il veleno. La PDSA lo segnala esplicitamente: se il tuo cane ha mangiato o masticato un roditore e sai che in zona si usano esche, chiama il veterinario.
 
-## Cosa fa il veterinario
+## Cosa fa il veterinario se il cane ha mangiato veleno per topi?
+
+A seconda del veleno e del tempo passato può farlo vomitare, dare carbone attivo, fare esami della coagulazione, prescrivere vitamina K e, nei casi gravi, ricoverarlo.
 
 La cura dipende dal tipo di veleno, da quanto ne ha mangiato il cane e da quanto tempo è passato. Il veterinario può:
 
@@ -84,13 +94,17 @@ Durante la cura per un veleno anticoagulante, la PDSA raccomanda di **limitare l
 
 Le prospettive, secondo la PDSA, sono buone per i cani trattati presto e con sintomi lievi, mentre peggiorano molto con sintomi gravi o cure in ritardo.
 
-## Esche avvelenate: cosa sapere in Italia
+## Cosa faccio se trovo un'esca avvelenata?
+
+Non toccarla a mani nude né annusarla e segnalala ai servizi veterinari dell'ASL o alla Polizia provinciale, perché in Italia abbandonare esche avvelenate è vietato.
 
 In Italia il Ministero della Salute vieta, con apposite ordinanze, di preparare e abbandonare esche o bocconi avvelenati. L'IZSVe spiega che il veterinario che sospetta un avvelenamento **è tenuto a segnalarlo** attraverso il Portale nazionale degli avvelenamenti dolosi degli animali.
 
 Se trovi un'esca sospetta durante una passeggiata, l'IZSVe raccomanda di **non toccarla a mani nude né annusarla** e di segnalarla ai servizi veterinari dell'ASL (ULSS in Veneto) o alla Polizia provinciale.
 
-## Prevenire
+## Come proteggere il cane dal veleno per topi?
+
+Evita di usarlo dove vive il cane, metti le esche in contenitori chiusi fuori dalla sua portata e tienilo vicino a te durante le passeggiate.
 
 - **Evita di usare veleno per topi** dove vive il cane. La PDSA ricorda che **nessun veleno per topi è sicuro** per i cani.
 - Se devi usarlo, metti le esche in **contenitori chiusi** dove il cane non arriva e conserva le confezioni fuori dalla sua portata.

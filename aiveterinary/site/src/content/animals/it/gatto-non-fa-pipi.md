@@ -22,7 +22,9 @@ Vai subito in una clinica veterinaria, chiamando prima per avvisare, se il tuo g
 
 Attenzione a un errore frequente: molte persone pensano che il gatto sia **stitico**, perché lo vedono spingere nella lettiera. Nei maschi, in particolare, è molto più probabile che stia cercando di fare pipì e non ci riesca.
 
-## Perché è un'emergenza e non una cosa da "vediamo domani"
+## Perché è un'emergenza se il gatto non fa pipì?
+
+Se l'uretra si chiude la vescica non si svuota, e nel giro di 24-48 ore reni e cuore vanno in crisi e il gatto può morire.
 
 Nel gatto, soprattutto nel maschio, l'uretra è lunga e stretta. Un tappo di cristalli, muco e cellule infiammatorie, oppure uno spasmo della muscolatura, può chiuderla del tutto. Da quel momento la vescica continua a riempirsi ma non può svuotarsi.
 
@@ -30,14 +32,18 @@ Nel giro di 24-48 ore la pressione risale verso i reni, le sostanze di scarto si
 
 Il veterinario deve sbloccare l'uretra, spesso con il gatto sedato, e correggere gli squilibri con fluidi e monitoraggio. Non esiste nessuna manovra sicura da fare a casa: non premere la pancia per "aiutarlo", perché la vescica sovradistesa può rompersi.
 
-## Cosa fare mentre arrivi in clinica
+## Cosa devo fare mentre vado in clinica?
+
+Chiama dicendo che il gatto non riesce a urinare, mettilo nel trasportino e non dargli nulla per bocca.
 
 - Chiama la clinica e di' chiaramente "gatto maschio che non riesce a urinare": in molte strutture questa frase fa scattare la priorità.
 - Metti il gatto nel trasportino con un asciugamano. Non forzarlo a bere e non dargli nulla per bocca.
 - Se hai fatto foto della lettiera, delle gocce di urina o di sangue, portale.
 - Se il gatto è in una casa con più gatti e non sei sicuro che sia lui a non urinare, isolalo con una lettiera pulita per 1-2 ore: in genere basta per capirlo.
 
-## Quando andare dal veterinario
+## Quando portare il gatto dal veterinario?
+
+Tutti i segni di questa pagina sono un'emergenza da vedere subito, e anche senza sforzi a vuoto vai in giornata se urina spesso e poco, ha sangue nelle urine o sporca fuori dalla lettiera.
 
 Tutti i segni di questa pagina sono da emergenza, cioè **ora**, anche di notte o nel fine settimana. Se la tua clinica è chiusa, cerca il pronto soccorso veterinario più vicino.
 
@@ -48,7 +54,9 @@ Vai comunque in giornata, anche senza sforzi a vuoto, se il gatto:
 - fa pipì fuori dalla lettiera, cosa che prima non faceva
 - ha avuto in passato episodi di cistite o di ostruzione (le recidive sono frequenti)
 
-## Cosa vorrà sapere il veterinario
+## Cosa vorrà sapere il veterinario?
+
+Quando ha urinato normalmente l'ultima volta, cosa ha prodotto nelle ultime ore, sesso, età e peso, alimentazione, episodi precedenti, cambiamenti in casa e farmaci.
 
 - Quando l'hai visto urinare normalmente l'ultima volta
 - Quante volte è andato in lettiera nelle ultime ore e cosa ha prodotto
@@ -58,7 +66,9 @@ Vai comunque in giornata, anche senza sforzi a vuoto, se il gatto:
 - Cambiamenti recenti in casa: trasloco, nuovi animali, ospiti, lavori
 - Farmaci o integratori in corso
 
-## Cause più comuni
+## Perché il gatto non riesce a fare pipì?
+
+Le cause più probabili sono un tappo di cristalli e muco nell'uretra, la cistite idiopatica con spasmo uretrale e l'infiammazione dopo episodi ripetuti.
 
 | Probabili | Meno comuni ma importanti |
 |---|---|

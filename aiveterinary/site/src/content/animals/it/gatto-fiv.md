@@ -32,7 +32,9 @@ Scoprire che il gatto è FIV positivo non è un'emergenza: molti gatti vivono be
 
 Se **respira con fatica** o a bocca aperta, ha convulsioni o collassa, vai **subito** in clinica.
 
-## Che cos'è la FIV
+## Che cos'è la FIV nel gatto?
+
+È un virus che nel tempo danneggia il sistema immunitario del gatto, che resta positivo per tutta la vita.
 
 La FIV (dall'inglese *Feline Immunodeficiency Virus*) è un virus che, spiega International Cat Care (iCatCare), danneggia nel tempo le cellule del **sistema immunitario**. È parente dell'HIV umano ed è per questo che a volte si sente parlare di "AIDS del gatto".
 
@@ -42,14 +44,18 @@ Una volta infettato, il gatto resta positivo **per tutta la vita**. Secondo iCat
 
 **No.** iCatCare è chiaro: la FIV **colpisce solo i gatti** e non si trasmette alle persone né ad altri animali. Anche il Cornell Feline Health Center ricorda che il virus è strettamente specifico per i felini e che **non ci sono prove** che infetti o faccia ammalare l'uomo. Puoi accarezzare, coccolare e vivere con il tuo gatto senza alcun rischio.
 
-## Come si trasmette tra gatti
+## Come si trasmette la FIV tra gatti?
+
+Soprattutto con i morsi, mentre i contatti di tutti i giorni, come condividere la ciotola dell'acqua, non sono un modo efficace di trasmissione.
 
 - **Con i morsi.** È la via principale, perché il virus è presente nella saliva. Lo indicano tutte le fonti: iCatCare, il Cornell Feline Health Center, l'MSD Veterinary Manual e l'ABCD, il comitato europeo di esperti sulle malattie feline.
 - **Raramente** dalla madre ai gattini, o con la toelettatura reciproca. Il Cornell Feline Health Center spiega che i **contatti di tutti i giorni**, come condividere la ciotola dell'acqua o leccarsi a vicenda, **non sono un modo efficace** di trasmissione.
 
 Per questo i gatti più a rischio, secondo il Cornell Feline Health Center e l'MSD Veterinary Manual, sono i **maschi non castrati che escono** e tendono a fare a botte. iCatCare riporta che i maschi hanno circa il **doppio delle probabilità** di essere infettati rispetto alle femmine.
 
-## Come si comporta il virus
+## Quali sintomi dà la FIV?
+
+Dopo una fase iniziale spesso inosservata il gatto può restare senza sintomi per anni, poi compaiono infezioni ricorrenti come gengiviti, febbre e dimagrimento.
 
 Il Cornell Feline Health Center descrive tre fasi:
 
@@ -59,7 +65,9 @@ Il Cornell Feline Health Center descrive tre fasi:
 
 iCatCare spiega che la FIV non ha sintomi tipici suoi. I segni sono quelli delle **infezioni che il gatto non riesce a respingere**: dimagrimento, febbre che va e viene, abbattimento, **infiammazione delle gengive e della bocca** (gengivite e stomatite), problemi respiratori, agli occhi, all'intestino o alla pelle. L'MSD Veterinary Manual aggiunge infezioni delle vie urinarie e un rischio maggiore di alcuni **tumori del sangue**.
 
-## Il test: cosa significa un risultato positivo
+## Cosa significa un test FIV positivo?
+
+Il test cerca gli anticorpi contro il virus: nei gattini sotto i 6 mesi un positivo può dipendere dagli anticorpi della madre, e un risultato inaspettato si può confermare in laboratorio.
 
 La FIV si diagnostica con un **esame del sangue** che cerca gli anticorpi contro il virus, spesso fatto direttamente in ambulatorio. L'MSD Veterinary Manual suggerisce di testare il gatto **quando lo adotti**, dopo un **morso** sospetto e quando è malato.
 
@@ -75,7 +83,7 @@ In Italia, di fatto, no. L'ABCD indica che **in Europa non è disponibile in com
 
 La prevenzione quindi si basa su **castrazione/sterilizzazione** e sul **ridurre le occasioni di lotta**.
 
-## Come vive un gatto FIV positivo
+## Come vive un gatto FIV positivo?
 
 Bene, spesso. Il Cornell Feline Health Center spiega che molti gatti positivi vivono **una vita normale e sana per molti anni** con le giuste attenzioni. L'ABCD raccomanda che un gatto **non venga mai soppresso solo perché positivo** al test.
 

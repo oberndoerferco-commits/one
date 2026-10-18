@@ -23,7 +23,9 @@ Un cane con un colpo di calore ha bisogno di essere raffreddato *e* di un veteri
 
 Le razze brachicefale (carlini, bulldog francesi, bulldog), i cani in sovrappeso, quelli a pelo folto, i cani anziani e i cani con problemi cardiaci o respiratori sono i più a rischio e possono surriscaldarsi in condizioni che altri cani tollerano.
 
-## Raffreddamento immediato: cosa fare
+## Come si raffredda un cane con un colpo di calore?
+
+Interrompi l'attività, portalo all'ombra, versagli acqua fresca o fredda sul corpo, fai circolare l'aria e chiama il veterinario mentre lo raffreddi.
 
 Molti veterinari oggi consigliano "prima raffreddare, poi trasportare" per un cane cosciente che può essere raffreddato sul posto.
 
@@ -36,7 +38,9 @@ Molti veterinari oggi consigliano "prima raffreddare, poi trasportare" per un ca
 
 L'acqua fredda su un cane cosciente è sicura. Il vecchio consiglio secondo cui l'acqua fredda "provoca shock" non è più sostenuto, e abbassare la temperatura in fretta è ciò che salva la vita.
 
-## Cosa non fare
+## Cosa non devo fare in caso di colpo di calore?
+
+Non aspettare che migliori da solo, non saltare il veterinario anche se sembra stare meglio e non dargli nessun farmaco.
 
 - Non aspettare per vedere se il cane migliora da solo.
 - Non saltare il veterinario perché il cane "sembra stare meglio" dopo il raffreddamento. Il colpo di calore può danneggiare reni, intestino, coagulazione e cervello, e parte di questi danni si manifesta ore dopo.
@@ -44,7 +48,9 @@ L'acqua fredda su un cane cosciente è sicura. Il vecchio consiglio secondo cui 
 - Non lasciare un cane in un'auto parcheggiata, nemmeno per pochi minuti, nemmeno con i finestrini aperti.
 - Non portare a spasso un cane sull'asfalto rovente nelle ore più calde. Se il suolo è troppo caldo per il dorso della tua mano per cinque secondi, è troppo caldo per i cuscinetti.
 
-## Quando andare dal veterinario
+## Quando portare il cane dal veterinario dopo il caldo?
+
+Il giorno stesso se hai dovuto raffreddarlo, o se dopo il caldo è spento, non mangia, beve molto di più, ha diarrea, urina scura o lividi.
 
 Ogni cane che hai dovuto raffreddare attivamente va visitato da un veterinario il giorno stesso, anche se dopo sembra normale. Se servono esami del sangue, fluidi o monitoraggio è una decisione del veterinario, e non si può prendere dall'esterno.
 
@@ -54,7 +60,9 @@ Vai dal veterinario oggi anche se il tuo cane, dopo essere stato al caldo:
 - ha la diarrea o urina scura
 - ha piccoli lividi o le gengive che sanguinano
 
-## Cosa vorrà sapere il veterinario
+## Cosa vorrà sapere il veterinario?
+
+Cosa faceva il cane, dove e per quanto tempo, le condizioni ambientali, i segni notati, il raffreddamento fatto e razza, peso, età, malattie e farmaci.
 
 - Cosa stava facendo il cane, dove, e per quanto tempo
 - Temperatura e condizioni ambientali
@@ -64,13 +72,17 @@ Vai dal veterinario oggi anche se il tuo cane, dopo essere stato al caldo:
 - Razza, peso, età ed eventuali malattie preesistenti
 - Eventuali farmaci
 
-## Gatti e conigli
+## Anche gatti e conigli possono avere un colpo di calore?
+
+Sì: il gatto soprattutto se resta chiuso in un ambiente caldo, il coniglio molto facilmente perché non riesce ad ansimare in modo efficace.
 
 **I gatti** raramente hanno un colpo di calore per l'attività fisica, ma possono averlo se restano intrappolati in una serra, un capanno, una veranda o un'auto. I segni sono respiro a bocca aperta, salivazione, irrequietezza, poi collasso. Il respiro a bocca aperta in un gatto è sempre un'emergenza. Raffredda con panni bagnati e ventilatori e vai dal veterinario.
 
 **I conigli** sono molto sensibili al caldo e non riescono ad ansimare in modo efficace. Una gabbia in pieno sole può uccidere. I segni sono respiro rapido e superficiale, narici bagnate, letargia, e posizione sdraiata e allungata. Spostalo in una stanza fresca, nebulizza acqua fresca sulle orecchie, offri acqua, e vai dal veterinario con urgenza. Non immergere un coniglio in acqua fredda.
 
-## Prevenzione
+## Come prevenire il colpo di calore nel cane?
+
+Esci nelle ore fresche, porta acqua, fai pause all'ombra, fai attenzione ai cani brachicefali e in sovrappeso e non lasciare mai un animale in auto.
 
 - Con il caldo, porta a spasso il cane la mattina presto o la sera tardi.
 - Porta con te dell'acqua, e fai pause all'ombra.

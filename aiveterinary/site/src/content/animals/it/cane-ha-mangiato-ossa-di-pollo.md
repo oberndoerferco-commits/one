@@ -36,7 +36,9 @@ Il cane ha rubato la carcassa del pollo arrosto o ha trovato un osso per strada?
 
 Sono i segni che l'osso può essersi fermato nell'esofago, nello stomaco o nell'intestino, oppure averli feriti.
 
-## Non farlo vomitare a casa
+## Devo far vomitare il cane che ha mangiato ossa di pollo?
+
+No: le ossa cotte sono appuntite e tornando su possono ferire di nuovo l'esofago, quindi la decisione spetta al veterinario.
 
 È la prima cosa che viene in mente, ma **non provare a far vomitare il cane** con acqua e sale, acqua ossigenata o altri rimedi trovati in rete.
 
@@ -44,7 +46,9 @@ Le ossa cotte sono **appuntite**: tornando su possono ferire di nuovo l'esofago.
 
 Decidere se far vomitare il cane, e come, spetta al veterinario. Evita anche altri "trucchi" casalinghi per far passare l'osso senza prima averne parlato con lui: possono farti perdere tempo prezioso.
 
-## Perché le ossa cotte sono pericolose
+## Perché le ossa di pollo cotte sono pericolose?
+
+Le schegge possono ferire l'apparato digerente, e i pezzi più grandi possono fermarsi nell'esofago, bloccare stomaco o intestino o perforarne la parete.
 
 La PDSA, un ente benefico veterinario britannico, avverte che le ossa possono **danneggiare l'apparato digerente con le loro schegge**, "in particolare le ossa di pollo cotte", e che i pezzi più grandi possono **bloccare la gola o l'intestino**, una situazione che mette a rischio la vita. La PDSA racconta il caso di un cucciolo che, dopo aver ingoiato un osso di pollo, è stato operato d'urgenza per toglierlo.
 
@@ -60,7 +64,9 @@ I rischi principali sono tre.
 
 Infine, l'MSD Veterinary Manual ricorda che materiale poco digeribile e duro, come **peli o ossa**, può anche causare **stitichezza**.
 
-## Cosa fare adesso, passo per passo
+## Cosa devo fare adesso?
+
+Togli al cane gli avanzi, cerca di capire cosa e quanto ha mangiato e telefona al veterinario, senza farlo vomitare.
 
 1. **Togli al cane gli avanzi** di ossa, con calma, senza ingaggiare una lotta che potrebbe spingerlo a inghiottire in fretta.
 2. **Cerca di capire cosa ha mangiato**: ossa crude o cotte, di che animale, quante più o meno, e a che ora.
@@ -68,11 +74,15 @@ Infine, l'MSD Veterinary Manual ricorda che materiale poco digeribile e duro, co
 4. **Non farlo vomitare** e non dargli niente "per far scivolare" l'osso senza il parere del veterinario.
 5. Se ti dice di osservarlo a casa, **controllalo con attenzione** nei giorni successivi: come mangia, se vomita, com'è la pancia, se fa la cacca normalmente e com'è.
 
-## Non dare medicinali per uso umano
+## Posso dargli un antidolorifico se ha mal di pancia?
+
+No: farmaci per uso umano come ibuprofene e paracetamolo possono danneggiare stomaco, reni e fegato del cane.
 
 Se il cane sembra avere mal di pancia, **non dargli antidolorifici, antinfiammatori o altri farmaci che usi per te**. Il Merck Veterinary Manual spiega che l'**ibuprofene** nel cane non è più raccomandato perché può causare **ulcere e perforazioni dello stomaco**, emorragie intestinali e danni ai reni, e che anche il **paracetamolo** può danneggiare il fegato. In un intestino forse già ferito da una scheggia, il rischio è ancora più alto. I farmaci li sceglie il veterinario, dopo averlo visitato.
 
-## Cosa fa il veterinario
+## Cosa fa il veterinario se il cane ha mangiato un osso?
+
+Lo visita, di solito con radiografie, ecografia ed esami del sangue, e poi a seconda dei casi toglie l'osso con l'endoscopio, opera o ricovera il cane con fluidi e controlli.
 
 Il veterinario parte da quello che gli racconti e dalla visita, palpando con attenzione la pancia. Secondo il Cornell, gli esami più usati sono le **radiografie** dell'addome e l'**ecografia**, insieme agli **esami del sangue** per valutare disidratazione, sali minerali e infezioni.
 
@@ -84,7 +94,9 @@ Cosa succede dopo dipende da dove si trova l'osso e da come sta il cane:
 
 L'MSD Veterinary Manual sottolinea che i cani con un'ostruzione da corpo estraneo **tendono a guarire bene se la diagnosi e la cura arrivano in fretta**. Per questo vale la pena chiamare subito, invece di aspettare.
 
-## Come evitare che succeda di nuovo
+## Come evitare che succeda di nuovo?
+
+Non dare ossa cotte, getta gli avanzi in un bidone chiuso, avvisa ospiti e bambini e offri giochi da masticare adatti ai cani.
 
 - **Non dare ossa cotte** al cane, nemmeno come premio. Il Cornell consiglia di evitare oggetti che possono essere inghiottiti facilmente, come le ossa piccole.
 - Getta gli avanzi di pollo, costolette e carcasse in un **bidone chiuso** che il cane non possa aprire, e non lasciare piatti incustoditi.

@@ -47,7 +47,9 @@ Se non sei sicuro se stia cercando di fare pipì o feci, **trattalo come un'emer
 - ha subito di recente un trauma, per esempio una caduta o un incidente, o ha difficoltà a camminare
 - è un gatto anziano o ha una malattia dei reni
 
-## Come riconoscere la stitichezza
+## Come capisco se il gatto è stitico?
+
+Fa feci dure, secche e piccole, passa molto tempo in lettiera e si sforza, a volte con piccole quantità di feci liquide o muco.
 
 Un gatto adulto sano fa di solito le feci una o due volte al giorno. Segni di stitichezza sono:
 
@@ -58,7 +60,9 @@ Un gatto adulto sano fa di solito le feci una o due volte al giorno. Segni di st
 
 Se la stitichezza non viene trattata o si ripete, le feci si accumulano e si induriscono sempre di più nel colon (si parla di **obstipazione**). Con il tempo il colon può dilatarsi e perdere la capacità di spingere: è il **megacolon**, che può richiedere cure lunghe e a volte un intervento chirurgico. Per questo il Cornell Feline Health Center raccomanda di affrontare la stitichezza del gatto con decisione, senza lasciarla trascinare.
 
-## Le cause più comuni
+## Perché il gatto è stitico?
+
+Le cause più comuni sono poca acqua, pelo o materiale non digeribile, età, sovrappeso o poca attività, un gatto che evita la lettiera, restringimenti, problemi neurologici o metabolici e alcuni farmaci.
 
 - **Poca acqua:** il colon assorbe più liquido dalle feci, che diventano dure. I gatti con malattia renale cronica, frequente nei gatti anziani, sono spesso un po' disidratati.
 - **Pelo e materiale non digeribile** ingerito, come pelo in eccesso, ossa o lettiera.
@@ -69,7 +73,9 @@ Se la stitichezza non viene trattata o si ripete, le feci si accumulano e si ind
 - **Alcuni farmaci**, come effetto collaterale.
 - In molti gatti non si trova una causa precisa (stitichezza idiopatica).
 
-## Cosa non fare a casa
+## Cosa non devo fare a casa?
+
+Non fare clisteri, non dare lassativi, oli o antidolorifici per uso umano e non aspettare giorni se il gatto vomita, non mangia o è spento.
 
 - **Non fare clisteri** al gatto di tua iniziativa e non usare **mai clisteri per uso umano**: quelli a base di fosfati possono causare nel gatto gravi squilibri dei sali minerali, potenzialmente mortali. Il clistere, quando serve, lo decide e lo fa il veterinario.
 - **Non dare lassativi per uso umano**, olio di vaselina o altri oli per bocca senza indicazione del veterinario: alcuni lassativi peggiorano la disidratazione, e l'olio può finire nelle vie respiratorie e causare una polmonite.
@@ -77,11 +83,15 @@ Se la stitichezza non viene trattata o si ripete, le feci si accumulano e si ind
 - Non provare a estrarre le feci con le dita o con oggetti.
 - Non aspettare giorni "per vedere se si sblocca" se il gatto vomita, non mangia o è spento.
 
-## Cosa fa il veterinario
+## Cosa fa il veterinario se il gatto è stitico?
+
+Prima esclude un blocco urinario, poi valuta quanto sono accumulate le feci e tratta con reidratazione, dieta, lassativi adatti al gatto, clisteri o, nei casi ostinati, svuotamento dell'intestino in anestesia.
 
 Prima di tutto il veterinario verifica che la vescica non sia bloccata e che il problema sia davvero l'intestino. Poi, toccando la pancia e se serve con radiografie ed esami del sangue, valuta quanto sono accumulate le feci e cerca la causa. Le cure dipendono dalla gravità: reidratazione, cambi nella dieta, lassativi adatti al gatto, clisteri o, nei casi più ostinati, svuotamento dell'intestino in anestesia. Se la stitichezza si ripete, il veterinario può proporre una terapia di mantenimento.
 
-## Prevenire, d'accordo con il veterinario
+## Come prevenire la stitichezza nel gatto?
+
+Fallo bere di più, dagli cibo umido, valuta le fibre con il veterinario, tieni la lettiera pulita, spazzolalo spesso e mantienilo al peso giusto.
 
 - **Fallo bere di più:** acqua fresca ogni giorno, ciotole diverse per capire quale preferisce, eventualmente una fontanella. Tieni acqua e cibo lontani dalla lettiera.
 - **Cibo umido**: aumenta l'acqua assunta con i pasti.

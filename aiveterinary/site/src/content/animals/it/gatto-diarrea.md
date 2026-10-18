@@ -32,7 +32,9 @@ Vai dal veterinario **il prima possibile**, telefonando prima, se il tuo gatto h
 
 Il Cornell Feline Health Center indica che, se la diarrea dura più di un giorno o due e il gatto ha anche segni generali come **inappetenza, abbattimento o vomito**, va visitato il prima possibile. La PDSA aggiunge di contattare il veterinario se una diarrea lieve **dura più di 24 ore** o se il gatto peggiora.
 
-## Il caso del gattino: la panleucopenia
+## Perché la diarrea è pericolosa nel gattino?
+
+Perché tra le cause da escludere subito c'è la panleucopenia, una malattia virale molto contagiosa che nei gattini sotto i 5 mesi può essere mortale.
 
 Se il gattino ha diarrea, vomito, febbre, è abbattuto e non mangia, una delle cause da escludere subito è la **panleucopenia felina** (chiamata anche gastroenterite infettiva o "cimurro del gatto"), una malattia virale molto contagiosa. Secondo l'MSD Veterinary Manual:
 
@@ -44,11 +46,15 @@ Se il gattino ha diarrea, vomito, febbre, è abbattuto e non mangia, una delle c
 
 Per questo un gattino con la diarrea non va mai "tenuto d'occhio" a casa per giorni.
 
-## Cos'è la diarrea e perché preoccupa
+## Cos'è la diarrea nel gatto e perché preoccupa?
+
+È l'emissione troppo frequente di feci acquose, e preoccupa perché il gatto non assorbe abbastanza acqua, nutrienti e sali e può disidratarsi.
 
 Il Cornell Feline Health Center la descrive come l'emissione **troppo frequente di feci acquose**, a volte di colore grigio o giallo, dall'odore molto forte, talvolta con muco o sangue. Le feci attraversano l'intestino troppo in fretta e il gatto **non riesce ad assorbire abbastanza acqua, nutrienti e sali minerali**. La PDSA ricorda che, nei casi gravi o non curati, la diarrea può portare a disidratazione e a malattie serie.
 
-## Le cause più comuni
+## Perché il gatto ha la diarrea?
+
+Spesso per un cambio di cibo, stress, qualcosa che ha irritato lo stomaco o parassiti, ma a volte per malattie più serie che vanno indagate.
 
 Molti episodi sono brevi e si risolvono da soli. Secondo il Cornell, tra le cause di una diarrea passeggera ci sono:
 
@@ -62,7 +68,9 @@ Le cause meno frequenti, ma più serie, comprendono infezioni intestinali, virus
 
 Nel gatto adulto, ricorda il Cornell, una diarrea che non si spiega con un cambio di dieta è spesso legata a un problema dell'intestino stesso, e va indagata.
 
-## Se la diarrea è lieve
+## Cosa posso fare se la diarrea è lieve?
+
+Se è un adulto in salute con feci molli da meno di un giorno, lascia acqua fresca, fallo riposare e chiedi al veterinario se dargli pasti piccoli e leggeri.
 
 Se il tuo gatto è un adulto in salute, ha avuto feci molli da **meno di un giorno** e per il resto mangia, beve, gioca ed è vivace come sempre, la PDSA indica che può essere possibile gestirlo a casa per un breve periodo. In questo caso:
 
@@ -73,14 +81,18 @@ Se il tuo gatto è un adulto in salute, ha avuto feci molli da **meno di un gior
 
 Se la diarrea **non migliora entro 24 ore**, se il gatto rifiuta il cibo o compare uno qualsiasi dei segni d'allarme elencati all'inizio, chiama il veterinario senza aspettare oltre.
 
-## Cosa non fare
+## Cosa non devo fare se il gatto ha la diarrea?
+
+Non dargli farmaci per uso umano o antibiotici avanzati, non cambiare cibo di continuo e non sverminarlo alla cieca.
 
 - **Non dare farmaci per uso umano**, né antidiarroici né antidolorifici. Il Cornell avverte che **alcuni farmaci da banco possono essere dannosi per il gatto**. Il Merck Veterinary Manual spiega che il gatto è **particolarmente sensibile al paracetamolo**, che può causare gravi danni al sangue e al fegato, ed è più sensibile del cane anche all'ibuprofene.
 - **Non usare antibiotici avanzati** da altre terapie. La PDSA ricorda che gli antibiotici servono raramente nella diarrea e possono anche peggiorarla, perché distruggono i batteri "buoni" dell'intestino. Li prescrive il veterinario solo quando servono davvero.
 - **Non cambiare cibo di continuo** per tentativi: i cambi bruschi sono essi stessi una causa di diarrea.
 - **Non sverminare "alla cieca"** con prodotti presi a caso: il tipo di parassita conta, e il veterinario può individuarlo con l'esame delle feci.
 
-## Cosa vorrà sapere il veterinario
+## Cosa vorrà sapere il veterinario?
+
+Da quando ha la diarrea e com'è, se vomita, mangia e beve, cosa è cambiato, come vive, vaccinazioni e sverminazioni e a cosa ha avuto accesso.
 
 - da quando ha la diarrea, quante volte al giorno, com'è (colore, consistenza, sangue, muco)
 - se vomita, mangia e beve
@@ -91,7 +103,9 @@ Se la diarrea **non migliora entro 24 ore**, se il gatto rifiuta il cibo o compa
 
 Se puoi, porta un **campione di feci fresco** in un contenitore pulito: spesso aiuta a cercare i parassiti.
 
-## Prevenire, con il veterinario
+## Come prevenire la diarrea nel gatto?
+
+Con cambi di cibo graduali, vaccinazioni regolari, un piano antiparassitario deciso con il veterinario e una lettiera pulita.
 
 - **Cambi di cibo graduali**, sempre.
 - **Vaccinazioni** regolari, a partire dal gattino.

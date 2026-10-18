@@ -31,11 +31,15 @@ Contatta **subito** il veterinario, e vai in clinica, se il tuo gatto:
 - **non mangia e non beve**: secondo l'MSD Veterinary Manual la disidratazione e il rifiuto del cibo sono motivi per farlo visitare
 - **strizza spesso un occhio** o lo tiene chiuso: l'MSD Veterinary Manual ricorda che alcune di queste infezioni causano ulcere della cornea, che vanno curate dal veterinario
 
-## Uno starnuto ogni tanto è normale
+## È normale che il gatto starnutisca?
+
+Uno starnuto occasionale non deve preoccupare, ma se starnutisce spesso, a raffiche o con altri sintomi serve una visita.
 
 La PDSA lo dice chiaramente: **uno starnuto occasionale non deve preoccupare**. Polvere, profumi o fumo possono far starnutire anche un gatto sano. Diverso è se starnutisce **spesso o a raffiche**, o se ci sono altri sintomi: in questo caso la PDSA consiglia una visita, e di contattare il veterinario anche quando il gatto ha cominciato a starnutire e non sai perché.
 
-## La causa più comune: il raffreddore felino
+## Qual è la causa più comune degli starnuti nel gatto?
+
+Il raffreddore felino, un'infezione delle vie respiratorie alte causata soprattutto da herpesvirus e calicivirus.
 
 Quello che chiamiamo "raffreddore" o "influenza" del gatto è un'infezione delle vie respiratorie alte. Secondo International Cat Care, **oltre il 90%** di queste infezioni è causato da due virus: l'**herpesvirus felino** (FHV-1, responsabile della rinotracheite) e il **calicivirus felino** (FCV). Spesso si aggiungono infezioni batteriche secondarie, e in alcuni casi sono coinvolti batteri come *Bordetella bronchiseptica* o *Chlamydia felis*.
 
@@ -61,7 +65,9 @@ Nei **gattini**, alcuni ceppi di calicivirus possono causare una polmonite grave
 
 Secondo International Cat Care, **la maggior parte dei gatti guariti resta portatrice** del virus. Con l'herpesvirus quasi tutti rimangono portatori per sempre: il virus resta "addormentato" e lo **stress** o alcuni farmaci possono farlo riattivare, con nuovi episodi di starnuti e occhi che lacrimano. Con il calicivirus, molti gatti eliminano il virus per settimane o mesi, ma la maggior parte prima o poi se ne libera. Un portatore può sembrare sano e contagiare comunque altri gatti.
 
-## Altre cause di starnuti
+## Quali altre cause possono far starnutire il gatto?
+
+Anche corpi estranei, crescite nel naso, malattie di denti e gengive, sostanze irritanti e altre infezioni respiratorie.
 
 La PDSA elenca anche:
 
@@ -73,7 +79,9 @@ La PDSA elenca anche:
 
 Se gli starnuti non passano o non sembrano un normale raffreddore, il veterinario potrà indagare queste cause con la visita e, se serve, con altri esami.
 
-## Come assisterlo a casa, insieme al veterinario
+## Come posso aiutare a casa il gatto raffreddato?
+
+Seguendo la terapia del veterinario, pulisci spesso naso e occhi, tienilo al caldo e tranquillo, offri cibo morbido e profumato e separalo dagli altri gatti.
 
 Il trattamento lo decide il veterinario, che può prescrivere per esempio colliri, antidolorifici adatti al gatto o antibiotici se ci sono infezioni batteriche. A casa puoi aiutarlo così, seguendo i consigli di International Cat Care e dell'MSD Veterinary Manual:
 
@@ -83,17 +91,23 @@ Il trattamento lo decide il veterinario, che può prescrivere per esempio collir
 - se in casa ci sono altri gatti, **tienilo in una stanza separata** con ciotole e lettiera sue
 - **riduci lo stress**, che favorisce le ricadute
 
-## Cosa non fare
+## Cosa non devo fare se il gatto starnutisce?
+
+Non dargli farmaci, gocce nasali o colliri per uso umano e non aspettare giorni se non mangia o respira con la bocca.
 
 - **Non dargli farmaci per uso umano**, né per il raffreddore né per la febbre. Il Merck Veterinary Manual avverte che molti prodotti per tosse e raffreddore contengono **paracetamolo o ibuprofene**, e che il gatto è **particolarmente sensibile al paracetamolo**, che può causare danni gravi al sangue e al fegato. Anche l'ibuprofene è più pericoloso per il gatto che per il cane.
 - **Non usare gocce nasali o colliri per uso umano** senza indicazione del veterinario.
 - **Non aspettare giorni** se il gatto non mangia o respira con la bocca.
 
-## Prevenzione: la vaccinazione
+## Come si previene il raffreddore felino?
+
+Con il vaccino contro herpesvirus e calicivirus, che riduce moltissimo il rischio e di solito protegge dalle forme gravi.
 
 International Cat Care spiega che il vaccino contro herpesvirus e calicivirus **riduce moltissimo il rischio** di raffreddore felino. Non sempre impedisce l'infezione, quindi un gatto vaccinato può comunque avere sintomi lievi, ma di solito lo protegge dalle forme gravi. Chiedi al veterinario il programma più adatto al tuo gatto. L'MSD Veterinary Manual segnala che il vaccino somministrato per via nasale può causare qualche starnuto per alcuni giorni.
 
-## Cosa vorrà sapere il veterinario
+## Cosa vorrà sapere il veterinario?
+
+Da quando starnutisce, com'è lo scolo, se mangia e beve, se è vaccinato, se è stato a contatto con altri gatti e se ha avuto episodi simili.
 
 - da quando starnutisce e se lo scolo esce da una o da entrambe le narici
 - di che colore è lo scolo, se c'è sangue

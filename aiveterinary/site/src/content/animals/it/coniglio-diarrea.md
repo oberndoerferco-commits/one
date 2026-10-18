@@ -49,7 +49,9 @@ Come orientarti:
 
 In entrambi i casi serve il veterinario: la PDSA ricorda che **il coniglio smette di mangiare i ciecotrofi solo se c'è qualcosa che non va**.
 
-## Perché il coniglio lascia i ciecotrofi
+## Perché il coniglio non mangia i ciecotrofi?
+
+Le cause più comuni sono dieta povera di fibre, problemi ai denti, sovrappeso, problemi alla colonna o alle articolazioni, stress e problemi della pelle intorno all'ano.
 
 Secondo il *Textbook of Rabbit Medicine*, le cause più comuni sono:
 
@@ -62,7 +64,9 @@ Secondo il *Textbook of Rabbit Medicine*, le cause più comuni sono:
 
 Non è un'emergenza come la vera diarrea, ma va risolta, anche per il rischio di miasi (vedi sotto).
 
-## Le cause della vera diarrea
+## Quali sono le cause della diarrea nel coniglio?
+
+Tra le possibili cause ci sono dieta povera di fibre o cambi improvvisi, malattie dei denti, infezioni e parassiti intestinali, malattie del fegato, antibiotici e tumori.
 
 La PDSA elenca tra le possibili cause:
 
@@ -76,19 +80,25 @@ La PDSA elenca tra le possibili cause:
 
 Il Merck Veterinary Manual aggiunge che nei **conigli giovani** le malattie intestinali sono una delle principali cause di morte, e che stress, cambi di dieta, antibiotici e gabbie sporche alterano i batteri buoni dell'intestino. Al contrario, nel coniglio adulto da compagnia le infezioni intestinali sono più rare.
 
-## Il legame con la stasi intestinale
+## Che legame c'è tra diarrea e stasi intestinale?
+
+Hanno spesso le stesse radici, come poca fibra, denti malati, stress e dolore, per cui un coniglio con feci anomale che mangia meno va visto subito.
 
 Diarrea, ciecotrofi non mangiati e **stasi intestinale** hanno spesso le stesse radici: poca fibra, denti malati, stress, dolore. Nella stasi, spiega il Merck Veterinary Manual, il cibo avanza più lentamente nell'intestino, crescono batteri dannosi e si accumulano gas e tossine. Il coniglio si sente gonfio e dolorante, e mangia ancora meno.
 
 Il *Textbook of Rabbit Medicine* descrive i primi segni come **appetito ridotto e meno palline**, con il coniglio spesso ancora vigile; poi il coniglio smette del tutto di mangiare, sta ingobbito, non si pulisce e si disidrata, fino a non produrre più feci. Per questo un coniglio con feci anomale **che mangia meno** va visto subito. La stasi e il blocco intestinale possono mettere a rischio la vita se non trattati.
 
-## Il pericolo nascosto: la miasi
+## Che cos'è la miasi nel coniglio?
+
+È una condizione dolorosa e potenzialmente mortale in cui le mosche depongono le uova sul pelo sporco e le larve scavano sotto la pelle.
 
 Un sedere sporco di feci o ciecotrofi attira le mosche. La PDSA spiega che la **miasi** (in inglese *flystrike*) è una condizione dolorosa e potenzialmente mortale: le mosche depongono le uova sul pelo, le larve si schiudono e **scavano sotto la pelle**. Le larve possono fare danni estesi **anche in un solo giorno**.
 
 Se vedi anche una sola larva, chiama subito il veterinario per un'emergenza. La PDSA raccomanda di **non provare a toglierle da solo** e di **non immergere il coniglio nell'acqua**, perché può causare dolore e shock.
 
-## Cosa non fare a casa
+## Cosa non devo fare a casa?
+
+Non curare la diarrea da solo, non dare farmaci per uso umano o antibiotici avanzati e non immergere il coniglio per lavarlo.
 
 - **Non curare la diarrea da solo.** La PDSA è netta: la visita è essenziale e non va rimandata.
 - **Non dare farmaci per uso umano** o per altri animali, né antidiarroici o antibiotici avanzati. Il Merck Veterinary Manual avverte che **alcuni antibiotici dati per bocca** possono scatenare nel coniglio una grave malattia intestinale.
@@ -96,7 +106,9 @@ Se vedi anche una sola larva, chiama subito il veterinario per un'emergenza. La 
 
 Mentre organizzi la visita, tieni il coniglio tranquillo, lascia a disposizione fieno e acqua fresca e, se puoi, porta con te **un campione di feci**: la PDSA indica che può essere utile al veterinario.
 
-## Prevenire
+## Come prevenire la diarrea nel coniglio?
+
+Fieno di buona qualità a volontà, cambi di dieta graduali, controlli dei denti e un controllo quotidiano di feci e sedere.
 
 - **Fieno di buona qualità a volontà**, ogni giorno: il Merck Veterinary Manual lo indica come base della prevenzione, insieme a un peso corretto.
 - **Cambi di dieta graduali**, mai improvvisi.

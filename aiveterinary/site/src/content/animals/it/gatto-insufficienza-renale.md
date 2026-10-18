@@ -23,13 +23,17 @@ Vai in clinica subito, avvisando per telefono, se il tuo gatto:
 
 Questi segni possono indicare una **crisi renale acuta**, che è un'emergenza diversa dalla malattia cronica di cui parla il resto di questa pagina.
 
-## Cos'è la malattia renale cronica
+## Cos'è la malattia renale cronica nel gatto?
+
+È una perdita lenta e progressiva della funzione dei reni che non si guarisce, ma nella maggior parte dei casi si può rallentare per anni.
 
 I reni filtrano il sangue, eliminano le sostanze di scarto e regolano l'acqua e i sali. Nel gatto, con l'età, il tessuto renale può perdere a poco a poco la sua funzione. Il termine corretto è **malattia renale cronica** (si usa anche "insufficienza renale"): è progressiva, non si guarisce, ma nella maggior parte dei casi si può **rallentare** e il gatto può vivere bene per anni.
 
 Colpisce circa un gatto su tre sopra i 10-12 anni. I reni hanno una grande riserva: i segni compaiono quando buona parte della funzione è già persa. Per questo nei gatti anziani vale la pena fare controlli prima che qualcosa si noti.
 
-## I primi segni, quelli facili da ignorare
+## Quali sono i primi segni di insufficienza renale nel gatto?
+
+Beve e urina di più, perde peso lentamente, ha l'appetito capriccioso, il pelo meno curato e meno energia.
 
 - **Beve di più** e **urina di più**: la lettiera è più bagnata, le palline di sabbia agglomerante sono più grandi, lo vedi alla ciotola o al rubinetto più spesso
 - Perde peso lentamente, pur mangiando
@@ -42,11 +46,15 @@ Colpisce circa un gatto su tre sopra i 10-12 anni. I reni hanno una grande riser
 
 Molti proprietari li attribuiscono alla vecchiaia. Un gatto anziano che beve di più non è normale: va controllato.
 
-## Come si scopre
+## Come si scopre la malattia renale?
+
+Con esami del sangue e delle urine, spesso la misurazione della pressione e a volte un'ecografia.
 
 Servono un **esame del sangue** e un **esame delle urine**, spesso una misurazione della **pressione**, e in alcuni casi un'ecografia. Il veterinario classifica la malattia in stadi (il sistema più usato è quello IRIS, in quattro stadi) in base ai valori del sangue, alla presenza di proteine nelle urine e alla pressione. Lo stadio guida la gestione e dice cosa aspettarsi.
 
-## Come si gestisce, giorno per giorno
+## Come si gestisce la malattia renale giorno per giorno?
+
+Con una dieta per i reni, tanta acqua, trattamenti per fosforo, pressione, proteine nelle urine e nausea, controlli regolari e il peso tenuto d'occhio a casa.
 
 La gestione è un lavoro di squadra tra te e il veterinario, e si costruisce su pochi pilastri.
 
@@ -59,11 +67,15 @@ La gestione è un lavoro di squadra tra te e il veterinario, e si costruisce su 
 
 Evita i farmaci per uso umano, in particolare gli antinfiammatori, e di' sempre a ogni veterinario, anche per una cosa diversa, che il tuo gatto ha i reni fragili: alcune sedazioni e trattamenti vanno adattati.
 
-## Quando andare dal veterinario
+## Quando portare il gatto dal veterinario?
+
+Prenota una visita questa settimana se noti i primi segni, soprattutto in un gatto sopra gli 8-10 anni, e chiama prima del controllo se un gatto già in cura peggiora.
 
 Prenota una visita questa settimana se noti uno o più dei primi segni elencati sopra, soprattutto se il gatto ha più di 8-10 anni. Se il gatto è già in cura, chiama prima del controllo programmato se smette di mangiare per più di un giorno, vomita più del solito, perde peso in fretta o è più debole.
 
-## Cosa vorrà sapere il veterinario
+## Cosa vorrà sapere il veterinario?
+
+Da quando beve e urina di più, il peso, cosa mangia, vomito e feci, farmaci, piante in casa, altri gatti ed esami precedenti.
 
 - Da quando beve e urina di più, e come l'hai notato
 - Peso attuale e peso di un anno fa, se lo sai
@@ -74,7 +86,9 @@ Prenota una visita questa settimana se noti uno o più dei primi segni elencati 
 - Altri gatti in casa
 - Controlli e esami precedenti
 
-## Cause e condizioni da distinguere
+## Quali altre malattie vanno distinte?
+
+In un gatto anziano che beve di più vanno considerati anche ipertiroidismo, diabete, danno renale acuto, infezioni, calcoli, rene policistico e tumori.
 
 | Probabili in un gatto anziano che beve di più | Meno comuni ma importanti |
 |---|---|

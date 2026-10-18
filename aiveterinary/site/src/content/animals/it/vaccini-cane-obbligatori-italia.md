@@ -9,7 +9,9 @@ draft: true
 lang: it
 ---
 
-## Obbligatorio per legge: solo l'antirabbica, e solo in certi casi
+## Quali vaccini sono obbligatori per il cane in Italia?
+
+Per un cane che vive in Italia e non viaggia nessuno: l'antirabbica diventa obbligatoria solo per andare all'estero, con ordinanze locali o per alcune strutture e attività.
 
 È una delle domande più frequenti, e la risposta sorprende molti: in Italia **non esiste un vaccino obbligatorio per legge** per un cane che vive sul territorio nazionale e non viaggia. L'Italia è ufficialmente indenne dalla rabbia dal 2013, e l'obbligo generale di vaccinazione antirabbica, che esisteva un tempo nelle regioni del Nord-Est, è stato revocato.
 
@@ -21,7 +23,9 @@ L'antirabbica diventa obbligatoria in tre situazioni:
 
 Quello che invece è **obbligatorio per tutti i cani** in Italia è il **microchip con l'iscrizione all'anagrafe canina**, oggi collegata al sistema nazionale SINAC. Va fatto entro i termini fissati dalla tua Regione (in genere entro il secondo mese di vita, o entro pochi giorni dall'acquisto o dall'adozione), da un veterinario accreditato o dal servizio veterinario della ASL. Non è un vaccino, ma spesso si fa nella stessa visita.
 
-## Core e non-core: cosa consigliano i veterinari
+## Quali vaccini consigliano i veterinari?
+
+Cimurro, parvovirosi e adenovirus per tutti i cani, la leptospirosi praticamente a tutti in Italia e i non-core in base a zona e stile di vita.
 
 Le linee guida internazionali (WSAVA) e quelle europee dividono i vaccini in due gruppi.
 
@@ -42,19 +46,25 @@ In Italia la **leptospirosi** è considerata da molti veterinari un vaccino da f
 
 È il veterinario a decidere la combinazione giusta, in base all'età, allo stile di vita e alla zona.
 
-## Il ciclo del cucciolo e i richiami
+## Come funzionano il ciclo del cucciolo e i richiami?
+
+Il cucciolo riceve una serie di iniezioni da circa 8 a 16 settimane o oltre e un richiamo a un anno, poi i core si ripetono in genere ogni tre anni e leptospirosi e tosse dei canili ogni anno.
 
 Il cucciolo riceve anticorpi dalla madre con il latte. Lo proteggono nelle prime settimane, ma impediscono ai vaccini di fare effetto, e svaniscono in un momento diverso per ogni cucciolo. Per questo il primo ciclo è una **serie di iniezioni**, di solito da circa 8 settimane fino a 16 settimane o oltre, seguita da un richiamo a un anno.
 
 Dopo, i vaccini core si ripetono in genere **ogni tre anni**, mentre leptospirosi e tosse dei canili ogni anno, perché proteggono per meno tempo. Il veterinario può proporre un esame del sangue (titolazione anticorpale) per verificare la protezione contro cimurro, parvovirosi e adenovirus invece di rivaccinare. Non vale per la rabbia ai fini del viaggio.
 
-## Libretto, passaporto, anagrafe: tre documenti diversi
+## Che differenza c'è tra libretto, passaporto e anagrafe?
+
+Il libretto registra vaccini e visite, il passaporto europeo serve per attraversare i confini e l'anagrafe lega il microchip al tuo nome.
 
 - **Il libretto sanitario** è il quaderno in cui il veterinario registra ogni vaccino, con nome del prodotto, lotto, data e prossima scadenza, insieme ad antiparassitari e visite. Non ha valore legale per viaggiare, ma pensioni, scuole e assicurazioni lo chiedono.
 - **Il passaporto europeo per animali da compagnia** è un documento ufficiale, rilasciato dal servizio veterinario della ASL (in alcune regioni anche da veterinari autorizzati) a un cane già microchippato e iscritto all'anagrafe. Serve per attraversare i confini e deve riportare l'antirabbica valida.
 - **L'iscrizione all'anagrafe (SINAC)** lega il numero del microchip al tuo nome e indirizzo. Senza, non puoi ottenere il passaporto, e un cane smarrito non torna a casa.
 
-## Cosa vorrà sapere il veterinario
+## Cosa vorrà sapere il veterinario?
+
+Età e vaccini già fatti, dove vive, cosa fa, se viaggerete, eventuali reazioni passate, malattie e farmaci.
 
 - Età del cane e, se lo sai, cosa ha già ricevuto (porta il libretto)
 - Dove vive: città, campagna, zone con acqua stagnante, presenza di zecche o flebotomi
@@ -63,7 +73,9 @@ Dopo, i vaccini core si ripetono in genere **ogni tre anni**, mentre leptospiros
 - Eventuali reazioni a vaccini precedenti
 - Malattie in corso e farmaci
 
-## Effetti collaterali
+## Il vaccino può dare effetti collaterali?
+
+Di solito nessuno o solo un po' di sonnolenza e fastidio nel punto dell'iniezione per un giorno, ma gonfiore del muso, vomito ripetuto, orticaria o difficoltà a respirare vanno segnalati in giornata.
 
 La maggior parte dei cani non ha nessuna reazione, o solo un po' di sonnolenza e un piccolo fastidio nel punto dell'iniezione per un giorno. Chiama il veterinario in giornata se compaiono gonfiore del muso, vomito ripetuto, orticaria o difficoltà a respirare, e segnala qualunque reazione prima della vaccinazione successiva.
 

@@ -33,7 +33,9 @@ Il prurito di solito non è un'emergenza, ma ci sono eccezioni. Contatta **subit
 
 Se invece il prurito c'è da giorni o settimane ma il cane per il resto sta bene, prenota una visita nei prossimi giorni. La PDSA ricorda che **il prurito non va ignorato**.
 
-## Quando grattarsi non è più normale
+## Quando il prurito del cane non è più normale?
+
+Quando si gratta più di 4-5 volte al giorno o compaiono zone senza pelo, pelle arrossata, ferite, pelo macchiato di saliva, pelle scura e ispessita o dolore.
 
 Secondo la PDSA, diventa un problema quando succede **più di 4-5 volte al giorno**, oppure quando compaiono altri segni:
 
@@ -46,7 +48,9 @@ Secondo la PDSA, diventa un problema quando succede **più di 4-5 volte al giorn
 
 Attenzione: la PDSA avverte che alcuni cani si grattano e si leccano **di nascosto**, per esempio di notte. Leccarsi le zampe, strofinare il muso sul pavimento o mordicchiarsi la coda contano come prurito.
 
-## Le cause più comuni
+## Perché il cane si gratta sempre?
+
+Le cause più comuni sono pulci, allergie della pelle, acari e pidocchi, infezioni batteriche o da lieviti e reazioni a farmaci o prodotti per la pulizia.
 
 La PDSA elenca tra le cause **pulci, allergie della pelle, acari e pidocchi, infezioni batteriche o da lieviti (Malassezia), reazioni a farmaci, detersivi o prodotti per la pulizia, "hot spot", ferite e tigna**. Più raramente, malattie immunitarie della pelle.
 
@@ -76,17 +80,23 @@ Non esiste un singolo esame che la confermi: il veterinario ci arriva **escluden
 
 Batteri e lieviti approfittano della pelle già irritata. L'MSD Veterinary Manual spiega che nelle allergie le **infezioni secondarie** di pelle e orecchie sono frequenti e peggiorano il prurito: per questo spesso il veterinario deve curare prima l'infezione e poi la causa.
 
-## Cosa non fare
+## Cosa non devo fare se il cane ha prurito?
+
+Non usare creme o farmaci per uso umano senza il veterinario, non usare antiparassitari per cani sul gatto e non cambiare shampoo e cibo per tentativi.
 
 - **Non usare creme, pomate o farmaci per uso umano** (cortisonici, antistaminici, antidolorifici) senza indicazione del veterinario: cosa usare, e se usarlo, lo decide lui dopo aver capito la causa.
 - **Non usare antiparassitari per cani su un gatto di casa.** L'ESCCAP Italia avverte che alcuni prodotti per cani a base di piretroidi ad alta concentrazione sono **altamente tossici per i gatti** e non vanno usati in alcun modo su di loro.
 - Non cambiare continuamente shampoo e cibo "per tentativi": confonde la diagnosi.
 
-## Cosa fa il veterinario
+## Cosa fa il veterinario se il cane si gratta sempre?
+
+Visita pelle e orecchie, cerca pulci e acari, può fare raschiati cutanei e poi propone una prova con un antiparassitario, una dieta a eliminazione o terapie per infezioni e prurito.
 
 Visita la pelle e le orecchie, cerca pulci e acari e, se sospetta la rogna, fa dei **raschiati cutanei**, cioè preleva delicatamente un po' di materiale superficiale della pelle da guardare al microscopio. L'ESCCAP precisa che un raschiato negativo non basta sempre a escludere la rogna, e che esistono anche esami del sangue di supporto. In base al quadro può proporre una prova con un antiparassitario efficace, una dieta a eliminazione o terapie per le infezioni e per il prurito. La PDSA ricorda che infezioni e pulci di solito si risolvono abbastanza facilmente, mentre le allergie richiedono più tempo: ma una volta trovata la gestione giusta, molti cani **stanno molto meglio**.
 
-## Cosa vorrà sapere il veterinario
+## Cosa vorrà sapere il veterinario?
+
+Da quando e dove si gratta, quale antiparassitario usi, cosa mangia e se altri animali o persone in casa hanno prurito.
 
 - da quando si gratta, e se peggiora in certe stagioni
 - dove si gratta o si lecca di più

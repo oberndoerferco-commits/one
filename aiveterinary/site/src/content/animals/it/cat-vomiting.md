@@ -28,7 +28,7 @@ Un bolo di pelo è un ammasso di pelo a forma di salsicciotto, di solito con un 
 
 Il vomito è un'altra cosa. Cibo, schiuma, liquido giallo o verde, o liquido con solo qualche pelo dentro è vomito, anche se il gatto ha gli stessi conati. Vomitare più di una o due volte al mese, o espellere boli di pelo ogni pochi giorni, è segno che sta succedendo qualcos'altro. Molti veterinari oggi considerano i "boli di pelo" frequenti un motivo per esaminare l'intestino, non solo il mantello.
 
-## Se nessuno dei segni urgenti è presente
+## Cosa faccio se non c'è nessun segno urgente?
 
 Un singolo episodio in un gatto che poi mangia e si comporta normalmente può essere osservato a casa.
 
@@ -39,7 +39,9 @@ Un singolo episodio in un gatto che poi mangia e si comporta normalmente può es
 - Controlla che l'uso della lettiera sia normale. Nessuna urina per un giorno è di per sé un'emergenza, soprattutto nei maschi.
 - Non dare mai farmaci per uso umano. Il paracetamolo in particolare è altamente tossico per i gatti.
 
-## Quando andare dal veterinario
+## Quando portare dal veterinario il gatto che vomita?
+
+Prenota una visita oggi se vomita più di due o tre volte in un giorno, va avanti oltre 24 ore, non mangia da più di un giorno, è abbattuto o vomita quasi ogni settimana.
 
 Prenota una visita oggi se:
 
@@ -53,7 +55,9 @@ Prenota una visita oggi se:
 
 I gatti nascondono bene la malattia. Un gatto "un po' spento" che vomita merita una telefonata.
 
-## Cosa vorrà sapere il veterinario
+## Cosa vorrà sapere il veterinario?
+
+Da quando e quanto spesso vomita, com'è il vomito, che rapporto ha con i pasti, come mangia, beve e usa la lettiera e a cosa ha avuto accesso.
 
 - Quando è iniziato e con che frequenza
 - Com'era il vomito: pelo, cibo, schiuma, bile, sangue
@@ -64,7 +68,9 @@ I gatti nascondono bene la malattia. Un gatto "un po' spento" che vomita merita 
 - Eventuali farmaci, trattamenti antipulci o vermifughi
 - Altri gatti in casa e se anche loro hanno sintomi
 
-## Cause più comuni
+## Perché il gatto vomita?
+
+Le cause più probabili sono boli di pelo, mangiare troppo in fretta, cambi di cibo, lievi disturbi di stomaco, vermi ed erba, ma sono possibili anche corpi estranei, malattie e avvelenamenti.
 
 | Probabili | Meno comuni ma importanti |
 |---|---|

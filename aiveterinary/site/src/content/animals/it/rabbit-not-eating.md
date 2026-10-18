@@ -27,7 +27,9 @@ Vai immediatamente da un veterinario, avvisando per telefono, se il tuo coniglio
 
 Non tutte le cliniche sono abituate a curare i conigli. Se il tuo veterinario abituale non visita i conigli, chiedigli adesso, prima che ti serva, a chi indirizza.
 
-## Mentre organizzi la visita
+## Cosa devo fare mentre organizzo la visita?
+
+Tieni il coniglio al caldo e tranquillo, offri fieno, verdure fresche e acqua senza alimentarlo a forza, porta il compagno e un campione di feci e non dare farmaci.
 
 Non stare ad aspettare. Un coniglio che rifiuta il cibo è già un caso di emergenza. Mentre raggiungi il veterinario:
 
@@ -39,7 +41,7 @@ Non stare ad aspettare. Un coniglio che rifiuta il cibo è già un caso di emerg
 
 Se il tuo coniglio ha bisogno di fluidi, antidolorifici, farmaci che stimolano l'intestino o ulteriori accertamenti è una decisione del veterinario, e di solito rapida.
 
-## Quando andare dal veterinario
+## Quando portare dal veterinario il coniglio che non mangia?
 
 Per i conigli, la risposta onesta è: appena te ne accorgi. Anche se il tuo coniglio mangia un po', vai dal veterinario oggi se:
 
@@ -50,7 +52,9 @@ Per i conigli, la risposta onesta è: appena te ne accorgi. Anche se il tuo coni
 - beve molto di più o molto di meno
 - è più silenzioso del normale, o si nasconde
 
-## Cosa vorrà sapere il veterinario
+## Cosa vorrà sapere il veterinario?
+
+Quando ha mangiato e fatto feci normali l'ultima volta, la dieta, come vive, stress recenti, problemi passati, vaccinazioni e farmaci dati a casa.
 
 - Quando il tuo coniglio ha mangiato normalmente per l'ultima volta, e cosa ha mangiato
 - Quando hai visto feci normali per l'ultima volta
@@ -61,7 +65,9 @@ Per i conigli, la risposta onesta è: appena te ne accorgi. Anche se il tuo coni
 - Stato vaccinale (mixomatosi e malattia emorragica virale del coniglio)
 - Eventuali farmaci o trattamenti dati a casa
 
-## Cause più comuni
+## Perché il coniglio non mangia?
+
+Le cause più probabili sono dolore da denti troppo lunghi o malati, troppo poco fieno, stress o cambiamenti, dolore da altre malattie o traumi e caldo.
 
 | Probabili | Meno comuni ma importanti |
 |---|---|

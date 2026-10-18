@@ -9,19 +9,25 @@ draft: true
 lang: it
 ---
 
-## Cos'è e come si prende
+## Cos'è la leishmaniosi e come si prende?
+
+È una malattia causata dal parassita Leishmania infantum, che il cane prende con la puntura del flebotomo, o pappatacio.
 
 La leishmaniosi canina è causata da un parassita microscopico, *Leishmania infantum*, che vive dentro le cellule del cane. Si trasmette con la puntura di un **flebotomo** (o pappatacio): un insetto minuscolo, silenzioso, molto più piccolo di una zanzara, attivo dal tramonto all'alba nelle serate calde. Non si prende per contatto diretto tra cani, né dalle zecche o dalle zanzare comuni.
 
 Il cane è il principale serbatoio del parassita in Italia, e la malattia può colpire anche le persone, soprattutto se immunodepresse. Per questo è considerata un problema di salute pubblica, non solo veterinario.
 
-## Dove e quando il rischio è più alto in Italia
+## Dove e quando il rischio è più alto in Italia?
+
+Soprattutto al Centro-Sud, sulle isole, sulle coste e in Liguria, ma ormai anche in zone del Nord, da fine primavera all'autunno.
 
 Storicamente le zone più colpite sono le **regioni del Centro-Sud, le isole e le coste**, dal Lazio alla Sicilia, oltre alla Liguria. Negli ultimi anni, però, sono stati trovati focolai stabili anche in regioni un tempo considerate libere: Piemonte, Lombardia, Veneto, Trentino-Alto Adige, Friuli Venezia Giulia, Valle d'Aosta, in particolare nelle zone collinari e pedemontane. Secondo i dati europei, l'Italia è tra i paesi con la più alta percentuale di cani positivi.
 
 I flebotomi sono attivi, nella maggior parte d'Italia, **da fine primavera all'autunno**, con il picco nei mesi più caldi. In alcune zone del Sud la stagione è più lunga, e gli inverni miti la stanno allungando ovunque. Un cane che vive all'aperto, dorme fuori la notte, o va in vacanza al mare o in collina è più esposto.
 
-## I sintomi iniziali
+## Quali sono i primi sintomi della leishmaniosi nel cane?
+
+All'inizio sono vaghi: dimagrimento, stanchezza, linfonodi ingrossati, perdita di pelo intorno a occhi e naso, ferite che non guariscono e unghie troppo lunghe.
 
 La malattia è lenta: i primi segni possono comparire **mesi o anche anni** dopo la puntura, e all'inizio sono vaghi. Fai attenzione se il tuo cane:
 
@@ -37,13 +43,17 @@ La malattia è lenta: i primi segni possono comparire **mesi o anche anni** dopo
 
 Nessuno di questi segni è esclusivo della leishmaniosi. Ma messi insieme, in un cane che vive o ha viaggiato in zona a rischio, sono un motivo per fare il test.
 
-## Come si scopre
+## Come si scopre la leishmaniosi?
+
+Con un esame del sangue che cerca gli anticorpi contro il parassita, seguito da altri esami se il risultato è positivo.
 
 Il veterinario usa un esame del sangue che cerca gli anticorpi contro il parassita, a volte con un test rapido in ambulatorio e poi con una conferma di laboratorio. In zona a rischio molti veterinari consigliano un **controllo ogni anno**, in genere a fine inverno o in primavera, perché gli anticorpi compaiono mesi dopo la stagione dei flebotomi. Se il risultato è positivo, servono altri esami (sangue, urine, proteine) per capire se il cane è solo infetto o già malato, e in che misura sono coinvolti i reni.
 
 Un cane positivo senza sintomi non è necessariamente destinato ad ammalarsi, e un cane malato, se seguito, può vivere a lungo con una buona qualità di vita. Ma non guarisce del tutto: il parassita resta e la gestione è per tutta la vita.
 
-## Prevenzione: su cosa si lavora
+## Come si previene la leishmaniosi?
+
+Con antiparassitari repellenti contro i flebotomi, gestione dell'ambiente, l'eventuale vaccino e un controllo annuale.
 
 La prevenzione si basa su più livelli, e il veterinario sceglie la combinazione adatta al tuo cane.
 
@@ -54,7 +64,9 @@ La prevenzione si basa su più livelli, e il veterinario sceglie la combinazione
 
 Un cane già positivo va comunque protetto dai flebotomi: così non diventa una fonte di infezione per gli altri cani del quartiere.
 
-## Cosa vorrà sapere il veterinario
+## Cosa vorrà sapere il veterinario?
+
+Dove vive e dove è stato il cane, se dorme fuori, quali antiparassitari usa, se è già stato testato o vaccinato e quali segni hai notato.
 
 - Dove vive il cane e dove è stato in vacanza negli ultimi due anni
 - Se dorme fuori e a che ora esce

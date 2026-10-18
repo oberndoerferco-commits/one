@@ -35,7 +35,9 @@ La PDSA, un'importante associazione veterinaria britannica, è chiara: **l'alito
 - ha un **nodulo** o una ferita in bocca, oppure gengive che sanguinano
 - potrebbe avere qualcosa **incastrato** in bocca, come un pezzo di legno o di osso
 
-## La causa più comune: denti e gengive
+## Qual è la causa più comune dell'alito cattivo nel cane?
+
+La malattia dentale: placca e tartaro infiammano le gengive e, se non si interviene, danneggiano i legamenti e l'osso che tengono il dente.
 
 Secondo la PDSA, la **malattia dentale** è la causa più frequente di alito cattivo nel cane. E il Merck Veterinary Manual riporta che fino all'80% dei cani ha già un certo grado di malattia parodontale **entro i 2 anni di età**. Anche la WSAVA, l'associazione mondiale dei veterinari per piccoli animali, ricorda che le malattie della bocca e dei denti sono i problemi medici più comuni negli animali da compagnia.
 
@@ -50,7 +52,9 @@ I cani di **piccola taglia e le razze toy** hanno più spesso problemi di parodo
 
 Anche **ascessi delle radici e denti rotti** possono dare alito cattivo. Il Merck Veterinary Manual avverte che i cani tendono a **nascondere il dolore ai denti**, quindi un problema può esserci anche se il cane continua a mangiare.
 
-## Altre cause da non sottovalutare
+## Quali altre cause possono dare alito cattivo al cane?
+
+Anche malattie dei reni, diabete, oggetti incastrati in bocca, noduli e tumori della bocca e alcuni cibi possono cambiare l'odore dell'alito.
 
 Non sempre il problema è nei denti. La PDSA elenca anche:
 
@@ -60,19 +64,25 @@ Non sempre il problema è nei denti. La PDSA elenca anche:
 - **Noduli e tumori della bocca.** Secondo il Merck Veterinary Manual, i tumori maligni della bocca causano spesso alito cattivo, salivazione abbondante e difficoltà a mangiare, e tendono a ulcerarsi e sanguinare.
 - **Alimentazione.** Alcuni cibi, per esempio a base di pesce, cambiano l'odore dell'alito. In questo caso di solito non c'è altro di anomalo, ma lascia comunque che sia il veterinario a escludere il resto.
 
-## Cosa fa il veterinario
+## Cosa fa il veterinario per l'alito cattivo?
+
+Controlla bocca, denti e gengive, può proporre esami del sangue e delle urine e, se il problema sono i denti, di solito consiglia una pulizia professionale in anestesia generale.
 
 Il veterinario guarda bocca, denti e gengive e, se sospetta una causa generale, può proporre **esami del sangue e delle urine**.
 
 Se il problema sono i denti, la soluzione è quasi sempre una **pulizia professionale in anestesia generale**, che include la parte sotto la gengiva, spesso con radiografie dentali. Il Merck Veterinary Manual spiega che la pulizia dei denti **su un cane sveglio** migliora solo l'aspetto della parte visibile ma **non tratta la malattia sotto la gengiva**, e può far credere al proprietario che il problema sia risolto. I denti troppo danneggiati possono dover essere estratti: il Merck Veterinary Manual nota che i cani se la cavano sorprendentemente bene anche senza alcuni denti.
 
-## Cosa non fare
+## Cosa non devo fare se il cane ha l'alito cattivo?
+
+Non usare il dentifricio per persone, non dargli antidolorifici per uso umano e non limitarti a coprire l'odore.
 
 - **Non usare il dentifricio per persone.** Il Merck Veterinary Manual avverte che i dentifrici umani non vanno usati sul cane.
 - **Non dargli antidolorifici per uso umano** come paracetamolo o ibuprofene se ti sembra che abbia male ai denti. Secondo il Merck Veterinary Manual, l'ibuprofene non è più raccomandato nel cane perché può causare ulcere allo stomaco e danni ai reni.
 - **Non accontentarti di coprire l'odore.** Prodotti che profumano l'alito non curano la malattia sotto la gengiva: serve prima una visita.
 
-## Prevenire: lo spazzolino è la cosa più utile
+## Come si previene l'alito cattivo nel cane?
+
+Il modo più efficace è lavargli i denti ogni giorno, o almeno a giorni alterni, con un dentifricio per cani.
 
 Secondo il Merck Veterinary Manual, **lavare i denti ogni giorno**, o almeno a giorni alterni, sembra essere il modo più efficace per mantenere sane le gengive. Ecco come iniziare:
 

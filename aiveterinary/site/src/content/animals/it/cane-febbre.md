@@ -33,7 +33,7 @@ La febbre è un segnale, non una malattia: dice che nel corpo del cane sta succe
 
 Il Cornell University College of Veterinary Medicine, nelle indicazioni per i cani in chemioterapia, consiglia di chiamare **subito** la clinica se la temperatura supera i **39,4 °C (103 °F)** o se non riesci a misurarla. Per un cane sano è un buon punto di riferimento per telefonare al veterinario in giornata.
 
-## Il naso caldo non vuol dire febbre
+## Il naso caldo vuol dire che il cane ha la febbre?
 
 Toccare il naso, le orecchie o la pancia non serve a capire se il cane ha la febbre. L'unico modo affidabile è **misurare la temperatura con un termometro**.
 
@@ -45,7 +45,9 @@ Lo Schwarzman Animal Medical Center di New York racconta di ricevere spesso tele
 
 L'MSD Veterinary Manual indica che la maggior parte delle vere febbri sta tra **39,5 e 41,1 °C**.
 
-## Come misurare la temperatura al cane
+## Come si misura la temperatura al cane?
+
+Il metodo di riferimento è la misurazione rettale con un termometro digitale ben lubrificato, inserito piano senza mai forzare.
 
 Secondo lo Schwarzman Animal Medical Center, la **misurazione rettale** è il metodo di riferimento, perché la temperatura del retto corrisponde bene a quella interna del corpo. Ecco come fare:
 
@@ -71,7 +73,9 @@ Se il cane è stato al sole, in macchina o ha corso con il caldo, ansima molto e
 
 Nella vera febbre, invece, l'MSD Veterinary Manual spiega che raffreddare il corpo con bagni d'acqua **va contro i meccanismi di regolazione** dell'organismo. Non immergere il cane in acqua fredda per abbassare la febbre: lascia che sia il veterinario a decidere.
 
-## Non dare mai medicinali per uso umano
+## Posso dare al cane un antifebbrile per uso umano?
+
+No: paracetamolo, ibuprofene, aspirina e gli altri farmaci che usi per te possono essere pericolosi, e solo il veterinario può decidere se serve un antifebbrile adatto al cane.
 
 **Non dare al cane paracetamolo, ibuprofene, aspirina** o altri antidolorifici e antifebbrili che usi per te o per i bambini.
 
@@ -79,7 +83,9 @@ Il Merck Veterinary Manual spiega che l'**ibuprofene** nel cane ha un **margine 
 
 Esistono antifebbrili adatti al cane, ma solo il veterinario può decidere se servono, quale usare e a che dose, dopo aver capito da cosa dipende la febbre. Abbassare la febbre con un farmaco "di casa" può anche **nascondere un problema serio** e ritardare la diagnosi.
 
-## Perché viene la febbre
+## Perché il cane ha la febbre?
+
+Le cause principali sono infezioni, malattie infiammatorie e immunomediate, tumori e alcuni farmaci o sostanze tossiche.
 
 Le cause sono molte. L'MSD Veterinary Manual cita:
 
@@ -90,11 +96,15 @@ Le cause sono molte. L'MSD Veterinary Manual cita:
 
 Quando la febbre dura a lungo, l'MSD Veterinary Manual ricorda che può portare a **perdita di appetito, abbattimento e disidratazione**.
 
-## Cosa fa il veterinario
+## Cosa fa il veterinario se il cane ha la febbre?
+
+Parte dalla visita e dalla storia del cane, può proporre esami del sangue e delle urine o radiografie ed ecografie, e cura la causa.
 
 Il veterinario parte dalla visita e dalla storia del cane, poi può proporre **esami del sangue e delle urine** e, se serve, **radiografie o ecografie**. Se la causa non si trova subito, l'MSD Veterinary Manual descrive un percorso a tappe con esami via via più specifici. La terapia dipende interamente dalla causa.
 
-## Cosa annotare prima della visita
+## Cosa devo annotare prima della visita?
+
+La temperatura e l'ora, da quando il cane è strano, gli altri sintomi, eventuali zecche, viaggi o contatti e tutti i farmaci che prende.
 
 - la **temperatura** misurata e l'ora
 - da quando il cane è strano, se mangia e beve

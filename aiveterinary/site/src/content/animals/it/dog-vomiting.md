@@ -21,7 +21,9 @@ Vai immediatamente in una clinica veterinaria, avvisando per telefono, se il tuo
 - è un cucciolo, è molto anziano, o ha già una malattia come diabete o insufficienza renale
 - vomita ripetutamente e non trattiene nemmeno l'acqua
 
-## Se nessuno di questi segni è presente
+## Cosa posso fare a casa se il cane vomita ma sta bene?
+
+Nelle prime 12 ore togli il cibo per qualche ora, tranne nei cuccioli e nei cani piccoli, lascia poca acqua alla volta e poi reintroduci un cibo leggero.
 
 Un singolo episodio di vomito in un cane per il resto vivace è frequente. I cani mangiano cose che non dovrebbero, mangiano troppo in fretta, o hanno lo stomaco in disordine per un cambio di cibo.
 
@@ -32,7 +34,9 @@ Cosa puoi fare a casa nelle prime 12 ore:
 - Quando reintroduci il cibo, dai una piccola porzione di qualcosa di leggero, poi torna al cibo normale nell'arco di due o tre giorni.
 - Annota com'era il vomito, quante volte, e se il tuo cane ha mangiato qualcosa di insolito. Se puoi, fai una foto. Il veterinario te lo chiederà.
 
-## Quando andare dal veterinario oggi
+## Quando portare oggi dal veterinario il cane che vomita?
+
+Se vomita più di due o tre volte in un giorno o per più di 24 ore, ha diarrea, beve molto più o meno, non mangia da più di un giorno o sembra avere dolore.
 
 Prenota una visita oggi se:
 
@@ -43,7 +47,9 @@ Prenota una visita oggi se:
 - il tuo cane non mangia da più di un giorno
 - il tuo cane sembra avere dolore: schiena inarcata, riluttanza a muoversi, lamenti quando gli si tocca la pancia
 
-## Cosa vorrà sapere il veterinario
+## Cosa vorrà sapere il veterinario?
+
+Da quando e quanto spesso vomita, com'è il vomito, cosa ha mangiato, quali farmaci prende, come vanno appetito, sete e feci e se altri animali hanno sintomi.
 
 - Quando è iniziato e con che frequenza
 - Com'era il vomito (cibo, schiuma, bile gialla, sangue)
@@ -54,7 +60,9 @@ Prenota una visita oggi se:
 
 Portare queste informazioni, anche solo come qualche appunto sul telefono, rende la visita più rapida e il quadro più chiaro.
 
-## Cause più comuni
+## Perché il cane vomita?
+
+Le cause più probabili sono aver mangiato qualcosa di inadatto, un cambio di cibo, mangiare troppo in fretta, lievi disturbi di stomaco e mal d'auto, ma ci sono anche cause gravi come la torsione gastrica.
 
 | Probabili | Meno comuni ma importanti |
 |---|---|

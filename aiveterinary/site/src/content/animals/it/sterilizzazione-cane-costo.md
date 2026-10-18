@@ -9,7 +9,9 @@ draft: true
 lang: it
 ---
 
-## Perché il prezzo varia così tanto
+## Perché il prezzo della sterilizzazione varia così tanto?
+
+Perché non c'è un tariffario e il costo dipende da sesso, taglia, tecnica, esami pre-operatori, struttura, zona e condizioni del cane.
 
 In Italia non c'è un tariffario per le prestazioni veterinarie: ogni struttura fissa i propri prezzi. Per la sterilizzazione, in più, la parola copre interventi diversi tra loro. Il risultato è che per lo stesso cane puoi ricevere preventivi che vanno dal semplice al triplo, e non per forza uno dei due è sbagliato.
 
@@ -22,17 +24,23 @@ I fattori che pesano di più:
 - **tipo di struttura** e zona geografica
 - **età e condizioni**: una cagna adulta in calore o con utero già alterato richiede più lavoro
 
-## Femmina: ovariectomia, ovarioisterectomia, laparoscopia
+## Come si sterilizza una cagna?
+
+Si asportano le ovaie, oppure ovaie e utero, in anestesia generale, con la chirurgia tradizionale o, a un costo maggiore, in laparoscopia.
 
 Nella femmina si parla di sterilizzazione chirurgica. Le opzioni sono due: asportare solo le ovaie (ovariectomia) oppure ovaie e utero (ovarioisterectomia). La seconda è più lunga e di solito più costosa. Entrambe richiedono anestesia generale e apertura dell'addome.
 
 La **laparoscopia** permette di asportare le ovaie attraverso due o tre piccoli fori con una telecamera. Vantaggi: ferite più piccole, meno dolore, ripresa più rapida. Richiede però attrezzature e formazione specifiche e costa di più dell'intervento tradizionale. Chiedi cosa pagherai se il chirurgo deve convertire all'intervento aperto.
 
-## Maschio: la castrazione
+## Come si castra un cane maschio?
+
+Si rimuovono i testicoli da una piccola incisione senza entrare in addome, un intervento più breve e meno costoso di quello della femmina.
 
 Nel maschio l'intervento (orchiectomia) è più semplice: si rimuovono i testicoli attraverso una piccola incisione, senza entrare in addome. È più breve, richiede meno anestesia e costa meno. Esiste anche un'opzione farmacologica reversibile, un impianto sottocutaneo che sospende la produzione ormonale per alcuni mesi: non è una castrazione definitiva, va ripetuto e ha un costo a ogni applicazione.
 
-## Cifre realistiche, con le dovute cautele
+## Quanto costa sterilizzare un cane?
+
+Indicativamente da un centinaio di euro o poco più per un maschio piccolo o medio a oltre il mezzo migliaio per una femmina grande in laparoscopia, ma conta solo il preventivo scritto del tuo veterinario.
 
 Non esistono rilevazioni ufficiali per singolo intervento. I riferimenti disponibili:
 
@@ -42,7 +50,9 @@ Non esistono rilevazioni ufficiali per singolo intervento. I riferimenti disponi
 
 In pratica: per un maschio di taglia piccola o media aspettati una spesa nell'ordine di un centinaio o poco più di euro; per una femmina di taglia grande con laparoscopia ed esami completi si può superare abbondantemente il mezzo migliaio. Varia per regione e per struttura, e l'unico numero affidabile è quello del preventivo scritto del tuo veterinario.
 
-## Cosa deve includere il preventivo
+## Cosa deve includere il preventivo?
+
+Visita ed esami pre-operatori, anestesia, intervento, farmaci, materiali, eventuale degenza, controlli post-operatori e IVA, elencati separatamente.
 
 Dal 2017 la legge (L. 124/2017, che modifica l'art. 9 del D.L. 1/2012) obbliga il veterinario a fornirti, per iscritto o in forma digitale, un preventivo di massima con tutte le voci di costo, oltre agli estremi della polizza di responsabilità professionale. Un preventivo di sterilizzazione dovrebbe elencare separatamente:
 
@@ -58,7 +68,9 @@ Dal 2017 la legge (L. 124/2017, che modifica l'art. 9 del D.L. 1/2012) obbliga i
 
 Domande utili: cosa succede se ci sono complicazioni? Il controllo è compreso? Se la cagna risultasse in calore o gravida, il prezzo cambia? Conserva poi la fattura con il tuo codice fiscale e paga in modo tracciabile: la spesa rientra nella detrazione IRPEF del 19%, nel limite di 550 euro annui con franchigia di 129,11 euro.
 
-## Campagne di sterilizzazione agevolata
+## Esistono campagne di sterilizzazione agevolata?
+
+Sì, ma sono locali e a tempo, spesso con requisiti di residenza, microchip e ISEE: controlla Comune, ASL o canile comunale.
 
 La legge quadro sul randagismo (L. 281/1991, art. 4, come modificata nel 2006) affida ai Comuni piani di controllo che comprendono la sterilizzazione, finanziati con fondi regionali. Quasi ovunque questi fondi vanno ai cani dei canili e alle colonie feline; in alcune zone esistono però contributi per i cani di proprietà, di solito con requisiti di residenza, microchip e ISEE. Alcuni esempi documentati:
 

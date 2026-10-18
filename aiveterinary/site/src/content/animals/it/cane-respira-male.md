@@ -37,7 +37,9 @@ La PDSA, un'importante associazione veterinaria britannica, considera la diffico
 
 Se non sei sicuro, trattalo come un'emergenza. Un cane che respira male può peggiorare in pochi minuti.
 
-## Mentre vai dal veterinario
+## Cosa fare mentre vai dal veterinario?
+
+Tieni il cane calmo e al fresco, controlla la bocca se puoi farlo in sicurezza e non dargli farmaci per uso umano.
 
 - **Mantieni la calma e tieni tranquillo il cane.** La PDSA ricorda che lo stress peggiora la respirazione.
 - **Tienilo al fresco**, in un ambiente ben aerato. Se pensi che abbia preso troppo caldo, inizia a raffreddarlo con acqua fresca e vai in clinica: il Cornell Riney Canine Health Center spiega che il colpo di calore richiede raffreddamento immediato e cure intensive.
@@ -57,7 +59,9 @@ Anche l'MSD Veterinary Manual ricorda che il respiro accelerato può comparire i
 - **non vuole sdraiarsi su un fianco** o non trova una posizione comoda per riposare
 - si stanca molto più in fretta del solito durante le passeggiate
 
-## Rumori diversi, problemi diversi
+## Cosa significano i rumori che fa il cane quando respira?
+
+Un rumore forte quando inspira fa pensare alle vie aeree alte, la fatica nell'espirare a bronchi o polmoni e una tosse secca e rauca alla trachea.
 
 Il tipo di rumore aiuta il veterinario a capire dove si trova il problema. Secondo l'MSD Veterinary Manual:
 
@@ -67,7 +71,9 @@ Il tipo di rumore aiuta il veterinario a capire dove si trova il problema. Secon
 
 Puoi aiutare molto il veterinario facendo un **breve video** del cane mentre respira male, se riesci senza perdere tempo.
 
-## Le cause più comuni
+## Perché il cane respira male?
+
+Tra le cause più frequenti ci sono problemi alle vie aeree alte, il muso corto di alcune razze, malattie del cuore, dei bronchi e dei polmoni, liquido nel torace e colpo di calore.
 
 Le cause sono tante, e solo il veterinario può distinguerle con la visita e gli esami. Tra le più frequenti:
 
@@ -80,7 +86,9 @@ Le cause sono tante, e solo il veterinario può distinguerle con la visita e gli
 
 Una tosse da sola non basta per capire se il problema è il cuore o le vie aeree: per questo servono visita, radiografie e a volte altri esami.
 
-## Contare i respiri a riposo: un'abitudine utile
+## Come si contano i respiri del cane a riposo?
+
+Mentre dorme o riposa tranquillo conta i respiri per 15 secondi e moltiplica per 4.
 
 Se il tuo cane ha una malattia del cuore, il veterinario può chiederti di contare i respiri mentre **dorme o riposa tranquillo**. Il Merck Veterinary Manual spiega che controlli regolari aiutano a scoprire presto un peggioramento e a capire se la terapia funziona.
 
@@ -92,7 +100,9 @@ Come fare, secondo l'ospedale veterinario dell'Università del Missouri:
 
 Lo stesso ospedale indica che di solito, nel sonno, i respiri dovrebbero restare **sotto i 30-35 al minuto**, e consiglia di contattare il veterinario se sono stabilmente **sopra 35** o se aumentano del 20-30% per tre giorni di fila. Ogni cane ha però i suoi valori: annota quelli del tuo quando sta bene e chiedi al veterinario quali soglie usare per lui.
 
-## Cosa vorrà sapere il veterinario
+## Cosa vorrà sapere il veterinario?
+
+Da quando respira male e in che circostanze è iniziato, se tossisce, se ha malattie di cuore o polmoni e se è vaccinato e protetto dai parassiti.
 
 - da quando respira male e se è comparso all'improvviso o piano piano
 - se è successo dopo caldo, sforzo, un trauma o mentre mangiava o giocava con qualcosa

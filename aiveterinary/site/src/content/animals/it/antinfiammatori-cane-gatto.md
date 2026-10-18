@@ -28,7 +28,9 @@ Se il tuo cane o il tuo gatto ha dolore, l'armadietto dei medicinali di casa è 
 
 Se il tuo animale ha già ingoiato uno di questi, chiama subito una clinica con la confezione in mano. Non aspettare i sintomi e non provare a farlo vomitare a casa.
 
-## Cosa sono i FANS veterinari e cosa curano
+## Cosa sono i FANS veterinari e a cosa servono?
+
+Sono antinfiammatori registrati per una specie precisa che riducono dolore, infiammazione e febbre, per esempio nell'artrosi, dopo un intervento o dopo un trauma.
 
 FANS significa farmaci antinfiammatori non steroidei. Le versioni veterinarie sono medicinali registrati per una specie precisa, che riducono dolore, infiammazione e febbre bloccando gli enzimi che producono i messaggeri dell'infiammazione. Sono gli antidolorifici più prescritti, per:
 
@@ -39,11 +41,15 @@ FANS significa farmaci antinfiammatori non steroidei. Le versioni veterinarie so
 
 Esistono in compresse, bocconcini aromatizzati, sospensioni da misurare con la siringa e iniezioni fatte in clinica. La prescrizione è calcolata sul peso e sulla salute del tuo animale; un prodotto per cani non è automaticamente sicuro per il gatto, e viceversa.
 
-## Prima della prima dose
+## Servono esami prima di iniziare un antinfiammatorio?
+
+Per un animale anziano o per una terapia di settimane aspettati esami di sangue e urine prima e controlli periodici, perché il farmaco viene eliminato da reni e fegato.
 
 I FANS vengono eliminati da reni e fegato e possono irritare l'intestino, quindi il veterinario vuole sapere che questi organi sono sani. Per un animale anziano, o per una terapia che durerà settimane, aspettati un esame di sangue e urine prima e controlli periodici. Racconta al veterinario ogni altro farmaco o integratore, eventuali disturbi di stomaco passati e malattie di reni, fegato o cuore.
 
-## Come darli
+## Come si danno gli antinfiammatori al cane o al gatto?
+
+Con il cibo, con acqua a disposizione, esattamente come prescritto e senza mai raddoppiare una dose saltata.
 
 - **Con il cibo.** Dai la dose durante o subito dopo il pasto. Il cibo protegge la mucosa dello stomaco ed è la cosa più utile che puoi fare contro gli effetti collaterali. Se l'animale non mangia, non dare la compressa: chiama.
 - **Con acqua a disposizione.** Un animale disidratato rischia molto di più per i reni. Con il caldo, dopo vomito o diarrea, o in un gatto che beve poco, fermati e chiedi.
@@ -65,13 +71,17 @@ Sospendi il FANS e chiama il veterinario in giornata se noti uno di questi segni
 
 Vai subito, chiamando per avvisare, se l'animale collassa, ha le gengive pallide o vomita sangue.
 
-## Mai combinare senza il veterinario
+## Posso combinare un FANS con altri farmaci?
+
+Non senza il veterinario: mai due FANS insieme, mai un FANS con un cortisonico e mai un antidolorifico umano in aggiunta.
 
 - **Mai due FANS insieme**, per esempio la compressa per l'artrosi del cane più un prodotto avanzato da un altro animale o comprato online.
 - **Mai un FANS insieme a un cortisonico** (compresse, gocce o iniezioni a base di cortisone sono comuni per allergie e prurito). La combinazione moltiplica il rischio di un'ulcera sanguinante. Se si passa dall'uno all'altro, il veterinario lascia una pausa di qualche giorno.
 - **Mai aggiungere un antidolorifico umano "sopra"** perché il dolore sembra ancora forte. Dillo al veterinario: esistono altre classi di antidolorifici che si possono combinare in sicurezza, e il piano si può cambiare.
 
-## Vivere con un animale in terapia cronica
+## Come si vive con un animale in terapia cronica con FANS?
+
+Molti cani e gatti con artrosi li prendono per anni e stanno molto meglio, con una routine fatta di cibo a ogni dose, acqua sempre disponibile, attenzione ad appetito e feci ed esami del sangue periodici.
 
 Molti cani e gatti artrosici prendono un FANS per anni e ne sono trasformati: tornano a fare le scale, a saltare sul divano, a giocare. Il prezzo è una routine: cibo a ogni dose, acqua ovunque, un occhio ad appetito e feci, e gli esami del sangue con la frequenza che il veterinario stabilisce. Segna la dose del giorno perché nessuno in casa la dia due volte, e tieni il farmaco fuori portata: i bocconcini aromatizzati sono attraenti e un'overdose è grave.
 

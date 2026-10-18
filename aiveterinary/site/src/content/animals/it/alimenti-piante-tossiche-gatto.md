@@ -32,7 +32,9 @@ references:
 
 Chiama la clinica mentre prendi il trasportino. Se nessuno risponde, il **Centro Antiveleni di Milano (Ospedale Niguarda) è attivo 24 ore su 24 al 02 66101029** e dichiara nelle sue FAQ di rispondere anche per le intossicazioni negli animali. La prima telefonata resta alla tua clinica.
 
-## I veleni che il gatto incontra davvero
+## Quali cibi e piante sono velenosi per il gatto?
+
+I più pericolosi sono i gigli, cipolla e aglio, cioccolato e caffeina, oli essenziali, antiparassitari per cani, uva, alcol e diverse piante da casa e da giardino.
 
 | Sostanza | Perché è pericolosa | Cosa fare per primo |
 |---|---|---|
@@ -48,21 +50,27 @@ Chiama la clinica mentre prendi il trasportino. Se nessuno risponde, il **Centro
 
 Lo xilitolo, pericolosissimo per il cane, non risulta tossico per il gatto: la Pet Poison Helpline considera improbabile un'intossicazione. Il latte non è un veleno, ma la maggior parte dei gatti adulti lo digerisce male.
 
-## Cosa non fare
+## Cosa non devo fare se il gatto ha mangiato qualcosa di tossico?
+
+Non farlo vomitare a casa, non dargli latte, olio o burro e non aspettare che compaiano i sintomi.
 
 - **Non far vomitare il gatto a casa.** Sale, acqua ossigenata e altri metodi casalinghi possono causare intossicazione da sale, ustionare l'esofago o mandare il vomito nei polmoni. Nel gatto far vomitare in sicurezza è particolarmente difficile: solo il veterinario deve provarci.
 - **Non dare latte, olio, burro o qualcosa "per proteggere lo stomaco".** Niente in cucina neutralizza un veleno.
 - **Non aspettare i sintomi** con gigli, cipolla o uva. Quando il gatto sta male, il danno all'organo è già iniziato.
 - Non fidarti di una tabella di dosi online. Il rischio lo calcola il veterinario dal peso del gatto, dalla sostanza e dalla quantità: è compito suo, non tuo.
 
-## Cosa ti chiederà il veterinario
+## Cosa mi chiederà il veterinario?
+
+Ti chiederà cosa ha mangiato o toccato il gatto, quanto, quando, e il suo peso, l'età, le eventuali malattie e i farmaci usati di recente.
 
 1. **Cosa**: nome della pianta o del prodotto, o una foto. Per una pianta porta foglia e fiore in un sacchetto.
 2. **Quanto**: un morsetto, una foglia intera, quanto manca dalla tavoletta.
 3. **Quando** è successo, e se ha vomitato o sbava.
 4. **Peso**, età, eventuali malattie renali, farmaci o antiparassitari usati di recente.
 
-## Prevenzione
+## Come posso proteggere il gatto da cibi e piante tossiche?
+
+Non tenere gigli in casa, tieni le piante pericolose fuori portata, copri il cibo e non usare mai un antiparassitario per cani sul gatto.
 
 Niente gigli in casa con un gatto: avvisa fioristi e ospiti e controlla i mazzi prima che entrino. Tieni le piante della tabella fuori portata o fuori casa. Copri il cibo lasciato sul piano cucina: il gatto che di notte sale sul tavolo e lecca il sugo con la cipolla è la storia più comune. Mai usare un antiparassitario per cani sul gatto, e spegni i diffusori nelle stanze dove dorme.
 

@@ -32,7 +32,9 @@ Vai **subito** in clinica se il cane respira molto male, è molto debole o colla
 
 Non dare al cane farmaci per uso umano, né antiparassitari "di casa" o di un altro animale. La scelta del prodotto e della dose spetta al veterinario.
 
-## Perché non esiste una risposta unica
+## Ogni quanto devo sverminare il cane?
+
+Dipende dal tuo cane: il veterinario valuta il rischio in base a età, stile di vita, alimentazione, chi vive in casa, zona e viaggi.
 
 La domanda "ogni quanto devo sverminare il cane?" ha una risposta onesta: **dipende dal tuo cane**. ESCCAP, il gruppo europeo di esperti sui parassiti degli animali da compagnia, raccomanda per i cani adulti una **valutazione del rischio individuale**, per decidere se e quanto spesso trattare. Il veterinario considera:
 
@@ -44,7 +46,9 @@ La domanda "ogni quanto devo sverminare il cane?" ha una risposta onesta: **dipe
 
 Le linee guida ESCCAP precisano anche che la sverminazione va **sempre fatta su consiglio del veterinario**.
 
-## I quattro gruppi di rischio ESCCAP
+## Quali sono i gruppi di rischio ESCCAP?
+
+Si va dal gruppo A, a rischio basso, con 1-2 trattamenti l'anno, al gruppo D, a rischio alto, con trattamenti contro le tenie ogni mese, e se il rischio non è chiaro si tratta almeno 4 volte l'anno.
 
 La settima edizione della linea guida ESCCAP (2025) divide i cani in quattro gruppi. È uno schema generale, che il veterinario adatta al singolo animale.
 
@@ -68,13 +72,17 @@ Un'alternativa ai trattamenti a calendario è l'**esame delle feci periodico**, 
 
 Ne puoi parlare con il veterinario per scegliere la strategia più adatta.
 
-## Cuccioli, cagne gravide e in allattamento
+## Come si sverminano i cuccioli e le cagne gravide o in allattamento?
+
+I cuccioli si trattano da 14 giorni di vita e poi ogni 2 settimane fino a 2 settimane dopo lo svezzamento, la mamma insieme a loro, e per le cagne gravide decide il veterinario.
 
 I cuccioli sono il gruppo più delicato. Possono infestarsi già **prima di nascere** o con il **latte materno**, e ESCCAP avverte che possono ammalarsi seriamente prima ancora che l'infestazione si veda nelle feci.
 
 Per questo la linea guida ESCCAP indica di trattare i cuccioli la prima volta **a 14 giorni di vita**, poi **ogni 2 settimane fino a 2 settimane dopo lo svezzamento**. Se il rischio resta alto, per esempio se il cucciolo frequenta altri cuccioli, si continua **ogni mese fino ai 6 mesi**. Anche la mamma va trattata insieme alla prima sverminazione dei cuccioli. Per le cagne gravide esistono protocolli specifici: decide il veterinario.
 
-## Altri parassiti da conoscere in Italia
+## Quali altri parassiti contano in Italia?
+
+Filariosi cardiopolmonare, vermi polmonari e tenie trasmesse dalle pulci o dalla carne cruda.
 
 Oltre ai vermi intestinali, il veterinario terrà conto di:
 
@@ -83,7 +91,9 @@ Oltre ai vermi intestinali, il veterinario terrà conto di:
 - **Tenie trasmesse dalle pulci**: un cane con le pulci può prendere anche la tenia, quindi va trattato contro entrambe.
 - **Tenie da carne cruda o visceri**: ESCCAP indica un trattamento contro le tenie ogni 4 settimane per i cani nutriti con carne cruda non cotta o congelata a sufficienza, e ricorda che la carne ben cotta o congelata abbastanza a lungo previene queste infestazioni.
 
-## Proteggere anche la famiglia
+## Come proteggere anche la famiglia dai vermi del cane?
+
+Lavati le mani, raccogli sempre le feci, insegna l'igiene ai bambini, usa i guanti in giardino e spazzola regolarmente il cane.
 
 Alcuni vermi del cane possono infestare le persone, in particolare i bambini. ESCCAP consiglia ai proprietari di:
 

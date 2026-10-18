@@ -23,7 +23,9 @@ Vai immediatamente in una clinica veterinaria, avvisando per telefono, se il tuo
 
 Non c'è un "vediamo se passa" con la processionaria. Il danno alla lingua progredisce nel giro di ore, e il rischio di soffocamento per il gonfiore della gola è reale.
 
-## Cos'è la processionaria e perché è così pericolosa
+## Cos'è la processionaria e perché è pericolosa per il cane?
+
+È un bruco coperto di peli urticanti che, a contatto con la bocca del cane, possono far gonfiare la lingua fino a farne morire una parte.
 
 La **processionaria del pino** è un bruco che vive in nidi bianchi e setosi, simili a batuffoli di cotone, sui rami di pini e cedri. A fine inverno e in primavera, di solito **da febbraio ad aprile-maggio** a seconda della zona e del clima, i bruchi scendono dagli alberi in fila indiana, uno dietro l'altro, per interrarsi. È in quel momento che i cani li incontrano a terra. Esiste anche una processionaria della quercia, con bruchi attivi in tarda primavera e inizio estate.
 
@@ -31,7 +33,9 @@ I bruchi sono coperti da migliaia di **peli urticanti microscopici**, che si sta
 
 Nelle ore successive la lingua si gonfia e, nei casi gravi, i tessuti **vanno in necrosi**: una parte della lingua muore e si stacca. Il cane può perdere un pezzo di lingua in modo permanente. Se i peli arrivano agli occhi, possono danneggiare la cornea; se vengono ingoiati, infiammano esofago e stomaco; se vengono inalati, le vie respiratorie.
 
-## Cosa fare subito, nei primi minuti
+## Cosa devo fare subito se il cane ha toccato la processionaria?
+
+Allontanalo, mettiti i guanti, sciacquagli la bocca con abbondante acqua senza strofinare, non dargli nulla per bocca e parti per la clinica chiamando mentre sciacqui.
 
 1. **Allontana il cane dalla zona** e tienilo lontano da altri bruchi e nidi.
 2. **Mettiti dei guanti**: i peli urticano anche te e i bambini. Non toccare la bocca del cane a mani nude.
@@ -43,13 +47,15 @@ Nelle ore successive la lingua si gonfia e, nei casi gravi, i tessuti **vanno in
 
 Se i peli sono finiti negli occhi, sciacqua anche quelli con abbondante acqua o soluzione fisiologica, senza strofinare.
 
-## Quando andare dal veterinario
+## Quando portare il cane dal veterinario?
 
 Sempre, e subito, se c'è stato un contatto con un bruco o un nido, anche se i segni sembrano lievi. Il gonfiore può peggiorare nelle ore successive, e i segni che compaiono dopo (febbre, apatia, vomito, diarrea con sangue, rifiuto del cibo) vanno seguiti da chi può intervenire.
 
 Dopo il primo trattamento, torna o chiama se il cane non riesce a mangiare o bere, se la lingua cambia colore, se compare un cattivo odore dalla bocca, o se è spento.
 
-## Cosa vorrà sapere il veterinario
+## Cosa vorrà sapere il veterinario?
+
+Dove e quando è avvenuto il contatto, cosa ha fatto il cane con il bruco, quanto tempo è passato, cosa hai fatto tu, i sintomi e peso, età, malattie e farmaci.
 
 - Dove e quando è avvenuto il contatto, e se hai visto il bruco o il nido
 - Se il cane lo ha annusato, leccato, morso o ingoiato
@@ -57,7 +63,9 @@ Dopo il primo trattamento, torna o chiama se il cane non riesce a mangiare o ber
 - Se saliva, vomita, ha difficoltà a respirare
 - Peso, età, altre malattie e farmaci
 
-## Prevenzione
+## Come proteggere il cane dalla processionaria?
+
+Da febbraio a maggio evita le aree sotto i pini, tieni il cane al guinzaglio nelle pinete, cambia strada se vedi bruchi o nidi e non toccare i nidi caduti.
 
 - Da febbraio a maggio evita le aree sotto i pini, soprattutto nei parchi e nelle pinete; in molte zone i Comuni segnalano i nidi.
 - Tieni il cane al guinzaglio nelle pinete in quel periodo, e non lasciarlo annusare a terra in modo insistente.

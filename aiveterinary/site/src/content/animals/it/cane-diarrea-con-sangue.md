@@ -36,13 +36,17 @@ Vai immediatamente in una clinica veterinaria, avvisando per telefono, se il tuo
 
 Alcune forme di diarrea emorragica fanno perdere così tanti liquidi che il cane può andare in **shock** prima ancora che la disidratazione sia evidente. Non aspettare il giorno dopo.
 
-## Sangue rosso o feci nere: cosa stai guardando
+## Cosa significa sangue rosso o feci nere nella diarrea del cane?
+
+Il sangue rosso vivo di solito viene dal colon, mentre le feci nere e catramose fanno pensare a un sanguinamento più in alto, per esempio nello stomaco.
 
 **Sangue rosso vivo**, a striature o goccioline, spesso insieme a muco gelatinoso, di solito viene dall'ultimo tratto dell'intestino (il colon). Il quadro tipico è quello della **colite**: il cane va spesso a fare i bisogni, spinge, fa piccole quantità di feci molli con muco e a volte un po' di sangue. Anche una piccola quantità di sangue in feci liquide può sembrare tantissima.
 
 **Feci nere, lucide, appiccicose come catrame** fanno pensare a sangue che è stato digerito, quindi a un sanguinamento più in alto, per esempio nello stomaco. Secondo il manuale veterinario MSD, le ulcere dello stomaco possono dare feci scure con sangue, spesso con gengive pallide per l'anemia. Le feci nere vanno sempre viste in giornata.
 
-## Le cause principali
+## Quali sono le cause della diarrea con sangue nel cane?
+
+Le più importanti sono colite, parassiti, sindrome della diarrea emorragica acuta, parvovirosi, corpi estranei, veleno per topi, farmaci per uso umano e alcune malattie croniche.
 
 Le cause sono tante, e solo il veterinario può capire quale riguarda il tuo cane. Le più importanti da conoscere:
 
@@ -55,7 +59,9 @@ Le cause sono tante, e solo il veterinario può capire quale riguarda il tuo can
 - **Farmaci per uso umano**: antinfiammatori come l'**ibuprofene** o il naprossene possono causare ulcere e sanguinamento nello stomaco e nell'intestino del cane, con vomito anche con sangue e feci nere.
 - Malattie croniche dell'intestino, del fegato, dei reni, problemi di coagulazione e tumori, soprattutto nei cani più anziani.
 
-## Se il cane sta bene e c'è solo una striatura di sangue
+## Cosa faccio se il cane sta bene e c'è solo una striatura di sangue?
+
+Chiama il veterinario per concordare come procedere e nel frattempo lascia acqua fresca, non dare farmaci o avanzi e osserva le feci successive.
 
 Se si tratta di un singolo episodio con poche striature di sangue rosso, il cane è vivace, mangia, beve e non vomita, puoi chiamare il veterinario e concordare con lui come procedere. Nel frattempo:
 
@@ -68,7 +74,9 @@ Se si tratta di un singolo episodio con poche striature di sangue rosso, il cane
 
 Se il sangue aumenta, la diarrea si ripete, o compare anche uno solo dei segni elencati all'inizio, non aspettare: vai in clinica.
 
-## Cosa vorrà sapere il veterinario
+## Cosa vorrà sapere il veterinario?
+
+Vorrà sapere da quando ha la diarrea, com'è il sangue, se vomita, mangia e beve, se ha mangiato qualcosa di insolito e quali farmaci prende.
 
 - Da quando ha la diarrea, quante volte al giorno, e quanto sangue c'è
 - Colore delle feci: rosso vivo, con muco, oppure nero
@@ -81,7 +89,9 @@ Se il sangue aumenta, la diarrea si ripete, o compare anche uno solo dei segni e
 
 Porta il campione di feci e, se il cane ha preso un farmaco o un veleno, la confezione.
 
-## Prevenire
+## Come si previene la diarrea con sangue nel cane?
+
+Vaccina il cucciolo, segui un piano antiparassitario, tieni rifiuti, ossa, farmaci ed esche per roditori fuori portata e cambia cibo gradualmente.
 
 - Fai **vaccinare il cucciolo** seguendo il calendario del tuo veterinario e non portarlo in luoghi frequentati da molti cani finché il ciclo non è completo.
 - Segui un piano di **controllo dei parassiti** concordato con il veterinario.

@@ -36,13 +36,17 @@ Vai in clinica oggi stesso, e subito se la situazione peggiora, se il tuo gatto:
 - oltre al vomito ha diarrea, beve o urina molto più o molto meno del solito
 - **è un maschio che va avanti e indietro dalla lettiera senza fare pipì**: il vomito può essere un segno di blocco urinario, che è un'emergenza
 
-## Cos'è la schiuma bianca
+## Cos'è la schiuma bianca che vomita il gatto?
+
+È soprattutto saliva e succo gastrico mescolati con aria, e indica che nello stomaco non c'era cibo.
 
 Quando lo stomaco è vuoto, quello che risale con il vomito è soprattutto **saliva e succo gastrico** mescolati con aria. Per questo appare come schiuma bianca o trasparente, a volte con un po' di giallo (bile). La schiuma da sola non indica una malattia precisa: dice soprattutto che nello stomaco non c'era cibo.
 
 Le cause possono essere banali, come un po' di irritazione dello stomaco o un bolo di pelo che sta cercando di uscire. Ma il vomito nel gatto può dipendere anche da piante o cibi tossici, farmaci per uso umano, oggetti ingoiati, parassiti intestinali, malattia infiammatoria intestinale, stitichezza, diabete, malattie dei reni o ipertiroidismo. Il colore non basta a capire quale di queste sia.
 
-## Boli di pelo: quando sono "normali"
+## Quando i boli di pelo sono normali?
+
+Espellerne uno ogni una o due settimane non è insolito, ma se il gatto ha conati senza espellere nulla o vomita spesso va visto.
 
 Il gatto si lecca molto e ingoia il pelo morto. Il pelo non si digerisce e può raccogliersi nello stomaco in un **bolo di pelo** (tricobezoario), che di solito il gatto vomita. Spesso prima di espellerlo fa qualche conato e butta fuori un po' di schiuma.
 
@@ -63,7 +67,7 @@ Vale la pena osservare bene cosa succede, perché cambia molto per il veterinari
 
 Se riesci, **filma l'episodio** con il telefono. Un video di pochi secondi spesso chiarisce più di qualsiasi descrizione.
 
-## Se nessuno dei segni urgenti è presente
+## Cosa faccio se non c'è nessun segno urgente?
 
 Un singolo episodio di schiuma bianca in un gatto adulto che poi torna a mangiare, giocare e usare la lettiera normalmente si può osservare a casa.
 
@@ -75,7 +79,9 @@ Un singolo episodio di schiuma bianca in un gatto adulto che poi torna a mangiar
 
 Se il vomito si ripete, o il gatto non torna del tutto normale nel giro di poche ore, chiama il veterinario.
 
-## Quando prenotare una visita
+## Quando prenotare una visita?
+
+Anche senza segni d'allarme, se vomita più di una volta a settimana, i boli sono frequenti, dimagrisce, ha spesso conati o tosse o vomita sempre a una certa distanza dal pasto.
 
 Anche senza segni d'allarme, prenota una visita se:
 
@@ -85,11 +91,13 @@ Anche senza segni d'allarme, prenota una visita se:
 - ha spesso conati o "tosse" senza espellere niente
 - vomita sempre a una certa distanza dal pasto, o subito dopo aver mangiato
 
-## Prevenire i boli di pelo
+## Come prevenire i boli di pelo?
 
 La misura più semplice è **spazzolare spesso il gatto**, soprattutto se ha il pelo lungo o durante la muta: meno pelo morto resta sul mantello, meno ne ingoia. Esistono anche alimenti e snack formulati per ridurre i boli di pelo; chiedi al veterinario se hanno senso per il tuo gatto, invece di provare prodotti a caso. Se un gatto si lecca in modo eccessivo, fino a perdere il pelo in alcune zone, il problema può essere di pelle, di dolore o di stress, ed è un altro motivo per farlo visitare.
 
-## Cosa vorrà sapere il veterinario
+## Cosa vorrà sapere il veterinario?
+
+Da quanto e quanto spesso vomita, com'è il materiale, quanto tempo dopo il pasto, a cosa ha accesso, cosa mangia, come vanno appetito, sete, urina, feci e peso e se ha tossito.
 
 - Da quanto tempo vomita e quante volte a settimana
 - Com'è il materiale (schiuma, pelo, cibo, sangue) e se hai una foto o un video
