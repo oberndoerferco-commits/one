@@ -85,6 +85,7 @@ const JS = {
   "medsTick": "Checked","medsUnchecked": "{n} medication row(s) to tick against your notes before approval.",
   "copied": "Copied as plain text.",
   "copyFail": "Copy failed; select the report and copy manually.",
+  "soapTitle": "Paste into your practice software, box by box","soapHint": "Plain text, one field per box. Only the approved version can be copied or exported.","soapCopy": "Copy","soapCopied": "{label} copied.","json": "Download JSON with approval details",
   "approved": "APPROVED",
   "draft": "DRAFT",
   "cases": {
@@ -123,6 +124,7 @@ const JS = {
   "medsTick": "Verificato","medsUnchecked": "{n} riga/e della terapia da spuntare rispetto alle tue note prima dell'approvazione.",
   "copied": "Copiato come testo semplice.",
   "copyFail": "Copia non riuscita; seleziona il referto e copia manualmente.",
+  "soapTitle": "Incolla nel gestionale, campo per campo","soapHint": "Testo semplice, un campo per riquadro. Si può copiare o esportare solo la versione approvata.","soapCopy": "Copia","soapCopied": "{label} copiato.","json": "Scarica JSON con i dati di approvazione",
   "approved": "APPROVATO",
   "draft": "BOZZA",
   "cases": {
@@ -161,6 +163,7 @@ const JS = {
   "medsTick": "Geprüft","medsUnchecked": "{n} Medikationszeile(n) vor der Freigabe gegen die Notizen abhaken.",
   "copied": "Als Klartext kopiert.",
   "copyFail": "Kopieren fehlgeschlagen; Bericht markieren und manuell kopieren.",
+  "soapTitle": "Feld für Feld in die Praxissoftware einfügen","soapHint": "Klartext, ein Feld pro Eingabefeld. Kopieren und Exportieren nur für die freigegebene Version.","soapCopy": "Kopieren","soapCopied": "{label} kopiert.","json": "JSON mit Freigabedaten herunterladen",
   "approved": "FREIGEGEBEN",
   "draft": "ENTWURF",
   "cases": {
@@ -182,6 +185,7 @@ const t = T[lang]; const j = JS[lang];
 const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang === lang).map((e) => ({ title: e.data.title, href: `${({ en: '/animals', it: '/it/animals', de: '/de/animals' })[lang]}/${slugOf(e.id)}`, species: e.data.species, draft: e.data.draft }));
 ---
   <section class="wrap" style="padding-top:24px">
+    <h1 class="sr-only">{({ en: 'Workspace preview', it: "Anteprima dell'area di lavoro", de: 'Vorschau des Arbeitsbereichs' } as any)[lang]}</h1>
     <p class="eyebrow"><a href={t.vetsHref}>{t.eyebrowLink}</a> · {t.eyebrowRest}</p>
     <div class="ws-top">
       <div>
@@ -264,6 +268,7 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
         <button class="btn secondary" id="ws-print" type="button">{t.print}</button>
       </div>
       <p class="pp-status" id="ws-status" aria-live="polite"></p>
+      <div class="ws-soap" id="ws-soap" hidden><div class="ws-h">{(JS[lang] as any).soapTitle}</div><p class="pp-hint">{(JS[lang] as any).soapHint}</p><div id="ws-soap-fields" class="ws-soap-fields"></div><button class="btn secondary" id="ws-json" type="button">{(JS[lang] as any).json}</button></div>
       <div class="ws-handouts"><div class="ws-h">{t.handouts}</div><ul id="ws-handouts"></ul></div>
     </div>
   </section>
@@ -293,6 +298,8 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
     .ws-report .flag { color: var(--warn); font-weight: 600; }
     .ws-report .flag.resolved { color: var(--ok); }
     .ws-report .own { color: var(--ink-3); font-style: italic; }
+    .ws-soap { margin-top: 16px; } .ws-soap-fields { display: grid; gap: 10px; margin: 8px 0 12px; } .ws-soap-f { border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; min-width: 0; } .ws-soap-h { display: flex; justify-content: space-between; align-items: center; gap: 8px; } .ws-soap-f pre { white-space: pre-wrap; overflow-wrap: anywhere; margin: 6px 0 0; font-size: .9rem; } .btn.sm { padding: 6px 12px; font-size: .85rem; }
+    @media print { .ws-soap { display: none; } }
     .ws-handouts { margin-top: 16px; } .ws-handouts ul { margin: 6px 0 0; padding-left: 1.2em; }
     @media print { .ws-handouts { display: none; } }
     .ws-clinic summary { cursor: pointer; font-weight: 600; }
@@ -341,6 +348,7 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
     import { validateAll, requiredMissing, type Finding } from 'aiveterinary-app/src/validators.ts';
     import { renderConsultReport, renderOwnerSummary, renderReferralLetter, renderPrescription, renderVaccinationEntry, renderConsentForm, renderCostEstimate, renderDentalChart, renderOwnerSummaryBilingual, crossDocumentMedicationCheck } from 'aiveterinary-app/src/render.ts';
     import { countryMissing, VisitContext } from 'aiveterinary-app/src/country.ts';
+    import { soapFields, exportBundle } from 'aiveterinary-app/src/export.ts';
     import { approve as approveVersion, amend as amendVersion, documentFrom, propagationMap, type ApprovedVersion, type GeneratedDocument } from 'aiveterinary-app/src/versions.ts';
     import c1 from 'aiveterinary-app/eval/cases/001-luna-vomiting.json';
     import c2 from 'aiveterinary-app/eval/cases/002-milo-otitis-de.json';
@@ -469,6 +477,7 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
     }
 
     function render() {
+      renderSoap();
       const { notes, header, record, lang } = cur;
       // notes with one <mark> per character run, so any span can be lit
       const notesEl = $('#ws-notes'); notesEl.innerHTML = '';
@@ -616,6 +625,25 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
         .replace(/^#+ (.*)$/gm, (_m, h) => h.toUpperCase()).replace(/^_|_$/gm, '').replace(/\*\*/g, '').replace(/\|/g, ' ').replace(/^ *-{3,}.*$/gm, '').replace(/\n{3,}/g, '\n\n');
       navigator.clipboard?.writeText(txt).then(() => { $('#ws-status').textContent = J.copied; }, () => { $('#ws-status').textContent = J.copyFail; });
     }
+    function renderSoap() {
+      const box = $('#ws-soap') as HTMLElement;
+      box.hidden = !(cur.approved && cur.v);
+      if (box.hidden) return;
+      const fields = soapFields(cur.v!.record, cur.lang, cur.resolved);
+      $('#ws-soap-fields').innerHTML = fields.map((f, i) => `<div class="ws-soap-f"><div class="ws-soap-h"><strong>${esc(f.label)}</strong> <button class="btn secondary sm" type="button" data-i="${i}">${esc(J.soapCopy)}</button></div><pre>${esc(f.text)}</pre></div>`).join('');
+      $('#ws-soap-fields').querySelectorAll<HTMLButtonElement>('button[data-i]').forEach((b) => b.addEventListener('click', () => {
+        const f = fields[Number(b.dataset.i)];
+        navigator.clipboard?.writeText(f.text).then(() => { $('#ws-status').textContent = J.soapCopied.replace('{label}', f.label); }, () => { $('#ws-status').textContent = J.copyFail; });
+      }));
+    }
+    $('#ws-json').addEventListener('click', () => {
+      if (!cur.approved || !cur.v) return;
+      const bundle = exportBundle(cur.v, cur.header, cur.lang, undefined, cur.resolved);
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([JSON.stringify(bundle, null, 2)], { type: 'application/json' }));
+      a.download = `${String(cur.header.name || 'record').replace(/[^\p{L}\p{N}_-]+/gu, '-')}-v${cur.v.version}.json`;
+      a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    });
     $('#ws-approve').addEventListener('click', approve);
     $('#ws-copy').addEventListener('click', copyOut);
     $('#ws-print').addEventListener('click', () => window.print());
@@ -632,7 +660,7 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
       const isMeds = ['Drug', 'Wirkstoff', 'Farmaco'].includes(head[0]);
       if (!isMeds) return `<table><thead><tr>${head.map((h) => `<th>${h}</th>`).join('')}</tr></thead><tbody>${body.map((r) => `<tr>${r.map((c) => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
       const tick = (i: number) => `<td class="ws-tick"><label><input type="checkbox" class="ws-med-tick" data-i="${i}" ${cur.meds[i] ? 'checked' : ''} ${cur.approved ? 'disabled' : ''} aria-label="${J.medsTick}"> ${J.medsTick}</label></td>`;
-      return `<table><thead><tr>${head.map((h) => `<th>${h}</th>`).join('')}<th>${J.medsTick}</th></tr></thead><tbody>${body.map((r, i) => `<tr>${r.map((c) => `<td>${c}</td>`).join('')}${tick(i)}</tr>`).join('')}</tbody></table>`;
+      return `<table><thead><tr>${head.map((h) => h ? `<th>${h}</th>` : `<th><span class="sr-only">Status</span></th>`).join('')}<th>${J.medsTick}</th></tr></thead><tbody>${body.map((r, i) => `<tr>${r.map((c) => `<td>${c}</td>`).join('')}${tick(i)}</tr>`).join('')}</tbody></table>`;
     }
 
     const fileInput = $('#ws-file') as HTMLInputElement;
