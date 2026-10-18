@@ -16,15 +16,15 @@ export const TRANSLATION_GROUPS: { en?: string; it?: string; de?: string }[] = [
   { en: 'puppy-kitten-first-year', it: 'primo-anno-cucciolo-gattino', de: 'erstes-jahr-welpe-kitten' }, // puppy-kitten-first-year
   { en: 'rabbit-guinea-pig-toxic-plants', it: 'piante-tossiche-coniglio-cavia', de: 'giftige-pflanzen-kaninchen-meerschweinchen' }, // rabbit-guinea-pig-toxic-plants
   { en: 'senior-dog-cat-checklist', it: 'cane-gatto-anziano-checklist', de: 'hund-katze-senior-checkliste' }, // senior-pet-checklist
-  { it: 'cane-ha-mangiato-cioccolato', de: 'hund-schokolade-gefressen' }, // dog-chocolate
-  { it: 'cane-vomita-giallo', de: 'hund-erbricht-gelb' }, // dog-vomiting-yellow
-  { it: 'cane-beve-tanto', de: 'hund-trinkt-viel' }, // dog-drinking-a-lot
-  { it: 'cane-si-gratta-sempre', de: 'hund-juckt-sich' }, // dog-itching
-  { it: 'cane-trema', de: 'hund-zittert' }, // dog-trembling
-  { it: 'cane-tosse-qualcosa-in-gola', de: 'hund-hustet-und-wuergt' }, // dog-cough-gagging
+  { en: 'dog-ate-chocolate', it: 'cane-ha-mangiato-cioccolato', de: 'hund-schokolade-gefressen' }, // dog-chocolate
+  { en: 'dog-vomiting-yellow-foam', it: 'cane-vomita-giallo', de: 'hund-erbricht-gelb' }, // dog-vomiting-yellow
+  { en: 'dog-drinking-a-lot', it: 'cane-beve-tanto', de: 'hund-trinkt-viel' }, // dog-drinking-a-lot
+  { en: 'dog-itching', it: 'cane-si-gratta-sempre', de: 'hund-juckt-sich' }, // dog-itching
+  { en: 'dog-trembling', it: 'cane-trema', de: 'hund-zittert' }, // dog-trembling
+  { en: 'dog-cough-gagging', it: 'cane-tosse-qualcosa-in-gola', de: 'hund-hustet-und-wuergt' }, // dog-cough-gagging
   { en: 'rabbit-overgrown-teeth', it: 'coniglio-denti-lunghi', de: 'kaninchen-zaehne' }, // rabbit-overgrown-teeth
   { en: 'rabbit-diarrhoea', it: 'coniglio-diarrea', de: 'kaninchen-durchfall' }, // rabbit-diarrhoea
-  { it: 'gatto-starnutisce', de: 'katze-niest' }, // cat-sneezing
+  { en: 'cat-sneezing', it: 'gatto-starnutisce', de: 'katze-niest' }, // cat-sneezing
   { en: 'cat-constipation', it: 'gatto-stitico', de: 'katze-verstopfung' }, // cat-constipation
   { en: 'cat-cystitis-stress', it: 'gatto-cistite-stress', de: 'katze-blasenentzuendung' }, // cat-stress-cystitis
   { en: 'thyroid-dogs-cats', it: 'tiroide-cane-gatto', de: 'schilddruese-hund-katze' }, // thyroid-dogs-cats
