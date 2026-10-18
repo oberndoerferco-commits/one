@@ -7,6 +7,13 @@ urgency: routine
 updated: 2026-10-16
 draft: true
 lang: de
+references:
+  - title: "European Commission: Dogs, cats and ferrets"
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets_en"
+  - title: "European Commission: Travelling with a pet within the EU"
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/travelling-pet-within-eu_en"
+  - title: "European Commission: Pet travel FAQs"
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/faqs_en"
 ---
 
 ## Was braucht mein Tier für eine Reise innerhalb der EU?
@@ -48,4 +55,4 @@ Ein Mikrochip ist eine Identifikationsnummer. Er enthält nicht die Krankengesch
 
 ## Quellen zum Nachlesen
 
-Die Regeln werden von der Europäischen Kommission und von der Landwirtschafts- oder Lebensmittelsicherheitsbehörde jedes Landes veröffentlicht (in Deutschland das BMEL, in Österreich das BML). Ihre Tierärztin oder Ihr Tierarzt kann Ihnen die aktuelle offizielle Seite für Ihr Reiseziel nennen.
+Die Regeln werden von der Europäischen Kommission und von der Landwirtschafts- oder Lebensmittelsicherheitsbehörde jedes Landes veröffentlicht (in Deutschland das BMEL, in Österreich das BML). Ihre Tierärztin oder Ihr Tierarzt kann Ihnen die aktuelle offizielle Seite für Ihr Reiseziel nennen. Unser [Reiseratgeber](/de/travel) fasst die Regeln mit den amtlichen Quellen zusammen.

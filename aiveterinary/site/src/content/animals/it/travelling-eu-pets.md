@@ -7,6 +7,13 @@ urgency: routine
 updated: 2026-10-16
 draft: true
 lang: it
+references:
+  - title: "European Commission: Dogs, cats and ferrets"
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets_en"
+  - title: "European Commission: Travelling with a pet within the EU"
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/travelling-pet-within-eu_en"
+  - title: "European Commission: Pet travel FAQs"
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/faqs_en"
 ---
 
 ## Cosa serve per viaggiare nell'UE con cane o gatto?
@@ -52,4 +59,4 @@ Un microchip è un numero di identificazione. Non contiene la storia clinica del
 
 ## Fonti da consultare
 
-Le regole sono pubblicate dalla Commissione europea e dall'autorità per l'agricoltura o la sicurezza alimentare di ciascun paese (in Italia, il Ministero della Salute). Il tuo veterinario può indicarti la pagina ufficiale aggiornata per la tua destinazione.
+Le regole sono pubblicate dalla Commissione europea e dall'autorità per l'agricoltura o la sicurezza alimentare di ciascun paese (in Italia, il Ministero della Salute). Il tuo veterinario può indicarti la pagina ufficiale aggiornata per la tua destinazione. La nostra [guida ai viaggi](/it/travel) riassume le regole con le fonti ufficiali.

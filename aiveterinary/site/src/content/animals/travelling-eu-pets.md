@@ -6,6 +6,13 @@ category: travel
 urgency: routine
 updated: 2026-10-16
 draft: true
+references:
+  - title: "European Commission: Dogs, cats and ferrets"
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets_en"
+  - title: "European Commission: Travelling with a pet within the EU"
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/travelling-pet-within-eu_en"
+  - title: "European Commission: Pet travel FAQs"
+    url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/faqs_en"
 ---
 
 ## What does my pet need to travel within the EU?
@@ -47,4 +54,4 @@ A microchip is an identification number. It does not hold your animal's medical 
 
 ## Sources to check
 
-Rules are published by the European Commission and by each country's agriculture or food-safety authority. Your vet can point you to the current official page for your destination.
+Rules are published by the European Commission and by each country's agriculture or food-safety authority. Your vet can point you to the current official page for your destination. Our [travel guide](/travel) sums up the rules with the official sources.
