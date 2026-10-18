@@ -1,4 +1,4 @@
-import { layout, eyebrow, head, sub, p, small, link, caption, button, photo, rule, band, grid, SITE, C } from './layout.mjs';
+import { layout, eyebrow, head, sub, p, small, link, caption, button, photo, hero, rule, band, grid, SITE, C } from './layout.mjs';
 import { readFileSync } from 'node:fs';
 const P = JSON.parse(readFileSync(new URL('./products.json', import.meta.url), 'utf8'));
 
@@ -15,8 +15,9 @@ const IMG = {
   ensemble: 'https://cdn.shopify.com/s/files/1/0758/8387/2581/files/oberndoerfer-aol-ensemble.jpg?v=1787011723',
   daybed: 'https://cdn.shopify.com/s/files/1/0758/8387/2581/files/oberndoerfer-aol-daybed-arch.jpg?v=1787011722',
 };
+const CDN = 'https://cdn.shopify.com/s/files/1/0758/8387/2581/files/';
 const w = (u, px = 1200) => u.includes('?v=') ? u.replace('?v=', `?width=${px}&v=`) : `${u}?width=${px}`;
-const piece = (key, note, cta) => ({ src: w(P[key].src, 600), title: P[key].title.replace(/ - .*$/, ''), href: `${SITE}/products/${P[key].handle}`, note, cta });
+const piece = (key, note, cta) => ({ src: w(P[key].src, 600), title: P[key].title.replace(/ - .*$/, ''), price: P[key].price, href: `${SITE}/products/${P[key].handle}`, note, cta });
 
 const greet = `{% if first_name %}{{ first_name }},{% else %}Good day,{% endif %}`;
 const signed = p(`${SIGNER}<br /><span style="color:${C.muted};">Oberndörfer Milano</span>`);
@@ -70,22 +71,20 @@ ${signed}`,
   {
     key: 'welcome-3',
     name: 'OM · Welcome 3 · The pieces you can order today',
-    subject: 'The T-shirts and hoodies, on pre-order',
-    preheader: 'The pieces you can order today, and an invitation.',
+    subject: 'The T-shirts and hoodies are here',
+    preheader: 'In stock, made in Italy, sent within days.',
     html: layout({
-      title: 'The T-shirts and hoodies, on pre-order',
-      preheader: 'The pieces you can order today, and an invitation.',
+      title: 'The T-shirts and hoodies are here',
+      preheader: 'In stock, made in Italy, sent within days.',
       body: `
 ${eyebrow('Ready to wear')}
 ${head('The pieces you can order today.')}
 ${p(greet)}
-${p('T-shirts and hoodies in heavy cotton, embroidered or printed, in black and in white. Each run is small.')}
-${photo(w(IMG.teeWhite), 'White embroidered T-shirt, front', SITE + '/collections/ready-to-wear', 'The Embroidered T-Shirt in white.')}
-${p('They are on pre-order: you pay today, we dispatch when the run arrives, and you can cancel at any time before dispatch. We email you the shipping date.')}
-${eyebrow('Also in the run')}
-${grid([{ ...piece('cap', 'Cotton, tonal logo'), src: w(P.cap.src, 600) }, { src: w(IMG.hoodieWhite, 600), title: 'The Wordmark Hoodie', note: 'Heavy cotton, white or black', href: SITE + '/collections/ready-to-wear' }, piece('pants', 'Navy, slate, taupe or sage')])}
-${p('If you would rather talk than read, reply to this email. It reaches me, not a mailbox. I am happy to help with a size, a leather or a piece for someone else.')}
-${p(link('See Ready to Wear', SITE + '/collections/ready-to-wear'))}
+${p('T-shirts, hoodies and twill pants in heavy cotton, made in Italy in small runs. They are in stock now and sent within days, by DHL, free.')}
+${photo(w(P.teeMagenta.src), 'White T-shirt with three small emblems at the chest', SITE + '/products/' + P.teeMagenta.handle, 'T-Shirt with Logo Magenta, in white or black. €85.')}
+${grid([piece('hoodieLattice', 'Grey, black or white'), piece('teeOM', 'Black or white'), piece('pants', 'Five colours')])}
+${p('If you would rather talk than read, reply to this email. It reaches me, not a mailbox. I am happy to help with a size, or a piece for someone else.')}
+${button('Shop Ready to Wear', SITE + '/collections/ready-to-wear')}
 ${signed}`,
     }),
   },
@@ -105,18 +104,18 @@ ${p('You left these at checkout. They are held for you, and nothing has been cha
 {% for item in event.extra.line_items %}
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 14px;border-top:1px solid ${C.line};">
 <tr>
-  <td width="120" valign="top" style="padding:14px 16px 14px 0;">{% if item.product.images.0.src %}<img src="{{ item.product.images.0.src }}" alt="" width="120" style="display:block;width:120px;height:auto;border:0;background:#f5f2ed;" />{% endif %}</td>
+  <td width="120" valign="top" style="padding:14px 16px 14px 0;">{% if item.product.images.0.src %}<img src="{{ item.product.images.0.src }}" alt="" width="120" style="display:block;width:120px;height:auto;border:0;background:${C.ground};" />{% endif %}</td>
   <td valign="top" style="padding:14px 0;">
-    <p style="margin:0 0 4px;font:400 17px/1.3 'Marcellus', Georgia, serif;color:${C.ink};">{{ item.product.title }}</p>
-    {% if item.variant_title and item.variant_title != 'Default Title' %}<p style="margin:0 0 4px;font:400 13px/1.5 'Inter', Helvetica, Arial, sans-serif;color:${C.muted};">{{ item.variant_title }}</p>{% endif %}
-    <p style="margin:0;font:400 13px/1.5 'Inter', Helvetica, Arial, sans-serif;color:${C.muted};">Quantity {{ item.quantity }}</p>
+    <p style="margin:0 0 4px;font:400 14px/1.4 'Courier New', Courier, monospace;color:${C.ink};">{{ item.product.title }}</p>
+    {% if item.variant_title and item.variant_title != 'Default Title' %}<p style="margin:0 0 4px;font:400 13px/1.5 'Courier New', Courier, monospace;color:${C.muted};">{{ item.variant_title }}</p>{% endif %}
+    <p style="margin:0;font:400 13px/1.5 'Courier New', Courier, monospace;color:${C.muted};">Quantity {{ item.quantity }}</p>
   </td>
 </tr></table>
 {% endfor %}
 ${rule()}
 <div style="height:18px;"></div>
 ${button('Return to checkout', '{{ event.extra.checkout_url }}')}
-${p('If a question stopped you, on a size, a lead time, duties or a colour, reply to this email and a person answers. Every parcel travels insured and tracked.')}
+${p('If a question stopped you, on a size, a lead time, duties or a colour, reply to this email and a person answers. Delivery is free with DHL Standard, and free by DHL Express from €300. Every parcel travels insured and tracked.')}
 ${houseSigned}`,
     }),
   },
@@ -188,6 +187,59 @@ ${eyebrow('From the bench')}
 ${photo(w(IMG.bench), '[What is in the photograph]', SITE + '/about-us', '[Caption.]')}
 ${p('[Forty words on a commission in progress or a technique, without adjectives.]')}
 ${p('Reply to this letter for an appointment in Milan, or to ask about a piece.')}
+${signed}`,
+    }),
+  },
+  {
+    key: 'launch-rtw',
+    name: 'OM · Campaign · Ready to Wear in stock',
+    subject: 'Ready to wear, now in stock',
+    preheader: 'T-shirts from €85, hoodies and twill pants. Sent free within days.',
+    html: layout({
+      title: 'Ready to wear, now in stock',
+      preheader: 'T-shirts from €85, hoodies and twill pants. Sent free within days.',
+      top: hero(w(CDN + 'obm-tee-emblem-magenta-black-front.jpg', 1200), 'Black T-shirt with three small magenta and blue emblems at the chest', SITE + '/collections/ready-to-wear'),
+      body: `
+${eyebrow('Ready to wear · In stock')}
+${head('The collection is here.')}
+${p(greet)}
+${p('The T-shirts, hoodies and twill pants are made, in Italy, and in stock. No more waiting for a run: order today and your piece is sent within days, by DHL, free.')}
+${button('Shop the collection', SITE + '/collections/ready-to-wear')}
+${eyebrow('New')}
+${grid([piece('teeMagenta', 'White or black'), piece('teeOchre', 'White or black')])}
+${eyebrow('T-shirts and hoodies')}
+${grid([piece('teeOM'), piece('teeStar'), piece('hoodieLattice')])}
+${grid([piece('hoodieOM'), piece('pants'), piece('cap')])}
+${band(`${sub('Sizes and returns')}${p('Reply to this email with your height and the fit you like, and I will tell you the size. Every piece can be returned within 14 days of delivery.')}`)}
+${signed}`,
+    }),
+  },
+  {
+    key: 'template',
+    name: 'OM · Template · All blocks',
+    subject: '[Subject: about seven words, no emoji, no price]',
+    preheader: '[Preview: one line that completes the subject.]',
+    html: layout({
+      title: 'Template',
+      preheader: '[Preview: one line that completes the subject.]',
+      top: hero(w(CDN + 'obm-hoodie-lattice-black-back-v2.jpg', 1200), '[What is in the photograph]', SITE + '/collections/new-in'),
+      body: `
+${eyebrow('[Eyebrow: section or date]')}
+${head('[Heading: one short claim]')}
+${p(greet)}
+${p('[Opening: two or three sentences. One idea per email. Plain words, no adjectives you would not say out loud.]')}
+${button('[Button: one action]', SITE + '/collections/new-in')}
+${eyebrow('[Row of three pieces]')}
+${grid([piece('teeMagenta'), piece('hoodieLattice'), piece('pants')])}
+${eyebrow('[Row of two pieces]')}
+${grid([piece('ostrich', '[one line]'), piece('tableTrunk', '[one line]')])}
+${photo(w(IMG.bench), '[What is in the photograph]', SITE + '/pages/about-us', '[Caption: what is in the photograph, nothing more.]')}
+${sub('[Sub-heading]')}
+${p('[A second paragraph, if the email needs one.]')}
+${band(`${sub('[Box: a service or an answer]')}${p('[Personalisation, delivery, a commission, an appointment.]')}`)}
+${rule()}
+<div style="height:20px;"></div>
+${p(link('[Text link]', SITE))}
 ${signed}`,
     }),
   },

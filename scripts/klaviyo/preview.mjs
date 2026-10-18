@@ -16,12 +16,12 @@ const sample = (h) => h
   .replace(/\{% if event\.extra\.line_items\|length > 1 %\}[\s\S]*?\{% endif %\}\{% endif %\}/g, '')
   .replace(/\{\{ event\.extra\.checkout_url \}\}/g, '#')
   .replace(/\{\{ organization\.name \}\}/g, 'Oberndörfer Milano').replace(/\{\{ organization\.full_address \}\}/g, 'Via [street], Milano, Italy')
-  .replace(/\{% manage_preferences %\}/g, '<a href="#" style="color:#6b6259">Preferences</a>')
-  .replace(/\{% unsubscribe %\}/g, '<a href="#" style="color:#6b6259">Unsubscribe</a>')
-  .replace(/\{% view_in_browser %\}/g, '<a href="#" style="color:#6b6259">View in browser</a>');
-const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
+  .replace(/\{% manage_preferences %\}/g, '<a href="#" style="color:#6b625b">Preferences</a>')
+  .replace(/\{% unsubscribe %\}/g, '<a href="#" style="color:#6b625b">Unsubscribe</a>')
+  .replace(/\{% view_in_browser %\}/g, '<a href="#" style="color:#6b625b">View in browser</a>');
+const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium', proxy: process.env.HTTPS_PROXY ? { server: process.env.HTTPS_PROXY } : undefined, args: ['--ignore-certificate-errors'] });
 for (const f of readdirSync(dir).filter((f) => f.endsWith('.html'))) {
-  const page = await b.newPage({ viewport: { width: 720, height: 900 }, deviceScaleFactor: 1 });
+  const page = await b.newPage({ viewport: { width: 720, height: 900 }, deviceScaleFactor: 1, ignoreHTTPSErrors: true });
   await page.setContent(sample(readFileSync(new URL(f, dir), 'utf8')), { waitUntil: 'networkidle' });
   await page.screenshot({ path: new URL(f.replace('.html', '.png'), dir).pathname, fullPage: true });
   console.log('rendered', f);

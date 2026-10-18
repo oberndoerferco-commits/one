@@ -2,15 +2,17 @@
  "pants": {
   "title": "Twill Pants",
   "handle": "twill-pants",
-  "src": "https://cdn.shopify.com/s/files/1/0758/8387/2581/files/obm-pants-navy-front.jpg"
+  "src": "https://cdn.shopify.com/s/files/1/0758/8387/2581/files/obm-pants-navy-front.jpg",
+  "price": "€290"
  },
  "cap": {
   "title": "Cotton Cap - Black",
   "handle": "cotton-cap-black-tonal-logo",
-  "src": "https://cdn.shopify.com/s/files/1/0758/8387/2581/files/obm-lane-cap-black.jpg"
+  "src": "https://cdn.shopify.com/s/files/1/0758/8387/2581/files/obm-lane-cap-black.jpg",
+  "price": "€125"
  },
  "tableTrunk": {
-  "title": "Table Trunk - Black",
+  "title": "Table Trunk with Fringes - Black",
   "handle": "tabel-trunk-black",
   "src": "https://cdn.shopify.com/s/files/1/0758/8387/2581/files/obm-lane-table-trunk-black.jpg"
  },
@@ -73,5 +75,47 @@
   "title": "8-Place Watch Box - Black Stud",
   "handle": "black-8-places-watchbox",
   "src": "https://cdn.shopify.com/s/files/1/0758/8387/2581/files/obm-lane-8p-blackstud.jpg"
+ },
+ "teeMagenta": {
+  "title": "T-Shirt with Logo Magenta",
+  "handle": "emblem-t-shirt-magenta",
+  "src": "https://cdn.shopify.com/s/files/1/0758/8387/2581/files/obm-tee-emblem-magenta-front.jpg?v=1792359380",
+  "price": "€85"
+ },
+ "teeOchre": {
+  "title": "T-Shirt with Logo Ochre",
+  "handle": "emblem-t-shirt-ochre",
+  "src": "https://cdn.shopify.com/s/files/1/0758/8387/2581/files/obm-tee-emblem-ochre-front.jpg?v=1792359380",
+  "price": "€85"
+ },
+ "teeOM": {
+  "title": "T-Shirt OM",
+  "handle": "initials-t-shirt",
+  "src": "https://cdn.shopify.com/s/files/1/0758/8387/2581/files/obm-tee-om-black-back.jpg?v=1788873701",
+  "price": "€85"
+ },
+ "teeStar": {
+  "title": "T-Shirt Star patch",
+  "handle": "constellation-t-shirt",
+  "src": "https://cdn.shopify.com/s/files/1/0758/8387/2581/files/obm-tee-star-black-back.jpg?v=1788873701",
+  "price": "€85"
+ },
+ "teeLattice": {
+  "title": "T-Shirt with Logo",
+  "handle": "lattice-t-shirt",
+  "src": "https://cdn.shopify.com/s/files/1/0758/8387/2581/files/obm-tee-lattice-black-back_69bc69c4-e4fd-44df-8db2-c854accda415.jpg?v=1788873701",
+  "price": "€85"
+ },
+ "hoodieLattice": {
+  "title": "Hoodie with Logo",
+  "handle": "lattice-hoodie",
+  "src": "https://cdn.shopify.com/s/files/1/0758/8387/2581/files/obm-hoodie-lattice-grey-back-v2.jpg?v=1789578328",
+  "price": "€150"
+ },
+ "hoodieOM": {
+  "title": "Hoodie OM",
+  "handle": "initials-hoodie",
+  "src": "https://cdn.shopify.com/s/files/1/0758/8387/2581/files/obm-hoodie-om-grey-back-v2.jpg?v=1789578324",
+  "price": "€150"
  }
 }
