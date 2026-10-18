@@ -68,6 +68,13 @@
   .shopify-section[id*='product_recommendations'] .text-block { margin-inline: auto; text-align: center; }
   .shopify-section[id*='product_recommendations'] .text-block > * { font-family: var(--obm-font-display); font-style: normal; font-weight: 700; font-size: 18px; letter-spacing: 0.01em; text-transform: uppercase; }
   @media screen and (min-width: 750px) { .shopify-section[id*='product_recommendations'] .text-block > * { font-size: 20px; } }
+  /* At most four products per row on collection and search pages (owner, 18 October). The theme
+     fits as many 250px cards as the width allows; a card may not be narrower than a quarter. */
+  @media screen and (min-width: 750px) {
+    .product-grid.product-grid--grid:not([product-grid-view='zoom-out']) {
+      --product-grid-columns-desktop: repeat(auto-fill, minmax(max(250px, calc((100% - 3 * 16px) / 4)), 1fr));
+    }
+  }
   /* Desktop header as on Bottega Veneta (owner, 7 October, "do the same for my desktop"): the word
      "Menu" at the left, the logo centred, Search, Login and Cart as words at the right. The menu bar
      itself is hidden: its links live in the menu panel. */

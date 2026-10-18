@@ -298,3 +298,5 @@ Owner's terms: DHL Standard free; DHL Express free from €300; below €300 Exp
 - Collection per the PDF: Emblem tees (magenta, ochre), T-Shirt OM, T-Shirt Star patch, T-Shirt with Logo, Hoodie OM, Hoodie with Logo, Twill Pants (navy, slate, steel, taupe, sage).
 - Set to Draft (hidden, restorable): Embroidered T-Shirt, T-Shirt OBERNDÖRFER MILANO (chrome-t-shirt), Hoodie OBERNDÖRFER MILANO (wordmark-hoodie).
 - Caps stay (owner's choice). Emblem tees moved to the top of New In (manual order).
+- T-shirts on sale, no longer pre-order (owner): tag "preorder" removed from the five T-shirts (emblem magenta/ochre, Star patch, with Logo, OM) and "Made to order in Italy. Ships in 1–2 weeks." taken out of their descriptions. Button now "Add to cart". Still continue-selling at 0 stock. Hoodies and Twill Pants keep the tag.
+- At most four products per row on desktop: rule in sections/obm-style-2026.liquid (cards at least a quarter of the grid; 3 per row below ~1100px). Draft 208951771461 "REDESIGN 2026 - 4 per row (draft)", copy of live. Checked 1024/1280/1440/1920 on collections and search. Screen: four-per-row.png.
