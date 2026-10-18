@@ -61,6 +61,9 @@ const count = (f: (d: any) => boolean) => all.filter((e) => f(e.data)).length;
     if (!el || !window.PagefindUI) return;
     const ui = new window.PagefindUI({ element: '#site-search', showSubResults: true, showImages: false, resetStyles: false,
       translations: { placeholder: i18n.placeholder, zero_results: i18n.zero, many_results: i18n.results, one_result: '[COUNT] · [SEARCH_TERM]', searching: i18n.loading, clear_search: '×' } });
+    // Pagefind's input has only a placeholder; give it an accessible name.
+    const name = () => document.querySelector('#site-search input')?.setAttribute('aria-label', i18n.placeholder);
+    name(); setTimeout(name, 0);
     const q = new URLSearchParams(location.search).get('q'); if (q) ui.triggerSearch(q);
   });
 </script>
