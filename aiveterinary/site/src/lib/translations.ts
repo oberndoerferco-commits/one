@@ -22,12 +22,13 @@ export const TRANSLATION_GROUPS: { en?: string; it?: string; de?: string }[] = [
   { it: 'cane-si-gratta-sempre', de: 'hund-juckt-sich' }, // dog-itching
   { it: 'cane-trema', de: 'hund-zittert' }, // dog-trembling
   { it: 'cane-tosse-qualcosa-in-gola', de: 'hund-hustet-und-wuergt' }, // dog-cough-gagging
-  { it: 'coniglio-denti-lunghi', de: 'kaninchen-zaehne' }, // rabbit-overgrown-teeth
-  { it: 'coniglio-diarrea', de: 'kaninchen-durchfall' }, // rabbit-diarrhoea
+  { en: 'rabbit-overgrown-teeth', it: 'coniglio-denti-lunghi', de: 'kaninchen-zaehne' }, // rabbit-overgrown-teeth
+  { en: 'rabbit-diarrhoea', it: 'coniglio-diarrea', de: 'kaninchen-durchfall' }, // rabbit-diarrhoea
   { it: 'gatto-starnutisce', de: 'katze-niest' }, // cat-sneezing
-  { it: 'gatto-stitico', de: 'katze-verstopfung' }, // cat-constipation
-  { it: 'gatto-cistite-stress', de: 'katze-blasenentzuendung' }, // cat-stress-cystitis
-  { it: 'tiroide-cane-gatto', de: 'schilddruese-hund-katze' }, // thyroid-dogs-cats
+  { en: 'cat-constipation', it: 'gatto-stitico', de: 'katze-verstopfung' }, // cat-constipation
+  { en: 'cat-cystitis-stress', it: 'gatto-cistite-stress', de: 'katze-blasenentzuendung' }, // cat-stress-cystitis
+  { en: 'thyroid-dogs-cats', it: 'tiroide-cane-gatto', de: 'schilddruese-hund-katze' }, // thyroid-dogs-cats
   { it: 'quanto-costa-visita-veterinaria', de: 'tierarzt-kosten-got-2026' }, // vet-visit-costs
   { it: 'sterilizzazione-cane-costo', de: 'kastration-hund-kosten-2026' }, // dog-neutering-cost
+  { en: 'cat-hair-loss-patches', it: 'gatto-perde-pelo-a-ciuffi' }, // cat-hair-loss
 ];
