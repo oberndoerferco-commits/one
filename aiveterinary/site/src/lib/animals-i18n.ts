@@ -4,8 +4,8 @@ export type Lang = 'en' | 'it' | 'de';
 export const ANIMALS = {
   en: {
     base: '/animals', visitBrief: '/visit-brief', title: 'Animal information',
-    desc: 'Plain-language animal-health information for owners, reviewed by veterinarians.',
-    lead: 'Written for owners, checked by vets. Each article says who reviewed it and when. If something needs a veterinarian, the article says so at the top, not at the bottom.',
+    desc: 'Plain-language animal-health information for owners, from veterinary sources, with the review status on every article.',
+    lead: 'Written for owners from veterinary sources. Each article says whether a vet has reviewed it yet, and if so who and when. If something needs a veterinarian, the article says so at the top, not at the bottom.',
     prepare: 'Prepare for a vet visit →',
     emergency: '<strong>Emergency?</strong> Collapse, difficulty breathing, severe bleeding, a bloated hard belly, seizures that don\'t stop, poisoning, or a cat that cannot urinate: go to a veterinary clinic now. Call ahead so they can prepare.',
     byTopic: 'By topic', byAnimal: 'By animal', latest: 'Latest', articles: 'articles', draft: 'Draft written with AI help, awaiting vet review',
@@ -33,8 +33,8 @@ export const ANIMALS = {
   },
   it: {
     base: '/it/animals', visitBrief: '/it/visit-brief', title: 'Informazioni sugli animali',
-    desc: 'Informazioni sulla salute degli animali in linguaggio semplice, per i proprietari, riviste da veterinari.',
-    lead: 'Scritte per i proprietari, controllate dai veterinari. Ogni articolo indica chi lo ha rivisto e quando. Se serve un veterinario, l\'articolo lo dice all\'inizio, non alla fine.',
+    desc: 'Informazioni sulla salute degli animali in linguaggio semplice, per i proprietari, da fonti veterinarie, con lo stato della revisione su ogni articolo.',
+    lead: 'Scritte per i proprietari a partire da fonti veterinarie. Ogni articolo dice se un veterinario lo ha già rivisto e, in quel caso, chi e quando. Se serve un veterinario, l\'articolo lo dice all\'inizio, non alla fine.',
     prepare: 'Prepara la visita dal veterinario →',
     emergency: '<strong>Emergenza?</strong> Collasso, difficoltà a respirare, sanguinamento grave, addome gonfio e duro, convulsioni che non si fermano, avvelenamento, o un gatto che non riesce a urinare: vai subito in una clinica veterinaria. Telefona prima, così possono prepararsi.',
     byTopic: 'Per argomento', byAnimal: 'Per animale', latest: 'Ultimi articoli', articles: 'articoli', draft: "Bozza scritta con l'aiuto dell'IA, in attesa di revisione veterinaria",
@@ -62,8 +62,8 @@ export const ANIMALS = {
   },
   de: {
     base: '/de/animals', visitBrief: '/de/visit-brief', title: 'Tiergesundheit',
-    desc: 'Verständliche Informationen zur Tiergesundheit für Halterinnen und Halter, von Tierärzten geprüft.',
-    lead: 'Für Halter geschrieben, von Tierärzten geprüft. Jeder Artikel nennt, wer ihn geprüft hat und wann. Wenn etwas in die Praxis gehört, steht es oben im Artikel, nicht unten.',
+    desc: 'Verständliche Informationen zur Tiergesundheit für Halterinnen und Halter, aus tierärztlichen Quellen, mit Prüfstatus an jedem Artikel.',
+    lead: 'Für Halter geschrieben, aus tierärztlichen Quellen. Jeder Artikel sagt, ob er schon tierärztlich geprüft ist, und wenn ja, von wem und wann. Wenn etwas in die Praxis gehört, steht es oben im Artikel, nicht unten.',
     prepare: 'Den Tierarztbesuch vorbereiten →',
     emergency: '<strong>Notfall?</strong> Zusammenbruch, Atemnot, starke Blutung, aufgeblähter harter Bauch, Krampfanfälle, die nicht aufhören, Vergiftung oder ein Kater, der nicht urinieren kann: Fahren Sie sofort in eine Tierklinik. Rufen Sie vorher an, damit man sich vorbereiten kann.',
     byTopic: 'Nach Thema', byAnimal: 'Nach Tierart', latest: 'Neueste Artikel', articles: 'Artikel', draft: 'Entwurf mit KI-Unterstützung, tierärztliche Prüfung steht aus',
