@@ -7,6 +7,15 @@ urgency: routine
 updated: 2026-10-14
 draft: true
 lang: it
+references:
+  - title: "D.L. 24 gennaio 2012, n. 1, art. 9 comma 4, come modificato dalla L. 4 agosto 2017, n. 124, art. 1 comma 150 (normattiva.it)"
+  - title: "D.L. 4 luglio 2006, n. 223 (decreto Bersani), art. 2, abolizione delle tariffe minime obbligatorie"
+  - title: "FNOVI, \"Linee di indirizzo relative agli aspetti organizzativi, strutturali, procedurali, strumentali e di personale operativo per l'erogazione di adeguate prestazioni medico veterinarie nelle strutture per animali d'affezione\", sezioni \"Preventivo\" e \"Pronto soccorso h24\" (fnovi.it)"
+  - title: "FNOVI, Codice deontologico del Medico Veterinario, 2017, art. 52 e norme sul consenso informato (fnovi.it)"
+  - title: "FNOVI ed ENPAV, nota \"IVA sulle prestazioni veterinarie\", aprile 2026 (fnovi.it)"
+  - title: "Agenzia delle Entrate, circolare sugli oneri detraibili, sezione \"Spese veterinarie (Rigo E8/E10, cod. 29)\", art. 15 comma 1 lett. c-bis TUIR (agenziaentrate.gov.it)"
+  - title: "Altroconsumo, \"Costi cure veterinarie per cani e gatti\", indagine giugno 2025 (altroconsumo.it); comunicato \"Costi veterinari\" 2023"
+  - title: "Università degli Studi di Sassari, Ospedale didattico veterinario universitario, tariffario pronto soccorso (uniss.it)"
 ---
 
 ## Perché due veterinari chiedono prezzi diversi?
@@ -84,14 +93,3 @@ Esistono polizze che rimborsano le spese veterinarie, da non confondere con la r
 - **esclusioni:** malattie preesistenti, sterilizzazione, prevenzione
 
 Per sapere quanto costerà la visita del *tuo* animale e cosa comprende, chiedi un preventivo di massima al tuo veterinario di fiducia.
-
-## Fonti
-
-- D.L. 24 gennaio 2012, n. 1, art. 9 comma 4, come modificato dalla L. 4 agosto 2017, n. 124, art. 1 comma 150 (normattiva.it)
-- D.L. 4 luglio 2006, n. 223 (decreto Bersani), art. 2, abolizione delle tariffe minime obbligatorie
-- FNOVI, "Linee di indirizzo relative agli aspetti organizzativi, strutturali, procedurali, strumentali e di personale operativo per l'erogazione di adeguate prestazioni medico veterinarie nelle strutture per animali d'affezione", sezioni "Preventivo" e "Pronto soccorso h24" (fnovi.it)
-- FNOVI, Codice deontologico del Medico Veterinario, 2017, art. 52 e norme sul consenso informato (fnovi.it)
-- FNOVI ed ENPAV, nota "IVA sulle prestazioni veterinarie", aprile 2026 (fnovi.it)
-- Agenzia delle Entrate, circolare sugli oneri detraibili, sezione "Spese veterinarie (Rigo E8/E10, cod. 29)", art. 15 comma 1 lett. c-bis TUIR (agenziaentrate.gov.it)
-- Altroconsumo, "Costi cure veterinarie per cani e gatti", indagine giugno 2025 (altroconsumo.it); comunicato "Costi veterinari" 2023
-- Università degli Studi di Sassari, Ospedale didattico veterinario universitario, tariffario pronto soccorso (uniss.it)

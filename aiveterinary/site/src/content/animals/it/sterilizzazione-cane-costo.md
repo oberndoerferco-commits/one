@@ -7,6 +7,18 @@ urgency: routine
 updated: 2026-10-14
 draft: true
 lang: it
+references:
+  - title: "D.L. 24 gennaio 2012, n. 1, art. 9 comma 4, come modificato dalla L. 4 agosto 2017, n. 124, art. 1 comma 150 (normattiva.it)"
+  - title: "FNOVI, \"Linee di indirizzo ... per l'erogazione di adeguate prestazioni medico veterinarie nelle strutture per animali d'affezione\", sezione \"Preventivo\" (fnovi.it)"
+  - title: "Agenzia delle Entrate, circolare sugli oneri detraibili, sezione \"Spese veterinarie (Rigo E8/E10, cod. 29)\" (agenziaentrate.gov.it)"
+  - title: "Altroconsumo, \"Costi cure veterinarie per cani e gatti\", indagine giugno 2025 (altroconsumo.it)"
+  - title: "GreenMe, \"Sterilizzare il cane: sono una veterinaria e ti spiego quando e perché dovresti farlo\", M. Chimera, 14 luglio 2024"
+  - title: "My-personaltrainer.it, \"Costo cucciolo 2025: budget, visite, corredo\", aggiornato novembre 2025"
+  - title: "Centro Diagnostico Ippocrate, \"Sterilizzazione in laparoscopia nel cane\" (centrodiagnosticoippocrate.it)"
+  - title: "L. 14 agosto 1991, n. 281, art. 4, come sostituito dalla L. 296/2006, art. 1 comma 829"
+  - title: "Comune di Alghero, \"Avviso contributi sterilizzazione cani e gatti 2026\" (comune.alghero.ss.it)"
+  - title: "Regione Puglia, DGR n. 1010 del 16 maggio 2011 (contributo di 50 euro per cane padronale), richiamata negli avvisi dei Comuni di Canosa e Foggia"
+  - title: "ASL Sassari e Agenzia Laore, piano operativo cani rurali 2025 (asl1sassari.it); L'Unione Sarda, 2025"
 ---
 
 ## Perché il prezzo della sterilizzazione varia così tanto?
@@ -81,17 +93,3 @@ La legge quadro sul randagismo (L. 281/1991, art. 4, come modificata nel 2006) a
 Le campagne sono locali e a tempo: controlla l'albo pretorio del tuo Comune e il sito del servizio veterinario della tua ASL, oppure chiedi al canile comunale.
 
 Se, quando e con quale tecnica sterilizzare il *tuo* cane dipende da età, razza, salute e stile di vita: parlane con il tuo veterinario e fatti dare il preventivo scritto prima di decidere.
-
-## Fonti
-
-- D.L. 24 gennaio 2012, n. 1, art. 9 comma 4, come modificato dalla L. 4 agosto 2017, n. 124, art. 1 comma 150 (normattiva.it)
-- FNOVI, "Linee di indirizzo ... per l'erogazione di adeguate prestazioni medico veterinarie nelle strutture per animali d'affezione", sezione "Preventivo" (fnovi.it)
-- Agenzia delle Entrate, circolare sugli oneri detraibili, sezione "Spese veterinarie (Rigo E8/E10, cod. 29)" (agenziaentrate.gov.it)
-- Altroconsumo, "Costi cure veterinarie per cani e gatti", indagine giugno 2025 (altroconsumo.it)
-- GreenMe, "Sterilizzare il cane: sono una veterinaria e ti spiego quando e perché dovresti farlo", M. Chimera, 14 luglio 2024
-- My-personaltrainer.it, "Costo cucciolo 2025: budget, visite, corredo", aggiornato novembre 2025
-- Centro Diagnostico Ippocrate, "Sterilizzazione in laparoscopia nel cane" (centrodiagnosticoippocrate.it)
-- L. 14 agosto 1991, n. 281, art. 4, come sostituito dalla L. 296/2006, art. 1 comma 829
-- Comune di Alghero, "Avviso contributi sterilizzazione cani e gatti 2026" (comune.alghero.ss.it)
-- Regione Puglia, DGR n. 1010 del 16 maggio 2011 (contributo di 50 euro per cane padronale), richiamata negli avvisi dei Comuni di Canosa e Foggia
-- ASL Sassari e Agenzia Laore, piano operativo cani rurali 2025 (asl1sassari.it); L'Unione Sarda, 2025

@@ -7,6 +7,17 @@ urgency: today
 updated: 2026-10-14
 draft: true
 lang: de
+references:
+  - title: "VCA Animal Hospitals: Hepatic Lipidosis in Cats (Fatty Liver Syndrome in Cats)"
+    url: "https://vcahospitals.com/know-your-pet/liver-disease-fatty-liver-syndrome-in-cats"
+  - title: "International Cat Care: Helping your cat through the recovery process"
+    url: "https://icatcare.org/articles/helping-your-cat-through-the-recovery-process"
+  - title: "VCA Animal Hospitals: My Cat Won't Eat: Feeding Picky Eaters"
+    url: "https://vcahospitals.com/know-your-pet/feline-picky-eaters"
+  - title: "International Cat Care: Lily poisoning in cats"
+    url: "https://icatcare.org/articles/lily-poisoning-in-cats"
+  - title: "MSD Veterinary Manual: Poisoning from Human Over-the-Counter Drugs"
+    url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/poisoning-from-human-over-the-counter-drugs"
 ---
 
 ## Zuerst: die Anzeichen, bei denen Sie sofort fahren sollten

@@ -7,6 +7,11 @@ urgency: routine
 updated: 2026-10-14
 draft: true
 lang: de
+references:
+  - title: "StIKo Vet (Friedrich-Loeffler-Institut): Leitlinie zur Impfung von Kleintieren, 6. Auflage, veröffentlicht in Tierärztliche Praxis Kleintiere 2025; 53(1)"
+  - title: "Bundestierärztekammer, Deutsches Tierärzteblatt 1/2022: Tollwutimpfung des Hundes"
+  - title: "Gebührenordnung für Tierärzte (GOT) in der Fassung vom 22. November 2022"
+  - title: "LMU München, Medizinische Kleintierklinik: Impfmanagement Hund, Stand Oktober 2025"
 ---
 
 ## Was ist der Unterschied zwischen Core- und Non-Core-Impfungen beim Hund?
@@ -89,10 +94,3 @@ Den Impfpass, die Herkunft des Hundes, Reisepläne und Kontakte, den Aufenthalt 
 - Gesundheitszustand, Medikamente, frühere Impfreaktionen
 
 Ein Hund wird nur gesund geimpft; die Untersuchung vor der Impfung ist kein Zusatzgeschäft, sondern Voraussetzung. Welche Impfungen *Ihr* Hund wann braucht und was das in Ihrer Region kostet, erfahren Sie am verlässlichsten in Ihrer eigenen Praxis.
-
-## Quellen
-
-- StIKo Vet (Friedrich-Loeffler-Institut): Leitlinie zur Impfung von Kleintieren, 6. Auflage, veröffentlicht in Tierärztliche Praxis Kleintiere 2025; 53(1)
-- Bundestierärztekammer, Deutsches Tierärzteblatt 1/2022: Tollwutimpfung des Hundes
-- Gebührenordnung für Tierärzte (GOT) in der Fassung vom 22. November 2022
-- LMU München, Medizinische Kleintierklinik: Impfmanagement Hund, Stand Oktober 2025

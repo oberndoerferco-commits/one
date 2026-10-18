@@ -7,6 +7,17 @@ urgency: this-week
 updated: 2026-10-14
 draft: true
 lang: it
+references:
+  - title: "Journal of Veterinary Internal Medicine: Generalized Tremors in Dogs: 198 Cases (2003–2023)"
+    url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11951301/"
+  - title: "VCA Animal Hospitals: Shaker Syndrome in Dogs"
+    url: "https://vcahospitals.com/know-your-pet/shaker-syndrome-in-dogs"
+  - title: "VCA Animal Hospitals: Testing for Low Blood Sugar"
+    url: "https://vcahospitals.com/know-your-pet/testing-for-low-blood-sugar"
+  - title: "MSD Veterinary Manual: What to Do in a Dog or Cat Emergency"
+    url: "https://www.msdvetmanual.com/special-pet-topics/emergencies/what-to-do-in-a-dog-or-cat-emergency"
+  - title: "MSD Veterinary Manual: Poisoning from Human Over-the-Counter Drugs"
+    url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/poisoning-from-human-over-the-counter-drugs"
 ---
 
 ## Prima di tutto: i segni per cui andare subito dal veterinario

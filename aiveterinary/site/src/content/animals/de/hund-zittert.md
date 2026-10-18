@@ -7,6 +7,17 @@ urgency: this-week
 updated: 2026-10-14
 draft: true
 lang: de
+references:
+  - title: "Journal of Veterinary Internal Medicine: Generalized Tremors in Dogs: 198 Cases (2003–2023)"
+    url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11951301/"
+  - title: "RSPCA: How to Recognise & Treat Heatstroke in Dogs"
+    url: "https://www.rspca.org.uk/adviceandwelfare/pets/dogs/health/heatstroke"
+  - title: "VCA Animal Hospitals: Eclampsia in Dogs"
+    url: "https://vcahospitals.com/know-your-pet/eclampsia-in-dogs"
+  - title: "VCA Animal Hospitals: Taking Your Pet's Temperature"
+    url: "https://vcahospitals.com/know-your-pet/taking-your-pets-temperature"
+  - title: "MSD Veterinary Manual: Poisoning from Human Over-the-Counter Drugs"
+    url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/poisoning-from-human-over-the-counter-drugs"
 ---
 
 ## Zuerst: die Anzeichen, bei denen Sie sofort fahren sollten

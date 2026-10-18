@@ -7,6 +7,11 @@ urgency: this-week
 updated: 2026-10-14
 draft: true
 lang: it
+references:
+  - title: "ESCCAP, linea guida 5 \"Control of vector-borne diseases in dogs and cats\" (esccap.org)"
+  - title: "Istituto Zooprofilattico Sperimentale delle Venezie, percorso diagnostico \"Leishmaniosi canina\" (izsvenezie.it)"
+  - title: "LeishVet, schede di prevenzione sulla leishmaniosi canina (leishvet.org)"
+  - title: "Regione Piemonte, documentazione sulla sorveglianza della leishmaniosi 2026, con dati ISS/Ministero della Salute ed ECDC"
 ---
 
 ## Cos'è la leishmaniosi e come si prende?
@@ -76,10 +81,3 @@ Dove vive e dove è stato il cane, se dorme fuori, quali antiparassitari usa, se
 - Eventuali ferite, sanguinamenti, problemi agli occhi
 
 Se vivi in una zona a rischio o ci andrai in vacanza, parla con il tuo veterinario **prima** dell'estate: è lui a conoscere la situazione della tua zona e a costruire il piano giusto per il tuo cane.
-
-## Fonti
-
-- ESCCAP, linea guida 5 "Control of vector-borne diseases in dogs and cats" (esccap.org)
-- Istituto Zooprofilattico Sperimentale delle Venezie, percorso diagnostico "Leishmaniosi canina" (izsvenezie.it)
-- LeishVet, schede di prevenzione sulla leishmaniosi canina (leishvet.org)
-- Regione Piemonte, documentazione sulla sorveglianza della leishmaniosi 2026, con dati ISS/Ministero della Salute ed ECDC

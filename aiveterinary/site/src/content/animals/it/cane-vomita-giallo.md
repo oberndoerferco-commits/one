@@ -7,6 +7,15 @@ urgency: today
 updated: 2026-10-14
 draft: true
 lang: it
+references:
+  - title: "VCA Animal Hospitals: Vomiting in Dogs"
+    url: "https://vcahospitals.com/know-your-pet/vomiting-in-dogs"
+  - title: "PDSA: Vomiting in dogs"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/vomiting-in-dogs"
+  - title: "PDSA: GDV (Gastric Dilatation Volvulus) in dogs"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/gdv-gastric-dilatation-volvulus-in-dogs"
+  - title: "American Kennel Club: Bilious Vomiting Syndrome in Dogs"
+    url: "https://www.akc.org/expert-advice/health/bilious-vomiting-syndrome-in-dogs/"
 ---
 
 ## Prima di tutto: i segni per cui andare subito dal veterinario

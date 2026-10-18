@@ -7,6 +7,9 @@ urgency: emergency
 updated: 2026-10-14
 draft: true
 lang: it
+references:
+  - title: "Università di Torino e Aree protette delle Alpi Cozie, opuscolo informativo \"Processionaria del pino\" (chieri-api.municipiumapp.it)"
+  - title: "Ministero della Salute e Ministero delle politiche agricole, decreto 30 ottobre 2007 sulla lotta obbligatoria alla processionaria del pino"
 ---
 
 ## Prima di tutto: i segni per cui andare subito dal veterinario
@@ -73,8 +76,3 @@ Da febbraio a maggio evita le aree sotto i pini, tieni il cane al guinzaglio nel
 - Non toccare i nidi caduti e non cercare di distruggerli da solo: i peli restano attivi a lungo, anche nei nidi vecchi.
 
 Se vivi in una zona con molti pini, chiedi al tuo veterinario quali altri rischi di stagione tenere d'occhio per il tuo cane.
-
-## Fonti
-
-- Università di Torino e Aree protette delle Alpi Cozie, opuscolo informativo "Processionaria del pino" (chieri-api.municipiumapp.it)
-- Ministero della Salute e Ministero delle politiche agricole, decreto 30 ottobre 2007 sulla lotta obbligatoria alla processionaria del pino

@@ -7,6 +7,10 @@ urgency: this-week
 updated: 2026-10-14
 draft: true
 lang: de
+references:
+  - title: "ESCCAP Deutschland: Factsheet Giardia-Infektion bei Hund und Katze für Tierarztpraxen (2026)"
+  - title: "ESCCAP Deutschland: Hygienemaßnahmen bei Giardien-Infektionen (Tierhalter-Information)"
+  - title: "ESCCAP Empfehlung Nr. 6: Bekämpfung von Darmprotozoen bei Hunden und Katzen"
 ---
 
 ## Was sind Giardien beim Hund?
@@ -77,9 +81,3 @@ Seit wann und wie oft Durchfall besteht und wie der Kot aussieht, Herkunft und K
 - Ob Menschen im Haushalt Beschwerden haben
 
 Wie lange *Ihr* Hund behandelt wird, wann die Kontrolle ansteht und ob Mitbewohner mitbehandelt werden, legt Ihre eigene Praxis fest.
-
-## Quellen
-
-- ESCCAP Deutschland: Factsheet Giardia-Infektion bei Hund und Katze für Tierarztpraxen (2026)
-- ESCCAP Deutschland: Hygienemaßnahmen bei Giardien-Infektionen (Tierhalter-Information)
-- ESCCAP Empfehlung Nr. 6: Bekämpfung von Darmprotozoen bei Hunden und Katzen

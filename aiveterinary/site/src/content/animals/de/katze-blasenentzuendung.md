@@ -7,6 +7,17 @@ urgency: today
 updated: 2026-10-14
 draft: true
 lang: de
+references:
+  - title: "International Cat Care: Feline idiopathic cystitis (FIC) in cats"
+    url: "https://icatcare.org/articles/feline-idiopathic-cystitis-fic-in-cats"
+  - title: "Cornell Feline Health Center: Feline Lower Urinary Tract Disease"
+    url: "https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/feline-lower-urinary-tract-disease"
+  - title: "International Cat Care: Feline Lower Urinary Tract Disease"
+    url: "https://icatcare.org/articles/feline-lower-urinary-tract-disease"
+  - title: "MSD Veterinary Manual: Obstructive Uropathy in Dogs and Cats"
+    url: "https://www.msdvetmanual.com/urinary-system/noninfectious-diseases-of-the-urinary-system-in-small-animals/obstructive-uropathy-in-small-animals"
+  - title: "MSD Veterinary Manual: Poisoning from Human Over-the-Counter Drugs"
+    url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/poisoning-from-human-over-the-counter-drugs"
 ---
 
 ## Zuerst: die Anzeichen, bei denen Sie sofort fahren sollten

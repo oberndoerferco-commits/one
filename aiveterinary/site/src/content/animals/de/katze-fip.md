@@ -7,6 +7,11 @@ urgency: today
 updated: 2026-10-14
 draft: true
 lang: de
+references:
+  - title: "Bundestierärztekammer, Deutsches Tierärzteblatt 7/2021: Stellungnahme zur FIP-Behandlung mit Nukleosidanaloga (damalige Rechtslage)"
+  - title: "Federation of Veterinarians of Europe (FVE), September 2025: Übersicht der Länder mit legal zugänglicher magistraler FIP-Behandlung, darunter Deutschland"
+  - title: "Universität Zürich und Universität Bern: Merkblatt FIP Diagnose und Behandlung (2025)"
+  - title: "Systematische Übersichtsarbeit zur Wirksamkeit antiviraler Nukleosidanaloga bei FIP, 2018–2024 (PubMed Central, 2025)"
 ---
 
 ## Zuerst: die Anzeichen, bei denen Sie sofort fahren sollten
@@ -78,10 +83,3 @@ Alter, Herkunft und Kontakt zu anderen Katzen, seit wann welche Symptome bestehe
 Eine zuverlässige Impfung gibt es nicht. Das Risiko sinkt mit kleinen, stabilen Katzengruppen, sauberen Toiletten (mindestens eine pro Katze plus eine), wenig Stress und guter Grundversorgung. Katzen, die eine FIP überstanden haben, können nach heutigem Stand ein normales Leben führen.
 
 Ob bei *Ihrer* Katze eine FIP vorliegt und ob die Behandlung infrage kommt, kann nur Ihre eigene Praxis nach der Untersuchung sagen; dort sollten Sie das Gespräch führen.
-
-## Quellen
-
-- Bundestierärztekammer, Deutsches Tierärzteblatt 7/2021: Stellungnahme zur FIP-Behandlung mit Nukleosidanaloga (damalige Rechtslage)
-- Federation of Veterinarians of Europe (FVE), September 2025: Übersicht der Länder mit legal zugänglicher magistraler FIP-Behandlung, darunter Deutschland
-- Universität Zürich und Universität Bern: Merkblatt FIP Diagnose und Behandlung (2025)
-- Systematische Übersichtsarbeit zur Wirksamkeit antiviraler Nukleosidanaloga bei FIP, 2018–2024 (PubMed Central, 2025)

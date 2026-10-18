@@ -7,6 +7,13 @@ urgency: routine
 updated: 2026-10-14
 draft: true
 lang: de
+references:
+  - title: "Gebührenordnung für Tierärztinnen und Tierärzte (GOT) vom 10. Oktober 2022, §§ 2, 3, 4, 5, 7 und 12 sowie Anlage (Gebührenverzeichnis), gesetze-im-internet.de/got_2022 und buzer.de/GOT.htm"
+  - title: "Bundestierärztekammer, „Die Gebührenordnung für Tierärztinnen und Tierärzte (GOT): Erläuterungen für Tierhalter:innen“, Stand 29. August 2022 (bundestieraerztekammer.de)"
+  - title: "Bundestierärztekammer, Themenseite GOT mit FAQ zum Notdienst (bundestieraerztekammer.de/tieraerzte/beruf/got)"
+  - title: "Bundesverband Praktizierender Tierärzte, „Fragen und Antworten zur tierärztlichen Abrechnung“ (tieraerzteverband.de)"
+  - title: "Stiftung Warentest, Vergleich Hundekrankenversicherungen und OP-Versicherungen (test.de)"
+  - title: "§ 35a Einkommensteuergesetz (haushaltsnahe Dienstleistungen), gesetze-im-internet.de"
 ---
 
 ## Was ist die GOT?
@@ -90,12 +97,3 @@ Die Stiftung Warentest vergleicht solche Tarife regelmäßig. Für manche Halter
 Tierarztkosten für ein privat gehaltenes Haustier sind in Deutschland nicht steuerlich absetzbar, auch nicht als außergewöhnliche Belastung. Absetzbar ist nur die Betreuung des Tieres in Ihrem eigenen Haushalt als haushaltsnahe Dienstleistung (§ 35a EStG), also etwa ein Gassi- oder Fütterungsservice bei Ihnen zu Hause, nicht die Praxis und nicht die Tierpension. Ausnahmen gibt es nur für beruflich oder gewerblich gehaltene Tiere.
 
 Ob der Faktor für Ihren Fall angemessen ist und welche Positionen bei Ihrem Tier tatsächlich anfallen, kann Ihnen nur Ihre eigene Tierärztin oder Ihr eigener Tierarzt sagen.
-
-## Quellen
-
-- Gebührenordnung für Tierärztinnen und Tierärzte (GOT) vom 10. Oktober 2022, §§ 2, 3, 4, 5, 7 und 12 sowie Anlage (Gebührenverzeichnis), gesetze-im-internet.de/got_2022 und buzer.de/GOT.htm
-- Bundestierärztekammer, „Die Gebührenordnung für Tierärztinnen und Tierärzte (GOT): Erläuterungen für Tierhalter:innen“, Stand 29. August 2022 (bundestieraerztekammer.de)
-- Bundestierärztekammer, Themenseite GOT mit FAQ zum Notdienst (bundestieraerztekammer.de/tieraerzte/beruf/got)
-- Bundesverband Praktizierender Tierärzte, „Fragen und Antworten zur tierärztlichen Abrechnung“ (tieraerzteverband.de)
-- Stiftung Warentest, Vergleich Hundekrankenversicherungen und OP-Versicherungen (test.de)
-- § 35a Einkommensteuergesetz (haushaltsnahe Dienstleistungen), gesetze-im-internet.de

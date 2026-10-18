@@ -7,6 +7,13 @@ urgency: emergency
 updated: 2026-10-14
 draft: true
 lang: it
+references:
+  - title: "International Cat Care: Urethral obstruction in cats"
+    url: "https://icatcare.org/articles/urethral-obstruction-in-cats"
+  - title: "Cornell Feline Health Center: Feline Lower Urinary Tract Disease"
+    url: "https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/feline-lower-urinary-tract-disease"
+  - title: "MSD Veterinary Manual: Obstructive Uropathy in Dogs and Cats"
+    url: "https://www.msdvetmanual.com/urinary-system/noninfectious-diseases-of-the-urinary-system-in-small-animals/obstructive-uropathy-in-small-animals"
 ---
 
 ## Prima di tutto: i segni per cui andare subito dal veterinario

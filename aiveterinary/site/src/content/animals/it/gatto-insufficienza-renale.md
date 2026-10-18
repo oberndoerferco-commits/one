@@ -7,6 +7,9 @@ urgency: this-week
 updated: 2026-10-14
 draft: true
 lang: it
+references:
+  - title: "International Renal Interest Society (IRIS), linee guida per la stadiazione e il trattamento della malattia renale cronica nel gatto (iris-kidney.com)"
+  - title: "International Society of Feline Medicine (ISFM), consensus guidelines sulla diagnosi e gestione della malattia renale cronica felina"
 ---
 
 ## Prima di tutto: i segni per cui andare subito dal veterinario
@@ -99,8 +102,3 @@ In un gatto anziano che beve di più vanno considerati anche ipertiroidismo, dia
 | | Tumori |
 
 Spesso un gatto anziano ha più di una di queste condizioni insieme, e il piano va calibrato di conseguenza. Per il tuo gatto, il percorso giusto è quello che costruisci con il tuo veterinario.
-
-## Fonti
-
-- International Renal Interest Society (IRIS), linee guida per la stadiazione e il trattamento della malattia renale cronica nel gatto (iris-kidney.com)
-- International Society of Feline Medicine (ISFM), consensus guidelines sulla diagnosi e gestione della malattia renale cronica felina

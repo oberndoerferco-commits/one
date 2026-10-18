@@ -7,6 +7,9 @@ urgency: routine
 updated: 2026-10-14
 draft: true
 lang: de
+references:
+  - title: "ESCCAP Deutschland: Empfehlungen zur Bekämpfung von Würmern (Helminthen) bei Hunden und Katzen (Entwurmungsintervalle nach Risiko)"
+  - title: "ESCCAP: Factsheet Giardia-Infektion bei Hund und Katze"
 ---
 
 ## Ist es schlimm, wenn mein Hund Gras, Kot oder Erde frisst?
@@ -82,8 +85,3 @@ Was, wie oft und seit wann er es frisst, ob er vorher Übelkeit zeigt, Futter, K
 - Veränderungen im Alltag, Beschäftigung, Alleinsein
 
 In den meisten Fällen endet das Gespräch mit Beruhigung, einer Kotprobe und ein paar Tipps zum Training. Ob bei *Ihrem* Hund mehr dahintersteckt, kann nur Ihre eigene Praxis nach einer Untersuchung sagen.
-
-## Quellen
-
-- ESCCAP Deutschland: Empfehlungen zur Bekämpfung von Würmern (Helminthen) bei Hunden und Katzen (Entwurmungsintervalle nach Risiko)
-- ESCCAP: Factsheet Giardia-Infektion bei Hund und Katze

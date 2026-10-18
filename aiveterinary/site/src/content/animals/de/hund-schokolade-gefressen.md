@@ -7,6 +7,15 @@ urgency: emergency
 updated: 2026-10-14
 draft: true
 lang: de
+references:
+  - title: "MSD Veterinary Manual: Chocolate Toxicosis in Animals"
+    url: "https://www.msdvetmanual.com/toxicology/food-hazards/chocolate-toxicosis-in-animals"
+  - title: "PDSA: Chocolate poisoning in dogs"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/chocolate-poisoning"
+  - title: "ASPCA: People Foods to Avoid Feeding Your Pets"
+    url: "https://www.aspca.org/pet-care/animal-poison-control/people-foods-avoid-feeding-your-pets"
+  - title: "MSD Veterinary Manual: Salt Toxicosis in Animals"
+    url: "https://www.msdvetmanual.com/toxicology/salt-toxicity/overview-of-salt-toxicity"
 ---
 
 ## Zuerst: rufen Sie an, bevor Symptome da sind

@@ -7,6 +7,9 @@ urgency: this-week
 updated: 2026-10-14
 draft: true
 lang: de
+references:
+  - title: "International Renal Interest Society (IRIS): Staging of CKD in Cats and Dogs (aktuelle Fassung auf iris-kidney.com)"
+  - title: "Leitfaden zur chronischen Nierenerkrankung der Katze, Deutscher Tierärztekongress (Praxisleitfaden zur IRIS-Einteilung)"
 ---
 
 ## Zuerst: die Anzeichen, bei denen Sie sofort fahren sollten
@@ -98,8 +101,3 @@ Häufig kommen Bluthochdruck, Blutarmut, Harnwegsinfekte, Verstopfung und Zahner
 | Zahnerkrankung | Akutes Nierenversagen (z. B. durch Lilien, Frostschutzmittel) |
 
 Die IRIS-Einstufung und der Plan für *Ihre* Katze gehören in die Hände Ihrer eigenen Praxis; dort können Sie mit diesem Vokabular jetzt gezielter nachfragen.
-
-## Quellen
-
-- International Renal Interest Society (IRIS): Staging of CKD in Cats and Dogs (aktuelle Fassung auf iris-kidney.com)
-- Leitfaden zur chronischen Nierenerkrankung der Katze, Deutscher Tierärztekongress (Praxisleitfaden zur IRIS-Einteilung)

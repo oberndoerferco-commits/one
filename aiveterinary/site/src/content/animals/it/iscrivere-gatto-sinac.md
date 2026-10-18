@@ -7,6 +7,10 @@ urgency: routine
 updated: 2026-10-14
 draft: true
 lang: it
+references:
+  - title: "Ministero della Salute, pagine sul Sistema di Identificazione Nazionale degli Animali da Compagnia (SINAC); decreto legislativo 5 agosto 2022, n. 134; decreto ministeriale 2 novembre 2023 \"Modalità tecniche e operative per l'implementazione del SINAC\""
+  - title: "Regione Friuli Venezia Giulia, \"Gatti: responsabilità e doveri\", art. 27 bis L.R. 20/2012 (regione.fvg.it)"
+  - title: "Regione del Veneto, \"Anagrafe canina\", termini per iscrizione e comunicazioni (regione.veneto.it)"
 ---
 
 ## Cos'è il SINAC?
@@ -81,9 +85,3 @@ Età e provenienza del gatto, se ha già un microchip, i tuoi dati, se viaggeret
 - Se è sterilizzato e quali vaccini ha fatto, perché spesso si aggiornano insieme
 
 Per sapere esattamente cosa prevede la tua Regione e quali termini valgono per te, chiedi al tuo veterinario o al servizio veterinario della tua ASL.
-
-## Fonti
-
-- Ministero della Salute, pagine sul Sistema di Identificazione Nazionale degli Animali da Compagnia (SINAC); decreto legislativo 5 agosto 2022, n. 134; decreto ministeriale 2 novembre 2023 "Modalità tecniche e operative per l'implementazione del SINAC"
-- Regione Friuli Venezia Giulia, "Gatti: responsabilità e doveri", art. 27 bis L.R. 20/2012 (regione.fvg.it)
-- Regione del Veneto, "Anagrafe canina", termini per iscrizione e comunicazioni (regione.veneto.it)

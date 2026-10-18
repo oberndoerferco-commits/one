@@ -7,6 +7,10 @@ urgency: routine
 updated: 2026-10-14
 draft: true
 lang: it
+references:
+  - title: "WSAVA, Vaccination Guidelines for the owners and breeders of dogs and cats (wsava.org)"
+  - title: "Ministero della Salute, comunicazione del 2013 sul riacquisto dello status di Paese indenne da rabbia e revoca dell'obbligo vaccinale nel Nord-Est (salute.gov.it, anmvi.it)"
+  - title: "Regolamento delegato (UE) 2026/131 sui movimenti a carattere non commerciale di animali da compagnia (in vigore dal 22 aprile 2026, sostituisce il Reg. 576/2013)"
 ---
 
 ## Quali vaccini sono obbligatori per il cane in Italia?
@@ -80,9 +84,3 @@ Di solito nessuno o solo un po' di sonnolenza e fastidio nel punto dell'iniezion
 La maggior parte dei cani non ha nessuna reazione, o solo un po' di sonnolenza e un piccolo fastidio nel punto dell'iniezione per un giorno. Chiama il veterinario in giornata se compaiono gonfiore del muso, vomito ripetuto, orticaria o difficoltà a respirare, e segnala qualunque reazione prima della vaccinazione successiva.
 
 Il calendario giusto per il tuo cane, e i vaccini non-core che hanno senso nella tua zona, li decidi con il tuo veterinario.
-
-## Fonti
-
-- WSAVA, Vaccination Guidelines for the owners and breeders of dogs and cats (wsava.org)
-- Ministero della Salute, comunicazione del 2013 sul riacquisto dello status di Paese indenne da rabbia e revoca dell'obbligo vaccinale nel Nord-Est (salute.gov.it, anmvi.it)
-- Regolamento delegato (UE) 2026/131 sui movimenti a carattere non commerciale di animali da compagnia (in vigore dal 22 aprile 2026, sostituisce il Reg. 576/2013)

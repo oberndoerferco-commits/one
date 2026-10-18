@@ -7,6 +7,13 @@ urgency: routine
 updated: 2026-10-14
 draft: true
 lang: de
+references:
+  - title: "Gebührenordnung für Tierärztinnen und Tierärzte (GOT) vom 10. Oktober 2022, §§ 2, 4, 5, 7 sowie Anlage (Gebührenverzeichnis, Nr. 16, 377, 600, 604), gesetze-im-internet.de/got_2022"
+  - title: "Bundestierärztekammer, „Die GOT: Erläuterungen für Tierhalter:innen“, Stand 29. August 2022 (bundestieraerztekammer.de), mit dem Beispielwert für Nr. 16"
+  - title: "Bundesverband Praktizierender Tierärzte, „Fragen und Antworten zur tierärztlichen Abrechnung“ (tieraerzteverband.de)"
+  - title: "GOT-Tabellen mit den Positionen 377, 600 und 604 bei deutschland-rechner.de (Tierarztkosten-Rechner) und allianz.de (Kastration Hund), beide abgeglichen mit dem Verordnungstext"
+  - title: "zooplus Magazin, „Hund kastrieren lassen“ (tierärztlich geprüft), zu Ablauf, Nachsorge und Hormonimplantat"
+  - title: "AniCura Tierklinik Lörrach, Informationsblatt zur laparoskopischen Kastration der Hündin (anicura.de)"
 ---
 
 ## Warum gibt es für die Kastration eines Hundes keinen Festpreis?
@@ -76,12 +83,3 @@ Ein verbindlicher Kostenvoranschlag ist in der Tiermedizin nicht möglich, aber 
 Prüfen Sie die Rechnung anschließend: Sie muss Datum, Tierart, Grund des Eingriffs, jede Leistung mit Positionsnummer, Betrag und Umsatzsteuer enthalten. OP-Versicherungen übernehmen Kastrationen ohne medizinischen Grund meist nicht; Vollversicherungen zahlen teilweise einen Zuschuss. Fragen Sie vor dem Termin nach.
 
 Ob und wann eine Kastration für Ihren Hund sinnvoll ist und welche Methode passt, besprechen Sie am besten mit Ihrer eigenen Tierärztin oder Ihrem eigenen Tierarzt.
-
-## Quellen
-
-- Gebührenordnung für Tierärztinnen und Tierärzte (GOT) vom 10. Oktober 2022, §§ 2, 4, 5, 7 sowie Anlage (Gebührenverzeichnis, Nr. 16, 377, 600, 604), gesetze-im-internet.de/got_2022
-- Bundestierärztekammer, „Die GOT: Erläuterungen für Tierhalter:innen“, Stand 29. August 2022 (bundestieraerztekammer.de), mit dem Beispielwert für Nr. 16
-- Bundesverband Praktizierender Tierärzte, „Fragen und Antworten zur tierärztlichen Abrechnung“ (tieraerzteverband.de)
-- GOT-Tabellen mit den Positionen 377, 600 und 604 bei deutschland-rechner.de (Tierarztkosten-Rechner) und allianz.de (Kastration Hund), beide abgeglichen mit dem Verordnungstext
-- zooplus Magazin, „Hund kastrieren lassen“ (tierärztlich geprüft), zu Ablauf, Nachsorge und Hormonimplantat
-- AniCura Tierklinik Lörrach, Informationsblatt zur laparoskopischen Kastration der Hündin (anicura.de)
