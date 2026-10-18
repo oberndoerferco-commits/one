@@ -25,7 +25,9 @@ const NEXT = ({
   de: { emergency: ['Rufen Sie jetzt Ihre Praxis oder eine Notdienstklinik an. Unsicher? Zeichen prüfen', '/de/emergency'], today: ['Heute zur Praxis? Einseitige Übersicht vorbereiten', '/de/visit-brief'], 'this-week': ['Bis zum Termin im Symptomtagebuch notieren', '/de/passport'], routine: ['Termine und Notizen im Gesundheitspass festhalten', '/de/passport'], h: 'Nächster Schritt' },
 } as any)[lang];
 const next = d.urgency ? NEXT[d.urgency] : null;
-const toolLink = CHOC.has(slug!) ? ({ en: ['Ate chocolate? Work out the dose for your dog', '/chocolate'], it: ['Ha mangiato cioccolato? Calcola la dose per il tuo cane', '/it/chocolate'], de: ['Schokolade gefressen? Dosis für Ihren Hund berechnen', '/de/chocolate'] } as any)[lang] : null;
+const VACC = new Set(['puppy-kitten-first-year', 'vaccinations-dogs-cats', 'primo-anno-cucciolo-gattino', 'vaccini-cane-obbligatori-italia', 'erstes-jahr-welpe-kitten', 'hund-impfung-kosten', 'leptospirose-hund']);
+const vaccLink = ({ en: ['Plan the first-year vaccination dates', '/vaccine-planner'], it: ['Pianifica le date dei vaccini del primo anno', '/it/vaccine-planner'], de: ['Impftermine im ersten Jahr planen', '/de/vaccine-planner'] } as any)[lang];
+const toolLink = CHOC.has(slug!) ? ({ en: ['Ate chocolate? Work out the dose for your dog', '/chocolate'], it: ['Ha mangiato cioccolato? Calcola la dose per il tuo cane', '/it/chocolate'], de: ['Schokolade gefressen? Dosis für Ihren Hund berechnen', '/de/chocolate'] } as any)[lang] : VACC.has(slug!) ? vaccLink : null;
 const minutes = Math.max(1, Math.round(((entry.body ?? '').split(/\s+/).length) / 200));
 const minLabel = ({ en: 'min read', it: 'min di lettura', de: 'Min. Lesezeit' } as any)[lang];
 const fmt = (x: Date) => x.toLocaleDateString(t.locale, { day: 'numeric', month: 'long', year: 'numeric' });
