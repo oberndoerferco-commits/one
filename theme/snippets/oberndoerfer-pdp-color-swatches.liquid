@@ -67,7 +67,7 @@
         row.setAttribute('aria-label', 'Available colours');
         var label = document.createElement('p');
         label.className = 'ob-pdp-colours__label';
-        label.innerHTML = 'Colour <b></b> &middot; ' + palette.length + ' colours';
+        label.innerHTML = (parsed.label || 'Colour') + ' <b></b> &middot; ' + palette.length + ' colours';
         label.querySelector('b').textContent = parsed.color;
         row.appendChild(label);
         palette.forEach(function (c) {

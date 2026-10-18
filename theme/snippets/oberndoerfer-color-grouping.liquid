@@ -172,6 +172,12 @@
 
     var OB_SUFFIX_GROUPS = ['Leather Coaster Set', 'Leather Pouf', 'Leather Tray'];
 
+    /* "<base> <colour>" with no hyphen, where the colour is the print, not the cloth (owner,
+       18 October: the Magenta and Ochre logo T-shirts swap between each other; each also comes
+       in white and black as its own option). The colour must be one known colour word, so the
+       plain "T-Shirt with Logo" (the star lattice) stays out. Labelled "Print" on the product page. */
+    var OB_PREFIX_GROUPS = ['T-Shirt with Logo'];
+
     /* ONE CARD PER FAMILY, for the alligator SAC only (4 Oct). The 3 Oct version collapsed
        every colour family on collection pages; the owner: "you see no other color of any
        product anymore, i just wanted the sac and model 017 ... take back all of the color
@@ -213,7 +219,8 @@
       ['silver', '#bdbdbd'], ['grey', '#8b8b8b'], ['gray', '#8b8b8b'], ['charcoal', '#3c3c3c'],
       ['anthracite', '#3c3c3c'], ['graphite', '#4a4a4a'], ['leopard', '#b9975b'],
       ['natural', '#d9cbb3'], ['honey', '#c98f3b'], ['rust', '#a8492a'], ['terracotta', '#b7593a'],
-      ['denim', '#4a6491'], ['jeans', '#4a6491'], ['multicolor', '#b9975b'], ['multicolour', '#b9975b']
+      ['denim', '#4a6491'], ['jeans', '#4a6491'], ['multicolor', '#b9975b'], ['multicolour', '#b9975b'],
+      ['magenta', '#c4005f'], ['ochre', '#e6a85c']
     ];
 
     /* every colour word in the name, in order, with its dark/light modifier applied */
@@ -372,8 +379,19 @@
       return null;
     }
 
+    function splitByPrefix(title) {
+      for (var g = 0; g < OB_PREFIX_GROUPS.length; g++) {
+        var base = OB_PREFIX_GROUPS[g];
+        if (title.toLowerCase().indexOf(base.toLowerCase() + ' ') !== 0) continue;
+        var color = title.slice(base.length).trim();
+        if (color.indexOf(' ') !== -1 || !namedColour(color)) continue;
+        return {base: base, color: color, label: 'Print'};
+      }
+      return null;
+    }
+
     function split(title, handle) {
-      return splitByHyphen(title) || splitBySuffix(title) || splitBare(title, handle);
+      return splitByHyphen(title) || splitBySuffix(title) || splitByPrefix(title) || splitBare(title, handle);
     }
 
     /* ---- catalog: the whole color range, not just what's on this page ---- */
