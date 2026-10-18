@@ -136,7 +136,7 @@ Everything costs €0 unless marked €. Legend:
 - [x] Bilingual owner letter (EN/IT/DE) with the medication rows checked identical across every document (TR/AR/UK still open)
 - [x] Snippets / dot-phrases: clinic-written, expand only on a typed trigger, before structuring so spans still hold (`expandSnippets`)
 - [x] Clinic abbreviation + glossary manager — S ★★★
-- [ ] Template builder (sections, order, required fields, per-vet defaults); specialty sets: derm, ortho, dental, ophtho, cardio, exotics, equine — M ★★
+- [~] Template builder: clinic-required fields done (flags only, `app/src/clinic-required.ts`); sections, order, per-vet defaults and specialty sets (derm, ortho, dental, ophtho, cardio, exotics, equine) still to do — M ★★
 - [ ] Multi-pet consultation UI (assign bullets, split documents, one owner letter) — M ★★
 - [x] Image attachment (stored, referenced, never interpreted) — S ★★
 - [x] Nurse draft → vet co-sign with stamp and audit — S ★★★
