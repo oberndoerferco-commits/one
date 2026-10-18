@@ -1,0 +1,122 @@
+---
+/**
+ * "Can my pet eat that?" lookup. Every entry restates the ASPCA Animal Poison Control list
+ * (people foods to avoid feeding your pets) and nothing else: species and risks as written there.
+ * There is no "safe" answer: a food that is not listed is reported as not listed, never as fine.
+ */
+interface Props { lang: 'en' | 'it' | 'de' }
+const { lang } = Astro.props;
+type Entry = { id: string; words: Record<string, string[]>; name: Record<string, string>; who: Record<string, string>; risk: Record<string, string>; link?: Record<string, string> };
+const FOODS: Entry[] = [
+  { id: 'chocolate', words: { en: ['chocolate', 'cocoa', 'coffee', 'caffeine', 'tea', 'energy drink'], it: ['cioccolato', 'cioccolata', 'cacao', 'caffè', 'caffeina', 'tè'], de: ['schokolade', 'kakao', 'kaffee', 'koffein', 'tee', 'energydrink'] },
+    name: { en: 'Chocolate, coffee and caffeine', it: 'Cioccolato, caffè e caffeina', de: 'Schokolade, Kaffee und Koffein' },
+    who: { en: 'Pets', it: 'Animali domestici', de: 'Haustiere' },
+    risk: { en: 'Vomiting and diarrhoea, panting, excessive thirst and urination; in larger amounts abnormal heart rhythm, tremors, seizures and death. The darker the chocolate and the more caffeine, the higher the risk.', it: 'Vomito e diarrea, respiro affannoso, sete e urinazione eccessive; in quantità maggiori ritmo cardiaco anomalo, tremori, convulsioni e morte. Più il cioccolato è scuro e più caffeina contiene, maggiore è il rischio.', de: 'Erbrechen und Durchfall, Hecheln, starker Durst und vermehrtes Urinieren; in größeren Mengen Herzrhythmusstörungen, Zittern, Krampfanfälle und Tod. Je dunkler die Schokolade und je mehr Koffein, desto größer das Risiko.' },
+    link: { en: '/chocolate', it: '/it/chocolate', de: '/de/chocolate' } },
+  { id: 'xylitol', words: { en: ['xylitol', 'sugar-free', 'sugar free', 'chewing gum', 'gum', 'sweetener', 'birch sugar', 'toothpaste', 'candy', 'sweets'], it: ['xilitolo', 'senza zucchero', 'gomma da masticare', 'chewing gum', 'dolcificante', 'zucchero di betulla', 'dentifricio', 'caramelle'], de: ['xylit', 'xylitol', 'zuckerfrei', 'kaugummi', 'süßstoff', 'birkenzucker', 'zahnpasta', 'bonbons'] },
+    name: { en: 'Xylitol (a sweetener in gum, sweets, baked goods and toothpaste)', it: 'Xilitolo (dolcificante in gomme da masticare, caramelle, prodotti da forno e dentifricio)', de: 'Xylit (Süßungsmittel in Kaugummi, Bonbons, Backwaren und Zahnpasta)' },
+    who: { en: 'Pets', it: 'Animali domestici', de: 'Haustiere' },
+    risk: { en: 'Low blood sugar and possible liver damage. Early signs are vomiting, lethargy and loss of coordination, which can progress to seizures. Liver damage can occur within 12 to 24 hours and may cause abnormal bleeding.', it: 'Calo della glicemia e possibile danno al fegato. I primi segni sono vomito, letargia e perdita di coordinazione, che possono arrivare a convulsioni. Il danno al fegato può comparire entro 12–24 ore e causare sanguinamenti anomali.', de: 'Unterzuckerung und mögliche Leberschäden. Erste Zeichen sind Erbrechen, Mattigkeit und Koordinationsverlust, die bis zu Krampfanfällen fortschreiten können. Leberschäden können innerhalb von 12 bis 24 Stunden auftreten und zu abnormen Blutungen führen.' } },
+  { id: 'grapes', words: { en: ['grape', 'grapes', 'raisin', 'raisins', 'sultana', 'sultanas', 'currant', 'currants'], it: ['uva', 'uvetta', 'uva passa', 'sultanina'], de: ['traube', 'trauben', 'weintraube', 'weintrauben', 'rosine', 'rosinen', 'sultanine', 'korinthen'] },
+    name: { en: 'Grapes and raisins', it: 'Uva e uvetta', de: 'Weintrauben und Rosinen' },
+    who: { en: 'Dogs', it: 'Cani', de: 'Hunde' },
+    risk: { en: 'Can lead to kidney damage. Tartaric acid is suspected to be the toxic component.', it: 'Possono causare danni ai reni. Si sospetta che la sostanza tossica sia l’acido tartarico.', de: 'Können zu Nierenschäden führen. Als giftiger Bestandteil wird Weinsäure vermutet.' } },
+  { id: 'allium', words: { en: ['onion', 'onions', 'garlic', 'chives', 'leek', 'shallot', 'spring onion'], it: ['cipolla', 'cipolle', 'aglio', 'erba cipollina', 'porro', 'scalogno', 'cipollotto'], de: ['zwiebel', 'zwiebeln', 'knoblauch', 'schnittlauch', 'lauch', 'porree', 'schalotte', 'frühlingszwiebel'] },
+    name: { en: 'Onion, garlic and chives', it: 'Cipolla, aglio ed erba cipollina', de: 'Zwiebel, Knoblauch und Schnittlauch' },
+    who: { en: 'Cats are more susceptible; dogs are at risk depending on the amount', it: 'I gatti sono più sensibili; i cani sono a rischio a seconda della quantità', de: 'Katzen sind empfindlicher; Hunde sind je nach Menge gefährdet' },
+    risk: { en: 'Stomach and gut irritation and damage to red blood cells, which can lead to anaemia.', it: 'Irritazione gastrointestinale e danno ai globuli rossi, che può portare ad anemia.', de: 'Reizung von Magen und Darm und Schädigung der roten Blutkörperchen, was zu Blutarmut führen kann.' } },
+  { id: 'macadamia', words: { en: ['macadamia'], it: ['macadamia'], de: ['macadamia'] },
+    name: { en: 'Macadamia nuts', it: 'Noci di macadamia', de: 'Macadamianüsse' },
+    who: { en: 'Dogs', it: 'Cani', de: 'Hunde' },
+    risk: { en: 'Weakness, incoordination, depression, vomiting, tremors and overheating, usually within 12 hours.', it: 'Debolezza, incoordinazione, abbattimento, vomito, tremori e ipertermia, di solito entro 12 ore.', de: 'Schwäche, Koordinationsstörungen, Teilnahmslosigkeit, Erbrechen, Zittern und Überhitzung, meist innerhalb von 12 Stunden.' } },
+  { id: 'alcohol', words: { en: ['alcohol', 'beer', 'wine', 'spirits', 'dough', 'yeast', 'bread dough', 'pizza dough'], it: ['alcol', 'birra', 'vino', 'liquore', 'impasto', 'lievito', 'pasta cruda'], de: ['alkohol', 'bier', 'wein', 'schnaps', 'teig', 'hefe', 'hefeteig', 'pizzateig'] },
+    name: { en: 'Alcohol and raw yeast dough', it: 'Alcol e impasto crudo con lievito', de: 'Alkohol und roher Hefeteig' },
+    who: { en: 'Pets', it: 'Animali domestici', de: 'Haustiere' },
+    risk: { en: 'Vomiting, diarrhoea, incoordination, depression, difficulty breathing and tremors, which can lead to coma or death. Raw dough can also cause painful gas and bloating that may twist the stomach.', it: 'Vomito, diarrea, incoordinazione, abbattimento, difficoltà respiratorie e tremori, fino a coma o morte. L’impasto crudo può anche causare gas e gonfiore dolorosi, con rischio di torsione dello stomaco.', de: 'Erbrechen, Durchfall, Koordinationsstörungen, Teilnahmslosigkeit, Atemnot und Zittern bis hin zu Koma oder Tod. Roher Teig kann außerdem schmerzhafte Gase und Blähungen verursachen, die zu einer Magendrehung führen können.' } },
+  { id: 'avocado', words: { en: ['avocado', 'guacamole'], it: ['avocado', 'guacamole'], de: ['avocado', 'guacamole'] },
+    name: { en: 'Avocado', it: 'Avocado', de: 'Avocado' },
+    who: { en: 'Birds, rabbits, horses, donkeys, sheep and goats', it: 'Uccelli, conigli, cavalli, asini, pecore e capre', de: 'Vögel, Kaninchen, Pferde, Esel, Schafe und Ziegen' },
+    risk: { en: 'Heart damage and death in birds and rabbits; in horses, donkeys and ruminants swelling of the head and neck and heart problems.', it: 'Danni al cuore e morte in uccelli e conigli; in cavalli, asini e ruminanti gonfiore di testa e collo e problemi cardiaci.', de: 'Herzschäden und Tod bei Vögeln und Kaninchen; bei Pferden, Eseln und Wiederkäuern Schwellungen an Kopf und Hals und Herzprobleme.' } },
+  { id: 'salt', words: { en: ['salt', 'crisps', 'chips', 'pretzel', 'salty', 'play dough', 'playdough'], it: ['sale', 'patatine', 'salatini', 'pasta di sale', 'salato'], de: ['salz', 'chips', 'salzstangen', 'brezel', 'salzig', 'knete', 'salzteig'] },
+    name: { en: 'Salt and very salty foods', it: 'Sale e cibi molto salati', de: 'Salz und sehr salzige Lebensmittel' },
+    who: { en: 'Pets', it: 'Animali domestici', de: 'Haustiere' },
+    risk: { en: 'Thirst and more urination; in excess, vomiting, diarrhoea, depression, tremors, seizures and death.', it: 'Sete e più urina; in eccesso vomito, diarrea, abbattimento, tremori, convulsioni e morte.', de: 'Durst und vermehrtes Urinieren; im Übermaß Erbrechen, Durchfall, Teilnahmslosigkeit, Zittern, Krampfanfälle und Tod.' } },
+  { id: 'nuts', words: { en: ['nut', 'nuts', 'almond', 'almonds', 'pecan', 'pecans', 'walnut', 'walnuts'], it: ['noci', 'noce', 'mandorla', 'mandorle', 'noci pecan'], de: ['nuss', 'nüsse', 'mandel', 'mandeln', 'pekannuss', 'walnuss', 'walnüsse'] },
+    name: { en: 'Nuts such as almonds, pecans and walnuts', it: 'Frutta secca come mandorle, noci pecan e noci', de: 'Nüsse wie Mandeln, Pekannüsse und Walnüsse' },
+    who: { en: 'Pets', it: 'Animali domestici', de: 'Haustiere' },
+    risk: { en: 'High in fat and oil: vomiting, diarrhoea and possibly pancreatitis.', it: 'Ricca di grassi e oli: vomito, diarrea e possibile pancreatite.', de: 'Reich an Fett und Öl: Erbrechen, Durchfall und möglicherweise Bauchspeicheldrüsenentzündung.' } },
+  { id: 'raw', words: { en: ['raw meat', 'raw egg', 'raw eggs', 'egg', 'eggs', 'bone', 'bones', 'chicken bone'], it: ['carne cruda', 'uovo crudo', 'uova crude', 'uovo', 'uova', 'osso', 'ossa', 'ossa di pollo'], de: ['rohes fleisch', 'rohes ei', 'rohe eier', 'ei', 'eier', 'knochen', 'hühnerknochen'] },
+    name: { en: 'Raw or undercooked meat, raw eggs and bones', it: 'Carne cruda o poco cotta, uova crude e ossa', de: 'Rohes oder nicht durchgegartes Fleisch, rohe Eier und Knochen' },
+    who: { en: 'Pets (bones: dogs and cats)', it: 'Animali domestici (ossa: cani e gatti)', de: 'Haustiere (Knochen: Hunde und Katzen)' },
+    risk: { en: 'Raw meat and eggs can carry Salmonella and E. coli; raw eggs can affect skin and coat by interfering with a vitamin. Bones can injure or block the gut, which may need surgery.', it: 'Carne e uova crude possono contenere Salmonella ed E. coli; le uova crude possono danneggiare pelle e pelo interferendo con una vitamina. Le ossa possono ferire o ostruire l’intestino, a volte serve un intervento.', de: 'Rohes Fleisch und rohe Eier können Salmonellen und E. coli enthalten; rohe Eier können durch Störung der Aufnahme eines Vitamins Haut und Fell schaden. Knochen können den Verdauungstrakt verletzen oder verstopfen, was eine Operation nötig machen kann.' } },
+  { id: 'citrus', words: { en: ['citrus', 'orange', 'lemon', 'lime', 'grapefruit', 'mandarin', 'peel'], it: ['agrumi', 'arancia', 'limone', 'lime', 'pompelmo', 'mandarino', 'buccia'], de: ['zitrus', 'orange', 'zitrone', 'limette', 'grapefruit', 'mandarine', 'schale'] },
+    name: { en: 'Citrus (stems, leaves, peel, fruit and seeds)', it: 'Agrumi (gambi, foglie, buccia, frutto e semi)', de: 'Zitrusfrüchte (Stiele, Blätter, Schale, Frucht und Kerne)' },
+    who: { en: 'Pets', it: 'Animali domestici', de: 'Haustiere' },
+    risk: { en: 'In larger amounts irritation and possibly depression; small amounts of the fruit are likely to cause only minor stomach upset.', it: 'In quantità maggiori irritazione e possibile abbattimento; piccole quantità del frutto causano probabilmente solo un lieve disturbo di stomaco.', de: 'In größeren Mengen Reizungen und möglicherweise Teilnahmslosigkeit; kleine Mengen der Frucht verursachen wahrscheinlich nur leichte Magenbeschwerden.' } },
+  { id: 'dairy', words: { en: ['milk', 'dairy', 'cheese', 'cream', 'ice cream', 'yoghurt', 'yogurt'], it: ['latte', 'latticini', 'formaggio', 'panna', 'gelato', 'yogurt'], de: ['milch', 'milchprodukte', 'käse', 'sahne', 'eis', 'speiseeis', 'joghurt'] },
+    name: { en: 'Milk and dairy', it: 'Latte e latticini', de: 'Milch und Milchprodukte' },
+    who: { en: 'Pets', it: 'Animali domestici', de: 'Haustiere' },
+    risk: { en: 'Pets have little lactase, the enzyme that digests milk sugar, so dairy can cause diarrhoea or other digestive upset.', it: 'Gli animali hanno poca lattasi, l’enzima che digerisce lo zucchero del latte, quindi i latticini possono causare diarrea o altri disturbi digestivi.', de: 'Haustiere haben wenig Laktase, das Enzym, das Milchzucker verdaut; Milchprodukte können daher Durchfall oder andere Verdauungsbeschwerden verursachen.' } },
+  { id: 'coconut', words: { en: ['coconut', 'coconut oil', 'coconut milk'], it: ['cocco', 'olio di cocco', 'latte di cocco'], de: ['kokos', 'kokosnuss', 'kokosöl', 'kokosmilch'] },
+    name: { en: 'Coconut and coconut oil', it: 'Cocco e olio di cocco', de: 'Kokosnuss und Kokosöl' },
+    who: { en: 'Pets', it: 'Animali domestici', de: 'Haustiere' },
+    risk: { en: 'Small amounts are unlikely to cause serious harm; fresh coconut flesh and milk may cause stomach upset, loose stools or diarrhoea.', it: 'Piccole quantità difficilmente causano danni seri; polpa e latte di cocco freschi possono dare disturbi di stomaco, feci molli o diarrea.', de: 'Kleine Mengen richten wahrscheinlich keinen ernsten Schaden an; frisches Kokosfleisch und Kokosmilch können Magenbeschwerden, weichen Kot oder Durchfall verursachen.' } },
+];
+const T = {
+  en: { title: 'Can my pet eat that?', lead: 'Type a food to see whether it is on the ASPCA Animal Poison Control list of people foods to keep away from pets, which animals it affects and what it can cause. This page never tells you a food is safe: a food that is not on the list is simply not on the list.', label: 'Food or ingredient', ph: 'e.g. grapes, onion, sugar-free gum', who: 'Affects', none: 'This is not on the list we use. That does not mean it is safe for your animal: ask your vet before feeding it, and call them if your animal is unwell.', ate: 'Already eaten? Call your vet now and say what, how much and when. Keep the packaging.', choc: 'Work out the chocolate dose', emerg: 'Is it an emergency?', emergHref: '/emergency', source: 'Source: ASPCA Animal Poison Control Center, People Foods to Avoid Feeding Your Pets, accessed 18 October 2026. Plants, medicines and household products are not covered here.' },
+  it: { title: 'Il mio animale può mangiarlo?', lead: 'Scrivi un alimento per vedere se è nell’elenco dell’ASPCA Animal Poison Control dei cibi umani da tenere lontani dagli animali, quali animali riguarda e cosa può causare. Questa pagina non dice mai che un cibo è sicuro: un cibo che non è nell’elenco semplicemente non è nell’elenco.', label: 'Alimento o ingrediente', ph: 'es. uva, cipolla, gomma senza zucchero', who: 'Riguarda', none: 'Non è nell’elenco che usiamo. Questo non significa che sia sicuro per il tuo animale: chiedi al veterinario prima di darglielo e chiamalo se l’animale sta male.', ate: 'L’ha già mangiato? Chiama subito il veterinario e digli cosa, quanto e quando. Conserva la confezione.', choc: 'Calcola la dose di cioccolato', emerg: 'È un’emergenza?', emergHref: '/it/emergency', source: 'Fonte: ASPCA Animal Poison Control Center, People Foods to Avoid Feeding Your Pets, consultato il 18 ottobre 2026 (traduzione nostra). Piante, farmaci e prodotti per la casa non sono trattati qui.' },
+  de: { title: 'Darf mein Tier das fressen?', lead: 'Geben Sie ein Lebensmittel ein und sehen Sie, ob es auf der Liste des ASPCA Animal Poison Control Center steht, welche menschlichen Lebensmittel Haustiere nicht bekommen sollten, welche Tiere betroffen sind und was es auslösen kann. Diese Seite sagt nie, dass ein Lebensmittel unbedenklich ist: Was nicht auf der Liste steht, steht eben nur nicht auf der Liste.', label: 'Lebensmittel oder Zutat', ph: 'z. B. Trauben, Zwiebel, zuckerfreier Kaugummi', who: 'Betrifft', none: 'Das steht nicht auf der Liste, die wir verwenden. Das heißt nicht, dass es für Ihr Tier unbedenklich ist: Fragen Sie Ihre Praxis, bevor Sie es füttern, und rufen Sie an, wenn es Ihrem Tier nicht gut geht.', ate: 'Schon gefressen? Rufen Sie jetzt Ihre Praxis an und sagen Sie, was, wie viel und wann. Verpackung aufheben.', choc: 'Schokoladendosis berechnen', emerg: 'Ist es ein Notfall?', emergHref: '/de/emergency', source: 'Quelle: ASPCA Animal Poison Control Center, People Foods to Avoid Feeding Your Pets, abgerufen am 18. Oktober 2026 (eigene Übersetzung). Pflanzen, Medikamente und Haushaltsprodukte sind hier nicht erfasst.' },
+}[lang];
+// Search words from all three languages, so "Schokolade" works on the English page too.
+const words = (f: Entry) => [...new Set(Object.values(f.words).flat().concat(Object.values(f.name).map((n) => n.toLowerCase())))].join('|');
+---
+<section class="wrap narrow hero"><h1>{T.title}</h1><p class="lead">{T.lead}</p></section>
+<section class="wrap narrow">
+  <form class="fc-form" role="search" onsubmit="return false">
+    <label for="fc-q">{T.label}</label>
+    <input id="fc-q" type="search" autocomplete="off" placeholder={T.ph} />
+  </form>
+  <p class="notice warn"><strong>{T.ate}</strong> <a href={T.emergHref}>{T.emerg}</a></p>
+  <p id="fc-none" class="notice" hidden aria-live="polite">{T.none}</p>
+  <ul class="fc-list" id="fc-list">
+    {FOODS.map((f) => (
+      <li class="fc-item" data-w={words(f)}>
+        <h2>{f.name[lang]}</h2>
+        <p class="fc-who"><strong>{T.who}:</strong> {f.who[lang]}</p>
+        <p>{f.risk[lang]}</p>
+        {f.link && <p><a class="btn secondary" href={f.link[lang]}>{T.choc}</a></p>}
+      </li>
+    ))}
+  </ul>
+  <p class="pp-hint">{T.source} <a href="https://www.aspca.org/pet-care/animal-poison-control/people-foods-avoid-feeding-your-pets" rel="noopener">aspca.org</a></p>
+</section>
+<script>
+  const q = document.getElementById('fc-q') as HTMLInputElement;
+  const items = [...document.querySelectorAll<HTMLElement>('.fc-item')];
+  const none = document.getElementById('fc-none') as HTMLElement;
+  const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').trim();
+  const run = () => {
+    const v = norm(q.value);
+    let shown = 0;
+    for (const li of items) {
+      const ws = norm(li.dataset.w ?? '').split('|');
+      // Typed text matches the start of a listed word, or a typed word starts with a listed one ("grapes" → "grape"),
+      // never a substring inside another word ("steak" must not match "tea", "Reis" must not match "Eis").
+      const toks = v.split(/[^\p{L}\p{N}]+/u).filter(Boolean);
+      const hit = !v || ws.some((w) => w.startsWith(v) || toks.some((t) => t.length >= 3 && w.length >= 3 && (t === w || (t.startsWith(w) && t.length - w.length <= 2))));
+      li.hidden = !hit; if (hit) shown++;
+    }
+    none.hidden = !(v && shown === 0);
+  };
+  q.addEventListener('input', run);
+  const p = new URLSearchParams(location.search).get('q'); if (p) { q.value = p; run(); }
+</script>
+<style is:global>
+  .fc-form { display: grid; gap: 6px; margin-bottom: 16px; font-weight: 600; }
+  .fc-form input { font: inherit; font-weight: 400; padding: 12px 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--bg); color: var(--ink); max-width: 100%; }
+  .fc-list { list-style: none; padding: 0; margin: 0 0 20px; display: grid; gap: 12px; }
+  .fc-item { padding: 16px 20px; border-radius: 20px; background: var(--surface); box-shadow: 0 1px 0 var(--line); border-left: 6px solid var(--warn); }
+  .fc-item h2 { font-size: 1.2rem; margin: 0 0 6px; }
+  .fc-item p { margin: 6px 0; }
+  .fc-who { color: var(--ink-2); }
+</style>
