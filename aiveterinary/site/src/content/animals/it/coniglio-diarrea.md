@@ -15,7 +15,7 @@ references:
   - title: "Varga M. Digestive Disorders, in Textbook of Rabbit Medicine, 2a ed., Elsevier (PubMed Central)"
     url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7149685"
   - title: "PDSA: Flystrike in rabbits"
-    url: "https://www.pdsa.org.uk/taking-care-of-your-pet/looking-after-your-pet/rabbits/flystrike"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/flystrike-in-rabbits"
 ---
 
 ## Prima di tutto: quando andare subito dal veterinario
