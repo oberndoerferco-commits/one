@@ -1,5 +1,6 @@
 ---
 title: "Antibiotika für Hund und Katze: warum die ganze Behandlung zählt und wie Sie sie richtig geben"
+seoTitle: "Antibiotika für Hund und Katze: richtig und vollständig geben"
 description: "Was Antibiotika können und was nicht, wie Tabletten und Säfte in Hund oder Katze kommen, was bei einer vergessenen Dosis zu tun ist, welche Nebenwirkungen einen Anruf wert sind und warum Reste nie zurück in den Schrank gehören."
 species: general
 category: medications

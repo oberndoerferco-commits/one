@@ -1,5 +1,6 @@
 ---
 title: "Hündin läufig: Phasen, Dauer, Scheinträchtigkeit und Warnzeichen einer Gebärmuttervereiterung"
+seoTitle: "Hündin läufig: Phasen, Dauer und Warnzeichen"
 description: "Wie lange die Läufigkeit dauert, was in den einzelnen Phasen passiert, wie Sie mit einer Scheinträchtigkeit umgehen und welche Anzeichen nach der Läufigkeit auf eine lebensgefährliche Gebärmuttervereiterung (Pyometra) hinweisen."
 species: dog
 category: care

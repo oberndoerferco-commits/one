@@ -1,5 +1,6 @@
 ---
 title: "Anti-inflammatory painkillers (NSAIDs) for dogs and cats: what they treat, how to give them safely, when to stop and call"
+seoTitle: "NSAID painkillers for dogs and cats: giving them safely, when to stop"
 description: "NSAIDs are the painkillers vets prescribe most often for arthritis, surgery and injuries. Why your own paracetamol or ibuprofen can kill a cat or harm a dog, why the tablet goes in with food, and the stomach and kidney warning signs that mean stop and call."
 species: general
 category: medications

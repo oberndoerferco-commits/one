@@ -1,5 +1,6 @@
 ---
 title: "Kaninchen hat Durchfall: Blinddarmkot oder echter Durchfall, und wann es lebensgefährlich wird"
+seoTitle: "Kaninchen hat Durchfall: Blinddarmkot oder Notfall?"
 description: "Weicher, verklebter Kot am Kaninchenpo ist oft kein echter Durchfall, sondern liegen gebliebener Blinddarmkot. Echter Durchfall dagegen ist bei Kaninchen immer ein Alarmzeichen. Wie Sie beides unterscheiden, wann Sie sofort in die Praxis fahren müssen und was Sie auf keinen Fall tun sollten."
 species: rabbit
 category: symptoms

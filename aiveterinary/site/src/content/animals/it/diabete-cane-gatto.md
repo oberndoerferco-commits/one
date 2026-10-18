@@ -1,5 +1,6 @@
 ---
 title: "Diabete nel cane e nel gatto: i primi segnali, la diagnosi e com'è la vita di tutti i giorni"
+seoTitle: "Diabete nel cane e nel gatto: primi segnali, diagnosi, vita quotidiana"
 description: "Beve di più, fa più pipì, mangia di più e dimagrisce: i quattro segni che portano in clinica un cane o un gatto diabetico. Come si arriva alla diagnosi, cosa significa l'insulina giorno per giorno e cosa aspettarsi."
 species: general
 category: conditions

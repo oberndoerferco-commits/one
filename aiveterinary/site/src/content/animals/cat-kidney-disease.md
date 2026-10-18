@@ -1,5 +1,6 @@
 ---
 title: "Chronic kidney disease in cats: early signs, what the stages mean and life with a kidney cat"
+seoTitle: "Kidney disease in cats: early signs, stages and daily life"
 description: "Chronic kidney disease is one of the most common conditions of older cats and starts quietly: more drinking, more urine, slow weight loss. How it is found, what the IRIS stages mean, and what treatment and home care actually involve."
 species: cat
 category: conditions

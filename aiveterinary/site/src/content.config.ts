@@ -5,6 +5,7 @@ const animals = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/animals' }),
   schema: z.object({
     title: z.string(),
+    seoTitle: z.string().max(70).optional(),
     description: z.string(),
     species: z.enum(['dog', 'cat', 'rabbit', 'horse', 'bird', 'general']),
     category: z.enum(['symptoms', 'conditions', 'medications', 'travel', 'first-aid', 'care']),

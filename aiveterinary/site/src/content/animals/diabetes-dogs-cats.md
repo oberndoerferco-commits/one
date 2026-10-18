@@ -1,5 +1,6 @@
 ---
 title: "Diabetes in dogs and cats: the first signs, how it is diagnosed and what daily life looks like"
+seoTitle: "Diabetes in dogs and cats: first signs, diagnosis, daily life"
 description: "Drinking more, peeing more, eating more and still losing weight: the four signs that usually bring a diabetic dog or cat to the clinic. What the diagnosis involves, what insulin treatment means day to day, and what owners can expect."
 species: general
 category: conditions

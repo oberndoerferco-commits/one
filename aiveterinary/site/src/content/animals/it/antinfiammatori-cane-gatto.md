@@ -1,5 +1,6 @@
 ---
 title: "Antinfiammatori (FANS) per cane e gatto: cosa curano, come darli in sicurezza, quando sospendere e chiamare"
+seoTitle: "FANS per cane e gatto: come darli in sicurezza e quando sospendere"
 description: "I FANS sono gli antidolorifici che il veterinario prescrive più spesso per artrosi, chirurgia e traumi. Perché il tuo paracetamolo o ibuprofene può uccidere un gatto e far male a un cane, perché la compressa va data con il cibo, e i segni di stomaco e reni che vogliono dire: sospendi e chiama."
 species: general
 category: medications

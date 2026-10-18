@@ -8,6 +8,6 @@ export async function getStaticPaths() {
 const { filter } = Astro.params;
 const label = (ANIMALS.en.species as any)[filter!] ?? (ANIMALS.en.categories as any)[filter!]?.[0];
 ---
-<Base title={label} description={`Animal-health articles: ${label}.`}>
+<Base title={label} description={`${label}: plain-language articles for owners on symptoms, when to see a vet, care and prevention, from veterinary sources. Each one shows whether a vet has reviewed it.`}>
   <AnimalsFilter lang="en" filter={filter!} />
 </Base>

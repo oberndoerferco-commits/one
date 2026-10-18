@@ -39,6 +39,11 @@ const siteLd = {
       potentialAction: { '@type': 'SearchAction', target: `${new URL(L === 'en' ? '/animals' : `/${L}/animals`, Astro.site).href}?q={search_term_string}`, 'query-input': 'required name=search_term_string' } },
   ],
 };
+// Search snippets cut off around 160 characters: shorten the meta description at a word boundary
+// (the page itself keeps the full text), and drop the brand suffix when the title is already long.
+const metaDescription = description.length <= 158 ? description : description.slice(0, 157).replace(/[\s,;:.–-]+\S*$/, '') + '…';
+const homeTitle = ({ en: 'AI Veterinary: pet health in plain language', it: 'AI Veterinary: salute degli animali in parole semplici', de: 'AI Veterinary: Tiergesundheit verständlich erklärt' } as const)[L];
+const fullTitle = title === 'AI Veterinary' ? homeTitle : title.length > 52 ? title : `${title} · AI Veterinary`;
 const ogLocale = ({ en: 'en_GB', it: 'it_IT', de: 'de_DE' } as const)[L];
 
 const strings = {
@@ -167,14 +172,14 @@ const current = (href: string) => path === href || path.startsWith(href + '/');
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title === 'AI Veterinary' ? title : `${title} · AI Veterinary`}</title>
-    <meta name="description" content={description} />
+    <title>{fullTitle}</title>
+    <meta name="description" content={metaDescription} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="canonical" href={new URL(path === '/' ? '/' : path, Astro.site)} />
     {alternates.map(([l, href]) => <link rel="alternate" hreflang={l} href={new URL(href, Astro.site)} />)}
     {alternates.length > 0 && <link rel="alternate" hreflang="x-default" href={new URL(alternates[0][1], Astro.site)} />}
     <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={metaDescription} />
     <meta property="og:type" content={articleSlug && !isSharedAnimals && basePath !== '/animals/all' ? 'article' : 'website'} />
     <meta property="og:url" content={new URL(path === '/' ? '/' : path, Astro.site)} />
     <meta property="og:site_name" content="AI Veterinary" />

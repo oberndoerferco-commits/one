@@ -1,5 +1,6 @@
 ---
 title: "Impfungen für Hunde und Katzen in Europa: wogegen sie schützen und warum Auffrischungen wichtig sind"
+seoTitle: "Impfungen für Hunde und Katzen: Schutz und Auffrischungen"
 description: "Welche Impfungen für Hunde und Katzen als Core-Impfungen gelten, warum Welpen und Kätzchen eine Grundimmunisierung brauchen, was eine Auffrischung tatsächlich bewirkt und was Ihre Tierärztin oder Ihr Tierarzt in den Impfpass einträgt."
 species: general
 category: care

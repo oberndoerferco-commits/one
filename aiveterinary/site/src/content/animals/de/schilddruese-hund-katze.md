@@ -1,5 +1,6 @@
 ---
 title: "Schilddrüsenunterfunktion beim Hund, Schilddrüsenüberfunktion bei der Katze: Anzeichen, Diagnose, Behandlung"
+seoTitle: "Schilddrüse bei Hund und Katze: Anzeichen, Diagnose, Behandlung"
 description: "Der Hund nimmt zu, friert und verliert Fell; die alte Katze frisst viel und magert ab. Es sind die zwei häufigsten Schilddrüsenerkrankungen bei Haustieren, und sie sind spiegelbildlich: wie Sie sie erkennen, wie sie festgestellt werden und was die Behandlung bedeutet."
 species: general
 category: conditions

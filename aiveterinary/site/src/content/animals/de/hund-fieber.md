@@ -1,5 +1,6 @@
 ---
 title: "Hund hat Fieber: richtig messen, Werte einordnen und warum Sie keine eigenen Fiebermittel geben dürfen"
+seoTitle: "Hund hat Fieber: richtig messen und wann es ernst ist"
 description: "Ob ein Hund Fieber hat, zeigt nur das Thermometer, nicht die Nase. Wie Sie rektal messen, welche Werte normal sind, wann Sie sofort in die Praxis fahren sollten und warum Paracetamol, Ibuprofen und Novalgin aus Ihrer Hausapotheke für Hunde tabu sind."
 species: dog
 category: symptoms

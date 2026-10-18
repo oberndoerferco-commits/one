@@ -1,5 +1,6 @@
 ---
 title: "Entzündungshemmende Schmerzmittel (NSAID) für Hund und Katze: was sie behandeln, wie Sie sie sicher geben, wann absetzen und anrufen"
+seoTitle: "NSAID-Schmerzmittel für Hund und Katze: sicher geben, wann absetzen"
 description: "NSAID sind die Schmerzmittel, die Tierärzte bei Arthrose, Operationen und Verletzungen am häufigsten verordnen. Warum Ihr eigenes Paracetamol oder Ibuprofen eine Katze töten und einem Hund schaden kann, warum die Tablette mit Futter kommt, und welche Magen- und Nierenzeichen bedeuten: absetzen und anrufen."
 species: general
 category: medications
