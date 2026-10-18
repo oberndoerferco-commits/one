@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && pagefind --site dist",
+    "build": "astro build && node scripts/copy-ocr.mjs && pagefind --site dist",
     "preview": "astro preview"
   },
   "dependencies": {
@@ -13,8 +13,12 @@
     "@fontsource-variable/fraunces": "^5.3.0",
     "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
     "@supabase/supabase-js": "^2.117.3",
+    "@tesseract.js-data/deu": "^1.0.0",
+    "@tesseract.js-data/eng": "^1.0.0",
+    "@tesseract.js-data/ita": "^1.0.0",
     "aiveterinary-app": "file:../app",
     "astro": "^5.0.0",
+    "tesseract.js": "^5.1.1",
     "zod": "^4.6.7"
   },
   "devDependencies": {

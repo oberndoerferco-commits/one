@@ -411,3 +411,12 @@ h1, h2 { font-variation-settings: "opsz" 96, "SOFT" 100, "WONK" 0; }
 html, body { overflow-x: clip; }
 .h3ro-grid > *, .hero-split > * { min-width: 0; }
 @media (max-width: 640px) { select, input, textarea { max-width: 100%; } .ws-label { flex-wrap: wrap; max-width: 100%; } }
+/* booklet: import from photo */
+.pp-scan { max-width: 640px; width: calc(100% - 32px); border: 1px solid var(--line); border-radius: 20px; padding: 22px 24px; background: var(--surface); color: var(--ink); }
+.pp-scan::backdrop { background: rgba(18, 48, 74, .35); }
+.pp-scan h2 { margin-top: 0; }
+.pp-scan-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.pp-scan-list li { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+.pp-scan-v { font: inherit; padding: 6px 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--ink); max-width: 100%; }
+.pp-scan-list small { flex-basis: 100%; }
+.pp-scan-actions { display: flex; gap: 10px; flex-wrap: wrap; margin: 18px 0 0; }

@@ -9,3 +9,4 @@ export * from './retention.js';
 export * from './history.js';
 export * from './letters.js';
 export * from './analytics.js';
+export * from './scan.js';

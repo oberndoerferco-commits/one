@@ -535,7 +535,13 @@ const JS = {
 } as const;
 const OPT = {"en": {"Dog": "Dog", "Cat": "Cat", "Ferret": "Ferret", "Rabbit": "Rabbit", "Guinea pig": "Guinea pig", "Hamster": "Hamster", "Horse": "Horse", "Bird": "Bird", "Reptile": "Reptile", "Other": "Other", "Female": "Female", "Male": "Male", "Yes": "Yes", "No": "No"}, "it": {"Dog": "Cane", "Cat": "Gatto", "Ferret": "Furetto", "Rabbit": "Coniglio", "Guinea pig": "Porcellino d'India", "Hamster": "Criceto", "Horse": "Cavallo", "Bird": "Uccello", "Reptile": "Rettile", "Other": "Altro", "Female": "Femmina", "Male": "Maschio", "Yes": "Sì", "No": "No"}, "de": {"Dog": "Hund", "Cat": "Katze", "Ferret": "Frettchen", "Rabbit": "Kaninchen", "Guinea pig": "Meerschweinchen", "Hamster": "Hamster", "Horse": "Pferd", "Bird": "Vogel", "Reptile": "Reptil", "Other": "Sonstiges", "Female": "Weiblich", "Male": "Männlich", "Yes": "Ja", "No": "Nein"}} as const;
 const speciesOpts = ['Dog','Cat','Ferret','Rabbit','Guinea pig','Hamster','Horse','Bird','Reptile','Other'] as const;
+const SCAN = {
+  en: { names: {}, btn: 'Import from photo', title: 'Import from a photo', intro: 'Take a clear photo of one page of the paper passport, libretto or vaccination card. The text is read on this device; the photo is not uploaded or stored. The first time, about 10 MB of reading data is downloaded from this site.', reading: 'Reading the photo…', none: 'Nothing recognisable found. Try a sharper, straight photo in good light, one page at a time.', check: 'Tick only what is correct. You can edit each value before adding it.', chip: 'Microchip', vacc: 'Vaccination', date: 'given', valid: 'valid until', batch: 'batch', add: 'Add ticked items', cancel: 'Cancel', added: 'Added from photo. Check the entries below.', chipKept: 'A microchip number is already saved; it was not changed.', fail: 'The photo could not be read on this device.', pdf: 'PDFs are not supported yet: take a photo or screenshot of the page instead.' },
+  it: { names: { 'Rabies': 'Antirabbica', 'Leptospirosis': 'Leptospirosi', 'Distemper/hepatitis/parvovirus combination': 'Polivalente cimurro/epatite/parvovirosi', 'Distemper': 'Cimurro', 'Parvovirus': 'Parvovirosi', 'Kennel cough': 'Tosse dei canili', 'Cat flu / panleukopenia combination': 'Trivalente gatto (rinotracheite/calicivirosi/panleucopenia)', 'FeLV': 'FeLV', 'Rabbit RHD / myxomatosis': 'Coniglio MEV/mixomatosi' }, btn: 'Importa da foto', title: 'Importa da una foto', intro: 'Scatta una foto nitida di una pagina del passaporto, del libretto o del certificato vaccinale. Il testo viene letto su questo dispositivo; la foto non viene caricata né salvata. La prima volta vengono scaricati circa 10 MB di dati di lettura da questo sito.', reading: 'Lettura della foto…', none: 'Non ho trovato nulla di riconoscibile. Prova con una foto più nitida e dritta, con buona luce, una pagina alla volta.', check: 'Spunta solo ciò che è corretto. Puoi modificare ogni valore prima di aggiungerlo.', chip: 'Microchip', vacc: 'Vaccinazione', date: 'eseguita', valid: 'valida fino al', batch: 'lotto', add: 'Aggiungi le voci spuntate', cancel: 'Annulla', added: 'Aggiunto dalla foto. Controlla le voci qui sotto.', chipKept: 'Un numero di microchip è già salvato; non è stato modificato.', fail: 'Non è stato possibile leggere la foto su questo dispositivo.', pdf: 'I PDF non sono ancora supportati: fai una foto o uno screenshot della pagina.' },
+  de: { names: { 'Rabies': 'Tollwut', 'Leptospirosis': 'Leptospirose', 'Distemper/hepatitis/parvovirus combination': 'Staupe/Hepatitis/Parvovirose (Kombi)', 'Distemper': 'Staupe', 'Parvovirus': 'Parvovirose', 'Kennel cough': 'Zwingerhusten', 'Cat flu / panleukopenia combination': 'Katzenschnupfen/Katzenseuche (Kombi)', 'FeLV': 'FeLV (Leukose)', 'Rabbit RHD / myxomatosis': 'Kaninchen RHD/Myxomatose' }, btn: 'Aus Foto importieren', title: 'Aus einem Foto importieren', intro: 'Fotografieren Sie eine Seite des Heimtierausweises oder Impfpasses scharf und gerade. Der Text wird auf diesem Gerät gelesen; das Foto wird weder hochgeladen noch gespeichert. Beim ersten Mal werden etwa 10 MB Lesedaten von dieser Website geladen.', reading: 'Foto wird gelesen…', none: 'Nichts Erkennbares gefunden. Versuchen Sie ein schärferes, gerades Foto bei gutem Licht, eine Seite pro Foto.', check: 'Haken Sie nur an, was stimmt. Jeder Wert lässt sich vor dem Übernehmen ändern.', chip: 'Mikrochip', vacc: 'Impfung', date: 'verabreicht', valid: 'gültig bis', batch: 'Charge', add: 'Angehakte Einträge übernehmen', cancel: 'Abbrechen', added: 'Aus dem Foto übernommen. Bitte prüfen Sie die Einträge unten.', chipKept: 'Es ist bereits eine Chipnummer gespeichert; sie wurde nicht geändert.', fail: 'Das Foto konnte auf diesem Gerät nicht gelesen werden.', pdf: 'PDFs werden noch nicht unterstützt: Bitte ein Foto oder einen Screenshot der Seite verwenden.' },
+} as const;
 const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
+const sc = SCAN[lang];
 ---
   <section class="wrap hero hero-split" id="pp-intro">
     <div>
@@ -581,6 +587,7 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
       <button class="btn secondary" id="pp-export" type="button">{t.backup}</button>
       <label class="btn secondary" for="pp-import">{t.restore}<input id="pp-import" type="file" accept="application/json,.json" class="sr" /></label>
       <button class="btn secondary" id="pp-print" type="button">{t.print}</button>
+      <label class="btn secondary" for="pp-scan-file">{sc.btn}</label>
       <details class="pp-more">
         <summary class="btn secondary">{({ en: 'More', it: 'Altro', de: 'Mehr' } as any)[lang]}</summary>
         <div class="pp-more-menu">
@@ -594,10 +601,20 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
     </div>
 
     <div id="pp-loading" hidden style="margin:12px 0"><YarnCat label={({ en: 'Restoring…', it: 'Ripristino in corso…', de: 'Wird wiederhergestellt…' } as any)[lang]} /></div>
+    <input id="pp-scan-file" type="file" accept="image/*" capture="environment" class="sr" />
+    <dialog id="pp-scan" class="pp-scan" aria-labelledby="pp-scan-h">
+      <h2 id="pp-scan-h">{sc.title}</h2>
+      <p class="pp-hint">{sc.intro}</p>
+      <div id="pp-scan-busy" hidden><YarnCat label={sc.reading} /></div>
+      <p id="pp-scan-msg" class="pp-status" aria-live="polite"></p>
+      <p id="pp-scan-check" class="pp-hint" hidden>{sc.check}</p>
+      <ul id="pp-scan-list" class="pp-scan-list"></ul>
+      <p class="pp-scan-actions"><button class="btn" id="pp-scan-add" type="button" hidden>{sc.add}</button> <button class="btn secondary" id="pp-scan-cancel" type="button">{sc.cancel}</button></p>
+    </dialog>
     <div id="pp-empty" class="pp-empty" hidden>
       <h2>{t.emptyTitle}</h2>
       <p>{t.emptyText}</p>
-      <p class="pp-empty-actions"><button class="btn lg" id="pp-empty-new" type="button">{t.emptyBtn}</button> <label class="pp-empty-restore" for="pp-import">{t.restore}</label></p>
+      <p class="pp-empty-actions"><button class="btn lg" id="pp-empty-new" type="button">{t.emptyBtn}</button> <label class="pp-empty-restore" for="pp-import">{t.restore}</label> <label class="pp-empty-restore" for="pp-scan-file">{sc.btn}</label></p>
     </div>
 
     <div id="pp-form" hidden>
@@ -857,9 +874,11 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
   </style>
 
   <script type="application/json" id="pp-l2" set:html={JSON.stringify(Object.fromEntries((["en", "it", "de"] as const).map((l) => [l, { ...Object.fromEntries(Object.entries(T[l]).filter(([, v]) => typeof v === "string")), cols: (JS[l] as any).cols }])))} />
+  <script type="application/json" id="pp-scan-i18n" set:html={JSON.stringify({ ...sc, lang: ({ en: "eng", it: "ita", de: "deu" } as any)[lang] })} />
   <script type="application/json" id="pp-i18n" set:html={JSON.stringify({ ...j, posterWhere: t.posterWhere, locale: ({ en: 'en-GB', it: 'it-IT', de: 'de-DE' } as any)[lang], upcoming: { overdue: t.overdue, dueIn: t.dueIn, dueToday: t.dueToday, none: t.noUpcoming, vacc: t.vaccinations, treat: t.treatments } })} />
 
   <script>
+    import { parseScan } from 'aiveterinary-app/src/scan.ts';
     // Digital pet passport. Local-first: all data lives in localStorage under one key.
     // Shape: { version: 1, animals: [ { id, name, ..., vaccinations: [], treatments: [], medications: [], conditions: [], visits: [], notes, photo } ], current }
     type Row = Record<string, string>;
@@ -1056,6 +1075,59 @@ const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
       });
     }
 
+    // ---- Import from photo: on-device OCR, every suggestion ticked by the owner before it is added ----
+    const SC = JSON.parse(document.getElementById('pp-scan-i18n')!.textContent!);
+    const scanDlg = $<HTMLDialogElement>('#pp-scan');
+    const esc = (v: string) => v.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' } as any)[c]);
+    let ocrWorker: any = null;
+    async function ocr(file: File): Promise<string> {
+      if (!ocrWorker) {
+        const src = '/ocr/tesseract.esm.min.js'; const mod: any = await import(/* @vite-ignore */ src); const T: any = mod.default ?? mod;
+        ocrWorker = await T.createWorker(SC.lang, 1, { workerPath: '/ocr/worker.min.js', corePath: '/ocr/', langPath: '/ocr/lang', gzip: true, workerBlobURL: false });
+      }
+      const { data } = await ocrWorker.recognize(file);
+      return data.text as string;
+    }
+    $<HTMLInputElement>('#pp-scan-file').addEventListener('change', async (e) => {
+      const input = e.target as HTMLInputElement; const file = input.files?.[0]; input.value = '';
+      if (!file) return;
+      const list = $('#pp-scan-list'), msg = $('#pp-scan-msg'), busy = $<HTMLElement>('#pp-scan-busy'), add = $<HTMLElement>('#pp-scan-add'), check = $<HTMLElement>('#pp-scan-check');
+      list.innerHTML = ''; msg.textContent = ''; add.hidden = true; check.hidden = true;
+      scanDlg.showModal();
+      if (file.type === 'application/pdf') { msg.textContent = SC.pdf; return; }
+      busy.hidden = false;
+      try {
+        const r = parseScan(await ocr(file));
+        busy.hidden = true;
+        const items: string[] = [];
+        r.microchip.forEach((c) => items.push(`<li><label><input type="checkbox" data-k="chip"> ${SC.chip} <input class="pp-scan-v" data-v="chip" value="${esc(c)}" inputmode="numeric"></label></li>`));
+        r.vaccinations.forEach((v, i) => items.push(`<li><label><input type="checkbox" data-k="vacc" data-i="${i}"> ${SC.vacc}</label>
+          <input class="pp-scan-v" data-i="${i}" data-v="vaccine" value="${esc(SC.names[v.vaccine] ?? v.vaccine)}">
+          <span>${SC.date}</span> <input class="pp-scan-v" type="date" data-i="${i}" data-v="date" value="${v.date ?? ''}">
+          <span>${SC.valid}</span> <input class="pp-scan-v" type="date" data-i="${i}" data-v="validUntil" value="${v.validUntil ?? ''}">
+          <span>${SC.batch}</span> <input class="pp-scan-v" data-i="${i}" data-v="batch" value="${esc(v.batch ?? '')}">
+          <small class="pp-hint">“${esc(v.line.slice(0, 80))}”</small></li>`));
+        list.innerHTML = items.join('');
+        if (!items.length) msg.textContent = SC.none; else { check.hidden = false; add.hidden = false; }
+      } catch (err) { console.error('ocr', err); busy.hidden = true; msg.textContent = SC.fail; }
+    });
+    $('#pp-scan-cancel').addEventListener('click', () => scanDlg.close());
+    $('#pp-scan-add').addEventListener('click', () => {
+      let a = current();
+      if (!a) { a = blank(); store.animals.push(a); store.current = a.id; }
+      const val = (sel: string) => ($<HTMLInputElement>(sel, scanDlg)?.value ?? '').trim();
+      let note = SC.added;
+      for (const cb of $$<HTMLInputElement>('input[type=checkbox]:checked', scanDlg)) {
+        if (cb.dataset.k === 'chip') {
+          const chip = val('[data-v="chip"]');
+          if (a.microchip) note += ' ' + SC.chipKept; else a.microchip = chip;
+        } else {
+          const i = cb.dataset.i;
+          a.vaccinations.push({ vaccine: val(`[data-i="${i}"][data-v="vaccine"]`), date: val(`[data-i="${i}"][data-v="date"]`), validUntil: val(`[data-i="${i}"][data-v="validUntil"]`), batch: val(`[data-i="${i}"][data-v="batch"]`), clinic: '' });
+        }
+      }
+      scanDlg.close(); render(); save(note);
+    });
     const newAnimal = () => { const a = blank(); store.animals.push(a); store.current = a.id; render(); save(J.newCreated); $<HTMLInputElement>('#pp-form [data-f="name"]').focus(); };
     $('#pp-new')!.addEventListener('click', newAnimal);
     $('#pp-empty-new')!.addEventListener('click', newAnimal);

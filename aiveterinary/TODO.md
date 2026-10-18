@@ -72,7 +72,7 @@ Everything costs €0 unless marked €. Legend:
 
 ### Passport (local-first) — value against the #1 complaint, data lock-in
 - [x] Rename + "your data stays yours: free, no lock-in, export anytime" statement on the page — S ★★★
-- [ ] **Import from photo/PDF of the paper passport, libretto, Impfpass** (on-device OCR, user confirms each field) — L ★★★ *only us in EU*
+- [x] **Import from photo of the paper passport, libretto, Impfpass** (on-device OCR, self-hosted engine and EN/IT/DE data, user ticks and edits each field; chip + vaccinations with dates and batch). PDF import still open — L ★★★ *only us in EU*
 - [x] **Reminders** v1: upcoming-dates panel in the booklet + .ics calendar export with 7-day alarm (country-aware intervals and email reminders still open) — M ★★★
 - [x] **Share a read-only report**: print/PDF of the booklet, emergency card and claim pack (expiring link once accounts exist)
 - [x] **Emergency card**: printable credit-card size, two copies, from booklet data (Wallet pass still open) — M ★★ *only us*
