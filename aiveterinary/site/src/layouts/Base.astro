@@ -16,7 +16,7 @@ const path = Astro.url.pathname.replace(/\.html$/, '');
 type Lang = 'en' | 'it' | 'de';
 const L: Lang = lang === 'it' || lang === 'de' ? lang : 'en';
 // hreflang: pages that exist under the same path in all three languages.
-const shared = new Set(['', '/about', '/passport', '/visit-brief', '/newsletter', '/vets', '/vets/workspace', '/vets/data', '/vets/quality', '/vets/research', '/editorial', '/animals', '/animals/all', '/registry', '/travel', '/emergency', '/chocolate', '/can-eat', '/end-of-life', '/impressum']);
+const shared = new Set(['', '/about', '/passport', '/visit-brief', '/newsletter', '/vets', '/vets/workspace', '/vets/data', '/vets/quality', '/vets/research', '/editorial', '/animals', '/animals/all', '/registry', '/travel', '/emergency', '/chocolate', '/can-eat', '/vaccine-planner', '/end-of-life', '/impressum']);
 const basePath = path.replace(/^\/(it|de)(?=\/|$)/, '').replace(/^\/$/, '');
 const isSharedAnimals = /^\/animals\/(dog|cat|rabbit|horse|bird|general|symptoms|conditions|medications|first-aid|travel|care)$/.test(basePath);
 const alternates = shared.has(basePath) || isSharedAnimals
@@ -44,6 +44,7 @@ const strings = {
       { href: '/emergency', label: 'Is it an emergency?' },
       { href: '/chocolate', label: 'Dog ate chocolate? Check the amount' },
       { href: '/can-eat', label: 'Can my pet eat that?' },
+      { href: '/vaccine-planner', label: 'Puppy and kitten vaccine planner' },
       { href: '/travel', label: 'Travelling with a pet in Europe' },
       { href: '/end-of-life', label: 'When the time comes' },
     ],
@@ -79,6 +80,7 @@ const strings = {
       { href: '/it/emergency', label: "È un'emergenza?" },
       { href: '/it/chocolate', label: 'Il cane ha mangiato cioccolato?' },
       { href: '/it/can-eat', label: 'Il mio animale può mangiarlo?' },
+      { href: '/it/vaccine-planner', label: 'Calendario vaccini cuccioli e gattini' },
       { href: '/it/travel', label: 'Viaggiare con un animale in Europa' },
       { href: '/it/end-of-life', label: 'Quando arriva il momento' },
     ],
@@ -114,6 +116,7 @@ const strings = {
       { href: '/de/emergency', label: 'Ist es ein Notfall?' },
       { href: '/de/chocolate', label: 'Hund hat Schokolade gefressen?' },
       { href: '/de/can-eat', label: 'Darf mein Tier das fressen?' },
+      { href: '/de/vaccine-planner', label: 'Impfplaner für Welpen und Kitten' },
       { href: '/de/travel', label: 'Mit Haustier in Europa reisen' },
       { href: '/de/end-of-life', label: 'Wenn die Zeit kommt' },
     ],

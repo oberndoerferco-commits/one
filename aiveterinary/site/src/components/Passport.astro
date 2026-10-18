@@ -882,7 +882,7 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
   <script type="application/json" id="pp-l2" set:html={JSON.stringify(Object.fromEntries((["en", "it", "de"] as const).map((l) => [l, { ...Object.fromEntries(Object.entries(T[l]).filter(([, v]) => typeof v === "string")), cols: (JS[l] as any).cols }])))} />
   <script type="application/json" id="pp-prof-i18n" set:html={JSON.stringify(PROF)} />
   <script type="application/json" id="pp-scan-i18n" set:html={JSON.stringify({ ...sc, lang: ({ en: "eng", it: "ita", de: "deu" } as any)[lang] })} />
-  <script type="application/json" id="pp-i18n" set:html={JSON.stringify({ ...j, posterWhere: t.posterWhere, locale: ({ en: 'en-GB', it: 'it-IT', de: 'de-DE' } as any)[lang], upcoming: { overdue: t.overdue, dueIn: t.dueIn, dueToday: t.dueToday, none: t.noUpcoming, vacc: t.vaccinations, treat: t.treatments } })} />
+  <script type="application/json" id="pp-i18n" set:html={JSON.stringify({ ...j, posterWhere: t.posterWhere, locale: ({ en: 'en-GB', it: 'it-IT', de: 'de-DE' } as any)[lang], upcoming: { overdue: t.overdue, dueIn: t.dueIn, dueToday: t.dueToday, none: t.noUpcoming, vacc: t.vaccinations, treat: t.treatments, plan: ({ en: 'planned, confirm with your vet', it: 'in programma, da confermare con il veterinario', de: 'geplant, mit der Praxis abstimmen' } as any)[lang] } })} />
 
   <script>
     import { parseScan } from 'aiveterinary-app/src/scan.ts';
@@ -1017,6 +1017,9 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
       const items: { label: string; date: string; kind: string }[] = [];
       for (const r of a.vaccinations) if (r.validUntil) items.push({ label: r.vaccine || J.upcoming.vacc, date: r.validUntil, kind: J.upcoming.vacc });
       for (const r of a.treatments) if (r.nextDue) items.push({ label: r.product || J.upcoming.treat, date: r.nextDue, kind: J.upcoming.treat });
+      // Dates suggested by the vaccine planner: shown as planned until the vet records the vaccination; past ones drop off.
+      const todayIso = new Date().toISOString().slice(0, 10);
+      for (const r of (a.plans ?? []) as Row[]) if (r.date && r.date >= todayIso) items.push({ label: r.label, date: r.date, kind: J.upcoming.plan });
       return items.filter((x) => !isNaN(Date.parse(x.date))).sort((x, y) => x.date.localeCompare(y.date));
     }
     function renderUpcoming(a: Animal) {

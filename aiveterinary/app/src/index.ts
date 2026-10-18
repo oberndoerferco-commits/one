@@ -12,3 +12,4 @@ export * from './analytics.js';
 export * from './scan.js';
 export * from './export.js';
 export * from './metrics.js';
+export * from './vaccine-plan.js';
