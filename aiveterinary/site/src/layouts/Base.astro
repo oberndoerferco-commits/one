@@ -1,4 +1,5 @@
 ---
+import { TRANSLATION_GROUPS } from '../lib/translations';
 import AnimalIcon from '../components/AnimalIcon.astro';
 import '@fontsource-variable/fraunces/full.css';
 import '@fontsource-variable/plus-jakarta-sans/index.css';
@@ -23,9 +24,10 @@ const isSharedAnimals = /^\/animals\/(dog|cat|rabbit|horse|bird|general|symptoms
 const articleFiles = Object.keys(import.meta.glob('../content/animals/**/*.md'));
 const articleIn = (l: string, slug: string) => articleFiles.includes(`../content/animals/${l === 'en' ? '' : l + '/'}${slug}.md`);
 const articleSlug = /^\/animals\/([a-z0-9-]+)$/.exec(basePath)?.[1];
-const articleAlts = articleSlug && !isSharedAnimals && basePath !== '/animals/all'
-  ? (['en', 'it', 'de'] as const).filter((l) => articleIn(l, articleSlug)).map((l) => [l, l === 'en' ? basePath : `/${l}${basePath}`])
-  : [];
+const group = articleSlug ? TRANSLATION_GROUPS.find((g) => (g as any)[L] === articleSlug) : undefined;
+const articleAlts = !articleSlug || isSharedAnimals || basePath === '/animals/all' ? []
+  : group ? (['en', 'it', 'de'] as const).filter((l) => group[l]).map((l) => [l, `${l === 'en' ? '' : `/${l}`}/animals/${group[l]}`])
+  : (['en', 'it', 'de'] as const).filter((l) => articleIn(l, articleSlug)).map((l) => [l, l === 'en' ? basePath : `/${l}${basePath}`]);
 const alternates = shared.has(basePath) || isSharedAnimals
   ? [['en', basePath || '/'], ['it', `/it${basePath}`], ['de', `/de${basePath}`]]
   : articleAlts.length > 1 ? articleAlts : [];
@@ -208,7 +210,7 @@ const current = (href: string) => path === href || path.startsWith(href + '/');
             {languages.map((l, i) => (
               <>
                 {i > 0 && <span aria-hidden="true">·</span>}
-                <a href={l.href} hreflang={l.code} lang={l.code} aria-current={L === l.code ? 'true' : undefined} style={L === l.code ? 'color:var(--ink);font-weight:600' : undefined}>{l.label}</a>
+                <a href={(alternates.find(([c]) => c === l.code)?.[1]) ?? l.href} hreflang={l.code} lang={l.code} aria-current={L === l.code ? 'true' : undefined} style={L === l.code ? 'color:var(--ink);font-weight:600' : undefined}>{l.label}</a>
               </>
             ))}
           </span>
