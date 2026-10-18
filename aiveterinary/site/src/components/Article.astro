@@ -9,6 +9,10 @@ const { Content, headings } = await render(entry);
 const toc = headings.filter((h: any) => h.depth === 2);
 const L = ({ en: { toc: 'In this article', report: 'Found an error? Tell us' }, it: { toc: 'In questo articolo', report: 'Hai trovato un errore? Scrivici' }, de: { toc: 'In diesem Artikel', report: 'Fehler gefunden? Sagen Sie es uns' } } as any)[lang];
 const d = entry.data;
+// Tool links shown beside the article, kept out of the body so signed reviews are not invalidated.
+const slug = String(entry.id).split('/').pop();
+const CHOC = new Set(['dog-toxic-foods', 'cane-ha-mangiato-cioccolato', 'alimenti-tossici-cane', 'hund-schokolade-gefressen', 'giftige-lebensmittel-hund']);
+const toolLink = CHOC.has(slug!) ? ({ en: ['Ate chocolate? Work out the dose for your dog', '/chocolate'], it: ['Ha mangiato cioccolato? Calcola la dose per il tuo cane', '/it/chocolate'], de: ['Schokolade gefressen? Dosis für Ihren Hund berechnen', '/de/chocolate'] } as any)[lang] : null;
 const minutes = Math.max(1, Math.round(((entry.body ?? '').split(/\s+/).length) / 200));
 const minLabel = ({ en: 'min read', it: 'min di lettura', de: 'Min. Lesezeit' } as any)[lang];
 const fmt = (x: Date) => x.toLocaleDateString(t.locale, { day: 'numeric', month: 'long', year: 'numeric' });
@@ -64,6 +68,7 @@ const ld = [
   {toc.length >= 3 && (
     <nav class="toc" aria-label={L.toc}><div class="toc-h">{L.toc}</div><ol>{toc.map((h: any) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol></nav>
   )}
+  {toolLink && <p class="tool-link" data-pagefind-ignore><a class="btn" href={toolLink[1]}>{toolLink[0]}</a></p>}
   <div class="prose"><Content /></div>
   {d.references?.length && (
     <section class="article-refs"><h2>{t.references}</h2><ol>{d.references.map((r: any) => <li>{r.url ? <a href={r.url} rel="noopener">{r.title}</a> : r.title}</li>)}</ol></section>

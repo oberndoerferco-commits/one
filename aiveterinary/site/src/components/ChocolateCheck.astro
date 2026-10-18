@@ -1,0 +1,121 @@
+---
+/**
+ * Chocolate exposure check for dogs. Arithmetic only, shown in full:
+ * methylxanthine content per gram (MSD Veterinary Manual table) × grams eaten ÷ body weight,
+ * compared with the MSD thresholds (20 mg/kg mild signs, 40–50 cardiac, ≥ 60 seizures).
+ * It never says "safe": every band tells the owner to contact a vet.
+ */
+interface Props { lang: 'en' | 'it' | 'de' }
+const { lang } = Astro.props;
+// mg of methylxanthines per gram; dark chocolate uses the upper end of MSD's 5.3–5.6 range to stay cautious.
+const TYPES = [['cocoa', 28.5], ['baking', 15.5], ['dark', 5.6], ['milk', 2.3], ['white', 0.04], ['mulch', 9]] as const;
+const T = {
+  en: {
+    title: 'Dog ate chocolate: how much is too much?',
+    lead: 'Enter what your dog ate and how much it weighs. The page does the arithmetic with the figures from the MSD Veterinary Manual and shows every step. Dogs vary, so this never tells you a dog is safe: call your vet in every case.',
+    weight: 'Dog\'s weight (kg)', type: 'Type of chocolate', amount: 'Amount eaten (grams)', calc: 'Calculate',
+    types: { cocoa: 'Cocoa powder', baking: 'Unsweetened baking chocolate', dark: 'Dark or semi-sweet chocolate', milk: 'Milk chocolate', white: 'White chocolate', mulch: 'Cocoa shell garden mulch' },
+    hint: 'Not sure? Choose the darker type and the larger amount. A 100 g bar is common; a small square is about 5–10 g.',
+    work: 'How this was worked out',
+    bands: [
+      [0, 'Below the level at which mild signs are reported (20 mg/kg)', 'Below the figures in the veterinary literature, but dogs differ and chocolate products can contain other poisons (raisins, xylitol, macadamia nuts). Call your vet for advice and watch for vomiting, restlessness or a racing heart.', 'today'],
+      [20, 'Mild signs possible: vomiting, diarrhoea, drinking more', 'Call your vet now. Treatment works best early, often within the first hours.', 'today'],
+      [40, 'Heart effects possible', 'Go to a vet now and call ahead. Do not try to make your dog vomit at home.', 'now'],
+      [60, 'Seizures possible: this can be life-threatening', 'Go to a vet now and call ahead. Do not try to make your dog vomit at home.', 'now'],
+    ],
+    cats: 'For cats, puppies under 12 weeks, or dogs with heart disease, call your vet whatever the result.',
+    source: 'Source: MSD Veterinary Manual, Chocolate Toxicosis in Animals (methylxanthine content table and dose ranges), accessed 18 October 2026.',
+    article: 'Read the full article', articleHref: '/animals/dog-toxic-foods', emergency: 'Is it an emergency?', emergencyHref: '/emergency',
+    perKg: 'mg per kg body weight', total: 'mg of methylxanthines in total', thr: 'Thresholds', err: 'Enter a weight above 0 and an amount.',
+  },
+  it: {
+    title: 'Il cane ha mangiato cioccolato: quanto è troppo?',
+    lead: 'Inserisci cosa ha mangiato il tuo cane e quanto pesa. La pagina fa il calcolo con i dati del MSD Veterinary Manual e mostra ogni passaggio. I cani reagiscono in modo diverso: per questo non ti dice mai che il cane è al sicuro. Chiama comunque il veterinario.',
+    weight: 'Peso del cane (kg)', type: 'Tipo di cioccolato', amount: 'Quantità mangiata (grammi)', calc: 'Calcola',
+    types: { cocoa: 'Cacao in polvere', baking: 'Cioccolato fondente amaro da cucina', dark: 'Cioccolato fondente', milk: 'Cioccolato al latte', white: 'Cioccolato bianco', mulch: 'Pacciamatura di gusci di cacao' },
+    hint: 'Non sei sicuro? Scegli il tipo più scuro e la quantità maggiore. Una tavoletta pesa spesso 100 g; un quadretto circa 5–10 g.',
+    work: 'Come è stato calcolato',
+    bands: [
+      [0, 'Sotto il livello a cui sono riportati segni lievi (20 mg/kg)', 'Sotto i valori della letteratura veterinaria, ma ogni cane è diverso e i dolci possono contenere altri veleni (uvetta, xilitolo, noci di macadamia). Chiama il veterinario per un consiglio e osserva se vomita, è agitato o ha il cuore accelerato.', 'today'],
+      [20, 'Possibili segni lievi: vomito, diarrea, sete', 'Chiama ora il veterinario. Il trattamento funziona meglio se fatto presto, spesso nelle prime ore.', 'today'],
+      [40, 'Possibili effetti sul cuore', 'Vai subito dal veterinario e chiama mentre sei in viaggio. Non cercare di farlo vomitare a casa.', 'now'],
+      [60, 'Possibili convulsioni: può essere pericoloso per la vita', 'Vai subito dal veterinario e chiama mentre sei in viaggio. Non cercare di farlo vomitare a casa.', 'now'],
+    ],
+    cats: 'Per gatti, cuccioli sotto le 12 settimane o cani con malattie cardiache, chiama il veterinario qualunque sia il risultato.',
+    source: 'Fonte: MSD Veterinary Manual, Chocolate Toxicosis in Animals (tabella del contenuto di metilxantine e intervalli di dose), consultato il 18 ottobre 2026.',
+    article: "Leggi l'articolo completo", articleHref: '/it/animals/cane-ha-mangiato-cioccolato', emergency: "È un'emergenza?", emergencyHref: '/it/emergency',
+    perKg: 'mg per kg di peso', total: 'mg di metilxantine in totale', thr: 'Soglie', err: 'Inserisci un peso maggiore di 0 e una quantità.',
+  },
+  de: {
+    title: 'Hund hat Schokolade gefressen: Wie viel ist zu viel?',
+    lead: 'Geben Sie ein, was Ihr Hund gefressen hat und wie viel er wiegt. Die Seite rechnet mit den Werten aus dem MSD Veterinary Manual und zeigt jeden Schritt. Hunde reagieren unterschiedlich, deshalb sagt sie nie, dass ein Hund sicher ist: Rufen Sie in jedem Fall Ihre Praxis an.',
+    weight: 'Gewicht des Hundes (kg)', type: 'Art der Schokolade', amount: 'Gefressene Menge (Gramm)', calc: 'Berechnen',
+    types: { cocoa: 'Kakaopulver', baking: 'Ungesüßte Backschokolade', dark: 'Zartbitter- oder Halbbitterschokolade', milk: 'Milchschokolade', white: 'Weiße Schokolade', mulch: 'Kakaoschalen-Mulch' },
+    hint: 'Unsicher? Wählen Sie die dunklere Sorte und die größere Menge. Eine Tafel wiegt meist 100 g, ein Stück etwa 5–10 g.',
+    work: 'So wurde gerechnet',
+    bands: [
+      [0, 'Unter dem Wert, ab dem leichte Symptome beschrieben sind (20 mg/kg)', 'Unter den Werten aus der tierärztlichen Literatur, aber Hunde sind verschieden und Süßigkeiten können weitere Gifte enthalten (Rosinen, Xylit, Macadamianüsse). Rufen Sie Ihre Praxis zur Beratung an und achten Sie auf Erbrechen, Unruhe oder Herzrasen.', 'today'],
+      [20, 'Leichte Symptome möglich: Erbrechen, Durchfall, vermehrter Durst', 'Rufen Sie jetzt Ihre Praxis an. Behandlung wirkt am besten früh, oft in den ersten Stunden.', 'today'],
+      [40, 'Wirkung auf das Herz möglich', 'Fahren Sie sofort in die Praxis und rufen Sie unterwegs an. Versuchen Sie nicht, Ihren Hund zu Hause erbrechen zu lassen.', 'now'],
+      [60, 'Krampfanfälle möglich: Das kann lebensgefährlich sein', 'Fahren Sie sofort in die Praxis und rufen Sie unterwegs an. Versuchen Sie nicht, Ihren Hund zu Hause erbrechen zu lassen.', 'now'],
+    ],
+    cats: 'Bei Katzen, Welpen unter 12 Wochen oder Hunden mit Herzerkrankung rufen Sie unabhängig vom Ergebnis Ihre Praxis an.',
+    source: 'Quelle: MSD Veterinary Manual, Chocolate Toxicosis in Animals (Tabelle zum Methylxanthin-Gehalt und Dosisbereiche), abgerufen am 18. Oktober 2026.',
+    article: 'Zum ausführlichen Artikel', articleHref: '/de/animals/hund-schokolade-gefressen', emergency: 'Ist es ein Notfall?', emergencyHref: '/de/emergency',
+    perKg: 'mg pro kg Körpergewicht', total: 'mg Methylxanthine insgesamt', thr: 'Schwellenwerte', err: 'Bitte ein Gewicht über 0 und eine Menge eingeben.',
+  },
+}[lang];
+const locale = { en: 'en-GB', it: 'it-IT', de: 'de-DE' }[lang];
+---
+<section class="wrap narrow hero"><h1>{T.title}</h1><p class="lead">{T.lead}</p></section>
+<section class="wrap narrow">
+  <form id="cc-form" class="ec-group cc-form">
+    <label>{T.weight}<input name="kg" type="number" inputmode="decimal" min="0.5" max="120" step="0.1" required /></label>
+    <label>{T.type}<select name="type">{TYPES.map(([k, mg]) => <option value={k} data-mg={mg}>{(T.types as any)[k]} ({mg.toLocaleString(locale)} mg/g)</option>)}</select></label>
+    <label>{T.amount}<input name="g" type="number" inputmode="decimal" min="0" max="5000" step="1" required /></label>
+    <p class="pp-hint">{T.hint}</p>
+    <button class="btn lg" type="submit">{T.calc}</button>
+  </form>
+  <div id="cc-result" class="ec-result" hidden aria-live="polite">
+    <h2 id="cc-h"></h2>
+    <p id="cc-p"></p>
+    <details><summary>{T.work}</summary><p id="cc-work" class="cc-work"></p></details>
+    <p class="ec-actions"><a class="btn secondary" href={T.emergencyHref}>{T.emergency}</a> <a class="btn secondary" href={T.articleHref}>{T.article}</a></p>
+  </div>
+  <p class="pp-hint">{T.cats}</p>
+  <p class="pp-hint">{T.source} <a href="https://www.msdvetmanual.com/toxicology/food-hazards/chocolate-toxicosis-in-animals" rel="noopener">msdvetmanual.com</a></p>
+</section>
+<script type="application/json" id="cc-i18n" set:html={JSON.stringify({ bands: T.bands, perKg: T.perKg, total: T.total, thr: T.thr, err: T.err, locale })} />
+<script>
+  const J = JSON.parse(document.getElementById('cc-i18n')!.textContent!);
+  const form = document.getElementById('cc-form') as HTMLFormElement;
+  const nf = (x: number, d = 1) => x.toLocaleString(J.locale, { maximumFractionDigits: d });
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const kg = Number(String((form.elements.namedItem('kg') as HTMLInputElement).value).replace(',', '.'));
+    const g = Number(String((form.elements.namedItem('g') as HTMLInputElement).value).replace(',', '.'));
+    const sel = form.elements.namedItem('type') as HTMLSelectElement; const mgPerG = Number(sel.selectedOptions[0].dataset.mg);
+    const box = document.getElementById('cc-result') as HTMLElement;
+    if (!(kg > 0) || !(g >= 0)) { box.hidden = false; box.className = 'ec-result'; document.getElementById('cc-h')!.textContent = J.err; document.getElementById('cc-p')!.textContent = ''; return; }
+    const total = g * mgPerG, perKg = total / kg;
+    const band = [...J.bands].reverse().find((b: any) => perKg >= b[0]) ?? J.bands[0];
+    document.getElementById('cc-h')!.textContent = band[1];
+    document.getElementById('cc-p')!.textContent = band[2];
+    document.getElementById('cc-work')!.textContent = `${nf(g, 0)} g × ${nf(mgPerG, 2)} mg/g = ${nf(total, 0)} ${J.total}. ${nf(total, 0)} mg ÷ ${nf(kg)} kg = ${nf(perKg)} ${J.perKg}. ${J.thr}: 20 · 40–50 · 60 mg/kg.`;
+    box.className = `ec-result ec-${band[3]}`; box.hidden = false;
+  });
+</script>
+<style is:global>
+  .cc-form { display: grid; gap: 14px; margin-bottom: 18px; }
+  .cc-form label { display: grid; gap: 6px; font-weight: 600; }
+  .cc-form input, .cc-form select { font: inherit; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); color: var(--ink); max-width: 100%; }
+  .cc-form.ec-group, #cc-result { border: 0; }
+  .cc-form { padding: 18px 20px; border-radius: 20px; background: var(--surface); box-shadow: 0 1px 0 var(--line); }
+  #cc-result { padding: 22px 24px; border-radius: 20px; margin-bottom: 28px; }
+  #cc-result h2 { margin-top: 0; }
+  #cc-result.ec-now { background: var(--danger-soft); border-left: 6px solid var(--danger); }
+  #cc-result.ec-today { background: var(--warn-soft); border-left: 6px solid var(--warn); }
+  #cc-result.ec-watch { background: var(--ok-soft); border-left: 6px solid var(--ok); }
+  #cc-result .ec-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+  .cc-work { font-variant-numeric: tabular-nums; color: var(--ink-2); }
+</style>
