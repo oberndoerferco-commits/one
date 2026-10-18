@@ -22,6 +22,9 @@ npm run build      # output in dist/
 | `src/layouts/Base.astro` | Header, footer, `<head>` |
 | `src/styles.css` | All styling; colour tokens at the top, dark mode included |
 | `public/` | Favicon and static files |
+| `src/components/{EmergencyCheck,ChocolateCheck,FoodCheck,VaccinePlanner}.astro` | Owner tools: fixed rules from named sources, no AI; each cites its source on the page |
+| `src/pages/llms.txt.ts` | `/llms.txt` for AI assistants: what the site is, how to cite it, every article with its review and source status |
+| `scripts/og.mjs` | Renders the share images `public/og.png`, `og-it.png`, `og-de.png` from the live styles (run with the preview server up) |
 
 ## Writing an article
 
@@ -35,6 +38,10 @@ species: dog          # dog | cat | rabbit | horse | bird | general
 category: symptoms    # symptoms | conditions | medications | travel | first-aid | care
 urgency: today        # emergency | today | this-week | routine (optional)
 updated: 2026-09-29
+seoTitle: "Short title for the browser tab and search results"   # optional, max 70 characters
+references:           # the sources the article is based on; every URL opened and checked
+  - title: "MSD Veterinary Manual: Page title"
+    url: "https://www.msdvetmanual.com/…"
 draft: true           # true until a vet has reviewed it
 reviewedBy: "Dr. Name Surname, DVM"   # set when draft becomes false
 reviewedOn: 2026-10-05
@@ -47,6 +54,10 @@ Rules that keep the site trustworthy:
   `false` only after a named vet has read and approved the text.
 - No diagnoses, no doses. Explain, prepare, and point to the vet.
 - Every symptom article starts with the "go now" signs.
+- Headings are the questions owners ask ("When should I take my cat to the vet?"),
+  each followed by a one-sentence answer taken from that section.
+- Every article lists its `references`; an article without them says
+  "sources are still to be added" on the page and in `/llms.txt`.
 
 ## Free hosting
 
