@@ -17,7 +17,7 @@ const F = ({
 } as any)[lang];
 // Tool links shown beside the article, kept out of the body so signed reviews are not invalidated.
 const slug = String(entry.id).split('/').pop();
-const CHOC = new Set(['dog-toxic-foods', 'cane-ha-mangiato-cioccolato', 'alimenti-tossici-cane', 'hund-schokolade-gefressen', 'giftige-lebensmittel-hund']);
+const CHOC = new Set(['dog-toxic-foods', 'dog-ate-chocolate', 'cane-ha-mangiato-cioccolato', 'alimenti-tossici-cane', 'hund-schokolade-gefressen', 'giftige-lebensmittel-hund']);
 // One next step matched to the article's urgency, at the end of every article.
 const NEXT = ({
   en: { emergency: ['Call your vet or an emergency clinic now. Unsure? Check the signs', '/emergency'], today: ['Seeing the vet today? Prepare a one-page brief', '/visit-brief'], 'this-week': ['Keep notes until the visit in the symptom diary', '/passport'], routine: ['Keep dates and notes in the health booklet', '/passport'], h: 'Next step' },
