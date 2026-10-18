@@ -142,7 +142,7 @@ Everything costs €0 unless marked €. Legend:
 - [x] Nurse draft → vet co-sign with stamp and audit — S ★★★
 - [x] Time-to-approval counter shown on approval (clinic median on the quality page needs stored data)
 - [ ] Optional vet-only dictation → bullets, audio discarded immediately, shown as the vet's own input — M ★★
-- [ ] Mobile layout + local autosave for after-the-fact entry — M ★★
+- [~] Mobile layout done (two-column controls, phone bar with status and Approve, enabled only after the report end was on screen); local autosave waits for real note entry — M ★★
 - [x] Handouts: matching articles suggested from the assessment, linked, never inserted
 
 ### Getting it into the practice software
