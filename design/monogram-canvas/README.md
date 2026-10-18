@@ -13,10 +13,11 @@ An all-over repeat laid out like a classic monogram canvas (reference:
 The three star-cross motifs are your PDF's vector paths, unchanged; only their
 colours are swapped per colourway.
 
-Layout: motifs on a diagonal grid, 38 mm apart in a row. The OMs run in
+Layout: motifs on a diagonal grid, 40 mm apart in a row. The OMs run in
 diagonal lines alternating with the discs; the outline and square motifs sit
-in the rows between. One repeat is 76 × 76 mm and holds two of each motif.
-OM 27 mm wide, disc 19.5 mm, outline motif 20.5 mm, square 16.5 mm.
+in the rows between. One repeat is 80 × 80 mm and holds two of each motif.
+OM 22 mm wide, disc 15.5 mm, outline motif 16.5 mm, square 13 mm, which leaves
+at least about 7 mm of clear ground between neighbouring motifs.
 
 ## Files
 

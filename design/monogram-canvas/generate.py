@@ -25,13 +25,13 @@ import os
 import re
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-D = 38.0            # mm between motifs in a row
+D = 40.0            # mm between motifs in a row
 T = 2 * D           # repeat
 SIZE = {            # motif width in mm
-    'om': 27.0,
-    'roundel': 19.5,
-    'halo': 20.5,
-    'tile': 16.5,
+    'om': 22.0,
+    'roundel': 15.5,
+    'halo': 16.5,
+    'tile': 13.0,
 }
 LAYOUT = [
     ('om', 0, 0), ('halo', D, 0),
