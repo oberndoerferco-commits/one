@@ -1,0 +1,179 @@
+{
+  "id": "182-gen-horse-vaccine-other-horse-de",
+  "language": "de",
+  "synthetic": true,
+  "header": {
+    "name": "Fanto",
+    "species": "horse",
+    "breed": "Haflinger",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 8,
+      "unit": "year"
+    }
+  },
+  "notes": "jährliche Influenza- und Tetanusimpfung\nT 37,6\nHF 36\nAF 12\nmunter, guter Ernährungszustand\nLunge frei, Lnn. obB\nSchimmelstute in der Nachbarbox (Sina) hustet seit Montag, T 39,5, nicht unser Patient, Besitzerin ruft ihren Tierarzt an\nInfluenza-/Tetanus-Impfstoff i.m. Hals links verabreicht\nnur leichte Arbeit für 2 Tage\nnächste Impfung in 1 Jahr",
+  "expect": {
+    "missing_includes": [
+      "assessment",
+      "medications[0].dose",
+      "medications[0].frequency",
+      "medications[0].batch"
+    ],
+    "drugs": [
+      "Influenza-/Tetanus-Impfstoff"
+    ],
+    "assessment_text": null,
+    "temperature": 37.6,
+    "statuses": {
+      "medications[0]": "performed"
+    },
+    "must_not_contain": [
+      "sina",
+      "hust",
+      "39.5"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "jährliche Influenza- und Tetanusimpfung",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          39
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 37.6,
+          "unit": "C",
+          "source_spans": [
+            [
+              40,
+              46
+            ]
+          ]
+        },
+        "heart_rate": {
+          "value": 36,
+          "unit": "/min",
+          "source_spans": [
+            [
+              47,
+              52
+            ]
+          ]
+        },
+        "respiratory_rate": {
+          "value": 12,
+          "unit": "/min",
+          "source_spans": [
+            [
+              53,
+              58
+            ]
+          ]
+        },
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "Allgemein",
+          "text": "munter, guter Ernährungszustand",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              59,
+              90
+            ]
+          ]
+        },
+        {
+          "system": "Atmung",
+          "text": "Lunge frei, Lnn. obB",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              91,
+              111
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": null,
+      "differentials": [],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "Influenza-/Tetanus-Impfstoff",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": "i.m.",
+        "frequency": null,
+        "duration": null,
+        "status": "performed",
+        "source_spans": [
+          [
+            234,
+            290
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "nächste Impfung in 1 Jahr",
+        "interval": {
+          "value": 1,
+          "unit": "year"
+        },
+        "source_spans": [
+          [
+            321,
+            346
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "nur leichte Arbeit für 2 Tage",
+          "source_spans": [
+            [
+              291,
+              320
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [
+      {
+        "field": "medications[0].batch",
+        "reason": "Charge nicht in den Notizen"
+      }
+    ],
+    "uncertain": []
+  }
+}

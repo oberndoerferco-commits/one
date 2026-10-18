@@ -1,0 +1,223 @@
+{
+  "id": "173-gen-horse-colic-de",
+  "language": "de",
+  "synthetic": true,
+  "header": {
+    "name": "Wendy",
+    "species": "horse",
+    "breed": "Hannoveraner",
+    "sex": "female",
+    "neuter_status": "intact",
+    "age": {
+      "value": 12,
+      "unit": "year"
+    }
+  },
+  "notes": "scharrt und wälzt sich seit heute Morgen\nMorgenfutter normal gefressen\nletzter Kotabsatz gestern Abend laut Besitzerin\nHF 44\nAF 16\nT 37,8\nKFZ 2 s\nSH rosa, feucht\nDarmgeräusche in allen Quadranten reduziert\nrektal: obB\nca. 520 kg (Maßband)\nBuscopan i.v. verabreicht\nV. a. leichte Krampfkolik\nvorerst kein Futter, Wasser ok, führen\nAnruf, wenn wieder Schmerzen",
+  "expect": {
+    "missing_includes": [
+      "medications[0].dose",
+      "medications[0].frequency"
+    ],
+    "drugs": [
+      "Buscopan"
+    ],
+    "assessment_text": "V. a. leichte Krampfkolik",
+    "temperature": 37.8,
+    "statuses": {
+      "medications[0]": "performed",
+      "diagnostics[0]": "performed"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "scharrt und wälzt sich seit heute Morgen",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          40
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "Fütterung",
+        "value": "Morgenfutter normal gefressen",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            41,
+            70
+          ]
+        ]
+      },
+      {
+        "finding": "Kotabsatz",
+        "value": "letzter Kotabsatz gestern Abend laut Besitzerin",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            71,
+            118
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 37.8,
+          "unit": "C",
+          "source_spans": [
+            [
+              131,
+              137
+            ]
+          ]
+        },
+        "heart_rate": {
+          "value": 44,
+          "unit": "/min",
+          "source_spans": [
+            [
+              119,
+              124
+            ]
+          ]
+        },
+        "respiratory_rate": {
+          "value": 16,
+          "unit": "/min",
+          "source_spans": [
+            [
+              125,
+              130
+            ]
+          ]
+        },
+        "weight": {
+          "value": 520,
+          "unit": "kg",
+          "source_spans": [
+            [
+              218,
+              238
+            ]
+          ]
+        },
+        "crt_seconds": {
+          "value": 2,
+          "unit": "s",
+          "source_spans": [
+            [
+              138,
+              145
+            ]
+          ]
+        }
+      },
+      "findings": [
+        {
+          "system": "Allgemein",
+          "text": "SH rosa, feucht",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              146,
+              161
+            ]
+          ]
+        },
+        {
+          "system": "Abdomen",
+          "text": "Darmgeräusche in allen Quadranten reduziert",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              162,
+              205
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "rektale Untersuchung",
+        "status": "performed",
+        "result": "obB",
+        "source_spans": [
+          [
+            206,
+            217
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": "V. a. leichte Krampfkolik",
+      "differentials": [],
+      "source_spans": [
+        [
+          265,
+          290
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "Buscopan",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": "i.v.",
+        "frequency": null,
+        "duration": null,
+        "status": "performed",
+        "source_spans": [
+          [
+            239,
+            264
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "Anruf, wenn wieder Schmerzen",
+        "interval": null,
+        "source_spans": [
+          [
+            330,
+            358
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "vorerst kein Futter, Wasser ok, führen",
+          "source_spans": [
+            [
+              291,
+              329
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

@@ -18,7 +18,9 @@
     "missing_includes": [],
     "drugs": [],
     "assessment_text": "V. a. Lipom",
-    "statuses": {}
+    "statuses": {
+      "diagnostics[0]": "planned"
+    }
   },
   "fixture_record": {
     "schema_version": "0.2",

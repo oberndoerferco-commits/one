@@ -18,7 +18,9 @@
     "drugs": [],
     "assessment_text": null,
     "temperature": 38.4,
-    "statuses": {}
+    "statuses": {
+      "diagnostics[0]": "performed"
+    }
   },
   "fixture_record": {
     "schema_version": "0.2",

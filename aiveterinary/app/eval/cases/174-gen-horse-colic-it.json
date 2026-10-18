@@ -1,0 +1,223 @@
+{
+  "id": "174-gen-horse-colic-it",
+  "language": "it",
+  "synthetic": true,
+  "header": {
+    "name": "Stella",
+    "species": "horse",
+    "breed": "Hannover",
+    "sex": "female",
+    "neuter_status": "intact",
+    "age": {
+      "value": 12,
+      "unit": "year"
+    }
+  },
+  "notes": "raspa e si rotola da stamattina\nha mangiato normalmente la razione del mattino\nultime feci ieri sera secondo la proprietaria\nFC 44\nFR 16\nT 37,8\nTRC 2 s\nmucose rosee, umide\nborborigmi ridotti in tutti i quadranti\nesplorazione rettale: nella norma\ncirca 520 kg (nastro)\nBuscopan ev somministrato\nsospetta colica spastica lieve\nper ora niente fieno, acqua sì, passeggiare a mano\nchiamare se ritorna il dolore",
+  "expect": {
+    "missing_includes": [
+      "medications[0].dose",
+      "medications[0].frequency"
+    ],
+    "drugs": [
+      "Buscopan"
+    ],
+    "assessment_text": "sospetta colica spastica lieve",
+    "temperature": 37.8,
+    "statuses": {
+      "medications[0]": "performed",
+      "diagnostics[0]": "performed"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "raspa e si rotola da stamattina",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          31
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "alimentazione",
+        "value": "ha mangiato normalmente la razione del mattino",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            32,
+            78
+          ]
+        ]
+      },
+      {
+        "finding": "feci",
+        "value": "ultime feci ieri sera secondo la proprietaria",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            79,
+            124
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 37.8,
+          "unit": "C",
+          "source_spans": [
+            [
+              137,
+              143
+            ]
+          ]
+        },
+        "heart_rate": {
+          "value": 44,
+          "unit": "/min",
+          "source_spans": [
+            [
+              125,
+              130
+            ]
+          ]
+        },
+        "respiratory_rate": {
+          "value": 16,
+          "unit": "/min",
+          "source_spans": [
+            [
+              131,
+              136
+            ]
+          ]
+        },
+        "weight": {
+          "value": 520,
+          "unit": "kg",
+          "source_spans": [
+            [
+              246,
+              267
+            ]
+          ]
+        },
+        "crt_seconds": {
+          "value": 2,
+          "unit": "s",
+          "source_spans": [
+            [
+              144,
+              151
+            ]
+          ]
+        }
+      },
+      "findings": [
+        {
+          "system": "generale",
+          "text": "mucose rosee, umide",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              152,
+              171
+            ]
+          ]
+        },
+        {
+          "system": "addome",
+          "text": "borborigmi ridotti in tutti i quadranti",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              172,
+              211
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "esplorazione rettale",
+        "status": "performed",
+        "result": "nella norma",
+        "source_spans": [
+          [
+            212,
+            245
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": "sospetta colica spastica lieve",
+      "differentials": [],
+      "source_spans": [
+        [
+          294,
+          324
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "Buscopan",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": "ev",
+        "frequency": null,
+        "duration": null,
+        "status": "performed",
+        "source_spans": [
+          [
+            268,
+            293
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "chiamare se ritorna il dolore",
+        "interval": null,
+        "source_spans": [
+          [
+            376,
+            405
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "per ora niente fieno, acqua sì, passeggiare a mano",
+          "source_spans": [
+            [
+              325,
+              375
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

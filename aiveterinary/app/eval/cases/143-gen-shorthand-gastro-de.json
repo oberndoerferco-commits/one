@@ -1,0 +1,182 @@
+{
+  "id": "143-gen-shorthand-gastro-de",
+  "language": "de",
+  "synthetic": true,
+  "header": {
+    "name": "Sammy",
+    "species": "dog",
+    "breed": "Cocker Spaniel",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 4,
+      "unit": "year"
+    }
+  },
+  "notes": "ggr. Erbrechen seit gestern, 2x, kein Durchfall\nfrisst schlecht seit gestern\nAZ ungestört, SH rosa, KFZ<2\nT 38,8\nHF 100\nAF 24\nAbd. weich, obB\nV. a. akute Gastritis\nCerenia verabreicht\nSchonkost, kleine Portionen\nWV bei anhaltendem Erbrechen",
+  "expect": {
+    "missing_includes": [
+      "medications[0].dose",
+      "medications[0].route",
+      "medications[0].frequency"
+    ],
+    "drugs": [
+      "Cerenia"
+    ],
+    "assessment_text": "V. a. akute Gastritis",
+    "temperature": 38.8,
+    "statuses": {
+      "medications[0]": "performed"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "ggr. Erbrechen seit gestern, 2x, kein Durchfall",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          47
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "Appetit",
+        "value": "frisst schlecht seit gestern",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            48,
+            76
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.8,
+          "unit": "C",
+          "source_spans": [
+            [
+              106,
+              112
+            ]
+          ]
+        },
+        "heart_rate": {
+          "value": 100,
+          "unit": "/min",
+          "source_spans": [
+            [
+              113,
+              119
+            ]
+          ]
+        },
+        "respiratory_rate": {
+          "value": 24,
+          "unit": "/min",
+          "source_spans": [
+            [
+              120,
+              125
+            ]
+          ]
+        },
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "Allgemein",
+          "text": "AZ ungestört, SH rosa, KFZ<2",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              77,
+              105
+            ]
+          ]
+        },
+        {
+          "system": "Abdomen",
+          "text": "Abd. weich, obB",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              126,
+              141
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": "V. a. akute Gastritis",
+      "differentials": [],
+      "source_spans": [
+        [
+          142,
+          163
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "Cerenia",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": null,
+        "frequency": null,
+        "duration": null,
+        "status": "performed",
+        "source_spans": [
+          [
+            164,
+            183
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "WV bei anhaltendem Erbrechen",
+        "interval": null,
+        "source_spans": [
+          [
+            212,
+            240
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "Schonkost, kleine Portionen",
+          "source_spans": [
+            [
+              184,
+              211
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

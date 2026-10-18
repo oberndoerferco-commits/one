@@ -20,7 +20,9 @@
     ],
     "drugs": [],
     "assessment_text": null,
-    "statuses": {}
+    "statuses": {
+      "diagnostics[0]": "performed"
+    }
   },
   "fixture_record": {
     "schema_version": "0.2",

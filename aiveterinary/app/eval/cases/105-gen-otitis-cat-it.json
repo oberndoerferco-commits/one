@@ -24,7 +24,8 @@
     "assessment_text": "otite esterna sinistra",
     "statuses": {
       "treatments[0]": "performed",
-      "medications[0]": "prescribed"
+      "medications[0]": "prescribed",
+      "diagnostics[0]": "performed"
     }
   },
   "fixture_record": {

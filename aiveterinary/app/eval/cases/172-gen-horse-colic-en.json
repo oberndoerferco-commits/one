@@ -1,0 +1,223 @@
+{
+  "id": "172-gen-horse-colic-en",
+  "language": "en",
+  "synthetic": true,
+  "header": {
+    "name": "Daisy",
+    "species": "horse",
+    "breed": "Hanoverian",
+    "sex": "female",
+    "neuter_status": "intact",
+    "age": {
+      "value": 12,
+      "unit": "year"
+    }
+  },
+  "notes": "pawing and rolling since this morning\nate breakfast normally\nlast droppings last night per owner\nHR 44\nRR 16\nT 37.8\nCRT 2 s\nMM pink, moist\ngut sounds reduced all quadrants\nrectal: NAD\napprox 520 kg (tape)\nBuscopan iv given\nmild spasmodic colic suspected\nno feed for now, water ok, walk in hand\ncall if pain returns",
+  "expect": {
+    "missing_includes": [
+      "medications[0].dose",
+      "medications[0].frequency"
+    ],
+    "drugs": [
+      "Buscopan"
+    ],
+    "assessment_text": "mild spasmodic colic suspected",
+    "temperature": 37.8,
+    "statuses": {
+      "medications[0]": "performed",
+      "diagnostics[0]": "performed"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "pawing and rolling since this morning",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          37
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "feed",
+        "value": "ate breakfast normally",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            38,
+            60
+          ]
+        ]
+      },
+      {
+        "finding": "droppings",
+        "value": "last droppings last night per owner",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            61,
+            96
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 37.8,
+          "unit": "C",
+          "source_spans": [
+            [
+              109,
+              115
+            ]
+          ]
+        },
+        "heart_rate": {
+          "value": 44,
+          "unit": "/min",
+          "source_spans": [
+            [
+              97,
+              102
+            ]
+          ]
+        },
+        "respiratory_rate": {
+          "value": 16,
+          "unit": "/min",
+          "source_spans": [
+            [
+              103,
+              108
+            ]
+          ]
+        },
+        "weight": {
+          "value": 520,
+          "unit": "kg",
+          "source_spans": [
+            [
+              184,
+              204
+            ]
+          ]
+        },
+        "crt_seconds": {
+          "value": 2,
+          "unit": "s",
+          "source_spans": [
+            [
+              116,
+              123
+            ]
+          ]
+        }
+      },
+      "findings": [
+        {
+          "system": "general",
+          "text": "MM pink, moist",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              124,
+              138
+            ]
+          ]
+        },
+        {
+          "system": "abdomen",
+          "text": "gut sounds reduced all quadrants",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              139,
+              171
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "rectal exam",
+        "status": "performed",
+        "result": "NAD",
+        "source_spans": [
+          [
+            172,
+            183
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": "mild spasmodic colic suspected",
+      "differentials": [],
+      "source_spans": [
+        [
+          223,
+          253
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "Buscopan",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": "iv",
+        "frequency": null,
+        "duration": null,
+        "status": "performed",
+        "source_spans": [
+          [
+            205,
+            222
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "call if pain returns",
+        "interval": null,
+        "source_spans": [
+          [
+            294,
+            314
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "no feed for now, water ok, walk in hand",
+          "source_spans": [
+            [
+              254,
+              293
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

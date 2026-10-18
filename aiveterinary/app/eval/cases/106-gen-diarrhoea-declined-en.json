@@ -19,7 +19,10 @@
     "drugs": [],
     "assessment_text": "acute diarrhoea",
     "temperature": 38.9,
-    "statuses": {}
+    "statuses": {
+      "diagnostics[0]": "planned",
+      "diagnostics[1]": "declined"
+    }
   },
   "fixture_record": {
     "schema_version": "0.2",

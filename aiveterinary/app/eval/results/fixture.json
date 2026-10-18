@@ -1,38 +1,38 @@
 {
   "metrics": {
     "attribution": {
-      "k": 356,
-      "n": 356,
+      "k": 827,
+      "n": 827,
       "rate": 1,
-      "lo": 0.9893,
+      "lo": 0.9954,
       "hi": 1
     },
     "unsupported_content": {
       "k": 0,
-      "n": 356,
+      "n": 827,
       "rate": 0,
       "lo": 0,
-      "hi": 0.0107
+      "hi": 0.0046
     },
     "cases_with_blocking_finding": {
       "k": 0,
-      "n": 52,
+      "n": 97,
       "rate": 0,
       "lo": 0,
-      "hi": 0.0688
+      "hi": 0.0381
     },
     "missing_field_detection": {
-      "k": 35,
-      "n": 35,
+      "k": 101,
+      "n": 101,
       "rate": 1,
-      "lo": 0.9011,
+      "lo": 0.9634,
       "hi": 1
     }
   },
-  "run_at": "2026-10-18T22:15:31.308Z",
+  "run_at": "2026-10-18T23:20:25.427Z",
   "extractor": "fixture",
   "prompt": "extract-v1",
-  "cases": 53,
+  "cases": 98,
   "failed": 0,
   "blocking": 4,
   "warnings": 0,
@@ -255,6 +255,186 @@
     },
     {
       "id": "141-gen-eye-no-frequency-it",
+      "pass": true
+    },
+    {
+      "id": "142-gen-shorthand-gastro-en",
+      "pass": true
+    },
+    {
+      "id": "143-gen-shorthand-gastro-de",
+      "pass": true
+    },
+    {
+      "id": "144-gen-shorthand-gastro-it",
+      "pass": true
+    },
+    {
+      "id": "145-gen-contradiction-vomiting-en",
+      "pass": true
+    },
+    {
+      "id": "146-gen-contradiction-vomiting-de",
+      "pass": true
+    },
+    {
+      "id": "147-gen-contradiction-vomiting-it",
+      "pass": true
+    },
+    {
+      "id": "148-gen-owner-vs-vet-lameness-en",
+      "pass": true
+    },
+    {
+      "id": "149-gen-owner-vs-vet-lameness-de",
+      "pass": true
+    },
+    {
+      "id": "150-gen-owner-vs-vet-lameness-it",
+      "pass": true
+    },
+    {
+      "id": "151-gen-pruritus-declined-dispensed-en",
+      "pass": true
+    },
+    {
+      "id": "152-gen-pruritus-declined-dispensed-de",
+      "pass": true
+    },
+    {
+      "id": "153-gen-pruritus-declined-dispensed-it",
+      "pass": true
+    },
+    {
+      "id": "154-gen-other-cat-household-en",
+      "pass": true
+    },
+    {
+      "id": "155-gen-other-cat-household-de",
+      "pass": true
+    },
+    {
+      "id": "156-gen-other-cat-household-it",
+      "pass": true
+    },
+    {
+      "id": "157-gen-vague-numbers-hotspot-en",
+      "pass": true
+    },
+    {
+      "id": "158-gen-vague-numbers-hotspot-de",
+      "pass": true
+    },
+    {
+      "id": "159-gen-vague-numbers-hotspot-it",
+      "pass": true
+    },
+    {
+      "id": "160-gen-full-vs-drug-only-meds-en",
+      "pass": true
+    },
+    {
+      "id": "161-gen-full-vs-drug-only-meds-de",
+      "pass": true
+    },
+    {
+      "id": "162-gen-full-vs-drug-only-meds-it",
+      "pass": true
+    },
+    {
+      "id": "163-gen-typos-drug-finding-en",
+      "pass": true
+    },
+    {
+      "id": "164-gen-typos-drug-finding-de",
+      "pass": true
+    },
+    {
+      "id": "165-gen-typos-drug-finding-it",
+      "pass": true
+    },
+    {
+      "id": "166-gen-rabbit-dental-declined-en",
+      "pass": true
+    },
+    {
+      "id": "167-gen-rabbit-dental-declined-de",
+      "pass": true
+    },
+    {
+      "id": "168-gen-rabbit-dental-declined-it",
+      "pass": true
+    },
+    {
+      "id": "169-gen-ferret-vaccine-batch-en",
+      "pass": true
+    },
+    {
+      "id": "170-gen-ferret-vaccine-batch-de",
+      "pass": true
+    },
+    {
+      "id": "171-gen-ferret-vaccine-batch-it",
+      "pass": true
+    },
+    {
+      "id": "172-gen-horse-colic-en",
+      "pass": true
+    },
+    {
+      "id": "173-gen-horse-colic-de",
+      "pass": true
+    },
+    {
+      "id": "174-gen-horse-colic-it",
+      "pass": true
+    },
+    {
+      "id": "175-gen-bird-weight-loss-en",
+      "pass": true
+    },
+    {
+      "id": "176-gen-bird-weight-loss-de",
+      "pass": true
+    },
+    {
+      "id": "177-gen-bird-weight-loss-it",
+      "pass": true
+    },
+    {
+      "id": "178-gen-dictated-cough-murmur-en",
+      "pass": true
+    },
+    {
+      "id": "179-gen-dictated-cough-murmur-de",
+      "pass": true
+    },
+    {
+      "id": "180-gen-dictated-cough-murmur-it",
+      "pass": true
+    },
+    {
+      "id": "181-gen-horse-vaccine-other-horse-en",
+      "pass": true
+    },
+    {
+      "id": "182-gen-horse-vaccine-other-horse-de",
+      "pass": true
+    },
+    {
+      "id": "183-gen-horse-vaccine-other-horse-it",
+      "pass": true
+    },
+    {
+      "id": "184-gen-contradiction-eye-side-en",
+      "pass": true
+    },
+    {
+      "id": "185-gen-contradiction-eye-side-de",
+      "pass": true
+    },
+    {
+      "id": "186-gen-contradiction-eye-side-it",
       "pass": true
     }
   ]

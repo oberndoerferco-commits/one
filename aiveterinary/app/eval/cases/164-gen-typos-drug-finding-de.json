@@ -1,0 +1,183 @@
+{
+  "id": "164-gen-typos-drug-finding-de",
+  "language": "de",
+  "synthetic": true,
+  "header": {
+    "name": "Arko",
+    "species": "dog",
+    "breed": "Labrador",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 10,
+      "unit": "year"
+    }
+  },
+  "notes": "steht morgens steif auf\ngeht noch gerne spazieren\nKGW 31,5 kg\nBeweglichkeit beide Ellbogen reduziert, ggr. Krepitaton li.\nV. a. Arthorse Ellbogen\nRö Ellbogen empfohlen\nMetcam p.o. verschrieben\nGewichtskontrolle, kurze regelmäßige Spaziergänge\nWV in 4 Wochen",
+  "expect": {
+    "missing_includes": [
+      "medications[0].dose",
+      "medications[0].frequency"
+    ],
+    "drugs": [
+      "Metcam"
+    ],
+    "assessment_text": "V. a. Arthorse Ellbogen",
+    "statuses": {
+      "treatments[0]": "recommended",
+      "medications[0]": "prescribed",
+      "diagnostics[0]": "recommended"
+    },
+    "uncertain_min": 1
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "steht morgens steif auf",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          23
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "Aktivität",
+        "value": "geht noch gerne spazieren",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            24,
+            49
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": {
+          "value": 31.5,
+          "unit": "kg",
+          "source_spans": [
+            [
+              50,
+              61
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "Bewegungsapparat",
+          "text": "Beweglichkeit beide Ellbogen reduziert, ggr. Krepitaton li.",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              62,
+              121
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "Röntgen Ellbogen",
+        "status": "recommended",
+        "result": null,
+        "source_spans": [
+          [
+            146,
+            167
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": "V. a. Arthorse Ellbogen",
+      "differentials": [],
+      "source_spans": [
+        [
+          122,
+          145
+        ]
+      ]
+    },
+    "treatments": [
+      {
+        "type": "advice",
+        "text": "Gewichtskontrolle, kurze regelmäßige Spaziergänge",
+        "status": "recommended",
+        "source_spans": [
+          [
+            193,
+            242
+          ]
+        ]
+      }
+    ],
+    "medications": [
+      {
+        "drug": "Metcam",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": "p.o.",
+        "frequency": null,
+        "duration": null,
+        "status": "prescribed",
+        "source_spans": [
+          [
+            168,
+            192
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "WV in 4 Wochen",
+        "interval": {
+          "value": 4,
+          "unit": "week"
+        },
+        "source_spans": [
+          [
+            243,
+            257
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": [
+      {
+        "field": "medications[0].drug",
+        "original_text": "Metcam",
+        "reason": "Medikamentenname wie geschrieben übernommen, evtl. Tippfehler; nicht korrigiert",
+        "source_spans": [
+          [
+            168,
+            174
+          ]
+        ]
+      }
+    ]
+  }
+}

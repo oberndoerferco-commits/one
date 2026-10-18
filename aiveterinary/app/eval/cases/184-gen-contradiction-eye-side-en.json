@@ -1,0 +1,160 @@
+{
+  "id": "184-gen-contradiction-eye-side-en",
+  "language": "en",
+  "synthetic": true,
+  "header": {
+    "name": "Teddy",
+    "species": "dog",
+    "breed": "Shih Tzu",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 7,
+      "unit": "year"
+    }
+  },
+  "notes": "squinting left eye since yesterday\nR eye blepharospasm, epiphora\nother eye normal\nfluo stain neg\nconjunctivitis suspected\nVidisic eye gel dispensed, ocular, 3x daily\nrecheck in a few days if not better",
+  "expect": {
+    "missing_includes": [
+      "medications[0].dose"
+    ],
+    "drugs": [
+      "Vidisic"
+    ],
+    "assessment_text": "conjunctivitis suspected",
+    "statuses": {
+      "medications[0]": "dispensed",
+      "diagnostics[0]": "performed"
+    },
+    "uncertain_min": 1
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "squinting left eye since yesterday",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          34
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "eyes",
+          "text": "R eye blepharospasm, epiphora",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              35,
+              64
+            ]
+          ]
+        },
+        {
+          "system": "eyes",
+          "text": "other eye normal",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              65,
+              81
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "fluorescein stain",
+        "status": "performed",
+        "result": "neg",
+        "source_spans": [
+          [
+            82,
+            96
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": "conjunctivitis suspected",
+      "differentials": [],
+      "source_spans": [
+        [
+          97,
+          121
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "Vidisic",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": "ocular",
+        "frequency": "3x daily",
+        "duration": null,
+        "status": "dispensed",
+        "source_spans": [
+          [
+            122,
+            165
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "recheck in a few days if not better",
+        "interval": null,
+        "source_spans": [
+          [
+            166,
+            201
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": [
+      {
+        "field": "examination.findings[0]",
+        "original_text": "squinting left eye since yesterday / R eye blepharospasm, epiphora",
+        "reason": "complaint says left eye, exam says right eye; side not clarified in the notes",
+        "source_spans": [
+          [
+            0,
+            34
+          ],
+          [
+            35,
+            64
+          ]
+        ]
+      }
+    ]
+  }
+}

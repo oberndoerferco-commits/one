@@ -1,0 +1,196 @@
+{
+  "id": "168-gen-rabbit-dental-declined-it",
+  "language": "it",
+  "synthetic": true,
+  "header": {
+    "name": "Fiocco",
+    "species": "rabbit",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 4,
+      "unit": "year"
+    }
+  },
+  "notes": "saliva e lascia cadere il cibo da 1 settimana\nsoprattutto pellet, poco fieno\npeso 1,85 kg\nT 38,7\nFC 220\nFR 48\nincisivi troppo lunghi, mento bagnato\nincisivi accorciati\nrx cranio proposte, la proprietaria rifiuta\nesame del cavo orale in sedazione programmato\npatologia dentale\nfieno a volontà, ridurre i pellet\ncontrollo tra 2 settimane",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": "patologia dentale",
+    "temperature": 38.7,
+    "statuses": {
+      "treatments[0]": "performed",
+      "diagnostics[0]": "declined",
+      "diagnostics[1]": "planned"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "saliva e lascia cadere il cibo da 1 settimana",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          45
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "alimentazione",
+        "value": "soprattutto pellet, poco fieno",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            46,
+            76
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.7,
+          "unit": "C",
+          "source_spans": [
+            [
+              90,
+              96
+            ]
+          ]
+        },
+        "heart_rate": {
+          "value": 220,
+          "unit": "/min",
+          "source_spans": [
+            [
+              97,
+              103
+            ]
+          ]
+        },
+        "respiratory_rate": {
+          "value": 48,
+          "unit": "/min",
+          "source_spans": [
+            [
+              104,
+              109
+            ]
+          ]
+        },
+        "weight": {
+          "value": 1.85,
+          "unit": "kg",
+          "source_spans": [
+            [
+              77,
+              89
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "cavo orale",
+          "text": "incisivi troppo lunghi, mento bagnato",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              110,
+              147
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "radiografie del cranio",
+        "status": "declined",
+        "result": null,
+        "source_spans": [
+          [
+            168,
+            211
+          ]
+        ]
+      },
+      {
+        "test": "esame del cavo orale in sedazione",
+        "status": "planned",
+        "result": null,
+        "source_spans": [
+          [
+            212,
+            257
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": "patologia dentale",
+      "differentials": [],
+      "source_spans": [
+        [
+          258,
+          275
+        ]
+      ]
+    },
+    "treatments": [
+      {
+        "type": "procedure",
+        "text": "incisivi accorciati",
+        "status": "performed",
+        "source_spans": [
+          [
+            148,
+            167
+          ]
+        ]
+      }
+    ],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "controllo tra 2 settimane",
+        "interval": {
+          "value": 2,
+          "unit": "week"
+        },
+        "source_spans": [
+          [
+            310,
+            335
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "fieno a volontà, ridurre i pellet",
+          "source_spans": [
+            [
+              276,
+              309
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

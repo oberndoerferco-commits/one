@@ -1,0 +1,205 @@
+{
+  "id": "152-gen-pruritus-declined-dispensed-de",
+  "language": "de",
+  "synthetic": true,
+  "header": {
+    "name": "Charly",
+    "species": "dog",
+    "breed": "West Highland White Terrier",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 5,
+      "unit": "year"
+    }
+  },
+  "notes": "Juckreiz Pfoten und Ohren seit 1 Monat\ninterdigitales Erythem an allen 4 Pfoten, beide Ohren gerötet\nTesa-Zytologie Pfoten: Kokken +\nAllergietest (Blut) angeboten, Besitzerin lehnt ab (Kosten)\nHautgeschabsel bei der WV geplant\natopische Dermatitis\nFuttermittelallergie\nChlorhexidin-Shampoo abgegeben, 2x pro Woche\nApoquel besprochen, Besitzerin möchte noch nicht beginnen\nEliminationsdiät empfohlen\nWV in 3 Wochen",
+  "expect": {
+    "missing_includes": [
+      "medications[0].dose",
+      "medications[0].route"
+    ],
+    "drugs": [
+      "Chlorhexidin-Shampoo",
+      "Apoquel"
+    ],
+    "assessment_text": null,
+    "statuses": {
+      "treatments[0]": "recommended",
+      "medications[0]": "dispensed",
+      "medications[1]": "declined",
+      "diagnostics[0]": "performed",
+      "diagnostics[1]": "declined",
+      "diagnostics[2]": "planned"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "Juckreiz Pfoten und Ohren seit 1 Monat",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          38
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "Haut",
+          "text": "interdigitales Erythem an allen 4 Pfoten, beide Ohren gerötet",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              39,
+              100
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "Tesa-Zytologie Pfoten",
+        "status": "performed",
+        "result": "Kokken +",
+        "source_spans": [
+          [
+            101,
+            132
+          ]
+        ]
+      },
+      {
+        "test": "Allergietest Blut",
+        "status": "declined",
+        "result": null,
+        "source_spans": [
+          [
+            133,
+            192
+          ]
+        ]
+      },
+      {
+        "test": "Hautgeschabsel",
+        "status": "planned",
+        "result": null,
+        "source_spans": [
+          [
+            193,
+            226
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": null,
+      "differentials": [
+        {
+          "text": "atopische Dermatitis",
+          "source_spans": [
+            [
+              227,
+              247
+            ]
+          ]
+        },
+        {
+          "text": "Futtermittelallergie",
+          "source_spans": [
+            [
+              248,
+              268
+            ]
+          ]
+        }
+      ],
+      "source_spans": []
+    },
+    "treatments": [
+      {
+        "type": "advice",
+        "text": "Eliminationsdiät empfohlen",
+        "status": "recommended",
+        "source_spans": [
+          [
+            372,
+            398
+          ]
+        ]
+      }
+    ],
+    "medications": [
+      {
+        "drug": "Chlorhexidin-Shampoo",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": null,
+        "frequency": "2x pro Woche",
+        "duration": null,
+        "status": "dispensed",
+        "source_spans": [
+          [
+            269,
+            313
+          ]
+        ]
+      },
+      {
+        "drug": "Apoquel",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": null,
+        "frequency": null,
+        "duration": null,
+        "status": "declined",
+        "source_spans": [
+          [
+            314,
+            371
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "WV in 3 Wochen",
+        "interval": {
+          "value": 3,
+          "unit": "week"
+        },
+        "source_spans": [
+          [
+            399,
+            413
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

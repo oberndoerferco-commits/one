@@ -24,7 +24,8 @@
     ],
     "assessment_text": "Konjunktivitis rechts",
     "statuses": {
-      "medications[0]": "prescribed"
+      "medications[0]": "prescribed",
+      "diagnostics[0]": "performed"
     }
   },
   "fixture_record": {

@@ -24,7 +24,8 @@
     ],
     "assessment_text": "congiuntivite destra",
     "statuses": {
-      "medications[0]": "prescribed"
+      "medications[0]": "prescribed",
+      "diagnostics[0]": "performed"
     }
   },
   "fixture_record": {

@@ -20,7 +20,8 @@
     "assessment_text": "sospetta rottura crociato PD",
     "temperature": 38.6,
     "statuses": {
-      "treatments[0]": "recommended"
+      "treatments[0]": "recommended",
+      "diagnostics[0]": "planned"
     }
   },
   "fixture_record": {

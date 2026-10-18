@@ -1,0 +1,179 @@
+{
+  "id": "183-gen-horse-vaccine-other-horse-it",
+  "language": "it",
+  "synthetic": true,
+  "header": {
+    "name": "Ettore",
+    "species": "horse",
+    "breed": "Haflinger",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 8,
+      "unit": "year"
+    }
+  },
+  "notes": "vaccinazione annuale influenza e tetano\nT 37,6\nFC 36\nFR 12\nvivace, in buone condizioni\npolmoni puliti, linfonodi nella norma\nla cavalla grigia nel box accanto (Brezza) tossisce da lunedì, T 39,5, non è nostra paziente, la proprietaria chiamerà il suo veterinario\nvaccino influenza/tetano i.m. collo sinistro eseguito\nsolo lavoro leggero per 2 giorni\nprossimo vaccino tra 1 anno",
+  "expect": {
+    "missing_includes": [
+      "assessment",
+      "medications[0].dose",
+      "medications[0].frequency",
+      "medications[0].batch"
+    ],
+    "drugs": [
+      "vaccino influenza/tetano"
+    ],
+    "assessment_text": null,
+    "temperature": 37.6,
+    "statuses": {
+      "medications[0]": "performed"
+    },
+    "must_not_contain": [
+      "brezza",
+      "toss",
+      "39.5"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "vaccinazione annuale influenza e tetano",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          39
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 37.6,
+          "unit": "C",
+          "source_spans": [
+            [
+              40,
+              46
+            ]
+          ]
+        },
+        "heart_rate": {
+          "value": 36,
+          "unit": "/min",
+          "source_spans": [
+            [
+              47,
+              52
+            ]
+          ]
+        },
+        "respiratory_rate": {
+          "value": 12,
+          "unit": "/min",
+          "source_spans": [
+            [
+              53,
+              58
+            ]
+          ]
+        },
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "generale",
+          "text": "vivace, in buone condizioni",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              59,
+              86
+            ]
+          ]
+        },
+        {
+          "system": "respiratorio",
+          "text": "polmoni puliti, linfonodi nella norma",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              87,
+              124
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": null,
+      "differentials": [],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "vaccino influenza/tetano",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": "i.m.",
+        "frequency": null,
+        "duration": null,
+        "status": "performed",
+        "source_spans": [
+          [
+            263,
+            316
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "prossimo vaccino tra 1 anno",
+        "interval": {
+          "value": 1,
+          "unit": "year"
+        },
+        "source_spans": [
+          [
+            350,
+            377
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "solo lavoro leggero per 2 giorni",
+          "source_spans": [
+            [
+              317,
+              349
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [
+      {
+        "field": "medications[0].batch",
+        "reason": "lotto non presente nelle note"
+      }
+    ],
+    "uncertain": []
+  }
+}

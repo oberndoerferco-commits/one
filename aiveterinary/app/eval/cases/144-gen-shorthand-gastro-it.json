@@ -1,0 +1,182 @@
+{
+  "id": "144-gen-shorthand-gastro-it",
+  "language": "it",
+  "synthetic": true,
+  "header": {
+    "name": "Birba",
+    "species": "dog",
+    "breed": "Cocker Spaniel",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 4,
+      "unit": "year"
+    }
+  },
+  "notes": "vomito 2v da ieri, feci nn\ninappetente da ieri\nvivace, mucose rosee, TRC<2\nT 38,8\nFC 100\nFR 24\naddome trattabile, non dolente\nsospetta gastrite acuta\nCerenia somministrato\ndieta leggera, pasti piccoli\nricontrollo se il vomito persiste",
+  "expect": {
+    "missing_includes": [
+      "medications[0].dose",
+      "medications[0].route",
+      "medications[0].frequency"
+    ],
+    "drugs": [
+      "Cerenia"
+    ],
+    "assessment_text": "sospetta gastrite acuta",
+    "temperature": 38.8,
+    "statuses": {
+      "medications[0]": "performed"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "vomito 2v da ieri, feci nn",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          26
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "appetito",
+        "value": "inappetente da ieri",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            27,
+            46
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.8,
+          "unit": "C",
+          "source_spans": [
+            [
+              75,
+              81
+            ]
+          ]
+        },
+        "heart_rate": {
+          "value": 100,
+          "unit": "/min",
+          "source_spans": [
+            [
+              82,
+              88
+            ]
+          ]
+        },
+        "respiratory_rate": {
+          "value": 24,
+          "unit": "/min",
+          "source_spans": [
+            [
+              89,
+              94
+            ]
+          ]
+        },
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "generale",
+          "text": "vivace, mucose rosee, TRC<2",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              47,
+              74
+            ]
+          ]
+        },
+        {
+          "system": "addome",
+          "text": "addome trattabile, non dolente",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              95,
+              125
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": "sospetta gastrite acuta",
+      "differentials": [],
+      "source_spans": [
+        [
+          126,
+          149
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "Cerenia",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": null,
+        "frequency": null,
+        "duration": null,
+        "status": "performed",
+        "source_spans": [
+          [
+            150,
+            171
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "ricontrollo se il vomito persiste",
+        "interval": null,
+        "source_spans": [
+          [
+            201,
+            234
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "dieta leggera, pasti piccoli",
+          "source_spans": [
+            [
+              172,
+              200
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}
