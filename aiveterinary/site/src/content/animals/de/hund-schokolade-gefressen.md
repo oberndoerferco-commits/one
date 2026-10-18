@@ -4,7 +4,7 @@ description: "Schokolade enthält Theobromin, das Hunde nur sehr langsam abbauen
 species: dog
 category: first-aid
 urgency: emergency
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -72,7 +72,7 @@ Verpackung sichern, die Praxis oder den Notdienst anrufen und hinfahren, wenn di
 
 Lösen Sie kein Erbrechen selbst aus, geben Sie keine Milch, kein Öl, keine Hausmittel oder Medikamente für Menschen und warten Sie nicht ab.
 
-- **Kein selbst ausgelöstes Erbrechen** mit Salzwasser, Spülmittel oder Wasserstoffperoxid. Salz kann eine eigene, tödliche Vergiftung auslösen, und Erbrechen bei einem benommenen Hund kann zum Einatmen führen. Die Praxis hat sichere Mittel.
+- **Kein selbst ausgelöstes Erbrechen**, weder mit Salzwasser noch mit Wasserstoffperoxid oder anderen Hausmitteln. Salz kann eine eigene, tödliche Vergiftung auslösen. Die Praxis hat sichere Mittel.
 - **Keine Milch, kein Öl, keine Hausmittel.** Sie helfen nicht und können Durchfall und Fettbelastung verschlimmern.
 - **Keine Medikamente für Menschen**, auch keine Schmerz- oder Beruhigungsmittel.
 - **Nicht abwarten „bis etwas passiert“.** Die Behandlung ist am einfachsten, bevor Symptome da sind.

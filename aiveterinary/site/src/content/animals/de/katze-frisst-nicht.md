@@ -1,10 +1,10 @@
 ---
 title: "Katze frisst nicht mehr: wann es gefährlich wird"
-description: "Eine Katze, die nicht frisst, hat weniger Zeit als ein Hund. Nach spätestens 24 bis 48 Stunden ohne Nahrung drohen Leberschäden, bei übergewichtigen Katzen schneller. Was Sie prüfen sollten, wann Sie anrufen müssen und warum die Frage „wie lange darf sie?“ die falsche ist."
+description: "Eine Katze, die nicht frisst, hat weniger Zeit als ein Hund. Nach wenigen Tagen ohne Nahrung, meist drei bis vier, kann sich eine lebensbedrohliche Fettleber entwickeln, bei übergewichtigen Katzen ist das Risiko höher. Nach zwei Tagen ohne Futter muss sie in die Praxis. Was Sie prüfen sollten, wann Sie anrufen müssen und warum die Frage „wie lange darf sie?“ die falsche ist."
 species: cat
 category: symptoms
 urgency: today
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -30,7 +30,7 @@ Fahren Sie sofort in eine Tierarztpraxis und rufen Sie vorher an, wenn Ihre Katz
 - wiederholt erbricht oder Würgen zeigt, ohne dass etwas kommt
 - vergeblich die Katzentoilette aufsucht oder beim Pressen schreit (bei Katern ein möglicher Harnröhrenverschluss)
 - möglicherweise Lilien, Medikamente für Menschen, Frostschutzmittel oder andere Gifte aufgenommen hat
-- ein Kätzchen unter sechs Monaten ist oder bereits Diabetes, eine Nieren- oder Schilddrüsenerkrankung hat
+- ein Kätzchen ist oder bereits Diabetes, eine Nieren- oder Schilddrüsenerkrankung hat
 - seit mehr als 48 Stunden gar nichts gefressen hat, auch wenn sie sonst „normal“ wirkt
 
 ## Wie lange darf meine Katze nicht fressen?
@@ -39,7 +39,7 @@ Nach 24 Stunden ohne Fressen sollten Sie anrufen, und 48 Stunden sind die Grenze
 
 Die Frage, die Halter am häufigsten stellen, lautet: „Wie lange darf meine Katze nicht fressen?“ Eine ehrliche Antwort ist: deutlich kürzer, als es sich anfühlt.
 
-Wenn eine Katze keine Nahrung aufnimmt, beginnt ihr Körper, Fettreserven in die Leber zu schicken. Die Katzenleber kann dieses Fett nur schlecht verarbeiten, es lagert sich ein, und die Leber versagt zunehmend. Dieses Bild heißt **hepatische Lipidose** („Fettleber“) und ist lebensbedrohlich. Es kann sich bereits nach wenigen Tagen Nahrungsverweigerung entwickeln, bei übergewichtigen Katzen schneller. Die Lipidose ist meistens die Folge einer anderen Erkrankung, die zum Nicht-Fressen geführt hat, und sie macht die Katze dann noch kränker, sodass sie noch weniger frisst. Dieser Kreislauf ist der Grund, warum Tierärztinnen und Tierärzte Katzen früh sehen wollen.
+Wenn eine Katze keine Nahrung aufnimmt, beginnt ihr Körper, Fettreserven in die Leber zu schicken. Die Katzenleber kann dieses Fett nur schlecht verarbeiten, es lagert sich ein, und die Leber versagt zunehmend. Dieses Bild heißt **hepatische Lipidose** („Fettleber“) und ist lebensbedrohlich. Es entwickelt sich meist nach drei bis vier Tagen, in denen die Katze kaum oder gar nicht frisst, und das Risiko ist bei übergewichtigen Katzen höher. Die Lipidose ist meistens die Folge einer anderen Erkrankung, die zum Nicht-Fressen geführt hat, und sie macht die Katze dann noch kränker, sodass sie noch weniger frisst. Dieser Kreislauf ist der Grund, warum Tierärztinnen und Tierärzte Katzen früh sehen wollen.
 
 Praktisch heißt das: **24 Stunden ohne Fressen sind der Zeitpunkt für einen Anruf, 48 Stunden sind die Grenze, die Sie nicht überschreiten sollten.** Frisst Ihre Katze deutlich weniger als sonst, aber noch etwas, haben Sie etwas mehr Spielraum, sollten aber trotzdem innerhalb von zwei bis drei Tagen einen Termin vereinbaren.
 
@@ -50,9 +50,9 @@ Prüfen Sie, ob sie trinkt, wie das Maul aussieht und was sich verändert hat, b
 - **Trinkt sie?** Eine Katze, die trinkt, aber nicht frisst, hat ein anderes Problem als eine, die beides verweigert.
 - **Wie sieht das Maul aus?** Vorsichtig die Lefze anheben: gerötetes Zahnfleisch, Zahnstein, Speicheln oder Geruch sprechen für Zahnschmerzen, eine häufige Ursache.
 - **Hat sich etwas verändert?** Neues Futter, neue Näpfe, Umzug, neues Tier, Besuch, Baulärm. Katzen reagieren auf Stress mit Futterverweigerung.
-- **Bieten Sie Verlockendes an:** leicht erwärmtes Nassfutter, etwas Thunfischsaft (ohne Öl), ein paar Stücke gekochtes Hühnchen. Nur anbieten, nicht erzwingen.
+- **Bieten Sie Verlockendes an:** Nassfutter wenige Sekunden in der Mikrowelle anwärmen (die Mitte prüfen, damit nichts zu heiß ist), oder Trockenfutter in etwas warmem Wasser bzw. dem Wasser aus einer Thunfischdose (in Wasser, nicht in Öl) einweichen. Hühnchen oder Thunfisch selbst als „Menschenessen“ besser nicht anbieten. Nur anbieten, nicht erzwingen.
 - **Kein Zwangsfüttern mit der Spritze** ohne tierärztliche Anleitung. Es erzeugt Futteraversion und kann bei einer Katze mit Übelkeit das Problem verschlimmern.
-- **Keine Medikamente für Menschen.** Schon eine einzige Tablette Paracetamol kann eine Katze töten.
+- **Keine Medikamente für Menschen.** Paracetamol ist für Katzen schon in viel kleineren Mengen giftig als für Hunde und kann tödlich sein.
 - **Wiegen Sie Ihre Katze**, wenn Sie eine Personenwaage haben (mit und ohne Katze). Der Gewichtsverlauf ist für die Praxis wertvoll.
 
 ## Wann sollte ich mit meiner Katze zur Tierärztin oder zum Tierarzt, wenn sie nicht frisst?

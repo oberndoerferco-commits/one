@@ -4,7 +4,7 @@ description: "Un gatto che va e viene dalla lettiera senza produrre urina può a
 species: cat
 category: symptoms
 urgency: emergency
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -27,7 +27,7 @@ Vai subito in una clinica veterinaria, chiamando prima per avvisare, se il tuo g
 - è apatico, si nasconde, non mangia, vomita
 - respira male, è debole, o ha il battito molto lento
 
-Attenzione a un errore frequente: molte persone pensano che il gatto sia **stitico**, perché lo vedono spingere nella lettiera. Nei maschi, in particolare, è molto più probabile che stia cercando di fare pipì e non ci riesca.
+Attenzione a un errore possibile: a volte si pensa che il gatto sia **stitico**, perché lo si vede spingere nella lettiera, mentre in realtà sta cercando di fare pipì e non ci riesce. Nel dubbio, trattalo come un'emergenza.
 
 ## Perché è un'emergenza se il gatto non fa pipì?
 
@@ -37,7 +37,7 @@ Nel gatto, soprattutto nel maschio, l'uretra è lunga e stretta. Un tappo di cri
 
 Nel giro di 24-48 ore la pressione risale verso i reni, le sostanze di scarto si accumulano nel sangue e il potassio sale a livelli che rallentano il cuore. Senza intervento il gatto può morire. Un gatto che non urina da 12 ore e mostra sforzi a vuoto rientra già in questa finestra pericolosa: non aspettare che passi la notte.
 
-Il veterinario deve sbloccare l'uretra, spesso con il gatto sedato, e correggere gli squilibri con fluidi e monitoraggio. Non esiste nessuna manovra sicura da fare a casa: non premere la pancia per "aiutarlo", perché la vescica sovradistesa può rompersi.
+Il veterinario deve sbloccare l'uretra, spesso con il gatto sedato, e correggere gli squilibri con fluidi e monitoraggio. Non esiste nessuna manovra da fare a casa per sbloccarlo: serve il veterinario.
 
 ## Cosa devo fare mentre vado in clinica?
 
@@ -46,7 +46,7 @@ Chiama dicendo che il gatto non riesce a urinare, mettilo nel trasportino e non 
 - Chiama la clinica e di' chiaramente "gatto maschio che non riesce a urinare": in molte strutture questa frase fa scattare la priorità.
 - Metti il gatto nel trasportino con un asciugamano. Non forzarlo a bere e non dargli nulla per bocca.
 - Se hai fatto foto della lettiera, delle gocce di urina o di sangue, portale.
-- Se il gatto è in una casa con più gatti e non sei sicuro che sia lui a non urinare, isolalo con una lettiera pulita per 1-2 ore: in genere basta per capirlo.
+- Se in casa ci sono più gatti e non sei sicuro di quale non riesca a urinare, dillo al telefono alla clinica: ti diranno come procedere, senza perdere tempo.
 
 ## Quando portare il gatto dal veterinario?
 

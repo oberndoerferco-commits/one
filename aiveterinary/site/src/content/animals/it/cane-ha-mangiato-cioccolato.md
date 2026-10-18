@@ -4,7 +4,7 @@ description: "Il cioccolato è tossico per il cane, e quello fondente lo è molt
 species: dog
 category: first-aid
 urgency: emergency
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -59,8 +59,8 @@ Allontanalo da ciò che resta, recupera la confezione e chiama il veterinario, s
 
 1. **Allontana il cane da ciò che resta** e metti via tutto il cioccolato in casa.
 2. **Recupera la confezione** o capisci che cosa era: tipo di cioccolato, percentuale di cacao se indicata, peso della tavoletta, quanto manca.
-3. **Chiama il veterinario** o un pronto soccorso veterinario, con il peso del cane sotto mano. Se non ti risponde nessuno, cerca un centro antiveleni veterinario: alcuni sono attivi 24 ore su 24.
-4. **Non fare vomitare il cane a casa** con sale, acqua ossigenata o altri rimedi: sono pericolosi (il sale può dare un'intossicazione grave, l'acqua ossigenata ustiona l'esofago) e non sempre funzionano. Lascia che lo faccia il veterinario.
+3. **Chiama il veterinario** o un pronto soccorso veterinario, con il peso del cane sotto mano. Se non ti risponde nessuno, cerca un pronto soccorso veterinario o un centro antiveleni veterinario.
+4. **Non fare vomitare il cane a casa**, né con sale né con acqua ossigenata o altri rimedi: il sale, per esempio, può dare un'intossicazione grave. Se serve, lo fa il veterinario in clinica con farmaci sicuri.
 5. **Non dare latte, olio o altro** nella speranza di "neutralizzare".
 6. Se devi portarlo in clinica, porta con te la confezione.
 

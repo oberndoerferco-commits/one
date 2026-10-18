@@ -4,7 +4,7 @@ description: "Die meisten Blasenentzündungen bei Katzen sind keine bakteriellen
 species: cat
 category: conditions
 urgency: today
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -28,7 +28,7 @@ Fahren Sie sofort in eine Tierarztpraxis oder Tierklinik und rufen Sie vorher an
 - beim Pressen schreit, miaut oder sich in die Flanke beißt
 - einen prallen, schmerzhaften Bauch hat und sich nicht anfassen lässt
 - erbricht, apathisch wird oder nicht mehr frisst
-- ein **Kater** ist und seit mehr als 12 Stunden nicht sichtbar uriniert hat
+- ein **Kater** ist und Sie nicht sicher sind, ob er überhaupt noch Urin absetzt
 
 Bei Katern ist die Harnröhre lang und eng. Entzündungsschleim, Kristalle oder Krämpfe können sie vollständig verschließen. Dann kann die Katze keinen Urin mehr absetzen, Giftstoffe und Kalium stauen sich im Blut, und innerhalb von 24 bis 48 Stunden drohen Herzstillstand und Nierenversagen. Ein verschlossener Kater ist ein Notfall, auch nachts und am Wochenende. Verwechseln Sie das Pressen nicht mit Verstopfung: Beides sieht ähnlich aus, und im Zweifel gilt die Harnröhre.
 
@@ -62,7 +62,7 @@ Typische Auslöser:
 - Langeweile und Bewegungsmangel bei Wohnungskatzen
 - Katzen in der Nachbarschaft, die durchs Fenster sichtbar sind
 
-Übergewichtige, wenig aktive Wohnungskater, die vor allem Trockenfutter fressen, sind am häufigsten betroffen. Bei älteren Katzen über zehn Jahren werden bakterielle Infektionen, Blasensteine und Tumoren häufiger, und eine Abklärung ist wichtiger.
+Übergewichtige, wenig aktive Wohnungskater, die vor allem Trockenfutter fressen, sind am häufigsten betroffen. Bei älteren Katzen werden bakterielle Infektionen, Blasensteine und Tumoren häufiger, und eine Abklärung ist wichtiger.
 
 ## Was kann ich zu Hause bei einer Blasenentzündung meiner Katze tun?
 
@@ -73,8 +73,8 @@ Bei einer Katze, die uriniert, aber Beschwerden zeigt:
 - **Beobachten Sie, ob Urin kommt.** Bei Klumpstreu sehen Sie die Klumpengröße, bei Kater zur Sicherheit die Toilette einige Stunden kontrollieren.
 - **Mehr Flüssigkeit:** Nassfutter statt Trockenfutter, mehrere Wassernäpfe, Trinkbrunnen, Wasser zum Nassfutter.
 - **Ruhe und Rückzugsorte** schaffen, Stressquellen beseitigen, soweit möglich.
-- **Kein Schmerzmittel für Menschen.** Paracetamol ist für Katzen tödlich, auch Ibuprofen und Acetylsalicylsäure sind gefährlich.
-- Keine Cranberry-Präparate, keine „Blasentees“ ohne Rücksprache. Sie schaden selten, verzögern aber oft den Termin.
+- **Kein Schmerzmittel für Menschen.** Paracetamol ist für Katzen schon in viel kleineren Mengen giftig als für Hunde und kann tödlich sein, auch Ibuprofen und Acetylsalicylsäure sind gefährlich.
+- **Cranberry-Präparate, „Blasentees“ oder andere Mittel nur nach Rücksprache** mit Ihrer Praxis, und nie anstelle des Termins.
 
 ## Wann sollte ich mit meiner Katze wegen Blasenproblemen zur Tierärztin oder zum Tierarzt?
 

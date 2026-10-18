@@ -4,7 +4,7 @@ description: "La cistite idiopatica felina è la causa più frequente di sangue 
 species: cat
 category: conditions
 urgency: today
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -49,7 +49,7 @@ Urina spesso e poco, resta a lungo in lettiera, può avere sangue nelle urine e 
 - Miagola in lettiera
 - È più nervoso o, al contrario, si nasconde
 
-Colpisce soprattutto gatti tra 2 e 7 anni, spesso in sovrappeso, che vivono solo in casa, mangiano quasi solo secco e condividono lo spazio con altri gatti. Gli episodi durano in genere da 3 a 7 giorni e tendono a **ripetersi**.
+Colpisce soprattutto gatti giovani adulti, spesso in sovrappeso, che vivono solo in casa, mangiano quasi solo secco e condividono lo spazio con altri gatti. In molti gatti i segni si attenuano nel giro di 5-10 giorni, ma gli episodi tendono a **ripetersi**. Non è un motivo per aspettare: la visita serve comunque, e il dolore va trattato.
 
 ## Cosa posso fare a casa per il gatto con cistite?
 

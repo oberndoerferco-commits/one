@@ -4,7 +4,7 @@ description: "Il vomito giallo è quasi sempre bile, la schiuma bianca è spesso
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -16,6 +16,8 @@ references:
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/gdv-gastric-dilatation-volvulus-in-dogs"
   - title: "American Kennel Club: Bilious Vomiting Syndrome in Dogs"
     url: "https://www.akc.org/expert-advice/health/bilious-vomiting-syndrome-in-dogs/"
+  - title: "MSD Veterinary Manual: Tracheobronchitis (Bronchitis) in Dogs"
+    url: "https://www.msdvetmanual.com/dog-owners/lung-and-airway-disorders-of-dogs/tracheobronchitis-bronchitis-in-dogs"
 ---
 
 ## Prima di tutto: i segni per cui andare subito dal veterinario
@@ -35,13 +37,13 @@ Il giallo è quasi sempre bile che irrita lo stomaco vuoto, mentre la schiuma bi
 
 **Il vomito giallo** è quasi sempre **bile**, il liquido prodotto dal fegato che arriva nell'intestino per digerire i grassi. Quando lo stomaco è vuoto da molte ore, un po' di bile può risalire e irritarlo. Per questo molti cani vomitano giallo la mattina presto o a notte fonda, prima del pasto: è la cosiddetta "sindrome del vomito biliare". Se succede ogni tanto, il cane è vivace e mangia normalmente, in genere non è grave.
 
-**La schiuma bianca** è di solito saliva mescolata a succhi gastrici e aria. Può comparire quando il cane ha lo stomaco vuoto, quando ha la nausea, quando ha mangiato erba, o quando ha bevuto troppo in fretta. Attenzione a una differenza importante: a volte quella che sembra "schiuma vomitata" è in realtà **tosse con espulsione di muco**, tipica della tosse dei canili o di problemi di cuore e vie respiratorie. Se il cane fa un rumore come se avesse qualcosa in gola e poi "sputa" un po' di schiuma, è più probabile che stia tossendo. Se puoi, filma l'episodio: per il veterinario fa la differenza.
+**La schiuma bianca** è di solito saliva mescolata a succhi gastrici e aria. Può comparire quando il cane ha lo stomaco vuoto, quando ha la nausea, quando ha mangiato erba, o quando ha bevuto troppo in fretta. Attenzione a una differenza importante: nella **tosse dei canili** gli accessi di tosse secca possono essere seguiti da conati, e la scena può sembrare vomito. Guarda se prima del "vomito" il cane ha tossito. Se puoi, filma l'episodio: per il veterinario fa la differenza.
 
 Il colore da solo non dice la causa. Dice però da quanto tempo lo stomaco è vuoto e se c'è irritazione.
 
 ## Cosa faccio se non c'è nessun segno urgente?
 
-Un episodio isolato di vomito giallo o schiumoso in un cane che per il resto sta bene si può osservare a casa per le prime 12-24 ore.
+Se il cane ha vomitato una sola volta e per il resto sta bene, puoi tenerlo d'occhio a casa, e chiamare il veterinario se vomita ancora, se dopo 24 ore non è tornato quello di sempre o se peggiora.
 
 - Non lasciarlo a stomaco vuoto per lunghi periodi. Se il vomito compare la mattina presto, prova a **dividere la razione in più pasti piccoli**, con uno spuntino leggero la sera tardi. Spesso basta questo.
 - Lascia l'acqua a disposizione, ma in piccole quantità alla volta. Bere molto in un colpo solo può far ripartire il vomito.
@@ -51,16 +53,16 @@ Un episodio isolato di vomito giallo o schiumoso in un cane che per il resto sta
 
 ## Quando portare dal veterinario il cane che vomita giallo?
 
-Prenota una visita oggi se il vomito si ripete più di due o tre volte in un giorno, dura più di 24 ore, il cane non mangia, ha diarrea, è spento o sospetti che sia tosse.
+Prenota una visita oggi se vomita più di una volta, se dopo 24 ore non sta bene, se non mangia, ha diarrea, è spento o sospetti che sia tosse.
 
 Prenota una visita oggi se:
 
-- il vomito giallo o schiumoso si ripete più di due o tre volte nello stesso giorno
-- va avanti per più di 24 ore, o torna ogni mattina per più di qualche giorno nonostante i pasti frazionati
+- il vomito giallo o schiumoso si ripete, cioè vomita più di una volta
+- dopo 24 ore il cane non è tornato quello di sempre, o il vomito torna ogni mattina per più di uno o due giorni nonostante i pasti frazionati
 - il cane non mangia da più di un giorno, o beve molto più o molto meno del solito
 - c'è anche diarrea, soprattutto con sangue o molto scura
 - il cane è spento, dimagrisce, o ha la pancia dolente
-- sospetti che si tratti di tosse e non di vomito, soprattutto se il cane è anziano, di razza piccola o ha il cuore già in osservazione
+- sospetti che si tratti di tosse e non di vomito
 
 ## Cosa vorrà sapere il veterinario?
 
@@ -85,7 +87,7 @@ Le cause più probabili sono lo stomaco vuoto da molte ore, l'irritazione da erb
 | Irritazione gastrica da erba, avanzi, rifiuti | Pancreatite |
 | Cambio improvviso di cibo | Malattia infiammatoria intestinale |
 | Mangiare o bere troppo in fretta | Malattia dei reni o del fegato |
-| Tosse scambiata per vomito (tosse dei canili) | Dilatazione-torsione gastrica, soprattutto nelle razze con torace profondo |
+| Tosse con conati, che sembra vomito (tosse dei canili) | Dilatazione-torsione gastrica, soprattutto nelle razze con torace profondo |
 | Nausea da mal d'auto | Avvelenamento |
 
 È il veterinario a decidere quale di queste è probabile per il *tuo* cane, in base alla visita e, se serve, a qualche esame. Questo elenco serve ad aiutarti a capire il colloquio, non a fare una diagnosi: se hai un dubbio, chiama il tuo veterinario di fiducia.

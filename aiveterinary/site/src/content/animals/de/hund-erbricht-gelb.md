@@ -4,7 +4,7 @@ description: "Gelbes Erbrochenes ist meist Galle auf leeren Magen, weißer Schau
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -16,6 +16,8 @@ references:
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/gdv-gastric-dilatation-volvulus-in-dogs"
   - title: "American Kennel Club: Bilious Vomiting Syndrome in Dogs"
     url: "https://www.akc.org/expert-advice/health/bilious-vomiting-syndrome-in-dogs/"
+  - title: "MSD Veterinary Manual: Tracheobronchitis (Bronchitis) in Dogs"
+    url: "https://www.msdvetmanual.com/dog-owners/lung-and-airway-disorders-of-dogs/tracheobronchitis-bronchitis-in-dogs"
 ---
 
 ## Zuerst: die Anzeichen, bei denen Sie sofort fahren sollten
@@ -32,11 +34,11 @@ Fahren Sie sofort in eine Tierarztpraxis und rufen Sie vorher an, wenn Ihr Hund 
 
 ## Was bedeutet gelbes oder weißes Erbrochenes beim Hund?
 
-Gelbes Erbrochenes ist in aller Regel Galle auf leerem Magen, weißer Schaum meist Magensaft mit Speichel und Luft, der aber auch aus den Atemwegen stammen kann.
+Gelbes Erbrochenes ist in aller Regel Galle auf leerem Magen, weißer Schaum meist Magensaft mit Speichel und Luft; manchmal steckt hinter dem Würgen aber auch ein Husten.
 
 **Gelbes oder gelbgrünes Erbrochenes** ist in aller Regel Galle. Sie gelangt aus dem Zwölffingerdarm zurück in den leeren Magen und reizt dort die Schleimhaut. Typisch ist das frühmorgens oder nach langen Fütterungspausen, oft bei einem Hund, der danach ganz normal weitermacht. Tierärztinnen und Tierärzte sprechen dann vom „Galle-Erbrechen-Syndrom“ (bilious vomiting syndrome). Es ist lästig, aber meist ungefährlich.
 
-**Weißer Schaum** ist in den meisten Fällen Magensaft, der mit Speichel und Luft vermischt wurde. Auch das sieht man vor allem auf nüchternen Magen oder nach dem Fressen von Gras. Schaum kann aber auch aus den Atemwegen stammen: Ein Hund mit Zwingerhusten oder einer Luftröhrenreizung würgt nach einem Hustenanfall oft etwas weißen Schleim hoch, was Halter leicht mit Erbrechen verwechseln. Achten Sie darauf, ob dem „Erbrechen“ ein Husten vorausgeht.
+**Weißer Schaum** ist in den meisten Fällen Magensaft, der mit Speichel und Luft vermischt wurde. Auch das sieht man vor allem auf nüchternen Magen oder nach dem Fressen von Gras. Nicht alles, was nach Erbrechen aussieht, kommt aus dem Magen: Bei Zwingerhusten können auf trockene Hustenanfälle Würgen und Brechreiz folgen. Achten Sie darauf, ob dem „Erbrechen“ ein Husten vorausgeht.
 
 Weder die Farbe Gelb noch der Schaum allein sagen etwas über die Schwere aus. Entscheidend ist, wie es Ihrem Hund insgesamt geht und wie oft es passiert.
 
@@ -48,7 +50,7 @@ Bei einem einmaligen Ereignis bei einem munteren Hund:
 
 - **Verkürzen Sie die Fütterungspause.** Wenn Ihr Hund regelmäßig morgens Galle erbricht, hilft oft schon ein kleiner Snack am späten Abend oder die Aufteilung der Tagesration auf drei Mahlzeiten.
 - **Wasser in kleinen Mengen** anbieten, nicht den ganzen Napf auf einmal.
-- **Futter nicht komplett streichen**, sondern nach ein paar Stunden eine kleine, leicht verdauliche Portion geben. Welpen und Kleinrassen sollten gar nicht hungern, sie unterzuckern schnell.
+- **Futter nicht komplett streichen**, sondern nach ein paar Stunden eine kleine, leicht verdauliche Portion geben. Bei Welpen und sehr kleinen Hunden fragen Sie Ihre Praxis, bevor Sie Futter zurückhalten.
 - **Beobachten Sie Husten, Hecheln und Würgen** getrennt vom Erbrechen und notieren Sie, was zuerst kam.
 - **Fotografieren Sie das Erbrochene.** Das klingt unangenehm, erspart aber viel Beschreiben.
 
@@ -56,12 +58,12 @@ Geben Sie keine Medikamente aus der Hausapotheke. Schmerzmittel für Menschen si
 
 ## Wann sollte ich mit meinem Hund wegen gelbem Erbrechen zur Tierärztin oder zum Tierarzt?
 
-Noch heute, wenn es an mehreren Tagen hintereinander oder öfter als zwei- bis dreimal an einem Tag auftritt oder weitere Beschwerden dazukommen.
+Noch heute, wenn Ihr Hund mehr als einmal erbricht, es an mehreren Tagen hintereinander auftritt, er nach 24 Stunden nicht wieder ganz der Alte ist oder weitere Beschwerden dazukommen.
 
 Vereinbaren Sie noch heute einen Termin, wenn:
 
 - das Erbrechen an mehreren Tagen hintereinander auftritt, auch wenn es „nur“ morgens ist
-- Ihr Hund öfter als zwei- bis dreimal an einem Tag erbricht
+- Ihr Hund mehr als einmal erbricht oder nach 24 Stunden nicht wieder ganz der Alte ist
 - Durchfall dazukommt, besonders mit Blut
 - Ihr Hund länger als einen Tag nicht frisst oder deutlich mehr trinkt als sonst
 - er Gewicht verliert, matt wirkt oder einen angespannten Bauch hat
@@ -89,7 +91,7 @@ Am häufigsten ist es Galle auf leeren Magen; daneben kommen Magenreizungen, zu 
 | Galle auf leeren Magen (lange Fütterungspause) | Fremdkörper im Magen oder Darm |
 | Magenschleimhautreizung durch Gras, Futterwechsel, Fressen von Unrat | Pankreatitis |
 | Zu schnelles Fressen oder Schlingen von Luft | Entzündliche Darmerkrankung |
-| Husten mit Hochwürgen von Schleim (Atemwegsinfekt) | Nieren-, Leber- oder Nebennierenerkrankung |
+| Husten mit anschließendem Würgen (Zwingerhusten) | Nieren-, Leber- oder Nebennierenerkrankung |
 | Reisekrankheit | Magendrehung |
 | Leichter Magen-Darm-Infekt | Vergiftung |
 

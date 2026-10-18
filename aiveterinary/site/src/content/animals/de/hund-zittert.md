@@ -4,7 +4,7 @@ description: "Zittern und Hecheln haben beim Hund viele harmlose Gründe, von Au
 species: dog
 category: symptoms
 urgency: this-week
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -18,6 +18,8 @@ references:
     url: "https://vcahospitals.com/know-your-pet/taking-your-pets-temperature"
   - title: "MSD Veterinary Manual: Poisoning from Human Over-the-Counter Drugs"
     url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/poisoning-from-human-over-the-counter-drugs"
+  - title: "PDSA: GDV (Gastric Dilatation Volvulus) in dogs"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/gdv-gastric-dilatation-volvulus-in-dogs"
 ---
 
 ## Zuerst: die Anzeichen, bei denen Sie sofort fahren sollten
@@ -27,7 +29,7 @@ Fahren Sie sofort in eine Tierarztpraxis und rufen Sie vorher an, wenn Ihr Hund 
 - in der Hitze war oder sich angestrengt hat und nicht zur Ruhe kommt, dunkelrotes Zahnfleisch hat oder taumelt (Hitzschlag)
 - möglicherweise etwas Giftiges gefressen hat: Schokolade, Schneckenkorn, Rattengift, Medikamente, Xylit, Kompost, Nikotin, Cannabis
 - Muskelzuckungen hat, die sich zu einem Krampfanfall steigern, oder nicht ansprechbar ist
-- einen aufgetriebenen, harten Bauch hat und würgt, ohne dass etwas kommt (Magendrehung)
+- einen aufgeblähten Bauch hat, unruhig hechelt und würgt, ohne dass etwas oder nur etwas Schaum kommt (Verdacht auf Magendrehung)
 - blasses, graues oder bläuliches Zahnfleisch hat oder sehr schnell und flach atmet
 - Schmerzen zeigt: gekrümmter Rücken, Schreien bei Berührung, Unfähigkeit zu stehen oder zu liegen
 - ein kleiner Welpe oder Zwerghund ist, der schlapp wird (Unterzuckerung)
@@ -52,21 +54,21 @@ Beides sind unspezifische Reaktionen. Hecheln ist beim Hund der normale Weg, Wä
 - der Hund in Ruhe, bei normaler Temperatur und ohne erkennbaren Anlass hechelt und zittert
 - er dabei unruhig ist, sich nicht hinlegen will, den Rücken krümmt oder sich zurückzieht
 - der Zustand neu ist und nicht nach wenigen Minuten vorübergeht
-- Fieber vorliegt (Hunde haben normal etwa 38 bis 39 °C, gemessen rektal)
+- die Temperatur außerhalb des Normalbereichs liegt (bei Hunden etwa 37,7 bis 39,2 °C, gemessen rektal)
 - Erbrechen, Durchfall, Lahmheit oder Appetitlosigkeit dazukommen
 
-Schmerz ist der am häufigsten übersehene Grund. Ein Hund mit Rückenschmerzen, Bauchschmerzen oder einer Pankreatitis zeigt oft nur Hecheln, Zittern und Unruhe und frisst noch.
+Schmerz ist der am häufigsten übersehene Grund. Ein Hund mit Rücken- oder Bauchschmerzen zeigt oft nur Hecheln, Zittern und Unruhe und frisst noch.
 
 ## Was kann ich zu Hause tun, wenn mein Hund zittert?
 
 Prüfen und beseitigen Sie mögliche Auslöser, messen Sie Fieber, schauen Sie aufs Zahnfleisch, tasten Sie vorsichtig ab und filmen Sie das Zittern.
 
 - **Prüfen Sie die Situation:** Wärme, Kälte, Anstrengung, Angstauslöser? Beseitigen Sie den Auslöser und beobachten Sie zehn Minuten.
-- **Messen Sie Fieber**, wenn Sie ein digitales Thermometer haben und Ihr Hund es duldet. Über 39,5 °C ist ein Grund für einen Anruf, über 40,5 °C ein Grund zu fahren.
+- **Messen Sie Fieber**, wenn Sie ein digitales Thermometer haben und Ihr Hund es duldet. Normal sind etwa 37,7 bis 39,2 °C. Liegt der Wert darüber, rufen Sie Ihre Praxis an. Über 40 °C oder unter 37,2 °C ist ein Notfall: Fahren Sie sofort.
 - **Schauen Sie ins Maul:** rosa Zahnfleisch ist beruhigend, blass, dunkelrot oder bläulich nicht.
 - **Tasten Sie vorsichtig** Bauch, Rücken und Beine ab. Zuckt der Hund, schreit er oder weicht er aus, notieren Sie die Stelle.
 - **Filmen Sie das Zittern.** Viele Episoden sind in der Praxis vorbei, ein kurzes Video ist dann sehr hilfreich.
-- **Geben Sie keine Schmerzmittel aus Ihrer Hausapotheke.** Ibuprofen, Paracetamol, Diclofenac und Acetylsalicylsäure können bei Hunden Magenblutungen, Nieren- und Leberschäden verursachen.
+- **Geben Sie keine Schmerzmittel aus Ihrer Hausapotheke.** Ibuprofen, Acetylsalicylsäure, Naproxen und Paracetamol können bei Hunden unter anderem Magengeschwüre, Darmblutungen und Nierenschäden verursachen.
 
 ## Wann sollte ich mit meinem zitternden Hund zur Tierärztin oder zum Tierarzt?
 
@@ -96,13 +98,13 @@ Wann und wie lange es auftritt, ob der ganze Körper zittert, Begleitzeichen, Fi
 
 ## Was sind häufige Ursachen für Zittern beim Hund?
 
-Aufregung, Kälte, Anstrengung, Schmerzen, altersbedingte Muskelschwäche und Übelkeit sind wahrscheinlich; Vergiftung, Hitzschlag, Pankreatitis, Infektionen, Hormonstörungen und neurologische Erkrankungen sind seltener, aber wichtig.
+Aufregung, Kälte, Anstrengung, Schmerzen, altersbedingte Muskelschwäche und Übelkeit sind wahrscheinlich; Vergiftung, Hitzschlag, Magendrehung, Infektionen, Hormonstörungen und neurologische Erkrankungen sind seltener, aber wichtig.
 
 | Wahrscheinlich | Seltener, aber wichtig |
 |---|---|
 | Aufregung, Angst, Stress | Vergiftung (Schneckenkorn, Schokolade, Medikamente) |
 | Kälte, Nässe | Hitzschlag |
-| Anstrengung, Wärme | Pankreatitis, Magendrehung |
+| Anstrengung, Wärme | Magendrehung (vor allem Hecheln und Unruhe) |
 | Schmerzen (Rücken, Gelenke, Bauch) | Fieber durch Infektion |
 | Altersbedingte Muskelschwäche | Hormon- und Stoffwechselstörungen (Nebenniere, Schilddrüse, Unterzuckerung) |
 | Übelkeit | Neurologische Erkrankungen, Tremor-Syndrome |
