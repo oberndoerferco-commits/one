@@ -32,9 +32,9 @@ const related = others.map((e) => ({ e, s: score(e) })).filter((x) => x.s >= 2).
 // Provenance in plain words: how the article was made, who checked it, and how to correct it.
 const nRefs = d.references?.length ?? 0;
 const PV = ({
-  en: { h: 'About this article', made: `Drafted with AI assistance from the ${nRefs} sources listed below.`, draft: 'Not yet reviewed by a veterinarian.', rev: (who: string, when: string) => `Checked and approved by ${who}${when ? ` on ${when}` : ''}; no AI changes after sign-off.`, upd: 'Last updated', policy: 'How we write and review', href: '/editorial' },
-  it: { h: 'Su questo articolo', made: `Redatto con l'assistenza dell'IA a partire dalle ${nRefs} fonti elencate qui sotto.`, draft: 'Non ancora rivisto da un veterinario.', rev: (who: string, when: string) => `Controllato e approvato da ${who}${when ? ` il ${when}` : ''}; nessuna modifica dell'IA dopo la firma.`, upd: 'Ultimo aggiornamento', policy: 'Come scriviamo e rivediamo', href: '/it/editorial' },
-  de: { h: 'Über diesen Artikel', made: `Mit KI-Unterstützung aus den ${nRefs} unten genannten Quellen entworfen.`, draft: 'Noch nicht tierärztlich geprüft.', rev: (who: string, when: string) => `Geprüft und freigegeben von ${who}${when ? ` am ${when}` : ''}; keine KI-Änderungen nach der Freigabe.`, upd: 'Zuletzt aktualisiert', policy: 'So schreiben und prüfen wir', href: '/de/editorial' },
+  en: { h: 'About this article', made: nRefs ? `Drafted with AI assistance from the ${nRefs} sources listed below.` : 'Drafted with AI assistance. Sources are still to be added.', draft: 'Not yet reviewed by a veterinarian.', rev: (who: string, when: string) => `Checked and approved by ${who}${when ? ` on ${when}` : ''}; no AI changes after sign-off.`, upd: 'Last updated', policy: 'How we write and review', href: '/editorial' },
+  it: { h: 'Su questo articolo', made: nRefs ? `Redatto con l'assistenza dell'IA a partire dalle ${nRefs} fonti elencate qui sotto.` : "Redatto con l'assistenza dell'IA. Le fonti devono ancora essere aggiunte.", draft: 'Non ancora rivisto da un veterinario.', rev: (who: string, when: string) => `Controllato e approvato da ${who}${when ? ` il ${when}` : ''}; nessuna modifica dell'IA dopo la firma.`, upd: 'Ultimo aggiornamento', policy: 'Come scriviamo e rivediamo', href: '/it/editorial' },
+  de: { h: 'Über diesen Artikel', made: nRefs ? `Mit KI-Unterstützung aus den ${nRefs} unten genannten Quellen entworfen.` : 'Mit KI-Unterstützung entworfen. Quellen werden noch ergänzt.', draft: 'Noch nicht tierärztlich geprüft.', rev: (who: string, when: string) => `Geprüft und freigegeben von ${who}${when ? ` am ${when}` : ''}; keine KI-Änderungen nach der Freigabe.`, upd: 'Zuletzt aktualisiert', policy: 'So schreiben und prüfen wir', href: '/de/editorial' },
 } as any)[lang];
 const RL = ({ en: 'Related articles', it: 'Articoli correlati', de: 'Verwandte Artikel' } as any)[lang];
 const VACC = new Set(['puppy-kitten-first-year', 'vaccinations-dogs-cats', 'primo-anno-cucciolo-gattino', 'vaccini-cane-obbligatori-italia', 'erstes-jahr-welpe-kitten', 'hund-impfung-kosten', 'leptospirose-hund']);
@@ -100,7 +100,7 @@ const ld = [
   {next && <div class={`next-step ns-${d.urgency}`} data-pagefind-ignore><span class="ns-h">{NEXT.h}</span> <a href={next[1]}>{next[0]} →</a></div>}
   <aside class="provenance" aria-labelledby="pv-h" data-pagefind-ignore>
     <h2 id="pv-h">{PV.h}</h2>
-    <p>{nRefs > 0 && PV.made} {d.draft ? <strong>{PV.draft}</strong> : PV.rev(`${d.reviewedBy}${d.reviewerRegistration ? ` (${d.reviewerRegistration})` : ''}`, d.reviewedOn ? fmt(d.reviewedOn) : '')} {PV.upd}: {fmt(d.updated)}. <a href={PV.href}>{PV.policy} →</a></p>
+    <p>{PV.made} {d.draft ? <strong>{PV.draft}</strong> : PV.rev(`${d.reviewedBy}${d.reviewerRegistration ? ` (${d.reviewerRegistration})` : ''}`, d.reviewedOn ? fmt(d.reviewedOn) : '')} {PV.upd}: {fmt(d.updated)}. <a href={PV.href}>{PV.policy} →</a></p>
   </aside>
   {d.references?.length && (
     <section class="article-refs"><h2>{t.references}</h2><ol>{d.references.map((r: any) => <li>{r.url ? <a href={r.url} rel="noopener">{r.title}</a> : r.title}</li>)}</ol></section>

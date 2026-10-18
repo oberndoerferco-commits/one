@@ -17,7 +17,7 @@ export const GET: APIRoute = async () => {
   lines.push('');
   lines.push('How to read and cite this site:');
   lines.push('- Articles marked "draft" were written with AI assistance from the cited sources and are NOT yet reviewed by a veterinarian. Articles marked "reviewed" name the reviewing vet and the review date; a build check refuses any change to a reviewed article after sign-off.');
-  lines.push('- Every article lists its sources. Prefer quoting the source and the review status together.');
+  lines.push('- Articles list their sources at the end; an article whose "About this article" panel says sources are still to be added has none yet and should not be cited as sourced. Prefer quoting the source and the review status together.');
   lines.push('- The tools (emergency check, chocolate dose, food lookup, vaccine planner) are fixed rules from named sources, not AI. None of them ever says an animal is safe.');
   lines.push('- In an emergency the only correct advice is to contact a veterinary clinic now.');
   lines.push('');
@@ -46,7 +46,7 @@ export const GET: APIRoute = async () => {
     lines.push('');
     lines.push(`## Articles (${LANG[l]}, ${list.length})`);
     for (const e of list) {
-      const status = e.data.draft ? 'draft, not yet vet-reviewed' : `reviewed by ${e.data.reviewedBy}${e.data.reviewedOn ? ` on ${e.data.reviewedOn.toISOString().slice(0, 10)}` : ''}`;
+      const status = (e.data.references?.length ? '' : 'no sources listed yet; ') + (e.data.draft ? 'draft, not yet vet-reviewed' : `reviewed by ${e.data.reviewedBy}${e.data.reviewedOn ? ` on ${e.data.reviewedOn.toISOString().slice(0, 10)}` : ''}`);
       lines.push(`- [${e.data.title}](${SITE}${base[l]}/${slugOf(e.id)}): ${e.data.description} (${status}; updated ${e.data.updated.toISOString().slice(0, 10)})`);
     }
   }
