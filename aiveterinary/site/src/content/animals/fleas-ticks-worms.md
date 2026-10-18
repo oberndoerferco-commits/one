@@ -8,13 +8,17 @@ updated: 2026-10-13
 draft: true
 ---
 
-## Why prevention rather than cure
+## Why should I prevent fleas, ticks and worms rather than treat them?
+
+Because they are easier to prevent than to get rid of, and by the time you see them the problem is often already established.
 
 Fleas, ticks and worms are easier to prevent than to get rid of. By the time you see one flea, there are usually eggs and larvae in the carpets and bedding. By the time a tick is found, it may already have fed for a day or more. And many worms cause no visible signs until the burden is heavy.
 
 Most vets recommend a year-round routine for dogs and cats, adjusted to the animal's age, weight, lifestyle and where you live. Which product, how often and whether a prescription-only product is needed are vet decisions. Products for dogs can be dangerous for cats, so never swap between species.
 
-## Fleas
+## How do I know if my pet has fleas, and how do I prevent them?
+
+Look for scratching, small scabs, hair loss and flea dirt, and prevent fleas with a regular vet treatment for every animal in the house.
 
 Fleas are the most common parasite of pets in Europe and are active indoors all year because of central heating.
 
@@ -22,7 +26,9 @@ Signs: scratching, nibbling at the back and base of the tail, small scabs, hair 
 
 Prevention: a regular treatment from your vet, applied or given as directed and on time. Treat every animal in the house. If you already have fleas, your vet may also recommend treating the home, because most of the flea population lives off the animal.
 
-## Ticks
+## How do I protect my pet from ticks?
+
+Check your animal after walks, remove any attached tick carefully, and ask your vet which product covers ticks.
 
 Ticks attach in grass, woodland and scrub, feed for several days, and can pass on diseases, including Lyme disease and, in parts of Europe, babesiosis and ehrlichiosis. Risk is highest in spring and autumn but ticks are around whenever it is mild.
 
@@ -40,7 +46,9 @@ If part of the tick is left behind, do not dig for it. It usually works out on i
 
 Prevention: many flea products also cover ticks, but not all do. Ask your vet, particularly before travelling.
 
-## Worms
+## Which worms can my pet get, and how do I prevent them?
+
+Roundworms, tapeworms and lungworm are the main ones, and regular worming on a schedule your vet sets prevents them.
 
 **Roundworms** are common in puppies and kittens, who can be infected before birth or through milk. They can also infect people, especially children, which is one of the main reasons regular worming is advised.
 
@@ -50,7 +58,9 @@ Prevention: many flea products also cover ticks, but not all do. Ask your vet, p
 
 Prevention: regular worming on a schedule your vet sets. Puppies and kittens need worming more often than adults. Hunting cats, dogs that scavenge, and animals fed raw diets may need more frequent treatment.
 
-## When to see a vet
+## When should I take my pet to the vet for parasites?
+
+Book an appointment for scratching despite treatment, an inflamed tick bite, illness after a tick bite, visible worms, coughing or bleeding, weight loss or recurring diarrhoea.
 
 Book an appointment if your animal:
 
@@ -64,7 +74,9 @@ Book an appointment if your animal:
 
 Go urgently if a cat shows tremors, twitching or drooling after any spot-on product has been applied, or if a dog-only product was used on a cat by mistake.
 
-## What the vet will want to know
+## What will the vet want to know about my pet's parasite protection?
+
+Which products you use and when, whether every animal is treated, travel history, diet and hunting habits, and any symptoms.
 
 - Which products you use, how often, and when the last dose was
 - Whether every animal in the house is treated

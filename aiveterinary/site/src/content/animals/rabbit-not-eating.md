@@ -26,7 +26,9 @@ Go to a vet immediately, and call ahead, if your rabbit:
 
 Not every clinic is used to treating rabbits. If your usual vet does not see rabbits, ask them now, before you need it, who they refer to.
 
-## While you are arranging the visit
+## What should I do while I get my rabbit to the vet?
+
+Keep your rabbit warm and quiet, offer hay, greens and water without force-feeding, and bring its companion and any recent droppings.
 
 Do not wait and see. A rabbit that refuses food is already an emergency case. While you get to the vet:
 
@@ -38,7 +40,7 @@ Do not wait and see. A rabbit that refuses food is already an emergency case. Wh
 
 Whether your rabbit needs fluids, pain relief, gut-stimulating medication or further investigation is a vet decision, and usually a quick one.
 
-## When to see a vet
+## When should I take my rabbit to the vet for eating less?
 
 For rabbits, the honest answer is: as soon as you notice. Even if your rabbit is eating a little, see a vet today if it:
 
@@ -49,7 +51,9 @@ For rabbits, the honest answer is: as soon as you notice. Even if your rabbit is
 - is drinking much more or much less
 - is quieter than normal, or hiding
 
-## What the vet will want to know
+## What will the vet want to know about my rabbit?
+
+When your rabbit last ate and passed normal droppings, its diet, housing and companions, recent stress, past illness, vaccinations and any home treatment.
 
 - When your rabbit last ate normally, and what it last ate
 - When you last saw normal droppings
@@ -60,7 +64,9 @@ For rabbits, the honest answer is: as soon as you notice. Even if your rabbit is
 - Vaccination status (myxomatosis and rabbit haemorrhagic disease)
 - Any medication or treatment given at home
 
-## Common causes
+## Why has my rabbit stopped eating?
+
+Dental pain, too little hay, stress, pain from another illness and hot weather are likely; gut blockage, bloat, infection, organ disease and cancer are less common but important.
 
 | Likely | Less common but important |
 |---|---|

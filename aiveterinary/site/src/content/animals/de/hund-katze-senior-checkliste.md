@@ -30,11 +30,13 @@ references:
 
 Bei kleinen Hunden später, als die meisten denken, bei großen früher. Die AAHA definiert einen Senior als Hund im letzten Viertel seiner erwarteten Lebensspanne: Ein kleiner Hund, der 15 werden kann, ist mit etwa 11 Senior, eine Riesenrasse mit Lebenserwartung 9 schon mit 6 oder 7. Bei Katzen ziehen die AAHA/AAFP-Leitlinien die Grenze bei 10 Jahren; die feline Senior-Leitlinie unterscheidet zusätzlich reif (7 bis 10), Senior (11 bis 14) und geriatrisch (ab 15). Das Etikett verändert, wonach Ihre Praxis sucht, und wie oft.
 
-## Zweimal im Jahr, nicht einmal
+## Wie oft sollte ein alter Hund oder eine alte Katze zum Check?
 
 AAHA und die felinen Leitlinien empfehlen für gesunde Senioren einen Check alle sechs Monate, für Katzen über 15 und für jedes Tier mit chronischer Erkrankung alle vier Monate. Sechs Monate im Leben eines Seniors entsprechen zwei bis drei Ihrer Jahre. Rechnen Sie damit, dass die Tierärztin das Tier wiegt, Körper- und Muskelkondition bewertet, jedes Gelenk durchbewegt, das Maul gründlich öffnet, bei der Katze die Schilddrüse tastet und nach Durst, Appetit, Schlaf, Kot- und Harnabsatz, Treppen und Sprüngen fragt.
 
-## Die Vorsorgeuntersuchungen, verständlich erklärt
+## Welche Untersuchungen braucht ein alter Hund oder eine alte Katze?
+
+Blutbild, Blutchemie, Urin, Blutdruck und bei der Katze die Schilddrüse, alle 6 bis 12 Monate wiederholt.
 
 Die Leitlinien beschreiben ein "Minimalprogramm" für Senioren, das alle 6 bis 12 Monate wiederholt wird. Nichts davon ist exotisch:
 
@@ -46,11 +48,15 @@ Die Leitlinien beschreiben ein "Minimalprogramm" für Senioren, das alle 6 bis 1
 
 Lassen Sie sich die Werte geben und heben Sie sie auf: Der Verlauf über Jahre sagt mehr als jeder Einzelbefund.
 
-## Gewicht: die Zahl, die Sie selbst verfolgen können
+## Warum sollte ich mein altes Tier regelmäßig wiegen?
+
+Weil bei Katzen langsamer Gewichtsverlust das häufigste Frühzeichen mehrerer Krankheiten ist und beim Hund ein schlankes Gewicht Lebensdauer und Gelenken hilft.
 
 Wiegen Sie Ihr Tier monatlich auf derselben Waage. Bei Katzen ist langsamer Gewichtsverlust das häufigste Frühzeichen von Nieren-, Schilddrüsen- und Tumorerkrankungen, und leichter zu bemerken als ein veränderter Wassernapf. Beim Hund läuft das Risiko andersherum: Die AAHA weist darauf hin, dass ein schlanker Hund eines der wenigen nachweislich lebensverlängernden Dinge ist, und Gewicht verschlimmert arthrotische Gelenke.
 
-## Die Schmerzzeichen, die Halter übersehen
+## Woran erkenne ich Schmerzen bei meinem alten Hund oder meiner alten Katze?
+
+An einer veränderten Routine statt an Jammern oder Lahmheit: seltener springen, Steifheit nach dem Ruhen, Zögern an Treppen und bei der Katze struppiges Fell.
 
 Alte Tiere jammern selten. Schmerz zeigt sich als veränderte Routine, deshalb bitten AAHA und ISFM darum, das Verhalten zu beobachten statt auf Lahmheit zu warten.
 
@@ -60,21 +66,29 @@ Alte Tiere jammern selten. Schmerz zeigt sich als veränderte Routine, deshalb b
 
 Ein kurzes Video, wie Ihre Katze aufs Sofa kommt oder Ihr Hund aufsteht, ist oft nützlicher als die Untersuchung auf dem Tisch.
 
-## Die zwei großen Krankheiten
+## Welche Krankheiten sind bei alten Hunden und Katzen am wichtigsten?
+
+Die chronische Nierenerkrankung der Katze und die Arthrose des Hundes.
 
 **Die chronische Nierenerkrankung der Katze** gehört zu den häufigsten Alterskrankheiten. Erste Zeichen sind schlechter Appetit, mehr Durst, mehr Urin, Gewichtsverlust und Müdigkeit. Diagnostiziert wird sie mit Blut und Urin zusammen, dazu der Blutdruck, weil die kranke Niere die häufigste Ursache für Bluthochdruck bei Katzen ist. Heilbar ist sie nicht, aber früh erkannt lässt sie sich über Jahre bremsen, und genau dafür ist der halbjährliche Urintest da; die ISFM hat 2026 neue Leitlinien dazu veröffentlicht.
 
 **Die Arthrose des Hundes** ist die häufigste Ursache chronischer Schmerzen. Sie wird als Paket behandelt: Gewicht, gleichmäßige Bewegung, ein warmes, gepolstertes Bett und Medikamente, die Ihre Praxis auswählt und überwacht. Teppiche auf glatten Böden, eine Rampe fürs Auto und erhöhte Näpfe machen innerhalb von Wochen einen sichtbaren Unterschied.
 
-## Zähne
+## Brauchen alte Hunde und Katzen Zahnpflege?
+
+Ja: Parodontalerkrankungen nehmen mit dem Alter zu, Mundgeruch und einseitiges Kauen sind Schmerz, und das Alter allein ist kein Grund, auf eine Narkose zu verzichten.
 
 Parodontalerkrankungen nehmen mit dem Alter zu und sind bei kleinen Hunden am schlimmsten; die AAHA warnt, dass sie dort so viel Kieferknochen abbauen können, dass es zu Brüchen kommt. Mundgeruch, herausfallendes Futter und einseitiges Kauen sind Schmerz, nicht Alter. Das Alter allein ist kein Grund, auf eine Narkose zu verzichten; die Blutuntersuchung vorher gibt es genau dafür, damit die Praxis sicher entscheiden kann.
 
-## Die Wohnung anpassen
+## Wie passe ich meine Wohnung an ein altes Tier an?
+
+Mit rutschfesten Teppichen, weichen, leicht erreichbaren Betten, Stufen, einer niedrigen Katzentoilette und Futter und Wasser ohne Treppe dazwischen, und die Möbel bleiben, wo sie sind.
 
 Rutschfeste Teppiche auf glatten Böden. Weiche, warme Betten, in die das Tier leicht hineinkommt. Stufen zum Lieblingsfenster oder aufs Sofa. Eine Katzentoilette mit einer niedrigen Seite, auf der Etage, auf der die Katze ohnehin lebt. Futter und Wasser ohne Treppe dazwischen. Ein Nachtlicht für den Hund, dessen Augen nachlassen. Lassen Sie die Möbel, wo sie sind: Tiere mit schwindenden Sinnen oder beginnender Demenz verlassen sich auf die Karte in ihrem Kopf.
 
-## Über Lebensqualität sprechen
+## Wie beurteile ich die Lebensqualität meines alten Tieres?
+
+Ein Werkzeug wie die HHHHHMM-Skala, monatlich wiederholt, macht aus einer vagen Sorge etwas Sichtbares.
 
 Führen Sie dieses Gespräch, bevor Sie es brauchen. Ein verbreitetes Werkzeug ist die HHHHHMM-Skala von Dr. Alice Villalobos, die sieben Bereiche mit je 0 bis 10 Punkten bewertet: Schmerz, Hunger, Flüssigkeit, Hygiene, Freude, Beweglichkeit und ob die guten Tage die schlechten überwiegen. Monatlich wiederholt macht sie aus einer vagen Sorge etwas Sichtbares. Die felinen Leitlinien bitten Tierärzte außerdem, Ihre vier Budgets ehrlich zu berücksichtigen, Geld, Zeit, Kraft und Gefühl, denn ein Plan, den Sie nicht durchhalten, ist kein guter Plan.
 

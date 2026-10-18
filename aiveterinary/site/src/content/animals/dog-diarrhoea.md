@@ -23,7 +23,9 @@ Go to a veterinary clinic immediately, and call ahead, if your dog:
 
 A puppy with diarrhoea who is also quiet and off food should be seen the same day, even if none of the other signs apply.
 
-## If none of those apply
+## Can I treat my dog's diarrhoea at home?
+
+For the first 24 hours, in a dog that is still bright, eating and drinking, you can keep water available and offer small, bland meals at home.
 
 Soft or watery stools for a day in a dog that is still bright, eating and drinking are common. Scavenging on a walk, a sudden change of food, stress, or a mild gut infection are the usual reasons.
 
@@ -36,7 +38,9 @@ What you can do at home for the first 24 hours:
 - Note the colour, consistency and frequency. A photo helps your vet more than a description.
 - Do not give any human anti-diarrhoea medicine. Some are dangerous for dogs, and whether any medication is appropriate is a vet decision.
 
-## When to see a vet
+## When should I take my dog to the vet for diarrhoea?
+
+Today if it lasts more than 48 hours (24 hours in a puppy or small dog), or if there is blood, vomiting, straining, weight loss or repeated episodes.
 
 Book an appointment today if:
 
@@ -50,7 +54,9 @@ Book an appointment today if:
 
 Repeated or long-running diarrhoea is not something to manage at home indefinitely. It can point to parasites, food intolerance or bowel disease that your vet needs to investigate.
 
-## What the vet will want to know
+## What will the vet want to know about my dog's diarrhoea?
+
+When it started and what it looks like, any food changes or scavenging, other signs, vaccination and worming, medicines, and recent travel or contact with other dogs.
 
 - When it started, how often your dog is going, and what it looks like
 - Whether there is blood or mucus
@@ -63,7 +69,9 @@ Repeated or long-running diarrhoea is not something to manage at home indefinite
 
 If you can, bring a fresh stool sample in a clean container or bag. Your vet may want to test it.
 
-## Common causes
+## What causes diarrhoea in dogs?
+
+Scavenging, sudden food changes, stress, mild infections, worms or giardia and food intolerance are likely; parvovirus, blockages, pancreatitis, bowel disease and poisoning are less common but important.
 
 | Likely | Less common but important |
 |---|---|

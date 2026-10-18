@@ -9,11 +9,15 @@ draft: true
 lang: de
 ---
 
-## Warum es keinen Festpreis gibt
+## Warum gibt es für die Kastration eines Hundes keinen Festpreis?
+
+Weil die Praxis jede GOT-Position mit dem Faktor 1 bis 3 berechnen darf und eine Kastration aus mehreren Positionen besteht.
 
 Eine Kastration wird in Deutschland nach der Gebührenordnung für Tierärztinnen und Tierärzte (GOT) abgerechnet. Die GOT nennt für jede Leistung einen Gebührensatz, den die Praxis mit dem Faktor 1 bis 3 multiplizieren darf, je nach Schwierigkeit, Zeitaufwand und örtlichen Verhältnissen. Außerdem besteht eine Kastration aus mehreren Positionen, nicht aus einer. Deshalb nennen zwei Praxen für denselben Hund unterschiedliche Preise, und beide können korrekt sein.
 
-## Rüde oder Hündin: der wichtigste Preisfaktor
+## Ist die Kastration bei der Hündin teurer als beim Rüden?
+
+Ja: Bei der Hündin wird die Bauchhöhle eröffnet, das ist aufwendiger und in der GOT teurer als beim Rüden.
 
 Beim Rüden werden die Hoden über einen kleinen Schnitt entfernt. Bei der Hündin wird die Bauchhöhle eröffnet, entweder zur Entfernung der Eierstöcke (Ovarektomie) oder von Eierstöcken und Gebärmutter (Ovariohysterektomie). Das ist aufwendiger, dauert länger und schlägt sich in der GOT nieder. Die reinen OP-Positionen im Gebührenverzeichnis (einfacher Satz, ohne Umsatzsteuer):
 
@@ -25,7 +29,9 @@ Beim Rüden werden die Hoden über einen kleinen Schnitt entfernt. Bei der Hünd
 
 Diese Beträge sind nur ein Teil der Rechnung. Die OP-Position enthält keine Narkose, keine Voruntersuchung, keine Medikamente, kein Material und keine Nachsorge.
 
-## Was sonst noch auf der Rechnung steht
+## Was kostet eine Kastration beim Hund insgesamt?
+
+Beim Rüden meist im mittleren dreistelligen Bereich, bei der Hündin deutlich darüber bis in den vierstelligen Bereich, je nach Untersuchung, Narkose, Medikamenten, Nachsorge und Faktor.
 
 Eine vollständige Rechnung für eine Kastration enthält typischerweise:
 
@@ -38,19 +44,25 @@ Eine vollständige Rechnung für eine Kastration enthält typischerweise:
 
 Jede dieser Positionen darf wiederum mit Faktor 1 bis 3 berechnet werden. Die Summe hängt also von Geschlecht, Gewicht, Alter, Narkoseart und Faktor der Praxis ab, und sie variiert nach Region und Praxis erheblich. Als grobe Orientierung: Beim Rüden landen Gesamtrechnungen meist im mittleren dreistelligen Bereich, bei der Hündin deutlich darüber bis in den vierstelligen Bereich, vor allem bei großen Rassen, Inhalationsnarkose und Entfernung der Gebärmutter. Verlässlich ist nur die Aufstellung Ihrer eigenen Praxis.
 
-## Laparoskopische Kastration
+## Was ist eine laparoskopische Kastration der Hündin?
+
+Eine minimalinvasive Kastration, bei der die Eierstöcke über zwei oder drei kleine Zugänge mit einer Kamera entfernt werden, in der Regel teurer als die konventionelle Operation.
 
 Manche Kliniken bieten die Kastration der Hündin minimalinvasiv an. Dabei werden die Eierstöcke über zwei oder drei kleine Zugänge mit einer Kamera entfernt. Vorteile sind kleinere Wunden und eine oft schnellere Erholung. Der Eingriff braucht spezielle Ausrüstung und Erfahrung und ist deshalb in der Regel teurer als die konventionelle Operation. Ist die Gebärmutter verändert, muss die Klinik gegebenenfalls auf die offene Methode wechseln. Fragen Sie, was in diesem Fall berechnet wird.
 
-## Chemische Kastration beim Rüden
+## Was ist eine chemische Kastration beim Rüden?
 
 Für Rüden gibt es ein Hormonimplantat, das unter die Haut gesetzt wird und die Hormonproduktion für einen begrenzten Zeitraum unterdrückt. Das ist keine endgültige Kastration, sondern eine umkehrbare Option, etwa um auszuprobieren, wie sich das Verhalten verändert. Die Kosten setzen sich aus dem Implantat als Arzneimittel und der GOT-Position für das Einsetzen zusammen und fallen bei jeder Wiederholung erneut an. Für Hündinnen ist das Implantat nicht zugelassen.
 
-## Notdienst und Komplikationen
+## Was kostet eine Notfall-Kastration?
+
+Im Notdienst gilt Faktor 2 bis 4 plus 50 Euro Notdienstgebühr, dazu kommt die Intensivbetreuung.
 
 Eine geplante Kastration findet zu normalen Sprechzeiten statt. Muss eine Hündin wegen einer Gebärmutterentzündung notfallmäßig operiert werden, gilt der Notdienstrahmen der GOT: Faktor 2 bis 4 plus 50 Euro Notdienstgebühr, dazu Intensivbetreuung. Das ist einer der Gründe, warum Tierärztinnen und Tierärzte zur geplanten Kastration raten, statt abzuwarten.
 
-## Wonach Sie vorher fragen sollten
+## Was sollte ich vor der Kastration nach den Kosten fragen?
+
+Bitten Sie um eine schriftliche Kostenübersicht und klären Sie GOT-Positionen und Faktor, Voruntersuchung, Narkose, Nachsorge und mögliche Komplikationskosten.
 
 Ein verbindlicher Kostenvoranschlag ist in der Tiermedizin nicht möglich, aber eine Aufstellung der voraussichtlichen Kosten für den geplanten Eingriff ist üblich und zumutbar. Bitten Sie um eine schriftliche Übersicht (E-Mail genügt) und klären Sie:
 

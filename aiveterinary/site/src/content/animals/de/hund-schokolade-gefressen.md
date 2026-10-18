@@ -22,7 +22,9 @@ Schokoladenvergiftung ist einer der Fälle, in denen Sie nicht warten sollten, b
 
 Mit diesen vier Angaben kann die Praxis in wenigen Minuten einschätzen, ob Ihr Hund beobachtet werden kann oder kommen muss.
 
-## Warum Zartbitter so viel schlimmer ist als Vollmilch
+## Warum ist Zartbitterschokolade für Hunde gefährlicher als Vollmilch?
+
+Weil der Gehalt an Theobromin, dem giftigen Stoff in Schokolade, mit dem Kakaoanteil steigt.
 
 Der giftige Stoff in Schokolade ist **Theobromin**, dazu kommt Koffein. Menschen bauen Theobromin schnell ab, Hunde brauchen dafür Tage. Es wirkt auf Herz, Kreislauf, Nervensystem und Nieren.
 
@@ -35,7 +37,9 @@ Der Theobromingehalt steigt mit dem Kakaoanteil. Grobe Reihenfolge von harmlos z
 
 Wir veröffentlichen hier bewusst **keine Rechentabelle** mit „ab x Gramm pro Kilo“. Die Grenzwerte in Umlauf stammen aus unterschiedlichen Quellen, berücksichtigen nicht die individuelle Empfindlichkeit, Vorerkrankungen oder die große Schwankungsbreite im Kakaogehalt. Ihre Tierärztin oder Ihr Tierarzt rechnet die aufgenommene Menge anhand von Sorte und Körpergewicht konkret durch und entscheidet. Das ist in zwei Minuten am Telefon erledigt und zuverlässiger als jede Tabelle.
 
-## Welche Symptome auftreten können
+## Welche Symptome zeigt ein Hund nach Schokolade?
+
+Typisch sind innerhalb von 6 bis 12 Stunden Unruhe, Hecheln, Erbrechen, Durchfall, starker Durst, Zittern und Herzrasen, in schweren Fällen Krampfanfälle und Kollaps.
 
 Typischerweise innerhalb von 6 bis 12 Stunden, manchmal früher:
 
@@ -46,28 +50,36 @@ Typischerweise innerhalb von 6 bis 12 Stunden, manchmal früher:
 
 Weil Theobromin so langsam abgebaut wird, können Symptome über ein bis drei Tage anhalten. Ein Hund, der am Abend „nur etwas unruhig“ ist, kann in der Nacht deutlich schlechter werden.
 
-## Was Sie tun sollten
+## Was soll ich tun, wenn mein Hund Schokolade gefressen hat?
+
+Verpackung sichern, die Praxis oder den Notdienst anrufen und hinfahren, wenn die Praxis es sagt.
 
 1. **Schokolade und Verpackung sichern**, Rest außer Reichweite bringen, Verpackung mitnehmen.
 2. **Anrufen** (Praxis, Notdienst oder Tierklinik) und die vier Angaben nennen.
 3. **Hinfahren, wenn die Praxis es sagt.** Nehmen Sie den Hund an die Leine, auch wenn er noch munter wirkt.
 4. Wenn die Praxis entscheidet, dass Beobachtung zu Hause reicht: **Hund in Ruhe lassen, Wasser anbieten, nachts nachschauen** und bei jedem neuen Symptom erneut anrufen.
 
-## Was Sie nicht tun sollten
+## Was sollte ich nicht tun, wenn mein Hund Schokolade gefressen hat?
+
+Lösen Sie kein Erbrechen selbst aus, geben Sie keine Milch, kein Öl, keine Hausmittel oder Medikamente für Menschen und warten Sie nicht ab.
 
 - **Kein selbst ausgelöstes Erbrechen** mit Salzwasser, Spülmittel oder Wasserstoffperoxid. Salz kann eine eigene, tödliche Vergiftung auslösen, und Erbrechen bei einem benommenen Hund kann zum Einatmen führen. Die Praxis hat sichere Mittel.
 - **Keine Milch, kein Öl, keine Hausmittel.** Sie helfen nicht und können Durchfall und Fettbelastung verschlimmern.
 - **Keine Medikamente für Menschen**, auch keine Schmerz- oder Beruhigungsmittel.
 - **Nicht abwarten „bis etwas passiert“.** Die Behandlung ist am einfachsten, bevor Symptome da sind.
 
-## Was die Tierärztin oder der Tierarzt wissen will
+## Was wird die Tierärztin oder der Tierarzt wissen wollen, wenn mein Hund Schokolade gefressen hat?
+
+Produkt, Kakaoanteil, Menge und Zeitpunkt, Gewicht, Alter und Vorerkrankungen, ob Ihr Hund erbrochen hat und ob er noch etwas anderes gefressen hat.
 
 - Produkt, Kakaoanteil, Menge, Zeitpunkt
 - Gewicht, Alter und Vorerkrankungen (Herz, Epilepsie, Niere)
 - Ob der Hund bereits erbrochen hat und was darin war
 - Ob außer Schokolade noch etwas gefressen wurde: Rosinen, Nüsse, Verpackung, Alufolie, Alkohol, zuckerfreie Süßigkeiten mit Xylit
 
-## Vorbeugen
+## Wie schütze ich meinen Hund vor Schokolade?
+
+Bewahren Sie Schokolade, Adventskalender, Osternester und Handtaschen in Schrankhöhe auf, besonders an Feiertagen, und denken Sie an Kakaomulch im Garten.
 
 Die meisten Vergiftungen passieren rund um Weihnachten, Ostern und Geburtstage, wenn Schokolade auf Tischen, in Geschenken und in Kinderzimmern liegt. Adventskalender, Osternester und Handtaschen gehören in Schrankhöhe. Kakaomulch im Garten ist ein weniger bekannter, aber realer Risikofaktor.
 

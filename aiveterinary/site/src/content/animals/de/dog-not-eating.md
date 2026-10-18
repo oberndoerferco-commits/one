@@ -22,7 +22,9 @@ Fahren Sie sofort in eine Tierarztpraxis und rufen Sie vorher an, wenn Ihr Hund 
 - nicht trinken kann oder Wasser wieder erbricht
 - ein Welpe, ein Zwerghund, Diabetiker ist oder Medikamente bekommt, deren Gabe vom Fressen abhängt (wenn Ihr Hund Diabetiker ist und nicht frisst, rufen Sie Ihre Tierarztpraxis an, bevor Sie Insulin geben; das ist eine tierärztliche Entscheidung)
 
-## Wenn nichts davon zutrifft
+## Was tue ich, wenn mein Hund eine Mahlzeit auslässt, aber munter ist?
+
+Ein gesunder erwachsener Hund, der munter ist, trinkt und sich normal verhält, kann meist einen Tag lang beobachtet werden.
 
 Ein gesunder erwachsener Hund, der eine Mahlzeit auslässt, aber munter ist, trinkt und sich normal verhält, kann meist einen Tag lang beobachtet werden. Heißes Wetter, eine Änderung des Tagesablaufs, ein neuer Sack Futter, eine läufige Hündin in der Nähe oder einfach zu viele Leckerlis sind häufige Gründe.
 
@@ -35,7 +37,9 @@ Was Sie zu Hause tun können:
 - Notieren Sie alles Weitere: Energie, Kot, Erbrechen, Trinken, Lahmheit oder Steifheit.
 - Locken Sie nicht mit fettreichem Essen vom Tisch. Es kann den Magen belasten und erschwert Ihrer Tierärztin oder Ihrem Tierarzt die Beurteilung.
 
-## Wann zum Tierarzt
+## Wann sollte ich mit meinem Hund zur Tierärztin oder zum Tierarzt, wenn er nicht frisst?
+
+Noch heute, wenn er seit mehr als 24 Stunden nichts gefressen hat (bei Welpen und kleinen Rassen früher) oder zusätzlich erbricht, ruhig ist, Probleme beim Fressen hat oder abnimmt.
 
 Vereinbaren Sie noch heute einen Termin, wenn:
 
@@ -49,7 +53,9 @@ Vereinbaren Sie noch heute einen Termin, wenn:
 
 Ein Hund, der nicht frisst *und* ruhig ist, ist etwas anderes als ein Hund, der nicht frisst, aber ansonsten ganz der Alte ist. Vertrauen Sie Ihrem Gefühl, ob mit Ihrem Hund „etwas nicht stimmt“.
 
-## Was die Tierärztin oder der Tierarzt wissen will
+## Was wird die Tierärztin oder der Tierarzt über den Appetit meines Hundes wissen wollen?
+
+Wann er zuletzt richtig gefressen hat, ob er trinkt, Erbrechen, Durchfall oder Veränderungen beim Urin, wozu er Zugang hatte, Medikamente und Veränderungen im Alltag.
 
 - Wann Ihr Hund zuletzt richtig gefressen hat und ob er alles verweigert oder nur das gewohnte Futter
 - Ob Ihr Hund trinkt und wie viel
@@ -59,7 +65,9 @@ Ein Hund, der nicht frisst *und* ruhig ist, ist etwas anderes als ein Hund, der 
 - Kürzliche Veränderungen: neues Futter, Umzug, neues Haustier, Tierpension
 - Energieniveau sowie Steifheit, Schmerzen oder Husten
 
-## Häufige Ursachen
+## Warum frisst mein Hund nicht?
+
+Magenverstimmung, Stress, Zahnschmerzen, altes Futter oder Wählerischsein, Hitze und kürzliche Impfungen oder Medikamente sind wahrscheinlich; Fremdkörper, Pankreatitis, Organerkrankungen, Infektionen, Krebs und Herzerkrankungen sind seltener, aber wichtig.
 
 | Wahrscheinlich | Seltener, aber wichtig |
 |---|---|

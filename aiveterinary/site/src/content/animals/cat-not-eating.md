@@ -8,7 +8,7 @@ updated: 2026-09-29
 draft: true
 ---
 
-## Why this matters more in cats
+## Why is it serious when a cat stops eating?
 
 A cat that stops eating for more than a day or two can develop a liver problem called hepatic lipidosis, especially if the cat is overweight. This is one reason vets treat "not eating" in cats as something to look at promptly rather than wait out.
 
@@ -21,7 +21,9 @@ A cat that stops eating for more than a day or two can develop a liver problem c
 - has vomited several times or there is blood in vomit or stool
 - may have eaten a lily (any part of the plant is toxic to cats), antifreeze, or human medication such as paracetamol
 
-## Things to check at home
+## What can I check at home if my cat is not eating?
+
+Check whether the cat refuses only this food, how much it drinks, its mouth, the litter tray, its weight and coat, and any recent stress.
 
 - **Is it really not eating, or not eating *this* food?** Try a small amount of a different food, or warm the food slightly to release the smell.
 - **Is the cat drinking?** More than usual can point to kidney or thyroid problems; less than usual adds to the risk.
@@ -30,12 +32,16 @@ A cat that stops eating for more than a day or two can develop a liver problem c
 - **Weight and coat:** has the cat been losing weight or looking scruffy over the past weeks?
 - **Stress:** a new animal, a house move, building work, a change of litter. Cats can stop eating from stress alone, but this is a diagnosis for your vet to make after ruling out illness.
 
-## When to see a vet
+## When should I take my cat to the vet for not eating?
+
+Today if your cat has eaten nothing for 24 hours or very little for 48 hours, or if any of the home checks is abnormal.
 
 - **Today** if your cat has eaten nothing for 24 hours, or very little for 48 hours, or if any of the checks above are abnormal.
 - **This week** if the cat is eating a bit less than usual but is otherwise bright and behaving normally, and it does not improve in a couple of days.
 
-## What the vet will want to know
+## What will the vet want to know about my cat?
+
+When the cat last ate normally, its drinking, urination and stool, any vomiting or changes, what it has access to, and its medications.
 
 - When the cat last ate normally, and what it usually eats
 - Drinking, urination and stool
@@ -43,6 +49,6 @@ A cat that stops eating for more than a day or two can develop a liver problem c
 - Indoor or outdoor, and any access to plants, chemicals or other households
 - Any medications, and vaccination and worming history
 
-## Common causes
+## Why has my cat stopped eating?
 
 Dental disease, a stomach or gut upset, kidney disease (common in older cats), an overactive thyroid, infections, pain from any cause, and stress. The examination and often a blood test are how your vet tells these apart.

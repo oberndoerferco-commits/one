@@ -28,7 +28,7 @@ Ein Haarballen ist ein wurstförmiger Klumpen aus Haaren, meist mit etwas Flüss
 
 Erbrechen ist etwas anderes. Futter, Schaum, gelbe oder grüne Flüssigkeit oder Flüssigkeit mit nur wenigen Haaren darin ist Erbrochenes, auch wenn Ihre Katze auf dieselbe Weise würgt. Erbrechen öfter als ein- bis zweimal im Monat oder Haarballen alle paar Tage sind ein Zeichen, dass noch etwas anderes vorliegt. Viele Tierärztinnen und Tierärzte betrachten häufige „Haarballen“ inzwischen als Anlass, den Magen-Darm-Trakt zu untersuchen, nicht nur das Fell.
 
-## Wenn keines der Sofort-Anzeichen zutrifft
+## Was kann ich zu Hause tun, wenn meine Katze einmal erbrochen hat?
 
 Ein einmaliges Erbrechen bei einer Katze, die danach frisst und sich normal verhält, kann zu Hause beobachtet werden.
 
@@ -39,7 +39,9 @@ Ein einmaliges Erbrechen bei einer Katze, die danach frisst und sich normal verh
 - Prüfen Sie, ob die Katzentoilette normal benutzt wird. Kein Urin über einen Tag ist für sich genommen ein Notfall, vor allem bei Katern.
 - Geben Sie niemals Medikamente für Menschen. Besonders Paracetamol ist für Katzen hochgiftig.
 
-## Wann zum Tierarzt
+## Wann sollte ich mit meiner erbrechenden Katze zur Tierärztin oder zum Tierarzt?
+
+Noch heute, wenn sie öfter als zwei- bis dreimal am Tag oder über mehr als 24 Stunden erbricht, länger als einen Tag nicht frisst oder fast jede Woche erbricht.
 
 Vereinbaren Sie noch heute einen Termin, wenn:
 
@@ -53,7 +55,9 @@ Vereinbaren Sie noch heute einen Termin, wenn:
 
 Katzen verbergen Krankheiten gut. Eine Katze, die „etwas ruhig“ ist und erbricht, ist einen Anruf wert.
 
-## Was die Tierärztin oder der Tierarzt wissen will
+## Was wird die Tierärztin oder der Tierarzt über das Erbrechen wissen wollen?
+
+Wann es begann, wie oft, wie das Erbrochene aussah und wann es auftritt, dazu Appetit, Trinken, Katzentoilette, Zugang zu Gefahren und Behandlungen.
 
 - Wann es begonnen hat und wie oft
 - Wie das Erbrochene aussah: Haare, Futter, Schaum, Galle, Blut
@@ -64,7 +68,9 @@ Katzen verbergen Krankheiten gut. Eine Katze, die „etwas ruhig“ ist und erbr
 - Medikamente, Floh- oder Wurmbehandlungen
 - Weitere Katzen im Haushalt und ob sie betroffen sind
 
-## Häufige Ursachen
+## Warum erbricht meine Katze?
+
+Haarballen, zu schnelles Fressen, Futterwechsel, leichte Magenverstimmungen, Würmer und Grasfressen sind wahrscheinlich; Fremdkörper, Nieren-, Schilddrüsen-, Darm-, Bauchspeicheldrüsen- oder Lebererkrankungen und Vergiftungen sind seltener, aber wichtig.
 
 | Wahrscheinlich | Seltener, aber wichtig |
 |---|---|

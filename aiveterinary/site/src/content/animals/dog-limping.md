@@ -23,7 +23,9 @@ Go to a veterinary clinic immediately, and call ahead, if your dog:
 
 A dog that limps on a front leg and also has a swollen or painful neck or back should be seen urgently too; not all limps start in the leg.
 
-## If none of those apply
+## Can I watch my dog's limp at home?
+
+Yes, for a couple of days, if your dog is still bearing some weight, bright, eating and comfortable at rest: check the paw, feel the leg and rest your dog properly.
 
 A dog that is limping but still bearing some weight, bright, eating and comfortable at rest can usually be watched for a couple of days.
 
@@ -35,7 +37,9 @@ What you can do at home:
 - Do not give human painkillers. Ibuprofen and paracetamol can be dangerous for dogs. If your dog needs pain relief, that is a vet decision and a prescription.
 - Film the limp if you can. Limps often disappear in the consulting room, and a short video helps your vet see which leg is affected and how badly.
 
-## When to see a vet
+## When should I take my limping dog to the vet?
+
+This week or sooner if the limp has not improved after two or three days of rest, keeps coming back, or comes with swelling, heat, stiffness or licking.
 
 Book an appointment this week, or sooner, if:
 
@@ -48,7 +52,9 @@ Book an appointment this week, or sooner, if:
 - your dog is a puppy or young large-breed dog with any lameness that lasts more than a day or two
 - your dog is older and the limp is new
 
-## What the vet will want to know
+## What will the vet want to know about my dog's limp?
+
+Which leg, when it started and what happened, how it changes with rest and exercise, any swelling or wounds, your dog's exercise, past injuries, medicines and travel.
 
 - Which leg, and whether it is always the same one
 - When it started, and whether anything happened (a jump, a slip, a game of fetch)
@@ -60,7 +66,9 @@ Book an appointment this week, or sooner, if:
 - Any medication or supplements
 - Any tick bites, or travel abroad
 
-## Common causes
+## Why is my dog limping?
+
+Paw injuries, sprains, torn nails, bruising, arthritis and pad burns are likely causes; cruciate rupture, fractures, dysplasia, bone disease, disc disease and tick-borne disease are less common but important.
 
 | Likely | Less common but important |
 |---|---|

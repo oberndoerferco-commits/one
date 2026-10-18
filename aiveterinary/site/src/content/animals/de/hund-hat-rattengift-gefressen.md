@@ -37,14 +37,18 @@ Dringend ist es auch, wenn Ihr Hund vor Tagen an einem Köder oder einer toten M
 - plötzlich lahmt, geschwollene Gelenke hat, taumelt oder zusammenbricht
 - zittert, Krampfanfälle hat, sehr unruhig ist oder sich kalt anfühlt
 
-## Das Wichtigste auf einen Blick
+## Was muss ich sofort tun, wenn mein Hund Rattengift gefressen hat?
+
+Packung mitnehmen, Zeitpunkt und Menge schätzen, kein Erbrechen selbst auslösen und keine Medikamente oder Hausmittel geben.
 
 - **Nehmen Sie die Verpackung mit**, oder fotografieren Sie das Etikett. Der Wirkstoff entscheidet über die Behandlung.
 - Schätzen Sie, **wann** und **wie viel** Ihr Hund gefressen haben könnte. Bringen Sie Reste von Ködern oder Erbrochenem in einer Tüte mit.
 - **Lassen Sie Ihren Hund nicht selbst erbrechen.**
 - Geben Sie **keine Medikamente** und keine Hausmittel.
 
-## Warum Sie Ihren Hund nicht selbst erbrechen lassen sollten
+## Warum sollte ich meinen Hund nicht selbst erbrechen lassen?
+
+Weil Hausmittel wie Salz oder Öl gefährlich sind und die Praxis das Erbrechen sicherer und wirksamer auslösen kann.
 
 In den ersten Stunden nach dem Fressen kann die Tierärztin oder der Tierarzt Ihren Hund gezielt mit einem Medikament erbrechen lassen. Das ist sicherer und wirksamer als alles, was zu Hause möglich ist.
 
@@ -79,7 +83,9 @@ Dieser Wirkstoff steckt in manchen frei verkäuflichen Mäuseködern. Er stört 
 
 **Bromethalin** schädigt das Nervensystem. Es kann Übererregbarkeit, Muskelzittern, Krampfanfälle und Lähmungen der Hinterbeine auslösen. **Zinkphosphid** reizt den Magen-Darm-Trakt und kann zu Kreislaufversagen und Atemnot führen.
 
-## Wie die Behandlung abläuft
+## Wie wird eine Rattengiftvergiftung beim Hund behandelt?
+
+Je nach Wirkstoff mit Erbrechen in der Praxis, Aktivkohle, Vitamin K1 als Gegenmittel über mehrere Wochen, Gerinnungstests und bei starken Blutungen Infusionen und Transfusionen.
 
 Was genau passiert, hängt vom Wirkstoff, der Menge und der Zeit seit dem Fressen ab. Bei Gerinnungshemmern kommen laut MSD Veterinary Manual unter anderem in Frage:
 
@@ -96,7 +102,7 @@ Bitte beachten Sie:
 - Kaufen Sie kein Vitamin-K-Präparat selbst. Welches Mittel, in welcher Form und wie lange, entscheidet ausschließlich die Praxis.
 - Schonen Sie Ihren Hund, solange die Gerinnung gestört sein kann: kein Toben, kein Spielen mit Stöcken, keine wilden Raufereien.
 
-## Keine Schmerzmittel aus Ihrer Hausapotheke
+## Darf ich meinem Hund nach Rattengift Schmerzmittel geben?
 
 Ein Hund mit gestörter Gerinnung darf auf keinen Fall Mittel bekommen, die zusätzlich Blutungen fördern können.
 
@@ -104,7 +110,9 @@ Ein Hund mit gestörter Gerinnung darf auf keinen Fall Mittel bekommen, die zus�
 - **Paracetamol** kann bei Hunden die Leber schädigen.
 - **Metamizol** (zum Beispiel Novalgin) gibt es nur, wenn die Tierärztin oder der Tierarzt es ausdrücklich verordnet.
 
-## Vorbeugen
+## Wie schütze ich meinen Hund vor Rattengift?
+
+Bewahren Sie Bekämpfungsmittel unzugänglich auf, halten Sie Tiere während der Anwendung fern und behalten Sie Ihren Hund beim Spaziergang im Blick.
 
 Das Bundesinstitut für Risikobewertung (BfR) hat Daten deutscher Giftinformationszentren ausgewertet. Hunde vergifteten sich dabei vor allem mit Ratten- und Mäusegift. Das BfR rät:
 

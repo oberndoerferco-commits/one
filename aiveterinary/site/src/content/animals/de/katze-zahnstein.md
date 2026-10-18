@@ -41,7 +41,9 @@ Zahnstein selbst ist nicht das Hauptproblem. Er bietet aber eine raue Oberfläch
 
 Zahnerkrankungen sind bei Katzen häufig. Das Cornell Feline Health Center gibt an, dass ein großer Teil der Katzen über vier Jahren betroffen ist.
 
-## Von der Zahnfleischentzündung zur Parodontitis
+## Wie wird aus einer Zahnfleischentzündung bei der Katze eine Parodontitis?
+
+Bleibt die Entzündung des Zahnfleischs bestehen, greift sie auf den Halteapparat des Zahns über, und diese Schäden lassen sich nicht mehr rückgängig machen.
 
 **Zahnfleischentzündung (Gingivitis):** Das Zahnfleisch ist gerötet, geschwollen und schmerzhaft und blutet leicht. In diesem Stadium lässt sich die Entzündung meist noch zurückdrehen.
 
@@ -49,7 +51,9 @@ Zahnerkrankungen sind bei Katzen häufig. Das Cornell Feline Health Center gibt 
 
 Eine Zahnfleischentzündung kann auch mit anderen Erkrankungen zusammenhängen, etwa Virusinfektionen (FeLV, FIV, Calici), Nierenerkrankungen oder Diabetes. Deshalb gehört die Untersuchung des ganzen Tieres dazu.
 
-## FORL: Zahnresorptionen bei der Katze
+## Was ist FORL bei der Katze?
+
+Bei Zahnresorptionen (FORL) wird die Zahnsubstanz von innen heraus abgebaut; sie sind die häufigste Ursache für Zahnverlust bei Katzen und können sehr schmerzhaft sein.
 
 Eine Besonderheit der Katze sind **Zahnresorptionen**. Früher sprach man von **FORL** (feline odontoklastische resorptive Läsionen) oder „Hälschenläsionen“. Dabei wird die Zahnsubstanz von innen heraus abgebaut und unwiederbringlich zerstört. Nach dem Cornell Feline Health Center sind sie die häufigste Ursache für Zahnverlust bei Katzen. Die Ursache ist bis heute nicht geklärt.
 
@@ -64,7 +68,9 @@ Zahnresorptionen können **sehr schmerzhaft** sein. Erkennbar wird das oft an ei
 
 Sicher feststellen lassen sich Zahnresorptionen nur mit **Röntgenaufnahmen der Zähne**, und die sind bei Katzen nur in Narkose möglich. Eine Füllung hilft bei diesen Zähnen nicht. Nach dem Cornell Feline Health Center ist das Ziehen betroffener Zähne die wirksame Behandlung. In bestimmten Fällen kann die Praxis stattdessen nur die Zahnkrone entfernen oder einen Zahn zunächst beobachten. Was im Einzelfall richtig ist, entscheidet die Tierärztin oder der Tierarzt anhand des Röntgenbilds.
 
-## Warum eine Zahnreinigung nur in Narkose sinnvoll ist
+## Warum braucht meine Katze für die Zahnreinigung eine Narkose?
+
+Weil der wichtigste Teil unter dem Zahnfleisch liegt und sich nur in Narkose sicher, schmerzfrei und vollständig mit Röntgen untersuchen und behandeln lässt.
 
 Viele Halterinnen und Halter haben Sorge vor einer Narkose. Das ist verständlich. Für eine gründliche Zahnbehandlung ist sie aber nötig. Das American Veterinary Dental College, die US-amerikanische Fachgesellschaft für Tierzahnmedizin, nennt dafür klare Gründe:
 
@@ -75,7 +81,7 @@ Viele Halterinnen und Halter haben Sorge vor einer Narkose. Das ist verständlic
 
 Vor der Narkose untersucht die Praxis Ihre Katze und schätzt ihr Narkoserisiko ein. Ganz ohne Risiko ist keine Narkose. Moderne Narkoseverfahren und eine sorgfältige Voruntersuchung und Überwachung halten es aber so gering wie möglich. Angebote zur „Zahnreinigung ohne Narkose“ außerhalb der Tierarztpraxis sind keine Alternative.
 
-## Keine Schmerzmittel aus der Hausapotheke
+## Darf ich meiner Katze bei Zahnschmerzen Schmerzmittel geben?
 
 Wenn Ihre Katze Zahnschmerzen hat, geben Sie ihr **niemals eigene Medikamente**:
 
@@ -85,7 +91,9 @@ Wenn Ihre Katze Zahnschmerzen hat, geben Sie ihr **niemals eigene Medikamente**:
 
 Die Praxis kann Ihrer Katze bei Bedarf ein passendes Schmerzmittel geben.
 
-## So beugen Sie vor
+## Wie beuge ich Zahnstein bei meiner Katze vor?
+
+Am wirksamsten mit Zähneputzen mit Zahnpasta für Katzen, an das Sie Ihre Katze schrittweise gewöhnen, und einer Zahnkontrolle mindestens einmal im Jahr.
 
 - **Zähneputzen** ist nach Cornell und International Cat Care die wirksamste Vorbeugung. Gewöhnen Sie Ihre Katze in kleinen Schritten über einige Wochen daran: erst den Geruch der Paste, dann den Geschmack, dann die Bürste. Es reicht, die Außenseiten der Zähne zu putzen.
 - Verwenden Sie **nur Zahnpasta für Katzen**. Zahnpasta für Menschen ist für Katzen nicht geeignet.

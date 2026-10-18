@@ -30,11 +30,13 @@ references:
 
 Later than you think for small dogs, earlier for big ones. AAHA defines a senior dog as one in the last 25% of its expected lifespan: a small dog expected to reach 15 is senior at about 11, a giant breed expected to reach 9 at 6 or 7. For cats the AAHA/AAFP guidelines draw the line at 10 years; the feline senior care guidelines add mature (7 to 10), senior (11 to 14) and geriatric (15 and over). The label changes what your vet looks for, and how often.
 
-## Twice a year, not once
+## How often should a senior dog or cat see the vet?
 
 AAHA and the feline guidelines both recommend a check every six months for healthy seniors, and every four months for cats over 15 or any animal with a chronic condition. Six months of a senior's life is two to three years of yours. Expect the vet to weigh your animal, score body and muscle condition, work through every joint, open the mouth properly, feel the thyroid in cats, and ask about thirst, appetite, sleep, toileting, stairs and jumping.
 
-## The screening tests, in plain language
+## Which tests does a senior dog or cat need?
+
+A blood count, blood chemistry, a urine test, blood pressure and, in cats, a thyroid test, repeated every 6 to 12 months.
 
 The guidelines describe a "minimum database" for seniors, repeated every 6 to 12 months. None of it is exotic:
 
@@ -46,11 +48,15 @@ The guidelines describe a "minimum database" for seniors, repeated every 6 to 12
 
 Ask for the numbers and keep them: the trend tells your vet more than any single result.
 
-## Weight: the number you can track at home
+## Why should I weigh my senior pet at home?
+
+Because in cats slow weight loss is the commonest early sign of several diseases, and in dogs staying lean helps lifespan and joints.
 
 Weigh your animal monthly on the same scale. In cats, slow weight loss is the commonest early sign of kidney disease, thyroid disease and cancer, and easier to spot than a change in the water bowl. In dogs the risk runs the other way: AAHA notes that keeping dogs lean is one of the few things shown to extend lifespan, and weight makes arthritic joints worse.
 
-## The pain signs owners miss
+## How can I tell if my old dog or cat is in pain?
+
+Watch for a changed routine rather than crying out or limping: jumping less, stiffness after rest, reluctance on stairs, and a scruffy coat in cats.
 
 Old animals rarely cry out. Pain shows as a changed routine, which is why AAHA and ISFM ask owners to watch behaviour rather than limping.
 
@@ -60,21 +66,29 @@ Old animals rarely cry out. Pain shows as a changed routine, which is why AAHA a
 
 A short video of your cat reaching the sofa or your dog standing up is often more useful than the examination on the table.
 
-## The two big ones
+## What are the most common diseases in older dogs and cats?
+
+Kidney disease in cats and arthritis in dogs are the two big ones.
 
 **Kidney disease in cats** is one of the most common diseases of old age. Early signs are poor appetite, more drinking, more urine, weight loss and lethargy. It is diagnosed on blood and urine together, with blood pressure checked because kidney disease is the leading cause of high blood pressure in cats. It cannot be cured, but caught early it can be slowed for years, which is the point of the six-monthly urine test; ISFM published new guidelines on it in 2026.
 
 **Arthritis in dogs** is the commonest cause of chronic pain. Managing it is a package: weight, steady exercise, a warm padded bed, and medication your vet chooses and monitors. Rugs on hard floors, a car ramp and raised bowls make a visible difference within weeks.
 
-## Teeth
+## Do old dogs and cats need dental care?
+
+Yes: periodontal disease worsens with age, bad breath and chewing on one side are signs of pain, and age alone is no reason to refuse an anaesthetic.
 
 Periodontal disease worsens with age and is worst in small dogs, where AAHA warns it can erode enough jawbone to cause fractures. Bad breath, dropping food and chewing on one side are pain, not age. Age alone is no reason to refuse an anaesthetic; the pre-anaesthetic blood test exists so the vet can decide safely.
 
-## Adapting the home
+## How can I adapt my home for an older pet?
+
+Use non-slip rugs, soft, easy-to-reach beds, steps, a low-sided litter tray and food and water on one floor, and keep furniture where it was.
 
 Non-slip rugs on smooth floors. Soft, warm beds that are easy to climb into. Steps to the favourite window or sofa. A litter tray with one low side on the floor your cat already uses. Food and water with no stairs in between. A night light for a dog whose sight is fading. Keep furniture where it was: animals with failing senses or early dementia rely on the map in their heads.
 
-## Talking about quality of life
+## How do I judge my old pet's quality of life?
+
+A tool such as the HHHHHMM scale, repeated monthly, turns a vague worry into something you can see.
 
 Have this conversation before you need it. A widely used tool is the HHHHHMM scale by Dr Alice Villalobos, which scores seven areas from 0 to 10: hurt, hunger, hydration, hygiene, happiness, mobility, and more good days than bad. Repeating it monthly turns a vague worry into something you can see. The feline guidelines also ask vets to weigh your four budgets honestly, financial, time, emotional and physical, because a plan you cannot sustain is not a good plan.
 

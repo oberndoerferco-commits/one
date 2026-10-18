@@ -23,7 +23,9 @@ Fahren Sie sofort und rufen Sie unterwegs an, wenn Ihr Tier:
 - blasses, bläuliches, gelbliches oder ziegelrotes Zahnfleisch hat oder aus Nase oder Maul blutet oder Blut im Urin hat
 - eine Katze ist, die irgendeinen Kontakt mit einer Lilie hatte, auch nur das Streifen an Pollen
 
-## Was zu tun ist
+## Was soll ich tun, wenn mein Tier etwas Giftiges gefressen hat?
+
+Entfernen Sie das Tier von der Quelle, rufen Sie sofort eine Tierarztpraxis an, befolgen Sie die Anweisungen und bringen Sie die Verpackung mit.
 
 1. **Entfernen Sie das Tier von der Quelle** und, wenn es sicher ist, die Quelle vom Tier. Kontrollieren Sie das Maul auf Reste.
 2. **Rufen Sie sofort eine Tierarztpraxis an.** Sagen Sie, was gefressen wurde, wie viel, wann, und das Gewicht Ihres Tieres. Halten Sie die Verpackung in der Hand.
@@ -31,7 +33,9 @@ Fahren Sie sofort und rufen Sie unterwegs an, wenn Ihr Tier:
 4. **Bringen Sie die Beweise mit**: die Packung, die Pflanze, eine Probe des Erbrochenen, in einem verschlossenen Beutel.
 5. **Halten Sie Ihr Tier unterwegs ruhig und warm.**
 
-## Was Sie NICHT tun sollten
+## Was sollte ich bei einer Vergiftung meines Tieres nicht tun?
+
+Lösen Sie zu Hause kein Erbrechen aus, geben Sie keine Milch, kein Öl, keine Kohletabletten oder Medikamente für Menschen und warten Sie nicht ab.
 
 - **Bringen Sie Ihr Tier zu Hause nicht zum Erbrechen.** Salz, Senf, Spülmittel und ähnliche Hausmittel sind gefährlich, und Erbrechen ist bei manchen Giften (ätzende Stoffe, Erdölprodukte) und bei schläfrigen oder krampfenden Tieren schädlich. Wenn Erbrechen nötig ist, löst es Ihre Tierärztin oder Ihr Tierarzt sicher aus. Das ist eine tierärztliche Entscheidung.
 - **Geben Sie keine Milch, kein Öl, keine Kohletabletten und kein Hausmittel-Gegengift.**
@@ -39,7 +43,9 @@ Fahren Sie sofort und rufen Sie unterwegs an, wenn Ihr Tier:
 - **Warten Sie nicht ab**, weil das Tier gesund wirkt. Bei Rattengift, Frostschutzmittel und Lilien entstehen schwere Schäden, bevor sich ein Anzeichen zeigt.
 - **Waschen Sie Pollen nicht einfach nur von einer Katze ab und belassen es dabei.** Hindern Sie sie am Putzen und fahren Sie zum Tierarzt.
 
-## Die Gifte, die Tierärztinnen und Tierärzte am häufigsten sehen
+## Welche Gifte sind für Hunde und Katzen am häufigsten?
+
+Schokolade, Xylit, Weintrauben und Rosinen, Lilien, Ratten- und Mäuseköder, Frostschutzmittel, Schmerzmittel für Menschen, Zwiebeln und Knoblauch sowie Permethrin-Flohmittel für Hunde.
 
 | Gift | Betrifft vor allem | Warum es wichtig ist |
 |---|---|---|
@@ -55,13 +61,15 @@ Fahren Sie sofort und rufen Sie unterwegs an, wenn Ihr Tier:
 
 Weitere Gefahren sind Macadamianüsse, Alkohol, roher Hefeteig, Cannabis, Nikotin, viele Zimmer- und Gartenpflanzen sowie verschreibungspflichtige Medikamente für Menschen. Im Zweifel: anrufen.
 
-## Wann zum Tierarzt
+## Wann sollte ich bei Verdacht auf Vergiftung zur Tierärztin oder zum Tierarzt?
 
 Bei Verdacht auf Vergiftung lautet die Antwort immer: jetzt. Eine Kategorie „bis morgen warten“ gibt es nicht.
 
 Wenn Ihre Tierärztin oder Ihr Tierarzt nach einem Telefonat entscheidet, dass die Menge zu gering war, um sich Sorgen zu machen, ist das deren Entscheidung, nicht Ihre.
 
-## Was die Tierärztin oder der Tierarzt wissen will
+## Was wird die Tierärztin oder der Tierarzt bei einer Vergiftung wissen wollen?
+
+Was gefressen wurde, wie viel und wann, Gewicht, Alter und Erkrankungen Ihres Tieres, bisherige Anzeichen, Medikamente und ob Sie die Verpackung haben.
 
 - Was gefressen wurde (wenn möglich genauer Produktname und Inhaltsstoffe)
 - Wie viel und wann

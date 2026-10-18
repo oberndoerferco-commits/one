@@ -36,7 +36,9 @@ references:
 
 Rufen Sie die Praxis an, während Sie die Box holen. Erreichen Sie niemanden, helfen die Giftnotrufe: Sie sind für Menschen zuständig, beraten laut Bundesinstitut für Risikobewertung aber je nach Kapazität auch bei Tiervergiftungen, rund um die Uhr zum Beispiel unter 030 19240 (Berlin), 0551 19240 (Göttingen), 089 19240 (München), 0228 19240 (Bonn), 06131 19240 (Mainz), 0761 19240 (Freiburg) oder 0361 730730 (Erfurt); in der Schweiz Tox Info Suisse unter 145. Der erste Anruf gilt immer Ihrer Tierarztpraxis.
 
-## Die Gifte, denen Katzen wirklich begegnen
+## Welche Lebensmittel und Pflanzen sind für Katzen giftig?
+
+Vor allem Lilien, Zwiebeln und Knoblauch, Schokolade und Koffein, ätherische Öle, Spot-on-Flohmittel für Hunde, Weintrauben und Rosinen, Alkohol und Hefeteig sowie mehrere Zimmer- und Gartenpflanzen.
 
 | Substanz | Warum sie gefährlich ist | Was Sie zuerst tun |
 |---|---|---|
@@ -52,21 +54,27 @@ Rufen Sie die Praxis an, während Sie die Box holen. Erreichen Sie niemanden, he
 
 Xylit, das für Hunde so gefährliche Süßungsmittel, gilt bei Katzen nicht als Gift: Die Pet Poison Helpline hält eine Vergiftung für unwahrscheinlich. Milch ist kein Gift, wird von den meisten erwachsenen Katzen aber schlecht vertragen.
 
-## Was Sie nicht tun sollten
+## Was sollte ich nicht tun, wenn meine Katze etwas Giftiges gefressen hat?
+
+Lösen Sie kein Erbrechen aus, geben Sie keine Milch, kein Öl und nichts „zum Magenschutz“, und warten Sie nicht auf Symptome.
 
 - **Lösen Sie zu Hause kein Erbrechen aus.** Salz, Wasserstoffperoxid und andere Hausmittel können eine Salzvergiftung auslösen, die Speiseröhre verätzen oder Erbrochenes in die Lunge leiten. Bei Katzen ist sicheres Erbrechen besonders schwierig; das gehört in die Praxis.
 - **Geben Sie keine Milch, kein Öl, keine Butter und nichts "zum Magenschutz".** Nichts aus der Küche neutralisiert ein Gift.
 - **Warten Sie nicht auf Symptome** bei Lilien, Zwiebeln oder Weintrauben. Wenn die Katze krank wirkt, hat der Organschaden schon begonnen.
 - Verlassen Sie sich nicht auf Dosistabellen aus dem Internet. Das Risiko berechnet die Tierärztin oder der Tierarzt aus Gewicht, Substanz und Menge; das ist deren Aufgabe, nicht Ihre.
 
-## Was die Praxis fragen wird
+## Was fragt die Praxis, wenn meine Katze etwas Giftiges gefressen hat?
+
+Was sie gefressen hat, wie viel, wann, und ihr Gewicht, Alter, Vorerkrankungen sowie Medikamente oder Parasitenmittel.
 
 1. **Was**: Name der Pflanze oder des Produkts, oder ein Foto. Bei Pflanzen Blatt und Blüte im Beutel mitbringen.
 2. **Wie viel**: ein Knabbern, ein ganzes Blatt, wie viel von der Tafel fehlt.
 3. **Wann** es passiert ist, und ob sie erbrochen hat oder speichelt.
 4. **Gewicht**, Alter, bekannte Nierenerkrankung, Medikamente oder kürzlich angewendete Parasitenmittel.
 
-## Vorbeugen
+## Wie schütze ich meine Katze vor giftigen Pflanzen und Lebensmitteln?
+
+Keine Lilien ins Haus, Pflanzen aus der Tabelle außer Reichweite, Essen abdecken, nie ein Hunde-Flohmittel verwenden und Diffusoren dort auslassen, wo sie schläft.
 
 Keine Lilien in einen Katzenhaushalt, und sagen Sie das Floristen und Gästen; prüfen Sie Sträuße, bevor sie ins Haus kommen. Pflanzen aus der Tabelle außer Reichweite oder ganz aus der Wohnung. Decken Sie Essen auf der Arbeitsfläche ab; die Katze, die nachts die Zwiebelsoße ableckt, ist die häufigste Geschichte. Verwenden Sie nie ein Hunde-Flohmittel bei der Katze und lassen Sie Diffusoren in Räumen aus, in denen sie schläft.
 

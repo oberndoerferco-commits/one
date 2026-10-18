@@ -35,7 +35,9 @@ Go to a vet straight away, and call ahead, if your dog has bloody diarrhoea and:
 
 Some of these dogs lose fluid so quickly that they can go into shock before they look obviously dehydrated, so don't wait to see if it settles.
 
-## If none of those apply
+## What should I do if my dog has blood in its poo but seems well?
+
+Book an appointment with your vet as soon as possible, today if you can, and collect a sample while you wait.
 
 Many causes of blood in the poo are minor, but it is always something to have checked. If your dog is bright, eating, drinking, and has only a streak of blood on otherwise normal or slightly soft poo, **book an appointment with your vet as soon as possible**, today if you can. Your vet needs to rule out the serious causes.
 
@@ -46,7 +48,9 @@ While you wait:
 - Watch for any of the warning signs above, and go straight in if they appear.
 - **Do not give human medicines**, including painkillers or anti-diarrhoea tablets, unless your vet tells you to. Some human painkillers can themselves cause stomach ulcers and bleeding in dogs.
 
-## What the blood looks like, and why it matters
+## What does the colour of blood in my dog's poo mean?
+
+Bright red blood is fresh, while black, tarry poo usually means digested blood and needs prompt attention.
 
 Blood can come from anywhere along the gut, from the stomach down to the bottom and anal glands.
 
@@ -55,7 +59,9 @@ Blood can come from anywhere along the gut, from the stomach down to the bottom 
 
 Telling your vet which one you saw, or showing a photo, helps narrow down the cause.
 
-## Common causes
+## What causes bloody diarrhoea in dogs?
+
+Upset stomachs, colitis, parasites, anal gland problems and food allergy are often less serious, while parvovirus, AHDS, poisoning, ulcers and blockages are more serious.
 
 | Often less serious | More serious |
 |---|---|
@@ -69,13 +75,17 @@ Telling your vet which one you saw, or showing a photo, helps narrow down the ca
 
 Bacterial infections and inflammatory bowel disease can also cause blood in the poo. Your vet decides which of these is likely for your dog, based on the examination and any tests.
 
-## Two causes worth knowing about
+## What are parvovirus and AHDS in dogs?
+
+Both are serious causes of bloody diarrhoea: parvovirus is a viral infection that hits puppies hardest, and AHDS causes sudden, large amounts of bloody diarrhoea.
 
 **Parvovirus** is a serious viral infection. Puppies are the most vulnerable, and younger puppies usually become the sickest, although unprotected older dogs can also be badly affected. Signs include diarrhoea, sometimes bloody, vomiting, fever and lethargy, and dogs can become dehydrated and go into shock. The virus is widespread and hard to kill with disinfectants. Vets can test a swab or sample in the clinic, and early treatment gives the best chance of recovery. Vaccination is the main protection, so check your puppy's vaccinations are up to date.
 
 **Acute haemorrhagic diarrhoea syndrome (AHDS)**, previously called haemorrhagic gastroenteritis, causes sudden, large amounts of bloody diarrhoea, often after vomiting, along with poor appetite, lethargy and belly pain. Small and toy breeds and young adult dogs are affected more often. Dogs can lose fluid very fast. The main treatment is prompt fluid therapy through a drip, and with the right treatment most dogs recover well, but serious complications can occur without it.
 
-## What the vet will want to know
+## What will the vet want to know about my dog's bloody diarrhoea?
+
+When it started, what the poo looks like, any vomiting, what your dog could have eaten, its vaccinations, worming and medicines, and whether other dogs are unwell.
 
 - When it started and how often your dog is going
 - What the poo looks like: bright red blood, dark or black, jelly-like, watery

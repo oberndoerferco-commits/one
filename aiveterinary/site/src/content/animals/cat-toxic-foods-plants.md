@@ -32,7 +32,9 @@ references:
 
 Call the clinic while you get the carrier. If no vet answers, call a poison line: in the UK, Animal PoisonLine (run by VPIS) on 01202 509 000, 24 hours, for a fee; in the US, ASPCA Animal Poison Control on (888) 426-4435 or Pet Poison Helpline on (855) 764-7661. Your local clinic is always the first call.
 
-## The poisons cats actually meet
+## Which foods and plants are poisonous to cats?
+
+The main ones are lilies, onions and garlic, chocolate and caffeine, essential oils, dog flea spot-ons, grapes and raisins, alcohol and raw dough, and several house and garden plants.
 
 | Substance | Why it is dangerous | What to do first |
 |---|---|---|
@@ -48,21 +50,27 @@ Call the clinic while you get the carrier. If no vet answers, call a poison line
 
 Xylitol, the sweetener that is dangerous for dogs, has not been shown to poison cats; the Pet Poison Helpline says toxicity is unlikely. Milk is not a poison, but most adult cats cannot digest it well.
 
-## What not to do
+## What should I not do if my cat has eaten something poisonous?
+
+Do not make your cat vomit, do not give milk or anything "to line the stomach", and do not wait for symptoms.
 
 - **Do not make your cat vomit at home.** Salt, hydrogen peroxide and other home methods can cause salt poisoning, burn the gullet, or send vomit into the lungs. Cats are especially hard to make vomit safely, and only your vet should try.
 - **Do not give milk, oil, butter or anything "to line the stomach".** Nothing in the kitchen neutralises a poison.
 - **Do not wait for symptoms** with lilies, onions or grapes. By the time a cat is sick, the organ damage has started.
 - Do not rely on an online dose table. Your vet calculates the risk from your cat's weight, the substance and the amount, and that is their job, not yours.
 
-## What the vet will ask
+## What will the vet ask if my cat ate something toxic?
+
+What she ate, how much, when, and her weight, age, health and recent medicines or flea products.
 
 1. **What**: the plant or product name, or a photo. For a plant, bring a leaf and flower in a bag.
 2. **How much**: a nibble, a whole leaf, how much of the chocolate bar is missing.
 3. **When** it happened, and whether she has vomited or is drooling.
 4. **Weight**, age, any kidney disease, and any medication or flea product she has had recently.
 
-## Prevention
+## How can I keep my cat safe from poisonous foods and plants?
+
+Keep lilies and the plants above out of the house or out of reach, cover food, never use a dog flea product on her, and keep diffusers off where she sleeps.
 
 Do not bring lilies into a house with a cat, and tell florists and guests. Check bouquets before they come in. Keep house plants from the table above out of reach or out of the house. Cover food left on the counter; a cat on the worktop at night is the usual onion-and-gravy story. Never use a dog flea product on a cat, and keep diffusers off in rooms she sleeps in.
 

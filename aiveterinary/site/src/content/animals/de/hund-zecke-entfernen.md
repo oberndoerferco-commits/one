@@ -34,13 +34,17 @@ Das können Anzeichen einer durch Zecken übertragenen Erkrankung sein, zum Beis
 
 Und genauso dringend: Fahren Sie sofort, wenn eine **Katze** mit einem Zeckenmittel für Hunde behandelt wurde oder engen Kontakt zu einem frisch behandelten Hund hatte und danach zittert, krampft, torkelt, stark speichelt, erbricht oder Durchfall hat. Nehmen Sie die Packung mit.
 
-## Warum es auf Schnelligkeit ankommt
+## Warum sollte ich eine Zecke beim Hund schnell entfernen?
+
+Weil das Risiko einer Übertragung von Erregern umso geringer ist, je früher Sie die Zecke entfernen.
 
 Zecken saugen je nach Entwicklungsstadium zwei bis 14 Tage. Manche Erreger werden schon nach wenigen Minuten übertragen, andere erst nach Stunden oder Tagen. Je früher Sie eine Zecke entfernen, desto geringer ist das Risiko. Deshalb lohnt sich das Absuchen nach jedem Spaziergang.
 
 Suchen Sie vor allem Kopf, Ohren, Hals, Achseln, Bauch, Leisten und die Haut zwischen den Zehen ab. Bei dunklem oder langem Fell werden Zecken leicht übersehen. Eine festgesaugte Zecke fühlt sich an wie ein kleines, glattes Knötchen.
 
-## So entfernen Sie eine Zecke, Schritt für Schritt
+## Wie entferne ich eine Zecke bei meinem Hund?
+
+Fassen Sie die Zecke mit einer Zeckenzange dicht an der Haut und ziehen Sie sie gleichmäßig und ohne Drehen gerade heraus, ohne vorher etwas aufzutragen.
 
 1. **Werkzeug bereitlegen:** eine Zeckenzange oder ein anderes geeignetes Zeckeninstrument. Nicht die Finger nehmen, denn dabei wird die Zecke leicht gequetscht, und Erreger können in den Stichkanal gelangen.
 2. **Nichts auftragen:** kein Öl, kein Alkohol, kein Klebstoff, kein Nagellack, keine Hitze.
@@ -54,7 +58,9 @@ Bleibt ein kleiner Rest in der Haut, bohren oder drücken Sie nicht daran herum.
 
 Wenn Sie sich unsicher sind oder Ihr Hund sich nicht anfassen lässt, darf Ihnen auch die Praxis die Zecke entfernen.
 
-## Welche Krankheiten Zecken übertragen können
+## Welche Krankheiten können Zecken auf Hunde übertragen?
+
+Vor allem Babesiose, Anaplasmose, Borreliose und FSME, nach Reisen in den Mittelmeerraum auch weitere Erreger wie Ehrlichia canis.
 
 In Deutschland, Österreich und der Schweiz sind vor allem der **Gemeine Holzbock** und die **Auwaldzecke** (Wiesenzecke) wichtig. Beide können auch im Winter aktiv sein, sobald es mild ist.
 
@@ -65,11 +71,11 @@ In Deutschland, Österreich und der Schweiz sind vor allem der **Gemeine Holzboc
 
 Nach Reisen in den Mittelmeerraum kommen weitere Erreger hinzu, etwa *Ehrlichia canis*, die von der Braunen Hundezecke übertragen werden. Erwähnen Sie Auslandsaufenthalte deshalb immer in der Praxis.
 
-## Vorbeugen: Zeckenschutz das ganze Jahr
+## Wie schütze ich meinen Hund vor Zecken?
 
 Der wichtigste Schutz ist ein konsequenter Zeckenschutz, nach ESCCAP ganzjährig, weil Zecken auch im Winter aktiv sein können. Zeckenmittel gibt es als Spot-on zum Auftropfen, als Tablette oder als Halsband. Welches Präparat für Ihren Hund passt, in welchem Abstand es wiederholt werden muss und ob eine Impfung, etwa gegen Borreliose, sinnvoll ist, besprechen Sie mit Ihrer Tierärztin oder Ihrem Tierarzt. Halten Sie die empfohlenen Abstände genau ein.
 
-## Achtung, Katze im Haushalt
+## Sind Zeckenmittel für Hunde für Katzen gefährlich?
 
 Einige Zeckenmittel für Hunde enthalten Wirkstoffe, die für Katzen giftig sind. Auf der Packung stehen dann Begriffe wie **Permethrin, Pyrethroide, Pyrethrin oder Chrysanthemenextrakt**. Katzen können diese Stoffe kaum abbauen. Im schlimmsten Fall endet eine Vergiftung tödlich.
 
@@ -78,13 +84,17 @@ Einige Zeckenmittel für Hunde enthalten Wirkstoffe, die für Katzen giftig sind
 - Bewahren Sie Hunde- und Katzenpräparate getrennt auf. Die Pipetten sehen sich oft ähnlich.
 - Fragen Sie Ihre Praxis gezielt nach einem Mittel, das zu einem Haushalt mit Katze passt.
 
-## Was Sie nicht tun sollten
+## Was sollte ich beim Zeckenschutz meines Hundes nicht tun?
+
+Keine Hausmittel statt eines geprüften Zeckenschutzes, keine Medikamente für Menschen und nicht abwarten, wenn Ihr Hund nach einem Zeckenstich krank wirkt.
 
 - Keine Hausmittel wie Öle, Knoblauch oder Bernsteinketten statt eines geprüften Zeckenschutzes.
 - Keine Medikamente für Menschen, wenn Ihr Hund nach einem Zeckenstich krank wirkt. Paracetamol und Ibuprofen können für Hunde gefährlich sein, und Metamizol (zum Beispiel Novalgin) gibt nur die Tierärztin oder der Tierarzt.
 - Nicht abwarten, wenn Ihr Hund nach einem Zeckenstich Fieber hat, schlapp ist oder dunklen Urin absetzt.
 
-## Was die Tierärztin oder der Tierarzt wissen will
+## Was wird die Tierärztin oder der Tierarzt nach einem Zeckenstich wissen wollen?
+
+Wann und wo Sie die Zecke gefunden haben, welchen Zeckenschutz Ihr Hund bekommt, Reisen und seit wann er welche Anzeichen zeigt.
 
 - Wann und wo Sie die Zecke gefunden haben, und wie lange sie vermutlich gesaugt hat
 - Welchen Zeckenschutz Ihr Hund bekommt und wann zuletzt

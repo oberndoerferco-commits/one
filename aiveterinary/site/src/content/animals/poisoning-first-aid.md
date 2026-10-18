@@ -22,7 +22,9 @@ Go now, and call on the way, if your animal:
 - has pale, blue, yellow or brick-red gums, or is bleeding from the nose, mouth or in the urine
 - is a cat that has had any contact with a lily, including brushing against pollen
 
-## What to do
+## What should I do if my pet has eaten something poisonous?
+
+Remove your animal from the source, call a vet straight away with the packaging in hand, follow their instructions and bring the evidence.
 
 1. **Remove the animal from the source** and, if safe, remove the source from the animal. Check the mouth for anything still in it.
 2. **Call a vet straight away.** Tell them what was eaten, how much, when, and your animal's weight. Have the packaging in your hand.
@@ -30,7 +32,9 @@ Go now, and call on the way, if your animal:
 4. **Bring the evidence**: the packet, the plant, a sample of what was vomited, in a sealed bag.
 5. **Keep your animal calm and warm** on the way.
 
-## What NOT to do
+## What should I not do if my pet has been poisoned?
+
+Do not make your animal vomit at home, give milk, oil or any home antidote, give human medication, or wait and see.
 
 - **Do not make your animal vomit at home.** Salt, mustard, washing-up liquid and similar remedies are dangerous, and vomiting is harmful for some poisons (caustic substances, petroleum products) and for animals that are drowsy or fitting. If vomiting is needed, your vet will induce it safely. That is a vet decision.
 - **Do not give milk, oil, charcoal tablets or any home antidote.**
@@ -38,7 +42,9 @@ Go now, and call on the way, if your animal:
 - **Do not wait and see** because the animal looks fine. With rat bait, antifreeze and lilies, serious damage happens before any sign appears.
 - **Do not just wash pollen off a cat and leave it at that.** Stop it grooming and go to the vet.
 
-## The poisons vets see most
+## Which poisons are most common in dogs and cats?
+
+Chocolate, xylitol, grapes and raisins, lilies, rat bait, antifreeze, human painkillers, onions and garlic, and permethrin flea products for dogs.
 
 | Poison | Mainly affects | Why it matters |
 |---|---|---|
@@ -54,13 +60,15 @@ Go now, and call on the way, if your animal:
 
 Other hazards include macadamia nuts, alcohol, raw bread dough, cannabis, nicotine, many house and garden plants, and human prescription medicines. If in doubt, ring.
 
-## When to see a vet
+## When should I take my pet to the vet for suspected poisoning?
 
 For suspected poisoning, the answer is always: now. There is no "wait until tomorrow" category.
 
 If your vet decides after a phone call that the amount was too small to worry about, that is their decision to make, not yours.
 
-## What the vet will want to know
+## What will the vet want to know about the poisoning?
+
+What was eaten, how much and when, your animal's weight, age and health, any signs so far, current medication, and whether you have the packaging.
 
 - What was eaten (exact product name and ingredients if possible)
 - How much, and when

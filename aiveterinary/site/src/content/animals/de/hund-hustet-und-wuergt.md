@@ -43,7 +43,9 @@ Achten Sie darauf:
 - Kommt etwas heraus, und wenn ja, was?
 - Wann tritt es auf: bei Aufregung, an der Leine, nach dem Trinken, in Ruhe, nachts?
 
-## Die häufigsten Ursachen
+## Warum hustet und würgt mein Hund?
+
+Häufige Ursachen sind Zwingerhusten, verschluckte Fremdkörper und Herzerkrankungen, daneben andere Erkrankungen der Atemwege, des Rachens oder der Speiseröhre.
 
 ### Zwingerhusten
 
@@ -71,7 +73,9 @@ Wenn Ihr Hund eine bekannte Herzerkrankung hat, zeigt Ihnen Ihre Praxis vielleic
 
 Husten und Würgen können auch durch andere Erkrankungen der Atemwege, des Rachens oder der Speiseröhre entstehen. Die Unterscheidung gehört in die Praxis, oft mit Röntgenbild oder weiteren Untersuchungen.
 
-## Wann zur Tierärztin oder zum Tierarzt
+## Wann sollte ich mit meinem hustenden Hund zur Tierärztin oder zum Tierarzt?
+
+Noch heute bei einem hustenden Welpen, Fieber, Mattigkeit, feuchtem Husten oder bekannter Herzerkrankung, in den nächsten Tagen bei anhaltendem oder wiederkehrendem Husten.
 
 Wenn keines der Alarmzeichen oben zutrifft, vereinbaren Sie trotzdem einen Termin, und zwar **noch heute**, wenn:
 
@@ -86,18 +90,22 @@ Wenn keines der Alarmzeichen oben zutrifft, vereinbaren Sie trotzdem einen Termi
 - der Husten länger als etwa eine Woche anhält oder immer wiederkommt
 - Ihr Hund älter ist und neu zu husten beginnt
 
-## Was Sie zu Hause tun und lassen sollten
+## Was kann ich zu Hause tun, wenn mein Hund hustet?
+
+Gönnen Sie ihm Ruhe, filmen Sie den Husten und geben Sie keine Hustensäfte oder Medikamente für Menschen.
 
 - Ruhe gönnen, Aufregung und Anstrengung vermeiden.
 - Halten Sie ein Video vom Husten oder Würgen fest und notieren Sie, wann es auftritt.
 - **Keine Hustensäfte oder Medikamente für Menschen.** Einige Inhaltsstoffe sind für Hunde gefährlich. Ob ein Hustenmittel nötig ist, entscheidet die Tierärztin oder der Tierarzt. Auch Schmerzmittel wie Paracetamol oder Ibuprofen gehören nicht in einen Hund, und Metamizol (zum Beispiel Novalgin) wird nur von der Tierärztin oder dem Tierarzt gegeben.
 - Bei Verdacht auf Magendrehung: nichts zu fressen geben und nicht abwarten, ob es sich löst, sondern sofort fahren.
 
-## Vorbeugen gegen Magendrehung
+## Wie kann ich einer Magendrehung bei meinem Hund vorbeugen?
 
 Bei großen Hunden mit tiefem Brustkorb empfehlen Fachleute, mehrere kleine Mahlzeiten statt einer großen zu füttern, Bewegung direkt vor und nach dem Fressen zu vermeiden, Stress beim Fressen zu reduzieren und keine erhöhten Futternäpfe zu verwenden. Für besonders gefährdete Hunde gibt es eine vorbeugende Operation, bei der der Magen an der Bauchwand fixiert wird. Fragen Sie Ihre Praxis, ob das für Ihren Hund infrage kommt.
 
-## Was die Tierärztin oder der Tierarzt wissen will
+## Was wird die Tierärztin oder der Tierarzt über den Husten wissen wollen?
+
+Seit wann und wie oft, ob etwas herauskommt, Kontakt zu anderen Hunden, Impfstatus, mögliche Fremdkörper, Herzerkrankungen und die Atemzüge im Schlaf.
 
 - Seit wann Ihr Hund hustet oder würgt und wie oft
 - Ob etwas herauskommt, und was (Video mitbringen)

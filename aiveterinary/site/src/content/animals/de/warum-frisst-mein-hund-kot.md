@@ -52,7 +52,7 @@ Eine eindeutige Ursache gibt es nicht. Die Forschung liefert aber einige Hinweis
 - **Kein Erziehungsfehler:** Hunde, die Kot fraßen, waren genauso leicht stubenrein zu bekommen wie andere Hunde.
 - **Kein Zusammenhang mit Futter oder Alter:** Die Befragung fand keinen Hinweis darauf, dass die Art des Futters oder das Alter des Hundes eine Rolle spielen.
 
-## Wann eine Krankheit dahinterstecken kann
+## Kann eine Krankheit dahinterstecken, wenn mein Hund Kot frisst?
 
 Manchmal ist Kotfressen ein Zeichen dafür, dass Ihr Hund nicht genug Nährstoffe aus seinem Futter aufnimmt oder ständig Hunger hat. Ein Beispiel ist die **exokrine Pankreasinsuffizienz**: Die Bauchspeicheldrüse bildet zu wenig Verdauungsenzyme. Typisch sind laut MSD Veterinary Manual großer Hunger, Gewichtsverlust und heller, weicher, voluminöser und oft übel riechender Kot. Häufiger betroffen sind unter anderem Deutsche Schäferhunde, meist schon als junge Erwachsene. Die Erkrankung lässt sich mit einem Bluttest feststellen und in den meisten Fällen gut behandeln.
 
@@ -69,7 +69,9 @@ Ganz harmlos ist es trotzdem nicht:
 
 Wie oft Ihr Hund entwurmt oder sein Kot untersucht werden sollte, hängt von seinem persönlichen Risiko ab. Das bespricht die Tierärztin oder der Tierarzt mit Ihnen.
 
-## Was hilft und was nicht
+## Wie gewöhne ich meinem Hund das Kotfressen ab?
+
+Am besten wirkt, wenn er gar nicht erst an Kot herankommt: Kot sofort aufsammeln, Leine, Katzentoilette unerreichbar, ablenken und belohnen statt strafen.
 
 Die schlechte Nachricht zuerst: In der kalifornischen Befragung lag der berichtete Erfolg von Futterzusätzen gegen Kotfressen und von Erziehungsmaßnahmen nahe null. Das Verhalten lässt sich also nur schwer abgewöhnen. Am besten wirkt deshalb, wenn Ihr Hund gar nicht erst an Kot herankommt:
 
@@ -80,7 +82,7 @@ Die schlechte Nachricht zuerst: In der kalifornischen Befragung lag der berichte
 - **Nicht schimpfen oder strafen.** Ihr Hund versteht nicht, warum. Schlimmstenfalls frisst er den Kot dann schneller oder heimlich.
 - **Maulkorb:** Bei Hunden, die unterwegs alles aufnehmen, kann ein gut sitzender, an den Hund gewöhnter Maulkorb sinnvoll sein. Lassen Sie sich dazu beraten.
 
-## Keine eigenen Mittel geben
+## Darf ich meinem Hund eigene Mittel gegen Kotfressen oder Bauchschmerzen geben?
 
 Bitte versuchen Sie nicht, das Problem mit Hausmitteln oder Medikamenten aus Ihrer eigenen Hausapotheke zu lösen. Wenn Ihr Hund nach dem Kotfressen Bauchschmerzen oder Durchfall hat, geben Sie ihm **keine Schmerzmittel für Menschen**: **Ibuprofen** kann bei Hunden Magen, Darm und Nieren schädigen, **Paracetamol** die Leber. **Metamizol** (zum Beispiel Novalgin) darf Ihr Hund nur bekommen, wenn die Tierärztin oder der Tierarzt es verordnet.
 

@@ -30,7 +30,9 @@ Wenn Ihr Hund oder Ihre Katze Schmerzen hat, ist die Hausapotheke der falsche Or
 
 Hat Ihr Tier bereits eines davon geschluckt, rufen Sie sofort eine Praxis an, mit der Packung in der Hand. Warten Sie nicht auf Anzeichen und versuchen Sie nicht, das Tier zu Hause zum Erbrechen zu bringen.
 
-## Was tierärztliche NSAID sind und was sie behandeln
+## Was sind tierärztliche NSAID, und wofür werden sie eingesetzt?
+
+Es sind zugelassene, artspezifische Schmerzmittel, die Schmerz, Entzündung und Fieber lindern und am häufigsten verordnet werden.
 
 NSAID steht für nichtsteroidale Antiphlogistika, entzündungshemmende Schmerzmittel ohne Kortison. Die tierärztlichen Präparate sind zugelassene, artspezifische Arzneimittel, die Schmerz, Entzündung und Fieber lindern, indem sie die Enzyme blockieren, die Entzündungsbotenstoffe bilden. Sie sind die am häufigsten verordneten Schmerzmittel, bei:
 
@@ -41,11 +43,15 @@ NSAID steht für nichtsteroidale Antiphlogistika, entzündungshemmende Schmerzmi
 
 Es gibt sie als Tabletten, als aromatisierte Kautabletten, als Suspension mit Dosierspritze und als Injektion in der Praxis. Die Verordnung ist auf Gewicht und Gesundheit Ihres Tieres berechnet; ein Hundepräparat ist nicht automatisch für Katzen sicher und umgekehrt. Wegen dieser Empfindlichkeit sind diese Mittel verschreibungspflichtig.
 
-## Vor der ersten Dosis
+## Braucht mein Tier vor einem NSAID eine Untersuchung?
+
+Oft ja: Bei älteren Tieren oder einer Behandlung über Wochen sind eine Blut- und Urinuntersuchung vorab und regelmäßige Kontrollen üblich.
 
 NSAID werden über Nieren und Leber ausgeschieden und können den Magen-Darm-Trakt reizen. Ihre Tierärztin will deshalb wissen, dass diese Organe gesund sind. Bei einem älteren Tier oder vor einer Behandlung über Wochen sind eine Blut- und Urinuntersuchung vorab und regelmäßige Kontrollen üblich. Nennen Sie jedes andere Medikament und jede Ergänzung, frühere Magenprobleme und bekannte Nieren-, Leber- oder Herzerkrankungen.
 
-## Wie Sie sie geben
+## Wie gebe ich meinem Tier ein NSAID richtig?
+
+Mit Futter, mit Wasser in Reichweite, genau wie verordnet und in der niedrigsten wirksamen Dosis, die die Praxis festlegt.
 
 - **Mit Futter.** Geben Sie die Dosis zu oder direkt nach einer Mahlzeit. Futter schützt die Magenschleimhaut und ist das Wirksamste, was Sie gegen Nebenwirkungen tun können. Frisst Ihr Tier nicht, geben Sie keine Tablette, sondern rufen Sie an.
 - **Mit Wasser in Reichweite.** Ein dehydriertes Tier hat ein deutlich höheres Risiko für Nierenschäden. Bei Hitze, nach Erbrechen oder Durchfall oder bei einer Katze, die wenig trinkt: innehalten und fragen.
@@ -53,7 +59,9 @@ NSAID werden über Nieren und Leber ausgeschieden und können den Magen-Darm-Tra
 - **Die niedrigste wirksame Dosis.** Bei chronischem Schmerz reduziert die Praxis oft mit der Zeit auf die kleinste Menge, die Ihr Tier beschwerdefrei hält, manchmal mit eingeplanten Pausentagen.
 - **Dosis vergessen?** Fragen Sie Ihre Praxis, was bei diesem Präparat zu tun ist. Nicht nachholen durch Verdoppeln.
 
-## Zeichen von Magen- oder Nierenproblemen: absetzen und anrufen
+## Bei welchen Nebenwirkungen muss ich das NSAID absetzen?
+
+Bei Erbrechen, Durchfall oder schwarzem Kot, Appetitverlust, mehr Trinken, Müdigkeit, gelblichem Zahnfleisch oder neuen Hautproblemen: absetzen und noch am selben Tag die Praxis anrufen.
 
 Setzen Sie das NSAID ab und rufen Sie noch am selben Tag in der Praxis an, wenn Sie eines der folgenden Zeichen bemerken. Die meisten Probleme bilden sich vollständig zurück, wenn das Mittel früh abgesetzt wird.
 
@@ -67,13 +75,17 @@ Setzen Sie das NSAID ab und rufen Sie noch am selben Tag in der Praxis an, wenn 
 
 Fahren Sie sofort, mit Anruf vorab, wenn Ihr Tier zusammenbricht, blasses Zahnfleisch hat oder Blut erbricht. Melden Sie Nebenwirkungen auch der Praxis zur Weitergabe an das BVL; das ist Teil der Arzneimittelüberwachung.
 
-## Nie kombinieren ohne die Praxis
+## Darf ich ein NSAID mit anderen Medikamenten kombinieren?
+
+Nicht ohne die Praxis: nie zwei NSAID gleichzeitig, nie ein NSAID zusammen mit Kortison und nie ein Humanschmerzmittel obendrauf.
 
 - **Nie zwei NSAID gleichzeitig**, etwa die Arthrose-Tablette des Hundes plus einen Rest von einem anderen Tier oder etwas aus dem Internet.
 - **Nie ein NSAID zusammen mit Kortison** (Kortisontabletten, -tropfen oder -spritzen sind bei Allergien und Juckreiz üblich). Die Kombination vervielfacht das Risiko eines blutenden Magengeschwürs. Beim Wechsel vom einen zum anderen lässt die Praxis einige Tage Pause.
 - **Nie ein Humanschmerzmittel „obendrauf“**, weil der Schmerz noch stark scheint. Sagen Sie es der Praxis; es gibt andere Schmerzmittelklassen, die sich sicher kombinieren lassen, und der Plan kann geändert werden.
 
-## Leben mit einem Tier unter Dauertherapie
+## Kann mein Tier ein NSAID dauerhaft bekommen?
+
+Viele Hunde und Katzen mit Arthrose nehmen jahrelang ein NSAID, mit Futter zu jeder Dosis, Wasser überall, einem Auge auf Appetit und Kot und regelmäßigen Blutkontrollen.
 
 Viele Hunde und Katzen mit Arthrose nehmen jahrelang ein NSAID und sind wie verwandelt: Sie steigen wieder Treppen, springen aufs Sofa, spielen. Der Preis ist eine Routine: Futter zu jeder Dosis, Wasser überall, ein Auge auf Appetit und Kot und Blutkontrollen im Abstand, den die Praxis festlegt. Notieren Sie die Tagesdosis, damit niemand im Haushalt sie zweimal gibt, und bewahren Sie das Mittel außer Reichweite auf: Aromatisierte Kautabletten sind verlockend, und eine Überdosis ist ernst.
 

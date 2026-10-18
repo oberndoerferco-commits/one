@@ -27,7 +27,9 @@ Fahren Sie sofort zu einer Tierärztin oder einem Tierarzt und rufen Sie vorher 
 
 Nicht jede Praxis ist mit der Behandlung von Kaninchen vertraut. Wenn Ihre übliche Tierarztpraxis keine Kaninchen behandelt, fragen Sie dort jetzt, bevor Sie es brauchen, an wen überwiesen wird.
 
-## Während Sie den Besuch organisieren
+## Was kann ich tun, bis ich mit meinem Kaninchen in der Praxis bin?
+
+Halten Sie Ihr Kaninchen warm und ruhig, bieten Sie Heu, Blattgemüse und Wasser an, ohne zwangszufüttern, und bringen Sie seinen Partner und frische Köttel mit.
 
 Warten Sie nicht ab. Ein Kaninchen, das Futter verweigert, ist bereits ein Notfall. Während Sie zum Tierarzt kommen:
 
@@ -39,7 +41,7 @@ Warten Sie nicht ab. Ein Kaninchen, das Futter verweigert, ist bereits ein Notfa
 
 Ob Ihr Kaninchen Infusionen, Schmerzmittel, darmanregende Medikamente oder weitere Untersuchungen braucht, ist eine tierärztliche Entscheidung, und meist eine schnelle.
 
-## Wann zum Tierarzt
+## Wann sollte ich mit meinem Kaninchen zur Tierärztin oder zum Tierarzt, wenn es weniger frisst?
 
 Bei Kaninchen lautet die ehrliche Antwort: sobald Sie es bemerken. Auch wenn Ihr Kaninchen noch etwas frisst, suchen Sie noch heute eine Tierärztin oder einen Tierarzt auf, wenn es:
 
@@ -50,7 +52,9 @@ Bei Kaninchen lautet die ehrliche Antwort: sobald Sie es bemerken. Auch wenn Ihr
 - deutlich mehr oder deutlich weniger trinkt
 - ruhiger ist als normal oder sich versteckt
 
-## Was die Tierärztin oder der Tierarzt wissen will
+## Was wird die Tierärztin oder der Tierarzt über mein Kaninchen wissen wollen?
+
+Wann es zuletzt normal gefressen und Köttel abgesetzt hat, Fütterung, Haltung, Stress, frühere Erkrankungen, Impfstatus und Behandlungen zu Hause.
 
 - Wann Ihr Kaninchen zuletzt normal gefressen hat und was es zuletzt gefressen hat
 - Wann Sie zuletzt normale Köttel gesehen haben
@@ -61,7 +65,9 @@ Bei Kaninchen lautet die ehrliche Antwort: sobald Sie es bemerken. Auch wenn Ihr
 - Impfstatus (Myxomatose und RHD, die Chinaseuche)
 - Medikamente oder Behandlungen, die zu Hause gegeben wurden
 
-## Häufige Ursachen
+## Warum frisst mein Kaninchen nicht?
+
+Zahnschmerzen, zu wenig Heu, Stress, Schmerzen durch andere Erkrankungen und Hitze sind wahrscheinlich; Darmverlegung, Aufgasung, Infektionen, Organerkrankungen und Krebs sind seltener, aber wichtig.
 
 | Wahrscheinlich | Seltener, aber wichtig |
 |---|---|

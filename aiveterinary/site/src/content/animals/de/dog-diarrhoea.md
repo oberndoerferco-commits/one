@@ -24,7 +24,9 @@ Fahren Sie sofort in eine Tierarztpraxis und rufen Sie vorher an, wenn Ihr Hund:
 
 Ein Welpe mit Durchfall, der zusätzlich ruhig ist und nicht frisst, sollte noch am selben Tag vorgestellt werden, auch wenn keines der anderen Anzeichen zutrifft.
 
-## Wenn nichts davon zutrifft
+## Kann ich den Durchfall meines Hundes zu Hause behandeln?
+
+In den ersten 24 Stunden, bei einem Hund, der munter ist, frisst und trinkt, können Sie Wasser bereithalten und kleine, schonende Mahlzeiten geben.
 
 Weicher oder wässriger Kot über einen Tag bei einem Hund, der weiterhin munter ist, frisst und trinkt, ist häufig. Abfälle beim Spaziergang, ein plötzlicher Futterwechsel, Stress oder eine leichte Darminfektion sind die üblichen Gründe.
 
@@ -37,7 +39,9 @@ Was Sie in den ersten 24 Stunden zu Hause tun können:
 - Notieren Sie Farbe, Konsistenz und Häufigkeit. Ein Foto hilft Ihrer Tierärztin oder Ihrem Tierarzt mehr als eine Beschreibung.
 - Geben Sie keine Durchfallmittel für Menschen. Einige sind für Hunde gefährlich, und ob überhaupt ein Medikament angebracht ist, ist eine tierärztliche Entscheidung.
 
-## Wann zum Tierarzt
+## Wann sollte ich mit meinem Hund wegen Durchfall zur Tierärztin oder zum Tierarzt?
+
+Noch heute, wenn er länger als 48 Stunden anhält (24 Stunden bei Welpen oder kleinen Hunden) oder Blut, Erbrechen, Pressen, Gewichtsverlust oder Wiederholungen dazukommen.
 
 Vereinbaren Sie noch heute einen Termin, wenn:
 
@@ -51,7 +55,9 @@ Vereinbaren Sie noch heute einen Termin, wenn:
 
 Wiederkehrender oder lang anhaltender Durchfall ist nichts, was Sie zu Hause auf unbestimmte Zeit selbst behandeln sollten. Er kann auf Parasiten, eine Futterunverträglichkeit oder eine Darmerkrankung hinweisen, die Ihre Tierärztin oder Ihr Tierarzt abklären muss.
 
-## Was die Tierärztin oder der Tierarzt wissen will
+## Was wird die Tierärztin oder der Tierarzt über den Durchfall wissen wollen?
+
+Wann er begann und wie er aussieht, Futterwechsel oder Abfälle, weitere Anzeichen, Impf- und Entwurmungsstatus, Medikamente sowie Reisen oder Kontakt zu anderen Hunden.
 
 - Wann es begonnen hat, wie oft Ihr Hund Kot absetzt und wie er aussieht
 - Ob Blut oder Schleim dabei ist
@@ -64,7 +70,9 @@ Wiederkehrender oder lang anhaltender Durchfall ist nichts, was Sie zu Hause auf
 
 Bringen Sie wenn möglich eine frische Kotprobe in einem sauberen Behälter oder Beutel mit. Ihre Tierärztin oder Ihr Tierarzt möchte sie möglicherweise untersuchen.
 
-## Häufige Ursachen
+## Was verursacht Durchfall beim Hund?
+
+Abfälle, plötzlicher Futterwechsel, Stress, leichte Darminfektionen, Würmer oder Giardien und Futterunverträglichkeit sind wahrscheinlich; Parvovirose, Fremdkörper, Pankreatitis, Darmerkrankungen und Vergiftungen sind seltener, aber wichtig.
 
 | Wahrscheinlich | Seltener, aber wichtig |
 |---|---|

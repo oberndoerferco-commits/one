@@ -9,11 +9,15 @@ draft: true
 lang: de
 ---
 
-## Drei Verhaltensweisen, drei Erklärungen
+## Ist es schlimm, wenn mein Hund Gras, Kot oder Erde frisst?
+
+Bei einem munteren, gut genährten Hund mit normalem Kot ist keines davon ein Grund zur Sorge, sondern allenfalls ein Grund zur Beobachtung.
 
 Hunde fressen Dinge, die aus menschlicher Sicht nichts im Maul zu suchen haben. Gras, Kot und Erde sind die drei häufigsten, und sie bedeuten nicht dasselbe. Die gute Nachricht vorweg: Bei einem munteren, gut genährten Hund mit normalem Kot ist keines davon ein Grund zur Sorge, sondern allenfalls ein Grund zur Beobachtung.
 
-## Gras
+## Warum frisst mein Hund Gras?
+
+Meist weil es schmeckt und beschäftigt oder er Ballaststoffe sucht; schlingt er hastig Gras und erbricht danach, steckt wahrscheinlich Übelkeit dahinter.
 
 Die meisten Hunde fressen gelegentlich Gras, und die meisten erbrechen danach nicht. Studien an gesunden Hunden zeigen, dass Grasfressen in der Regel kein Zeichen von Krankheit ist und nur bei einer Minderheit mit Erbrechen zusammenhängt. Wahrscheinliche Erklärungen:
 
@@ -23,7 +27,9 @@ Die meisten Hunde fressen gelegentlich Gras, und die meisten erbrechen danach ni
 
 Worauf Sie achten sollten: gedüngte oder frisch gespritzte Flächen, Hundewiesen mit viel Kot (Parasiten), und lange, harte Grashalme, die sich im Rachen verfangen können. Ein Hund, der nach dem Grasfressen hustet oder würgt, ohne dass etwas kommt, hat möglicherweise einen Halm hinter dem Gaumen.
 
-## Kot (Koprophagie)
+## Warum frisst mein Hund Kot?
+
+Meist ist es Verhalten, etwa durch Lernen, Langeweile oder weil fremder Kot attraktiv ist; seltener stecken Verdauungsprobleme, Parasiten, nährstoffarmes Futter oder Medikamente dahinter.
 
 Das Fressen von Kot ist für Halter das unangenehmste der drei Verhaltensweisen und beim Hund trotzdem weit verbreitet. Hündinnen fressen den Kot ihrer Welpen instinktiv, Welpen probieren fast alles, und viele erwachsene Hunde behalten die Gewohnheit bei. Meist ist es Verhalten, nicht Krankheit:
 
@@ -37,7 +43,9 @@ Das größte praktische Risiko ist nicht der Kot selbst, sondern das, was darin 
 
 Was hilft: Kot sofort aufsammeln, Katzentoilette unzugänglich machen, an der Leine konsequent ein „Aus“ oder „Weiter“ üben und mit etwas Besserem belohnen, mehr Beschäftigung. Zusatzpräparate, die den Kot „ungenießbar“ machen sollen, helfen selten zuverlässig.
 
-## Erde
+## Warum frisst mein Hund Erde?
+
+Gelegentlich ist das normal, gezieltes, wiederholtes Erdefressen kann aber auf Übelkeit, Magenprobleme, einen Mineralstoffmangel oder Stress hinweisen.
 
 Gelegentliches Buddeln und Schnuppern mit etwas Erde im Maul ist normal. Gezieltes, wiederholtes Erdefressen (medizinisch „Pica“ für das Fressen nicht essbarer Dinge) verdient mehr Aufmerksamkeit:
 
@@ -47,7 +55,9 @@ Gelegentliches Buddeln und Schnuppern mit etwas Erde im Maul ist normal. Gezielt
 
 Erde birgt Risiken: Parasiteneier, Düngemittel, Schneckenkorn (hochgiftig), und bei Steinen oder größeren Mengen die Gefahr eines Darmverschlusses. Ein Hund, der Steine frisst, gehört in Beobachtung, und wenn er erbricht, nicht mehr kotet oder Bauchschmerzen zeigt, sofort in die Praxis.
 
-## Wann Sie Ihre Praxis einschalten sollten
+## Wann sollte ich mit meinem Hund deswegen zur Tierärztin oder zum Tierarzt?
+
+In den nächsten Tagen, wenn das Verhalten neu und auffällig häufig ist oder Gewichtsverlust, Durchfall, Erbrechen nach Grasfressen oder das Fressen von Steinen dazukommen.
 
 Vereinbaren Sie innerhalb der nächsten Tage einen Termin, wenn:
 
@@ -60,7 +70,9 @@ Vereinbaren Sie innerhalb der nächsten Tage einen Termin, wenn:
 
 Fahren Sie sofort, wenn der Hund nach dem Fressen von Erde oder Unbekanntem erbricht, zittert, krampft oder apathisch wird: Schneckenkorn und Rattengift sind in Gärten und auf Feldern real.
 
-## Was die Tierärztin oder der Tierarzt wissen will
+## Was wird die Tierärztin oder der Tierarzt über das Fressverhalten meines Hundes wissen wollen?
+
+Was, wie oft und seit wann er es frisst, ob er vorher Übelkeit zeigt, Futter, Kot, Gewicht, Appetit und Trinken, die letzte Entwurmung und Veränderungen im Alltag.
 
 - Was genau gefressen wird, wie oft und seit wann
 - Ob der Hund vorher Anzeichen von Übelkeit zeigt (Schmatzen, Speicheln, Unruhe)

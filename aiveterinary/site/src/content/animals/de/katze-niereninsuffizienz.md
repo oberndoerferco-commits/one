@@ -22,13 +22,15 @@ Fahren Sie sofort in eine Tierarztpraxis, wenn Ihre Katze, vor allem eine älter
 
 Das sind Zeichen einer akuten Verschlechterung oder einer Nierenkrise, die stationär behandelt werden muss.
 
-## Was die chronische Nierenerkrankung ist
+## Was ist eine chronische Nierenerkrankung bei Katzen?
 
 Bei der chronischen Nierenerkrankung (CNE, international CKD) verliert die Niere über Monate und Jahre funktionierendes Gewebe. Sie filtert weniger Abfallstoffe, konzentriert den Urin schlechter und verliert Eiweiß, Wasser und Mineralien. Betroffen ist etwa jede dritte Katze über zehn Jahren, bei sehr alten Katzen noch mehr. Die Ursache bleibt meist unklar; Alter, genetische Veranlagung, frühere Infektionen, Bluthochdruck und Zahnerkrankungen spielen hinein.
 
 Heilbar ist die CNE nicht. Sie lässt sich aber, früh erkannt, oft über Jahre gut begleiten.
 
-## Die ersten Anzeichen
+## Was sind die ersten Anzeichen einer Nierenerkrankung bei Katzen?
+
+Mehr Trinken und mehr Urin, langsamer Gewichtsverlust, nachlassender Appetit und stumpferes Fell.
 
 Die Niere hat große Reserven. Erst wenn ein Großteil der Funktion verloren ist, zeigen sich Symptome, und die sind unauffällig:
 
@@ -41,11 +43,13 @@ Die Niere hat große Reserven. Erst wenn ein Großteil der Funktion verloren ist
 
 Vieles davon wird als „Alter“ abgetan. Eine Katze, die mit zwölf plötzlich den Wassernapf leert, hat nicht einfach mehr Durst.
 
-## Wann zum Tierarzt
+## Wann sollte ich mit meiner Katze wegen der Nieren zur Tierärztin oder zum Tierarzt?
 
 Vereinbaren Sie in dieser Woche einen Termin, wenn Sie eines der genannten Zeichen bei einer Katze über sieben Jahren bemerken. Die Abklärung ist unkompliziert: Blutuntersuchung (Kreatinin, Harnstoff, der Frühmarker SDMA, Phosphat, Kalium), Urinuntersuchung (Konzentration, Eiweiß), Blutdruckmessung, oft Ultraschall. Für gesunde Senioren empfehlen viele Praxen einmal jährlich einen Check mit Blut und Urin, um die Erkrankung vor den ersten Symptomen zu erkennen.
 
-## Die IRIS-Stadien, einfach erklärt
+## Was bedeuten die IRIS-Stadien der Nierenerkrankung bei Katzen?
+
+Sie teilen die Erkrankung anhand von Kreatinin und SDMA in vier Stadien ein, von Stadium 1 meist ohne Symptome bis Stadium 4 mit schwerer Niereninsuffizienz.
 
 Tierärztinnen und Tierärzte teilen die CNE nach dem Schema der International Renal Interest Society (IRIS) in vier Stadien ein, hauptsächlich anhand der Blutwerte Kreatinin und SDMA, ergänzt um Eiweißverlust im Urin und Blutdruck:
 
@@ -56,7 +60,9 @@ Tierärztinnen und Tierärzte teilen die CNE nach dem Schema der International R
 
 Die Stadien sagen etwas über den Funktionsverlust, nicht direkt über die verbleibende Zeit. Katzen im Stadium 2 leben häufig noch Jahre, und auch Stadium 3 ist mit guter Betreuung oft über längere Zeit stabil. Entscheidend ist, wie schnell sich die Werte verändern, nicht der einzelne Wert.
 
-## Alltag mit einer Nierenkatze
+## Wie wird eine Katze mit Nierenerkrankung behandelt?
+
+Mit einem Bündel kleiner Maßnahmen: Nierendiät, viel Flüssigkeit, Medikamente je nach Befund, regelmäßigen Kontrollen und wöchentlichem Wiegen.
 
 Die Behandlung ist keine Pille, sondern ein Bündel kleiner Maßnahmen:
 
@@ -68,7 +74,9 @@ Die Behandlung ist keine Pille, sondern ein Bündel kleiner Maßnahmen:
 - **Gewicht zu Hause wöchentlich wiegen.** Ein Abfall ist das früheste Warnzeichen.
 - **Keine Schmerzmittel für Menschen** und keine nierenbelastenden Medikamente ohne Rücksprache. Paracetamol ist für Katzen tödlich.
 
-## Was die Tierärztin oder der Tierarzt wissen will
+## Was wird die Tierärztin oder der Tierarzt über meine Nierenkatze wissen wollen?
+
+Trink- und Urinmenge, Gewicht, Appetit, Erbrechen und Kot, Futter, alle Medikamente, Verhalten und Sehvermögen sowie frühere Blutwerte.
 
 - Trinkmenge und Urinmenge, wenn möglich grob geschätzt
 - Gewichtsverlauf, Appetit, Erbrechen, Kot
@@ -77,7 +85,9 @@ Die Behandlung ist keine Pille, sondern ein Bündel kleiner Maßnahmen:
 - Verhalten, Sehvermögen, Aktivität
 - Frühere Blutwerte, wenn Sie sie haben
 
-## Häufige Begleiterkrankungen und Verwechslungen
+## Welche Erkrankungen begleiten die Nierenerkrankung der Katze oder sehen ihr ähnlich?
+
+Häufig kommen Bluthochdruck, Blutarmut, Harnwegsinfekte, Verstopfung und Zahnerkrankungen dazu; ähnlich aussehen können Schilddrüsenüberfunktion, Diabetes, Leber- und Darmerkrankungen, Tumoren und akutes Nierenversagen.
 
 | Häufig zusammen mit CNE | Sieht ähnlich aus, ist aber etwas anderes |
 |---|---|

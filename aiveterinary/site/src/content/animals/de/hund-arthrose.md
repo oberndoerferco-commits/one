@@ -31,13 +31,15 @@ Arthrose entwickelt sich langsam und ist an sich kein Notfall. Hinter einer plö
 - unter einem Schmerzmittel erbricht, schwarzen, teerartigen Kot oder Blut im Kot hat, nicht mehr frisst oder auffällig viel trinkt
 - versehentlich ein Schmerzmittel für Menschen bekommen hat, auch wenn er noch gesund wirkt
 
-## Was Arthrose ist
+## Was ist Arthrose beim Hund?
 
 Bei Arthrose wird der Knorpel in einem Gelenk nach und nach abgebaut. Die Gelenkschleimhaut entzündet sich, am Knochen bilden sich Anbauten, und das Gelenk wird steifer. Entzündung und Knorpelabbau treiben sich gegenseitig an. Deshalb schreitet Arthrose fortlaufend voran und ist nicht heilbar. Sie lässt sich aber oft gut behandeln, sodass Ihr Hund mit deutlich weniger Schmerzen lebt.
 
 Der Schmerz sitzt dabei nicht nur im Gelenk. Er betrifft oft auch Muskeln, Bänder und das umliegende Gewebe.
 
-## Warum auch junge Hunde betroffen sein können
+## Können auch junge Hunde Arthrose bekommen?
+
+Ja, vor allem durch angeborene oder in der Wachstumsphase entstandene Fehlstellungen wie Hüft- und Ellbogendysplasie.
 
 Arthrose ist keine reine Alterskrankheit. Beim Hund beginnt sie häufig schon früh im Leben, und zwar vor allem durch angeborene oder in der Wachstumsphase entstandene Fehlstellungen. Wichtige Ursachen sind:
 
@@ -49,7 +51,9 @@ Arthrose ist keine reine Alterskrankheit. Beim Hund beginnt sie häufig schon fr
 
 Die Rasse hat großen Einfluss auf das Risiko. Bei Welpen spielen außerdem Fütterung, Wachstum und Bewegung eine Rolle. Überfüttern Sie Welpen nicht, und besprechen Sie mit Ihrer Praxis, wie viel und welches Futter für die Rasse und Größe passt. Auch der passende Zeitpunkt für eine Kastration hängt unter anderem von Rasse und Körpergröße ab und sollte individuell geklärt werden.
 
-## Woran Sie Arthrose erkennen
+## Woran erkenne ich Arthrose bei meinem Hund?
+
+An langsamem, steifem Aufstehen, Zögern vor Treppen, Auto oder Sofa, weniger Spiellust, verändertem Gang und Lahmheit.
 
 Frühe Arthrose wird oft übersehen. Viele Hunde zeigen erst im mittleren oder höheren Alter deutliche Anzeichen. Achten Sie auf:
 
@@ -64,11 +68,13 @@ Frühe Arthrose wird oft übersehen. Viele Hunde zeigen erst im mittleren oder h
 
 Viele Halterinnen und Halter halten diese Veränderungen für „normales Altwerden“. Schmerzen sind aber nie normal. Ihre Beobachtungen sind für die Diagnose besonders wichtig. Kurze Handyvideos vom Aufstehen oder Treppensteigen helfen der Praxis sehr.
 
-## Wie die Praxis die Diagnose stellt
+## Wie wird Arthrose beim Hund festgestellt?
 
 Die Tierärztin oder der Tierarzt untersucht Gang, Haltung, Muskulatur und die Beweglichkeit der Gelenke. Röntgenbilder können die Veränderungen im Gelenk zeigen. Die Behandlung richtet sich aber vor allem danach, wie stark Ihr Hund im Alltag eingeschränkt ist. Manche Praxen nutzen dafür Fragebögen, die Sie zu Hause ausfüllen.
 
-## Was hilft: mehrere Bausteine zusammen
+## Was hilft meinem Hund bei Arthrose?
+
+Eine Kombination aus Gewichtsabnahme, regelmäßiger Bewegung, Physiotherapie, Anpassungen zu Hause und Medikamenten, die Ihre Praxis festlegt.
 
 Nach den Übersichtsarbeiten wirkt eine Kombination mehrerer Maßnahmen besser als jede einzelne allein. Welche Bausteine Ihr Hund braucht, legt Ihre Praxis fest.
 
@@ -86,7 +92,7 @@ Nach den Übersichtsarbeiten wirkt eine Kombination mehrerer Maßnahmen besser a
 
 **Operation:** Bei manchen Hunden kommen Eingriffe infrage, zum Beispiel eine Gelenkspiegelung, ein künstliches Gelenk oder eine Versteifung des Gelenks. Wie gut das gelingt, hängt vom Gelenk und vom Schweregrad ab.
 
-## Achtung: keine Schmerzmittel für Menschen
+## Darf ich meinem Hund bei Arthrose Schmerzmittel für Menschen geben?
 
 Geben Sie Ihrem Hund **niemals** Schmerzmittel aus Ihrer Hausapotheke, auch nicht „nur eine halbe“.
 
@@ -96,7 +102,9 @@ Geben Sie Ihrem Hund **niemals** Schmerzmittel aus Ihrer Hausapotheke, auch nich
 
 Geben Sie auch nie zusätzlich ein zweites Schmerzmittel zu dem, das Ihr Hund bereits bekommt, etwa einen Rest von einem anderen Tier. Für Hunde gibt es eigene, verschreibungspflichtige Tierarzneimittel, weil sie viele Wirkstoffe anders verarbeiten als Menschen.
 
-## Was die Tierärztin oder der Tierarzt wissen will
+## Was wird die Tierärztin oder der Tierarzt über die Arthrose meines Hundes wissen wollen?
+
+Seit wann und wann die Beschwerden schlimmer sind, was im Alltag schwerer fällt, Gewicht, Futter und Bewegung, alle Medikamente und frühere Verletzungen.
 
 - Seit wann Ihnen Veränderungen auffallen und wann es schlimmer ist: morgens, nach dem Liegen, bei Kälte, nach langen Spaziergängen
 - Welche Alltagsdinge schwerer fallen: Treppen, Auto, Sofa, Spielen

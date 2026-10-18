@@ -32,7 +32,9 @@ Kaninchen sind Fluchttiere und zeigen Krankheit oft erst spät. Fahren Sie **sof
 
 Diese Zeichen können auf eine schwere Darmerkrankung oder einen Darmstillstand hinweisen. Beides kann bei Kaninchen schnell lebensbedrohlich werden. Warten Sie nicht bis zum nächsten Tag.
 
-## Blinddarmkot ist kein Durchfall
+## Ist weicher Kot beim Kaninchen immer Durchfall?
+
+Nein: Weicher, stinkender, verklebter Kot ist häufig liegen gebliebener Blinddarmkot, solange normale runde Köttel weiter abgesetzt werden und das Kaninchen normal frisst.
 
 Kaninchen bilden zwei Sorten Kot:
 
@@ -41,7 +43,7 @@ Kaninchen bilden zwei Sorten Kot:
 
 Wenn Sie plötzlich weichen, stinkenden, verklebten Kot am Po oder im Gehege finden, ist das häufig **liegen gebliebener Blinddarmkot** und kein echter Durchfall. Der Unterschied ist wichtig:
 
-| | Liegen gebliebener Blinddarmkot | Echter Durchfall |
+| Merkmal | Liegen gebliebener Blinddarmkot | Echter Durchfall |
 |---|---|---|
 | Normale runde Köttel | werden weiter abgesetzt | fehlen meist |
 | Appetit | Kaninchen frisst normal | Kaninchen frisst schlecht oder gar nicht |
@@ -50,7 +52,9 @@ Wenn Sie plötzlich weichen, stinkenden, verklebten Kot am Po oder im Gehege fin
 
 Laut dem Lehrbuch Textbook of Rabbit Medicine ist liegen gebliebener Blinddarmkot nicht lebensbedrohlich. Echter Durchfall dagegen ist es, weil das Kaninchen rasch Wasser und Salze verliert.
 
-## Warum ein Kaninchen seinen Blinddarmkot nicht frisst
+## Warum frisst mein Kaninchen seinen Blinddarmkot nicht?
+
+Häufige Gründe sind Übergewicht, Zahnprobleme, Rücken- oder Gelenkschmerzen, wunde Haut am Po oder zu weicher Blinddarmkot.
 
 Liegen gebliebener Blinddarmkot ist kein Notfall, aber ein Zeichen, dass etwas nicht stimmt. Häufige Gründe sind:
 
@@ -62,7 +66,9 @@ Liegen gebliebener Blinddarmkot ist kein Notfall, aber ein Zeichen, dass etwas n
 
 Lassen Sie die Ursache in der Praxis abklären. Häufig hilft eine Umstellung auf viel Heu und weniger Pellets und Leckerlis. Was genau sinnvoll ist, legt die Tierärztin oder der Tierarzt fest.
 
-## Echter Durchfall: immer ein Warnzeichen
+## Wie gefährlich ist echter Durchfall beim Kaninchen?
+
+Er ist in jedem Alter ein ernstes Warnzeichen, besonders bei jungen Kaninchen kurz nach dem Absetzen.
 
 Das MSD Veterinary Manual beschreibt Durchfall beim Kaninchen in jedem Alter als **ernstes Warnzeichen**. Mögliche Ursachen sind unter anderem:
 
@@ -73,7 +79,9 @@ Das MSD Veterinary Manual beschreibt Durchfall beim Kaninchen in jedem Alter als
 
 Besonders gefährdet sind **junge Kaninchen** kurz nach dem Absetzen. Die sogenannte Enterotoxämie kann sehr schnell verlaufen: Das MSD Veterinary Manual beschreibt, dass ein Kaninchen abends noch gesund wirken und am Morgen tot sein kann. Bei erwachsenen Kaninchen sind ansteckende Darmentzündungen seltener.
 
-## Darmstillstand: die stille Gefahr
+## Was ist ein Darmstillstand beim Kaninchen?
+
+Eine verlangsamte Verdauung mit weniger oder keinem Kot, bei der Appetitlosigkeit und fehlender Kot zusammen möglicherweise tödlich sind.
 
 Nicht nur Durchfall ist gefährlich, sondern auch das Gegenteil: **weniger oder kein Kot**. Bei einem Darmstillstand (gastrointestinale Stase) verlangsamt sich die Verdauung, schädliche Bakterien vermehren sich und es bilden sich Gase. Das Kaninchen hat Bauchschmerzen, frisst deshalb noch weniger, und ein Teufelskreis beginnt.
 
@@ -81,20 +89,24 @@ Auslöser sind oft zu wenig Rohfaser, Zahnprobleme, Stress oder Schmerzen. Laut 
 
 Die Praxis behandelt einen Darmstillstand unter anderem mit Flüssigkeit, Schmerzmitteln und Zufüttern. Ob und womit Sie zu Hause zufüttern sollen, besprechen Sie bitte mit der Praxis.
 
-## Gefahr im Sommer: Fliegenmadenbefall
+## Was ist Fliegenmadenbefall beim Kaninchen?
+
+Fliegen legen an einem verschmutzten Po Eier ab, die schlüpfenden Maden fressen sich in die Haut, und das ist ein Notfall.
 
 Ein verklebter, verschmutzter Po lockt Fliegen an. Sie legen dort Eier ab, und die schlüpfenden Maden fressen sich in die Haut. Dieser **Fliegenmadenbefall (Myiasis)** ist bei Kaninchen eine schwere, oft schnell tödlich verlaufende Erkrankung. In einer britischen Untersuchung war fast immer der Bereich um den After betroffen, und die Fälle häuften sich bei warmem Wetter.
 
 Kontrollieren Sie den Po Ihres Kaninchens bei Durchfall oder liegen gebliebenem Blinddarmkot und in der warmen Jahreszeit mindestens täglich. Entdecken Sie Maden, ist das ein **Notfall**.
 
-## Was Sie nicht tun sollten
+## Was sollte ich bei Durchfall meines Kaninchens nicht tun?
+
+Lassen Sie es nicht hungern und geben Sie keine übrig gebliebenen Antibiotika, Schmerzmittel für Menschen oder Hausmittel.
 
 - **Lassen Sie Ihr Kaninchen nicht hungern.** Anders als beim Hund ist Fasten für Kaninchen gefährlich, weil der Darm ständig in Bewegung bleiben muss.
 - **Geben Sie keine übrig gebliebenen Antibiotika** oder Medikamente anderer Tiere. Laut MSD Veterinary Manual können bestimmte Antibiotika, die für Hund oder Katze sicher sind, bei Kaninchen schweren Durchfall bis zum Tod auslösen.
 - **Geben Sie keine Schmerzmittel für Menschen** wie Paracetamol oder Ibuprofen. **Metamizol** (zum Beispiel Novalgin) darf Ihr Kaninchen nur bekommen, wenn die Tierärztin oder der Tierarzt es verordnet.
 - **Versuchen Sie es nicht mit Hausmitteln wie Kohle oder Tee**, während Sie abwarten. Bei echtem Durchfall zählt jede Stunde.
 
-## Was in der Praxis passiert
+## Was passiert in der Praxis, wenn mein Kaninchen Durchfall hat?
 
 Die Tierärztin oder der Tierarzt untersucht Ihr Kaninchen, tastet den Bauch ab, schaut sich die Zähne an und prüft, wie ausgetrocknet es ist. Oft folgen eine **Kotuntersuchung** auf Parasiten, Röntgenbilder oder Blutuntersuchungen. Nehmen Sie, wenn möglich, eine frische Kotprobe mit.
 

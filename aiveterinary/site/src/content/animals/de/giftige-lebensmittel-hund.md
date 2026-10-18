@@ -38,7 +38,9 @@ references:
 
 Rufen Sie die Praxis an, während Sie losfahren. Erreichen Sie niemanden, helfen die Giftnotrufe weiter: Sie sind für Menschen zuständig, beraten laut Bundesinstitut für Risikobewertung aber je nach Kapazität auch bei Tiervergiftungen. Rund um die Uhr erreichbar sind zum Beispiel Berlin 030 19240, Göttingen (GIZ-Nord) 0551 19240, München 089 19240, Bonn 0228 19240, Mainz 06131 19240, Freiburg 0761 19240 und Erfurt 0361 730730; in der Schweiz Tox Info Suisse unter 145. Der erste Anruf gilt immer Ihrer Tierarztpraxis.
 
-## Die häufigsten Küchengifte
+## Welche Lebensmittel sind für Hunde giftig?
+
+Die häufigsten sind Schokolade und Koffein, Weintrauben und Rosinen, Xylit, Zwiebeln und Knoblauch, Macadamianüsse, Alkohol, roher Hefeteig, Salz sowie fettige Reste und Knochen.
 
 | Substanz | Warum sie gefährlich ist | Was Sie zuerst tun |
 |---|---|---|
@@ -54,14 +56,18 @@ Rufen Sie die Praxis an, während Sie losfahren. Erreichen Sie niemanden, helfen
 
 Avocadofruchtfleisch ist für Hunde nicht giftig, der Kern kann aber den Darm verschließen und das Fett reizt den Magen. Milch ist kein Gift, wird von den meisten erwachsenen Hunden aber schlecht vertragen.
 
-## Was Sie nicht tun sollten
+## Was sollte ich nicht tun, wenn mein Hund etwas Giftiges gefressen hat?
+
+Lösen Sie kein Erbrechen aus, geben Sie keine Milch, kein Öl und kein Brot „zum Aufsaugen“, und warten Sie nicht auf Symptome.
 
 - **Lösen Sie zu Hause kein Erbrechen aus.** Salz, Wasserstoffperoxid, Senf und die anderen Hausmittel aus dem Internet können die Speiseröhre verätzen, eine Salzvergiftung auslösen oder Erbrochenes in die Lunge leiten. Die Praxis kann Erbrechen mit sicheren Mitteln auslösen, und nur dann, wenn es sinnvoll ist.
 - **Geben Sie keine Milch, kein Öl, kein Brot und nichts "zum Aufsaugen".** Nichts davon neutralisiert ein Gift, manches schafft ein zweites Problem.
 - **Warten Sie nicht auf Symptome.** Bei Weintrauben, Xylit und Zwiebeln ist der Schaden angerichtet, bevor man etwas sieht.
 - Verlassen Sie sich nicht auf Dosistabellen aus dem Internet, um zu Hause zu bleiben. Das Risiko berechnet die Tierärztin oder der Tierarzt aus Gewicht, Substanz und Menge; diese Rechnung gehört in die Praxis.
 
-## Was die Praxis fragen wird
+## Was fragt die Praxis, wenn mein Hund etwas Giftiges gefressen hat?
+
+Was genau, wie viel, wann, und Gewicht, Alter, Rasse, Vorerkrankungen und Medikamente Ihres Hundes.
 
 1. **Was** genau: Produktname, Schokoladensorte, ob Xylit auf dem Kaugummi steht. Verpackung aufheben.
 2. **Wie viel**: Gramm, Anzahl der Stücke, wie viel in der Schale fehlt.
@@ -70,7 +76,9 @@ Avocadofruchtfleisch ist für Hunde nicht giftig, der Kern kann aber den Darm ve
 
 Mit diesen Angaben, notfalls als Notiz im Handy, wird aus einem langen Telefonat ein kurzes.
 
-## Vorbeugen
+## Wie schütze ich meinen Hund vor giftigen Lebensmitteln?
+
+Schokolade, Rosinenstollen und Kaugummi in geschlossene Schränke, Etiketten von Erdnussbutter prüfen, Mülleimer und Teig außer Reichweite, und besondere Vorsicht an Feiertagen und auf Feiern.
 
 Die meisten Küchenvergiftungen passieren an Weihnachten, Ostern, beim Grillen und auf Feiern, wenn Essen auf Hundehöhe steht. Schokolade, Rosinenstollen und Kaugummi gehören in geschlossene Schränke, nicht in Taschen auf dem Boden. Prüfen Sie das Etikett jeder Erdnussbutter, bevor Sie sie als Leckerli verwenden. Halten Sie Mülleimer geschlossen und lassen Sie Teig außer Reichweite gehen. Sagen Sie Kindern und Gästen, dass "nur ein bisschen" bei einem kleinen Hund keine sichere Regel ist.
 

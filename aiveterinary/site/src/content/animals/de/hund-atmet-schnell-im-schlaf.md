@@ -34,7 +34,9 @@ Fahren Sie **sofort** in eine Tierarztpraxis oder Tierklinik und rufen Sie vorhe
 
 Der Kardiologe Dr. Bruce Kornreich von der Cornell University rät, die Tierarztpraxis aufzusuchen, wenn ein Hund in Ruhe oder im Schlaf **mehr als 35 Atemzüge pro Minute** hat. Liegt der Wert nur knapp darüber und geht es Ihrem Hund ansonsten gut, zählen Sie nach kurzer Zeit erneut und rufen Sie noch am selben Tag in Ihrer Praxis an.
 
-## Warum gerade die Atmung im Schlaf so wichtig ist
+## Warum ist die Atemfrequenz im Schlaf beim Hund so wichtig?
+
+Weil die Atmung im Schlaf am wenigsten von Aufregung, Bewegung oder Wärme beeinflusst ist und bei herzkranken Hunden eine Verschlechterung früh anzeigen kann.
 
 Im Schlaf ist die Atmung am wenigsten von Aufregung, Bewegung oder Wärme beeinflusst. Deshalb ist die **Schlafatemfrequenz** ein gut vergleichbarer Wert.
 
@@ -49,7 +51,9 @@ Die Konsensus-Leitlinie des American College of Veterinary Internal Medicine (AC
 
 Diese Zahlen sind Richtwerte. Wichtiger als ein einzelner Wert ist, wie sich die Atemfrequenz **Ihres** Hundes über die Zeit entwickelt. Welcher Grenzwert für Ihren Hund gilt, legt Ihre Tierärztin oder Ihr Tierarzt fest.
 
-## So zählen Sie die Atemzüge richtig
+## Wie zähle ich die Atemzüge meines Hundes richtig?
+
+Zählen Sie im ruhigen Tiefschlaf eine volle Minute lang, wie oft sich der Brustkorb hebt und senkt, und schreiben Sie den Wert auf.
 
 1. **Warten Sie, bis Ihr Hund fest schläft**, am besten an einem kühlen, ruhigen Ort und nicht direkt nach Spiel oder Spaziergang.
 2. Zählen Sie nicht, während er im Traum zuckt, mit den Beinen paddelt oder bellt. In Studien wurde im ruhigen Tiefschlaf gezählt.
@@ -60,7 +64,9 @@ Diese Zahlen sind Richtwerte. Wichtiger als ein einzelner Wert ist, wie sich die
 
 Liegt Ihr Hund in der Sonne oder an einer warmen Stelle, kann die Atmung schneller sein. In einer Studie bei Katzen fielen die Werte höher aus, wenn die Tiere warm lagen, etwa an einem Ofen oder in direkter Sonne.
 
-## Mögliche Ursachen für schnelle Atmung im Schlaf
+## Warum atmet mein Hund im Schlaf schnell?
+
+Die wichtigste Ursache ist eine Herzerkrankung mit Flüssigkeit in der Lunge; daneben kommen Wärme, Lungenerkrankungen und Stress in Frage.
 
 - **Herzerkrankung mit Flüssigkeit in der Lunge:** die wichtigste Ursache, auf die Fachleute achten. Weitere mögliche Anzeichen sind Husten, Atemnot und weniger Belastbarkeit. Manche Hunde werden ohnmächtig oder brechen zusammen. Bei einer Schwäche der rechten Herzhälfte kann sich Flüssigkeit im Bauch sammeln.
 - **Wärme und Überhitzung:** Ein warmer Liegeplatz erhöht die Atemfrequenz, ein Hitzschlag ist ein Notfall.
@@ -69,13 +75,15 @@ Liegt Ihr Hund in der Sonne oder an einer warmen Stelle, kann die Atmung schnell
 
 Kurze schnelle Phasen beim Träumen sind nicht dasselbe wie eine dauerhaft erhöhte Atemfrequenz im ruhigen Schlaf. Entscheidend ist der Wert im Tiefschlaf und ob er höher ist als sonst.
 
-## Was Sie nicht tun sollten
+## Was sollte ich nicht tun, wenn mein Hund schnell atmet?
+
+Ändern Sie keine Medikamente eigenmächtig, geben Sie keine Schmerzmittel für Menschen und warten Sie bei Atemnot nicht ab.
 
 - **Ändern Sie keine Medikamente eigenmächtig.** Ist Ihr Hund herzkrank, geben Sie alle verordneten Medikamente so, wie die Praxis es vorgegeben hat. Erhöhen oder senken Sie die Dosis nicht selbst, sondern rufen Sie an.
 - **Keine Schmerzmittel für Menschen.** **Ibuprofen** kann bei Hunden Magengeschwüre, Magen-Darm-Blutungen und Nierenschäden verursachen, **Paracetamol** kann die Leber schädigen. **Metamizol** darf Ihr Hund nur bekommen, wenn die Tierärztin oder der Tierarzt es verordnet.
 - **Warten Sie bei Atemnot nicht ab.** Hausmittel helfen bei schneller Atmung nicht.
 
-## Was in der Praxis passiert
+## Was passiert in der Praxis, wenn mein Hund schnell atmet?
 
 Die Tierärztin oder der Tierarzt hört Herz und Lunge ab und fragt nach Ihren Messwerten. Je nach Befund folgen zum Beispiel Röntgenbilder des Brustkorbs, Ultraschall des Herzens oder Blutuntersuchungen.
 

@@ -24,7 +24,9 @@ Fahren Sie sofort in eine Tierarztpraxis und rufen Sie vorher an, wenn Ihr Hund:
 
 Ein Hund, der auf einem Vorderbein lahmt und zusätzlich einen geschwollenen oder schmerzhaften Hals oder Rücken hat, sollte ebenfalls dringend vorgestellt werden; nicht jede Lahmheit beginnt im Bein.
 
-## Wenn nichts davon zutrifft
+## Kann ich die Lahmheit meines Hundes zu Hause beobachten?
+
+Ja, ein paar Tage lang, wenn er das Bein noch teilweise belastet, munter ist, frisst und in Ruhe entspannt wirkt: Prüfen Sie die Pfote, tasten Sie das Bein ab und schonen Sie ihn konsequent.
 
 Ein Hund, der lahmt, das Bein aber noch teilweise belastet, munter ist, frisst und in Ruhe entspannt wirkt, kann meist ein paar Tage beobachtet werden.
 
@@ -36,7 +38,9 @@ Was Sie zu Hause tun können:
 - Geben Sie keine Schmerzmittel für Menschen. Ibuprofen und Paracetamol können für Hunde gefährlich sein. Wenn Ihr Hund Schmerzmittel braucht, ist das eine tierärztliche Entscheidung und ein Rezept.
 - Filmen Sie die Lahmheit, wenn Sie können. Lahmheiten verschwinden im Behandlungsraum oft, und ein kurzes Video hilft Ihrer Tierärztin oder Ihrem Tierarzt zu sehen, welches Bein betroffen ist und wie stark.
 
-## Wann zum Tierarzt
+## Wann sollte ich mit meinem lahmenden Hund zur Tierärztin oder zum Tierarzt?
+
+Diese Woche oder früher, wenn die Lahmheit nach zwei bis drei Tagen Ruhe nicht besser ist, immer wiederkommt oder mit Schwellung, Wärme, Steifheit oder Lecken einhergeht.
 
 Vereinbaren Sie diese Woche oder früher einen Termin, wenn:
 
@@ -49,7 +53,9 @@ Vereinbaren Sie diese Woche oder früher einen Termin, wenn:
 - Ihr Hund ein Welpe oder ein junger Hund einer großen Rasse ist und die Lahmheit länger als ein bis zwei Tage anhält
 - Ihr Hund älter ist und die Lahmheit neu auftritt
 
-## Was die Tierärztin oder der Tierarzt wissen will
+## Was wird die Tierärztin oder der Tierarzt über die Lahmheit wissen wollen?
+
+Welches Bein, seit wann und was passiert ist, wie es sich mit Ruhe und Bewegung verändert, Schwellungen oder Wunden, frühere Verletzungen, Medikamente und Reisen.
 
 - Welches Bein, und ob es immer dasselbe ist
 - Wann es begonnen hat und ob etwas passiert ist (ein Sprung, ein Ausrutscher, ein Apportierspiel)
@@ -61,7 +67,9 @@ Vereinbaren Sie diese Woche oder früher einen Termin, wenn:
 - Medikamente oder Nahrungsergänzungsmittel
 - Zeckenbisse oder Auslandsreisen
 
-## Häufige Ursachen
+## Warum lahmt mein Hund?
+
+Pfotenverletzungen, Zerrungen, eingerissene Krallen, Prellungen, Arthrose und Ballenverbrennungen sind wahrscheinlich; Kreuzbandriss, Frakturen, Dysplasie, Knochenerkrankungen, Bandscheibenprobleme und Zeckenkrankheiten sind seltener, aber wichtig.
 
 | Wahrscheinlich | Seltener, aber wichtig |
 |---|---|

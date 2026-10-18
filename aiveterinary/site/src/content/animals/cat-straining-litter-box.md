@@ -36,13 +36,17 @@ Go now, whatever the sex of your cat, if your cat:
 - vomits, refuses food, or becomes quiet and flat
 - has a painful belly
 
-## Why owners mix the two up
+## How can I tell if my cat is straining to wee or to poo?
+
+Often you cannot, because both look very similar, so if in doubt assume it is the bladder and go to the vet.
 
 A cat straining to wee and a cat straining to poo can look very similar: both crouch in the tray, push, and may cry out. Owners often assume the cat is constipated, when in fact the bladder is blocked. That delay can be dangerous.
 
 **If you cannot tell which it is, assume it is the bladder and go to the vet.**
 
-## Signs that point to the bladder
+## What are the signs of a bladder problem in a cat?
+
+Frequent trips to the tray passing little or no urine, straining or crying while weeing, blood in the urine, weeing outside the tray and licking the genital area.
 
 Problems with the lower urinary tract, including a blockage, tend to cause:
 
@@ -54,7 +58,9 @@ Problems with the lower urinary tract, including a blockage, tend to cause:
 
 A cat that is passing small amounts of urine is not necessarily safe. Cats with bladder inflammation often go through the same pattern, and male cats can go on to become blocked.
 
-## Signs that point to constipation
+## What are the signs of constipation in a cat?
+
+Straining to poo with little or nothing coming out, small, hard, dry faeces, and pooing less often than usual.
 
 - straining to poo, with little or nothing coming out
 - small, hard, dry faeces
@@ -64,14 +70,18 @@ A cat that is passing small amounts of urine is not necessarily safe. Cats with 
 
 Constipation still needs a vet appointment soon, and vets treat it promptly. Untreated, it can get worse, and in some cats the large bowel stretches and stops working properly (megacolon).
 
-## What NOT to do
+## What should I not do if my cat is straining?
+
+Don't wait overnight, press on your cat's belly, give laxatives or enemas without your vet, or give human painkillers.
 
 - **Don't wait overnight** to see if a male cat passes urine.
 - **Don't press or squeeze your cat's belly** to try to empty the bladder. Leave the examination to your vet.
 - **Don't give laxatives or enemas at home** unless your vet has prescribed them and shown you how.
 - **Don't give human painkillers.** Cats are especially sensitive to paracetamol, which damages their red blood cells and liver, and they are affected by ibuprofen and aspirin at much lower doses than dogs.
 
-## What causes a blocked bladder
+## What causes a blocked bladder in cats?
+
+Usually urethral plugs, small bladder stones, or swelling and spasm of the urethra caused by inflammation.
 
 The usual causes are:
 
@@ -81,7 +91,9 @@ The usual causes are:
 
 Factors linked with urinary problems include being male, middle-aged, overweight, getting little exercise, living indoors, drinking little, living with other cats, and stressful changes at home.
 
-## What causes constipation
+## What causes constipation in cats?
+
+Not drinking enough, pain when squatting, litter tray problems or stress, swallowed hair, bones or litter, a narrowed pelvis, or nerve problems and other illness.
 
 Many things can contribute, including:
 
@@ -92,13 +104,17 @@ Many things can contribute, including:
 - a narrowed pelvis after an old fracture
 - nerve problems or other illness
 
-## What the vet will do
+## How will the vet treat my straining cat?
+
+A blocked bladder is cleared with a catheter under sedation or anaesthetic, while constipation treatment ranges from fluids, diet and laxatives to hospital care.
 
 **For a blocked bladder**, your vet will act quickly. Your cat is usually sedated or anaesthetised, and a thin tube (catheter) is passed into the urethra to clear the blockage and empty the bladder. The catheter may be left in for a few days in severe cases, with your cat in hospital. Treatment may also include fluids to support the kidneys, pain relief and medicines to relax the urethra. Afterwards your vet will look for the underlying cause, to reduce the chance of it happening again.
 
 **For constipation**, treatment depends on how severe it is and how long it has been going on. It ranges from making sure your cat is well hydrated, diet changes and vet-prescribed laxatives, to hospital care with a drip and removal of the faeces under anaesthetic. A few cats with long-standing problems need surgery.
 
-## Helping prevent both
+## How can I prevent bladder blockage and constipation in my cat?
+
+Encourage drinking, provide enough clean litter trays, keep your cat at a healthy weight and keep changes to routine small.
 
 - Encourage drinking: fresh water in several places, and wet food if your vet agrees.
 - Provide one more litter tray than the number of cats, in quiet places, and keep them clean.
@@ -107,7 +123,9 @@ Many things can contribute, including:
 - Keep changes to routine as small as you can.
 - If your cat has had urinary problems before, follow your vet's diet advice.
 
-## What the vet will want to know
+## What will the vet want to know about my cat's straining?
+
+Whether and when your cat last passed urine or faeces, how long the straining has gone on, any other signs, past episodes, and recent changes or medicines.
 
 - Whether your cat has passed any urine or faeces, and when you last saw it
 - How long the straining has been going on

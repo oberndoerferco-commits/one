@@ -38,7 +38,9 @@ Gerade bei kleinen Hunden kann der Flüssigkeitsverlust so schnell gehen, dass s
 
 **Heute noch anrufen** sollten Sie, wenn Ihr Hund munter ist, frisst und nur einzelne Spuren von frischem Blut oder Schleim im weichen Kot hat. Bleibt es dabei nicht, oder kommt eines der oben genannten Zeichen dazu, fahren Sie los.
 
-## Rot oder schwarz: was die Farbe verrät
+## Was bedeutet rotes oder schwarzes Blut im Kot meines Hundes?
+
+Frisches rotes Blut stammt meist aus dem Dickdarm oder Enddarm, schwarzer, teerartiger Kot enthält meist verdautes Blut aus dem Magen oder oberen Darm.
 
 Wie das Blut aussieht, gibt der Praxis einen ersten Hinweis, wo es herkommen könnte.
 
@@ -47,7 +49,9 @@ Wie das Blut aussieht, gibt der Praxis einen ersten Hinweis, wo es herkommen kö
 
 Machen Sie ein Foto vom Kot und nehmen Sie, wenn möglich, eine frische Probe in einer Tüte oder einem Döschen mit.
 
-## Mögliche Ursachen
+## Was verursacht blutigen Durchfall beim Hund?
+
+Wichtige Ursachen sind AHDS, Parvovirose, Rattengift, Magen-Darm-Geschwüre durch Medikamente, Dickdarmentzündung, Parasiten, Darminfektionen und Erkrankungen anderer Organe.
 
 ### Akutes blutiges Durchfallsyndrom (AHDS)
 
@@ -79,7 +83,9 @@ Entzündungshemmende Schmerzmittel und Kortison können Geschwüre im Magen-Darm
 - Erkrankungen anderer Organe, etwa der Nebenniere (Addison-Krankheit) oder der Bauchspeicheldrüse
 - **Tumoren** oder ein **Durchbruch** im Magen-Darm-Trakt
 
-## Keine Schmerzmittel aus Ihrer Hausapotheke
+## Darf ich meinem Hund bei blutigem Durchfall Schmerzmittel geben?
+
+Nein: Geben Sie ihm niemals eigene Schmerz- oder Durchfallmittel aus Ihrer Hausapotheke.
 
 Ein Hund mit blutigem Durchfall hat oft Bauchschmerzen. Bitte geben Sie ihm trotzdem **niemals** eigene Mittel:
 
@@ -90,14 +96,18 @@ Ein Hund mit blutigem Durchfall hat oft Bauchschmerzen. Bitte geben Sie ihm trot
 
 Auch Durchfallmittel aus Ihrer eigenen Hausapotheke sind keine gute Idee. Sie können die Diagnose verzögern, und die Dosis lässt sich nicht einfach vom Menschen auf den Hund umrechnen.
 
-## Was Sie bis zum Termin tun können
+## Was kann ich bis zum Tierarzttermin für meinen Hund tun?
+
+Stellen Sie Wasser hin, halten Sie Ihren Hund warm und ruhig, halten Sie andere Hunde fern und probieren Sie keine Hausmittel aus.
 
 - Stellen Sie frisches Wasser hin, zwingen Sie Ihren Hund aber nicht zum Trinken oder Fressen.
 - Halten Sie ihn warm und ruhig.
 - Halten Sie andere Hunde fern, bis eine ansteckende Ursache ausgeschlossen ist, und entfernen Sie Kot gründlich.
 - Probieren Sie keine Hausmittel aus, die den Weg in die Praxis verzögern. Ob und wie lange Ihr Hund nüchtern bleiben soll und was er danach fressen darf, entscheidet die Praxis.
 
-## Was die Praxis wissen will
+## Was wird die Praxis über den blutigen Durchfall wissen wollen?
+
+Seit wann, wie oft und wie viel, wie das Blut aussieht, wie es Ihrem Hund sonst geht, Impfungen und Entwurmungen, möglichen Zugang zu Giften oder Fremdkörpern und alle Medikamente.
 
 - seit wann der Durchfall besteht, wie oft und wie viel, und wie das Blut aussieht
 - ob Ihr Hund erbricht, frisst, trinkt und wie munter er ist

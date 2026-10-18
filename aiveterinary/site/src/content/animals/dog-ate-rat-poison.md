@@ -28,7 +28,7 @@ Go now, and call ahead, if your dog has eaten bait at any time in the past week 
 - has bruises, or swellings under the skin, or swollen, painful joints
 - is trembling, wobbly or having a seizure
 
-## How most rat poisons work
+## How do most rat poisons work in dogs?
 
 Most rat and mouse baits are **anticoagulants**. They block the way the body recycles vitamin K, which the liver needs to make clotting factors. As the existing clotting factors are used up and not replaced, the blood gradually loses its ability to clot.
 
@@ -43,7 +43,9 @@ Many modern baits are "second-generation" anticoagulants, designed to kill a rod
 
 Dogs can also be poisoned by eating a rodent that has eaten bait.
 
-## Not all rat poisons are the same
+## Are all rat poisons the same?
+
+No: some baits contain bromethalin, vitamin D3 or zinc phosphide, which work differently, and the active ingredient on the packet decides the treatment.
 
 Some baits contain other poisons that work in completely different ways:
 
@@ -56,7 +58,9 @@ Some baits contain other poisons that work in completely different ways:
 
 You cannot tell these apart by looking at the pellets. **The active ingredient on the packet decides the treatment**, which is why your vet needs to see it.
 
-## What to do, step by step
+## What should I do if my dog ate rat poison?
+
+Get your dog away from the bait, find the packaging, call your vet or an emergency clinic now, and keep your dog calm.
 
 1. **Get your dog away from the bait**, and remove any that's left, wearing gloves.
 2. **Find the packaging**, or take a photo of the bait station label. If a neighbour, landlord or pest-control company laid the bait, ask them for the product name.
@@ -64,13 +68,17 @@ You cannot tell these apart by looking at the pellets. **The active ingredient o
 4. **Go in when they tell you to**, with the packaging.
 5. **Keep your dog calm and quiet.** If clotting is affected, exercise and rough play can make internal bleeding worse.
 
-## What NOT to do
+## What should I not do if my dog ate rat poison?
+
+Don't make your dog sick at home, don't give vitamin supplements, human medicines or home remedies, and don't wait because your dog looks fine.
 
 - **Don't make your dog sick at home.** For some baits, vomiting needs particular care, and your vet will decide whether to induce it, using an injection at the clinic.
 - **Don't give vitamin supplements, human medicines or home remedies.** The antidote for anticoagulants must be prescribed by a vet, at the right strength, for the right length of time.
 - **Don't wait because your dog looks fine.** With anticoagulant baits, that's expected for the first few days.
 
-## What the vet may do
+## How will the vet treat rat poisoning?
+
+Depending on the product, your vet may make your dog vomit, give activated charcoal and prescribe vitamin K for several weeks, with hospital care if bleeding has started.
 
 Your vet decides what your dog needs. Depending on the product, how much was eaten and how long ago, treatment may include:
 
@@ -81,11 +89,13 @@ Your vet decides what your dog needs. Depending on the product, how much was eat
 - for dogs that are already bleeding: hospital care, fluids, oxygen and sometimes **blood or plasma transfusions**
 - for other types of bait: different treatments, such as seizure control or fluids
 
-## Outlook
+## Will my dog recover from eating rat poison?
 
 Dogs that are treated early, before bleeding starts, usually do well. Dogs that have mild signs and are treated quickly also have a good chance of recovery. The outlook is worse when treatment is delayed or bleeding is severe. Sudden death from internal bleeding is uncommon but possible, which is another reason not to wait.
 
-## What the vet will want to know
+## What will the vet want to know if my dog ate rat poison?
+
+The exact product, how much and when, whether your dog could have eaten a poisoned rodent, its weight and health, and any signs so far.
 
 - The exact product name and active ingredient (bring the packet)
 - How much may have been eaten, and when
@@ -93,7 +103,9 @@ Dogs that are treated early, before bleeding starts, usually do well. Dogs that 
 - Your dog's weight and any existing illness or medication
 - Any signs so far, even mild ones such as tiredness or loss of appetite
 
-## Preventing it
+## How can I protect my dog from rat poison?
+
+Place any bait out of your dog's reach, know which product pest-control companies use, and keep your dog from scavenging on walks.
 
 - If you use rodent bait, place it where your dog can't reach it, and keep the packaging.
 - Ask pest-control companies which product they use, and keep a note of it.

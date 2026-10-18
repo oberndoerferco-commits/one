@@ -27,7 +27,9 @@ This applies even if:
 
 Go now, and ring on the way, if your dog is already vomiting, has diarrhoea, seems weak or in pain, or is drinking or weeing much more or much less than usual.
 
-## Why this is taken so seriously
+## Why are grapes and raisins dangerous for dogs?
+
+In some dogs they cause sudden kidney damage, and no one knows a safe amount or which dog will react.
 
 Grapes and their dried forms belong to the same plant family (*Vitis*). In some dogs they cause sudden kidney damage, which can lead to kidney failure and death.
 
@@ -39,7 +41,9 @@ What makes them so tricky:
 
 Because of this, vets treat any amount as potentially serious.
 
-## Where grapes and raisins hide
+## Which foods contain grapes or raisins?
+
+Fruit cakes, hot cross buns, cookies and biscuits, and chocolate products with raisins, not only the fruit bowl.
 
 It isn't only the fruit bowl. Dogs often get into foods that contain dried fruit, such as:
 
@@ -50,20 +54,26 @@ It isn't only the fruit bowl. Dogs often get into foods that contain dried fruit
 
 Poisonings tend to rise around festive times, when these foods are left on tables and worktops.
 
-## What to do, step by step
+## What should I do if my dog ate grapes or raisins?
+
+Remove what is left, work out what was eaten, how much and when, and call your vet or an emergency clinic straight away.
 
 1. **Take away anything that's left** and check your dog's mouth.
 2. **Work out what was eaten**: grapes, raisins or a product containing them, roughly how much, and when. Keep the packet.
 3. **Call your vet or an emergency clinic straight away.** Have your dog's approximate weight ready.
 4. **Follow their advice.** In most cases they will ask you to come in immediately.
 
-## What NOT to do
+## What should I not do if my dog ate grapes?
+
+Don't wait for signs, don't make your dog sick at home, and don't give any home remedy or human medicine.
 
 - **Don't wait for signs.** By the time signs appear, kidney damage may already be happening, and treatment works best before then.
 - **Don't try to make your dog sick at home.** If your vet decides your dog should vomit, they will give an injection at the clinic. That decision belongs to your vet.
 - **Don't give any home remedy or human medicine** in the hope of preventing damage.
 
-## What signs to expect if poisoning develops
+## What are the signs of grape poisoning in dogs?
+
+Vomiting and other gut signs usually come first, within about 6 to 12 hours, and signs of kidney damage may follow over the next one to three days.
 
 Most dogs that react start with gut signs within about 6 to 12 hours of eating the fruit, sometimes up to 24 hours:
 
@@ -79,7 +89,9 @@ Over the next one to three days, signs of kidney damage may follow:
 - tremors or seizures in severe cases
 - passing little or no urine, which is a very serious sign
 
-## What the vet may do
+## How will the vet treat grape poisoning?
+
+There is no antidote, so your vet may make your dog vomit, give activated charcoal, put it on a fluid drip and repeat blood and urine tests.
 
 There is no antidote, so treatment aims to stop the fruit being absorbed and to protect the kidneys. Your vet decides what is needed for your dog, and this may include:
 
@@ -90,11 +102,13 @@ There is no antidote, so treatment aims to stop the fruit being absorbed and to 
 
 Dogs whose kidneys stop producing urine need specialist care, such as dialysis, and the outlook is much more guarded.
 
-## Outlook
+## Will my dog recover from eating grapes?
 
 Dogs that are treated quickly, before signs develop, are likely to make a full recovery without lasting problems. The outlook is more guarded once blood tests show kidney damage, and worse if urine production drops or stops. This is why speed matters so much.
 
-## What the vet will want to know
+## What will the vet want to know if my dog ate grapes?
+
+What your dog ate, how much and when, its weight, age and health, any signs so far, and any medicines it takes.
 
 - What your dog ate (fresh grapes, raisins, sultanas, currants, or a food containing them)
 - Roughly how much, and when
@@ -102,7 +116,9 @@ Dogs that are treated quickly, before signs develop, are likely to make a full r
 - Any signs so far, such as vomiting or diarrhoea
 - Any medicines your dog is already taking
 
-## Preventing it happening again
+## How can I stop my dog eating grapes or raisins?
+
+Keep grapes, dried fruit and foods made with them out of reach, tell visitors not to share snacks, and take extra care at festive times.
 
 - Keep grapes and dried fruit, and foods made with them, out of your dog's reach, including on low tables and in handbags.
 - Tell visitors and children not to share snacks with the dog.

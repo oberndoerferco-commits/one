@@ -35,7 +35,9 @@ Das können Zeichen eines **Harnröhrenverschlusses** sein. Er betrifft vor alle
 
 Rufen Sie **heute noch** in der Praxis an, wenn Sie Blut im Urin sehen oder Ihre Katze plötzlich viel mehr trinkt und uriniert.
 
-## Keine Rache, sondern ein Warnsignal
+## Pinkelt meine Katze aus Rache ins Bett?
+
+Nein: Dafür gibt es keine Hinweise; Unsauberkeit zeigt, dass sich die Katze krank fühlt, Schmerzen oder Stress hat oder die Toilette nicht mehr passt.
 
 Unsauberkeit ist laut Cornell Feline Health Center das häufigste Verhaltensproblem, von dem Katzenhalterinnen und -halter berichten. Viele denken zuerst, die Katze wolle sich rächen. Dafür gibt es keine Hinweise. Katzen finden Urin und Kot nicht ekelhaft und setzen sie nicht als „Strafe“ ein.
 
@@ -64,7 +66,7 @@ Die Praxis wird in der Regel den Urin untersuchen und kann Ihnen zeigen, wie Sie
 
 Für die Lösung ist wichtig, ob Ihre Katze **uriniert** oder **markiert**.
 
-| | Urinieren | Markieren (Spritzen) |
+| Merkmal | Urinieren | Markieren (Spritzen) |
 |---|---|---|
 | Haltung | hockt sich hin | steht, Schwanz hoch und zitternd, tritt oft mit den Hinterbeinen |
 | Fläche | meist waagerecht: Bett, Teppich, Badewanne | meist senkrecht: Wände, Türen, Vorhänge, Elektrogeräte |
@@ -72,7 +74,9 @@ Für die Lösung ist wichtig, ob Ihre Katze **uriniert** oder **markiert**.
 
 Gelegentlich markieren Katzen auch auf waagerechten Flächen, zum Beispiel auf Kleidung am Boden. Markieren ist eine Form der Kommunikation und zeigt oft, dass sich eine Katze unsicher oder gestresst fühlt, etwa durch fremde Katzen draußen oder Spannungen mit anderen Katzen im Haus. Unkastrierte Katzen markieren häufiger. Aber auch etwa 10 Prozent der kastrierten Kater und 5 Prozent der kastrierten Kätzinnen spritzen Urin.
 
-## Die Katzentoilette überprüfen
+## Wie sollte die Katzentoilette eingerichtet sein?
+
+Eine Toilette pro Katze und eine zusätzlich, an ruhigen Orten, mindestens zweimal täglich gesäubert, mit feiner, duftfreier Streu und groß genug für die Katze.
 
 Viele Probleme lassen sich mit einer besseren Toilettensituation lösen. International Cat Care empfiehlt unter anderem:
 
@@ -86,7 +90,9 @@ Viele Probleme lassen sich mit einer besseren Toilettensituation lösen. Interna
 
 Geben Sie Ihrer Katze keine Medikamente, während sie auf der Toilette sitzt, und stören Sie sie dort nicht.
 
-## Das Bett richtig reinigen und schützen
+## Wie reinige ich das Bett, damit meine Katze nicht wieder hineinpinkelt?
+
+Waschen Sie Bettwäsche heiß, behandeln Sie Matratze und Polster mit einem Enzymreiniger und verwenden Sie keine Reiniger mit Ammoniak oder Essig.
 
 Riecht eine Stelle noch nach Urin, kommt die Katze gerne wieder. Normale Reiniger reichen oft nicht.
 
@@ -96,11 +102,11 @@ Riecht eine Stelle noch nach Urin, kommt die Katze gerne wieder. Normale Reinige
 - Schließen Sie die Schlafzimmertür eine Zeit lang oder legen Sie eine wasserdichte Abdeckung auf das Bett.
 - Füttern oder spielen Sie mit Ihrer Katze an der Stelle, an der sie uriniert hat. Katzen fressen und urinieren nicht gern am selben Ort.
 
-## Keine Schmerzmittel aus Ihrer Hausapotheke
+## Darf ich meiner Katze Schmerzmittel aus der Hausapotheke geben?
 
 Wenn Sie vermuten, dass Ihre Katze Schmerzen hat, geben Sie ihr **niemals** eigene Mittel. Vergiftungen mit **Paracetamol**, **Acetylsalicylsäure** (zum Beispiel Aspirin) und **Diclofenac** sind bei Katzen bekannt. Auch **Ibuprofen** ist für Katzen gefährlich. **Metamizol** darf eine Katze nur bekommen, wenn die Tierärztin oder der Tierarzt es verordnet. Auch Teebaumöl und andere ätherische Öle können Katzen vergiften.
 
-## Wenn es nicht besser wird
+## Was tue ich, wenn meine Katze trotzdem weiter ins Bett pinkelt?
 
 Ist eine Erkrankung ausgeschlossen oder behandelt und hat sich trotz besserer Toilette nichts geändert, kann Ihre Praxis Sie an eine verhaltensmedizinisch ausgebildete Tierärztin oder einen Tierarzt überweisen. Synthetische Duftstoffe (Pheromone) oder Medikamente können helfen, sind aber immer nur ein Teil der Lösung. Ob Ihre Katze Medikamente braucht, entscheidet Ihre Praxis.
 

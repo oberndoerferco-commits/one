@@ -21,7 +21,9 @@ Go to a veterinary clinic immediately, and call ahead, if your dog is off food a
 - cannot drink, or is vomiting water back up
 - is a puppy, a toy breed, diabetic, or on medication that depends on eating (if your dog is diabetic and will not eat, call your vet before giving insulin; this is a vet decision)
 
-## If none of those apply
+## What should I do if my dog skips a meal but seems well?
+
+A healthy adult dog that skips one meal but is bright, drinking and behaving normally can usually be watched for a day.
 
 A healthy adult dog that skips one meal but is bright, drinking and behaving normally can usually be watched for a day. Hot weather, a change of routine, a new bag of food, a bitch in season nearby, or simply having been given too many treats are common reasons.
 
@@ -34,7 +36,9 @@ What you can do at home:
 - Note everything else: energy, stools, vomiting, drinking, any limping or stiffness.
 - Do not tempt with rich human food. It can upset the stomach and makes it harder for your vet to judge what is going on.
 
-## When to see a vet
+## When should I take my dog to the vet for not eating?
+
+Today if your dog has not eaten for more than 24 hours (sooner for puppies and small breeds), or is also vomiting, quiet, struggling to eat, or losing weight.
 
 Book an appointment today if:
 
@@ -48,7 +52,9 @@ Book an appointment today if:
 
 A dog that is off food *and* quiet is a different situation from a dog that is off food and otherwise its usual self. Trust your sense of whether your dog is "right".
 
-## What the vet will want to know
+## What will the vet want to know about my dog's appetite?
+
+When your dog last ate properly, whether it is drinking, any vomiting, diarrhoea or urination changes, what it could have eaten, medicines, and recent changes at home.
 
 - When your dog last ate properly, and whether it refuses everything or just the usual food
 - Whether your dog is drinking, and how much
@@ -58,7 +64,9 @@ A dog that is off food *and* quiet is a different situation from a dog that is o
 - Recent changes: new food, house move, new pet, kennels
 - Energy levels and any stiffness, pain or coughing
 
-## Common causes
+## Why is my dog not eating?
+
+Stomach upsets, stress, dental pain, stale food or fussiness, hot weather and recent vaccination or medication are likely; blockages, pancreatitis, organ disease, infection, cancer and heart disease are less common but important.
 
 | Likely | Less common but important |
 |---|---|

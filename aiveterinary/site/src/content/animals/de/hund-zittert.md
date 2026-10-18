@@ -22,7 +22,9 @@ Fahren Sie sofort in eine Tierarztpraxis und rufen Sie vorher an, wenn Ihr Hund 
 - ein kleiner Welpe oder Zwerghund ist, der schlapp wird (Unterzuckerung)
 - eine säugende Hündin ist, die steif wird und stark hechelt (Kalziummangel, lebensbedrohlich)
 
-## Zittern und Hecheln: zwei Signale, viele Bedeutungen
+## Warum zittert und hechelt mein Hund?
+
+Meist aus Aufregung, Angst, Kälte, Anstrengung oder Wärme, aber auch wegen Schmerzen, Fieber oder Nerven- und Stoffwechselstörungen.
 
 Beides sind unspezifische Reaktionen. Hecheln ist beim Hund der normale Weg, Wärme abzugeben, aber auch ein Zeichen von Aufregung, Angst und Schmerz. Zittern kann Kältezittern sein, Aufregung, Muskelschwäche, Schmerz, Fieberschüttelfrost oder ein Hinweis auf Nerven- und Stoffwechselstörungen. Erst die Kombination mit der Situation und den Begleitzeichen ergibt ein Bild.
 
@@ -44,7 +46,9 @@ Beides sind unspezifische Reaktionen. Hecheln ist beim Hund der normale Weg, Wä
 
 Schmerz ist der am häufigsten übersehene Grund. Ein Hund mit Rückenschmerzen, Bauchschmerzen oder einer Pankreatitis zeigt oft nur Hecheln, Zittern und Unruhe und frisst noch.
 
-## Was Sie zu Hause tun können
+## Was kann ich zu Hause tun, wenn mein Hund zittert?
+
+Prüfen und beseitigen Sie mögliche Auslöser, messen Sie Fieber, schauen Sie aufs Zahnfleisch, tasten Sie vorsichtig ab und filmen Sie das Zittern.
 
 - **Prüfen Sie die Situation:** Wärme, Kälte, Anstrengung, Angstauslöser? Beseitigen Sie den Auslöser und beobachten Sie zehn Minuten.
 - **Messen Sie Fieber**, wenn Sie ein digitales Thermometer haben und Ihr Hund es duldet. Über 39,5 °C ist ein Grund für einen Anruf, über 40,5 °C ein Grund zu fahren.
@@ -53,7 +57,9 @@ Schmerz ist der am häufigsten übersehene Grund. Ein Hund mit Rückenschmerzen,
 - **Filmen Sie das Zittern.** Viele Episoden sind in der Praxis vorbei, ein kurzes Video ist dann sehr hilfreich.
 - **Geben Sie keine Schmerzmittel aus Ihrer Hausapotheke.** Ibuprofen, Paracetamol, Diclofenac und Acetylsalicylsäure können bei Hunden Magenblutungen, Nieren- und Leberschäden verursachen.
 
-## Wann zum Tierarzt
+## Wann sollte ich mit meinem zitternden Hund zur Tierärztin oder zum Tierarzt?
+
+Noch heute bei Fieber, deutlichen Schmerzzeichen, Erbrechen oder wenn es länger als ein paar Stunden anhält, sonst in den nächsten Tagen bei wiederholtem Zittern oder Hecheln in Ruhe.
 
 Vereinbaren Sie innerhalb der nächsten Tage einen Termin, wenn:
 
@@ -66,7 +72,9 @@ Vereinbaren Sie innerhalb der nächsten Tage einen Termin, wenn:
 
 Vereinbaren Sie noch heute einen Termin bei Fieber, deutlichen Schmerzzeichen, Erbrechen oder wenn der Zustand länger als ein paar Stunden anhält.
 
-## Was die Tierärztin oder der Tierarzt wissen will
+## Was wird die Tierärztin oder der Tierarzt über das Zittern wissen wollen?
+
+Wann und wie lange es auftritt, ob der ganze Körper zittert, Begleitzeichen, Fieberwerte, mögliche Giftaufnahme und Medikamente, und Ihr Video.
 
 - Wann es auftritt (Ruhe, Bewegung, nachts, nach dem Fressen) und wie lange es dauert
 - Ob der ganze Körper zittert oder nur Beine, Kopf oder Kiefer
@@ -75,7 +83,9 @@ Vereinbaren Sie noch heute einen Termin bei Fieber, deutlichen Schmerzzeichen, E
 - Mögliche Giftaufnahme, Medikamente, Zeckenschutz, letzte Impfungen
 - Das Video, wenn Sie eines haben
 
-## Häufige Ursachen
+## Was sind häufige Ursachen für Zittern beim Hund?
+
+Aufregung, Kälte, Anstrengung, Schmerzen, altersbedingte Muskelschwäche und Übelkeit sind wahrscheinlich; Vergiftung, Hitzschlag, Pankreatitis, Infektionen, Hormonstörungen und neurologische Erkrankungen sind seltener, aber wichtig.
 
 | Wahrscheinlich | Seltener, aber wichtig |
 |---|---|

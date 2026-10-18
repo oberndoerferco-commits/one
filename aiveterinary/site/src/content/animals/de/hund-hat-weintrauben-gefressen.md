@@ -44,7 +44,7 @@ Halten Sie für das Telefonat bereit:
 
 Nehmen Sie die Verpackung oder einen Rest des Lebensmittels mit in die Praxis.
 
-## Warum Weintrauben für Hunde gefährlich sind
+## Warum sind Weintrauben für Hunde gefährlich?
 
 Weintrauben und Rosinen können bei Hunden die Nieren schwer schädigen. Lange war unklar, welcher Stoff dafür verantwortlich ist. Heute gilt **Weinsäure** als wahrscheinlicher Auslöser. Hinweise darauf stammen aus Fallberichten, in denen Hunde nach dem Fressen von Weinstein (einer Backzutat) oder Tamarinden ein ähnliches Nierenversagen entwickelt haben wie nach Trauben. Hunde scheiden bestimmte organische Säuren offenbar schlecht über die Nieren aus, sodass sie sich in den Nierenzellen anreichern können.
 
@@ -54,7 +54,7 @@ Für Sie als Halterin oder Halter heißt das: **Eine sichere Menge gibt es nicht
 
 Betroffen sind frische Trauben jeder Sorte, auch kernlose und Bio-Trauben, sowie getrocknete Rosinen, Sultaninen und Korinthen. Denken Sie auch an versteckte Quellen wie Rosinenbrötchen, Früchtebrot, Stollen, Müsli oder Müsliriegel. Echte Johannisbeeren gehören botanisch zu einer anderen Gattung und werden nach dem Merck Veterinary Manual nicht mit Nierenschäden in Verbindung gebracht. Die getrockneten „Korinthen“ aus dem Backregal sind dagegen kleine Weintrauben.
 
-## Welche Anzeichen auftreten können
+## Welche Anzeichen zeigt ein Hund, der Weintrauben gefressen hat?
 
 Laut Merck Veterinary Manual beginnen Erbrechen oder Durchfall typischerweise **6 bis 12 Stunden** nach dem Fressen. Weitere mögliche Zeichen sind:
 
@@ -70,7 +70,9 @@ Das eigentliche Nierenversagen entwickelt sich meist **innerhalb von etwa drei T
 
 Das ist der Grund, warum Sie **nicht auf Symptome warten** sollten: Wenn die Nieren versagen, ist die Behandlung schwierig. Vorher lässt sich viel verhindern.
 
-## Was in der Praxis passiert
+## Was passiert in der Praxis, wenn mein Hund Weintrauben gefressen hat?
+
+Die Praxis lässt Ihren Hund möglichst früh erbrechen und kann je nach Menge und Zustand Infusionen geben und die Nierenwerte kontrollieren.
 
 Die wichtigste Maßnahme ist, die Trauben möglichst früh wieder aus dem Magen zu holen. Die Tierärztin oder der Tierarzt kann Ihren Hund dafür mit einem für Hunde geeigneten Mittel erbrechen lassen. Eine große britische Auswertung von Notfallpatienten fand, dass diese frühe Entgiftung am stärksten mit einem guten Ausgang verbunden war.
 
@@ -82,7 +84,9 @@ Je nach Menge und Zustand des Hundes kann die Praxis außerdem:
 
 Welche Behandlung nötig ist und wie lange Ihr Hund bleiben muss, entscheidet die Praxis. Wird Ihr Hund nach Hause entlassen, halten Sie sich genau an die Anweisungen und vereinbarte Kontrolltermine.
 
-## Was Sie zu Hause nicht tun sollten
+## Was sollte ich nicht tun, wenn mein Hund Weintrauben gefressen hat?
+
+Lösen Sie kein Erbrechen selbst aus, geben Sie keine Hausmittel oder Medikamente für Menschen und warten Sie nicht bis morgen.
 
 - **Lösen Sie kein Erbrechen selbst aus**, schon gar nicht mit Salz, Salzwasser oder Spülmittel. Salz kann eine eigene, gefährliche Vergiftung verursachen. Ob und wie Ihr Hund erbrechen soll, entscheidet die Tierärztin oder der Tierarzt.
 - **Geben Sie keine Hausmittel**, keine Milch und kein Öl. Sie helfen nicht und kosten Zeit.
@@ -93,7 +97,9 @@ Welche Behandlung nötig ist und wie lange Ihr Hund bleiben muss, entscheidet di
 
 Bei Katzen ist das Wissen deutlich lückenhafter. Das Merck Veterinary Manual erwähnt nur Einzelberichte über Nierenversagen bei Katzen nach Trauben oder Rosinen. In der großen britischen Auswertung kamen Katzen seltener mit Trauben in Kontakt als Hunde, starben aber häufiger. Rufen Sie deshalb auch bei Ihrer Katze sofort in der Praxis an.
 
-## So beugen Sie vor
+## Wie verhindere ich, dass mein Hund Weintrauben frisst?
+
+Bewahren Sie Trauben, Rosinen und Rosinengebäck außer Reichweite auf, informieren Sie Kinder und Gäste und passen Sie besonders in der Weihnachtszeit auf.
 
 - Bewahren Sie Trauben, Rosinen und Gebäck mit Rosinen außer Reichweite auf, auch in Taschen und Einkaufstüten.
 - Erklären Sie Kindern und Gästen, dass Ihr Hund keine Trauben bekommen darf, auch nicht als „Belohnung“.

@@ -23,7 +23,9 @@ Ein Hund mit Hitzschlag braucht Kühlung *und* einen Tierarzt. Beginnen Sie sofo
 
 Kurzköpfige Rassen (Möpse, Französische Bulldoggen, Bulldoggen), übergewichtige Hunde, Hunde mit dichtem Fell, ältere Hunde und Hunde mit Herz- oder Atemproblemen haben das höchste Risiko und können unter Bedingungen überhitzen, die andere Hunde vertragen.
 
-## Sofortige Kühlung: was zu tun ist
+## Wie kühle ich einen Hund mit Hitzschlag?
+
+Aktivität beenden, Hund in den Schatten bringen, kühles oder kaltes Wasser über den Körper gießen, für Luftbewegung sorgen und während des Kühlens die Praxis anrufen.
 
 Viele Tierärztinnen und Tierärzte raten inzwischen zu „erst kühlen, dann transportieren“ bei einem Hund, der bei Bewusstsein ist und vor Ort gekühlt werden kann.
 
@@ -36,7 +38,9 @@ Viele Tierärztinnen und Tierärzte raten inzwischen zu „erst kühlen, dann tr
 
 Kaltes Wasser ist bei einem Hund, der bei Bewusstsein ist, sicher. Der alte Rat, kaltes Wasser „verursache einen Schock“, gilt nicht mehr, und das schnelle Senken der Temperatur ist das, was Leben rettet.
 
-## Was Sie nicht tun sollten
+## Was sollte ich bei einem Hitzschlag nicht tun?
+
+Warten Sie nicht ab, lassen Sie den Tierarztbesuch nicht aus, weil der Hund besser wirkt, und geben Sie keine Medikamente.
 
 - Warten Sie nicht ab, ob sich der Hund von selbst erholt.
 - Lassen Sie den Tierarztbesuch nicht aus, weil der Hund nach dem Kühlen „besser wirkt“. Ein Hitzschlag kann Nieren, Darm, Blutgerinnung und Gehirn schädigen, und manches davon zeigt sich erst Stunden später.
@@ -44,7 +48,9 @@ Kaltes Wasser ist bei einem Hund, der bei Bewusstsein ist, sicher. Der alte Rat,
 - Lassen Sie einen Hund nie in einem geparkten Auto, auch nicht für Minuten, auch nicht mit offenen Fenstern.
 - Gehen Sie mit einem Hund in der Mittagshitze nicht auf heißem Asphalt spazieren. Wenn der Boden für Ihren Handrücken fünf Sekunden lang zu heiß ist, ist er zu heiß für Pfoten.
 
-## Wann zum Tierarzt
+## Muss mein Hund nach einem Hitzschlag zur Tierärztin oder zum Tierarzt?
+
+Ja: Jeder Hund, den Sie aktiv kühlen mussten, sollte noch am selben Tag untersucht werden, auch wenn er danach normal wirkt.
 
 Jeder Hund, den Sie aktiv kühlen mussten, sollte noch am selben Tag von einer Tierärztin oder einem Tierarzt untersucht werden, auch wenn er danach normal wirkt. Ob Blutuntersuchungen, Infusionen oder Überwachung nötig sind, ist eine tierärztliche Entscheidung, die sich von außen nicht treffen lässt.
 
@@ -54,7 +60,9 @@ Gehen Sie außerdem noch heute zum Tierarzt, wenn Ihr Hund nach großer Hitze:
 - Durchfall oder dunklen Urin hat
 - kleine Blutergüsse oder Zahnfleischbluten hat
 
-## Was die Tierärztin oder der Tierarzt wissen will
+## Was wird die Tierärztin oder der Tierarzt über den Hitzschlag wissen wollen?
+
+Was der Hund wo und wie lange getan hat, die Bedingungen, welche Anzeichen wann auftraten, wie Sie gekühlt haben, sowie Rasse, Alter, Erkrankungen und Medikamente.
 
 - Was der Hund getan hat, wo und wie lange
 - Temperatur und Bedingungen
@@ -64,13 +72,17 @@ Gehen Sie außerdem noch heute zum Tierarzt, wenn Ihr Hund nach großer Hitze:
 - Rasse, Gewicht, Alter und bestehende Erkrankungen
 - Medikamente
 
-## Katzen und Kaninchen
+## Können auch Katzen und Kaninchen einen Hitzschlag bekommen?
+
+Ja: Katzen, wenn sie in heißen, geschlossenen Räumen eingesperrt sind, und Kaninchen sind sehr hitzeempfindlich; beide brauchen Kühlung und eine Praxis.
 
 **Katzen** erleiden selten einen Hitzschlag durch Anstrengung, aber durchaus, wenn sie in einem Gewächshaus, Schuppen, Wintergarten oder Auto eingeschlossen sind. Anzeichen sind Hecheln mit offenem Maul, Speicheln, Unruhe, dann Zusammenbruch. Atmen mit offenem Maul ist bei einer Katze immer ein Notfall. Kühlen Sie mit nassen Tüchern und Ventilatoren und fahren Sie zum Tierarzt.
 
 **Kaninchen** sind sehr hitzeempfindlich und können nicht wirksam hecheln. Ein Stall in der prallen Sonne kann tödlich sein. Anzeichen sind schnelle, flache Atmung, feuchte Nasenlöcher, Apathie und ausgestrecktes Liegen. Bringen Sie das Tier in einen kühlen Raum, besprühen Sie die Ohren mit kühlem Wasser, bieten Sie Wasser an und suchen Sie dringend eine Tierärztin oder einen Tierarzt auf. Tauchen Sie ein Kaninchen nicht in kaltes Wasser.
 
-## Vorbeugung
+## Wie beuge ich einem Hitzschlag bei meinem Hund vor?
+
+Bei Wärme früh oder spät spazieren gehen, Wasser mitnehmen, im Schatten rasten, bei kurzköpfigen und übergewichtigen Hunden besonders vorsichtig sein und nie ein Tier im Auto lassen.
 
 - Gehen Sie bei warmem Wetter früh morgens oder spät abends spazieren.
 - Nehmen Sie Wasser mit und rasten Sie im Schatten.

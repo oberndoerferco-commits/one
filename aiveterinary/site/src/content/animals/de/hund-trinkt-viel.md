@@ -42,7 +42,9 @@ Ein Beispiel: Ein Hund mit 10 Kilogramm trinkt normalerweise etwa 400 bis 600 Mi
 
 Diese Zahlen sind nur Richtwerte. Wie viel ein Hund trinkt, hängt stark von Wärme, Bewegung und Futter ab. Wer Nassfutter bekommt, trinkt meist weniger aus dem Napf als ein Hund mit Trockenfutter. Fachleute weisen außerdem darauf hin, dass ein Hund schon krankhaft viel trinken kann, bevor er die 100-Milliliter-Grenze erreicht. Wichtiger als die Tabelle ist deshalb: **Trinkt Ihr Hund mehr als früher?**
 
-## So messen Sie die Trinkmenge
+## Wie messe ich, wie viel mein Hund trinkt?
+
+Füllen Sie abgemessene Mengen in den Napf, messen Sie nach 24 Stunden den Rest und wiederholen Sie das an zwei bis drei Tagen.
 
 1. Füllen Sie morgens eine abgemessene Menge Wasser in den Napf, zum Beispiel mit einem Messbecher.
 2. Füllen Sie im Lauf des Tages nur mit abgemessenen Mengen nach und schreiben Sie diese auf.
@@ -51,11 +53,15 @@ Diese Zahlen sind nur Richtwerte. Wie viel ein Hund trinkt, hängt stark von Wä
 
 Leben mehrere Tiere im Haushalt, ist das schwieriger. Achten Sie dann auf andere Hinweise: Der Napf ist ständig leer, Ihr Hund trinkt aus Pfützen, Blumenvasen oder der Toilette, er muss öfter raus, kann die Nacht nicht mehr durchhalten, hat Unfälle in der Wohnung oder verliert im Schlaf Urin.
 
-## Wichtig: Wasser nicht wegnehmen
+## Darf ich meinem Hund das Wasser einschränken, wenn er viel trinkt?
+
+Nein: Solange die Ursache nicht geklärt ist, braucht Ihr Hund das Wasser, und ohne kann er austrocknen.
 
 Viele Halterinnen und Halter wollen das Problem lösen, indem sie den Napf seltener füllen. Bitte tun Sie das nicht. Solange die Ursache nicht geklärt ist, muss man davon ausgehen, dass Ihr Hund das Wasser **braucht**. Wird es ihm vorenthalten, kann er austrocknen und gefährliche Verschiebungen der Blutsalze bekommen. Stellen Sie lieber mehrere saubere Näpfe mit frischem Wasser auf und gehen Sie öfter mit ihm hinaus.
 
-## Viel trinken oder oft pinkeln: nicht dasselbe
+## Ist viel trinken dasselbe wie oft pinkeln?
+
+Nicht immer: Häufig kleine Mengen, Pressen oder Blut im Urin sprechen eher für die Blase, unbemerkter Urinverlust für eine Inkontinenz.
 
 Meistens bildet der Körper wegen einer Krankheit zuerst mehr Urin, und der Hund trinkt dann mehr, um den Verlust auszugleichen. Beides gehört zusammen.
 
@@ -66,7 +72,9 @@ Nicht jeder Hund, der „ständig muss“, hat aber dieses Problem:
 
 Diese Unterschiede helfen der Praxis sehr. Achten Sie deshalb darauf, ob Ihr Hund wenige große oder viele kleine Mengen absetzt.
 
-## Mögliche Ursachen
+## Warum trinkt mein Hund so viel?
+
+Die häufigsten Ursachen sind eine chronische Nierenerkrankung, Diabetes mellitus und die Cushing-Krankheit, daneben unter anderem Pyometra, Lebererkrankungen und Medikamente.
 
 Für vermehrten Durst gibt es mehr als 30 mögliche Ursachen. Die häufigsten beim Hund sind laut einer Fachübersicht:
 
@@ -80,7 +88,9 @@ Auch **Medikamente** können durstig machen, vor allem Kortison und harntreibend
 
 Seltener ist das Trinken selbst das eigentliche Problem: bei Hitze, Schmerzen, Stress oder, eher selten, als Verhaltensproblem.
 
-## Keine Schmerzmittel aus Ihrer Hausapotheke
+## Darf ich meinem Hund, der viel trinkt, Schmerzmittel geben?
+
+Nein: Geben Sie ihm niemals eigene Schmerzmittel, denn hinter vermehrtem Durst steckt oft eine Nierenerkrankung.
 
 Weil hinter vermehrtem Durst oft eine Nierenerkrankung steckt, ist dieser Punkt besonders wichtig: Geben Sie Ihrem Hund **niemals** eigene Schmerzmittel.
 
@@ -88,13 +98,15 @@ Weil hinter vermehrtem Durst oft eine Nierenerkrankung steckt, ist dieser Punkt 
 - **Paracetamol** kann bei Hunden die Leber schädigen.
 - **Metamizol** (zum Beispiel Novalgin) ist schon für Menschen verschreibungspflichtig. Ob ein Hund es bekommt, entscheidet ausschließlich die Tierärztin oder der Tierarzt.
 
-## Was in der Praxis passiert
+## Was passiert in der Praxis, wenn mein Hund viel trinkt?
 
 Die Tierärztin oder der Tierarzt untersucht Ihren Hund gründlich und fragt nach Futter, Medikamenten und dem Verlauf. Häufig folgen eine **Urinuntersuchung**, ein **Blutbild** und **Blutwerte**, manchmal auch Röntgen oder Ultraschall. Besonders aufschlussreich ist, wie konzentriert der Urin ist. Fragen Sie deshalb bei der Terminvereinbarung, ob Sie eine Probe vom ersten Morgenurin mitbringen sollen.
 
 Manchmal ist die Ursache schnell gefunden, manchmal braucht es weitere Tests. Ein Durstversuch, bei dem Wasser gezielt entzogen wird, kann gefährlich sein und gehört nur unter tierärztliche Überwachung, niemals nach Hause.
 
-## Das sollten Sie zum Termin mitbringen
+## Was sollte ich zum Termin mitbringen, wenn mein Hund viel trinkt?
+
+Notizen zur Trinkmenge und zum Urinabsatz, seit wann es auffällt, eine Liste aller Medikamente, bei Hündinnen die letzte Läufigkeit und möglichst eine frische Urinprobe.
 
 - Ihre Notizen zur Trinkmenge und zum Urinabsatz
 - seit wann Ihnen das auffällt und ob sich Appetit, Gewicht oder Verhalten verändert haben

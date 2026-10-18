@@ -36,13 +36,17 @@ And call a vet straight away if:
 
 - **a dog-only flea or tick product has been put on a cat**, or your cat has been in close contact with a dog that was just treated and is now twitching, trembling, wobbly or having a seizure. Some dog products are poisonous to cats (see below).
 
-## Why ticks should come off quickly
+## Why should I remove a tick from my dog quickly?
+
+Because ticks can pass on infections while they feed, and removing them as soon as possible reduces the chance of disease.
 
 Ticks are small blood-feeding parasites. They don't jump or fly; they climb onto your dog from long grass, woodland, moorland and places with wildlife or farm animals. A tick that has just attached is about the size of a pinhead and swells to the size of a pea as it feeds. A feeding tick can look like a small grey skin tag. Look closely and you will see legs near the head.
 
 The main reason ticks matter is that they can pass on infections while they feed. European parasite experts advise removing any tick you see as soon as possible, to reduce the chance of disease. For Lyme disease, the tick usually has to stay attached for about one to two days before it passes on the bacteria, so a daily check really helps.
 
-## Where to look
+## Where should I look for ticks on my dog?
+
+Feel for small lumps after walks, especially on the head, face and ears, armpits and between the toes, and the groin, belly and around the bottom.
 
 After walks, run your hands over your dog and feel for small lumps, especially in thin-skinned, less hairy areas:
 
@@ -50,7 +54,9 @@ After walks, run your hands over your dog and feel for small lumps, especially i
 - armpits and between the toes
 - groin, belly and around the bottom
 
-## How to remove a tick
+## How do I remove a tick from my dog?
+
+Slide a tick-removal tool under the tick as close to the skin as you can, use it slowly the way its instructions say, then clean the bite and wash your hands.
 
 The easiest and safest way is with a **tick-removal tool** (a tick hook or twister), sold in pet shops and at vet practices. Packs usually come in two or three sizes.
 
@@ -69,7 +75,9 @@ If you have no tool, use fine-pointed tweezers. Grip the tick as close to the sk
 - Don't put oil, alcohol or other substances on the tick to make it let go. Parasite guidelines specifically advise against this.
 - If your dog won't keep still, or you are unsure, ask your vet practice to help.
 
-## After you've removed it
+## What should I watch for after removing a tick?
+
+Watch the bite and your dog's general health over the next few days, and book a vet check if part of the tick remains, the area looks infected or your dog seems unwell.
 
 Watch the bite over the next few days, and keep an eye on your dog's general health. Book a vet check if:
 
@@ -77,7 +85,9 @@ Watch the bite over the next few days, and keep an eye on your dog's general hea
 - the area becomes hot, swollen, painful or oozes, which suggests infection
 - your dog seems tired, goes off food, or shows any of the signs at the top of this page
 
-## Tick-borne diseases in Europe
+## Which diseases can ticks give dogs in Europe?
+
+The most important for dogs are Lyme disease, babesiosis, anaplasmosis, ehrlichiosis and tick-borne encephalitis, depending on the tick species and where you are.
 
 Which infections a tick can carry depends on the tick species and where you are. In the UK and northern Europe most ticks found on dogs are *Ixodes* ticks; other species are more common further south. European guidelines list these among the most important for dogs:
 
@@ -91,14 +101,18 @@ Which infections a tick can carry depends on the tick species and where you are.
 
 None of these can be diagnosed at home; your vet will need tests. If your dog has travelled, tell your vet where and when.
 
-## Preventing ticks
+## How can I prevent ticks on my dog?
+
+Check your dog daily in tick season, avoid long grass where you can, and use a tick product your vet recommends for the whole season.
 
 - Check your dog daily during tick season and remove any ticks you find.
 - In warm months, stick to paths and avoid long grass where you can.
 - Use a tick product your vet recommends, for the whole of the tick season. Treated ticks normally die and drop off within 24 to 48 hours, but remove any you see anyway.
 - If you're travelling to a country with tick-borne diseases your dog isn't exposed to at home, speak to your vet beforehand about tick protection.
 
-## Dog tick products and cats
+## Are dog tick products dangerous for cats?
+
+Yes: many dog-only products contain permethrin or related chemicals that can be toxic to cats, even in a very small amount.
 
 Many dog flea and tick products contain **permethrin** or related chemicals (synthetic pyrethroids). Products licensed for dogs only can be **toxic to cats**. A cat's liver cannot break these chemicals down properly, and even a very small amount can make a cat seriously ill.
 

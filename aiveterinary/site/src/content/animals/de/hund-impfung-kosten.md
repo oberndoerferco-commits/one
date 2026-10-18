@@ -9,7 +9,9 @@ draft: true
 lang: de
 ---
 
-## Core und Non-Core: die Grundlage jeder Impfentscheidung
+## Was ist der Unterschied zwischen Core- und Non-Core-Impfungen beim Hund?
+
+Gegen Core-Erreger soll jeder Hund jederzeit geschützt sein, Non-Core-Impfungen sind je nach Lebensumständen, Reisen, Hundekontakt oder Region sinnvoll.
 
 In Deutschland gibt die Ständige Impfkommission Veterinärmedizin (StIKo Vet) am Friedrich-Loeffler-Institut die Leitlinie zur Impfung von Kleintieren heraus; die aktuelle, sechste Auflage erschien 2025. Sie unterscheidet:
 
@@ -18,7 +20,9 @@ In Deutschland gibt die Ständige Impfkommission Veterinärmedizin (StIKo Vet) a
 
 Die Leitlinie ist nicht bindend, sondern eine Entscheidungshilfe für die Praxis. Ihre Tierärztin oder Ihr Tierarzt passt sie an Ihren Hund an.
 
-## Core-Impfungen beim Hund
+## Welche Impfungen braucht jeder Hund?
+
+Staupe, Parvovirose, Leptospirose und Hepatitis contagiosa canis; Tollwut ist in Deutschland keine Core-Impfung mehr, für Reisen ins Ausland aber Pflicht.
 
 - **Staupe:** Viruserkrankung mit Fieber, Atemwegs-, Darm- und Nervensymptomen, oft tödlich. In Deutschland durch Füchse und Marder weiterhin präsent.
 - **Parvovirose:** Schwerer, blutiger Durchfall mit Erbrechen, vor allem bei Welpen. Das Virus überlebt monatelang in der Umwelt.
@@ -27,7 +31,9 @@ Die Leitlinie ist nicht bindend, sondern eine Entscheidungshilfe für die Praxis
 
 **Tollwut** gilt in Deutschland seit der Leitlinie von 2021 nicht mehr als Core-Impfung, weil das Land seit 2008 frei von terrestrischer Tollwut ist. Für Reisen ins Ausland, auch innerhalb der EU, ist eine gültige Tollwutimpfung aber gesetzlich Pflicht, und für Hunde mit Auslandskontakt oder in Grenznähe wird sie weiterhin empfohlen.
 
-## Wie oft geimpft wird
+## Wie oft muss mein Hund geimpft werden?
+
+Nach der Grundimmunisierung werden Staupe, Parvovirose und HCC meist alle drei Jahre, Leptospirose jährlich und Tollwut je nach Impfstoff alle ein bis drei Jahre aufgefrischt.
 
 **Grundimmunisierung:** Welpen erhalten ab der 8. Lebenswoche mehrere Impfungen im Abstand von etwa vier Wochen (typisch 8., 12. und 16. Woche), weil mütterliche Antikörper die frühen Impfungen abschwächen können. Nach der StIKo-Vet-Leitlinie schließt eine Impfung gegen Staupe, Parvovirose und Leptospirose im Alter von **15 Monaten** die Grundimmunisierung ab.
 
@@ -39,7 +45,9 @@ Die Leitlinie ist nicht bindend, sondern eine Entscheidungshilfe für die Praxis
 
 Nicht jede Komponente wird also jedes Jahr gespritzt. Ein jährlicher Termin bleibt trotzdem sinnvoll, weil die Leptospirose-Impfung jährlich fällig ist und der Gesundheitscheck dazugehört.
 
-## Non-Core-Impfungen: wann sie sinnvoll sind
+## Wann sind Non-Core-Impfungen für meinen Hund sinnvoll?
+
+Je nach Lebensweise, etwa gegen Zwingerhusten bei viel Hundekontakt, gegen Borreliose in zeckenreichen Gebieten und gegen Leishmaniose bei Reisen in den Mittelmeerraum.
 
 - **Zwingerhusten (CIRDC, u. a. Bordetella und Parainfluenza):** für Hunde in Pension, Hundeschule, Ausstellung, Tierheim oder mit viel Hundekontakt. Oft als Nasenimpfung, meist jährlich.
 - **Borreliose:** für Hunde in zeckenreichen Gebieten mit viel Aufenthalt im Freien. Zeckenschutz bleibt trotzdem nötig.
@@ -49,7 +57,9 @@ Nicht jede Komponente wird also jedes Jahr gespritzt. Ein jährlicher Termin ble
 
 Für Reisen gilt: Rechtzeitig vor der Abreise beraten lassen. Die Tollwutimpfung muss mindestens 21 Tage vor Grenzübertritt erfolgt sein, und manche Reiseimpfungen brauchen zwei Dosen im Abstand von Wochen.
 
-## Was Impfungen kosten
+## Was kostet eine Impfung beim Hund?
+
+Mit Untersuchung etwa 40 bis 70 € für eine Einzelimpfung und 60 bis 100 € für eine Kombinationsimpfung; die komplette Welpen-Grundimmunisierung kostet etwa 150 bis 300 €.
 
 Tierärztliche Leistungen werden in Deutschland nach der **Gebührenordnung für Tierärzte (GOT)** abgerechnet, zuletzt grundlegend neu gefasst im November 2022. Die GOT nennt Beträge im einfachen Satz; die Praxis darf je nach Aufwand, Tageszeit und Schwierigkeit bis zum dreifachen Satz berechnen, im Notdienst mehr. Hinzu kommen Umsatzsteuer und der Impfstoff selbst.
 
@@ -68,7 +78,9 @@ Dazu kommt der Impfstoff, der je nach Kombination und Hersteller von unter 10 bi
 
 Praxen in Großstädten, Kliniken und Praxen, die grundsätzlich den zweifachen Satz anwenden, liegen am oberen Ende. Eine Praxis muss Ihnen auf Nachfrage den Satz nennen, den sie zugrunde legt, und viele veröffentlichen ihre Preise. Hundekrankenversicherungen übernehmen Impfungen meist nur mit Vorsorgebudgets in begrenzter Höhe.
 
-## Was die Tierärztin oder der Tierarzt wissen will
+## Was wird die Tierärztin oder der Tierarzt vor der Impfung wissen wollen?
+
+Den Impfpass, die Herkunft des Hundes, Reisepläne und Kontakte, den Aufenthalt in Wald und an Gewässern sowie Gesundheitszustand, Medikamente und frühere Impfreaktionen.
 
 - Impfpass bzw. EU-Heimtierausweis mit allen bisherigen Einträgen
 - Herkunft des Hundes und Impfungen des Züchters oder Tierheims

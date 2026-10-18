@@ -21,7 +21,9 @@ Fahren Sie sofort in eine Tierarztpraxis und rufen Sie vorher an, wenn Ihr Hund:
 - ein Welpe oder sehr alt ist oder bereits eine Erkrankung wie Diabetes oder eine Nierenerkrankung hat
 - wiederholt erbricht und kein Wasser bei sich behalten kann
 
-## Wenn nichts davon zutrifft
+## Was kann ich zu Hause tun, wenn mein Hund einmal erbrochen hat?
+
+Ein einmaliges Erbrechen bei einem munteren Hund ist häufig, und in den ersten 12 Stunden können Sie den Magen schonen, Wasser in kleinen Mengen anbieten und danach schonend füttern.
 
 Ein einmaliges Erbrechen bei einem ansonsten munteren Hund ist häufig. Hunde fressen Dinge, die sie nicht fressen sollten, fressen zu schnell oder bekommen durch einen Futterwechsel eine Magenverstimmung.
 
@@ -32,7 +34,9 @@ Was Sie in den ersten 12 Stunden zu Hause tun können:
 - Wenn Sie wieder füttern, geben Sie eine kleine Portion von etwas Schonendem und kehren Sie über zwei bis drei Tage zum normalen Futter zurück.
 - Notieren Sie, wie das Erbrochene aussah, wie oft es vorkam und ob Ihr Hund etwas Ungewöhnliches gefressen hat. Machen Sie ein Foto, wenn Sie können. Ihre Tierärztin oder Ihr Tierarzt wird danach fragen.
 
-## Wann noch heute zum Tierarzt
+## Wann sollte ich mit meinem erbrechenden Hund zur Tierärztin oder zum Tierarzt?
+
+Noch heute, wenn er öfter als zwei- bis dreimal am Tag oder länger als 24 Stunden erbricht, zusätzlich Durchfall hat, auffällig anders trinkt, länger als einen Tag nicht frisst oder Schmerzen zu haben scheint.
 
 Vereinbaren Sie noch heute einen Termin, wenn:
 
@@ -43,7 +47,9 @@ Vereinbaren Sie noch heute einen Termin, wenn:
 - Ihr Hund länger als einen Tag nicht frisst
 - Ihr Hund Schmerzen zu haben scheint: gekrümmter Rücken, Bewegungsunlust, Winseln bei Berührung des Bauches
 
-## Was die Tierärztin oder der Tierarzt wissen will
+## Was wird die Tierärztin oder der Tierarzt über das Erbrechen meines Hundes wissen wollen?
+
+Wann es begann, wie oft, wie das Erbrochene aussah, was Ihr Hund gefressen haben könnte, Medikamente, Appetit, Trinken und Kot und ob andere Tiere betroffen sind.
 
 - Wann es begonnen hat und wie oft
 - Wie das Erbrochene aussah (Futter, Schaum, gelbe Galle, Blut)
@@ -54,7 +60,9 @@ Vereinbaren Sie noch heute einen Termin, wenn:
 
 Wenn Sie diese Informationen mitbringen, auch nur als ein paar Notizen auf dem Handy, geht der Besuch schneller und das Bild wird klarer.
 
-## Häufige Ursachen
+## Warum erbricht mein Hund?
+
+Diätfehler, plötzlicher Futterwechsel, zu schnelles Fressen, leichte Magenverstimmungen und Reisekrankheit sind wahrscheinlich; Fremdkörper, Pankreatitis, Nieren- oder Lebererkrankungen, Vergiftungen und Magendrehung sind seltener, aber wichtig.
 
 | Wahrscheinlich | Seltener, aber wichtig |
 |---|---|

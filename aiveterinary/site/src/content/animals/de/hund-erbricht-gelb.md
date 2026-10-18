@@ -21,7 +21,9 @@ Fahren Sie sofort in eine Tierarztpraxis und rufen Sie vorher an, wenn Ihr Hund 
 - ein Welpe, sehr alt oder chronisch krank ist (Diabetes, Niere, Herz)
 - innerhalb weniger Stunden mehrfach erbricht und kein Wasser bei sich behält
 
-## Gelb oder weiß: was die Farbe verrät
+## Was bedeutet gelbes oder weißes Erbrochenes beim Hund?
+
+Gelbes Erbrochenes ist in aller Regel Galle auf leerem Magen, weißer Schaum meist Magensaft mit Speichel und Luft, der aber auch aus den Atemwegen stammen kann.
 
 **Gelbes oder gelbgrünes Erbrochenes** ist in aller Regel Galle. Sie gelangt aus dem Zwölffingerdarm zurück in den leeren Magen und reizt dort die Schleimhaut. Typisch ist das frühmorgens oder nach langen Fütterungspausen, oft bei einem Hund, der danach ganz normal weitermacht. Tierärztinnen und Tierärzte sprechen dann vom „Galle-Erbrechen-Syndrom“ (bilious vomiting syndrome). Es ist lästig, aber meist ungefährlich.
 
@@ -29,7 +31,9 @@ Fahren Sie sofort in eine Tierarztpraxis und rufen Sie vorher an, wenn Ihr Hund 
 
 Weder die Farbe Gelb noch der Schaum allein sagen etwas über die Schwere aus. Entscheidend ist, wie es Ihrem Hund insgesamt geht und wie oft es passiert.
 
-## Was Sie zu Hause tun können
+## Was kann ich zu Hause tun, wenn mein Hund gelb erbricht?
+
+Bei einem einmaligen Ereignis bei einem munteren Hund: Fütterungspause verkürzen, Wasser in kleinen Mengen anbieten und nach ein paar Stunden eine kleine, leicht verdauliche Portion geben.
 
 Bei einem einmaligen Ereignis bei einem munteren Hund:
 
@@ -41,7 +45,9 @@ Bei einem einmaligen Ereignis bei einem munteren Hund:
 
 Geben Sie keine Medikamente aus der Hausapotheke. Schmerzmittel für Menschen sind für Hunde gefährlich, und auch rezeptfreie Magenmittel gehören nicht in einen Hund ohne tierärztliche Rücksprache.
 
-## Wann zum Tierarzt
+## Wann sollte ich mit meinem Hund wegen gelbem Erbrechen zur Tierärztin oder zum Tierarzt?
+
+Noch heute, wenn es an mehreren Tagen hintereinander oder öfter als zwei- bis dreimal an einem Tag auftritt oder weitere Beschwerden dazukommen.
 
 Vereinbaren Sie noch heute einen Termin, wenn:
 
@@ -53,7 +59,9 @@ Vereinbaren Sie noch heute einen Termin, wenn:
 - Sie vermuten, dass der Schaum eher aus den Atemwegen kommt (Husten, Würgen, Röcheln)
 - es sich um einen Welpen, einen Senior oder einen Hund mit Vorerkrankung handelt
 
-## Was die Tierärztin oder der Tierarzt wissen will
+## Was wird die Tierärztin oder der Tierarzt über das gelbe Erbrechen wissen wollen?
+
+Tageszeit und Abstand zur letzten Mahlzeit, wie das Erbrochene aussah, ob ein Husten vorausging, Futter, Medikamente, Allgemeinbefinden und ob andere Tiere betroffen sind.
 
 - Tageszeit und Abstand zur letzten Mahlzeit
 - Farbe und Konsistenz: klar, schaumig, gelb, grün, mit Futter, mit Blut
@@ -63,7 +71,9 @@ Vereinbaren Sie noch heute einen Termin, wenn:
 - Appetit, Trinkmenge, Kot und Allgemeinbefinden
 - Ob andere Tiere im Haushalt Symptome zeigen
 
-## Häufige Ursachen
+## Warum erbricht mein Hund gelb?
+
+Am häufigsten ist es Galle auf leeren Magen; daneben kommen Magenreizungen, zu schnelles Fressen, Husten, Reisekrankheit und Infekte in Frage, seltener Fremdkörper, Pankreatitis, Organerkrankungen, Magendrehung oder Vergiftung.
 
 | Wahrscheinlich | Seltener, aber wichtig |
 |---|---|

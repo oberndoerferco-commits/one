@@ -38,13 +38,15 @@ Bei einem Kater, der presst, gilt: **Lieber einmal zu viel fahren.** Versuchen S
 
 Ebenfalls sofort zur Tierärztin oder zum Tierarzt sollten Sie, wenn Ihre verstopfte Katze wiederholt erbricht, sehr matt ist oder einen harten, schmerzhaften Bauch hat.
 
-## So prüfen Sie, was los ist
+## Wie erkenne ich, ob meine Katze verstopft ist oder nicht urinieren kann?
+
+Schauen Sie in die Katzentoilette nach nassen Klumpen normaler Größe und beobachten Sie, ob beim Toilettengang Kot kommt.
 
 - **Schauen Sie in die Katzentoilette:** Gibt es nasse Klumpen in normaler Größe? Sind sie seit gestern kleiner oder weniger geworden? Klumpstreu macht das gut sichtbar.
 - **Beobachten Sie den Toilettengang:** Wie sitzt die Katze? Kommt Kot, und wie sieht er aus?
 - Wenn Sie mehrere Katzen haben, ist das schwer zuzuordnen. Im Zweifel: anrufen.
 
-## Was Verstopfung bei Katzen ist
+## Woran erkenne ich Verstopfung bei meiner Katze?
 
 Von Verstopfung spricht man, wenn eine Katze selten oder nur mit Mühe Kot absetzt und der Kot hart und trocken ist. Typisch sind:
 
@@ -55,7 +57,9 @@ Von Verstopfung spricht man, wenn eine Katze selten oder nur mit Mühe Kot abset
 
 Wird Verstopfung nicht behandelt oder kommt sie immer wieder, kann sich ein großer, harter Kotpfropf bilden, der gar nicht mehr abgesetzt werden kann (Obstipation). Im schlimmsten Fall verliert der Dickdarm dauerhaft seine Kraft und weitet sich aus. Das nennt man **Megakolon**. Deshalb sollte Verstopfung bei Katzen früh und konsequent behandelt werden.
 
-## Häufige Ursachen
+## Was verursacht Verstopfung bei Katzen?
+
+Häufig zu wenig Flüssigkeit, eine Nierenerkrankung, Haare oder Streu im Kot, Übergewicht, Meiden der Toilette, Schmerzen, ein verengtes Becken, Medikamente oder ein Megakolon.
 
 - **Zu wenig Flüssigkeit**, etwa bei reiner Trockenfütterung oder wenig Trinken
 - **Chronische Nierenerkrankung**, die zu dauerhaftem Flüssigkeitsmangel und trockenerem Kot führt, vor allem bei älteren Katzen
@@ -69,7 +73,9 @@ Wird Verstopfung nicht behandelt oder kommt sie immer wieder, kann sich ein gro�
 
 Oft wird bei Katzen gar keine einzelne Ursache gefunden. Trotzdem lohnt sich die Suche, weil manche Auslöser wie eine Nierenerkrankung selbst behandelt werden müssen.
 
-## Was Sie zu Hause tun und lassen sollten
+## Was kann ich zu Hause bei Verstopfung meiner Katze tun?
+
+Sorgen Sie bei einer sonst munteren Katze für mehr Flüssigkeit und eine saubere Toilette, aber geben Sie keine Klistiere, Abführmittel, Öl oder Schmerzmittel für Menschen.
 
 **Sinnvoll, wenn Ihre Katze sonst munter ist:**
 
@@ -84,7 +90,9 @@ Oft wird bei Katzen gar keine einzelne Ursache gefunden. Trotzdem lohnt sich die
 - **Keine Schmerzmittel für Menschen.** Paracetamol ist für Katzen hochgiftig, Ibuprofen ebenfalls gefährlich, und Metamizol (zum Beispiel Novalgin) darf nur die Tierärztin oder der Tierarzt geben.
 - Nicht tagelang abwarten.
 
-## Wann zur Tierärztin oder zum Tierarzt
+## Wann sollte ich mit meiner verstopften Katze zur Tierärztin oder zum Tierarzt?
+
+Noch heute oder morgen, wenn sie seit etwa zwei Tagen keinen Kot abgesetzt hat, der Kot sehr hart ist, weitere Beschwerden dazukommen oder sie älter oder nierenkrank ist.
 
 Abgesehen von den Notfällen oben vereinbaren Sie **noch heute oder morgen** einen Termin, wenn:
 
@@ -96,7 +104,9 @@ Abgesehen von den Notfällen oben vereinbaren Sie **noch heute oder morgen** ein
 
 In der Praxis wird Ihre Katze abgetastet, häufig wird ein Röntgenbild gemacht und Blut untersucht, um Ursachen wie eine Nierenerkrankung zu finden. Je nach Befund bekommt Ihre Katze Flüssigkeit, ein passendes Abführmittel oder einen Einlauf, manchmal unter Sedierung. Bei wiederkehrender Verstopfung können eine Futterumstellung, etwa mit angepasstem Fasergehalt, und Medikamente zur Anregung der Darmbewegung helfen. Manche Halter lernen in der Praxis, wie sie zu Hause selbst einen geeigneten Einlauf geben. Bei schwerem Megakolon, das auf Behandlung nicht anspricht, kann eine Operation nötig werden.
 
-## Was die Tierärztin oder der Tierarzt wissen will
+## Was wird die Tierärztin oder der Tierarzt über die Verstopfung meiner Katze wissen wollen?
+
+Wann zuletzt Kot und Urin kamen, wie der Kot aussieht, Futter und Trinken, Erbrechen und Appetit, frühere Verstopfungen, Erkrankungen, Medikamente und Veränderungen zu Hause.
 
 - Wann zuletzt normaler Kot und wann zuletzt Urin abgesetzt wurde
 - Wie der Kot aussieht, und ob Ihre Katze presst

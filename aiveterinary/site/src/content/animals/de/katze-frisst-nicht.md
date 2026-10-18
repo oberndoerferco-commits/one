@@ -22,7 +22,9 @@ Fahren Sie sofort in eine Tierarztpraxis und rufen Sie vorher an, wenn Ihre Katz
 - ein Kätzchen unter sechs Monaten ist oder bereits Diabetes, eine Nieren- oder Schilddrüsenerkrankung hat
 - seit mehr als 48 Stunden gar nichts gefressen hat, auch wenn sie sonst „normal“ wirkt
 
-## Warum Zeit bei Katzen anders zählt
+## Wie lange darf meine Katze nicht fressen?
+
+Nach 24 Stunden ohne Fressen sollten Sie anrufen, und 48 Stunden sind die Grenze, die Sie nicht überschreiten sollten.
 
 Die Frage, die Halter am häufigsten stellen, lautet: „Wie lange darf meine Katze nicht fressen?“ Eine ehrliche Antwort ist: deutlich kürzer, als es sich anfühlt.
 
@@ -30,7 +32,9 @@ Wenn eine Katze keine Nahrung aufnimmt, beginnt ihr Körper, Fettreserven in die
 
 Praktisch heißt das: **24 Stunden ohne Fressen sind der Zeitpunkt für einen Anruf, 48 Stunden sind die Grenze, die Sie nicht überschreiten sollten.** Frisst Ihre Katze deutlich weniger als sonst, aber noch etwas, haben Sie etwas mehr Spielraum, sollten aber trotzdem innerhalb von zwei bis drei Tagen einen Termin vereinbaren.
 
-## Was Sie zu Hause prüfen und tun können
+## Was kann ich zu Hause tun, wenn meine Katze nicht frisst?
+
+Prüfen Sie, ob sie trinkt, wie das Maul aussieht und was sich verändert hat, bieten Sie Verlockendes an, ohne zu zwingen, und geben Sie keine Medikamente für Menschen.
 
 - **Trinkt sie?** Eine Katze, die trinkt, aber nicht frisst, hat ein anderes Problem als eine, die beides verweigert.
 - **Wie sieht das Maul aus?** Vorsichtig die Lefze anheben: gerötetes Zahnfleisch, Zahnstein, Speicheln oder Geruch sprechen für Zahnschmerzen, eine häufige Ursache.
@@ -40,7 +44,9 @@ Praktisch heißt das: **24 Stunden ohne Fressen sind der Zeitpunkt für einen An
 - **Keine Medikamente für Menschen.** Schon eine einzige Tablette Paracetamol kann eine Katze töten.
 - **Wiegen Sie Ihre Katze**, wenn Sie eine Personenwaage haben (mit und ohne Katze). Der Gewichtsverlauf ist für die Praxis wertvoll.
 
-## Wann zum Tierarzt
+## Wann sollte ich mit meiner Katze zur Tierärztin oder zum Tierarzt, wenn sie nicht frisst?
+
+Noch heute, wenn sie seit etwa 24 Stunden nichts gefressen hat, seit zwei bis drei Tagen deutlich weniger frisst oder weitere Beschwerden dazukommen.
 
 Vereinbaren Sie noch heute einen Termin, wenn:
 
@@ -52,7 +58,9 @@ Vereinbaren Sie noch heute einen Termin, wenn:
 - sie sich anders verhält: zurückgezogen, reizbar, ungepflegtes Fell
 - sie übergewichtig ist (höheres Lipidose-Risiko)
 
-## Was die Tierärztin oder der Tierarzt wissen will
+## Was wird die Tierärztin oder der Tierarzt über den Appetit meiner Katze wissen wollen?
+
+Seit wann sie weniger frisst, ob sie trinkt und wie sie aufs Futter reagiert, Erbrechen, Kot und Urin, Freigang, Impfungen und Medikamente, Veränderungen und das Gewicht.
 
 - Seit wann sie weniger oder gar nichts frisst, und ob sie trinkt
 - Ob sie ans Futter geht und sich abwendet (spricht für Übelkeit oder Maulschmerz) oder gar kein Interesse zeigt
@@ -62,7 +70,9 @@ Vereinbaren Sie noch heute einen Termin, wenn:
 - Veränderungen im Haushalt
 - Gewicht früher und jetzt, wenn bekannt
 
-## Häufige Ursachen
+## Warum frisst meine Katze nicht?
+
+Zahnschmerzen, Stress, Magen-Darm-Infekte, Futterprobleme, Katzenschnupfen und Medikamente sind wahrscheinlich; Lipidose, Pankreatitis, Nieren-, Schilddrüsen- oder Zuckerkrankheit, Fremdkörper, Tumoren, FIP und Vergiftung sind seltener, aber wichtig.
 
 | Wahrscheinlich | Seltener, aber wichtig |
 |---|---|

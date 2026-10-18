@@ -36,7 +36,7 @@ Fahren Sie sofort in eine Tierarztpraxis oder Tierklinik und rufen Sie vorher an
 
 Auch eine **zu niedrige** Temperatur bei einem kranken Hund ist ein Warnzeichen und kein Grund zur Entwarnung. Rufen Sie dann ebenfalls sofort an.
 
-## Fieber ist ein Zeichen, keine Diagnose
+## Was bedeutet Fieber beim Hund?
 
 Fieber bedeutet, dass der Körper seinen inneren „Sollwert“ für die Temperatur hochgesetzt hat. Auslöser sind zum Beispiel Bakterien, Viren, Gifte oder Medikamente, die im Körper Entzündungsbotenstoffe freisetzen. Das Fieber selbst ist also die Reaktion, nicht die eigentliche Krankheit.
 
@@ -52,7 +52,7 @@ Fieber kann bei Infektionen durchaus nützlich sein. Es macht Hunde aber auch ap
 
 Wichtig ist der Unterschied zum **Hitzschlag**. Dabei ist der Sollwert nicht verstellt, sondern der Körper wird die Wärme nicht mehr los. Die Temperatur kann dabei noch höher steigen als bei Fieber. Ein Hitzschlag wird aktiv gekühlt. Echtes Fieber dagegen sollten Sie nicht mit kaltem Wasser oder Eis „wegkühlen“, denn das arbeitet gegen die Regulation des Körpers.
 
-## Warum Nase und Ohren nichts verraten
+## Kann ich an der Nase erkennen, ob mein Hund Fieber hat?
 
 Eine warme, trockene Nase oder heiße Ohren sagen nicht zuverlässig, ob Ihr Hund Fieber hat. Verlässlich ist nur das Messen mit einem Thermometer im After (rektal). Die rektale Messung gilt als Standard.
 
@@ -62,7 +62,9 @@ Nicht geeignet sind:
 - **Ohrthermometer für Kinder:** Die Werte im Hundeohr stimmen nicht verlässlich mit der rektalen Temperatur überein.
 - **Messen unter der Achsel:** Die Ergebnisse sind nicht zuverlässig wiederholbar.
 
-## So messen Sie rektal, Schritt für Schritt
+## Wie messe ich bei meinem Hund Fieber?
+
+Rektal, mit einem digitalen Fieberthermometer, etwas Gleitmittel und einer zweiten Person, die den Hund ruhig hält.
 
 1. **Thermometer vorbereiten:** Nehmen Sie ein digitales Fieberthermometer, am besten eines, das nur für den Hund verwendet wird.
 2. **Gleitmittel auftragen:** Bestreichen Sie die Spitze mit einem wasserlöslichen Gleitgel oder etwas Vaseline.
@@ -91,7 +93,7 @@ So können Sie die Werte grob einordnen:
 
 Die Tabelle ersetzt keine Untersuchung.
 
-## Achtung: keine Fiebermittel aus Ihrer Hausapotheke
+## Darf ich meinem Hund Fiebermittel für Menschen geben?
 
 Geben Sie Ihrem Hund **niemals** eigene Schmerz- oder Fiebermittel. Das gilt ausdrücklich für:
 
@@ -102,13 +104,17 @@ Geben Sie Ihrem Hund **niemals** eigene Schmerz- oder Fiebermittel. Das gilt aus
 
 Hunde verarbeiten viele Wirkstoffe anders als Menschen. Die Dosis lässt sich deshalb nicht einfach auf das Körpergewicht umrechnen. Für Hunde gibt es eigene, verschreibungspflichtige Tierarzneimittel. Hat Ihr Hund versehentlich ein Medikament für Menschen bekommen, rufen Sie sofort die Praxis an und nehmen Sie die Packung mit.
 
-## Was Sie bis zum Termin tun können
+## Was kann ich bis zum Termin für meinen fiebernden Hund tun?
+
+Lassen Sie ihn ruhig an einem nicht zu warmen Ort liegen, stellen Sie Wasser hin und verzichten Sie auf Wadenwickel, Eis und Hausmittel.
 
 - Lassen Sie Ihren Hund an einem ruhigen, nicht zu warmen Ort liegen.
 - Stellen Sie frisches Wasser hin. Zwingen Sie ihn nicht zum Trinken oder Fressen.
 - Keine Wadenwickel, kein Eis, keine Hausmittel, die den Weg in die Praxis verzögern.
 
-## Was die Tierärztin oder der Tierarzt wissen will
+## Was wird die Tierärztin oder der Tierarzt über das Fieber wissen wollen?
+
+Die gemessenen Werte mit Uhrzeit, seit wann und wie Ihr Hund auffällig ist, Zeckenstiche und Reisen, Impfungen, Parasitenschutz und Medikamente, bei Hündinnen die letzte Läufigkeit oder Geburt.
 
 - Die gemessenen Werte mit Uhrzeit
 - Seit wann Ihr Hund auffällig ist und welche Anzeichen Sie sehen: Appetit, Trinken, Erbrechen, Durchfall, Husten, Lahmheit, Schmerzen

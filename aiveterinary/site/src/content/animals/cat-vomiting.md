@@ -27,7 +27,7 @@ A hairball is a sausage-shaped clump of hair, usually with a little fluid. The c
 
 Vomiting is different. Food, foam, yellow or green fluid, or liquid with only a few hairs in it is vomit, even if your cat retches in the same way. Vomiting more than once or twice a month, or hairballs coming up every few days, is a sign that something else is going on. Many vets now regard frequent "hairballs" as a reason to look at the gut, not just the coat.
 
-## If none of the go-now signs apply
+## What can I do at home if my cat has vomited once?
 
 A single episode in a cat who then eats and behaves normally can be watched at home.
 
@@ -38,7 +38,9 @@ A single episode in a cat who then eats and behaves normally can be watched at h
 - Check that litter tray use is normal. No urine for a day is an emergency in its own right, especially in male cats.
 - Never give human medication. Paracetamol in particular is highly toxic to cats.
 
-## When to see a vet
+## When should I take my vomiting cat to the vet?
+
+Today if your cat vomits more than two or three times in a day, keeps vomiting for more than 24 hours, is off food for more than a day, or vomits most weeks.
 
 Book an appointment today if:
 
@@ -52,7 +54,9 @@ Book an appointment today if:
 
 Cats hide illness well. A cat that is "a bit quiet" and vomiting is worth a call.
 
-## What the vet will want to know
+## What will the vet want to know about my cat's vomiting?
+
+When it started, how often, what the vomit looked like and when it happens, plus appetite, drinking, litter habits, access to hazards and any treatments.
 
 - When it started and how often
 - What the vomit looked like: hair, food, foam, bile, blood
@@ -63,7 +67,9 @@ Cats hide illness well. A cat that is "a bit quiet" and vomiting is worth a call
 - Any medications, flea or worm treatments
 - Other cats in the house and whether they are affected
 
-## Common causes
+## Why is my cat vomiting?
+
+Hairballs, eating too fast, food changes, mild stomach upsets, worms and grass eating are likely causes; swallowed objects, kidney, thyroid, bowel, pancreas or liver disease and poisoning are less common but important.
 
 | Likely | Less common but important |
 |---|---|

@@ -32,7 +32,9 @@ references:
 
 Small herbivores hide illness well and go downhill fast, so a rabbit that "just seems quiet" after chewing a plant is a same-day call. If no vet answers, call a poison line: in the UK, Animal PoisonLine (run by VPIS) on 01202 509 000, 24 hours, for a fee; in the US, ASPCA Animal Poison Control on (888) 426-4435. Your local clinic is always the first call.
 
-## What is dangerous
+## Which plants and foods are poisonous to rabbits and guinea pigs?
+
+Avocado, rat bait, fipronil flea products, many garden and house plants, spring bulbs, onions and garlic, sweet and starchy foods, grapes, and lawn clippings or sprayed weeds.
 
 | Substance | Why it is dangerous | What to do first |
 |---|---|---|
@@ -48,14 +50,18 @@ Small herbivores hide illness well and go downhill fast, so a rabbit that "just 
 | Grapes and raisins | Kidney effects are suspected but poorly documented in rabbits; poison lines advise avoiding them. | Call. |
 | Lawn-mower clippings, sprayed weeds (glyphosate), citrus in quantity, grocery produce that is not fresh | Fermenting clippings cause bloat; herbicide residue causes weakness and breathing trouble; acid fruit and old produce upset the gut. | Remove, watch appetite, call if anything changes. |
 
-## What not to do
+## What should I not do if my rabbit or guinea pig ate something toxic?
+
+Do not try to make them vomit, do not give salt water, milk, yoghurt, oil or bread, do not give any human or dog medicine, and do not watch and wait.
 
 - **Do not try to make them vomit.** Rabbits and guinea pigs physically cannot vomit, and anything you push into the mouth can go into the lungs.
 - **Do not give salt water, milk, yoghurt, oil or bread.** Dairy and sugar make the gut problem worse.
 - **Do not give any human or dog medicine**, including painkillers; several are poisonous to rabbits.
 - Do not "watch and wait". The RSPCA puts it in exactly those words. Your vet calculates the risk from your animal's weight, the substance and the amount; a quick phone call is cheaper than a sick rabbit.
 
-## What the vet will ask
+## What will the vet ask if my rabbit or guinea pig ate something toxic?
+
+What was eaten or applied, how much, when, whether droppings and appetite are normal, and your animal's weight, age and medication.
 
 1. **What** was eaten or applied: plant name or photo, product packet, bait colour.
 2. **How much**: a nibbled leaf, a whole plant, how long the animal had access.
@@ -64,7 +70,9 @@ Small herbivores hide illness well and go downhill fast, so a rabbit that "just 
 
 Bring a sample of the plant in a bag, and the packet of any product.
 
-## Prevention
+## How can I keep my rabbit or guinea pig safe from poisonous plants?
+
+Check the run and garden before letting them out, keep house plants out of reach, buy parasite treatments only from your vet, and keep risky foods away.
 
 Walk the run and garden before you let them out: foxglove, ivy and bulbs are common in UK gardens, and rabbits find rat bait attractive. Keep house plants above cage height and pick up dropped leaves. Buy flea and mite treatments only from your vet and only ones labelled for rabbits or guinea pigs. Feed hay, fresh water, a small portion of leafy greens and a measured pellet ration; the kitchen scraps that cause trouble are the treats, not the greens. Store avocado and chocolate out of reach, and do not mow the lawn with the animals on it.
 

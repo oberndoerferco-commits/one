@@ -20,7 +20,9 @@ Go to a veterinary clinic immediately, and call ahead, if your dog:
 - is a puppy, very old, or already has a condition such as diabetes or kidney disease
 - vomits repeatedly and cannot keep water down
 
-## If none of those apply
+## What can I do at home if my dog vomited once?
+
+A single episode in an otherwise bright dog is common, and for the first 12 hours you can rest the stomach, offer small amounts of water and reintroduce bland food.
 
 A single episode of vomiting in an otherwise bright dog is common. Dogs eat things they shouldn't, eat too fast, or get an upset stomach from a change in food.
 
@@ -31,7 +33,9 @@ What you can do at home for the first 12 hours:
 - When you reintroduce food, give a small portion of something bland, then return to normal food over two or three days.
 - Note what the vomit looked like, how many times, and whether your dog ate anything unusual. Take a photo if you can. Your vet will ask.
 
-## When to see a vet today
+## When should I take my vomiting dog to the vet?
+
+Today if your dog vomits more than two or three times in a day, for more than 24 hours, or also has diarrhoea, changes in drinking, no appetite for over a day or seems in pain.
 
 Book an appointment today if:
 
@@ -42,7 +46,9 @@ Book an appointment today if:
 - your dog is off food for more than a day
 - your dog seems in pain: hunched back, reluctance to move, whining when the belly is touched
 
-## What the vet will want to know
+## What will the vet want to know about my dog's vomiting?
+
+When it started, how often, what the vomit looked like, what your dog may have eaten, medicines, appetite, drinking and stools, and whether other animals are affected.
 
 - When it started and how often
 - What the vomit looked like (food, foam, yellow bile, blood)
@@ -53,7 +59,9 @@ Book an appointment today if:
 
 Bringing this information, even as a few notes on your phone, makes the visit faster and the picture clearer.
 
-## Common causes
+## Why is my dog vomiting?
+
+Eating something unsuitable, sudden food changes, eating too fast, mild stomach upsets and motion sickness are likely; blockages, pancreatitis, kidney or liver disease, poisoning and bloat are less common but important.
 
 | Likely | Less common but important |
 |---|---|

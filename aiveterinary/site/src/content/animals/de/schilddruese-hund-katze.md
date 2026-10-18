@@ -28,11 +28,15 @@ Schilddrüsenerkrankungen werden in Ruhe, innerhalb einer Woche, abgeklärt. Fah
 
 Das sind Folgen einer unbehandelten Überfunktion an Herz und Kreislauf.
 
-## Zwei spiegelbildliche Krankheiten
+## Welche Schilddrüsenerkrankungen bekommen Hunde und Katzen?
+
+Hunde haben meist eine Unterfunktion (Hypothyreose), Katzen meist eine Überfunktion (Hyperthyreose).
 
 Die Schilddrüse am Hals bildet die Hormone, die das Tempo des Stoffwechsels bestimmen. Beim **Hund** ist das häufigste Problem eine Drüse, die zu wenig arbeitet (**Hypothyreose**), fast immer, weil das Immunsystem sie langsam zerstört. Bei der **Katze** ist es umgekehrt: eine Drüse, die zu viel arbeitet (**Hyperthyreose**), fast immer durch eine gutartige Vergrößerung einer oder beider Drüsenhälften; bösartige Tumoren sind selten. Unterfunktion bei der Katze und Überfunktion beim Hund gibt es, aber als Ausnahme.
 
-## Der Hund mit Unterfunktion: die Anzeichen
+## Woran erkenne ich eine Schilddrüsenunterfunktion beim Hund?
+
+Alles wird langsamer: Gewichtszunahme ohne mehr zu fressen, Trägheit, Wärmesuchen, stumpfes Fell mit Haarausfall und wiederkehrende Hautprobleme.
 
 Betroffen sind vor allem Hunde zwischen 4 und 10 Jahren, mittelgroße und große Rassen; bei Zwergrassen ist sie selten. Alles wird langsamer:
 
@@ -46,7 +50,9 @@ Betroffen sind vor allem Hunde zwischen 4 und 10 Jahren, mittelgroße und große
 
 Die Zeichen kommen schleichend und werden leicht dem Alter zugeschrieben.
 
-## Die Katze mit Überfunktion: die Anzeichen
+## Woran erkenne ich eine Schilddrüsenüberfunktion bei der Katze?
+
+Alles wird schneller: Gewichtsverlust trotz großem Appetit, mehr Trinken, Unruhe, schneller Herzschlag und struppiges Fell.
 
 Betroffen sind Katzen mittleren und höheren Alters, selten unter 7 Jahren. Alles wird schneller:
 
@@ -59,7 +65,7 @@ Betroffen sind Katzen mittleren und höheren Alters, selten unter 7 Jahren. Alle
 
 Oft kann die Tierärztin die vergrößerte Drüse am Hals tasten.
 
-## Wie die Diagnose gestellt wird
+## Wie wird eine Schilddrüsenerkrankung bei Hund und Katze festgestellt?
 
 In beiden Fällen beginnt die Diagnose mit einem **Bluttest, der das Schilddrüsenhormon (T4) misst**.
 
@@ -67,7 +73,9 @@ Bei der Katze bestätigt ein hohes T4 zusammen mit den Anzeichen die Diagnose; i
 
 Beim Hund ist die Auswertung heikler: Viele Krankheiten und einige Medikamente (vor allem Kortison) senken das T4 auch bei gesunder Schilddrüse, und manche Rassen wie Windhunde haben von Natur aus niedrigere Werte. Deshalb kombiniert die Praxis das T4 mit weiteren Tests (TSH, freies T4, Antikörper) und einem vollständigen Profil und schlägt manchmal einen Behandlungsversuch vor.
 
-## Was die Behandlung bedeutet
+## Wie wird eine Schilddrüsenerkrankung bei Hund und Katze behandelt?
+
+Beim Hund wird das fehlende Hormon lebenslang als Tablette ersetzt; bei der Katze gibt es Tabletten oder Gel, Radiojod, eine Operation oder eine jodarme Diät.
 
 **Hund.** Das fehlende Hormon wird als Schilddrüsenhormon-Tablette ersetzt, meist ein- bis zweimal täglich, lebenslang. Die Energie kehrt in wenigen Wochen zurück, Fell und Gewicht in ein bis zwei Monaten. Eine Blutkontrolle nach den ersten Wochen dient der Dosisanpassung; danach genügt ein- bis zweimal pro Jahr. Futter beeinflusst die Aufnahme, geben Sie die Tablette daher immer auf dieselbe Weise. Wird der Hund hibbelig, trinkt und hechelt viel oder nimmt ab, ist die Dosis vermutlich zu hoch: Rufen Sie an.
 
@@ -80,11 +88,11 @@ Beim Hund ist die Auswertung heikler: Viele Krankheiten und einige Medikamente (
 | Operation | Entfernung des kranken Gewebes; Risiko für die Nebenschilddrüsen, die den Kalziumhaushalt regeln |
 | Jodarme Diät | Wirkt nur, wenn die Katze ausschließlich dieses Futter frisst, ohne Leckerli und ohne Jagd |
 
-## Die Überwachung
+## Wie wird ein Tier mit Schilddrüsenerkrankung überwacht?
 
 Bei der Katze werden vor und nach Behandlungsbeginn T4, **Nieren** und Blutdruck kontrolliert: Eine Überfunktion treibt die Nieren zu Mehrarbeit an und kann eine Niereninsuffizienz verdecken, die erst sichtbar wird, wenn die Schilddrüse wieder normal arbeitet. Deshalb beginnt die Praxis oft mit dem Medikament, auch wenn später eine endgültige Behandlung angestrebt wird. Beim Hund wiegen Sie Ihr Tier zusätzlich zum Blutbild monatlich und notieren Veränderungen am Fell.
 
-## Was Sie erwarten können
+## Wie ist die Prognose bei Schilddrüsenerkrankungen?
 
 Beide Krankheiten haben unter Behandlung eine gute Prognose. Der Hund mit Unterfunktion lebt mit seiner Tablette ein normales Leben. Die behandelte Katze mit Überfunktion gewinnt in den allermeisten Fällen Gewicht und Wesen zurück; die Zukunft hängt vor allem davon ab, wie Nieren und Herz zum Zeitpunkt der Diagnose aussehen, ein Grund mehr, nicht zu warten.
 

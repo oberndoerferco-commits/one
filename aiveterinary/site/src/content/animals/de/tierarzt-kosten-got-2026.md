@@ -9,13 +9,15 @@ draft: true
 lang: de
 ---
 
-## Was die GOT ist
+## Was ist die GOT?
+
+Die Gebührenordnung für Tierärztinnen und Tierärzte ist die bundesweite Rechtsverordnung, nach der Tierarztpraxen in Deutschland abrechnen.
 
 In Deutschland dürfen Tierärztinnen und Tierärzte ihre Preise nicht frei festlegen. Sie rechnen nach der Gebührenordnung für Tierärztinnen und Tierärzte (GOT) ab, einer bundesweiten Rechtsverordnung. Die aktuelle Fassung gilt seit dem 22. November 2022 und hat die alte GOT von 1999 abgelöst.
 
 Die GOT enthält kein Preisschild für „eine Behandlung“. Sie listet einzelne Leistungen mit einer laufenden Nummer (Positionsnummer) und einem Gebührensatz in Euro auf. Eine Behandlung besteht fast immer aus mehreren Positionen: Untersuchung, Röntgen, Injektion, Verband und so weiter. Hinzu kommen Arzneimittel, Verbrauchsmaterial, Laborkosten und die Umsatzsteuer.
 
-## Der Faktor: warum dieselbe Leistung unterschiedlich viel kostet
+## Warum kostet dieselbe Leistung beim Tierarzt unterschiedlich viel?
 
 Jede Position darf mit dem Ein- bis Dreifachen des Gebührensatzes berechnet werden. Welchen Faktor die Praxis wählt, hängt laut GOT vor allem von der Schwierigkeit des Falls, dem Zeitaufwand, dem Wert des Tieres und den örtlichen Verhältnissen ab. Eine Praxis in der Großstadt mit hohen Mieten rechnet deshalb oft mit einem höheren Faktor als eine Landpraxis.
 
@@ -23,7 +25,9 @@ Ein Beispiel aus dem Merkblatt der Bundestierärztekammer: Die „Allgemeine Unt
 
 Der Faktor muss nicht auf der Rechnung begründet werden, aber Sie dürfen danach fragen. Die Bundestierärztekammer rät ausdrücklich dazu, den Faktor und die Behandlungsschritte im Gespräch erklären zu lassen.
 
-## Notdienst: Zweifach bis Vierfach plus Notdienstgebühr
+## Was kostet der tierärztliche Notdienst?
+
+Im Notdienst kostet jede Position das Zwei- bis Vierfache des Gebührensatzes, dazu kommt eine Notdienstgebühr von 50 Euro zuzüglich Umsatzsteuer.
 
 Im tierärztlichen Notdienst gelten andere Regeln. Die GOT definiert den Notdienst zeitlich:
 
@@ -35,11 +39,13 @@ In diesen Zeiten erhöht sich jede Position auf mindestens das Zweifache und hö
 
 Ein Notfallbesuch mit Untersuchung, Röntgen und Injektion kann so leicht das Doppelte bis Dreifache eines Tagesbesuchs kosten.
 
-## Wann eine Vereinbarung in Textform nötig ist
+## Wann braucht die Praxis eine Vereinbarung in Textform über die Kosten?
 
 Mehr als das Dreifache (im Notdienst mehr als das Vierfache) oder weniger als das Einfache darf eine Praxis nur im begründeten Einzelfall berechnen, und nur, wenn das **vor** der Leistung vereinbart wurde. Die Vereinbarung braucht Textform (E-Mail reicht), und Sie müssen eine Kopie erhalten. Ohne eine solche Vereinbarung gilt der normale Rahmen. Wenn Ihnen jemand nachträglich einen Faktor über 3 in Rechnung stellt, ist das ein Grund nachzufragen.
 
-## Was auf einer korrekten Rechnung stehen muss
+## Was muss auf einer Tierarztrechnung stehen?
+
+Datum, Tierart, Diagnose oder Grund der Konsultation, jede Leistung mit Positionsnummer, der Rechnungsbetrag und die Umsatzsteuer.
 
 Die GOT schreibt vor, was eine Tierarztrechnung mindestens enthalten muss:
 
@@ -54,7 +60,9 @@ Arzneimittel, Material und Auslagen (zum Beispiel Laborkosten) müssen gesondert
 
 Wenn Sie eine Tierkrankenversicherung haben, prüfen Sie die Rechnung besonders genau: Versicherer erstatten in der Regel nur Rechnungen, auf denen Diagnose und GOT-Positionen stehen, und sie müssen das Tier eindeutig zuordnen können. Lassen Sie daher Name und Chipnummer Ihres Tieres auf der Rechnung vermerken und fragen Sie Ihren Versicherer, was er sonst noch verlangt.
 
-## Kostenvoranschlag: was möglich ist und was nicht
+## Kann ich beim Tierarzt einen Kostenvoranschlag verlangen?
+
+Einen verbindlichen nicht, aber Sie können eine Aufstellung der voraussichtlichen Kosten für die geplanten Schritte verlangen.
 
 Einen verbindlichen Kostenvoranschlag wie beim Handwerker kann eine Tierarztpraxis nicht abgeben, weil der Behandlungsverlauf vom Tier abhängt. Das betonen sowohl die Bundestierärztekammer als auch der Bundesverband Praktizierender Tierärzte. Was Sie aber verlangen können, ist eine Aufstellung der voraussichtlichen Kosten für die geplanten Schritte. Sinnvolle Fragen:
 
@@ -64,7 +72,9 @@ Einen verbindlichen Kostenvoranschlag wie beim Handwerker kann eine Tierarztprax
 
 Fragen Sie am besten vor der Behandlung und lassen Sie sich die Antwort per E-Mail geben. Bei Fragen zu einer Rechnung ist zuerst die Praxis selbst, danach die zuständige Landestierärztekammer der richtige Ansprechpartner.
 
-## Tierkrankenversicherung: Grundlagen ohne Produktempfehlung
+## Worauf sollte ich bei einer Tierkrankenversicherung achten?
+
+Auf den erstatteten GOT-Satz, Wartezeiten, Selbstbeteiligung und Jahreshöchstgrenze sowie Ausschlüsse.
 
 Es gibt zwei Typen: reine OP-Versicherungen, die nur Operationen und meist die zugehörige Diagnostik und Nachbehandlung zahlen, und Krankenvollversicherungen, die auch ambulante Behandlungen abdecken. Worauf es beim Vergleich ankommt:
 
@@ -75,7 +85,7 @@ Es gibt zwei Typen: reine OP-Versicherungen, die nur Operationen und meist die z
 
 Die Stiftung Warentest vergleicht solche Tarife regelmäßig. Für manche Halter ist ein Notgroschen die bessere Lösung, für andere nicht.
 
-## Der Steuer-Mythos
+## Kann ich Tierarztkosten von der Steuer absetzen?
 
 Tierarztkosten für ein privat gehaltenes Haustier sind in Deutschland nicht steuerlich absetzbar, auch nicht als außergewöhnliche Belastung. Absetzbar ist nur die Betreuung des Tieres in Ihrem eigenen Haushalt als haushaltsnahe Dienstleistung (§ 35a EStG), also etwa ein Gassi- oder Fütterungsservice bei Ihnen zu Hause, nicht die Praxis und nicht die Tierpension. Ausnahmen gibt es nur für beruflich oder gewerblich gehaltene Tiere.
 

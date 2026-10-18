@@ -184,7 +184,7 @@ Everything costs €0 unless marked €. Legend:
 - [x] Per-field SOAP copy and JSON export in the vet workspace
 - [x] Vet evaluation protocol: metrics with Wilson CIs (`app/src/metrics.ts`), 53 cases (42 generated), 20-case stopwatch protocol on the quality pages; the model run still needs the API key
 - [x] Compliance kit drafts in docs/legal: Italian client notice, German owner notice (BTK Oct 2026), § 203 StGB undertaking, AVV (§ 203 error fixed), AI-literacy session — all need a lawyer's review
-- [x] Search-shaped pass, Italian first: question H2s with one-sentence answers (58 articles), sharper titles, urgency-matched next step on every article; DE/EN still to do
+- [x] Search-shaped pass, Italian first: question H2s with one-sentence answers (58 articles), sharper titles, urgency-matched next step on every article; DE and EN done too (487 more headings, 397 sentences)
 - [x] Vaccine planner (WSAVA 2024 tables + EU rabies travel rule, `app/src/vaccine-plan.ts`); saves planned dates to the booklet, never as vaccinations
 
 ## 7. Open research (unverified, confirm before building)

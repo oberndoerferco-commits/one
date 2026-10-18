@@ -9,13 +9,17 @@ draft: true
 lang: de
 ---
 
-## Warum Vorbeugen statt Behandeln
+## Warum sollte ich Flöhen, Zecken und Würmern vorbeugen statt sie zu behandeln?
+
+Weil sie leichter zu verhindern als wieder loszuwerden sind und der Befall oft schon fortgeschritten ist, wenn man ihn bemerkt.
 
 Flöhe, Zecken und Würmer sind leichter zu verhindern als wieder loszuwerden. Wenn Sie einen Floh sehen, sind meist schon Eier und Larven in Teppichen und Liegeplätzen. Wenn eine Zecke gefunden wird, hat sie oft schon einen Tag oder länger gesaugt. Und viele Würmer verursachen keine sichtbaren Anzeichen, bis der Befall stark ist.
 
 Die meisten Tierärztinnen und Tierärzte empfehlen für Hunde und Katzen eine ganzjährige Routine, angepasst an Alter, Gewicht, Lebensweise des Tieres und Ihren Wohnort. Welches Präparat, wie oft und ob ein verschreibungspflichtiges Präparat nötig ist, sind tierärztliche Entscheidungen. Präparate für Hunde können für Katzen gefährlich sein, tauschen Sie also nie zwischen den Tierarten.
 
-## Flöhe
+## Woran erkenne ich Flöhe bei meinem Tier, und wie beuge ich vor?
+
+An Kratzen, kleinen Krusten, Haarausfall und Flohkot; vorbeugen lässt sich mit einer regelmäßigen tierärztlichen Behandlung für jedes Tier im Haushalt.
 
 Flöhe sind der häufigste Parasit bei Haustieren in Europa und wegen der Heizung in Innenräumen das ganze Jahr über aktiv.
 
@@ -23,7 +27,9 @@ Anzeichen: Kratzen, Knabbern am Rücken und am Schwanzansatz, kleine Krusten, Ha
 
 Vorbeugung: eine regelmäßige Behandlung von Ihrer Tierärztin oder Ihrem Tierarzt, wie angewiesen und pünktlich angewendet oder verabreicht. Behandeln Sie jedes Tier im Haushalt. Wenn bereits Flöhe da sind, empfiehlt Ihre Tierärztin oder Ihr Tierarzt möglicherweise auch eine Behandlung der Wohnung, weil der Großteil der Flohpopulation nicht auf dem Tier lebt.
 
-## Zecken
+## Wie schütze ich mein Tier vor Zecken?
+
+Untersuchen Sie Ihr Tier nach Spaziergängen, entfernen Sie festgesaugte Zecken sorgfältig und fragen Sie Ihre Praxis, welches Präparat auch gegen Zecken wirkt.
 
 Zecken heften sich im Gras, im Wald und im Gebüsch an, saugen mehrere Tage und können Krankheiten übertragen, darunter Borreliose und in Teilen Europas Babesiose und Ehrlichiose. Das Risiko ist im Frühjahr und Herbst am höchsten, aber Zecken sind immer dann aktiv, wenn es mild ist.
 
@@ -41,7 +47,9 @@ Wenn ein Teil der Zecke zurückbleibt, bohren Sie nicht danach. Er arbeitet sich
 
 Vorbeugung: Viele Flohmittel wirken auch gegen Zecken, aber nicht alle. Fragen Sie Ihre Tierärztin oder Ihren Tierarzt, besonders vor Reisen.
 
-## Würmer
+## Welche Würmer kann mein Tier bekommen, und wie beuge ich vor?
+
+Vor allem Spulwürmer, Bandwürmer und Lungenwürmer, und vorgebeugt wird mit regelmäßiger Entwurmung nach einem Schema Ihrer Praxis.
 
 **Spulwürmer** sind bei Welpen und Kätzchen häufig, die sich schon vor der Geburt oder über die Milch anstecken können. Sie können auch Menschen befallen, vor allem Kinder, was einer der Hauptgründe für die regelmäßige Entwurmung ist.
 
@@ -51,7 +59,9 @@ Vorbeugung: Viele Flohmittel wirken auch gegen Zecken, aber nicht alle. Fragen S
 
 Vorbeugung: regelmäßige Entwurmung nach einem Schema, das Ihre Tierärztin oder Ihr Tierarzt festlegt. Welpen und Kätzchen müssen häufiger entwurmt werden als erwachsene Tiere. Jagende Katzen, Hunde, die Abfälle fressen, und roh gefütterte Tiere brauchen möglicherweise häufigere Behandlungen.
 
-## Wann zum Tierarzt
+## Wann sollte ich wegen Parasiten zur Tierärztin oder zum Tierarzt?
+
+Bei Kratzen trotz Behandlung, einer entzündeten Zeckenbissstelle, Krankheitszeichen nach einem Zeckenbiss, sichtbaren Würmern, Husten oder Blutungen, Gewichtsverlust oder wiederkehrendem Durchfall.
 
 Vereinbaren Sie einen Termin, wenn Ihr Tier:
 
@@ -65,7 +75,9 @@ Vereinbaren Sie einen Termin, wenn Ihr Tier:
 
 Fahren Sie sofort, wenn eine Katze nach dem Auftragen eines Spot-on-Präparats Zittern, Zuckungen oder Speicheln zeigt, oder wenn versehentlich ein Hundepräparat bei einer Katze angewendet wurde.
 
-## Was die Tierärztin oder der Tierarzt wissen will
+## Was wird die Tierärztin oder der Tierarzt über den Parasitenschutz wissen wollen?
+
+Welche Präparate Sie wann verwenden, ob jedes Tier behandelt wird, Reisen, Fütterung und Jagdverhalten sowie alle Krankheitszeichen.
 
 - Welche Präparate Sie verwenden, wie oft, und wann die letzte Gabe war
 - Ob jedes Tier im Haushalt behandelt wird

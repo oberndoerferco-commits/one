@@ -32,7 +32,7 @@ Go to a vet straight away, and call ahead, if your dog has a high temperature or
 - is a young puppy, elderly, or already has a serious illness
 - has a rectal temperature of around **41 °C or more**, or **below 37.5 °C**
 
-## Normal temperature for a dog
+## What is a normal temperature for a dog?
 
 According to the MSD Veterinary Manual, the normal **rectal** temperature of a dog is **37.5–39.2 °C** (99.5–102.5 °F).
 
@@ -49,7 +49,9 @@ These are not the same, and the difference matters:
 
 If your dog may have overheated, follow heatstroke first aid and get to a vet. For a dog with a true fever, vets advise against cold baths and other cooling at home, because they work against the body's own temperature control.
 
-## How to take your dog's temperature
+## How do I take my dog's temperature?
+
+Rectally, with a lubricated digital thermometer kept only for your pet and a helper to hold your dog.
 
 Touch isn't reliable. Vets regard a **rectal** reading as the most accurate.
 
@@ -73,7 +75,9 @@ Some practical points:
 - If your dog is in pain, very distressed or tries to bite, stop. Take them to the vet instead.
 - Ask your vet nurse to show you how to do it next time you visit. It's much easier once you've seen it done.
 
-## What can cause a fever
+## What causes a fever in dogs?
+
+Usually infections, inflammation including immune-mediated diseases, or cancer.
 
 Many conditions can cause a fever. In dogs, the common groups are:
 
@@ -85,7 +89,7 @@ Sometimes a fever has an obvious cause, such as an infected wound or a recent op
 
 A fever can make dogs lose their appetite, become low in energy and get dehydrated, so a dog with a fever should always be checked by a vet.
 
-## Never give your own fever medicines
+## Can I give my dog paracetamol or ibuprofen for a fever?
 
 **Do not give your dog paracetamol, ibuprofen, aspirin or any other human medicine for a fever or for pain.**
 
@@ -97,7 +101,9 @@ Fever itself probably helps the body fight some infections. Whether and how to t
 
 If your dog has already swallowed any human medicine, call your vet now, with the packet in your hand.
 
-## When to see a vet today
+## When should I take my dog with a fever to the vet?
+
+The same day if the temperature is above normal and your dog is quiet, off food, has other signs of illness, a wound, recent surgery or tick bite, or is still hot after rest.
 
 Book an appointment the same day if your dog's temperature is above the normal range and:
 
@@ -106,7 +112,9 @@ Book an appointment the same day if your dog's temperature is above the normal r
 - they have a wound, a recent operation or a recent tick bite
 - the temperature is still raised when you re-check after rest
 
-## What the vet will want to know
+## What will the vet want to know about my dog's fever?
+
+Your temperature readings, what your dog was doing before, other signs, any wounds, surgery, tick bites or travel, and any medicines.
 
 - The readings you took, when, and how (rectal or otherwise)
 - What your dog was doing before (resting, exercising, in the heat)

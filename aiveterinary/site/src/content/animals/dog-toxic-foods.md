@@ -32,7 +32,9 @@ references:
 
 Call the clinic while you are on your way. If no vet answers, call a poison line: in the UK, Animal PoisonLine (run by VPIS) on 01202 509 000, 24 hours, for a fee; in the US, ASPCA Animal Poison Control on (888) 426-4435. Your local clinic is always the first call.
 
-## The common kitchen poisons
+## Which human foods are poisonous to dogs?
+
+The common ones are chocolate and caffeine, grapes and raisins, xylitol, onions and garlic, macadamia nuts, alcohol, raw yeast dough, salt, and fatty scraps and bones.
 
 | Substance | Why it is dangerous | What to do first |
 |---|---|---|
@@ -48,14 +50,18 @@ Call the clinic while you are on your way. If no vet answers, call a poison line
 
 Avocado flesh is not toxic to dogs, but the stone can block the gut and the fat upsets the stomach. Milk is not a poison, but most adult dogs digest it poorly.
 
-## What not to do
+## What should I not do if my dog ate something poisonous?
+
+Do not make your dog vomit at home, do not give milk, oil or bread "to soak it up", and do not wait for symptoms.
 
 - **Do not make your dog vomit at home.** Salt, hydrogen peroxide, mustard and the other things you will find online can burn the gullet, cause salt poisoning, or send vomit into the lungs. Your vet can induce vomiting safely, and only when it is the right call.
 - **Do not give milk, oil, bread or "something to soak it up".** None of them neutralise a poison, and some add a second problem.
 - **Do not wait for symptoms.** With grapes, xylitol and onions, the damage is done before anything shows.
 - Do not use a dose table from the internet to decide to stay home. Your vet works out the risk from your dog's weight, the substance and the amount, and that calculation is theirs to make.
 
-## What the vet will ask
+## What will the vet ask if my dog ate something toxic?
+
+What exactly your dog ate, how much, when, and its weight, age, breed and any illness or medication.
 
 1. **What** exactly: product name, type of chocolate, whether the gum lists xylitol. Keep the packaging.
 2. **How much**: grams, number of squares, how many pieces are missing from the bowl.
@@ -64,7 +70,9 @@ Avocado flesh is not toxic to dogs, but the stone can block the gut and the fat 
 
 Having these ready, even as a note on your phone, turns a long call into a short one.
 
-## Prevention
+## How can I stop my dog eating poisonous food?
+
+Keep chocolate, raisin cakes and gum in closed cupboards, check peanut butter labels, keep bins closed and dough out of reach, and take extra care at holidays and parties.
 
 Most kitchen poisonings happen at Christmas, Easter, barbecues and parties, when food sits at dog height. Keep chocolate, raisin cakes and gum in closed cupboards, not in bags on the floor. Check the label of any peanut butter before you use it in a treat. Keep bins closed and dough rising out of reach. Tell children and guests that "just a little" is not a safe rule for a small dog.
 

@@ -35,13 +35,15 @@ Zahnprobleme entwickeln sich bei Kaninchen oft schleichend. Gefährlich wird es,
 
 Ein Kaninchen, das nicht frisst und keinen Kot absetzt, ist ein Notfall. Warten Sie nicht bis zum nächsten Tag.
 
-## Warum Kaninchenzähne immer weiter wachsen
+## Warum wachsen Kaninchenzähne immer weiter?
 
 Kaninchenzähne wachsen ein Leben lang nach, die Schneidezähne vorne ebenso wie die Backenzähne weiter hinten im Maul. Normalerweise werden sie beim Kauen im gleichen Maß abgenutzt, wie sie nachwachsen. Gerät dieses Gleichgewicht durcheinander, werden die Zähne zu lang.
 
 Fehlt der Gegenzahn, der den Zahn abnutzt, wächst er sogar schneller als sonst. Deshalb kann ein einziger schiefer oder abgebrochener Zahn mit der Zeit das ganze Gebiss aus dem Gleichgewicht bringen.
 
-## Ursachen: Futter, Veranlagung, Verletzungen
+## Was verursacht Zahnprobleme beim Kaninchen?
+
+Vor allem zu wenig Heu und zu viel Pellets und Körner, eine erbliche Fehlstellung, Verletzungen und eine unausgewogene Ernährung.
 
 Zahnerkrankungen gehören zu den häufigsten Gesundheitsproblemen bei Heimkaninchen. Fachleute sehen mehrere Ursachen:
 
@@ -52,7 +54,9 @@ Zahnerkrankungen gehören zu den häufigsten Gesundheitsproblemen bei Heimkaninc
 
 Mit dem Alter steigt das Risiko.
 
-## Woran Sie zu lange Zähne erkennen
+## Woran erkenne ich zu lange Zähne bei meinem Kaninchen?
+
+An zu langen oder schiefen Schneidezähnen und bei den Backenzähnen an verändertem Fressen, Gewichtsverlust, Speicheln, tränenden Augen und weniger Kötteln.
 
 **Schneidezähne** sehen Sie selbst, wenn Sie vorsichtig die Lippe anheben. Warnzeichen sind:
 
@@ -68,11 +72,13 @@ Die **Backenzähne** sehen Sie von außen nicht. Hier bilden sich oft scharfe Ka
 - verklebter Po, weil das Kaninchen seinen Blinddarmkot nicht mehr frisst
 - weniger und kleinere Köttel
 
-## Gefährliche Folge: Zahnabszesse
+## Was ist ein Zahnabszess beim Kaninchen?
 
 Ein Abszess ist eine Eiteransammlung um die Zahnwurzel. Er kann entstehen, wenn sich Futter festsetzt, wenn scharfe Zahnkanten das Maul verletzen oder wenn ein Zahn zu kurz gekürzt wurde. Sie bemerken ihn oft als feste Beule am Kiefer. Laut MSD Veterinary Manual sind häufig mehrere Zähne betroffen, und Abszesse kommen oft wieder. Manchmal muss der betroffene Zahn entfernt werden. Je früher Zahnprobleme behandelt werden, desto besser.
 
-## Was die Tierärztin oder der Tierarzt tut
+## Wie behandelt die Praxis Zahnprobleme beim Kaninchen?
+
+Nach einer Untersuchung in Sedierung oder Narkose, meist mit Röntgen, kann sie Zähne kürzen und abschleifen, ziehen, Abszesse behandeln und Schmerzmittel geben.
 
 Ein Blick ins Maul in wachem Zustand zeigt nur einen Teil. Für eine **vollständige Untersuchung** braucht Ihr Kaninchen eine Sedierung oder Narkose. Dazu gehören meist **Röntgenbilder** des Kopfes, manchmal eine Computertomografie, um die Zahnwurzeln zu beurteilen.
 
@@ -85,13 +91,15 @@ Je nach Befund kann die Praxis:
 
 Viele Kaninchen mit erworbener Zahnerkrankung brauchen regelmäßige Kontrollen und wiederholte Behandlungen. Wie oft, legt die Praxis fest.
 
-## Bitte nicht selbst kürzen
+## Darf ich die Zähne meines Kaninchens selbst kürzen?
 
 Kürzen Sie die Zähne Ihres Kaninchens **nicht selbst**, auch nicht mit einer Krallenzange. Wird ein Zahn zu kurz gekürzt, kann die Zahnhöhle mit Nerv und Blutgefäßen freiliegen. Das MSD Veterinary Manual nennt das als eine mögliche Ursache für Zahnabszesse. Außerdem sehen Sie zu Hause die Backenzähne nicht, die häufig das eigentliche Problem sind.
 
 Geben Sie Ihrem Kaninchen außerdem **keine Medikamente aus der Hausapotheke**. Schmerzmittel für Menschen wie **Paracetamol** oder **Ibuprofen** gehören nicht in ein Kaninchen. **Metamizol** (zum Beispiel Novalgin) darf es nur bekommen, wenn die Tierärztin oder der Tierarzt es verordnet. Auch übrig gebliebene Antibiotika anderer Tiere sind tabu: Laut MSD Veterinary Manual können manche davon bei Kaninchen lebensbedrohlichen Durchfall auslösen.
 
-## So beugen Sie vor
+## Wie beuge ich Zahnproblemen bei meinem Kaninchen vor?
+
+Mit Heu in unbegrenzter Menge, frischem Grün, wenig Pellets und Leckerlis, regelmäßigem Wiegen und Zahnkontrollen bei jedem Tierarztbesuch.
 
 - **Heu in unbegrenzter Menge**, jeden Tag frisch. Es ist die wichtigste Grundlage für gesunde Zähne.
 - Dazu frisches Grün, Kräuter und Blattgemüse. Pellets, Körner, Obst und Leckerlis nur sparsam oder gar nicht.

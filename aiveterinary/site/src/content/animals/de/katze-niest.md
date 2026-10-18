@@ -33,13 +33,15 @@ Fahren Sie sofort in eine Praxis und rufen Sie vorher an, wenn Ihre Katze:
 
 Katzen atmen normalerweise durch die Nase. Atmen mit offenem Maul ist bei einer Katze immer ein Warnzeichen.
 
-## Wenn es nur ein Niesen ist
+## Ist es schlimm, wenn meine Katze ab und zu niest?
+
+Nein: Solange sie munter ist, normal frisst und keinen Ausfluss aus Nase oder Augen hat, können Sie abwarten und beobachten.
 
 Einzelnes Niesen kommt bei jeder Katze vor, etwa durch Staub, Streu oder einen starken Geruch. Solange Ihre Katze munter ist, normal frisst und keinen Ausfluss aus Nase oder Augen hat, können Sie abwarten und beobachten.
 
 Wurde Ihre Katze vor wenigen Tagen mit einem Impfstoff in die Nase geimpft, kann sie danach einige Tage niesen. Sprechen Sie das bei Ihrer Praxis an, wenn Sie unsicher sind.
 
-## Die häufigste Ursache: Katzenschnupfen
+## Warum niest meine Katze häufig?
 
 Niest Ihre Katze häufig und hat dazu Ausfluss aus Nase oder Augen, steckt meistens ein **Katzenschnupfen** dahinter. Das ist keine einzelne Krankheit, sondern ein Komplex von Infektionen. Hauptverursacher sind das **Feline Herpesvirus** und das **Feline Calicivirus**, oft zusammen. Auch Bakterien wie *Chlamydia felis* oder *Bordetella* können beteiligt sein, und nach der Virusinfektion siedeln sich häufig Bakterien an.
 
@@ -55,13 +57,17 @@ Leichte Verläufe dauern etwa eine bis eineinhalb Wochen, schwere können sich �
 
 **Warum eine erkältete Katze oft nicht frisst:** Katzen fressen stark nach Geruch. Ist die Nase verstopft, riecht das Futter nicht mehr verlockend. Schmerzhafte Geschwüre im Maul machen das Fressen zusätzlich unangenehm. Weil eine Katze, die mehrere Tage nicht frisst, eine gefährliche Fettleber entwickeln kann, ist Appetitlosigkeit hier ein wichtiger Grund für einen Tierarztbesuch.
 
-## Ansteckung und Trägertum
+## Ist Katzenschnupfen ansteckend?
+
+Ja: Die Erreger werden über Nasen-, Augen- und Maulsekret übertragen, und viele Katzen bleiben nach einer Herpesvirus-Infektion lebenslang Trägerinnen.
 
 Die Erreger werden über Nasen-, Augen- und Maulsekret übertragen, durch direkten Kontakt, durch Niesen und über Gegenstände wie Näpfe oder Hände. Besonders verbreitet ist Katzenschnupfen dort, wo viele Katzen eng zusammenleben, etwa in Tierheimen oder Zuchten.
 
 Viele Katzen bleiben nach einer Herpesvirus-Infektion lebenslang Trägerinnen. Das Virus ruht im Körper und kann bei Stress wieder aktiv werden, etwa nach einem Umzug, einer Operation oder wenn eine neue Katze einzieht. Dann tritt der Schnupfen erneut auf, und die Katze kann andere anstecken.
 
-## Andere Ursachen für Niesen
+## Welche anderen Ursachen kann Niesen bei Katzen haben?
+
+Fremdkörper in der Nase, entzündete Zahnwurzeln, Allergien, Pilzinfektionen, Tumoren und chronischen Schnupfen.
 
 - **Fremdkörper in der Nase**, zum Beispiel ein Grashalm. Typisch ist plötzlich einseitiger Ausfluss, oft mit Reiben oder Pfoten im Gesicht.
 - **Entzündete Zahnwurzeln** im Oberkiefer, die bis in die Nasennebenhöhlen reichen können.
@@ -70,7 +76,9 @@ Viele Katzen bleiben nach einer Herpesvirus-Infektion lebenslang Trägerinnen. D
 - **Tumoren in der Nase**. Hinweise sind ein Ausfluss, der lange einseitig ist und später beidseitig wird, oder blutiger Ausfluss.
 - **Chronischer Schnupfen** nach einer schweren Virusinfektion, bei dem die Nasenschleimhaut dauerhaft geschädigt bleibt.
 
-## Was Sie zu Hause tun können
+## Was kann ich zu Hause tun, wenn meine Katze Schnupfen hat?
+
+Nase und Augen sanft säubern, Futter attraktiv machen, für Wasser und Ruhe sorgen, die Katze von anderen Katzen trennen und keine Medikamente für Menschen geben.
 
 - **Nase und Augen sanft säubern**, mit einem weichen, angefeuchteten Tuch. Ihre Praxis kann Ihnen zeigen, wie Sie Kochsalzlösung dafür verwenden.
 - **Futter attraktiv machen:** leicht erwärmtes, stark riechendes Nassfutter anbieten. Nicht zwangsfüttern.
@@ -79,7 +87,9 @@ Viele Katzen bleiben nach einer Herpesvirus-Infektion lebenslang Trägerinnen. D
 - **Kranke Katze von anderen Katzen trennen**, Näpfe getrennt halten, nach Kontakt Hände waschen. Das Herpesvirus wird durch die meisten üblichen Reinigungs- und Desinfektionsmittel zerstört.
 - **Keine Medikamente für Menschen**, auch keine Nasentropfen, Erkältungsmittel oder Schmerzmittel. Paracetamol ist für Katzen hochgiftig, schon kleine Mengen können tödlich sein. Ibuprofen ist ebenfalls gefährlich, und Metamizol (zum Beispiel Novalgin) darf nur die Tierärztin oder der Tierarzt geben.
 
-## Wann zur Tierärztin oder zum Tierarzt
+## Wann sollte ich mit meiner niesenden Katze zur Tierärztin oder zum Tierarzt?
+
+Innerhalb von ein bis zwei Tagen, wenn Niesen mit Ausfluss länger als ein paar Tage anhält, der Ausfluss sich verändert oder einseitig ist, sie weniger frisst oder die Augen betroffen sind.
 
 Vereinbaren Sie innerhalb von ein bis zwei Tagen einen Termin, wenn:
 
@@ -93,11 +103,15 @@ Vereinbaren Sie innerhalb von ein bis zwei Tagen einen Termin, wenn:
 
 In der Praxis wird Ihre Katze untersucht, und je nach Befund werden Augen, Maul und Nase genauer angesehen. Bei wiederkehrenden oder einseitigen Beschwerden können Röntgen, eine Computertomografie oder eine Spiegelung der Nase nötig sein. Gegen die Viren selbst wirken Antibiotika nicht. Sie werden eingesetzt, wenn Bakterien beteiligt sind. Welche Behandlung Ihre Katze braucht, entscheidet die Praxis.
 
-## Vorbeugen durch Impfung
+## Kann eine Impfung Katzenschnupfen verhindern?
+
+Nicht in jedem Fall, aber Impfungen gegen Herpes- und Calicivirus machen die Erkrankung deutlich milder.
 
 Gegen Herpes- und Calicivirus gibt es Impfungen. Sie verhindern eine Infektion nicht in jedem Fall, machen die Erkrankung aber deutlich milder. Welches Impfschema zu Ihrer Katze passt, auch bei reinen Wohnungskatzen, besprechen Sie mit Ihrer Praxis.
 
-## Was die Tierärztin oder der Tierarzt wissen will
+## Was wird die Tierärztin oder der Tierarzt über das Niesen meiner Katze wissen wollen?
+
+Seit wann sie niest und wie der Ausfluss aussieht, ob sie frisst und trinkt, Impfstatus, Kontakt zu anderen Katzen, frühere Episoden und Stress.
 
 - Seit wann Ihre Katze niest, und ob Ausfluss dabei ist (ein- oder beidseitig, Farbe)
 - Ob sie frisst und trinkt

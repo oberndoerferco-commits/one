@@ -32,11 +32,15 @@ references:
   - title: "AAHA: 2019 Canine Life Stage Guidelines"
 ---
 
-## Why the first year is front-loaded
+## Why does so much happen in a puppy's or kitten's first year?
+
+Because most of what protects a dog or cat for life, from vaccines and wormers to microchip, teeth and food, happens before the first birthday.
 
 Most of what protects a dog or cat for life happens before the first birthday: vaccines, wormers, microchip, teeth, food and the neutering decision. The timing matters because a young animal's own immunity only gradually takes over from the protection in its mother's milk. The table is a typical European schedule; your vet will adjust it to your animal and region.
 
-## The schedule at a glance
+## What happens when in a puppy's or kitten's first year?
+
+The table below shows a typical European schedule, which your vet will adjust to your animal and region.
 
 | Age | What usually happens | Why |
 |---|---|---|
@@ -49,29 +53,39 @@ Most of what protects a dog or cat for life happens before the first birthday: v
 | Months 7 to 12 | Worming at least four times a year from now on, flea cover year-round, tick cover through tick season. Adult food when your vet says growth is done. | ESCCAP: one to three wormings a year are not enough. |
 | 12 to 15 months | First annual health check. In Germany, the 15-month dose completes the primary series under StIKo Vet. | Move to adult intervals. |
 
-## The first visit: what to expect
+## What happens at a puppy's or kitten's first vet visit?
+
+The vet weighs your animal and checks heart, lungs, mouth, eyes, ears, belly and skin for problems such as hernias, fleas and ear mites.
 
 Bring the vaccination record, worming dates, the current food and a fresh stool sample if you can. The vet will weigh your animal, listen to heart and lungs, look in mouth, eyes and ears, feel the belly, check the umbilicus for a hernia and the testicles in males, and look for fleas and ear mites. Ask about out-of-hours cover now, not the night you need it.
 
-## Vaccinations, explained once
+## Which vaccinations do puppies and kittens need?
+
+The core vaccines are distemper, adenovirus and parvovirus for dogs and panleukopenia, herpesvirus and calicivirus for cats, plus rabies where required.
 
 The 2024 WSAVA guidelines name the core vaccines as distemper, adenovirus and parvovirus for dogs, and panleukopenia, herpesvirus and calicivirus for cats. Rabies is core wherever it is endemic or legally required, and for any animal crossing a border. Leptospirosis counts as core for dogs in much of Europe; feline leukaemia is recommended for young cats that will go outdoors.
 
 The pattern is the same everywhere: first dose at 6 to 8 weeks, repeats every 2 to 4 weeks, a final dose at 16 weeks or older, one more at around 26 weeks. Germany's StIKo Vet puts puppy and kitten doses at 8, 12 and 16 weeks, with a 15-month dose completing the series. Italian practice follows the same 8-12-16 rhythm; rabies is not compulsory nationally but is required for EU travel, and only counts 21 days after the injection.
 
-## Worms, fleas and ticks
+## How often should puppies and kittens be wormed and treated for fleas and ticks?
+
+Worming starts in the first weeks and repeats on the ESCCAP schedule, flea control is year-round, and tick protection covers at least the tick season.
 
 ESCCAP recommends roundworm treatment from 14 days in puppies and 3 weeks in kittens, every two weeks until two weeks after weaning, then monthly to six months where risk stays high. Adults are treated at least four times a year, monthly for hunters, raw feeders and travellers. Flea control is year-round, because heated homes keep fleas breeding in winter; tick protection covers at least the tick season, and all year where ticks stay active.
 
-## Microchip and registration
+## Does my puppy or kitten need a microchip?
+
+A chip only helps if it is registered to you, and whether it is compulsory depends on the country, region and species.
 
 A chip only helps if it is registered to you. In Italy, dogs must be chipped and entered in the anagrafe within 60 days of birth, or within days of taking on an older dog (the window is regional: ten days in Lazio). Cats are optional in most regions, compulsory in some, and compulsory everywhere once chipped. Germany has no national duty, but the Bundestierärztekammer recommends it and registration with TASSO or FINDEFIX is free. In Austria, puppies must be chipped by 12 weeks and entered in the Heimtierdatenbank within a month.
 
-## Neutering: a conversation, not a date
+## When should I neuter my puppy or kitten?
 
 There is no single right age. Breed, adult size, sex, behaviour and whether you can manage an entire animal safely all change the answer; AAHA's 2019 canine guidance treats it as an individual decision. Raise it at the four-month visit so you have time to think.
 
-## Socialisation, teeth, food and insurance
+## What else should I think about in the first year?
+
+Early socialisation classes, watching the change to adult teeth, brushing early, changing food gradually and, if you want it, insurance in the first month.
 
 WSAVA strongly supports early socialisation classes before the vaccine series is finished: the parvovirus risk from well-run classes is low and the cost of waiting is high. Baby teeth are replaced at about four to six months; one still in place beside its adult tooth needs removing. Start brushing early: WSAVA reports periodontal disease in 80% of dogs and 70% of cats by age two, and brushing is the best prevention. Change food over several days, never overnight. If you want insurance, take it out in the first month: waiting periods apply and anything diagnosed earlier is excluded.
 

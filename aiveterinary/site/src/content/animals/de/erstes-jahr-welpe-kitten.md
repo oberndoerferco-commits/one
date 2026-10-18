@@ -28,11 +28,15 @@ references:
   - title: "AAHA: 2019 Canine Life Stage Guidelines"
 ---
 
-## Warum das erste Jahr so dicht ist
+## Warum passiert im ersten Jahr von Welpe und Kitten so viel?
+
+Weil fast alles, was einen Hund oder eine Katze ein Leben lang schützt, vor dem ersten Geburtstag stattfindet.
 
 Fast alles, was einen Hund oder eine Katze ein Leben lang schützt, fällt in die Zeit vor dem ersten Geburtstag: Impfungen, Entwurmungen, der Chip, die Gewöhnung an Zahnpflege und Untersuchung, die Fütterung und die Kastrationsfrage. Der Zeitpunkt ist entscheidend, weil das eigene Immunsystem den Schutz aus der Muttermilch nur nach und nach ablöst. Die Tabelle zeigt einen typischen Plan; Ihre Praxis passt ihn an Ihr Tier und Ihre Region an.
 
-## Der Plan auf einen Blick
+## Was steht im ersten Lebensjahr wann an?
+
+Die Tabelle zeigt einen typischen Plan, den Ihre Praxis an Ihr Tier und Ihre Region anpasst.
 
 | Alter | Was üblicherweise passiert | Warum |
 |---|---|---|
@@ -45,29 +49,39 @@ Fast alles, was einen Hund oder eine Katze ein Leben lang schützt, fällt in di
 | Monat 7 bis 12 | Entwurmung ab jetzt mindestens viermal im Jahr, Flohschutz ganzjährig, Zeckenschutz mindestens in der Zeckensaison. Umstellung auf Erwachsenenfutter, wenn die Praxis das Wachstum für abgeschlossen hält. | ESCCAP: Ein bis drei Entwurmungen im Jahr reichen nicht. |
 | 12 bis 15 Monate | Erster Jahrescheck. Die Impfung im 15. Lebensmonat schließt nach StIKo Vet die Grundimmunisierung ab. | Übergang zu den Erwachsenen-Intervallen. |
 
-## Der erste Besuch: was Sie erwartet
+## Was passiert beim ersten Tierarztbesuch mit Welpe oder Kitten?
+
+Die Tierärztin wiegt das Tier, untersucht Herz, Lunge, Maul, Augen, Ohren, Bauch und Nabel und sucht nach Flöhen und Ohrmilben.
 
 Bringen Sie Impfpass, Entwurmungsdaten, das gewohnte Futter und wenn möglich eine frische Kotprobe mit. Die Tierärztin wiegt das Tier, hört Herz und Lunge ab, schaut in Maul, Augen und Ohren, tastet den Bauch, prüft Nabel und bei Rüden die Hoden und sucht nach Flöhen und Ohrmilben. Fragen Sie jetzt nach dem Notdienst, nicht in der Nacht, in der Sie ihn brauchen.
 
-## Impfungen, einmal erklärt
+## Welche Impfungen brauchen Welpen und Kitten?
+
+Die Core-Impfungen sind nach StIKo Vet beim Hund Staupe, Parvovirose und Leptospirose, bei der Katze Panleukopenie, Herpes- und Caliciviren; Tollwut ist für Reisen ins Ausland Pflicht.
 
 Die StIKo Vet, die Ständige Impfkommission am Friedrich-Loeffler-Institut, nennt in ihrer Leitlinie von 2025 als Core-Impfungen beim Hund Staupe, Parvovirose und Leptospirose, bei der Katze Panleukopenie, Herpes- und Caliciviren. Die Lebendimpfstoffe gegen Staupe und Parvovirose werden in der 8., 12. und 16. Lebenswoche gegeben; Leptospirose ab der 12. Woche zweimal im Abstand von drei bis vier Wochen. Die Impfung im 15. Lebensmonat schließt die Grundimmunisierung ab. Tollwut ist in Deutschland keine Core-Impfung mehr, für jede Reise ins Ausland aber Pflicht, und sie zählt erst 21 Tage nach der Injektion. Katzen mit Freigang sollten nach einem negativen Test gegen Leukose geimpft werden.
 
 Die WSAVA empfiehlt international denselben Rhythmus: erste Dosis mit 6 bis 8 Wochen, Wiederholung alle 2 bis 4 Wochen, letzte Dosis frühestens mit 16 Wochen und eine weitere ab 26 Wochen. Welche Variante Ihre Praxis wählt, hängt vom Impfstoff und vom Impfpass des Züchters ab; die StIKo Vet rät, die Grundimmunisierung möglichst mit demselben Produkt fortzusetzen.
 
-## Würmer, Flöhe, Zecken
+## Wie oft müssen Welpen und Kitten entwurmt und gegen Flöhe und Zecken geschützt werden?
+
+Die Entwurmung beginnt in den ersten Lebenswochen und folgt dem ESCCAP-Schema, Flohschutz gilt ganzjährig und Zeckenschutz mindestens in der Saison.
 
 ESCCAP, der europäische Parasitologenverband, empfiehlt die Behandlung gegen Spulwürmer ab dem 14. Lebenstag bei Welpen und ab der 3. Woche bei Kitten, alle zwei Wochen bis zwei Wochen nach dem Absetzen, danach monatlich bis zum sechsten Monat, solange das Risiko hoch ist. Erwachsene Tiere werden mindestens viermal im Jahr entwurmt, bei Jagd, Rohfütterung oder Reisen monatlich. Flohschutz gilt ganzjährig, weil Flöhe in beheizten Wohnungen auch im Winter brüten; Zeckenschutz mindestens in der Saison, ganzjährig dort, wo Zecken aktiv bleiben.
 
-## Chip und Registrierung
+## Muss mein Welpe oder Kitten gechippt werden?
+
+In Deutschland gibt es keine generelle Pflicht, in Österreich schon für Welpen, und ein Chip hilft nur, wenn er auf Sie registriert ist.
 
 Ein Chip hilft nur, wenn er auf Sie registriert ist. In Deutschland gibt es laut Bundestierärztekammer keine generelle Kennzeichnungs- oder Registrierungspflicht; einzelne Bundesländer schreiben den Chip für bestimmte Hunde vor. Empfohlen wird die Registrierung trotzdem, und sie ist bei TASSO und FINDEFIX kostenlos. In Österreich müssen Welpen bis zur 12. Lebenswoche gechippt und innerhalb eines Monats in die Heimtierdatenbank eingetragen werden; die Meldung bei der Gemeinde ersetzt das nicht. Für den EU-Heimtierausweis ist der Chip ohnehin Voraussetzung.
 
-## Kastration: ein Gespräch, kein Termin
+## Wann sollte ich meinen Welpen oder mein Kitten kastrieren lassen?
 
 Es gibt kein richtiges Alter für alle. Rasse, erwartete Endgröße, Geschlecht, Verhalten und die Frage, ob Sie ein unkastriertes Tier sicher halten können, verändern die Antwort; die AAHA-Leitlinie von 2019 behandelt sie als Einzelfallentscheidung. Sprechen Sie das Thema beim Besuch im vierten Monat an, dann bleibt Zeit zum Überlegen.
 
-## Sozialisierung, Zähne, Futter, Versicherung
+## Woran sollte ich im ersten Jahr noch denken?
+
+An frühe Welpenstunden, den Zahnwechsel, frühes Zähneputzen, eine langsame Futterumstellung und, wenn gewünscht, eine Versicherung im ersten Monat.
 
 Die WSAVA unterstützt ausdrücklich frühe Welpenstunden, noch vor Abschluss der Impfserie: Das Parvovirose-Risiko in gut geführten Gruppen ist gering, der Preis des Wartens hoch. Der Zahnwechsel läuft zwischen dem vierten und sechsten Monat; ein Milchzahn, der neben dem bleibenden stehen bleibt, muss gezogen werden. Beginnen Sie früh mit dem Zähneputzen: Laut WSAVA haben 80 Prozent der Hunde und 70 Prozent der Katzen schon mit zwei Jahren eine Parodontalerkrankung, und die Zahnbürste ist die wirksamste Vorbeugung. Stellen Sie Futter über mehrere Tage um, nie von einer Mahlzeit zur nächsten. Wenn Sie eine Versicherung wollen, schließen Sie sie im ersten Monat ab: Es gelten Wartezeiten, und alles, was vorher diagnostiziert wurde, bleibt ausgeschlossen.
 

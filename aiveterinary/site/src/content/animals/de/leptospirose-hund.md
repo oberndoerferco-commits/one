@@ -41,7 +41,9 @@ In feuchter Umgebung überleben die Erreger lange. Warme, stehende oder langsam 
 
 Nicht nur Landhunde sind betroffen. Ein internationales Fachgremium (ACVIM-Konsensus 2023) betont, dass grundsätzlich alle Hunde ein Risiko haben, unabhängig von Rasse, Wohnort, Lebensweise und Jahreszeit. Auch kleine Hunde in der Stadt erkranken.
 
-## Anzeichen beim Hund
+## Woran erkenne ich Leptospirose bei meinem Hund?
+
+Häufig beginnt sie mit Mattigkeit, Appetitlosigkeit, Erbrechen und Fieber, und sie kann Nieren, Leber, Lunge und Blutgerinnung betreffen.
 
 Manche Hunde stecken eine Infektion ohne Anzeichen weg, andere erkranken plötzlich und schwer. Häufig beginnt die Krankheit unspezifisch mit Mattigkeit, Appetitlosigkeit, Erbrechen und Fieber. Typische Verläufe sind:
 
@@ -53,7 +55,9 @@ Manche Hunde stecken eine Infektion ohne Anzeichen weg, andere erkranken plötzl
 
 Auch Hunde, die gesund wirken, können die Bakterien mit dem Urin ausscheiden. Nach einer Infektion können Hunde laut MSD Veterinary Manual über Monate oder sogar Jahre Ausscheider bleiben.
 
-## Was die Tierärztin oder der Tierarzt tut
+## Wie wird Leptospirose beim Hund festgestellt und behandelt?
+
+Mit Blut- und Urinuntersuchungen und speziellen Labortests; erkrankte Hunde werden meist stationär mit Infusionen und Antibiotika behandelt.
 
 Die Praxis untersucht Blut und Urin, um zu sehen, welche Organe betroffen sind, oft ergänzt durch Röntgen und Ultraschall. Für den Nachweis der Leptospiren gibt es spezielle Labortests. Antikörpertests sind in der ersten Krankheitswoche oft noch negativ. Deshalb werden häufig zwei Blutproben im Abstand von ein bis zwei Wochen untersucht.
 
@@ -61,7 +65,9 @@ Erkrankte Hunde werden meist stationär behandelt, mit Infusionen, Antibiotika u
 
 Geben Sie Ihrem Hund **keine Medikamente aus Ihrer Hausapotheke**. **Ibuprofen** kann bei Hunden Magengeschwüre, Magen-Darm-Blutungen und Nierenschäden verursachen, **Paracetamol** kann die Leber schädigen. Gerade bei Leptospirose sind Nieren und Leber ohnehin gefährdet. **Metamizol** darf Ihr Hund nur bekommen, wenn die Praxis es verordnet.
 
-## Impfung: was die Leitlinien empfehlen
+## Sollte mein Hund gegen Leptospirose geimpft werden?
+
+Ja: Die StIKo Vet zählt die Leptospirose-Impfung zu den Core-Impfungen und empfiehlt nach der Grundimmunisierung jährliche Wiederholungsimpfungen.
 
 Die **StIKo Vet** zählt die Impfung gegen Leptospirose zu den **Core-Impfungen**, also zu den Impfungen, die jeder Hund haben sollte. Ein Grund ist, dass die Krankheit auf Menschen übertragbar ist. Die Leitlinie sieht für Welpen eine Impfung mit **8 und 12 Lebenswochen** und eine weitere mit **15 Lebensmonaten** vor. Danach empfiehlt sie **jährliche Wiederholungsimpfungen**.
 
@@ -75,7 +81,9 @@ Wichtig zu wissen:
 
 Welcher Impfstoff und welches Schema für Ihren Hund passen, bespricht Ihre Praxis mit Ihnen.
 
-## Schutz für Sie und Ihre Familie
+## Wie schütze ich meine Familie, wenn mein Hund Leptospirose hat?
+
+Vermeiden Sie Kontakt mit Urin und Blut Ihres Hundes, tragen Sie beim Aufwischen Handschuhe und waschen Sie sich nach jedem Kontakt gründlich die Hände.
 
 Leptospirose ist eine **Zoonose**, also auch für Menschen ansteckend. Die meisten Erkrankungen beim Menschen gehen laut StIKo Vet auf Wasserkontakt in der Freizeit oder auf berufliche Kontakte zurück. Das Risiko, sich bei einem erkrankten Hund anzustecken, scheint laut ACVIM-Konsensus gering, wenn einfache Hygieneregeln eingehalten werden. Wenn Ihr Hund erkrankt ist oder der Verdacht besteht:
 
@@ -87,7 +95,9 @@ Leptospirose ist eine **Zoonose**, also auch für Menschen ansteckend. Die meist
 - Andere Hunde im Haushalt können ebenfalls angesteckt worden sein. Fragen Sie Ihre Praxis, ob sie untersucht oder vorbeugend behandelt werden sollten.
 - Haben Sie oder ein Familienmitglied Fragen zur eigenen Gesundheit oder Krankheitszeichen, wenden Sie sich an Ihre Hausärztin oder Ihren Hausarzt und erwähnen Sie den Kontakt zum Hund.
 
-## So senken Sie das Risiko im Alltag
+## Wie senke ich das Leptospirose-Risiko für meinen Hund?
+
+Halten Sie den Impfschutz aktuell, lassen Sie Ihren Hund nicht aus stehenden Gewässern trinken und machen Sie Haus und Garten für Ratten und Mäuse unattraktiv.
 
 - Halten Sie den Impfschutz Ihres Hundes aktuell.
 - Lassen Sie Ihren Hund möglichst nicht aus Pfützen, Teichen oder stehenden Gewässern trinken und nehmen Sie frisches Wasser mit.

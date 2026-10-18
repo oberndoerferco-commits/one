@@ -31,7 +31,9 @@ Rufen Sie noch heute in Ihrer Praxis an und fahren Sie hin, wenn Ihr Hund:
 
 Schiefe Kopfhaltung, Gleichgewichtsstörungen und Lähmungen im Gesicht können bedeuten, dass die Entzündung das Mittel- oder Innenohr erreicht hat. Je früher behandelt wird, desto besser sind die Aussichten.
 
-## Was eine Ohrenentzündung ist
+## Was ist eine Ohrenentzündung beim Hund, und woran erkenne ich sie?
+
+Meist ist es eine Entzündung des äußeren Gehörgangs, die sich durch Kopfschütteln, Kratzen am Ohr, Rötung, dunkles Sekret, Geruch und Schmerzen zeigt.
 
 Mit „Ohrenentzündung“ ist beim Hund meist eine Entzündung des äußeren Gehörgangs gemeint, fachlich **Otitis externa**, umgangssprachlich auch „Ohrzwang“. Sie ist die häufigste Ohrerkrankung beim Hund. Ein Ohr oder beide können betroffen sein, die Beschwerden können plötzlich beginnen oder über lange Zeit bestehen.
 
@@ -44,7 +46,9 @@ Typische Anzeichen sind:
 - ein unangenehmer Geruch, der oft an Hefe erinnert
 - Schmerzen beim Berühren des Ohres
 
-## Warum das Ohr sich entzündet
+## Warum bekommt mein Hund eine Ohrenentzündung?
+
+Häufige Auslöser sind Allergien, Ohrmilben, Fremdkörper wie Grannen, Bakterien und Hefepilze, viel Ohrschmalz und manchmal eine Schilddrüsenunterfunktion.
 
 Eine Ohrenentzündung hat fast immer einen Auslöser, und genau der muss gefunden werden. Mögliche Ursachen sind:
 
@@ -59,7 +63,9 @@ Hinzu kommen begünstigende Faktoren. Hunde mit langen, schweren Hängeohren, zu
 
 Wichtig zu wissen: Wenn nicht alle Ursachen erkannt und behandelt werden, kommt die Entzündung häufig wieder.
 
-## Was Sie zu Hause tun und lassen sollten
+## Was kann ich zu Hause bei einer Ohrenentzündung meines Hundes tun?
+
+Lassen Sie das Ohr in Ruhe, reinigen Sie es nicht selbst und geben Sie keine Hausmittel, alten Ohrentropfen oder Medikamente für Menschen.
 
 Bis zum Termin können Sie Folgendes tun:
 
@@ -71,7 +77,7 @@ Bis zum Termin können Sie Folgendes tun:
 - **Keine Medikamente für Menschen**, auch nicht gegen die Schmerzen. Paracetamol und Ibuprofen können für Hunde gefährlich sein. Auch Metamizol (zum Beispiel Novalgin) gehört ausschließlich in die Hand der Tierärztin oder des Tierarztes. Ob und welches Schmerzmittel Ihr Hund bekommt, entscheidet die Praxis.
 - Verhindern Sie, dass Ihr Hund sich das Ohr blutig kratzt. Ein Halskragen aus der Praxis kann dabei helfen.
 
-## Wann zur Tierärztin oder zum Tierarzt
+## Wann sollte ich mit einer Ohrenentzündung zur Tierärztin oder zum Tierarzt?
 
 Auch ohne die Alarmzeichen oben sollte eine Ohrenentzündung innerhalb von ein bis zwei Tagen angesehen werden. Sie ist schmerzhaft und wird mit der Zeit nicht von allein besser. Kommen Sie früher, wenn:
 
@@ -80,7 +86,9 @@ Auch ohne die Alarmzeichen oben sollte eine Ohrenentzündung innerhalb von ein b
 - die Ohren immer wieder entzündet sind
 - Ihr Hund schlechter zu hören scheint
 
-## Was in der Praxis passiert
+## Wie wird eine Ohrenentzündung beim Hund behandelt?
+
+Die Praxis untersucht den Gehörgang, prüft meist eine Sekretprobe, reinigt das Ohr gründlich und legt Tropfen oder Tabletten fest, die Sie bis zum Ende geben.
 
 Ihre Tierärztin oder Ihr Tierarzt untersucht den Gehörgang mit einem Otoskop bis zum Trommelfell. So lassen sich Fremdkörper, Parasiten und ein beschädigtes Trommelfell erkennen. Ist das Ohr sehr schmerzhaft oder zugeschwollen, kann dafür eine Sedierung oder Narkose nötig sein.
 
@@ -88,18 +96,24 @@ Meist wird eine Probe des Sekrets unter dem Mikroskop angesehen, manchmal auch i
 
 Vor der eigentlichen Behandlung wird das Ohr oft gründlich gereinigt, weil Sekret und Ohrschmalz die Wirkung von Ohrmedikamenten abschwächen können. Diese Tiefenreinigung gehört in die Praxis. Welche Tropfen oder Tabletten Ihr Hund bekommt und wie lange, legt die Praxis fest. Halten Sie die Behandlung bis zum Ende durch, auch wenn es Ihrem Hund schon nach wenigen Tagen besser geht, und nehmen Sie die Kontrolltermine wahr. Langwierige Entzündungen können Monate dauern, manche Hunde brauchen dauerhaft eine Behandlung. Bei Mittelohrentzündungen oder chronischen Verläufen kann eine Operation nötig werden.
 
-## Ohrbluterguss: eine mögliche Folge
+## Was ist ein Ohrbluterguss beim Hund?
+
+Eine weiche, mit Flüssigkeit gefüllte Schwellung der Ohrmuschel, die entsteht, wenn durch ständiges Schütteln oder Kratzen ein Blutgefäß platzt.
 
 Schüttelt oder kratzt ein Hund ständig, kann in der Ohrmuschel ein Blutgefäß platzen. Es entsteht eine weiche, mit Flüssigkeit gefüllte Schwellung, das sogenannte Othämatom. Es wird meist operativ behandelt, und entscheidend ist, dass auch die Ursache, also oft die Ohrenentzündung, mitbehandelt wird.
 
-## Vorbeugen
+## Wie beuge ich Ohrenentzündungen bei meinem Hund vor?
+
+Schauen Sie regelmäßig in die Ohren, trocknen Sie nach dem Baden die Ohrmuschel ab und fragen Sie Ihre Praxis, ob und womit Sie die Ohren reinigen sollen.
 
 - Schauen Sie regelmäßig in die Ohren Ihres Hundes und achten Sie auf Rötung, Feuchtigkeit oder Geruch.
 - Trocknen Sie nach dem Baden oder Schwimmen die Ohrmuschel ab, nicht den Gehörgang.
 - Wenn Ihr Hund zu Ohrenentzündungen neigt, fragen Sie in der Praxis, ob und wie Sie die Ohren regelmäßig reinigen sollen und womit.
 - Haare im Gehörgang sollten nur nach Rücksprache mit der Praxis entfernt werden.
 
-## Was die Tierärztin oder der Tierarzt wissen will
+## Was wird die Tierärztin oder der Tierarzt über die Ohren meines Hundes wissen wollen?
+
+Seit wann und welches Ohr, frühere Ohrenentzündungen und Behandlungen, was Sie ins Ohr gegeben haben, Juckreiz an anderen Stellen, Schwimmen oder hohes Gras und das Futter.
 
 - Seit wann die Beschwerden bestehen, und welches Ohr betroffen ist
 - Ob Ihr Hund schon früher Ohrenentzündungen hatte und was damals gegeben wurde

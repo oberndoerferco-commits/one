@@ -41,7 +41,9 @@ Rufen Sie außerdem in Ihrer Praxis an, wenn die Läufigkeit **länger als etwa 
 
 Nicht kastrierte Hündinnen werden meist ein- bis zweimal im Jahr läufig. Der Abstand zwischen zwei Läufigkeiten liegt laut MSD Veterinary Manual zwischen **4 und 13 Monaten**, im Durchschnitt bei etwa **7 Monaten**. Jede Hündin hat ihren eigenen Rhythmus. Notieren Sie Beginn und Ende jeder Läufigkeit, das hilft später auch der Praxis.
 
-## Die Phasen der Läufigkeit
+## Welche Phasen hat die Läufigkeit, und wie lange dauern sie?
+
+Vorbrunst, Brunst, Nachbrunst und Ruhephase; die sichtbare Läufigkeit dauert meist zwei bis drei Wochen.
 
 **Vorbrunst (Proöstrus):** Sie dauert im Durchschnitt etwa **9 Tage**, manchmal nur 2 Tage, manchmal bis zu 3 Wochen. Die Scham schwillt an und wird fest, und es kommt **blutiger Ausfluss** aus der Scheide. Rüden finden die Hündin jetzt sehr interessant, sie lässt sich aber noch nicht decken.
 
@@ -53,7 +55,9 @@ Nicht kastrierte Hündinnen werden meist ein- bis zweimal im Jahr läufig. Der A
 
 Die sichtbare Läufigkeit, also Vorbrunst und Brunst zusammen, dauert damit meist zwei bis drei Wochen, bei manchen Hündinnen kürzer oder länger.
 
-## Alltag während der Läufigkeit
+## Worauf muss ich achten, während meine Hündin läufig ist?
+
+Halten Sie sie draußen an der Leine, vermeiden Sie Kontakt zu nicht kastrierten Rüden und informieren Sie Hundeschule, Pension oder Mitbewohner mit Rüden rechtzeitig.
 
 - Halten Sie Ihre Hündin draußen an der Leine und vermeiden Sie Kontakt zu nicht kastrierten Rüden, auch wenn die Blutung schon nachlässt. Gerade die Stehtage kommen oft erst danach.
 - Informieren Sie Hundeschule, Hundepension oder Mitbewohner mit Rüden rechtzeitig.
@@ -61,7 +65,9 @@ Die sichtbare Läufigkeit, also Vorbrunst und Brunst zusammen, dauert damit meis
 
 Wurde Ihre Hündin ungewollt gedeckt, sprechen Sie mit Ihrer Praxis. Es gibt tierärztliche Möglichkeiten, eine Trächtigkeit zu beenden. Laut MSD Veterinary Manual werden aber rund 60 Prozent der ungewollt gedeckten Hündinnen gar nicht trächtig. Deshalb sollte eine Trächtigkeit vor einer Behandlung bestätigt werden.
 
-## Scheinträchtigkeit: häufig und meist harmlos
+## Ist eine Scheinträchtigkeit bei der Hündin gefährlich?
+
+Meist nicht: Sie ist häufig, und die Anzeichen klingen in der Regel ohne Behandlung innerhalb von 1 bis 3 Wochen ab.
 
 Nach jeder Läufigkeit ohne Trächtigkeit ist eine Hündin hormonell gesehen „scheinträchtig“. Bei manchen zeigt sich das deutlich, typischerweise etwa **6 bis 8 Wochen nach der Läufigkeit**. Anzeichen können sein:
 
@@ -81,7 +87,9 @@ So können Sie helfen:
 
 Aufpassen sollten Sie, wenn Ihre Hündin in dieser Zeit **krank wirkt**, erbricht, viel trinkt oder Ausfluss hat. Dann muss die Praxis eine Pyometra ausschließen.
 
-## Was die Praxis bei Verdacht auf Pyometra tut
+## Wie wird eine Pyometra bei der Hündin behandelt?
+
+Meist mit einer Operation, bei der Gebärmutter und Eierstöcke entfernt werden, nachdem die Praxis mit Ultraschall und Blutuntersuchungen untersucht hat.
 
 Die Tierärztin oder der Tierarzt untersucht Ihre Hündin, meist mit **Ultraschall** und **Blutuntersuchungen**. Die empfohlene Behandlung ist in den meisten Fällen eine Operation, bei der Gebärmutter und Eierstöcke entfernt werden. Viele Hündinnen sind dann schon geschwächt und werden vorher mit Infusionen und Antibiotika stabilisiert. Nur in ausgewählten Fällen kommt eine Behandlung mit Medikamenten in Frage. Was richtig ist, entscheidet die Praxis.
 

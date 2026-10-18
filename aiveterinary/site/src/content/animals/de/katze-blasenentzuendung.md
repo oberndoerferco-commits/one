@@ -21,7 +21,9 @@ Fahren Sie sofort in eine Tierarztpraxis oder Tierklinik und rufen Sie vorher an
 
 Bei Katern ist die Harnröhre lang und eng. Entzündungsschleim, Kristalle oder Krämpfe können sie vollständig verschließen. Dann kann die Katze keinen Urin mehr absetzen, Giftstoffe und Kalium stauen sich im Blut, und innerhalb von 24 bis 48 Stunden drohen Herzstillstand und Nierenversagen. Ein verschlossener Kater ist ein Notfall, auch nachts und am Wochenende. Verwechseln Sie das Pressen nicht mit Verstopfung: Beides sieht ähnlich aus, und im Zweifel gilt die Harnröhre.
 
-## Wie sich eine Blasenentzündung zeigt
+## Woran erkenne ich eine Blasenentzündung bei meiner Katze?
+
+An häufigem Aufsuchen der Toilette mit kleinen Mengen, Pressen, Urinieren außerhalb der Toilette, Blut im Urin und intensivem Belecken des Genitalbereichs.
 
 Katzen zeigen Blasenprobleme meist über die Toilette:
 
@@ -34,7 +36,9 @@ Katzen zeigen Blasenprobleme meist über die Toilette:
 
 Viele Halter deuten das Urinieren neben der Toilette zuerst als „Protest“. Es ist fast immer ein Krankheitszeichen.
 
-## Stress als Auslöser: die feline idiopathische Zystitis
+## Kann Stress bei meiner Katze eine Blasenentzündung auslösen?
+
+Ja: Bei jüngeren und mittelalten Katzen steckt meist keine bakterielle Infektion dahinter, sondern die stressbedingte feline idiopathische Zystitis (FIC).
 
 Bei jüngeren und mittelalten Katzen findet sich in der Mehrzahl der Fälle **keine bakterielle Infektion**. Die Diagnose lautet dann **feline idiopathische Zystitis (FIC)**, eine sterile Entzündung der Blasenwand. Nach heutigem Verständnis reagieren betroffene Katzen überempfindlich auf Stress: Das Nervensystem feuert, die Blasenschleimhaut wird durchlässig, es entsteht eine schmerzhafte Entzündung. Deshalb helfen Antibiotika in diesen Fällen nicht, und Ihre Praxis wird sie nur verschreiben, wenn eine Urinuntersuchung tatsächlich Bakterien zeigt.
 
@@ -49,7 +53,9 @@ Typische Auslöser:
 
 Übergewichtige, wenig aktive Wohnungskater, die vor allem Trockenfutter fressen, sind am häufigsten betroffen. Bei älteren Katzen über zehn Jahren werden bakterielle Infektionen, Blasensteine und Tumoren häufiger, und eine Abklärung ist wichtiger.
 
-## Was Sie zu Hause tun können
+## Was kann ich zu Hause bei einer Blasenentzündung meiner Katze tun?
+
+Beobachten Sie, ob Urin kommt, sorgen Sie für mehr Flüssigkeit und Ruhe und geben Sie keine Schmerzmittel für Menschen.
 
 Bei einer Katze, die uriniert, aber Beschwerden zeigt:
 
@@ -59,11 +65,13 @@ Bei einer Katze, die uriniert, aber Beschwerden zeigt:
 - **Kein Schmerzmittel für Menschen.** Paracetamol ist für Katzen tödlich, auch Ibuprofen und Acetylsalicylsäure sind gefährlich.
 - Keine Cranberry-Präparate, keine „Blasentees“ ohne Rücksprache. Sie schaden selten, verzögern aber oft den Termin.
 
-## Wann zum Tierarzt
+## Wann sollte ich mit meiner Katze wegen Blasenproblemen zur Tierärztin oder zum Tierarzt?
 
 Vereinbaren Sie noch heute einen Termin, wenn Ihre Katze Blut im Urin hat, häufig und unter Beschwerden uriniert oder neben die Toilette geht. Eine Urinuntersuchung klärt, ob Bakterien, Kristalle oder Blut vorliegen, und bei wiederkehrenden Fällen kommen Ultraschall und Röntgen dazu. Schmerzbehandlung ist bei FIC der wichtigste erste Schritt. Fahren Sie sofort bei jedem Hinweis auf Verschluss (siehe oben).
 
-## Was die Tierärztin oder der Tierarzt wissen will
+## Was wird die Tierärztin oder der Tierarzt über die Blasenprobleme meiner Katze wissen wollen?
+
+Seit wann, wie oft und wo sie uriniert, wie viel Urin kommt, Futter und Trinken, Katzen und Toiletten im Haushalt, Veränderungen und frühere Episoden.
 
 - Seit wann, wie oft, wo uriniert wird, ob Blut sichtbar ist
 - Ob und wie viel Urin tatsächlich kommt
@@ -73,7 +81,9 @@ Vereinbaren Sie noch heute einen Termin, wenn Ihre Katze Blut im Urin hat, häuf
 - Frühere Episoden und deren Behandlung
 - Wenn möglich: eine Urinprobe (nicht saugende Streu, Praxis fragen)
 
-## Häufige Ursachen
+## Was verursacht Blasenprobleme bei Katzen?
+
+Wahrscheinlich sind FIC, Harnkristalle, bakterielle Infektionen, zu wenig Flüssigkeit und Übergewicht; seltener, aber wichtig sind Harnröhrenverschluss, Blasensteine, Tumoren und Grunderkrankungen.
 
 | Wahrscheinlich | Seltener, aber wichtig |
 |---|---|
@@ -83,6 +93,8 @@ Vereinbaren Sie noch heute einen Termin, wenn Ihre Katze Blut im Urin hat, häuf
 | Zu wenig Flüssigkeitsaufnahme | Nierenerkrankung, Diabetes als Hintergrund |
 | Übergewicht, Bewegungsmangel | Angeborene Fehlbildung, Verletzung |
 
-## Alltag nach der Diagnose
+## Wie beuge ich einem Rückfall der Blasenentzündung bei meiner Katze vor?
+
+Mit dauerhaft Nassfutter, ausreichend Toiletten, täglicher Spielzeit, Kratz- und Klettermöglichkeiten und festen Routinen.
 
 FIC neigt zu Rückfällen. Was die Wahrscheinlichkeit nachweislich senkt: dauerhaft Nassfutter, ausreichend Toiletten (Faustregel: Anzahl Katzen plus eins, an ruhigen Orten), tägliche Spielzeit, Kratz- und Klettermöglichkeiten, feste Routinen und möglichst wenig überraschende Veränderungen. Manche Praxen empfehlen spezielle Harndiäten oder Pheromonprodukte; ob das bei *Ihrer* Katze sinnvoll ist, besprechen Sie am besten direkt mit Ihrer eigenen Praxis.

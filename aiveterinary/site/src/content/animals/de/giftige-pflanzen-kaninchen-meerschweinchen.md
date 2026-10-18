@@ -34,7 +34,9 @@ references:
 
 Kleine Pflanzenfresser verbergen Krankheit gut und verschlechtern sich schnell: Ein Kaninchen, das nach dem Anknabbern einer Pflanze "nur etwas still" wirkt, ist ein Anruf für heute. Erreichen Sie keine Praxis, beraten die Giftnotrufe je nach Kapazität auch bei Tieren, zum Beispiel Berlin 030 19240, Göttingen 0551 19240, München 089 19240, Bonn 0228 19240, Mainz 06131 19240, Freiburg 0761 19240, Erfurt 0361 730730, in der Schweiz Tox Info Suisse 145. Der erste Anruf gilt Ihrer Tierarztpraxis.
 
-## Was gefährlich ist
+## Welche Pflanzen und Lebensmittel sind für Kaninchen und Meerschweinchen giftig?
+
+Avocado, Rattenköder, Flohmittel mit Fipronil, viele Garten- und Zimmerpflanzen, Blumenzwiebeln, Zwiebeln und Knoblauch, Süßes und Stärkehaltiges, Weintrauben sowie Rasenschnitt und gespritzte Wildkräuter.
 
 | Substanz | Warum sie gefährlich ist | Was Sie zuerst tun |
 |---|---|---|
@@ -50,14 +52,18 @@ Kleine Pflanzenfresser verbergen Krankheit gut und verschlechtern sich schnell: 
 | Weintrauben und Rosinen | Nierenwirkung beim Kaninchen vermutet, aber schlecht belegt; Giftnotrufe raten zum Verzicht. | Anrufen. |
 | Rasenschnitt vom Mäher, gespritzte Wildkräuter (Glyphosat), viel Zitrusfrucht, nicht frisches Gemüse | Gärender Schnitt bläht; Herbizidreste machen schwach und kurzatmig; saures Obst und altes Gemüse reizen den Darm. | Entfernen, Appetit beobachten, bei Veränderung anrufen. |
 
-## Was Sie nicht tun sollten
+## Was sollte ich nicht tun, wenn mein Kaninchen oder Meerschweinchen etwas Giftiges gefressen hat?
+
+Versuchen Sie nicht, Erbrechen auszulösen, geben Sie kein Salzwasser, keine Milch, kein Öl und kein Brot, keine Human- oder Hundemedikamente, und warten Sie nicht ab.
 
 - **Versuchen Sie nicht, Erbrechen auszulösen.** Kaninchen und Meerschweinchen können körperlich nicht erbrechen, und alles, was Sie ins Maul drücken, kann in die Lunge geraten.
 - **Kein Salzwasser, keine Milch, kein Joghurt, kein Öl, kein Brot.** Milchprodukte und Zucker verschlimmern das Darmproblem.
 - **Keine Human- oder Hundemedikamente**, auch keine Schmerzmittel; mehrere sind für Kaninchen giftig.
 - Nicht "abwarten und beobachten", die RSPCA schreibt es genau so. Das Risiko berechnet die Praxis aus Gewicht, Substanz und Menge; ein kurzer Anruf ist billiger als ein krankes Kaninchen.
 
-## Was die Praxis fragen wird
+## Was fragt die Praxis, wenn mein Kaninchen oder Meerschweinchen etwas Giftiges gefressen hat?
+
+Was gefressen oder aufgetragen wurde, wie viel, wann, ob Kot und Appetit normal sind, sowie Gewicht, Alter und Medikamente.
 
 1. **Was** gefressen oder aufgetragen wurde: Pflanzenname oder Foto, Produktpackung, Farbe des Köders.
 2. **Wie viel**: ein angeknabbertes Blatt, eine ganze Pflanze, wie lange das Tier Zugang hatte.
@@ -66,7 +72,9 @@ Kleine Pflanzenfresser verbergen Krankheit gut und verschlechtern sich schnell: 
 
 Bringen Sie eine Pflanzenprobe im Beutel und die Packung jedes Produkts mit.
 
-## Vorbeugen
+## Wie schütze ich Kaninchen und Meerschweinchen vor giftigen Pflanzen?
+
+Gehege und Garten vorher absuchen, Zimmerpflanzen außer Reichweite, Parasitenmittel nur aus der Tierarztpraxis und riskante Lebensmittel wegräumen.
 
 Gehen Sie Gehege und Garten ab, bevor Sie die Tiere freilassen: Fingerhut, Efeu und Blumenzwiebeln sind in Gärten häufig, und Rattenköder sind für Kaninchen attraktiv. Zimmerpflanzen über Käfighöhe, heruntergefallene Blätter aufsammeln. Floh- und Milbenmittel nur aus der Tierarztpraxis und nur solche, die für Kaninchen oder Meerschweinchen zugelassen sind. Füttern Sie Heu, frisches Wasser, eine kleine Portion Blattgemüse und eine abgemessene Pelletration; die Küchenreste, die Ärger machen, sind die Leckerlis, nicht das Grünzeug. Avocado und Schokolade außer Reichweite, und mähen Sie den Rasen nicht, während die Tiere darauf sind.
 

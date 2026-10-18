@@ -22,7 +22,9 @@ A dog with heatstroke needs cooling *and* a vet. Start cooling immediately, and 
 
 Flat-faced breeds (pugs, French bulldogs, bulldogs), overweight dogs, thick-coated dogs, older dogs and dogs with heart or breathing problems are at highest risk and can overheat in conditions other dogs tolerate.
 
-## Immediate cooling: what to do
+## How do I cool down a dog with heatstroke?
+
+Stop all activity, move the dog into shade, pour cool or cold water over its body, get air moving, and call the vet while you keep cooling.
 
 Many vets now advise "cool first, transport second" for a dog that is conscious and can be cooled on the spot.
 
@@ -35,7 +37,9 @@ Many vets now advise "cool first, transport second" for a dog that is conscious 
 
 Cold water on a conscious dog is safe. The old advice that cold water "causes shock" is no longer supported, and lowering the temperature fast is what saves lives.
 
-## What not to do
+## What should I not do if my dog has heatstroke?
+
+Do not wait to see whether the dog improves, do not skip the vet because it seems better, and do not give any medication.
 
 - Do not wait to see whether the dog improves on its own.
 - Do not skip the vet because the dog "seems better" after cooling. Heatstroke can damage the kidneys, gut, blood clotting and brain, and some of that shows hours later.
@@ -43,7 +47,9 @@ Cold water on a conscious dog is safe. The old advice that cold water "causes sh
 - Do not leave a dog in a parked car, even for minutes, even with the windows open.
 - Do not walk a dog on hot pavements in the heat of the day. If the ground is too hot for the back of your hand for five seconds, it is too hot for paws.
 
-## When to see a vet
+## Does my dog need a vet after heatstroke?
+
+Yes: every dog you have had to actively cool should be seen by a vet the same day, even if it looks normal afterwards.
 
 Every dog you have had to actively cool should be seen by a vet the same day, even if it looks normal afterwards. Whether blood tests, fluids or monitoring are needed is a vet decision, and it cannot be made from the outside.
 
@@ -53,7 +59,9 @@ Also see a vet today if your dog, after being hot:
 - has diarrhoea or dark urine
 - has small bruises or bleeding gums
 
-## What the vet will want to know
+## What will the vet want to know about my dog's heatstroke?
+
+What your dog was doing, where and for how long, the conditions, which signs you saw and when, what cooling you did, and its breed, age, health and medication.
 
 - What the dog was doing, where, and for how long
 - The temperature and conditions
@@ -63,13 +71,17 @@ Also see a vet today if your dog, after being hot:
 - Breed, weight, age and any existing conditions
 - Any medication
 
-## Cats and rabbits
+## Can cats and rabbits get heatstroke?
+
+Yes: cats can overheat when trapped in hot enclosed spaces, and rabbits are very sensitive to heat, so both need cooling and a vet.
 
 **Cats** rarely get heatstroke from exercise but can from being trapped in a greenhouse, shed, conservatory or car. Signs are open-mouth panting, drooling, restlessness, then collapse. Open-mouth breathing in a cat is always an emergency. Cool with wet cloths and fans and go to the vet.
 
 **Rabbits** are very sensitive to heat and cannot pant effectively. A hutch in full sun can kill. Signs are fast, shallow breathing, wet nostrils, lethargy, and lying stretched out. Move to a cool room, mist the ears with cool water, offer water, and see a vet urgently. Do not plunge a rabbit into cold water.
 
-## Prevention
+## How can I prevent heatstroke in my dog?
+
+Walk early or late in warm weather, carry water and rest in shade, take extra care with flat-faced and overweight dogs, and never leave an animal in a car.
 
 - Walk early morning or late evening in warm weather.
 - Carry water, and rest in shade.

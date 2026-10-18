@@ -32,7 +32,9 @@ Die meisten Hunde mit Juckreiz brauchen einen Termin in den nächsten Tagen, kei
 - sich eine große, nässende, schmerzhafte Stelle aufgekratzt hat, die schnell größer wird
 - mit einem Mittel gegen Flöhe oder Zecken behandelt wurde, das nicht für Hunde zugelassen ist, und jetzt zittert oder taumelt
 
-## Juckreiz ist ein Zeichen, keine Diagnose
+## Warum juckt sich mein Hund?
+
+Die häufigsten Ursachen sind Parasiten wie Flöhe und Milben, Hautinfektionen mit Bakterien oder Hefepilzen und Allergien, oft mehreres zusammen.
 
 Hunde zeigen Juckreiz auf verschiedene Weise: Sie kratzen sich, knabbern an sich herum, lecken ständig an den Pfoten oder reiben das Gesicht am Boden. Der Juckreiz kann den ganzen Körper betreffen oder nur bestimmte Stellen.
 
@@ -44,7 +46,9 @@ Laut MSD Veterinary Manual sind die häufigsten Ursachen:
 
 Oft kommt mehreres zusammen. Viele Hauterkrankungen jucken anfangs gar nicht. Der Juckreiz entsteht erst, wenn sich zusätzlich Bakterien oder Hefepilze in der gereizten Haut ansiedeln. Manchmal ist der ursprüngliche Auslöser dann schon längst verschwunden. Das macht die Suche nach der Ursache mühsam, aber nicht aussichtslos.
 
-## Flöhe: ein einziger Stich kann reichen
+## Kann ein einziger Flohstich bei meinem Hund starken Juckreiz auslösen?
+
+Ja: Bei einer Flohspeichelallergie genügt bereits ein einziger Flohstich, um starken Juckreiz auszulösen.
 
 Die Flohspeichelallergie gehört laut ESCCAP zu den häufigsten Allergien bei Hund und Katze. Bei einer Allergie genügt **bereits ein einziger Flohstich**, um starken Juckreiz auszulösen. Betroffene Hunde kratzen sich anhaltend und wirken unruhig. Unbehandelt entstehen häufig entzündete, manchmal eitrige Hautstellen, kahle Bereiche und Krusten.
 
@@ -59,7 +63,9 @@ ESCCAP empfiehlt:
 
 **Wichtig, wenn auch eine Katze bei Ihnen lebt:** Manche Floh- und Zeckenmittel für Hunde, vor allem solche mit Permethrin, können bei Katzen schwere und sogar tödliche Vergiftungen auslösen. Verwenden Sie jedes Mittel nur für die Tierart, für die es zugelassen ist, und fragen Sie Ihre Praxis, was bei einem gemeinsamen Haushalt sicher ist.
 
-## Milben: plötzlicher, heftiger Juckreiz
+## Können Milben bei meinem Hund Juckreiz auslösen?
+
+Ja: Typisch für die Sarcoptes-Räude ist ein heftiger Juckreiz, der plötzlich beginnt, und sie ist sehr ansteckend.
 
 Die **Sarcoptes-Räude** wird durch Grabmilben verursacht. Typisch ist laut MSD Veterinary Manual ein heftiger Juckreiz, der plötzlich beginnt. Es bilden sich kleine Knötchen, später durch das Kratzen verkrustete Wunden. Zuerst betroffen sind meist Bauch, Brust, Ohrränder, Ellbogen und Beine.
 
@@ -67,11 +73,11 @@ Die Räude ist **sehr ansteckend**, für andere Hunde und auch für Menschen, di
 
 Schüttelt Ihr Hund oft den Kopf und kratzt sich an den Ohren, können Ohrmilben oder eine Ohrentzündung dahinterstecken. Ohrmilben sind ebenfalls ansteckend, Kontakttiere werden deshalb mitbehandelt. Auch das gehört in die Praxis.
 
-## Hautinfektionen
+## Woran erkenne ich eine Hautinfektion bei meinem Hund?
 
 Infektionen mit Bakterien oder Hefepilzen gehen oft mit Haarausfall, Schuppen, unangenehmem Geruch und nässenden Stellen einher. Typisch ist starkes Lecken, Kratzen oder Reiben an Pfoten und Gesicht. Die Tierärztin oder der Tierarzt entscheidet, ob und welche Behandlung nötig ist. Bessert sich der Juckreiz danach kaum, rückt eine Allergie als Grunderkrankung in den Vordergrund.
 
-## Allergien: Umwelt, Futter, Insekten
+## Welche Allergien lösen beim Hund Juckreiz aus?
 
 Die häufigsten Auslöser allergischen Juckreizes sind laut MSD Veterinary Manual **Insektenstiche**, eine **Futtermittelallergie** und **Umweltallergene** wie Pollen, Schimmelpilze oder Hausstaub.
 
@@ -82,7 +88,9 @@ Eine **Futtermittelallergie** lässt sich nur mit einer **Ausschlussdiät** sich
 
 Bei der **atopischen Dermatitis**, einer häufigen Umweltallergie, empfehlen internationale Leitlinien, Auslöser für Schübe zu suchen und zu meiden, die Haut gut zu pflegen, etwa mit milden Shampoos, und je nach Fall mehrere Behandlungen zu kombinieren. Was hilft, ist von Hund zu Hund verschieden und kann sich auch beim selben Hund im Lauf der Zeit ändern.
 
-## Was Sie besser nicht tun
+## Was sollte ich bei Juckreiz meines Hundes nicht tun?
+
+Geben Sie keine eigenen Tabletten, Salben, Schmerzmittel, kein Kortison und keine Antihistaminika, und seien Sie vorsichtig mit ätherischen Ölen.
 
 - **Keine Tabletten, Salben oder Cremes aus Ihrer eigenen Hausapotheke.** Menschliche Arzneimittel können bei Hunden schwere Nebenwirkungen haben. Die Dosis lässt sich nicht einfach auf das Körpergewicht umrechnen.
 - **Kein Ibuprofen und kein Paracetamol**, auch nicht gegen wunde, schmerzende Stellen. Ibuprofen kann den Magen-Darm-Trakt schwer schädigen, Paracetamol die Leber. **Metamizol** gibt es nur, wenn die Tierärztin oder der Tierarzt es verordnet.
@@ -90,7 +98,9 @@ Bei der **atopischen Dermatitis**, einer häufigen Umweltallergie, empfehlen int
 - **Keine eigenen Antihistaminika.** Ihre Wirkung gegen Juckreiz beim Hund ist laut MSD Veterinary Manual sehr unterschiedlich und durch Studien nicht gut belegt.
 - **Vorsicht mit Teebaumöl und anderen ätherischen Ölen.** Sie können vor allem für Katzen im Haushalt giftig sein, und ihre Wirkung gegen Parasiten ist vielfach nicht belegt.
 
-## Was Sie bis zum Termin tun können
+## Was kann ich bis zum Tierarzttermin tun, wenn mein Hund sich kratzt?
+
+Notieren Sie, seit wann und wo es juckt, fotografieren Sie auffällige Stellen und schreiben Sie Futter und Floh- und Zeckenmittel auf.
 
 - Notieren Sie, seit wann es juckt, wo genau und ob es zu bestimmten Jahreszeiten schlimmer ist.
 - Fotografieren Sie auffällige Hautstellen.
