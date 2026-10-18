@@ -292,3 +292,9 @@ Owner's terms: DHL Standard free; DHL Express free from €300; below €300 Exp
 - New, live on all four channels, in New In (Products and Ready to Wear pick them up by rule): "T-Shirt Emblem Magenta" (emblem-t-shirt-magenta) and "T-Shirt Emblem Ochre" (emblem-t-shirt-ochre). White, S–XXL, €85, pre-order (continue selling, tracked), template ready-to-wear, General (small) shipping profile. Back photo is the plain white back.
 - Unchanged: OM T-shirt and OM hoodie.
 - Photos built by scripts/tee-photos/monogram-emblem-pass.py (monogram from the PDF vectors; emblems from a 16000px Canva PNG export, the SVGs are rasterised in Canva's PDF). Preview: tees-monogram-emblem.jpg.
+
+## 18 October 2026: Ready to Wear trimmed to the new collection (tshirt_design-9.pdf)
+
+- Collection per the PDF: Emblem tees (magenta, ochre), T-Shirt OM, T-Shirt Star patch, T-Shirt with Logo, Hoodie OM, Hoodie with Logo, Twill Pants (navy, slate, steel, taupe, sage).
+- Set to Draft (hidden, restorable): Embroidered T-Shirt, T-Shirt OBERNDÖRFER MILANO (chrome-t-shirt), Hoodie OBERNDÖRFER MILANO (wordmark-hoodie).
+- Caps stay (owner's choice). Emblem tees moved to the top of New In (manual order).
