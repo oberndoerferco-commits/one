@@ -1,5 +1,5 @@
 ---
-title: "Meine Katze hat seit gestern nichts gefressen"
+title: "Katze frisst seit gestern nicht: Ursachen, was tun, wann in die Praxis"
 description: "Katzen verbergen Krankheiten gut, und eine Katze, die nicht mehr frisst, sollte früher ernst genommen werden als ein Hund. Hier erfahren Sie, was Sie prüfen sollten und wann Sie anrufen sollten."
 species: cat
 category: symptoms

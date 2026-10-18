@@ -1,5 +1,5 @@
 ---
-title: "My cat is vomiting: hairball or something more?"
+title: "Cat vomiting: hairballs, other causes and when to worry"
 description: "Cats bring up hairballs now and then, and owners learn to accept it. But regular vomiting is not normal for a cat. Here is how to tell the two apart."
 species: cat
 category: symptoms

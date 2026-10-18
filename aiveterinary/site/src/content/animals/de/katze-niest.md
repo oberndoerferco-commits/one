@@ -1,5 +1,5 @@
 ---
-title: "Katze niest: harmlos, Katzenschnupfen oder etwas anderes?"
+title: "Katze niest: Katzenschnupfen, andere Ursachen und wann in die Praxis"
 description: "Einmal niesen ist kein Grund zur Sorge. Häufiges Niesen mit Nasen- oder Augenausfluss ist bei Katzen meist Katzenschnupfen. Wann Sie zu Hause beobachten können, wann es eilt und warum eine Katze mit verstopfter Nase oft nicht mehr frisst."
 species: cat
 category: symptoms

@@ -1,5 +1,5 @@
 ---
-title: "Meine Katze erbricht: Haarballen oder mehr?"
+title: "Katze erbricht: Haarballen, andere Ursachen und wann in die Praxis"
 description: "Katzen würgen ab und zu Haarballen hoch, und Halter gewöhnen sich daran. Regelmäßiges Erbrechen ist bei einer Katze jedoch nicht normal. So unterscheiden Sie beides."
 species: cat
 category: symptoms

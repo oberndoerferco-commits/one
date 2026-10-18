@@ -1,5 +1,5 @@
 ---
-title: "My dog is limping: sprain, or something more?"
+title: "Dog limping: causes, what to do and when to see a vet"
 description: "Most limps in dogs are minor and improve with a few days of rest. Here is how to check your dog over, what means an urgent visit, and what your vet will ask."
 species: dog
 category: symptoms

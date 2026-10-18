@@ -1,5 +1,5 @@
 ---
-title: "Mein Hund lahmt: Zerrung oder mehr?"
+title: "Hund lahmt: Ursachen, was tun und wann in die Praxis"
 description: "Die meisten Lahmheiten beim Hund sind harmlos und bessern sich mit ein paar Tagen Ruhe. So untersuchen Sie Ihren Hund, was einen dringenden Besuch bedeutet und was Ihre Tierärztin oder Ihr Tierarzt fragen wird."
 species: dog
 category: symptoms

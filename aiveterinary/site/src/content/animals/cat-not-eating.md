@@ -1,5 +1,5 @@
 ---
-title: "My cat hasn't eaten since yesterday"
+title: "Cat not eating since yesterday: causes, what to do and when to worry"
 description: "Cats hide illness well, and a cat that stops eating is worth taking seriously sooner than a dog. Here is what to check and when to call."
 species: cat
 category: symptoms

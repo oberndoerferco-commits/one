@@ -1,5 +1,5 @@
 ---
-title: "Hund erbricht gelb oder weißen Schaum: was es bedeutet"
+title: "Hund erbricht gelb oder weißen Schaum: Ursachen und wann in die Praxis"
 description: "Gelbes Erbrochenes ist meist Galle auf leeren Magen, weißer Schaum oft Magensaft oder Speichel. Beides ist selten gefährlich, aber nicht immer harmlos. Woran Sie den Unterschied erkennen und wann Sie fahren sollten."
 species: dog
 category: symptoms
