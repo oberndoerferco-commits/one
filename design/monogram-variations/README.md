@@ -14,3 +14,8 @@ half-drops (11–14), checkers (15–18), trellis and grids (19–22), stripes
 Regenerate: `python3 -I design/monogram-variations/generate.py`, then
 `node design/monogram-variations/render.js` (needs Playwright).
 Motif sources live in `../monogram-canvas/motifs/`.
+
+## Shortlist
+
+`shortlist.pdf`: 3, 15, 33 and 41, one A4 page each at true size. Rebuild with
+`node design/monogram-variations/shortlist.js 3 15 33 41`.
