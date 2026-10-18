@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import { slugOf } from '../lib/animals-i18n';
+import { CLINIC_FIELDS } from 'aiveterinary-app/src/clinic-required.ts';
 interface Props { lang?: 'en' | 'it' | 'de' }
 const { lang = 'en' } = Astro.props;
 const T = {
@@ -86,6 +87,7 @@ const JS = {
   "copied": "Copied as plain text.",
   "copyFail": "Copy failed; select the report and copy manually.",
   "mFlags": "Flags","mApprove": "Approve","soapTitle": "Paste into your practice software, box by box","soapHint": "Plain text, one field per box. Only the approved version can be copied or exported.","soapCopy": "Copy","soapCopied": "{label} copied.","json": "Download JSON with approval details",
+  "clinicRequire": "Always require","clinicRequireHint": "Adds a flag when the field is absent from the record. Nothing is filled in: you type the value or mark it not recorded.","clinicFields": {"weight": "Weight","temperature": "Temperature","heart_rate": "Heart rate","respiratory_rate": "Respiratory rate","assessment": "Assessment","follow_up": "Follow-up"},
   "approved": "APPROVED",
   "draft": "DRAFT",
   "cases": {
@@ -125,6 +127,7 @@ const JS = {
   "copied": "Copiato come testo semplice.",
   "copyFail": "Copia non riuscita; seleziona il referto e copia manualmente.",
   "mFlags": "Segnalazioni","mApprove": "Approva","soapTitle": "Incolla nel gestionale, campo per campo","soapHint": "Testo semplice, un campo per riquadro. Si può copiare o esportare solo la versione approvata.","soapCopy": "Copia","soapCopied": "{label} copiato.","json": "Scarica JSON con i dati di approvazione",
+  "clinicRequire": "Richiedi sempre","clinicRequireHint": "Aggiunge una segnalazione quando il campo manca nella cartella. Non viene compilato nulla: scrivi il valore o segnalo come non registrato.","clinicFields": {"weight": "Peso","temperature": "Temperatura","heart_rate": "Frequenza cardiaca","respiratory_rate": "Frequenza respiratoria","assessment": "Valutazione","follow_up": "Controllo successivo"},
   "approved": "APPROVATO",
   "draft": "BOZZA",
   "cases": {
@@ -164,6 +167,7 @@ const JS = {
   "copied": "Als Klartext kopiert.",
   "copyFail": "Kopieren fehlgeschlagen; Bericht markieren und manuell kopieren.",
   "mFlags": "Markierungen","mApprove": "Freigeben","soapTitle": "Feld für Feld in die Praxissoftware einfügen","soapHint": "Klartext, ein Feld pro Eingabefeld. Kopieren und Exportieren nur für die freigegebene Version.","soapCopy": "Kopieren","soapCopied": "{label} kopiert.","json": "JSON mit Freigabedaten herunterladen",
+  "clinicRequire": "Immer verlangen","clinicRequireHint": "Fügt einen Hinweis hinzu, wenn das Feld in der Akte fehlt. Nichts wird ausgefüllt: Sie tragen den Wert ein oder markieren ihn als nicht erfasst.","clinicFields": {"weight": "Gewicht","temperature": "Temperatur","heart_rate": "Herzfrequenz","respiratory_rate": "Atemfrequenz","assessment": "Beurteilung","follow_up": "Nachkontrolle"},
   "approved": "FREIGEGEBEN",
   "draft": "ENTWURF",
   "cases": {
@@ -246,6 +250,13 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
         <label>{t.clinicVet}<input data-c="vet" /></label>
         <label>{t.clinicReg}<input data-c="reg" /></label>
       </div>
+      <fieldset class="ws-require">
+        <legend>{j.clinicRequire}</legend>
+        <p class="pp-hint" id="ws-require-hint">{j.clinicRequireHint}</p>
+        <div class="ws-require-list">
+          {CLINIC_FIELDS.map((f) => <label><input type="checkbox" data-req={f.id} aria-describedby="ws-require-hint" /> {(j.clinicFields as any)[f.id]}</label>)}
+        </div>
+      </fieldset>
     </details>
   </section>
 
@@ -309,6 +320,12 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
     .ws-handouts { margin-top: 16px; } .ws-handouts ul { margin: 6px 0 0; padding-left: 1.2em; }
     @media print { .ws-handouts { display: none; } }
     .ws-clinic summary { cursor: pointer; font-weight: 600; }
+    .ws-require { border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px 12px; margin: 16px 0 0; min-width: 0; }
+    .ws-require legend { font-weight: 600; font-size: .9rem; padding: 0 6px; }
+    .ws-require .pp-hint { margin: 0 0 8px; }
+    .ws-require-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(190px, 100%), 1fr)); gap: 6px 16px; }
+    .ws-require-list label { display: flex; gap: 8px; align-items: center; cursor: pointer; font-size: .92rem; color: var(--ink-2); }
+    .ws-require-list input { width: 18px; height: 18px; margin: 0; accent-color: var(--accent); flex: none; }
     .ws-letterhead { border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 14px; font-size: .9rem; color: var(--ink-2); }
     .ws-letterhead .lh-name { font-family: var(--font-display); font-size: 1.15rem; color: var(--ink); font-weight: 600; }
     @media print { .ws-clinic { display: none; } .ws-letterhead { color: #000; border-color: #999; } }
@@ -358,7 +375,7 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
     @media print { .site-header, .site-footer, .ws-top, .notice, .ws-pane:first-child, .ws-flags, .eyebrow { display: none !important; } .ws { border: 0; } }
   </style>
 
-  <script type="application/json" id="ws-i18n" set:html={JSON.stringify({ ...j, abbrNone: t.abbrNone, abbrSave: t.abbrSave, handouts: t.handouts, handoutsNone: t.handoutsNone, timer: t.timer, identityOk: t.identityOk, identityFail: t.identityFail, handoutIndex })} />
+  <script type="application/json" id="ws-i18n" set:html={JSON.stringify({ ...j, pageLang: lang, abbrNone: t.abbrNone, abbrSave: t.abbrSave, handouts: t.handouts, handoutsNone: t.handoutsNone, timer: t.timer, identityOk: t.identityOk, identityFail: t.identityFail, handoutIndex })} />
 
   <script>
     import { ClinicalRecord, PatientHeader, type ClinicalRecord as Rec } from 'aiveterinary-app/src/schema.ts';
@@ -366,6 +383,7 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
     import { validateAll, requiredMissing, type Finding } from 'aiveterinary-app/src/validators.ts';
     import { renderConsultReport, renderOwnerSummary, renderReferralLetter, renderPrescription, renderVaccinationEntry, renderConsentForm, renderCostEstimate, renderDentalChart, renderOwnerSummaryBilingual, crossDocumentMedicationCheck } from 'aiveterinary-app/src/render.ts';
     import { countryMissing, VisitContext } from 'aiveterinary-app/src/country.ts';
+    import { clinicMissing } from 'aiveterinary-app/src/clinic-required.ts';
     import { soapFields, exportBundle } from 'aiveterinary-app/src/export.ts';
     import { approve as approveVersion, amend as amendVersion, documentFrom, propagationMap, type ApprovedVersion, type GeneratedDocument } from 'aiveterinary-app/src/versions.ts';
     import c1 from 'aiveterinary-app/eval/cases/001-luna-vomiting.json';
@@ -383,7 +401,7 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
     const cases = [c1, c2, c3, c4, c6, c7, c8, c9, c10, c11] as Case[];
     const J = JSON.parse(document.getElementById('ws-i18n')!.textContent!);
     const CLINIC_KEY = 'aiveterinary.clinic.v1';
-    const loadClinic = (): Record<string, string> => { try { return JSON.parse(localStorage.getItem(CLINIC_KEY) ?? '{}'); } catch { return {}; } };
+    const loadClinic = (): Record<string, any> => { try { return JSON.parse(localStorage.getItem(CLINIC_KEY) ?? '{}'); } catch { return {}; } };
     const clinicAuthor = () => { const c = loadClinic(); return { name: c.vet || 'Dr. Demo', registration: c.reg || null }; };
     function renderLetterhead() {
       const c = loadClinic(); const el = $('#ws-letterhead') as HTMLElement;
@@ -393,6 +411,17 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
     for (const input of document.querySelectorAll<HTMLInputElement>('.ws-clinic [data-c]')) {
       input.value = loadClinic()[input.dataset.c!] ?? '';
       input.addEventListener('input', () => { const c = loadClinic(); c[input.dataset.c!] = input.value.trim(); try { localStorage.setItem(CLINIC_KEY, JSON.stringify(c)); } catch {} renderLetterhead(); if (cur) render(); });
+    }
+    // Clinic-required fields: stored with the letterhead. They only ever add a flag for an absent field.
+    const clinicRequired = (): string[] => { const r = loadClinic().required; return Array.isArray(r) ? r.filter((x: unknown) => typeof x === 'string') : []; };
+    for (const cb of document.querySelectorAll<HTMLInputElement>('.ws-clinic [data-req]')) {
+      cb.checked = clinicRequired().includes(cb.dataset.req!);
+      cb.addEventListener('change', () => {
+        const c = loadClinic(); const set = new Set(clinicRequired());
+        if (cb.checked) set.add(cb.dataset.req!); else set.delete(cb.dataset.req!);
+        c.required = [...set]; try { localStorage.setItem(CLINIC_KEY, JSON.stringify(c)); } catch {}
+        if (cur) render();
+      });
     }
     const GLOSSARY_KEY = 'aiveterinary.glossary.v1';
     const loadGlossary = (): Record<string, string> => { try { return JSON.parse(localStorage.getItem(GLOSSARY_KEY) ?? '{}'); } catch { return {}; } };
@@ -562,7 +591,9 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
       const ctx = VisitContext.parse({ country: csel.value, author: clinicAuthor() });
       const cflags = countryMissing(record, header, ctx);
       const reasons: Record<string, string> = {}; for (const f of cflags) reasons[f.field] = f.reason;
-      const missing = [...requiredMissing(record, 'consult_report'), ...cflags.map((f) => f.field).filter((f, i, a) => a.indexOf(f) === i)];
+      const clinic = clinicMissing(record, clinicRequired(), { lang: J.pageLang });
+      for (const f of clinic) reasons[f.field] ??= f.reason;
+      const missing = [...requiredMissing(record, 'consult_report'), ...cflags.map((f) => f.field), ...clinic.map((f) => f.field)].filter((f, i, a) => a.indexOf(f) === i);
       const list = $('#ws-flaglist'); list.innerHTML = '';
       const li = (html: string) => { const el = document.createElement('li'); el.innerHTML = html; list.appendChild(el); return el; };
       for (const b of blocks) li(`<span class="f-block">${J.blocked}</span> ${esc(b.field)}: ${esc(b.message)}`);
