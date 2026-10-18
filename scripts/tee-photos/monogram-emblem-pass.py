@@ -29,7 +29,7 @@ def place(img, mask, cx, cy, width, ink):
     img[y0:y0+h, x0:x0+width] = reg * (1 - a3) + col * a3
     return img
 
-def place_rgba(img, rgba, cx, cy, width):
+def place_rgba(img, rgba, cx, cy, width, k=1.0):
     h = int(round(rgba.shape[0] * width / rgba.shape[1]))
     r = cv2.resize(rgba, (width, h), interpolation=cv2.INTER_CUBIC)
     a = np.clip(r[..., 3:] / 255.0, 0, 1)
@@ -37,6 +37,7 @@ def place_rgba(img, rgba, cx, cy, width):
     s = shade(img, x0, y0, width, h)[..., None]
     reg = img[y0:y0+h, x0:x0+width]
     # printed look: ink picks up the fabric's light and shadow
+    s = 1 + k * (s - 1)
     col = np.clip(r[..., :3] * (0.92 + 0.08 * s) * s ** 0.6, 0, 255)
     img[y0:y0+h, x0:x0+width] = reg * (1 - a) + col * a
     return img
@@ -76,7 +77,7 @@ for colour, f, ink in (('grey', 'obm-hoodie-om-grey-front-v2.jpg', (22, 22, 22))
 
 # emblems: key the white off the 1200dpi render
 for n in (1, 2):
-    e = np.asarray(Image.open(f'canva/emb{n}_hi.png').convert('RGB')).astype(np.float32)
+    e = np.asarray(Image.open(f'canva/emb{n}_v9.png').convert('RGB')).astype(np.float32)
     mn = e.min(2)
     a = np.clip((236 - mn) / 40, 0, 1)
     ys, xs = np.where(a > 0.05)
@@ -87,8 +88,19 @@ for n in (1, 2):
     np.save(f'emb{n}_rgba.npy', rgba)
     print(n, rgba.shape, xs.min(), ys.min())
 
-for n, w, top, cx, name in ((1, 246, 848, 1494, 'obm-tee-emblem-violet-front.jpg'),
-                            (2, 240, 855, 1495, 'obm-tee-emblem-colour-front.jpg')):
+for n, w, top, cx, name in ((1, 234, 851, 1507, 'obm-tee-emblem-violet-front.jpg'),
+                            (2, 255, 862, 1494, 'obm-tee-emblem-colour-front.jpg')):
     rgba = np.load(f'emb{n}_rgba.npy')
     h = rgba.shape[0] * w / rgba.shape[1]
     save(place_rgba(load('obm-tee-om-white-front-v4.jpg'), rgba, cx, top + h / 2, w), name)
+
+# black versions (owner, 18 October): same emblems, placed by the black shirt's proportions
+for n, w, top, cx, name in ((1, 241, 844, 1484, 'obm-tee-emblem-magenta-black-front.jpg'),
+                            (2, 263, 855, 1471, 'obm-tee-emblem-ochre-black-front.jpg')):
+    rgba = np.load(f'emb{n}_rgba.npy').copy()
+    # tighter edge on black: the cut-out's soft rim was blended with white in the artwork
+    a = rgba[..., 3] / 255.0
+    a = cv2.erode(np.clip((a - 0.45) / 0.55, 0, 1).astype(np.float32), np.ones((3, 3), np.uint8))
+    rgba[..., 3] = a * 255
+    h = rgba.shape[0] * w / rgba.shape[1]
+    save(place_rgba(load('obm-tee-om-black-front.jpg'), rgba, cx, top + h / 2, w, k=0.2), name)
