@@ -1,0 +1,134 @@
+{
+  "id": "110-gen-cat-vaccine-de",
+  "language": "de",
+  "synthetic": true,
+  "header": {
+    "name": "Felix",
+    "species": "cat",
+    "breed": "European Shorthair",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 2,
+      "unit": "year"
+    }
+  },
+  "notes": "jährliche Impfung, keine Beschwerden\nmunter, guter Ernährungszustand\nHF 180\nRCP-Impfstoff s.c. rechte Flanke verabreicht\nnächste Impfung in 1 Jahr",
+  "expect": {
+    "missing_includes": [
+      "assessment",
+      "medications[0].dose",
+      "medications[0].frequency",
+      "medications[0].batch"
+    ],
+    "drugs": [
+      "RCP-Impfstoff"
+    ],
+    "assessment_text": null,
+    "statuses": {
+      "medications[0]": "performed"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "jährliche Impfung, keine Beschwerden",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          36
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": {
+          "value": 180,
+          "unit": "/min",
+          "source_spans": [
+            [
+              69,
+              75
+            ]
+          ]
+        },
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "Allgemein",
+          "text": "munter, guter Ernährungszustand",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              37,
+              68
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": null,
+      "differentials": [],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "RCP-Impfstoff",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": "s.c.",
+        "frequency": null,
+        "duration": null,
+        "status": "performed",
+        "source_spans": [
+          [
+            76,
+            120
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "nächste Impfung in 1 Jahr",
+        "interval": {
+          "value": 1,
+          "unit": "year"
+        },
+        "source_spans": [
+          [
+            121,
+            146
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [
+      {
+        "field": "medications[0].batch",
+        "reason": "Charge nicht in den Notizen"
+      }
+    ],
+    "uncertain": []
+  }
+}

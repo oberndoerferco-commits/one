@@ -1,0 +1,154 @@
+{
+  "id": "106-gen-diarrhoea-declined-en",
+  "language": "en",
+  "synthetic": true,
+  "header": {
+    "name": "Bella",
+    "species": "dog",
+    "breed": "Beagle",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 3,
+      "unit": "year"
+    }
+  },
+  "notes": "diarrhoea since yesterday, no vomiting\neating less\nT 38.9\nabdomen soft, mild discomfort\nfaecal sample to bring tomorrow\nbloods offered, owner declined\nacute diarrhoea\nbland diet 3 days, water always available\ncall if not better in 48 hours",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": "acute diarrhoea",
+    "temperature": 38.9,
+    "statuses": {}
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "diarrhoea since yesterday, no vomiting",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          38
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "appetite",
+        "value": "eating less",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            39,
+            50
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.9,
+          "unit": "C",
+          "source_spans": [
+            [
+              51,
+              57
+            ]
+          ]
+        },
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "abdomen",
+          "text": "abdomen soft, mild discomfort",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              58,
+              87
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "faecal test",
+        "status": "planned",
+        "result": null,
+        "source_spans": [
+          [
+            88,
+            119
+          ]
+        ]
+      },
+      {
+        "test": "blood test",
+        "status": "declined",
+        "result": null,
+        "source_spans": [
+          [
+            120,
+            150
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": "acute diarrhoea",
+      "differentials": [],
+      "source_spans": [
+        [
+          151,
+          166
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "call if not better in 48 hours",
+        "interval": {
+          "value": 48,
+          "unit": "hour"
+        },
+        "source_spans": [
+          [
+            209,
+            239
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "bland diet 3 days, water always available",
+          "source_spans": [
+            [
+              167,
+              208
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

@@ -13,6 +13,7 @@ import { normalizeNotes } from '../normalize.js';
 import { validateAll, requiredMissing, type Finding } from '../validators.js';
 import { ClaudeExtractor, FixtureExtractor, type Extractor, PROMPT_VERSION } from '../extract.js';
 import { renderConsultReport } from '../render.js';
+import { wilson, scoreFacts, pct } from '../metrics.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const casesDir = join(here, '..', '..', 'eval', 'cases');
@@ -26,7 +27,7 @@ export async function runEval(extractorName = process.env.AIVET_EXTRACTOR ?? 'fi
   const extractor: Extractor = extractorName === 'claude' ? new ClaudeExtractor() : new FixtureExtractor(fixtures);
 
   let failures = 0; const rows: string[] = [];
-  const totals = { cases: 0, blocks: 0, warns: 0, unsourced: 0, drugMismatch: 0, missRecall: 0, missTotal: 0, input_tokens: 0, output_tokens: 0 };
+  const totals = { facts: 0, unsupportedFacts: 0, scored: 0, casesWithBlock: 0, cases: 0, blocks: 0, warns: 0, unsourced: 0, drugMismatch: 0, missRecall: 0, missTotal: 0, input_tokens: 0, output_tokens: 0 };
   for (const c of cases) {
     const notes = normalizeNotes(c.notes);
     const header = PatientHeader.parse(c.header);
@@ -58,6 +59,8 @@ export async function runEval(extractorName = process.env.AIVET_EXTRACTOR ?? 'fi
         for (const bad of c.expect?.must_not_contain ?? []) if (json.includes(bad)) problems.push(`record contains forbidden text "${bad}" outside 'uncertain'`);
         if (c.expect?.uncertain_min && record.uncertain.length < c.expect.uncertain_min) problems.push(`expected ≥${c.expect.uncertain_min} uncertain entries`);
       }
+      // Must-fail fixtures are deliberately wrong; they test the checks and are kept out of the published rates.
+      if (!mustFail) { const sc = scoreFacts(record, findings); totals.facts += sc.facts; totals.unsupportedFacts += sc.unsupported; totals.scored++; if (blocks.length) totals.casesWithBlock++; }
       totals.cases++; totals.blocks += blocks.length; totals.warns += findings.length - blocks.length;
       totals.unsourced += findings.filter((f) => f.rule === 'source_required' || f.rule === 'span_invalid').length;
       const ok = problems.length === 0;
@@ -73,8 +76,15 @@ export async function runEval(extractorName = process.env.AIVET_EXTRACTOR ?? 'fi
   console.log(rows.join('\n'));
   // machine-readable result for the public quality page (site/src/pages/vets/quality.astro)
   const outDir = join(here, '..', '..', 'eval', 'results'); mkdirSync(outDir, { recursive: true });
-  const result = { run_at: new Date().toISOString(), extractor: extractor.name, prompt: PROMPT_VERSION, cases: totals.cases, failed: failures, blocking: totals.blocks, warnings: totals.warns, unsourced: totals.unsourced, drug_mismatch: totals.drugMismatch, missing_recall: totals.missTotal ? totals.missRecall / totals.missTotal : null, languages: [...new Set(cases.map((c) => c.language))].sort(), per_case: rows.filter((r) => /^(PASS|FAIL)/.test(r)).map((r) => ({ id: r.slice(6).split('\n')[0].replace(' (must-fail fixture)', ''), pass: r.startsWith('PASS') })) };
+  const metrics = {
+    attribution: wilson(totals.facts - totals.unsupportedFacts, totals.facts),
+    unsupported_content: wilson(totals.unsupportedFacts, totals.facts),
+    cases_with_blocking_finding: wilson(totals.casesWithBlock, totals.scored),
+    missing_field_detection: wilson(totals.missRecall, totals.missTotal),
+  };
+  const result = { metrics, run_at: new Date().toISOString(), extractor: extractor.name, prompt: PROMPT_VERSION, cases: totals.cases, failed: failures, blocking: totals.blocks, warnings: totals.warns, unsourced: totals.unsourced, drug_mismatch: totals.drugMismatch, missing_recall: totals.missTotal ? totals.missRecall / totals.missTotal : null, languages: [...new Set(cases.map((c) => c.language))].sort(), per_case: rows.filter((r) => /^(PASS|FAIL)/.test(r)).map((r) => ({ id: r.slice(6).split('\n')[0].replace(' (must-fail fixture)', ''), pass: r.startsWith('PASS') })) };
   writeFileSync(join(outDir, `${extractor.name}.json`), JSON.stringify(result, null, 2) + '\n');
+  console.log(`\nattribution ${pct(metrics.attribution)}\nunsupported content ${pct(metrics.unsupported_content)}\ncases with a blocking finding ${pct(metrics.cases_with_blocking_finding)}\nmissing-field detection ${pct(metrics.missing_field_detection)}`);
   console.log(`\n${totals.cases} cases, ${failures} failed. blocking=${totals.blocks} warnings=${totals.warns} unsourced=${totals.unsourced} drug-mismatch=${totals.drugMismatch} missing-recall=${totals.missTotal ? Math.round((100 * totals.missRecall) / totals.missTotal) + '%' : 'n/a'}${totals.input_tokens ? ` tokens in/out=${totals.input_tokens}/${totals.output_tokens}` : ''}`);
   return failures;
 }

@@ -1,0 +1,147 @@
+{
+  "id": "105-gen-otitis-cat-it",
+  "language": "it",
+  "synthetic": true,
+  "header": {
+    "name": "Micia",
+    "species": "cat",
+    "breed": "European Shorthair",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 4,
+      "unit": "year"
+    }
+  },
+  "notes": "si gratta l'orecchio sinistro da una settimana\ncondotto sx arrossato, secrezione marrone\ncitologia auricolare: lieviti ++\notite esterna sinistra\nlavaggio auricolare sx eseguito\nSurolan auricolare due volte al giorno per 7 giorni\ncontrollo tra 10 giorni",
+  "expect": {
+    "missing_includes": [
+      "medications[0].dose"
+    ],
+    "drugs": [
+      "Surolan"
+    ],
+    "assessment_text": "otite esterna sinistra",
+    "statuses": {
+      "treatments[0]": "performed",
+      "medications[0]": "prescribed"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "si gratta l'orecchio sinistro da una settimana",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          46
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "orecchie",
+          "text": "condotto sx arrossato, secrezione marrone",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              47,
+              88
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "citologia auricolare",
+        "status": "performed",
+        "result": "lieviti ++",
+        "source_spans": [
+          [
+            89,
+            121
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": "otite esterna sinistra",
+      "differentials": [],
+      "source_spans": [
+        [
+          122,
+          144
+        ]
+      ]
+    },
+    "treatments": [
+      {
+        "type": "procedure",
+        "text": "lavaggio auricolare sx eseguito",
+        "status": "performed",
+        "source_spans": [
+          [
+            145,
+            176
+          ]
+        ]
+      }
+    ],
+    "medications": [
+      {
+        "drug": "Surolan",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": "auricolare",
+        "frequency": "due volte al giorno",
+        "duration": "7 giorni",
+        "status": "prescribed",
+        "source_spans": [
+          [
+            177,
+            228
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "controllo tra 10 giorni",
+        "interval": {
+          "value": 10,
+          "unit": "day"
+        },
+        "source_spans": [
+          [
+            229,
+            252
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

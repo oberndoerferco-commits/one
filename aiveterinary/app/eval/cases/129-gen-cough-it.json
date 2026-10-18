@@ -1,0 +1,119 @@
+{
+  "id": "129-gen-cough-it",
+  "language": "it",
+  "synthetic": true,
+  "header": {
+    "name": "Ares",
+    "species": "dog",
+    "breed": "Border Collie",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 2,
+      "unit": "year"
+    }
+  },
+  "notes": "tosse secca da 4 giorni dopo la pensione\nT 39,2\ntosse alla palpazione tracheale, polmoni puliti\nsospetta tosse dei canili\nriposo, niente collare, solo pettorina\ncontrollo tra 7 giorni se non migliora",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": "sospetta tosse dei canili",
+    "temperature": 39.2,
+    "statuses": {}
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "tosse secca da 4 giorni dopo la pensione",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          40
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 39.2,
+          "unit": "C",
+          "source_spans": [
+            [
+              41,
+              47
+            ]
+          ]
+        },
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "respiratorio",
+          "text": "tosse alla palpazione tracheale, polmoni puliti",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              48,
+              95
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": "sospetta tosse dei canili",
+      "differentials": [],
+      "source_spans": [
+        [
+          96,
+          121
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "controllo tra 7 giorni se non migliora",
+        "interval": {
+          "value": 7,
+          "unit": "day"
+        },
+        "source_spans": [
+          [
+            161,
+            199
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "riposo, niente collare, solo pettorina",
+          "source_spans": [
+            [
+              122,
+              160
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

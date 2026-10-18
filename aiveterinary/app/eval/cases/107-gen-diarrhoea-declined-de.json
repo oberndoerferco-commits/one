@@ -1,0 +1,154 @@
+{
+  "id": "107-gen-diarrhoea-declined-de",
+  "language": "de",
+  "synthetic": true,
+  "header": {
+    "name": "Luna",
+    "species": "dog",
+    "breed": "Beagle",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 3,
+      "unit": "year"
+    }
+  },
+  "notes": "Durchfall seit gestern, kein Erbrechen\nfrisst weniger\nT 38,9\nAbdomen weich, ggr. Schmerz\nKotprobe morgen mitbringen\nBlutbild angeboten, Besitzer lehnt ab\nakuter Durchfall\nSchonkost 3 Tage, immer Wasser anbieten\nAnruf, wenn nach 48 Stunden nicht besser",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": "akuter Durchfall",
+    "temperature": 38.9,
+    "statuses": {}
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "Durchfall seit gestern, kein Erbrechen",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          38
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "Appetit",
+        "value": "frisst weniger",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            39,
+            53
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.9,
+          "unit": "C",
+          "source_spans": [
+            [
+              54,
+              60
+            ]
+          ]
+        },
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "Abdomen",
+          "text": "Abdomen weich, ggr. Schmerz",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              61,
+              88
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "Kotuntersuchung",
+        "status": "planned",
+        "result": null,
+        "source_spans": [
+          [
+            89,
+            115
+          ]
+        ]
+      },
+      {
+        "test": "Blutuntersuchung",
+        "status": "declined",
+        "result": null,
+        "source_spans": [
+          [
+            116,
+            153
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": "akuter Durchfall",
+      "differentials": [],
+      "source_spans": [
+        [
+          154,
+          170
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "Anruf, wenn nach 48 Stunden nicht besser",
+        "interval": {
+          "value": 48,
+          "unit": "hour"
+        },
+        "source_spans": [
+          [
+            211,
+            251
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "Schonkost 3 Tage, immer Wasser anbieten",
+          "source_spans": [
+            [
+              171,
+              210
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "id": "108-gen-diarrhoea-declined-it",
+  "language": "it",
+  "synthetic": true,
+  "header": {
+    "name": "Luna",
+    "species": "dog",
+    "breed": "Beagle",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 3,
+      "unit": "year"
+    }
+  },
+  "notes": "diarrea da ieri, nessun vomito\nmangia meno\nT 38,9\naddome morbido, lieve fastidio\ncampione di feci da portare domani\nesami del sangue proposti, il proprietario rifiuta\ndiarrea acuta\ndieta leggera per 3 giorni, acqua sempre disponibile\nchiamare se non migliora in 48 ore",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": "diarrea acuta",
+    "temperature": 38.9,
+    "statuses": {}
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "diarrea da ieri, nessun vomito",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          30
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "appetito",
+        "value": "mangia meno",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            31,
+            42
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.9,
+          "unit": "C",
+          "source_spans": [
+            [
+              43,
+              49
+            ]
+          ]
+        },
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "addome",
+          "text": "addome morbido, lieve fastidio",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              50,
+              80
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "esame feci",
+        "status": "planned",
+        "result": null,
+        "source_spans": [
+          [
+            81,
+            115
+          ]
+        ]
+      },
+      {
+        "test": "esami del sangue",
+        "status": "declined",
+        "result": null,
+        "source_spans": [
+          [
+            116,
+            166
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": "diarrea acuta",
+      "differentials": [],
+      "source_spans": [
+        [
+          167,
+          180
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "chiamare se non migliora in 48 ore",
+        "interval": {
+          "value": 48,
+          "unit": "hour"
+        },
+        "source_spans": [
+          [
+            234,
+            268
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "dieta leggera per 3 giorni, acqua sempre disponibile",
+          "source_spans": [
+            [
+              181,
+              233
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

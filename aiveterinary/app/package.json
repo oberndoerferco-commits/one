@@ -8,7 +8,8 @@
     "test": "vitest run",
     "eval": "tsx src/cli/eval.ts",
     "demo": "tsx src/cli/demo.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "gen-cases": "tsx src/cli/gen-cases.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.135.0",

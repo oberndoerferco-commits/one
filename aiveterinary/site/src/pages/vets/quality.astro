@@ -7,6 +7,7 @@ const read = (name: string) => (existsSync(resultsDir + name) ? JSON.parse(readF
 const fixture = read('fixture.json');
 const model = read('claude.json');
 const pct = (x: number | null) => (x == null ? 'n/a' : Math.round(x * 100) + ' %');
+const ci = (m: any) => (!m || m.rate == null ? 'n/a' : `${(100 * m.rate).toFixed(1)} % (95 % CI ${(100 * m.lo).toFixed(1)}–${(100 * m.hi).toFixed(1)} %, ${m.k} of ${m.n})`);
 const fmt = (iso: string) => new Date(iso).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 const runs = [{ label: 'Validators on prepared records', note: 'Proves the checks themselves: a record with an invented drug, dose or diagnosis must be blocked. Offline, no model.', r: fixture }, ...(model ? [{ label: 'Model output on the same cases', note: 'The model structures the raw notes; the same checks then run on its output.', r: model }] : [])];
 ---
@@ -27,6 +28,16 @@ const runs = [{ label: 'Validators on prepared records', note: 'Proves the check
     </table>
     <p>Rules can only get stricter: a release may raise a floor, never lower one.</p>
 
+    <h2>How the rates are defined</h2>
+    <p>Each rate comes with a 95 % confidence interval (Wilson), because with a few dozen cases a bare percentage claims more than is known. The definitions are in <code>app/src/metrics.ts</code>, so anyone can recompute them from the published results.</p>
+    <ul>
+      <li><strong>Source attribution</strong>: facts in the record that point to text in the vet's notes and raised no blocking finding, out of all facts. One fact is one complaint, history item, vital sign, exam finding, test, assessment, differential, treatment, medication, follow-up or instruction.</li>
+      <li><strong>Unsupported content</strong>: facts with a blocking finding (a drug, dose or number the vet did not write, or a source pointing outside the notes), out of all facts.</li>
+      <li><strong>Cases with a blocking finding</strong>: cases where the vet would be stopped at least once before approval.</li>
+      <li><strong>Missing-field detection</strong>: gaps the case expects to be flagged (a drug without a dose, a test without a result, a vaccine without a batch) that were flagged.</li>
+    </ul>
+    <p>The deliberately wrong must-fail case is left out of the rates; it only proves the checks work.</p>
+
     <h2>Current results</h2>
     {runs.map(({ label, note, r }) => (
       <div class="card" style="margin:16px 0">
@@ -35,19 +46,36 @@ const runs = [{ label: 'Validators on prepared records', note: 'Proves the check
         <table>
           <tr><th>Run</th><td>{fmt(r.run_at)} · prompt <code>{r.prompt}</code> · languages {r.languages.join(', ').toUpperCase()}</td></tr>
           <tr><th>Cases</th><td>{r.cases} ({r.failed} failed)</td></tr>
+          {r.metrics && <>
+            <tr><th>Source attribution</th><td>{ci(r.metrics.attribution)}</td></tr>
+            <tr><th>Unsupported content</th><td>{ci(r.metrics.unsupported_content)}</td></tr>
+            <tr><th>Cases with a blocking finding</th><td>{ci(r.metrics.cases_with_blocking_finding)}</td></tr>
+            <tr><th>Missing-field detection</th><td>{ci(r.metrics.missing_field_detection)}</td></tr>
+          </>}
           <tr><th>Blocking findings</th><td>{r.blocking}{r.extractor === 'fixture' ? ' (all from the must-fail case, as intended)' : ''}</td></tr>
           <tr><th>Drug mismatches</th><td>{r.drug_mismatch}</td></tr>
           <tr><th>Unsourced items</th><td>{r.unsourced}{r.extractor === 'fixture' ? ' (the must-fail case)' : ''}</td></tr>
           <tr><th>Missing-information recall</th><td>{pct(r.missing_recall)}</td></tr>
-          <tr><th>Per case</th><td>{r.per_case.map((c: any) => `${c.pass ? '✓' : '✗'} ${c.id}`).join(' · ')}</td></tr>
+          <tr><th>Per case</th><td><details><summary>{r.per_case.filter((c: any) => c.pass).length} of {r.per_case.length} passed</summary>{r.per_case.map((c: any) => `${c.pass ? '✓' : '✗'} ${c.id}`).join(' · ')}</details></td></tr>
         </table>
       </div>
     ))}
-    {!model && <p class="notice warn">Model runs are not published yet. The test set is still small (synthetic cases written in-house) and the model run is pending a development key. Before any clinic uses the product, the set grows to at least 300 cases across English, German and Italian, written with practising vets, and an external vet panel reviews a sample of the output. Those results will appear here.</p>}
+    <p class="notice">On prepared records every rate is perfect by construction: these records are the answer key. The row shows that the checks and the counting work, not how good the model is. Only the model run below measures that.</p>
+    {!model && <p class="notice warn">Model runs are not published yet. The test set has 53 synthetic cases written in-house (English, German, Italian; 42 of them generated line by line from <code>app/src/cli/gen-cases.ts</code>) and the model run is pending a development key. Before any clinic uses the product, the set grows to at least 300 cases across English, German and Italian, written with practising vets, and an external vet panel reviews a sample of the output. Those results will appear here.</p>}
+
+    <h2>A test your clinic can repeat: 20 cases with a stopwatch</h2>
+    <p>Numbers from a vendor, ours included, are no substitute for trying it on your own notes. This protocol takes about two hours and needs no data to leave the clinic.</p>
+    <ol>
+      <li>Pick 20 recent consultations, a mix of routine and complicated ones. Copy the notes as the vet wrote them and remove the owner's name and contact details.</li>
+      <li>For each case, write the record the way you normally do and time it, from first keystroke to finished entry.</li>
+      <li>On another day, paste the same notes into the workspace, resolve every flag and approve. Time that too, from paste to approval.</li>
+      <li>For every approved record, count: facts that are not in the notes (should be 0), facts from the notes that are missing, flags that were wrong, and edits you had to make.</li>
+      <li>Report the median time per case for both methods, the four counts, and anything you would not sign. Send it to us if you like; we publish clinic results only with permission, named or anonymous as you choose.</li>
+    </ol>
 
     <h2>Known gaps, honestly</h2>
     <ul>
-      <li>The test set is small and synthetic. Real notes are messier.</li>
+      <li>The test set is synthetic and written in-house. Real notes are messier, and the planned 300 cases written with practising vets are not there yet.</li>
       <li>Number checks are strict by design: a dose written as "5mg" and recorded as "5 mg" passes, but "five" written in words does not count as a number in the notes, so the record must keep "five". We prefer a false alarm to a silent invention.</li>
       <li>Drug-name matching tolerates typos by prefix; unusual brand names may need the vet's correction, which is then recorded as a human edit.</li>
       <li>No independent evaluation has taken place yet.</li>

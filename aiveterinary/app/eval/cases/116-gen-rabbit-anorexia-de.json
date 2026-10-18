@@ -1,0 +1,141 @@
+{
+  "id": "116-gen-rabbit-anorexia-de",
+  "language": "de",
+  "synthetic": true,
+  "header": {
+    "name": "Hoppel",
+    "species": "rabbit",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 5,
+      "unit": "year"
+    }
+  },
+  "notes": "frisst seit heute Morgen nicht, wenig Kot\nT 38,4\nDarmgeräusche reduziert, Magen fest\ngastrointestinale Stase\nZahnerkrankung\nMaulhöhle: keine Backenzahnspitzen gesehen\nPäppelbrei mit der Spritze, frisches Heu anbieten\nWV morgen früh",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": null,
+    "temperature": 38.4,
+    "statuses": {}
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "frisst seit heute Morgen nicht, wenig Kot",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          41
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.4,
+          "unit": "C",
+          "source_spans": [
+            [
+              42,
+              48
+            ]
+          ]
+        },
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "Abdomen",
+          "text": "Darmgeräusche reduziert, Magen fest",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              49,
+              84
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "Zahnkontrolle",
+        "status": "performed",
+        "result": "keine Backenzahnspitzen gesehen",
+        "source_spans": [
+          [
+            124,
+            166
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": null,
+      "differentials": [
+        {
+          "text": "gastrointestinale Stase",
+          "source_spans": [
+            [
+              85,
+              108
+            ]
+          ]
+        },
+        {
+          "text": "Zahnerkrankung",
+          "source_spans": [
+            [
+              109,
+              123
+            ]
+          ]
+        }
+      ],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "WV morgen früh",
+        "interval": null,
+        "source_spans": [
+          [
+            217,
+            231
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "Päppelbrei mit der Spritze, frisches Heu anbieten",
+          "source_spans": [
+            [
+              167,
+              216
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

@@ -11,3 +11,4 @@ export * from './letters.js';
 export * from './analytics.js';
 export * from './scan.js';
 export * from './export.js';
+export * from './metrics.js';

@@ -1,8 +1,38 @@
 {
-  "run_at": "2026-10-16T09:12:08.047Z",
+  "metrics": {
+    "attribution": {
+      "k": 356,
+      "n": 356,
+      "rate": 1,
+      "lo": 0.9893,
+      "hi": 1
+    },
+    "unsupported_content": {
+      "k": 0,
+      "n": 356,
+      "rate": 0,
+      "lo": 0,
+      "hi": 0.0107
+    },
+    "cases_with_blocking_finding": {
+      "k": 0,
+      "n": 52,
+      "rate": 0,
+      "lo": 0,
+      "hi": 0.0688
+    },
+    "missing_field_detection": {
+      "k": 35,
+      "n": 35,
+      "rate": 1,
+      "lo": 0.9011,
+      "hi": 1
+    }
+  },
+  "run_at": "2026-10-18T22:15:31.308Z",
   "extractor": "fixture",
   "prompt": "extract-v1",
-  "cases": 11,
+  "cases": 53,
   "failed": 0,
   "blocking": 4,
   "warnings": 0,
@@ -57,6 +87,174 @@
     },
     {
       "id": "011-dental-de-triadan",
+      "pass": true
+    },
+    {
+      "id": "100-gen-lameness-en",
+      "pass": true
+    },
+    {
+      "id": "101-gen-lameness-de",
+      "pass": true
+    },
+    {
+      "id": "102-gen-lameness-it",
+      "pass": true
+    },
+    {
+      "id": "103-gen-otitis-cat-en",
+      "pass": true
+    },
+    {
+      "id": "104-gen-otitis-cat-de",
+      "pass": true
+    },
+    {
+      "id": "105-gen-otitis-cat-it",
+      "pass": true
+    },
+    {
+      "id": "106-gen-diarrhoea-declined-en",
+      "pass": true
+    },
+    {
+      "id": "107-gen-diarrhoea-declined-de",
+      "pass": true
+    },
+    {
+      "id": "108-gen-diarrhoea-declined-it",
+      "pass": true
+    },
+    {
+      "id": "109-gen-cat-vaccine-en",
+      "pass": true
+    },
+    {
+      "id": "110-gen-cat-vaccine-de",
+      "pass": true
+    },
+    {
+      "id": "111-gen-cat-vaccine-it",
+      "pass": true
+    },
+    {
+      "id": "112-gen-fleas-en",
+      "pass": true
+    },
+    {
+      "id": "113-gen-fleas-de",
+      "pass": true
+    },
+    {
+      "id": "114-gen-fleas-it",
+      "pass": true
+    },
+    {
+      "id": "115-gen-rabbit-anorexia-en",
+      "pass": true
+    },
+    {
+      "id": "116-gen-rabbit-anorexia-de",
+      "pass": true
+    },
+    {
+      "id": "117-gen-rabbit-anorexia-it",
+      "pass": true
+    },
+    {
+      "id": "118-gen-suture-removal-en",
+      "pass": true
+    },
+    {
+      "id": "119-gen-suture-removal-de",
+      "pass": true
+    },
+    {
+      "id": "120-gen-suture-removal-it",
+      "pass": true
+    },
+    {
+      "id": "121-gen-senior-weight-loss-en",
+      "pass": true
+    },
+    {
+      "id": "122-gen-senior-weight-loss-de",
+      "pass": true
+    },
+    {
+      "id": "123-gen-senior-weight-loss-it",
+      "pass": true
+    },
+    {
+      "id": "124-gen-dental-declined-en",
+      "pass": true
+    },
+    {
+      "id": "125-gen-dental-declined-de",
+      "pass": true
+    },
+    {
+      "id": "126-gen-dental-declined-it",
+      "pass": true
+    },
+    {
+      "id": "127-gen-cough-en",
+      "pass": true
+    },
+    {
+      "id": "128-gen-cough-de",
+      "pass": true
+    },
+    {
+      "id": "129-gen-cough-it",
+      "pass": true
+    },
+    {
+      "id": "130-gen-cystitis-cat-en",
+      "pass": true
+    },
+    {
+      "id": "131-gen-cystitis-cat-de",
+      "pass": true
+    },
+    {
+      "id": "132-gen-cystitis-cat-it",
+      "pass": true
+    },
+    {
+      "id": "133-gen-other-pet-en",
+      "pass": true
+    },
+    {
+      "id": "134-gen-other-pet-de",
+      "pass": true
+    },
+    {
+      "id": "135-gen-other-pet-it",
+      "pass": true
+    },
+    {
+      "id": "136-gen-planned-not-done-en",
+      "pass": true
+    },
+    {
+      "id": "137-gen-planned-not-done-de",
+      "pass": true
+    },
+    {
+      "id": "138-gen-planned-not-done-it",
+      "pass": true
+    },
+    {
+      "id": "139-gen-eye-no-frequency-en",
+      "pass": true
+    },
+    {
+      "id": "140-gen-eye-no-frequency-de",
+      "pass": true
+    },
+    {
+      "id": "141-gen-eye-no-frequency-it",
       "pass": true
     }
   ]

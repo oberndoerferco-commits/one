@@ -1,0 +1,156 @@
+{
+  "id": "121-gen-senior-weight-loss-en",
+  "language": "en",
+  "synthetic": true,
+  "header": {
+    "name": "Luna",
+    "species": "cat",
+    "breed": "European Shorthair",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 14,
+      "unit": "year"
+    }
+  },
+  "notes": "losing weight over 3 months, drinking more\ngood appetite\nweight 3.9 kg\nthin, coat unkempt\nsmall nodule left thyroid area\nbloods incl. T4 taken today\nhyperthyroidism\nchronic kidney disease\ncall with results",
+  "expect": {
+    "missing_includes": [
+      "diagnostics[0].result"
+    ],
+    "drugs": [],
+    "assessment_text": null,
+    "statuses": {}
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "losing weight over 3 months, drinking more",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          42
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "appetite",
+        "value": "good appetite",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            43,
+            56
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": {
+          "value": 3.9,
+          "unit": "kg",
+          "source_spans": [
+            [
+              57,
+              70
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "general",
+          "text": "thin, coat unkempt",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              71,
+              89
+            ]
+          ]
+        },
+        {
+          "system": "neck",
+          "text": "small nodule left thyroid area",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              90,
+              120
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "blood test incl. T4",
+        "status": "performed",
+        "result": null,
+        "source_spans": [
+          [
+            121,
+            148
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": null,
+      "differentials": [
+        {
+          "text": "hyperthyroidism",
+          "source_spans": [
+            [
+              149,
+              164
+            ]
+          ]
+        },
+        {
+          "text": "chronic kidney disease",
+          "source_spans": [
+            [
+              165,
+              187
+            ]
+          ]
+        }
+      ],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "call with results",
+        "interval": null,
+        "source_spans": [
+          [
+            188,
+            205
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

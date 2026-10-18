@@ -7,6 +7,7 @@ const read = (name: string) => (existsSync(resultsDir + name) ? JSON.parse(readF
 const fixture = read('fixture.json');
 const model = read('claude.json');
 const pct = (x: number | null) => (x == null ? 'k. A.' : Math.round(x * 100) + ' %');
+const ci = (m: any) => (!m || m.rate == null ? 'k. A.' : (`${(100 * m.rate).toFixed(1)} % (95-%-KI ${(100 * m.lo).toFixed(1)}–${(100 * m.hi).toFixed(1)} %, ${m.k} von ${m.n})`).replace(/(\d)\.(\d)/g, '$1,$2'));
 const fmt = (iso: string) => new Date(iso).toLocaleDateString('de-DE', { day: 'numeric', month: 'long', year: 'numeric' });
 const runs = [{ label: 'Validatoren auf vorbereiteten Datensätzen', note: 'Belegt die Prüfungen selbst: ein Datensatz mit erfundenem Medikament, erfundener Dosis oder Diagnose muss blockiert werden. Offline, ohne Modell.', r: fixture }, ...(model ? [{ label: 'Modellausgabe auf denselben Fällen', note: 'Das Modell strukturiert die Rohnotizen; dieselben Prüfungen laufen anschließend über seine Ausgabe.', r: model }] : [])];
 ---
@@ -26,6 +27,15 @@ const runs = [{ label: 'Validatoren auf vorbereiteten Datensätzen', note: 'Bele
       <tr><td>Muss-fehlschlagen-Fall</td><td>Ein absichtlich falscher Datensatz (erfundenes Medikament, erfundene Dosis und Diagnose), den die Prüfungen blockieren müssen</td><td>Immer blockiert</td></tr>
     </table>
     <p>Regeln können nur strenger werden: ein Release darf eine Untergrenze anheben, nie senken.</p>
+    <h2>Wie die Raten definiert sind</h2>
+    <p>Jede Rate steht mit einem 95-%-Konfidenzintervall (Wilson), weil eine nackte Prozentzahl bei wenigen Dutzend Fällen mehr behauptet, als bekannt ist. Die Definitionen stehen in <code>app/src/metrics.ts</code>, sodass jede und jeder sie aus den veröffentlichten Ergebnissen nachrechnen kann.</p>
+    <ul>
+      <li><strong>Quellenzuordnung</strong>: Fakten im Datensatz, die auf Text in Ihren Notizen verweisen und keinen blockierenden Befund ausgelöst haben, bezogen auf alle Fakten. Ein Fakt ist ein Vorstellungsgrund, ein Anamnesepunkt, ein Vitalwert, ein Untersuchungsbefund, ein Test, eine Beurteilung, eine Differenzialdiagnose, eine Behandlung, ein Medikament, eine Wiedervorstellung oder eine Anweisung.</li>
+      <li><strong>Nicht belegte Inhalte</strong>: Fakten mit einem blockierenden Befund (ein Medikament, eine Dosis oder eine Zahl, die Sie nicht geschrieben haben, oder eine Quelle außerhalb der Notizen), bezogen auf alle Fakten.</li>
+      <li><strong>Fälle mit blockierendem Befund</strong>: Fälle, in denen Sie vor der Freigabe mindestens einmal gestoppt würden.</li>
+      <li><strong>Erkennung fehlender Angaben</strong>: Lücken, deren Markierung der Fall erwartet (Medikament ohne Dosis, Test ohne Ergebnis, Impfstoff ohne Charge), und die markiert wurden.</li>
+    </ul>
+    <p>Der absichtlich falsche Muss-fehlschlagen-Fall zählt nicht zu den Raten; er belegt nur, dass die Prüfungen greifen.</p>
 
     <h2>Aktuelle Ergebnisse</h2>
     {runs.map(({ label, note, r }) => (
@@ -35,19 +45,36 @@ const runs = [{ label: 'Validatoren auf vorbereiteten Datensätzen', note: 'Bele
         <table>
           <tr><th>Lauf</th><td>{fmt(r.run_at)} · Prompt <code>{r.prompt}</code> · Sprachen {r.languages.join(', ').toUpperCase()}</td></tr>
           <tr><th>Fälle</th><td>{r.cases} ({r.failed} fehlgeschlagen)</td></tr>
+          {r.metrics && <>
+            <tr><th>Quellenzuordnung</th><td>{ci(r.metrics.attribution)}</td></tr>
+            <tr><th>Nicht belegte Inhalte</th><td>{ci(r.metrics.unsupported_content)}</td></tr>
+            <tr><th>Fälle mit blockierendem Befund</th><td>{ci(r.metrics.cases_with_blocking_finding)}</td></tr>
+            <tr><th>Erkennung fehlender Angaben</th><td>{ci(r.metrics.missing_field_detection)}</td></tr>
+          </>}
           <tr><th>Blockierende Befunde</th><td>{r.blocking}{r.extractor === 'fixture' ? ' (alle aus dem Muss-fehlschlagen-Fall, wie beabsichtigt)' : ''}</td></tr>
           <tr><th>Medikamenten-Abweichungen</th><td>{r.drug_mismatch}</td></tr>
           <tr><th>Einträge ohne Quelle</th><td>{r.unsourced}{r.extractor === 'fixture' ? ' (der Muss-fehlschlagen-Fall)' : ''}</td></tr>
           <tr><th>Recall fehlender Informationen</th><td>{pct(r.missing_recall)}</td></tr>
-          <tr><th>Je Fall</th><td>{r.per_case.map((c: any) => `${c.pass ? '✓' : '✗'} ${c.id}`).join(' · ')}</td></tr>
+          <tr><th>Je Fall</th><td><details><summary>{r.per_case.filter((c: any) => c.pass).length} / {r.per_case.length} bestanden</summary>{r.per_case.map((c: any) => `${c.pass ? '✓' : '✗'} ${c.id}`).join(' · ')}</details></td></tr>
         </table>
       </div>
     ))}
-    {!model && <p class="notice warn">Modellläufe sind noch nicht veröffentlicht. Das Testset ist noch klein (synthetische, intern geschriebene Fälle), und der Modelllauf wartet auf einen Entwicklungsschlüssel. Bevor eine Praxis das Produkt nutzt, wächst das Set auf mindestens 300 Fälle in Englisch, Deutsch und Italienisch, geschrieben mit praktizierenden Tierärztinnen und Tierärzten, und ein externes tierärztliches Gremium prüft eine Stichprobe der Ausgabe. Diese Ergebnisse erscheinen dann hier.</p>}
+    <p class="notice">Auf vorbereiteten Datensätzen ist jede Rate konstruktionsbedingt perfekt: Diese Datensätze sind die Musterlösung. Die Zeile zeigt, dass Prüfungen und Zählung funktionieren, nicht wie gut das Modell ist. Das misst erst der Modelllauf unten.</p>
+    {!model && <p class="notice warn">Modellläufe sind noch nicht veröffentlicht. Das Testset umfasst 53 synthetische, intern geschriebene Fälle (Englisch, Deutsch, Italienisch; 42 davon Zeile für Zeile erzeugt mit <code>app/src/cli/gen-cases.ts</code>), und der Modelllauf wartet auf einen Entwicklungsschlüssel. Bevor eine Praxis das Produkt nutzt, wächst das Set auf mindestens 300 Fälle in Englisch, Deutsch und Italienisch, geschrieben mit praktizierenden Tierärztinnen und Tierärzten, und ein externes tierärztliches Gremium prüft eine Stichprobe der Ausgabe. Diese Ergebnisse erscheinen dann hier.</p>}
+
+    <h2>Ein Test, den Ihre Praxis wiederholen kann: 20 Fälle mit Stoppuhr</h2>
+    <p>Zahlen eines Anbieters, auch unsere, ersetzen nicht den Versuch mit den eigenen Notizen. Dieses Protokoll dauert etwa zwei Stunden, und keine Daten verlassen die Praxis.</p>
+    <ol>
+      <li>Wählen Sie 20 aktuelle Konsultationen, Routine und Kompliziertes gemischt. Kopieren Sie die Notizen so, wie sie geschrieben wurden, und entfernen Sie Name und Kontaktdaten der Besitzer.</li>
+      <li>Erfassen Sie jeden Fall so, wie Sie es sonst tun, und stoppen Sie die Zeit vom ersten Tastendruck bis zum fertigen Eintrag.</li>
+      <li>An einem anderen Tag fügen Sie dieselben Notizen in den Arbeitsbereich ein, klären jede Markierung und geben frei. Stoppen Sie auch das, vom Einfügen bis zur Freigabe.</li>
+      <li>Zählen Sie für jeden freigegebenen Datensatz: Fakten, die nicht in den Notizen stehen (sollten 0 sein), fehlende Fakten aus den Notizen, falsche Markierungen und nötige Änderungen.</li>
+      <li>Berichten Sie die mediane Zeit pro Fall für beide Wege, die vier Zählungen und alles, was Sie nicht unterschreiben würden. Schicken Sie es uns gern; Praxisergebnisse veröffentlichen wir nur mit Erlaubnis, namentlich oder anonym nach Ihrer Wahl.</li>
+    </ol>
 
     <h2>Bekannte Lücken, ehrlich</h2>
     <ul>
-      <li>Das Testset ist klein und synthetisch. Echte Notizen sind unordentlicher.</li>
+      <li>Das Testset ist synthetisch und intern geschrieben. Echte Notizen sind unordentlicher, und die geplanten 300 Fälle, geschrieben mit praktizierenden Tierärztinnen und Tierärzten, gibt es noch nicht.</li>
       <li>Zahlenprüfungen sind absichtlich streng: eine Dosis, die als „5mg“ geschrieben und als „5 mg“ erfasst wird, besteht; „fünf“ in Worten zählt in den Notizen aber nicht als Zahl, also muss der Datensatz „fünf“ beibehalten. Uns ist ein Fehlalarm lieber als eine stille Erfindung.</li>
       <li>Der Abgleich von Medikamentennamen toleriert Tippfehler per Präfix; ungewöhnliche Handelsnamen brauchen unter Umständen Ihre Korrektur, die dann als menschliche Bearbeitung protokolliert wird.</li>
       <li>Eine unabhängige Bewertung hat noch nicht stattgefunden.</li>
