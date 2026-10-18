@@ -183,7 +183,7 @@ p { margin: 0 0 1em; }
 
 /* home v2 */
 .kicker { text-transform: uppercase; letter-spacing: .1em; font-size: .78rem; font-weight: 700; color: var(--accent); margin: 0 0 14px; }
-.kicker.light { color: var(--accent-soft); }
+.kicker.light { color: rgba(255, 255, 255, .82); }
 .hero2 { padding: 48px 0 24px; }
 .hero2-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
 .hero2-text h1 { margin-bottom: 18px; }
