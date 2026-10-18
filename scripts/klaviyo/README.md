@@ -22,3 +22,6 @@ pre-order), checkout 1 states the shipping terms. Preview: docs/emails/2026-temp
 To load into Klaviyo: `KLAVIYO_API_KEY=pk_... node build.mjs` (private key with Templates
 write), or paste `out/<name>.html` into Klaviyo > Templates > Create > Import HTML. Nothing is
 sent from here.
+
+Owner, 18 October: every email is signed "Oberndörfer Milano" (no personal name, "we" not "I"). Do not send
+any email or switch on any flow until the owner says so.

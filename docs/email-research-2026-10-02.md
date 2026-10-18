@@ -103,7 +103,7 @@ percentage discounts, "ends midnight", outlet language, emoji, more than one cal
 - No discount codes anywhere (the owner's instinct; both parts of the research agree). The
   Welcome code stays in Shopify unused; the sign-up promise is first access and the letter.
 - Header is the wordmark alone; cities removed from header and footer.
-- Signed by a person, not the house. Welcome 2 and 3 and the checkout notes carry the owner's
+- Signed by a person (superseded 18 October: all emails are signed "Oberndörfer Milano"). Welcome 2 and 3 and the checkout notes carried the owner's
   first name; the owner can change the signature in `scripts/klaviyo/emails.mjs`.
 - Product photographs: the house's own studio shots on the ivory ground, in rows of three,
   each a link; one filled button only in the first checkout email.

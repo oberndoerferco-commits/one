@@ -2,8 +2,7 @@ import { layout, eyebrow, head, sub, p, small, link, caption, button, photo, her
 import { readFileSync } from 'node:fs';
 const P = JSON.parse(readFileSync(new URL('./products.json', import.meta.url), 'utf8'));
 
-// The person who signs. Change here and every email follows.
-const SIGNER = 'Celina';
+// Every email is signed by the house (owner, 18 October: "Oberndörfer Milano", no personal name).
 
 const IMG = {
   brazing: 'https://cdn.shopify.com/s/files/1/0758/8387/2581/files/Custom.jpg?v=1771176609',
@@ -20,7 +19,7 @@ const w = (u, px = 1200) => u.includes('?v=') ? u.replace('?v=', `?width=${px}&v
 const piece = (key, note, cta) => ({ src: w(P[key].src, 600), title: P[key].title.replace(/ - .*$/, ''), price: P[key].price, href: `${SITE}/products/${P[key].handle}`, note, cta });
 
 const greet = `{% if first_name %}{{ first_name }},{% else %}Good day,{% endif %}`;
-const signed = p(`${SIGNER}<br /><span style="color:${C.muted};">Oberndörfer Milano</span>`);
+const signed = p(`Oberndörfer Milano`);
 const houseSigned = p(`Oberndörfer Milano`);
 
 export const emails = [
@@ -83,7 +82,7 @@ ${p(greet)}
 ${p('T-shirts, hoodies and twill pants in heavy cotton, made in Italy in small runs. They are in stock now and sent within days, by DHL, free.')}
 ${photo(w(P.teeMagenta.src), 'White T-shirt with three small emblems at the chest', SITE + '/products/' + P.teeMagenta.handle, 'T-Shirt with Logo Magenta, in white or black. €85.')}
 ${grid([piece('hoodieLattice', 'Grey, black or white'), piece('teeOM', 'Black or white'), piece('pants', 'Five colours')])}
-${p('If you would rather talk than read, reply to this email. It reaches me, not a mailbox. I am happy to help with a size, or a piece for someone else.')}
+${p('If you would rather talk than read, reply to this email. A person in the atelier answers, not a mailbox. We are happy to help with a size, or a piece for someone else.')}
 ${button('Shop Ready to Wear', SITE + '/collections/ready-to-wear')}
 ${signed}`,
     }),
@@ -132,7 +131,7 @@ ${houseSigned}`,
 ${head('A note from the atelier.', 26)}
 ${p(greet)}
 ${p('Yesterday you set aside {{ event.extra.line_items.0.product.title }}{% if event.extra.line_items|length > 1 %} and {{ event.extra.line_items|length|add:"-1" }} other piece{% if event.extra.line_items|length > 2 %}s{% endif %}{% endif %}. It is still held for you.')}
-${p('If it was a question of size, lead time, duties or colour, write back and I will answer it myself. Most pieces are made to order, so a colour or a detail can still be changed before anything is cut.')}
+${p('If it was a question of size, lead time, duties or colour, write back and a person in the atelier will answer. Most pieces are made to order, so a colour or a detail can still be changed before anything is cut.')}
 ${p(link('Return to your selection', '{{ event.extra.checkout_url }}'))}
 ${signed}`,
     }),
@@ -149,7 +148,7 @@ ${signed}`,
       body: `
 ${head('Would you like to see it?', 26)}
 ${p(greet)}
-${p('A piece like this deserves to be seen before it is decided. Our interior at Miramare The Palace in Sanremo and our partner Trax NYC in New York both have pieces to hand, and in Milan we receive by appointment. Reply with a day that suits you, or a telephone number, and I will call.')}
+${p('A piece like this deserves to be seen before it is decided. Our interior at Miramare The Palace in Sanremo and our partner Trax NYC in New York both have pieces to hand, and in Milan we receive by appointment. Reply with a day that suits you, or a telephone number, and we will call.')}
 ${p('If you have simply changed your mind, nothing more will follow from us.')}
 ${p(link('Return to your selection', '{{ event.extra.checkout_url }}'))}
 ${signed}`,
@@ -210,7 +209,7 @@ ${grid([piece('teeMagenta', 'White or black'), piece('teeOchre', 'White or black
 ${eyebrow('T-shirts and hoodies')}
 ${grid([piece('teeOM'), piece('teeStar'), piece('hoodieLattice')])}
 ${grid([piece('hoodieOM'), piece('pants'), piece('cap')])}
-${band(`${sub('Sizes and returns')}${p('Reply to this email with your height and the fit you like, and I will tell you the size. Every piece can be returned within 14 days of delivery.')}`)}
+${band(`${sub('Sizes and returns')}${p('Reply to this email with your height and the fit you like, and we will tell you the size. Every piece can be returned within 14 days of delivery.')}`)}
 ${signed}`,
     }),
   },
