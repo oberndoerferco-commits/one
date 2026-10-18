@@ -1,4 +1,5 @@
 ---
+import AnimalIcon from '../components/AnimalIcon.astro';
 import '@fontsource-variable/fraunces/full.css';
 import '@fontsource-variable/plus-jakarta-sans/index.css';
 import '../styles.css';
@@ -122,6 +123,7 @@ const strings = {
 } as const;
 
 const t = strings[L];
+const fh = ({ en: ['Explore', 'About'], it: ['Scopri', 'Chi siamo'], de: ['Entdecken', 'Über uns'] } as any)[L] as [string, string];
 const nav = [...t.nav.filter((n: any) => !n.cta), ...t.nav.filter((n: any) => n.cta)];
 const languages: { code: Lang; href: string; label: string }[] = [
   { code: 'en', href: '/', label: 'EN' },
@@ -183,19 +185,22 @@ const current = (href: string) => path === href || path.startsWith(href + '/');
       <slot />
     </main>
 
+    <div class="foot-peek" aria-hidden="true"><AnimalIcon kind="cat" size={64} /><AnimalIcon kind="dog" size={72} /><AnimalIcon kind="rabbit" size={60} /></div>
     <footer class="site-footer">
       <div class="wrap">
-        <div>
-          <strong>AI Veterinary</strong><br />
-          {t.tagline}<br />
-          <span style="font-size:.88rem">{t.disclaimer}</span>
+        <div class="foot-brand">
+          <strong>AI Veterinary</strong>
+          <p class="foot-tag">{t.tagline}</p>
+          <p class="foot-disc">{t.disclaimer}</p>
         </div>
-        <ul>
-          {t.footer1.map((f) => <li><a href={f.href}>{f.label}</a></li>)}
-        </ul>
-        <ul>
-          {t.footer2.map((f) => <li><a href={f.href}>{f.label}</a></li>)}
-        </ul>
+        <nav aria-label={fh[0]}>
+          <p class="foot-h">{fh[0]}</p>
+          <ul>{t.footer1.map((f) => <li><a href={f.href}>{f.label}</a></li>)}</ul>
+        </nav>
+        <nav aria-label={fh[1]}>
+          <p class="foot-h">{fh[1]}</p>
+          <ul>{t.footer2.map((f) => <li><a href={f.href}>{f.label}</a></li>)}</ul>
+        </nav>
       </div>
     </footer>
   <script is:inline define:vars={{ pageLang: L, alternates }}>

@@ -1,24 +1,45 @@
 ---
 import { getCollection } from 'astro:content';
 import { ANIMALS, slugOf, type Lang } from '../lib/animals-i18n';
+import AnimalIcon from './AnimalIcon.astro';
+import { TOPIC } from '../lib/topic-icons';
 interface Props { lang: Lang; filter: string }
 const { lang, filter } = Astro.props;
 const t = ANIMALS[lang];
+const isSpecies = filter in t.species;
 const label = (t.species as any)[filter] ?? (t.categories as any)[filter]?.[0] ?? filter;
+const sub = isSpecies ? null : (t.categories as any)[filter]?.[1] ?? null;
 const entries = (await getCollection('animals'))
   .filter((e) => e.data.lang === lang && (e.data.species === filter || e.data.category === filter))
   .sort((a, b) => b.data.updated.valueOf() - a.data.updated.valueOf());
+const countLabel = `${entries.length} ${t.articles}`;
 ---
-<section class="wrap hero">
-  <p class="eyebrow"><a href={t.base}>{t.title}</a></p>
-  <h1>{label}</h1>
+<section class={`filter-hero ${isSpecies ? `tint-${filter}` : `ti-${filter}`}`}>
+  <div class="wrap filter-hero-in">
+    <div>
+      <p class="eyebrow"><a href={t.base}>{t.title}</a></p>
+      <h1>{label}</h1>
+      {sub && <p class="lead">{sub}</p>}
+      <p class="filter-count">{countLabel}</p>
+    </div>
+    <div class="filter-art" aria-hidden="true">
+      {isSpecies
+        ? (filter === 'general' ? <><AnimalIcon kind="dog" size={120} /><AnimalIcon kind="cat" size={110} /></> : <AnimalIcon kind={filter as any} size={150} />)
+        : <svg width="120" height="120" viewBox="0 0 32 32" fill="none" stroke="var(--art-ink)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" set:html={TOPIC[filter] ?? ''} />}
+    </div>
+  </div>
+</section>
+<section class="wrap section">
   {entries.length === 0 && <p class="lead" set:html={t.nothing} />}
-  <div class="grid3">
+  <div class="cards3">
     {entries.map((e) => (
-      <a class="tile" href={`${t.base}/${slugOf(e.id)}`}>
-        <div class="t">{e.data.title}</div>
-        <div class="d">{e.data.description}</div>
-        {e.data.draft && <span class="badge draft" style="margin-top:8px">{t.draft}</span>}
+      <a class={`card3 tint-${e.data.species}`} href={`${t.base}/${slugOf(e.id)}`}>
+        {!isSpecies && <span class="card3-art card3-art-sm">{e.data.species === 'general' ? <><AnimalIcon kind="dog" size={56} /><AnimalIcon kind="cat" size={56} /></> : <AnimalIcon kind={e.data.species} size={64} />}</span>}
+        <span class="card3-body">
+          <span class="card3-t">{e.data.title}</span>
+          <span class="card3-d">{e.data.description}</span>
+          {e.data.draft ? <span class="badge draft">{t.draft}</span> : <span class="badge reviewed">{t.reviewedBy} {e.data.reviewedBy}</span>}
+        </span>
       </a>
     ))}
   </div>

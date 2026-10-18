@@ -178,8 +178,10 @@ const J = {
 </section>
 
 <style is:global>
-  #vb-form h2 { font-size: 1.15rem; margin: 22px 0 8px; }
-  #vb-form h2:first-child { margin-top: 0; }
+  #vb-form { counter-reset: vbstep; padding: 28px; }
+  #vb-form h2 { font-size: 1.25rem; margin: 34px 0 10px; padding-top: 26px; border-top: 1px solid var(--line); display: flex; align-items: center; gap: 12px; }
+  #vb-form h2::before { counter-increment: vbstep; content: counter(vbstep); flex: none; width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-family: var(--font); font-size: .95rem; font-weight: 700; display: grid; place-items: center; }
+  #vb-form h2:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
   .pp-fields label.wide { grid-column: 1 / -1; }
   .vb-checks { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 6px 14px; }
   .vb-checks label { display: flex; gap: 8px; align-items: center; font-size: .95rem; }
