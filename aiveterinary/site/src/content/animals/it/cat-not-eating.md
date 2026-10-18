@@ -7,6 +7,17 @@ urgency: today
 updated: 2026-09-29
 draft: true
 lang: it
+references:
+  - title: "Cornell Feline Health Center: Anorexia"
+    url: "https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/anorexia"
+  - title: "PDSA: My cat isn't eating (anorexia in cats)"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/my-cats-not-eating"
+  - title: "International Cat Care: Inappetence in cats"
+    url: "https://icatcare.org/articles/inappetence-in-cats"
+  - title: "MSD Veterinary Manual: Feline Hepatic Lipidosis"
+    url: "https://www.msdvetmanual.com/digestive-system/hepatic-disease-in-small-animals/feline-hepatic-lipidosis"
+  - title: "Cornell Feline Health Center: Feline Lower Urinary Tract Disease"
+    url: "https://vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/feline-lower-urinary-tract-disease"
 ---
 
 ## Perché è grave se il gatto non mangia?

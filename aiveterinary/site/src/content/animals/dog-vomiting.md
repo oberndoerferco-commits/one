@@ -6,6 +6,17 @@ category: symptoms
 urgency: today
 updated: 2026-09-29
 draft: true
+references:
+  - title: "PDSA: Vomiting in dogs"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/vomiting-in-dogs"
+  - title: "VCA Animal Hospitals: Vomiting in Dogs"
+    url: "https://vcahospitals.com/know-your-pet/vomiting-in-dogs"
+  - title: "VCA Animal Hospitals: Gastritis in Dogs"
+    url: "https://vcahospitals.com/know-your-pet/gastritis-in-dogs"
+  - title: "MSD Veterinary Manual: Gastric Dilation and Volvulus in Small Animals"
+    url: "https://www.msdvetmanual.com/digestive-system/surgical-problems-of-the-gastrointestinal-tract-in-small-animals/gastric-dilation-and-volvulus-in-small-animals"
+  - title: "ASPCA: People Foods to Avoid Feeding Your Pets"
+    url: "https://www.aspca.org/pet-care/animal-poison-control/people-foods-avoid-feeding-your-pets"
 ---
 
 ## First, the signs that mean go now

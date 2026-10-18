@@ -6,6 +6,15 @@ category: symptoms
 urgency: this-week
 updated: 2026-10-13
 draft: true
+references:
+  - title: "PDSA: Limping and stiffness in dogs"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/limping-and-stiffness-in-dogs"
+  - title: "VCA Animal Hospitals: First Aid for Limping Dogs"
+    url: "https://vcahospitals.com/know-your-pet/first-aid-for-limping-dogs"
+  - title: "VCA Urgent Care: Pain or Limping"
+    url: "https://vcahospitals.com/urgent-care/health-concerns/pain-or-limping"
+  - title: "Merck Veterinary Manual: Toxicoses From Human Analgesics in Animals"
+    url: "https://www.merckvetmanual.com/toxicology/toxicities-from-human-drugs/analgesics-toxicity"
 ---
 
 ## First, the signs that mean go now

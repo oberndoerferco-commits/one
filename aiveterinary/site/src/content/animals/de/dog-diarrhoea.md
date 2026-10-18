@@ -7,6 +7,17 @@ urgency: today
 updated: 2026-10-13
 draft: true
 lang: de
+references:
+  - title: "PDSA: Dog diarrhoea"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/diarrhoea-in-dogs"
+  - title: "PDSA: Haemorrhagic gastroenteritis (HGE) in dogs"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/haemorrhagic-gastroenteritis-hge-in-dogs"
+  - title: "PDSA: Parvovirus in dogs"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/parvovirus-in-dogs-and-puppies"
+  - title: "VCA Animal Hospitals: Diarrhea in Dogs"
+    url: "https://vcahospitals.com/know-your-pet/diarrhea-in-dogs"
+  - title: "VCA Animal Hospitals: Bland Diet Instructions for Dogs and Cats"
+    url: "https://vcahospitals.com/know-your-pet/bland-diet-instructions-for-dogs-and-cats"
 ---
 
 ## Zuerst: die Anzeichen, bei denen Sie sofort fahren sollten

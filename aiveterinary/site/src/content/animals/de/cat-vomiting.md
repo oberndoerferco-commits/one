@@ -7,6 +7,17 @@ urgency: today
 updated: 2026-10-13
 draft: true
 lang: de
+references:
+  - title: "Cornell Feline Health Center: Vomiting"
+    url: "https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/vomiting"
+  - title: "Cornell Feline Health Center: The Danger of Hairballs"
+    url: "https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/danger-hairballs"
+  - title: "PDSA: Vomiting in cats"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/vomiting-in-cats"
+  - title: "Pet Poison Helpline: Lilies"
+    url: "https://www.petpoisonhelpline.com/poison/lilies/"
+  - title: "Merck Veterinary Manual: Toxicoses From Human Analgesics in Animals"
+    url: "https://www.merckvetmanual.com/toxicology/toxicities-from-human-drugs/analgesics-toxicity"
 ---
 
 ## Zuerst: die Anzeichen, bei denen Sie sofort fahren sollten

@@ -7,6 +7,17 @@ urgency: today
 updated: 2026-10-13
 draft: true
 lang: de
+references:
+  - title: "PDSA: My dog isn't eating properly"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/my-dog-isn-t-eating-properly"
+  - title: "PDSA: Why is my pet off their food?"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/all-pets/why-is-my-pet-off-their-food"
+  - title: "VCA Urgent Care: Loss of Appetite"
+    url: "https://vcahospitals.com/urgent-care/health-concerns/loss-of-appetite"
+  - title: "PDSA: Diabetes in dogs"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/diabetes-in-dogs"
+  - title: "MSD Veterinary Manual: Gastric Dilation and Volvulus in Small Animals"
+    url: "https://www.msdvetmanual.com/digestive-system/surgical-problems-of-the-gastrointestinal-tract-in-small-animals/gastric-dilation-and-volvulus-in-small-animals"
 ---
 
 ## Zuerst: die Anzeichen, bei denen Sie sofort fahren sollten
