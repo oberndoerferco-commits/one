@@ -13,6 +13,7 @@ const animals = defineCollection({
     reviewedBy: z.string().optional(),           // "Dr. Name, DVM"
     reviewerRegistration: z.string().optional(), // "Ordine di Milano n. 1234" / "TÄK Berlin"
     reviewedOn: z.coerce.date().optional(),
+    reviewHash: z.string().optional(),          // set by scripts/review.mjs sign
     nextReview: z.coerce.date().optional(),
     references: z.array(z.object({ title: z.string(), url: z.string().url().optional() })).optional(),
     updated: z.coerce.date(),

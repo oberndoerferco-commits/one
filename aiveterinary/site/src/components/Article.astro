@@ -50,6 +50,7 @@ const ld = [
       ? <span class="badge draft">{t.draftLong}</span>
       : <span class="badge reviewed">{t.reviewedBy} {d.reviewedBy}{d.reviewerRegistration && ` (${d.reviewerRegistration})`}{d.reviewedOn && `, ${fmt(d.reviewedOn)}`}</span>}
     {d.author && <span>{t.author} {d.author}</span>}
+    {!d.draft && <span>{({ en: 'Drafted with AI assistance from the cited sources, checked and approved by the reviewer', it: "Redatto con l'assistenza dell'IA dalle fonti citate, controllato e approvato dal revisore", de: 'Mit KI-Unterstützung aus den genannten Quellen entworfen, von der prüfenden Person kontrolliert und freigegeben' } as any)[lang]}</span>}
     <span>{t.updated} {fmt(d.updated)}</span>
     <span>{minutes} {minLabel}</span>
     {d.nextReview && <span>{t.nextReview} {fmt(d.nextReview)}</span>}

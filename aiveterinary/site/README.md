@@ -64,3 +64,13 @@ Create an account with a free newsletter service (Buttondown, MailerLite and
 Brevo all have free tiers), take its form action URL, and set it as
 `PUBLIC_NEWSLETTER_ACTION` in the hosting provider's environment variables.
 The form already sends `email` and `audience` (`owner` or `vet`).
+
+## Signing a vet review
+
+When a veterinarian has checked an article and approves it:
+
+```
+node scripts/review.mjs sign src/content/animals/it/cane-febbre.md --by "Dott.ssa Nome Cognome, DVM" --reg "Ordine di Milano n. 1234"
+```
+
+This sets `draft: false`, the reviewer, the review date, the next review date (one year later) and a hash of the title, summary, sources and text. Every build runs `node scripts/review.mjs check` first and fails if a reviewed article changed after sign-off, so no later edit (human or AI) can appear under a vet's name. To change a reviewed article, edit it and have it reviewed and signed again.

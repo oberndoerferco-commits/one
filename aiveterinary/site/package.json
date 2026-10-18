@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/copy-ocr.mjs && pagefind --site dist",
+    "build": "node scripts/review.mjs check && astro build && node scripts/copy-ocr.mjs && pagefind --site dist",
     "preview": "astro preview"
   },
   "dependencies": {
@@ -22,6 +22,7 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "js-yaml": "^4.3.2",
     "pagefind": "^1.5.2"
   }
 }
