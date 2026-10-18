@@ -542,6 +542,7 @@ const SCAN = {
 } as const;
 const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
 const sc = SCAN[lang];
+const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'Next', unnamed: 'New animal' }, it: { y: 'anni', y1: 'anno', m: 'mesi', chip: 'Chip', next: 'Prossima scadenza', unnamed: 'Nuovo animale' }, de: { y: 'Jahre', y1: 'Jahr', m: 'Monate', chip: 'Chip', next: 'Als Nächstes', unnamed: 'Neues Tier' } }[lang];
 ---
   <section class="wrap hero hero-split" id="pp-intro">
     <div>
@@ -618,8 +619,13 @@ const sc = SCAN[lang];
     </div>
 
     <div id="pp-form" hidden>
+      <div class="pp-profile" id="pp-profile" aria-live="polite">
+        <div class="pp-avatar" id="pp-avatar"></div>
+        <div class="pp-prof-text"><div class="pp-prof-name" id="pp-prof-name"></div><div class="pp-prof-sub" id="pp-prof-sub"></div><div class="pp-prof-next" id="pp-prof-next"></div></div>
+      </div>
+      <nav class="pp-jump" aria-label={t.selAria}>{([['pp-sec-identity', t.identity], ['pp-upcoming', t.upcoming], ['pp-sec-vaccinations', t.vaccinations], ['pp-sec-treatments', t.treatments], ['pp-sec-medications', t.medications], ['pp-sec-conditions', t.conditions], ['pp-sec-visits', t.visits], ['pp-sec-diary', t.diary], ['pp-sec-weights', t.weights]] as [string, string][]).map(([id, l]) => <a href={`#${id}`}>{l}</a>)}</nav>
       <div class="pp-grid">
-        <section class="card">
+        <section class="card" id="pp-sec-identity">
           <h2>{t.identity}</h2>
           <div class="pp-photo-row">
             <img id="pp-photo" alt="" hidden />
@@ -667,49 +673,49 @@ const sc = SCAN[lang];
         <button class="btn secondary" type="button" id="pp-ics" hidden>{t.addCalendar}</button>
       </section>
 
-      <section class="card pp-list" data-list="vaccinations">
+      <section class="card pp-list" data-list="vaccinations" id="pp-sec-vaccinations">
         <h2>{t.vaccinations}</h2>
         <p class="pp-hint">{t.vaccHint}</p>
         <table><thead><tr><th>{t.thVaccine}</th><th>{t.thDateGiven}</th><th>{t.thValidUntil}</th><th>{t.thClinicVet}</th><th>{t.thBatch}</th><th></th></tr></thead><tbody></tbody></table>
         <button class="btn secondary pp-add" type="button">{t.addVacc}</button>
       </section>
 
-      <section class="card pp-list" data-list="treatments">
+      <section class="card pp-list" data-list="treatments" id="pp-sec-treatments">
         <h2>{t.treatments}</h2>
         <p class="pp-hint">{t.treatHint}</p>
         <table><thead><tr><th>{t.thProduct}</th><th>{t.thDate}</th><th>{t.thNextDue}</th><th>{t.thGivenBy}</th><th></th></tr></thead><tbody></tbody></table>
         <button class="btn secondary pp-add" type="button">{t.addTreat}</button>
       </section>
 
-      <section class="card pp-list" data-list="medications">
+      <section class="card pp-list" data-list="medications" id="pp-sec-medications">
         <h2>{t.medications}</h2>
         <p class="pp-hint">{t.medHint}</p>
         <table><thead><tr><th>{t.thMedication}</th><th>{t.thDose}</th><th>{t.thStarted}</th><th>{t.thPrescribedBy}</th><th></th></tr></thead><tbody></tbody></table>
         <button class="btn secondary pp-add" type="button">{t.addMed}</button>
       </section>
 
-      <section class="card pp-list" data-list="conditions">
+      <section class="card pp-list" data-list="conditions" id="pp-sec-conditions">
         <h2>{t.conditions}</h2>
         <p class="pp-hint">{t.condHint}</p>
         <table><thead><tr><th>{t.thType}</th><th>{t.thDescription}</th><th>{t.thSince}</th><th></th></tr></thead><tbody></tbody></table>
         <button class="btn secondary pp-add" type="button">{t.addCond}</button>
       </section>
 
-      <section class="card pp-list" data-list="visits">
+      <section class="card pp-list" data-list="visits" id="pp-sec-visits">
         <h2>{t.visits}</h2>
         <p class="pp-hint">{t.visitHint}</p>
         <table><thead><tr><th>{t.thDate}</th><th>{t.thReason}</th><th>{t.thOutcome}</th><th>{t.thClinic}</th><th></th></tr></thead><tbody></tbody></table>
         <button class="btn secondary pp-add" type="button">{t.addVisit}</button>
       </section>
 
-      <section class="card pp-list" data-list="diary">
+      <section class="card pp-list" data-list="diary" id="pp-sec-diary">
         <h2>{t.diary}</h2>
         <p class="pp-hint">{t.diaryHint}</p>
         <table><thead><tr><th>{t.thDate}</th><th>{(j as any).cols?.["Observation"]}</th><th></th></tr></thead><tbody></tbody></table>
         <button class="btn secondary pp-add" type="button">{t.addDiary}</button>
       </section>
 
-      <section class="card pp-list" data-list="weights">
+      <section class="card pp-list" data-list="weights" id="pp-sec-weights">
         <h2>{t.weights}</h2>
         <p class="pp-hint">{t.weightHint}</p>
         <svg id="pp-weight-chart" class="pp-chart" viewBox="0 0 600 180" role="img" aria-label={t.weights} hidden></svg>
@@ -874,11 +880,13 @@ const sc = SCAN[lang];
   </style>
 
   <script type="application/json" id="pp-l2" set:html={JSON.stringify(Object.fromEntries((["en", "it", "de"] as const).map((l) => [l, { ...Object.fromEntries(Object.entries(T[l]).filter(([, v]) => typeof v === "string")), cols: (JS[l] as any).cols }])))} />
+  <script type="application/json" id="pp-prof-i18n" set:html={JSON.stringify(PROF)} />
   <script type="application/json" id="pp-scan-i18n" set:html={JSON.stringify({ ...sc, lang: ({ en: "eng", it: "ita", de: "deu" } as any)[lang] })} />
   <script type="application/json" id="pp-i18n" set:html={JSON.stringify({ ...j, posterWhere: t.posterWhere, locale: ({ en: 'en-GB', it: 'it-IT', de: 'de-DE' } as any)[lang], upcoming: { overdue: t.overdue, dueIn: t.dueIn, dueToday: t.dueToday, none: t.noUpcoming, vacc: t.vaccinations, treat: t.treatments } })} />
 
   <script>
     import { parseScan } from 'aiveterinary-app/src/scan.ts';
+    import { ICONS } from '../lib/animal-icons';
     // Digital pet passport. Local-first: all data lives in localStorage under one key.
     // Shape: { version: 1, animals: [ { id, name, ..., vaccinations: [], treatments: [], medications: [], conditions: [], visits: [], notes, photo } ], current }
     type Row = Record<string, string>;
@@ -957,7 +965,7 @@ const sc = SCAN[lang];
           } else { input = document.createElement('input'); input.type = c.type ?? 'text'; }
           input.value = row[c.key] ?? '';
           input.setAttribute('aria-label', c.label);
-          input.addEventListener('input', () => { row[c.key] = input.value; scheduleSave(); if (name === 'vaccinations' || name === 'treatments') renderUpcoming(a); if (name === 'weights') renderChart(a); });
+          input.addEventListener('input', () => { row[c.key] = input.value; scheduleSave(); if (name === 'vaccinations' || name === 'treatments') { renderUpcoming(a); renderProfile(a); } if (name === 'weights') renderChart(a); });
           td.appendChild(input); tr.appendChild(td);
         }
         const td = document.createElement('td');
@@ -986,7 +994,24 @@ const sc = SCAN[lang];
       for (const name of Object.keys(LISTS)) { a[name] ??= []; renderList(name, a); }
       renderUpcoming(a);
       renderChart(a);
+      renderProfile(a);
     }
+
+    const PR = JSON.parse(document.getElementById('pp-prof-i18n')!.textContent!);
+    const ICON_OF: Record<string, string> = { Dog: 'dog', Cat: 'cat', Rabbit: 'rabbit', 'Guinea pig': 'rabbit', Hamster: 'rabbit', Horse: 'horse', Bird: 'bird' };
+    function renderProfile(a: Animal) {
+      const av = $('#pp-avatar');
+      av.innerHTML = a.photo ? `<img src="${a.photo}" alt="">` : `<svg viewBox="0 0 48 48" width="64" height="64" fill="none" stroke="var(--art-ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[ICON_OF[a.species] ?? 'paw']}</svg>`;
+      av.className = `pp-avatar pet-${ICON_OF[a.species] ?? 'general'}`;
+      $('#pp-prof-name').textContent = a.name || PR.unnamed;
+      let age = '';
+      if (a.dob) { const ms = Date.now() - Date.parse(a.dob); const mo = Math.floor(ms / (30.44 * 864e5)); age = mo < 12 ? `${Math.max(mo, 0)} ${PR.m}` : `${Math.floor(mo / 12)} ${Math.floor(mo / 12) === 1 ? PR.y1 : PR.y}`; }
+      const optLabel = (f: string) => { const sel = $<HTMLSelectElement>(`#pp-form [data-f="${f}"]`); return sel?.selectedOptions?.[0]?.value ? sel.selectedOptions[0].textContent : ''; };
+      $('#pp-prof-sub').textContent = [optLabel('species'), a.breed, age, a.microchip ? `${PR.chip} ${a.microchip}` : ''].filter(Boolean).join(' · ');
+      const next = dueItems(a).sort((x, y) => x.date.localeCompare(y.date)).find((x) => x.date >= new Date().toISOString().slice(0, 10)) ?? null;
+      $('#pp-prof-next').textContent = next ? `${PR.next}: ${next.label} · ${new Date(next.date).toLocaleDateString(J.locale)}` : '';
+    }
+
 
     function dueItems(a: Animal) {
       const items: { label: string; date: string; kind: string }[] = [];
@@ -1063,6 +1088,7 @@ const sc = SCAN[lang];
         const a = current(); if (!a) return;
         a[el.dataset.f!] = el.value;
         if (el.dataset.f === 'name') { renderSelect(); $('h1')!.setAttribute('data-animal', el.value); }
+        renderProfile(a);
         scheduleSave();
       });
     }
