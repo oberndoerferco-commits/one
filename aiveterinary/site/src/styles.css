@@ -481,3 +481,8 @@ html, body { overflow-x: clip; }
 @media print { .pp-jump { display: none; } }
 .btn[hidden], .pp-photo-row img[hidden] { display: none !important; }
 [hidden] { display: none !important; }
+
+.travel-head { display: flex; gap: 20px; align-items: center; }
+.travel-head .travel-art { flex: none; width: 240px; height: auto; }
+@media (max-width: 760px) { .travel-head { flex-direction: column-reverse; align-items: flex-start; } .travel-head .travel-art { width: 200px; } }
+@media print { .travel-art { display: none; } }
