@@ -7,6 +7,17 @@ urgency: emergency
 updated: 2026-10-13
 draft: true
 lang: it
+references:
+  - title: "PDSA: Heatstroke in dogs"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/heatstroke-in-dogs"
+  - title: "Hall et al. (2023), Veterinary Sciences: Cooling methods used to manage heat-related illness in dogs presented to primary care veterinary practices during 2016–2018 in the UK"
+    url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10385239/"
+  - title: "Hall, Carter & O'Neill (2020), Animals: Dogs don't die just in hot cars – exertional heat-related illness (heatstroke) is a greater threat to UK dogs"
+    url: "https://irep.ntu.ac.uk/id/eprint/40361"
+  - title: "PDSA: Heatstroke in cats"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/heatstroke-in-cats"
+  - title: "Rabbit Welfare Association & Fund: Keep your rabbits cool (leaflet, PDF)"
+    url: "https://rabbitwelfare.co.uk/wp-content/uploads/2026/05/Keep-Your-Rabbits-Cool.pdf"
 ---
 
 ## Prima di tutto: i segni per cui andare subito dal veterinario

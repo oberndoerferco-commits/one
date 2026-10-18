@@ -7,6 +7,17 @@ urgency: emergency
 updated: 2026-10-13
 draft: true
 lang: it
+references:
+  - title: "Rabbit Welfare Association & Fund: Gut slowdown"
+    url: "https://rabbitwelfare.co.uk/gut-slowdown/"
+  - title: "Rabbit Welfare Association & Fund: Recognising emergencies"
+    url: "https://rabbitwelfare.co.uk/welfare-need/recognising-emergencies/"
+  - title: "PDSA: Reduced appetite in a rabbit"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/my-rabbit-isn-t-eating-properly"
+  - title: "House Rabbit Society: GI stasis – the silent killer"
+    url: "https://rabbit.org/care/gi-stasis/"
+  - title: "MSD Veterinary Manual: Noninfectious Diseases of Rabbits"
+    url: "https://www.msdvetmanual.com/exotic-and-laboratory-animals/rabbits/noninfectious-diseases-of-rabbits"
 ---
 
 ## Prima di tutto: i segni per cui andare subito dal veterinario

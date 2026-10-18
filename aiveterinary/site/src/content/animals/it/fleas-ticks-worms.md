@@ -7,6 +7,17 @@ urgency: routine
 updated: 2026-10-13
 draft: true
 lang: it
+references:
+  - title: "ESCCAP: Guideline 03, Control of Ectoparasites in Dogs and Cats (7th edition, 2022, PDF)"
+    url: "https://www.esccap.org/link-document/63/"
+  - title: "ESCCAP: Guideline 01, Worm Control in Dogs and Cats (7th edition, 2025, PDF)"
+    url: "https://www.esccap.org/link-document/27/"
+  - title: "ESCCAP Deutschland: Wie oft muss ich gegen Flöhe & Zecken behandeln? (owner leaflet, German, PDF)"
+    url: "https://www.esccap.de/v2/wp-content/uploads/2020/06/2022-Flyer-Ekto.pdf"
+  - title: "PDSA: Fleas on dogs"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/fleas-on-dogs"
+  - title: "MSD Veterinary Manual (Pet Owner Version): Ticks of Dogs"
+    url: "https://www.msdvetmanual.com/dog-owners/skin-disorders-of-dogs/ticks-of-dogs"
 ---
 
 ## Perché prevenire pulci, zecche e vermi invece di curarli?

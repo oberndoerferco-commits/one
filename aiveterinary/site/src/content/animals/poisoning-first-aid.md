@@ -6,6 +6,17 @@ category: first-aid
 urgency: emergency
 updated: 2026-10-13
 draft: true
+references:
+  - title: "PDSA: First aid for poisons and toxins"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/other-veterinary-advice/first-aid-for-poisons-and-toxins"
+  - title: "International Cat Care: Cats and poisons"
+    url: "https://icatcare.org/articles/cats-and-poisons"
+  - title: "International Cat Care: Lily poisoning in cats"
+    url: "https://icatcare.org/articles/lily-poisoning-in-cats"
+  - title: "MSD Veterinary Manual: Food Hazards"
+    url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/food-hazards"
+  - title: "MSD Veterinary Manual: Poisoning from Human Over-the-Counter Drugs"
+    url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/poisoning-from-human-over-the-counter-drugs"
 ---
 
 ## First, the signs that mean go now

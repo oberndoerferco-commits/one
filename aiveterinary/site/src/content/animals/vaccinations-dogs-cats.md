@@ -6,6 +6,17 @@ category: care
 urgency: routine
 updated: 2026-10-13
 draft: true
+references:
+  - title: "WSAVA: 2024 Guidelines for the Vaccination of Dogs and Cats, executive summary (PDF)"
+    url: "https://wsava.org/wp-content/uploads/2024/05/2024-Guidelines-for-the-Vaccination-of-Dogs-and-Cats.pdf"
+  - title: "PDSA: Dog vaccines"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/other-veterinary-advice/dog-vaccines"
+  - title: "International Cat Care: Vaccinating your cat"
+    url: "https://icatcare.org/articles/vaccinating-your-cat"
+  - title: "PDSA: Vaccination reactions in pets"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/vaccination-reactions-in-pets"
+  - title: "European Union, Your Europe: Travelling with pets and other animals in the EU"
+    url: "https://europa.eu/youreurope/citizens/travel/carry/animal-plant/index_en.htm"
 ---
 
 ## What is the difference between core and non-core vaccines?

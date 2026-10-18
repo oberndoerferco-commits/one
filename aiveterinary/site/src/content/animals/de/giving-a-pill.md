@@ -7,6 +7,17 @@ urgency: routine
 updated: 2026-10-13
 draft: true
 lang: de
+references:
+  - title: "PDSA: How to give your dog a pill"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/other-veterinary-advice/how-to-give-your-dog-a-pill"
+  - title: "Cats Protection: Giving your cat a tablet"
+    url: "https://www.cats.org.uk/help-and-advice/health/giving-your-cat-a-tablet"
+  - title: "Langford Vets (University of Bristol): Medicating your cat"
+    url: "https://www.langfordvets.co.uk/small-animal-referral-hospital/clinical-services/feline-centre/medicating-your-cat/"
+  - title: "Cornell University College of Veterinary Medicine: Giving your dog oral medications"
+    url: "https://www.vet.cornell.edu/hospitals/pharmacy/consumer-clinical-care-guidelines-animals/giving-your-dog-oral-medications"
+  - title: "MSD Veterinary Manual: Poisoning from Human Over-the-Counter Drugs"
+    url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/poisoning-from-human-over-the-counter-drugs"
 ---
 
 ## Warum muss ich das Medikament genau wie verordnet geben?
