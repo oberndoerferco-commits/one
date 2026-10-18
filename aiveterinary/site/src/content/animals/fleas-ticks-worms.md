@@ -4,7 +4,7 @@ description: "The parasites most pets will meet, how prevention works, how to re
 species: general
 category: care
 urgency: routine
-updated: 2026-10-13
+updated: 2026-10-19
 draft: true
 references:
   - title: "ESCCAP: Guideline 03, Control of Ectoparasites in Dogs and Cats (7th edition, 2022, PDF)"
@@ -17,6 +17,8 @@ references:
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/fleas-on-dogs"
   - title: "MSD Veterinary Manual (Pet Owner Version): Ticks of Dogs"
     url: "https://www.msdvetmanual.com/dog-owners/skin-disorders-of-dogs/ticks-of-dogs"
+  - title: "International Cat Care: Permethrin poisoning"
+    url: "https://icatcare.org/articles/permethrin-poisoning"
 ---
 
 ## Why should I prevent fleas, ticks and worms rather than treat them?
@@ -31,7 +33,7 @@ Most vets recommend a year-round routine for dogs and cats, adjusted to the anim
 
 Look for scratching, small scabs, hair loss and flea dirt, and prevent fleas with a regular vet treatment for every animal in the house.
 
-Fleas are the most common parasite of pets in Europe and are active indoors all year because of central heating.
+Fleas are common parasites of dogs and cats, and in homes with central heating they can keep developing all year round.
 
 Signs: scratching, nibbling at the back and base of the tail, small scabs, hair loss, and "flea dirt" (black specks that turn reddish on a damp tissue). Some animals are allergic to flea saliva and react badly to a single bite. Fleas also carry tapeworm.
 
@@ -47,13 +49,13 @@ Check your animal after walks, especially around the head, ears, neck, armpits a
 
 ### How to remove a tick
 
-1. Use a tick-removal tool (a small plastic hook) or fine-tipped tweezers. Do not use fingers, and do not use petroleum jelly, oil, alcohol, or heat, which can make the tick regurgitate into the wound.
+1. Use a tick-removal tool (a small plastic hook) or fine-tipped tweezers. Do not use your fingers: squeezing the tick can push germs into the bite. Do not use oil, alcohol, glue, ether or heat.
 2. Slide the hook under the tick close to the skin, or grip the tick as close to the skin as possible with tweezers.
 3. Grip the tick as close to the skin as possible and pull it out slowly and steadily, without squeezing the body. ESCCAP advises against twisting; if your tick tool comes with its own instructions, follow them.
-4. Check that the mouthparts have come away. A small red mark is normal.
+4. Check that the mouthparts have come away.
 5. Clean the spot and wash your hands. Note the date.
 
-If part of the tick is left behind, do not dig for it. It usually works out on its own; see your vet if the area becomes red, swollen or weeping.
+If part of the tick is left in the skin, ask your vet what to do rather than digging for it: mouthparts left behind can lead to infection or a small abscess. Keep an eye on every spot where you have removed a tick, and see your vet if it becomes red or swollen.
 
 Prevention: many flea products also cover ticks, but not all do. Ask your vet, particularly before travelling.
 
@@ -61,7 +63,7 @@ Prevention: many flea products also cover ticks, but not all do. Ask your vet, p
 
 Roundworms, tapeworms and lungworm are the main ones, and regular worming on a schedule your vet sets prevents them.
 
-**Roundworms** are common in puppies and kittens, who can be infected before birth or through milk. They can also infect people, especially children, which is one of the main reasons regular worming is advised.
+**Roundworms** are common in puppies and kittens. Puppies can be infected before birth and through their mother's milk; kittens can be infected through the milk, but not before birth. They can also infect people, especially children, which is one of the main reasons regular worming is advised.
 
 **Tapeworms** come from fleas or from eating raw meat or prey. Owners sometimes notice rice-grain segments around the bottom or in bedding.
 
@@ -83,7 +85,7 @@ Book an appointment if your animal:
 - is losing weight despite eating well
 - has diarrhoea that keeps returning
 
-Go urgently if a cat shows tremors, twitching or drooling after any spot-on product has been applied, or if a dog-only product was used on a cat by mistake.
+Contact your vet immediately if a dog flea product has been used on a cat by mistake, or if a cat shows tremors, shaking or twitching after a dog flea product was used on it or on a dog it is in close contact with.
 
 ## What will the vet want to know about my pet's parasite protection?
 

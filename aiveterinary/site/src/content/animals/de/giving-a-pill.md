@@ -4,7 +4,7 @@ description: "Ein Medikament genau wie verordnet in ein Tier zu bekommen, ist sc
 species: general
 category: medications
 urgency: routine
-updated: 2026-10-13
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -24,7 +24,7 @@ references:
 
 Weil ausgelassene, halbierte oder vorzeitig abgesetzte Dosen häufige Gründe sind, warum eine Behandlung scheitert.
 
-Ihre Tierärztin oder Ihr Tierarzt hat das Medikament, die Menge und die Anzahl der Tage für das Gewicht und die Erkrankung Ihres Tieres gewählt. Ausgelassene Dosen, halbierte Dosen, weil „es schon besser aussah“, oder vorzeitiges Absetzen sind häufige Gründe, warum eine Behandlung scheitert, und bei Antibiotika können sie die nächste Infektion schwerer behandelbar machen.
+Ihre Tierärztin oder Ihr Tierarzt hat das Medikament, die Menge und die Anzahl der Tage für das Gewicht und die Erkrankung Ihres Tieres gewählt. Ausgelassene Dosen, halbierte Dosen, weil „es schon besser aussah“, oder vorzeitiges Absetzen sind häufige Gründe, warum eine Behandlung scheitert. Gerade Antibiotika müssen zu Ende gegeben werden, damit Bakterien möglichst keine Resistenzen gegen das Medikament entwickeln.
 
 Wenn Sie das Medikament nicht verabreichen können, raten Sie nicht an einer Alternative herum. Rufen Sie die Praxis an. Tierärztinnen und Tierärzte können oft die Form ändern (Tablette zu Flüssigkeit oder eine aromatisierte Variante), den Zeitpunkt oder in manchen Fällen stattdessen eine Depotinjektion geben. Jede Änderung an Dosis, Zeitpunkt oder Medikament ist eine tierärztliche Entscheidung.
 
@@ -34,7 +34,7 @@ Lesen Sie das Etikett, fragen Sie, ob die Tablette zerdrückt oder versteckt wer
 
 - Lesen Sie das Etikett. Achten Sie darauf, ob es mit dem Futter oder auf nüchternen Magen gegeben werden soll und wie oft am Tag.
 - Fragen Sie, ob die Tablette zerdrückt oder im Futter versteckt werden darf. Manche Tabletten müssen im Ganzen geschluckt werden, und manche dürfen nicht mit bestimmten Lebensmitteln gegeben werden.
-- Stellen Sie Erinnerungen auf dem Handy ein. Zweimal täglich bedeutet etwa im Abstand von 12 Stunden, nicht zum Frühstück und zum Mittagessen.
+- Stellen Sie Erinnerungen auf dem Handy ein, und fragen Sie in der Tierarztpraxis oder Apotheke, in welchem Abstand die Dosen gegeben werden sollen.
 - Legen Sie alles bereit, bevor Sie das Tier holen: Tablette aus der Packung, ein Leckerli danach, ein Handtuch, falls nötig.
 - Bleiben Sie ruhig. Kurz, bestimmt und fertig ist besser als lang und entschuldigend.
 
@@ -77,7 +77,7 @@ Messen Sie die Dosis mit der mitgelieferten Spritze genau ab und geben Sie sie l
 - Messen Sie mit der mitgelieferten Spritze genau bis zur Markierung ab. Verwenden Sie keine Küchenlöffel.
 - Setzen Sie die Spritzenspitze seitlich im Maul an, zwischen Wange und Zähnen, nicht direkt in den Rachen.
 - Geben Sie langsam, in kleinen Schüben, und lassen Sie das Tier schlucken. Schnelles Spritzen führt zu Verschlucken und einer verlorenen Dosis.
-- Wenn das Tier das meiste ausspuckt, geben Sie nicht einfach eine weitere volle Dosis. Rufen Sie die Praxis an und lassen Sie sich beraten; das ist besonders wichtig bei Medikamenten, bei denen zu viel schadet.
+- Wenn das Tier das meiste ausspuckt, fragen Sie Ihre Tierärztin oder Ihren Tierarzt, bevor Sie eine weitere Dosis geben. Rufen Sie die Praxis an und lassen Sie sich beraten.
 
 ## Was sollte ich bei der Medikamentengabe nie tun?
 

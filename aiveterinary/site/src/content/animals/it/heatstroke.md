@@ -4,7 +4,7 @@ description: "Il colpo di calore uccide cani ogni estate, e può succedere duran
 species: dog
 category: first-aid
 urgency: emergency
-updated: 2026-10-13
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -18,6 +18,8 @@ references:
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/heatstroke-in-cats"
   - title: "Rabbit Welfare Association & Fund: Keep your rabbits cool (leaflet, PDF)"
     url: "https://rabbitwelfare.co.uk/wp-content/uploads/2026/05/Keep-Your-Rabbits-Cool.pdf"
+  - title: "Rabbit Welfare Association & Fund: Recognising emergencies"
+    url: "https://rabbitwelfare.co.uk/welfare-need/recognising-emergencies/"
 ---
 
 ## Prima di tutto: i segni per cui andare subito dal veterinario
@@ -36,18 +38,18 @@ Le razze brachicefale (carlini, bulldog francesi, bulldog), i cani in sovrappeso
 
 ## Come si raffredda un cane con un colpo di calore?
 
-Interrompi l'attività, portalo all'ombra, versagli acqua fresca o fredda sul corpo, fai circolare l'aria e chiama il veterinario mentre lo raffreddi.
+Interrompi l'attività, portalo all'ombra, versagli acqua fredda sul corpo, fai circolare l'aria e chiama il veterinario mentre lo raffreddi.
 
-Molti veterinari oggi consigliano "prima raffreddare, poi trasportare" per un cane cosciente che può essere raffreddato sul posto.
+Veterinari e ricercatori oggi consigliano "prima raffreddare, poi trasportare": inizia a raffreddarlo subito, prima di partire per il veterinario, perché un raffreddamento ritardato porta a esiti peggiori. Se qualcuno può venire con te, può continuare a raffreddare il cane durante il tragitto.
 
 1. **Interrompi ogni attività** e sposta il cane all'ombra o in una stanza climatizzata.
-2. **Versa acqua fresca o fredda sul corpo del cane**, soprattutto schiena, pancia e zampe. Un tubo, secchi, bottiglie, una piscinetta o un ruscello vanno tutti bene. Continua. Non coprire il cane con asciugamani bagnati lasciandoli lì: una volta scaldati trattengono il calore.
+2. **Versa delicatamente acqua fredda su tutto il corpo del cane.** Va bene l'acqua fredda del rubinetto; un tubo, secchi o bottiglie vanno tutti bene. Tieni l'acqua lontana da naso e bocca, e continua. Non coprire il cane con asciugamani bagnati lasciandoli lì: una volta scaldati trattengono il calore.
 3. **Fai circolare l'aria**: un ventilatore, un'auto aperta con l'aria condizionata, o una brezza.
 4. **Offri piccole quantità di acqua da bere** se il cane è vigile e in grado di deglutire. Non forzare l'acqua in bocca a un cane collassato o confuso.
 5. **Chiama il veterinario mentre lo raffreddi** e avvisa che stai arrivando con un colpo di calore.
 6. **Viaggia con l'aria condizionata accesa o i finestrini aperti**, con il cane sdraiato sopra un asciugamano bagnato, non sotto.
 
-L'acqua fredda su un cane cosciente è sicura. Il vecchio consiglio secondo cui l'acqua fredda "provoca shock" non è più sostenuto, e abbassare la temperatura in fretta è ciò che salva la vita.
+Il vecchio timore che l'acqua fredda peggiori il surriscaldamento non è sostenuto dalle prove; il pericolo maggiore è ritardare il raffreddamento. Se il tuo cane è tranquillo e abituato all'acqua, puoi immergergli il corpo, ma tieni la testa fuori e fai estrema attenzione che non inali acqua. Il rischio è maggiore nei cani brachicefali e in quelli non del tutto coscienti, quindi resta accanto al cane e sostienigli la testa.
 
 ## Cosa non devo fare in caso di colpo di calore?
 
@@ -57,7 +59,7 @@ Non aspettare che migliori da solo, non saltare il veterinario anche se sembra s
 - Non saltare il veterinario perché il cane "sembra stare meglio" dopo il raffreddamento. Il colpo di calore può danneggiare reni, intestino, coagulazione e cervello, e parte di questi danni si manifesta ore dopo.
 - Non dare nessun farmaco, compresi gli antidolorifici per uso umano.
 - Non lasciare un cane in un'auto parcheggiata, nemmeno per pochi minuti, nemmeno con i finestrini aperti.
-- Non portare a spasso un cane sull'asfalto rovente nelle ore più calde. Se il suolo è troppo caldo per il dorso della tua mano per cinque secondi, è troppo caldo per i cuscinetti.
+- Non portare a spasso un cane sull'asfalto rovente nelle ore più calde. Se non riesci a tenere comodamente il palmo della mano sul suolo per 7 secondi, è troppo caldo per i cuscinetti.
 
 ## Quando portare il cane dal veterinario dopo il caldo?
 
@@ -85,11 +87,11 @@ Cosa faceva il cane, dove e per quanto tempo, le condizioni ambientali, i segni 
 
 ## Anche gatti e conigli possono avere un colpo di calore?
 
-Sì: il gatto soprattutto se resta chiuso in un ambiente caldo, il coniglio molto facilmente perché non riesce ad ansimare in modo efficace.
+Sì: il gatto soprattutto se resta chiuso in un ambiente caldo, il coniglio molto facilmente perché è molto sensibile al caldo; entrambi vanno raffreddati e portati dal veterinario.
 
-**I gatti** raramente hanno un colpo di calore per l'attività fisica, ma possono averlo se restano intrappolati in una serra, un capanno, una veranda o un'auto. I segni sono respiro a bocca aperta, salivazione, irrequietezza, poi collasso. Il respiro a bocca aperta in un gatto è sempre un'emergenza. Raffredda con panni bagnati e ventilatori e vai dal veterinario.
+**I gatti** raramente hanno un colpo di calore per l'attività fisica, ma possono averlo se restano intrappolati in una serra, un capanno, una veranda o un'auto. I segni comprendono ansimare e respiro rapido, vomito, diarrea, debolezza e confusione, poi collasso o convulsioni. Sposta il gatto in un luogo fresco, versagli lentamente acqua fredda del rubinetto sul corpo (lontano da naso e bocca), usa un ventilatore, e chiama il veterinario il prima possibile.
 
-**I conigli** sono molto sensibili al caldo e non riescono ad ansimare in modo efficace. Una gabbia in pieno sole può uccidere. I segni sono respiro rapido e superficiale, narici bagnate, letargia, e posizione sdraiata e allungata. Spostalo in una stanza fresca, nebulizza acqua fresca sulle orecchie, offri acqua, e vai dal veterinario con urgenza. Non immergere un coniglio in acqua fredda.
+**I conigli** sono molto sensibili al caldo, e il colpo di calore può essere rapidamente mortale, quindi tieni gabbie e recinti lontani dal sole. I segni comprendono ansimare o respiro rapido, debolezza o confusione, bagnato intorno a naso e bocca, e posizione sdraiata e allungata senza reazioni. Il respiro a bocca aperta è un'emergenza. Sposta il coniglio in un luogo fresco e all'ombra, inumidisci orecchie e zampe con acqua fresca (non fredda), e chiama subito un veterinario che cura i conigli. Non raffreddare un coniglio troppo in fretta.
 
 ## Come prevenire il colpo di calore nel cane?
 
@@ -100,4 +102,4 @@ Esci nelle ore fresche, porta acqua, fai pause all'ombra, fai attenzione ai cani
 - Fai particolare attenzione ai cani brachicefali e in sovrappeso; per alcuni, una giornata calda significa niente passeggiata.
 - Non lasciare mai un animale in auto o in uno spazio chiuso esposto al sole.
 
-Se il tuo cane ha già avuto un colpo di calore, è più probabile che succeda di nuovo; chiedi al tuo veterinario quali precauzioni hanno senso per il tuo cane.
+Se il tuo cane ha già avuto un colpo di calore, chiedi al tuo veterinario quali precauzioni hanno senso per lui.

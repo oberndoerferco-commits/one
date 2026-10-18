@@ -1,10 +1,10 @@
 ---
 title: "Poisoning in pets: common poisons and what to do first"
-description: "Chocolate, grapes, xylitol, lilies, rat bait, antifreeze and human painkillers are the poisonings vets see most. What to do, what not to do, and why minutes matter."
+description: "Chocolate, grapes, xylitol, lilies, rat bait, antifreeze and human painkillers are common pet poisons. What to do, what not to do, and why minutes matter."
 species: general
 category: first-aid
 urgency: emergency
-updated: 2026-10-13
+updated: 2026-10-19
 draft: true
 references:
   - title: "PDSA: First aid for poisons and toxins"
@@ -17,6 +17,16 @@ references:
     url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/food-hazards"
   - title: "MSD Veterinary Manual: Poisoning from Human Over-the-Counter Drugs"
     url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/poisoning-from-human-over-the-counter-drugs"
+  - title: "MSD Veterinary Manual: Ethylene Glycol (Antifreeze) Poisoning"
+    url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/ethylene-glycol-antifreeze-poisoning"
+  - title: "MSD Veterinary Manual: Rodenticide Poisoning"
+    url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/rodenticide-poisoning"
+  - title: "ASPCA: People Foods to Avoid Feeding Your Pets"
+    url: "https://www.aspca.org/pet-care/animal-poison-control/people-foods-avoid-feeding-your-pets"
+  - title: "Pet Poison Helpline: Marijuana"
+    url: "https://www.petpoisonhelpline.com/poison/marijuana/"
+  - title: "Pet Poison Helpline: Nicotine"
+    url: "https://www.petpoisonhelpline.com/poison/nicotine/"
 ---
 
 ## First, the signs that mean go now
@@ -31,7 +41,7 @@ Go now, and call on the way, if your animal:
 - is wobbly, weak, collapsed, or very drowsy
 - is breathing fast or with difficulty
 - has pale, blue, yellow or brick-red gums, or is bleeding from the nose, mouth or in the urine
-- is a cat that has had any contact with a lily, including brushing against pollen
+- is a cat that may have eaten any part of a lily, licked lily pollen off its fur, or drunk water from a vase with lilies in it
 
 ## What should I do if my pet has eaten something poisonous?
 
@@ -45,13 +55,13 @@ Remove your animal from the source, call a vet straight away with the packaging 
 
 ## What should I not do if my pet has been poisoned?
 
-Do not make your animal vomit at home, give milk, oil or any home antidote, give human medication, or wait and see.
+Do not make your animal vomit or give it anything unless your vet tells you to, do not give human medication, and do not wait and see.
 
-- **Do not make your animal vomit at home.** Salt, mustard, washing-up liquid and similar remedies are dangerous, and vomiting is harmful for some poisons (caustic substances, petroleum products) and for animals that are drowsy or fitting. If vomiting is needed, your vet will induce it safely. That is a vet decision.
-- **Do not give milk, oil, charcoal tablets or any home antidote.**
+- **Do not try to make your animal vomit unless your vet tells you to.** It can cause more damage than good. If vomiting is needed, your vet will induce it safely. That is a vet decision.
+- **Do not give anything to eat, drink or swallow unless your vet tells you to.**
 - **Do not give human medication** to "treat" anything, including pain.
-- **Do not wait and see** because the animal looks fine. With rat bait, antifreeze and lilies, serious damage happens before any sign appears.
-- **Do not just wash pollen off a cat and leave it at that.** Stop it grooming and go to the vet.
+- **Do not wait and see** because the animal looks fine. After eating rat bait, an animal may only seem quiet and off its food before bleeding starts; dogs poisoned with antifreeze can seem to recover for a while; and the longer treatment is delayed, the worse the outlook.
+- **Do not wait for signs if a cat has lily pollen on its fur.** Cats are poisoned by licking it off when grooming; contact your vet immediately.
 
 ## Which poisons are most common in dogs and cats?
 
@@ -61,12 +71,12 @@ Chocolate, xylitol, grapes and raisins, lilies, rat bait, antifreeze, human pain
 |---|---|---|
 | Chocolate | Dogs | Dark and cooking chocolate are the most dangerous. Causes vomiting, racing heart, tremors, seizures. |
 | Xylitol (in sugar-free gum, sweets, some peanut butters and baked goods) | Dogs | Causes a sudden drop in blood sugar and liver damage. Even small amounts can be serious. |
-| Grapes, raisins, sultanas, currants | Dogs | Can cause kidney failure. No safe amount is known. Includes fruit cake and mince pies. |
+| Grapes, raisins, sultanas, currants | Dogs | Can cause kidney failure. Even small amounts can be dangerous; call your vet. Includes fruit cake and mince pies. |
 | Lilies (Lilium and Hemerocallis types) | Cats | Every part of the plant, including pollen and vase water, can cause kidney failure. |
-| Rat and mouse bait | Dogs, cats | Most types stop blood clotting. Bleeding may not show for days. Bring the packet; the active ingredient matters. |
-| Antifreeze (ethylene glycol) | Cats, dogs | Sweet-tasting. Causes kidney failure within hours to days. Even a lick is an emergency. |
+| Rat and mouse bait | Dogs, cats | Many types stop the blood clotting. An animal may be quiet and off its food before any bleeding shows. Bring the packet; it helps your vet. |
+| Antifreeze (ethylene glycol) | Cats, dogs | Sweet-tasting, and a very small amount can kill. Signs can start almost immediately; severe kidney failure usually follows within 12 to 24 hours in cats and 36 to 72 hours in dogs. Any suspected contact is an emergency. |
 | Human painkillers (paracetamol, ibuprofen and similar) | Cats, dogs | Paracetamol is extremely toxic to cats. Ibuprofen and related drugs cause stomach ulcers and kidney damage in dogs and cats. |
-| Onions, garlic, leeks, chives | Dogs, cats | Damage red blood cells. Includes cooked, powdered and in gravy. |
+| Onions, garlic, chives | Cats, dogs | Can upset the gut and damage red blood cells. Cats are more sensitive, but dogs are also at risk. |
 | Permethrin flea products for dogs | Cats | Severe tremors and seizures if applied to a cat. |
 
 Other hazards include macadamia nuts, alcohol, raw bread dough, cannabis, nicotine, many house and garden plants, and human prescription medicines. If in doubt, ring.

@@ -4,7 +4,7 @@ description: "Die Parasiten, denen die meisten Haustiere begegnen, wie Vorbeugun
 species: general
 category: care
 urgency: routine
-updated: 2026-10-13
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -18,6 +18,8 @@ references:
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/fleas-on-dogs"
   - title: "MSD Veterinary Manual (Pet Owner Version): Ticks of Dogs"
     url: "https://www.msdvetmanual.com/dog-owners/skin-disorders-of-dogs/ticks-of-dogs"
+  - title: "International Cat Care: Permethrin poisoning"
+    url: "https://icatcare.org/articles/permethrin-poisoning"
 ---
 
 ## Warum sollte ich Flöhen, Zecken und Würmern vorbeugen statt sie zu behandeln?
@@ -32,7 +34,7 @@ Die meisten Tierärztinnen und Tierärzte empfehlen für Hunde und Katzen eine g
 
 An Kratzen, kleinen Krusten, Haarausfall und Flohkot; vorbeugen lässt sich mit einer regelmäßigen tierärztlichen Behandlung für jedes Tier im Haushalt.
 
-Flöhe sind der häufigste Parasit bei Haustieren in Europa und wegen der Heizung in Innenräumen das ganze Jahr über aktiv.
+Flöhe sind häufige Parasiten bei Hunden und Katzen, und in beheizten Wohnungen können sie sich das ganze Jahr über weiterentwickeln.
 
 Anzeichen: Kratzen, Knabbern am Rücken und am Schwanzansatz, kleine Krusten, Haarausfall und „Flohkot“ (schwarze Krümel, die sich auf einem feuchten Tuch rötlich verfärben). Manche Tiere sind allergisch gegen Flohspeichel und reagieren schon auf einen einzigen Stich heftig. Flöhe übertragen außerdem Bandwürmer.
 
@@ -48,13 +50,13 @@ Untersuchen Sie Ihr Tier nach Spaziergängen, vor allem an Kopf, Ohren, Hals, Ac
 
 ### So entfernen Sie eine Zecke
 
-1. Verwenden Sie eine Zeckenzange oder einen Zeckenhaken (ein kleiner Plastikhaken) oder eine Pinzette mit feinen Spitzen. Benutzen Sie nicht die Finger und verwenden Sie weder Vaseline, Öl, Alkohol noch Hitze, da die Zecke dadurch in die Wunde erbrechen kann.
+1. Verwenden Sie eine Zeckenzange oder einen Zeckenhaken (ein kleiner Plastikhaken) oder eine Pinzette mit feinen Spitzen. Benutzen Sie nicht die Finger: Dabei kann die Zecke gequetscht werden und Krankheitserreger in den Stichkanal drücken. Verwenden Sie weder Öl, Alkohol, Klebstoff, Äther noch Hitze.
 2. Schieben Sie den Haken dicht an der Haut unter die Zecke oder fassen Sie die Zecke mit der Pinzette so nah wie möglich an der Haut.
 3. Fassen Sie die Zecke möglichst nah an der Haut und ziehen Sie sie langsam und gleichmäßig heraus, ohne den Körper zu quetschen. ESCCAP rät vom Drehen ab; wenn Ihr Zeckenwerkzeug eine eigene Anleitung hat, folgen Sie dieser.
-4. Prüfen Sie, ob die Mundwerkzeuge mit entfernt wurden. Eine kleine rote Stelle ist normal.
+4. Prüfen Sie, ob die Mundwerkzeuge mit entfernt wurden.
 5. Reinigen Sie die Stelle und waschen Sie sich die Hände. Notieren Sie das Datum.
 
-Wenn ein Teil der Zecke zurückbleibt, bohren Sie nicht danach. Er arbeitet sich meist von selbst heraus; suchen Sie Ihre Tierärztin oder Ihren Tierarzt auf, wenn die Stelle rot wird, anschwillt oder nässt.
+Wenn ein Teil der Zecke in der Haut steckt, fragen Sie Ihre Tierärztin oder Ihren Tierarzt, was zu tun ist, statt danach zu bohren: Zurückgebliebene Mundwerkzeuge können zu einer Infektion oder einem kleinen Abszess führen. Beobachten Sie jede Stelle, an der Sie eine Zecke entfernt haben, und gehen Sie zur Praxis, wenn sie rot wird oder anschwillt.
 
 Vorbeugung: Viele Flohmittel wirken auch gegen Zecken, aber nicht alle. Fragen Sie Ihre Tierärztin oder Ihren Tierarzt, besonders vor Reisen.
 
@@ -62,7 +64,7 @@ Vorbeugung: Viele Flohmittel wirken auch gegen Zecken, aber nicht alle. Fragen S
 
 Vor allem Spulwürmer, Bandwürmer und Lungenwürmer, und vorgebeugt wird mit regelmäßiger Entwurmung nach einem Schema Ihrer Praxis.
 
-**Spulwürmer** sind bei Welpen und Kätzchen häufig, die sich schon vor der Geburt oder über die Milch anstecken können. Sie können auch Menschen befallen, vor allem Kinder, was einer der Hauptgründe für die regelmäßige Entwurmung ist.
+**Spulwürmer** sind bei Welpen und Kätzchen häufig. Welpen können sich schon vor der Geburt und über die Muttermilch anstecken; Kätzchen können sich über die Milch anstecken, aber nicht vor der Geburt. Sie können auch Menschen befallen, vor allem Kinder, was einer der Hauptgründe für die regelmäßige Entwurmung ist.
 
 **Bandwürmer** stammen von Flöhen oder vom Fressen von rohem Fleisch oder Beutetieren. Halter bemerken manchmal reiskornähnliche Glieder am After oder im Liegeplatz.
 
@@ -84,7 +86,7 @@ Vereinbaren Sie einen Termin, wenn Ihr Tier:
 - trotz guter Futteraufnahme an Gewicht verliert
 - immer wiederkehrenden Durchfall hat
 
-Fahren Sie sofort, wenn eine Katze nach dem Auftragen eines Spot-on-Präparats Zittern, Zuckungen oder Speicheln zeigt, oder wenn versehentlich ein Hundepräparat bei einer Katze angewendet wurde.
+Wenden Sie sich sofort an Ihre Tierarztpraxis, wenn versehentlich ein Floh- oder Zeckenmittel für Hunde bei einer Katze angewendet wurde, oder wenn eine Katze Zittern oder Zuckungen zeigt, nachdem ein solches Hundepräparat bei ihr oder bei einem Hund, mit dem sie engen Kontakt hat, angewendet wurde.
 
 ## Was wird die Tierärztin oder der Tierarzt über den Parasitenschutz wissen wollen?
 

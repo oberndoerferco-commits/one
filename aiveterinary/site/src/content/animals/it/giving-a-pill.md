@@ -4,7 +4,7 @@ description: "Far prendere un farmaco a un animale, esattamente come prescritto,
 species: general
 category: medications
 urgency: routine
-updated: 2026-10-13
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -24,7 +24,7 @@ references:
 
 Perché dosi saltate o dimezzate e terapie interrotte in anticipo sono cause frequenti di fallimento della cura.
 
-Il tuo veterinario ha scelto il farmaco, la quantità e il numero di giorni in base al peso e alla condizione del tuo animale. Dosi saltate, dosi dimezzate perché "sembrava stare meglio", o terapie interrotte in anticipo sono cause frequenti di fallimento della cura, e con gli antibiotici possono rendere più difficile trattare l'infezione successiva.
+Il tuo veterinario ha scelto il farmaco, la quantità e il numero di giorni in base al peso e alla condizione del tuo animale. Dosi saltate, dosi dimezzate perché "sembrava stare meglio", o terapie interrotte in anticipo sono cause frequenti di fallimento della cura. Gli antibiotici, in particolare, vanno portati a termine per aiutare a evitare che i batteri sviluppino resistenza ai farmaci.
 
 Se non riesci a somministrare il farmaco, non improvvisare un'alternativa. Chiama l'ambulatorio. I veterinari spesso possono cambiare la forma (da compressa a liquido, o una versione aromatizzata), gli orari, o in alcuni casi fare al suo posto un'iniezione a lunga durata. Qualsiasi modifica di dose, orari o farmaco è una decisione del veterinario.
 
@@ -34,7 +34,7 @@ Leggi l'etichetta, chiedi se la compressa si può frantumare o nascondere nel ci
 
 - Leggi l'etichetta. Verifica se va dato con il cibo o a stomaco vuoto, e quante volte al giorno.
 - Chiedi se la compressa può essere frantumata o nascosta nel cibo. Alcune compresse vanno ingoiate intere, e alcune non vanno date con certi alimenti.
-- Imposta promemoria sul telefono. Due volte al giorno significa a circa 12 ore di distanza, non colazione e pranzo.
+- Imposta promemoria sul telefono, e chiedi al veterinario o al farmacista quanto distanziare le dosi.
 - Prepara tutto prima di prendere in mano l'animale: compressa fuori dalla confezione, un premio da dare subito dopo, un asciugamano se ti serve.
 - Mantieni la calma. Breve, deciso e fatto è meglio di lungo e titubante.
 
@@ -77,7 +77,7 @@ Misura la dose con la siringa fornita e somministrala lentamente dal lato della 
 - Misura con la siringa fornita, fino alla tacca esatta. Non usare cucchiai da cucina.
 - Inserisci la punta della siringa nel lato della bocca, tra la guancia e i denti, non dritta in gola.
 - Somministra lentamente, a piccoli spruzzi, lasciando all'animale il tempo di deglutire. Spruzzare in fretta provoca tosse e la dose va persa.
-- Se l'animale sputa quasi tutto, non dare semplicemente un'altra dose intera. Chiama l'ambulatorio per un consiglio; è particolarmente importante con i farmaci in cui una dose eccessiva è dannosa.
+- Se l'animale sputa quasi tutto, chiedi al veterinario prima di dare un'altra dose. Chiama l'ambulatorio per un consiglio.
 
 ## Cosa non devo fare quando do un farmaco?
 

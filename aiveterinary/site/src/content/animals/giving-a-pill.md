@@ -4,7 +4,7 @@ description: "Getting medication into a pet, exactly as prescribed, is harder th
 species: general
 category: medications
 urgency: routine
-updated: 2026-10-13
+updated: 2026-10-19
 draft: true
 references:
   - title: "PDSA: How to give your dog a pill"
@@ -23,7 +23,7 @@ references:
 
 Because missed, halved or stopped doses are common reasons treatment fails, and your vet chose the medicine, amount and number of days for your animal.
 
-Your vet has chosen the medicine, the amount and the number of days for your animal's weight and condition. Missed doses, halved doses because "it seemed better", or stopping early are common reasons treatment fails, and with antibiotics they can make the next infection harder to treat.
+Your vet has chosen the medicine, the amount and the number of days for your animal's weight and condition. Missed doses, halved doses because "it seemed better", or stopping early are common reasons treatment fails. Antibiotics in particular need to be finished to help prevent bacteria from developing drug resistance.
 
 If you cannot get the medicine in, do not guess at an alternative. Call the practice. Vets can often change the form (tablet to liquid, or a flavoured version), the timing, or in some cases give a long-acting injection instead. Changing anything about the dose, timing or medicine is a vet decision.
 
@@ -33,7 +33,7 @@ Read the label, ask whether the tablet can be crushed or hidden in food, set rem
 
 - Read the label. Note whether it should be given with food or on an empty stomach, and how many times a day.
 - Ask whether the tablet can be crushed or hidden in food. Some tablets must be swallowed whole, and some must not be given with certain foods.
-- Set reminders on your phone. Twice daily means roughly 12 hours apart, not breakfast and lunch.
+- Set reminders on your phone, and ask your vet or pharmacist how far apart the doses should be.
 - Have everything ready before you pick up the animal: tablet out of the packet, a treat to follow, a towel if you need it.
 - Stay calm. Short, confident and done is better than long and apologetic.
 
@@ -76,7 +76,7 @@ Measure the exact dose with the syringe supplied and give it slowly into the sid
 - Measure with the syringe supplied, to the exact line. Do not use kitchen spoons.
 - Put the syringe tip into the side of the mouth, between the cheek and the teeth, not straight down the throat.
 - Give slowly, in small squirts, allowing the animal to swallow. Squirting fast causes spluttering and a lost dose.
-- If the animal spits most of it out, do not simply give another full dose. Call the practice for advice; this is especially important with medicines where too much is harmful.
+- If the animal spits most of it out, ask your vet before giving another dose. Call the practice for advice.
 
 ## What should I never do when giving my pet medicine?
 

@@ -1,10 +1,10 @@
 ---
 title: "Avvelenamento negli animali da compagnia: i veleni più comuni e cosa fare per primo"
-description: "Cioccolato, uva, xilitolo, gigli, esche per topi, antigelo e antidolorifici per uso umano sono gli avvelenamenti che i veterinari vedono più spesso. Cosa fare, cosa non fare, e perché contano i minuti."
+description: "Cioccolato, uva, xilitolo, gigli, esche per topi, antigelo e antidolorifici per uso umano sono veleni comuni per gli animali da compagnia. Cosa fare, cosa non fare, e perché contano i minuti."
 species: general
 category: first-aid
 urgency: emergency
-updated: 2026-10-13
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -18,6 +18,16 @@ references:
     url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/food-hazards"
   - title: "MSD Veterinary Manual: Poisoning from Human Over-the-Counter Drugs"
     url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/poisoning-from-human-over-the-counter-drugs"
+  - title: "MSD Veterinary Manual: Ethylene Glycol (Antifreeze) Poisoning"
+    url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/ethylene-glycol-antifreeze-poisoning"
+  - title: "MSD Veterinary Manual: Rodenticide Poisoning"
+    url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/rodenticide-poisoning"
+  - title: "ASPCA: People Foods to Avoid Feeding Your Pets"
+    url: "https://www.aspca.org/pet-care/animal-poison-control/people-foods-avoid-feeding-your-pets"
+  - title: "Pet Poison Helpline: Marijuana"
+    url: "https://www.petpoisonhelpline.com/poison/marijuana/"
+  - title: "Pet Poison Helpline: Nicotine"
+    url: "https://www.petpoisonhelpline.com/poison/nicotine/"
 ---
 
 ## Prima di tutto: i segni per cui andare subito dal veterinario
@@ -32,7 +42,7 @@ Vai subito, e chiama durante il tragitto, se il tuo animale:
 - barcolla, è debole, collassato, o molto sonnolento
 - respira in fretta o con difficoltà
 - ha le gengive pallide, bluastre, giallastre o rosso mattone, o sanguina dal naso, dalla bocca o nelle urine
-- è un gatto che ha avuto un qualsiasi contatto con un giglio, anche solo sfiorando il polline
+- è un gatto che potrebbe aver mangiato una qualsiasi parte di un giglio, essersi leccato il polline di giglio dal pelo, o aver bevuto l'acqua di un vaso con dei gigli
 
 ## Cosa devo fare se il mio animale ha ingerito un veleno?
 
@@ -46,13 +56,13 @@ Allontanalo dalla fonte, chiama subito il veterinario con la confezione in mano,
 
 ## Cosa non devo fare?
 
-Non provocare il vomito, non dare latte, olio, antidoti casalinghi o farmaci umani e non aspettare solo perché sembra stare bene.
+Non provocare il vomito e non dare nulla se non te lo dice il veterinario, non dare farmaci umani e non aspettare solo perché sembra stare bene.
 
-- **Non provocare il vomito a casa.** Sale, senape, detersivo per piatti e rimedi simili sono pericolosi, e il vomito è dannoso per alcuni veleni (sostanze caustiche, derivati del petrolio) e per gli animali sonnolenti o in convulsione. Se serve far vomitare l'animale, il veterinario lo farà in sicurezza. È una decisione del veterinario.
-- **Non dare latte, olio, compresse di carbone o nessun antidoto casalingo.**
+- **Non cercare di far vomitare l'animale se il veterinario non te lo dice.** Può fare più danni che benefici. Se serve far vomitare l'animale, il veterinario lo farà in sicurezza. È una decisione del veterinario.
+- **Non dare nulla da mangiare, bere o ingoiare se il veterinario non te lo dice.**
 - **Non dare farmaci per uso umano** per "curare" qualsiasi cosa, dolore compreso.
-- **Non stare a guardare** perché l'animale sembra stare bene. Con esche per topi, antigelo e gigli, il danno grave avviene prima di qualsiasi sintomo.
-- **Non limitarti a lavare via il polline da un gatto.** Impediscigli di leccarsi e vai dal veterinario.
+- **Non stare a guardare** perché l'animale sembra stare bene. Dopo aver ingerito esche per topi, un animale può sembrare solo spento e inappetente prima che inizi il sanguinamento; i cani avvelenati con l'antigelo possono sembrare riprendersi per un po'; e più si ritarda il trattamento, peggiore è la prognosi.
+- **Non aspettare i sintomi se un gatto ha polline di giglio sul pelo.** I gatti si avvelenano leccandolo via mentre si puliscono; contatta subito il veterinario.
 
 ## Quali sono i veleni più comuni per cani e gatti?
 
@@ -62,12 +72,12 @@ I più frequenti sono cioccolato, xilitolo, uva e uvetta, gigli, esche per topi,
 |---|---|---|
 | Cioccolato | Cani | Il cioccolato fondente e quello da cucina sono i più pericolosi. Provoca vomito, battito accelerato, tremori, convulsioni. |
 | Xilitolo (nelle gomme senza zucchero, caramelle, alcuni burri di arachidi e prodotti da forno) | Cani | Provoca un crollo improvviso della glicemia e danni al fegato. Anche piccole quantità possono essere gravi. |
-| Uva, uvetta, uva sultanina, ribes secco | Cani | Possono causare insufficienza renale. Non si conosce una quantità sicura. Compresi dolci con frutta secca, come panettoni e torte con uvetta. |
+| Uva, uvetta, uva sultanina, ribes secco | Cani | Possono causare insufficienza renale. Anche piccole quantità possono essere pericolose; chiama il veterinario. Compresi dolci con frutta secca, come panettoni e torte con uvetta. |
 | Gigli (tipo Lilium e Hemerocallis) | Gatti | Ogni parte della pianta, compresi il polline e l'acqua del vaso, può causare insufficienza renale. |
-| Esche per topi e ratti | Cani, gatti | La maggior parte blocca la coagulazione del sangue. Il sanguinamento può non manifestarsi per giorni. Porta la confezione: il principio attivo è importante. |
-| Antigelo (glicole etilenico) | Gatti, cani | Ha un sapore dolce. Provoca insufficienza renale nel giro di ore o giorni. Anche una sola leccata è un'emergenza. |
+| Esche per topi e ratti | Cani, gatti | Molti tipi bloccano la coagulazione del sangue. Un animale può essere spento e inappetente prima che compaia qualsiasi sanguinamento. Porta la confezione: aiuta il veterinario. |
+| Antigelo (glicole etilenico) | Gatti, cani | Ha un sapore dolce, e ne basta pochissimo per uccidere. I segni possono iniziare quasi subito; l'insufficienza renale grave compare di solito entro 12-24 ore nel gatto e 36-72 ore nel cane. Qualsiasi sospetto contatto è un'emergenza. |
 | Antidolorifici per uso umano (paracetamolo, ibuprofene e simili) | Gatti, cani | Il paracetamolo è estremamente tossico per i gatti. L'ibuprofene e i farmaci simili provocano ulcere gastriche e danni renali in cani e gatti. |
-| Cipolle, aglio, porri, erba cipollina | Cani, gatti | Danneggiano i globuli rossi. Anche cotti, in polvere e nei sughi. |
+| Cipolle, aglio, erba cipollina | Gatti, cani | Possono irritare l'apparato digerente e danneggiare i globuli rossi. I gatti sono più sensibili, ma anche i cani sono a rischio. |
 | Antipulci a base di permetrina per cani | Gatti | Tremori gravi e convulsioni se applicati a un gatto. |
 
 Altri pericoli sono le noci di macadamia, l'alcol, l'impasto crudo del pane, la cannabis, la nicotina, molte piante da casa e da giardino, e i farmaci con prescrizione per uso umano. Nel dubbio, telefona.

@@ -1,10 +1,10 @@
 ---
 title: "Vergiftungen bei Haustieren: häufige Gifte und was zuerst zu tun ist"
-description: "Schokolade, Weintrauben, Xylit, Lilien, Rattengift, Frostschutzmittel und Schmerzmittel für Menschen sind die Vergiftungen, die Tierärztinnen und Tierärzte am häufigsten sehen. Was zu tun ist, was nicht, und warum Minuten zählen."
+description: "Schokolade, Weintrauben, Xylit, Lilien, Rattengift, Frostschutzmittel und Schmerzmittel für Menschen sind häufige Gifte für Haustiere. Was zu tun ist, was nicht, und warum Minuten zählen."
 species: general
 category: first-aid
 urgency: emergency
-updated: 2026-10-13
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -18,6 +18,16 @@ references:
     url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/food-hazards"
   - title: "MSD Veterinary Manual: Poisoning from Human Over-the-Counter Drugs"
     url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/poisoning-from-human-over-the-counter-drugs"
+  - title: "MSD Veterinary Manual: Ethylene Glycol (Antifreeze) Poisoning"
+    url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/ethylene-glycol-antifreeze-poisoning"
+  - title: "MSD Veterinary Manual: Rodenticide Poisoning"
+    url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/rodenticide-poisoning"
+  - title: "ASPCA: People Foods to Avoid Feeding Your Pets"
+    url: "https://www.aspca.org/pet-care/animal-poison-control/people-foods-avoid-feeding-your-pets"
+  - title: "Pet Poison Helpline: Marijuana"
+    url: "https://www.petpoisonhelpline.com/poison/marijuana/"
+  - title: "Pet Poison Helpline: Nicotine"
+    url: "https://www.petpoisonhelpline.com/poison/nicotine/"
 ---
 
 ## Zuerst: die Anzeichen, bei denen Sie sofort fahren sollten
@@ -32,7 +42,7 @@ Fahren Sie sofort und rufen Sie unterwegs an, wenn Ihr Tier:
 - wackelig, schwach oder zusammengebrochen ist oder sehr schläfrig
 - schnell oder mit Mühe atmet
 - blasses, bläuliches, gelbliches oder ziegelrotes Zahnfleisch hat oder aus Nase oder Maul blutet oder Blut im Urin hat
-- eine Katze ist, die irgendeinen Kontakt mit einer Lilie hatte, auch nur das Streifen an Pollen
+- eine Katze ist, die möglicherweise einen Teil einer Lilie gefressen, Lilienpollen aus dem Fell geleckt oder Wasser aus einer Vase mit Lilien getrunken hat
 
 ## Was soll ich tun, wenn mein Tier etwas Giftiges gefressen hat?
 
@@ -46,13 +56,13 @@ Entfernen Sie das Tier von der Quelle, rufen Sie sofort eine Tierarztpraxis an, 
 
 ## Was sollte ich bei einer Vergiftung meines Tieres nicht tun?
 
-Lösen Sie zu Hause kein Erbrechen aus, geben Sie keine Milch, kein Öl, keine Kohletabletten oder Medikamente für Menschen und warten Sie nicht ab.
+Lösen Sie kein Erbrechen aus und geben Sie nichts, solange Ihre Tierarztpraxis es nicht sagt, geben Sie keine Medikamente für Menschen und warten Sie nicht ab.
 
-- **Bringen Sie Ihr Tier zu Hause nicht zum Erbrechen.** Salz, Senf, Spülmittel und ähnliche Hausmittel sind gefährlich, und Erbrechen ist bei manchen Giften (ätzende Stoffe, Erdölprodukte) und bei schläfrigen oder krampfenden Tieren schädlich. Wenn Erbrechen nötig ist, löst es Ihre Tierärztin oder Ihr Tierarzt sicher aus. Das ist eine tierärztliche Entscheidung.
-- **Geben Sie keine Milch, kein Öl, keine Kohletabletten und kein Hausmittel-Gegengift.**
+- **Versuchen Sie nicht, Ihr Tier zum Erbrechen zu bringen, wenn Ihre Tierärztin oder Ihr Tierarzt es nicht sagt.** Das kann mehr schaden als nützen. Wenn Erbrechen nötig ist, löst es Ihre Tierärztin oder Ihr Tierarzt sicher aus. Das ist eine tierärztliche Entscheidung.
+- **Geben Sie nichts zu fressen, zu trinken oder zu schlucken, wenn Ihre Tierärztin oder Ihr Tierarzt es nicht sagt.**
 - **Geben Sie keine Medikamente für Menschen**, um irgendetwas zu „behandeln“, auch keine Schmerzen.
-- **Warten Sie nicht ab**, weil das Tier gesund wirkt. Bei Rattengift, Frostschutzmittel und Lilien entstehen schwere Schäden, bevor sich ein Anzeichen zeigt.
-- **Waschen Sie Pollen nicht einfach nur von einer Katze ab und belassen es dabei.** Hindern Sie sie am Putzen und fahren Sie zum Tierarzt.
+- **Warten Sie nicht ab**, weil das Tier gesund wirkt. Nach Rattengift wirkt ein Tier vielleicht nur ruhig und frisst schlecht, bevor Blutungen beginnen; Hunde mit einer Frostschutzmittelvergiftung können sich scheinbar eine Zeit lang erholen; und je später die Behandlung beginnt, desto schlechter die Aussichten.
+- **Warten Sie nicht auf Anzeichen, wenn eine Katze Lilienpollen im Fell hat.** Katzen vergiften sich, indem sie ihn beim Putzen ablecken; wenden Sie sich sofort an Ihre Tierarztpraxis.
 
 ## Welche Gifte sind für Hunde und Katzen am häufigsten?
 
@@ -62,12 +72,12 @@ Schokolade, Xylit, Weintrauben und Rosinen, Lilien, Ratten- und Mäuseköder, Fr
 |---|---|---|
 | Schokolade | Hunde | Dunkle Schokolade und Kochschokolade sind am gefährlichsten. Verursacht Erbrechen, Herzrasen, Zittern, Krampfanfälle. |
 | Xylit (in zuckerfreiem Kaugummi, Süßigkeiten, manchen Erdnussbuttern und Backwaren) | Hunde | Verursacht einen plötzlichen Abfall des Blutzuckers und Leberschäden. Schon kleine Mengen können schwerwiegend sein. |
-| Weintrauben, Rosinen, Sultaninen, Korinthen | Hunde | Können Nierenversagen verursachen. Eine sichere Menge ist nicht bekannt. Gilt auch für Früchtekuchen und Mince Pies. |
+| Weintrauben, Rosinen, Sultaninen, Korinthen | Hunde | Können Nierenversagen verursachen. Schon kleine Mengen können gefährlich sein; rufen Sie Ihre Tierarztpraxis an. Gilt auch für Früchtekuchen und Mince Pies. |
 | Lilien (Lilium- und Hemerocallis-Arten) | Katzen | Jeder Teil der Pflanze, auch Pollen und Vasenwasser, kann Nierenversagen verursachen. |
-| Ratten- und Mäuseköder | Hunde, Katzen | Die meisten Arten hemmen die Blutgerinnung. Blutungen zeigen sich möglicherweise erst nach Tagen. Bringen Sie die Packung mit; der Wirkstoff ist entscheidend. |
-| Frostschutzmittel (Ethylenglykol) | Katzen, Hunde | Schmeckt süß. Verursacht innerhalb von Stunden bis Tagen Nierenversagen. Schon ein Lecken ist ein Notfall. |
+| Ratten- und Mäuseköder | Hunde, Katzen | Viele Arten hemmen die Blutgerinnung. Ein Tier kann ruhig sein und schlecht fressen, bevor sich Blutungen zeigen. Bringen Sie die Packung mit; das hilft Ihrer Tierarztpraxis. |
+| Frostschutzmittel (Ethylenglykol) | Katzen, Hunde | Schmeckt süß, und schon eine sehr kleine Menge kann tödlich sein. Anzeichen können fast sofort beginnen; schweres Nierenversagen folgt meist innerhalb von 12 bis 24 Stunden bei Katzen und 36 bis 72 Stunden bei Hunden. Jeder Verdacht auf Kontakt ist ein Notfall. |
 | Schmerzmittel für Menschen (Paracetamol, Ibuprofen und ähnliche) | Katzen, Hunde | Paracetamol ist für Katzen extrem giftig. Ibuprofen und verwandte Wirkstoffe verursachen bei Hunden und Katzen Magengeschwüre und Nierenschäden. |
-| Zwiebeln, Knoblauch, Lauch, Schnittlauch | Hunde, Katzen | Schädigen die roten Blutkörperchen. Gilt auch gekocht, als Pulver und in Soßen. |
+| Zwiebeln, Knoblauch, Schnittlauch | Katzen, Hunde | Können den Magen-Darm-Trakt reizen und die roten Blutkörperchen schädigen. Katzen sind empfindlicher, aber auch Hunde sind gefährdet. |
 | Permethrin-Flohmittel für Hunde | Katzen | Schweres Zittern und Krampfanfälle, wenn es bei einer Katze angewendet wird. |
 
 Weitere Gefahren sind Macadamianüsse, Alkohol, roher Hefeteig, Cannabis, Nikotin, viele Zimmer- und Gartenpflanzen sowie verschreibungspflichtige Medikamente für Menschen. Im Zweifel: anrufen.

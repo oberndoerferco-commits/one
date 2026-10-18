@@ -4,7 +4,7 @@ description: "I parassiti che quasi tutti gli animali incontreranno, come funzio
 species: general
 category: care
 urgency: routine
-updated: 2026-10-13
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -18,6 +18,8 @@ references:
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/fleas-on-dogs"
   - title: "MSD Veterinary Manual (Pet Owner Version): Ticks of Dogs"
     url: "https://www.msdvetmanual.com/dog-owners/skin-disorders-of-dogs/ticks-of-dogs"
+  - title: "International Cat Care: Permethrin poisoning"
+    url: "https://icatcare.org/articles/permethrin-poisoning"
 ---
 
 ## Perché prevenire pulci, zecche e vermi invece di curarli?
@@ -32,7 +34,7 @@ La maggior parte dei veterinari consiglia una routine per tutto l'anno per cani 
 
 Prurito, crosticine, perdita di pelo e sporco di pulce sono i segni tipici, e la prevenzione è un trattamento regolare prescritto dal veterinario per tutti gli animali di casa.
 
-Le pulci sono il parassita più comune degli animali da compagnia in Europa e sono attive in casa tutto l'anno a causa del riscaldamento.
+Le pulci sono parassiti comuni di cani e gatti, e nelle case con riscaldamento possono continuare a svilupparsi tutto l'anno.
 
 Segni: prurito, mordicchiamento della schiena e della base della coda, piccole crosticine, perdita di pelo, e "sporco di pulce" (puntini neri che diventano rossastri su un fazzoletto umido). Alcuni animali sono allergici alla saliva delle pulci e reagiscono male a una singola puntura. Le pulci trasmettono anche la tenia.
 
@@ -48,13 +50,13 @@ Controlla il tuo animale dopo le passeggiate, soprattutto intorno a testa, orecc
 
 ### Come togliere una zecca
 
-1. Usa un levazecche (un piccolo gancio di plastica) o una pinzetta a punta fine. Non usare le dita, e non usare vaselina, olio, alcol o calore: possono far rigurgitare la zecca nella ferita.
+1. Usa un levazecche (un piccolo gancio di plastica) o una pinzetta a punta fine. Non usare le dita: schiacciando la zecca puoi spingere germi nel punto del morso. Non usare olio, alcol, colla, etere o calore.
 2. Infila il gancio sotto la zecca vicino alla pelle, oppure afferra la zecca con la pinzetta il più vicino possibile alla pelle.
 3. Afferra la zecca il più vicino possibile alla pelle e tirala fuori lentamente e con un movimento costante, senza schiacciarne il corpo. ESCCAP sconsiglia di ruotarla; se il tuo strumento ha istruzioni proprie, seguile.
-4. Controlla che l'apparato boccale sia venuto via. Un piccolo segno rosso è normale.
+4. Controlla che l'apparato boccale sia venuto via.
 5. Pulisci il punto e lavati le mani. Annota la data.
 
-Se una parte della zecca resta dentro, non scavare per tirarla fuori. Di solito esce da sola; vai dal veterinario se la zona diventa rossa, gonfia o secerne liquido.
+Se una parte della zecca resta nella pelle, chiedi al veterinario cosa fare invece di scavare per tirarla fuori: l'apparato boccale rimasto può causare un'infezione o un piccolo ascesso. Tieni d'occhio ogni punto da cui hai tolto una zecca, e vai dal veterinario se diventa rosso o gonfio.
 
 Prevenzione: molti antipulci coprono anche le zecche, ma non tutti. Chiedi al tuo veterinario, soprattutto prima di un viaggio.
 
@@ -62,7 +64,7 @@ Prevenzione: molti antipulci coprono anche le zecche, ma non tutti. Chiedi al tu
 
 I più importanti sono ascaridi, tenie e, nel cane, la filaria polmonare, e si prevengono con una sverminazione regolare decisa dal veterinario.
 
-**Gli ascaridi** sono frequenti in cuccioli e gattini, che possono essere infestati prima della nascita o attraverso il latte. Possono infestare anche le persone, soprattutto i bambini, ed è uno dei motivi principali per cui si consiglia la sverminazione regolare.
+**Gli ascaridi** sono frequenti in cuccioli e gattini. I cuccioli possono essere infestati prima della nascita e attraverso il latte materno; i gattini possono essere infestati attraverso il latte, ma non prima della nascita. Possono infestare anche le persone, soprattutto i bambini, ed è uno dei motivi principali per cui si consiglia la sverminazione regolare.
 
 **Le tenie** si prendono dalle pulci o mangiando carne cruda o prede. I proprietari a volte notano segmenti simili a chicchi di riso intorno all'ano o nella cuccia.
 
@@ -84,7 +86,7 @@ Prenota una visita se il tuo animale:
 - perde peso pur mangiando bene
 - ha una diarrea che continua a tornare
 
-Vai con urgenza se un gatto mostra tremori, contrazioni o salivazione abbondante dopo l'applicazione di un qualsiasi prodotto spot-on, o se per errore è stato usato su un gatto un prodotto per soli cani.
+Contatta subito il veterinario se per errore è stato usato su un gatto un antiparassitario per cani, o se un gatto mostra tremori, scosse o contrazioni dopo che un antiparassitario per cani è stato usato su di lui o su un cane con cui è a stretto contatto.
 
 ## Cosa vorrà sapere il veterinario?
 
