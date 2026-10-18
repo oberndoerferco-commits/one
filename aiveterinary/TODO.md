@@ -182,8 +182,8 @@ Everything costs €0 unless marked €. Legend:
 - [x] Lost or stolen passport steps on the travel pages
 - [x] "Can my pet eat that?" lookup (ASPCA list, never says safe)
 - [x] Per-field SOAP copy and JSON export in the vet workspace
-- [ ] Vet evaluation protocol (≥50 cases, attribution and unsupported-content rates with confidence intervals, stopwatch test)
-- [ ] Compliance kit drafts: Italian client notice, German § 203 StGB undertaking and AVV, AI-literacy module — need a lawyer's review
+- [x] Vet evaluation protocol: metrics with Wilson CIs (`app/src/metrics.ts`), 53 cases (42 generated), 20-case stopwatch protocol on the quality pages; the model run still needs the API key
+- [x] Compliance kit drafts in docs/legal: Italian client notice, German owner notice (BTK Oct 2026), § 203 StGB undertaking, AVV (§ 203 error fixed), AI-literacy session — all need a lawyer's review
 - [ ] Search-shaped rewrites of articles, Italian first
 - [ ] Vaccine planner (needs WSAVA/StIKo Vet/national schedules read first)
 
