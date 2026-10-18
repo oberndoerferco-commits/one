@@ -19,9 +19,27 @@ const L: Lang = lang === 'it' || lang === 'de' ? lang : 'en';
 const shared = new Set(['', '/about', '/passport', '/visit-brief', '/newsletter', '/vets', '/vets/workspace', '/vets/data', '/vets/quality', '/vets/research', '/editorial', '/animals', '/animals/all', '/registry', '/travel', '/emergency', '/chocolate', '/can-eat', '/vaccine-planner', '/end-of-life', '/impressum']);
 const basePath = path.replace(/^\/(it|de)(?=\/|$)/, '').replace(/^\/$/, '');
 const isSharedAnimals = /^\/animals\/(dog|cat|rabbit|horse|bird|general|symptoms|conditions|medications|first-aid|travel|care)$/.test(basePath);
+// Articles that exist under the same slug in other languages are translations of each other.
+const articleFiles = Object.keys(import.meta.glob('../content/animals/**/*.md'));
+const articleIn = (l: string, slug: string) => articleFiles.includes(`../content/animals/${l === 'en' ? '' : l + '/'}${slug}.md`);
+const articleSlug = /^\/animals\/([a-z0-9-]+)$/.exec(basePath)?.[1];
+const articleAlts = articleSlug && !isSharedAnimals && basePath !== '/animals/all'
+  ? (['en', 'it', 'de'] as const).filter((l) => articleIn(l, articleSlug)).map((l) => [l, l === 'en' ? basePath : `/${l}${basePath}`])
+  : [];
 const alternates = shared.has(basePath) || isSharedAnimals
   ? [['en', basePath || '/'], ['it', `/it${basePath}`], ['de', `/de${basePath}`]]
-  : [];
+  : articleAlts.length > 1 ? articleAlts : [];
+// Site-wide structured data: who publishes, and how to search the articles in this language.
+const homeHref = L === 'en' ? '/' : `/${L}`;
+const siteLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'Organization', '@id': 'https://aiveterinary.org/#org', name: 'AI Veterinary', url: 'https://aiveterinary.org/', logo: 'https://aiveterinary.org/favicon.svg', email: 'hello@aiveterinary.org' },
+    { '@type': 'WebSite', '@id': `https://aiveterinary.org${homeHref === '/' ? '/' : homeHref}#site`, name: 'AI Veterinary', url: new URL(homeHref, Astro.site).href, inLanguage: L, publisher: { '@id': 'https://aiveterinary.org/#org' },
+      potentialAction: { '@type': 'SearchAction', target: `${new URL(L === 'en' ? '/animals' : `/${L}/animals`, Astro.site).href}?q={search_term_string}`, 'query-input': 'required name=search_term_string' } },
+  ],
+};
+const ogLocale = ({ en: 'en_GB', it: 'it_IT', de: 'de_DE' } as const)[L];
 
 const strings = {
   en: {
@@ -157,7 +175,12 @@ const current = (href: string) => path === href || path.startsWith(href + '/');
     {alternates.length > 0 && <link rel="alternate" hreflang="x-default" href={new URL(alternates[0][1], Astro.site)} />}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={articleSlug && !isSharedAnimals && basePath !== '/animals/all' ? 'article' : 'website'} />
+    <meta property="og:url" content={new URL(path === '/' ? '/' : path, Astro.site)} />
+    <meta property="og:site_name" content="AI Veterinary" />
+    <meta property="og:locale" content={ogLocale} />
+    {alternates.filter(([l]) => l !== L).map(([l]) => <meta property="og:locale:alternate" content={({ en: 'en_GB', it: 'it_IT', de: 'de_DE' } as any)[l]} />)}
+    <script type="application/ld+json" set:html={JSON.stringify(siteLd)} />
     <meta property="og:image" content={new URL('/og.png', Astro.site)} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
