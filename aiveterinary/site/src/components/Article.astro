@@ -7,8 +7,14 @@ const { lang, entry } = Astro.props;
 const t = ANIMALS[lang];
 const { Content, headings } = await render(entry);
 const toc = headings.filter((h: any) => h.depth === 2);
-const L = ({ en: { toc: 'In this article', report: 'Found an error? Tell us' }, it: { toc: 'In questo articolo', report: 'Hai trovato un errore? Scrivici' }, de: { toc: 'In diesem Artikel', report: 'Fehler gefunden? Sagen Sie es uns' } } as any)[lang];
+const L = ({ en: { toc: 'In this article' }, it: { toc: 'In questo articolo' }, de: { toc: 'In diesem Artikel' } } as any)[lang];
 const d = entry.data;
+// Feedback goes out as an email the reader sends themselves: nothing is stored or tracked on this site.
+const F = ({
+  en: { q: 'Is anything wrong or unclear on this page?', opts: ['A fact looks wrong', 'It is unclear', 'It seems out of date', 'Something is missing', 'Other'], note: 'What should we check? (optional, please no personal or health details of people)', how: 'This opens an email to hello@aiveterinary.org from your own mail app. Nothing is saved on this site. Corrections are checked against the sources and by the reviewing vet.', send: 'Write the email', subject: 'Page feedback' },
+  it: { q: 'In questa pagina c\u2019è qualcosa di sbagliato o poco chiaro?', opts: ['Un dato sembra errato', 'Non è chiaro', 'Sembra superato', 'Manca qualcosa', 'Altro'], note: 'Cosa dovremmo controllare? (facoltativo, per favore senza dati personali o sanitari di persone)', how: 'Si apre un\u2019email a hello@aiveterinary.org dalla tua app di posta. Su questo sito non viene salvato nulla. Le correzioni vengono verificate sulle fonti e dal veterinario revisore.', send: 'Scrivi l\u2019email', subject: 'Segnalazione pagina' },
+  de: { q: 'Ist auf dieser Seite etwas falsch oder unklar?', opts: ['Eine Angabe scheint falsch', 'Es ist unklar', 'Es wirkt veraltet', 'Es fehlt etwas', 'Anderes'], note: 'Was sollen wir prüfen? (freiwillig, bitte keine persönlichen oder Gesundheitsdaten von Menschen)', how: 'Damit öffnet sich eine E-Mail an hello@aiveterinary.org in Ihrem eigenen Mailprogramm. Auf dieser Seite wird nichts gespeichert. Korrekturen werden anhand der Quellen und von der prüfenden Tierärztin oder dem prüfenden Tierarzt kontrolliert.', send: 'E-Mail schreiben', subject: 'Rückmeldung zur Seite' },
+} as any)[lang];
 // Tool links shown beside the article, kept out of the body so signed reviews are not invalidated.
 const slug = String(entry.id).split('/').pop();
 const CHOC = new Set(['dog-toxic-foods', 'cane-ha-mangiato-cioccolato', 'alimenti-tossici-cane', 'hund-schokolade-gefressen', 'giftige-lebensmittel-hund']);
@@ -73,7 +79,34 @@ const ld = [
   {d.references?.length && (
     <section class="article-refs"><h2>{t.references}</h2><ol>{d.references.map((r: any) => <li>{r.url ? <a href={r.url} rel="noopener">{r.title}</a> : r.title}</li>)}</ol></section>
   )}
-  <p class="article-actions" data-pagefind-ignore><a class="btn secondary" href={`mailto:?subject=${encodeURIComponent(d.title)}&body=${encodeURIComponent(Astro.url.href)}`}>{t.share}</a> <a class="more" href={`mailto:hello@aiveterinary.org?subject=${encodeURIComponent('Correction: ' + d.title)}&body=${encodeURIComponent(Astro.url.href)}`}>{L.report}</a></p>
+  <p class="article-actions" data-pagefind-ignore><a class="btn secondary" href={`mailto:?subject=${encodeURIComponent(d.title)}&body=${encodeURIComponent(Astro.url.href)}`}>{t.share}</a></p>
+  <form class="fb" data-pagefind-ignore data-title={d.title} data-url={url} data-subject={F.subject}>
+    <fieldset><legend>{F.q}</legend>
+      <div class="fb-opts">{F.opts.map((o: string, i: number) => <label><input type="radio" name="fb" value={o} required={i === 0} /> {o}</label>)}</div>
+      <label class="fb-note">{F.note}<textarea name="note" rows="3"></textarea></label>
+      <p class="pp-hint">{F.how}</p>
+      <button class="btn secondary" type="submit">{F.send}</button>
+    </fieldset>
+  </form>
   <div class="notice" style="margin-top:24px" data-pagefind-ignore><p>{t.footer}</p></div>
 </article>
 </div>
+<script>
+  document.querySelectorAll<HTMLFormElement>('form.fb').forEach((f) => f.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const kind = (f.querySelector('input[name=fb]:checked') as HTMLInputElement)?.value ?? '';
+    const note = (f.elements.namedItem('note') as HTMLTextAreaElement).value.trim();
+    const body = `${f.dataset.url}\n\n${kind}${note ? `\n\n${note}` : ''}\n`;
+    location.href = `mailto:hello@aiveterinary.org?subject=${encodeURIComponent(`${f.dataset.subject}: ${f.dataset.title}`)}&body=${encodeURIComponent(body)}`;
+  }));
+</script>
+<style is:global>
+  .fb { margin-top: 28px; }
+  .fb fieldset { border: 0; margin: 0; padding: 18px 20px; border-radius: 20px; background: var(--surface); box-shadow: 0 1px 0 var(--line); display: grid; gap: 12px; }
+  .fb legend { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; padding: 0 6px; }
+  .fb-opts { display: flex; flex-wrap: wrap; gap: 8px 16px; }
+  .fb-opts label { display: inline-flex; gap: 6px; align-items: center; }
+  .fb-note { display: grid; gap: 6px; font-weight: 600; }
+  .fb textarea { font: inherit; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); color: var(--ink); max-width: 100%; }
+  .fb .btn { justify-self: start; }
+</style>
