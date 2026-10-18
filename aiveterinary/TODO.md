@@ -146,7 +146,7 @@ Everything costs €0 unless marked €. Legend:
 - [x] Handouts: matching articles suggested from the assessment, linked, never inserted
 
 ### Getting it into the practice software
-- [ ] **Export formats** tested against Vetera, easyVET, VET7, Provet Cloud, dr.veto, VetsGo free-text fields — M ★★★
+- [ ] **Export formats** tested against Vetera, easyVET, VET7, Provet Cloud, dr.veto, VetsGo free-text fields — M ★★★ (per-field S/O/A/P copy and JSON export with approval details done in `app/src/export.ts`; still to test in each real PIMS)
 - [ ] Browser helper (extension) that pastes sections into the right fields and **reads the patient header to lock patient facts** — L ★★★
 - [ ] Provet MCP read (history, meds) as context — M ★★
 - [ ] Partner-programme applications: Provet, ezyVet, Covetrus; Petleo-style agreement with Vetera/Nordhealth; VetZ — **You** + L ★★
@@ -171,6 +171,21 @@ Everything costs €0 unless marked €. Legend:
 - [ ] Clinic groups for a pilot: AniCura Italia (Medical Operations Manager), Ca'Zampa/BluVet, IVC Evidensia — You
 - [ ] Shelters/breeders: passport as adoption handover; Tierheim/canile pilots — You
 - [x] Launch checklist drafted in docs/14-gtm-kit.md — You run it
+
+## 6b. From the October 2026 market research (docs/15-market-research-2026-10.md)
+
+- [x] Review sign-off integrity check in the build (`site/scripts/review.mjs`)
+- [x] Structured data (MedicalWebPage, BreadcrumbList) matching the visible page
+- [x] "Is it an emergency?" check, saves to the symptom diary
+- [x] Chocolate dose check for dogs (MSD figures, never says safe)
+- [x] "Is anything wrong?" feedback box on articles (email only, nothing stored)
+- [x] Lost or stolen passport steps on the travel pages
+- [x] "Can my pet eat that?" lookup (ASPCA list, never says safe)
+- [x] Per-field SOAP copy and JSON export in the vet workspace
+- [ ] Vet evaluation protocol (≥50 cases, attribution and unsupported-content rates with confidence intervals, stopwatch test)
+- [ ] Compliance kit drafts: Italian client notice, German § 203 StGB undertaking and AVV, AI-literacy module — need a lawyer's review
+- [ ] Search-shaped rewrites of articles, Italian first
+- [ ] Vaccine planner (needs WSAVA/StIKo Vet/national schedules read first)
 
 ## 7. Open research (unverified, confirm before building)
 
