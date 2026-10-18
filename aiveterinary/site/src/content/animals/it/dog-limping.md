@@ -1,10 +1,10 @@
 ---
 title: "Il cane zoppica: cause, cosa fare e quando preoccuparsi"
-description: "La maggior parte delle zoppie nel cane è lieve e migliora con qualche giorno di riposo. Ecco come controllare il tuo cane, cosa richiede una visita urgente, e cosa ti chiederà il veterinario."
+description: "Una zoppia merita una telefonata al veterinario anche quando sembra lieve. Ecco come controllare il tuo cane, cosa richiede una visita urgente, e cosa ti chiederà il veterinario."
 species: dog
 category: symptoms
-urgency: this-week
-updated: 2026-10-13
+urgency: today
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -24,7 +24,7 @@ Vai immediatamente in una clinica veterinaria, avvisando per telefono, se il tuo
 
 - non riesce ad appoggiare per niente la zampa, o la tiene sempre sollevata
 - ha una zampa che sembra piegata, storta, o penzola con un'angolazione strana
-- è stato investito da un'auto, è caduto dall'alto, o ha fatto una rissa, anche se la zoppia sembra lieve (le lesioni interne possono manifestarsi più tardi)
+- è stato investito da un'auto, o afferrato e scosso da un animale più grande, anche se la zoppia sembra lieve
 - ha una ferita che sanguina molto, o in cui si vede l'osso
 - ha un arto caldo e gonfio ed è anche spento, non mangia o ha la febbre
 - trascina le zampe posteriori, o è diventato all'improvviso instabile su più di una zampa
@@ -35,31 +35,34 @@ Anche un cane che zoppica su una zampa anteriore e ha anche il collo o la schien
 
 ## Cosa posso fare a casa se il cane zoppica ma sta bene?
 
-Controlla zampa e cuscinetti, palpa con delicatezza l'arto, fallo riposare sul serio e non dargli antidolorifici per uso umano.
+Solo per poco tempo, e chiedi consiglio al veterinario: una zoppia improvvisa che non passa entro un'ora, o qualsiasi zoppia che dura più di 24 ore, va visitata. Nel frattempo controlla zampa e cuscinetti, palpa con delicatezza l'arto, fallo riposare sul serio e non dargli antidolorifici per uso umano.
 
-Un cane che zoppica ma appoggia ancora un po' di peso, è vivace, mangia ed è tranquillo a riposo può di solito essere osservato per un paio di giorni.
+Chiama il veterinario per qualsiasi zoppia, anche se sembra lieve: alcuni cani nascondono bene il dolore. Anche un cane che appoggia ancora un po' di peso, è vivace, mangia ed è tranquillo a riposo va visitato se una zoppia improvvisa non passa entro un'ora, o se la zoppia dura più di 24 ore.
 
 Cosa puoi fare a casa:
 
 - Controlla prima la zampa. Guarda tra le dita e i cuscinetti: tagli, spighe di graminacee (forasacchi), spine, sassolini, unghie rotte o qualsiasi cosa incastrata. Molte zoppie sono un problema della zampa.
 - Palpa con delicatezza l'arto dalle dita fino alla spalla o all'anca, confrontandolo con l'altro lato. Nota gonfiori, calore, o un punto in cui il cane si ritrae. Fermati se il cane ringhia o sembra in difficoltà.
-- Fai riposare il cane sul serio: solo brevi uscite al guinzaglio per i bisogni, niente corse, niente salti su e giù dai divani, niente scale se puoi evitarle. Molti veterinari consigliano diversi giorni di riposo assoluto.
+- Fai riposare il cane sul serio: solo brevi uscite al guinzaglio per i bisogni, niente corse, niente salti su e giù dai divani, niente scale se puoi evitarle.
 - Non dare antidolorifici per uso umano. Ibuprofene e paracetamolo possono essere pericolosi per i cani. Se il tuo cane ha bisogno di un antidolorifico, è una decisione del veterinario e serve una prescrizione.
 - Se puoi, filma la zoppia. Le zoppie spesso spariscono in ambulatorio, e un breve video aiuta il veterinario a vedere quale zampa è coinvolta e quanto.
 
 ## Quando portare dal veterinario il cane che zoppica?
 
-Prenota una visita se la zoppia non migliora dopo due o tre giorni di riposo, torna con l'attività, dura da settimane o si accompagna a gonfiore, rigidità o leccamento.
+Chiama il veterinario per qualsiasi zoppia: oggi se una zoppia improvvisa non passa entro un'ora o una zoppia dura più di 24 ore, e prenota una visita se torna con l'attività, dura da settimane o si accompagna a gonfiore, rigidità o leccamento.
 
-Prenota una visita questa settimana, o prima, se:
+Contatta il veterinario oggi se:
 
-- la zoppia non è migliorata dopo due o tre giorni di riposo
+- una zoppia improvvisa non è passata entro circa un'ora
+- una zoppia di qualsiasi tipo dura più di 24 ore, anche se sembra lieve, anche in un cucciolo o in un giovane cane di taglia grande
+
+Prenota una visita dal veterinario se:
+
 - la zoppia torna appena il cane riprende l'attività
 - il tuo cane zoppica a intermittenza da diverse settimane
 - c'è gonfiore, calore, o un nodulo sulla zampa
 - il tuo cane è rigido dopo il riposo, lento ad alzarsi, o riluttante a saltare o fare le scale
 - il tuo cane si lecca ripetutamente un punto della zampa
-- il tuo cane è un cucciolo o un giovane di taglia grande con una zoppia di qualsiasi tipo che dura più di uno o due giorni
 - il tuo cane è anziano e la zoppia è nuova
 
 ## Cosa vorrà sapere il veterinario?
@@ -74,21 +77,20 @@ Quale zampa, quando è iniziata e cosa è successo, come cambia con riposo ed es
 - L'attività abituale del tuo cane, e se è aumentata di recente
 - Precedenti traumi, interventi chirurgici o problemi articolari
 - Eventuali farmaci o integratori
-- Eventuali morsi di zecca, o viaggi all'estero
 
 ## Perché il cane zoppica?
 
-Le cause più probabili sono tagli, spine o forasacchi, distorsioni, unghie rotte, contusioni, artrosi e ustioni dei cuscinetti, ma sono possibili anche fratture o la rottura del crociato.
+Le cause più probabili sono tagli, spine o forasacchi, distorsioni, unghie rotte, contusioni, artrosi e ascessi o infezioni della pelle della zampa, ma sono possibili anche fratture o la rottura del crociato.
 
 | Probabili | Meno comuni ma importanti |
 |---|---|
 | Taglio, spina o forasacco nella zampa | Rottura del legamento crociato del ginocchio |
 | Distorsione o stiramento da esercizio | Frattura o lussazione |
 | Unghia strappata o rotta | Displasia dell'anca o del gomito nei cani giovani |
-| Contusione da urto | Infezione ossea o tumore osseo |
-| Artrosi nei cani anziani | Ernia del disco al collo o alla schiena |
-| Ustione dei cuscinetti da asfalto rovente | Malattia trasmessa da zecche |
+| Contusione da urto | Infezione articolare (artrite settica) |
+| Artrosi nei cani anziani | Tumore osseo |
+| Ascesso o infezione della pelle della zampa | Ernia del disco al collo o alla schiena |
 
 È il veterinario a decidere quale di queste è probabile per il *tuo* cane, in base alla visita e, se serve, a radiografie o altri esami. Questo elenco serve ad aiutarti a capire il colloquio, non a fare una diagnosi.
 
-Se la zoppia del tuo cane non migliora chiaramente entro pochi giorni di riposo, prenota una visita dal tuo veterinario invece di aspettare che passi da sola.
+Se la zoppia del tuo cane dura più di 24 ore, prenota una visita dal tuo veterinario invece di aspettare che passi da sola.

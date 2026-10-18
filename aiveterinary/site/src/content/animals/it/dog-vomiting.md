@@ -4,7 +4,7 @@ description: "La maggior parte degli episodi isolati di vomito nel cane passa da
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-09-29
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -18,40 +18,44 @@ references:
     url: "https://www.msdvetmanual.com/digestive-system/surgical-problems-of-the-gastrointestinal-tract-in-small-animals/gastric-dilation-and-volvulus-in-small-animals"
   - title: "ASPCA: People Foods to Avoid Feeding Your Pets"
     url: "https://www.aspca.org/pet-care/animal-poison-control/people-foods-avoid-feeding-your-pets"
+  - title: "Merck Veterinary Manual: Toxicoses From Human Analgesics in Animals"
+    url: "https://www.merckvetmanual.com/toxicology/toxicities-from-human-drugs/analgesics-toxicity"
+  - title: "Merck Veterinary Manual: Ethylene Glycol (Antifreeze) Poisoning"
+    url: "https://www.merckvetmanual.com/special-pet-topics/poisoning/ethylene-glycol-antifreeze-poisoning"
 ---
 
 ## Prima di tutto: i segni per cui andare subito dal veterinario
 
 Vai immediatamente in una clinica veterinaria, avvisando per telefono, se il tuo cane:
 
-- cerca di vomitare ma non esce nulla, soprattutto se ha la pancia gonfia e dura (può essere una dilatazione-torsione gastrica, che mette in pericolo la vita nel giro di ore)
+- cerca di vomitare ma non esce nulla, soprattutto se ha la pancia gonfia e dura (può essere una dilatazione-torsione gastrica, un'emergenza che mette in pericolo la vita)
 - vomita sangue, o materiale che sembra fondi di caffè
 - è molto debole, collassa, o ha le gengive pallide o bluastre
-- potrebbe aver mangiato qualcosa di velenoso: cioccolato, uva o uvetta, xilitolo (nelle gomme senza zucchero e in alcuni burri di arachidi), veleno per topi, farmaci, antigelo
-- potrebbe aver ingoiato un oggetto: un giocattolo, un calzino, una pannocchia, un osso
+- potrebbe aver mangiato qualcosa di velenoso: cioccolato, uva o uvetta, xilitolo (usato in alcune gomme da masticare, caramelle, prodotti da forno e dentifrici), antidolorifici per uso umano come l'ibuprofene, antigelo
+- potrebbe aver ingoiato un oggetto: un giocattolo, un calzino, un osso
 - è un cucciolo, è molto anziano, o ha già una malattia come diabete o insufficienza renale
 - vomita ripetutamente e non trattiene nemmeno l'acqua
 
 ## Cosa posso fare a casa se il cane vomita ma sta bene?
 
-Nelle prime 12 ore togli il cibo per qualche ora, tranne nei cuccioli e nei cani piccoli, lascia poca acqua alla volta e poi reintroduci un cibo leggero.
+Lascia poca acqua alla volta, chiedi al veterinario se tenere lo stomaco a riposo per poco tempo o offrire piccoli pasti leggeri, e chiamalo se il cane vomita di nuovo.
 
 Un singolo episodio di vomito in un cane per il resto vivace è frequente. I cani mangiano cose che non dovrebbero, mangiano troppo in fretta, o hanno lo stomaco in disordine per un cambio di cibo.
 
-Cosa puoi fare a casa nelle prime 12 ore:
+Cosa puoi fare a casa:
 
-- Togli il cibo per qualche ora (non più di 12 ore, e per niente nei cuccioli o nelle taglie piccole, che possono andare in ipoglicemia).
+- Chiedi al veterinario come gestire il cibo. Alcuni consigliano di togliere il cibo per poco tempo (spesso 8-12 ore) prima di offrire piccoli pasti leggeri; altri consigliano piccole porzioni di un cibo leggero e facilmente digeribile, poco e spesso, senza digiuno.
 - Lascia l'acqua a disposizione in piccole quantità. Grandi sorsate possono scatenare altro vomito.
-- Quando reintroduci il cibo, dai una piccola porzione di qualcosa di leggero, poi torna al cibo normale nell'arco di due o tre giorni.
+- Quando offri il cibo, dai una piccola porzione di qualcosa di leggero, poi torna al cibo normale nell'arco di due o tre giorni.
 - Annota com'era il vomito, quante volte, e se il tuo cane ha mangiato qualcosa di insolito. Se puoi, fai una foto. Il veterinario te lo chiederà.
 
 ## Quando portare oggi dal veterinario il cane che vomita?
 
-Se vomita più di due o tre volte in un giorno o per più di 24 ore, ha diarrea, beve molto più o meno, non mangia da più di un giorno o sembra avere dolore.
+Chiama il veterinario oggi se vomita più di una volta o continua a vomitare per più di 24 ore, ha diarrea, beve molto più o meno, non mangia da più di un giorno o sembra avere dolore.
 
-Prenota una visita oggi se:
+Chiama il veterinario oggi per un consiglio o una visita se:
 
-- il vomito si ripete più di due o tre volte in un giorno
+- il tuo cane vomita più di una volta, o continua a vomitare
 - continua per più di 24 ore
 - c'è anche diarrea, soprattutto con sangue
 - il tuo cane beve molto di più o molto di meno del solito

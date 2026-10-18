@@ -4,7 +4,7 @@ description: "Dogs skip a meal for all sorts of harmless reasons. Here is how to
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-10-13
+updated: 2026-10-19
 draft: true
 references:
   - title: "PDSA: My dog isn't eating properly"
@@ -30,30 +30,29 @@ Go to a veterinary clinic immediately, and call ahead, if your dog is off food a
 - is struggling to breathe, or breathing fast at rest
 - may have eaten something poisonous or swallowed an object
 - cannot drink, or is vomiting water back up
-- is a puppy, a toy breed, diabetic, or on medication that depends on eating (if your dog is diabetic and will not eat, call your vet before giving insulin; this is a vet decision)
+- is diabetic (a diabetic dog that will not eat needs your vet's advice straight away)
 
 ## What should I do if my dog skips a meal but seems well?
 
 A healthy adult dog that skips one meal but is bright, drinking and behaving normally can usually be watched for a day.
 
-A healthy adult dog that skips one meal but is bright, drinking and behaving normally can usually be watched for a day. Hot weather, a change of routine, a new bag of food, a bitch in season nearby, or simply having been given too many treats are common reasons.
+A healthy adult dog that skips one meal but is bright, drinking and behaving normally can usually be watched for a day. A change of routine, a change of food, or being given human food are common reasons.
 
 What you can do at home:
 
 - Keep fresh water available and check your dog is drinking.
-- Offer the normal food at the normal time. Take it away after 15 to 20 minutes if untouched, and try again at the next meal. Leaving food down all day tends to make fussiness worse.
-- Check the food itself. Smell it. Dry food can go stale or rancid, and a dog may refuse it before you notice.
+- Offer the normal food at the normal time. Take it away after 15 minutes if untouched, and try again at the next meal. Leaving food down all day tends to make fussiness worse.
 - Look in the mouth if your dog will let you: a broken tooth, a stick wedged across the roof of the mouth, or sore gums can stop a dog eating.
 - Note everything else: energy, stools, vomiting, drinking, any limping or stiffness.
 - Do not tempt with rich human food. It can upset the stomach and makes it harder for your vet to judge what is going on.
 
 ## When should I take my dog to the vet for not eating?
 
-Today if your dog has not eaten for more than 24 hours (sooner for puppies and small breeds), or is also vomiting, quiet, struggling to eat, or losing weight.
+Call your vet for advice if your dog has eaten nothing for more than 12 hours, and see them today if it has been more than 24 hours, or is also vomiting, quiet, struggling to eat, or losing weight.
 
 Book an appointment today if:
 
-- your dog has not eaten for more than 24 hours (sooner for puppies and small breeds)
+- your dog has not eaten anything for more than 24 hours (call for advice already after 12 hours)
 - your dog is also vomiting, has diarrhoea, or is drinking noticeably more or less
 - your dog is quiet, sleeping more, or reluctant to walk
 - your dog seems to want food but drops it, chews on one side, or paws at the mouth
@@ -77,16 +76,15 @@ When your dog last ate properly, whether it is drinking, any vomiting, diarrhoea
 
 ## Why is my dog not eating?
 
-Stomach upsets, stress, dental pain, stale food or fussiness, hot weather and recent vaccination or medication are likely; blockages, pancreatitis, organ disease, infection, cancer and heart disease are less common but important.
+Stomach upsets, stress, dental pain, a change of food or fussiness, and recent vaccination or vet treatment are likely; kidney or liver disease, infection, heart or lung disease, and hormonal or gut problems are less common but important.
 
 | Likely | Less common but important |
 |---|---|
-| Stomach upset from scavenging | Foreign body in the gut |
-| Stress or change of routine | Pancreatitis |
-| Dental pain | Kidney or liver disease |
-| Food that has gone stale, or fussiness | Infection with fever |
-| Hot weather | Cancer, especially in older dogs |
-| Recent vaccination or medication | Heart disease |
+| Stomach upset from scavenging | Kidney or liver disease |
+| Stress or change of routine | Infection with fever |
+| Dental pain | Heart or lung disease |
+| A change of food, or fussiness | Hormonal problems such as an underactive thyroid |
+| Recent vaccination, surgery or vet treatment | Gut problems such as colitis |
 
 Your vet decides which of these is likely for *your* dog, based on the examination and any tests. This list is to help you understand the conversation, not to diagnose.
 

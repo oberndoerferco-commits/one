@@ -4,7 +4,7 @@ description: "Katzen verbergen Krankheiten gut, und eine Katze, die nicht mehr f
 species: cat
 category: symptoms
 urgency: today
-updated: 2026-09-29
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -18,20 +18,29 @@ references:
     url: "https://www.msdvetmanual.com/digestive-system/hepatic-disease-in-small-animals/feline-hepatic-lipidosis"
   - title: "Cornell Feline Health Center: Feline Lower Urinary Tract Disease"
     url: "https://vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/feline-lower-urinary-tract-disease"
+  - title: "PDSA: Breathing problems in cats"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/breathing-problems-in-cats"
+  - title: "PDSA: Vomiting in cats"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/vomiting-in-cats"
+  - title: "Pet Poison Helpline: Lilies"
+    url: "https://www.petpoisonhelpline.com/poison/lilies/"
+  - title: "Merck Veterinary Manual: Toxicoses From Human Analgesics in Animals"
+    url: "https://www.merckvetmanual.com/toxicology/toxicities-from-human-drugs/analgesics-toxicity"
+  - title: "Merck Veterinary Manual: Ethylene Glycol (Antifreeze) Poisoning"
+    url: "https://www.merckvetmanual.com/special-pet-topics/poisoning/ethylene-glycol-antifreeze-poisoning"
 ---
 
 ## Warum ist es gefährlich, wenn eine Katze nicht frisst?
 
-Eine Katze, die länger als ein bis zwei Tage nichts frisst, kann eine Lebererkrankung entwickeln, die hepatische Lipidose genannt wird, vor allem wenn die Katze übergewichtig ist. Das ist einer der Gründe, warum Tierärztinnen und Tierärzte „frisst nicht“ bei Katzen als etwas betrachten, das zeitnah abgeklärt werden sollte, statt abzuwarten.
+Eine Katze, die nicht mehr frisst, kann eine Lebererkrankung entwickeln, die hepatische Lipidose genannt wird, vor allem wenn die Katze übergewichtig ist. Leberprobleme können schon nach kurzer Zeit ohne Futter beginnen, und bereits 24 Stunden ohne Fressen können die Gesundheit einer Katze ernsthaft beeinträchtigen. Das ist einer der Gründe, warum Tierärztinnen und Tierärzte „frisst nicht“ bei Katzen als etwas betrachten, das zeitnah abgeklärt werden sollte, statt abzuwarten.
 
 ## Fahren Sie sofort in eine Praxis, wenn Ihre Katze
 
 - in der Katzentoilette presst und wenig oder gar keinen Urin absetzt, vor allem bei einem Kater (ein Harnröhrenverschluss ist ein Notfall)
-- mit offenem Maul atmet oder in Ruhe schnell atmet
-- sehr apathisch ist, sich versteckt und nicht auf Sie reagiert
+- mit offenem Maul atmet, schnell, schwer oder geräuschvoll atmet oder zusammengebrochen ist
 - einen aufgetriebenen, schmerzhaften Bauch hat
-- mehrfach erbrochen hat oder Blut im Erbrochenen oder im Kot ist
-- möglicherweise eine Lilie (jeder Teil der Pflanze ist für Katzen giftig), Frostschutzmittel oder Medikamente für Menschen wie Paracetamol gefressen hat
+- mehrfach erbrochen hat, weder Futter noch Wasser bei sich behält oder Blut im Erbrochenen ist
+- möglicherweise irgendeinen Teil einer Lilie (alle Teile der Pflanze, auch Pollen und Vasenwasser, sind für Katzen giftig), Frostschutzmittel oder ein Schmerzmittel für Menschen wie Paracetamol gefressen hat
 
 ## Was kann ich zu Hause prüfen, wenn meine Katze nicht frisst?
 
@@ -46,10 +55,11 @@ Prüfen Sie, ob sie nur dieses Futter verweigert, wie viel sie trinkt, ob das Ma
 
 ## Wann sollte ich mit meiner Katze zur Tierärztin oder zum Tierarzt, wenn sie nicht frisst?
 
-Heute, wenn sie seit 24 Stunden nichts oder seit 48 Stunden nur sehr wenig gefressen hat oder einer der Punkte zu Hause auffällig ist.
+Heute, wenn sie seit 24 Stunden nichts oder seit 48 Stunden nur sehr wenig gefressen hat oder einer der Punkte zu Hause auffällig ist. Jeder Appetitverlust ist eine Kontrolle wert.
 
-- **Heute**, wenn Ihre Katze seit 24 Stunden nichts oder seit 48 Stunden nur sehr wenig gefressen hat oder wenn einer der oben genannten Punkte auffällig ist.
-- **Diese Woche**, wenn die Katze etwas weniger als sonst frisst, aber ansonsten munter ist und sich normal verhält, und es sich innerhalb von ein paar Tagen nicht bessert.
+- **Heute**, wenn Ihre Katze seit 24 Stunden nichts gefressen hat oder wenn einer der oben genannten Punkte auffällig ist.
+- **Ebenfalls heute**, als vorsichtige Regel, wenn Ihre Katze seit 48 Stunden nur sehr wenig gefressen hat. Lassen Sie einen verminderten Appetit nicht drei Tage oder länger andauern, ohne mit Ihrer Tierärztin oder Ihrem Tierarzt zu sprechen.
+- **Vereinbaren Sie eine Kontrolle**, wenn die Katze etwas weniger als sonst frisst, auch wenn sie ansonsten munter ist und sich normal verhält.
 
 ## Was wird die Tierärztin oder der Tierarzt über meine Katze wissen wollen?
 

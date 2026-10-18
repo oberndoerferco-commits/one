@@ -4,7 +4,7 @@ description: "Cats hide illness well, and a cat that stops eating is worth takin
 species: cat
 category: symptoms
 urgency: today
-updated: 2026-09-29
+updated: 2026-10-19
 draft: true
 references:
   - title: "Cornell Feline Health Center: Anorexia"
@@ -17,20 +17,29 @@ references:
     url: "https://www.msdvetmanual.com/digestive-system/hepatic-disease-in-small-animals/feline-hepatic-lipidosis"
   - title: "Cornell Feline Health Center: Feline Lower Urinary Tract Disease"
     url: "https://vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/feline-lower-urinary-tract-disease"
+  - title: "PDSA: Breathing problems in cats"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/breathing-problems-in-cats"
+  - title: "PDSA: Vomiting in cats"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/vomiting-in-cats"
+  - title: "Pet Poison Helpline: Lilies"
+    url: "https://www.petpoisonhelpline.com/poison/lilies/"
+  - title: "Merck Veterinary Manual: Toxicoses From Human Analgesics in Animals"
+    url: "https://www.merckvetmanual.com/toxicology/toxicities-from-human-drugs/analgesics-toxicity"
+  - title: "Merck Veterinary Manual: Ethylene Glycol (Antifreeze) Poisoning"
+    url: "https://www.merckvetmanual.com/special-pet-topics/poisoning/ethylene-glycol-antifreeze-poisoning"
 ---
 
 ## Why is it serious when a cat stops eating?
 
-A cat that stops eating for more than a day or two can develop a liver problem called hepatic lipidosis, especially if the cat is overweight. This is one reason vets treat "not eating" in cats as something to look at promptly rather than wait out.
+A cat that stops eating can develop a liver problem called hepatic lipidosis, especially if the cat is overweight. Liver problems can start after going without food for even a short time, and not eating for as little as 24 hours can seriously affect a cat's health. This is one reason vets treat "not eating" in cats as something to look at promptly rather than wait out.
 
 ## Go to a clinic now if your cat
 
 - is straining in the litter tray and producing little or no urine, especially a male cat (a blocked bladder is an emergency)
-- is breathing with an open mouth, or breathing fast while resting
-- is very lethargic, hiding and not responding to you
+- is breathing with an open mouth, breathing fast, heavily or noisily, or has collapsed
 - has a swollen, painful belly
-- has vomited several times or there is blood in vomit or stool
-- may have eaten a lily (any part of the plant is toxic to cats), antifreeze, or human medication such as paracetamol
+- has vomited several times, cannot keep food or water down, or there is blood in the vomit
+- may have eaten any part of a lily (all parts of the plant, including pollen and vase water, are toxic to cats), antifreeze, or a human painkiller such as paracetamol
 
 ## What can I check at home if my cat is not eating?
 
@@ -45,10 +54,11 @@ Check whether the cat refuses only this food, how much it drinks, its mouth, the
 
 ## When should I take my cat to the vet for not eating?
 
-Today if your cat has eaten nothing for 24 hours or very little for 48 hours, or if any of the home checks is abnormal.
+Today if your cat has eaten nothing for 24 hours, has eaten very little for 48 hours, or if any of the home checks is abnormal. Any loss of appetite is worth a check-up.
 
-- **Today** if your cat has eaten nothing for 24 hours, or very little for 48 hours, or if any of the checks above are abnormal.
-- **This week** if the cat is eating a bit less than usual but is otherwise bright and behaving normally, and it does not improve in a couple of days.
+- **Today** if your cat has eaten nothing for 24 hours, or if any of the checks above are abnormal.
+- **Today** as well, as a cautious rule, if your cat has eaten very little for 48 hours. Do not let a reduced appetite go on for three days or more without speaking to your vet.
+- **Book a check-up** if your cat is eating a bit less than usual, even if it is otherwise bright and behaving normally.
 
 ## What will the vet want to know about my cat?
 

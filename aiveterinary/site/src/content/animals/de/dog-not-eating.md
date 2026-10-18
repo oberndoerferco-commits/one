@@ -4,7 +4,7 @@ description: "Hunde lassen aus allen möglichen harmlosen Gründen eine Mahlzeit
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-10-13
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -31,30 +31,29 @@ Fahren Sie sofort in eine Tierarztpraxis und rufen Sie vorher an, wenn Ihr Hund 
 - Atemnot hat oder in Ruhe schnell atmet
 - möglicherweise etwas Giftiges gefressen oder einen Gegenstand verschluckt hat
 - nicht trinken kann oder Wasser wieder erbricht
-- ein Welpe, ein Zwerghund, Diabetiker ist oder Medikamente bekommt, deren Gabe vom Fressen abhängt (wenn Ihr Hund Diabetiker ist und nicht frisst, rufen Sie Ihre Tierarztpraxis an, bevor Sie Insulin geben; das ist eine tierärztliche Entscheidung)
+- Diabetiker ist (ein diabetischer Hund, der nicht frisst, braucht sofort tierärztlichen Rat)
 
 ## Was tue ich, wenn mein Hund eine Mahlzeit auslässt, aber munter ist?
 
 Ein gesunder erwachsener Hund, der munter ist, trinkt und sich normal verhält, kann meist einen Tag lang beobachtet werden.
 
-Ein gesunder erwachsener Hund, der eine Mahlzeit auslässt, aber munter ist, trinkt und sich normal verhält, kann meist einen Tag lang beobachtet werden. Heißes Wetter, eine Änderung des Tagesablaufs, ein neuer Sack Futter, eine läufige Hündin in der Nähe oder einfach zu viele Leckerlis sind häufige Gründe.
+Ein gesunder erwachsener Hund, der eine Mahlzeit auslässt, aber munter ist, trinkt und sich normal verhält, kann meist einen Tag lang beobachtet werden. Eine Änderung des Tagesablaufs, ein Futterwechsel oder Essen vom Tisch sind häufige Gründe.
 
 Was Sie zu Hause tun können:
 
 - Halten Sie frisches Wasser bereit und prüfen Sie, ob Ihr Hund trinkt.
-- Bieten Sie das gewohnte Futter zur gewohnten Zeit an. Nehmen Sie es nach 15 bis 20 Minuten weg, wenn es nicht angerührt wurde, und versuchen Sie es bei der nächsten Mahlzeit erneut. Futter den ganzen Tag stehen zu lassen, macht Wählerischsein eher schlimmer.
-- Prüfen Sie das Futter selbst. Riechen Sie daran. Trockenfutter kann alt oder ranzig werden, und ein Hund verweigert es möglicherweise, bevor Sie es bemerken.
+- Bieten Sie das gewohnte Futter zur gewohnten Zeit an. Nehmen Sie es nach 15 Minuten weg, wenn es nicht angerührt wurde, und versuchen Sie es bei der nächsten Mahlzeit erneut. Futter den ganzen Tag stehen zu lassen, macht Wählerischsein eher schlimmer.
 - Schauen Sie ins Maul, wenn Ihr Hund es zulässt: ein abgebrochener Zahn, ein quer im Gaumen verkeilter Stock oder entzündetes Zahnfleisch können einen Hund am Fressen hindern.
 - Notieren Sie alles Weitere: Energie, Kot, Erbrechen, Trinken, Lahmheit oder Steifheit.
 - Locken Sie nicht mit fettreichem Essen vom Tisch. Es kann den Magen belasten und erschwert Ihrer Tierärztin oder Ihrem Tierarzt die Beurteilung.
 
 ## Wann sollte ich mit meinem Hund zur Tierärztin oder zum Tierarzt, wenn er nicht frisst?
 
-Noch heute, wenn er seit mehr als 24 Stunden nichts gefressen hat (bei Welpen und kleinen Rassen früher) oder zusätzlich erbricht, ruhig ist, Probleme beim Fressen hat oder abnimmt.
+Rufen Sie nach 12 Stunden ohne Futter für eine Einschätzung in der Praxis an; noch heute in die Praxis, wenn er seit mehr als 24 Stunden gar nichts gefressen hat oder zusätzlich erbricht, ruhig ist, Probleme beim Fressen hat oder abnimmt.
 
 Vereinbaren Sie noch heute einen Termin, wenn:
 
-- Ihr Hund seit mehr als 24 Stunden nichts gefressen hat (bei Welpen und kleinen Rassen früher)
+- Ihr Hund seit mehr als 24 Stunden gar nichts gefressen hat (anrufen schon nach 12 Stunden)
 - Ihr Hund zusätzlich erbricht, Durchfall hat oder deutlich mehr oder weniger trinkt
 - Ihr Hund ruhig ist, mehr schläft oder nicht spazieren gehen will
 - Ihr Hund Futter zu wollen scheint, es aber fallen lässt, einseitig kaut oder sich mit der Pfote ans Maul fasst
@@ -78,16 +77,15 @@ Wann er zuletzt richtig gefressen hat, ob er trinkt, Erbrechen, Durchfall oder V
 
 ## Warum frisst mein Hund nicht?
 
-Magenverstimmung, Stress, Zahnschmerzen, altes Futter oder Wählerischsein, Hitze und kürzliche Impfungen oder Medikamente sind wahrscheinlich; Fremdkörper, Pankreatitis, Organerkrankungen, Infektionen, Krebs und Herzerkrankungen sind seltener, aber wichtig.
+Magenverstimmung, Stress, Zahnschmerzen, ein Futterwechsel oder Wählerischsein und kürzliche Impfungen oder tierärztliche Behandlungen sind wahrscheinlich; Nieren- oder Lebererkrankungen, Infektionen, Herz- oder Lungenerkrankungen sowie hormonelle oder Darmprobleme sind seltener, aber wichtig.
 
 | Wahrscheinlich | Seltener, aber wichtig |
 |---|---|
-| Magenverstimmung durch Abfälle | Fremdkörper im Darm |
-| Stress oder veränderter Tagesablauf | Pankreatitis |
-| Zahnschmerzen | Nieren- oder Lebererkrankung |
-| Altes Futter oder Wählerischsein | Infektion mit Fieber |
-| Heißes Wetter | Krebs, vor allem bei älteren Hunden |
-| Kürzliche Impfung oder Medikamentengabe | Herzerkrankung |
+| Magenverstimmung durch Abfälle | Nieren- oder Lebererkrankung |
+| Stress oder veränderter Tagesablauf | Infektion mit Fieber |
+| Zahnschmerzen | Herz- oder Lungenerkrankung |
+| Futterwechsel oder Wählerischsein | Hormonelle Probleme wie eine Schilddrüsenunterfunktion |
+| Kürzliche Impfung, Operation oder tierärztliche Behandlung | Darmprobleme wie eine Kolitis |
 
 Ihre Tierärztin oder Ihr Tierarzt entscheidet anhand der Untersuchung und eventueller Tests, was bei *Ihrem* Hund wahrscheinlich ist. Diese Liste soll Ihnen helfen, das Gespräch zu verstehen, nicht eine Diagnose zu stellen.
 

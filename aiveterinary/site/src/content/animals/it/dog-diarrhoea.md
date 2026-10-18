@@ -1,10 +1,10 @@
 ---
 title: "Il mio cane ha la diarrea: cosa osservare e quando preoccuparsi"
-description: "Una diarrea lieve in un cane che per il resto sta bene di solito passa in uno o due giorni. Ecco come distinguerla dai casi che hanno bisogno subito del veterinario."
+description: "Una diarrea lieve in un cane che per il resto sta bene spesso passa presto, ma se dura più di 24 ore chiama il veterinario. Ecco come distinguerla dai casi che hanno bisogno subito del veterinario."
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-10-13
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -37,32 +37,32 @@ Un cucciolo con la diarrea che è anche spento e non mangia va visitato il giorn
 
 ## Cosa posso fare a casa se il cane ha la diarrea ma sta bene?
 
-Nelle prime 24 ore lascia sempre acqua fresca, dai pasti piccoli di cibo leggero, evita premi e avanzi e non dare antidiarroici per uso umano.
+Nelle prime 24 ore lascia sempre acqua fresca, chiedi al veterinario come alimentarlo (molti consigliano pasti piccoli di cibo leggero), evita premi e avanzi e non dare farmaci senza il parere del veterinario.
 
 Feci molli o acquose per un giorno in un cane che resta vivace, mangia e beve sono frequenti. Rovistare durante la passeggiata, un cambio improvviso di cibo, lo stress, o una lieve infezione intestinale sono le cause più comuni.
 
 Cosa puoi fare a casa nelle prime 24 ore:
 
 - Lascia sempre a disposizione acqua fresca. Con la diarrea si perdono liquidi, e la disidratazione è il rischio principale.
-- Molti veterinari consigliano pasti piccoli e frequenti di un cibo leggero e facilmente digeribile, invece del digiuno. Non lasciare a digiuno un cucciolo o un cane di taglia piccola.
+- Chiedi al veterinario come alimentare il cane per ora. Molti consigliano pasti piccoli e frequenti di un cibo leggero e facilmente digeribile; alcuni suggeriscono invece un breve digiuno, che non è adatto a cani molto giovani, anziani o con un'altra malattia.
 - Evita premi, avanzi e cibi ricchi finché le feci non tornano normali.
 - Porta il cane al guinzaglio, così vedi cosa espelle e gli impedisci di mangiare qualcosa.
 - Annota colore, consistenza e frequenza. Una foto aiuta il veterinario più di una descrizione.
-- Non dare nessun antidiarroico per uso umano. Alcuni sono pericolosi per i cani, e se un farmaco è indicato lo decide il veterinario.
+- Non dare nessun farmaco, compresi gli antidiarroici per uso umano, senza prima chiedere al veterinario. Se un farmaco è indicato lo decide il veterinario.
 
 ## Quando portare dal veterinario il cane con la diarrea?
 
-Prenota una visita oggi se la diarrea dura più di 48 ore, o più di 24 in un cucciolo o in un cane piccolo, se c'è sangue o se compaiono altri sintomi.
+Contatta il veterinario il prima possibile se la diarrea dura da più di 24 ore o se il tuo cane è un cucciolo, e prenota una visita oggi se c'è sangue o se compaiono altri sintomi.
 
 Prenota una visita oggi se:
 
-- la diarrea dura più di 48 ore, o più di 24 ore in un cucciolo o in un cane piccolo
-- ci sono striature di sangue fresco, o le feci sono nere e catramose
+- la diarrea dura da più di 24 ore
+- ci sono striature di sangue fresco, o muco, nelle feci
 - il tuo cane vomita anche, non mangia, o beve molto più del solito
 - il tuo cane si sforza ripetutamente ed espelle solo piccole quantità di muco o liquido
 - il tuo cane perde peso, o la cosa si ripete ogni poche settimane
 - anche altri animali in casa hanno sintomi
-- il tuo cane è stato da poco all'estero, o non viene sverminato da un po'
+- il tuo cane non viene sverminato da un po'
 
 Una diarrea ripetuta o che dura a lungo non è qualcosa da gestire a casa all'infinito. Può indicare parassiti, un'intolleranza alimentare o una malattia intestinale che il veterinario deve indagare.
 
@@ -92,7 +92,7 @@ Le cause più probabili sono aver mangiato qualcosa di inadatto, un cambio di ci
 | Stress (pensione, viaggi, nuova casa) | Pancreatite |
 | Lieve infezione intestinale | Malattia infiammatoria intestinale |
 | Vermi intestinali o giardia | Avvelenamento |
-| Intolleranza alimentare | Morbo di Addison, malattia del fegato o dei reni |
+| Intolleranza alimentare | Malattia del fegato o di altri organi |
 
 È il veterinario a decidere quale di queste è probabile per il *tuo* cane, in base alla visita e agli eventuali esami. Questo elenco serve ad aiutarti a capire il colloquio, non a fare una diagnosi.
 

@@ -1,10 +1,10 @@
 ---
 title: "My dog has diarrhoea: what to watch for and when to worry"
-description: "Mild diarrhoea in a dog that is otherwise well usually settles in a day or two. Here is how to tell that from the cases that need a vet now."
+description: "Mild diarrhoea in a dog that is otherwise well often settles quickly, but call your vet if it goes on for more than 24 hours. Here is how to tell it from the cases that need a vet now."
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-10-13
+updated: 2026-10-19
 draft: true
 references:
   - title: "PDSA: Dog diarrhoea"
@@ -36,32 +36,32 @@ A puppy with diarrhoea who is also quiet and off food should be seen the same da
 
 ## Can I treat my dog's diarrhoea at home?
 
-For the first 24 hours, in a dog that is still bright, eating and drinking, you can keep water available and offer small, bland meals at home.
+For the first 24 hours, in a dog that is still bright, eating and drinking, you can keep water available at home and ask your vet about feeding; many recommend small, bland meals.
 
 Soft or watery stools for a day in a dog that is still bright, eating and drinking are common. Scavenging on a walk, a sudden change of food, stress, or a mild gut infection are the usual reasons.
 
 What you can do at home for the first 24 hours:
 
 - Keep fresh water available at all times. Diarrhoea loses fluid, and dehydration is the main risk.
-- Many vets recommend small, frequent meals of a bland, easily digested food rather than withholding food. Do not starve a puppy or a small breed.
+- Ask your vet how to feed your dog for now. Many recommend small, frequent meals of a bland, easily digested food; some suggest withholding food for a short time instead, which is not suitable for dogs that are very young, old, or have another illness.
 - Avoid treats, scraps and rich food until stools are normal.
 - Walk on the lead so you can see what is passed and stop your dog eating anything.
 - Note the colour, consistency and frequency. A photo helps your vet more than a description.
-- Do not give any human anti-diarrhoea medicine. Some are dangerous for dogs, and whether any medication is appropriate is a vet decision.
+- Do not give any medicine, including human anti-diarrhoea medicine, without asking your vet first. Whether any medication is appropriate is a vet decision.
 
 ## When should I take my dog to the vet for diarrhoea?
 
-Today if it lasts more than 48 hours (24 hours in a puppy or small dog), or if there is blood, vomiting, straining, weight loss or repeated episodes.
+As soon as possible if it has been going on for more than 24 hours or your dog is a puppy, and today if there is blood, vomiting, straining, weight loss or repeated episodes.
 
 Book an appointment today if:
 
-- diarrhoea lasts more than 48 hours, or more than 24 hours in a puppy or small dog
-- there are streaks of fresh blood, or stools are black and tarry
+- diarrhoea has been going on for more than 24 hours
+- there are streaks of fresh blood, or mucus, in the stools
 - your dog is also vomiting, off food, or drinking much more than usual
 - your dog is straining repeatedly and passing only small amounts of mucus or liquid
 - your dog is losing weight, or this keeps happening every few weeks
 - other animals in the house are also affected
-- your dog has recently been abroad, or has not been wormed in a while
+- your dog has not been wormed in a while
 
 Repeated or long-running diarrhoea is not something to manage at home indefinitely. It can point to parasites, food intolerance or bowel disease that your vet needs to investigate.
 
@@ -91,7 +91,7 @@ Scavenging, sudden food changes, stress, mild infections, worms or giardia and f
 | Stress (kennels, travel, new home) | Pancreatitis |
 | Mild gut infection | Inflammatory bowel disease |
 | Intestinal worms or giardia | Poisoning |
-| Food intolerance | Addison's disease, liver or kidney disease |
+| Food intolerance | Liver disease or other organ disease |
 
 Your vet decides which of these is likely for *your* dog, based on the examination and any tests. This list is to help you understand the conversation, not to diagnose.
 

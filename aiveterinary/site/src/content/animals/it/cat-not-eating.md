@@ -4,7 +4,7 @@ description: "I gatti nascondono bene la malattia, e un gatto che smette di mang
 species: cat
 category: symptoms
 urgency: today
-updated: 2026-09-29
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -18,20 +18,29 @@ references:
     url: "https://www.msdvetmanual.com/digestive-system/hepatic-disease-in-small-animals/feline-hepatic-lipidosis"
   - title: "Cornell Feline Health Center: Feline Lower Urinary Tract Disease"
     url: "https://vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/feline-lower-urinary-tract-disease"
+  - title: "PDSA: Breathing problems in cats"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/breathing-problems-in-cats"
+  - title: "PDSA: Vomiting in cats"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/vomiting-in-cats"
+  - title: "Pet Poison Helpline: Lilies"
+    url: "https://www.petpoisonhelpline.com/poison/lilies/"
+  - title: "Merck Veterinary Manual: Toxicoses From Human Analgesics in Animals"
+    url: "https://www.merckvetmanual.com/toxicology/toxicities-from-human-drugs/analgesics-toxicity"
+  - title: "Merck Veterinary Manual: Ethylene Glycol (Antifreeze) Poisoning"
+    url: "https://www.merckvetmanual.com/special-pet-topics/poisoning/ethylene-glycol-antifreeze-poisoning"
 ---
 
 ## Perché è grave se il gatto non mangia?
 
-Un gatto che smette di mangiare per più di uno o due giorni può sviluppare un problema al fegato chiamato lipidosi epatica, soprattutto se è in sovrappeso. È uno dei motivi per cui i veterinari considerano l'inappetenza nel gatto qualcosa da valutare in fretta, non da aspettare che passi.
+Un gatto che smette di mangiare può sviluppare un problema al fegato chiamato lipidosi epatica, soprattutto se è in sovrappeso. I problemi al fegato possono iniziare anche dopo poco tempo senza cibo, e anche solo 24 ore senza mangiare possono compromettere seriamente la salute di un gatto. È uno dei motivi per cui i veterinari considerano l'inappetenza nel gatto qualcosa da valutare in fretta, non da aspettare che passi.
 
 ## Vai subito in clinica se il tuo gatto
 
 - si sforza nella lettiera e produce poca o nessuna urina, soprattutto se è un maschio (un'ostruzione uretrale è un'emergenza)
-- respira a bocca aperta, o respira in fretta mentre è a riposo
-- è molto abbattuto, si nasconde e non risponde ai tuoi richiami
+- respira a bocca aperta, respira in fretta, con fatica o rumorosamente, oppure è collassato
 - ha la pancia gonfia e dolente
-- ha vomitato più volte, o c'è sangue nel vomito o nelle feci
-- potrebbe aver mangiato un giglio (ogni parte della pianta è tossica per i gatti), antigelo, o farmaci per uso umano come il paracetamolo
+- ha vomitato più volte, non riesce a trattenere cibo o acqua, o c'è sangue nel vomito
+- potrebbe aver mangiato una parte qualsiasi di un giglio (tutte le parti della pianta, compresi il polline e l'acqua del vaso, sono tossiche per i gatti), antigelo, o un antidolorifico per uso umano come il paracetamolo
 
 ## Cosa posso controllare a casa?
 
@@ -46,10 +55,11 @@ Verifica se rifiuta solo quel cibo, quanto beve, se ha problemi alla bocca, cosa
 
 ## Quando portare dal veterinario il gatto che non mangia?
 
-Oggi se non ha mangiato nulla da 24 ore o pochissimo da 48 ore, oppure se uno dei controlli fatti a casa è anomalo.
+Oggi se non ha mangiato nulla da 24 ore, se ha mangiato pochissimo da 48 ore, oppure se uno dei controlli fatti a casa è anomalo. Qualsiasi calo dell'appetito merita un controllo.
 
-- **Oggi** se il tuo gatto non ha mangiato nulla da 24 ore, o pochissimo da 48 ore, oppure se uno qualsiasi dei controlli qui sopra è anomalo.
-- **Questa settimana** se il gatto mangia un po' meno del solito ma è vivace e si comporta normalmente, e la situazione non migliora in un paio di giorni.
+- **Oggi** se il tuo gatto non ha mangiato nulla da 24 ore, oppure se uno qualsiasi dei controlli qui sopra è anomalo.
+- **Oggi** anche, per prudenza, se il tuo gatto ha mangiato pochissimo da 48 ore. Non lasciare che l'appetito ridotto duri tre giorni o più senza parlarne con il veterinario.
+- **Prenota un controllo** se il gatto mangia un po' meno del solito, anche se per il resto è vivace e si comporta normalmente.
 
 ## Cosa vorrà sapere il veterinario?
 
