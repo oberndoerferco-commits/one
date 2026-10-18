@@ -14,8 +14,11 @@ const minLabel = ({ en: 'min read', it: 'min di lettura', de: 'Min. Lesezeit' } 
 const fmt = (x: Date) => x.toLocaleDateString(t.locale, { day: 'numeric', month: 'long', year: 'numeric' });
 const cls: Record<string, string> = { emergency: 'danger', today: 'warn', 'this-week': '', routine: 'ok' };
 ---
-<article class="wrap narrow hero" data-pagefind-body data-pagefind-meta={`species:${d.species}`}>
-  <p class="eyebrow article-eyebrow"><AnimalIcon kind={d.species} size={30} /> <a href={t.base}>{t.title}</a> · <a href={`${t.base}/${d.category}`}>{(t.categories as any)[d.category]?.[0] ?? d.category}</a> · <a href={`${t.base}/${d.species}`}>{(t.species as any)[d.species] ?? d.species}</a></p>
+<div data-pagefind-body data-pagefind-meta={`species:${d.species}`}>
+<header class={`art-head tint-${d.species}`}>
+  <div class="wrap narrow art-head-in">
+  <div>
+  <p class="eyebrow article-eyebrow"><a href={t.base}>{t.title}</a> · <a href={`${t.base}/${d.category}`}>{(t.categories as any)[d.category]?.[0] ?? d.category}</a> · <a href={`${t.base}/${d.species}`}>{(t.species as any)[d.species] ?? d.species}</a></p>
   <h1>{d.title}</h1>
   <p class="lead">{d.description}</p>
   <div class="article-meta">
@@ -27,6 +30,11 @@ const cls: Record<string, string> = { emergency: 'danger', today: 'warn', 'this-
     <span>{minutes} {minLabel}</span>
     {d.nextReview && <span>{t.nextReview} {fmt(d.nextReview)}</span>}
   </div>
+  </div>
+  <div class="art-head-art" aria-hidden="true">{d.species === 'general' ? <><AnimalIcon kind="dog" size={84} /><AnimalIcon kind="cat" size={78} /></> : <AnimalIcon kind={d.species} size={110} />}</div>
+  </div>
+</header>
+<article class="wrap narrow art-body">
   {d.urgency && <div class={`notice ${cls[d.urgency]}`}><p><strong>{t.whenToSee}</strong> {(t.urgency as any)[d.urgency]}</p></div>}
   {toc.length >= 3 && (
     <nav class="toc" aria-label={L.toc}><div class="toc-h">{L.toc}</div><ol>{toc.map((h: any) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol></nav>
@@ -38,3 +46,4 @@ const cls: Record<string, string> = { emergency: 'danger', today: 'warn', 'this-
   <p class="article-actions" data-pagefind-ignore><a class="btn secondary" href={`mailto:?subject=${encodeURIComponent(d.title)}&body=${encodeURIComponent(Astro.url.href)}`}>{t.share}</a> <a class="more" href={`mailto:hello@aiveterinary.org?subject=${encodeURIComponent('Correction: ' + d.title)}&body=${encodeURIComponent(Astro.url.href)}`}>{L.report}</a></p>
   <div class="notice" style="margin-top:24px" data-pagefind-ignore><p>{t.footer}</p></div>
 </article>
+</div>
