@@ -291,10 +291,104 @@ export function requiredMissing(record: ClinicalRecord, docType: 'consult_report
   return miss;
 }
 
+/**
+ * Status markers (EN/DE/IT), matched on the item's own source text after lower-casing and removing
+ * diacritics ("durchgeführt" → "durchgefuhrt"). A marker preceded by a simple negation ("not done",
+ * "nicht durchgeführt", "non eseguito", "not declined") does not count. "WV" (Wiedervorstellung) is
+ * matched case-sensitively on the raw text.
+ */
+const NEG = String.raw`(?<!\bnot (?:yet )?)(?<!\bnicht (?:mehr )?)(?<!\bnoch nicht )(?<!\bnon (?:ancora )?)`;
+/** The animal refusing food or tablets is not the owner declining care. */
+const NOT_FOOD = String.raw`(?! (?:to )?(?:the |il |lo |la |le |i |das |die |den )?(?:food|eat|eating|feed|treats?|tablets?|pills?|meds|medication|cibo|pappa|mangiare|cibarsi|compresse|pastiglie|futter|fressen|nahrung|tabletten?)\b)`;
+export const STATUS_MARKERS: Record<'declined' | 'planned' | 'performed', RegExp[]> = {
+  declined: [
+    new RegExp(String.raw`${NEG}\b(?:declined|declines)\b`),
+    new RegExp(String.raw`${NEG}\b(?:refused|refuses)\b${NOT_FOOD}`),
+    new RegExp(String.raw`${NEG}\babgelehnt\b`),
+    /\blehnt\b(?:\s+\S+){0,3}?\s+ab\b/,
+    new RegExp(String.raw`(?<!\b(?:futter|fressen|nahrung|tabletten?) )${NEG}\bverweigert?\b${NOT_FOOD}`),
+    new RegExp(String.raw`\brifiut(?:a|ano|ato|ata|ati|ate)\b${NOT_FOOD}`),
+    /\bnon acconsente\b/,
+  ],
+  planned: [
+    new RegExp(String.raw`${NEG}\b(?:planned|scheduled)\b`),
+    /\bto be (?:done|performed)\b/,
+    new RegExp(String.raw`${NEG}\b(?:geplant|vorgesehen)\b`),
+    /\bprogrammat[oaie]\b/,
+    /\bda fare\b/,
+    /\bprevist[oaie]\b/,
+  ],
+  performed: [
+    new RegExp(String.raw`${NEG}(?<!\bto be )(?<!\bbe )\b(?:performed|done)\b`),
+    new RegExp(String.raw`${NEG}\bdurchgefuhrt\b`),
+    new RegExp(String.raw`${NEG}\b(?:eseguit|effettuat)[oaie]\b`),
+  ],
+};
+const foldText = (s: string) => s.toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '').replace(/\s+/g, ' ');
+
+/** The status markers written in `src`. */
+export function statusMarkers(src: string): Set<'declined' | 'planned' | 'performed'> {
+  const t = foldText(src); const out = new Set<'declined' | 'planned' | 'performed'>();
+  for (const [k, res] of Object.entries(STATUS_MARKERS) as [keyof typeof STATUS_MARKERS, RegExp[]][]) if (res.some((re) => re.test(t))) out.add(k);
+  if (/\bWV\b/.test(src)) out.add('planned');
+  return out;
+}
+
+/**
+ * Owner-report markers (EN/DE/IT): "owner reports", "per owner", "Besitzer berichtet", "laut Besitzerin",
+ * "la proprietaria riferisce", "riferito" (not "dolore riferito", referred pain).
+ */
+export const OWNER_REPORT_MARKERS: RegExp[] = [
+  /\b(?:owner|o)\s+(?:reports?|reported|says|states|thinks|noticed)\b/,
+  /\b(?:per|according to(?: the)?) owner\b/,
+  /\bbesitzer(?:in)?\s+(?:berichtet|meint|sagt|erzahlt|hat bemerkt|bemerkt)\b/,
+  /\blaut besitzer(?:in)?\b/,
+  /\b(?:il |la )?proprietari[oa] riferisce\b/,
+  /\bsecondo (?:il |la )?proprietari[oa]\b/,
+  /(?<!\bdolore )\briferit[oaie]\b/,
+];
+
+/**
+ * Status and role checks on each item's own source text (the span only, as for numbers):
+ *  - status_conflicts_source: the span carries a clear marker of one other status
+ *    (declined / planned / performed). Declined vs performed, prescribed or dispensed blocks
+ *    (either direction); planned vs performed and declined vs planned/recommended warn.
+ *    Spans with markers of more than one status are left alone.
+ *  - owner_report_as_finding (warn): an examination finding recorded as the vet's own, whose
+ *    span says the owner reported it.
+ */
+export function validateStatus(record: ClinicalRecord, notes: string): Finding[] {
+  const f: Finding[] = [];
+  const check = (field: string, status: string, spans: Span[]) => {
+    if (!spans?.length) return;
+    const src = spanText(notes, spans); const marks = statusMarkers(src);
+    if (marks.size !== 1) return;
+    const [said] = marks;
+    const done = status === 'performed' || status === 'prescribed' || status === 'dispensed';
+    let severity: Finding['severity'] | null = null;
+    if (said === 'declined' && done) severity = 'block';
+    else if (said === 'performed' && status === 'declined') severity = 'block';
+    else if (said === 'declined' && (status === 'planned' || status === 'recommended')) severity = 'warn';
+    else if (said === 'planned' && status === 'performed') severity = 'warn';
+    else if (said === 'performed' && status === 'planned') severity = 'warn';
+    if (severity) f.push({ rule: 'status_conflicts_source', severity, field: `${field}.status`, message: `Recorded as "${status}", but the text this item points to says ${said} ("${src.trim()}").`, span: spans[0] });
+  };
+  record.diagnostics.forEach((d, i) => check(`diagnostics[${i}]`, d.status, d.source_spans));
+  record.treatments.forEach((t, i) => check(`treatments[${i}]`, t.status, t.source_spans));
+  record.medications.forEach((m, i) => check(`medications[${i}]`, m.status, m.source_spans));
+  record.examination.findings.forEach((x, i) => {
+    if (x.source_role === 'owner_reported' || !x.source_spans?.length) return;
+    const src = spanText(notes, x.source_spans); const t = foldText(src);
+    if (OWNER_REPORT_MARKERS.some((re) => re.test(t))) f.push({ rule: 'owner_report_as_finding', severity: 'warn', field: `examination.findings[${i}].source_role`, message: `Recorded as the vet's finding, but the text it points to is the owner's report ("${src.trim()}"). Move it to history or mark it owner-reported.`, span: x.source_spans[0] });
+  });
+  return f;
+}
+
 export function validateAll(record: ClinicalRecord, notes: string, header: PatientHeader): Finding[] {
   return [
     ...validateGrounding(record, notes),
     ...validateMedications(record, notes),
+    ...validateStatus(record, notes),
     ...validatePatient(record, header),
     ...validatePlausibility(record, header),
   ];
