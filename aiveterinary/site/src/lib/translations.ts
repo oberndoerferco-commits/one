@@ -30,11 +30,11 @@ export const TRANSLATION_GROUPS: { en?: string; it?: string; de?: string }[] = [
   { en: 'thyroid-dogs-cats', it: 'tiroide-cane-gatto', de: 'schilddruese-hund-katze' }, // thyroid-dogs-cats
   { it: 'quanto-costa-visita-veterinaria', de: 'tierarzt-kosten-got-2026' }, // vet-visit-costs
   { it: 'sterilizzazione-cane-costo', de: 'kastration-hund-kosten-2026' }, // dog-neutering-cost
-  { en: 'cat-hair-loss-patches', it: 'gatto-perde-pelo-a-ciuffi' }, // cat-hair-loss
-  { en: 'dog-separation-anxiety', it: 'ansia-da-separazione-cane' }, // dog-separation-anxiety
-  { en: 'dog-ate-chicken-bones', it: 'cane-ha-mangiato-ossa-di-pollo' }, // dog-chicken-bones
-  { en: 'dog-bee-wasp-sting', it: 'cane-punto-da-ape' }, // dog-sting
-  { en: 'cat-diarrhoea', it: 'gatto-diarrea' }, // cat-diarrhoea
-  { en: 'dog-in-heat', de: 'huendin-laeufig' }, // dog-in-heat
-  { en: 'dog-ear-infection', de: 'hund-ohrenentzuendung' }, // dog-ear-infection
+  { en: 'cat-hair-loss-patches', it: 'gatto-perde-pelo-a-ciuffi', de: 'katze-verliert-fell' }, // cat-hair-loss
+  { en: 'dog-separation-anxiety', it: 'ansia-da-separazione-cane', de: 'hund-trennungsangst' }, // dog-separation-anxiety
+  { en: 'dog-ate-chicken-bones', it: 'cane-ha-mangiato-ossa-di-pollo', de: 'hund-hat-huehnerknochen-gefressen' }, // dog-chicken-bones
+  { en: 'dog-bee-wasp-sting', it: 'cane-punto-da-ape', de: 'hund-bienenstich-wespenstich' }, // dog-sting
+  { en: 'cat-diarrhoea', it: 'gatto-diarrea', de: 'katze-durchfall' }, // cat-diarrhoea
+  { en: 'dog-in-heat', it: 'cagna-in-calore', de: 'huendin-laeufig' }, // dog-in-heat
+  { en: 'dog-ear-infection', it: 'cane-otite', de: 'hund-ohrenentzuendung' }, // dog-ear-infection
 ];
