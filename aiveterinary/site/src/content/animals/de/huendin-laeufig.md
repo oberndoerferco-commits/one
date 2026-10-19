@@ -5,7 +5,7 @@ description: "Wie lange die Läufigkeit dauert, was in den einzelnen Phasen pass
 species: dog
 category: care
 urgency: routine
-updated: 2026-10-17
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -70,7 +70,7 @@ Wurde Ihre Hündin ungewollt gedeckt, sprechen Sie mit Ihrer Praxis. Es gibt tie
 
 Meist nicht: Sie ist häufig, und die Anzeichen klingen in der Regel ohne Behandlung innerhalb von 1 bis 3 Wochen ab.
 
-Nach jeder Läufigkeit ohne Trächtigkeit ist eine Hündin hormonell gesehen „scheinträchtig“. Bei manchen zeigt sich das deutlich, typischerweise etwa **6 bis 8 Wochen nach der Läufigkeit**. Anzeichen können sein:
+Nach jeder Läufigkeit ohne Trächtigkeit ist eine Hündin hormonell gesehen „scheinträchtig“. Bei manchen zeigt sich das deutlich, laut einer britischen Fachstudie häufig etwa **6 bis 8 Wochen nach der Läufigkeit**. Anzeichen können sein:
 
 - vergrößertes Gesäuge, manchmal mit Milch
 - Gewichtszunahme
@@ -78,12 +78,12 @@ Nach jeder Läufigkeit ohne Trächtigkeit ist eine Hündin hormonell gesehen „
 - Unruhe, weniger Appetit oder weniger Aktivität, Lecken am Bauch
 - Verteidigen von Gegenständen, manchmal mit Aggression
 
-Meist klingen die Anzeichen laut MSD Veterinary Manual **ohne Behandlung innerhalb von 1 bis 3 Wochen** ab. Eine Behandlung ist laut einer Fachstudie angezeigt, wenn die Anzeichen sehr stark sind oder **länger als 4 Wochen** anhalten. Sprechen Sie dann mit Ihrer Praxis.
+Meist klingen die Anzeichen laut MSD Veterinary Manual **ohne Behandlung innerhalb von 1 bis 3 Wochen** ab. Eine Behandlung ist laut derselben Studie angezeigt, wenn die Anzeichen sehr stark sind oder **länger als 4 Wochen** anhalten. Sprechen Sie dann mit Ihrer Praxis.
 
 So können Sie helfen:
 
 - **Melken Sie keine Milch aus** und massieren Sie das Gesäuge nicht. Das regt die Milchbildung weiter an.
-- Vermeiden Sie es, den Bauch zu streicheln oder zu bürsten.
+- Vermeiden Sie es, den Bauch zu streicheln oder zu bürsten. Laut der Studie kann das die Milchbildung anregen oder aufrechterhalten.
 - Leckt Ihre Hündin sich ständig am Gesäuge, kann die Praxis einen Halskragen empfehlen.
 
 Aufpassen sollten Sie, wenn Ihre Hündin in dieser Zeit **krank wirkt**, erbricht, viel trinkt oder Ausfluss hat. Dann muss die Praxis eine Pyometra ausschließen.

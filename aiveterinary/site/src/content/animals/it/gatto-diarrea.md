@@ -4,7 +4,7 @@ description: "Un episodio di feci molli dopo un cambio di cibo può passare da s
 species: cat
 category: symptoms
 urgency: today
-updated: 2026-10-17
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -36,12 +36,12 @@ Il Cornell Feline Health Center indica che, se la diarrea dura più di un giorno
 
 Perché tra le cause da escludere subito c'è la panleucopenia, una malattia virale molto contagiosa che nei gattini sotto i 5 mesi può essere mortale.
 
-Se il gattino ha diarrea, vomito, febbre, è abbattuto e non mangia, una delle cause da escludere subito è la **panleucopenia felina** (chiamata anche gastroenterite infettiva o "cimurro del gatto"), una malattia virale molto contagiosa. Secondo l'MSD Veterinary Manual:
+Se il gattino ha diarrea, vomito, febbre, è abbattuto e non mangia, una delle cause da escludere subito è la **panleucopenia felina** (chiamata anche enterite infettiva felina o "cimurro felino"), una malattia virale molto contagiosa. Secondo l'MSD Veterinary Manual:
 
 - i **gattini sotto i 5 mesi** sono quelli che rischiano di più di morire
-- la disidratazione può peggiorare **molto rapidamente**, e alcuni gattini muoiono quasi senza preavviso
-- di solito serve il **ricovero** con fluidi in vena e cure di supporto
-- il virus può resistere **più di un anno nell'ambiente** se non si usano disinfettanti adatti, e i gatti guariti possono eliminarlo con le feci **fino a 6 settimane**
+- nei casi gravi si sviluppa **molto rapidamente** una disidratazione estrema, e alcuni gattini muoiono quasi senza preavviso
+- i casi gravi richiedono il **ricovero** con fluidi in vena e cure di supporto
+- il virus può resistere **più di un anno nell'ambiente** se non si usano disinfettanti forti, e i gatti guariti possono eliminarlo con le feci **fino a 6 settimane**
 - i **vaccini** sono efficaci e danno una protezione duratura
 
 Per questo un gattino con la diarrea non va mai "tenuto d'occhio" a casa per giorni.
@@ -88,7 +88,7 @@ Non dargli farmaci per uso umano o antibiotici avanzati, non cambiare cibo di co
 - **Non dare farmaci per uso umano**, né antidiarroici né antidolorifici. Il Cornell avverte che **alcuni farmaci da banco possono essere dannosi per il gatto**. Il Merck Veterinary Manual spiega che il gatto è **particolarmente sensibile al paracetamolo**, che può causare gravi danni al sangue e al fegato, ed è più sensibile del cane anche all'ibuprofene.
 - **Non usare antibiotici avanzati** da altre terapie. La PDSA ricorda che gli antibiotici servono raramente nella diarrea e possono anche peggiorarla, perché distruggono i batteri "buoni" dell'intestino. Li prescrive il veterinario solo quando servono davvero.
 - **Non cambiare cibo di continuo** per tentativi: i cambi bruschi sono essi stessi una causa di diarrea.
-- **Non sverminare "alla cieca"** con prodotti presi a caso: il tipo di parassita conta, e il veterinario può individuarlo con l'esame delle feci.
+- **Non sverminare "alla cieca"** con prodotti presi a caso: le cause possibili sono molte, parassiti compresi, e il prodotto adatto lo sceglie il veterinario.
 
 ## Cosa vorrà sapere il veterinario?
 
@@ -100,8 +100,6 @@ Da quando ha la diarrea e com'è, se vomita, mangia e beve, cosa è cambiato, co
 - se esce di casa, se caccia, se ci sono altri gatti in casa o arrivati da poco
 - se è vaccinato e sverminato, e quando
 - se può aver avuto accesso a piante, farmaci o prodotti chimici
-
-Se puoi, porta un **campione di feci fresco** in un contenitore pulito: spesso aiuta a cercare i parassiti.
 
 ## Come prevenire la diarrea nel gatto?
 

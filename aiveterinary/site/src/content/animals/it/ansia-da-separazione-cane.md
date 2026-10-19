@@ -4,7 +4,7 @@ description: "Abbaia, distrugge la porta o fa pipì in casa quando resta solo? P
 species: dog
 category: conditions
 urgency: this-week
-updated: 2026-10-17
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -27,7 +27,7 @@ L'ansia da separazione di solito non è un'emergenza, ma alcune situazioni richi
 - è un **cane anziano** che ha iniziato da poco a sporcare in casa, a vagare o a essere disorientato
 - oltre al comportamento noti altri segni: **vomito** ripetuto, diarrea, sete aumentata, dolore, zoppia, perdita di peso
 
-Il motivo è semplice: la RSPCA, la principale associazione britannica per il benessere animale, spiega che **problemi di salute possono causare o peggiorare** questi comportamenti. L'MSD Veterinary Manual ricorda che prima di parlare di ansia da separazione bisogna escludere **dolore, calo della vista o dell'udito, disfunzione cognitiva** (una sorta di "demenza" del cane anziano) e altre malattie che possono far sporcare in casa.
+Il motivo è semplice: la RSPCA, la principale associazione britannica per il benessere animale, spiega che **problemi di salute possono causare o peggiorare** questi comportamenti. L'MSD Veterinary Manual ricorda che la diagnosi richiede di escludere prima le altre cause comuni: lo sporcare in casa, per esempio, può dipendere da **dolore, difficoltà di movimento, calo dei sensi o disfunzione cognitiva** (una sorta di "demenza" del cane anziano) e non dall'ansia.
 
 ## Che cos'è l'ansia da separazione nel cane?
 
@@ -52,7 +52,7 @@ Secondo la PDSA, la RSPCA e l'MSD Veterinary Manual, quando il cane è solo (o l
 
 Alcuni segnali compaiono già **prima che tu esca**, quando prendi le chiavi o metti le scarpe. L'MSD Veterinary Manual indica che i segni sono spesso più intensi **nei primi 15-30 minuti** dopo che il proprietario è uscito.
 
-Attenzione anche ai cani "silenziosi": la RSPCA avverte che alcuni restano fermi e molto preoccupati, e il problema passa inosservato. La PDSA ricorda che anche un cane **apatico o giù di morale** può soffrire.
+Attenzione anche ai cani "silenziosi": la RSPCA avverte che circa la metà dei cani con questo problema non mostra segni evidenti, quindi è facile non accorgersene, e che alcuni imparano a "soffrire in silenzio". La PDSA ricorda che anche un cane **apatico o giù di morale** può soffrire.
 
 ## Come capisco cosa fa il cane quando è solo?
 
@@ -81,13 +81,12 @@ No: sgridarlo o mostrarti arrabbiato può spaventarlo e peggiorare l'ansia.
 
 ## Cosa posso fare a casa per aiutare il cane?
 
-Lascialo solo il meno possibile, allenalo a stare solo a piccoli passi, togli significato ai segnali di partenza e crea un posto sicuro dove possa rilassarsi.
+Lascialo solo il meno possibile, allenalo a stare solo a piccoli passi, esci e rientra con calma e crea un posto sicuro dove possa rilassarsi.
 
 Questi accorgimenti, da PDSA, RSPCA e MSD Veterinary Manual, aiutano molti cani, ma nei casi seri non sostituiscono un piano costruito con un professionista.
 
 - **Lascialo solo il meno possibile** mentre lavorate sul problema. L'MSD Veterinary Manual spiega che ogni episodio di panico può peggiorare la sensibilità del cane: in questa fase possono aiutare un dog sitter, un amico o un asilo per cani. PDSA e RSPCA raccomandano in generale di **non lasciare un cane solo per più di 4 ore**, e molto meno se è un cucciolo.
 - **Allenalo a piccoli passi.** La PDSA suggerisce di allontanarti di poco e premiarlo se resta calmo, poi lasciarlo solo in una stanza per **pochi secondi**, e aumentare il tempo molto gradualmente. L'MSD Veterinary Manual sottolinea che le assenze di prova devono essere **abbastanza brevi da non scatenare l'ansia** e che servono anche mesi.
-- **Togli significato ai segnali di partenza**: prendi le chiavi o metti la giacca anche quando non esci.
 - **Uscite e rientri tranquilli**, senza grandi saluti.
 - **Crea un posto sicuro** dove il cane possa rilassarsi, magari con un tuo indumento.
 - **Prima di uscire**, la RSPCA consiglia una passeggiata, di non lasciarlo affamato e di offrirgli un gioco riempibile o qualcosa da masticare. Se però non lo tocca quando sei fuori, è un segnale che è preoccupato. La PDSA avverte che premi e giochi da soli funzionano solo in pochi casi.
@@ -96,16 +95,16 @@ Prima di usare **diffusori o collari ai feromoni**, la PDSA consiglia di parlarn
 
 ## Quando chiedere aiuto a un professionista?
 
-Se dopo qualche settimana non vedi miglioramenti o il cane è molto in difficoltà, vai prima dal veterinario e poi, su sua indicazione, da un professionista del comportamento.
+Se questi consigli non bastano o il cane è molto in difficoltà, vai prima dal veterinario e poi, su sua indicazione, da un professionista del comportamento.
 
-Se dopo qualche settimana non vedi miglioramenti, o se il cane è molto in difficoltà, il percorso consigliato dalla RSPCA è: **prima dal veterinario**, per escludere problemi di salute, poi da un **professionista del comportamento** su indicazione del veterinario. In Italia puoi chiedere al tuo veterinario di indirizzarti a un **medico veterinario esperto in comportamento** (comportamentalista), che può visitare il cane, valutare anche gli aspetti medici e prescrivere una terapia se serve.
+Se i consigli non hanno aiutato, o se il cane è molto in difficoltà, il percorso consigliato dalla RSPCA è: **prima dal veterinario**, per escludere problemi di salute, poi da un **professionista del comportamento** su indicazione del veterinario. In Italia puoi chiedere al tuo veterinario di indirizzarti a un **medico veterinario esperto in comportamento** (comportamentalista), che può visitare il cane, valutare anche gli aspetti medici e prescrivere una terapia se serve.
 
 Secondo la PDSA, un piano di trattamento di solito comprende:
 
 - una **valutazione** del cane, spesso anche tramite video
 - una **terapia comportamentale** di desensibilizzazione (abituarlo gradualmente a stare solo) e controcondizionamento (associare la solitudine a qualcosa di piacevole)
 - **cambiamenti in casa** e **routine** prevedibili
-- a volte **farmaci**, sempre affiancati al lavoro comportamentale e di solito sospesi quando il cane riesce a stare solo
+- **farmaci**, che secondo la PDSA sono spesso necessari accanto alla terapia comportamentale e di solito si possono sospendere quando il cane ha imparato a stare solo
 
 I farmaci per l'ansia del cane si usano solo su prescrizione del veterinario, che sceglie il prodotto e la dose. **Non dare mai al cane tranquillanti, sonniferi o calmanti per uso umano**: possono essere pericolosi e non risolvono il problema.
 

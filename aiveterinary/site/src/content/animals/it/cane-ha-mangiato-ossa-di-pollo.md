@@ -4,7 +4,7 @@ description: "Le ossa di pollo cotte si scheggiano e possono bloccare o perforar
 species: dog
 category: first-aid
 urgency: today
-updated: 2026-10-17
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -31,8 +31,8 @@ Il cane ha rubato la carcassa del pollo arrosto o ha trovato un osso per strada?
 - **rigurgita** il cibo o l'acqua poco dopo averli presi
 - **vomita** ripetutamente, o non riesce a smettere
 - ha la **pancia gonfia**, dura o dolorante, si incurva o non vuole essere toccato
-- è **abbattuto**, debole, non mangia, o **collassa**
-- fa fatica a **fare la cacca**, si sforza, oppure ha feci con **sangue**
+- è **abbattuto**, debole o non mangia
+- fa fatica a **fare la cacca** o si sforza
 
 Sono i segni che l'osso può essersi fermato nell'esofago, nello stomaco o nell'intestino, oppure averli feriti.
 
@@ -52,17 +52,15 @@ Le schegge possono ferire l'apparato digerente, e i pezzi più grandi possono fe
 
 La PDSA, un ente benefico veterinario britannico, avverte che le ossa possono **danneggiare l'apparato digerente con le loro schegge**, "in particolare le ossa di pollo cotte", e che i pezzi più grandi possono **bloccare la gola o l'intestino**, una situazione che mette a rischio la vita. La PDSA racconta il caso di un cucciolo che, dopo aver ingoiato un osso di pollo, è stato operato d'urgenza per toglierlo.
 
-L'MSD Veterinary Manual spiega che le ossa sono tra i corpi estranei che **si digeriscono lentamente**, e per questo possono restare dove si sono fermate.
-
 I rischi principali sono tre.
 
-**1. Osso fermo nell'esofago.** Secondo l'MSD Veterinary Manual, le ossa sono il **corpo estraneo esofageo più comune** nel cane. I segni tipici sono **bava, conati, difficoltà a deglutire, rigurgito e tentativi ripetuti di deglutire**. Il manuale è chiaro: un corpo estraneo nell'esofago, una volta diagnosticato, **va tolto immediatamente**, perché aspettare aumenta il rischio di complicazioni come la **perforazione** dell'esofago.
+**1. Osso fermo nell'esofago.** Secondo l'MSD Veterinary Manual, le ossa sono il **corpo estraneo esofageo più comune**. I segni tipici sono **bava, conati, difficoltà a deglutire, rigurgito e tentativi ripetuti di deglutire**. Il manuale è chiaro: un corpo estraneo nell'esofago, una volta diagnosticato, **va tolto immediatamente**; tra le complicazioni possibili c'è la **perforazione** dell'esofago.
 
 **2. Ostruzione di stomaco o intestino.** Il Cornell Riney Canine Health Center elenca come segni comuni **vomito, perdita di appetito, dolore alla pancia, diarrea, disidratazione e abbattimento**, e definisce le ostruzioni **un'emergenza** che spesso richiede la rimozione chirurgica. L'MSD Veterinary Manual per i proprietari aggiunge **pancia gonfia** e un vomito che non si ferma.
 
 **3. Perforazione.** Una scheggia può bucare la parete dell'intestino. Il Cornell spiega che quando il contenuto dell'intestino esce nell'addome può causare una **peritonite**, cioè un'infiammazione della cavità addominale, e una **sepsi**, un'infezione generalizzata che può essere mortale.
 
-Infine, l'MSD Veterinary Manual ricorda che materiale poco digeribile e duro, come **peli o ossa**, può anche causare **stitichezza**.
+Infine, l'MSD Veterinary Manual ricorda che materiale **poco digeribile**, spesso duro, come **peli o ossa**, può anche causare **stitichezza**.
 
 ## Cosa devo fare adesso?
 
@@ -78,7 +76,7 @@ Togli al cane gli avanzi, cerca di capire cosa e quanto ha mangiato e telefona a
 
 No: farmaci per uso umano come ibuprofene e paracetamolo possono danneggiare stomaco, reni e fegato del cane.
 
-Se il cane sembra avere mal di pancia, **non dargli antidolorifici, antinfiammatori o altri farmaci che usi per te**. Il Merck Veterinary Manual spiega che l'**ibuprofene** nel cane non è più raccomandato perché può causare **ulcere e perforazioni dello stomaco**, emorragie intestinali e danni ai reni, e che anche il **paracetamolo** può danneggiare il fegato. In un intestino forse già ferito da una scheggia, il rischio è ancora più alto. I farmaci li sceglie il veterinario, dopo averlo visitato.
+Se il cane sembra avere mal di pancia, **non dargli antidolorifici, antinfiammatori o altri farmaci che usi per te**. Il Merck Veterinary Manual spiega che l'**ibuprofene** nel cane non è più raccomandato perché può causare **ulcere e perforazioni dello stomaco**, emorragie intestinali e danni ai reni, e che anche il **paracetamolo** può danneggiare il fegato. I farmaci li sceglie il veterinario, dopo averlo visitato.
 
 ## Cosa fa il veterinario se il cane ha mangiato un osso?
 
@@ -89,7 +87,7 @@ Il veterinario parte da quello che gli racconti e dalla visita, palpando con att
 Cosa succede dopo dipende da dove si trova l'osso e da come sta il cane:
 
 - se l'osso è nell'**esofago**, l'MSD Veterinary Manual indica che spesso si riesce a toglierlo dalla bocca con un **endoscopio**, uno strumento con una telecamera; quando non è possibile, o se c'è una perforazione, serve la chirurgia
-- se è nello **stomaco**, a volte si recupera con l'endoscopio
+- se è nello **stomaco**, secondo il Cornell a volte si recupera con l'endoscopio
 - se c'è un'**ostruzione** intestinale, il Cornell spiega che nella maggior parte dei casi serve un **intervento chirurgico**; frammenti piccoli che non bloccano del tutto il passaggio possono essere gestiti con ricovero, fluidi e controlli
 
 L'MSD Veterinary Manual sottolinea che i cani con un'ostruzione da corpo estraneo **tendono a guarire bene se la diagnosi e la cura arrivano in fretta**. Per questo vale la pena chiamare subito, invece di aspettare.
