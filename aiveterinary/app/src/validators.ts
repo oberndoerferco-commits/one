@@ -1,4 +1,5 @@
 import type { ClinicalRecord, PatientHeader, Span } from './schema.js';
+import { factPaths } from './metrics.js';
 
 /**
  * Validators run on every model output. They never "fix" anything: they report,
@@ -425,6 +426,16 @@ export const VITAL_LABELS: Record<VitalKey, RegExp[]> = {
 const BARE_WEIGHT = /(?<![\p{L}\d/.,])(\d+(?:[.,]\d+)?)\s*(kg|g)(?![\p{L}\d/])/gdu;
 const bareWeightLine = (line: string, m: RegExpMatchArray) => !line.replace(m[0], '').replace(/\([^)]*\)/g, '').replace(/\b(?:ca|approx|approximately|about|circa|etwa|wt|weight|peso|kgw|gewicht)\b\.?/gi, '').replace(/[\s,;:.~]/g, '');
 /**
+ * Explicit other-animal markers (EN/DE/IT, matched on folded text): "other/another/second dog", "not our
+ * patient", "next box"; "andere Katze", "nicht unser Patient", "Nachbarbox"; "altro gatto",
+ * "non è nostra paziente", "box accanto". Singular nouns only, so "no other pets" does not match.
+ */
+export const OTHER_ANIMAL_MARKERS: RegExp[] = [
+  /\b(?:other|another|second) (?:cat|dog|horse|pet|animal|rabbit|bird)\b|\bnot our patient\b|\bnext (?:box|stall)\b/,
+  /\b(?:andere[nrs]?|zweite[nrs]?) (?:katze|hund|pferd|tier|kaninchen|vogel)\b|\bnicht unser(?:e)? patient(?:in)?\b|\bnachbarbox\b/,
+  /\b(?:altr[oa]|second[oa]) (?:gatt[oa]|cane|cavall[oa]|animale|coniglio|uccello)\b|\bnon e (?:il |la )?nostr[oa] paziente\b|\bbox accanto\b/,
+];
+/**
  * A second value that is not a contradiction: an earlier or home measurement, a time course or a change
  * ("after fluids", "lost 2 g"), a target, or another animal (EN/DE/IT, matched on the folded line).
  */
@@ -432,9 +443,7 @@ export const NOT_SAME_READING: RegExp[] = [
   /\b(?:previous(?:ly)?|before|earlier|ago|last (?:visit|time|week|month|year|check)|at home|home scale|kitchen scale|owner'?s? scale|on arrival|after|then|repeat(?:ed)?|recheck|target|goal|ideal|lost|losing|gained?|loss)\b/,
   /\b(?:vorher|zuvor|fruher|letzte[nmrs]?|zu ?hause|daheim|vor \d|kuchenwaage|bei ankunft|nach|danach|spater|dann|wiederholt|kontrolle|ziel|idealgewicht|abgenommen|zugenommen|gewichtsverlust)\b/,
   /\b(?:precedente(?:mente)?|prima|a casa|ultim[ao] (?:visita|volta|controllo)|scors[oa]|fa|bilancia di casa|all.?arrivo|dopo|poi|ripetut[oa]|ricontroll\w*|obiettivo|ideale|pers[oi]|perde|calo|aumentat[oa])\b/,
-  /\b(?:other|another|second) (?:cat|dog|horse|pet|animal|rabbit|bird)\b|\bnot our patient\b|\bnext (?:box|stall)\b/,
-  /\b(?:andere[nrs]?|zweite[nrs]?) (?:katze|hund|pferd|tier|kaninchen|vogel)\b|\bnicht unser(?:e)? patient(?:in)?\b|\bnachbarbox\b/,
-  /\b(?:altr[oa]|second[oa]) (?:gatt[oa]|cane|cavall[oa]|animale|coniglio|uccello)\b|\bnon e (?:il |la )?nostr[oa] paziente\b|\bbox accanto\b/,
+  ...OTHER_ANIMAL_MARKERS,
 ];
 const VITAL_NAMES: Record<VitalKey, string> = { temperature: 'temperature', heart_rate: 'heart rate', respiratory_rate: 'respiratory rate', weight: 'weight', crt_seconds: 'CRT' };
 
@@ -497,12 +506,47 @@ export function validateNotesContradiction(record: ClinicalRecord, notes: string
   return f;
 }
 
+/** The spans of one fact, by its factPaths path ("assessment.text" uses the assessment's own spans). */
+function factSpans(record: ClinicalRecord, path: string): Span[] {
+  if (path === 'assessment.text') return record.assessment.source_spans;
+  let x: any = record;
+  for (const [, key, idx] of path.matchAll(/([a-z_]+)(?:\[(\d+)\])?/g)) { x = x?.[key]; if (idx !== undefined) x = x?.[Number(idx)]; }
+  return x?.source_spans ?? [];
+}
+
+/** The sentence(s) around [a, b]: from the last newline or sentence end (".", "!", "?" before a space) before a to the next one after b. */
+function spanSentence(notes: string, [a, b]: Span): string {
+  while (a < b && /\s/.test(notes[a])) a++;
+  while (b > a && /\s/.test(notes[b - 1])) b--;
+  let s = a; while (s > 0 && notes[s - 1] !== '\n' && !(/\s/.test(notes[s - 1]) && /[.!?]/.test(notes[s - 2] ?? ''))) s--;
+  let e = b; while (e < notes.length && notes[e] !== '\n' && !(/[.!?]/.test(notes[e]) && /\s/.test(notes[e + 1] ?? '\n'))) e++;
+  return notes.slice(s, e);
+}
+
+/**
+ * other_animal_fact (warn): a record fact (any factPaths item) whose span sits in a line or sentence
+ * that clearly names another animal (OTHER_ANIMAL_MARKERS). Conservative: only the sentence holding the
+ * span is read, so a housemate mentioned on another line ("lives with another dog") is left alone;
+ * uncertain items are not facts and are not checked.
+ */
+export function validateOtherAnimal(record: ClinicalRecord, notes: string): Finding[] {
+  const f: Finding[] = [];
+  for (const path of factPaths(record)) for (const span of factSpans(record, path)) {
+    const sentence = spanSentence(notes, span);
+    if (!OTHER_ANIMAL_MARKERS.some((re) => re.test(foldText(sentence)))) continue;
+    f.push({ rule: 'other_animal_fact', severity: 'warn', field: path, message: `This comes from a line about another animal ("${sentence.trim()}"). Check it belongs to this patient.`, span });
+    break;
+  }
+  return f;
+}
+
 export function validateAll(record: ClinicalRecord, notes: string, header: PatientHeader): Finding[] {
   return [
     ...validateGrounding(record, notes),
     ...validateMedications(record, notes),
     ...validateStatus(record, notes),
     ...validateNotesContradiction(record, notes),
+    ...validateOtherAnimal(record, notes),
     ...validatePatient(record, header),
     ...validatePlausibility(record, header),
   ];
