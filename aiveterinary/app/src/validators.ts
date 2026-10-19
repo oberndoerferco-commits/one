@@ -267,6 +267,8 @@ const isVaccine = (m: ClinicalRecord['medications'][number]) => VACCINE_RE.test(
  *    duration on discharge and owner-summary documents.
  * Weight is required when a non-declined medication carries a dose, unless the record or the
  * patient header (`header.weight_kg`) already has it.
+ * Discharge (renderDischargeLetter) and owner summary also need a follow-up or a home-care
+ * instruction in the plan, since those documents exist to tell the owner what happens next.
  */
 export function requiredMissing(record: ClinicalRecord, docType: 'consult_report' | 'discharge' | 'referral' | 'owner_summary', header?: PatientHeader): string[] {
   const miss: string[] = [];

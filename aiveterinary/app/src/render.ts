@@ -199,6 +199,93 @@ export function renderReferralLetter(record: ClinicalRecord, header: PatientHead
 }
 
 /* ------------------------------------------------------------------ */
+/* Discharge letter (Entlassungsbrief / lettera di dimissione): what was */
+/* done during the stay and what happens at home, from the approved     */
+/* record only. A section with nothing in the record is left out; no    */
+/* default advice, no default "call us if" list.                        */
+
+export const DISCHARGE_LABELS = {
+  en: { title: 'Discharge instructions', reason: 'Reason for the visit', done: 'Treatment during the stay', givenInClinic: 'Medication given in the clinic', diag: 'Diagnostics and results', assessment: 'Assessment', meds: 'Medication to give at home', home: 'Home care', next: 'Follow-up appointment', call: 'When to call the clinic', planned: 'Planned and recommended' },
+  de: { title: 'Entlassungsbrief', reason: 'Vorstellungsgrund', done: 'Behandlung während des Aufenthalts', givenInClinic: 'In der Praxis verabreichte Medikamente', diag: 'Diagnostik und Ergebnisse', assessment: 'Beurteilung', meds: 'Medikamente für zu Hause', home: 'Pflege zu Hause', next: 'Kontrolltermin', call: 'Wann Sie die Praxis anrufen sollten', planned: 'Geplant und empfohlen' },
+  it: { title: 'Lettera di dimissione', reason: 'Motivo della visita', done: 'Trattamenti durante la degenza', givenInClinic: 'Farmaci somministrati in clinica', diag: 'Esami e risultati', assessment: 'Valutazione', meds: 'Farmaci da somministrare a casa', home: 'Cure a casa', next: 'Controllo', call: 'Quando chiamare la clinica', planned: 'Pianificato e consigliato' },
+};
+
+/** Labels of the consultation report (status words, table headings, flags) that other documents reuse. */
+export const REPORT_LABELS = L;
+
+const fold = (s: string) => s.toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '');
+/**
+ * A plan sentence is a "when to call the clinic" instruction when it asks the owner to make contact
+ * (call, phone, contact us, come back / anrufen, melden, kommen / chiamare, contattare, tornare) and
+ * names a condition (if, when, in case / wenn, falls, bei / se, in caso). "Call with results" or
+ * "Anruf mit Ergebnissen" has no condition and is not one; a conditional recheck ("recheck if worse")
+ * names no contact and stays a follow-up. Matching only sorts the vet's sentence; it is shown as written.
+ */
+export function isCallInstruction(text: string): boolean {
+  const f = fold(text);
+  const contact = /\b(call|phone|ring|contact (?:us|the clinic|the practice)|come back|return to (?:us|the clinic|the practice)|anruf|anrufen|rufen|telefonier\w*|melden|kontaktier\w*|kommen|vorbeikommen|chiama\w*|telefona\w*|contatta\w*|ricontatta\w*|tornare|tornate|riportare|riportate)\b/;
+  const condition = /\b(if|when|in case|unless|wenn|falls|bei|sobald|se|qualora|in caso)\b/;
+  return contact.test(f) && condition.test(f);
+}
+
+export function renderDischargeLetter(record: ClinicalRecord, header: PatientHeader, lang: Lang = 'en', opts: { approved?: boolean; extraMissing?: Missing[] } = {}): string {
+  const t = L[lang], x = DISCHARGE_LABELS[lang];
+  const out: string[] = [];
+  const section = (title: string, lines: string[]) => { if (lines.length) { out.push(''); out.push(`## ${title}`); out.push(...lines); } };
+  const st = (s: string) => (t as Record<string, string>)[s] ?? s;
+  out.push(`# ${x.title}`);
+  if (!opts.approved) out.push(`_${t.draft}_`);
+  out.push('');
+  out.push(`**${headerLine(header)}**`);
+
+  if (record.presenting_complaint) section(x.reason, [cap(record.presenting_complaint.text)]);
+
+  const done = record.treatments.filter((y) => y.status === 'performed').map((y) => `- ${cap(y.text)}`);
+  const givenHere = record.medications.filter((m) => m.status === 'performed');
+  if (givenHere.length) { if (done.length) done.push(''); done.push(`### ${x.givenInClinic}`, renderMedicationTable(givenHere, lang)); }
+  section(x.done, done);
+
+  section(x.diag, record.diagnostics.filter((d) => d.status === 'performed').map((d) => `- ${cap(d.test)}: ${d.result ?? flag(`${t.missing}: result`)}`));
+
+  const assess = record.assessment.text ? cap(record.assessment.text) : cap(record.assessment.differentials.map((d) => d.text).join(', '));
+  if (assess) section(x.assessment, [assess]);
+
+  const toGive = record.medications.filter((m) => m.status === 'dispensed' || m.status === 'prescribed');
+  if (toGive.length) section(x.meds, [renderMedicationTable(toGive, lang)]);
+
+  const fu = record.plan.follow_up;
+  const fuIsCall = !!fu && isCallInstruction(fu.text);
+  section(x.home, [
+    ...record.plan.instructions.filter((i) => !isCallInstruction(i.text)).map((i) => `- ${cap(i.text)}`),
+    ...record.treatments.filter((y) => y.status === 'recommended' && y.type === 'advice').map((y) => `- ${cap(y.text)}`),
+  ]);
+  if (fu && !fuIsCall) section(x.next, [cap(fu.text)]);
+  section(x.call, [...(fu && fuIsCall ? [fu.text] : []), ...record.plan.instructions.filter((i) => isCallInstruction(i.text)).map((i) => i.text)].map((s) => `- ${cap(s)}`));
+
+  const later = (s: string) => s === 'planned' || s === 'recommended';
+  const planned = [
+    ...record.diagnostics.filter((d) => later(d.status)).map((d) => `- ${cap(d.test)} (${st(d.status)})`),
+    ...record.treatments.filter((y) => later(y.status) && y.type !== 'advice').map((y) => `- ${cap(y.text)} (${st(y.status)})`),
+  ];
+  const laterMeds = record.medications.filter((m) => later(m.status));
+  if (laterMeds.length) { if (planned.length) planned.push(''); planned.push(renderMedicationTable(laterMeds, lang)); }
+  section(x.planned, planned);
+
+  section(t.declinedCare, [
+    ...record.diagnostics.filter((d) => d.status === 'declined').map((d) => cap(d.test)),
+    ...record.treatments.filter((y) => y.status === 'declined').map((y) => cap(y.text)),
+    ...record.medications.filter((m) => m.status === 'declined').map((m) => m.drug ?? m.class_as_written ?? t.drug),
+  ].map((s) => `- ${s} (${t.declined})`));
+
+  const allMissing = [...record.missing, ...(opts.extraMissing ?? [])];
+  if (allMissing.length) { out.push(''); out.push(`## ${flag(t.missing)}`); for (const m of allMissing) out.push(`- ${m.field}: ${m.reason}`); }
+  const p = provenance(record, opts.extraMissing ?? []);
+  out.push(''); out.push(`_${t.provenance.replace('{f}', String(p.facts)).replace('{n}', String(p.not_recorded))}_`);
+  if (opts.approved) { out.push(''); out.push(`_${t.disclosure}_`); }
+  return out.join('\n');
+}
+
+/* ------------------------------------------------------------------ */
 /* Home-care dose checklist: a grid drawn from the medication table.    */
 /* Only when frequency and duration parse unambiguously; otherwise the  */
 /* medication is listed with a flag and no grid is invented.           */

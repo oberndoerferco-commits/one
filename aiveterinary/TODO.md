@@ -110,7 +110,7 @@ Everything costs €0 unless marked €. Legend:
 - [ ] External vet panel review of 50 outputs (names on the quality page) — **You** + M ★★★
 
 ### Documents from the approved record (each S–M unless noted)
-- [x] Owner summary and referral letter rendered from the approved record (discharge and the AniCura/TiHo/LMU referral field alignment still open)
+- [x] Owner summary and referral letter rendered from the approved record and the discharge letter (EN/DE/IT; AniCura/TiHo/LMU referral field alignment still open)
 - [x] **Prescription per dispensed Rx drug (Art. 105(5))** rendered from record + visit context with flags for keeper, chip, product, quantity, vet (PDF/letterhead still open)
 - [ ] **Italian REV payload** from the medication table; store number + PIN ★★★ *only us*
 - [x] **Preventivo / Kostenvoranschlag** skeleton from planned items with empty price cells, GOT no./factor columns (DE) and the IT legal note (clinic price list × items still open)
