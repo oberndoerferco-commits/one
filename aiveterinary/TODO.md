@@ -102,6 +102,7 @@ Everything costs €0 unless marked €. Legend:
 ## 5. Vet tool — **Me**
 
 ### Correctness first
+- [x] Checks for errors that used to rely on the vet alone (19 Oct 2026): status conflicts (declined shown as done), owner report shown as the vet's finding, two readings of one vital, a fact from a line about another animal; 9 seeded-error cases measure that they fire (9/9). Still open: other contradictions, another animal's fact on an unmarked line, conflicting doses in free notes
 - [ ] Grow the eval set to **300 cases × EN/DE/IT** (shorthand, typos, contradictions, multi-pet, dictated-later notes), written with vets — L ★★★
 - [ ] Run the model on the set (needs key), publish numbers on `/vets/quality` — S ★★★
 - [x] **Country field packs** as missing-flags: DE (TÄHAV: product, ZNR, batch, quantity, dose/route/duration, antibiotic justification), IT (owner codice fiscale, microchip, lot on vaccines, consent "modi e tempi", REV number), CH (antibiotic → IS ABV fields), AT (TAMG fields) — M ★★★ *only us*
