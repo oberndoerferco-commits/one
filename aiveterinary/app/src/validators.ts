@@ -386,11 +386,107 @@ export function validateStatus(record: ClinicalRecord, notes: string): Finding[]
   return f;
 }
 
+type VitalKey = 'temperature' | 'heart_rate' | 'respiratory_rate' | 'weight' | 'crt_seconds';
+/** A number with an optional comparator ("<2") and unit; ranges ("100-120") and ratios ("120/80") are not readings. */
+const VITAL_NUM = String.raw`([<>≤≥~]\s*)?(\d+(?:[.,]\d+)?)(?![.,]?\d)(?!\s*[-–/]\s*\d)\s*(kg|g|°?\s?[CF]|°|s|sec|/min)?(?![\p{L}\d])`;
+/**
+ * Short labels are case-sensitive ("T", "HR", "KGW") and need a space or colon before the number, or a
+ * decimal ("T38.5"), so "T4" (thyroid) is not a temperature. Word labels are case-insensitive.
+ */
+const vitalRes = (abbr: string, words: string): RegExp[] => [
+  new RegExp(String.raw`(?<![\p{L}\d])(?:${abbr})\.?(?:\s*[:=]\s*|\s+|(?=\d+[.,]\d))${VITAL_NUM}`, 'gdu'),
+  new RegExp(String.raw`(?<![\p{L}\d])(?:${words})\.?\s*[:=]?\s*${VITAL_NUM}`, 'gdiu'),
+];
+/** The vital labels the notes use (EN/DE/IT). */
+export const VITAL_LABELS: Record<VitalKey, RegExp[]> = {
+  temperature: vitalRes('T|TR|rT|Temp|TEMP', String.raw`temp|temperature|temperatur|temperatura(?:\s+rettale)?|(?:rektal)?temperatur(?:\s+rektal)?`),
+  heart_rate: vitalRes('HR|HF|FC', 'heart rate|pulse|puls|herzfrequenz|frequenza cardiaca|polso'),
+  respiratory_rate: vitalRes('RR|AF|FR', 'resp(?:iratory)? rate|resp|atemfrequenz|frequenza respiratoria'),
+  weight: vitalRes('KGW|KG|BW|Wt|WT', String.raw`wt|weight|body weight|gewicht|k(?:ö|oe)rpergewicht|peso(?:\s+corporeo)?`),
+  crt_seconds: vitalRes('CRT|KFZ|TRC', String.raw`capillary refill(?: time)?|kapill(?:ä|ae)re f(?:ü|ue)llungszeit|tempo di riempimento capillare`),
+};
+/** A bare weight ("4.2 kg") counts only on a line that holds nothing else (apart from "ca."/"approx" and a bracket). */
+const BARE_WEIGHT = /(?<![\p{L}\d/.,])(\d+(?:[.,]\d+)?)\s*(kg|g)(?![\p{L}\d/])/gdu;
+const bareWeightLine = (line: string, m: RegExpMatchArray) => !line.replace(m[0], '').replace(/\([^)]*\)/g, '').replace(/\b(?:ca|approx|approximately|about|circa|etwa|wt|weight|peso|kgw|gewicht)\b\.?/gi, '').replace(/[\s,;:.~]/g, '');
+/**
+ * A second value that is not a contradiction: an earlier or home measurement, a time course or a change
+ * ("after fluids", "lost 2 g"), a target, or another animal (EN/DE/IT, matched on the folded line).
+ */
+export const NOT_SAME_READING: RegExp[] = [
+  /\b(?:previous(?:ly)?|before|earlier|ago|last (?:visit|time|week|month|year|check)|at home|home scale|kitchen scale|owner'?s? scale|on arrival|after|then|repeat(?:ed)?|recheck|target|goal|ideal|lost|losing|gained?|loss)\b/,
+  /\b(?:vorher|zuvor|fruher|letzte[nmrs]?|zu ?hause|daheim|vor \d|kuchenwaage|bei ankunft|nach|danach|spater|dann|wiederholt|kontrolle|ziel|idealgewicht|abgenommen|zugenommen|gewichtsverlust)\b/,
+  /\b(?:precedente(?:mente)?|prima|a casa|ultim[ao] (?:visita|volta|controllo)|scors[oa]|fa|bilancia di casa|all.?arrivo|dopo|poi|ripetut[oa]|ricontroll\w*|obiettivo|ideale|pers[oi]|perde|calo|aumentat[oa])\b/,
+  /\b(?:other|another|second) (?:cat|dog|horse|pet|animal|rabbit|bird)\b|\bnot our patient\b|\bnext (?:box|stall)\b/,
+  /\b(?:andere[nrs]?|zweite[nrs]?) (?:katze|hund|pferd|tier|kaninchen|vogel)\b|\bnicht unser(?:e)? patient(?:in)?\b|\bnachbarbox\b/,
+  /\b(?:altr[oa]|second[oa]) (?:gatt[oa]|cane|cavall[oa]|animale|coniglio|uccello)\b|\bnon e (?:il |la )?nostr[oa] paziente\b|\bbox accanto\b/,
+];
+const VITAL_NAMES: Record<VitalKey, string> = { temperature: 'temperature', heart_rate: 'heart rate', respiratory_rate: 'respiratory rate', weight: 'weight', crt_seconds: 'CRT' };
+
+/** Every source span in the record (any item, any depth). */
+function allSpans(x: unknown, out: Span[] = []): Span[] {
+  if (Array.isArray(x)) x.forEach((y) => allSpans(y, out));
+  else if (x && typeof x === 'object') for (const [k, v] of Object.entries(x)) { if (k === 'source_spans' && Array.isArray(v)) out.push(...(v as Span[])); else allSpans(v, out); }
+  return out;
+}
+
+/**
+ * notes_contradiction (warn): the notes give a recorded vital twice with different values and the
+ * record keeps one without mentioning the other. Conservative: only labelled readings (or a line that
+ * is only a weight) count; a comparator ("CRT<2"), a range, an earlier/home/time-course/other-animal
+ * line, or a second value that lies in any other record item's source (history, uncertain …) is left alone.
+ * Values are compared after decimal-comma and kg/g normalisation.
+ */
+export function validateNotesContradiction(record: ClinicalRecord, notes: string): Finding[] {
+  const f: Finding[] = [];
+  const v = record.examination.vitals;
+  const toG = (value: number, unit: string | undefined) => (unit?.toLowerCase() === 'g' ? value : unit?.toLowerCase() === 'kg' ? value * 1000 : NaN);
+  for (const k of ['temperature', 'heart_rate', 'respiratory_rate', 'weight', 'crt_seconds'] as const) {
+    const recs = (k === 'weight' ? [v.weight, record.patient.weight] : [v[k]]).filter((q): q is NonNullable<typeof q> => !!q);
+    if (!recs.length) continue;
+    const recUnit = recs[0].unit;
+    /** Comparable value: grams for weight (unit from the mention, else the record's), the number otherwise. */
+    const key = (value: number, unit?: string) => (k === 'weight' ? toG(value, unit || recUnit) : value);
+    const kept = recs.map((q) => key(q.value, q.unit)).filter((x) => !Number.isNaN(x));
+    if (!kept.length) continue;
+    const own = recs.flatMap((q) => q.source_spans);
+    const others = allSpans({ ...record, examination: { ...record.examination, vitals: { ...v, [k]: null } }, patient: k === 'weight' ? { ...record.patient, weight: null } : record.patient }).filter((s) => !own.some(([a, b]) => s[0] === a && s[1] === b));
+    type Mention = { at: number; end: number; text: string; cmp?: string; value: number; unit?: string };
+    const mentions = new Map<number, Mention>();
+    for (const re of VITAL_LABELS[k]) for (const m of notes.matchAll(re)) {
+      const [at, end] = m.indices![2]!; const unit = m[3]?.replace(/[\s°]/g, '');
+      mentions.set(at, { at, end: m.indices![3]?.[1] ?? end, text: num(m[2]) + (unit && k === 'weight' ? ' ' + unit : ''), cmp: m[1], value: parseFloat(num(m[2])), unit });
+    }
+    if (k === 'weight') for (const m of notes.matchAll(BARE_WEIGHT)) {
+      const [at] = m.indices![1]!; const s = notes.lastIndexOf('\n', at - 1) + 1; const e = notes.indexOf('\n', at);
+      if (bareWeightLine(notes.slice(s, e < 0 ? notes.length : e), m)) mentions.set(at, { at, end: m.indices![2]![1], text: `${num(m[1])} ${m[2]}`, value: parseFloat(num(m[1])), unit: m[2] });
+    }
+    const valueOf = (x: Mention) => key(x.value, k === 'weight' ? x.unit : undefined);
+    const diff: Mention[] = [];
+    for (const x of [...mentions.values()].sort((a, b) => a.at - b.at)) {
+      if (x.cmp) continue;
+      if (k === 'temperature' && x.unit && /^[CF]$/i.test(x.unit) && x.unit.toUpperCase() !== recUnit.toUpperCase()[0]) continue;
+      if (k === 'weight' && x.unit && !/^(kg|g)$/i.test(x.unit)) continue;
+      const val = valueOf(x);
+      if (Number.isNaN(val) || [...kept, ...diff.map(valueOf)].some((r) => Math.abs(r - val) < 1e-9)) continue;
+      if (others.some(([a, b]) => x.at >= a && x.at < b)) continue;
+      const s = notes.lastIndexOf('\n', x.at - 1) + 1; const e = notes.indexOf('\n', x.at);
+      if (NOT_SAME_READING.some((re) => re.test(foldText(notes.slice(s, e < 0 ? notes.length : e))))) continue;
+      diff.push(x);
+    }
+    if (!diff.length) continue;
+    const q = recs[0]; const keptText = `${q.value}${k === 'weight' ? ' ' + q.unit : ''}`;
+    const field = v[k] ? `examination.vitals.${k}` : 'patient.weight';
+    f.push({ rule: 'notes_contradiction', severity: 'warn', field, message: `Notes give ${keptText} and ${diff.map((d) => d.text).join(' and ')} for ${VITAL_NAMES[k]}; the record keeps ${keptText}. Check which is right.`, span: [diff[0].at, diff[0].end] });
+  }
+  return f;
+}
+
 export function validateAll(record: ClinicalRecord, notes: string, header: PatientHeader): Finding[] {
   return [
     ...validateGrounding(record, notes),
     ...validateMedications(record, notes),
     ...validateStatus(record, notes),
+    ...validateNotesContradiction(record, notes),
     ...validatePatient(record, header),
     ...validatePlausibility(record, header),
   ];
