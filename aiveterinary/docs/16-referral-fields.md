@@ -1,6 +1,6 @@
 # Referral letter fields against published referral forms
 
-As of 19 October 2026, ten publicly available referral forms from referral centres in Germany, Switzerland, Austria and Italy agree on a core. Every form asks for the referring practice, the owner and the **reason for referral**. Nine of ten ask for breed, sex, history and the results of tests already done, eight for age and seven for the patient's name, species and contact details. Our referral letter (`renderReferralLetter` in `app/src/render.ts`) already renders the clinical core from the approved record. It now also takes breed, sex and age from the record when the patient header lacks them, and it renders the vet's differential diagnoses. `requiredMissing(record, 'referral', header)` now also flags missing signalment, an empty history and a record with no examination at all. The biggest gaps are not clinical: the record schema has no place for the referring vet, the owner's contact details, the microchip, the date of the last dose or long-term medication. These are listed below as schema suggestions. Nothing is filled or defaulted.
+As of 19 October 2026, ten publicly available referral forms from referral centres in Germany, Switzerland, Austria and Italy agree on a core. Every form asks for the referring practice, the owner and the **reason for referral**. Nine of ten ask for breed, sex, history and the results of tests already done, eight for age and seven for the patient's name, species and contact details. Our referral letter (`renderReferralLetter` in `app/src/render.ts`) already renders the clinical core from the approved record. It now also takes breed, sex and age from the record when the patient header lacks them, and it renders the vet's differential diagnoses. `requiredMissing(record, 'referral', header)` now also flags missing signalment, an empty history and a record with no examination at all. The biggest gaps were not clinical. The referring practice, the owner's contact details, urgency and the service requested are now typed by the vet at the referral step and rendered only when typed (see "Schema gaps" below). The microchip, the date of the last dose and long-term medication are still open. Nothing is filled or defaulted.
 
 ## Sources (all opened 2026-10-19)
 
@@ -23,16 +23,16 @@ Four sources could not be opened and are not used. The LMU Chirurgische Kleintie
 
 ## Fields asked, and what we do with them
 
-Ours: **R** = rendered in the referral letter, **F** = flagged by `requiredMissing('referral')` or by the renderer when absent, **G** = no place in the record schema (schema suggestion), **–** = not adopted (asked by few forms). The rows follow the order most forms use.
+Ours: **R** = rendered in the referral letter, **F** = flagged by `requiredMissing('referral')` or by the renderer when absent, **V** = typed by the vet at the referral step, outside the record (`opts.referral` of `renderReferralLetter`), rendered only when typed and never flagged, **G** = no place in the record schema (schema suggestion), **–** = not adopted (asked by few forms). The rows follow the order most forms use.
 
 | Field | TiHo | AC-RE | AC-WA | AC-RV | AC-EG | AC-SU | VMU | UZH | OCA | FV | n/10 | Ours |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Urgency (emergency / routine / by date) | ✓ | ✓ | | | | | ✓ | ✓ | ✓ | | 5 | G |
-| Department or service requested | | ✓ | | ✓ | ✓ | | ✓ | ✓ | ✓ | ✓ | 7 | G (covered by free-text reason) |
-| Referring practice / vet | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 10 | G |
-| Referring vet phone / email | ✓ | | ✓ | | ✓ | | ✓ | ✓ | ✓ | ✓ | 7 | G |
-| Owner name | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 10 | G |
-| Owner phone / address / email | ✓ | | ✓ | | | ✓ | ✓ | ✓ | ✓ | ✓ | 7 | G |
+| Urgency (emergency / routine / by date) | ✓ | ✓ | | | | | ✓ | ✓ | ✓ | | 5 | V |
+| Department or service requested | | ✓ | | ✓ | ✓ | | ✓ | ✓ | ✓ | ✓ | 7 | V |
+| Referring practice / vet | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 10 | V (from the letterhead) |
+| Referring vet phone / email | ✓ | | ✓ | | ✓ | | ✓ | ✓ | ✓ | ✓ | 7 | V (address and phone as one letterhead line; email) |
+| Owner name | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 10 | V |
+| Owner phone / address / email | ✓ | | ✓ | | | ✓ | ✓ | ✓ | ✓ | ✓ | 7 | V (phone, email; no owner address) |
 | Patient name | ✓ | ✓ | | ✓ | | | ✓ | ✓ | ✓ | ✓ | 7 | R, F |
 | Species | | ✓ | ✓ | ✓ | | ✓ | | ✓ | ✓ | ✓ | 7 | R, F |
 | Breed | ✓ | ✓ | ✓ | ✓ | | ✓ | ✓ | ✓ | ✓ | ✓ | 9 | R, F |
@@ -41,7 +41,7 @@ Ours: **R** = rendered in the referral letter, **F** = flagged by `requiredMissi
 | Neuter status | | ✓ | | ✓ | | | | ✓ | | ✓ | 4 | – (in schema, not rendered) |
 | Weight | ✓ | | | | | | | | | | 1 | R (header, vitals) |
 | Microchip | | | | | | | | ✓ | ✓ | | 2 | G |
-| Reason for referral / question | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 10 | R, F (`referral.reason`) |
+| Reason for referral / question | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | 10 | R, F (`referral.reason`; typed as the clinical question, `opts.reason` still accepted) |
 | History (Anamnese / anamnesi) | ✓ | ✓ | ✓ | ✓ | ✓ | | ✓ | ✓ | ✓ | ✓ | 9 | R, F (`history`, `presenting_complaint`) |
 | Clinical findings | ✓ | ✓ | | ✓ | | | | ✓ | ✓ | ✓ | 6 | R, F (`examination`) |
 | Suspected diagnosis / differentials | | ✓ | | | | | ✓ | ✓ | ✓ | ✓ | 5 | R (assessment and differentials), F (`assessment`) |
@@ -68,11 +68,21 @@ Ours: **R** = rendered in the referral letter, **F** = flagged by `requiredMissi
 - **Flagged** (`requiredMissing(record, 'referral', header)` only): `patient.name`, `patient.species`, `patient.breed`, `patient.sex` and `patient.age` when neither the header nor the record has them, `history` when the record has no history item, and `examination` when there is no finding and no vital. The referral reason was already flagged by the renderer as `referral.reason`. Presenting complaint, assessment, medication fields, weight for dosed drugs and performed-test results were already flagged.
 - **Not flagged on purpose:** treatments and diagnostics may legitimately be empty, and flagging them would push the vet to write something. Neuter status (4 of 10) and weight (1 of 10) are below the majority line.
 
-## Schema suggestions (not implemented)
+## Schema gaps
 
-1. **Referring vet and practice with contact details** (10 and 7 of 10). The `VisitContext.author` field in `country.ts` has a name and a registration but no practice, phone or email, and the referral renderer does not take a `VisitContext`.
-2. **Owner name and contact** (10 and 7 of 10). `VisitContext.owner` has a name and a tax id only.
-3. **Urgency and the service requested** (5 and 7 of 10). A structured `referral` block of `{ urgency, service, question }` would replace the free-text `opts.reason`.
+### Covered (19 October 2026)
+
+`renderReferralLetter(record, header, lang, { referral })` takes an optional `ReferralInput` (`app/src/render.ts`). Every field is typed by the vet. A blank field is left out, and a block with no typed field is left out entirely. None of these fields is in the record, so none is added to `requiredMissing`.
+
+1. **Referring vet and practice with contact details** (10 and 7 of 10). `referral.referrer` = `{ practice, address, email, vet, registration }` renders as a "Referring practice" block ("Überweisende Praxis" / "Struttura inviante"). In the workspace it comes from the "Your letterhead" fields stored on the device, which now include an optional email. The workspace's "Dr. Demo" placeholder for other documents is not used here.
+2. **Owner name and contact** (10 and 7 of 10). `referral.owner` = `{ name, phone, email }` renders as an "Owner" block ("Tierhalter/in" / "Proprietario"). It is structurally compatible with `VisitContext.owner`, and the tax id is never printed. In the workspace these fields belong to the synthetic case: they are held only in the inputs, are never written to localStorage, and are cleared when the case changes. The owner's postal address is still not taken.
+3. **Urgency, service requested and the clinical question** (5, 7 and 10 of 10). `referral.request` = `{ urgency: 'emergency' | 'urgent' | 'routine', service, question }`. When an urgency or a service is typed, a "Referral request" block ("Überweisungsauftrag" / "Richiesta di riferimento") lists them and then the question. Otherwise the letter keeps the earlier "Reason for referral" section. `opts.reason` still works and is used as the question when `request.question` is absent. The workspace urgency select starts on an empty "—" option. While the referral letter is on screen and the question is empty, the flag list shows a `referral.reason` missing hint with a button that focuses the question field. The hint does not block approval.
+
+`VisitContext` was not extended. A referral needs no country pack, and `VisitContext.author` would have needed practice, address and email fields that no country check uses.
+
+### Still open (schema suggestions, not implemented)
+
 4. **Microchip** (2 of 10, but required on IT records). `VisitContext.microchip` exists but is not in the record.
 5. **Date of the last dose and long-term medication** (3 and 3 of 10). `Medication` has a duration but no `last_given` date and no long-term flag.
 6. **Attachments**: a list of enclosed reports and images (7 of 10 ask for images), so the letter can say what travels with it.
+7. **Owner postal address** (part of the 7 of 10 owner-contact row). It is not taken.

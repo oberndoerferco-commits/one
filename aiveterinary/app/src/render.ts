@@ -161,13 +161,46 @@ export function renderOwnerSummary(record: ClinicalRecord, header: PatientHeader
   return out.join('\n');
 }
 
+/* Referral letter: who refers, the owner and a structured request, as the vet types them. */
+/* Nothing in these blocks comes from the record or a default: an absent or blank field is   */
+/* left out, and a block with no field is left out entirely (docs/16-referral-fields.md).   */
+
+export type ReferralUrgency = 'emergency' | 'urgent' | 'routine';
+/**
+ * Vet-typed referral details outside the clinical record. `owner` is structurally compatible with
+ * `VisitContext.owner` (only `name` is shared); `referrer` carries what `VisitContext.author` lacks
+ * (practice, address/phone, email). The renderer does not take a whole `VisitContext` because a
+ * referral needs no country pack.
+ */
+export type ReferralInput = {
+  referrer?: { practice?: string | null; address?: string | null; email?: string | null; vet?: string | null; registration?: string | null };
+  request?: { urgency?: ReferralUrgency | null; service?: string | null; question?: string | null };
+  owner?: { name?: string | null; phone?: string | null; email?: string | null };
+};
+
+export const REFERRAL_LABELS = {
+  en: { referrer: 'Referring practice', practice: 'Practice', address: 'Address and phone', email: 'Email', vet: 'Veterinarian', registration: 'Registration', owner: 'Owner', ownerName: 'Name', phone: 'Phone', request: 'Referral request', urgency: 'Urgency', service: 'Service requested', question: 'Clinical question', urgencies: { emergency: 'Emergency', urgent: 'Urgent', routine: 'Routine' } },
+  de: { referrer: 'Überweisende Praxis', practice: 'Praxis', address: 'Adresse und Telefon', email: 'E-Mail', vet: 'Tierärztin / Tierarzt', registration: 'Kammer / Registrierung', owner: 'Tierhalter/in', ownerName: 'Name', phone: 'Telefon', request: 'Überweisungsauftrag', urgency: 'Dringlichkeit', service: 'Gewünschte Fachrichtung / Leistung', question: 'Fragestellung', urgencies: { emergency: 'Notfall', urgent: 'Dringend', routine: 'Routine' } },
+  it: { referrer: 'Struttura inviante', practice: 'Struttura', address: 'Indirizzo e telefono', email: 'Email', vet: 'Medico veterinario', registration: 'Iscrizione all\'Ordine', owner: 'Proprietario', ownerName: 'Nome', phone: 'Telefono', request: 'Richiesta di riferimento', urgency: 'Urgenza', service: 'Servizio richiesto', question: 'Quesito clinico', urgencies: { emergency: 'Emergenza', urgent: 'Urgente', routine: 'Di routine' } },
+};
+
+const typed = (v: string | null | undefined): string | null => (typeof v === 'string' && v.trim() ? v.trim() : null);
+/** "- Label: value" lines for the fields the vet typed; empty when none was. */
+const fieldLines = (pairs: Array<[string, string | null | undefined]>): string[] => pairs.flatMap(([k, v]) => { const x = typed(v); return x ? [`- ${k}: ${x}`] : []; });
+
 /** Referral letter: clinical, complete, with the referral reason flagged when the vet did not state one. */
-export function renderReferralLetter(record: ClinicalRecord, header: PatientHeader, lang: Lang = 'en', opts: { approved?: boolean; reason?: string | null; extraMissing?: Missing[] } = {}): string {
-  const t = L[lang], d = D[lang];
+export function renderReferralLetter(record: ClinicalRecord, header: PatientHeader, lang: Lang = 'en', opts: { approved?: boolean; reason?: string | null; extraMissing?: Missing[]; referral?: ReferralInput } = {}): string {
+  const t = L[lang], d = D[lang], rl = REFERRAL_LABELS[lang];
+  const ref = opts.referral ?? {};
+  // The clinical question: the structured field first, then the legacy free-text reason.
+  const question = typed(ref.request?.question) ?? typed(opts.reason);
   const out: string[] = [];
   out.push(`# ${d.referralTitle}`);
   if (!opts.approved) out.push(`_${t.draft}_`);
   out.push('');
+  const r = ref.referrer ?? {};
+  const referrer = fieldLines([[rl.practice, r.practice], [rl.address, r.address], [rl.email, r.email], [rl.vet, r.vet], [rl.registration, r.registration]]);
+  if (referrer.length) { out.push(`## ${rl.referrer}`); out.push(...referrer); out.push(''); }
   out.push(`${d.dear},`);
   out.push('');
   // Signalment (breed, sex, age) is asked by nearly every referral form (docs/16-referral-fields.md):
@@ -176,8 +209,20 @@ export function renderReferralLetter(record: ClinicalRecord, header: PatientHead
   const sig: PatientHeader = { ...header, breed: header.breed ?? p0.breed ?? undefined, sex: header.sex ?? p0.sex ?? undefined, age: header.age ?? p0.age ?? undefined };
   out.push(`${d.referralIntro} **${headerLine(sig)}**`);
   out.push('');
-  out.push(`## ${d.referralReason}`);
-  out.push(opts.reason ? cap(opts.reason) : flag(d.missingReason));
+  const o = ref.owner ?? {};
+  const owner = fieldLines([[rl.ownerName, o.name], [rl.phone, o.phone], [rl.email, o.email]]);
+  if (owner.length) { out.push(`## ${rl.owner}`); out.push(...owner); out.push(''); }
+  const urgency = ref.request?.urgency && Object.hasOwn(rl.urgencies, ref.request.urgency) ? rl.urgencies[ref.request.urgency] : null;
+  const request = fieldLines([[rl.urgency, urgency], [rl.service, ref.request?.service]]);
+  if (request.length) {
+    // Structured request: urgency and service as typed, then the question (or its flag).
+    out.push(`## ${rl.request}`);
+    out.push(...request);
+    out.push(`- ${rl.question}: ${question ? cap(question) : flag(d.missingReason)}`);
+  } else {
+    out.push(`## ${d.referralReason}`);
+    out.push(question ? cap(question) : flag(d.missingReason));
+  }
   out.push('');
   out.push(`## ${d.historyHdr}`);
   out.push(record.presenting_complaint ? `- ${cap(record.presenting_complaint.text)}` : `- ${flag(t.missing)}`);
@@ -195,10 +240,10 @@ export function renderReferralLetter(record: ClinicalRecord, header: PatientHead
     if (record.medications.length) { out.push(''); out.push(renderMedicationTable(record.medications, lang)); }
   }
   out.push(''); out.push(d.thanks);
-  const allMissing = [...record.missing, ...(opts.extraMissing ?? []), ...(opts.reason ? [] : [{ field: 'referral.reason', reason: d.missingReason }])];
+  const allMissing = [...record.missing, ...(opts.extraMissing ?? []), ...(question ? [] : [{ field: 'referral.reason', reason: d.missingReason }])];
   if (allMissing.length) { out.push(''); out.push(`## ${flag(t.missing)}`); for (const m of allMissing) out.push(`- ${m.field}: ${m.reason}`); }
   const p = provenance(record, opts.extraMissing ?? []);
-  out.push(''); out.push(`_${t.provenance.replace('{f}', String(p.facts)).replace('{n}', String(p.not_recorded + (opts.reason ? 0 : 1)))}_`);
+  out.push(''); out.push(`_${t.provenance.replace('{f}', String(p.facts)).replace('{n}', String(p.not_recorded + (question ? 0 : 1)))}_`);
   if (opts.approved) { out.push(''); out.push(`_${t.disclosure}_`); }
   return out.join('\n');
 }
