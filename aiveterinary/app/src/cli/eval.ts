@@ -13,7 +13,7 @@ import { normalizeNotes } from '../normalize.js';
 import { validateAll, requiredMissing, type Finding } from '../validators.js';
 import { ClaudeExtractor, FixtureExtractor, type Extractor, PROMPT_VERSION } from '../extract.js';
 import { renderConsultReport } from '../render.js';
-import { wilson, scoreFacts, pct } from '../metrics.js';
+import { wilson, scoreFacts, scoreMissingFlags, pct } from '../metrics.js';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const casesDir = join(here, '..', '..', 'eval', 'cases');
@@ -26,8 +26,8 @@ export async function runEval(extractorName = process.env.AIVET_EXTRACTOR ?? 'fi
   const fixtures = Object.fromEntries(cases.filter((c) => c.fixture_record).map((c) => [normalizeNotes(c.notes), c.fixture_record]));
   const extractor: Extractor = extractorName === 'claude' ? new ClaudeExtractor() : new FixtureExtractor(fixtures);
 
-  let failures = 0; const rows: string[] = [];
-  const totals = { facts: 0, unsupportedFacts: 0, scored: 0, casesWithBlock: 0, cases: 0, blocks: 0, warns: 0, unsourced: 0, drugMismatch: 0, missRecall: 0, missTotal: 0, input_tokens: 0, output_tokens: 0 };
+  let failures = 0; const rows: string[] = []; const falseFlags: string[] = [];
+  const totals = { facts: 0, unsupportedFacts: 0, scored: 0, casesWithBlock: 0, cases: 0, blocks: 0, warns: 0, unsourced: 0, drugMismatch: 0, missRecall: 0, missTotal: 0, flagsRaised: 0, flagsCorrect: 0, input_tokens: 0, output_tokens: 0 };
   for (const c of cases) {
     const notes = normalizeNotes(c.notes);
     const header = PatientHeader.parse(c.header);
@@ -47,6 +47,9 @@ export async function runEval(extractorName = process.env.AIVET_EXTRACTOR ?? 'fi
         if (blocks.length) problems.push(`${blocks.length} blocking finding(s): ${blocks.map((b) => b.rule + '@' + b.field).join(', ')}`);
         const miss = new Set([...record.missing.map((m) => m.field), ...requiredMissing(record, 'consult_report')]);
         for (const m of c.expect?.missing_includes ?? []) { totals.missTotal++; if (miss.has(m)) totals.missRecall++; else problems.push(`missing flag not raised: ${m}`); }
+        const mf = scoreMissingFlags(miss, c.expect?.missing_includes ?? []);
+        totals.flagsRaised += mf.raised; totals.flagsCorrect += mf.correct;
+        if (mf.false_flags.length) falseFlags.push(`${c.id}: ${mf.false_flags.join(', ')}`);
         const drugs = record.medications.map((m) => m.drug).filter(Boolean);
         for (const d of drugs) if (!(c.expect?.drugs ?? []).some((x: string) => x.toLowerCase() === String(d).toLowerCase())) { totals.drugMismatch++; problems.push(`unexpected drug ${d}`); }
         if (c.expect?.assessment_text !== undefined && (record.assessment.text ?? null) !== c.expect.assessment_text) problems.push(`assessment "${record.assessment.text}" ≠ expected "${c.expect.assessment_text}"`);
@@ -81,10 +84,12 @@ export async function runEval(extractorName = process.env.AIVET_EXTRACTOR ?? 'fi
     unsupported_content: wilson(totals.unsupportedFacts, totals.facts),
     cases_with_blocking_finding: wilson(totals.casesWithBlock, totals.scored),
     missing_field_detection: wilson(totals.missRecall, totals.missTotal),
+    missing_flag_precision: wilson(totals.flagsCorrect, totals.flagsRaised),
   };
-  const result = { metrics, run_at: new Date().toISOString(), extractor: extractor.name, prompt: PROMPT_VERSION, cases: totals.cases, failed: failures, blocking: totals.blocks, warnings: totals.warns, unsourced: totals.unsourced, drug_mismatch: totals.drugMismatch, missing_recall: totals.missTotal ? totals.missRecall / totals.missTotal : null, languages: [...new Set(cases.map((c) => c.language))].sort(), per_case: rows.filter((r) => /^(PASS|FAIL)/.test(r)).map((r) => ({ id: r.slice(6).split('\n')[0].replace(' (must-fail fixture)', ''), pass: r.startsWith('PASS') })) };
+  const result = { metrics, run_at: new Date().toISOString(), extractor: extractor.name, prompt: PROMPT_VERSION, cases: totals.cases, failed: failures, blocking: totals.blocks, warnings: totals.warns, unsourced: totals.unsourced, drug_mismatch: totals.drugMismatch, missing_recall: totals.missTotal ? totals.missRecall / totals.missTotal : null, false_missing_flags: falseFlags, languages: [...new Set(cases.map((c) => c.language))].sort(), per_case: rows.filter((r) => /^(PASS|FAIL)/.test(r)).map((r) => ({ id: r.slice(6).split('\n')[0].replace(' (must-fail fixture)', ''), pass: r.startsWith('PASS') })) };
   writeFileSync(join(outDir, `${extractor.name}.json`), JSON.stringify(result, null, 2) + '\n');
-  console.log(`\nattribution ${pct(metrics.attribution)}\nunsupported content ${pct(metrics.unsupported_content)}\ncases with a blocking finding ${pct(metrics.cases_with_blocking_finding)}\nmissing-field detection ${pct(metrics.missing_field_detection)}`);
+  console.log(`\nattribution ${pct(metrics.attribution)}\nunsupported content ${pct(metrics.unsupported_content)}\ncases with a blocking finding ${pct(metrics.cases_with_blocking_finding)}\nmissing-field detection ${pct(metrics.missing_field_detection)}\nmissing-flag precision ${pct(metrics.missing_flag_precision)}`);
+  if (falseFlags.length && verbose) console.log('flags raised but not expected:\n  ' + falseFlags.join('\n  '));
   console.log(`\n${totals.cases} cases, ${failures} failed. blocking=${totals.blocks} warnings=${totals.warns} unsourced=${totals.unsourced} drug-mismatch=${totals.drugMismatch} missing-recall=${totals.missTotal ? Math.round((100 * totals.missRecall) / totals.missTotal) + '%' : 'n/a'}${totals.input_tokens ? ` tokens in/out=${totals.input_tokens}/${totals.output_tokens}` : ''}`);
   return failures;
 }

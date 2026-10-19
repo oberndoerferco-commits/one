@@ -22,23 +22,36 @@
       "hi": 0.0381
     },
     "missing_field_detection": {
-      "k": 101,
-      "n": 101,
+      "k": 111,
+      "n": 111,
       "rate": 1,
-      "lo": 0.9634,
+      "lo": 0.9665,
       "hi": 1
+    },
+    "missing_flag_precision": {
+      "k": 111,
+      "n": 116,
+      "rate": 0.9569,
+      "lo": 0.9031,
+      "hi": 0.9815
     }
   },
-  "run_at": "2026-10-18T23:20:25.427Z",
+  "run_at": "2026-10-19T02:15:08.285Z",
   "extractor": "fixture",
   "prompt": "extract-v1",
   "cases": 98,
   "failed": 0,
-  "blocking": 4,
+  "blocking": 6,
   "warnings": 0,
   "unsourced": 1,
   "drug_mismatch": 0,
   "missing_recall": 1,
+  "false_missing_flags": [
+    "002-milo-otitis-de: patient.weight",
+    "006-adversarial-dose-not-given: patient.weight",
+    "007-adversarial-de-decimal-comma: medications[0].frequency",
+    "010-vaccination-visit: medications[0].dose, medications[0].frequency"
+  ],
   "languages": [
     "de",
     "en",

@@ -15,7 +15,7 @@
   },
   "notes": "seit 5 Tagen Kopfschütteln li\nkratzt am Ohr\nkein Fieber laut Besitzerin\nT 38.6\nOhr li: gerötet, braunes Sekret, Geruch\nOhr re obB\nZytologie: Malassezien ++\nOhrreinigung durchgeführt\nOtitis externa li\nSurolan 5 Tropfen 2x tgl 7 Tage\nWV 7 Tage",
   "expect": {
-    "missing_includes": [],
+    "missing_includes": ["medications[0].route"],
     "drugs": [
       "Surolan"
     ],

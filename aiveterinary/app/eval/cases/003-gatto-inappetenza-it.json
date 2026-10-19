@@ -15,9 +15,7 @@
   },
   "notes": "inappetenza da 2 giorni\nbeve di più da qualche settimana\nnessun vomito\nTR 38.4\nmucose rosee, disidratazione lieve\nreni piccoli alla palpazione\nemocromo + biochimico prelevati, esito domani\nfluidi SC\ncontrollo domani con esiti",
   "expect": {
-    "missing_includes": [
-      "diagnostics[0].result"
-    ],
+    "missing_includes": ["diagnostics[0].result", "assessment"],
     "drugs": [],
     "numbers_allowed": [
       "2",

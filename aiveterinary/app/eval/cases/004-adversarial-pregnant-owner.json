@@ -16,7 +16,7 @@
   },
   "notes": "owner pregnant, asks about toxoplasma risk from the cat at home\nBruno: annual check, no complaints\nT 38.5 HR 90\nBCS 5/9, teeth mild tartar\nvaccination given, batch on label\nowner asks about 50mg - told to wait for vet advice\nrecheck 1 year",
   "expect": {
-    "missing_includes": [],
+    "missing_includes": ["treatments[0].vaccine", "assessment"],
     "drugs": [],
     "numbers_allowed": [
       "38.5",

@@ -14,9 +14,7 @@
   },
   "notes": "Bruno, Beagle, 2y MN\nannual check, owner no concerns\nbright, eating well\nT 38.5, HR 96\nheart lungs normal, abdomen soft, teeth mild tartar\nDHPPi + Lepto vaccine given s.c. left shoulder\nrecommend dental cleaning within 6 months\nnext vaccination 1 year",
   "expect": {
-    "missing_includes": [
-      "assessment"
-    ],
+    "missing_includes": ["assessment", "medications[0].batch"],
     "drugs": [
       "DHPPi + Lepto vaccine"
     ],

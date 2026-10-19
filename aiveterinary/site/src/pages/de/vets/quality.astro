@@ -34,6 +34,7 @@ const runs = [{ label: 'Validatoren auf vorbereiteten Datensätzen', note: 'Bele
       <li><strong>Nicht belegte Inhalte</strong>: Fakten mit einem blockierenden Befund (ein Medikament, eine Dosis oder eine Zahl, die Sie nicht geschrieben haben, oder eine Quelle außerhalb der Notizen), bezogen auf alle Fakten.</li>
       <li><strong>Fälle mit blockierendem Befund</strong>: Fälle, in denen Sie vor der Freigabe mindestens einmal gestoppt würden.</li>
       <li><strong>Erkennung fehlender Angaben</strong>: Lücken, deren Markierung der Fall erwartet (Medikament ohne Dosis, Test ohne Ergebnis, Impfstoff ohne Charge), und die markiert wurden.</li>
+      <li><strong>Präzision der Markierungen</strong>: markierte fehlende Angaben, die der Fall tatsächlich erwartet, bezogen auf alle Markierungen. Eine falsche Markierung kostet einen Klick und lässt die echten leichter übersehen.</li>
     </ul>
     <p>Der absichtlich falsche Muss-fehlschlagen-Fall zählt nicht zu den Raten; er belegt nur, dass die Prüfungen greifen.</p>
 
@@ -50,6 +51,7 @@ const runs = [{ label: 'Validatoren auf vorbereiteten Datensätzen', note: 'Bele
             <tr><th>Nicht belegte Inhalte</th><td>{ci(r.metrics.unsupported_content)}</td></tr>
             <tr><th>Fälle mit blockierendem Befund</th><td>{ci(r.metrics.cases_with_blocking_finding)}</td></tr>
             <tr><th>Erkennung fehlender Angaben</th><td>{ci(r.metrics.missing_field_detection)}</td></tr>
+            {r.metrics.missing_flag_precision && <tr><th>Präzision der Markierungen</th><td>{ci(r.metrics.missing_flag_precision)}</td></tr>}
           </>}
           <tr><th>Blockierende Befunde</th><td>{r.blocking}{r.extractor === 'fixture' ? ' (alle aus dem Muss-fehlschlagen-Fall, wie beabsichtigt)' : ''}</td></tr>
           <tr><th>Medikamenten-Abweichungen</th><td>{r.drug_mismatch}</td></tr>

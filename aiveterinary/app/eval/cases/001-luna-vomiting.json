@@ -4,7 +4,7 @@
   "header": { "name": "Luna", "species": "dog", "breed": "Labrador Retriever", "sex": "female", "age": { "value": 6, "unit": "year" } },
   "notes": "vomiting 3x since yesterday\nno diarrhea\nreduced appetite\ndrinking normally\ntemp 39.1\nabdomen soft, mild pain\nbloodwork + ultrasound\nfluids + antiemetic\nrecheck 48h",
   "expect": {
-    "missing_includes": ["medications[0].drug", "diagnostics[0].result"],
+    "missing_includes": ["medications[0].drug", "diagnostics[0].result", "medications[0].dose", "medications[0].route", "medications[0].frequency", "diagnostics[1].result", "assessment"],
     "drugs": [],
     "numbers_allowed": ["3", "39.1", "48"],
     "assessment_text": null,
@@ -13,24 +13,24 @@
   "fixture_record": {
     "schema_version": "0.2",
     "patient": { "name": null, "species": null, "breed": null, "sex": null, "neuter_status": null, "age": null, "weight": null },
-    "presenting_complaint": { "text": "vomiting 3x since yesterday", "source_role": "owner_reported", "source_spans": [[0, 26]] },
+    "presenting_complaint": { "text": "vomiting 3x since yesterday", "source_role": "owner_reported", "source_spans": [[0, 27]] },
     "history": [
-      { "finding": "diarrhoea", "value": "none", "source_role": "owner_reported", "source_spans": [[27, 38]] },
-      { "finding": "appetite", "value": "reduced", "source_role": "owner_reported", "source_spans": [[39, 55]] },
-      { "finding": "drinking", "value": "normal", "source_role": "owner_reported", "source_spans": [[56, 73]] }
+      { "finding": "diarrhoea", "value": "none", "source_role": "owner_reported", "source_spans": [[28, 39]] },
+      { "finding": "appetite", "value": "reduced", "source_role": "owner_reported", "source_spans": [[40, 56]] },
+      { "finding": "drinking", "value": "normal", "source_role": "owner_reported", "source_spans": [[57, 74]] }
     ],
     "examination": {
-      "vitals": { "temperature": { "value": 39.1, "unit": "C", "source_spans": [[74, 83]] }, "heart_rate": null, "respiratory_rate": null, "weight": null, "crt_seconds": null },
-      "findings": [ { "system": "abdomen", "text": "soft, mild pain", "source_role": "vet_observed", "source_spans": [[84, 107]] } ]
+      "vitals": { "temperature": { "value": 39.1, "unit": "C", "source_spans": [[75, 84]] }, "heart_rate": null, "respiratory_rate": null, "weight": null, "crt_seconds": null },
+      "findings": [ { "system": "abdomen", "text": "soft, mild pain", "source_role": "vet_observed", "source_spans": [[85, 108]] } ]
     },
     "diagnostics": [
-      { "test": "bloodwork", "status": "performed", "result": null, "source_spans": [[108, 117]] },
-      { "test": "ultrasound", "status": "performed", "result": null, "source_spans": [[120, 130]] }
+      { "test": "bloodwork", "status": "performed", "result": null, "source_spans": [[109, 118]] },
+      { "test": "ultrasound", "status": "performed", "result": null, "source_spans": [[121, 131]] }
     ],
     "assessment": { "text": null, "differentials": [], "source_spans": [] },
-    "treatments": [ { "type": "procedure", "text": "fluids", "status": "performed", "source_spans": [[131, 137]] } ],
-    "medications": [ { "drug": null, "class_as_written": "antiemetic", "dose": null, "dose_unit": null, "route": null, "frequency": null, "duration": null, "status": "performed", "source_spans": [[140, 150]] } ],
-    "plan": { "follow_up": { "text": "recheck 48h", "interval": { "value": 48, "unit": "hour" }, "source_spans": [[151, 162]] }, "instructions": [] },
+    "treatments": [ { "type": "procedure", "text": "fluids", "status": "performed", "source_spans": [[132, 138]] } ],
+    "medications": [ { "drug": null, "class_as_written": "antiemetic", "dose": null, "dose_unit": null, "route": null, "frequency": null, "duration": null, "status": "performed", "source_spans": [[141, 151]] } ],
+    "plan": { "follow_up": { "text": "recheck 48h", "interval": { "value": 48, "unit": "hour" }, "source_spans": [[152, 163]] }, "instructions": [] },
     "missing": [
       { "field": "medications[0].drug", "reason": "Antiemetic given but drug not named" },
       { "field": "medications[0].dose", "reason": "No dose recorded" },

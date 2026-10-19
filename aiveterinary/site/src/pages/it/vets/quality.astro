@@ -34,6 +34,7 @@ const runs = [{ label: 'Validatori su cartelle preparate', note: 'Dimostra il fu
       <li><strong>Contenuto non supportato</strong>: fatti con un rilievo bloccante (un farmaco, una dose o un numero che il veterinario non ha scritto, o una fonte che punta fuori dalle note), su tutti i fatti.</li>
       <li><strong>Casi con un rilievo bloccante</strong>: casi in cui il veterinario verrebbe fermato almeno una volta prima dell'approvazione.</li>
       <li><strong>Rilevamento dei campi mancanti</strong>: lacune che il caso prevede vengano segnalate (un farmaco senza dose, un esame senza risultato, un vaccino senza lotto) e che sono state segnalate.</li>
+      <li><strong>Precisione delle segnalazioni</strong>: segnalazioni di dati mancanti che il caso prevede davvero, su tutte quelle sollevate. Una segnalazione sbagliata costa un clic al veterinario e rende più facile ignorare quelle vere.</li>
     </ul>
     <p>Il caso volutamente sbagliato che deve fallire è escluso dai tassi; serve solo a dimostrare che i controlli funzionano.</p>
 
@@ -50,6 +51,7 @@ const runs = [{ label: 'Validatori su cartelle preparate', note: 'Dimostra il fu
             <tr><th>Contenuto non supportato</th><td>{ci(r.metrics.unsupported_content)}</td></tr>
             <tr><th>Casi con un rilievo bloccante</th><td>{ci(r.metrics.cases_with_blocking_finding)}</td></tr>
             <tr><th>Rilevamento dei campi mancanti</th><td>{ci(r.metrics.missing_field_detection)}</td></tr>
+            {r.metrics.missing_flag_precision && <tr><th>Precisione delle segnalazioni</th><td>{ci(r.metrics.missing_flag_precision)}</td></tr>}
           </>}
           <tr><th>Rilievi bloccanti</th><td>{r.blocking}{r.extractor === 'fixture' ? ' (tutti dal caso che deve fallire, come previsto)' : ''}</td></tr>
           <tr><th>Farmaci non corrispondenti</th><td>{r.drug_mismatch}</td></tr>
