@@ -1,0 +1,111 @@
+{
+  "id": "207-seeded-other-animal-de",
+  "language": "de",
+  "synthetic": true,
+  "notes_comment": "Seeded error: the ear mites are recorded in this cat's history, but the line is about the other cat at home. other_animal_fact must flag it.",
+  "header": {
+    "name": "Lilly",
+    "species": "cat",
+    "breed": "European Shorthair",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 3,
+      "unit": "year"
+    }
+  },
+  "notes": "schüttelt den Kopf, kratzt sich an den Ohren\nbeide Gehörgänge sauber, kein Sekret\nandere Katze im Haushalt hat Ohrmilben\nggr. Otitis externa\nWV in 10 Tagen",
+  "expect": {
+    "must_flag": [
+      "other_animal_fact"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "schüttelt den Kopf, kratzt sich an den Ohren",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          44
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "Ohrmilben",
+        "value": "andere Katze im Haushalt hat Ohrmilben",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            82,
+            120
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "Ohren",
+          "text": "beide Gehörgänge sauber, kein Sekret",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              45,
+              81
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": "ggr. Otitis externa",
+      "differentials": [],
+      "source_spans": [
+        [
+          121,
+          140
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "WV in 10 Tagen",
+        "interval": {
+          "value": 10,
+          "unit": "day"
+        },
+        "source_spans": [
+          [
+            141,
+            155
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

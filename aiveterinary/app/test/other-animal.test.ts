@@ -91,7 +91,7 @@ describe('other_animal_fact: conservative', () => {
 describe('eval cases', () => {
   const casesDir = new URL('../eval/cases/', import.meta.url);
   const ids = readdirSync(casesDir).filter((f) => f.endsWith('.json')).map((f) => f.replace(/\.json$/, '')).sort();
-  const prep = (id: string) => { const c = JSON.parse(readFileSync(new URL(`${id}.json`, casesDir), 'utf8')); return { c, notes: normalizeNotes(c.notes), header: PatientHeader.parse(c.header), record: c.fixture_record ? ClinicalRecord.parse(c.fixture_record) : null }; };
+  const prep = (id: string) => { const c = JSON.parse(readFileSync(new URL(`${id}.json`, casesDir), 'utf8')); return { c, notes: normalizeNotes(c.notes), header: PatientHeader.parse(c.header), record: c.fixture_record && !c.expect?.must_flag ? ClinicalRecord.parse(c.fixture_record) : null }; }; // seeded-error records are not gold
   const fold = (s: string) => s.toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '');
 
   it('no gold record raises the rule, not even as a warning', () => {

@@ -14,6 +14,11 @@ import type { Finding } from './validators.js';
  *   document check `requiredMissing`) that are also in the case's expected missing list,
  *   over all flags raised. A false "missing" flag costs the vet a click and erodes trust
  *   in the real ones, so it is measured, not just recall.
+ * - seeded-error detection: in the seeded-error cases (a fixture record written with one
+ *   error in place, `expect.must_flag` naming the rule that must catch it), the seeded errors
+ *   whose rule was raised, over all seeded errors. It shows the checks fire on the error they
+ *   target, not how often a model makes such errors. Seeded cases, like the must-fail case 005,
+ *   are left out of every other rate and count.
  *
  * Every rate is reported with a 95 % Wilson interval, because with a few dozen cases a
  * bare percentage overstates what is known.
@@ -62,6 +67,18 @@ export function scoreMissingFlags(raised: Iterable<string>, expected: Iterable<s
   const exp = new Set(expected); const r = [...new Set(raised)];
   const false_flags = r.filter((x) => !exp.has(x));
   return { raised: r.length, correct: r.length - false_flags.length, false_flags };
+}
+
+/**
+ * One seeded-error case: each `must_flag` rule is one seeded error, caught if a finding with that
+ * rule was raised. A blocking finding from any other rule is a stray: the record was meant to hold
+ * only the seeded error.
+ */
+export function scoreSeeded(mustFlag: Iterable<string>, findings: Finding[]): { seeded: number; caught: number; missed: string[]; stray_blocks: string[] } {
+  const want = [...new Set(mustFlag)];
+  const missed = want.filter((r) => !findings.some((f) => f.rule === r));
+  const stray_blocks = findings.filter((f) => f.severity === 'block' && !want.includes(f.rule)).map((f) => `${f.rule}@${f.field}`);
+  return { seeded: want.length, caught: want.length - missed.length, missed, stray_blocks };
 }
 
 export const pct = (r: Rate) => (r.rate == null ? 'n/a' : `${(100 * r.rate).toFixed(1)} % (95 % CI ${(100 * r.lo!).toFixed(1)}–${(100 * r.hi!).toFixed(1)}, ${r.k}/${r.n})`);

@@ -25,6 +25,7 @@ const runs = [{ label: 'Validators on prepared records', note: 'Proves the check
       <tr><td>Unsourced items</td><td>Facts without a valid pointer into the notes</td><td><strong>0</strong></td></tr>
       <tr><td>Missing-information recall</td><td>Of the gaps a vet would want flagged (drug without dose, test without result…), how many we flag</td><td>≥ 95 %</td></tr>
       <tr><td>Must-fail case</td><td>A deliberately wrong record (invented drug, dose and diagnosis) that the checks must block</td><td>Always blocked</td></tr>
+      <tr><td>Seeded-error cases</td><td>Records written with one error in place (a status opposite to its own text, a vital sign the notes give twice with different values, a fact from a line about another animal) that the matching check must flag</td><td>Always flagged</td></tr>
     </table>
     <p>Rules can only get stricter: a release may raise a floor, never lower one.</p>
 
@@ -36,8 +37,9 @@ const runs = [{ label: 'Validators on prepared records', note: 'Proves the check
       <li><strong>Cases with a blocking finding</strong>: cases where the vet would be stopped at least once before approval.</li>
       <li><strong>Missing-field detection</strong>: gaps the case expects to be flagged (a drug without a dose, a test without a result, a vaccine without a batch) that were flagged.</li>
       <li><strong>Missing-flag precision</strong>: flags raised that the case actually expects, out of all flags raised. A wrong "missing" flag costs the vet a click and makes the real ones easier to ignore.</li>
+      <li><strong>Seeded-error detection</strong>: in the seeded-error cases, errors the matching check flagged, out of all seeded errors. These are cases we wrote with the error in place, so they show the checks fire, not how often a model makes such errors.</li>
     </ul>
-    <p>The deliberately wrong must-fail case is left out of the rates; it only proves the checks work.</p>
+    <p>The deliberately wrong must-fail case and the seeded-error cases are left out of the other rates and counts; they only prove the checks work.</p>
 
     <h2>Current results</h2>
     {runs.map(({ label, note, r }) => (
@@ -53,6 +55,7 @@ const runs = [{ label: 'Validators on prepared records', note: 'Proves the check
             <tr><th>Cases with a blocking finding</th><td>{ci(r.metrics.cases_with_blocking_finding)}</td></tr>
             <tr><th>Missing-field detection</th><td>{ci(r.metrics.missing_field_detection)}</td></tr>
             {r.metrics.missing_flag_precision && <tr><th>Missing-flag precision</th><td>{ci(r.metrics.missing_flag_precision)}</td></tr>}
+            {r.metrics.seeded_error_detection && <tr><th>Seeded-error detection</th><td>{ci(r.metrics.seeded_error_detection)}</td></tr>}
           </>}
           <tr><th>Blocking findings</th><td>{r.blocking}{r.extractor === 'fixture' ? ' (all from the must-fail case, as intended)' : ''}</td></tr>
           <tr><th>Drug mismatches</th><td>{r.drug_mismatch}</td></tr>
@@ -63,7 +66,7 @@ const runs = [{ label: 'Validators on prepared records', note: 'Proves the check
       </div>
     ))}
     <p class="notice">On prepared records every rate is perfect by construction: these records are the answer key. The row shows that the checks and the counting work, not how good the model is. Only the model run below measures that.</p>
-    {!model && <p class="notice warn">Model runs are not published yet. The test set has 98 synthetic cases written in-house (English, German, Italian, including shorthand, typos, contradictions, a second animal in the notes, horses, rabbits, ferrets and birds; 87 of them generated line by line from <code>app/src/cli/gen-cases.ts</code>) and the model run is pending a development key. Before any clinic uses the product, the set grows to at least 300 cases across English, German and Italian, written with practising vets, and an external vet panel reviews a sample of the output. Those results will appear here.</p>}
+    {!model && <p class="notice warn">Model runs are not published yet. The test set has 107 synthetic cases written in-house (English, German, Italian, including shorthand, typos, contradictions, a second animal in the notes, horses, rabbits, ferrets and birds; 87 of them generated line by line from <code>app/src/cli/gen-cases.ts</code>, plus 9 seeded-error cases from the same script) and the model run is pending a development key. Before any clinic uses the product, the set grows to at least 300 cases across English, German and Italian, written with practising vets, and an external vet panel reviews a sample of the output. Those results will appear here.</p>}
 
     <h2>A test your clinic can repeat: 20 cases with a stopwatch</h2>
     <p>Numbers from a vendor, ours included, are no substitute for trying it on your own notes. This protocol takes about two hours and needs no data to leave the clinic.</p>

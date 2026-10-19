@@ -1,6 +1,7 @@
 /**
- * Generates the synthetic eval cases 100–199 in EN, DE and IT.
- *   npx tsx src/cli/gen-cases.ts
+ * Generates the synthetic eval cases 100–199 in EN, DE and IT, and the seeded-error
+ * cases 200–299 (see SEEDED below).
+ *   npm run gen-cases
  *
  * Every case is written line by line: each fact is one line of the notes, and its
  * source span is computed from where that line ends up, so a span can never point
@@ -34,6 +35,9 @@ class Case {
     plan: { follow_up: null, instructions: [] }, missing: [], uncertain: [],
   };
   extra: any = {};
+  /** Seeded errors: the finding (rule at field) the deliberately wrong record must raise. */
+  seeded: { rule: string; field: string }[] = [];
+  comment: string | null = null;
   constructor(public id: string, public language: Lang, public header: any) {}
   /** Appends a line and returns the span of `part` inside it (the whole line by default). */
   line(text: string, part = text): Span[] {
@@ -75,11 +79,23 @@ class Case {
     this.r.uncertain.push({ field, original_text: parts.join(' / '), reason, source_spans: spans });
     return this;
   }
+  /**
+   * Marks the record as deliberately wrong: `rule` must be raised at `field`. A seeded case keeps
+   * only `expect.must_flag`; it is not a gold record, so no other expectations are derived from it.
+   */
+  seed(rule: string, field: string, comment: string) { this.seeded.push({ rule, field }); this.comment = comment; return this; }
   build() {
     const notes = this.lines.join('\n');
     if (normalizeNotes(notes) !== notes) throw new Error(`${this.id}: notes change on normalisation`);
     const record = ClinicalRecord.parse(this.r);
     const header = PatientHeader.parse(this.header);
+    if (this.seeded.length) {
+      // The seeded error must be the only thing wrong: exactly the seeded findings, nothing else.
+      const got = validateAll(record, notes, header).map((f) => `${f.rule}@${f.field}`).sort();
+      const want = this.seeded.map((s) => `${s.rule}@${s.field}`).sort();
+      if (JSON.stringify(got) !== JSON.stringify(want)) throw new Error(`${this.id}: seeded findings ${JSON.stringify(got)} ≠ ${JSON.stringify(want)}`);
+      return { id: this.id, language: this.language, synthetic: true, notes_comment: this.comment, header: this.header, notes, expect: { must_flag: [...new Set(this.seeded.map((s) => s.rule))] }, fixture_record: record };
+    }
     const blocks = validateAll(record, notes, header).filter((f) => f.severity === 'block');
     if (blocks.length) throw new Error(`${this.id}: fixture has blocking findings ${JSON.stringify(blocks)}`);
     const statuses: Record<string, St> = {};
@@ -271,14 +287,55 @@ const S: Scenario[] = [
   } },
 ];
 
+/**
+ * Seeded-error cases ("must-catch"): the fixture record deliberately contains one error that a
+ * newer check exists to catch, and the case says which rule must be raised (`expect.must_flag`).
+ * They show the checks fire on the error they target; they say nothing about how often a model
+ * makes it. Kept out of the published rates, like case 005; scored as seeded-error detection.
+ */
+const SEEDED: Scenario[] = [
+  // Status recorded opposite to a clear marker in the item's own text: declined, recorded as performed.
+  { slug: 'status-conflict', header: { en: dog('Buster', 'Border Collie', 6), de: dog('Bruno', 'Border Collie', 6), it: dog('Leo', 'Border Collie', 6) }, build: {
+    en: (c) => c.complaint('coughing for 5 days').vital('temperature', 38.7, 'C', 'T 38.7').finding('lungs', 'harsh lung sounds both sides').diag('thoracic radiographs', 'performed', null, 'thoracic rads declined by owner').assess('suspected kennel cough').follow('recheck in 7 days', 7, 'day')
+      .seed('status_conflicts_source', 'diagnostics[0].status', 'Seeded error: the radiographs are recorded as performed, but their line says the owner declined them. status_conflicts_source must block it.'),
+    de: (c) => c.complaint('hustet seit 5 Tagen').vital('temperature', 38.7, 'C', 'T 38,7').finding('Lunge', 'verschärfte Atemgeräusche beidseits').diag('Röntgen Thorax', 'performed', null, 'Röntgen Thorax vom Besitzer abgelehnt').assess('V. a. Zwingerhusten').follow('WV in 7 Tagen', 7, 'day')
+      .seed('status_conflicts_source', 'diagnostics[0].status', 'Seeded error: the radiographs are recorded as performed, but their line says the owner declined them. status_conflicts_source must block it.'),
+    it: (c) => c.complaint('tosse da 5 giorni').vital('temperature', 38.7, 'C', 'T 38,7').finding('polmoni', 'murmure vescicolare aspro bilaterale').diag('radiografia del torace', 'performed', null, 'radiografia del torace rifiutata dal proprietario').assess('sospetta tosse dei canili').follow('controllo tra 7 giorni', 7, 'day')
+      .seed('status_conflicts_source', 'diagnostics[0].status', 'Seeded error: the radiographs are recorded as performed, but their line says the owner declined them. status_conflicts_source must block it.'),
+  } },
+  // A vital recorded as one value while the notes give another, with nothing in the record about it.
+  { slug: 'vital-contradiction', header: { en: cat('Pepper', 8), de: cat('Mohrle', 8), it: cat('Nuvola', 8) }, build: {
+    en: (c) => c.complaint('lethargic since yesterday').vital('temperature', 38.4, 'C', 'T 38.4').finding('general', 'quiet, mildly dehydrated').plain('temp 39.8').assess('lethargy, cause unclear').follow('recheck in 2 days', 2, 'day')
+      .seed('notes_contradiction', 'examination.vitals.temperature', 'Seeded error: the notes give two temperatures (38.4 and 39.8); the record keeps 38.4 and says nothing about the other. notes_contradiction must flag it.'),
+    de: (c) => c.complaint('seit gestern matt').vital('heart_rate', 160, '/min', 'HF 160').finding('Allgemein', 'ruhig, ggr. dehydriert').plain('Herzfrequenz 220').assess('Mattigkeit, Ursache unklar').follow('WV in 2 Tagen', 2, 'day')
+      .seed('notes_contradiction', 'examination.vitals.heart_rate', 'Seeded error: the notes give two heart rates (160 and 220); the record keeps 160 and says nothing about the other. notes_contradiction must flag it.'),
+    it: (c) => c.complaint('abbattuta da ieri').vital('weight', 4.2, 'kg', 'peso 4,2 kg').finding('generale', 'tranquilla, lievemente disidratata').plain('peso 5,1 kg').assess('abbattimento, causa non chiara').follow('controllo tra 2 giorni', 2, 'day')
+      .seed('notes_contradiction', 'examination.vitals.weight', 'Seeded error: the notes give two weights (4.2 kg and 5.1 kg); the record keeps 4.2 kg and says nothing about the other. notes_contradiction must flag it.'),
+  } },
+  // A fact taken from a line about another animal and recorded as this patient's.
+  { slug: 'other-animal', header: { en: cat('Willow', 3), de: cat('Lilly', 3), it: cat('Bianca', 3) }, build: {
+    en: (c) => c.complaint('shaking head, scratching ears').finding('ears', 'both ear canals clean, no discharge').history('ear mites', 'other cat at home has ear mites').assess('mild otitis externa').follow('recheck in 10 days', 10, 'day')
+      .seed('other_animal_fact', 'history[0]', "Seeded error: the ear mites are recorded in this cat's history, but the line is about the other cat at home. other_animal_fact must flag it."),
+    de: (c) => c.complaint('schüttelt den Kopf, kratzt sich an den Ohren').finding('Ohren', 'beide Gehörgänge sauber, kein Sekret').history('Ohrmilben', 'andere Katze im Haushalt hat Ohrmilben').assess('ggr. Otitis externa').follow('WV in 10 Tagen', 10, 'day')
+      .seed('other_animal_fact', 'history[0]', "Seeded error: the ear mites are recorded in this cat's history, but the line is about the other cat at home. other_animal_fact must flag it."),
+    it: (c) => c.complaint('scuote la testa, si gratta le orecchie').finding('orecchie', 'condotti puliti, nessuna secrezione').history('acari auricolari', "l'altro gatto di casa ha gli acari auricolari").assess('lieve otite esterna').follow('controllo tra 10 giorni', 10, 'day')
+      .seed('other_animal_fact', 'history[0]', "Seeded error: the ear mites are recorded in this cat's history, but the line is about the other cat at home. other_animal_fact must flag it."),
+  } },
+];
+
 const here = dirname(fileURLToPath(import.meta.url));
 const dir = join(here, '..', '..', 'eval', 'cases');
-for (const f of readdirSync(dir)) if (/^1\d\d-gen-/.test(f)) unlinkSync(join(dir, f));
-let n = 100;
-for (const sc of S) for (const lang of ['en', 'de', 'it'] as Lang[]) {
-  const id = `${n}-gen-${sc.slug}-${lang}`;
-  const c = sc.build[lang](new Case(id, lang, sc.header[lang]));
-  writeFileSync(join(dir, `${id}.json`), JSON.stringify(c.build(), null, 2) + '\n');
-  n++;
-}
-console.log(`wrote ${n - 100} cases`);
+for (const f of readdirSync(dir)) if (/^(1\d\d-gen|2\d\d-seeded)-/.test(f)) unlinkSync(join(dir, f));
+const write = (list: Scenario[], start: number, kind: string) => {
+  let n = start;
+  for (const sc of list) for (const lang of ['en', 'de', 'it'] as Lang[]) {
+    const id = `${n}-${kind}-${sc.slug}-${lang}`;
+    const c = sc.build[lang](new Case(id, lang, sc.header[lang]));
+    writeFileSync(join(dir, `${id}.json`), JSON.stringify(c.build(), null, 2) + '\n');
+    n++;
+  }
+  return n - start;
+};
+const gen = write(S, 100, 'gen');
+const seeded = write(SEEDED, 200, 'seeded');
+console.log(`wrote ${gen} cases and ${seeded} seeded-error cases`);

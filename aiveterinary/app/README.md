@@ -36,7 +36,7 @@ npm run demo -- --claude "vomiting 3x since yesterday, T 39.1, abdomen soft, rec
 | `src/render.ts` | Report in EN/DE/IT. Medication table rendered by code from structured fields. Draft watermark until approved. |
 | `src/extract.ts` | `Extractor` interface, the prompt (`extract-v1`), `FixtureExtractor` (tests) and `ClaudeExtractor` (structured output via `messages.parse` + zod). |
 | `src/cli/eval.ts` | Harness: runs every case, applies validators and expectations, prints a summary; exit 1 on failure. |
-| `eval/cases/*.json` | Synthetic cases: notes, patient header, expectations, and a hand-written fixture record. Case 005 is a deliberately wrong fixture that must be blocked. |
+| `eval/cases/*.json` | Synthetic cases: notes, patient header, expectations, and a hand-written fixture record. Case 005 is a deliberately wrong fixture that must be blocked. Cases 200–208 (`npm run gen-cases`) are seeded-error cases: the record holds one deliberate error and `expect.must_flag` names the rule that must be raised; they are scored only as seeded-error detection and kept out of the other rates and counts. |
 
 ## Adding a case
 

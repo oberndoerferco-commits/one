@@ -108,7 +108,7 @@ describe('notes_contradiction: conservative', () => {
 describe('eval cases', () => {
   const casesDir = new URL('../eval/cases/', import.meta.url);
   const ids = readdirSync(casesDir).filter((f) => f.endsWith('.json')).map((f) => f.replace(/\.json$/, '')).sort();
-  const prep = (id: string) => { const c = JSON.parse(readFileSync(new URL(`${id}.json`, casesDir), 'utf8')); return { c, notes: normalizeNotes(c.notes), header: PatientHeader.parse(c.header), record: c.fixture_record ? ClinicalRecord.parse(c.fixture_record) : null }; };
+  const prep = (id: string) => { const c = JSON.parse(readFileSync(new URL(`${id}.json`, casesDir), 'utf8')); return { c, notes: normalizeNotes(c.notes), header: PatientHeader.parse(c.header), record: c.fixture_record && !c.expect?.must_flag ? ClinicalRecord.parse(c.fixture_record) : null }; }; // seeded-error records are not gold
 
   it('no gold record raises notes_contradiction', () => {
     for (const id of ids) {

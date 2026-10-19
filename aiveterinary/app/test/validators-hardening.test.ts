@@ -25,10 +25,10 @@ const NEW_RULES = ['number_not_in_source', 'text_number_not_in_source', 'dose_no
 
 describe('gold records stay clean', () => {
   const ids = readdirSync(casesDir).filter((f) => f.endsWith('.json')).map((f) => f.replace(/\.json$/, '')).sort();
-  it('covers all 98 cases', () => { expect(ids.length).toBe(98); });
+  it('covers all 107 cases', () => { expect(ids.length).toBe(107); });
   for (const id of ids) {
     const { c, record, notes, header } = prep(id);
-    if (c.expect?.fixture_must_fail) continue;
+    if (c.expect?.fixture_must_fail || c.expect?.must_flag) continue; // deliberately wrong records
     it(`${id}: no blocking finding`, () => { expect(blocks(validateAll(record, notes, header))).toEqual([]); });
   }
   it('the must-fail fixture 005 still fails for its original reasons', () => {
@@ -39,7 +39,7 @@ describe('gold records stay clean', () => {
   it('no gold record (005 aside) raises any of the new rules, not even as a warning', () => {
     for (const id of ids) {
       const { c, record, notes, header } = prep(id);
-      if (c.expect?.fixture_must_fail) continue;
+      if (c.expect?.fixture_must_fail || c.expect?.must_flag) continue;
       expect(validateAll(record, notes, header).filter((f) => NEW_RULES.includes(f.rule)), id).toEqual([]);
     }
   });

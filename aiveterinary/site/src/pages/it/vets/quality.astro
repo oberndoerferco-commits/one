@@ -25,6 +25,7 @@ const runs = [{ label: 'Validatori su cartelle preparate', note: 'Dimostra il fu
       <tr><td>Elementi senza fonte</td><td>Fatti senza un riferimento valido alle note</td><td><strong>0</strong></td></tr>
       <tr><td>Recall delle informazioni mancanti</td><td>Delle lacune che un veterinario vorrebbe segnalate (farmaco senza dose, esame senza risultato…), quante ne segnaliamo</td><td>≥ 95 %</td></tr>
       <tr><td>Caso che deve fallire</td><td>Una cartella deliberatamente sbagliata (farmaco, dose e diagnosi inventati) che i controlli devono bloccare</td><td>Sempre bloccato</td></tr>
+      <tr><td>Casi con errore inserito</td><td>Cartelle scritte con un solo errore inserito apposta (uno stato opposto al proprio testo, un parametro vitale che le note riportano due volte con valori diversi, un dato preso da una riga su un altro animale) che il controllo corrispondente deve segnalare</td><td>Sempre segnalato</td></tr>
     </table>
     <p>Le regole possono solo diventare più severe: una release può alzare una soglia minima, mai abbassarla.</p>
     <h2>Come sono definiti i tassi</h2>
@@ -35,8 +36,9 @@ const runs = [{ label: 'Validatori su cartelle preparate', note: 'Dimostra il fu
       <li><strong>Casi con un rilievo bloccante</strong>: casi in cui il veterinario verrebbe fermato almeno una volta prima dell'approvazione.</li>
       <li><strong>Rilevamento dei campi mancanti</strong>: lacune che il caso prevede vengano segnalate (un farmaco senza dose, un esame senza risultato, un vaccino senza lotto) e che sono state segnalate.</li>
       <li><strong>Precisione delle segnalazioni</strong>: segnalazioni di dati mancanti che il caso prevede davvero, su tutte quelle sollevate. Una segnalazione sbagliata costa un clic al veterinario e rende più facile ignorare quelle vere.</li>
+      <li><strong>Rilevamento degli errori inseriti</strong>: nei casi con errore inserito, gli errori segnalati dal controllo corrispondente, su tutti gli errori inseriti. Sono casi che abbiamo scritto con l'errore già dentro: mostrano che i controlli scattano, non quanto spesso un modello commette questi errori.</li>
     </ul>
-    <p>Il caso volutamente sbagliato che deve fallire è escluso dai tassi; serve solo a dimostrare che i controlli funzionano.</p>
+    <p>Il caso volutamente sbagliato che deve fallire e i casi con errore inserito sono esclusi dagli altri tassi e conteggi; servono solo a dimostrare che i controlli funzionano.</p>
 
     <h2>Risultati attuali</h2>
     {runs.map(({ label, note, r }) => (
@@ -52,6 +54,7 @@ const runs = [{ label: 'Validatori su cartelle preparate', note: 'Dimostra il fu
             <tr><th>Casi con un rilievo bloccante</th><td>{ci(r.metrics.cases_with_blocking_finding)}</td></tr>
             <tr><th>Rilevamento dei campi mancanti</th><td>{ci(r.metrics.missing_field_detection)}</td></tr>
             {r.metrics.missing_flag_precision && <tr><th>Precisione delle segnalazioni</th><td>{ci(r.metrics.missing_flag_precision)}</td></tr>}
+            {r.metrics.seeded_error_detection && <tr><th>Rilevamento degli errori inseriti</th><td>{ci(r.metrics.seeded_error_detection)}</td></tr>}
           </>}
           <tr><th>Rilievi bloccanti</th><td>{r.blocking}{r.extractor === 'fixture' ? ' (tutti dal caso che deve fallire, come previsto)' : ''}</td></tr>
           <tr><th>Farmaci non corrispondenti</th><td>{r.drug_mismatch}</td></tr>
@@ -62,7 +65,7 @@ const runs = [{ label: 'Validatori su cartelle preparate', note: 'Dimostra il fu
       </div>
     ))}
     <p class="notice">Sulle cartelle preparate ogni tasso è perfetto per costruzione: queste cartelle sono la soluzione attesa. Questa riga mostra che i controlli e il conteggio funzionano, non quanto è bravo il modello. Lo misura solo l'esecuzione del modello qui sotto.</p>
-    {!model && <p class="notice warn">Le esecuzioni del modello non sono ancora pubblicate. Il set di test ha 98 casi sintetici scritti internamente (inglese, tedesco, italiano, con abbreviazioni, refusi, contraddizioni, un secondo animale nelle note, cavalli, conigli, furetti e uccelli; 87 generati riga per riga da <code>app/src/cli/gen-cases.ts</code>) e l'esecuzione del modello è in attesa di una chiave di sviluppo. Prima che qualsiasi clinica usi il prodotto, il set cresce ad almeno 300 casi in inglese, tedesco e italiano, scritti con veterinari in attività, e un panel esterno di veterinari esamina un campione dell'output. Quei risultati compariranno qui.</p>}
+    {!model && <p class="notice warn">Le esecuzioni del modello non sono ancora pubblicate. Il set di test ha 107 casi sintetici scritti internamente (inglese, tedesco, italiano, con abbreviazioni, refusi, contraddizioni, un secondo animale nelle note, cavalli, conigli, furetti e uccelli; 87 generati riga per riga da <code>app/src/cli/gen-cases.ts</code>, più 9 casi con errore inserito dallo stesso script) e l'esecuzione del modello è in attesa di una chiave di sviluppo. Prima che qualsiasi clinica usi il prodotto, il set cresce ad almeno 300 casi in inglese, tedesco e italiano, scritti con veterinari in attività, e un panel esterno di veterinari esamina un campione dell'output. Quei risultati compariranno qui.</p>}
 
     <h2>Un test che la tua clinica può ripetere: 20 casi con il cronometro</h2>
     <p>I numeri di un fornitore, compresi i nostri, non sostituiscono la prova sulle proprie note. Questo protocollo richiede circa due ore e nessun dato deve uscire dalla clinica.</p>
