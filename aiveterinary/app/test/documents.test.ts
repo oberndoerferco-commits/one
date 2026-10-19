@@ -34,6 +34,19 @@ describe('documents from the approved record', () => {
     expect(withReason).toContain('Valutazione ortopedica per displasia');
     expect(withReason).not.toContain('non indicato nelle note');
   });
+  it('referral letter shows signalment from the record when the header lacks it, and the differentials', () => {
+    const { record, header } = prep('008-adversarial-it-performed-vs-planned');
+    expect(renderReferralLetter(record, header, 'it')).not.toContain('Labrador');
+    const r = structuredClone(record);
+    r.patient.breed = 'Labrador'; r.patient.sex = 'male';
+    r.assessment.differentials = [{ text: 'rottura LCA', source_spans: [[0, 1]] }, { text: 'poliartrite', source_spans: [[0, 1]] }];
+    const md = renderReferralLetter(r, header, 'it');
+    expect(md).toContain('**Rocky — dog — Labrador — male — 12 years**');
+    expect(md).toContain('- Diagnosi differenziali: rottura LCA; poliartrite');
+    const withHeader = renderReferralLetter(r, { ...header, breed: 'Pastore tedesco' }, 'de');
+    expect(withHeader).toContain('Pastore tedesco'); expect(withHeader).not.toContain('Labrador');
+    expect(withHeader).toContain('- Differenzialdiagnosen: rottura LCA; poliartrite');
+  });
   it('declined items appear under their own heading in the owner summary', () => {
     const { record, header } = prep('006-adversarial-dose-not-given');
     const md = renderOwnerSummary(record, header, 'en');

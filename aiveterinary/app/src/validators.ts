@@ -269,6 +269,9 @@ const isVaccine = (m: ClinicalRecord['medications'][number]) => VACCINE_RE.test(
  * patient header (`header.weight_kg`) already has it.
  * Discharge (renderDischargeLetter) and owner summary also need a follow-up or a home-care
  * instruction in the plan, since those documents exist to tell the owner what happens next.
+ * Referral also needs signalment (name, species, breed, sex, age; from the header or the record),
+ * at least one history item and some clinical examination (a finding or a vital), the fields most
+ * published referral forms ask for (docs/16-referral-fields.md).
  */
 export function requiredMissing(record: ClinicalRecord, docType: 'consult_report' | 'discharge' | 'referral' | 'owner_summary', header?: PatientHeader): string[] {
   const miss: string[] = [];
@@ -290,6 +293,19 @@ export function requiredMissing(record: ClinicalRecord, docType: 'consult_report
   if (dosed && !record.patient.weight && !record.examination.vitals.weight && header?.weight_kg == null) miss.push('patient.weight');
   record.diagnostics.forEach((d, i) => { if (d.status === 'performed' && !d.result) miss.push(`diagnostics[${i}].result`); });
   if ((docType === 'discharge' || docType === 'owner_summary') && !record.plan.follow_up && record.plan.instructions.length === 0) miss.push('plan');
+  if (docType === 'referral') {
+    // Asked by most referral forms (docs/16-referral-fields.md): signalment, history, clinical findings.
+    // Header (locked facts) or the record's own patient fields satisfy signalment; nothing is defaulted.
+    const p = record.patient;
+    if (!header?.name && !p.name) miss.push('patient.name');
+    if (!header?.species && !p.species) miss.push('patient.species');
+    if (!header?.breed && !p.breed) miss.push('patient.breed');
+    if (!header?.sex && !p.sex) miss.push('patient.sex');
+    if (!header?.age && !p.age) miss.push('patient.age');
+    if (record.history.length === 0) miss.push('history');
+    const v = record.examination.vitals;
+    if (record.examination.findings.length === 0 && !v.temperature && !v.heart_rate && !v.respiratory_rate && !v.weight && !v.crt_seconds) miss.push('examination');
+  }
   return miss;
 }
 

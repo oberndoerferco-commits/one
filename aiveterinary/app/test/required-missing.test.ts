@@ -72,3 +72,34 @@ describe('requiredMissing: vaccines given in the clinic', () => {
     expect(requiredMissing(withMeds(med({ drug: 'RCP vaccine', status: 'performed', dose: null, route: null })), 'consult_report')).toContain('medications[0].route');
   });
 });
+
+describe('requiredMissing: referral (fields most referral forms ask for, docs/16-referral-fields.md)', () => {
+  it('flags signalment the header and the record both lack, plus empty history (case 008)', () => {
+    const miss = requiredMissing(rec('008-adversarial-it-performed-vs-planned'), 'referral', hdr('008-adversarial-it-performed-vs-planned'));
+    expect(miss).toEqual(expect.arrayContaining(['patient.breed', 'patient.sex', 'history']));
+    expect(miss).not.toContain('patient.name');
+    expect(miss).not.toContain('patient.species');
+    expect(miss).not.toContain('patient.age');
+    expect(miss).not.toContain('examination');
+  });
+  it('accepts signalment from the record when the header lacks it, and does not flag it for other documents', () => {
+    const r = rec('008-adversarial-it-performed-vs-planned');
+    const withPatient = { ...r, patient: { ...r.patient, breed: 'Labrador', sex: 'male' as const } };
+    const miss = requiredMissing(withPatient, 'referral', hdr('008-adversarial-it-performed-vs-planned'));
+    expect(miss).not.toContain('patient.breed');
+    expect(miss).not.toContain('patient.sex');
+    expect(requiredMissing(r, 'consult_report', hdr('008-adversarial-it-performed-vs-planned'))).not.toContain('patient.breed');
+    expect(requiredMissing(r, 'consult_report')).not.toContain('history');
+  });
+  it('flags examination only when there is neither a finding nor a vital', () => {
+    const r = rec('008-adversarial-it-performed-vs-planned');
+    const noExam = { ...r, examination: { ...r.examination, findings: [] } };
+    expect(requiredMissing(noExam, 'referral')).toContain('examination');
+    const vitalOnly = { ...noExam, examination: { ...noExam.examination, vitals: { ...noExam.examination.vitals, temperature: { value: 38.5, unit: 'C', source_spans: [[0, 1]] as [number, number][] } } } };
+    expect(requiredMissing(vitalOnly, 'referral')).not.toContain('examination');
+  });
+  it('without a header, name and species come from the record only', () => {
+    const miss = requiredMissing(rec('008-adversarial-it-performed-vs-planned'), 'referral');
+    expect(miss).toEqual(expect.arrayContaining(['patient.name', 'patient.species', 'patient.age']));
+  });
+});
