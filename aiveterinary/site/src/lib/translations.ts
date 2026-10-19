@@ -31,4 +31,10 @@ export const TRANSLATION_GROUPS: { en?: string; it?: string; de?: string }[] = [
   { it: 'quanto-costa-visita-veterinaria', de: 'tierarzt-kosten-got-2026' }, // vet-visit-costs
   { it: 'sterilizzazione-cane-costo', de: 'kastration-hund-kosten-2026' }, // dog-neutering-cost
   { en: 'cat-hair-loss-patches', it: 'gatto-perde-pelo-a-ciuffi' }, // cat-hair-loss
+  { en: 'dog-separation-anxiety', it: 'ansia-da-separazione-cane' }, // dog-separation-anxiety
+  { en: 'dog-ate-chicken-bones', it: 'cane-ha-mangiato-ossa-di-pollo' }, // dog-chicken-bones
+  { en: 'dog-bee-wasp-sting', it: 'cane-punto-da-ape' }, // dog-sting
+  { en: 'cat-diarrhoea', it: 'gatto-diarrea' }, // cat-diarrhoea
+  { en: 'dog-in-heat', de: 'huendin-laeufig' }, // dog-in-heat
+  { en: 'dog-ear-infection', de: 'hund-ohrenentzuendung' }, // dog-ear-infection
 ];
