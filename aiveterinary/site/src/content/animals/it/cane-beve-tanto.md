@@ -4,7 +4,7 @@ description: "Un cane che svuota la ciotola più del solito e chiede sempre di u
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-10-17
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -22,8 +22,8 @@ references:
 
 Bere e urinare di più non è quasi mai un'emergenza da solo, ma in alcune situazioni lo diventa. Vai **subito** in una clinica veterinaria, telefonando prima, se il tuo cane beve molto e in più:
 
-- è una **femmina non sterilizzata** e ha **perdite di pus o sangue dalla vulva**, vomita, ha la pancia gonfia, è abbattuta o non mangia. Può essere una **piometra**, cioè un'infezione dell'utero. La PDSA, un'importante associazione veterinaria britannica, la definisce un'**emergenza**: i sintomi compaiono di solito **4-8 settimane dopo il calore**, e nella forma "chiusa" le perdite possono mancare del tutto, il che la rende ancora più pericolosa
-- è **debole, vomita, non mangia o respira con fatica**. Secondo l'MSD Veterinary Manual sono possibili segni di **chetoacidosi diabetica**, una complicazione del diabete che mette a rischio la vita e richiede ricovero immediato
+- è una **femmina non sterilizzata** e ha **perdite di pus o sangue dalla vulva**, vomita, ha la pancia gonfia, è abbattuta o non mangia. Può essere una **piometra**, cioè un'infezione dell'utero. La PDSA, un'importante associazione veterinaria britannica, la definisce un'**emergenza**: i sintomi compaiono di solito **4-8 settimane dopo il calore**, e nella forma "chiusa" le perdite possono mancare del tutto, il che la rende ancora più pericolosa. La PDSA elenca anche il **bere più del solito** tra i sintomi della piometra: se una femmina non sterilizzata che ha avuto il calore nelle ultime settimane comincia a bere di più, chiama subito il veterinario per una visita urgente, anche senza perdite
+- è **debole, abbattuto, mangia meno o respira con fatica**. Secondo l'MSD Veterinary Manual sono possibili segni di **chetoacidosi diabetica**, una complicazione del diabete che mette a rischio la vita e richiede ricovero immediato
 - è un cane già diabetico e diventa debole, scoordinato, ha convulsioni o collassa: l'MSD Veterinary Manual indica che uno zucchero nel sangue troppo basso è un'emergenza
 - **collassa**, è molto abbattuto o peggiora rapidamente
 
@@ -77,7 +77,7 @@ Tra le cause più frequenti ci sono diabete, malattie dei reni o del fegato, pio
 
 Le cause possibili sono molte, e solo il veterinario può distinguerle con la visita e gli esami. Le fonti citano, tra le più frequenti:
 
-- **Diabete mellito.** Secondo l'MSD Veterinary Manual i segni tipici sono sete e urina aumentate, più fame e **dimagrimento**. Spesso compare in modo graduale, per cui i primi segni passano inosservati. Colpisce soprattutto cani di mezza età, più spesso le femmine, e il sovrappeso aumenta il rischio.
+- **Diabete mellito.** Secondo l'MSD Veterinary Manual i segni tipici sono sete e urina aumentate, più fame e **dimagrimento**. Spesso compare in modo graduale, per cui i primi segni passano inosservati. Colpisce soprattutto cani di mezza età, con le femmine colpite circa il doppio dei maschi, e l'obesità aumenta il rischio di resistenza all'insulina.
 - **Malattie dei reni.**
 - **Piometra** nelle femmine non sterilizzate. La PDSA ricorda che la sterilizzazione è il modo migliore per prevenirla.
 - **Sindrome di Cushing** e altre malattie delle ghiandole surrenali, come il morbo di Addison.
@@ -107,7 +107,7 @@ Anche per questo è importante una visita: il veterinario capirà se il problema
 
 Parte da visita, storia del cane e farmaci che prende, di solito con esami delle urine e del sangue, e sceglie il trattamento in base alla causa.
 
-Il Cornell spiega che il percorso parte dalla visita, dalla storia del cane (alimentazione compresa) e dalla revisione dei farmaci che prende. Gli esami iniziali di solito includono **esame delle urine, emocromo, profilo biochimico** e, se serve, **radiografie o ecografia**. In alcuni casi servono esami più specifici. Il trattamento dipende interamente dalla causa: per esempio, nel diabete l'MSD Veterinary Manual descrive una combinazione di dieta, controllo del peso e insulina, con controlli regolari. Non modificare mai dosi o orari di una terapia senza il veterinario.
+Il Cornell spiega che il percorso parte dalla visita, dalla storia del cane (alimentazione compresa) e dalla revisione dei farmaci che prende. Gli esami iniziali di solito includono **esame delle urine, emocromo, profilo biochimico** e, se serve, **radiografie o ecografia**. In alcuni casi servono esami più specifici. Il trattamento dipende interamente dalla causa: per esempio, nel diabete l'MSD Veterinary Manual descrive una combinazione di dieta, perdita di peso, iniezioni di insulina ed eventualmente farmaci per bocca, con controlli regolari della glicemia. Non modificare mai dosi o orari di una terapia senza il veterinario.
 
 ## Cosa vorrà sapere il veterinario?
 

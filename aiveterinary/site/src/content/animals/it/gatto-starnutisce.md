@@ -4,7 +4,7 @@ description: "Uno starnuto ogni tanto è normale, starnuti frequenti con occhi c
 species: cat
 category: symptoms
 urgency: this-week
-updated: 2026-10-17
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -28,7 +28,7 @@ Contatta **subito** il veterinario, e vai in clinica, se il tuo gatto:
 - ha le **gengive pallide** o collassa
 - **non riesce a smettere di starnutire**, **starnutisce sangue** o sembra avere **dolore**: per la PDSA sono motivi per una visita urgente
 - è un **gattino** con starnuti, occhi che lacrimano e naso che cola, soprattutto se è abbattuto o non mangia
-- **non mangia e non beve**: secondo l'MSD Veterinary Manual la disidratazione e il rifiuto del cibo sono motivi per farlo visitare
+- **non mangia e non beve**: secondo l'MSD Veterinary Manual un gatto disidratato può aver bisogno di fluidi somministrati dal veterinario, e uno che rifiuta il cibo di farmaci o di una sonda per alimentarlo
 - **strizza spesso un occhio** o lo tiene chiuso: l'MSD Veterinary Manual ricorda che alcune di queste infezioni causano ulcere della cornea, che vanno curate dal veterinario
 
 ## È normale che il gatto starnutisca?
@@ -63,7 +63,7 @@ Nei **gattini**, alcuni ceppi di calicivirus possono causare una polmonite grave
 
 ### Il gatto portatore
 
-Secondo International Cat Care, **la maggior parte dei gatti guariti resta portatrice** del virus. Con l'herpesvirus quasi tutti rimangono portatori per sempre: il virus resta "addormentato" e lo **stress** o alcuni farmaci possono farlo riattivare, con nuovi episodi di starnuti e occhi che lacrimano. Con il calicivirus, molti gatti eliminano il virus per settimane o mesi, ma la maggior parte prima o poi se ne libera. Un portatore può sembrare sano e contagiare comunque altri gatti.
+Secondo International Cat Care, **la maggior parte dei gatti guariti resta portatrice** del virus. Con l'herpesvirus quasi tutti rimangono portatori a lungo termine e, secondo l'MSD Veterinary Manual, il virus resta inattivo nel corpo per tutta la vita. Molti portatori non eliminano mai quantità significative di virus; altri lo eliminano a intermittenza, soprattutto in periodi di **stress** o durante terapie che riducono le difese immunitarie, e alcuni in quei momenti mostrano di nuovo sintomi lievi. Con il calicivirus, molti gatti eliminano il virus per settimane o mesi, ma la maggior parte prima o poi se ne libera. Un portatore può sembrare sano e contagiare comunque altri gatti.
 
 ## Quali altre cause possono far starnutire il gatto?
 
@@ -85,7 +85,7 @@ Seguendo la terapia del veterinario, pulisci spesso naso e occhi, tienilo al cal
 
 Il trattamento lo decide il veterinario, che può prescrivere per esempio colliri, antidolorifici adatti al gatto o antibiotici se ci sono infezioni batteriche. A casa puoi aiutarlo così, seguendo i consigli di International Cat Care e dell'MSD Veterinary Manual:
 
-- **pulisci spesso** naso e occhi con un batuffolo inumidito con acqua tiepida
+- **pulisci spesso** le secrezioni di naso e occhi, nel modo che ti indica il veterinario
 - tienilo **al caldo, pulito e tranquillo**
 - offri **cibo morbido e molto profumato**, leggermente intiepidito, per stimolare l'appetito
 - se in casa ci sono altri gatti, **tienilo in una stanza separata** con ciotole e lettiera sue

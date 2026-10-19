@@ -4,7 +4,7 @@ description: "I denti del coniglio crescono per tutta la vita e si consumano sol
 species: rabbit
 category: conditions
 urgency: today
-updated: 2026-10-17
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -55,23 +55,25 @@ Il coniglio fa fatica a mangiare e a pulirsi, e possono formarsi punte che feris
 
 - **Incisivi lunghi**: il coniglio fa fatica a mangiare, bere, pulirsi e chiudere la bocca. Secondo la PDSA, quando gli incisivi sono troppo lunghi spesso lo sono anche i denti posteriori.
 - **Punte sui molari**: i denti posteriori formano **punte taglienti** che feriscono la lingua e le guance, causando piaghe dolorose.
-- **Ascessi dentali**: tasche di pus intorno alla radice di un dente. Il Merck Veterinary Manual spiega che spesso coinvolgono più denti, tendono a **ritornare** e la guarigione completa è meno probabile. La revisione su *Animals* descrive come il problema possa estendersi all'osso e, intorno all'occhio, causare problemi alla vista.
+- **Ascessi dentali**: tasche di pus intorno alla radice di un dente. Il Merck Veterinary Manual spiega che spesso coinvolgono più denti e tendono a **ritornare** anche dopo le cure; se i denti colpiti sono molti, la guarigione completa è meno probabile. La PDSA aggiunge che molti ascessi non si risolvono mai del tutto. La revisione su *Animals* descrive come il problema possa estendersi all'osso e, intorno all'occhio, causare problemi alla vista.
 - **Occhi che lacrimano**: le radici troppo lunghe possono premere sul canale lacrimale, come spiega la stessa revisione.
 
 ## Quali sono i segnali di problemi ai denti nel coniglio?
 
-Perdita di peso, sedere sporco, ciecotrofi non mangiati, occhi che lacrimano, bava, meno appetito, denti digrignati e bozzi sulla mandibola.
+Perdita di peso, sedere sporco, feci molli, occhi che lacrimano, bava, meno appetito, denti digrignati e bozzi sulla mandibola.
 
 La PDSA elenca segni che spesso compaiono poco a poco:
 
 - **perdita di peso**
 - **sedere sporco**, perché pulirsi diventa difficile e doloroso
-- feci molli o **ciecotrofi non mangiati**
+- **feci molli** o diarrea
 - **occhi che lacrimano**, bava, naso che cola
 - **appetito ridotto**
 - **digrignare i denti**
 - una mandibola con **bozzi** o dolente
 - abbattimento
+
+Nella sua guida all'alimentazione la PDSA aggiunge che, se trovi spesso **ciecotrofi** (le feci molli, scure e appiccicose che il coniglio di solito mangia subito) nella gabbia, è bene contattare il veterinario.
 
 Il coniglio **nasconde il dolore**: per questo, avverte la PDSA, i problemi dentali spesso si notano solo quando sono già avanzati.
 
@@ -81,14 +83,14 @@ No: tagliarli a casa può incrinare la radice, spezzare il dente o accorciarlo t
 
 Sembra una soluzione rapida, ma **non farlo**. La PDSA spiega che tagliare i denti a casa può **incrinare la radice**, causando un dolore forte e problemi a lungo termine, oppure **spezzare il dente** o accorciarlo troppo, esponendo il nervo. In tutti questi casi il dente potrebbe dover essere tolto. Il Merck Veterinary Manual aggiunge che un dente tagliato troppo corto è una delle possibili cause di **ascessi**.
 
-Non dare nemmeno **antidolorifici per uso umano** o rimasti da altre terapie: solo il veterinario può scegliere un farmaco sicuro per il coniglio.
+Non dare nemmeno **antidolorifici per uso umano** o rimasti da altre terapie: la PDSA ricorda che i problemi dentali sono molto dolorosi e di solito richiedono antidolorifici, ma il farmaco e la dose li sceglie il veterinario.
 
 ## Cosa fa il veterinario per i denti del coniglio?
 
 Controlla tutta la bocca, spesso in anestesia, accorcia e lima i denti, toglie quelli danneggiati se serve e prescrive antidolorifici.
 
 - **Controlla tutta la bocca.** Secondo la PDSA, alcuni conigli molto tranquilli si lasciano visitare da svegli, ma la maggior parte ha bisogno di **anestesia** per un esame completo. Per gli ascessi, il Merck Veterinary Manual indica che servono spesso radiografie o TAC.
-- **Accorcia e lima i denti** con strumenti appositi, in sedazione o anestesia, per togliere le punte e ridare al coniglio la possibilità di mangiare.
+- **Accorcia e lima i denti** con strumenti appositi, di solito in anestesia, per togliere le punte e ridare al coniglio la possibilità di mangiare.
 - **Toglie i denti** danneggiati, storti o infetti, quando serve. La PDSA ricorda che è un intervento complesso, per la bocca piccola e le radici lunghe.
 - Prescrive **antidolorifici** e, per gli ascessi, eventualmente antibiotici.
 - Può chiederti di **nutrirlo con la siringa** per qualche tempo e di tenergli puliti mento e sedere.
@@ -112,6 +114,6 @@ Se devi cambiare alimentazione, la PDSA consiglia di farlo **gradualmente, in 2-
 E poi i controlli:
 
 - **guarda i denti davanti** del tuo coniglio almeno **una volta alla settimana**, come suggerisce la PDSA, e controlla che mangi, faccia palline normali e non perda peso
-- fai controllare la bocca dal veterinario **almeno una volta all'anno**, meglio più spesso
+- fai controllare la bocca dal veterinario **qualche volta all'anno**, come consiglia la PDSA, o almeno **una volta all'anno** se non è possibile
 
 Un coniglio che mastica fieno tutto il giorno è un coniglio che si prende cura dei suoi denti. Se noti qualcosa di strano, chiama il veterinario: nei problemi dentali, prima si interviene, meglio è.

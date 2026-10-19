@@ -4,7 +4,7 @@ description: "Prima togli la zecca, meno tempo ha per trasmettere malattie. Come
 species: dog
 category: first-aid
 urgency: today
-updated: 2026-10-16
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -24,12 +24,12 @@ references:
 
 Togliere una zecca è un gesto che puoi fare a casa. Ma chiama il veterinario e fatti visitare oggi stesso se:
 
-- il cane ha **molte zecche** addosso, oppure sono su occhi, palpebre, interno dell'orecchio o genitali
+- il cane ha **molte zecche** addosso (l'MSD Veterinary Manual avverte che le infestazioni gravi possono causare anemia e paralisi e vanno portate subito dal veterinario), oppure sono su occhi, palpebre, interno dell'orecchio o genitali
 - non riesci a toglierla, o il cane non si lascia toccare
 - nei giorni o nelle settimane dopo il morso il cane è **abbattuto, non mangia, ha febbre**, vomita, zoppica o fa fatica a muoversi
 - noti **urine scure** (rossastre o color tè), gengive pallide o giallastre
 - compaiono **sangue dal naso**, puntini rossi o lividi sulla pelle o sulle gengive
-- il punto del morso diventa molto gonfio, caldo, dolente o pieno di pus
+- il punto del morso si **arrossa o si gonfia**: l'MSD Veterinary Manual consiglia in questo caso una visita in tempi rapidi
 
 Se il cane è debole, ha gengive bianche o gialle, respira male o collassa, vai in clinica **subito**, avvisando per telefono.
 
@@ -50,12 +50,12 @@ Ti servono: una **pinzetta a punte sottili** o un apposito uncino/estrattore per
 3. **Afferra la zecca il più vicino possibile alla pelle**, cioè dalla "testa", non dal corpo gonfio.
 4. **Tira con delicatezza e in modo costante**, con un leggero movimento rotatorio se usi l'uncino. Non dare strappi.
 5. **Non schiacciare il corpo** della zecca: potrebbe far rigurgitare materiale infetto.
-6. **Disinfetta** il punto del morso e poi lavati bene le mani, anche se hai usato i guanti.
-7. Controlla tutto il cane: testa, orecchie, collo, ascelle, tra le dita, inguine. Le zecche giovani sono piccolissime e si vedono a fatica, soprattutto nei cani a pelo lungo.
+6. **Disinfetta** il punto del morso, evitando i disinfettanti che colorano la pelle come la tintura di iodio, e poi lavati bene le mani, anche se hai usato i guanti.
+7. Controlla tutto il cane: testa, orecchie, collo, ascelle, tra le dita, inguine. ESCCAP Italia ricorda che non tutte le zecche si trovano facilmente, soprattutto le forme giovani, e che dopo la rimozione va sempre considerato anche un antiparassitario contro le zecche: chiedi al veterinario quale.
 
 ### Cosa non fare
 
-- **Non usare olio, alcol, benzina, acetone, smalto o vaselina** sulla zecca. Le linee guida ESCCAP Italia spiegano che questi rimedi disturbano la zecca durante il pasto e possono favorire la trasmissione di patogeni.
+- **Non usare olio, grassi, alcol, benzina, acetone o ammoniaca** sulla zecca. Le linee guida ESCCAP Italia spiegano che questi rimedi disturbano la zecca durante il pasto e possono favorire la trasmissione di patogeni; l'Istituto Superiore di Sanità aggiunge che la sofferenza della zecca può farle rigurgitare materiale infetto.
 - **Non usare il calore** (fiammiferi, sigarette, accendini): rischi di bruciare il cane e non serve.
 - Non schiacciare la zecca tra le dita e non buttarla nel lavandino dopo averla schiacciata a mani nude.
 
@@ -65,7 +65,7 @@ A volte si spezza e resta il rostro, un puntino scuro. Non scavare con aghi o pi
 
 ### Conservare la zecca
 
-Puoi metterla in un barattolino chiuso con un po' di alcol e annotare la data e dove eravate stati. Se il cane si ammala nelle settimane successive, può essere utile al veterinario.
+Puoi metterla in un barattolino chiuso con alcol (l'Istituto Superiore di Sanità indica alcol al 70%) e annotare la data e dove eravate stati. Se il cane si ammala nelle settimane successive, può essere utile al veterinario.
 
 ## Quali malattie trasmettono le zecche al cane in Italia?
 
@@ -84,9 +84,9 @@ Le zecche possono trasmettere malattie anche alle persone. Se tu stesso vieni mo
 
 ## Cosa devo controllare nelle settimane dopo il morso?
 
-Per circa un mese tieni d'occhio appetito ed energia, temperatura, colore di gengive e urine, zoppie e sanguinamenti.
+Per alcune settimane tieni d'occhio appetito ed energia, temperatura, colore di gengive e urine, zoppie e sanguinamenti.
 
-Per circa un mese dopo il morso, tieni d'occhio:
+I segni possono comparire anche settimane dopo: secondo ESCCAP Italia, per esempio, le forme acute di babesiosi compaiono di solito da una a tre settimane dopo l'infezione. L'MSD Veterinary Manual consiglia di far controllare il cane per le malattie trasmesse dalle zecche anche se ne ha avute poche. Nelle settimane dopo il morso, tieni d'occhio:
 
 - appetito, energia e voglia di giocare o passeggiare
 - temperatura (se il cane è caldo, spento e respira veloce, chiama il veterinario)
@@ -100,7 +100,7 @@ Non dare al cane antidolorifici o antinfiammatori per uso umano, come paracetamo
 
 Usa con continuità un antiparassitario scelto con il veterinario, mai sul gatto quelli per cani, e controlla il cane dopo ogni passeggiata nel verde.
 
-- Usa un **antiparassitario contro le zecche** scelto con il veterinario, con continuità per tutto il periodo a rischio, che in molte zone d'Italia è quasi tutto l'anno.
+- Usa un **antiparassitario contro le zecche** scelto con il veterinario, con continuità per tutto il periodo a rischio: ESCCAP Italia ricorda che le zecche hanno picchi in primavera e a fine estate-autunno, ma la zecca bruna del cane si può trovare tutto l'anno.
 - **Attenzione al gatto:** alcuni antiparassitari per cani a base di piretroidi sono **molto tossici per i gatti**. Non usarli mai sul gatto e chiedi al veterinario se servono precauzioni in una casa con entrambi.
 - **Controlla il cane dopo ogni passeggiata** in erba alta, boschi e campagna, soprattutto verso la fine della copertura del prodotto.
 - Se viaggi verso zone a rischio, chiedi al veterinario una protezione adatta prima della partenza.

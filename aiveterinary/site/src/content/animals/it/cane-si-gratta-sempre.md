@@ -4,7 +4,7 @@ description: "Un cane che si gratta, si lecca le zampe o si mordicchia di contin
 species: dog
 category: symptoms
 urgency: this-week
-updated: 2026-10-17
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -64,7 +64,7 @@ Se ci sono pulci, il trattamento riguarda **tutti gli animali di casa**, anche q
 
 ### Dermatite atopica (allergia ambientale)
 
-È un'allergia a sostanze presenti nell'ambiente. Secondo l'MSD Veterinary Manual compare di solito **tra i 6 mesi e i 3 anni**, colpisce soprattutto **zampe, muso, orecchie, interno delle zampe anteriori, ascelle e pancia**, e può essere stagionale o presente tutto l'anno. Alcuni cani hanno come unico segno **otiti che tornano di continuo**. Tra le razze più predisposte ci sono Labrador e Golden Retriever, Boxer, Shar-Pei, Shih Tzu e West Highland White Terrier, ma può colpire qualsiasi cane.
+È un'allergia a sostanze presenti nell'ambiente. Secondo l'MSD Veterinary Manual compare di solito **tra i 6 mesi e i 3 anni**, colpisce soprattutto **zampe, muso, orecchie, pieghe delle zampe anteriori, ascelle e pancia**, e può essere stagionale o presente tutto l'anno. Alcuni cani hanno come unico segno **otiti che tornano di continuo**. Tra le razze più predisposte ci sono Labrador e Golden Retriever, Boxer, Shar-Pei, Shih Tzu e West Highland White Terrier, ma può colpire qualsiasi cane.
 
 Non esiste un singolo esame che la confermi: il veterinario ci arriva **escludendo le altre cause** di prurito. L'MSD Veterinary Manual è chiaro su un punto: la dermatite atopica **non si guarisce**, ma di solito si può tenere sotto controllo con una gestione a lungo termine e controlli regolari.
 
@@ -92,7 +92,7 @@ Non usare creme o farmaci per uso umano senza il veterinario, non usare antipara
 
 Visita pelle e orecchie, cerca pulci e acari, può fare raschiati cutanei e poi propone una prova con un antiparassitario, una dieta a eliminazione o terapie per infezioni e prurito.
 
-Visita la pelle e le orecchie, cerca pulci e acari e, se sospetta la rogna, fa dei **raschiati cutanei**, cioè preleva delicatamente un po' di materiale superficiale della pelle da guardare al microscopio. L'ESCCAP precisa che un raschiato negativo non basta sempre a escludere la rogna, e che esistono anche esami del sangue di supporto. In base al quadro può proporre una prova con un antiparassitario efficace, una dieta a eliminazione o terapie per le infezioni e per il prurito. La PDSA ricorda che infezioni e pulci di solito si risolvono abbastanza facilmente, mentre le allergie richiedono più tempo: ma una volta trovata la gestione giusta, molti cani **stanno molto meglio**.
+Visita la pelle e le orecchie, cerca pulci e acari e, se sospetta la rogna, fa dei **raschiati cutanei**, cioè preleva delicatamente un po' di materiale superficiale della pelle da guardare al microscopio. L'ESCCAP precisa che un raschiato negativo non basta sempre a escludere la rogna, e che esistono anche esami del sangue di supporto. In base al quadro può proporre una prova con un antiparassitario efficace, una dieta a eliminazione o terapie per le infezioni e per il prurito. La PDSA ricorda che il trattamento dipende interamente dalla causa, e che va trovata con il veterinario prima di provare qualsiasi rimedio a casa. Per la dermatite atopica, l'MSD Veterinary Manual parla di una gestione a lungo termine con controlli frequenti, che nella maggior parte dei casi migliora la qualità di vita del cane.
 
 ## Cosa vorrà sapere il veterinario?
 

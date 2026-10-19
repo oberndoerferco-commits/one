@@ -4,12 +4,14 @@ description: "Freddo, paura, eccitazione, dolore o qualcosa di più serio: il tr
 species: dog
 category: symptoms
 urgency: this-week
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: it
 references:
   - title: "Journal of Veterinary Internal Medicine: Generalized Tremors in Dogs: 198 Cases (2003–2023)"
     url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11951301/"
+  - title: "American Kennel Club: Why Is My Dog Shaking? Causes & Solutions"
+    url: "https://www.akc.org/expert-advice/health/why-is-my-dog-shaking/"
   - title: "VCA Animal Hospitals: Shaker Syndrome in Dogs"
     url: "https://vcahospitals.com/know-your-pet/shaker-syndrome-in-dogs"
   - title: "VCA Animal Hospitals: Testing for Low Blood Sugar"
@@ -24,81 +26,81 @@ references:
 
 Vai immediatamente in una clinica veterinaria, avvisando per telefono, se il tuo cane trema e:
 
-- il tremore diventa una **convulsione**: cade su un fianco, irrigidisce le zampe, pedala, perde saliva, non risponde al richiamo
-- potrebbe aver mangiato qualcosa di tossico (cioccolato, xilitolo, lumachicida, veleno per topi, farmaci, piante, marijuana), perché molte sostanze danno tremori prima di altri segni
-- vomita, ha diarrea, o ha la pancia gonfia insieme al tremore
-- è molto debole, barcolla, o ha le gengive pallide o bluastre
-- è un cucciolo di taglia piccola che trema, è apatico e non mangia (può avere lo zucchero basso)
-- ha una temperatura molto alta dopo il caldo o l'attività fisica, o molto bassa dopo esposizione al freddo o all'acqua
-- il tremore è comparso insieme a dolore evidente: lamenti, schiena inarcata, non vuole muoversi, grida quando lo prendi in braccio
+- il tremore diventa una **convulsione**: l'American Kennel Club (AKC) ricorda che una crisi può presentarsi come scosse incontrollabili per alcuni minuti, ma anche con contrazioni muscolari, movimenti a scatti, collasso e breve perdita di coscienza
+- potrebbe aver mangiato qualcosa di tossico (cioccolato, xilitolo dei prodotti senza zucchero, mozziconi di sigaretta, lumachicida, farmaci per uso umano). In uno studio del Journal of Veterinary Internal Medicine su 198 cani con tremori di tutto il corpo, l'**intossicazione era la causa più frequente** (46% dei casi), con sintomi comparsi in genere in meno di 24 ore
+- insieme al tremore ha **vomito o diarrea**, **sbava** molto, ha le **pupille dilatate**, si comporta in modo strano o sembra confuso: nello stesso studio questi segni erano più comuni nei cani intossicati
+- è **molto debole, barcolla, è disorientato o collassa**: secondo VCA Animal Hospitals sono i segni tipici dello **zucchero basso nel sangue** (ipoglicemia), che può dare anche tremori e convulsioni. L'AKC indica che i più esposti sono i cani di taglia piccola e toy e i cuccioli molto giovani; nel cane diabetico in terapia con insulina può dipendere da una dose eccessiva
+- dopo caldo o sforzo ha la pelle calda, ansima forte, sbava, vomita o barcolla: l'MSD Veterinary Manual descrive questi segni nel **colpo di calore**, che è un'emergenza
+- dopo esposizione al freddo o all'acqua è confuso, respira in modo superficiale o collassa: possono essere segni di **ipotermia**, e l'MSD Veterinary Manual avverte che il tremore da solo non è un segno affidabile per riconoscerla
 
 ## È normale che il cane tremi?
 
-Spesso sì: può tremare per freddo, paura, ansia o eccitazione, nel sonno o, se è anziano, per debolezza delle zampe posteriori.
+Spesso sì: secondo l'American Kennel Club può tremare per stress o paura, eccitazione, freddo o, se è anziano, per la perdita di massa muscolare delle zampe posteriori.
 
-Un cane può tremare per molti motivi che non sono malattia:
+L'AKC elenca diversi motivi di tremore che non sono un'emergenza:
 
-- **Freddo**: soprattutto nei cani piccoli, a pelo corto, anziani o magri. Se smette quando lo copri o entri al caldo, era quello.
-- **Paura o ansia**: temporali, fuochi d'artificio, la clinica veterinaria, un'auto nuova. In genere il cane ha anche orecchie basse, coda tra le zampe, ansima o cerca di nascondersi.
-- **Eccitazione**: alcuni cani tremano quando aspettano la pappa o la passeggiata.
-- **Tremore delle zampe posteriori nei cani anziani**: frequente, spesso legato a debolezza muscolare o artrosi. Va comunque segnalato al veterinario, ma di rado è un'emergenza.
-- **Sogni**: tremare e muovere le zampe nel sonno è normale.
-- Alcune razze piccole bianche e altre razze hanno una forma di tremore generalizzato che il veterinario conosce bene.
+- **Stress o paura**: tremare è un classico segno di stress, per esempio dopo la visita veterinaria o dopo l'incontro con un estraneo.
+- **Eccitazione**: alcuni cani tremano mentre aspettano di uscire o di salutare qualcuno, e smettono quando ottengono ciò che aspettavano.
+- **Freddo**: soprattutto nei cani anziani, che possono regolare meno bene la temperatura del corpo. Scaldarlo con una coperta può bastare.
+- **Tremore delle zampe posteriori nei cani anziani**, legato alla perdita di massa muscolare. Va comunque segnalato al veterinario.
+- Alcune razze toy e piccoli terrier tremano più di altre.
 
-Il punto importante è il **contesto**: un cane che trema ma mangia, gioca, cammina normalmente e smette quando la situazione cambia è molto diverso da un cane che trema a riposo, in casa al caldo, e sembra spento o dolorante.
+L'AKC ricorda però che il tremore può essere anche un segno di **dolore** o di **nausea**, e che se il cane ha cominciato a tremare e non sai perché è bene contattare il veterinario. Il punto importante è il **contesto**: un cane che trema ma mangia, gioca, cammina normalmente e smette quando la situazione cambia è molto diverso da un cane che trema a riposo, in casa al caldo, e sembra spento o dolorante.
 
 ## Cosa devo osservare a casa?
 
-Filma il tremore, nota dove e quando compare, controlla se c'è dolore e tieni il cane al caldo e tranquillo.
+Filma il tremore, nota dove e quando compare, guarda se ci sono altri segni e tieni il cane tranquillo, senza dargli farmaci per uso umano.
 
 Nelle ore in cui aspetti la visita:
 
-- **Filma il tremore.** In clinica spesso sparisce o cambia; un video di 20-30 secondi vale più di una descrizione.
+- **Filma il tremore.** Un breve video aiuta il veterinario a capire di che tipo di movimento si tratta, cosa che a volte è difficile anche per lui.
 - Guarda **dove** trema: tutto il corpo, solo le zampe posteriori, solo la testa, una sola parte.
-- Nota **quando**: a riposo, in piedi, dopo attività, dopo i pasti, di notte.
-- Controlla se c'è **dolore**: prova a toccare con delicatezza schiena, collo e pancia e guarda se reagisce.
-- Misura la temperatura con un termometro rettale se sai farlo; se no, tocca orecchie e zampe per capire se è freddo.
-- Tienilo al caldo, in un posto tranquillo, con acqua a disposizione.
-- Non dare farmaci di uso umano contro il dolore o l'ansia.
+- Nota **quando**: a riposo, in piedi, quando si agita o si muove, dopo i pasti, di notte.
+- Nota se ci sono altri segni: vomito, saliva, barcollamento, occhi che si muovono a scatti, testa inclinata, comportamento diverso dal solito.
+- Se sai misurare la temperatura con un termometro rettale, fallo: secondo l'MSD Veterinary Manual la temperatura normale di cane e gatto è di circa 38,6-38,9 °C.
+- Tienilo in un posto tranquillo, con acqua a disposizione.
+- **Non dare farmaci di uso umano** contro il dolore, l'ansia o il raffreddore: l'MSD Veterinary Manual spiega che molti, come antinfiammatori, antistaminici e decongestionanti, possono essere tossici per il cane, e alcuni causano proprio tremori.
 
 ## Quando portare dal veterinario il cane che trema?
 
-Prenota una visita entro pochi giorni se il tremore è nuovo e si ripete, compare a riposo o si accompagna ad altri segni, e anticipala a oggi se peggiora nel giro di ore.
+Contatta il veterinario oggi se trema tutto il corpo senza una spiegazione chiara o se il tremore peggiora; prenota una visita entro pochi giorni se il tremore è lieve, si ripete e il cane per il resto sta bene.
 
-Prenota una visita entro pochi giorni se:
+Un tremore di **tutto il corpo** comparso all'improvviso, senza freddo, paura o eccitazione a spiegarlo, va segnalato al veterinario **in giornata**: tra le cause più frequenti ci sono le intossicazioni, anche quando il tremore è l'unico segno. Lo studio del Journal of Veterinary Internal Medicine descrive anche una forma, la sindrome del tremore generalizzato idiopatico, che tende a **peggiorare nel giro di giorni**.
 
-- il tremore è una novità, è comparso senza una spiegazione chiara e si ripete
+Prenota invece una visita entro pochi giorni se:
+
+- il tremore è lieve, è una novità e si ripete, ma il cane mangia, cammina e si comporta normalmente
 - compare a riposo, non solo per freddo o emozione
 - è accompagnato da zoppia, rigidità, difficoltà a salire le scale o a saltare
 - il cane è anziano e tremano soprattutto le zampe posteriori
-- il cane beve o urina più del solito, ha perso peso, o ha l'appetito cambiato
-- noti anche cambiamenti del comportamento: si isola, è irritabile, fissa il vuoto
+- noti anche cambiamenti di appetito, sete, urina o energia
 
-Anticipa la visita a oggi se il tremore peggiora nel giro di ore o se compaiono altri segni.
+Anticipa la visita a oggi se il tremore peggiora o se compaiono altri segni, e vai subito se compare uno dei segni della prima sezione.
 
 ## Cosa vorrà sapere il veterinario?
 
 Da quando e dove trema, se hai un video, se può aver ingerito qualcosa, eventuali traumi, come mangia e beve e quali farmaci prende.
 
-- Da quando trema e in quali situazioni
+- Da quando trema e in quali situazioni, e se è iniziato all'improvviso o poco a poco
 - Quale parte del corpo è coinvolta, e se hai un video
 - Se potrebbe aver ingerito qualcosa di insolito, anche giorni prima
 - Eventuali traumi, cadute o salti recenti
 - Appetito, sete, urina, feci, energia
-- Farmaci, integratori, antiparassitari recenti
-- Se è già seguito per problemi di schiena, articolazioni, reni, fegato o ormoni
+- Farmaci, integratori, antiparassitari recenti, e se è diabetico in terapia con insulina
+- Se è vaccinato: l'AKC ricorda che il cimurro, che può dare tremori, colpisce soprattutto cani e cuccioli non vaccinati
 
 ## Quali sono le cause più comuni del tremore nel cane?
 
-Le più probabili sono freddo, paura, ansia o eccitazione e debolezza muscolare o artrosi nel cane anziano, ma vanno considerati anche avvelenamenti, dolore alla colonna e ipoglicemia.
+Nella vita di tutti i giorni le più frequenti sono stress, paura, eccitazione e freddo; tra i cani con tremori di tutto il corpo visitati da specialisti, invece, prevalgono intossicazioni e sindrome del tremore idiopatico.
 
-| Probabili | Meno comuni ma importanti |
+| Frequenti e di solito non gravi (AKC) | Meno comuni ma importanti |
 |---|---|
-| Freddo | Avvelenamento (lumachicida, xilitolo, cioccolato, farmaci) |
-| Paura, ansia, eccitazione | Dolore alla colonna (ernia del disco, soprattutto nelle razze a schiena lunga) |
-| Debolezza muscolare e artrosi nel cane anziano | Ipoglicemia nei cuccioli e nelle taglie piccole |
-| Dolore muscolare o articolare lieve | Malattie neurologiche e tremori generalizzati |
-| Tremore idiopatico di alcune razze | Squilibri di calcio o di altri sali, malattie ormonali |
-| | Febbre e infezioni |
+| Stress, paura, eccitazione | Avvelenamento (cioccolato, xilitolo, lumachicida, farmaci per uso umano) |
+| Freddo, soprattutto nel cane anziano | Sindrome del tremore generalizzato idiopatico ("shaker syndrome") |
+| Perdita di massa muscolare nel cane anziano | Ipoglicemia nei cuccioli, nelle taglie piccole e nei diabetici in terapia |
+| Tendenza a tremare di alcune razze toy | Squilibri del calcio nel sangue, infiammazioni del cervello, cimurro |
+| | Dolore o nausea |
+
+Lo studio su 198 cani con tremori generalizzati, condotto in un ospedale veterinario di referenza, ha trovato come cause principali **intossicazioni** (46%), **sindrome del tremore generalizzato idiopatico** (circa 25%), **calcio basso** (6,6%), **meningoencefaliti** (4,5%) e **ipoglicemia** (3%). Secondo VCA Animal Hospitals, la sindrome del tremore idiopatico è più frequente nei cani piccoli e bianchi come Maltese, West Highland White Terrier e Bichon Frisé, ma può colpire qualsiasi cane; compare di solito tra 1 e 2 anni, il veterinario la diagnostica escludendo le altre cause e di solito risponde bene alla terapia che lui prescrive.
 
 È il veterinario a decidere quale di queste è probabile per il *tuo* cane, con la visita e, se serve, qualche esame. Questo elenco ti aiuta a capire il colloquio, non a fare una diagnosi: per il tuo cane, la parola giusta è quella del tuo veterinario.

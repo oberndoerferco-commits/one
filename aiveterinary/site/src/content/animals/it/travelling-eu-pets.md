@@ -4,7 +4,7 @@ description: "Cosa ti serve prima di attraversare un confine: microchip, vaccina
 species: general
 category: travel
 urgency: routine
-updated: 2026-10-16
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -14,40 +14,42 @@ references:
     url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/travelling-pet-within-eu_en"
   - title: "European Commission: Pet travel FAQs"
     url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/faqs_en"
+  - title: "EUR-Lex: Regolamento delegato (UE) 2026/131 sulle prescrizioni di sanità animale per i movimenti a carattere non commerciale di animali da compagnia"
+    url: "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R0131"
 ---
 
 ## Cosa serve per viaggiare nell'UE con cane o gatto?
 
-Servono un microchip, una vaccinazione antirabbica valida fatta dopo il microchip e un passaporto europeo per animali da compagnia.
+Servono un microchip, una vaccinazione antirabbica valida, fatta non prima dell'impianto del microchip, e un passaporto europeo per animali da compagnia.
 
 Per cani, gatti e furetti che si spostano tra paesi dell'UE con il proprietario (movimento a carattere non commerciale), le regole sono stabilite a livello europeo:
 
-1. **Un microchip** (standard ISO 11784/11785), impiantato **prima** della vaccinazione antirabbica. Se il microchip è stato inserito dopo la vaccinazione, la vaccinazione non è valida.
-2. **Una vaccinazione antirabbica valida.** La prima vaccinazione deve essere stata fatta almeno 21 giorni prima del viaggio, e l'animale deve avere almeno 12 settimane di età al momento della vaccinazione. I richiami devono essere fatti prima della scadenza del precedente per restare validi senza un nuovo periodo di attesa.
+1. **Un microchip** conforme ai requisiti tecnici dell'UE (altrimenti devi portare con te un lettore per permetterne il controllo). La vaccinazione antirabbica non deve avere una data precedente all'impianto o alla lettura del microchip: una vaccinazione fatta prima del microchip non è valida. I microchip impiantati con le regole precedenti prima del 22 aprile 2026 restano validi.
+2. **Una vaccinazione antirabbica valida**, fatta da un veterinario autorizzato. L'animale deve avere almeno 12 settimane di età al momento della vaccinazione, e la vaccinazione primaria deve essere stata completata almeno 21 giorni prima del viaggio. I richiami devono essere fatti entro il periodo di validità della vaccinazione precedente per restare validi senza un nuovo periodo di attesa.
 3. **Un passaporto europeo per animali da compagnia**, rilasciato da un veterinario autorizzato, in cui sono registrati il numero di microchip, la vaccinazione antirabbica e i dati del proprietario.
 
 ## Cosa cambia dal 22 aprile 2026?
 
-Cambia il regolamento europeo di riferimento ma non i requisiti di base, con il passaporto riservato a chi risiede nell'UE e un massimo di cinque animali per persona.
+Cambia il regolamento europeo di riferimento ma non i requisiti di base, con il passaporto riservato a chi risiede nell'UE e un massimo di cinque animali per movimento.
 
-Dal 22 aprile 2026 queste regole sono fissate dal Regolamento delegato (UE) 2026/131, che ha sostituito il Regolamento (UE) 576/2013. I requisiti di base non cambiano. Due punti da sapere: il passaporto europeo viene rilasciato solo ad animali il cui proprietario risiede nell'UE, e una persona può viaggiare con al massimo cinque cani, gatti o furetti (eccezioni per mostre e gare, con prova scritta). La lista completa è nella nostra [pagina viaggi](/it/travel).
+Dal 22 aprile 2026 queste regole sono fissate dal Regolamento delegato (UE) 2026/131, che ha preso il posto del Regolamento (UE) 576/2013 (applicato ai viaggi con animali da compagnia fino al 21 aprile 2026). I requisiti di base non cambiano. Punti da sapere: il passaporto europeo viene rilasciato solo ad animali il cui proprietario risiede abitualmente nell'UE; un movimento a carattere non commerciale comprende al massimo cinque cani, gatti o furetti, in un solo veicolo salvo che si usino mezzi pubblici (di più solo per gare, mostre o eventi sportivi, con prova scritta dell'iscrizione e animali di più di sei mesi); e i passaporti del vecchio modello rilasciati prima del 22 aprile 2026 restano validi. La lista completa è nella nostra [pagina viaggi](/it/travel).
 
 ## Alcuni paesi chiedono requisiti aggiuntivi?
 
-Sì, per esempio il trattamento contro la tenia per i cani, regole sulle razze o limiti per gli animali giovani, quindi controlla le regole ufficiali della destinazione.
+Sì, per esempio il trattamento contro la tenia per i cani o le condizioni per gli animali giovani, e valgono anche le regole nazionali sui cani: controlla le regole ufficiali della destinazione.
 
 Alcuni paesi aggiungono requisiti. Controlla le regole ufficiali della destinazione prima di ogni viaggio, perché cambiano. Esempi noti:
 
-- **Trattamento contro la tenia per i cani** che entrano in Finlandia, Irlanda, Malta, Irlanda del Nord e Norvegia: somministrato da un veterinario tra 24 e 120 ore prima dell'arrivo e registrato sul passaporto.
-- **Regole sulle razze**: alcuni paesi limitano o vietano certe razze di cani, o richiedono museruola e guinzaglio in pubblico.
-- **Animali giovani**: cuccioli e gattini sotto le 12 settimane, o tra le 12 e le 16 settimane senza una vaccinazione antirabbica valida, possono entrare in alcuni paesi solo a condizioni specifiche, e alcuni paesi non lo consentono affatto.
+- **Trattamento contro la tenia per i cani** (non per gatti e furetti) che entrano in Finlandia, Irlanda, Malta, Irlanda del Nord e Norvegia: un prodotto contro *Echinococcus multilocularis* somministrato da un veterinario tra 24 e 120 ore prima dell'arrivo e registrato sul passaporto. I cani che si spostano direttamente tra questi paesi ne sono esenti.
+- **Regole nazionali sui cani**: le norme su certe razze, museruola o guinzaglio non fanno parte delle regole UE sui viaggi con animali da compagnia, quindi verificale a parte con le autorità della destinazione.
+- **Animali giovani**: cuccioli, gattini e giovani furetti sotto le 12 settimane senza vaccinazione antirabbica, o tra le 12 e le 16 settimane la cui vaccinazione non ha ancora 21 giorni, possono viaggiare solo verso i paesi che lo consentono, e solo con una dichiarazione del proprietario che non hanno avuto contatti con animali selvatici sensibili alla rabbia, oppure insieme alla madre da cui dipendono ancora, se il suo passaporto mostra una vaccinazione antirabbica valida fatta prima della loro nascita. Gli altri paesi non lo consentono.
 
 ## Come preparare il viaggio con il veterinario?
 
 Prenota la visita con largo anticipo, controlla insieme a lui il passaporto, porta i farmaci con la prescrizione e verifica il numero di telefono registrato al microchip.
 
-- Prenota la visita per il passaporto o il richiamo **con largo anticipo** rispetto al viaggio. La regola dei 21 giorni dopo la prima vaccinazione antirabbica è il motivo più frequente per cui una vacanza viene annullata.
-- Controlla il passaporto insieme al veterinario: numero di microchip corretto, date delle vaccinazioni leggibili, timbro e firma del veterinario presenti. Il personale di frontiera controlla davvero.
+- Prenota la visita per il passaporto o il richiamo **con largo anticipo** rispetto al viaggio. L'attesa di 21 giorni dopo la prima vaccinazione antirabbica è facile da sottovalutare.
+- Controlla il passaporto insieme al veterinario: numero di microchip corretto, date delle vaccinazioni leggibili, timbro e firma del veterinario presenti. Il passaporto può essere controllato durante il viaggio.
 - Porta con te eventuali farmaci che il tuo animale prende, insieme alla prescrizione o a una nota del veterinario.
 - Assicurati che il numero di telefono registrato al microchip sia uno a cui risponderai mentre sei all'estero. Un animale ritrovato viene restituito in fretta solo se l'anagrafe ha un numero funzionante.
 
@@ -59,4 +61,4 @@ Un microchip è un numero di identificazione. Non contiene la storia clinica del
 
 ## Fonti da consultare
 
-Le regole sono pubblicate dalla Commissione europea e dall'autorità per l'agricoltura o la sicurezza alimentare di ciascun paese (in Italia, il Ministero della Salute). Il tuo veterinario può indicarti la pagina ufficiale aggiornata per la tua destinazione. La nostra [guida ai viaggi](/it/travel) riassume le regole con le fonti ufficiali.
+Le regole sono pubblicate dalla Commissione europea e dall'autorità per l'agricoltura o la sicurezza alimentare di ciascun paese. Il tuo veterinario può indicarti la pagina ufficiale aggiornata per la tua destinazione. La nostra [guida ai viaggi](/it/travel) riassume le regole con le fonti ufficiali.

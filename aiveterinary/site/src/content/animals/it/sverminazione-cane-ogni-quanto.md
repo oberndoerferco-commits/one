@@ -4,7 +4,7 @@ description: "Non esiste una frequenza uguale per tutti i cani. Le linee guida E
 species: dog
 category: care
 urgency: routine
-updated: 2026-10-16
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -38,7 +38,7 @@ Dipende dal tuo cane: il veterinario valuta il rischio in base a età, stile di 
 
 La domanda "ogni quanto devo sverminare il cane?" ha una risposta onesta: **dipende dal tuo cane**. ESCCAP, il gruppo europeo di esperti sui parassiti degli animali da compagnia, raccomanda per i cani adulti una **valutazione del rischio individuale**, per decidere se e quanto spesso trattare. Il veterinario considera:
 
-- **età**: cuccioli e cani anziani sono più a rischio degli adulti sani
+- **età**: i cuccioli seguono un programma a parte (vedi sotto), ma ESCCAP ricorda che poche infezioni da vermi dipendono strettamente dall'età e che il rischio continua per tutta la vita
 - **stile di vita**: se esce, se gira libero senza controllo, se frequenta parchi, aree cani o altri cani
 - **alimentazione**: se mangia **carne cruda** o visceri, prede, **lumache e chiocciole**
 - **casa**: se convive con **bambini piccoli**, anziani o persone con difese immunitarie basse
@@ -86,7 +86,7 @@ Filariosi cardiopolmonare, vermi polmonari e tenie trasmesse dalle pulci o dalla
 
 Oltre ai vermi intestinali, il veterinario terrà conto di:
 
-- **Filariosi cardiopolmonare**: è trasmessa dalle zanzare e la linea guida ESCCAP Italia cita l'Italia tra le aree endemiche, con zone ad alto rischio nel Nord. Nei cani che vivono in aree a rischio si fa una **prevenzione mensile** durante la stagione delle zanzare, che in Europa va in genere da aprile a ottobre. Non è la stessa cosa della sverminazione intestinale: chiedi al veterinario.
+- **Filariosi cardiopolmonare**: è trasmessa dalle zanzare e la linea guida ESCCAP Italia cita l'Italia tra le aree endemiche, con zone ad alto rischio nel Nord. Nei cani che vivono in aree a rischio ESCCAP indica una **prevenzione mensile** (o un preventivo iniettabile a lunga durata) durante la stagione delle zanzare, che nella maggior parte delle zone endemiche d'Europa va in genere da aprile a ottobre, e per 30 giorni dopo la sua fine. Non è la stessa cosa della sverminazione intestinale: chiedi al veterinario.
 - **Vermi polmonari** come *Angiostrongylus vasorum*, che si prendono mangiando lumache e chiocciole e possono causare tosse, fatica a respirare e problemi di coagulazione.
 - **Tenie trasmesse dalle pulci**: un cane con le pulci può prendere anche la tenia, quindi va trattato contro entrambe.
 - **Tenie da carne cruda o visceri**: ESCCAP indica un trattamento contro le tenie ogni 4 settimane per i cani nutriti con carne cruda non cotta o congelata a sufficienza, e ricorda che la carne ben cotta o congelata abbastanza a lungo previene queste infestazioni.

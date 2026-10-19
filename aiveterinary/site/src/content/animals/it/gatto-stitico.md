@@ -4,7 +4,7 @@ description: "Un gatto che spinge in lettiera può essere stitico, ma può anche
 species: cat
 category: symptoms
 urgency: today
-updated: 2026-10-16
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -67,7 +67,7 @@ Le cause più comuni sono poca acqua, pelo o materiale non digeribile, età, sov
 - **Poca acqua:** il colon assorbe più liquido dalle feci, che diventano dure. I gatti con malattia renale cronica, frequente nei gatti anziani, sono spesso un po' disidratati.
 - **Pelo e materiale non digeribile** ingerito, come pelo in eccesso, ossa o lettiera.
 - **Gatto anziano, sovrappeso o poco attivo**, con contrazioni intestinali più deboli.
-- **Il gatto evita la lettiera**: lettiera sporca, posizione scomoda, stress, conflitti con altri gatti, oppure **dolore** (per esempio artrosi) che gli rende difficile accovacciarsi.
+- **Il gatto evita di defecare**: lettiera sporca, stress, oppure **dolore** (per esempio artrosi o un vecchio trauma al bacino) che gli rende difficile accovacciarsi.
 - **Restringimenti** del passaggio, per esempio dopo una frattura del bacino guarita male, o masse.
 - **Problemi neurologici o metabolici**, come lesioni della colonna o della coda, squilibri di potassio o calcio.
 - **Alcuni farmaci**, come effetto collaterale.
@@ -77,7 +77,7 @@ Le cause più comuni sono poca acqua, pelo o materiale non digeribile, età, sov
 
 Non fare clisteri, non dare lassativi, oli o antidolorifici per uso umano e non aspettare giorni se il gatto vomita, non mangia o è spento.
 
-- **Non fare clisteri** al gatto di tua iniziativa e non usare **mai clisteri per uso umano**: quelli a base di fosfati possono causare nel gatto gravi squilibri dei sali minerali, potenzialmente mortali. Il clistere, quando serve, lo decide e lo fa il veterinario.
+- **Non fare clisteri** al gatto di tua iniziativa e non usare **mai clisteri per uso umano**: quelli a base di fosfati possono causare nel gatto gravi squilibri dei sali minerali, potenzialmente mortali. Il clistere, quando serve, lo decide il veterinario: spesso lo fa lui, a volte in sedazione, e solo se lo ritiene opportuno ti insegna a farlo a casa.
 - **Non dare lassativi per uso umano**, olio di vaselina o altri oli per bocca senza indicazione del veterinario: alcuni lassativi peggiorano la disidratazione, e l'olio può finire nelle vie respiratorie e causare una polmonite.
 - **Non dare antidolorifici per uso umano**: il paracetamolo è velenoso per il gatto anche in piccole quantità, e anche ibuprofene e aspirina sono pericolosi.
 - Non provare a estrarre le feci con le dita o con oggetti.
@@ -96,8 +96,8 @@ Fallo bere di più, dagli cibo umido, valuta le fibre con il veterinario, tieni 
 - **Fallo bere di più:** acqua fresca ogni giorno, ciotole diverse per capire quale preferisce, eventualmente una fontanella. Tieni acqua e cibo lontani dalla lettiera.
 - **Cibo umido**: aumenta l'acqua assunta con i pasti.
 - **Fibre:** il veterinario può consigliare un alimento più ricco di fibre o un'integrazione. Aumentale in modo graduale, perché un eccesso può dare gas, gonfiore o feci molli.
-- **Lettiera pulita e in un posto tranquillo**, così il gatto non è portato a trattenersi.
-- **Spazzola spesso** il gatto per ridurre il pelo ingerito.
+- **Lettiera pulita e facile da raggiungere**: l'Ontario Veterinary College consiglia di togliere feci e urina almeno una volta al giorno, di avere almeno una lettiera per gatto più una, e di tenerle accessibili soprattutto per i gatti anziani o con artrosi.
+- **Pelo ingerito**: è una delle possibili cause; chiedi al veterinario se nel tuo gatto può essere utile spazzolarlo più spesso.
 - **Peso corretto**: chiedi al veterinario se il tuo gatto è in sovrappeso.
 
 E ricorda la regola più importante: un gatto, soprattutto maschio, che spinge in lettiera senza risultato va visto subito. Non dare per scontato che sia "solo" stitichezza.
