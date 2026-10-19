@@ -15,9 +15,7 @@
   "notes": "annual check and distemper vaccination\nBAR, coat in good condition\nwt 1.1 kg\nT 38.9\nabdominal palpation unremarkable\ndistemper vaccine s.c., batch KX2291\nstay 30 min in the waiting room after vaccination\nnext vaccination in 1 year",
   "expect": {
     "missing_includes": [
-      "assessment",
-      "medications[0].dose",
-      "medications[0].frequency"
+      "assessment"
     ],
     "drugs": [
       "distemper vaccine"

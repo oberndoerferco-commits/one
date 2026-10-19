@@ -87,7 +87,7 @@ class Case {
     record.medications.forEach((m, i) => (statuses[`medications[${i}]`] = m.status as St));
     record.diagnostics.forEach((d, i) => (statuses[`diagnostics[${i}]`] = d.status as St));
     const expect = {
-      missing_includes: [...new Set([...requiredMissing(record, 'consult_report'), ...record.missing.map((m) => m.field)])],
+      missing_includes: [...new Set([...requiredMissing(record, 'consult_report', header), ...record.missing.map((m) => m.field)])],
       drugs: record.medications.map((m) => m.drug).filter(Boolean),
       assessment_text: record.assessment.text,
       ...(record.examination.vitals.temperature ? { temperature: record.examination.vitals.temperature.value } : {}),

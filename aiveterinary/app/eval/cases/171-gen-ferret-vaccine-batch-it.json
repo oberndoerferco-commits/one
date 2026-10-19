@@ -15,9 +15,7 @@
   "notes": "controllo annuale e vaccino cimurro\nvivace, mantello in buone condizioni\npeso 1,1 kg\nT 38,9\npalpazione addominale nella norma\nvaccino cimurro s.c., lotto KX2291\nrestare 30 min in sala d'attesa dopo il vaccino\nprossimo vaccino tra 1 anno",
   "expect": {
     "missing_includes": [
-      "assessment",
-      "medications[0].dose",
-      "medications[0].frequency"
+      "assessment"
     ],
     "drugs": [
       "vaccino cimurro"

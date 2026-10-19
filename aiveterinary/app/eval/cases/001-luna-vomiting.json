@@ -4,7 +4,7 @@
   "header": { "name": "Luna", "species": "dog", "breed": "Labrador Retriever", "sex": "female", "age": { "value": 6, "unit": "year" } },
   "notes": "vomiting 3x since yesterday\nno diarrhea\nreduced appetite\ndrinking normally\ntemp 39.1\nabdomen soft, mild pain\nbloodwork + ultrasound\nfluids + antiemetic\nrecheck 48h",
   "expect": {
-    "missing_includes": ["medications[0].drug", "diagnostics[0].result", "medications[0].dose", "medications[0].route", "medications[0].frequency", "diagnostics[1].result", "assessment"],
+    "missing_includes": ["medications[0].drug", "diagnostics[0].result", "medications[0].dose", "medications[0].route", "diagnostics[1].result", "assessment"],
     "drugs": [],
     "numbers_allowed": ["3", "39.1", "48"],
     "assessment_text": null,

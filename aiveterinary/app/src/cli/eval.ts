@@ -45,7 +45,7 @@ export async function runEval(extractorName = process.env.AIVET_EXTRACTOR ?? 'fi
         for (const r of c.expect.expected_rules ?? []) if (!findings.some((f) => f.rule === r)) problems.push(`expected rule ${r} not raised`);
       } else {
         if (blocks.length) problems.push(`${blocks.length} blocking finding(s): ${blocks.map((b) => b.rule + '@' + b.field).join(', ')}`);
-        const miss = new Set([...record.missing.map((m) => m.field), ...requiredMissing(record, 'consult_report')]);
+        const miss = new Set([...record.missing.map((m) => m.field), ...requiredMissing(record, 'consult_report', header)]);
         for (const m of c.expect?.missing_includes ?? []) { totals.missTotal++; if (miss.has(m)) totals.missRecall++; else problems.push(`missing flag not raised: ${m}`); }
         const mf = scoreMissingFlags(miss, c.expect?.missing_includes ?? []);
         totals.flagsRaised += mf.raised; totals.flagsCorrect += mf.correct;

@@ -17,8 +17,7 @@
   "expect": {
     "missing_includes": [
       "medications[0].dose",
-      "medications[0].route",
-      "medications[0].frequency"
+      "medications[0].route"
     ],
     "drugs": [
       "Cerenia"

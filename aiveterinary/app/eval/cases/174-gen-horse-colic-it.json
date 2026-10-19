@@ -16,8 +16,7 @@
   "notes": "raspa e si rotola da stamattina\nha mangiato normalmente la razione del mattino\nultime feci ieri sera secondo la proprietaria\nFC 44\nFR 16\nT 37,8\nTRC 2 s\nmucose rosee, umide\nborborigmi ridotti in tutti i quadranti\nesplorazione rettale: nella norma\ncirca 520 kg (nastro)\nBuscopan ev somministrato\nsospetta colica spastica lieve\nper ora niente fieno, acqua sì, passeggiare a mano\nchiamare se ritorna il dolore",
   "expect": {
     "missing_includes": [
-      "medications[0].dose",
-      "medications[0].frequency"
+      "medications[0].dose"
     ],
     "drugs": [
       "Buscopan"

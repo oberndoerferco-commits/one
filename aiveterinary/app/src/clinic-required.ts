@@ -1,4 +1,4 @@
-import type { ClinicalRecord } from './schema.js';
+import type { ClinicalRecord, PatientHeader } from './schema.js';
 import { requiredMissing } from './validators.js';
 
 /**
@@ -39,6 +39,8 @@ export type ClinicMissingOptions = {
   /** Document whose built-in requirements are already flagged (default consult_report). */
   docType?: Parameters<typeof requiredMissing>[1];
   lang?: keyof typeof CLINIC_REASON;
+  /** Patient header, passed on to requiredMissing (weight_kg there counts as a recorded weight). */
+  header?: PatientHeader;
 };
 
 /**
@@ -47,7 +49,7 @@ export type ClinicMissingOptions = {
  * Read-only: the record is never modified.
  */
 export function clinicMissing(record: ClinicalRecord, required: string[], opts: ClinicMissingOptions = {}): { field: string; reason: string }[] {
-  const already = new Set(requiredMissing(record, opts.docType ?? 'consult_report'));
+  const already = new Set(requiredMissing(record, opts.docType ?? 'consult_report', opts.header));
   const reason = CLINIC_REASON[opts.lang ?? 'en'];
   const want = new Set(required);
   const out: { field: string; reason: string }[] = [];

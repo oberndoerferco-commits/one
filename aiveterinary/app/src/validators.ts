@@ -247,21 +247,45 @@ export function validateDerivedText(text: string, record: ClinicalRecord, notes:
   return f;
 }
 
-/** Fields a document needs; returns what is missing so the UI can flag it. Does not invent. */
-export function requiredMissing(record: ClinicalRecord, docType: 'consult_report' | 'discharge' | 'referral' | 'owner_summary'): string[] {
+/**
+ * A vaccine named in the drug or class text (EN/DE/IT: vaccine, vaccin*, Impf*, Impfstoff, vaccino).
+ * A vaccine is given as one standard dose per the product and is recorded by product and batch,
+ * not by a dose number; the batch requirement (vaccination entry) covers it.
+ */
+// German compounds put the vaccine word last (Staupeimpfstoff, Tollwutimpfung), so those match anywhere.
+export const VACCINE_RE = /\b(vaccin|vakzin|impf)|impfstoff|impfung/i;
+const isVaccine = (m: ClinicalRecord['medications'][number]) => VACCINE_RE.test(`${m.drug ?? ''} ${m.class_as_written ?? ''}`);
+
+/**
+ * Fields a document needs; returns what is missing so the UI can flag it. Does not invent.
+ *
+ * Rules for medications (status 'declined' needs nothing beyond the drug name):
+ *  - dose and route are required for every non-declined medication, except that a vaccine given in
+ *    the clinic (status 'performed') needs no dose number (see VACCINE_RE);
+ *  - frequency and duration are not required for a medication given once in the clinic
+ *    (status 'performed'); for prescribed/dispensed/other statuses frequency is required, and
+ *    duration on discharge and owner-summary documents.
+ * Weight is required when a non-declined medication carries a dose, unless the record or the
+ * patient header (`header.weight_kg`) already has it.
+ */
+export function requiredMissing(record: ClinicalRecord, docType: 'consult_report' | 'discharge' | 'referral' | 'owner_summary', header?: PatientHeader): string[] {
   const miss: string[] = [];
   if (!record.presenting_complaint) miss.push('presenting_complaint');
   if (docType !== 'owner_summary' && !record.assessment.text && record.assessment.differentials.length === 0) miss.push('assessment');
   record.medications.forEach((m, i) => {
     if (!m.drug) miss.push(`medications[${i}].drug`);
     if (m.status !== 'declined') {
-      if (m.dose == null) miss.push(`medications[${i}].dose`);
+      const performed = m.status === 'performed';
+      if (m.dose == null && !(performed && isVaccine(m))) miss.push(`medications[${i}].dose`);
       if (!m.route) miss.push(`medications[${i}].route`);
-      if (!m.frequency) miss.push(`medications[${i}].frequency`);
-      if (docType === 'discharge' || docType === 'owner_summary') if (!m.duration) miss.push(`medications[${i}].duration`);
+      if (!performed) {
+        if (!m.frequency) miss.push(`medications[${i}].frequency`);
+        if (docType === 'discharge' || docType === 'owner_summary') if (!m.duration) miss.push(`medications[${i}].duration`);
+      }
     }
   });
-  if (record.medications.some((m) => m.dose != null) && !record.patient.weight && !record.examination.vitals.weight) miss.push('patient.weight');
+  const dosed = record.medications.some((m) => m.dose != null && m.status !== 'declined');
+  if (dosed && !record.patient.weight && !record.examination.vitals.weight && header?.weight_kg == null) miss.push('patient.weight');
   record.diagnostics.forEach((d, i) => { if (d.status === 'performed' && !d.result) miss.push(`diagnostics[${i}].result`); });
   if ((docType === 'discharge' || docType === 'owner_summary') && !record.plan.follow_up && record.plan.instructions.length === 0) miss.push('plan');
   return miss;

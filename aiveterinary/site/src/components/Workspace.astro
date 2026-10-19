@@ -591,9 +591,9 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
       const ctx = VisitContext.parse({ country: csel.value, author: clinicAuthor() });
       const cflags = countryMissing(record, header, ctx);
       const reasons: Record<string, string> = {}; for (const f of cflags) reasons[f.field] = f.reason;
-      const clinic = clinicMissing(record, clinicRequired(), { lang: J.pageLang });
+      const clinic = clinicMissing(record, clinicRequired(), { lang: J.pageLang, header });
       for (const f of clinic) reasons[f.field] ??= f.reason;
-      const missing = [...requiredMissing(record, 'consult_report'), ...cflags.map((f) => f.field), ...clinic.map((f) => f.field)].filter((f, i, a) => a.indexOf(f) === i);
+      const missing = [...requiredMissing(record, 'consult_report', header), ...cflags.map((f) => f.field), ...clinic.map((f) => f.field)].filter((f, i, a) => a.indexOf(f) === i);
       const list = $('#ws-flaglist'); list.innerHTML = '';
       const li = (html: string) => { const el = document.createElement('li'); el.innerHTML = html; list.appendChild(el); return el; };
       for (const b of blocks) li(`<span class="f-block">${J.blocked}</span> ${esc(b.field)}: ${esc(b.message)}`);

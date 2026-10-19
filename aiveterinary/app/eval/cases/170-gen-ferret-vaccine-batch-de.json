@@ -15,9 +15,7 @@
   "notes": "Jahrescheck und Staupeimpfung\nmunter, Fell in gutem Zustand\nKGW 1,1 kg\nT 38,9\nAbdomen palpatorisch obB\nStaupeimpfstoff s.c., Ch.-B. KX2291\nnach der Impfung 30 min im Wartezimmer bleiben\nnächste Impfung in 1 Jahr",
   "expect": {
     "missing_includes": [
-      "assessment",
-      "medications[0].dose",
-      "medications[0].frequency"
+      "assessment"
     ],
     "drugs": [
       "Staupeimpfstoff"

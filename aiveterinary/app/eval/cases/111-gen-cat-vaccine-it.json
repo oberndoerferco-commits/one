@@ -17,8 +17,6 @@
   "expect": {
     "missing_includes": [
       "assessment",
-      "medications[0].dose",
-      "medications[0].frequency",
       "medications[0].batch"
     ],
     "drugs": [

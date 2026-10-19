@@ -16,8 +16,7 @@
   "notes": "scharrt und wälzt sich seit heute Morgen\nMorgenfutter normal gefressen\nletzter Kotabsatz gestern Abend laut Besitzerin\nHF 44\nAF 16\nT 37,8\nKFZ 2 s\nSH rosa, feucht\nDarmgeräusche in allen Quadranten reduziert\nrektal: obB\nca. 520 kg (Maßband)\nBuscopan i.v. verabreicht\nV. a. leichte Krampfkolik\nvorerst kein Futter, Wasser ok, führen\nAnruf, wenn wieder Schmerzen",
   "expect": {
     "missing_includes": [
-      "medications[0].dose",
-      "medications[0].frequency"
+      "medications[0].dose"
     ],
     "drugs": [
       "Buscopan"

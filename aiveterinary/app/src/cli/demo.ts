@@ -28,4 +28,4 @@ console.log('--- NOTES ---\n' + notes + '\n');
 console.log('--- REPORT (' + res.model + ') ---\n' + renderConsultReport(record, header, 'en') + '\n');
 console.log('--- CHECKS ---');
 console.log(findings.length ? findings.map((f) => `${f.severity.toUpperCase()} ${f.rule} ${f.field}: ${f.message}`).join('\n') : 'No findings. Nothing on the page that was not in the notes.');
-console.log('Needed before approval: ' + (requiredMissing(record, 'consult_report').join(', ') || 'nothing'));
+console.log('Needed before approval: ' + (requiredMissing(record, 'consult_report', header).join(', ') || 'nothing'));

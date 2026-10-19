@@ -16,8 +16,7 @@
   "notes": "pawing and rolling since this morning\nate breakfast normally\nlast droppings last night per owner\nHR 44\nRR 16\nT 37.8\nCRT 2 s\nMM pink, moist\ngut sounds reduced all quadrants\nrectal: NAD\napprox 520 kg (tape)\nBuscopan iv given\nmild spasmodic colic suspected\nno feed for now, water ok, walk in hand\ncall if pain returns",
   "expect": {
     "missing_includes": [
-      "medications[0].dose",
-      "medications[0].frequency"
+      "medications[0].dose"
     ],
     "drugs": [
       "Buscopan"
