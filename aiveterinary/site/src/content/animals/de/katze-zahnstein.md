@@ -4,7 +4,7 @@ description: "Zahnstein bei der Katze ist mehr als ein Schönheitsfehler. Darunt
 species: cat
 category: conditions
 urgency: this-week
-updated: 2026-10-17
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -39,7 +39,7 @@ Auf den Zähnen bildet sich ständig ein weicher Belag aus Bakterien, die **Plaq
 
 Zahnstein selbst ist nicht das Hauptproblem. Er bietet aber eine raue Oberfläche, an der sich weitere Bakterien gut festsetzen. Diese Bakterien lösen eine Entzündung des Zahnfleischs aus. Mit der Zahnbürste lässt sich fester Zahnstein nicht mehr entfernen.
 
-Zahnerkrankungen sind bei Katzen häufig. Das Cornell Feline Health Center gibt an, dass ein großer Teil der Katzen über vier Jahren betroffen ist.
+Zahnerkrankungen sind bei Katzen häufig. Das Cornell Feline Health Center gibt an, dass laut Studien 50 bis 90 Prozent der Katzen über vier Jahren eine Form von Zahnerkrankung haben.
 
 ## Wie wird aus einer Zahnfleischentzündung bei der Katze eine Parodontitis?
 
@@ -57,7 +57,7 @@ Bei Zahnresorptionen (FORL) wird die Zahnsubstanz von innen heraus abgebaut; sie
 
 Eine Besonderheit der Katze sind **Zahnresorptionen**. Früher sprach man von **FORL** (feline odontoklastische resorptive Läsionen) oder „Hälschenläsionen“. Dabei wird die Zahnsubstanz von innen heraus abgebaut und unwiederbringlich zerstört. Nach dem Cornell Feline Health Center sind sie die häufigste Ursache für Zahnverlust bei Katzen. Die Ursache ist bis heute nicht geklärt.
 
-Typisch ist eine **rosa Stelle am Zahn genau am Zahnfleischrand** Wenn Sie so etwas sehen, ist der Zahn meist schon deutlich geschädigt. Manche Resorptionen betreffen außerdem nur die Zahnwurzel und sind von außen gar nicht zu erkennen.
+Von außen sind Zahnresorptionen oft schwer oder gar nicht zu erkennen.
 
 Zahnresorptionen können **sehr schmerzhaft** sein. Erkennbar wird das oft an einem veränderten Fressverhalten:
 
@@ -66,7 +66,7 @@ Zahnresorptionen können **sehr schmerzhaft** sein. Erkennbar wird das oft an ei
 - sie lässt Futter fallen, speichelt oder wirkt gereizt
 - sie zuckt zusammen, wenn der Zahn berührt wird
 
-Sicher feststellen lassen sich Zahnresorptionen nur mit **Röntgenaufnahmen der Zähne**, und die sind bei Katzen nur in Narkose möglich. Eine Füllung hilft bei diesen Zähnen nicht. Nach dem Cornell Feline Health Center ist das Ziehen betroffener Zähne die wirksame Behandlung. In bestimmten Fällen kann die Praxis stattdessen nur die Zahnkrone entfernen oder einen Zahn zunächst beobachten. Was im Einzelfall richtig ist, entscheidet die Tierärztin oder der Tierarzt anhand des Röntgenbilds.
+Sicher feststellen lassen sich Zahnresorptionen am besten mit **Röntgenaufnahmen des ganzen Mauls**; eine vollständige Untersuchung des Mauls ist bei Katzen nur in Narkose möglich. Nach dem Cornell Feline Health Center ist das Ziehen betroffener Zähne die einzige wirksame Behandlung. Was im Einzelfall richtig ist, entscheidet die Tierärztin oder der Tierarzt anhand des Röntgenbilds.
 
 ## Warum braucht meine Katze für die Zahnreinigung eine Narkose?
 
@@ -86,8 +86,7 @@ Vor der Narkose untersucht die Praxis Ihre Katze und schätzt ihr Narkoserisiko 
 Wenn Ihre Katze Zahnschmerzen hat, geben Sie ihr **niemals eigene Medikamente**:
 
 - **Paracetamol** ist für Katzen besonders gefährlich. Schon kleine Mengen können die roten Blutkörperchen und die Leber schädigen; typisch sind unter anderem Schwellungen an Gesicht und Pfoten.
-- **Ibuprofen** schädigt bei Katzen bereits in geringeren Mengen als beim Hund Magen, Darm und Nieren.
-- **Metamizol** (zum Beispiel Novalgin) darf Ihre Katze nur bekommen, wenn die Tierärztin oder der Tierarzt es verordnet.
+- **Ibuprofen** ist für Katzen schon in geringeren Mengen giftig als für Hunde.
 
 Die Praxis kann Ihrer Katze bei Bedarf ein passendes Schmerzmittel geben.
 
@@ -95,10 +94,10 @@ Die Praxis kann Ihrer Katze bei Bedarf ein passendes Schmerzmittel geben.
 
 Am wirksamsten mit Zähneputzen mit Zahnpasta für Katzen, an das Sie Ihre Katze schrittweise gewöhnen, und einer Zahnkontrolle mindestens einmal im Jahr.
 
-- **Zähneputzen** ist nach Cornell und International Cat Care die wirksamste Vorbeugung. Gewöhnen Sie Ihre Katze in kleinen Schritten über einige Wochen daran: erst den Geruch der Paste, dann den Geschmack, dann die Bürste. Es reicht, die Außenseiten der Zähne zu putzen.
+- **Zähneputzen** ist nach Cornell und International Cat Care die wirksamste Vorbeugung. Gewöhnen Sie Ihre Katze in kleinen Schritten daran: erst den Geruch der Paste, dann den Geschmack, dann die Bürste.
 - Verwenden Sie **nur Zahnpasta für Katzen**. Zahnpasta für Menschen ist für Katzen nicht geeignet.
 - Ist das Zahnfleisch schon entzündet, kann Putzen wehtun. Lassen Sie die Zähne dann zuerst untersuchen.
 - Lässt sich Ihre Katze nicht putzen, fragen Sie in der Praxis nach Alternativen, etwa speziellen Zahnpflegefuttern.
-- Lassen Sie die Zähne **mindestens einmal im Jahr** bei der Routineuntersuchung kontrollieren.
+- Lassen Sie die Zähne **mindestens einmal im Jahr** bei der Routineuntersuchung kontrollieren; Katzen mit Zahnproblemen brauchen laut International Cat Care oft alle 3 bis 6 Monate eine Kontrolle.
 
 Wie oft eine professionelle Zahnreinigung nötig ist, ist von Katze zu Katze verschieden. Das legt Ihre Praxis fest.

@@ -4,7 +4,7 @@ description: "Milben gehören zu den häufigsten Ursachen für Juckreiz und Haar
 species: dog
 category: conditions
 urgency: this-week
-updated: 2026-10-17
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -89,10 +89,9 @@ ESCCAP warnt ausdrücklich vor Hausmitteln: Es gibt keinen wissenschaftlichen Na
 
 ## Welche Hygiene ist bei Milben im Haushalt nötig?
 
-Hände waschen, häufig saugen, Decken, Körbchen, Bürsten und Textilien reinigen und den Hund bis zum Ende der Behandlung nicht im Bett schlafen lassen.
+Hände waschen, häufig saugen, Decken, Körbchen, Bürsten und Textilien reinigen und die Kontrolltermine einhalten.
 
 - Waschen Sie sich nach dem Kontakt mit Ihrem Hund regelmäßig die Hände.
 - Saugen Sie häufig Staub.
 - Reinigen Sie alle Gegenstände und Textilien, mit denen Ihr Hund in Kontakt kommt, etwa Decken, Körbchen, Kissen, Bürsten und Kämme.
-- Lassen Sie Ihren Hund bis zum Ende der Behandlung nicht in Ihrem Bett schlafen.
 - Halten Sie die Kontrolltermine ein, auch wenn der Juckreiz schon nachlässt. Ob die Behandlung abgeschlossen ist, entscheidet die Praxis.

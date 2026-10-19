@@ -4,7 +4,7 @@ description: "Ab wann Ihr Hund oder Ihre Katze als Senior gilt, was der halbjäh
 species: general
 category: care
 urgency: routine
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -14,8 +14,10 @@ references:
     url: "https://catvets.com/guidelines/senior-care"
   - title: "AAFP: Senior Care Guidelines, Zusammenfassung für die Praxis"
     url: "https://catvets.com/seniorcaregls-summary-pdf"
-  - title: "International Cat Care / ISFM: Arthritis and degenerative joint disease in cats"
-    url: "https://icatcare.org/advice/arthritis-and-degenerative-joint-disease-in-cats/"
+  - title: "International Cat Care: Arthritis in cats"
+    url: "https://icatcare.org/articles/arthritis-in-cats"
+  - title: "AAHA: 2019 Canine Life Stage Guidelines (PDF)"
+    url: "https://www.aaha.org/globalassets/02-guidelines/canine-life-stage-2019/2019-aaha-canine-life-stage-guidelines-final.pdf"
   - title: "International Cat Care / ISFM: neue Leitlinien zur chronischen Nierenerkrankung, 2026"
     url: "https://icatcare.org/news/icatcare-launch-brand-new-chronic-kidney-disease-veterinary-guidelines"
   - title: "AAHA: Mobility Matters, Osteoarthritis bei Hund und Katze"
@@ -32,7 +34,7 @@ Bei kleinen Hunden später, als die meisten denken, bei großen früher. Die AAH
 
 ## Wie oft sollte ein alter Hund oder eine alte Katze zum Check?
 
-AAHA und die felinen Leitlinien empfehlen für gesunde Senioren einen Check alle sechs Monate, für Katzen über 15 und für jedes Tier mit chronischer Erkrankung alle vier Monate. Sechs Monate im Leben eines Seniors entsprechen zwei bis drei Ihrer Jahre. Rechnen Sie damit, dass die Tierärztin das Tier wiegt, Körper- und Muskelkondition bewertet, jedes Gelenk durchbewegt, das Maul gründlich öffnet, bei der Katze die Schilddrüse tastet und nach Durst, Appetit, Schlaf, Kot- und Harnabsatz, Treppen und Sprüngen fragt.
+Die felinen Leitlinien empfehlen, gesunde Seniorkatzen alle sechs Monate zu untersuchen, und öfter, sobald eine altersbedingte Erkrankung gefunden wird; die AAHA empfiehlt für alte Hunde und Katzen ein- bis zweimal im Jahr eine medizinische Abklärung. Sechs Monate im Leben eines Seniors entsprechen zwei bis drei Ihrer Jahre. Rechnen Sie damit, dass die Tierärztin das Tier wiegt, Körper- und Muskelkondition bewertet, jedes Gelenk durchbewegt, das Maul gründlich öffnet, bei der Katze die Schilddrüse tastet und nach Durst, Appetit, Schlaf, Kot- und Harnabsatz, Treppen und Sprüngen fragt.
 
 ## Welche Untersuchungen braucht ein alter Hund oder eine alte Katze?
 
@@ -50,9 +52,9 @@ Lassen Sie sich die Werte geben und heben Sie sie auf: Der Verlauf über Jahre s
 
 ## Warum sollte ich mein altes Tier regelmäßig wiegen?
 
-Weil bei Katzen langsamer Gewichtsverlust das häufigste Frühzeichen mehrerer Krankheiten ist und beim Hund ein schlankes Gewicht Lebensdauer und Gelenken hilft.
+Weil bei Katzen langsamer Gewichtsverlust ein Frühzeichen mehrerer Krankheiten sein kann und beim Hund ein schlankes Gewicht Lebensdauer und Gelenken hilft.
 
-Wiegen Sie Ihr Tier monatlich auf derselben Waage. Bei Katzen ist langsamer Gewichtsverlust das häufigste Frühzeichen von Nieren-, Schilddrüsen- und Tumorerkrankungen, und leichter zu bemerken als ein veränderter Wassernapf. Beim Hund läuft das Risiko andersherum: Die AAHA weist darauf hin, dass ein schlanker Hund eines der wenigen nachweislich lebensverlängernden Dinge ist, und Gewicht verschlimmert arthrotische Gelenke.
+Wiegen Sie Ihr Tier monatlich auf derselben Waage. Bei Katzen kann langsamer Gewichtsverlust ein Frühzeichen von Erkrankungen wie Nieren-, Schilddrüsen- und Tumorerkrankungen sein und ist leichter zu bemerken als ein veränderter Wassernapf. Beim Hund läuft das Risiko andersherum: Die AAHA zitiert eine Studie, in der Labrador Retriever mit Idealgewicht im Schnitt 15 Prozent länger lebten, und Gewicht verschlimmert arthrotische Gelenke.
 
 ## Woran erkenne ich Schmerzen bei meinem alten Hund oder meiner alten Katze?
 
@@ -60,7 +62,7 @@ An einer veränderten Routine statt an Jammern oder Lahmheit: seltener springen,
 
 Alte Tiere jammern selten. Schmerz zeigt sich als veränderte Routine, deshalb bitten AAHA und ISFM darum, das Verhalten zu beobachten statt auf Lahmheit zu warten.
 
-**Katze:** springt seltener oder in Etappen über einen Stuhl; zögert vor der Toilette oder geht daneben; struppiges oder verfilztes Fell am Rücken, weil Putzen weh tut; zu lange Krallen; Steifheit nach dem Schlafen; weniger Lust auf die Katzenklappe. Schätzungen zu degenerativen Gelenkerkrankungen bei alten Katzen reichen bis 40 bis 92 Prozent, und das meiste bleibt undiagnostiziert.
+**Katze:** springt seltener oder in Etappen über einen Stuhl; zögert vor der Toilette oder geht daneben; struppiges oder verfilztes Fell am Rücken, weil Putzen weh tut; zu lange Krallen; Steifheit nach dem Schlafen; weniger Lust auf die Katzenklappe. Schätzungen zu degenerativen Gelenkerkrankungen bei Katzen reichen bis 40 bis 92 Prozent, und vieles bleibt undiagnostiziert.
 
 **Hund:** steif in den ersten Minuten nach dem Ruhen, langsamer beim Spaziergang, zögerlich an Treppen oder beim Einsteigen ins Auto, Muskelzucken in Ruhe, weniger geduldig beim Anfassen. Etwa jeder fünfte Hund hat Osteoarthritis.
 
@@ -70,9 +72,9 @@ Ein kurzes Video, wie Ihre Katze aufs Sofa kommt oder Ihr Hund aufsteht, ist oft
 
 Die chronische Nierenerkrankung der Katze und die Arthrose des Hundes.
 
-**Die chronische Nierenerkrankung der Katze** gehört zu den häufigsten Alterskrankheiten. Erste Zeichen sind schlechter Appetit, mehr Durst, mehr Urin, Gewichtsverlust und Müdigkeit. Diagnostiziert wird sie mit Blut und Urin zusammen, dazu der Blutdruck, weil die kranke Niere die häufigste Ursache für Bluthochdruck bei Katzen ist. Heilbar ist sie nicht, aber früh erkannt lässt sie sich über Jahre bremsen, und genau dafür ist der halbjährliche Urintest da; die ISFM hat 2026 neue Leitlinien dazu veröffentlicht.
+**Die chronische Nierenerkrankung der Katze** gehört zu den häufigsten Alterskrankheiten. Erste Zeichen sind schlechter Appetit, mehr Durst, mehr Urin, Gewichtsverlust und Müdigkeit. Diagnostiziert wird sie mit Blut und Urin zusammen, dazu der Blutdruck, weil die kranke Niere die häufigste Ursache für sekundären Bluthochdruck bei Katzen ist. Heilbar ist sie nicht, aber früh erkannt lässt sie sich oft über Monate bis Jahre bremsen, und genau dafür ist der regelmäßige Urintest da; iCatCare hat 2026 neue Leitlinien dazu veröffentlicht.
 
-**Die Arthrose des Hundes** ist die häufigste Ursache chronischer Schmerzen. Sie wird als Paket behandelt: Gewicht, gleichmäßige Bewegung, ein warmes, gepolstertes Bett und Medikamente, die Ihre Praxis auswählt und überwacht. Teppiche auf glatten Böden, eine Rampe fürs Auto und erhöhte Näpfe machen innerhalb von Wochen einen sichtbaren Unterschied.
+**Die Arthrose des Hundes** ist die häufigste Ursache chronischer Schmerzen. Sie wird als Paket behandelt: Gewicht, gleichmäßige Bewegung, ein warmes, gepolstertes Bett und Medikamente, die Ihre Praxis auswählt und überwacht. Teppiche auf glatten Böden, eine Rampe fürs Auto und erhöhte Näpfe können den Alltag erleichtern.
 
 ## Brauchen alte Hunde und Katzen Zahnpflege?
 
@@ -98,7 +100,7 @@ Was Ihr Hund oder Ihre Katze in diesem Jahr braucht, hängt von Rasse, Vorgeschi
 
 - AAHA, 2023 Senior Care Guidelines for Dogs and Cats; 2019 Canine Life Stage Guidelines
 - AAFP/ISFM, Feline Senior Care Guidelines (2021) und Zusammenfassung für die Praxis; AAHA/AAFP Feline Life Stage Guidelines (2021)
-- International Cat Care / ISFM, Arthrose bei Katzen; Leitlinien zur chronischen Nierenerkrankung 2026
+- International Cat Care, Arthrose bei Katzen; Leitlinien zur chronischen Nierenerkrankung 2026
 - AAHA, Mobility Matters
 - WSAVA Global Dental Guidelines
 - Villalobos A., Quality of Life Scale (HHHHHMM), Veterinary Practice News

@@ -4,7 +4,7 @@ description: "Il naso caldo non dice nulla: l'unico modo affidabile per sapere s
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-10-17
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -30,6 +30,7 @@ La febbre è un segnale, non una malattia: dice che nel corpo del cane sta succe
 - ha **convulsioni** o è confuso
 - è un **cucciolo**, un cane anziano, o un cane con una malattia cronica o in terapia (per esempio in chemioterapia)
 - è stato al **caldo** o ha fatto sforzi intensi: potrebbe essere un **colpo di calore**, che è un'emergenza (vedi sotto)
+- ha una temperatura rettale di circa **41 °C o più**, oppure **sotto i 37,5 °C**: anche una temperatura più bassa del normale può essere un segno di malattia
 
 Il Cornell University College of Veterinary Medicine, nelle indicazioni per i cani in chemioterapia, consiglia di chiamare **subito** la clinica se la temperatura supera i **39,4 °C (103 °F)** o se non riesci a misurarla. Per un cane sano è un buon punto di riferimento per telefonare al veterinario in giornata.
 
@@ -53,7 +54,7 @@ Secondo lo Schwarzman Animal Medical Center, la **misurazione rettale** è il me
 
 1. **Usa un termometro digitale** da tenere solo per il cane. Non usare termometri di vetro.
 2. **Fatti aiutare** da qualcuno che tenga fermo il cane con calma, in piedi o sdraiato sul fianco, e lo tranquillizzi.
-3. **Lubrifica bene la punta** con un lubrificante a base d'acqua o vaselina. Lo stesso centro veterinario usa anche una guaina monouso lubrificata, per motivi di igiene.
+3. **Lubrifica bene la punta** con un lubrificante a base d'acqua. Lo stesso centro veterinario usa anche una guaina monouso lubrificata, per motivi di igiene.
 4. **Solleva delicatamente la coda** e inserisci piano la punta nell'ano, **senza mai forzare**.
 5. **Aspetta il segnale** del termometro, seguendo le istruzioni del produttore, poi sfilalo e leggi il valore.
 6. **Pulisci e disinfetta** il termometro dopo l'uso.

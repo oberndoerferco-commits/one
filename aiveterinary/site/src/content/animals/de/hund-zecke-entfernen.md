@@ -4,7 +4,7 @@ description: "Eine Zecke sollte so schnell wie möglich und ohne Öl oder Kleber
 species: dog
 category: first-aid
 urgency: routine
-updated: 2026-10-16
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -16,6 +16,8 @@ references:
     url: "https://esccap.de/praevention-von-durch-zecken-uebertragbaren-infektionen-bei-hunden"
   - title: "Bundesinstitut für Risikobewertung: „Spot-on“-Produkte: Parasitenmittel für Hunde nicht bei Katzen anwenden (Mitteilung 035/2022, PDF)"
     url: "https://www.bfr.bund.de/cm/343/spot-on-produkte-parasitenmittel-fuer-hunde-nicht-bei-katzen-anwenden.pdf"
+  - title: "Merck Veterinary Manual: Toxicities from Human Drugs, Analgesics"
+    url: "https://www.merckvetmanual.com/toxicology/toxicities-from-human-drugs/analgesics-toxicity"
   - title: "Kleeb C. et al.: Canine Tick-Borne Encephalitis: Clinical Features, Survival Rate and Neurological Sequelae. Front Vet Sci 2021"
     url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8631292/"
 ---

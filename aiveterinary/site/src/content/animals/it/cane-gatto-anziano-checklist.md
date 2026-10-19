@@ -4,7 +4,7 @@ description: "Quando il tuo cane o gatto diventa 'anziano', cosa cerca la visita
 species: general
 category: care
 urgency: routine
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -14,8 +14,10 @@ references:
     url: "https://catvets.com/guidelines/senior-care"
   - title: "AAFP: Senior Care Guidelines, sintesi per i professionisti"
     url: "https://catvets.com/seniorcaregls-summary-pdf"
-  - title: "International Cat Care / ISFM: Arthritis and degenerative joint disease in cats"
-    url: "https://icatcare.org/advice/arthritis-and-degenerative-joint-disease-in-cats/"
+  - title: "International Cat Care: Arthritis in cats"
+    url: "https://icatcare.org/articles/arthritis-in-cats"
+  - title: "AAHA: 2019 Canine Life Stage Guidelines (PDF)"
+    url: "https://www.aaha.org/globalassets/02-guidelines/canine-life-stage-2019/2019-aaha-canine-life-stage-guidelines-final.pdf"
   - title: "International Cat Care / ISFM: nuove linee guida sulla malattia renale cronica, 2026"
     url: "https://icatcare.org/news/icatcare-launch-brand-new-chronic-kidney-disease-veterinary-guidelines"
   - title: "AAHA: Mobility Matters, osteoartrite nel cane e nel gatto"
@@ -34,9 +36,9 @@ Più tardi di quanto pensi per i cani piccoli, prima per quelli grandi. L'AAHA d
 
 ## Ogni quanto va visitato un animale anziano?
 
-Ogni sei mesi se è sano, ogni quattro mesi se è un gatto oltre i 15 anni o un animale con una malattia cronica.
+Il gatto anziano sano ogni sei mesi, più spesso se ha una malattia legata all'età; per AAHA, cane e gatto anziani una o due volte l'anno con gli esami.
 
-AAHA e linee guida feline raccomandano un controllo ogni sei mesi per l'anziano sano, e ogni quattro mesi per il gatto oltre i 15 anni o per qualsiasi animale con una malattia cronica. Sei mesi di un anziano valgono due o tre anni dei tuoi. Aspettati che il veterinario pesi l'animale, valuti la condizione corporea e quella muscolare, passi in rassegna ogni articolazione, apra bene la bocca, palpi la tiroide nel gatto, e ti chieda di sete, appetito, sonno, bisogni, scale e salti.
+Le linee guida feline raccomandano di visitare il gatto anziano sano ogni sei mesi, e più spesso quando emerge una malattia legata all'età; AAHA raccomanda per cani e gatti anziani un controllo medico con esami una o due volte l'anno. Sei mesi di un anziano valgono due o tre anni dei tuoi. Aspettati che il veterinario pesi l'animale, valuti la condizione corporea e quella muscolare, passi in rassegna ogni articolazione, apra bene la bocca, palpi la tiroide nel gatto, e ti chieda di sete, appetito, sonno, bisogni, scale e salti.
 
 ## Quali esami servono a un cane o a un gatto anziano?
 
@@ -54,9 +56,9 @@ Chiedi i numeri e conservali: l'andamento dice più di qualsiasi singolo risulta
 
 ## Perché pesare a casa l'animale anziano?
 
-Pesarlo una volta al mese sulla stessa bilancia aiuta a notare presto un calo di peso nel gatto e a tenere magro il cane.
+Pesarlo una volta al mese sulla stessa bilancia aiuta a notare presto un calo di peso nel gatto, che può essere un primo segno di malattia, e a tenere magro il cane.
 
-Pesa l'animale una volta al mese, sulla stessa bilancia. Nel gatto un calo lento di peso è il segno precoce più comune di malattia renale, tiroidea e tumorale, ed è più facile da notare di un cambiamento nella ciotola dell'acqua. Nel cane il rischio va nella direzione opposta: AAHA ricorda che tenere il cane magro è una delle poche cose dimostrate per allungare la vita, e il peso peggiora le articolazioni artrosiche.
+Pesa l'animale una volta al mese, sulla stessa bilancia. Nel gatto un calo lento di peso può essere un segno precoce di malattie come quella renale, tiroidea o tumorale, ed è più facile da notare di un cambiamento nella ciotola dell'acqua. Nel cane il rischio va nella direzione opposta: AAHA cita uno studio in cui i Labrador mantenuti al peso ideale sono vissuti in media il 15% più a lungo, e il peso peggiora le articolazioni artrosiche.
 
 ## Come capisco se il mio animale anziano ha dolore?
 
@@ -64,7 +66,7 @@ Il dolore si vede come un cambio di abitudini: il gatto salta meno e ha il pelo 
 
 Gli animali anziani raramente si lamentano. Il dolore si vede come un cambio di abitudini: per questo AAHA e ISFM chiedono di osservare il comportamento, non la zoppia.
 
-**Gatto:** salta meno, o a tappe passando da una sedia; esita davanti alla lettiera o la manca; pelo arruffato o con nodi sulla schiena, perché pulirsi fa male; unghie troppo lunghe; rigidità dopo il sonno; meno voglia di usare la gattaiola. Le stime di malattia articolare degenerativa nel gatto anziano arrivano al 40-92%, e quasi tutta resta senza diagnosi.
+**Gatto:** salta meno, o a tappe passando da una sedia; esita davanti alla lettiera o la manca; pelo arruffato o con nodi sulla schiena, perché pulirsi fa male; unghie troppo lunghe; rigidità dopo il sonno; meno voglia di usare la gattaiola. Le stime di malattia articolare degenerativa nel gatto arrivano al 40-92%, e molta resta senza diagnosi.
 
 **Cane:** rigido nei primi minuti dopo il riposo, più lento in passeggiata, restio a fare le scale o a salire in auto, tremolii muscolari a riposo, meno paziente se toccato. Circa un cane su cinque ha osteoartrite.
 
@@ -74,9 +76,9 @@ Un breve video del gatto che sale sul divano o del cane che si alza spesso dice 
 
 Le due grandi sono la malattia renale cronica nel gatto e l'artrosi nel cane.
 
-**La malattia renale cronica nel gatto** è tra le più comuni della vecchiaia. I primi segni sono appetito scarso, più sete, più urina, calo di peso e stanchezza. Si diagnostica con sangue e urine insieme, misurando anche la pressione, perché il rene malato è la prima causa di ipertensione nel gatto. Non si guarisce, ma presa in tempo si rallenta per anni, ed è proprio questo lo scopo dell'esame delle urine semestrale; ISFM ha pubblicato nuove linee guida nel 2026.
+**La malattia renale cronica nel gatto** è tra le più comuni della vecchiaia. I primi segni sono appetito scarso, più sete, più urina, calo di peso e stanchezza. Si diagnostica con sangue e urine insieme, misurando anche la pressione, perché il rene malato è la prima causa di ipertensione secondaria nel gatto. Non si guarisce, ma presa in tempo spesso si rallenta per mesi o anni, ed è proprio questo lo scopo dell'esame delle urine regolare; iCatCare ha pubblicato nuove linee guida nel 2026.
 
-**L'artrosi nel cane** è la causa più comune di dolore cronico. Si gestisce come un pacchetto: peso, movimento regolare, una cuccia calda e imbottita, e i farmaci che il veterinario sceglie e controlla. Tappeti sui pavimenti lisci, una rampa per l'auto e ciotole rialzate fanno una differenza visibile in poche settimane.
+**L'artrosi nel cane** è la causa più comune di dolore cronico. Si gestisce come un pacchetto: peso, movimento regolare, una cuccia calda e imbottita, e i farmaci che il veterinario sceglie e controlla. Tappeti sui pavimenti lisci, una rampa per l'auto e ciotole rialzate possono rendere più facile la vita di tutti i giorni.
 
 ## Perché i denti contano nell'animale anziano?
 
@@ -102,7 +104,7 @@ Ciò di cui il tuo cane o gatto ha bisogno quest'anno dipende da razza, storia e
 
 - AAHA, 2023 Senior Care Guidelines for Dogs and Cats; 2019 Canine Life Stage Guidelines
 - AAFP/ISFM, Feline Senior Care Guidelines (2021) e sintesi per i professionisti; AAHA/AAFP Feline Life Stage Guidelines (2021)
-- International Cat Care / ISFM, artrosi nel gatto; linee guida sulla malattia renale cronica 2026
+- International Cat Care, artrosi nel gatto; linee guida sulla malattia renale cronica 2026
 - AAHA, Mobility Matters
 - WSAVA Global Dental Guidelines
 - Villalobos A., Quality of Life Scale (HHHHHMM), Veterinary Practice News

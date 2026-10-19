@@ -4,7 +4,7 @@ description: "Wenn eine Katze ins Bett, aufs Sofa oder auf Kleidung uriniert, is
 species: cat
 category: symptoms
 urgency: this-week
-updated: 2026-10-17
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -104,7 +104,7 @@ Riecht eine Stelle noch nach Urin, kommt die Katze gerne wieder. Normale Reinige
 
 ## Darf ich meiner Katze Schmerzmittel aus der Hausapotheke geben?
 
-Wenn Sie vermuten, dass Ihre Katze Schmerzen hat, geben Sie ihr **niemals** eigene Mittel. Vergiftungen mit **Paracetamol**, **Acetylsalicylsäure** (zum Beispiel Aspirin) und **Diclofenac** sind bei Katzen bekannt. Auch **Ibuprofen** ist für Katzen gefährlich. **Metamizol** darf eine Katze nur bekommen, wenn die Tierärztin oder der Tierarzt es verordnet. Auch Teebaumöl und andere ätherische Öle können Katzen vergiften.
+Wenn Sie vermuten, dass Ihre Katze Schmerzen hat, geben Sie ihr **niemals** eigene Mittel. Vergiftungen mit **Paracetamol**, **Acetylsalicylsäure** (zum Beispiel Aspirin) und **Diclofenac** sind bei Katzen bekannt. Auch **Ibuprofen** ist für Katzen gefährlich. Geben Sie nur, was die Praxis verordnet. Auch Teebaumöl und andere ätherische Öle können Katzen vergiften.
 
 ## Was tue ich, wenn meine Katze trotzdem weiter ins Bett pinkelt?
 

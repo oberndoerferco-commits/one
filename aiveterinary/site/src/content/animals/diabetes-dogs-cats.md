@@ -5,7 +5,7 @@ description: "Drinking more, peeing more, eating more and still losing weight: t
 species: general
 category: conditions
 urgency: this-week
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: en
 references:
@@ -64,7 +64,7 @@ With insulin injections, usually twice a day, a consistent diet agreed with your
 
 A few rules that matter:
 
-- Keep insulin in the fridge, never frozen, and roll the bottle gently rather than shaking it.
+- Keep insulin in the fridge, never frozen, and mix it exactly as your vet and the leaflet say: most insulins are rolled gently, not shaken, but one veterinary insulin must be shaken until evenly milky.
 - Never change the dose yourself. Adjustments are made by your vet, slowly, usually not more often than once a week.
 - If you are not sure an injection went in, do not give a second one. A missed dose is far safer than a double dose.
 - Do not inject a pet that has not eaten or is vomiting; call the clinic instead.

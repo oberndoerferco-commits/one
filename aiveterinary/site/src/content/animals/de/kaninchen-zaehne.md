@@ -4,7 +4,7 @@ description: "Kaninchenzähne wachsen ein Leben lang nach. Nutzen sie sich nicht
 species: rabbit
 category: conditions
 urgency: today
-updated: 2026-10-17
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -20,6 +20,10 @@ references:
     url: "https://pubmed.ncbi.nlm.nih.gov/27497206/"
   - title: "Varga M.: Digestive Disorders. In: Textbook of Rabbit Medicine, 2nd ed., Elsevier 2014 (PMC7149685)"
     url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7149685/"
+  - title: "PDSA: Dental problems in rabbits"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/dental-problems-in-rabbits"
+  - title: "Rabbit Welfare Association & Fund: Recognising emergencies"
+    url: "https://rabbitwelfare.co.uk/welfare-need/recognising-emergencies/"
 ---
 
 ## Zuerst: wann Sie sofort in die Tierarztpraxis fahren sollten
@@ -27,19 +31,19 @@ references:
 Zahnprobleme entwickeln sich bei Kaninchen oft schleichend. Gefährlich wird es, wenn Ihr Kaninchen deswegen nicht mehr frisst, denn dann droht ein Darmstillstand. Fahren Sie **sofort** in eine Tierarztpraxis, die Kaninchen behandelt, oder in eine Tierklinik, wenn Ihr Kaninchen:
 
 - **nicht mehr oder kaum noch frisst**, auch wenn es Interesse am Futter zeigt, es aber wieder fallen lässt
-- **seit etwa 12 Stunden keinen Kot** mehr abgesetzt hat oder die Köttel deutlich kleiner und weniger werden
+- **keinen Kot** mehr absetzt oder die Köttel deutlich kleiner und weniger werden
 - zusammengekauert sitzt oder mit den Zähnen knirscht
 - eine **Schwellung am Kiefer**, an der Backe oder unter dem Auge hat
 - stark speichelt oder Blut im Maul hat
 - das Maul nicht mehr richtig schließen kann
 
-Ein Kaninchen, das nicht frisst und keinen Kot absetzt, ist ein Notfall. Warten Sie nicht bis zum nächsten Tag.
+Ein Kaninchen, das nicht frisst und keinen Kot absetzt, ist ein Notfall: Laut Rabbit Welfare Association muss es so schnell wie möglich in die Praxis, bis morgen zu warten ist zu spät. Die PDSA rät, sich bei jedem Problem mit Zähnen oder Zahnfleisch sofort an die Praxis zu wenden, statt abzuwarten.
 
 ## Warum wachsen Kaninchenzähne immer weiter?
 
 Kaninchenzähne wachsen ein Leben lang nach, die Schneidezähne vorne ebenso wie die Backenzähne weiter hinten im Maul. Normalerweise werden sie beim Kauen im gleichen Maß abgenutzt, wie sie nachwachsen. Gerät dieses Gleichgewicht durcheinander, werden die Zähne zu lang.
 
-Fehlt der Gegenzahn, der den Zahn abnutzt, wächst er sogar schneller als sonst. Deshalb kann ein einziger schiefer oder abgebrochener Zahn mit der Zeit das ganze Gebiss aus dem Gleichgewicht bringen.
+Treffen obere und untere Zähne nicht richtig aufeinander, nutzen sie sich ungleichmäßig ab und werden zu lang.
 
 ## Was verursacht Zahnprobleme beim Kaninchen?
 
@@ -95,15 +99,16 @@ Viele Kaninchen mit erworbener Zahnerkrankung brauchen regelmäßige Kontrollen 
 
 Kürzen Sie die Zähne Ihres Kaninchens **nicht selbst**, auch nicht mit einer Krallenzange. Wird ein Zahn zu kurz gekürzt, kann die Zahnhöhle mit Nerv und Blutgefäßen freiliegen. Das MSD Veterinary Manual nennt das als eine mögliche Ursache für Zahnabszesse. Außerdem sehen Sie zu Hause die Backenzähne nicht, die häufig das eigentliche Problem sind.
 
-Geben Sie Ihrem Kaninchen außerdem **keine Medikamente aus der Hausapotheke**. Schmerzmittel für Menschen wie **Paracetamol** oder **Ibuprofen** gehören nicht in ein Kaninchen. **Metamizol** (zum Beispiel Novalgin) darf es nur bekommen, wenn die Tierärztin oder der Tierarzt es verordnet. Auch übrig gebliebene Antibiotika anderer Tiere sind tabu: Laut MSD Veterinary Manual können manche davon bei Kaninchen lebensbedrohlichen Durchfall auslösen.
+Geben Sie Ihrem Kaninchen außerdem **keine Medikamente aus der Hausapotheke**. Schmerzmittel für Menschen wie **Paracetamol** oder **Ibuprofen** gehören nicht in ein Kaninchen. Geben Sie nur, was die Praxis verordnet. Auch übrig gebliebene Antibiotika anderer Tiere sind tabu: Laut MSD Veterinary Manual können manche davon bei Kaninchen lebensbedrohlichen Durchfall auslösen.
 
 ## Wie beuge ich Zahnproblemen bei meinem Kaninchen vor?
 
-Mit Heu in unbegrenzter Menge, frischem Grün, wenig Pellets und Leckerlis, regelmäßigem Wiegen und Zahnkontrollen bei jedem Tierarztbesuch.
+Mit Heu in unbegrenzter Menge, frischem Grün, wenig Pellets und Leckerlis, regelmäßigem Wiegen, wöchentlichem Blick auf die Schneidezähne und Zahnkontrollen in der Praxis mindestens einmal im Jahr.
 
 - **Heu in unbegrenzter Menge**, jeden Tag frisch. Es ist die wichtigste Grundlage für gesunde Zähne.
 - Dazu frisches Grün, Kräuter und Blattgemüse. Pellets, Körner, Obst und Leckerlis nur sparsam oder gar nicht.
 - Futterumstellungen langsam vornehmen.
 - Viel Bewegung und Beschäftigung, und Gelegenheit zum Nagen, etwa im freien Auslauf statt nur im Käfig.
 - Wiegen Sie Ihr Kaninchen regelmäßig, zum Beispiel einmal pro Woche. Eine schleichende Gewichtsabnahme ist oft das erste Zeichen.
-- Lassen Sie die Zähne bei jedem Tierarztbesuch mit kontrollieren. Bei Kaninchen mit bekannten Zahnproblemen vereinbaren Sie mit der Praxis feste Kontrolltermine.
+- Schauen Sie sich die Schneidezähne laut PDSA mindestens einmal pro Woche selbst an.
+- Lassen Sie die Zähne in der Praxis mindestens einmal im Jahr kontrollieren, besser mehrmals im Jahr, und bei jedem Tierarztbesuch mit. Bei Kaninchen mit bekannten Zahnproblemen vereinbaren Sie mit der Praxis feste Kontrolltermine.

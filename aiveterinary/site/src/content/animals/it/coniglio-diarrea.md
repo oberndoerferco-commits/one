@@ -4,7 +4,7 @@ description: "Nel coniglio la vera diarrea è un problema serio, ma spesso quell
 species: rabbit
 category: symptoms
 urgency: today
-updated: 2026-10-16
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -78,7 +78,7 @@ La PDSA elenca tra le possibili cause:
 - **antibiotici** dati per un altro problema
 - tumori
 
-Il Merck Veterinary Manual aggiunge che nei **conigli giovani** le malattie intestinali sono una delle principali cause di morte, e che stress, cambi di dieta, antibiotici e gabbie sporche alterano i batteri buoni dell'intestino. Al contrario, nel coniglio adulto da compagnia le infezioni intestinali sono più rare.
+Il Merck Veterinary Manual aggiunge che nei **conigli giovani** le malattie intestinali sono una delle principali cause di morte, e che stress, cambi di dieta, antibiotici e gabbie sporche alterano i batteri buoni dell'intestino. E ricorda che la diarrea, a qualsiasi età, è un segnale serio di malattia.
 
 ## Che legame c'è tra diarrea e stasi intestinale?
 

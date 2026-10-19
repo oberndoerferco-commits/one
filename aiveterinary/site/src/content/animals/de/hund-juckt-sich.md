@@ -4,7 +4,7 @@ description: "Juckreiz ist beim Hund ein Zeichen, keine Diagnose. Meist stecken 
 species: dog
 category: symptoms
 urgency: this-week
-updated: 2026-10-17
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -12,6 +12,8 @@ references:
     url: "https://www.msdvetmanual.com/dog-owners/skin-disorders-of-dogs/itching-pruritus-in-dogs"
   - title: "MSD Veterinary Manual (Pet Owner Version): Mite Infestation (Mange, Acariasis, Scabies) in Dogs"
     url: "https://www.msdvetmanual.com/dog-owners/skin-disorders-of-dogs/mite-infestation-mange-acariasis-scabies-in-dogs"
+  - title: "MSD Veterinary Manual (Pet Owner Version): Allergies in Dogs"
+    url: "https://www.msdvetmanual.com/dog-owners/skin-disorders-of-dogs/allergies-in-dogs"
   - title: "MSD Veterinary Manual (Pet Owner Version): Hives and Rashes (Urticaria) in Dogs"
     url: "https://www.msdvetmanual.com/dog-owners/skin-disorders-of-dogs/hives-and-rashes-urticaria-in-dogs"
   - title: "ESCCAP Deutschland: Flohspeichelallergiedermatitis vermeiden durch konsequente Flohbekämpfung"
@@ -84,7 +86,7 @@ Die häufigsten Auslöser allergischen Juckreizes sind laut MSD Veterinary Manua
 - Juckt es nur zu bestimmten Jahreszeiten, spricht das eher für Allergene wie Pollen.
 - Juckt es das ganze Jahr, kommen Hausstaubmilben, eine Futtermittelallergie oder beides in Frage.
 
-Eine **Futtermittelallergie** lässt sich nur mit einer **Ausschlussdiät** sicher erkennen. Dabei bekommt Ihr Hund über mehrere Wochen ausschließlich ein Futter, das die Praxis festlegt. Das funktioniert nur, wenn Sie wirklich streng bleiben: keine Leckerli, keine Kauartikel, keine Reste vom Tisch, die nicht zur Diät passen. Allergietests aus dem Blut oder der Haut helfen bei der Planung einer Allergen-Immuntherapie, erkennen aber keine Futtermittelallergie.
+Eine **Futtermittelallergie** lässt sich nur mit einer **Ausschlussdiät** sicher erkennen. Dabei bekommt Ihr Hund laut MSD Veterinary Manual bis zu drei Monate lang ausschließlich ein Futter, das die Praxis festlegt. Das funktioniert nur, wenn Sie wirklich streng bleiben: keine Leckerli, keine Kauartikel, keine Reste vom Tisch, die nicht zur Diät passen. Allergietests aus dem Blut oder der Haut helfen bei der Planung einer Allergen-Immuntherapie, erkennen aber keine Futtermittelallergie.
 
 Bei der **atopischen Dermatitis**, einer häufigen Umweltallergie, empfehlen internationale Leitlinien, Auslöser für Schübe zu suchen und zu meiden, die Haut gut zu pflegen, etwa mit milden Shampoos, und je nach Fall mehrere Behandlungen zu kombinieren. Was hilft, ist von Hund zu Hund verschieden und kann sich auch beim selben Hund im Lauf der Zeit ändern.
 

@@ -5,7 +5,7 @@ description: "Chronic kidney disease is one of the most common conditions of old
 species: cat
 category: conditions
 urgency: this-week
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: en
 references:
@@ -17,6 +17,10 @@ references:
     url: "https://www.iris-kidney.com/s/IRIS_staging_guidelines-2026.pdf"
   - title: "IRIS: Treatment Recommendations for CKD in Cats (2026, PDF)"
     url: "https://www.iris-kidney.com/s/IRIS_CAT_Treatment_Recommendations_-2026.pdf"
+  - title: "Cornell Feline Health Center: Chronic kidney disease"
+    url: "https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/chronic-kidney-disease"
+  - title: "MSD Veterinary Manual: Renal dysfunction in dogs and cats"
+    url: "https://www.msdvetmanual.com/urinary-system/noninfectious-diseases-of-the-urinary-system-in-small-animals/renal-dysfunction-in-dogs-and-cats"
 ---
 
 ## First, the signs that mean go now
@@ -25,10 +29,9 @@ Go to a clinic straight away, calling ahead, if an older cat, or a cat already k
 
 - stops eating and vomits repeatedly
 - is very weak, hides, or barely gets up
-- has foul breath with sores on the tongue or gums
+- has sores in the mouth
 - produces no urine at all (in males, think of a blocked urethra too)
-- goes suddenly blind, with wide, fixed pupils (high blood pressure)
-- has a seizure
+- suddenly seems unable to see, or is suddenly disoriented, wobbly or has other nervous-system signs (high blood pressure can damage the eyes and brain)
 
 These point to a kidney crisis or an acute problem on top of the chronic one, and need hospital treatment.
 
@@ -38,7 +41,7 @@ It is the gradual loss of working kidney tissue that does not grow back, and one
 
 The kidneys filter waste out of the blood, keep water and salts in balance, help control blood pressure and tell the bone marrow to make red blood cells. In chronic kidney disease (CKD) the working tissue is lost gradually and does not grow back. The kidneys compensate for a long time, which is why the first sign is usually **dilute urine**: the cat urinates more and drinks more to keep up.
 
-CKD is one of the most common conditions of older cats. It is usually seen from about seven years onward, and estimates suggest that between a fifth and a half of cats over fifteen have some degree of it. In most cats no single cause is found; occasionally infection, inherited cystic kidneys, toxins or a blocked ureter are responsible, and some of those can be treated.
+CKD is one of the most common conditions of older cats. It is usually seen from about seven years onward, and estimates suggest that between a fifth and a half of cats over fifteen have some degree of it. In most cats no single cause is found; occasionally infection, inherited cystic kidneys, tumours such as lymphoma, or toxins and certain drugs are responsible, and some of those can be treated.
 
 ## What are the first signs of kidney disease in cats?
 
@@ -55,11 +58,11 @@ Most of these are easy to put down to "just getting old". The earlier CKD is fou
 
 ## How is kidney disease in cats diagnosed?
 
-With blood and urine tests and a blood pressure measurement, confirmed on at least two samples a few weeks apart.
+With blood and urine tests and a blood pressure measurement, ideally confirmed on at least two samples taken within about two weeks.
 
 A blood sample measures waste products that the kidneys should clear (creatinine, and a newer marker called SDMA that rises earlier). A urine sample shows whether the urine is dilute, whether it contains protein, and whether there is infection. Your vet should also measure **blood pressure**, because high blood pressure is common in kidney cats and damages the eyes, heart and the kidneys themselves. Ultrasound may follow to look at the kidneys and rule out stones or an obstruction.
 
-Because the values vary from day to day, the diagnosis is confirmed on at least two samples a few weeks apart in a cat that is well hydrated. For older cats, a yearly blood and urine check, twice a year after ten, is the best way to catch CKD before any signs appear.
+Because the values vary from day to day, the diagnosis is ideally confirmed on at least two blood and urine samples taken within about two weeks of each other, in a cat that is stable and well hydrated. For mature and older cats, a yearly or twice-yearly check with blood and urine tests is the best way to catch CKD before any signs appear.
 
 ## What do the IRIS stages of kidney disease mean?
 
@@ -71,8 +74,8 @@ Vets worldwide use the four stages of the International Renal Interest Society (
 |---|---|
 | 1 | Kidney damage with normal or near-normal blood values. Usually no signs. Found by screening. |
 | 2 | Mild rise in blood values. Often few or no signs beyond drinking and urinating more. |
-| 3 | Moderate rise. Signs such as weight loss, poor appetite and nausea appear. |
-| 4 | Severe rise. Signs are present most days and treatment is about comfort. |
+| 3 | Moderate rise. Signs such as weight loss, poor appetite and nausea often appear, though some cats still have none. |
+| 4 | Severe rise. Most cats have many signs, with a higher risk of a kidney crisis; quality of life comes first. |
 
 A stage is a starting point, not a verdict. In stages 1 and 2 the aim is to slow progression; from stage 3 the emphasis shifts towards controlling the signs and protecting quality of life.
 
@@ -87,7 +90,7 @@ With a kidney diet, plenty of water, medicines as needed, and protecting the kid
 
 ## How often does a cat with kidney disease need check-ups?
 
-Once stable, kidney cats are rechecked roughly every three to six months: weight, blood pressure, blood and urine. At home, weigh your cat monthly, watch appetite and water intake, and keep nausea, constipation and dental pain under control, because each one eats into appetite. Tell your vet about any new medicine or supplement before you give it.
+Once stable, kidney cats are rechecked regularly, at least every three months when they are on blood pressure treatment: weight, blood pressure, blood and urine. At home, weigh your cat monthly, watch appetite and water intake, and keep nausea, constipation and dental pain under control, because each one eats into appetite. Tell your vet about any new medicine or supplement before you give it.
 
 ## Can kidney disease in cats be cured?
 
@@ -101,3 +104,5 @@ Staging, diet and the treatment plan are decided cat by cat, so take these terms
 - [IRIS guidelines overview](https://www.iris-kidney.com/iris-guidelines-1)
 - [IRIS staging of CKD, 2026](https://www.iris-kidney.com/s/IRIS_staging_guidelines-2026.pdf)
 - [IRIS treatment recommendations for CKD in cats, 2026](https://www.iris-kidney.com/s/IRIS_CAT_Treatment_Recommendations_-2026.pdf)
+- [Cornell Feline Health Center: Chronic kidney disease](https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/chronic-kidney-disease)
+- [MSD Veterinary Manual: Renal dysfunction in dogs and cats](https://www.msdvetmanual.com/urinary-system/noninfectious-diseases-of-the-urinary-system-in-small-animals/renal-dysfunction-in-dogs-and-cats)

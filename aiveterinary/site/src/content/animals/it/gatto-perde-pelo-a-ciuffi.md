@@ -4,7 +4,7 @@ description: "Chiazze senza pelo nel gatto possono dipendere da pulci, allergie,
 species: cat
 category: symptoms
 urgency: this-week
-updated: 2026-10-17
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -12,8 +12,8 @@ references:
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/hair-loss-alopecia-in-cats"
   - title: "International Cat Care: Ringworm in cats"
     url: "https://icatcare.org/articles/ringworm-in-cats"
-  - title: "International Cat Care: Over-grooming"
-    url: "https://icatcare.org/advice/over-grooming/"
+  - title: "International Cat Care: Over-grooming in cats"
+    url: "https://icatcare.org/articles/over-grooming-in-cats"
   - title: "International Cat Care: Fleas and flea control in cats"
     url: "https://icatcare.org/articles/fleas-and-flea-control-in-cats"
   - title: "MSD Veterinary Manual (versione per proprietari): Hair Loss (Alopecia) in Cats"

@@ -4,7 +4,7 @@ description: "Qualche striatura di sangue rosso con muco può venire da un intes
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-10-16
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -16,6 +16,8 @@ references:
     url: "https://www.msdvetmanual.com/digestive-system/diseases-of-the-stomach-and-intestines-in-small-animals/canine-parvovirus"
   - title: "MSD Veterinary Manual: Rodenticide Poisoning"
     url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/rodenticide-poisoning"
+  - title: "PDSA PetWise Pet Health Hub: Blood in your dog's stools (PDF)"
+    url: "https://www.pdsa.org.uk/media/6829/phh-dog_s_blood-in-your-dogs-stool.pdf"
   - title: "Merck Veterinary Manual: Toxicities from Human Drugs, Analgesics"
     url: "https://www.merckvetmanual.com/toxicology/toxicities-from-human-drugs/analgesics-toxicity"
 ---
@@ -61,9 +63,9 @@ Le cause sono tante, e solo il veterinario può capire quale riguarda il tuo can
 
 ## Cosa faccio se il cane sta bene e c'è solo una striatura di sangue?
 
-Chiama il veterinario per concordare come procedere e nel frattempo lascia acqua fresca, non dare farmaci o avanzi e osserva le feci successive.
+Prenota una visita appena possibile, se puoi in giornata, e nel frattempo lascia acqua fresca, non dare farmaci o avanzi e osserva le feci successive.
 
-Se si tratta di un singolo episodio con poche striature di sangue rosso, il cane è vivace, mangia, beve e non vomita, puoi chiamare il veterinario e concordare con lui come procedere. Nel frattempo:
+Se si tratta di un singolo episodio con poche striature di sangue rosso, il cane è vivace, mangia, beve e non vomita, **prenota una visita dal veterinario appena possibile**, se puoi in giornata: la PDSA ricorda che il sangue nelle feci va sempre fatto controllare, perché il veterinario deve escludere le cause gravi. Nel frattempo:
 
 - lascia sempre **acqua fresca** a disposizione
 - non dare avanzi, ossa o snack, e non cambiare cibo di tua iniziativa

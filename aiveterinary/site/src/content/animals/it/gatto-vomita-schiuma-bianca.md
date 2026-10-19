@@ -4,7 +4,7 @@ description: "La schiuma bianca è di solito succo gastrico e saliva a stomaco v
 species: cat
 category: symptoms
 urgency: today
-updated: 2026-10-16
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -26,7 +26,7 @@ references:
 
 Vai in clinica oggi stesso, e subito se la situazione peggiora, se il tuo gatto:
 
-- vomita più volte nella stessa giornata, o non riesce a tenere giù né cibo né acqua
+- vomita più volte nella stessa giornata, vomita da più di 24 ore, o non riesce a tenere giù né cibo né acqua
 - ha conati ripetuti ma non esce niente, o esce solo un po' di schiuma, e continua a provarci
 - vomita sangue, o materiale scuro con puntini neri simili a fondi di caffè
 - è abbattuto, debole, si nasconde, ha le gengive pallide o la pancia dolente
@@ -72,7 +72,7 @@ Se riesci, **filma l'episodio** con il telefono. Un video di pochi secondi spess
 Un singolo episodio di schiuma bianca in un gatto adulto che poi torna a mangiare, giocare e usare la lettiera normalmente si può osservare a casa.
 
 - Lascia sempre **acqua fresca** a disposizione. Non togliere l'acqua al gatto di tua iniziativa.
-- Offri il cibo normale in **piccole porzioni**, senza cambiarlo all'improvviso.
+- Dagli da mangiare **come al solito**, senza cambiare cibo all'improvviso, e tienilo d'occhio.
 - **Non dare farmaci per uso umano**, né per lo stomaco né contro il dolore. Il paracetamolo, per esempio, è velenoso per il gatto, e anche antinfiammatori come l'ibuprofene sono pericolosi.
 - Non dare olio, burro o rimedi casalinghi "per far uscire il pelo" senza averne parlato con il veterinario.
 - Annota quando vomita, quante volte, com'è il materiale, e se mangia, beve, urina e fa le feci regolarmente.

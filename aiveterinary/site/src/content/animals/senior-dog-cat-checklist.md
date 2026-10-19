@@ -4,7 +4,7 @@ description: "When your dog or cat becomes 'senior', what the twice-yearly check
 species: general
 category: care
 urgency: routine
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: en
 references:
@@ -14,8 +14,10 @@ references:
     url: "https://catvets.com/guidelines/senior-care"
   - title: "AAFP: Senior Care Guidelines, summary for practitioners"
     url: "https://catvets.com/seniorcaregls-summary-pdf"
-  - title: "International Cat Care / ISFM: Arthritis and degenerative joint disease in cats"
-    url: "https://icatcare.org/advice/arthritis-and-degenerative-joint-disease-in-cats/"
+  - title: "International Cat Care: Arthritis in cats"
+    url: "https://icatcare.org/articles/arthritis-in-cats"
+  - title: "AAHA: 2019 Canine Life Stage Guidelines (PDF)"
+    url: "https://www.aaha.org/globalassets/02-guidelines/canine-life-stage-2019/2019-aaha-canine-life-stage-guidelines-final.pdf"
   - title: "International Cat Care / ISFM: new chronic kidney disease guidelines, 2026"
     url: "https://icatcare.org/news/icatcare-launch-brand-new-chronic-kidney-disease-veterinary-guidelines"
   - title: "AAHA: Mobility Matters, osteoarthritis in dogs and cats"
@@ -32,7 +34,7 @@ Later than you think for small dogs, earlier for big ones. AAHA defines a senior
 
 ## How often should a senior dog or cat see the vet?
 
-AAHA and the feline guidelines both recommend a check every six months for healthy seniors, and every four months for cats over 15 or any animal with a chronic condition. Six months of a senior's life is two to three years of yours. Expect the vet to weigh your animal, score body and muscle condition, work through every joint, open the mouth properly, feel the thyroid in cats, and ask about thirst, appetite, sleep, toileting, stairs and jumping.
+The feline guidelines recommend examining healthy senior cats every six months, and more often once an age-related disease is found; AAHA recommends a medical workup for senior dogs and cats once or twice a year. Six months of a senior's life is two to three years of yours. Expect the vet to weigh your animal, score body and muscle condition, work through every joint, open the mouth properly, feel the thyroid in cats, and ask about thirst, appetite, sleep, toileting, stairs and jumping.
 
 ## Which tests does a senior dog or cat need?
 
@@ -50,9 +52,9 @@ Ask for the numbers and keep them: the trend tells your vet more than any single
 
 ## Why should I weigh my senior pet at home?
 
-Because in cats slow weight loss is the commonest early sign of several diseases, and in dogs staying lean helps lifespan and joints.
+Because in cats slow weight loss can be an early sign of several diseases, and in dogs staying lean helps lifespan and joints.
 
-Weigh your animal monthly on the same scale. In cats, slow weight loss is the commonest early sign of kidney disease, thyroid disease and cancer, and easier to spot than a change in the water bowl. In dogs the risk runs the other way: AAHA notes that keeping dogs lean is one of the few things shown to extend lifespan, and weight makes arthritic joints worse.
+Weigh your animal monthly on the same scale. In cats, slow weight loss can be an early sign of illnesses such as kidney disease, thyroid disease and cancer, and is easier to spot than a change in the water bowl. In dogs the risk runs the other way: AAHA cites a study in which Labradors kept at their ideal weight lived on average 15% longer, and weight makes arthritic joints worse.
 
 ## How can I tell if my old dog or cat is in pain?
 
@@ -60,7 +62,7 @@ Watch for a changed routine rather than crying out or limping: jumping less, sti
 
 Old animals rarely cry out. Pain shows as a changed routine, which is why AAHA and ISFM ask owners to watch behaviour rather than limping.
 
-**Cats:** jumping up less, or in stages via a chair; hesitating at the litter tray or missing it; a scruffy or matted coat on the back because grooming hurts; overgrown claws; stiffness after sleep; less interest in the cat flap. Estimates of degenerative joint disease in older cats run as high as 40 to 92%, and most of it goes undiagnosed.
+**Cats:** jumping up less, or in stages via a chair; hesitating at the litter tray or missing it; a scruffy or matted coat on the back because grooming hurts; overgrown claws; stiffness after sleep; less interest in the cat flap. Estimates of degenerative joint disease in cats run as high as 40 to 92%, and much of it goes undiagnosed.
 
 **Dogs:** stiff for the first minutes after rest, slower on walks, reluctant on stairs or into the car, muscle twitches at rest, a shorter temper when touched. About one dog in five has osteoarthritis.
 
@@ -70,9 +72,9 @@ A short video of your cat reaching the sofa or your dog standing up is often mor
 
 Kidney disease in cats and arthritis in dogs are the two big ones.
 
-**Kidney disease in cats** is one of the most common diseases of old age. Early signs are poor appetite, more drinking, more urine, weight loss and lethargy. It is diagnosed on blood and urine together, with blood pressure checked because kidney disease is the leading cause of high blood pressure in cats. It cannot be cured, but caught early it can be slowed for years, which is the point of the six-monthly urine test; ISFM published new guidelines on it in 2026.
+**Kidney disease in cats** is one of the most common diseases of old age. Early signs are poor appetite, more drinking, more urine, weight loss and lethargy. It is diagnosed on blood and urine together, with blood pressure checked because kidney disease is the leading cause of secondary high blood pressure in cats. It cannot be cured, but caught early it can often be slowed for months or years, which is the point of the regular urine test; iCatCare published new guidelines on it in 2026.
 
-**Arthritis in dogs** is the commonest cause of chronic pain. Managing it is a package: weight, steady exercise, a warm padded bed, and medication your vet chooses and monitors. Rugs on hard floors, a car ramp and raised bowls make a visible difference within weeks.
+**Arthritis in dogs** is the commonest cause of chronic pain. Managing it is a package: weight, steady exercise, a warm padded bed, and medication your vet chooses and monitors. Rugs on hard floors, a car ramp and raised bowls can make daily life easier.
 
 ## Do old dogs and cats need dental care?
 
@@ -98,7 +100,7 @@ What your dog or cat needs this year depends on their breed, their history and t
 
 - AAHA, 2023 Senior Care Guidelines for Dogs and Cats; 2019 Canine Life Stage Guidelines
 - AAFP/ISFM, Feline Senior Care Guidelines (2021) and practitioner summary; AAHA/AAFP Feline Life Stage Guidelines (2021)
-- International Cat Care / ISFM, arthritis in cats; chronic kidney disease guidelines 2026
+- International Cat Care, arthritis in cats; chronic kidney disease guidelines 2026
 - AAHA, Mobility Matters
 - WSAVA Global Dental Guidelines
 - Villalobos A., Quality of Life Scale (HHHHHMM), Veterinary Practice News

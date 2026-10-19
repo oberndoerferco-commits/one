@@ -4,7 +4,7 @@ description: "Ansimare dopo una corsa è normale, respirare a fatica a riposo no
 species: dog
 category: symptoms
 urgency: emergency
-updated: 2026-10-16
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -18,6 +18,8 @@ references:
     url: "https://www.vet.cam.ac.uk/boas/about-boas/recognition-diagnosis"
   - title: "University of Missouri Veterinary Health Center: At-home monitoring of pets with heart disease"
     url: "https://vhc.missouri.edu/small-animal-hospital/cardiology/at-home-monitoring-of-pets-with-heart-disease/"
+  - title: "Merck Veterinary Manual: Toxicities from Human Drugs, Analgesics"
+    url: "https://www.merckvetmanual.com/toxicology/toxicities-from-human-drugs/analgesics-toxicity"
   - title: "Cornell Riney Canine Health Center: Heatstroke, a medical emergency"
     url: "https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/canine-health-information/heatstroke-medical-emergency"
 ---

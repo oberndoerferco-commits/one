@@ -4,7 +4,7 @@ description: "La FIV è il virus dell'immunodeficienza felina, a volte chiamato 
 species: cat
 category: conditions
 urgency: routine
-updated: 2026-10-17
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -22,7 +22,7 @@ references:
 
 Scoprire che il gatto è FIV positivo non è un'emergenza: molti gatti vivono bene per anni. Ma un gatto FIV positivo si difende peggio dalle infezioni, quindi è importante **non aspettare** quando sta male. Contatta il veterinario **in giornata** se il tuo gatto:
 
-- **non mangia** da più di un giorno, o dimagrisce
+- **non mangia** o mangia molto meno del solito, o dimagrisce
 - ha la **febbre**, è abbattuto o si nasconde
 - ha **bocca dolorante**, gengive rosse, bava, alito molto cattivo o fatica a masticare
 - ha **diarrea**, vomito, starnuti con secrezioni, occhi arrossati o problemi della pelle

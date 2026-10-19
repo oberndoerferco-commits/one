@@ -5,7 +5,7 @@ description: "Beve di più, fa più pipì, mangia di più e dimagrisce: i quattr
 species: general
 category: conditions
 urgency: this-week
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -68,7 +68,7 @@ Quasi sempre con iniezioni di insulina, di solito due volte al giorno, e un'alim
 
 Poche regole che contano:
 
-- Tieni l'insulina in frigorifero, mai nel congelatore, e ruota il flacone con delicatezza invece di agitarlo.
+- Tieni l'insulina in frigorifero, mai nel congelatore, e mescolala esattamente come dicono il veterinario e il foglietto: la maggior parte delle insuline si ruota con delicatezza senza agitarla, ma un'insulina veterinaria va invece agitata finché è uniformemente lattiginosa.
 - Non cambiare mai la dose da solo. Gli aggiustamenti li fa il veterinario, lentamente, di norma non più di una volta a settimana.
 - Se non sei sicuro che l'iniezione sia entrata, non farne una seconda. Una dose saltata è molto più sicura di una dose doppia.
 - Non fare l'iniezione a un animale che non ha mangiato o che vomita: chiama la clinica.

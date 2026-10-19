@@ -4,7 +4,7 @@ description: "Wenn Ihr Hund plötzlich deutlich mehr trinkt, steckt oft eine Erk
 species: dog
 category: symptoms
 urgency: this-week
-updated: 2026-10-17
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -18,6 +18,10 @@ references:
     url: "https://www.msdvetmanual.com/endocrine-system/the-pancreas/diabetes-mellitus-in-dogs-and-cats"
   - title: "MSD Veterinary Manual (Pet Owner Version): Disorders of the Pituitary Gland in Dogs (Cushing-Krankheit)"
     url: "https://www.msdvetmanual.com/dog-owners/hormonal-disorders-of-dogs/disorders-of-the-pituitary-gland-in-dogs"
+  - title: "MSD Veterinary Manual (Pet Owner Version): Disorders of the Pancreas in Dogs (Diabetes, Unterzuckerung)"
+    url: "https://www.msdvetmanual.com/dog-owners/hormonal-disorders-of-dogs/disorders-of-the-pancreas-in-dogs"
+  - title: "MSD Veterinary Manual (Pet Owner Version): Rodenticide Poisoning (Cholecalciferol)"
+    url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/rodenticide-poisoning"
   - title: "Merck Veterinary Manual: Toxicities from Human Drugs, Analgesics"
     url: "https://www.merckvetmanual.com/toxicology/toxicities-from-human-drugs/analgesics-toxicity"
 ---
@@ -28,8 +32,9 @@ Mehr Durst ist meistens kein Notfall für die Nacht, aber ein Grund für einen b
 
 - eine **nicht kastrierte Hündin** ist, die vor einigen Wochen läufig war, und jetzt matt ist, schlecht frisst, erbricht, Ausfluss aus der Scheide hat oder einen dicker werdenden Bauch bekommt. Das kann eine **Gebärmuttervereiterung (Pyometra)** sein. Sie kann sich schnell bis zum Schock verschlechtern und lebensbedrohlich werden.
 - erbricht, nicht mehr frisst, sehr schlapp ist oder schwankt
-- möglicherweise **Rattengift** gefressen hat. Manche Köder enthalten Vitamin D (Cholecalciferol). Eine solche Vergiftung kann innerhalb von ein bis eineinhalb Tagen starken Durst und viel Urin auslösen und die Nieren schädigen.
+- möglicherweise **Rattengift** gefressen hat. Manche Köder enthalten Vitamin D (Cholecalciferol). Laut MSD Veterinary Manual zeigen sich die Anzeichen einer solchen Vergiftung meist innerhalb von 18 bis 36 Stunden, unter anderem mit starkem Durst und viel Urin, und sie kann die Nieren schädigen.
 - oft presst und dabei nur wenig oder gar keinen Urin absetzt oder Blut im Urin hat
+- bereits zuckerkrank ist und schwach wird, schwankt, einen Krampfanfall hat oder zusammenbricht: Ein zu niedriger Blutzucker ist laut MSD Veterinary Manual ein Notfall
 - zusammenbricht, sehr schnell atmet oder blasses Zahnfleisch hat
 
 Wenn Sie unsicher sind, rufen Sie lieber an und beschreiben Sie, was Sie beobachten.
@@ -40,7 +45,7 @@ Gesunde Hunde trinken laut dem Riney Canine Health Center der Cornell University
 
 Ein Beispiel: Ein Hund mit 10 Kilogramm trinkt normalerweise etwa 400 bis 600 Milliliter am Tag. Ab rund einem Liter am Tag gilt das als deutlich zu viel.
 
-Diese Zahlen sind nur Richtwerte. Wie viel ein Hund trinkt, hängt stark von Wärme, Bewegung und Futter ab. Wer Nassfutter bekommt, trinkt meist weniger aus dem Napf als ein Hund mit Trockenfutter. Fachleute weisen außerdem darauf hin, dass ein Hund schon krankhaft viel trinken kann, bevor er die 100-Milliliter-Grenze erreicht. Wichtiger als die Tabelle ist deshalb: **Trinkt Ihr Hund mehr als früher?**
+Diese Zahlen sind nur Richtwerte. Wie viel ein Hund trinkt, hängt stark von Wärme, Bewegung und Futter ab. Wer Nassfutter bekommt, trinkt meist weniger aus dem Napf als ein Hund mit Trockenfutter. Wichtiger als die Tabelle ist deshalb: **Trinkt Ihr Hund mehr als früher?**
 
 ## Wie messe ich, wie viel mein Hund trinkt?
 

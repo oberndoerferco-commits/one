@@ -1,17 +1,23 @@
 ---
 title: "FIP bei der Katze: Symptome und was sich bei der Behandlung geändert hat"
-description: "Die Feline Infektiöse Peritonitis galt jahrzehntelang als Todesurteil. Seit Ende 2024 können Tierärztinnen und Tierärzte in Deutschland eine wirksame Behandlung legal verordnen. Woran Sie FIP erkennen, wie die Diagnose läuft und was die neue Therapie bedeutet."
+description: "Die Feline Infektiöse Peritonitis galt jahrzehntelang als Todesurteil. Inzwischen können Tierärztinnen und Tierärzte in Deutschland eine wirksame Behandlung legal als Rezepturarzneimittel verordnen. Woran Sie FIP erkennen, wie die Diagnose läuft und was die neue Therapie bedeutet."
 species: cat
 category: conditions
 urgency: today
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: de
 references:
-  - title: "Bundestierärztekammer, Deutsches Tierärzteblatt 7/2021: Stellungnahme zur FIP-Behandlung mit Nukleosidanaloga (damalige Rechtslage)"
-  - title: "Federation of Veterinarians of Europe (FVE), September 2025: Übersicht der Länder mit legal zugänglicher magistraler FIP-Behandlung, darunter Deutschland"
-  - title: "Universität Zürich und Universität Bern: Merkblatt FIP Diagnose und Behandlung (2025)"
-  - title: "Systematische Übersichtsarbeit zur Wirksamkeit antiviraler Nukleosidanaloga bei FIP, 2018–2024 (PubMed Central, 2025)"
+  - title: "International Cat Care: Feline infectious peritonitis (FIP)"
+    url: "https://icatcare.org/articles/feline-infectious-peritonitis-fip"
+  - title: "Cornell Feline Health Center: Feline Infectious Peritonitis"
+    url: "https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/feline-infectious-peritonitis"
+  - title: "Feline Veterinary Medical Association (FelineVMA/AAFP): 2025 FIP Update Guide (PDF)"
+    url: "https://catvets.com/wp-content/uploads/2025/09/FelineVMA_FIP_Guide_2025.pdf"
+  - title: "Efficacy of GS-441524 for Feline Infectious Peritonitis: A Systematic Review (2018–2024). Pathogens 2025 (PubMed Central)"
+    url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12298711/"
+  - title: "BASG (Österreich): Feline infektiöse Peritonitis – derzeit keine zugelassene Behandlungsmöglichkeit"
+    url: "https://www.basg.gv.at/en/market-surveillance/official-announcements/detail/feline-infectious-peritonitis-currently-no-approved-treatment-option-available"
 ---
 
 ## Zuerst: die Anzeichen, bei denen Sie sofort fahren sollten
@@ -30,9 +36,9 @@ Keines dieser Zeichen beweist FIP, aber alle zusammen oder mehrere davon bei ein
 
 ## Was ist FIP bei Katzen?
 
-Die Feline Infektiöse Peritonitis (FIP) wird durch das feline Coronavirus ausgelöst. Das Virus selbst ist in Katzenpopulationen sehr verbreitet und meist harmlos: Es verursacht höchstens leichten Durchfall und wird über den Kot zwischen Katzen weitergegeben. Bei einem kleinen Teil der infizierten Katzen verändert sich das Virus im Körper so, dass es Immunzellen befällt und eine schwere, systemische Entzündung auslöst. Das ist FIP. Sie ist in dieser Form nicht von Katze zu Katze ansteckend; ansteckend ist nur das harmlose Ausgangsvirus.
+Die Feline Infektiöse Peritonitis (FIP) wird durch das feline Coronavirus ausgelöst. Das Virus selbst ist in Katzenpopulationen sehr verbreitet und meist harmlos: Es verursacht höchstens leichten Durchfall und wird über den Kot zwischen Katzen weitergegeben. Bei einem kleinen Teil der infizierten Katzen verändert sich das Virus im Körper so, dass es Immunzellen befällt und eine schwere, systemische Entzündung auslöst. Das ist FIP. Sie ist in dieser Form, von sehr seltenen Ausbrüchen abgesehen, nicht von Katze zu Katze ansteckend; ansteckend ist das harmlose Ausgangsvirus. Für Menschen besteht kein Risiko.
 
-Betroffen sind vor allem junge Katzen zwischen etwa 3 Monaten und 2 Jahren, häufiger aus Zuchten, Tierheimen und Mehrkatzenhaushalten. Auch alte Katzen können erkranken.
+Betroffen sind vor allem junge Katzen: Laut International Cat Care sind etwa 80 Prozent der erkrankten Katzen jünger als 2 Jahre, viele 4 bis 12 Monate alt, und Rassekatzen sind häufiger betroffen. Das Risiko ist dort höher, wo viele Katzen zusammenleben, etwa in Zuchten und Tierheimen. Grundsätzlich kann aber jede Katze erkranken.
 
 ## Welche Formen von FIP gibt es?
 
@@ -52,19 +58,19 @@ Es gibt keinen einzelnen Test, der FIP sicher beweist. Ihre Praxis setzt das Bil
 
 ## Ist FIP bei Katzen heute behandelbar?
 
-Ja: Antivirale Wirkstoffe können die Krankheit bei der großen Mehrheit der Katzen stoppen, und seit Ende 2024 kann die Praxis sie in Deutschland legal als Rezepturarzneimittel verordnen.
+Ja: Antivirale Wirkstoffe können die Krankheit bei der großen Mehrheit der Katzen stoppen, und inzwischen kann die Praxis sie in Deutschland legal als Rezepturarzneimittel verordnen.
 
-Bis vor wenigen Jahren war FIP praktisch immer tödlich, und die Behandlung beschränkte sich auf Linderung. Dann zeigten Studien, unter anderem an der LMU München, dass antivirale Wirkstoffe aus der Gruppe der Nukleosidanaloga die Krankheit bei der großen Mehrheit der Katzen stoppen können. Zusammenfassungen mehrerer Studien nennen Erfolgsraten um 80 bis 90 Prozent, auch bei neurologischen Formen.
+Bis vor wenigen Jahren war FIP praktisch immer tödlich, und die Behandlung beschränkte sich auf Linderung. Dann zeigten Studien, dass antivirale Wirkstoffe aus der Gruppe der Nukleosidanaloga die Krankheit bei der großen Mehrheit der Katzen stoppen können. Eine systematische Übersicht von Studien aus den Jahren 2018 bis 2024 nennt eine Erfolgsrate von knapp 85 Prozent; der FIP-Leitfaden der FelineVMA von 2025 spricht von Überlebensraten oft über 90 Prozent.
 
-Das Problem war jahrelang die Rechtslage: In Deutschland war kein entsprechendes Tierarzneimittel zugelassen, und Halter bezogen Präparate illegal über den Schwarzmarkt, ohne Qualitätskontrolle und ohne tierärztliche Begleitung. Die Bundestierärztekammer warnte 2021 ausdrücklich davor.
+Das Problem war jahrelang die Rechtslage: In der EU ist bis heute kein entsprechendes Tierarzneimittel zugelassen, und Halter bezogen Präparate illegal über das Internet, ohne Qualitätskontrolle und ohne tierärztliche Begleitung. Behörden wie das österreichische BASG warnen weiterhin, dass Herkunft und Qualität solcher Präparate meist unbekannt sind.
 
-**Seit Ende 2024 hat sich das geändert.** Über die Regelungen des Tierarzneimittelrechts können Tierärztinnen und Tierärzte in Deutschland den Wirkstoff als individuell hergestelltes Rezepturarzneimittel aus einer Apotheke verordnen, wenn kein zugelassenes Mittel verfügbar ist. Der europäische Tierärzteverband führt Deutschland inzwischen unter den Ländern, in denen diese Behandlung legal zugänglich ist. Was das für Sie bedeutet:
+**Das hat sich geändert.** Tierärztinnen und Tierärzte in Deutschland können den Wirkstoff inzwischen als individuell hergestelltes Rezepturarzneimittel verordnen. Der FIP-Leitfaden der FelineVMA von 2025 führt Deutschland unter den Ländern, in denen Tierärztinnen und Tierärzte Zugang zu solchen Rezepturen haben. Was das für Sie bedeutet:
 
 - Die Behandlung läuft **über Ihre Tierarztpraxis**, mit Rezept, Dosierung nach Gewicht und Form der Erkrankung, und regelmäßigen Kontrollen.
-- Sie dauert in der Regel **etwa 12 Wochen** mit täglicher Gabe, meist als Tabletten oder Paste zum Eingeben.
+- Sie dauert in den meisten Studien **12 Wochen (84 Tage)** mit täglicher Gabe, meist zum Eingeben als Tablette oder Flüssigkeit; in manchen Fällen werden auch kürzere Behandlungen von 6 Wochen eingesetzt.
 - Blutwerte und Gewicht werden im Verlauf kontrolliert, denn die Dosis muss mit dem Gewicht wachsen.
 - Nach dem Ende der Behandlung folgt eine Beobachtungsphase, weil Rückfälle vorkommen, selten, aber möglich.
-- Die Kosten sind erheblich und hängen vom Gewicht der Katze ab. Fragen Sie vor Beginn nach einer Einschätzung.
+- Die Kosten können erheblich sein. Fragen Sie vor Beginn nach einer Einschätzung.
 
 Wir nennen hier bewusst keine Produkt- oder Wirkstoffnamen und keine Dosierungen. Beides legt Ihre Praxis fest, und Präparate aus dem Internet ohne Rezept bleiben illegal und riskant. Da sich die Verfügbarkeit weiter entwickelt, fragen Sie Ihre Praxis nach dem aktuellen Stand.
 
@@ -80,6 +86,6 @@ Alter, Herkunft und Kontakt zu anderen Katzen, seit wann welche Symptome bestehe
 
 ## Kann ich FIP bei meiner Katze vorbeugen?
 
-Eine zuverlässige Impfung gibt es nicht. Das Risiko sinkt mit kleinen, stabilen Katzengruppen, sauberen Toiletten (mindestens eine pro Katze plus eine), wenig Stress und guter Grundversorgung. Katzen, die eine FIP überstanden haben, können nach heutigem Stand ein normales Leben führen.
+Eine zuverlässige Impfung gibt es nicht. Das Risiko sinkt mit kleinen, stabilen Katzengruppen (International Cat Care rät zu weniger als fünf Katzen), sauberen Toiletten (mindestens eine pro Katze plus eine, leicht zu reinigen und nicht neben Futter und Wasser), wenig Stress und guter Grundversorgung. Katzen, die eine FIP überstanden haben, können nach heutigem Stand ein normales Leben führen.
 
 Ob bei *Ihrer* Katze eine FIP vorliegt und ob die Behandlung infrage kommt, kann nur Ihre eigene Praxis nach der Untersuchung sagen; dort sollten Sie das Gespräch führen.

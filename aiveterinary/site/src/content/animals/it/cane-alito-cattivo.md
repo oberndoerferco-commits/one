@@ -4,7 +4,7 @@ description: "L'alito cattivo nel cane non è normale, nemmeno da anziano. Quasi
 species: dog
 category: symptoms
 urgency: this-week
-updated: 2026-10-16
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -91,6 +91,6 @@ Secondo il Merck Veterinary Manual, **lavare i denti ogni giorno**, o almeno a g
 - Basta pulire la **superficie esterna** dei denti, quella verso le guance.
 - Se il cane non accetta lo spazzolino, anche **strofinare i denti con una garza** ogni 2-3 giorni aiuta a ridurre la placca.
 
-Alimenti, snack e prodotti per l'igiene orale possono dare una mano, ma non sostituiscono lo spazzolino. Il Merck Veterinary Manual fa notare che non è vero che le **crocchette secche** puliscono i denti in modo affidabile.
+Alimenti, snack e prodotti per l'igiene orale possono dare una mano, ma non sostituiscono lo spazzolino. Il Merck Veterinary Manual, nella versione per veterinari, fa notare che l'idea che le **crocchette secche** puliscano i denti meglio del cibo umido non è sempre vera.
 
 Infine, fai controllare la bocca a ogni visita annuale. Un alito che cambia è spesso il primo segnale che qualcosa non va, e prima si interviene, più denti si salvano.

@@ -5,7 +5,7 @@ description: "Weicher, verklebter Kot am Kaninchenpo ist oft kein echter Durchfa
 species: rabbit
 category: symptoms
 urgency: today
-updated: 2026-10-17
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -17,6 +17,10 @@ references:
     url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7149685/"
   - title: "Turner R. et al.: Risk factors for cutaneous myiasis (blowfly strike) in pet rabbits in Great Britain based on text-mining veterinary electronic health records. Prev Vet Med 2018;153:77–83 (PubMed)"
     url: "https://pubmed.ncbi.nlm.nih.gov/29653739/"
+  - title: "PDSA: Diarrhoea in rabbits"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/diarrhoea-in-rabbits"
+  - title: "Rabbit Welfare Association & Fund: Recognising emergencies"
+    url: "https://rabbitwelfare.co.uk/welfare-need/recognising-emergencies/"
 ---
 
 ## Zuerst: wann Sie sofort in die Tierarztpraxis fahren sollten
@@ -25,13 +29,13 @@ Kaninchen sind Fluchttiere und zeigen Krankheit oft erst spät. Fahren Sie **sof
 
 - **wässrigen oder breiigen Kot** absetzt und keine normalen, runden Köttel mehr dazwischen sind
 - **nicht mehr frisst** oder deutlich weniger frisst als sonst
-- **seit etwa 12 Stunden keinen Kot** mehr abgesetzt hat
+- **keinen Kot** mehr absetzt
 - zusammengekauert sitzt, mit den Zähnen knirscht oder einen aufgeblähten, harten Bauch hat
 - matt ist, sich kalt anfühlt oder schwach wirkt
 - ein **Jungtier** ist und Durchfall hat
 - **Maden** oder Fliegeneier im Fell hat, vor allem rund um den After
 
-Diese Zeichen können auf eine schwere Darmerkrankung oder einen Darmstillstand hinweisen. Beides kann bei Kaninchen schnell lebensbedrohlich werden. Warten Sie nicht bis zum nächsten Tag.
+Diese Zeichen können auf eine schwere Darmerkrankung oder einen Darmstillstand hinweisen. Beides kann bei Kaninchen schnell lebensbedrohlich werden. Warten Sie nicht bis zum nächsten Tag. Auch wenn es Ihrem Kaninchen sonst gut geht: Die PDSA rät, bei auffälligem Kot noch am selben Tag einen Termin zu vereinbaren und nie abzuwarten, ob es besser wird.
 
 ## Ist weicher Kot beim Kaninchen immer Durchfall?
 
@@ -49,7 +53,7 @@ Wenn Sie plötzlich weichen, stinkenden, verklebten Kot am Po oder im Gehege fin
 | Normale runde Köttel | werden weiter abgesetzt | fehlen meist |
 | Appetit | Kaninchen frisst normal | Kaninchen frisst schlecht oder gar nicht |
 | Allgemeinbefinden | munter | matt, oft mit Bauchschmerzen |
-| Dringlichkeit | Termin in den nächsten Tagen | Notfall |
+| Dringlichkeit | zeitnah einen Termin vereinbaren, möglichst noch heute | Notfall |
 
 Laut dem Lehrbuch Textbook of Rabbit Medicine ist liegen gebliebener Blinddarmkot nicht lebensbedrohlich. Echter Durchfall dagegen ist es, weil das Kaninchen rasch Wasser und Salze verliert.
 
@@ -78,7 +82,7 @@ Das MSD Veterinary Manual beschreibt Durchfall beim Kaninchen in jedem Alter als
 - **Fehler bei Fütterung und Haltung**: plötzliche Futterumstellung, zu wenig Rohfaser, Stress, verschmutzte Gehege
 - **bestimmte Antibiotika**, die bei Kaninchen die Darmflora zerstören
 
-Besonders gefährdet sind **junge Kaninchen** kurz nach dem Absetzen. Die sogenannte Enterotoxämie kann sehr schnell verlaufen: Das MSD Veterinary Manual beschreibt, dass ein Kaninchen abends noch gesund wirken und am Morgen tot sein kann. Bei erwachsenen Kaninchen sind ansteckende Darmentzündungen seltener.
+Besonders gefährdet sind **junge Kaninchen** kurz nach dem Absetzen. Die sogenannte Enterotoxämie kann sehr schnell verlaufen: Das MSD Veterinary Manual beschreibt, dass ein Kaninchen abends noch gesund wirken und am Morgen tot sein kann.
 
 ## Was ist ein Darmstillstand beim Kaninchen?
 
@@ -94,7 +98,7 @@ Die Praxis behandelt einen Darmstillstand unter anderem mit Flüssigkeit, Schmer
 
 Fliegen legen an einem verschmutzten Po Eier ab, die schlüpfenden Maden fressen sich in die Haut, und das ist ein Notfall.
 
-Ein verklebter, verschmutzter Po lockt Fliegen an. Sie legen dort Eier ab, und die schlüpfenden Maden fressen sich in die Haut. Dieser **Fliegenmadenbefall (Myiasis)** ist bei Kaninchen eine schwere, oft schnell tödlich verlaufende Erkrankung. In einer britischen Untersuchung war fast immer der Bereich um den After betroffen, und die Fälle häuften sich bei warmem Wetter.
+Ein verklebter, verschmutzter Po lockt Fliegen an. Sie legen dort Eier ab, und die schlüpfenden Maden fressen sich in die Haut. Dieser **Fliegenmadenbefall (Myiasis)** ist bei Kaninchen eine schwere, oft schnell tödlich verlaufende Erkrankung. In einer britischen Untersuchung war meist der Bereich um den After betroffen, und die Fälle häuften sich bei warmem Wetter.
 
 Kontrollieren Sie den Po Ihres Kaninchens bei Durchfall oder liegen gebliebenem Blinddarmkot und in der warmen Jahreszeit mindestens täglich. Entdecken Sie Maden, ist das ein **Notfall**.
 
@@ -104,7 +108,7 @@ Lassen Sie es nicht hungern und geben Sie keine übrig gebliebenen Antibiotika, 
 
 - **Lassen Sie Ihr Kaninchen nicht hungern.** Anders als beim Hund ist Fasten für Kaninchen gefährlich, weil der Darm ständig in Bewegung bleiben muss.
 - **Geben Sie keine übrig gebliebenen Antibiotika** oder Medikamente anderer Tiere. Laut MSD Veterinary Manual können bestimmte Antibiotika, die für Hund oder Katze sicher sind, bei Kaninchen schweren Durchfall bis zum Tod auslösen.
-- **Geben Sie keine Schmerzmittel für Menschen** wie Paracetamol oder Ibuprofen. **Metamizol** (zum Beispiel Novalgin) darf Ihr Kaninchen nur bekommen, wenn die Tierärztin oder der Tierarzt es verordnet.
+- **Geben Sie keine Schmerzmittel für Menschen** wie Paracetamol oder Ibuprofen, sondern nur, was die Praxis verordnet.
 - **Versuchen Sie es nicht mit Hausmitteln wie Kohle oder Tee**, während Sie abwarten. Bei echtem Durchfall zählt jede Stunde.
 
 ## Was passiert in der Praxis, wenn mein Kaninchen Durchfall hat?

@@ -4,7 +4,7 @@ description: "Ticks should come off as soon as you find them. How to remove one 
 species: dog
 category: first-aid
 urgency: routine
-updated: 2026-10-18
+updated: 2026-10-19
 draft: true
 references:
   - title: "PDSA: How to remove a tick from a dog or cat"
@@ -17,6 +17,8 @@ references:
     url: "https://www.msdvetmanual.com/en-gb/dog-owners/disorders-affecting-multiple-body-systems-of-dogs/lyme-disease-lyme-borreliosis-in-dogs"
   - title: "MSD Veterinary Manual (Pet Owner Version): Blood Parasites of Dogs"
     url: "https://www.msdvetmanual.com/en-gb/dog-owners/blood-disorders-of-dogs/blood-parasites-of-dogs"
+  - title: "ESCCAP Italia: Controllo delle malattie trasmesse da vettori nel cane e nel gatto, linea guida 5 (PDF, in Italian)"
+    url: "https://www.esccap.org/uploads/docs/jojw6bze_ESCCAP_GL_05_ita.pdf"
   - title: "International Cat Care: Permethrin poisoning"
     url: "https://icatcare.org/advice/permethrin-poisoning/"
   - title: "ESCCAP Deutschland: Wie entferne ich eine Zecke richtig? (in German)"
@@ -42,7 +44,7 @@ Because ticks can pass on infections while they feed, and removing them as soon 
 
 Ticks are small blood-feeding parasites. They don't jump or fly; they climb onto your dog from long grass, woodland, moorland and places with wildlife or farm animals. A tick that has just attached is about the size of a pinhead and swells to the size of a pea as it feeds. A feeding tick can look like a small grey skin tag. Look closely and you will see legs near the head.
 
-The main reason ticks matter is that they can pass on infections while they feed. European parasite experts advise removing any tick you see as soon as possible, to reduce the chance of disease. For Lyme disease, the tick usually has to stay attached for about one to two days before it passes on the bacteria, so a daily check really helps.
+The main reason ticks matter is that they can pass on infections while they feed. European parasite experts advise removing any tick you see as soon as possible, to reduce the chance of disease. For Lyme disease, the bacteria are usually passed on only after the tick has been feeding for many hours: ESCCAP's Italian guideline gives 16 to 24 hours from the start of feeding, and the MSD Veterinary Manual says usually 1 to 2 days. So a daily check really helps.
 
 ## Where should I look for ticks on my dog?
 

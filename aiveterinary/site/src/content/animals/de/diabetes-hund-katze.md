@@ -4,7 +4,7 @@ description: "Mehr trinken, mehr Urin, mehr Hunger und trotzdem Gewichtsverlust:
 species: general
 category: conditions
 urgency: this-week
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -57,20 +57,20 @@ Dazu kommt ein vollständiges Blut- und Urinprofil, das die Begleiter des Diabet
 
 ## Wie wird Diabetes bei Hund und Katze im Alltag behandelt?
 
-Mit Insulin als Spritze, meist zweimal täglich, einem gleichbleibenden, mit der Praxis abgesprochenen Futter und bei manchen Katzen mit Tabletten statt Insulin.
+Mit Insulin als Spritze, meist zweimal täglich, einem gleichbleibenden, mit der Praxis abgesprochenen Futter und bei manchen Katzen mit einem Medikament zum Eingeben statt Insulin.
 
 **Insulin.** Fast jeder zuckerkranke Hund und die meisten Katzen brauchen Insulin als Spritze unter die Haut, in der Regel zweimal täglich im Abstand von etwa zwölf Stunden. Die Nadeln sind winzig; in der Praxis wird es Ihnen gezeigt, und Sie dürfen üben.
 
 Ein paar Regeln, die zählen:
 
-- Insulin gehört in den Kühlschrank, nie ins Gefrierfach. Die Flasche sanft rollen, nicht schütteln.
+- Insulin gehört in den Kühlschrank, nie ins Gefrierfach. Mischen Sie es genau so, wie Praxis und Beipackzettel es sagen: Die meisten Insuline werden sanft gerollt, nicht geschüttelt, ein Tierarzt-Insulin muss dagegen geschüttelt werden, bis es gleichmäßig milchig ist.
 - Ändern Sie die Dosis nie selbst. Anpassungen macht die Praxis, langsam, meist nicht öfter als einmal pro Woche.
 - Wenn Sie nicht sicher sind, ob die Spritze angekommen ist, geben Sie keine zweite. Eine ausgelassene Dosis ist viel sicherer als eine doppelte.
 - Kein Insulin für ein Tier, das nicht gefressen hat oder erbricht. Rufen Sie stattdessen an.
 
 **Futter.** Hunde fahren am besten mit zwei gleich großen Mahlzeiten zu den Spritzzeiten, immer dasselbe Futter in derselben Menge. Für Katzen hilft ein kohlenhydratarmes Nassfutter, den Blutzucker zu kontrollieren; bei übergewichtigen Katzen kann langsames Abnehmen den Insulinbedarf senken. Sprechen Sie jede Futterumstellung mit der Praxis ab, statt eigenmächtig zu kürzen.
 
-**Weitere Möglichkeiten.** Für manche ansonsten gesunde Katzen ist eine neuere Klasse von Tabletten, einmal täglich gegeben, eine Alternative zum Insulin; sie eignet sich nicht für jede Katze. Bei einer unkastrierten Hündin wird meist zur Kastration geraten, weil die Zyklushormone gegen das Insulin arbeiten.
+**Weitere Möglichkeiten.** Für manche ansonsten gesunde Katzen ist eine neuere Klasse von Medikamenten zum Eingeben (Flüssigkeit oder Tablette), einmal täglich gegeben, eine Alternative zum Insulin; sie eignet sich nicht für jede Katze. Bei einer unkastrierten Hündin wird meist zur Kastration geraten, weil die Zyklushormone gegen das Insulin arbeiten.
 
 ## Wie überwache ich mein zuckerkrankes Tier zu Hause?
 

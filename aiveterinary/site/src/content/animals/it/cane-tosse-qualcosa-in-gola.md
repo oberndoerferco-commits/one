@@ -4,7 +4,7 @@ description: "Una tosse secca seguita da conati, come se il cane dovesse sputare
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-10-17
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -14,6 +14,8 @@ references:
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/kennel-cough"
   - title: "MSD Veterinary Manual (versione per proprietari): Tracheobronchitis (Bronchitis) in Dogs"
     url: "https://www.msdvetmanual.com/dog-owners/lung-and-airway-disorders-of-dogs/tracheobronchitis-bronchitis-in-dogs"
+  - title: "MSD Veterinary Manual: Gastric Dilation and Volvulus in Small Animals"
+    url: "https://www.msdvetmanual.com/digestive-system/diseases-of-the-stomach-and-intestines-in-small-animals/gastric-dilation-and-volvulus-in-small-animals"
   - title: "Merck Veterinary Manual (versione per proprietari): Heart Failure in Dogs"
     url: "https://www.merckvetmanual.com/dog-owners/heart-and-blood-vessel-disorders-of-dogs/heart-failure-in-dogs"
   - title: "Merck Veterinary Manual: Toxicities from Human Drugs, Analgesics"
@@ -29,10 +31,11 @@ La PDSA, un'importante associazione veterinaria britannica, consiglia di contatt
 - respira in modo **molto rumoroso o molto veloce**
 - ha un **attacco di tosse che non si ferma**
 - potrebbe avere **qualcosa incastrato in gola**, per esempio un pezzo di bastoncino o una spiga (forasacco)
+- ha **conati continui senza riuscire a vomitare**, o tira fuori solo schiuma e saliva, soprattutto con la **pancia gonfia e tesa**, irrequietezza o bava: oltre alle indicazioni della PDSA, questo è il quadro tipico della **torsione dello stomaco** (dilatazione-torsione gastrica), che colpisce soprattutto i cani grandi con torace profondo e richiede cure e un intervento immediati. Non dargli da mangiare e non aspettare
 
 Se la tosse è comparsa all'improvviso mentre masticava un gioco, un osso o un bastone, o dopo una corsa nell'erba alta, e il cane continua a deglutire, a tossire e a cercare di "sputare", **non aspettare**: un corpo estraneo nelle vie aeree va tolto dal veterinario.
 
-Fatti vedere **oggi** se la tosse lo fa stare male, gli impedisce di dormire, se **tossisce sangue** o se dopo un accesso di tosse è **svenuto** o crollato a terra: la PDSA indica tutti questi casi come motivo per una visita.
+Fatti vedere **oggi** se la tosse lo fa stare male, gli impedisce di dormire, se **tossisce sangue** o se dopo un accesso di tosse è **svenuto** o crollato a terra: la PDSA indica tutti questi casi come motivo per una visita. Fatti vedere in giornata anche se a tossire è un **cucciolo**: l'MSD Veterinary Manual avverte che nei cuccioli la tosse dei canili può evolvere in una broncopolmonite anche mortale.
 
 ## Perché sembra che il cane abbia qualcosa in gola?
 
@@ -53,7 +56,7 @@ La tosse del cane somiglia molto a quella umana, ma può essere confusa con altr
 Nonostante il nome, non riguarda solo i cani che vanno in pensione. Le cose principali da sapere:
 
 - **È molto contagiosa.** Secondo la PDSA si diffonde per via aerea, con il contatto diretto tra cani e attraverso oggetti contaminati come ciotole e guinzagli.
-- **Tempi.** I sintomi compaiono di solito **3-14 giorni** dopo il contagio e durano **1-3 settimane** (PDSA). L'MSD Veterinary Manual aggiunge che la tosse è in genere più forte nei primi 5 giorni.
+- **Tempi.** I sintomi compaiono di solito **3-14 giorni** dopo il contagio e durano **1-3 settimane** (PDSA). L'MSD Veterinary Manual aggiunge che l'intensità della tosse di solito diminuisce nei primi 5 giorni, ma la malattia dura 10-20 giorni.
 - **Di solito il cane sta bene per il resto**, magari mangia un po' meno.
 - **Può complicarsi.** L'MSD Veterinary Manual avverte che nei cuccioli può evolvere in una **broncopolmonite** anche mortale, e nei cani anziani o debilitati in una bronchite cronica. **Febbre, scolo nasale denso, abbattimento, inappetenza o una tosse grassa** fanno pensare a un'infezione più seria (come una polmonite o il cimurro) e richiedono una visita.
 - **Isolamento.** La PDSA consiglia di tenere il cane lontano da altri cani e dai luoghi pubblici finché tossisce e per **2-3 settimane** dopo la fine dei sintomi.

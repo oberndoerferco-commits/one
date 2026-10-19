@@ -4,12 +4,24 @@ description: "La malattia renale cronica è una delle condizioni più frequenti 
 species: cat
 category: conditions
 urgency: this-week
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: it
 references:
-  - title: "International Renal Interest Society (IRIS), linee guida per la stadiazione e il trattamento della malattia renale cronica nel gatto (iris-kidney.com)"
-  - title: "International Society of Feline Medicine (ISFM), consensus guidelines sulla diagnosi e gestione della malattia renale cronica felina"
+  - title: "International Renal Interest Society (IRIS): Staging of CKD (2026, PDF)"
+    url: "https://www.iris-kidney.com/s/IRIS_staging_guidelines-2026.pdf"
+  - title: "IRIS: Treatment Recommendations for CKD in Cats (2026, PDF)"
+    url: "https://www.iris-kidney.com/s/IRIS_CAT_Treatment_Recommendations_-2026.pdf"
+  - title: "International Cat Care: Chronic kidney disease (CKD) in cats"
+    url: "https://icatcare.org/articles/chronic-kidney-disease-ckd-in-cats"
+  - title: "Cornell Feline Health Center: Chronic kidney disease"
+    url: "https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/chronic-kidney-disease"
+  - title: "MSD Veterinary Manual: Renal dysfunction in dogs and cats"
+    url: "https://www.msdvetmanual.com/urinary-system/noninfectious-diseases-of-the-urinary-system-in-small-animals/renal-dysfunction-in-dogs-and-cats"
+  - title: "International Cat Care: Lily poisoning in cats"
+    url: "https://icatcare.org/articles/lily-poisoning-in-cats"
+  - title: "MSD Veterinary Manual: Ethylene glycol (antifreeze) poisoning"
+    url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/ethylene-glycol-antifreeze-poisoning"
 ---
 
 ## Prima di tutto: i segni per cui andare subito dal veterinario
@@ -20,7 +32,8 @@ Vai in clinica subito, avvisando per telefono, se il tuo gatto:
 - vomita ripetutamente, o ha vomito con sangue
 - è molto debole, barcolla, o non si alza
 - ha il respiro affannoso o la bocca aperta
-- ha un odore di ammoniaca o di urina dall'alito, con ulcere in bocca
+- ha ulcere in bocca
+- improvvisamente sembra non vederci, o è disorientato o ha altri segni nervosi (la pressione alta può danneggiare occhi e cervello)
 - improvvisamente urina molto di più o **non urina affatto**
 - potrebbe aver mangiato gigli (molto tossici per i reni), antigelo, o farmaci per uso umano
 
@@ -28,11 +41,11 @@ Questi segni possono indicare una **crisi renale acuta**, che è un'emergenza di
 
 ## Cos'è la malattia renale cronica nel gatto?
 
-È una perdita lenta e progressiva della funzione dei reni che non si guarisce, ma nella maggior parte dei casi si può rallentare per anni.
+È una perdita lenta e progressiva della funzione dei reni che non si guarisce, ma nella maggior parte dei casi si può rallentare per mesi o anni.
 
-I reni filtrano il sangue, eliminano le sostanze di scarto e regolano l'acqua e i sali. Nel gatto, con l'età, il tessuto renale può perdere a poco a poco la sua funzione. Il termine corretto è **malattia renale cronica** (si usa anche "insufficienza renale"): è progressiva, non si guarisce, ma nella maggior parte dei casi si può **rallentare** e il gatto può vivere bene per anni.
+I reni filtrano il sangue, eliminano le sostanze di scarto e regolano l'acqua e i sali. Nel gatto, con l'età, il tessuto renale può perdere a poco a poco la sua funzione. Il termine corretto è **malattia renale cronica** (si usa anche "insufficienza renale"): è progressiva, non si guarisce, ma nella maggior parte dei casi si può **rallentare** e il gatto può vivere bene per mesi o anche anni.
 
-Colpisce circa un gatto su tre sopra i 10-12 anni. I reni hanno una grande riserva: i segni compaiono quando buona parte della funzione è già persa. Per questo nei gatti anziani vale la pena fare controlli prima che qualcosa si noti.
+Si vede soprattutto dopo i 7 anni; si stima che tra un quinto e la metà dei gatti sopra i 15 anni ne abbia un certo grado. I reni hanno una grande riserva: i segni compaiono quando buona parte della funzione è già persa. Per questo nei gatti anziani vale la pena fare controlli prima che qualcosa si noti.
 
 ## Quali sono i primi segni di insufficienza renale nel gatto?
 
@@ -45,7 +58,7 @@ Beve e urina di più, perde peso lentamente, ha l'appetito capriccioso, il pelo 
 - È meno attivo, dorme di più
 - Ha episodi di vomito ogni tanto, senza una spiegazione
 - Ha l'alito cattivo
-- Più avanti: stitichezza, debolezza delle zampe posteriori, ulcere in bocca, gengive pallide
+- Più avanti: stitichezza, debolezza, ulcere in bocca, gengive pallide
 
 Molti proprietari li attribuiscono alla vecchiaia. Un gatto anziano che beve di più non è normale: va controllato.
 
@@ -53,7 +66,7 @@ Molti proprietari li attribuiscono alla vecchiaia. Un gatto anziano che beve di 
 
 Con esami del sangue e delle urine, spesso la misurazione della pressione e a volte un'ecografia.
 
-Servono un **esame del sangue** e un **esame delle urine**, spesso una misurazione della **pressione**, e in alcuni casi un'ecografia. Il veterinario classifica la malattia in stadi (il sistema più usato è quello IRIS, in quattro stadi) in base ai valori del sangue, alla presenza di proteine nelle urine e alla pressione. Lo stadio guida la gestione e dice cosa aspettarsi.
+Servono un **esame del sangue** e un **esame delle urine**, spesso una misurazione della **pressione**, e in alcuni casi un'ecografia. Poiché i valori variano da un giorno all'altro, la diagnosi va confermata idealmente su almeno due campioni presi entro circa due settimane, con il gatto stabile e ben idratato. Il veterinario classifica la malattia in stadi (il sistema più usato è quello IRIS, in quattro stadi) in base ai valori del sangue, alla presenza di proteine nelle urine e alla pressione. Lo stadio guida la gestione e dice cosa aspettarsi.
 
 ## Come si gestisce la malattia renale giorno per giorno?
 
@@ -65,16 +78,16 @@ La gestione è un lavoro di squadra tra te e il veterinario, e si costruisce su 
 - **Acqua.** Più ciotole, fontanelle, cibo umido, acqua aggiunta alle crocchette. Un gatto renale si disidrata facilmente. In alcuni stadi il veterinario può insegnarti a somministrare fluidi sotto la pelle a casa.
 - **Fosforo, pressione, proteine nelle urine.** Il veterinario può aggiungere trattamenti per tenere sotto controllo questi tre aspetti, che influenzano molto la progressione.
 - **Nausea e appetito.** Esistono trattamenti per ridurre la nausea e stimolare l'appetito quando serve.
-- **Controlli regolari.** In genere ogni 3-6 mesi, con peso, sangue, urine e pressione. Servono per aggiustare il piano prima che il gatto stia male.
+- **Controlli regolari.** Con peso, sangue, urine e pressione; almeno ogni 3 mesi se il gatto è in terapia per la pressione. Servono per aggiustare il piano prima che il gatto stia male.
 - **Peso in casa.** Pesalo ogni due settimane: il peso è il segnale più precoce che qualcosa cambia.
 
 Evita i farmaci per uso umano, in particolare gli antinfiammatori, e di' sempre a ogni veterinario, anche per una cosa diversa, che il tuo gatto ha i reni fragili: alcune sedazioni e trattamenti vanno adattati.
 
 ## Quando portare il gatto dal veterinario?
 
-Prenota una visita questa settimana se noti i primi segni, soprattutto in un gatto sopra gli 8-10 anni, e chiama prima del controllo se un gatto già in cura peggiora.
+Prenota una visita questa settimana se noti i primi segni, soprattutto in un gatto sopra i 7 anni, e chiama prima del controllo se un gatto già in cura peggiora.
 
-Prenota una visita questa settimana se noti uno o più dei primi segni elencati sopra, soprattutto se il gatto ha più di 8-10 anni. Se il gatto è già in cura, chiama prima del controllo programmato se smette di mangiare per più di un giorno, vomita più del solito, perde peso in fretta o è più debole.
+Prenota una visita questa settimana se noti uno o più dei primi segni elencati sopra, soprattutto se il gatto ha più di 7 anni. Per i gatti maturi e anziani, un controllo di sangue e urine una o due volte l'anno aiuta a scoprire la malattia prima dei sintomi. Se il gatto è già in cura, chiama prima del controllo programmato se smette di mangiare per più di un giorno, vomita più del solito, perde peso in fretta o è più debole.
 
 ## Cosa vorrà sapere il veterinario?
 

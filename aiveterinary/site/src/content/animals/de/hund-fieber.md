@@ -5,7 +5,7 @@ description: "Ob ein Hund Fieber hat, zeigt nur das Thermometer, nicht die Nase.
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-10-16
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -21,6 +21,14 @@ references:
     url: "https://www.bft-online.de/fileadmin/bft/Presse/Kleintiergesundheit/Hintergrundinformationen/BfT_Hintergrundinformation_Falsch_verabreichte_Medikamente_Stand20200129.pdf"
   - title: "Pharmazeutische Zeitung: Metamizol bleibt verschreibungspflichtig"
     url: "https://www.pharmazeutische-zeitung.de/metamizol-bleibt-verschreibungspflichtig-162078/"
+  - title: "PDSA Pet Health Hub: Pyometra (infected womb) in dogs"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/pyometra-infected-womb-in-dogs"
+  - title: "MSD Veterinary Manual (Pet Owner Version): Reproductive Disorders of Female Dogs (Metritis)"
+    url: "https://www.msdvetmanual.com/dog-owners/reproductive-disorders-of-dogs/reproductive-disorders-of-female-dogs"
+  - title: "MSD Veterinary Manual (Pet Owner Version): Blood Parasites of Dogs (Babesiose)"
+    url: "https://www.msdvetmanual.com/en-gb/dog-owners/blood-disorders-of-dogs/blood-parasites-of-dogs"
+  - title: "Cornell University College of Veterinary Medicine: Managing Common Side-Effects of Chemotherapy"
+    url: "https://www.vet.cornell.edu/departments-centers-and-institutes/sprecher-institute-comparative-cancer-research/treatment-strategies/managing-common-side-effects-chemotherapy"
 ---
 
 ## Zuerst: wann Sie sofort in die Tierarztpraxis fahren sollten
@@ -31,9 +39,10 @@ Fahren Sie sofort in eine Tierarztpraxis oder Tierklinik und rufen Sie vorher an
 - kaum noch aufsteht, zusammenbricht, zittert oder einen Krampfanfall hat
 - schwer atmet, sehr blasses, graues, gelbliches oder dunkelrotes Zahnfleisch hat
 - wiederholt erbricht, blutigen Durchfall hat oder nicht mehr trinkt
-- eine Hündin ist, die vor kurzem geworfen hat oder läufig war und jetzt matt ist, viel trinkt oder Ausfluss hat
+- eine Hündin ist, die vor kurzem geworfen hat oder in den letzten Wochen läufig war und jetzt matt ist, viel trinkt oder Ausfluss hat (eine Gebärmuttervereiterung zeigt sich meist vier bis acht Wochen nach der Läufigkeit, manchmal ganz ohne Ausfluss)
 - vor kurzem operiert wurde, eine Wunde hat oder Medikamente bekommt, die die Abwehr schwächen
 - nach einem Zeckenstich oder einer Reise ins Ausland matt ist, nicht frisst oder dunklen Urin absetzt
+- eine rektale Temperatur von etwa **41 °C oder mehr** hat
 
 Auch eine **zu niedrige** Temperatur bei einem kranken Hund ist ein Warnzeichen und kein Grund zur Entwarnung. Rufen Sie dann ebenfalls sofort an.
 
@@ -68,9 +77,9 @@ Nicht geeignet sind:
 Rektal, mit einem digitalen Fieberthermometer, etwas Gleitmittel und einer zweiten Person, die den Hund ruhig hält.
 
 1. **Thermometer vorbereiten:** Nehmen Sie ein digitales Fieberthermometer, am besten eines, das nur für den Hund verwendet wird.
-2. **Gleitmittel auftragen:** Bestreichen Sie die Spitze mit einem wasserlöslichen Gleitgel oder etwas Vaseline.
+2. **Gleitmittel auftragen:** Bestreichen Sie die Spitze mit einem wasserlöslichen Gleitgel.
 3. **Hilfe holen:** Eine zweite Person hält den Hund ruhig, im Stehen oder in Seitenlage, und spricht beruhigend mit ihm.
-4. **Einführen:** Heben Sie den Schwanz an und führen Sie die Spitze vorsichtig ein paar Zentimeter in den After ein. Bei kleinen Hunden weniger, bei großen etwas mehr. Niemals mit Kraft. Wenn Ihr Hund sich stark verkrampft, brechen Sie ab.
+4. **Einführen:** Heben Sie den Schwanz an und schieben Sie nur die Spitze des Thermometers vorsichtig in den After. Niemals mit Kraft. Wenn Ihr Hund sich stark verkrampft, brechen Sie ab.
 5. **Warten:** Halten Sie das Thermometer fest, bis es piept, und ziehen Sie es dann heraus.
 6. **Reinigen und notieren:** Reinigen und desinfizieren Sie das Thermometer. Schreiben Sie Wert und Uhrzeit auf.
 
@@ -78,9 +87,9 @@ Messen Sie, wenn Ihr Hund ruhig ist, nicht direkt nach dem Toben. Wenn Ihr Hund 
 
 ## Welche Werte sind normal?
 
-Das MSD Veterinary Manual nennt für erwachsene Hunde eine normale rektale Temperatur von **37,5 bis 39,2 °C**. Bei Welpen in den ersten Lebenswochen liegt sie niedriger.
+Das MSD Veterinary Manual nennt für Hunde eine normale rektale Temperatur von **37,5 bis 39,2 °C**.
 
-Von echtem Fieber spricht man beim Hund meist ab etwa **39,5 °C**. Die meisten Hunde mit Fieber liegen zwischen 39,5 und 41,1 °C. Noch höhere Werte sprechen eher für eine Überhitzung, zum Beispiel einen Hitzschlag.
+Die meisten Hunde mit echtem Fieber liegen laut MSD Veterinary Manual zwischen **39,5 und 41,1 °C**. Noch höhere Werte sprechen eher für eine Überhitzung, zum Beispiel einen Hitzschlag.
 
 So können Sie die Werte grob einordnen:
 
@@ -88,8 +97,8 @@ So können Sie die Werte grob einordnen:
 |---|---|
 | 37,5 bis 39,2 °C | Im normalen Bereich. Wirkt Ihr Hund trotzdem krank, rufen Sie die Praxis an. |
 | 39,3 bis 39,4 °C | Nach 30 bis 60 Minuten Ruhe noch einmal messen. Bleibt der Wert erhöht oder ist Ihr Hund matt, rufen Sie an. |
-| ab 39,5 °C | Fieber. Rufen Sie heute noch Ihre Praxis an. |
-| sehr hoch, oder Hund war in der Hitze | Sofort in die Praxis, bei Hitze vorher kühlen. |
+| 39,5 bis unter 41 °C | Fieber. Rufen Sie heute noch Ihre Praxis an. |
+| ab etwa 41 °C, oder Hund war in der Hitze | Sofort in die Praxis, bei Hitze vorher kühlen. |
 | unter 37,5 °C bei einem kranken Hund | Sofort anrufen. |
 
 Die Tabelle ersetzt keine Untersuchung.

@@ -4,7 +4,7 @@ description: "Husten mit anschließendem Würgen ist beim Hund häufig harmloser
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-10-16
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -14,6 +14,12 @@ references:
     url: "https://www.msdvetmanual.com/dog-owners/lung-and-airway-disorders-of-dogs/tracheobronchitis-bronchitis-in-dogs"
   - title: "MSD Veterinary Manual (Pet Owner Version): Acquired Heart and Blood Vessel Disorders in Dogs"
     url: "https://www.msdvetmanual.com/dog-owners/heart-and-blood-vessel-disorders-of-dogs/acquired-heart-and-blood-vessel-disorders-in-dogs"
+  - title: "PDSA Pet Health Hub: Kennel cough"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/kennel-cough"
+  - title: "PDSA Pet Health Hub: Coughing in dogs"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/coughing-in-dogs"
+  - title: "Merck Veterinary Manual: Toxicities from Human Drugs, Analgesics"
+    url: "https://www.merckvetmanual.com/toxicology/toxicities-from-human-drugs/analgesics-toxicity"
   - title: "MSD Veterinary Manual (Professional Version): Esophageal Foreign Bodies in Small Animals"
     url: "https://www.msdvetmanual.com/digestive-system/diseases-of-the-esophagus-in-small-animals/esophageal-foreign-bodies-in-small-animals"
 ---
@@ -55,7 +61,7 @@ Typisch sind Anfälle von **hartem, trockenem Husten**, auf die oft Würgen folg
 
 Meist heilt Zwingerhusten von allein aus. Bei Welpen kann er aber in eine lebensgefährliche Lungenentzündung übergehen, und auch bei geschwächten oder alten Hunden kann er schwerer verlaufen. Gegen mehrere der beteiligten Erreger gibt es Impfungen; welche für Ihren Hund sinnvoll sind, bespricht Ihre Praxis mit Ihnen.
 
-Halten Sie einen hustenden Hund von anderen Hunden fern, solange er hustet. Rufen Sie vor dem Praxisbesuch an, damit Ihr Hund nicht im vollen Wartezimmer sitzt.
+Halten Sie einen hustenden Hund von anderen Hunden und öffentlichen Orten fern, solange er hustet und laut PDSA noch zwei bis drei Wochen danach. Rufen Sie vor dem Praxisbesuch an, damit Ihr Hund nicht im vollen Wartezimmer sitzt.
 
 ### Fremdkörper
 
@@ -87,7 +93,7 @@ Wenn keines der Alarmzeichen oben zutrifft, vereinbaren Sie trotzdem einen Termi
 **In den nächsten Tagen**, wenn:
 
 - ein ansonsten munterer, erwachsener Hund nach Kontakt mit anderen Hunden trocken hustet und es nach ein paar Tagen nicht besser wird
-- der Husten länger als etwa eine Woche anhält oder immer wiederkommt
+- der Husten länger als ein paar Tage anhält oder immer wiederkommt
 - Ihr Hund älter ist und neu zu husten beginnt
 
 ## Was kann ich zu Hause tun, wenn mein Hund hustet?

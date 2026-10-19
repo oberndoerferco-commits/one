@@ -1,15 +1,29 @@
 ---
 title: "Warum frisst mein Hund Gras, Kot oder Erde?"
-description: "Grasfressen ist bei gesunden Hunden normal, Kotfressen ist unappetitlich und meist verhaltensbedingt, Erdefressen kann ein Hinweis auf Mangel oder Übelkeit sein. Was dahinterstecken kann, was Sie beobachten sollten und wann es ein Fall für die Praxis ist."
+description: "Grasfressen ist bei gesunden Hunden normal, Kotfressen ist unappetitlich und meist verhaltensbedingt, Erdefressen kann auf eine Erkrankung, unausgewogenes Futter oder ein Verhaltensproblem hinweisen. Was dahinterstecken kann, was Sie beobachten sollten und wann es ein Fall für die Praxis ist."
 species: dog
 category: care
 urgency: routine
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: de
 references:
-  - title: "ESCCAP Deutschland: Empfehlungen zur Bekämpfung von Würmern (Helminthen) bei Hunden und Katzen (Entwurmungsintervalle nach Risiko)"
-  - title: "ESCCAP: Factsheet Giardia-Infektion bei Hund und Katze"
+  - title: "VCA Animal Hospitals: Why do dogs eat grass?"
+    url: "https://vcahospitals.com/know-your-pet/why-do-dogs-eat-grass"
+  - title: "VCA Animal Hospitals: Why does my dog eat grass?"
+    url: "https://vcahospitals.com/resources/behavior-dog/concerns/why-does-my-dog-eat-grass"
+  - title: "VCA Animal Hospitals: Dog Behavior Problems, Coprophagia"
+    url: "https://vcahospitals.com/know-your-pet/dog-behavior-problems-coprophagia"
+  - title: "VCA Animal Hospitals: Pica in Dogs"
+    url: "https://vcahospitals.com/know-your-pet/pica-in-dogs"
+  - title: "Hart B.L. et al.: The paradox of canine conspecific coprophagy. Vet Med Sci 2018;4(2):106–114 (PubMed)"
+    url: "https://pubmed.ncbi.nlm.nih.gov/29851313/"
+  - title: "ESCCAP Deutschland: Wenn der Hund Kot frisst – 3 Tipps, die helfen können"
+    url: "https://www.esccap.de/wenn-der-hund-kot-frisst/"
+  - title: "ESCCAP Deutschland: Bekämpfung von Würmern (Helminthen) bei Hunden und Katzen, Deutsche Adaption der ESCCAP-Empfehlung Nr. 1, 08/2025 (PDF)"
+    url: "https://www.esccap.de/v2/wp-content/uploads/2026/08/2026-GL1-Helminthen_17082026.pdf"
+  - title: "MSD Veterinary Manual (Professional Version): Metaldehyde Poisoning in Animals"
+    url: "https://www.msdvetmanual.com/toxicology/metaldehyde-poisoning/metaldehyde-poisoning-in-animals"
 ---
 
 ## Ist es schlimm, wenn mein Hund Gras, Kot oder Erde frisst?
@@ -20,43 +34,44 @@ Hunde fressen Dinge, die aus menschlicher Sicht nichts im Maul zu suchen haben. 
 
 ## Warum frisst mein Hund Gras?
 
-Meist weil es schmeckt und beschäftigt oder er Ballaststoffe sucht; schlingt er hastig Gras und erbricht danach, steckt wahrscheinlich Übelkeit dahinter.
+Meist weil es schmeckt und beschäftigt oder er Ballaststoffe sucht; frisst er auffällig viel Gras oder hat er Magenbeschwerden, kann Übelkeit dahinterstecken.
 
-Die meisten Hunde fressen gelegentlich Gras, und die meisten erbrechen danach nicht. Studien an gesunden Hunden zeigen, dass Grasfressen in der Regel kein Zeichen von Krankheit ist und nur bei einer Minderheit mit Erbrechen zusammenhängt. Wahrscheinliche Erklärungen:
+Die meisten Hunde fressen gelegentlich Gras, und die meisten erbrechen danach nicht. Laut VCA Animal Hospitals zeigen Studien, dass weniger als 25 % der Hunde nach dem Grasfressen erbrechen und nur etwa 10 % vorher Anzeichen einer Erkrankung haben. Mögliche Erklärungen:
 
 - **Es schmeckt und beschäftigt.** Junges, saftiges Gras im Frühjahr ist attraktiv, und das Rupfen ist eine Tätigkeit.
-- **Ballaststoffe.** Manche Hunde suchen Fasern, vor allem bei sehr fettreichem oder faserarmem Futter.
-- **Übelkeit.** Ein Hund, der hastig und gezielt Gras schlingt, oft mit Schmatzen und Speicheln, und anschließend erbricht, versucht wahrscheinlich, sich Erleichterung zu verschaffen. Passiert das selten, ist es harmlos. Passiert es regelmäßig, sollte die Ursache der Übelkeit gesucht werden.
+- **Ballaststoffe.** Gras enthält viele Fasern. Manche Hunde suchen sie vermutlich, etwa wenn ihr Futter wenig Ballaststoffe enthält.
+- **Übelkeit.** Manche Hunde schlingen hastig Gras und erbrechen kurz danach. Ob ihnen schon vorher übel war oder ob ihnen vom Gras übel wird, ist unklar. Frisst Ihr Hund auffällig viel Gras, endet das regelmäßig mit Erbrechen oder zeigt er Anzeichen von Magenbeschwerden wie Bauchgrummeln oder Durchfall, sollte die Ursache in der Praxis gesucht werden.
 
-Worauf Sie achten sollten: gedüngte oder frisch gespritzte Flächen, Hundewiesen mit viel Kot (Parasiten), und lange, harte Grashalme, die sich im Rachen verfangen können. Ein Hund, der nach dem Grasfressen hustet oder würgt, ohne dass etwas kommt, hat möglicherweise einen Halm hinter dem Gaumen.
+Worauf Sie achten sollten: Flächen, die mit Unkraut- oder Insektenvernichtungsmitteln behandelt wurden, Hundewiesen mit viel Kot (mit dem Gras können Wurmeier aufgenommen werden), und große Mengen Gras, die im Magen-Darm-Trakt verklumpen und ihn verlegen können. Hustet oder würgt Ihr Hund nach dem Grasfressen anhaltend, lassen Sie ihn untersuchen.
 
 ## Warum frisst mein Hund Kot?
 
-Meist ist es Verhalten, etwa durch Lernen, Langeweile oder weil fremder Kot attraktiv ist; seltener stecken Verdauungsprobleme, Parasiten, nährstoffarmes Futter oder Medikamente dahinter.
+Meist ist es Verhalten, etwa durch Erkunden, Aufmerksamkeit, zu wenig Beschäftigung oder weil fremder Kot attraktiv ist; seltener stecken Verdauungsprobleme, Parasiten, ungeeignetes Futter oder Medikamente dahinter.
 
-Das Fressen von Kot ist für Halter das unangenehmste der drei Verhaltensweisen und beim Hund trotzdem weit verbreitet. Hündinnen fressen den Kot ihrer Welpen instinktiv, Welpen probieren fast alles, und viele erwachsene Hunde behalten die Gewohnheit bei. Meist ist es Verhalten, nicht Krankheit:
+Das Fressen von Kot ist für Halterinnen und Halter das unangenehmste der drei Verhaltensweisen und beim Hund trotzdem weit verbreitet. Hündinnen fressen den Kot ihrer Welpen im Nest, Welpen probieren fast alles, und bei manchen Hunden wird daraus eine dauerhafte Gewohnheit. Meist ist es Verhalten, nicht Krankheit:
 
-- **Lernen und Langeweile.** Welpen, die den Kot erkunden und dafür Aufmerksamkeit bekommen, lernen schnell, dass sich das lohnt.
-- **Pferde-, Kuh- und Katzenkot** sind für viele Hunde schlicht attraktiv, weil sie unverdaute Nährstoffe enthalten.
-- **Zu wenig Beschäftigung** oder Stress im Haushalt.
+- **Erkunden und Aufmerksamkeit.** Welpen untersuchen Kot, spielen damit und fressen ihn manchmal. Bekommen sie dafür viel Aufmerksamkeit, kann das das Verhalten verstärken.
+- **Katzenkot und Kot von Pflanzenfressern** wie Pferden ziehen viele Hunde durch Geruch, Konsistenz und Geschmack an.
+- **Zu wenig Beschäftigung** oder Stress: ESCCAP Deutschland rät, Stress zu vermeiden und für ausreichend Beschäftigung zu sorgen.
 
-Medizinische Ursachen sind seltener, aber wichtig: Eine unzureichende Verdauung (etwa bei einer Erkrankung der Bauchspeicheldrüse), Parasiten, sehr nährstoffarmes Futter oder Medikamente, die den Appetit stark steigern, können Kotfressen auslösen. Auffällig wird es, wenn ein Hund das Verhalten neu beginnt, Gewicht verliert oder weichen, fettigen Kot hat.
+Medizinische Ursachen sind seltener, aber wichtig: Laut VCA können eine unzureichende Verdauung (etwa bei einem Mangel an Verdauungsenzymen der Bauchspeicheldrüse), Parasiten, schlecht verdauliches oder zu knappes Futter, Erkrankungen, die starken Hunger machen, oder Medikamente wie Kortison Kotfressen auslösen. Auffällig wird es, wenn ein Hund das Verhalten neu beginnt, Gewicht verliert oder weichen, fettigen Kot hat.
 
-Das größte praktische Risiko ist nicht der Kot selbst, sondern das, was darin lebt: Würmer, Giardien und andere Parasiten. Ein Hund, der regelmäßig Kot frisst, sollte häufiger entwurmt oder regelmäßig per Kotprobe untersucht werden. Die ESCCAP-Empfehlungen sehen für Hunde mit hohem Risiko bis zu zwölf Entwurmungen oder Kotuntersuchungen pro Jahr vor.
+Das größte praktische Risiko ist nicht der Kot selbst, sondern das, was darin lebt: Würmer, Giardien und andere Parasiten. ESCCAP Deutschland rät deshalb, bei Kotfressern einen Parasitenbefall in der Praxis ausschließen oder behandeln zu lassen, etwa mit einer Kotuntersuchung oder einer Entwurmung. Wie oft, richtet sich nach dem persönlichen Risiko: Die ESCCAP-Empfehlungen sehen für Hunde mit hohem Risiko bis zu zwölf Entwurmungen oder Kotuntersuchungen pro Jahr vor.
 
-Was hilft: Kot sofort aufsammeln, Katzentoilette unzugänglich machen, an der Leine konsequent ein „Aus“ oder „Weiter“ üben und mit etwas Besserem belohnen, mehr Beschäftigung. Zusatzpräparate, die den Kot „ungenießbar“ machen sollen, helfen selten zuverlässig.
+Was hilft: Kot sofort aufsammeln, Katzentoilette unzugänglich machen, an der Leine konsequent ein „Aus“ oder „Weiter“ üben und mit etwas Besserem belohnen, mehr Beschäftigung. Zusatzpräparate, die den Kot „ungenießbar“ machen sollen, helfen selten zuverlässig: In einer großen Befragung der Universität von Kalifornien lag ihr berichteter Erfolg nahe null.
 
 ## Warum frisst mein Hund Erde?
 
-Gelegentlich ist das normal, gezieltes, wiederholtes Erdefressen kann aber auf Übelkeit, Magenprobleme, einen Mineralstoffmangel oder Stress hinweisen.
+Gelegentlich ist das normal, gezieltes, wiederholtes Erdefressen kann aber auf eine Magen-Darm-Erkrankung, unausgewogenes Futter, Medikamente oder ein Verhaltensproblem hinweisen.
 
 Gelegentliches Buddeln und Schnuppern mit etwas Erde im Maul ist normal. Gezieltes, wiederholtes Erdefressen (medizinisch „Pica“ für das Fressen nicht essbarer Dinge) verdient mehr Aufmerksamkeit:
 
-- **Übelkeit und Magenprobleme** können Hunde dazu bringen, Erde, Steine oder Putz zu fressen.
-- **Blutarmut** oder ein Mangel an bestimmten Mineralstoffen wird als Ursache diskutiert, ist aber bei gut ernährten Hunden selten.
-- **Stress, Langeweile, Zwangsverhalten** bei manchen Hunden.
+- **Magen-Darm-Erkrankungen** wie chronische Darmentzündungen, Darmparasiten oder ein Mangel an Verdauungsenzymen der Bauchspeicheldrüse nennt VCA als mögliche Ursachen.
+- **Mangelernährung oder unausgewogenes Futter** kommen infrage, sind bei Hunden mit einem ausgewogenen Fertigfutter aber unwahrscheinlich.
+- **Medikamente**, die starken Hunger machen, etwa Kortison.
+- **Angst, Langeweile oder Zwangsverhalten** bei manchen Hunden.
 
-Erde birgt Risiken: Parasiteneier, Düngemittel, Schneckenkorn (hochgiftig), und bei Steinen oder größeren Mengen die Gefahr eines Darmverschlusses. Ein Hund, der Steine frisst, gehört in Beobachtung, und wenn er erbricht, nicht mehr kotet oder Bauchschmerzen zeigt, sofort in die Praxis.
+Erde birgt Risiken: Parasiteneier, Schneckenkorn (das darin häufig enthaltene Metaldehyd ist für Hunde giftig und kann Zittern und Krampfanfälle auslösen), und bei Steinen oder anderen unverdaulichen Dingen die Gefahr eines Verschlusses von Speiseröhre, Magen oder Darm. Ein Hund, der Steine frisst, gehört in Beobachtung, und wenn er erbricht, nicht mehr frisst oder Bauchschmerzen zeigt, sofort in die Praxis.
 
 ## Wann sollte ich mit meinem Hund deswegen zur Tierärztin oder zum Tierarzt?
 
@@ -68,8 +83,8 @@ Vereinbaren Sie innerhalb der nächsten Tage einen Termin, wenn:
 - er dabei Gewicht verliert, Durchfall oder fettigen Kot hat oder mehr trinkt
 - Grasfressen regelmäßig mit Erbrechen endet
 - er Steine, Putz, Plastik oder große Mengen Erde aufnimmt
-- er matt wirkt, blasses Zahnfleisch hat oder sein Fell stumpf wird
-- Sie selbst oder Kinder im Haushalt zu Parasiten neigen könnten (Kotfresser sollten konsequent kontrolliert werden)
+- er matt wirkt
+- kleine Kinder oder immungeschwächte Menschen im Haushalt leben (bei Kotfressern sollte ein Parasitenbefall dann besonders konsequent ausgeschlossen werden)
 
 Fahren Sie sofort, wenn der Hund nach dem Fressen von Erde oder Unbekanntem erbricht, zittert, krampft oder apathisch wird: Schneckenkorn und Rattengift sind in Gärten und auf Feldern real.
 

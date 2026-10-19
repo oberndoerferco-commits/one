@@ -1,10 +1,10 @@
 ---
 title: "Cat straining in the litter box: constipation or a blocked bladder?"
-description: "A cat straining in the litter tray may be constipated, or may have a blocked bladder, which can kill a male cat within days. How to tell the difference, why you should go to the vet now if in doubt, and what happens next."
+description: "A cat straining in the litter tray may be constipated, or may have a blocked bladder, which can kill a male cat in less than a day or two. How to tell the difference, why you should go to the vet now if in doubt, and what happens next."
 species: cat
 category: symptoms
 urgency: emergency
-updated: 2026-10-18
+updated: 2026-10-19
 draft: true
 references:
   - title: "International Cat Care: Urethral obstruction in cats"
@@ -25,7 +25,7 @@ references:
 
 If your cat is **male** and keeps going to the litter tray, straining, but you are not sure he is passing urine, **treat it as an emergency and go to a vet now**. Call ahead.
 
-A male cat's urethra (the tube from the bladder) is long and narrow, so it can become blocked. A blocked cat cannot empty his bladder. Without treatment, this can cause kidney failure and can be fatal within two to three days, sometimes sooner.
+A male cat's urethra (the tube from the bladder) is long and narrow, so it can become blocked. A blocked cat cannot empty his bladder. Without treatment, this can cause kidney failure and can be fatal within two to three days, and sometimes in less than 24 to 48 hours.
 
 Go now, whatever the sex of your cat, if your cat:
 
@@ -77,7 +77,7 @@ Don't wait overnight, press on your cat's belly, give laxatives or enemas withou
 - **Don't wait overnight** to see if a male cat passes urine.
 - **Don't press or squeeze your cat's belly** to try to empty the bladder. Leave the examination to your vet.
 - **Don't give laxatives or enemas at home** unless your vet has prescribed them and shown you how.
-- **Don't give human painkillers.** Cats are especially sensitive to paracetamol, which damages their red blood cells and liver, and they are affected by ibuprofen and aspirin at much lower doses than dogs.
+- **Don't give human painkillers.** Cats are especially sensitive to paracetamol, which damages their red blood cells and liver, and they are affected by ibuprofen and aspirin at lower doses than dogs.
 
 ## What causes a blocked bladder in cats?
 

@@ -4,7 +4,7 @@ description: "Einmal niesen ist kein Grund zur Sorge. Häufiges Niesen mit Nasen
 species: cat
 category: symptoms
 urgency: this-week
-updated: 2026-10-16
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -18,6 +18,10 @@ references:
     url: "https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/respiratory-infections"
   - title: "Thiry E. et al.: Feline herpesvirus infection. ABCD guidelines on prevention and management. J Feline Med Surg 2009"
     url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7129359"
+  - title: "PDSA Pet Health Hub: Sneezing in cats"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/sneezing-in-cats"
+  - title: "International Cat Care: Cat flu (upper respiratory infection)"
+    url: "https://icatcare.org/articles/cat-flu-upper-respiratory-infection"
 ---
 
 ## Zuerst: wann Sie sofort zur Tierärztin oder zum Tierarzt sollten
@@ -27,7 +31,8 @@ Fahren Sie sofort in eine Praxis und rufen Sie vorher an, wenn Ihre Katze:
 - mit offenem Maul atmet, angestrengt atmet oder in Ruhe auffällig schnell atmet
 - bläuliche oder sehr blasse Schleimhäute hat
 - sehr matt ist, sich versteckt und kaum reagiert
-- seit etwa 24 Stunden nichts gefressen hat oder nicht mehr trinkt
+- nicht mehr frisst oder nicht mehr trinkt
+- ununterbrochen niest, Blut niest oder Schmerzen zu haben scheint
 - ein junges Kätzchen ist und zusätzlich schlapp ist, nicht trinkt oder nicht frisst
 - ein trübes, stark tränendes oder zugekniffenes Auge hat (mögliche Verletzung oder Geschwür der Hornhaut)
 
@@ -55,7 +60,7 @@ Typische Anzeichen:
 
 Leichte Verläufe dauern etwa eine bis eineinhalb Wochen, schwere können sich über Wochen ziehen.
 
-**Warum eine erkältete Katze oft nicht frisst:** Katzen fressen stark nach Geruch. Ist die Nase verstopft, riecht das Futter nicht mehr verlockend. Schmerzhafte Geschwüre im Maul machen das Fressen zusätzlich unangenehm. Weil eine Katze, die mehrere Tage nicht frisst, eine gefährliche Fettleber entwickeln kann, ist Appetitlosigkeit hier ein wichtiger Grund für einen Tierarztbesuch.
+**Warum eine erkältete Katze oft nicht frisst:** Katzen fressen stark nach Geruch. Ist die Nase verstopft, riecht das Futter nicht mehr verlockend. Schmerzhafte Geschwüre im Maul machen das Fressen zusätzlich unangenehm. Eine Katze, die nicht frisst oder trinkt, kann Infusionen oder eine Ernährungssonde brauchen, und schlechte Ernährung bremst die Genesung. Appetitlosigkeit ist deshalb hier ein wichtiger Grund für einen Tierarztbesuch.
 
 ## Ist Katzenschnupfen ansteckend?
 
@@ -85,7 +90,7 @@ Nase und Augen sanft säubern, Futter attraktiv machen, für Wasser und Ruhe sor
 - **Für Wasser sorgen** und beobachten, ob Ihre Katze trinkt.
 - **Ruhe und wenig Stress**, denn Stress begünstigt Rückfälle.
 - **Kranke Katze von anderen Katzen trennen**, Näpfe getrennt halten, nach Kontakt Hände waschen. Das Herpesvirus wird durch die meisten üblichen Reinigungs- und Desinfektionsmittel zerstört.
-- **Keine Medikamente für Menschen**, auch keine Nasentropfen, Erkältungsmittel oder Schmerzmittel. Paracetamol ist für Katzen hochgiftig, schon kleine Mengen können tödlich sein. Ibuprofen ist ebenfalls gefährlich, und Metamizol (zum Beispiel Novalgin) darf nur die Tierärztin oder der Tierarzt geben.
+- **Keine Medikamente für Menschen**, auch keine Nasentropfen, Erkältungsmittel oder Schmerzmittel. Paracetamol ist für Katzen hochgiftig, schon kleine Mengen können tödlich sein. Ibuprofen ist ebenfalls gefährlich.
 
 ## Wann sollte ich mit meiner niesenden Katze zur Tierärztin oder zum Tierarzt?
 

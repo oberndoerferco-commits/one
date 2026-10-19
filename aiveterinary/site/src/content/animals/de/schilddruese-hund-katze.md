@@ -5,7 +5,7 @@ description: "Der Hund nimmt zu, friert und verliert Fell; die alte Katze frisst
 species: general
 category: conditions
 urgency: this-week
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -13,9 +13,12 @@ references:
     url: "https://icatcare.org/articles/hyperthyroidism-in-cats"
   - title: "Merck Veterinary Manual (für Halter): Disorders of the Thyroid Gland in Dogs"
     url: "https://www.merckvetmanual.com/dog-owners/hormonal-disorders-of-dogs/disorders-of-the-thyroid-gland-in-dogs"
-  - title: "AAFP: 2016 Guidelines for the Management of Feline Hyperthyroidism (Übersichtsseite)"
-    url: "https://catvets.com/guidelines/practice-guidelines/feline-hyperthyroidism/"
-  - title: "AAHA: 2023 Selected Endocrinopathies of Dogs and Cats Guidelines"
+  - title: "MSD Veterinary Manual (Professional Version): Hypothyroidism in Animals"
+    url: "https://www.msdvetmanual.com/endocrine-system/the-thyroid-gland/hypothyroidism-in-animals"
+  - title: "MSD Veterinary Manual (Professional Version): Hyperthyroidism in Animals"
+    url: "https://www.msdvetmanual.com/endocrine-system/the-thyroid-gland/hyperthyroidism-in-animals"
+  - title: "International Cat Care: Hypertension in cats"
+    url: "https://icatcare.org/articles/hypertension-in-cats"
 ---
 
 ## Zuerst: wann Sie sofort fahren sollten
@@ -23,7 +26,7 @@ references:
 Schilddrüsenerkrankungen werden in Ruhe, innerhalb einer Woche, abgeklärt. Fahren Sie aber sofort in eine Praxis, wenn eine ältere, abmagernde Katze:
 
 - mit offenem Maul oder angestrengt in Ruhe atmet
-- plötzlich erblindet, mit weiten, starren Pupillen (Bluthochdruck)
+- plötzlich blind zu sein scheint und gegen Dinge stößt (Bluthochdruck)
 - die Hinterbeine schmerzhaft nicht mehr bewegen kann (ein Blutgerinnsel aus dem Herzen)
 - zusammenbricht
 
@@ -33,7 +36,7 @@ Das sind Folgen einer unbehandelten Überfunktion an Herz und Kreislauf.
 
 Hunde haben meist eine Unterfunktion (Hypothyreose), Katzen meist eine Überfunktion (Hyperthyreose).
 
-Die Schilddrüse am Hals bildet die Hormone, die das Tempo des Stoffwechsels bestimmen. Beim **Hund** ist das häufigste Problem eine Drüse, die zu wenig arbeitet (**Hypothyreose**), fast immer, weil das Immunsystem sie langsam zerstört. Bei der **Katze** ist es umgekehrt: eine Drüse, die zu viel arbeitet (**Hyperthyreose**), fast immer durch eine gutartige Vergrößerung einer oder beider Drüsenhälften; bösartige Tumoren sind selten. Unterfunktion bei der Katze und Überfunktion beim Hund gibt es, aber als Ausnahme.
+Die Schilddrüse am Hals bildet die Hormone, die das Tempo des Stoffwechsels bestimmen. Beim **Hund** ist das häufigste Problem eine Drüse, die zu wenig arbeitet (**Hypothyreose**), fast immer, weil die Drüse zerstört wird, durch eine wahrscheinlich immunbedingte Entzündung oder einen Schwund ohne bekannte Ursache. Bei der **Katze** ist es umgekehrt: eine Drüse, die zu viel arbeitet (**Hyperthyreose**), fast immer durch eine gutartige Vergrößerung einer oder beider Drüsenhälften; bösartige Tumoren sind selten. Unterfunktion bei der Katze und Überfunktion beim Hund gibt es, aber als Ausnahme.
 
 ## Woran erkenne ich eine Schilddrüsenunterfunktion beim Hund?
 
@@ -43,9 +46,9 @@ Betroffen sind vor allem Hunde zwischen 4 und 10 Jahren, mittelgroße und große
 
 - **Gewichtszunahme, ohne mehr zu fressen**
 - Trägheit, schnelle Ermüdung, viel Schlaf, ein „abgeschalteter“ Eindruck
-- Wärme suchen, zittern
+- Wärme suchen
 - trockenes, stumpfes Fell, symmetrischer Haarausfall an Flanken und Rute („Rattenschwanz“), schlechtes Nachwachsen nach dem Scheren
-- dunklere oder verdickte Haut, wiederkehrende Hautinfektionen und Ohrentzündungen
+- dunklere oder verdickte Haut, manchmal Hautinfektionen
 - manchmal ein aufgedunsenes, traurig wirkendes Gesicht mit hängenden Lidern
 - bei unkastrierten Hündinnen unregelmäßige Läufigkeit oder Unfruchtbarkeit
 
@@ -59,9 +62,9 @@ Betroffen sind Katzen mittleren und höheren Alters, selten unter 7 Jahren. Alle
 
 - **Gewichtsverlust trotz großem Appetit**, manchmal regelrechter Heißhunger
 - mehr trinken und mehr Urin
-- Unruhe, Nervosität, nächtliches Miauen, manchmal Aggression
+- Unruhe oder Reizbarkeit
 - schneller Herzschlag, struppiges, ungepflegtes Fell
-- häufiges Erbrechen oder Durchfall, Hitzeempfindlichkeit
+- bei manchen Katzen Erbrechen oder Durchfall, oft Hitzeempfindlichkeit
 - eine Minderheit ist im Gegenteil apathisch und frisst schlecht
 
 Oft kann die Tierärztin die vergrößerte Drüse am Hals tasten.
@@ -78,20 +81,20 @@ Beim Hund ist die Auswertung heikler: Viele Krankheiten und einige Medikamente (
 
 Beim Hund wird das fehlende Hormon lebenslang als Tablette ersetzt; bei der Katze gibt es Tabletten oder Gel, Radiojod, eine Operation oder eine jodarme Diät.
 
-**Hund.** Das fehlende Hormon wird als Schilddrüsenhormon-Tablette ersetzt, meist ein- bis zweimal täglich, lebenslang. Die Energie kehrt in wenigen Wochen zurück, Fell und Gewicht in ein bis zwei Monaten. Eine Blutkontrolle nach den ersten Wochen dient der Dosisanpassung; danach genügt ein- bis zweimal pro Jahr. Futter beeinflusst die Aufnahme, geben Sie die Tablette daher immer auf dieselbe Weise. Wird der Hund hibbelig, trinkt und hechelt viel oder nimmt ab, ist die Dosis vermutlich zu hoch: Rufen Sie an.
+**Hund.** Das fehlende Hormon wird als Schilddrüsenhormon-Tablette ersetzt, meist ein- bis zweimal täglich, lebenslang. Die Energie bessert sich meist innerhalb von 2 Wochen, Haut, Fell und Gewicht können bis zu 3 Monate brauchen. Eine Blutkontrolle nach 4 bis 8 Wochen dient der Dosisanpassung; danach genügt ein- bis zweimal pro Jahr. Futter beeinflusst die Aufnahme, geben Sie die Tablette daher immer auf dieselbe Weise. Wird der Hund hibbelig, trinkt und hechelt viel oder nimmt ab, ist die Dosis vermutlich zu hoch: Rufen Sie an.
 
 **Katze.** Es gibt vier Wege, und die Wahl hängt von Alter, Nieren, Begleiterkrankungen und den Möglichkeiten der Familie ab:
 
 | Option | Was sie bedeutet |
 |---|---|
 | Schilddrüsenhemmer als Tablette oder Gel auf die Haut | Täglich, dauerhaft; kontrolliert, heilt aber nicht. In den ersten Wochen möglich: Erbrechen, Appetitverlust, Juckreiz im Gesicht |
-| Radiojod | Eine einzige Injektion, heilt bis zu 95 % der Katzen; einige Tage stationär in einer zugelassenen Klinik |
+| Radiojod | Eine einzige Injektion, heilt bis zu 95 % der Katzen; ein kurzer stationärer Aufenthalt in einer spezialisierten Klinik |
 | Operation | Entfernung des kranken Gewebes; Risiko für die Nebenschilddrüsen, die den Kalziumhaushalt regeln |
 | Jodarme Diät | Wirkt nur, wenn die Katze ausschließlich dieses Futter frisst, ohne Leckerli und ohne Jagd |
 
 ## Wie wird ein Tier mit Schilddrüsenerkrankung überwacht?
 
-Bei der Katze werden vor und nach Behandlungsbeginn T4, **Nieren** und Blutdruck kontrolliert: Eine Überfunktion treibt die Nieren zu Mehrarbeit an und kann eine Niereninsuffizienz verdecken, die erst sichtbar wird, wenn die Schilddrüse wieder normal arbeitet. Deshalb beginnt die Praxis oft mit dem Medikament, auch wenn später eine endgültige Behandlung angestrebt wird. Beim Hund wiegen Sie Ihr Tier zusätzlich zum Blutbild monatlich und notieren Veränderungen am Fell.
+Bei der Katze werden vor und nach Behandlungsbeginn T4, **Nieren** und Blutdruck kontrolliert: Eine Überfunktion treibt die Nieren zu Mehrarbeit an und kann eine Niereninsuffizienz verdecken, die erst sichtbar wird, wenn die Schilddrüse wieder normal arbeitet. Deshalb beginnt die Praxis oft mit dem Medikament, auch wenn später eine endgültige Behandlung angestrebt wird. Beim Hund wiegen Sie Ihr Tier zusätzlich zu den Blutkontrollen regelmäßig und notieren Veränderungen am Fell.
 
 ## Wie ist die Prognose bei Schilddrüsenerkrankungen?
 
@@ -103,5 +106,6 @@ Welcher Test, welche Behandlung und wie oft kontrolliert wird, sind Entscheidung
 
 - [International Cat Care: Hyperthyroidism in cats](https://icatcare.org/articles/hyperthyroidism-in-cats)
 - [Merck Veterinary Manual: Disorders of the Thyroid Gland in Dogs](https://www.merckvetmanual.com/dog-owners/hormonal-disorders-of-dogs/disorders-of-the-thyroid-gland-in-dogs)
-- [AAFP, 2016 Guidelines for the Management of Feline Hyperthyroidism](https://catvets.com/guidelines/practice-guidelines/feline-hyperthyroidism/)
-- AAHA, 2023 Selected Endocrinopathies of Dogs and Cats Guidelines (JAAHA)
+- [MSD Veterinary Manual: Hypothyroidism in Animals](https://www.msdvetmanual.com/endocrine-system/the-thyroid-gland/hypothyroidism-in-animals)
+- [MSD Veterinary Manual: Hyperthyroidism in Animals](https://www.msdvetmanual.com/endocrine-system/the-thyroid-gland/hyperthyroidism-in-animals)
+- [International Cat Care: Hypertension in cats](https://icatcare.org/articles/hypertension-in-cats)

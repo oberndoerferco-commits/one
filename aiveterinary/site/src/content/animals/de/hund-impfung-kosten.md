@@ -1,87 +1,93 @@
 ---
 title: "Hundeimpfungen: welche nötig sind, wie oft, und was sie kosten"
-description: "Welche Impfungen die Ständige Impfkommission Veterinärmedizin (StIKo Vet) für jeden Hund empfiehlt, welche nur bei Risiko sinnvoll sind, wie oft aufgefrischt wird und mit welchen Kosten Sie nach der Gebührenordnung realistisch rechnen müssen."
+description: "Welche Impfungen die Ständige Impfkommission Veterinärmedizin (StIKo Vet) für jeden Hund empfiehlt, welche nur bei Risiko sinnvoll sind, wie oft aufgefrischt wird und welche Gebühren die Gebührenordnung für eine Impfung vorsieht."
 species: dog
 category: care
 urgency: routine
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: de
 references:
-  - title: "StIKo Vet (Friedrich-Loeffler-Institut): Leitlinie zur Impfung von Kleintieren, 6. Auflage, veröffentlicht in Tierärztliche Praxis Kleintiere 2025; 53(1)"
-  - title: "Bundestierärztekammer, Deutsches Tierärzteblatt 1/2022: Tollwutimpfung des Hundes"
-  - title: "Gebührenordnung für Tierärzte (GOT) in der Fassung vom 22. November 2022"
-  - title: "LMU München, Medizinische Kleintierklinik: Impfmanagement Hund, Stand Oktober 2025"
+  - title: "StIKo Vet (Friedrich-Loeffler-Institut), Impftabelle A.1 Hunde (Core- und Non-Core-Impfungen, Grundimmunisierung, Wiederholungsimpfungen)"
+    url: "https://stiko-vet.fli.de/de/impftabelle/a-kleine-haustiere/a-1-hunde/"
+  - title: "Straubinger R. K. et al. (StIKo Vet), „Die Neubewertung der Impfung gegen Tollwut“, Deutsches Tierärzteblatt 2022; 70 (1)"
+    url: "https://www.bundestieraerztekammer.de/btk/dtbl/archiv/2022/artikel/DTBl_01_2022_Tollwutimpfung.pdf"
+  - title: "Tierärztegebührenordnung (GOT) vom 15. August 2022, Anlage (Gebührenverzeichnis, Nr. 16, 87, 221), gesetze-im-internet.de"
+    url: "https://www.gesetze-im-internet.de/got_2022/BJNR140100022.html"
+  - title: "Bundestierärztekammer, „Die GOT: Erläuterungen für Tierhalter:innen“, Stand 29. August 2022"
+    url: "https://www.bundestieraerztekammer.de/d.php?id=7579"
+  - title: "LMU München, Medizinische Kleintierklinik: Empfehlungen zu Impfintervallen für Hunde, Stand Oktober 2025"
+    url: "https://cms-cdn.lmu.de/media/08-vetmed/kleintierklinik/photos/impfmanagement-hund-stand-oktober-2025-2.pdf"
+  - title: "Delegierte Verordnung (EU) 2026/131 über die Verbringung von Heimtieren zu anderen als Handelszwecken (gilt ab 22. April 2026), Tollwutimpfung mindestens 21 Tage vor der Verbringung"
+    url: "https://eur-lex.europa.eu/eli/reg_del/2026/131/oj"
+  - title: "Stiftung Warentest, „Hundekrankenversicherung Vergleich: Die besten Hunde-OP-Versicherungen“, 16.04.2025"
+    url: "https://www.test.de/Hundekrankenversicherung-Vergleich-5777769-0/"
 ---
 
 ## Was ist der Unterschied zwischen Core- und Non-Core-Impfungen beim Hund?
 
 Gegen Core-Erreger soll jeder Hund jederzeit geschützt sein, Non-Core-Impfungen sind je nach Lebensumständen, Reisen, Hundekontakt oder Region sinnvoll.
 
-In Deutschland gibt die Ständige Impfkommission Veterinärmedizin (StIKo Vet) am Friedrich-Loeffler-Institut die Leitlinie zur Impfung von Kleintieren heraus; die aktuelle, sechste Auflage erschien 2025. Sie unterscheidet:
+In Deutschland gibt die Ständige Impfkommission Veterinärmedizin (StIKo Vet) am Friedrich-Loeffler-Institut die Leitlinie zur Impfung von Kleintieren und eine Impftabelle für Hunde heraus. Sie unterscheidet:
 
-- **Core-Impfungen:** Gegen diese Erreger soll jeder Hund jederzeit geschützt sein, weil die Krankheiten lebensbedrohlich sind oder auf Menschen übertragbar.
-- **Non-Core-Impfungen:** Sinnvoll je nach Lebensumständen, Reisen, Kontakt zu anderen Hunden oder Region.
+- **Core-Impfungen:** Gegen diese Erreger soll jeder Hund jederzeit geschützt sein.
+- **Non-Core-Impfungen:** Je nach Erreger empfohlen oder eine Einzelfallentscheidung, abhängig von Lebensumständen, Reisen, Kontakt zu anderen Hunden oder Region.
 
 Die Leitlinie ist nicht bindend, sondern eine Entscheidungshilfe für die Praxis. Ihre Tierärztin oder Ihr Tierarzt passt sie an Ihren Hund an.
 
 ## Welche Impfungen braucht jeder Hund?
 
-Staupe, Parvovirose, Leptospirose und Hepatitis contagiosa canis; Tollwut ist in Deutschland keine Core-Impfung mehr, für Reisen ins Ausland aber Pflicht.
+Staupe, Parvovirose und Leptospirose; Hepatitis contagiosa canis und Tollwut sind in Deutschland Non-Core-Impfungen, die StIKo Vet empfiehlt sie aber, und für Reisen ins Ausland ist Tollwut Pflicht.
 
-- **Staupe:** Viruserkrankung mit Fieber, Atemwegs-, Darm- und Nervensymptomen, oft tödlich. In Deutschland durch Füchse und Marder weiterhin präsent.
-- **Parvovirose:** Schwerer, blutiger Durchfall mit Erbrechen, vor allem bei Welpen. Das Virus überlebt monatelang in der Umwelt.
-- **Leptospirose:** Bakterielle Infektion aus Pfützen, Teichen und über Nagerurin. Schädigt Leber und Nieren und ist auf Menschen übertragbar. Deshalb jährlich.
-- **Hepatitis contagiosa canis (HCC):** Seltener geworden, aber im Kombinationsimpfstoff enthalten.
+- **Staupe:** Viruserkrankung, gegen die jeder Hund geschützt sein soll.
+- **Parvovirose:** Schwere Viruserkrankung, vor allem bei Welpen.
+- **Leptospirose:** Bakterielle Infektion, auf Menschen übertragbar; ein hoher Infektionsdruck besteht bei intensivem Kontakt zu Wasser oder Nagetieren. Die Impfung wird jährlich aufgefrischt.
 
-**Tollwut** gilt in Deutschland seit der Leitlinie von 2021 nicht mehr als Core-Impfung, weil das Land seit 2008 frei von terrestrischer Tollwut ist. Für Reisen ins Ausland, auch innerhalb der EU, ist eine gültige Tollwutimpfung aber gesetzlich Pflicht, und für Hunde mit Auslandskontakt oder in Grenznähe wird sie weiterhin empfohlen.
+**Hepatitis contagiosa canis (HCC)** ist durch konsequentes Impfen in Westeuropa selten geworden und steht in der StIKo-Vet-Tabelle als empfohlene Non-Core-Impfung; die Komponente ist in vielen Kombinationsimpfstoffen enthalten.
+
+**Tollwut** gilt in Deutschland seit der Leitlinie von 2021 nicht mehr als Core-Impfung, weil das Land seit 2008 frei von terrestrischer Tollwut ist. Für Reisen ins Ausland, auch innerhalb der EU, ist eine gültige Tollwutimpfung aber gesetzlich Pflicht. Die StIKo Vet empfiehlt sie weiterhin, unter anderem weil geimpfte Hunde nach einem Kontakt mit einem seuchenverdächtigen Tier behördlich bessergestellt sind.
 
 ## Wie oft muss mein Hund geimpft werden?
 
-Nach der Grundimmunisierung werden Staupe, Parvovirose und HCC meist alle drei Jahre, Leptospirose jährlich und Tollwut je nach Impfstoff alle ein bis drei Jahre aufgefrischt.
+Nach der Grundimmunisierung werden Staupe und Parvovirose je nach Impfstoff alle ein bis drei Jahre, Leptospirose jährlich und Tollwut nach Herstellerangabe alle ein bis drei Jahre aufgefrischt.
 
-**Grundimmunisierung:** Welpen erhalten ab der 8. Lebenswoche mehrere Impfungen im Abstand von etwa vier Wochen (typisch 8., 12. und 16. Woche), weil mütterliche Antikörper die frühen Impfungen abschwächen können. Nach der StIKo-Vet-Leitlinie schließt eine Impfung gegen Staupe, Parvovirose und Leptospirose im Alter von **15 Monaten** die Grundimmunisierung ab.
+**Grundimmunisierung:** Welpen erhalten nach der StIKo-Vet-Tabelle Impfungen mit 8, 12 und 16 Wochen (gegen Leptospirose mit 8 und 12 Wochen), weil mütterliche Antikörper die frühen Impfungen abschwächen können. Eine Impfung gegen Staupe, Parvovirose und Leptospirose im Alter von **15 Monaten** schließt die Grundimmunisierung ab.
 
 **Wiederholungsimpfungen danach:**
 
-- Staupe, Parvovirose, HCC: nach den Zulassungen der meisten Impfstoffe **alle drei Jahre**. Alternativ kann ein Antikörpertest zeigen, ob noch Schutz besteht.
-- Leptospirose: **jährlich**, da der Schutz kürzer anhält.
-- Tollwut: je nach Impfstoff alle ein bis drei Jahre; für den EU-Heimtierausweis zählt der Zulassungszeitraum des Impfstoffs.
+- Staupe, Parvovirose: je nach Hersteller **alle ein bis drei Jahre**. Alternativ kann ein Antikörpertest zeigen, ob noch Schutz besteht.
+- Leptospirose: **jährlich**.
+- Tollwut: nach Herstellerangabe alle ein bis drei Jahre; für den EU-Heimtierausweis zählt der Gültigkeitszeitraum des Impfstoffs.
 
 Nicht jede Komponente wird also jedes Jahr gespritzt. Ein jährlicher Termin bleibt trotzdem sinnvoll, weil die Leptospirose-Impfung jährlich fällig ist und der Gesundheitscheck dazugehört.
 
 ## Wann sind Non-Core-Impfungen für meinen Hund sinnvoll?
 
-Je nach Lebensweise, etwa gegen Zwingerhusten bei viel Hundekontakt, gegen Borreliose in zeckenreichen Gebieten und gegen Leishmaniose bei Reisen in den Mittelmeerraum.
+Je nach Lebensweise, etwa gegen Zwingerhusten bei viel Hundekontakt, gegen Leishmaniose bei Aufenthalten im Mittelmeerraum und im Einzelfall gegen Borreliose bei hoher Zeckenbelastung.
 
-- **Zwingerhusten (CIRDC, u. a. Bordetella und Parainfluenza):** für Hunde in Pension, Hundeschule, Ausstellung, Tierheim oder mit viel Hundekontakt. Oft als Nasenimpfung, meist jährlich.
-- **Borreliose:** für Hunde in zeckenreichen Gebieten mit viel Aufenthalt im Freien. Zeckenschutz bleibt trotzdem nötig.
-- **Leishmaniose:** für Hunde, die regelmäßig in den Mittelmeerraum reisen oder dort leben. Nur in Kombination mit Schutz vor Sandmücken.
+- **Zwingerhusten (u. a. Bordetella und Parainfluenza):** für Hunde mit hohem Infektionsrisiko, etwa in Pension, Hundeschule, Hundesport oder Tierheim. Es gibt Nasenimpfungen; der Schutz gegen Bordetella hält bis zu einem Jahr.
+- **Leishmaniose:** für Hunde, die in Gebieten leben, in denen die Krankheit verbreitet ist, oder dorthin reisen, ab einem Alter von sechs Monaten und mit jährlicher Wiederholung. Schutz vor Sandmücken bleibt trotzdem nötig.
+- **Borreliose:** nach der StIKo Vet eine Einzelfallentscheidung bei hoher Zeckenbelastung; die LMU-Kleintierklinik empfiehlt sie nicht. Zeckenschutz bleibt in jedem Fall nötig.
 - **Herpesvirus:** nur für Zuchthündinnen.
-- **Babesiose und weitere Reisekrankheiten:** hier steht meist der Zeckenschutz im Vordergrund; Impfungen sind je nach Verfügbarkeit Einzelfallentscheidungen.
 
-Für Reisen gilt: Rechtzeitig vor der Abreise beraten lassen. Die Tollwutimpfung muss mindestens 21 Tage vor Grenzübertritt erfolgt sein, und manche Reiseimpfungen brauchen zwei Dosen im Abstand von Wochen.
+Für Reisen gilt: Rechtzeitig vor der Abreise beraten lassen. Nach der ersten Tollwutimpfung müssen mindestens 21 Tage vergehen, bevor der Hund in ein anderes EU-Land verbracht werden darf, und bei geplantem Auslandsaufenthalt kann eine zweite Tollwutimpfung im Abstand von einigen Wochen sinnvoll sein.
 
 ## Was kostet eine Impfung beim Hund?
 
-Mit Untersuchung etwa 40 bis 70 € für eine Einzelimpfung und 60 bis 100 € für eine Kombinationsimpfung; die komplette Welpen-Grundimmunisierung kostet etwa 150 bis 300 €.
+Die Gebühren nach GOT für Untersuchung, Injektion und Impfbescheinigung betragen zusammen 41,28 € im einfachen und 123,84 € im dreifachen Satz, zuzüglich Impfstoff und Umsatzsteuer.
 
-Tierärztliche Leistungen werden in Deutschland nach der **Gebührenordnung für Tierärzte (GOT)** abgerechnet, zuletzt grundlegend neu gefasst im November 2022. Die GOT nennt Beträge im einfachen Satz; die Praxis darf je nach Aufwand, Tageszeit und Schwierigkeit bis zum dreifachen Satz berechnen, im Notdienst mehr. Hinzu kommen Umsatzsteuer und der Impfstoff selbst.
+Tierärztliche Leistungen werden in Deutschland nach der **Gebührenordnung für Tierärzte (GOT)** abgerechnet, zuletzt grundlegend neu gefasst im November 2022. Die GOT nennt Beträge im einfachen Satz; die Praxis darf je nach Schwierigkeit, Zeitaufwand und weiteren Umständen bis zum dreifachen Satz berechnen, im Notdienst bis zum vierfachen. Hinzu kommen Umsatzsteuer und der Impfstoff selbst.
 
-Die relevanten Positionen im einfachen Satz (netto):
+Die relevanten Positionen (netto):
 
-- Allgemeine Untersuchung mit Beratung: 23,62 €
-- Injektion (subkutan): 11,50 €
-- Impfbescheinigung bzw. Eintrag in den Heimtierausweis: 6,16 €
+| Position | 1-facher Satz | 3-facher Satz |
+|---|---|---|
+| Nr. 16 Allgemeine Untersuchung mit Beratung, Hund | 23,62 € | 70,86 € |
+| Nr. 221 Injektion subkutan/intramuskulär, Hund | 11,50 € | 34,50 € |
+| Nr. 87 Impfbescheinigung | 6,16 € | 18,48 € |
+| **Summe Gebühren** | **41,28 €** | **123,84 €** |
 
-Dazu kommt der Impfstoff, der je nach Kombination und Hersteller von unter 10 bis über 30 € kosten kann. Realistisch landen Sie damit, inklusive Mehrwertsteuer:
-
-- **Einzelimpfung (z. B. Tollwut oder Leptospirose) mit Untersuchung:** etwa 40 bis 70 €
-- **Kombinationsimpfung (Staupe, Parvovirose, HCC, Leptospirose, ggf. Tollwut) mit Untersuchung:** etwa 60 bis 100 €
-- **Komplette Welpen-Grundimmunisierung über das erste Jahr:** etwa 150 bis 300 €
-- **Antikörpertest (Titerbestimmung) statt Wiederholungsimpfung:** meist 50 bis 100 € je nach Labor, nicht automatisch günstiger
-
-Praxen in Großstädten, Kliniken und Praxen, die grundsätzlich den zweifachen Satz anwenden, liegen am oberen Ende. Eine Praxis muss Ihnen auf Nachfrage den Satz nennen, den sie zugrunde legt, und viele veröffentlichen ihre Preise. Hundekrankenversicherungen übernehmen Impfungen meist nur mit Vorsorgebudgets in begrenzter Höhe.
+Das ist eine Beispielrechnung aus den GOT-Sätzen für einen Impftermin mit einer Injektion. Den Preis des Impfstoffs legt die GOT nicht fest; er kommt als Arzneimittel hinzu, ebenso die Umsatzsteuer. Werden mehrere Impfungen nötig, etwa in der Grundimmunisierung, fallen die Gebühren bei jedem Termin erneut an. Ein Antikörpertest statt einer Wiederholungsimpfung kostet zusätzlich die Laborauslage. Fragen Sie Ihre Praxis vorher, mit welchem Faktor sie rechnet. Impfungen übernimmt, wenn überhaupt, eine Krankenvollversicherung, nicht eine reine OP-Versicherung.
 
 ## Was wird die Tierärztin oder der Tierarzt vor der Impfung wissen wollen?
 

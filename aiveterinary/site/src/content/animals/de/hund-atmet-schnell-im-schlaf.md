@@ -4,7 +4,7 @@ description: "Die Atemfrequenz im Schlaf ist ein einfacher und aussagekräftiger
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-10-17
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -62,7 +62,7 @@ Zählen Sie im ruhigen Tiefschlaf eine volle Minute lang, wie oft sich der Brust
 5. **Schreiben Sie den Wert auf**, mit Datum und Uhrzeit. Messen Sie an mehreren Tagen, damit Sie den gewohnten Wert Ihres Hundes kennen.
 6. Wenn Sie unsicher sind, filmen Sie Ihren schlafenden Hund eine Minute lang. Das hilft Ihnen beim Nachzählen und der Praxis bei der Einschätzung.
 
-Liegt Ihr Hund in der Sonne oder an einer warmen Stelle, kann die Atmung schneller sein. In einer Studie bei Katzen fielen die Werte höher aus, wenn die Tiere warm lagen, etwa an einem Ofen oder in direkter Sonne.
+Liegt Ihr Hund in der Sonne oder an einer warmen Stelle, kann die Atmung schneller sein. Die Autorinnen und Autoren einer Studie bei Katzen vermuten, dass die Werte höher ausfallen können, wenn ein Tier warm liegt, etwa vor einem warmen Ofen oder in direkter Sonne. Gemessen wurde das in der Studie nicht.
 
 ## Warum atmet mein Hund im Schlaf schnell?
 

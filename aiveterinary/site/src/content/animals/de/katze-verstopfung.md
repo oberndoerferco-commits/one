@@ -4,7 +4,7 @@ description: "Eine Katze, die in der Katzentoilette presst, ist nicht unbedingt 
 species: cat
 category: symptoms
 urgency: today
-updated: 2026-10-16
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -87,7 +87,7 @@ Sorgen Sie bei einer sonst munteren Katze für mehr Flüssigkeit und eine sauber
 
 - **Keine Klistiere aus der Apotheke oder Drogerie.** Klistiere für Menschen können Phosphat enthalten. Bei Katzen kann das zu lebensgefährlichen Verschiebungen der Blutsalze führen, mit Krampfanfällen und Bewusstseinsstörungen. Phosphathaltige Klistiere dürfen bei Katzen nicht verwendet werden.
 - **Keine Abführmittel für Menschen** und kein Öl ins Maul geben. Öl kann in die Lunge geraten und eine Lungenentzündung auslösen. Ob und welches Mittel Ihre Katze bekommt, entscheidet die Praxis. Bei einer ausgetrockneten Katze müssen zum Beispiel zuerst die Flüssigkeitsdefizite ausgeglichen werden.
-- **Keine Schmerzmittel für Menschen.** Paracetamol ist für Katzen hochgiftig, Ibuprofen ebenfalls gefährlich, und Metamizol (zum Beispiel Novalgin) darf nur die Tierärztin oder der Tierarzt geben.
+- **Keine Schmerzmittel für Menschen.** Paracetamol ist für Katzen hochgiftig, und auch Ibuprofen und Aspirin sind für Katzen gefährlich.
 - Nicht tagelang abwarten.
 
 ## Wann sollte ich mit meiner verstopften Katze zur Tierärztin oder zum Tierarzt?
@@ -102,7 +102,7 @@ Abgesehen von den Notfällen oben vereinbaren Sie **noch heute oder morgen** ein
 - sie schon früher verstopft war
 - sie älter ist, eine Nierenerkrankung hat oder mehr trinkt als sonst
 
-In der Praxis wird Ihre Katze abgetastet, häufig wird ein Röntgenbild gemacht und Blut untersucht, um Ursachen wie eine Nierenerkrankung zu finden. Je nach Befund bekommt Ihre Katze Flüssigkeit, ein passendes Abführmittel oder einen Einlauf, manchmal unter Sedierung. Bei wiederkehrender Verstopfung können eine Futterumstellung, etwa mit angepasstem Fasergehalt, und Medikamente zur Anregung der Darmbewegung helfen. Manche Halter lernen in der Praxis, wie sie zu Hause selbst einen geeigneten Einlauf geben. Bei schwerem Megakolon, das auf Behandlung nicht anspricht, kann eine Operation nötig werden.
+In der Praxis wird Ihre Katze abgetastet, häufig wird ein Röntgenbild gemacht und Blut untersucht, um Ursachen wie eine Nierenerkrankung zu finden. Je nach Befund bekommt Ihre Katze Flüssigkeit, ein passendes Abführmittel oder einen Einlauf, manchmal unter Sedierung. Bei wiederkehrender Verstopfung können eine Futterumstellung, etwa mit angepasstem Fasergehalt, und Medikamente zur Anregung der Darmbewegung helfen. Bei schwerem Megakolon, das auf Behandlung nicht anspricht, kann eine Operation nötig werden.
 
 ## Was wird die Tierärztin oder der Tierarzt über die Verstopfung meiner Katze wissen wollen?
 
