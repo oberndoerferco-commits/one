@@ -55,12 +55,14 @@ const count = (f: (d: any) => boolean) => all.filter((e) => f(e.data)).length;
 
 <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
 <script is:inline src="/pagefind/pagefind-ui.js"></script>
-<script is:inline type="application/json" id="search-i18n" set:html={JSON.stringify(t.search)} />
+<script is:inline type="application/json" id="search-i18n" set:html={JSON.stringify({ ...t.search, species: t.species, speciesKey: ({ en: 'animals', it: 'animali', de: 'Tiere' } as any)[lang] })} />
 <script is:inline>
   window.addEventListener('DOMContentLoaded', () => {
     const el = document.getElementById('site-search'); const i18n = JSON.parse(document.getElementById('search-i18n').textContent);
     if (!el || !window.PagefindUI) return;
     const ui = new window.PagefindUI({ element: '#site-search', showSubResults: true, showImages: false, resetStyles: false,
+      // The species tag comes from data-pagefind-meta as a raw key ("species: dog"); show it in the page language.
+      processResult: (r) => { const sp = r.meta && r.meta.species; if (sp) { delete r.meta.species; r.meta[i18n.speciesKey] = i18n.species[sp] || sp; } return r; },
       translations: { placeholder: i18n.placeholder, zero_results: i18n.zero, many_results: i18n.results, one_result: '[COUNT] · [SEARCH_TERM]', searching: i18n.loading, clear_search: '×' } });
     // Pagefind's input has only a placeholder; give it an accessible name.
     const clear = { en: 'Clear search', it: 'Cancella la ricerca', de: 'Suche löschen' }[el.dataset.lang] || 'Clear search';
