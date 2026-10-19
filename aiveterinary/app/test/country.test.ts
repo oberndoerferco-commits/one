@@ -67,3 +67,18 @@ describe('country field packs', () => {
     expect(renderConsultReport(record, header, 'en')).not.toContain('Declined care');
   });
 });
+
+describe('country flag language', () => {
+  it('keeps the English reasons by default and translates them when asked, rule ids unchanged', () => {
+    const { record: r, header } = prep('003-gatto-inappetenza-it');
+    const ctxIT = VisitContext.parse({ country: 'IT' });
+    const en = countryMissing(r, header, ctxIT);
+    const it_ = countryMissing(r, header, ctxIT, 'it');
+    const de = countryMissing(r, header, ctxIT, 'de');
+    expect(it_.map((f) => [f.field, f.rule, f.severity])).toEqual(en.map((f) => [f.field, f.rule, f.severity]));
+    expect(de.map((f) => f.rule)).toEqual(en.map((f) => f.rule));
+    expect(en.find((f) => f.rule === 'it_codice_fiscale')?.reason).toBe('Codice fiscale of the owner is needed for the invoice and the REV');
+    expect(it_.find((f) => f.rule === 'it_codice_fiscale')?.reason).toBe('Il codice fiscale del proprietario serve per la fattura e per la REV');
+    for (const f of [...it_, ...de]) expect(f.reason).not.toBe(en.find((e) => e.rule === f.rule && e.field === f.field)?.reason);
+  });
+});

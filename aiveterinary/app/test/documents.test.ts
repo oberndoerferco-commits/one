@@ -41,7 +41,7 @@ describe('documents from the approved record', () => {
     r.patient.breed = 'Labrador'; r.patient.sex = 'male';
     r.assessment.differentials = [{ text: 'rottura LCA', source_spans: [[0, 1]] }, { text: 'poliartrite', source_spans: [[0, 1]] }];
     const md = renderReferralLetter(r, header, 'it');
-    expect(md).toContain('**Rocky — dog — Labrador — male — 12 years**');
+    expect(md).toContain('**Rocky — cane — Labrador — maschio — 12 anni**');
     expect(md).toContain('- Diagnosi differenziali: rottura LCA; poliartrite');
     const withHeader = renderReferralLetter(r, { ...header, breed: 'Pastore tedesco' }, 'de');
     expect(withHeader).toContain('Pastore tedesco'); expect(withHeader).not.toContain('Labrador');

@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { readFileSync } from 'node:fs';
 import { ClinicalRecord, PatientHeader, type Medication } from '../src/schema.js';
-import { renderDischargeLetter, renderMedicationTable, crossDocumentMedicationCheck, isCallInstruction, DISCHARGE_LABELS, REPORT_LABELS, type Lang } from '../src/render.js';
+import { renderDischargeLetter, renderMedicationTable, crossDocumentMedicationCheck, isCallInstruction, DISCHARGE_LABELS, REPORT_LABELS, headerLine as renderHeaderLine, type Lang } from '../src/render.js';
 import { requiredMissing, validateDerivedText } from '../src/validators.js';
 import { normalizeNotes } from '../src/normalize.js';
 import { provenance } from '../src/country.js';
@@ -38,7 +38,7 @@ function unexplainedLines(md: string, record: ClinicalRecord, header: PatientHea
   const meds = record.medications;
   const medCells = new Set<string>(['', '—', ...meds.flatMap((m) => [m.drug, m.class_as_written, m.route, m.frequency, m.duration, m.dose != null ? `${m.dose} ${m.dose_unit ?? ''}`.trim() : null].filter((v): v is string => !!v))]);
   const tableHead = renderMedicationTable(meds.length ? meds : [{ drug: 'x', class_as_written: null, dose: null, dose_unit: null, route: null, frequency: null, duration: null, status: 'performed', source_spans: [[0, 1]] } as Medication], lang).split('\n').slice(0, 2);
-  const headerLine = [header.name, header.species, header.breed, header.sex, header.age ? `${header.age.value} ${header.age.unit}${header.age.value === 1 ? '' : 's'}` : null, header.weight_kg ? `${header.weight_kg} kg` : null].filter(Boolean).join(' — ');
+  const headerLine = renderHeaderLine(header, lang);
   const bad: string[] = [];
   for (const raw of md.split('\n')) {
     const line = raw.trim();

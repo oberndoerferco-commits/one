@@ -55,7 +55,7 @@ export function renderConsultReport(record: ClinicalRecord, header: PatientHeade
   if (!opts.approved) out.push(`_${t.draft}_`);
   out.push('');
   out.push(`## ${t.patient}`);
-  const bits = [header.name, header.species, header.breed, header.sex, header.age ? `${header.age.value} ${header.age.unit}${header.age.value === 1 ? '' : 's'}` : null, header.weight_kg ? `${header.weight_kg} kg` : null].filter(Boolean);
+  const bits = signalment(header, lang);
   out.push(bits.join(' — '));
   out.push('');
   out.push(`## ${t.reason}`);
@@ -124,7 +124,29 @@ const D = {
   it: { ownerTitle: 'Cosa è successo oggi e cosa fare a casa', forOwner: 'Per il proprietario di', reason: 'Perché siete venuti', found: 'Cosa abbiamo trovato', done: 'Cosa abbiamo fatto', meds: 'Farmaci da somministrare', home: 'A casa', next: 'Prossimo appuntamento', call: 'Chiamateci se', declined: 'Discusso e rifiutato', nothingNoted: 'Non è stato annotato altro.', referralTitle: 'Lettera di riferimento', dear: 'Gentile collega', referralIntro: 'Le invio il seguente paziente.', referralReason: 'Motivo dell\'invio', historyHdr: 'Anamnesi e reperti', diagHdr: 'Esami', treatHdr: 'Trattamento finora', differentials: 'Diagnosi differenziali', thanks: 'Grazie per la presa in carico. La prego di inviarci i Suoi referti.', missingReason: 'Motivo dell\'invio non indicato nelle note' },
 };
 
-const headerLine = (header: PatientHeader) => [header.name, header.species, header.breed, header.sex, header.age ? `${header.age.value} ${header.age.unit}${header.age.value === 1 ? '' : 's'}` : null, header.weight_kg ? `${header.weight_kg} kg` : null].filter(Boolean).join(' — ');
+/** Signalment words in the document language. English keeps the raw schema values, so its output is unchanged. */
+const SIG: Record<Lang, { species: Record<string, string>; sex: Record<string, string>; unit: Record<string, [string, string]>; num: (n: number) => string }> = {
+  en: { species: {}, sex: {}, unit: { day: ['day', 'days'], week: ['week', 'weeks'], month: ['month', 'months'], year: ['year', 'years'] }, num: (n) => String(n) },
+  de: {
+    species: { dog: 'Hund', cat: 'Katze', rabbit: 'Kaninchen', ferret: 'Frettchen', horse: 'Pferd', bird: 'Vogel', reptile: 'Reptil', other: 'anderes Tier' },
+    sex: { female: 'weiblich', male: 'männlich' },
+    unit: { day: ['Tag', 'Tage'], week: ['Woche', 'Wochen'], month: ['Monat', 'Monate'], year: ['Jahr', 'Jahre'] },
+    num: (n) => String(n).replace('.', ','),
+  },
+  it: {
+    species: { dog: 'cane', cat: 'gatto', rabbit: 'coniglio', ferret: 'furetto', horse: 'cavallo', bird: 'uccello', reptile: 'rettile', other: 'altro' },
+    sex: { female: 'femmina', male: 'maschio' },
+    unit: { day: ['giorno', 'giorni'], week: ['settimana', 'settimane'], month: ['mese', 'mesi'], year: ['anno', 'anni'] },
+    num: (n) => String(n).replace('.', ','),
+  },
+};
+const signalment = (header: PatientHeader, lang: Lang = 'en') => {
+  const g = SIG[lang] ?? SIG.en;
+  const age = header.age ? `${g.num(header.age.value)} ${g.unit[header.age.unit]?.[header.age.value === 1 ? 0 : 1] ?? `${header.age.unit}${header.age.value === 1 ? '' : 's'}`}` : null;
+  return [header.name, header.species && (g.species[header.species] ?? header.species), header.breed, header.sex && (g.sex[header.sex] ?? header.sex), age, header.weight_kg ? `${g.num(header.weight_kg)} kg` : null].filter(Boolean);
+};
+/** One-line signalment as every document prints it (exported for the template-only tests). */
+export const headerLine = (header: PatientHeader, lang: Lang = 'en') => signalment(header, lang).join(' — ');
 
 /** Owner summary: the same facts in the same words, grouped for the person who has to act at home. */
 export function renderOwnerSummary(record: ClinicalRecord, header: PatientHeader, lang: Lang = 'en', opts: { approved?: boolean; extraMissing?: Missing[] } = {}): string {
@@ -133,7 +155,7 @@ export function renderOwnerSummary(record: ClinicalRecord, header: PatientHeader
   out.push(`# ${d.ownerTitle}`);
   if (!opts.approved) out.push(`_${t.draft}_`);
   out.push('');
-  out.push(`**${d.forOwner} ${header.name}** — ${headerLine(header)}`);
+  out.push(`**${d.forOwner} ${header.name}** — ${headerLine(header, lang)}`);
   out.push('');
   out.push(`## ${d.reason}`);
   out.push(record.presenting_complaint ? cap(record.presenting_complaint.text) : flag(t.missing));
@@ -207,7 +229,7 @@ export function renderReferralLetter(record: ClinicalRecord, header: PatientHead
   // the locked header first, then the record's own patient fields. Nothing is defaulted.
   const p0 = record.patient;
   const sig: PatientHeader = { ...header, breed: header.breed ?? p0.breed ?? undefined, sex: header.sex ?? p0.sex ?? undefined, age: header.age ?? p0.age ?? undefined };
-  out.push(`${d.referralIntro} **${headerLine(sig)}**`);
+  out.push(`${d.referralIntro} **${headerLine(sig, lang)}**`);
   out.push('');
   const o = ref.owner ?? {};
   const owner = fieldLines([[rl.ownerName, o.name], [rl.phone, o.phone], [rl.email, o.email]]);
@@ -286,7 +308,7 @@ export function renderDischargeLetter(record: ClinicalRecord, header: PatientHea
   out.push(`# ${x.title}`);
   if (!opts.approved) out.push(`_${t.draft}_`);
   out.push('');
-  out.push(`**${headerLine(header)}**`);
+  out.push(`**${headerLine(header, lang)}**`);
 
   if (record.presenting_complaint) section(x.reason, [cap(record.presenting_complaint.text)]);
 
@@ -410,7 +432,7 @@ export function renderPrescription(record: ClinicalRecord, header: PatientHeader
   const keeper = [ctx.owner.name, ctx.owner.tax_id].filter(Boolean).join(' · ');
   if (!ctx.owner.name) miss.push({ field: 'owner.name', reason: p.missingKeeper });
   out.push(`**${p.keeper}:** ${keeper || flag(p.missingKeeper)}`);
-  out.push(`**${p.animal}:** ${headerLine(header)}${ctx.microchip ? ` · ${ctx.microchip}` : ` · ${flag(p.missingChip)}`}`);
+  out.push(`**${p.animal}:** ${headerLine(header, lang)}${ctx.microchip ? ` · ${ctx.microchip}` : ` · ${flag(p.missingChip)}`}`);
   if (!ctx.microchip) miss.push({ field: 'microchip', reason: p.missingChip });
   out.push(`**${p.date}:** ${opts.date ?? new Date().toISOString().slice(0, 10)}`);
   out.push('');
@@ -459,7 +481,7 @@ export function renderVaccinationEntry(record: ClinicalRecord, header: PatientHe
   out.push(`# ${v.title}`);
   if (!opts.approved) out.push(`_${t.draft}_`);
   out.push('');
-  out.push(`**${headerLine(header)}** · ${v.chip}: ${ctx.microchip ?? flag(v.missingChip)}`);
+  out.push(`**${headerLine(header, lang)}** · ${v.chip}: ${ctx.microchip ?? flag(v.missingChip)}`);
   out.push('');
   const miss: Missing[] = [];
   if (!ctx.microchip) miss.push({ field: 'microchip', reason: v.missingChip });
@@ -500,7 +522,7 @@ export function renderConsentForm(record: ClinicalRecord, header: PatientHeader,
   const out: string[] = [];
   out.push(`# ${k.title}`);
   out.push('');
-  out.push(`**${headerLine(header)}**${ctx.microchip ? ` · ${ctx.microchip}` : ''}`);
+  out.push(`**${headerLine(header, lang)}**${ctx.microchip ? ` · ${ctx.microchip}` : ''}`);
   out.push(`**${k.owner}:** ${ctx.owner.name ?? '______________________'}`);
   out.push(`**${k.date}:** ${opts.date ?? new Date().toISOString().slice(0, 10)}`);
   out.push('');
@@ -538,7 +560,7 @@ export function renderCostEstimate(record: ClinicalRecord, header: PatientHeader
   const out: string[] = [];
   out.push(`# ${e.title}`);
   out.push('');
-  out.push(`**${headerLine(header)}**${ctx.owner.name ? ` · ${ctx.owner.name}` : ''} · ${opts.date ?? new Date().toISOString().slice(0, 10)}`);
+  out.push(`**${headerLine(header, lang)}**${ctx.owner.name ? ` · ${ctx.owner.name}` : ''} · ${opts.date ?? new Date().toISOString().slice(0, 10)}`);
   out.push('');
   out.push(e.intro);
   out.push('');
@@ -581,7 +603,7 @@ export function renderAnaesthesiaRecord(an: AnaesthesiaRecord, header: PatientHe
   out.push(`# ${a.title}`);
   if (!opts.approved) out.push(`_${t.draft}_`);
   out.push('');
-  out.push(`**${headerLine(header)}** · ${opts.date ?? new Date().toISOString().slice(0, 10)}`);
+  out.push(`**${headerLine(header, lang)}** · ${opts.date ?? new Date().toISOString().slice(0, 10)}`);
   out.push('');
   out.push(`- ${a.procedure}: ${v(an.procedure, 'procedure', a.missingProcedure)}`);
   out.push(`- ${a.asa}: ${v(an.asa, 'asa', a.missingAsa)}`);
@@ -665,7 +687,7 @@ export function renderLabExplanation(record: ClinicalRecord, header: PatientHead
   const out: string[] = []; const miss: Missing[] = [];
   out.push(`# ${x.title}`);
   if (!opts.approved) out.push(`_${t.draft}_`);
-  out.push(''); out.push(`**${headerLine(header)}**`); out.push(''); out.push(x.intro); out.push('');
+  out.push(''); out.push(`**${headerLine(header, lang)}**`); out.push(''); out.push(x.intro); out.push('');
   if (!record.diagnostics.length) out.push(x.none);
   record.diagnostics.forEach((d, i) => {
     out.push(`## ${cap(d.test)}`);
@@ -702,7 +724,7 @@ export function renderAntibioticBlock(record: ClinicalRecord, header: PatientHea
   out.push(`## ${a.title}`);
   const rows = ctx.dispensings.filter((d) => d.is_antibiotic);
   if (!rows.length) { out.push(a.none); return out.join('\n'); }
-  out.push(`**${headerLine(header)}**`); out.push('');
+  out.push(`**${headerLine(header, lang)}**`); out.push('');
   for (const d of rows) {
     const m = record.medications[d.medication_index];
     if (!m) continue;

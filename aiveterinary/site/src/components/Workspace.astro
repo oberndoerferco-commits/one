@@ -653,7 +653,7 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
       const blocks = findings.filter((f) => f.severity === 'block');
       const warns = findings.filter((f) => f.severity === 'warn');
       const ctx = VisitContext.parse({ country: csel.value, author: clinicAuthor() });
-      const cflags = countryMissing(record, header, ctx);
+      const cflags = countryMissing(record, header, ctx, J.pageLang);
       const reasons: Record<string, string> = {}; for (const f of cflags) reasons[f.field] = f.reason;
       const clinic = clinicMissing(record, clinicRequired(), { lang: J.pageLang, header });
       for (const f of clinic) reasons[f.field] ??= f.reason;
