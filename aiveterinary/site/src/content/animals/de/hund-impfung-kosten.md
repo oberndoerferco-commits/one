@@ -10,6 +10,8 @@ lang: de
 references:
   - title: "StIKo Vet (Friedrich-Loeffler-Institut), Impftabelle A.1 Hunde (Core- und Non-Core-Impfungen, Grundimmunisierung, Wiederholungsimpfungen)"
     url: "https://stiko-vet.fli.de/de/impftabelle/a-kleine-haustiere/a-1-hunde/"
+  - title: "WSAVA Vaccination Guidelines Group, „2024 Guidelines for the Vaccination of Dogs and Cats“, Executive Summary (wsava.org)"
+    url: "https://wsava.org/wp-content/uploads/2024/05/2024-Guidelines-for-the-Vaccination-of-Dogs-and-Cats.pdf"
   - title: "Straubinger R. K. et al. (StIKo Vet), „Die Neubewertung der Impfung gegen Tollwut“, Deutsches Tierärzteblatt 2022; 70 (1)"
     url: "https://www.bundestieraerztekammer.de/btk/dtbl/archiv/2022/artikel/DTBl_01_2022_Tollwutimpfung.pdf"
   - title: "Tierärztegebührenordnung (GOT) vom 15. August 2022, Anlage (Gebührenverzeichnis, Nr. 16, 87, 221), gesetze-im-internet.de"
@@ -43,7 +45,7 @@ Staupe, Parvovirose und Leptospirose; Hepatitis contagiosa canis und Tollwut sin
 - **Parvovirose:** Schwere Viruserkrankung, vor allem bei Welpen.
 - **Leptospirose:** Bakterielle Infektion, auf Menschen übertragbar; ein hoher Infektionsdruck besteht bei intensivem Kontakt zu Wasser oder Nagetieren. Die Impfung wird jährlich aufgefrischt.
 
-**Hepatitis contagiosa canis (HCC)** ist durch konsequentes Impfen in Westeuropa selten geworden und steht in der StIKo-Vet-Tabelle als empfohlene Non-Core-Impfung; die Komponente ist in vielen Kombinationsimpfstoffen enthalten.
+**Hepatitis contagiosa canis (HCC)** ist durch konsequentes Impfen in Westeuropa selten geworden und steht in der StIKo-Vet-Tabelle als empfohlene Non-Core-Impfung; die Komponente ist in vielen Kombinationsimpfstoffen enthalten. Die internationale Leitlinie der WSAVA zählt das canine Adenovirus (HCC) dagegen weltweit zu den Core-Impfungen. Deshalb liest man in Texten aus anderen Ländern, etwa aus Italien, eine andere Einteilung; für Hunde in Deutschland gilt die Empfehlung der StIKo Vet.
 
 **Tollwut** gilt in Deutschland seit der Leitlinie von 2021 nicht mehr als Core-Impfung, weil das Land seit 2008 frei von terrestrischer Tollwut ist. Für Reisen ins Ausland, auch innerhalb der EU, ist eine gültige Tollwutimpfung aber gesetzlich Pflicht. Die StIKo Vet empfiehlt sie weiterhin, unter anderem weil geimpfte Hunde nach einem Kontakt mit einem seuchenverdächtigen Tier behördlich bessergestellt sind.
 

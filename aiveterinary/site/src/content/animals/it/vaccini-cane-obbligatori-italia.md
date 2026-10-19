@@ -52,7 +52,7 @@ Le linee guida internazionali (WSAVA) dividono i vaccini in due gruppi.
 - **Parvovirosi**
 - **Adenovirus canino** (epatite infettiva)
 
-La WSAVA aggiunge che la **leptospirosi**, una malattia grave e trasmissibile alle persone, va considerata core nei Paesi o nelle zone in cui è endemica, e che la **rabbia** è core dove la malattia è endemica. Chiedi al tuo veterinario come considera la leptospirosi nella tua zona.
+La WSAVA aggiunge che la **leptospirosi**, una malattia grave e trasmissibile alle persone, va considerata core nei Paesi o nelle zone in cui è endemica, e che la **rabbia** è core dove la malattia è endemica. Chiedi al tuo veterinario come considera la leptospirosi nella tua zona. La classificazione non è uguale ovunque: in Germania, per esempio, la commissione vaccinale StIKo Vet considera l'adenovirus (epatite infettiva) un vaccino non-core, comunque raccomandato, e la leptospirosi un vaccino core. Per il tuo cane in Italia conta la valutazione del tuo veterinario.
 
 **I vaccini non-core** dipendono da dove vivi e da cosa fa il tuo cane:
 
