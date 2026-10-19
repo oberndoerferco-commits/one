@@ -60,7 +60,8 @@ Everything costs €0 unless marked €. Legend:
 - [x] A–Z index, species hubs, "share with your vet" button, print stylesheet for articles — S ★★
 - [x] Illustrations (own SVG faces, hero scene, loader; design system in docs/06 and research in docs/13) — M ★
 - [x] **Source audit of every article** (19 Oct 2026): each of the 166 articles checked claim by claim against its own cited sources; contradictions fixed, unsupported claims removed, every reference URL opened; duplicate DE "Katze frisst nicht" pages merged
-- [ ] Cross-language consistency of triage thresholds per translation group (running 19 Oct 2026)
+- [x] Cross-language consistency of triage thresholds in all 46 translation groups (19 Oct 2026): stricter, source-backed rule applied in every language
+- [ ] **For the reviewing vet** (no source settles these): tick removal urgency (IT "today" vs EN/DE "routine"); home weighing interval for CKD cats (EN monthly, IT every 2 weeks, DE weekly); fever after a recent operation (DE go-now vs EN same day); DE cat diarrhoea lacks "won't drink"
 - [ ] Ministero della Salute pages (browser wall) and StIKo Vet Leitlinie 6th edition (Thieme bot wall) could not be opened; cited via Gazzetta Ufficiale / FLI table instead — check by hand
 - [ ] Translate privacy/terms into IT/DE after the lawyer pass (research and quality pages done in IT/DE)
 - [x] Vet-facing landing pages per country: /de/vets with TÄHAV §13/§15/§16 and GOT §7, /it/vets with REV, consenso, preventivo, SINAC (sources cited)
