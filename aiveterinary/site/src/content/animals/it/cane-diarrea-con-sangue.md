@@ -44,7 +44,7 @@ Il sangue rosso vivo di solito viene dal colon, mentre le feci nere e catramose 
 
 **Sangue rosso vivo**, a striature o goccioline, spesso insieme a muco gelatinoso, di solito viene dall'ultimo tratto dell'intestino (il colon). Il quadro tipico è quello della **colite**: il cane va spesso a fare i bisogni, spinge, fa piccole quantità di feci molli con muco e a volte un po' di sangue. Anche una piccola quantità di sangue in feci liquide può sembrare tantissima.
 
-**Feci nere, lucide, appiccicose come catrame** fanno pensare a sangue che è stato digerito, quindi a un sanguinamento più in alto, per esempio nello stomaco. Secondo il manuale veterinario MSD, le ulcere dello stomaco possono dare feci scure con sangue, spesso con gengive pallide per l'anemia. Le feci nere vanno sempre viste in giornata.
+**Feci nere, lucide, appiccicose come catrame** fanno pensare a sangue che è stato digerito, quindi a un sanguinamento più in alto, per esempio nello stomaco. Secondo il manuale veterinario MSD, le ulcere dello stomaco possono dare feci scure con sangue, spesso con gengive pallide per l'anemia. Le feci nere sono uno dei segni per cui andare subito in clinica (vedi l'elenco all'inizio).
 
 ## Quali sono le cause della diarrea con sangue nel cane?
 

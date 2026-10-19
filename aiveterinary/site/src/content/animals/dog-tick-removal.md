@@ -23,16 +23,22 @@ references:
     url: "https://icatcare.org/advice/permethrin-poisoning/"
   - title: "ESCCAP Deutschland: Wie entferne ich eine Zecke richtig? (in German)"
     url: "https://esccap.de/wie-entferne-ich-eine-zecke-richtig"
+  - title: "ESCCAP Deutschland: Welche Erkrankungen können Zecken übertragen? (in German)"
+    url: "https://esccap.de/welche-erkrankungen-koennen-zecken-uebertragen"
+  - title: "MSD Veterinary Manual (Pet Owner Version): Ticks of Dogs"
+    url: "https://www.msdvetmanual.com/dog-owners/skin-disorders-of-dogs/ticks-of-dogs"
 ---
 
 ## First, the signs that mean see a vet now
 
-Finding a tick is common and usually not an emergency. Take it off as described below. Contact a vet the same day, or go now if your dog is clearly unwell, if in the days or weeks after a tick bite your dog:
+Finding a tick is common and usually not an emergency. Take it off as described below. Go to a vet now, and call ahead, if in the days or weeks after a tick bite your dog has pale gums, yellowish gums or eyes, or red or dark urine. These can be signs of babesiosis, which is often fatal without treatment and needs treating as soon as possible.
+
+Contact a vet the same day, or go now if your dog is clearly unwell, if in the days or weeks after a tick bite your dog:
 
 - is dull, tired or off food, or has a fever
-- has pale gums, yellowish gums or eyes, or red or dark urine
 - is lame, or the lameness moves from one leg to another, or the joints look swollen or sore
 - has recently travelled in mainland Europe, especially southern Europe, and seems unwell in any way
+- is carrying a lot of ticks: heavy infestations can cause anaemia
 
 And call a vet straight away if:
 

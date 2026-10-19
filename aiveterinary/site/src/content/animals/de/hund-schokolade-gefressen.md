@@ -22,7 +22,7 @@ references:
 
 Schokoladenvergiftung ist einer der Fälle, in denen Sie nicht warten sollten, bis es dem Hund schlecht geht. Die ersten Anzeichen zeigen sich oft erst nach mehreren Stunden, und bis dahin ist der Wirkstoff aufgenommen. In den ersten ein bis zwei Stunden nach dem Fressen kann die Praxis den Hund noch sicher erbrechen lassen. Danach wird die Behandlung aufwändiger.
 
-**Rufen Sie sofort Ihre Tierarztpraxis oder den tierärztlichen Notdienst an**, wenn Ihr Hund Schokolade gefressen hat und Sie nicht sicher sind, dass es nur eine winzige Menge Vollmilch bei einem großen Hund war. Halten Sie bereit:
+**Rufen Sie sofort Ihre Tierarztpraxis oder den tierärztlichen Notdienst an**, wenn Ihr Hund Schokolade gefressen hat, auch wenn er völlig normal wirkt. Ob die Menge harmlos war, entscheidet die Praxis. Halten Sie bereit:
 
 - die Verpackung oder den Namen des Produkts (Vollmilch, Zartbitter, Backschokolade, Kakaopulver, Pralinen, Kuchen)
 - wie viel ungefähr gefressen wurde (Riegel, halbe Tafel, Packungsgröße, Rest in der Tüte)
@@ -30,6 +30,14 @@ Schokoladenvergiftung ist einer der Fälle, in denen Sie nicht warten sollten, b
 - das Gewicht Ihres Hundes
 
 Mit diesen vier Angaben kann die Praxis in wenigen Minuten einschätzen, ob Ihr Hund beobachtet werden kann oder kommen muss.
+
+Fahren Sie sofort in die nächste Praxis oder Tierklinik und rufen Sie unterwegs an, wenn Ihr Hund bereits:
+
+- wiederholt erbricht oder Durchfall hat
+- unruhig oder aufgeregt ist oder stark hechelt
+- zittert, steife Muskeln oder einen Krampfanfall hat
+- ein sehr schnelles oder unregelmäßiges Herz hat
+- zusammenbricht
 
 ## Warum ist Zartbitterschokolade für Hunde gefährlicher als Vollmilch?
 

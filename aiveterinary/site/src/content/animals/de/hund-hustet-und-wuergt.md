@@ -81,11 +81,13 @@ Husten und Würgen können auch durch andere Erkrankungen der Atemwege, des Rach
 
 ## Wann sollte ich mit meinem hustenden Hund zur Tierärztin oder zum Tierarzt?
 
-Noch heute bei einem hustenden Welpen, Fieber, Mattigkeit, feuchtem Husten oder bekannter Herzerkrankung, in den nächsten Tagen bei anhaltendem oder wiederkehrendem Husten.
+Noch heute bei einem hustenden Welpen, Blut beim Husten, Fieber, Mattigkeit, feuchtem Husten oder bekannter Herzerkrankung, in den nächsten Tagen bei anhaltendem oder wiederkehrendem Husten.
 
 Wenn keines der Alarmzeichen oben zutrifft, vereinbaren Sie trotzdem einen Termin, und zwar **noch heute**, wenn:
 
 - ein Welpe hustet
+- der Husten Ihren Hund krank wirken lässt oder ihn nachts wach hält
+- Ihr Hund Blut hochhustet
 - Ihr Hund zusätzlich Fieber hat, matt ist, nicht frisst oder eitrigen Nasenausfluss hat
 - der Husten feucht klingt oder Ihr Hund Schleim hochbringt
 - Ihr Hund eine bekannte Herzerkrankung hat und neu oder stärker hustet

@@ -20,6 +20,8 @@ references:
     url: "https://www.msdvetmanual.com/special-pet-topics/emergencies/what-to-do-in-a-dog-or-cat-emergency"
   - title: "MSD Veterinary Manual: Poisoning from Human Over-the-Counter Drugs"
     url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/poisoning-from-human-over-the-counter-drugs"
+  - title: "VCA Animal Hospitals: Eclampsia in Dogs"
+    url: "https://vcahospitals.com/know-your-pet/eclampsia-in-dogs"
 ---
 
 ## Prima di tutto: i segni per cui andare subito dal veterinario
@@ -31,6 +33,7 @@ Vai immediatamente in una clinica veterinaria, avvisando per telefono, se il tuo
 - insieme al tremore ha **vomito o diarrea**, **sbava** molto, ha le **pupille dilatate**, si comporta in modo strano o sembra confuso: nello stesso studio questi segni erano più comuni nei cani intossicati
 - è **molto debole, barcolla, è disorientato o collassa**: secondo VCA Animal Hospitals sono i segni tipici dello **zucchero basso nel sangue** (ipoglicemia), che può dare anche tremori e convulsioni. L'AKC indica che i più esposti sono i cani di taglia piccola e toy e i cuccioli molto giovani; nel cane diabetico in terapia con insulina può dipendere da una dose eccessiva
 - dopo caldo o sforzo ha la pelle calda, ansima forte, sbava, vomita o barcolla: l'MSD Veterinary Manual descrive questi segni nel **colpo di calore**, che è un'emergenza
+- è una **cagna che allatta** ed è agitata, ansima, è rigida o trema: può essere un'**eclampsia** (calcio basso nel sangue), che secondo VCA Animal Hospitals è una vera emergenza, più frequente quando i cuccioli hanno da una a quattro settimane. Impedisci ai cuccioli di poppare e chiama subito il veterinario
 - dopo esposizione al freddo o all'acqua è confuso, respira in modo superficiale o collassa: possono essere segni di **ipotermia**, e l'MSD Veterinary Manual avverte che il tremore da solo non è un segno affidabile per riconoscerla
 
 ## È normale che il cane tremi?

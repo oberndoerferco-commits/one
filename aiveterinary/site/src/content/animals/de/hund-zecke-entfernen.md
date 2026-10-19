@@ -20,6 +20,8 @@ references:
     url: "https://www.merckvetmanual.com/toxicology/toxicities-from-human-drugs/analgesics-toxicity"
   - title: "Kleeb C. et al.: Canine Tick-Borne Encephalitis: Clinical Features, Survival Rate and Neurological Sequelae. Front Vet Sci 2021"
     url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8631292/"
+  - title: "MSD Veterinary Manual (Pet Owner Version): Ticks of Dogs"
+    url: "https://www.msdvetmanual.com/dog-owners/skin-disorders-of-dogs/ticks-of-dogs"
 ---
 
 ## Zuerst: wann Sie sofort zur Tierärztin oder zum Tierarzt sollten
@@ -33,6 +35,8 @@ Eine Zecke allein ist kein Notfall. Fahren Sie aber sofort in eine Praxis und ru
 - schwankt, unsicher läuft, Nackenschmerzen hat oder einen Krampfanfall bekommt
 
 Das können Anzeichen einer durch Zecken übertragenen Erkrankung sein, zum Beispiel einer Babesiose, die unbehandelt oft tödlich verläuft.
+
+Lassen Sie Ihren Hund außerdem noch am selben Tag untersuchen, wenn er sehr viele Zecken trägt: Ein starker Befall kann Blutarmut verursachen.
 
 Und genauso dringend: Fahren Sie sofort, wenn eine **Katze** mit einem Zeckenmittel für Hunde behandelt wurde oder engen Kontakt zu einem frisch behandelten Hund hatte und danach zittert, krampft, torkelt, stark speichelt, erbricht oder Durchfall hat. Nehmen Sie die Packung mit.
 

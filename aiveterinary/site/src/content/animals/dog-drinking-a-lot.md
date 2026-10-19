@@ -24,7 +24,7 @@ references:
 
 Drinking and weeing more is rarely an emergency on its own, but it can be. Go to a vet **straight away**, and call ahead, if your dog is drinking a lot and:
 
-- is an **unspayed female** with **pus or blood coming from her vulva**, or is vomiting, has a swollen tummy, is low in energy, off her food or collapses. This can be **pyometra**, an infected womb, which the PDSA describes as an emergency. Signs usually appear four to eight weeks after a season. In a "closed" pyometra there may be little or no discharge, which makes it harder to spot and more dangerous
+- is an **unspayed female** with **pus or blood coming from her vulva**, or is vomiting, has a swollen tummy, is low in energy, off her food or collapses. This can be **pyometra**, an infected womb, which the PDSA describes as an emergency. Signs usually appear four to eight weeks after a season. In a "closed" pyometra there may be little or no discharge, which makes it harder to spot and more dangerous. The PDSA also lists drinking more than usual among the signs, so if an unspayed female who has had a season in the last few weeks starts drinking more, call your vet for an urgent appointment, even without discharge
 - is **weak, vomiting, off food or breathing with difficulty**. In a dog with diabetes, these can be signs of **diabetic ketoacidosis**, a medical emergency that needs immediate treatment and a stay in hospital
 - already has diabetes and becomes weak, wobbly, has a seizure or collapses: dangerously low blood sugar is also an emergency
 - collapses, is very flat or is getting worse quickly

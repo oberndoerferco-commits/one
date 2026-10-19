@@ -49,7 +49,7 @@ The PDSA notes that caecotrophs are **easily mistaken for diarrhoea**. As a roug
 | Normal round pellets | still being passed | usually missing |
 | Appetite | eating normally | eating little or nothing |
 | How the rabbit seems | bright | dull, often in pain |
-| What to do | book a vet visit soon | go now |
+| What to do | book a vet visit today | go now |
 
 Either way, call your vet. The PDSA advises booking a vet visit if you find caecotrophs, because a rabbit only stops eating them when something is wrong.
 

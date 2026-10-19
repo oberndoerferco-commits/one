@@ -35,6 +35,7 @@ Fahren Sie sofort in eine Tierarztpraxis, wenn Ihre Katze, vor allem eine älter
 - Geschwüre im Maul hat
 - gar keinen Urin mehr absetzt (bei Katern auch an Harnröhrenverschluss denken)
 - plötzlich nicht mehr zu sehen scheint, plötzlich desorientiert ist, schwankt, Krampfanfälle oder andere neurologische Zeichen zeigt (Bluthochdruck kann Augen und Gehirn schädigen)
+- möglicherweise einen Teil einer Lilie, Frostschutzmittel oder ein Humanmedikament wie Paracetamol gefressen hat (das kann die Nieren innerhalb von Stunden schädigen)
 
 Das sind Zeichen einer akuten Verschlechterung oder einer Nierenkrise, die stationär behandelt werden muss.
 

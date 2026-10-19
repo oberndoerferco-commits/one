@@ -21,6 +21,12 @@ references:
     url: "https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/chronic-kidney-disease"
   - title: "MSD Veterinary Manual: Renal dysfunction in dogs and cats"
     url: "https://www.msdvetmanual.com/urinary-system/noninfectious-diseases-of-the-urinary-system-in-small-animals/renal-dysfunction-in-dogs-and-cats"
+  - title: "International Cat Care: Lily poisoning in cats"
+    url: "https://icatcare.org/articles/lily-poisoning-in-cats"
+  - title: "MSD Veterinary Manual: Ethylene glycol (antifreeze) poisoning"
+    url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/ethylene-glycol-antifreeze-poisoning"
+  - title: "VCA Animal Hospitals: Acetaminophen toxicity in cats"
+    url: "https://vcahospitals.com/know-your-pet/acetaminophen-toxicity-in-cats"
 ---
 
 ## First, the signs that mean go now
@@ -32,6 +38,7 @@ Go to a clinic straight away, calling ahead, if an older cat, or a cat already k
 - has sores in the mouth
 - produces no urine at all (in males, think of a blocked urethra too)
 - suddenly seems unable to see, or is suddenly disoriented, wobbly or has other nervous-system signs (high blood pressure can damage the eyes and brain)
+- may have eaten any part of a lily, antifreeze, or a human medicine such as paracetamol (these can damage the kidneys within hours)
 
 These point to a kidney crisis or an acute problem on top of the chronic one, and need hospital treatment.
 
@@ -106,3 +113,6 @@ Staging, diet and the treatment plan are decided cat by cat, so take these terms
 - [IRIS treatment recommendations for CKD in cats, 2026](https://www.iris-kidney.com/s/IRIS_CAT_Treatment_Recommendations_-2026.pdf)
 - [Cornell Feline Health Center: Chronic kidney disease](https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/chronic-kidney-disease)
 - [MSD Veterinary Manual: Renal dysfunction in dogs and cats](https://www.msdvetmanual.com/urinary-system/noninfectious-diseases-of-the-urinary-system-in-small-animals/renal-dysfunction-in-dogs-and-cats)
+- [International Cat Care: Lily poisoning in cats](https://icatcare.org/articles/lily-poisoning-in-cats)
+- [MSD Veterinary Manual: Ethylene glycol (antifreeze) poisoning](https://www.msdvetmanual.com/special-pet-topics/poisoning/ethylene-glycol-antifreeze-poisoning)
+- [VCA: Acetaminophen toxicity in cats](https://vcahospitals.com/know-your-pet/acetaminophen-toxicity-in-cats)

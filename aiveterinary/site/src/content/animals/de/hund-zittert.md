@@ -72,7 +72,7 @@ Prüfen und beseitigen Sie mögliche Auslöser, messen Sie Fieber, schauen Sie a
 
 ## Wann sollte ich mit meinem zitternden Hund zur Tierärztin oder zum Tierarzt?
 
-Noch heute bei Fieber, deutlichen Schmerzzeichen, Erbrechen oder wenn es länger als ein paar Stunden anhält, sonst in den nächsten Tagen bei wiederholtem Zittern oder Hecheln in Ruhe.
+Noch heute bei plötzlichem Zittern am ganzen Körper ohne erkennbaren Anlass, bei Fieber, deutlichen Schmerzzeichen, Erbrechen oder wenn es länger als ein paar Stunden anhält, sonst in den nächsten Tagen bei wiederholtem Zittern oder Hecheln in Ruhe.
 
 Vereinbaren Sie innerhalb der nächsten Tage einen Termin, wenn:
 
@@ -83,7 +83,7 @@ Vereinbaren Sie innerhalb der nächsten Tage einen Termin, wenn:
 - er nachts unruhig ist und hechelt
 - Sie insgesamt den Eindruck haben, „irgendetwas stimmt nicht“
 
-Vereinbaren Sie noch heute einen Termin bei Fieber, deutlichen Schmerzzeichen, Erbrechen oder wenn der Zustand länger als ein paar Stunden anhält.
+Vereinbaren Sie noch heute einen Termin bei Fieber, deutlichen Schmerzzeichen, Erbrechen oder wenn der Zustand länger als ein paar Stunden anhält. Das gilt auch, wenn Ihr Hund plötzlich am ganzen Körper zittert, ohne dass Kälte, Angst oder Aufregung es erklären: In einer Studie mit 198 Hunden mit Zittern am ganzen Körper war eine Vergiftung die häufigste Ursache (46 Prozent), und bei vielen vergifteten Hunden war das Zittern das einzige Zeichen.
 
 ## Was wird die Tierärztin oder der Tierarzt über das Zittern wissen wollen?
 

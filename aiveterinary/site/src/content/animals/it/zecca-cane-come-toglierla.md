@@ -16,6 +16,8 @@ references:
     url: "https://www.msdvetmanual.com/dog-owners/skin-disorders-of-dogs/ticks-of-dogs"
   - title: "Istituto Superiore di Sanità, EpiCentro: Zecche"
     url: "https://www.epicentro.iss.it/zecche/"
+  - title: "ESCCAP Deutschland: Welche Erkrankungen können Zecken übertragen? (in tedesco)"
+    url: "https://esccap.de/welche-erkrankungen-koennen-zecken-uebertragen"
   - title: "Merck Veterinary Manual: Toxicities from Human Drugs, Analgesics"
     url: "https://www.merckvetmanual.com/toxicology/toxicities-from-human-drugs/analgesics-toxicity"
 ---
@@ -27,11 +29,10 @@ Togliere una zecca è un gesto che puoi fare a casa. Ma chiama il veterinario e 
 - il cane ha **molte zecche** addosso (l'MSD Veterinary Manual avverte che le infestazioni gravi possono causare anemia e paralisi e vanno portate subito dal veterinario), oppure sono su occhi, palpebre, interno dell'orecchio o genitali
 - non riesci a toglierla, o il cane non si lascia toccare
 - nei giorni o nelle settimane dopo il morso il cane è **abbattuto, non mangia, ha febbre**, vomita, zoppica o fa fatica a muoversi
-- noti **urine scure** (rossastre o color tè), gengive pallide o giallastre
 - compaiono **sangue dal naso**, puntini rossi o lividi sulla pelle o sulle gengive
 - il punto del morso si **arrossa o si gonfia**: l'MSD Veterinary Manual consiglia in questo caso una visita in tempi rapidi
 
-Se il cane è debole, ha gengive bianche o gialle, respira male o collassa, vai in clinica **subito**, avvisando per telefono.
+Se il cane è debole, ha gengive pallide, bianche o gialle, **urine scure** (rossastre o color tè), respira male o collassa, vai in clinica **subito**, avvisando per telefono: gengive pallide o gialle e urine scure possono indicare una babesiosi, che senza cure è spesso mortale e va trattata il prima possibile.
 
 ## Perché bisogna togliere presto la zecca?
 

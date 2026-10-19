@@ -3,7 +3,7 @@ title: "Hund trinkt viel: wie viel normal ist, woran Sie zu viel erkennen und wa
 description: "Wenn Ihr Hund plötzlich deutlich mehr trinkt, steckt oft eine Erkrankung dahinter, etwa der Nieren, ein Diabetes oder eine Hormonstörung. Wie Sie die Trinkmenge messen, welche Ursachen in Frage kommen, wann Sie sofort in die Praxis fahren sollten und warum Sie das Wasser nicht wegnehmen dürfen."
 species: dog
 category: symptoms
-urgency: this-week
+urgency: today
 updated: 2026-10-19
 draft: true
 lang: de
@@ -24,13 +24,17 @@ references:
     url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/rodenticide-poisoning"
   - title: "Merck Veterinary Manual: Toxicities from Human Drugs, Analgesics"
     url: "https://www.merckvetmanual.com/toxicology/toxicities-from-human-drugs/analgesics-toxicity"
+  - title: "PDSA Pet Health Hub: Why is my dog drinking lots of water and weeing more than usual?"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/is-my-dog-drinking-and-weeing-too-much"
+  - title: "PDSA Pet Health Hub: Pyometra (infected womb) in dogs"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/pyometra-infected-womb-in-dogs"
 ---
 
 ## Zuerst: wann Sie sofort in die Tierarztpraxis fahren sollten
 
-Mehr Durst ist meistens kein Notfall für die Nacht, aber ein Grund für einen baldigen Termin. Fahren Sie jedoch **sofort** in eine Tierarztpraxis oder Tierklinik und rufen Sie vorher an, wenn Ihr Hund viel trinkt und zusätzlich:
+Mehr Durst ist meistens kein Notfall für die Nacht, aber ein Grund, sich noch heute bei der Praxis zu melden und einen Termin zu vereinbaren; die PDSA rät, immer die Praxis zu kontaktieren, wenn ein Hund mehr trinkt oder Urin absetzt als sonst. Fahren Sie jedoch **sofort** in eine Tierarztpraxis oder Tierklinik und rufen Sie vorher an, wenn Ihr Hund viel trinkt und zusätzlich:
 
-- eine **nicht kastrierte Hündin** ist, die vor einigen Wochen läufig war, und jetzt matt ist, schlecht frisst, erbricht, Ausfluss aus der Scheide hat oder einen dicker werdenden Bauch bekommt. Das kann eine **Gebärmuttervereiterung (Pyometra)** sein. Sie kann sich schnell bis zum Schock verschlechtern und lebensbedrohlich werden.
+- eine **nicht kastrierte Hündin** ist, die vor einigen Wochen läufig war, und jetzt matt ist, schlecht frisst, erbricht, Ausfluss aus der Scheide hat oder einen dicker werdenden Bauch bekommt. Das kann eine **Gebärmuttervereiterung (Pyometra)** sein. Sie kann sich schnell bis zum Schock verschlechtern und lebensbedrohlich werden. Die Anzeichen zeigen sich meist vier bis acht Wochen nach der Läufigkeit, und laut PDSA gehört vermehrtes Trinken selbst dazu: Fängt eine nicht kastrierte Hündin in den Wochen nach der Läufigkeit an, mehr zu trinken, rufen Sie für einen dringenden Termin an, auch ohne Ausfluss.
 - erbricht, nicht mehr frisst, sehr schlapp ist oder schwankt
 - möglicherweise **Rattengift** gefressen hat. Manche Köder enthalten Vitamin D (Cholecalciferol). Laut MSD Veterinary Manual zeigen sich die Anzeichen einer solchen Vergiftung meist innerhalb von 18 bis 36 Stunden, unter anderem mit starkem Durst und viel Urin, und sie kann die Nieren schädigen.
 - oft presst und dabei nur wenig oder gar keinen Urin absetzt oder Blut im Urin hat

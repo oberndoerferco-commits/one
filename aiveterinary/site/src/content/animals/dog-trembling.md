@@ -18,6 +18,8 @@ references:
     url: "https://vcahospitals.com/know-your-pet/testing-for-low-blood-sugar"
   - title: "MSD Veterinary Manual (Professional Version): Metaldehyde Poisoning in Animals"
     url: "https://www.msdvetmanual.com/toxicology/metaldehyde-poisoning/metaldehyde-poisoning-in-animals"
+  - title: "Journal of Veterinary Internal Medicine: Generalized Tremors in Dogs: 198 Cases (2003–2023)"
+    url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11951301/"
 ---
 
 ## First: go to a vet now if you see these signs
@@ -62,7 +64,9 @@ Film the trembling, note where and when it happens, check gently for pain, and k
 
 ## When should I take my trembling dog to the vet?
 
-Within a few days if the trembling is new and keeps coming back or happens at rest, and the same day if it's getting worse or other signs appear.
+The same day if your dog suddenly trembles all over with no clear reason, if it's getting worse or other signs appear, and within a few days if mild trembling is new and keeps coming back or happens at rest.
+
+Call your vet the same day if your dog suddenly starts trembling all over and there is no cold, fear or excitement to explain it. In a study of 198 dogs with whole-body tremors, poisoning was the most common cause (46%), and many poisoned dogs showed no other sign than the trembling.
 
 Book an appointment in the next few days if:
 

@@ -16,6 +16,8 @@ references:
     url: "https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/rabbits/feeding-your-rabbits"
   - title: "MSD Veterinary Manual (Pet Owner Version): Digestive Disorders of Rabbits"
     url: "https://www.msdvetmanual.com/all-other-pets/rabbits/digestive-disorders-of-rabbits"
+  - title: "Rabbit Welfare Association & Fund: Recognising emergencies"
+    url: "https://rabbitwelfare.co.uk/welfare-need/recognising-emergencies/"
 ---
 
 ## Go to a vet today if your rabbit
@@ -29,7 +31,7 @@ The PDSA advises contacting your vet **straight away** about any problem with yo
 - is sitting **hunched**, grinding its teeth or seems dull
 - has front teeth so long it **cannot close its mouth**
 
-A rabbit that stops eating is at risk of **gut stasis**, where the gut slows down or stops. The PDSA warns that untreated dental disease can lead to it, and it can be life-threatening. If your rabbit has stopped eating, read [my rabbit is not eating](/animals/rabbit-not-eating) and see our [emergency page](/emergency).
+A rabbit that won't eat and has no droppings is an **emergency**: the Rabbit Welfare Association says it should see a vet within the shortest possible time, and that waiting until tomorrow will be too late. A rabbit that stops eating is at risk of **gut stasis**, where the gut slows down or stops. The PDSA warns that untreated dental disease can lead to it, and it can be life-threatening. If your rabbit has stopped eating, read [my rabbit is not eating](/animals/rabbit-not-eating) and see our [emergency page](/emergency).
 
 ## Why do rabbit teeth keep growing?
 

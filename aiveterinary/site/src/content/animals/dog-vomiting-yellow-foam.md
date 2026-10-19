@@ -66,11 +66,11 @@ If your dog regularly brings up bile in the early morning, ask your vet whether 
 
 ## When should I take my dog to the vet for yellow vomit?
 
-The same day if your dog vomits more than once or twice in a day, isn't right after 24 hours, gets worse, or has other signs.
+The same day if your dog vomits more than once, isn't right after 24 hours, gets worse, or has other signs.
 
 Book an appointment today if:
 
-- your dog vomits more than once or twice in the same day
+- your dog vomits more than once
 - your dog doesn't seem right after 24 hours, or gets worse at any point
 - the vomiting keeps coming back over several days, even if it is "only in the morning"
 - your dog is off food for more than a day, or drinking much more or less than usual

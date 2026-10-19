@@ -38,7 +38,7 @@ According to the MSD Veterinary Manual, the normal **rectal** temperature of a d
 
 Most dogs with a true fever have a temperature somewhere between about 39.5 and 41 °C. Exercise also raises body temperature, so if your dog has just been active, let them rest quietly before you measure.
 
-A temperature **below** the normal range can also be a sign of illness, for example poor circulation from heart or kidney disease. Call your vet the same day, and go straight in if your dog also seems weak, cold or unwell.
+A temperature **below** the normal range can also be a sign of illness, for example poor circulation from heart or kidney disease. Call your vet straight away, and go straight in if your dog also seems weak, cold or unwell.
 
 ## Fever or overheating?
 

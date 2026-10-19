@@ -68,7 +68,6 @@ Vereinbaren Sie noch heute einen Termin, wenn:
 - Ihr Hund länger als einen Tag nicht frisst oder deutlich mehr trinkt als sonst
 - er Gewicht verliert, matt wirkt oder einen angespannten Bauch hat
 - Sie vermuten, dass der Schaum eher aus den Atemwegen kommt (Husten, Würgen, Röcheln)
-- es sich um einen Welpen, einen Senior oder einen Hund mit Vorerkrankung handelt
 
 ## Was wird die Tierärztin oder der Tierarzt über das gelbe Erbrechen wissen wollen?
 

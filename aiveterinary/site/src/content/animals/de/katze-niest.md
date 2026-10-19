@@ -33,7 +33,7 @@ Fahren Sie sofort in eine Praxis und rufen Sie vorher an, wenn Ihre Katze:
 - sehr matt ist, sich versteckt und kaum reagiert
 - nicht mehr frisst oder nicht mehr trinkt
 - ununterbrochen niest, Blut niest oder Schmerzen zu haben scheint
-- ein junges Kätzchen ist und zusätzlich schlapp ist, nicht trinkt oder nicht frisst
+- ein junges Kätzchen mit Niesen, tränenden Augen und Nasenausfluss ist, vor allem wenn es schlapp ist, nicht trinkt oder nicht frisst
 - ein trübes, stark tränendes oder zugekniffenes Auge hat (mögliche Verletzung oder Geschwür der Hornhaut)
 
 Katzen atmen normalerweise durch die Nase. Atmen mit offenem Maul ist bei einer Katze immer ein Warnzeichen.

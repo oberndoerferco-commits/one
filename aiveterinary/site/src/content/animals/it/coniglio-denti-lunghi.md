@@ -16,6 +16,8 @@ references:
     url: "https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/rabbits/your-rabbits-diet"
   - title: "Crăciun S, Nadăş GC. Odontogenic Abscesses in Pet Rabbits: A Comprehensive Review of Pathogenesis, Diagnosis, and Treatment Advances. Animals (Basel), 2025 (PubMed Central)"
     url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12249203/"
+  - title: "Rabbit Welfare Association & Fund: Recognising emergencies"
+    url: "https://rabbitwelfare.co.uk/welfare-need/recognising-emergencies/"
 ---
 
 ## Prima di tutto: quando andare subito dal veterinario
@@ -30,7 +32,7 @@ La PDSA, un'importante associazione veterinaria britannica, consiglia di contatt
 - **digrigna i denti**, sta ingobbito, è abbattuto
 - ha gli **incisivi così lunghi** che non riesce a chiudere la bocca
 
-Un coniglio che smette di mangiare rischia la **stasi intestinale**, cioè il blocco dell'intestino, che può mettere a rischio la vita. La PDSA ricorda che i problemi ai denti non curati possono portare proprio alla stasi.
+Un coniglio che non mangia e non fa palline è un'**emergenza**: secondo la Rabbit Welfare Association britannica deve vedere un veterinario il prima possibile, e aspettare il giorno dopo è troppo tardi. Un coniglio che smette di mangiare rischia la **stasi intestinale**, cioè il blocco dell'intestino, che può mettere a rischio la vita. La PDSA ricorda che i problemi ai denti non curati possono portare proprio alla stasi.
 
 ## Perché i denti del coniglio crescono sempre?
 

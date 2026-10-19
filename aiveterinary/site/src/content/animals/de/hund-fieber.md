@@ -41,6 +41,7 @@ Fahren Sie sofort in eine Tierarztpraxis oder Tierklinik und rufen Sie vorher an
 - wiederholt erbricht, blutigen Durchfall hat oder nicht mehr trinkt
 - eine Hündin ist, die vor kurzem geworfen hat oder in den letzten Wochen läufig war und jetzt matt ist, viel trinkt oder Ausfluss hat (eine Gebärmuttervereiterung zeigt sich meist vier bis acht Wochen nach der Läufigkeit, manchmal ganz ohne Ausfluss)
 - vor kurzem operiert wurde, eine Wunde hat oder Medikamente bekommt, die die Abwehr schwächen
+- ein junger Welpe oder ein alter Hund ist oder bereits eine ernste Erkrankung hat
 - nach einem Zeckenstich oder einer Reise ins Ausland matt ist, nicht frisst oder dunklen Urin absetzt
 - eine rektale Temperatur von etwa **41 °C oder mehr** hat
 
