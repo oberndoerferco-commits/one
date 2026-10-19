@@ -32,7 +32,7 @@ Everything costs €0 unless marked €. Legend:
 - [ ] **Company details** for Impressum/privacy/terms: legal name, address, VAT/tax id, register, contact email (DE §5 DDG; IT D.Lgs 70/2003)
 - [ ] **Newsletter provider** (free tier, **double opt-in on**, EU-hosted): paste form URL into `PUBLIC_NEWSLETTER_ACTION`
 - [ ] **Supabase** free project in Frankfurt; paste URL + anon key; run `site/supabase/schema.sql`
-- [ ] **Lawyer, one hour** (€): privacy, terms, Impressum, AI-disclosure wording — before real sign-ups
+- [ ] **Lawyer, one hour** (€): privacy, terms, Impressum, AI-disclosure wording — before real sign-ups; also the DE/IT translations of the workspace compliance flags in `app/src/country.ts` (TÄHAV §13/§15, IS ABV/TAMG, REV, consenso)
 - [ ] **Two vets** (ideally one IT, one DE) who will put name + Ordine/Kammer number on reviewed articles and try `/it/vets/workspace`
 - [ ] **Anthropic API key** when the model should run on the eval set (cents per case)
 - [ ] **Ten questions** your vets hear most from owners (to prioritise articles)
