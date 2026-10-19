@@ -5,7 +5,7 @@ description: "Was Antibiotika können und was nicht, wie Tabletten und Säfte in
 species: general
 category: medications
 urgency: routine
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -19,13 +19,21 @@ references:
     url: "https://www.bvl.bund.de/DE/Arbeitsbereiche/05_Tierarzneimittel/01_Aufgaben/05_AufgAntibiotikaResistenz/Aufgaben_Antibiotika_Resistenz_node.html"
   - title: "EMA: Antimicrobial resistance in veterinary medicine"
     url: "https://www.ema.europa.eu/en/veterinary-regulatory-overview/antimicrobial-resistance-veterinary-medicine"
+  - title: "EMA: Reporting adverse events for veterinary medicines"
+    url: "https://www.ema.europa.eu/en/partners-networks/animal-health-professionals/reporting-adverse-events-veterinary-medicines"
+  - title: "PDSA: How to give your pet a tablet"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/all-pets/how-to-give-your-pet-a-tablet"
+  - title: "VCA Animal Hospitals: Giving liquid medication to dogs"
+    url: "https://vcahospitals.com/know-your-pet/giving-liquid-medication-to-dogs"
+  - title: "VCA Animal Hospitals: Amoxicillin"
+    url: "https://vcahospitals.com/know-your-pet/amoxicillin"
 ---
 
 ## Wann braucht mein Tier wirklich ein Antibiotikum?
 
 Nur wenn eine bakterielle Infektion wahrscheinlich ist, denn Antibiotika wirken gegen Bakterien und richten gegen Viren nichts aus.
 
-Antibiotika töten Bakterien oder hindern sie an der Vermehrung. Gegen Viren richten sie nichts aus, und auch nichts gegen die meisten Gründe, aus denen ein Tier ein paar Tage juckt, hustet, erbricht oder Durchfall hat. Deshalb verschreibt Ihre Tierärztin nicht immer eines, und deshalb bitten die Bundestierärztekammer und die europäischen Kleintierverbände Halter, keine Antibiotika „zur Sicherheit“ zu verlangen. Viele Wunden und Hautentzündungen heilen mit Reinigung und örtlicher Behandlung; viele Magen-Darm-Verstimmungen vergehen mit Zeit und Schonkost.
+Antibiotika töten Bakterien oder hindern sie an der Vermehrung. Gegen Viren, die viele Infektionen verursachen, richten sie nichts aus, und nicht jede bakterielle Infektion braucht eines. Deshalb verschreibt Ihre Tierärztin nicht immer eines, und deshalb bitten die Bundestierärztekammer und die europäischen Kleintierverbände Halter, keine Antibiotika „zur Sicherheit“ zu verlangen. Viele Wund- und Hautinfektionen heilen allein mit örtlicher Wundversorgung und antibakteriellen Waschungen.
 
 Ist eine bakterielle Infektion wahrscheinlich, will die Praxis vielleicht zuerst eine Probe: einen Abstrich, Urin, ein Hautgeschabsel. Werden die Bakterien im Labor angezüchtet (Resistenztest), zeigt sich, welches Antibiotikum wirklich wirkt. Das ist besser für Ihr Tier und für alle anderen, denn jede unnötige oder halbherzige Behandlung lehrt Bakterien, Widerstand zu leisten.
 
@@ -40,7 +48,7 @@ Also:
 - Geben Sie jede Dosis zu den angegebenen Zeiten, bis die Packung oder die verordneten Tage aufgebraucht sind, auch wenn Ihr Tier nach zwei Tagen völlig gesund wirkt.
 - Ändern Sie die Dosis nicht selbst und hören Sie nicht vorzeitig auf, ohne mit der Praxis gesprochen zu haben.
 - Bessert sich nichts in der Zeit, die Ihre Tierärztin genannt hat, oder wird es schlimmer, rufen Sie an. Machen Sie nicht einfach weiter.
-- Halten Sie den Kontrolltermin ein, wenn einer vereinbart wurde; manche Infektionen werden vor dem Absetzen mit einer zweiten Probe überprüft.
+- Halten Sie den Kontrolltermin ein, wenn einer vereinbart wurde.
 
 ## Wie gebe ich meinem Tier eine Antibiotika-Tablette?
 
@@ -48,12 +56,12 @@ Verstecken Sie sie in etwas Futter, wenn das erlaubt ist, oder legen Sie sie wei
 
 - Fragen Sie, ob die Tablette mit Futter gegeben werden darf. Bei vielen geht das, und in einem Stück von etwas Unwiderstehlichem versteckt, vor der Hauptmahlzeit, klappt es bei den meisten Hunden. Manche Antibiotika wirken besser auf nüchternen Magen oder dürfen nicht zerteilt werden; das sagt Ihnen der Beipackzettel oder die Praxis.
 - Prüfen Sie, ob die Tablette wirklich unten ist. Hunde und Katzen sind Meister darin, das Leckerli zu schlucken und die Tablette eine Minute später auszuspucken.
-- Bei Katzen und bei Hunden, die um die Tablette herumkauen, geben Sie sie direkt: Kopf sanft nach oben neigen, Maul öffnen, Tablette weit hinten auf die Zunge legen, Maul schließen und die Kehle streicheln, bis Sie das Schlucken sehen. Danach etwas Wasser oder ein Leckerli, denn eine Tablette, die im Hals hängen bleibt, tut weh und wird womöglich nicht aufgenommen.
-- Tablettengeber und weiche Leckerlis zum Füllen helfen. Hände hinter dem Kopf, ruhige Stimme, kurze Sitzung.
+- Bei Katzen und bei Hunden, die um die Tablette herumkauen, geben Sie sie direkt: Kopf sanft nach oben neigen, Maul öffnen, Tablette weit hinten auf die Zunge legen, Maul schließen und die Kehle streicheln, bis Sie das Schlucken sehen. Danach etwas Wasser, zum Beispiel mit einer Spritze seitlich ins Maul, damit die Tablette nicht im Hals hängen bleibt, und ein Leckerli als Belohnung.
+- Ein weiches Leckerli, um die Tablette geformt, hilft, ebenso ein Tablettengeber, wenn die Praxis Ihnen den Gebrauch zeigt, denn falsch benutzt kann er das Maul verletzen. Hände hinter dem Kopf, ruhige Stimme, kurze Sitzung.
 
 ## Wie gebe ich meinem Tier einen Antibiotika-Saft?
 
-Ziehen Sie die Dosis mit der mitgelieferten Spritze auf, schieben Sie die Spitze im Mundwinkel hinter den Fangzahn und drücken Sie langsam, damit Ihr Tier zwischen den Portionen schlucken kann. Zielen Sie in Richtung Backe, nicht in den Rachen. Schütteln Sie die Flasche, wenn das Etikett es verlangt, und lagern Sie sie wie angegeben; manche Suspensionen gehören in den Kühlschrank und sind nach dem Anmischen nur wenige Tage haltbar.
+Ziehen Sie die Dosis mit der mitgelieferten Spritze auf, schieben Sie die Spitze im Mundwinkel hinter den Fangzahn und drücken Sie langsam, damit Ihr Tier zwischen den Portionen schlucken kann. Zielen Sie in Richtung Backe, nicht direkt in den Rachen, damit nichts in die Lunge gelangt. Schütteln Sie die Flasche, wenn das Etikett es verlangt, und lagern Sie sie wie angegeben; manche Suspensionen gehören in den Kühlschrank und sind nach dem Anmischen nur so lange haltbar, wie auf dem Etikett steht.
 
 ## Was tue ich, wenn ich eine Antibiotika-Dosis vergessen habe?
 
@@ -63,26 +71,25 @@ Das passiert. Geben Sie die nächste Dosis nicht doppelt, um aufzuholen, und rat
 
 ## Welche Nebenwirkungen von Antibiotika sollte ich der Praxis melden?
 
-Rufen Sie an bei Erbrechen, Durchfall oder Futterverweigerung über mehr als einen Tag, Gesichtsschwellung oder Atemnot, ungewöhnlicher Müdigkeit, gelbem Zahnfleisch oder allem, was Sie beunruhigt.
+Rufen Sie an bei Erbrechen, Durchfall oder Futterverweigerung, Zeichen einer Allergie wie Gesichtsschwellung, Hautausschlag oder Atemnot, oder allem, was Sie beunruhigt.
 
 Die meisten Behandlungen verlaufen ohne Probleme. Rufen Sie in der Praxis an, wenn Sie sehen:
 
-- Erbrechen, Durchfall oder Futterverweigerung, die länger als einen Tag anhalten
-- Schwellung des Gesichts, Quaddeln, plötzlichen Juckreiz, Atemnot (absetzen und sofort fahren)
-- ungewöhnliche Müdigkeit, Schwanken, gelbes Zahnfleisch oder gelbe Augen
+- Erbrechen, Durchfall oder Futterverweigerung
+- Schwellung des Gesichts, Hautausschlag, Fieber, Atemnot (Antibiotikum absetzen und sofort anrufen oder fahren)
 - alles, was Sie beunruhigt, auch wenn es nicht auf dieser Liste steht
 
-Setzen Sie das Antibiotikum nicht eigenmächtig ab; Ihre Tierärztin kann es wechseln, die Gabe anpassen oder etwas für den Magen dazugeben. Nebenwirkungen und Behandlungen, die nicht gewirkt haben, sollten gemeldet werden: Das Bundesamt für Verbraucherschutz und Lebensmittelsicherheit (BVL) sammelt diese Meldungen, auch von Tierhaltern, und sie fließen in die Überwachung der Tierarzneimittel ein.
+Außer bei einer allergischen Reaktion setzen Sie das Antibiotikum nicht eigenmächtig ab; Ihre Tierärztin kann es wechseln, die Gabe anpassen oder etwas für den Magen dazugeben. Nebenwirkungen und Behandlungen, die nicht gewirkt haben, sollten gemeldet werden: Melden kann laut Europäischer Arzneimittel-Agentur jede Person, also auch Tierhalterinnen und Tierhalter; in Deutschland erfasst und bewertet das Bundesamt für Verbraucherschutz und Lebensmittelsicherheit (BVL) diese Meldungen, und sie fließen in die Überwachung der Tierarzneimittel ein.
 
 ## Darf ich übrig gebliebene Antibiotika später wieder verwenden?
 
-Nein: Bringen Sie Reste in die Praxis oder Apotheke zurück, und heben Sie sie nicht auf, geben Sie sie keinem anderen Tier und nehmen Sie sie nicht selbst.
+Nein: Fragen Sie in der Praxis, wie Sie Reste entsorgen, und heben Sie sie nicht auf, geben Sie sie keinem anderen Tier und nehmen Sie sie nicht selbst.
 
-Wenn Sie die Behandlung wie verordnet beenden, sollte nichts übrig bleiben. Bleibt doch etwas, weil die Praxis das Mittel abgesetzt oder gewechselt hat, bringen Sie es in die Praxis oder Apotheke zurück. Heben Sie es nicht für das nächste Mal auf, geben Sie es keinem anderen Tier und nehmen Sie es nicht selbst. Das Antibiotikum, das bei der Hautinfektion im letzten Jahr richtig war, kann bei der Ohr- oder Blasenentzündung in diesem Jahr falsch und schädlich sein, und ein paar Tage mit dem falschen Mittel machen die nächste Infektion für alle schwerer behandelbar.
+Wenn Sie die Behandlung wie verordnet beenden, sollte nichts übrig bleiben. Bleibt doch etwas, weil die Praxis das Mittel abgesetzt oder gewechselt hat, fragen Sie dort, wie Sie es entsorgen. Heben Sie es nicht für das nächste Mal auf, geben Sie es keinem anderen Tier und nehmen Sie es nicht selbst. Das Antibiotikum, das bei der Hautinfektion im letzten Jahr richtig war, kann bei der Ohr- oder Blasenentzündung in diesem Jahr falsch und schädlich sein, und ein paar Tage mit dem falschen Mittel machen die nächste Infektion für alle schwerer behandelbar.
 
 ## Welche Hygiene ist nötig, solange mein Tier eine Infektion hat?
 
-Waschen Sie sich die Hände, nachdem Sie ein Tier mit einer Infektion gestreichelt oder seine Wunden, Ohren oder Decken angefasst haben, und tragen Sie Handschuhe beim Verbandwechsel. Halten Sie ein infiziertes Tier vom Bett, von kleinen Kindern und von Menschen mit geschwächtem Immunsystem fern, bis die Praxis sagt, dass die Infektion unter Kontrolle ist.
+Waschen Sie sich die Hände, nachdem Sie ein Tier mit einer Infektion gestreichelt haben, und tragen Sie Handschuhe und reinigen Sie Ihre Hände vor und nach der Versorgung von Wunden oder dem Reinigen der Ohren. Leben kleine Kinder oder Menschen mit geschwächtem Immunsystem im Haushalt, fragen Sie die Praxis, welche zusätzlichen Vorsichtsmaßnahmen nötig sind.
 
 Welches Antibiotikum, wie lange und mit oder ohne Futter entscheidet die Tierärztin oder der Tierarzt, der Ihr Tier untersucht hat. Bei Zweifeln zu Dosis, Verspätung oder Nebenwirkung rufen Sie Ihre eigene Praxis an, statt nach einer Regel zu suchen.
 
@@ -93,3 +100,7 @@ Welches Antibiotikum, wie lange und mit oder ohne Futter entscheidet die Tierär
 - [BVL: Unerwünschte Ereignisse nach Anwendung von Tierarzneimitteln](https://www.bvl.bund.de/DE/Arbeitsbereiche/05_Tierarzneimittel/02_Verbraucher/02_UAW/tam_uaw_node.html)
 - [BVL: Antibiotikaresistenzen](https://www.bvl.bund.de/DE/Arbeitsbereiche/05_Tierarzneimittel/01_Aufgaben/05_AufgAntibiotikaResistenz/Aufgaben_Antibiotika_Resistenz_node.html)
 - [EMA: Antimicrobial resistance in veterinary medicine](https://www.ema.europa.eu/en/veterinary-regulatory-overview/antimicrobial-resistance-veterinary-medicine)
+- [EMA: Reporting adverse events for veterinary medicines](https://www.ema.europa.eu/en/partners-networks/animal-health-professionals/reporting-adverse-events-veterinary-medicines)
+- [PDSA: How to give your pet a tablet](https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/all-pets/how-to-give-your-pet-a-tablet)
+- [VCA: Giving liquid medication to dogs](https://vcahospitals.com/know-your-pet/giving-liquid-medication-to-dogs)
+- [VCA: Amoxicillin](https://vcahospitals.com/know-your-pet/amoxicillin)

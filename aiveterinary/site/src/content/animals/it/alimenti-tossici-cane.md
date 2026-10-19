@@ -4,7 +4,7 @@ description: "Cioccolato, uva e uvetta, xilitolo, cipolla e aglio, noci di macad
 species: dog
 category: first-aid
 urgency: emergency
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -22,6 +22,12 @@ references:
     url: "https://www.centroantiveleni.org/"
   - title: "FNOVI: guida del CAV di Milano \"Come prevenire e curare le intossicazioni negli amici a quattro zampe\""
     url: "https://fnovi.it/print/47418"
+  - title: "MSD Veterinary Manual: Xylitol toxicosis in dogs"
+    url: "https://www.msdvetmanual.com/toxicology/food-hazards/xylitol-toxicosis-in-dogs"
+  - title: "MSD Veterinary Manual: Salt toxicosis in animals"
+    url: "https://www.msdvetmanual.com/toxicology/salt-toxicosis/salt-toxicosis-in-animals"
+  - title: "ASPCA: Is it ever safe to induce vomiting?"
+    url: "https://www.aspca.org/news/it-ever-safe-induce-vomiting"
 ---
 
 ## Vai subito in clinica se il cane
@@ -43,12 +49,12 @@ I più comuni sono cioccolato e caffeina, uva e uvetta, xilitolo, cipolla e agli
 | Xilitolo (gomme e caramelle "senza zucchero", alcuni burri di arachidi, dolci, dentifrici) | Fa crollare la glicemia, a volte in 10-15 minuti, e può danneggiare il fegato. | Emergenza. Porta la confezione: conta l'elenco degli ingredienti. |
 | Cipolla, aglio, porro, erba cipollina (crudi, cotti, in polvere, nel soffritto) | Distruggono i globuli rossi e causano anemia. I segni arrivano dopo giorni: debolezza, gengive pallide, urina scura. | Chiama anche se il pasto risale a giorni fa. |
 | Noci di macadamia | Debolezza, andatura incerta, vomito, tremori, febbre, di solito entro 12 ore. | Chiama; il veterinario decide se visitarlo. |
-| Alcol (bevande, ma anche impasto in fermentazione e alcuni collutori) | Vomito, incoordinazione, temperatura bassa, coma. Si assorbe in fretta. | Chiama subito. |
+| Alcol (bevande, ma anche impasto in fermentazione) | Vomito, incoordinazione, difficoltà respiratorie, tremori, coma. Si assorbe in fretta. | Chiama subito. |
 | Impasto crudo con lievito | Lievita nello stomaco caldo, lo dilata dolorosamente con rischio di torsione; la fermentazione produce alcol. | Vai subito. Non aspettare che "passi". |
 | Sale, snack salati, pasta modellabile, acqua di mare | Sete, vomito, poi tremori e convulsioni quando il sodio sale. | Acqua fresca a disposizione, chiama. |
 | Avanzi grassi, frutta secca, ossa | Vomito, diarrea e in alcuni cani pancreatite; le ossa possono ostruire o perforare l'intestino. | Chiama se compaiono vomito, dolore o assenza di feci. |
 
-La polpa di avocado non è tossica per il cane, ma il nocciolo può bloccare l'intestino e il grasso irrita lo stomaco. Il latte non è un veleno, ma molti cani adulti lo digeriscono male.
+La polpa di avocado non è tossica per il cane, ma il nocciolo può bloccare l'intestino. Il latte non è un veleno, ma molti cani adulti lo digeriscono male.
 
 ## Cosa non devo fare se il cane ha mangiato qualcosa di tossico?
 
@@ -74,7 +80,7 @@ Con questi dati pronti, anche come nota sul telefono, una telefonata lunga diven
 
 Tieni cioccolato, uvetta e gomme in armadietti chiusi, leggi le etichette, chiudi i bidoni e spiega a bambini e ospiti che "solo un pezzettino" non è una regola sicura.
 
-La maggior parte degli incidenti capita a Natale, Pasqua, alle grigliate e alle feste, quando il cibo resta ad altezza di cane. Tieni cioccolato, panettone con uvetta e gomme in armadietti chiusi, non in borse sul pavimento. Leggi l'etichetta del burro di arachidi prima di usarlo per un premio. Chiudi i bidoni e metti l'impasto a lievitare fuori portata. Spiega a bambini e ospiti che "solo un pezzettino" non è una regola sicura per un cane piccolo.
+A Natale, Pasqua, alle grigliate e alle feste il cibo resta spesso ad altezza di cane. Tieni cioccolato, panettone con uvetta e gomme in armadietti chiusi, non in borse sul pavimento. Leggi l'etichetta del burro di arachidi prima di usarlo per un premio. Chiudi i bidoni e metti l'impasto a lievitare fuori portata. Spiega a bambini e ospiti che "solo un pezzettino" non è una regola sicura per un cane piccolo.
 
 Se il tuo cane ha mangiato qualcosa di questa lista, chiama adesso il tuo veterinario: conosce il tuo cane e sa dirti se portarlo.
 
@@ -84,3 +90,5 @@ Se il tuo cane ha mangiato qualcosa di questa lista, chiama adesso il tuo veteri
 - Pet Poison Helpline, schede su xilitolo, uva, cipolla e avocado
 - Centro Antiveleni di Milano, Ospedale Niguarda, FAQ e numero unico 02 66101029
 - FNOVI, guida informativa del CAV di Milano sulle intossicazioni negli animali
+- MSD Veterinary Manual, intossicazione da xilitolo e da sale
+- ASPCA, sul perché non indurre il vomito a casa

@@ -4,7 +4,7 @@ description: "Avocado, Rhabarber, Efeu, Fingerhut, Blumenzwiebeln, Zwiebeln, Sch
 species: rabbit
 category: care
 urgency: today
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -24,6 +24,10 @@ references:
     url: "https://www.toxinfo.ch/tiervergiftung"
   - title: "Pharmazeutische Zeitung: Giftinformationszentren in Deutschland"
     url: "https://www.pharmazeutische-zeitung.de/service/giftinfo/"
+  - title: "PDSA: 10 things you might not know about rabbits"
+    url: "https://www.pdsa.org.uk/what-we-do/blog/10-things-you-might-not-know-about-rabbits"
+  - title: "Merck Veterinary Manual: Noninfectious diseases of guinea pigs"
+    url: "https://www.merckvetmanual.com/exotic-and-laboratory-animals/guinea-pigs/noninfectious-diseases-of-guinea-pigs"
 ---
 
 ## Sofort in die Klinik, wenn Ihr Kaninchen oder Meerschweinchen
@@ -40,17 +44,17 @@ Avocado, Rattenköder, Flohmittel mit Fipronil, viele Garten- und Zimmerpflanzen
 
 | Substanz | Warum sie gefährlich ist | Was Sie zuerst tun |
 |---|---|---|
-| Avocado (Frucht, Schale, Kern, Blätter) | Enthält Persin, für Kaninchen giftig: Flüssigkeit um Herz und in der Lunge, Atemnot, plötzlicher Tod. Säugende Häsinnen bekommen eine schmerzhafte Gesäugeentzündung. | Sofort anrufen. |
+| Avocado (Frucht, Schale, Kern, Blätter) | Enthält Persin, für Kaninchen giftig: Magen-Darm-Beschwerden, Mattigkeit und potenziell lebensbedrohliche Schäden an Herz und Lunge. Säugende Häsinnen bekommen eine schmerzhafte Gesäugeentzündung. | Sofort anrufen. |
 | Ratten- und Mäuseköder (Rodentizide) | Die meisten hemmen die Blutgerinnung; Blutungen können innerlich sein und erst nach Tagen auffallen. Kleine Tiere brauchen nur winzige Mengen. | Sofort anrufen, Packung mitnehmen. Die Behandlung wirkt am besten, bevor es blutet. |
-| Spot-on-Flohmittel für Hunde oder Katzen mit Fipronil | Eine der schwersten Kaninchenvergiftungen: Zittern, Krämpfe, Schwäche, manchmal mit Tagen Verzögerung. | Nie anwenden. Falls geschehen, sofort anrufen. |
-| Efeu, Fingerhut, Maiglöckchen, Rhododendron, Eibe, Schierling, Nachtschatten, Goldregen | Herzrhythmusstörungen (Fingerhut, Maiglöckchen, Eibe), Nervenzeichen und Kollaps (Efeu, Schierling). Beim Fingerhut ist jede Menge potenziell gefährlich. | Pflanze entfernen, anrufen. |
+| Spot-on-Flohmittel für Hunde oder Katzen mit Fipronil | Eine der schwersten Kaninchenvergiftungen: Zittern, Gangstörungen und Krampfanfälle, die verzögert auftreten und wochenlang anhalten können. | Nie anwenden. Falls geschehen, sofort anrufen. |
+| Efeu, Fingerhut, Maiglöckchen, Rhododendron, Eibe, Schierling, Nachtschatten, Goldregen | Alle stehen auf Giftlisten für Kaninchen oder Meerschweinchen. Fingerhut verursacht Herzrhythmusstörungen, jede Menge ist potenziell gefährlich; schwere Efeuvergiftung führt zu Zuckungen, Krämpfen und Kollaps. | Pflanze entfernen, anrufen. |
 | Rhabarber (roh, alle Teile), Kartoffelpflanze und grüne Kartoffeln, Tomatenblätter und -stängel | Reizung im Maul, Appetitverlust, Durchfall, Austrocknung. | Noch heute anrufen. |
 | Frühlingszwiebeln: Tulpe, Narzisse, Hyazinthe, Krokus, Schneeglöckchen, Iris, dazu Amaryllis | Alle Teile giftig, die Zwiebeln am meisten. Speicheln, Magen-Darm-Beschwerden, in größerer Menge Herz- und Atemveränderungen. | Mit Pflanzenname anrufen. |
 | Efeutute, Philodendron, Einblatt, Calla, Dieffenbachie | Kristalle, die das Maul verätzen: weniger Appetit, Speicheln, selten Schwellung im Rachen. | Anrufen. |
 | Zwiebeln, Knoblauch, Lauch, Schnittlauch | Schädigen rote Blutkörperchen. Bei so kleinen Tieren reicht wenig. | Anrufen. |
-| Schokolade, Süßigkeiten, Kekse, Brot, Milchprodukte | Schokolade reizt den Darm und wirkt in Mengen auf Herz und Nerven; Zucker und Stärke kippen die Darmflora und können eine Darmstase auslösen. | Anrufen, wenn Appetit oder Kot sich ändern. |
+| Schokolade, Süßigkeiten, Kekse, Brot, Milchprodukte | Beim Kaninchen trifft Schokolade vor allem den Darm, weniger das Herz, und das ist wegen seiner Anatomie ernst; Süßes und Verarbeitetes können sie schlecht verdauen. | Anrufen, wenn Appetit oder Kot sich ändern. |
 | Weintrauben und Rosinen | Nierenwirkung beim Kaninchen vermutet, aber schlecht belegt; Giftnotrufe raten zum Verzicht. | Anrufen. |
-| Rasenschnitt vom Mäher, gespritzte Wildkräuter (Glyphosat), viel Zitrusfrucht, nicht frisches Gemüse | Gärender Schnitt bläht; Herbizidreste machen schwach und kurzatmig; saures Obst und altes Gemüse reizen den Darm. | Entfernen, Appetit beobachten, bei Veränderung anrufen. |
+| Rasenschnitt vom Mäher, gespritzte Wildkräuter (Glyphosat), saure Zitrusfrüchte, Obst und Gemüse aus Dose oder Tiefkühlung | Rasenschnitt steht auf der Giftliste für Meerschweinchen; Herbizidreste machen schwach, verursachen Bauchschmerzen und Atemnot; saure Zitrusfrüchte und Obst oder Gemüse aus Dose oder Tiefkühlung sind ungeeignet. | Entfernen, Appetit beobachten, bei Veränderung anrufen. |
 
 ## Was sollte ich nicht tun, wenn mein Kaninchen oder Meerschweinchen etwas Giftiges gefressen hat?
 
@@ -87,3 +91,4 @@ Wenn Sie glauben, dass Ihr Kaninchen oder Meerschweinchen etwas von dieser Liste
 - Pet Poison Helpline, Gefahren im Haushalt für Kaninchen und der Eintrag zu Avocado
 - Wood Green, giftige Lebensmittel und Pflanzen für Meerschweinchen
 - Tox Info Suisse und die Übersicht der Giftinformationszentren der Pharmazeutischen Zeitung
+- PDSA und Merck Veterinary Manual, dazu, dass Kaninchen und Meerschweinchen nicht erbrechen können

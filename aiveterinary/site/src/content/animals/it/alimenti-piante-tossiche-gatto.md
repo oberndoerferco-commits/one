@@ -4,7 +4,7 @@ description: "Gigli, cipolla e aglio, cioccolato, oli essenziali e alcune piante
 species: cat
 category: first-aid
 urgency: emergency
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -22,6 +22,10 @@ references:
     url: "https://www.aspca.org/pet-care/animal-poison-control/people-foods-avoid-feeding-your-pets"
   - title: "Centro Antiveleni di Milano (Ospedale Niguarda): domande frequenti"
     url: "https://www.centroantiveleni.org/"
+  - title: "ASPCA: Is it ever safe to induce vomiting?"
+    url: "https://www.aspca.org/news/it-ever-safe-induce-vomiting"
+  - title: "MSD Veterinary Manual: Garlic and onion (Allium spp) toxicosis in animals"
+    url: "https://www.msdvetmanual.com/toxicology/food-hazards/garlic-and-onion-allium-spp-toxicosis-in-animals"
 ---
 
 ## Vai subito in clinica se il gatto
@@ -38,15 +42,15 @@ I più pericolosi sono i gigli, cipolla e aglio, cioccolato e caffeina, oli esse
 
 | Sostanza | Perché è pericolosa | Cosa fare per primo |
 |---|---|---|
-| Gigli veri: giglio di Pasqua, asiatico, orientale, Stargazer, tigrato (Lilium) ed emerocallidi (Hemerocallis) | Ogni parte, polline e acqua del vaso compresi, può causare insufficienza renale nel gatto. Il cane non ha questo problema. | Emergenza. Vai subito: solo le cure precoci proteggono i reni. Porta una foto o una foglia. |
+| Gigli veri: giglio di Pasqua, asiatico, orientale, Stargazer, tigrato (Lilium) ed emerocallidi (Hemerocallis) | Ogni parte, polline e acqua del vaso compresi, può causare insufficienza renale nel gatto. | Emergenza. Vai subito: solo le cure precoci proteggono i reni. Porta una foto o una foglia. |
 | Cipolla, aglio, porro, erba cipollina, scalogno (crudi, cotti, in polvere, nel sugo o negli omogeneizzati) | Distruggono i globuli rossi. Il gatto è più sensibile del cane e i segni possono arrivare dopo giorni: debolezza, gengive pallide, urina scura. | Chiama anche se il pasto risale a giorni fa. |
 | Cioccolato, cacao, caffè, caffeina | Stimolano cuore e nervi: vomito, agitazione, battito veloce, tremori, convulsioni. | Conserva la confezione, stima la quantità, chiama. |
 | Oli essenziali: tea tree, wintergreen, agrumi, pino, in diffusori, spray o sul pelo | Il gatto è la specie più sensibile; leccandoli dal mantello: salivazione, incoordinazione, tremori, danno al fegato. | Spegni il diffusore, non lavarlo con altro che acqua se non te lo dicono, chiama. |
 | Antiparassitari spot-on per cani (piretrine/permetrina) | Tremori gravi e convulsioni, possono essere mortali. | Emergenza. Chiama e vai. |
-| Uva e uvetta | Danno renale segnalato anche nel gatto; nessuna quantità sicura nota. | Chiama; il veterinario la tratta come nel cane. |
-| Alcol, impasto crudo lievitato | Vomito, incoordinazione, temperatura bassa; l'impasto si gonfia nello stomaco e fermenta in alcol. | Chiama subito. |
+| Uva e uvetta | Dimostrato nel cane; nel gatto sono segnalati solo pochi casi aneddotici di danno renale, e nessuna quantità sicura è nota. | Chiama; il veterinario la tratta come nel cane. |
+| Alcol, impasto crudo lievitato | Vomito, incoordinazione, difficoltà respiratorie, tremori; l'impasto si gonfia nello stomaco e fermenta in alcol. | Chiama subito. |
 | Cycas (palma sago), oleandro, colchico, mughetto, kalanchoe, azalea, bulbi di tulipano e giacinto, narciso, ciclamino | Insufficienza epatica (cycas), aritmie (oleandro, mughetto, kalanchoe), vomito grave e sanguinamento intestinale (colchico, narciso, radice di ciclamino). | Chiama con il nome della pianta o una foto. |
-| Dieffenbachia, pothos, filodendro, spatifillo, calla | Cristalli che bruciano la bocca: salivazione, zampate al muso, gonfiore, difficoltà a deglutire. Non sono gigli veri: nessun rischio renale. | Sciacqua la bocca con acqua se si lascia, chiama. |
+| Dieffenbachia, pothos, filodendro, spatifillo, calla | Cristalli che bruciano la bocca: salivazione, zampate al muso, gonfiore, difficoltà a deglutire. Non sono gigli veri: nessun rischio renale. | Chiama con il nome della pianta o una foto. |
 
 Lo xilitolo, pericolosissimo per il cane, non risulta tossico per il gatto: la Pet Poison Helpline considera improbabile un'intossicazione. Il latte non è un veleno, ma la maggior parte dei gatti adulti lo digerisce male.
 
@@ -81,3 +85,5 @@ Se il tuo gatto ha toccato o mangiato qualcosa di questa lista, chiama adesso il
 - Pet Poison Helpline, schede su gigli, Allium, sicurezza del gatto e le dieci piante più pericolose
 - ASPCA Animal Poison Control, piante tossiche per il gatto e alimenti da evitare
 - Centro Antiveleni di Milano, Ospedale Niguarda, FAQ e numero unico 02 66101029
+- ASPCA, sul perché non indurre il vomito a casa
+- MSD Veterinary Manual, intossicazione da aglio e cipolla

@@ -4,7 +4,7 @@ description: "Il veleno per topi e ratti è molto pericoloso per il cane, anche 
 species: dog
 category: first-aid
 urgency: emergency
-updated: 2026-10-17
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -16,6 +16,10 @@ references:
     url: "https://www.msdvetmanual.com/toxicology/rodenticide-poisoning/anticoagulant-rodenticide-poisoning-in-animals"
   - title: "Istituto Zooprofilattico Sperimentale delle Venezie: Appunti di scienza 8. Avvelenamenti... proteggere i nostri animali e noi stessi"
     url: "https://www.izsvenezie.it/documenti/comunicazione/materiale-editoriale/1-comunicazione-scientifica/appunti-scienza/avvelenamenti.pdf"
+  - title: "Pet Poison Helpline: Top ten things to remember when your pet is poisoned"
+    url: "https://petpoisonhelpline.com/uncategorized/top-ten-things-to-remember-when-your-pet-is-poisoned/"
+  - title: "VCA Animal Hospitals: Anticoagulant rodenticide poisoning in dogs"
+    url: "https://vcahospitals.com/know-your-pet/rodenticide-warfarin-poisoning-in-dogs"
 ---
 
 ## Prima di tutto: quando andare subito dal veterinario
@@ -48,7 +52,7 @@ Se in casa, in giardino o in condominio c'è stata da poco una **derattizzazione
 
 No, non di tua iniziativa: è il veterinario a decidere se e come farlo vomitare.
 
-È la cosa che molti provano a fare, ma **non farlo di tua iniziativa**. L'MSD Veterinary Manual raccomanda di **non provocare il vomito se non è il veterinario a dirtelo**. Per alcuni veleni, come il fosfuro di zinco, far vomitare l'animale richiede precauzioni particolari.
+È la cosa che molti provano a fare, ma **non farlo di tua iniziativa**. Il Pet Poison Helpline raccomanda di **non provocare il vomito prima di aver sentito il veterinario** o un centro antiveleni. Per alcuni veleni, come il fosfuro di zinco, l'MSD Veterinary Manual avverte che far vomitare l'animale richiede precauzioni particolari.
 
 Niente acqua e sale, latte, olio o altri rimedi casalinghi: fanno perdere tempo e possono fare danni. Il veterinario decide se e come far vomitare il cane: la PDSA spiega che il vomito indotto e il carbone attivo funzionano di solito **solo se il veleno è stato mangiato da poco**, per cui conta arrivare presto.
 
@@ -58,7 +62,7 @@ I principali sono gli anticoagulanti, i più comuni, il bromethalin, il colecalc
 
 Non tutti i veleni per topi sono uguali. L'MSD Veterinary Manual descrive diversi gruppi:
 
-- **Anticoagulanti**: sono i più comuni nelle intossicazioni degli animali domestici. Impediscono al sangue di coagulare. L'IZSVe spiega che agiscono bloccando l'attivazione della **vitamina K** e causano emorragie diffuse, e che le esche più recenti si trovano in diversi colori, dal rosso all'azzurro. Quelli di "seconda generazione" sono molto più potenti dei vecchi e, secondo l'MSD Veterinary Manual, possono essere mortali anche dopo **un solo pasto**.
+- **Anticoagulanti**: secondo la PDSA sono il tipo più usato nel Regno Unito, e per l'MSD Veterinary Manual una causa relativamente comune di intossicazione negli animali domestici. Impediscono al sangue di coagulare. L'IZSVe spiega che agiscono bloccando l'attivazione della **vitamina K** e causano emorragie diffuse, e che le esche più recenti si trovano in diversi colori, dal rosso all'azzurro. Quelli di "seconda generazione" sono molto più potenti dei vecchi e, secondo l'MSD Veterinary Manual, uccidono il roditore con **un solo pasto**: per il cane conta anche una sola ingestione.
 - **Bromethalin**: non è un anticoagulante, colpisce il sistema nervoso.
 - **Colecalciferolo** (vitamina D3): fa salire troppo il calcio nel sangue e danneggia i reni.
 - **Fosfuro di zinco**: usato soprattutto per talpe e roditori all'aperto. Nello stomaco libera un gas tossico.

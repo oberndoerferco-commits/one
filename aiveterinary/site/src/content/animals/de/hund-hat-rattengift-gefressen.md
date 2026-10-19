@@ -4,7 +4,7 @@ description: "Die meisten Rattengifte hemmen die Blutgerinnung. Die gefährliche
 species: dog
 category: first-aid
 urgency: emergency
-updated: 2026-10-17
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -20,6 +20,12 @@ references:
     url: "https://www.aspca.org/news/it-ever-safe-induce-vomiting"
   - title: "Merck Veterinary Manual: Toxicities from Human Drugs, Analgesics"
     url: "https://www.merckvetmanual.com/toxicology/toxicities-from-human-drugs/analgesics-toxicity"
+  - title: "PDSA Pet Health Hub: Rat poisoning in dogs"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/rat-poisoning-in-dogs"
+  - title: "VCA Animal Hospitals: Anticoagulant rodenticide poisoning in dogs"
+    url: "https://vcahospitals.com/know-your-pet/rodenticide-warfarin-poisoning-in-dogs"
+  - title: "MSD Veterinary Manual (Professional Version): Bromethalin Poisoning in Animals"
+    url: "https://www.msdvetmanual.com/toxicology/rodenticide-poisoning/bromethalin-poisoning-in-animals"
 ---
 
 ## Zuerst: fahren Sie sofort in die Tierarztpraxis
@@ -32,9 +38,9 @@ Dringend ist es auch, wenn Ihr Hund vor Tagen an einem Köder oder einer toten M
 
 - schlapp ist, schlecht frisst oder schwach wirkt
 - blasses Zahnfleisch hat, schnell oder schwer atmet
-- Nasenbluten, blaue Flecken oder punktförmige Blutungen am Zahnfleisch oder Bauch hat
+- Nasenbluten, Zahnfleischbluten oder blaue Flecken hat
 - Blut erbricht, schwarzen, teerartigen oder blutigen Kot hat oder Blut im Urin
-- plötzlich lahmt, geschwollene Gelenke hat, taumelt oder zusammenbricht
+- schmerzende oder geschwollene Gelenke hat, taumelt oder zusammenbricht
 - zittert, Krampfanfälle hat, sehr unruhig ist oder sich kalt anfühlt
 
 ## Was muss ich sofort tun, wenn mein Hund Rattengift gefressen hat?
@@ -65,7 +71,7 @@ Bei manchen Ködern kommt ein besonderes Risiko hinzu: **Zinkphosphid** bildet i
 
 ### Gerinnungshemmer (Cumarine)
 
-Die meisten Rattengifte sind laut MSD Veterinary Manual **Gerinnungshemmer**. Sie sind die häufigste Ursache für Rattengiftvergiftungen bei Haustieren. Sie blockieren den Vitamin-K-Kreislauf in der Leber, den der Körper für die Bildung von Gerinnungsfaktoren braucht. Die vorhandenen Gerinnungsfaktoren werden in den ersten ein bis drei Tagen aufgebraucht. Erst danach beginnt der Hund zu bluten, innerlich oder äußerlich.
+Die meisten Rattengifte sind **Gerinnungshemmer**; laut der britischen Tierschutzorganisation PDSA ist das der häufigste Typ. Das MSD Veterinary Manual nennt sie eine relativ häufige Vergiftungsursache bei Haustieren. Sie blockieren den Vitamin-K-Kreislauf in der Leber, den der Körper für die Bildung von Gerinnungsfaktoren braucht. Die vorhandenen Gerinnungsfaktoren werden in den ersten ein bis drei Tagen aufgebraucht. Erst danach beginnt der Hund zu bluten, innerlich oder äußerlich.
 
 Es gibt ältere Wirkstoffe, bei denen ein Nagetier mehrmals fressen muss, und neuere, stärkere Wirkstoffe, bei denen schon eine einzige Mahlzeit tödlich sein kann. Welcher Wirkstoff in einem Köder steckt, sieht man von außen nicht.
 
@@ -81,7 +87,7 @@ Dieser Wirkstoff steckt in manchen frei verkäuflichen Mäuseködern. Er stört 
 
 ### Bromethalin und Zinkphosphid
 
-**Bromethalin** schädigt das Nervensystem. Es kann Übererregbarkeit, Muskelzittern, Krampfanfälle und Lähmungen der Hinterbeine auslösen. **Zinkphosphid** reizt den Magen-Darm-Trakt und kann zu Kreislaufversagen und Atemnot führen.
+**Bromethalin** schädigt das Nervensystem. Es kann Übererregbarkeit, Muskelzittern, Krampfanfälle und, bei kleineren Mengen nach einigen Tagen, Lähmungserscheinungen auslösen. **Zinkphosphid** führt rasch zu Erbrechen und Bauchschmerzen, später zu Atemnot und Krampfanfällen.
 
 ## Wie wird eine Rattengiftvergiftung beim Hund behandelt?
 

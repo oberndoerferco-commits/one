@@ -4,7 +4,7 @@ description: "Schokolade, Weintrauben, Xylit, Zwiebeln, Macadamianüsse, Alkohol
 species: dog
 category: first-aid
 urgency: emergency
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -28,6 +28,12 @@ references:
     url: "https://giftnotruf.charite.de/"
   - title: "Giftinformationszentrum-Nord (GIZ-Nord)"
     url: "https://www.giz-nord.de/"
+  - title: "MSD Veterinary Manual: Xylitol toxicosis in dogs"
+    url: "https://www.msdvetmanual.com/toxicology/food-hazards/xylitol-toxicosis-in-dogs"
+  - title: "MSD Veterinary Manual: Salt toxicosis in animals"
+    url: "https://www.msdvetmanual.com/toxicology/salt-toxicosis/salt-toxicosis-in-animals"
+  - title: "ASPCA: Is it ever safe to induce vomiting?"
+    url: "https://www.aspca.org/news/it-ever-safe-induce-vomiting"
 ---
 
 ## Sofort in die Klinik, wenn Ihr Hund
@@ -36,7 +42,7 @@ references:
 - einen sehr schnellen oder unregelmäßigen Herzschlag hat, blasses Zahnfleisch zeigt oder in Ruhe hechelt
 - Xylit (zuckerfreier Kaugummi, manche Erdnussbutter), viel dunkle Schokolade, Weintrauben oder Rosinen oder rohen Hefeteig gefressen hat, auch wenn er munter wirkt
 
-Rufen Sie die Praxis an, während Sie losfahren. Erreichen Sie niemanden, helfen die Giftnotrufe weiter: Sie sind für Menschen zuständig, beraten laut Bundesinstitut für Risikobewertung aber je nach Kapazität auch bei Tiervergiftungen. Rund um die Uhr erreichbar sind zum Beispiel Berlin 030 19240, Göttingen (GIZ-Nord) 0551 19240, München 089 19240, Bonn 0228 19240, Mainz 06131 19240, Freiburg 0761 19240 und Erfurt 0361 730730; in der Schweiz Tox Info Suisse unter 145. Der erste Anruf gilt immer Ihrer Tierarztpraxis.
+Rufen Sie die Praxis an, während Sie losfahren. Erreichen Sie niemanden, helfen die Giftnotrufe weiter: Sie sind für Menschen zuständig, beraten laut Bundesinstitut für Risikobewertung aber je nach Kapazität auch bei Tiervergiftungen. Rund um die Uhr erreichbar sind zum Beispiel Berlin 030 19240 und Göttingen (GIZ-Nord) 0551 19240; weitere Giftnotrufe: München 089 19240, Bonn 0228 19240, Mainz 06131 19240, Freiburg 0761 19240 und Erfurt 0361 730730; in der Schweiz Tox Info Suisse unter 145. Der erste Anruf gilt immer Ihrer Tierarztpraxis.
 
 ## Welche Lebensmittel sind für Hunde giftig?
 
@@ -49,12 +55,12 @@ Die häufigsten sind Schokolade und Koffein, Weintrauben und Rosinen, Xylit, Zwi
 | Xylit (zuckerfreie Kaugummis und Bonbons, manche Erdnussbutter, Gebäck, Zahnpasta) | Lässt den Blutzucker abstürzen, manchmal innerhalb von 10 bis 15 Minuten, und kann die Leber schädigen. Tox Info Suisse: schon ein einziger Kaugummi kann schwere Symptome auslösen. | Notfall. Verpackung mitnehmen; die Zutatenliste zählt. |
 | Zwiebeln, Knoblauch, Lauch, Schnittlauch (roh, gekocht, als Pulver) | Zerstören rote Blutkörperchen, Folge ist Blutarmut. Zeichen oft erst nach Tagen: Schwäche, blasses Zahnfleisch, dunkler Urin. | Anrufen, auch wenn die Mahlzeit Tage zurückliegt. |
 | Macadamianüsse | Schwäche, wackeliger Gang, Erbrechen, Zittern, erhöhte Temperatur, meist innerhalb von 12 Stunden. | Anrufen; die Praxis entscheidet, ob er vorgestellt wird. |
-| Alkohol (Getränke, aber auch gärender Teig und manche Mundspülungen) | Erbrechen, Koordinationsstörungen, Unterkühlung, Koma. Wird schnell aufgenommen. | Sofort anrufen. |
+| Alkohol (Getränke, aber auch gärender Teig) | Erbrechen, Koordinationsstörungen, Atemprobleme, Zittern, Koma. Wird schnell aufgenommen. | Sofort anrufen. |
 | Roher Hefeteig | Geht im warmen Magen auf, dehnt ihn schmerzhaft, Gefahr einer Magendrehung; die Gärung erzeugt Alkohol. | Sofort fahren. Nicht abwarten. |
 | Salz, salzige Snacks, Knetmasse, Meerwasser | Durst, Erbrechen, dann Zittern und Krämpfe, wenn das Natrium im Blut steigt. | Frisches Wasser anbieten, anrufen. |
 | Fettige Reste, Nüsse, Knochen | Erbrechen, Durchfall, bei manchen Hunden Bauchspeicheldrüsenentzündung; Knochen können den Darm verstopfen oder verletzen. | Anrufen bei Erbrechen, Schmerzen oder ausbleibendem Kot. |
 
-Avocadofruchtfleisch ist für Hunde nicht giftig, der Kern kann aber den Darm verschließen und das Fett reizt den Magen. Milch ist kein Gift, wird von den meisten erwachsenen Hunden aber schlecht vertragen.
+Avocadofruchtfleisch ist für Hunde nicht giftig, der Kern kann aber den Darm verschließen. Milch ist kein Gift, wird von den meisten erwachsenen Hunden aber schlecht vertragen.
 
 ## Was sollte ich nicht tun, wenn mein Hund etwas Giftiges gefressen hat?
 
@@ -80,7 +86,7 @@ Mit diesen Angaben, notfalls als Notiz im Handy, wird aus einem langen Telefonat
 
 Schokolade, Rosinenstollen und Kaugummi in geschlossene Schränke, Etiketten von Erdnussbutter prüfen, Mülleimer und Teig außer Reichweite, und besondere Vorsicht an Feiertagen und auf Feiern.
 
-Die meisten Küchenvergiftungen passieren an Weihnachten, Ostern, beim Grillen und auf Feiern, wenn Essen auf Hundehöhe steht. Schokolade, Rosinenstollen und Kaugummi gehören in geschlossene Schränke, nicht in Taschen auf dem Boden. Prüfen Sie das Etikett jeder Erdnussbutter, bevor Sie sie als Leckerli verwenden. Halten Sie Mülleimer geschlossen und lassen Sie Teig außer Reichweite gehen. Sagen Sie Kindern und Gästen, dass "nur ein bisschen" bei einem kleinen Hund keine sichere Regel ist.
+An Weihnachten, Ostern, beim Grillen und auf Feiern steht oft Essen auf Hundehöhe. Schokolade, Rosinenstollen und Kaugummi gehören in geschlossene Schränke, nicht in Taschen auf dem Boden. Prüfen Sie das Etikett jeder Erdnussbutter, bevor Sie sie als Leckerli verwenden. Halten Sie Mülleimer geschlossen und lassen Sie Teig außer Reichweite gehen. Sagen Sie Kindern und Gästen, dass "nur ein bisschen" bei einem kleinen Hund keine sichere Regel ist.
 
 Hat Ihr Hund etwas von dieser Liste gefressen, rufen Sie jetzt Ihre eigene Tierarztpraxis an; sie kennt Ihren Hund und sagt Ihnen, ob Sie kommen sollen.
 
@@ -91,3 +97,5 @@ Hat Ihr Hund etwas von dieser Liste gefressen, rufen Sie jetzt Ihre eigene Tiera
 - Tox Info Suisse, Vergiftungen bei Tieren
 - Bundesinstitut für Risikobewertung (BfR), Gifte bei Hund und Katze und die Rolle der Giftinformationszentren
 - Giftnotruf Berlin (Charité), Giftinformationszentrum-Nord und die Übersicht der Giftinformationszentren der Pharmazeutischen Zeitung
+- MSD Veterinary Manual, Xylit- und Salzvergiftung
+- ASPCA, warum man zu Hause kein Erbrechen auslösen sollte

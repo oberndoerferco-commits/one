@@ -4,7 +4,7 @@ description: "Lilies, onions and garlic, chocolate, essential oils and a handful
 species: cat
 category: first-aid
 urgency: emergency
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: en
 references:
@@ -22,6 +22,10 @@ references:
     url: "https://www.aspca.org/pet-care/animal-poison-control/people-foods-avoid-feeding-your-pets"
   - title: "Animal PoisonLine (run by VPIS, UK)"
     url: "https://www.animalpoisonline.co.uk/"
+  - title: "ASPCA: Is it ever safe to induce vomiting?"
+    url: "https://www.aspca.org/news/it-ever-safe-induce-vomiting"
+  - title: "MSD Veterinary Manual: Garlic and onion (Allium spp) toxicosis in animals"
+    url: "https://www.msdvetmanual.com/toxicology/food-hazards/garlic-and-onion-allium-spp-toxicosis-in-animals"
 ---
 
 ## Go now if your cat
@@ -38,15 +42,15 @@ The main ones are lilies, onions and garlic, chocolate and caffeine, essential o
 
 | Substance | Why it is dangerous | What to do first |
 |---|---|---|
-| True lilies: Easter, Asiatic, Oriental, Stargazer, tiger lilies (Lilium) and daylilies (Hemerocallis) | Every part, including pollen and vase water, can cause kidney failure in cats. Dogs are not affected this way. | Emergency. Go now; early treatment is what protects the kidneys. Take a photo or a leaf of the plant. |
+| True lilies: Easter, Asiatic, Oriental, Stargazer, tiger lilies (Lilium) and daylilies (Hemerocallis) | Every part, including pollen and vase water, can cause kidney failure in cats. | Emergency. Go now; early treatment is what protects the kidneys. Take a photo or a leaf of the plant. |
 | Onions, garlic, leeks, chives, shallots (raw, cooked, powdered, in baby food or gravy) | Destroy red blood cells. Cats are more sensitive than dogs, and signs can appear days later: weakness, pale gums, dark urine. | Call now, even if the meal was days ago. |
 | Chocolate, cocoa, coffee, caffeine | Stimulate heart and nerves: vomiting, restlessness, fast heartbeat, tremors, seizures. | Keep the wrapper, estimate the amount, call. |
 | Essential oils: tea tree, wintergreen, citrus, pine, in diffusers, sprays or applied to fur | Cats are the most sensitive species; licking it off the coat can cause drooling, wobbliness, tremors, liver damage. | Stop the diffuser, do not bathe her in anything but water unless told to, call. |
 | Dog spot-on flea products (pyrethrins/permethrin) | Severe tremors and seizures, can be fatal. | Emergency. Call and go. |
-| Grapes and raisins | Kidney injury is reported in cats as in dogs; no safe amount is known. | Call; your vet treats it like a dog exposure. |
-| Alcohol, raw yeast dough | Vomiting, poor coordination, low body temperature; dough swells in the stomach and ferments into alcohol. | Call now. |
+| Grapes and raisins | Proven in dogs; in cats only a few anecdotal kidney cases are reported, and no safe amount is known. | Call; your vet treats it like a dog exposure. |
+| Alcohol, raw yeast dough | Vomiting, poor coordination, breathing trouble, tremors; dough swells in the stomach and ferments into alcohol. | Call now. |
 | Sago palm, oleander, autumn crocus, lily of the valley, kalanchoe, azalea, tulip and hyacinth bulbs, daffodils, cyclamen | Liver failure (sago), heart rhythm disturbances (oleander, lily of the valley, kalanchoe), severe vomiting and gut bleeding (autumn crocus, daffodil, cyclamen root). | Call with the plant name or a photo. |
-| Dieffenbachia, pothos, philodendron, peace lily, calla lily | Crystals that burn the mouth: drooling, pawing at the face, swelling, trouble swallowing. Not true lilies, so no kidney risk. | Rinse the mouth with water if she lets you, call. |
+| Dieffenbachia, pothos, philodendron, peace lily, calla lily | Crystals that burn the mouth: drooling, pawing at the face, swelling, trouble swallowing. Not true lilies, so no kidney risk. | Call with the plant name or a photo. |
 
 Xylitol, the sweetener that is dangerous for dogs, has not been shown to poison cats; the Pet Poison Helpline says toxicity is unlikely. Milk is not a poison, but most adult cats cannot digest it well.
 
@@ -81,3 +85,5 @@ If your cat has touched or eaten anything on this list, phone your own vet now; 
 - Pet Poison Helpline, entries on lilies, Alliums, feline safety and the top ten poisonous plants
 - ASPCA Animal Poison Control, plants toxic to cats and people foods to avoid
 - Animal PoisonLine and the Veterinary Poisons Information Service (VPIS), UK
+- ASPCA, on why vomiting should not be induced at home
+- MSD Veterinary Manual, garlic and onion toxicosis

@@ -4,7 +4,7 @@ description: "Avocado, rhubarb, ivy, foxglove, bulbs, onions, chocolate, rat bai
 species: rabbit
 category: care
 urgency: today
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: en
 references:
@@ -22,6 +22,10 @@ references:
     url: "https://woodgreen.org.uk/pet-advice/guinea-pig/poisonous-food-and-plants-for-guinea-pigs/"
   - title: "Animal PoisonLine (run by VPIS, UK)"
     url: "https://www.animalpoisonline.co.uk/"
+  - title: "PDSA: 10 things you might not know about rabbits"
+    url: "https://www.pdsa.org.uk/what-we-do/blog/10-things-you-might-not-know-about-rabbits"
+  - title: "Merck Veterinary Manual: Noninfectious diseases of guinea pigs"
+    url: "https://www.merckvetmanual.com/exotic-and-laboratory-animals/guinea-pigs/noninfectious-diseases-of-guinea-pigs"
 ---
 
 ## Go now if your rabbit or guinea pig
@@ -38,17 +42,17 @@ Avocado, rat bait, fipronil flea products, many garden and house plants, spring 
 
 | Substance | Why it is dangerous | What to do first |
 |---|---|---|
-| Avocado (fruit, skin, stone, leaves) | Contains persin, toxic to rabbits: fluid around the heart and in the lungs, breathing distress, sudden death. Nursing does can get painful mammary inflammation. | Call now. |
+| Avocado (fruit, skin, stone, leaves) | Contains persin, toxic to rabbits: gut upset, lethargy, and potentially life-threatening heart and lung damage. Nursing does can get painful mammary inflammation. | Call now. |
 | Rat and mouse bait (rodenticides) | Most stop blood clotting; bleeding may be internal and shows days later. Small animals need very little. | Call now, bring the packet. Treatment works best before bleeding starts. |
-| Dog or cat spot-on flea products containing fipronil | One of the most severe rabbit poisonings: tremors, seizures, weakness, sometimes delayed by days. | Never apply one. If you have, call now. |
-| Ivy, foxglove, lily of the valley, rhododendron, yew, hemlock, nightshade, laburnum | Heart rhythm changes (foxglove, lily of the valley, yew), nerve signs and collapse (ivy, hemlock). Any amount of foxglove is potentially serious. | Remove the plant, call. |
+| Dog or cat spot-on flea products containing fipronil | One of the most severe rabbit poisonings: tremors, trouble walking and seizures, which can be delayed and last for weeks. | Never apply one. If you have, call now. |
+| Ivy, foxglove, lily of the valley, rhododendron, yew, hemlock, nightshade, laburnum | All are on poison lists for rabbits or guinea pigs. Foxglove causes irregular heart rhythm, and any amount is potentially serious; severe ivy poisoning causes twitching, fits and collapse. | Remove the plant, call. |
 | Rhubarb (raw, all parts), potato plants and green potatoes, tomato leaves and stalks | Mouth irritation, loss of appetite, diarrhoea, dehydration. | Call the same day. |
 | Spring bulbs: tulip, daffodil, hyacinth, crocus, snowdrop, iris, plus amaryllis | All parts toxic; bulbs most of all. Drooling, gut upset, in larger amounts heart and breathing changes. | Call with the plant name. |
 | Pothos, philodendron, peace lily, calla lily, dieffenbachia | Crystals that burn the mouth; reduced appetite, drooling, rarely throat swelling. | Call. |
 | Onions, garlic, leeks, chives | Damage red blood cells. Because these animals are so small, little is needed. | Call. |
-| Chocolate, sweets, biscuits, bread, dairy | Chocolate upsets the gut and in quantity affects heart and nerves; sugar and starch unbalance the gut flora and can trigger stasis. | Call if appetite or droppings change. |
+| Chocolate, sweets, biscuits, bread, dairy | Chocolate hits the rabbit gut harder than the heart, which is serious given their anatomy; sugary and processed foods are hard for them to digest. | Call if appetite or droppings change. |
 | Grapes and raisins | Kidney effects are suspected but poorly documented in rabbits; poison lines advise avoiding them. | Call. |
-| Lawn-mower clippings, sprayed weeds (glyphosate), citrus in quantity, grocery produce that is not fresh | Fermenting clippings cause bloat; herbicide residue causes weakness and breathing trouble; acid fruit and old produce upset the gut. | Remove, watch appetite, call if anything changes. |
+| Lawn-mower clippings, sprayed weeds (glyphosate), acidic citrus, canned or frozen produce | Grass clippings are on the guinea pig poison list; herbicide residue causes weakness, belly pain and breathing trouble; acidic citrus and canned or frozen produce are unsuitable. | Remove, watch appetite, call if anything changes. |
 
 ## What should I not do if my rabbit or guinea pig ate something toxic?
 
@@ -85,3 +89,4 @@ If you think your rabbit or guinea pig has eaten something on this list, phone y
 - Pet Poison Helpline, household dangers to rabbits and the avocado entry
 - Wood Green, poisonous food and plants for guinea pigs
 - Animal PoisonLine (VPIS), UK
+- PDSA and the Merck Veterinary Manual, on rabbits and guinea pigs being unable to vomit

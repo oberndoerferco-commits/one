@@ -4,7 +4,7 @@ description: "Lilien, Zwiebeln und Knoblauch, Schokolade, ätherische Öle und e
 species: cat
 category: first-aid
 urgency: emergency
-updated: 2026-10-14
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -26,6 +26,14 @@ references:
     url: "https://www.bfr.bund.de/mitteilung/wie-gefaehrlich-sind-gifte-fuer-hunde-und-katzen/"
   - title: "Pharmazeutische Zeitung: Giftinformationszentren in Deutschland"
     url: "https://www.pharmazeutische-zeitung.de/service/giftinfo/"
+  - title: "Giftnotruf Berlin (Charité)"
+    url: "https://giftnotruf.charite.de/"
+  - title: "Giftinformationszentrum-Nord (GIZ-Nord)"
+    url: "https://www.giz-nord.de/"
+  - title: "ASPCA: Is it ever safe to induce vomiting?"
+    url: "https://www.aspca.org/news/it-ever-safe-induce-vomiting"
+  - title: "MSD Veterinary Manual: Garlic and onion (Allium spp) toxicosis in animals"
+    url: "https://www.msdvetmanual.com/toxicology/food-hazards/garlic-and-onion-allium-spp-toxicosis-in-animals"
 ---
 
 ## Sofort in die Klinik, wenn Ihre Katze
@@ -34,7 +42,7 @@ references:
 - stark speichelt, wiederholt erbricht, taumelt, zuckt oder krampft
 - blasses Zahnfleisch hat, schnell oder mit offenem Maul atmet oder zusammengebrochen ist
 
-Rufen Sie die Praxis an, während Sie die Box holen. Erreichen Sie niemanden, helfen die Giftnotrufe: Sie sind für Menschen zuständig, beraten laut Bundesinstitut für Risikobewertung aber je nach Kapazität auch bei Tiervergiftungen, rund um die Uhr zum Beispiel unter 030 19240 (Berlin), 0551 19240 (Göttingen), 089 19240 (München), 0228 19240 (Bonn), 06131 19240 (Mainz), 0761 19240 (Freiburg) oder 0361 730730 (Erfurt); in der Schweiz Tox Info Suisse unter 145. Der erste Anruf gilt immer Ihrer Tierarztpraxis.
+Rufen Sie die Praxis an, während Sie die Box holen. Erreichen Sie niemanden, helfen die Giftnotrufe: Sie sind für Menschen zuständig, beraten laut Bundesinstitut für Risikobewertung aber je nach Kapazität auch bei Tiervergiftungen, zum Beispiel unter 030 19240 (Berlin) und 0551 19240 (Göttingen), beide rund um die Uhr, oder 089 19240 (München), 0228 19240 (Bonn), 06131 19240 (Mainz), 0761 19240 (Freiburg) oder 0361 730730 (Erfurt); in der Schweiz Tox Info Suisse unter 145. Der erste Anruf gilt immer Ihrer Tierarztpraxis.
 
 ## Welche Lebensmittel und Pflanzen sind für Katzen giftig?
 
@@ -42,15 +50,15 @@ Vor allem Lilien, Zwiebeln und Knoblauch, Schokolade und Koffein, ätherische Ö
 
 | Substanz | Warum sie gefährlich ist | Was Sie zuerst tun |
 |---|---|---|
-| Echte Lilien: Osterlilie, Asiatische, Orientalische, Stargazer-, Tigerlilie (Lilium) und Taglilien (Hemerocallis) | Jeder Teil, auch Pollen und Vasenwasser, kann bei Katzen Nierenversagen auslösen. Hunde sind davon nicht betroffen. | Notfall. Sofort fahren; nur eine frühe Behandlung schützt die Nieren. Foto oder ein Blatt mitnehmen. |
+| Echte Lilien: Osterlilie, Asiatische, Orientalische, Stargazer-, Tigerlilie (Lilium) und Taglilien (Hemerocallis) | Jeder Teil, auch Pollen und Vasenwasser, kann bei Katzen Nierenversagen auslösen. | Notfall. Sofort fahren; nur eine frühe Behandlung schützt die Nieren. Foto oder ein Blatt mitnehmen. |
 | Zwiebeln, Knoblauch, Lauch, Schnittlauch, Schalotten (roh, gekocht, als Pulver, in Soßen oder Babybrei) | Zerstören rote Blutkörperchen. Katzen sind empfindlicher als Hunde, Zeichen kommen oft erst nach Tagen: Schwäche, blasses Zahnfleisch, dunkler Urin. | Anrufen, auch wenn die Mahlzeit Tage zurückliegt. |
 | Schokolade, Kakao, Kaffee, Koffein | Reizen Herz und Nerven: Erbrechen, Unruhe, Herzrasen, Zittern, Krämpfe. | Verpackung aufheben, Menge schätzen, anrufen. |
 | Ätherische Öle: Teebaum, Wintergrün, Zitrus, Kiefer, im Diffusor, als Spray oder auf dem Fell | Katzen sind die empfindlichste Tierart; ablecken aus dem Fell führt zu Speicheln, Taumeln, Zittern, Leberschaden. | Diffusor aus, nur mit Wasser abwaschen, wenn überhaupt, anrufen. |
 | Spot-on-Flohmittel für Hunde (Pyrethrine/Permethrin) | Schwere Zitteranfälle und Krämpfe, können tödlich sein. | Notfall. Anrufen und fahren. |
-| Weintrauben und Rosinen | Nierenschäden sind auch bei Katzen beschrieben; eine sichere Menge ist nicht bekannt. | Anrufen; die Praxis behandelt es wie beim Hund. |
-| Alkohol, roher Hefeteig | Erbrechen, Koordinationsstörungen, Unterkühlung; Teig quillt im Magen und gärt zu Alkohol. | Sofort anrufen. |
+| Weintrauben und Rosinen | Beim Hund belegt; bei Katzen sind nur wenige Einzelfälle mit Nierenproblemen berichtet, eine sichere Menge ist nicht bekannt. | Anrufen; die Praxis behandelt es wie beim Hund. |
+| Alkohol, roher Hefeteig | Erbrechen, Koordinationsstörungen, Atemprobleme, Zittern; Teig quillt im Magen und gärt zu Alkohol. | Sofort anrufen. |
 | Sagopalme, Oleander, Herbstzeitlose, Maiglöckchen, Kalanchoe, Azalee, Tulpen- und Hyazinthenzwiebeln, Narzissen, Alpenveilchen | Leberversagen (Sagopalme), Herzrhythmusstörungen (Oleander, Maiglöckchen, Kalanchoe), schweres Erbrechen und Darmblutungen (Herbstzeitlose, Narzisse, Alpenveilchenknolle). | Mit Pflanzenname oder Foto anrufen. |
-| Dieffenbachie, Efeutute, Philodendron, Einblatt, Zantedeschie (Calla) | Kristalle, die das Maul verätzen: Speicheln, Pfoten am Gesicht, Schwellung, Schluckbeschwerden. Keine echten Lilien, also keine Nierengefahr. | Maul mit Wasser spülen, wenn sie es zulässt, anrufen. |
+| Dieffenbachie, Efeutute, Philodendron, Einblatt, Zantedeschie (Calla) | Kristalle, die das Maul verätzen: Speicheln, Pfoten am Gesicht, Schwellung, Schluckbeschwerden. Keine echten Lilien, also keine Nierengefahr. | Mit Pflanzenname oder Foto anrufen. |
 
 Xylit, das für Hunde so gefährliche Süßungsmittel, gilt bei Katzen nicht als Gift: Die Pet Poison Helpline hält eine Vergiftung für unwahrscheinlich. Milch ist kein Gift, wird von den meisten erwachsenen Katzen aber schlecht vertragen.
 
@@ -86,3 +94,5 @@ Hat Ihre Katze etwas von dieser Liste berührt oder gefressen, rufen Sie jetzt I
 - ASPCA Animal Poison Control, giftige Pflanzen für Katzen und zu meidende Lebensmittel
 - Tox Info Suisse, Vergiftungen bei Tieren
 - Bundesinstitut für Risikobewertung (BfR) und die Übersicht der Giftinformationszentren der Pharmazeutischen Zeitung
+- ASPCA, warum man zu Hause kein Erbrechen auslösen sollte
+- MSD Veterinary Manual, Zwiebel- und Knoblauchvergiftung
