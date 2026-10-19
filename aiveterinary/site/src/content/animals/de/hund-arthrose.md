@@ -4,7 +4,7 @@ description: "Arthrose ist eine der häufigsten Ursachen für Dauerschmerzen bei
 species: dog
 category: conditions
 urgency: this-week
-updated: 2026-10-16
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -18,6 +18,10 @@ references:
     url: "https://www.merckvetmanual.com/toxicology/toxicities-from-human-drugs/analgesics-toxicity"
   - title: "Bundesverband für Tiergesundheit: Hintergrundinformation Falsch verabreichte Medikamente (PDF)"
     url: "https://www.bft-online.de/fileadmin/bft/Presse/Kleintiergesundheit/Hintergrundinformationen/BfT_Hintergrundinformation_Falsch_verabreichte_Medikamente_Stand20200129.pdf"
+  - title: "PDSA: A guide to senior pet food and feeding your ageing pet"
+    url: "https://www.pdsa.org.uk/what-we-do/blog/a-guide-to-senior-pet-food-and-feeding-your-ageing-pet"
+  - title: "PDSA Pet Health Hub: Hip dysplasia in dogs"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/hip-dysplasia-in-dogs"
 ---
 
 ## Zuerst: wann Sie sofort in die Tierarztpraxis fahren sollten
@@ -64,9 +68,9 @@ Frühe Arthrose wird oft übersehen. Viele Hunde zeigen erst im mittleren oder h
 - Lahmheit, die auch dezent sein kann, wenn beide Beine betroffen sind
 - Muskelschwund an den Hinterbeinen oder Schultern
 - verdickte Gelenke
-- Lecken an einem Gelenk, Unruhe in der Nacht oder Gereiztheit beim Anfassen
+- Veränderungen im Wesen, etwa weniger Verspieltheit oder mehr Rückzug
 
-Viele Halterinnen und Halter halten diese Veränderungen für „normales Altwerden“. Schmerzen sind aber nie normal. Ihre Beobachtungen sind für die Diagnose besonders wichtig. Kurze Handyvideos vom Aufstehen oder Treppensteigen helfen der Praxis sehr.
+Viele Halterinnen und Halter halten diese Veränderungen für „normales Altwerden“. Schmerzen sind aber nie normal. Ihre Beobachtungen sind für die Diagnose besonders wichtig. Kurze Handyvideos vom Aufstehen oder Treppensteigen können der Praxis helfen.
 
 ## Wie wird Arthrose beim Hund festgestellt?
 
@@ -80,13 +84,13 @@ Nach den Übersichtsarbeiten wirkt eine Kombination mehrerer Maßnahmen besser a
 
 **Gewicht:** Das ist oft der wichtigste Schritt. Schon eine bescheidene Gewichtsabnahme verbessert bei übergewichtigen Hunden mit Arthrose nachweislich die Beweglichkeit. Ein schlanker Körperzustand verzögert den Beginn und bremst das Fortschreiten. Lassen Sie sich in der Praxis einen Abnehmplan erstellen, statt einfach die Ration zu halbieren.
 
-**Bewegung:** Regelmäßige, gleichmäßige Bewegung lindert Schmerzen und stärkt die Muskeln, die das Gelenk stabilisieren. Mehrere kürzere Spaziergänge auf weichem Untergrund sind besser als ein langer am Wochenende. Vermeiden Sie plötzliche, stoßartige Belastungen wie wildes Ballwerfen mit abrupten Stopps oder Sprünge aus dem Auto. Bei einem akuten Schub wird das Training pausiert, bis die Schmerzen behandelt sind.
+**Bewegung:** Regelmäßige, gleichmäßige Bewegung lindert Schmerzen und stärkt die Muskeln, die das Gelenk stabilisieren. Das MSD Veterinary Manual empfiehlt Bewegung auf weichem Untergrund. Bei Hunden mit Hüftdysplasie hält die britische Tierschutzorganisation PDSA regelmäßige, kurze Spaziergänge an der Leine für ideal und rät, Springen, Rutschen, wildes Herumrennen und lange Belastungen zu vermeiden. Dauer und Intensität sollten zu Ihrem Hund passen. Bei einem akuten Schub wird das Training reduziert, bis die Schmerzen behandelt sind.
 
 **Physiotherapie:** Tierphysiotherapie und gezieltes Training können die Beweglichkeit verbessern. Fragen Sie Ihre Praxis nach einer passenden Adresse.
 
-**Zu Hause:** Teppiche oder Läufer auf glatten Böden, eine Rampe fürs Auto, ein gepolsterter, warmer Liegeplatz ohne Zugluft und gekürzte Krallen erleichtern den Alltag. Warme Kompressen können ein steifes Gelenk entspannen, wenn Ihre Praxis das empfiehlt.
+**Zu Hause:** Für ältere Tiere mit steifen Gelenken empfiehlt die PDSA rutschfeste Matten auf glatten Böden, Rampen an Türschwellen und fürs Auto sowie ein weiches, gut stützendes, leicht erhöhtes Bett abseits von Zugluft. Fragen Sie Ihre Praxis, was für Ihren Hund passt. Warme Kompressen auf das betroffene Gelenk nennt das MSD Veterinary Manual als Teil der Behandlung, wenn Ihre Praxis das empfiehlt.
 
-**Medikamente:** Entzündungshemmende Schmerzmittel für Hunde (NSAID) sind nach dem MSD Veterinary Manual die verlässlichste Behandlung. Für Hunde mit mittleren bis starken Beschwerden gibt es außerdem eine Antikörper-Spritze, die etwa einmal im Monat gegeben wird und an der Schmerzleitung ansetzt. Bei Bedarf kommen weitere Schmerzmittel hinzu. Bei Langzeitbehandlung sind regelmäßige Kontrollen und Blutuntersuchungen üblich. Welches Mittel, in welcher Dosis und wie lange, entscheidet allein Ihre Praxis.
+**Medikamente:** Entzündungshemmende Schmerzmittel für Hunde (NSAID) sind nach dem MSD Veterinary Manual die verlässlichste Behandlung. Für Hunde mit mittleren bis starken Beschwerden gibt es außerdem eine Antikörper-Spritze, die etwa einmal im Monat gegeben wird und an der Schmerzleitung ansetzt. Bei Bedarf kommen weitere Schmerzmittel hinzu. Bei Langzeitbehandlung mit NSAID sind Kontrollen und Blutuntersuchungen üblich, denn diese Mittel können bei Dauergabe Magen-Darm-Probleme wie Appetitlosigkeit und Erbrechen auslösen. Welches Mittel, in welcher Dosis und wie lange, entscheidet allein Ihre Praxis.
 
 **Futter und Ergänzungen:** Futter oder Ergänzungen mit bestimmten Omega-3-Fettsäuren aus Fischöl (EPA) haben bei Hunden den Gang und die Beweglichkeit verbessert und können den Bedarf an Schmerzmitteln senken. Für Glucosamin und Chondroitin fand eine Auswertung im MSD Veterinary Manual dagegen keinen belegten Nutzen bei Arthroseschmerzen. Sprechen Sie Ergänzungsmittel mit Ihrer Praxis ab. Sie ersetzen keine Schmerzbehandlung.
 
@@ -98,7 +102,7 @@ Geben Sie Ihrem Hund **niemals** Schmerzmittel aus Ihrer Hausapotheke, auch nich
 
 - **Ibuprofen** und **Diclofenac** schädigen den Magen-Darm-Trakt bis hin zu Geschwüren und schweren Blutungen. Ibuprofen kann zusätzlich die Nieren schädigen.
 - **Paracetamol** schlägt bei Hunden schon in geringen Mengen auf die Leber.
-- **Acetylsalicylsäure (zum Beispiel Aspirin)** und **Metamizol (zum Beispiel Novalgin)** gehören ebenfalls nur in tierärztliche Hand.
+- **Acetylsalicylsäure (zum Beispiel Aspirin)** und andere Schmerzmittel gehören ebenfalls nur in tierärztliche Hand.
 
 Geben Sie auch nie zusätzlich ein zweites Schmerzmittel zu dem, das Ihr Hund bereits bekommt, etwa einen Rest von einem anderen Tier. Für Hunde gibt es eigene, verschreibungspflichtige Tierarzneimittel, weil sie viele Wirkstoffe anders verarbeiten als Menschen.
 

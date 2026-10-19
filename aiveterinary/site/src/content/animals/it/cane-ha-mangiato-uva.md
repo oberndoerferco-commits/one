@@ -4,7 +4,7 @@ description: "Uva, uvetta, uva sultanina e uva di Corinto possono danneggiare i 
 species: dog
 category: first-aid
 urgency: emergency
-updated: 2026-10-16
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -38,7 +38,7 @@ Uva, uvetta e uva di Corinto possono provocare un danno acuto ai reni, probabilm
 
 L'uva e i suoi derivati secchi possono provocare un **danno acuto ai reni**. Secondo il Merck Veterinary Manual, sono stati collegati all'insufficienza renale nel cane l'uva, l'uvetta e l'uva di Corinto (quella piccola e scura spesso usata nei dolci). Anche il **tamarindo** ha causato insufficienza renale nel cane.
 
-Per anni non si è saputo quale fosse la sostanza responsabile. Oggi l'ipotesi principale è l'**acido tartarico**: il cane elimina male questo tipo di acidi, che si accumulano nelle cellule dei reni. A rafforzare l'ipotesi c'è una serie di casi pubblicata nel 2022, in cui alcuni cani hanno sviluppato un danno renale dopo aver mangiato **cremor tartaro** (usato in cucina e in alcune ricette di pasta da modellare fatta in casa) o pasta di tamarindo. Gli autori stessi sottolineano che i casi sono pochi, quindi è un'ipotesi forte ma non ancora una certezza.
+Per anni non si è saputo quale fosse la sostanza responsabile. Oggi l'ipotesi principale è l'**acido tartarico**: il cane elimina male questo tipo di acidi, che si accumulano nelle cellule dei reni. A rafforzare l'ipotesi c'è una serie di casi pubblicata nel 2022, in cui alcuni cani hanno sviluppato un danno renale dopo aver mangiato **cremor tartaro** (usato in cucina e in alcune ricette di pasta da modellare fatta in casa) o pasta di tamarindo. La recensione del Pet Poison Helpline sottolinea che i casi sono pochi, quindi è un'ipotesi forte ma non ancora una certezza.
 
 ## Quanta uva è pericolosa per il cane?
 
@@ -73,7 +73,7 @@ Allontanalo dal cibo, cerca di capire cosa, quanto e quando ha mangiato e chiama
 ### Cosa non fare
 
 - **Non provare a farlo vomitare da solo.** Il Pet Poison Helpline avverte di non indurre il vomito prima di aver parlato con un veterinario o un centro antiveleni. Rimedi casalinghi come il **sale**, le dita in gola o l'olio sono pericolosi.
-- **Non dargli latte** o altri "antidoti" casalinghi: non neutralizzano il veleno.
+- **Non dargli latte** o altri "antidoti" casalinghi, a meno che non te lo dica il veterinario: il Pet Poison Helpline ricorda che il latte raramente aiuta.
 - **Non aspettare i sintomi.** Quando il danno ai reni diventa evidente, si è già perso tempo prezioso.
 - **Non fidarti di consigli trovati in rete** che dicono che "qualche acino non fa nulla". Chi decide è il veterinario.
 
@@ -100,7 +100,7 @@ Il trattamento dipende da quanto tempo è passato e dalle condizioni del cane. S
 
 Spesso il veterinario consiglia poi una **flebo** per sostenere i reni, per almeno un paio di giorni nei casi a rischio, e **esami del sangue ripetuti** per controllare la funzione renale, perché il danno può comparire con qualche giorno di ritardo. Se i reni sono già compromessi, servono cure intensive.
 
-Le probabilità di cavarsela sono buone quando il cane viene trattato in fretta. Secondo il Merck Veterinary Manual, invece, quando un cane non produce più urina la prognosi diventa molto riservata.
+Le probabilità di cavarsela sono buone quando il cane viene trattato in fretta. Secondo il Merck Veterinary Manual, invece, quando un cane non produce più urina la situazione è molto grave: senza dialisi è improbabile che sopravviva, e anche con la dialisi la prognosi resta riservata.
 
 ## E il gatto?
 

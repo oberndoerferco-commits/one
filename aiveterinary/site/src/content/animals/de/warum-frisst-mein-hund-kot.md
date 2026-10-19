@@ -4,7 +4,7 @@ description: "Viele Hunde fressen Kot, ihren eigenen oder den anderer Tiere. Das
 species: dog
 category: symptoms
 urgency: routine
-updated: 2026-10-17
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -54,7 +54,7 @@ Eine eindeutige Ursache gibt es nicht. Die Forschung liefert aber einige Hinweis
 
 ## Kann eine Krankheit dahinterstecken, wenn mein Hund Kot frisst?
 
-Manchmal ist Kotfressen ein Zeichen dafür, dass Ihr Hund nicht genug Nährstoffe aus seinem Futter aufnimmt oder ständig Hunger hat. Ein Beispiel ist die **exokrine Pankreasinsuffizienz**: Die Bauchspeicheldrüse bildet zu wenig Verdauungsenzyme. Typisch sind laut MSD Veterinary Manual großer Hunger, Gewichtsverlust und heller, weicher, voluminöser und oft übel riechender Kot. Häufiger betroffen sind unter anderem Deutsche Schäferhunde, meist schon als junge Erwachsene. Die Erkrankung lässt sich mit einem Bluttest feststellen und in den meisten Fällen gut behandeln.
+Einen direkten Zusammenhang zwischen Kotfressen und bestimmten Krankheiten belegen die hier zitierten Studien nicht. Kommt aber großer Hunger mit Gewichtsverlust oder auffälligem Kot zusammen, sollte eine Erkrankung abgeklärt werden. Ein Beispiel ist die **exokrine Pankreasinsuffizienz**: Die Bauchspeicheldrüse bildet zu wenig Verdauungsenzyme. Typisch sind laut MSD Veterinary Manual großer Hunger, Gewichtsverlust und heller, weicher, voluminöser und oft übel riechender Kot. Häufiger betroffen sind unter anderem Deutsche Schäferhunde, meist schon als junge Erwachsene. Die Erkrankung lässt sich mit einem Bluttest feststellen und in den meisten Fällen gut behandeln.
 
 Ob bei Ihrem Hund eine Erkrankung dahintersteckt, kann nur eine Untersuchung klären. Sie ist vor allem dann sinnvoll, wenn sich das Verhalten plötzlich ändert oder weitere Anzeichen dazukommen.
 
@@ -64,8 +64,8 @@ Für einen gesunden Hund sind die direkten Folgen oft gering. Eine Studie der Un
 
 Ganz harmlos ist es trotzdem nicht:
 
-- **Würmer:** Fremder Kot kann Wurmeier enthalten. Die Expertengruppe ESCCAP empfiehlt, Kotfressen zu unterbinden. Ein Grund ist der **Fuchsbandwurm**, der in Deutschland vorkommt: Nimmt ein Hund dessen Eier auf, kann er selbst an der gefährlichen alveolären Echinokokkose erkranken. Nach ESCCAP gehören Hunde, die dazu neigen, alles zu fressen, außerdem zu den Tieren mit höherem Wurmrisiko.
-- **Falsche Kotbefunde:** Hat Ihr Hund fremden Kot gefressen, können Wurmeier unverändert durch seinen Darm wandern und eine Kotprobe positiv erscheinen lassen, obwohl er selbst gar keine Würmer hat. In einer Studie aus Utrecht war bei fast der Hälfte der Hunde mit Spulwurmeiern im Kot die Wiederholungsprobe negativ, nachdem sie drei Tage lang keinen Kot fressen konnten. Sagen Sie Ihrer Praxis deshalb, dass Ihr Hund Kot frisst.
+- **Würmer:** Fremder Kot kann Wurmeier enthalten. Die Expertengruppe ESCCAP empfiehlt, Kotfressen zu unterbinden. Ein Grund ist der **Fuchsbandwurm**, der in Deutschland vorkommt: Nimmt ein Hund dessen Eier auf, kann er selbst an der gefährlichen alveolären Echinokokkose erkranken. Nach ESCCAP haben außerdem Hunde, die oft unbeaufsichtigt frei laufen oder Aas und Beutetiere fressen, ein höheres Wurmrisiko.
+- **Falsche Kotbefunde:** Hat Ihr Hund fremden Kot gefressen, können Wurmeier unverändert durch seinen Darm wandern und eine Kotprobe positiv erscheinen lassen, obwohl er selbst gar keine Würmer hat. In einer Studie aus Utrecht war bei fast der Hälfte der Kotproben mit Spulwurmeiern die Wiederholungsprobe negativ, nachdem sie drei Tage lang keinen Kot fressen konnten. Sagen Sie Ihrer Praxis deshalb, dass Ihr Hund Kot frisst.
 
 Wie oft Ihr Hund entwurmt oder sein Kot untersucht werden sollte, hängt von seinem persönlichen Risiko ab. Das bespricht die Tierärztin oder der Tierarzt mit Ihnen.
 
@@ -79,11 +79,11 @@ Die schlechte Nachricht zuerst: In der kalifornischen Befragung lag der berichte
 - **Leine** an Stellen, an denen viel Kot liegt, zum Beispiel auf Hundewiesen oder in der Nähe von Pferdeweiden.
 - **Katzentoilette** für den Hund unerreichbar aufstellen.
 - **Ablenken und belohnen:** Rufen Sie Ihren Hund zu sich, bevor er den Kot erreicht, und belohnen Sie ihn großzügig, wenn er kommt. Üben Sie ein zuverlässiges „Aus“ oder „Lass es“.
-- **Nicht schimpfen oder strafen.** Ihr Hund versteht nicht, warum. Schlimmstenfalls frisst er den Kot dann schneller oder heimlich.
+- **Nicht schimpfen oder strafen.** Ihr Hund versteht nicht, warum.
 - **Maulkorb:** Bei Hunden, die unterwegs alles aufnehmen, kann ein gut sitzender, an den Hund gewöhnter Maulkorb sinnvoll sein. Lassen Sie sich dazu beraten.
 
 ## Darf ich meinem Hund eigene Mittel gegen Kotfressen oder Bauchschmerzen geben?
 
-Bitte versuchen Sie nicht, das Problem mit Hausmitteln oder Medikamenten aus Ihrer eigenen Hausapotheke zu lösen. Wenn Ihr Hund nach dem Kotfressen Bauchschmerzen oder Durchfall hat, geben Sie ihm **keine Schmerzmittel für Menschen**: **Ibuprofen** kann bei Hunden Magen, Darm und Nieren schädigen, **Paracetamol** die Leber. **Metamizol** (zum Beispiel Novalgin) darf Ihr Hund nur bekommen, wenn die Tierärztin oder der Tierarzt es verordnet.
+Bitte versuchen Sie nicht, das Problem mit Hausmitteln oder Medikamenten aus Ihrer eigenen Hausapotheke zu lösen. Wenn Ihr Hund nach dem Kotfressen Bauchschmerzen oder Durchfall hat, geben Sie ihm **keine Schmerzmittel für Menschen**: **Ibuprofen** kann bei Hunden Magen, Darm und Nieren schädigen, **Paracetamol** die Leber. Geben Sie Ihrem Hund ein Medikament nur, wenn die Tierärztin oder der Tierarzt es verordnet.
 
 Welche Untersuchungen sinnvoll sind und wie Sie weiter vorgehen, entscheidet Ihre Praxis gemeinsam mit Ihnen.

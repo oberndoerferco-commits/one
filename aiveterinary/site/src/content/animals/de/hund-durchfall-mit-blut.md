@@ -4,7 +4,7 @@ description: "Blut im Durchfall sieht erschreckend aus. Manchmal ist es eine ehe
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-10-17
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -18,6 +18,8 @@ references:
     url: "https://www.merckvetmanual.com/toxicology/toxicities-from-human-drugs/analgesics-toxicity"
   - title: "Bundesverband für Tiergesundheit: Hintergrundinformation Falsch verabreichte Medikamente (PDF)"
     url: "https://www.bft-online.de/fileadmin/bft/Presse/Kleintiergesundheit/Hintergrundinformationen/BfT_Hintergrundinformation_Falsch_verabreichte_Medikamente_Stand20200129.pdf"
+  - title: "PDSA PetWise Pet Health Hub: Blood in your dog's stools (PDF)"
+    url: "https://www.pdsa.org.uk/media/6829/phh-dog_s_blood-in-your-dogs-stool.pdf"
 ---
 
 ## Zuerst: wann Sie sofort in die Tierarztpraxis fahren sollten
@@ -36,16 +38,16 @@ Fahren Sie **sofort** in eine Tierarztpraxis oder Tierklinik und rufen Sie vorhe
 
 Gerade bei kleinen Hunden kann der Flüssigkeitsverlust so schnell gehen, dass sie in einen Schock geraten, bevor man ihnen das Austrocknen ansieht.
 
-**Heute noch anrufen** sollten Sie, wenn Ihr Hund munter ist, frisst und nur einzelne Spuren von frischem Blut oder Schleim im weichen Kot hat. Bleibt es dabei nicht, oder kommt eines der oben genannten Zeichen dazu, fahren Sie los.
+**Heute noch anrufen** und möglichst bald einen Termin vereinbaren sollten Sie, wenn Ihr Hund munter ist, frisst und nur einzelne Spuren von frischem Blut oder Schleim im weichen Kot hat. Bleibt es dabei nicht, oder kommt eines der oben genannten Zeichen dazu, fahren Sie los.
 
 ## Was bedeutet rotes oder schwarzes Blut im Kot meines Hundes?
 
-Frisches rotes Blut stammt meist aus dem Dickdarm oder Enddarm, schwarzer, teerartiger Kot enthält meist verdautes Blut aus dem Magen oder oberen Darm.
+Frisches rotes Blut passt zum Beispiel zu einer Dickdarmentzündung, schwarzer, teerartiger Kot deutet auf verdautes Blut hin, etwa bei einem Magengeschwür.
 
 Wie das Blut aussieht, gibt der Praxis einen ersten Hinweis, wo es herkommen könnte.
 
-- **Frisches, rotes Blut**, oft zusammen mit Schleim, stammt meist aus dem **Dickdarm** oder dem Enddarm. Typisch für eine Dickdarmentzündung sind kleine, häufige, flüssige Portionen, Pressen und plötzlicher Drang.
-- **Schwarzer, teerartiger Kot** enthält meist **verdautes Blut** aus dem Magen oder dem oberen Darm, etwa bei einem Magengeschwür. Das ist oft ernster, als es aussieht, auch wenn kein rotes Blut zu sehen ist.
+- **Frisches, rotes Blut**, als Streifen oder Tropfen, manchmal zusammen mit Schleim. Es kann zum Beispiel bei einer **Dickdarmentzündung** auftreten. Typisch dafür sind kleine, häufige, flüssige Portionen, Pressen und plötzlicher Drang.
+- **Schwarzer, teerartiger Kot** oder eine dunkle Färbung des ganzen Kots deutet auf **verdautes Blut** hin, zum Beispiel bei einem Magengeschwür. Das ist oft ernster, als es aussieht, auch wenn kein rotes Blut zu sehen ist.
 
 Machen Sie ein Foto vom Kot und nehmen Sie, wenn möglich, eine frische Probe in einer Tüte oder einem Döschen mit.
 
@@ -92,7 +94,7 @@ Ein Hund mit blutigem Durchfall hat oft Bauchschmerzen. Bitte geben Sie ihm trot
 - **Ibuprofen** und **Diclofenac** schädigen den Magen-Darm-Trakt und können zu massiven Blutungen führen. Ibuprofen kann außerdem die Nieren schädigen. Hunde haben bei Ibuprofen nur einen sehr kleinen Sicherheitsabstand.
 - **Acetylsalicylsäure** (zum Beispiel Aspirin) kann ebenfalls Magen-Darm-Geschwüre verursachen.
 - **Paracetamol** kann bei Hunden die Leber schädigen.
-- **Metamizol** (zum Beispiel Novalgin) darf Ihr Hund nur bekommen, wenn die Tierärztin oder der Tierarzt es verordnet.
+- Geben Sie Ihrem Hund ein Schmerzmittel nur, wenn die Tierärztin oder der Tierarzt es verordnet. Für Tiere werden andere, für sie besser verträgliche Mittel verwendet.
 
 Auch Durchfallmittel aus Ihrer eigenen Hausapotheke sind keine gute Idee. Sie können die Diagnose verzögern, und die Dosis lässt sich nicht einfach vom Menschen auf den Hund umrechnen.
 

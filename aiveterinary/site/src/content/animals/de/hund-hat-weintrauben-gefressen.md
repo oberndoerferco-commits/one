@@ -4,7 +4,7 @@ description: "Weintrauben und Rosinen können bei Hunden ein akutes Nierenversag
 species: dog
 category: first-aid
 urgency: emergency
-updated: 2026-10-17
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -32,7 +32,7 @@ Fahren Sie **ohne Umweg in die Praxis** und kündigen Sie sich unterwegs telefon
 - matt ist, nicht mehr frisst oder schwach wirkt
 - schwankt oder unsicher läuft
 - auffällig viel trinkt oder umgekehrt kaum noch Urin absetzt
-- Bauchschmerzen zeigt, etwa durch einen gekrümmten Rücken oder Unruhe
+- Bauchschmerzen zeigt
 
 Halten Sie für das Telefonat bereit:
 
@@ -52,7 +52,7 @@ Der Gehalt an Weinsäure schwankt von Frucht zu Frucht. Deshalb reagieren Hunde 
 
 Für Sie als Halterin oder Halter heißt das: **Eine sichere Menge gibt es nicht.** Ob Ihr Hund behandelt werden muss, entscheidet die Tierärztin oder der Tierarzt anhand von Menge, Art des Produkts und Körpergewicht. Verlassen Sie sich nicht auf Rechner oder Tabellen aus dem Internet, um zu Hause zu bleiben.
 
-Betroffen sind frische Trauben jeder Sorte, auch kernlose und Bio-Trauben, sowie getrocknete Rosinen, Sultaninen und Korinthen. Denken Sie auch an versteckte Quellen wie Rosinenbrötchen, Früchtebrot, Stollen, Müsli oder Müsliriegel. Echte Johannisbeeren gehören botanisch zu einer anderen Gattung und werden nach dem Merck Veterinary Manual nicht mit Nierenschäden in Verbindung gebracht. Die getrockneten „Korinthen“ aus dem Backregal sind dagegen kleine Weintrauben.
+Betroffen sind frische Trauben sowie getrocknete Rosinen, Sultaninen und Korinthen. Denken Sie auch an versteckte Quellen wie Rosinenbrötchen, Früchtebrot, Stollen, Müsli oder Müsliriegel. Echte Johannisbeeren gehören botanisch zu einer anderen Gattung und werden nach dem Merck Veterinary Manual nicht mit Nierenschäden in Verbindung gebracht. Die getrockneten „Korinthen“ aus dem Backregal sind dagegen kleine Weintrauben.
 
 ## Welche Anzeichen zeigt ein Hund, der Weintrauben gefressen hat?
 
@@ -74,12 +74,12 @@ Das ist der Grund, warum Sie **nicht auf Symptome warten** sollten: Wenn die Nie
 
 Die Praxis lässt Ihren Hund möglichst früh erbrechen und kann je nach Menge und Zustand Infusionen geben und die Nierenwerte kontrollieren.
 
-Die wichtigste Maßnahme ist, die Trauben möglichst früh wieder aus dem Magen zu holen. Die Tierärztin oder der Tierarzt kann Ihren Hund dafür mit einem für Hunde geeigneten Mittel erbrechen lassen. Eine große britische Auswertung von Notfallpatienten fand, dass diese frühe Entgiftung am stärksten mit einem guten Ausgang verbunden war.
+Die wichtigste Maßnahme ist, die Trauben möglichst früh wieder aus dem Magen zu holen. Die Tierärztin oder der Tierarzt kann Ihren Hund dafür mit einem für Hunde geeigneten Mittel erbrechen lassen. Eine große britische Auswertung von Notfallpatienten fand, dass diese Entgiftung des Magen-Darm-Trakts am stärksten mit einem guten Ausgang verbunden war.
 
 Je nach Menge und Zustand des Hundes kann die Praxis außerdem:
 
 - weitere Maßnahmen ergreifen, damit weniger Giftstoff aufgenommen wird
-- über mindestens zwei Tage Infusionen geben, um die Nieren zu schützen
+- Infusionen geben, um die Nieren zu schützen, bei größeren Mengen oder Durchfall nach dem Merck Veterinary Manual über mindestens zwei Tage
 - die Nierenwerte im Blut und die Urinmenge wiederholt kontrollieren
 
 Welche Behandlung nötig ist und wie lange Ihr Hund bleiben muss, entscheidet die Praxis. Wird Ihr Hund nach Hause entlassen, halten Sie sich genau an die Anweisungen und vereinbarte Kontrolltermine.
@@ -88,9 +88,9 @@ Welche Behandlung nötig ist und wie lange Ihr Hund bleiben muss, entscheidet di
 
 Lösen Sie kein Erbrechen selbst aus, geben Sie keine Hausmittel oder Medikamente für Menschen und warten Sie nicht bis morgen.
 
-- **Lösen Sie kein Erbrechen selbst aus**, schon gar nicht mit Salz, Salzwasser oder Spülmittel. Salz kann eine eigene, gefährliche Vergiftung verursachen. Ob und wie Ihr Hund erbrechen soll, entscheidet die Tierärztin oder der Tierarzt.
-- **Geben Sie keine Hausmittel**, keine Milch und kein Öl. Sie helfen nicht und kosten Zeit.
-- **Geben Sie keine Medikamente für Menschen.** Das gilt besonders für Schmerzmittel: **Ibuprofen** kann bei Hunden die Nieren schädigen und ist bei einer möglichen Nierenvergiftung doppelt gefährlich. **Paracetamol** kann bei Hunden die Leber schädigen. **Metamizol** (zum Beispiel Novalgin) darf Ihr Hund nur bekommen, wenn die Tierärztin oder der Tierarzt es verordnet.
+- **Lösen Sie kein Erbrechen selbst aus**, schon gar nicht mit Salz oder Salzwasser. Salz kann bei Hunden zu einer gefährlichen Schwellung des Gehirns führen. Ob und wie Ihr Hund erbrechen soll, entscheidet die Tierärztin oder der Tierarzt.
+- **Geben Sie keine Hausmittel**, keine Milch und kein Öl, außer die Tierärztin oder der Tierarzt rät ausdrücklich dazu. Milch hilft selten, Öl kann in die Lunge gelangen, und beides kostet Zeit.
+- **Geben Sie keine Medikamente für Menschen.** Das gilt besonders für Schmerzmittel: **Ibuprofen** kann bei Hunden die Nieren schädigen und ist bei einer möglichen Nierenvergiftung doppelt gefährlich. **Paracetamol** kann bei Hunden die Leber schädigen. Geben Sie Ihrem Hund ein Medikament nur, wenn die Tierärztin oder der Tierarzt es verordnet.
 - **Warten Sie nicht bis morgen**, auch wenn es nachts passiert. Wenden Sie sich an den Notdienst.
 
 ## Und Katzen?

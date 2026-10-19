@@ -4,7 +4,7 @@ description: "Quando un cane anziano smette di mangiare non è mai solo \"vecchi
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-10-17
+updated: 2026-10-19
 draft: true
 lang: it
 references:
@@ -78,7 +78,7 @@ La PDSA suggerisce di fare attenzione a questi segni, che aiutano il veterinario
 - **pelle o occhi gialli**
 - **vomito** o **diarrea**
 
-Se hai più cani che mangiano insieme, la PDSA fa notare che può essere difficile accorgersi che uno di loro mangia meno: per qualche giorno, dai loro da mangiare separati.
+Se hai più cani che mangiano insieme, la PDSA fa notare che può essere difficile accorgersi che uno di loro mangia meno: osservali bene durante i pasti.
 
 Il Cornell consiglia di **pesare il cane regolarmente**, perché i cambiamenti lenti sono difficili da notare quando lo vedi tutti i giorni, e di controllare i muscoli di cosce e spalle.
 
@@ -90,7 +90,7 @@ Quando il veterinario ha escluso un problema urgente, ci sono piccoli accorgimen
 
 - **Cibo più profumato.** Il Cornell osserva che un cane anziano può rifiutare le crocchette ma mangiare volentieri il cibo umido, che ha un odore più forte.
 - **Cambi graduali.** La PDSA raccomanda di cambiare dieta lentamente, mescolando il nuovo cibo al vecchio per circa **7-10 giorni**, per evitare disturbi digestivi.
-- **Niente avanzi della tavola** per "tentarlo": possono dargli fastidio allo stomaco e alcuni alimenti sono tossici per il cane.
+- **Niente avanzi della tavola** per "tentarlo": la PDSA ricorda che il cibo per persone e i cambi frequenti possono disturbargli lo stomaco.
 - **Ciotola comoda e tranquilla**, lontano da altri animali e dal via vai di casa.
 
 Questi trucchi servono a sostenere il cane, **non a sostituire la visita**. Se il cane continua a mangiare poco, rivolgiti di nuovo al veterinario.
@@ -105,7 +105,7 @@ No: farmaci come ibuprofene e paracetamolo possono danneggiare stomaco, reni e f
 
 Controlla bocca, peso, pancia, cuore e polmoni, spesso propone esami del sangue e delle urine e cura la causa che trova.
 
-Il veterinario controlla la bocca, il peso, la pancia, il cuore e i polmoni, e chiede come mangia, beve e si comporta il cane. Spesso propone **esami del sangue e delle urine** e, se serve, **radiografie** o **ecografia**. La cura dipende da cosa trova: una pulizia dei denti o l'estrazione di un dente malato, per esempio, possono restituire l'appetito a un cane che sembrava "solo vecchio".
+Il veterinario controlla la bocca, il peso, la pancia, il cuore e i polmoni, e chiede come mangia, beve e si comporta il cane. Spesso propone **esami del sangue e delle urine** e, se serve, **radiografie** o **ecografia**. La cura dipende da cosa trova: se la causa è, per esempio, un dente o una gengiva che fa male, curarla può aiutare a tornare a mangiare un cane che sembrava "solo vecchio".
 
 ## Ogni quanto devo portare il cane anziano dal veterinario?
 

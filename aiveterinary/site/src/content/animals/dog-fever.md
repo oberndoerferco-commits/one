@@ -4,7 +4,7 @@ description: "A warm-feeling dog doesn't necessarily have a fever. How to measur
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-10-18
+updated: 2026-10-19
 draft: true
 references:
   - title: "MSD Veterinary Manual: Normal Rectal Temperature Ranges (table)"
@@ -28,9 +28,9 @@ Go to a vet straight away, and call ahead, if your dog has a high temperature or
 - has pale, yellowish, very red or blue-tinged gums
 - is vomiting repeatedly or has bloody diarrhoea
 - has a seizure
-- has been in the heat, in a car or exercising hard: this may be **heatstroke**, which needs cooling and a vet immediately
+- has been in the heat, in a car or exercising hard: this may be **heatstroke**, which can push body temperature to dangerous levels and needs a vet immediately. Ask on the phone how to start cooling your dog on the way
 - is a young puppy, elderly, or already has a serious illness
-- has a rectal temperature of around **41 °C or more**, or **below 37.5 °C**
+- has a rectal temperature of around **41 °C or more**
 
 ## What is a normal temperature for a dog?
 
@@ -38,7 +38,7 @@ According to the MSD Veterinary Manual, the normal **rectal** temperature of a d
 
 Most dogs with a true fever have a temperature somewhere between about 39.5 and 41 °C. Exercise also raises body temperature, so if your dog has just been active, let them rest quietly before you measure.
 
-A temperature **below** the normal range can also be a sign of illness and is worth a call to your vet.
+A temperature **below** the normal range can also be a sign of illness, for example poor circulation from heart or kidney disease. Call your vet the same day, and go straight in if your dog also seems weak, cold or unwell.
 
 ## Fever or overheating?
 
@@ -47,7 +47,7 @@ These are not the same, and the difference matters:
 - **Fever** is the body deliberately raising its "thermostat", usually in response to infection or inflammation. It is a sign that something is wrong, not a disease in itself.
 - **Overheating (hyperthermia)**, such as heatstroke, happens when a dog takes on or produces more heat than it can lose, for example in a hot car or on a hot day. The body is not in control, and the temperature can climb to dangerous levels.
 
-If your dog may have overheated, follow heatstroke first aid and get to a vet. For a dog with a true fever, vets advise against cold baths and other cooling at home, because they work against the body's own temperature control.
+If your dog may have overheated, get to a vet straight away and follow the first-aid advice they give you on the phone. For a dog with a true fever, vets advise against cold baths and other cooling at home, because they work against the body's own temperature control.
 
 ## How do I take my dog's temperature?
 

@@ -4,7 +4,7 @@ description: "Leptospirose ist eine bakterielle Infektion, die Nieren und Leber 
 species: dog
 category: conditions
 urgency: today
-updated: 2026-10-17
+updated: 2026-10-19
 draft: true
 lang: de
 references:
@@ -63,7 +63,7 @@ Die Praxis untersucht Blut und Urin, um zu sehen, welche Organe betroffen sind, 
 
 Erkrankte Hunde werden meist stationär behandelt, mit Infusionen, Antibiotika und weiterer unterstützender Therapie. Die Prognose hängt häufig davon ab, ob die Nierenfunktion erhalten werden kann. Welche Behandlung nötig ist, entscheidet die Tierärztin oder der Tierarzt.
 
-Geben Sie Ihrem Hund **keine Medikamente aus Ihrer Hausapotheke**. **Ibuprofen** kann bei Hunden Magengeschwüre, Magen-Darm-Blutungen und Nierenschäden verursachen, **Paracetamol** kann die Leber schädigen. Gerade bei Leptospirose sind Nieren und Leber ohnehin gefährdet. **Metamizol** darf Ihr Hund nur bekommen, wenn die Praxis es verordnet.
+Geben Sie Ihrem Hund **keine Medikamente aus Ihrer Hausapotheke**. **Ibuprofen** kann bei Hunden Magengeschwüre, Magen-Darm-Blutungen und Nierenschäden verursachen, **Paracetamol** kann die Leber schädigen. Gerade bei Leptospirose sind Nieren und Leber ohnehin gefährdet. Geben Sie Ihrem Hund ein Medikament nur, wenn die Praxis es verordnet.
 
 ## Sollte mein Hund gegen Leptospirose geimpft werden?
 

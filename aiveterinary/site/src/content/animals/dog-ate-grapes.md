@@ -4,7 +4,7 @@ description: "Grapes, raisins, sultanas and currants can cause kidney failure in
 species: dog
 category: first-aid
 urgency: emergency
-updated: 2026-10-18
+updated: 2026-10-19
 draft: true
 references:
   - title: "Cornell University, Riney Canine Health Center: Grape and raisin toxicity"
@@ -13,6 +13,8 @@ references:
     url: "https://www.msdvetmanual.com/toxicology/food-hazards/grape-raisin-and-tamarind-vitis-spp-tamarindus-spp-toxicosis-in-dogs"
   - title: "PDSA PetWise Pet Health Hub: Grape, raisin, currant and sultana poisoning in dogs (PDF)"
     url: "https://www.pdsa.org.uk/media/10559/phh_dog_c_grapes-raisins-and-sultana-poisoning.pdf"
+  - title: "Pet Poison Helpline: Top 10 things to remember when your pet is poisoned"
+    url: "https://petpoisonhelpline.com/uncategorized/top-ten-things-to-remember-when-your-pet-is-poisoned/"
 ---
 
 ## First: call a vet now
@@ -68,8 +70,8 @@ Remove what is left, work out what was eaten, how much and when, and call your v
 Don't wait for signs, don't make your dog sick at home, and don't give any home remedy or human medicine.
 
 - **Don't wait for signs.** By the time signs appear, kidney damage may already be happening, and treatment works best before then.
-- **Don't try to make your dog sick at home.** If your vet decides your dog should vomit, they will give an injection at the clinic. That decision belongs to your vet.
-- **Don't give any home remedy or human medicine** in the hope of preventing damage.
+- **Don't try to make your dog sick at home.** If your vet decides your dog should vomit, they can give medicine for this at the clinic, usually an injection. That decision belongs to your vet.
+- **Don't give any home remedy, milk or human medicine** unless a vet tells you to.
 
 ## What are the signs of grape poisoning in dogs?
 
@@ -91,14 +93,14 @@ Over the next one to three days, signs of kidney damage may follow:
 
 ## How will the vet treat grape poisoning?
 
-There is no antidote, so your vet may make your dog vomit, give activated charcoal, put it on a fluid drip and repeat blood and urine tests.
+There is no antidote, so your vet may make your dog vomit, sometimes give activated charcoal, put it on a fluid drip and repeat blood and urine tests.
 
 There is no antidote, so treatment aims to stop the fruit being absorbed and to protect the kidneys. Your vet decides what is needed for your dog, and this may include:
 
 - **an injection to make your dog vomit**, if the fruit was eaten recently enough that it may still be in the stomach
-- **activated charcoal**, which binds toxins in the gut
+- **activated charcoal**, a powder that traps toxins in the gut, although how much it helps in grape poisoning is not known
 - **a fluid drip**, to support the kidneys, often for at least two days, with your dog kept in hospital
-- **repeated blood and urine tests**, because kidney problems can take a few days to show
+- **repeated blood and urine tests**, often over two to three days, because results can be normal in the first hours and kidney problems can take a few days to show
 
 Dogs whose kidneys stop producing urine need specialist care, such as dialysis, and the outlook is much more guarded.
 

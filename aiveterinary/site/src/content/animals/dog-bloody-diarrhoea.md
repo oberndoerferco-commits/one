@@ -4,7 +4,7 @@ description: "Blood in a dog's poo always needs a vet check, but how urgently de
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-10-18
+updated: 2026-10-19
 draft: true
 references:
   - title: "PDSA PetWise Pet Health Hub: Blood in your dog's stools (PDF)"
@@ -81,7 +81,7 @@ Both are serious causes of bloody diarrhoea: parvovirus is a viral infection tha
 
 **Parvovirus** is a serious viral infection. Puppies are the most vulnerable, and younger puppies usually become the sickest, although unprotected older dogs can also be badly affected. Signs include diarrhoea, sometimes bloody, vomiting, fever and lethargy, and dogs can become dehydrated and go into shock. The virus is widespread and hard to kill with disinfectants. Vets can test a swab or sample in the clinic, and early treatment gives the best chance of recovery. Vaccination is the main protection, so check your puppy's vaccinations are up to date.
 
-**Acute haemorrhagic diarrhoea syndrome (AHDS)**, previously called haemorrhagic gastroenteritis, causes sudden, large amounts of bloody diarrhoea, often after vomiting, along with poor appetite, lethargy and belly pain. Small and toy breeds and young adult dogs are affected more often. Dogs can lose fluid very fast. The main treatment is prompt fluid therapy through a drip, and with the right treatment most dogs recover well, but serious complications can occur without it.
+**Acute haemorrhagic diarrhoea syndrome (AHDS)**, previously called haemorrhagic gastroenteritis, causes sudden, large amounts of bloody diarrhoea, often after vomiting, along with poor appetite, lethargy and belly pain. Small and toy breeds and young adult dogs are affected more often. Dogs can lose fluid very fast. The main treatment is prompt fluid therapy through a drip. With the right treatment most dogs recover well, but serious complications, including shock and death, can still occur, and many more dogs die if it is not treated.
 
 ## What will the vet want to know about my dog's bloody diarrhoea?
 
