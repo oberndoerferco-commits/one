@@ -29,8 +29,8 @@ Ihr Hund hat das Brathähnchen-Gerippe geklaut oder unterwegs einen Knochen gefu
 - Futter oder Wasser kurz nach der Aufnahme wieder **hochwürgt**
 - **wiederholt erbricht** oder nicht mehr aufhören kann
 - einen **aufgeblähten** oder **schmerzhaften Bauch** hat
-- **matt** ist, schwach wirkt oder nicht frisst
-- beim **Kotabsatz presst** oder keinen Kot absetzen kann
+- **matt** ist, schwach wirkt, nicht frisst oder **zusammenbricht**
+- beim **Kotabsatz presst**, keinen Kot absetzen kann oder **Blut** im Kot hat
 
 Das sind Zeichen, dass der Knochen in Speiseröhre, Magen oder Darm stecken geblieben ist oder sie verletzt hat. Was im Notfall zu tun ist, finden Sie auch auf unserer [Notfallseite](/de/emergency).
 

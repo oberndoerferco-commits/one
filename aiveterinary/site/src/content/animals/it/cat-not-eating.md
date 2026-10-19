@@ -8,6 +8,8 @@ updated: 2026-10-19
 draft: true
 lang: it
 references:
+  - title: "International Cat Care: Helping your cat through the recovery process"
+    url: "https://icatcare.org/articles/helping-your-cat-through-the-recovery-process"
   - title: "Cornell Feline Health Center: Anorexia"
     url: "https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/anorexia"
   - title: "PDSA: My cat isn't eating (anorexia in cats)"
@@ -16,6 +18,8 @@ references:
     url: "https://icatcare.org/articles/inappetence-in-cats"
   - title: "MSD Veterinary Manual: Feline Hepatic Lipidosis"
     url: "https://www.msdvetmanual.com/digestive-system/hepatic-disease-in-small-animals/feline-hepatic-lipidosis"
+  - title: "VCA Animal Hospitals: Hepatic Lipidosis in Cats (Fatty Liver Syndrome in Cats)"
+    url: "https://vcahospitals.com/know-your-pet/liver-disease-fatty-liver-syndrome-in-cats"
   - title: "Cornell Feline Health Center: Feline Lower Urinary Tract Disease"
     url: "https://vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/feline-lower-urinary-tract-disease"
   - title: "PDSA: Breathing problems in cats"
@@ -41,6 +45,9 @@ Un gatto che smette di mangiare può sviluppare un problema al fegato chiamato l
 - ha la pancia gonfia e dolente
 - ha vomitato più volte, non riesce a trattenere cibo o acqua, o c'è sangue nel vomito
 - potrebbe aver mangiato una parte qualsiasi di un giglio (tutte le parti della pianta, compresi il polline e l'acqua del vaso, sono tossiche per i gatti), antigelo, o un antidolorifico per uso umano come il paracetamolo
+- ha orecchie, gengive o occhi giallastri (ittero)
+- è un gattino: nei gattini sotto le sei settimane bastano 12 ore senza cibo per mettere in pericolo la vita
+- non ha mangiato niente per due giorni, anche se per il resto sembra "normale"
 
 ## Cosa posso controllare a casa?
 

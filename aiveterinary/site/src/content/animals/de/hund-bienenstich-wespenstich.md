@@ -10,6 +10,8 @@ lang: de
 references:
   - title: "MSD Veterinary Manual: Wasp, Bee, and Ant Stings to Animals"
     url: "https://www.msdvetmanual.com/toxicology/venomous-arthropods/wasp-bee-and-ant-stings-to-animals"
+  - title: "PDSA Pet Health Hub: Insect bites and stings in dogs"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/insect-bites-and-stings-in-dogs"
   - title: "PDSA: Severe allergic reactions (anaphylaxis) in dogs"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/severe-allergic-reactions-in-dogs"
   - title: "Animal Emergency Service (Australia): First aid for a pet with a bee sting"
@@ -30,7 +32,9 @@ Fahren Sie **sofort** in eine Tierarztpraxis, nachts oder am Wochenende in den t
 - **erbricht**, **Durchfall** hat oder stark **speichelt**
 - sehr **matt** wirkt oder **zusammenbricht**
 - **blasses Zahnfleisch** hat
+- **Quaddeln** (erhabene Beulen) oder einen starken Ausschlag hat
 - sich am **ganzen Körper kratzt** oder mit der Pfote am Maul reibt
+- einen **Krampfanfall** hat
 - **viele Male** gestochen wurde, etwa nachdem er ein Wespennest oder einen Bienenstock gestört hat
 - schon einmal **stark auf einen Stich reagiert** hat
 

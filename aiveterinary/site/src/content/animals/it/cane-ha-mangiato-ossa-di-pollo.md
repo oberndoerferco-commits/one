@@ -31,8 +31,8 @@ Il cane ha rubato la carcassa del pollo arrosto o ha trovato un osso per strada?
 - **rigurgita** il cibo o l'acqua poco dopo averli presi
 - **vomita** ripetutamente, o non riesce a smettere
 - ha la **pancia gonfia**, dura o dolorante, si incurva o non vuole essere toccato
-- è **abbattuto**, debole o non mangia
-- fa fatica a **fare la cacca** o si sforza
+- è **abbattuto**, debole, non mangia o **collassa**
+- fa fatica a **fare la cacca**, si sforza o ha **sangue** nelle feci
 
 Sono i segni che l'osso può essersi fermato nell'esofago, nello stomaco o nell'intestino, oppure averli feriti.
 

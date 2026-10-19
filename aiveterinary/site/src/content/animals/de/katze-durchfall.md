@@ -112,4 +112,4 @@ Mit schrittweisen Futterwechseln, regelmäßigen Impfungen, einem mit der Praxis
 - Ein **Parasitenschutz**, der zum Lebensstil Ihrer Katze passt und mit der Praxis abgestimmt ist.
 - **Saubere Katzentoilette**: So fallen Veränderungen am Kot sofort auf.
 
-Ein einzelner Durchfall bei einer erwachsenen, munteren Katze ist oft harmlos. Ein Kitten, eine alte Katze oder eine Katze, die zusätzlich matt ist, erbricht oder nicht frisst, sollte dagegen **ohne Abwarten untersucht** werden.
+Ein einzelner Durchfall bei einer erwachsenen, munteren Katze ist oft nur eine vorübergehende Verstimmung. Ein Kitten, eine alte Katze oder eine Katze, die zusätzlich matt ist, erbricht oder nicht frisst, sollte dagegen **ohne Abwarten untersucht** werden.

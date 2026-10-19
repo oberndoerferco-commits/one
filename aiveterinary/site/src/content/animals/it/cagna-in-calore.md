@@ -16,6 +16,8 @@ references:
     url: "https://www.msdvetmanual.com/reproductive-system/reproductive-diseases-of-the-female-small-animal/pseudopregnancy-in-small-animals"
   - title: "Root A.L., Parkin T.D., Hutchison P., Warnes C., Yam P.S.: Canine pseudopregnancy: an evaluation of prevalence and current treatment protocols in the UK. BMC Vet Res 2018;14:170 (PMC5968611)"
     url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5968611/"
+  - title: "MSD Veterinary Manual (versione professionale): Cystic Endometrial Hyperplasia–Pyometra Complex in Small Animals"
+    url: "https://www.msdvetmanual.com/reproductive-system/reproductive-diseases-of-the-female-small-animal/cystic-endometrial-hyperplasia-pyometra-complex-in-small-animals"
   - title: "Merck Veterinary Manual: Toxicities from Human Drugs, Analgesics"
     url: "https://www.merckvetmanual.com/toxicology/toxicities-from-human-drugs/analgesics-toxicity"
 ---
@@ -29,7 +31,7 @@ Il calore in sé non è una malattia. Nelle settimane successive, però, una cag
 - **vomita**
 - ha **perdite di pus dalla vulva**, spesso con sangue
 - ha la **pancia che si ingrossa**, anche senza nessuna perdita
-- sembra molto debole o "non è lei"
+- ha la **febbre**, sembra molto debole o "non è lei"
 
 Se il collo dell'utero è chiuso, il pus non esce: l'utero si riempie senza che tu veda perdite, e la pancia può ingrossarsi. L'MSD Veterinary Manual spiega che i segni possono **peggiorare rapidamente fino allo shock e alla morte**. Per questo non bisogna aspettare. Trovi cosa fare nella nostra [pagina emergenze](/it/emergency).
 

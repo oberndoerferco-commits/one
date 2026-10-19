@@ -18,6 +18,8 @@ references:
     url: "https://www.msdvetmanual.com/digestive-system/diseases-of-the-large-intestine-in-small-animals/constipation-obstipation-and-megacolon-in-small-animals"
   - title: "Billau E. et al.: Hypokalzämie bei einer Katze nach Verabreichung eines phosphathaltigen Klistiers. Der Praktische Tierarzt 104 (5/2023), 444–451 (PDF)"
     url: "https://kdev.vetline.de/system/files/frei/DPT_05-2023_Billau_1.pdf"
+  - title: "Ontario Veterinary College Pet Nutrition: Is your cat having trouble pooping? Let's talk constipation"
+    url: "https://ovcpetnutrition.uoguelph.ca/2025/11/20/is-your-cat-having-trouble-pooping-lets-talk-constipation"
 ---
 
 ## Zuerst: Pressen kann ein Harnröhrenverschluss sein
@@ -92,11 +94,11 @@ Sorgen Sie bei einer sonst munteren Katze für mehr Flüssigkeit und eine sauber
 
 ## Wann sollte ich mit meiner verstopften Katze zur Tierärztin oder zum Tierarzt?
 
-Noch heute oder morgen, wenn sie seit etwa zwei Tagen keinen Kot abgesetzt hat, der Kot sehr hart ist, weitere Beschwerden dazukommen oder sie älter oder nierenkrank ist.
+Noch heute, wenn sie seit mehr als 48 Stunden keinen Kot abgesetzt hat, der Kot sehr hart ist, weitere Beschwerden dazukommen oder sie älter oder nierenkrank ist.
 
-Abgesehen von den Notfällen oben vereinbaren Sie **noch heute oder morgen** einen Termin, wenn:
+Abgesehen von den Notfällen oben vereinbaren Sie **noch heute** einen Termin, wenn:
 
-- Ihre Katze seit etwa zwei Tagen keinen Kot abgesetzt hat oder deutlich presst
+- Ihre Katze seit mehr als 48 Stunden keinen Kot abgesetzt hat oder deutlich presst (dann rät das Ontario Veterinary College, die Praxis anzurufen)
 - der Kot sehr hart und trocken ist
 - sie zusätzlich erbricht, weniger frisst oder ruhiger ist
 - sie schon früher verstopft war
