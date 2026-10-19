@@ -32,7 +32,7 @@ npm run demo -- --claude "vomiting 3x since yesterday, T 39.1, abdomen soft, rec
 |---|---|
 | `src/schema.ts` | `ClinicalRecord` v0.2 (zod). Every fact carries `source_spans`, `source_role` (owner/vet) and `status` (planned/performed/declined…). `PatientHeader` is the locked patient identity. |
 | `src/normalize.ts` | Whitespace normalisation (offsets refer to this text), abbreviation hints (EN/DE/IT), rough language detection. Never rewrites the notes. |
-| `src/validators.ts` | `validateGrounding` (spans valid, numbers in notes), `validateMedications` (drug/dose/unit/frequency/duration in notes), `validatePatient` (header wins; pregnancy on a male → block), `validatePlausibility` (species temperature ranges → warn), `validateDerivedText` (owner texts add nothing), `requiredMissing` (what a document still needs). Findings are reported, never auto-fixed. |
+| `src/validators.ts` | `validateGrounding` (spans valid, numbers in notes), `validateMedications` (drug/dose/unit/frequency/duration in notes), `validatePatient` (header wins; pregnancy on a male → block), `validatePlausibility` (species temperature ranges → warn), `validateDerivedText` (owner texts add nothing), `validateStatus` (declined/planned/performed in an item's own text vs its recorded status; owner report recorded as the vet's finding), `validateNotesContradiction` (two different readings of the same vital in the notes, record keeps one → warn), `requiredMissing` (what a document still needs). Findings are reported, never auto-fixed. |
 | `src/render.ts` | Report in EN/DE/IT. Medication table rendered by code from structured fields. Draft watermark until approved. |
 | `src/extract.ts` | `Extractor` interface, the prompt (`extract-v1`), `FixtureExtractor` (tests) and `ClaudeExtractor` (structured output via `messages.parse` + zod). |
 | `src/cli/eval.ts` | Harness: runs every case, applies validators and expectations, prints a summary; exit 1 on failure. |
@@ -64,7 +64,8 @@ All documents are rendered by code from the record's own sentences; headings, ta
 
 - `renderConsultReport` — the clinical report with the medication table, declined-care section and provenance line.
 - `renderOwnerSummary` — the same facts grouped for the person acting at home: why you came, what we found, what we did, medication to give (identical table), a dose checklist when frequency and duration parse unambiguously (`parseDosesPerDay`, `parseDurationDays`), at home, next appointment, discussed and declined.
-- `renderReferralLetter` — clinical letter to a colleague; the referral reason is the vet's own words passed in, flagged when absent.
+- `renderReferralLetter` — clinical letter to a colleague; the referral reason is the vet's own words passed in, flagged when absent; optional referring-practice, owner and referral-request blocks (urgency, service, question) typed by the vet, rendered only when filled. Fields follow the public referral forms compared in `docs/16-referral-fields.md`.
+- `renderDischargeLetter` — discharge instructions from the approved record: what was done, results, home medication (identical table), home care, follow-up, and "when to call" only if the vet wrote it. Empty sections are omitted; nothing is computed.
 - `renderVaccinationEntry` — booklet line per vaccine given, with batch, site and validity from the dispensing record, flags when absent.
 - `renderConsentForm` — planned procedures with the FNOVI/chamber consent elements as headings; risks, alternatives and costs are left for the vet to write.
 - `renderCostEstimate` — planned diagnostics, procedures and medicines as rows with empty price cells (GOT number and factor columns for DE, the written-estimate note for IT).
