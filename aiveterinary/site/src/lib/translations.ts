@@ -37,4 +37,5 @@ export const TRANSLATION_GROUPS: { en?: string; it?: string; de?: string }[] = [
   { en: 'cat-diarrhoea', it: 'gatto-diarrea', de: 'katze-durchfall' }, // cat-diarrhoea
   { en: 'dog-in-heat', it: 'cagna-in-calore', de: 'huendin-laeufig' }, // dog-in-heat
   { en: 'dog-ear-infection', it: 'cane-otite', de: 'hund-ohrenentzuendung' }, // dog-ear-infection
+  { en: 'cat-not-eating', it: 'cat-not-eating', de: 'katze-frisst-nicht' }, // cat-not-eating
 ];
