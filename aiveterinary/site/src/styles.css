@@ -265,6 +265,8 @@ p { margin: 0 0 1em; }
 .site-search .pagefind-ui__result-title { font-family: var(--font-display); }
 .site-search .pagefind-ui__result { border-top-color: var(--line); }
 .site-search .pagefind-ui__result-link { color: var(--ink); }
+/* Pagefind only fades the clear button out; take it out of the tab order while there is nothing to clear */
+.site-search .pagefind-ui__search-clear.pagefind-ui__suppressed { visibility: hidden; }
 
 .pp-invalid { border-color: var(--danger) !important; }
 .pp-chip-hint { display: block; color: var(--danger); margin-top: 4px; }
@@ -307,9 +309,13 @@ p { margin: 0 0 1em; }
 /* keyboard users */
 .skip { position: absolute; left: 16px; top: -60px; background: var(--accent); color: #fff; padding: 10px 16px; border-radius: 999px; z-index: 100; font-weight: 600; text-decoration: none; transition: top .15s ease; }
 .skip:focus { top: 12px; outline: 3px solid var(--ink); outline-offset: 2px; }
-.btn:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+.btn:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible, summary:focus-visible, [tabindex="0"]:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
 .nav a.nav-cta:focus-visible, .btn:focus-visible { outline-offset: 3px; border-radius: 999px; }
-main:focus { outline: none; }
+/* file inputs are visually hidden behind a label styled as a button: show the ring on the label */
+label:has(> input.sr:focus-visible), label:has(+ input.sr:focus-visible) { outline: 3px solid var(--accent); outline-offset: 3px; }
+/* on the dark footer and the teal vet band the accent ring would vanish */
+.site-footer a:focus-visible, .vet-band a:focus-visible { outline-color: #fff; }
+main:focus, [tabindex="-1"]:focus { outline: none; }
 
 /* language suggestion bar */
 .lang-suggest[hidden] { display: none; }
@@ -327,6 +333,7 @@ h1, h2 { font-variation-settings: "opsz" 96, "SOFT" 100, "WONK" 0; }
 .h3ro-text .lead { font-size: 1.2rem; color: var(--ink-2); max-width: 30em; margin-bottom: 26px; }
 .h3ro-search { display: flex; gap: 6px; background: var(--surface); border: 1.5px solid var(--line); border-radius: 999px; padding: 6px; max-width: 520px; box-shadow: 0 10px 30px rgba(18, 48, 74, .07); }
 .h3ro-search:focus-within { border-color: var(--accent); }
+.h3ro-search:has(input:focus-visible) { outline: 3px solid var(--accent); outline-offset: 2px; }
 .h3ro-search input { flex: 1; min-width: 0; border: 0; background: transparent; font: inherit; font-size: 1.05rem; padding: 10px 16px; color: var(--ink); }
 .h3ro-search input:focus-visible { outline: none; }
 .h3ro-search .btn { padding: 11px 22px; }
@@ -402,7 +409,7 @@ h1, h2 { font-variation-settings: "opsz" 96, "SOFT" 100, "WONK" 0; }
 .pp-empty { text-align: center; padding: 40px 16px 56px; border: 2px dashed var(--line); border-radius: 28px; }
 .pp-empty h2 { margin-top: 0; }
 .pp-empty-actions { display: flex; gap: 18px; align-items: center; justify-content: center; flex-wrap: wrap; }
-.pp-empty-restore { color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.pp-empty-restore { background: none; border: 0; padding: 0; font: inherit; color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .booklet-art { max-width: 100%; height: auto; }
 @media print { .pp-more-menu { display: none; } }
 .pp-toolbar[hidden] { display: none; }

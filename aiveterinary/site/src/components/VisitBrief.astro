@@ -161,7 +161,7 @@ const J = {
       <button class="btn" type="button" id="vb-make">{t.make}</button>
       <button class="btn secondary" type="button" id="vb-clear">{t.clear}</button>
     </div>
-    <p class="pp-status" id="vb-status"></p>
+    <p class="pp-status" id="vb-status" role="status"></p>
     <div id="vb-loading" hidden style="margin-top:12px"><YarnCat label={({ en: 'Putting your brief together…', it: 'Sto preparando il riepilogo…', de: 'Übersicht wird erstellt…' } as any)[lang]} /></div>
   </form>
 
@@ -171,7 +171,7 @@ const J = {
       <button class="btn secondary" type="button" id="vb-print">{t.print}</button>
       <a class="btn secondary" id="vb-email" href="#">{t.email}</a>
     </div>
-    <h2 style="margin-top:0">{t.briefTitle}</h2>
+    <h2 style="margin-top:0" id="vb-out-h" tabindex="-1">{t.briefTitle}</h2>
     <div id="vb-content" class="prose"></div>
     <p class="pp-hint" style="margin-top:16px">{t.footer}</p>
   </article>
@@ -269,6 +269,7 @@ const J = {
     }
     ($('#vb-out') as HTMLElement).hidden = false;
     $('#vb-out').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    ($('#vb-out-h') as HTMLElement).focus({ preventScroll: true });
   }
   $('#vb-clear').addEventListener('click', () => { form.reset(); ($('#vb-out') as HTMLElement).hidden = true; });
   $('#vb-print').addEventListener('click', () => window.print());

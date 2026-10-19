@@ -74,8 +74,8 @@ const locale = { en: 'en-GB', it: 'it-IT', de: 'de-DE' }[lang];
     <label class="vp-check" data-for="cat" hidden><input type="checkbox" name="risk" /> {T.risk}</label>
     <button class="btn" type="submit">{T.go}</button>
   </form>
-  <div id="vp-out" hidden aria-live="polite">
-    <table class="vp-table"><thead><tr>{T.th.map((h) => <th scope="col">{h}</th>)}</tr></thead><tbody id="vp-rows"></tbody></table>
+  <div id="vp-out" hidden>
+    <table class="vp-table" id="vp-table" tabindex="-1"><caption class="sr-only">{T.title}</caption><thead><tr>{T.th.map((h) => <th scope="col">{h}</th>)}</tr></thead><tbody id="vp-rows"></tbody></table>
     <ul class="vp-notes">{T.notes.map((n) => <li>{n}</li>)}</ul>
     <p><button class="btn secondary" type="button" id="vp-save">{T.save}</button></p>
     <p id="vp-status" class="pp-hint" aria-live="polite"></p>
@@ -114,6 +114,7 @@ const locale = { en: 'en-GB', it: 'it-IT', de: 'de-DE' }[lang];
     items = plan.filter((p) => p.key !== 'rabiesValid').map((p) => ({ label: label(p, sp), date: p.date }));
     document.getElementById('vp-rows')!.innerHTML = plan.map((p) => `<tr class="${p.optional ? 'vp-opt' : ''}"><td>${fmt(p.date)}</td><td>${esc(label(p, sp))}${p.warn ? `<br><strong class="vp-warn">${esc(J.k[p.warn])}</strong>` : ''}</td><td>${age(dob, p.date)}</td></tr>`).join('');
     (document.getElementById('vp-out') as HTMLElement).hidden = false;
+    document.getElementById('vp-table')!.focus(); // screen readers announce the plan table; keyboard continues from it
     document.getElementById('vp-status')!.textContent = '';
   });
   document.getElementById('vp-save')!.addEventListener('click', () => {

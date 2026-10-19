@@ -76,8 +76,8 @@ const locale = { en: 'en-GB', it: 'it-IT', de: 'de-DE' }[lang];
     <p class="pp-hint">{T.hint}</p>
     <button class="btn lg" type="submit">{T.calc}</button>
   </form>
-  <div id="cc-result" class="ec-result" hidden aria-live="polite">
-    <h2 id="cc-h"></h2>
+  <div id="cc-result" class="ec-result" hidden>
+    <h2 id="cc-h" tabindex="-1"></h2>
     <p id="cc-p"></p>
     <details><summary>{T.work}</summary><p id="cc-work" class="cc-work"></p></details>
     <p class="ec-actions"><a class="btn secondary" href={T.emergencyHref}>{T.emergency}</a> <a class="btn secondary" href={T.articleHref}>{T.article}</a></p>
@@ -96,13 +96,14 @@ const locale = { en: 'en-GB', it: 'it-IT', de: 'de-DE' }[lang];
     const g = Number(String((form.elements.namedItem('g') as HTMLInputElement).value).replace(',', '.'));
     const sel = form.elements.namedItem('type') as HTMLSelectElement; const mgPerG = Number(sel.selectedOptions[0].dataset.mg);
     const box = document.getElementById('cc-result') as HTMLElement;
-    if (!(kg > 0) || !(g >= 0)) { box.hidden = false; box.className = 'ec-result'; document.getElementById('cc-h')!.textContent = J.err; document.getElementById('cc-p')!.textContent = ''; return; }
+    if (!(kg > 0) || !(g >= 0)) { box.hidden = false; box.className = 'ec-result'; document.getElementById('cc-h')!.textContent = J.err; document.getElementById('cc-p')!.textContent = ''; document.getElementById('cc-h')!.focus(); return; }
     const total = g * mgPerG, perKg = total / kg;
     const band = [...J.bands].reverse().find((b: any) => perKg >= b[0]) ?? J.bands[0];
     document.getElementById('cc-h')!.textContent = band[1];
     document.getElementById('cc-p')!.textContent = band[2];
     document.getElementById('cc-work')!.textContent = `${nf(g, 0)} g × ${nf(mgPerG, 2)} mg/g = ${nf(total, 0)} ${J.total}. ${nf(total, 0)} mg ÷ ${nf(kg)} kg = ${nf(perKg)} ${J.perKg}. ${J.thr}: 20 · 40–50 · 60 mg/kg.`;
     box.className = `ec-result ec-${band[3]}`; box.hidden = false;
+    document.getElementById('cc-h')!.focus();
   });
 </script>
 <style is:global>

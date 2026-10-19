@@ -588,7 +588,7 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
       <button class="btn secondary" id="pp-export" type="button">{t.backup}</button>
       <label class="btn secondary" for="pp-import">{t.restore}<input id="pp-import" type="file" accept="application/json,.json" class="sr" /></label>
       <button class="btn secondary" id="pp-print" type="button">{t.print}</button>
-      <label class="btn secondary" for="pp-scan-file">{sc.btn}</label>
+      <label class="btn secondary" for="pp-scan-file">{sc.btn}<input id="pp-scan-file" type="file" accept="image/*" capture="environment" class="sr" /></label>
       <details class="pp-more">
         <summary class="btn secondary">{({ en: 'More', it: 'Altro', de: 'Mehr' } as any)[lang]}</summary>
         <div class="pp-more-menu">
@@ -602,7 +602,6 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
     </div>
 
     <div id="pp-loading" hidden style="margin:12px 0"><YarnCat label={({ en: 'Restoring…', it: 'Ripristino in corso…', de: 'Wird wiederhergestellt…' } as any)[lang]} /></div>
-    <input id="pp-scan-file" type="file" accept="image/*" capture="environment" class="sr" />
     <dialog id="pp-scan" class="pp-scan" aria-labelledby="pp-scan-h">
       <h2 id="pp-scan-h">{sc.title}</h2>
       <p class="pp-hint">{sc.intro}</p>
@@ -615,7 +614,7 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
     <div id="pp-empty" class="pp-empty" hidden>
       <h2>{t.emptyTitle}</h2>
       <p>{t.emptyText}</p>
-      <p class="pp-empty-actions"><button class="btn lg" id="pp-empty-new" type="button">{t.emptyBtn}</button> <label class="pp-empty-restore" for="pp-import">{t.restore}</label> <label class="pp-empty-restore" for="pp-scan-file">{sc.btn}</label></p>
+      <p class="pp-empty-actions"><button class="btn lg" id="pp-empty-new" type="button">{t.emptyBtn}</button> <button class="pp-empty-restore" type="button" data-pick="pp-import">{t.restore}</button> <button class="pp-empty-restore" type="button" data-pick="pp-scan-file">{sc.btn}</button></p>
     </div>
 
     <div id="pp-form" hidden>
@@ -676,42 +675,42 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
       <section class="card pp-list" data-list="vaccinations" id="pp-sec-vaccinations">
         <h2>{t.vaccinations}</h2>
         <p class="pp-hint">{t.vaccHint}</p>
-        <table><thead><tr><th>{t.thVaccine}</th><th>{t.thDateGiven}</th><th>{t.thValidUntil}</th><th>{t.thClinicVet}</th><th>{t.thBatch}</th><th></th></tr></thead><tbody></tbody></table>
+        <table><thead><tr><th>{t.thVaccine}</th><th>{t.thDateGiven}</th><th>{t.thValidUntil}</th><th>{t.thClinicVet}</th><th>{t.thBatch}</th><th><span class="sr-only">{j.removeRow}</span></th></tr></thead><tbody></tbody></table>
         <button class="btn secondary pp-add" type="button">{t.addVacc}</button>
       </section>
 
       <section class="card pp-list" data-list="treatments" id="pp-sec-treatments">
         <h2>{t.treatments}</h2>
         <p class="pp-hint">{t.treatHint}</p>
-        <table><thead><tr><th>{t.thProduct}</th><th>{t.thDate}</th><th>{t.thNextDue}</th><th>{t.thGivenBy}</th><th></th></tr></thead><tbody></tbody></table>
+        <table><thead><tr><th>{t.thProduct}</th><th>{t.thDate}</th><th>{t.thNextDue}</th><th>{t.thGivenBy}</th><th><span class="sr-only">{j.removeRow}</span></th></tr></thead><tbody></tbody></table>
         <button class="btn secondary pp-add" type="button">{t.addTreat}</button>
       </section>
 
       <section class="card pp-list" data-list="medications" id="pp-sec-medications">
         <h2>{t.medications}</h2>
         <p class="pp-hint">{t.medHint}</p>
-        <table><thead><tr><th>{t.thMedication}</th><th>{t.thDose}</th><th>{t.thStarted}</th><th>{t.thPrescribedBy}</th><th></th></tr></thead><tbody></tbody></table>
+        <table><thead><tr><th>{t.thMedication}</th><th>{t.thDose}</th><th>{t.thStarted}</th><th>{t.thPrescribedBy}</th><th><span class="sr-only">{j.removeRow}</span></th></tr></thead><tbody></tbody></table>
         <button class="btn secondary pp-add" type="button">{t.addMed}</button>
       </section>
 
       <section class="card pp-list" data-list="conditions" id="pp-sec-conditions">
         <h2>{t.conditions}</h2>
         <p class="pp-hint">{t.condHint}</p>
-        <table><thead><tr><th>{t.thType}</th><th>{t.thDescription}</th><th>{t.thSince}</th><th></th></tr></thead><tbody></tbody></table>
+        <table><thead><tr><th>{t.thType}</th><th>{t.thDescription}</th><th>{t.thSince}</th><th><span class="sr-only">{j.removeRow}</span></th></tr></thead><tbody></tbody></table>
         <button class="btn secondary pp-add" type="button">{t.addCond}</button>
       </section>
 
       <section class="card pp-list" data-list="visits" id="pp-sec-visits">
         <h2>{t.visits}</h2>
         <p class="pp-hint">{t.visitHint}</p>
-        <table><thead><tr><th>{t.thDate}</th><th>{t.thReason}</th><th>{t.thOutcome}</th><th>{t.thClinic}</th><th></th></tr></thead><tbody></tbody></table>
+        <table><thead><tr><th>{t.thDate}</th><th>{t.thReason}</th><th>{t.thOutcome}</th><th>{t.thClinic}</th><th><span class="sr-only">{j.removeRow}</span></th></tr></thead><tbody></tbody></table>
         <button class="btn secondary pp-add" type="button">{t.addVisit}</button>
       </section>
 
       <section class="card pp-list" data-list="diary" id="pp-sec-diary">
         <h2>{t.diary}</h2>
         <p class="pp-hint">{t.diaryHint}</p>
-        <table><thead><tr><th>{t.thDate}</th><th>{(j as any).cols?.["Observation"]}</th><th></th></tr></thead><tbody></tbody></table>
+        <table><thead><tr><th>{t.thDate}</th><th>{(j as any).cols?.["Observation"]}</th><th><span class="sr-only">{j.removeRow}</span></th></tr></thead><tbody></tbody></table>
         <button class="btn secondary pp-add" type="button">{t.addDiary}</button>
       </section>
 
@@ -719,7 +718,7 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
         <h2>{t.weights}</h2>
         <p class="pp-hint">{t.weightHint}</p>
         <svg id="pp-weight-chart" class="pp-chart" viewBox="0 0 600 180" role="img" aria-label={t.weights} hidden></svg>
-        <table><thead><tr><th>{t.thDate}</th><th>{t.cols ? '' : ''}{(j as any).cols?.["Weight (kg)"]}</th><th>{(j as any).cols?.["Body condition (1–9)"]}</th><th>{(j as any).cols?.["Note"]}</th><th></th></tr></thead><tbody></tbody></table>
+        <table><thead><tr><th>{t.thDate}</th><th>{t.cols ? '' : ''}{(j as any).cols?.["Weight (kg)"]}</th><th>{(j as any).cols?.["Body condition (1–9)"]}</th><th>{(j as any).cols?.["Note"]}</th><th><span class="sr-only">{j.removeRow}</span></th></tr></thead><tbody></tbody></table>
         <button class="btn secondary pp-add" type="button">{t.addWeight}</button>
       </section>
 
@@ -970,7 +969,11 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
         }
         const td = document.createElement('td');
         const rm = document.createElement('button'); rm.type = 'button'; rm.className = 'pp-rm'; rm.textContent = '×'; rm.setAttribute('aria-label', J.removeRow);
-        rm.addEventListener('click', () => { a[name].splice(i, 1); renderList(name, a); renderUpcoming(a); renderChart(a); save(J.rowRemoved); });
+        rm.addEventListener('click', () => {
+          a[name].splice(i, 1); renderList(name, a); renderUpcoming(a); renderChart(a); save(J.rowRemoved);
+          // the row is gone: keep focus in the section (next row's remove button, else the add button)
+          (($$('.pp-rm', sec)[Math.min(i, a[name].length - 1)] ?? $('.pp-add', sec)) as HTMLElement).focus();
+        });
         td.appendChild(rm); tr.appendChild(td); tbody.appendChild(tr);
       });
     }
@@ -1166,8 +1169,14 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
       if (!confirm(J.confirmDelete.replace('{name}', a.name || J.thisAnimal))) return;
       store.animals = store.animals.filter((x) => x.id !== a.id);
       store.current = store.animals[0]?.id ?? null; render(); save(J.deleted); acct.remove(a.id);
+      $<HTMLElement>(store.animals.length ? '#pp-select' : '#pp-empty-new').focus();
     });
     $('#pp-print')!.addEventListener('click', () => window.print());
+    // The empty state offers restore/scan as buttons: labels for the hidden toolbar inputs could not be reached by keyboard.
+    $$<HTMLButtonElement>('[data-pick]').forEach((b) => b.addEventListener('click', () => $<HTMLInputElement>(`#${b.dataset.pick}`).click()));
+    // "More" menu: Escape closes it and returns focus to its toggle.
+    const more = $<HTMLDetailsElement>('.pp-more');
+    more.addEventListener('keydown', (e) => { if (e.key === 'Escape' && more.open) { more.open = false; more.querySelector('summary')!.focus(); } });
     $('#pp-claim')!.addEventListener('click', () => {
       const a = current(); if (!a) return;
       const q = (k: string) => $(`[data-q="${k}"]`) as HTMLElement;
@@ -1356,6 +1365,7 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
     const bad = digits.length > 0 && !/^\d{15}$/.test(digits);
     el.setCustomValidity(bad ? 'invalid' : '');
     el.classList.toggle('pp-invalid', bad);
+    el.setAttribute('aria-invalid', String(bad));
     const hint = el.parentElement?.querySelector('.pp-chip-hint') as HTMLElement | null;
     if (hint) hint.hidden = !bad;
   });

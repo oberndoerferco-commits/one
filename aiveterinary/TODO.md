@@ -48,7 +48,7 @@ Everything costs €0 unless marked €. Legend:
 - [x] Editorial policy, corrections policy, conflict-of-interest and funding page — S ★★
 - [x] "Informativa uso IA" template for Italian vets; AVV/DPA template for German practices (Art. 28) — drafts in docs/legal, lawyer review before use — S ★★★
 - [x] Public DPA, subprocessor list, retention policy page for the vet tool — S ★★★ (only Curala/Tandem/Petleo are clear today)
-- [x] Accessibility pass to WCAG 2.2 AA (automated axe audit on 11 pages: 0 violations after the contrast fix; manual keyboard/screen-reader pass still open) — M ★★
+- [x] Accessibility pass to WCAG 2.2 AA (axe: 0 violations on 16 pages, both widths and colour schemes; scripted keyboard pass done 19 Oct 2026 with 17 fixes; a real NVDA/VoiceOver listen-through still open) — M ★★
 
 ## 3. Website and content — **Me**
 

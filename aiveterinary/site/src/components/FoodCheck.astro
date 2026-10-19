@@ -77,7 +77,8 @@ const words = (f: Entry) => [...new Set(Object.values(f.words).flat().concat(Obj
     <input id="fc-q" type="search" autocomplete="off" placeholder={T.ph} />
   </form>
   <p class="notice warn"><strong>{T.ate}</strong> <a href={T.emergHref}>{T.emerg}</a></p>
-  <p id="fc-none" class="notice" hidden aria-live="polite">{T.none}</p>
+  <p id="fc-none" class="notice" hidden>{T.none}</p>
+  <p id="fc-count" class="sr-only" role="status"></p>
   <ul class="fc-list" id="fc-list">
     {FOODS.map((f) => (
       <li class="fc-item" data-w={words(f)}>
@@ -94,6 +95,7 @@ const words = (f: Entry) => [...new Set(Object.values(f.words).flat().concat(Obj
   const q = document.getElementById('fc-q') as HTMLInputElement;
   const items = [...document.querySelectorAll<HTMLElement>('.fc-item')];
   const none = document.getElementById('fc-none') as HTMLElement;
+  const count = document.getElementById('fc-count') as HTMLElement; let say: ReturnType<typeof setTimeout> | undefined;
   const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').trim();
   const run = () => {
     const v = norm(q.value);
@@ -107,6 +109,10 @@ const words = (f: Entry) => [...new Set(Object.values(f.words).flat().concat(Obj
       li.hidden = !hit; if (hit) shown++;
     }
     none.hidden = !(v && shown === 0);
+    // tell screen-reader users what the filter left, once typing pauses
+    clearTimeout(say); say = setTimeout(() => {
+      count.textContent = !v ? '' : shown ? `${shown}: ${items.filter((li) => !li.hidden).map((li) => li.querySelector('h2')!.textContent).join(', ')}` : none.textContent!;
+    }, 500);
   };
   q.addEventListener('input', run);
   const p = new URLSearchParams(location.search).get('q'); if (p) { q.value = p; run(); }

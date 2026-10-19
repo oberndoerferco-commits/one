@@ -13,6 +13,7 @@ const count = (f: (d: any) => boolean) => all.filter((e) => f(e.data)).length;
   <h1>{t.title}</h1>
   <p class="lead">{t.lead}</p>
   <div id="site-search" class="site-search" data-lang={lang}></div>
+  <p id="site-search-status" class="sr-only" role="status"></p>
   <ul class="pets pets-lg" aria-label={t.byAnimal}>
     {Object.entries(t.species).map(([key, label]) => {
       const n = count((x) => x.species === key);
@@ -62,8 +63,12 @@ const count = (f: (d: any) => boolean) => all.filter((e) => f(e.data)).length;
     const ui = new window.PagefindUI({ element: '#site-search', showSubResults: true, showImages: false, resetStyles: false,
       translations: { placeholder: i18n.placeholder, zero_results: i18n.zero, many_results: i18n.results, one_result: '[COUNT] · [SEARCH_TERM]', searching: i18n.loading, clear_search: '×' } });
     // Pagefind's input has only a placeholder; give it an accessible name.
-    const name = () => document.querySelector('#site-search input')?.setAttribute('aria-label', i18n.placeholder);
+    const clear = { en: 'Clear search', it: 'Cancella la ricerca', de: 'Suche löschen' }[el.dataset.lang] || 'Clear search';
+    const name = () => { document.querySelector('#site-search input')?.setAttribute('aria-label', i18n.placeholder); document.querySelector('#site-search .pagefind-ui__search-clear')?.setAttribute('aria-label', clear); };
     name(); setTimeout(name, 0);
+    // Pagefind's result count is not a live region: mirror it into one once results settle.
+    const status = document.getElementById('site-search-status'); let t;
+    new MutationObserver(() => { clearTimeout(t); t = setTimeout(() => { const m = el.querySelector('.pagefind-ui__message'); const v = el.querySelector('input')?.value.trim() ? m?.textContent.trim() ?? '' : ''; if (status.textContent !== v) status.textContent = v; }, 600); }).observe(el, { childList: true, subtree: true, characterData: true });
     const q = new URLSearchParams(location.search).get('q'); if (q) ui.triggerSearch(q);
   });
 </script>

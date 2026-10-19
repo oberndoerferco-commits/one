@@ -124,11 +124,11 @@ const all = [...T.signsNow.map((s) => sign(s, 'now')), ...T.signsToday.map((s) =
     </fieldset>
     <button class="btn lg" type="submit">{T.check}</button>
   </form>
-  <div id="ec-result" class="ec-result" hidden aria-live="polite">
-    <h2 id="ec-r-h"></h2>
+  <div id="ec-result" class="ec-result" hidden>
+    <h2 id="ec-r-h" tabindex="-1"></h2>
     <p id="ec-r-p"></p>
     <p class="ec-actions"><button class="btn secondary" type="button" id="ec-save">{T.save}</button> <a class="btn secondary" href={T.briefHref}>{T.brief}</a></p>
-    <p id="ec-saved" class="pp-hint"></p>
+    <p id="ec-saved" class="pp-hint" role="status"></p>
   </div>
 </section>
 <script type="application/json" id="ec-i18n" set:html={JSON.stringify({ rNow: T.rNow, rToday: T.rToday, rWatch: T.rWatch, saved: T.saved, noAnimal: T.noAnimal, booklet: T.booklet, diaryNote: T.diaryNote, none: T.none })} />
@@ -148,6 +148,8 @@ const all = [...T.signsNow.map((s) => sign(s, 'now')), ...T.signsToday.map((s) =
     (document.getElementById('ec-saved') as HTMLElement).textContent = '';
     last = { tier: h, signs: ticked.map((i) => i.dataset.text!) };
     box.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+    // move focus to the answer so screen readers read it and keyboard users continue from there
+    document.getElementById('ec-r-h')!.focus({ preventScroll: true });
   });
   document.getElementById('ec-save')!.addEventListener('click', () => {
     const out = document.getElementById('ec-saved')!;
