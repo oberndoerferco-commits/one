@@ -212,7 +212,10 @@ def keyline_split(lab, cols, lum):
     dist = ndi.distance_transform_edt(m)
     sk = skeletonize(m)
     w = 2 * float(np.median(dist[sk])) if sk.any() else 2 * float(dist[m].mean())
-    core = dist > w * 0.9
+    # the badges are separate rasters at different scales, so their
+    # hairlines differ in width; one global median under-reads the wider
+    # ones and half the keyline was being kept as solid fill
+    core = dist > w * 2.5
     fill = ndi.binary_propagation(core, mask=m)
     key = m & ~fill
     print(f'  dark ink {m.sum()} px: hairline {key.sum()}, solid {fill.sum()}',
@@ -294,17 +297,23 @@ def main():
 
     work = tempfile.mkdtemp()
     order = sorted(range(len(cols)), key=lambda i: -(lab == i).sum())
+    # each layer carries everything painted after it, so a contour that a
+    # tracer pulls in by a fraction of a pixel uncovers the fill below rather
+    # than the bare page: no white or black fringe along a shared edge
+    rank = np.empty(len(cols), np.int32)
+    rank[np.array(order)] = np.arange(len(order))
+    R = rank[lab]
     grow = np.ones((2 * a.grow + 1,) * 2, bool)
 
     doc = pymupdf.open()
     page = doc.new_page(width=w_pt, height=h_pt)
     nfill = nband = 0
     t = time.time()
-    for i in order:
-        m = lab == i
-        n = int(m.sum())
+    for k, i in enumerate(order):
+        n = int((lab == i).sum())
         if n < a.speckle:
             continue
+        m = R >= k
         if a.grow:
             # overlapping the fills hides any seam at a shared edge, but it
             # also closes narrow gaps — at 400 dpi one pixel was enough to
