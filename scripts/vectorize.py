@@ -109,9 +109,15 @@ PATH = re.compile(r'<path\s+d="([^"]+)"(?:[^>]*?fill="#([0-9a-fA-F]{6})")?'
 
 
 def parse_svg(svg):
-    """[[(cmd, pts), ...] subpath, ...] from a VTracer SVG, translates applied."""
-    subs = []
+    """[[subpath, ...] shape, ...] from a VTracer SVG, translates applied.
+
+    Each <path> element is kept as its own shape. Pouring every subpath of a
+    layer into one even-odd fill instead lets contours from unrelated blobs
+    cancel one another, which punched the keyline into a dashed line.
+    """
+    shapes = []
     for m in PATH.finditer(svg):
+        subs = []
         tx = ty = 0.0
         if m.group(3):
             v = [float(x) for x in NUM.findall(m.group(3))]
@@ -135,11 +141,13 @@ def parse_svg(svg):
             elif op in 'Cc':
                 for i in range(0, len(pts) - 2, 3):
                     cur.append(('C', pts[i:i + 3]))
-    return subs
+        if subs:
+            shapes.append(subs)
+    return shapes
 
 
 def trace_mask(mask, work, opts):
-    """Trace one binary layer with VTracer; returns its subpaths in pixels."""
+    """Trace one binary layer with VTracer; returns its shapes in pixels."""
     png = os.path.join(work, 'm.png')
     svg = os.path.join(work, 'm.svg')
     Image.fromarray(np.where(mask, 0, 255).astype(np.uint8)).save(png)
@@ -210,9 +218,23 @@ def keyline_split(lab, cols, lum):
     print(f'  dark ink {m.sum()} px: hairline {key.sum()}, solid {fill.sum()}',
           file=sys.stderr)
     if not key.any():
-        return key, w, lab
+        return key, w, lab, key
     idx = ndi.distance_transform_edt(key, return_distances=False, return_indices=True)
-    return key, w, lab[tuple(idx)]
+    return key, w, lab[tuple(idx)], sk & key
+
+
+def keyline_band(spine, w):
+    """A constant-width band on the hairline's own centre line.
+
+    Taking the band from where the fills now meet gives a line one pixel wide
+    and broken at the diagonals, which renders as a dashed keyline. The
+    hairline's skeleton is already a connected centre line in the right
+    place, so the even band is just that line grown to half the width on
+    either side.
+    """
+    if not spine.any():
+        return spine
+    return ndi.distance_transform_edt(~spine) <= w / 2.0
 
 
 def main():
@@ -227,11 +249,15 @@ def main():
                     help='fold fills closer than this in RGB')
     ap.add_argument('--clean', type=int, default=3,
                     help='majority-filter window for edge pixels; 0 = off')
-    ap.add_argument('--speckle', type=int, default=16, help='drop blobs below N px')
+    ap.add_argument('--speckle', type=int, default=4,
+                    help="VTracer's speckle threshold; not a plain pixel area — "
+                         "at 16 it dropped the 120 px dots of the umlaut")
     ap.add_argument('--corner', type=int, default=60, help='corner threshold, degrees')
     ap.add_argument('--splice', type=int, default=45)
     ap.add_argument('--length', type=float, default=4.0)
-    ap.add_argument('--grow', type=int, default=1, help='px of overlap between fills')
+    ap.add_argument('--grow', type=int, default=0,
+                    help='px of overlap between fills; bridges narrow gaps, '
+                         'so off by default')
     ap.add_argument('--even-keyline', action='store_true',
                     help='redraw the dark hairline as one constant-width stroke')
     ap.add_argument('--keyline-lum', type=float, default=60.0,
@@ -254,13 +280,17 @@ def main():
     print(f'{100*fm.mean():.1f}% flat, {len(cols)} fills  [{time.time()-t:.1f}s]',
           file=sys.stderr)
 
-    key = None
+    band = kcol = None
     if a.even_keyline:
-        key, kw, lab = keyline_split(lab, cols, a.keyline_lum)
-        kw_pt = a.keyline_width or kw * sx
-        print(f'keyline: {key.sum()} px, measured {kw:.2f} px = {kw*sx:.2f} pt'
-              f' -> drawn at {kw_pt:.2f} pt', file=sys.stderr)
-        kband = ndi.distance_transform_edt(~key) <= max(kw, 2.0)
+        key, kw, lab, spine = keyline_split(lab, cols, a.keyline_lum)
+        if key.any():
+            kcol = min((c for c in cols if max(c) < a.keyline_lum),
+                       key=lambda c: sum(c))
+            kpx = (a.keyline_width / sx) if a.keyline_width else kw
+            band = keyline_band(spine, kpx)
+            print(f'keyline: {key.sum()} px, measured {kw:.2f} px = {kw*sx:.2f} pt'
+                  f' -> drawn at {kpx*sx:.2f} pt, {band.sum()} px',
+                  file=sys.stderr)
 
     work = tempfile.mkdtemp()
     order = sorted(range(len(cols)), key=lambda i: -(lab == i).sum())
@@ -268,8 +298,7 @@ def main():
 
     doc = pymupdf.open()
     page = doc.new_page(width=w_pt, height=h_pt)
-    nfill = nstroke = 0
-    strokes = []
+    nfill = nband = 0
     t = time.time()
     for i in order:
         m = lab == i
@@ -277,40 +306,36 @@ def main():
         if n < a.speckle:
             continue
         if a.grow:
-            # fills overlap by a pixel instead of abutting, so no hairline of
-            # the layer beneath shows through at a shared edge
+            # overlapping the fills hides any seam at a shared edge, but it
+            # also closes narrow gaps — at 400 dpi one pixel was enough to
+            # weld the two dots of the umlaut together and onto the O. Two
+            # binary masks traced on the same pixel grid already share their
+            # boundary exactly, so this is off unless asked for.
             m = ndi.binary_dilation(m, grow)
-        subs = trace_mask(m, work, a)
-        if not subs:
+        shapes = trace_mask(m, work, a)
+        if not shapes:
             continue
-        sh = page.new_shape()
-        emit(sh, subs, sx, sy)
-        sh.finish(color=None, fill=[v / 255 for v in cols[i]], even_odd=True,
-                  closePath=True, width=0)
-        sh.commit()
-        nfill += len(subs)
-        if key is not None:
-            # a contour that runs along the old hairline gets the even stroke
-            for sp in subs:
-                P = pts_of([sp])
-                if len(P) < 4:
-                    continue
-                yy = np.clip(P[:, 1].astype(int), 0, ph - 1)
-                xx = np.clip(P[:, 0].astype(int), 0, pw - 1)
-                if kband[yy, xx].mean() > 0.5:
-                    strokes.append(sp)
+        for subs in shapes:
+            sh = page.new_shape()
+            emit(sh, subs, sx, sy)
+            sh.finish(color=None, fill=[v / 255 for v in cols[i]], even_odd=True,
+                      closePath=True, width=0)
+            sh.commit()
+        nfill += len(shapes)
 
-    if strokes:
-        sh = page.new_shape()
-        emit(sh, strokes, sx, sy)
-        sh.finish(color=(0, 0, 0), fill=None, width=kw_pt, closePath=True,
-                  lineJoin=1, lineCap=1)
-        sh.commit()
-        nstroke = len(strokes)
+    if band is not None and band.any():
+        shapes = trace_mask(band, work, a)
+        for subs in shapes:
+            sh = page.new_shape()
+            emit(sh, subs, sx, sy)
+            sh.finish(color=None, fill=[v / 255 for v in kcol], even_odd=True,
+                      closePath=True, width=0)
+            sh.commit()
+        nband = len(shapes)
 
     doc.save(a.out_pdf, garbage=4, deflate=True)
     print(f'traced {len(order)} layers [{time.time()-t:.1f}s]', file=sys.stderr)
-    print(f'wrote {a.out_pdf}: {nfill} filled contours, {nstroke} stroked, '
+    print(f'wrote {a.out_pdf}: {nfill} filled contours, {nband} keyline, '
           f'{os.path.getsize(a.out_pdf)/1e6:.2f} MB  [total {time.time()-t0:.1f}s]',
           file=sys.stderr)
 
