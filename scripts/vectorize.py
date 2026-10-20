@@ -107,16 +107,21 @@ def quantize(img, cols, fm, win, paper, blobs=None):
                                      if n >= 0.002 * m.sum()})
             lab[sl][m] = _lut(cols, keep)[cube[sl]][m]
     if win >= 3:
-        h, w = lab.shape
-        ys, xs = np.nonzero(~fm)
-        r = win // 2
-        votes = np.zeros((len(ys), len(cols)), np.uint8)
-        rows = np.arange(len(ys))
-        for dy in range(-r, r + 1):
-            yy = np.clip(ys + dy, 0, h - 1)
-            for dx in range(-r, r + 1):
-                votes[rows, lab[yy, np.clip(xs + dx, 0, w - 1)]] += 1
-        lab[ys, xs] = votes.argmax(1)
+        # Smooth the decision over the whole page, not just the edge pixels.
+        # Pinning every flat pixel and letting the boundary move only inside
+        # the blurred band between fills forces the traced edge to follow
+        # that band exactly -- and in JPEG artwork the band carries ringing,
+        # so the edge came out bitten and stair-stepped. A Gaussian vote
+        # across all pixels smooths through the ringing; it cannot shift an
+        # interior, which is many sigma from any boundary.
+        sig = win / 3.0
+        best = np.zeros(lab.shape, np.float32)
+        out = np.zeros(lab.shape, np.int16)
+        for i in range(len(cols)):
+            v = ndi.gaussian_filter((lab == i).astype(np.float32), sig)
+            np.copyto(out, np.int16(i), where=v > best)
+            np.maximum(best, v, out=best)
+        lab = out
     return lab
 
 
