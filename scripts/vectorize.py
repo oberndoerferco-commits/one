@@ -224,7 +224,7 @@ def emit(shape, subs, sx, sy):
             shape.draw_line(cur, start)
 
 
-def keyline_split(lab, cols, lum):
+def keyline_split(lab, cols, lum, lum_soft):
     """(keyline mask, width in px, labels with the keyline dissolved away).
 
     The dark ink is both a hairline around the fills and, in a few badges, a
@@ -255,6 +255,21 @@ def keyline_split(lab, cols, lum):
           file=sys.stderr)
     if not key.any():
         return key, w, lab, key
+    # A hairline this thin only reaches pure black at its core; its flanks
+    # are a blend with whatever it divides, and on a page of many colours
+    # that blend is usually some other badge's fill — olive for black over
+    # yellow, brown for black over tan. Left as fills they flank the band
+    # that replaces the core, and the keyline reads brown with a black
+    # middle. They belong to the hairline, so take them into it.
+    lum = np.array([sum(c) / 3 for c in cols])
+    soft = lum[lab] < lum_soft
+    for _ in range(max(int(round(w / 2)), 1)):
+        nb = ndi.binary_dilation(key, np.ones((3, 3), bool)) & ~key & soft & ~fill
+        if not nb.any():
+            break
+        key |= nb
+    sk = skeletonize(key)
+    print(f'  hairline with its blend flanks: {key.sum()} px', file=sys.stderr)
     idx = ndi.distance_transform_edt(key, return_distances=False, return_indices=True)
     return key, w, lab[tuple(idx)], sk & key
 
@@ -298,6 +313,9 @@ def main():
                     help='redraw the dark hairline as one constant-width stroke')
     ap.add_argument('--keyline-lum', type=float, default=60.0,
                     help='max RGB channel below which a fill is keyline ink')
+    ap.add_argument('--soft-lum', type=float, default=140.0,
+                    help='mean RGB below which a fill flanking the hairline is '
+                         'taken to be its blended edge')
     ap.add_argument('--keyline-width', type=float, default=0.0,
                     help='keyline width in pt; 0 = the measured median')
     a = ap.parse_args()
@@ -321,7 +339,7 @@ def main():
 
     band = kcol = None
     if a.even_keyline:
-        key, kw, lab, spine = keyline_split(lab, cols, a.keyline_lum)
+        key, kw, lab, spine = keyline_split(lab, cols, a.keyline_lum, a.soft_lum)
         if key.any():
             kcol = min((c for c in cols if max(c) < a.keyline_lum),
                        key=lambda c: sum(c))
