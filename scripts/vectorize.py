@@ -224,7 +224,7 @@ def emit(shape, subs, sx, sy):
             shape.draw_line(cur, start)
 
 
-def keyline_split(lab, cols, lum, lum_soft):
+def keyline_split(lab, cols, lum, lum_soft, soft_grow):
     """(keyline mask, width in px, labels with the keyline dissolved away).
 
     The dark ink is both a hairline around the fills and, in a few badges, a
@@ -263,7 +263,7 @@ def keyline_split(lab, cols, lum, lum_soft):
     # middle. They belong to the hairline, so take them into it.
     lum = np.array([sum(c) / 3 for c in cols])
     soft = lum[lab] < lum_soft
-    for _ in range(max(int(round(w / 2)), 1)):
+    for _ in range(max(int(round(w * soft_grow)), 2)):
         nb = ndi.binary_dilation(key, np.ones((3, 3), bool)) & ~key & soft & ~fill
         if not nb.any():
             break
@@ -316,6 +316,8 @@ def main():
     ap.add_argument('--soft-lum', type=float, default=140.0,
                     help='mean RGB below which a fill flanking the hairline is '
                          'taken to be its blended edge')
+    ap.add_argument('--soft-grow', type=float, default=1.0,
+                    help='how far to absorb the blended flanks, in hairline widths')
     ap.add_argument('--keyline-width', type=float, default=0.0,
                     help='keyline width in pt; 0 = the measured median')
     a = ap.parse_args()
@@ -339,7 +341,7 @@ def main():
 
     band = kcol = None
     if a.even_keyline:
-        key, kw, lab, spine = keyline_split(lab, cols, a.keyline_lum, a.soft_lum)
+        key, kw, lab, spine = keyline_split(lab, cols, a.keyline_lum, a.soft_lum, a.soft_grow)
         if key.any():
             kcol = min((c for c in cols if max(c) < a.keyline_lum),
                        key=lambda c: sum(c))
