@@ -283,8 +283,9 @@ def main():
                     help='flat-area fraction for a colour to count as a fill')
     ap.add_argument('--merge', type=float, default=26.0,
                     help='fold fills closer than this in RGB')
-    ap.add_argument('--one-palette', action='store_true',
-                    help='match the whole page against every fill at once')
+    ap.add_argument('--blob-palette', action='store_true',
+                    help='match each blob only against fills with flat pixels '
+                         'inside it; starves blobs whose fills are faint')
     ap.add_argument('--clean', type=int, default=3,
                     help='majority-filter window for edge pixels; 0 = off')
     ap.add_argument('--speckle', type=int, default=4,
@@ -312,7 +313,7 @@ def main():
     fm = flat_mask(img)
     cols = palette(img, fm, a.min_area, a.merge)
     paper = max(range(len(cols)), key=lambda i: int(sum(cols[i])))
-    blobs = None if a.one_palette else blobs_of(img, cols, paper)
+    blobs = blobs_of(img, cols, paper) if a.blob_palette else None
     lab = quantize(img, cols, fm, a.clean, paper, blobs)
     print(f'{100*fm.mean():.1f}% flat, {len(cols)} fills, '
           f'{0 if blobs is None else len(blobs)} blobs  [{time.time()-t:.1f}s]',
