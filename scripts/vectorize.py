@@ -118,7 +118,8 @@ def quantize(img, cols, fm, win, paper, blobs=None):
         best = np.zeros(lab.shape, np.float32)
         out = np.zeros(lab.shape, np.int16)
         for i in range(len(cols)):
-            v = ndi.gaussian_filter((lab == i).astype(np.float32), sig)
+            v = ndi.gaussian_filter((lab == i).astype(np.float32), sig,
+                                    truncate=2.0, mode='nearest')
             np.copyto(out, np.int16(i), where=v > best)
             np.maximum(best, v, out=best)
         lab = out
