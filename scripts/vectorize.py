@@ -69,26 +69,43 @@ def palette(img, fm, frac, merge):
     return keep
 
 
-def quantize(img, cols, fm, win):
+def _lut(cols, keep):
+    """64^3 nearest-colour table restricted to the fills in `keep`."""
+    c = np.array([cols[i] for i in keep], np.int32)
+    grid = np.indices((64, 64, 64), dtype=np.int32).reshape(3, -1).T * 4 + 2
+    near = ((grid[:, None, :] - c[None, :, :]) ** 2).sum(-1).argmin(-1)
+    return np.array(keep, np.int16)[near]
+
+
+def quantize(img, cols, fm, win, paper, blobs=None):
     """Label every pixel with its fill, settling edges by majority vote.
 
     Matching every pixel on colour alone speckles the layers: an antialiased
     pixel is a blend of the two fills it divides, so it lands on whatever
-    third fill sits nearest it in RGB — a grey between black and white, and
-    so on. A majority filter settles each edge pixel on one of the fills
-    actually around it. Handing it instead to the nearest *flat* pixel also
-    de-speckles, but erases any feature thinner than the flatness window; it
-    ate the hairline ring around one of the badges.
+    third fill sits nearest it in RGB. A majority filter settles each edge
+    pixel on one of the fills actually around it.
 
-    Nearest-colour goes through a 64^3 lookup table instead of a distance to
-    every fill per pixel, and the vote is counted only on the edge pixels
-    that need it, which is a few per cent of the page.
+    The vote cannot help where the blend band is several pixels wide, and on
+    a page of many colours some fill usually *is* the blend of two others —
+    olive is black over yellow, brown is black over tan — so the soft edge of
+    a keyline came out as a foreign badge's colour, doubling the line. Each
+    blob of artwork is therefore matched only against the fills that have
+    flat pixels of their own inside it, which no blend of its neighbours can
+    satisfy.
     """
-    c = np.array(cols, np.int32)
-    grid = np.indices((64, 64, 64), dtype=np.int32).reshape(3, -1).T * 4 + 2
-    lut = ((grid[:, None, :] - c[None, :, :]) ** 2).sum(-1).argmin(-1).astype(np.int16)
     q = (img >> 2).astype(np.int32)
-    lab = lut[(q[..., 0] << 12) | (q[..., 1] << 6) | q[..., 2]]
+    cube = (q[..., 0] << 12) | (q[..., 1] << 6) | q[..., 2]
+    if blobs is None:
+        lab = _lut(cols, list(range(len(cols))))[cube]
+    else:
+        lab = np.full(img.shape[:2], paper, np.int16)
+        full = _lut(cols, list(range(len(cols))))
+        for sl, m in blobs:
+            inside = full[cube[sl]][m]
+            seen, cnt = np.unique(inside[fm[sl][m]], return_counts=True)
+            keep = sorted({paper} | {int(k) for k, n in zip(seen, cnt)
+                                     if n >= 0.002 * m.sum()})
+            lab[sl][m] = _lut(cols, keep)[cube[sl]][m]
     if win >= 3:
         h, w = lab.shape
         ys, xs = np.nonzero(~fm)
@@ -101,6 +118,22 @@ def quantize(img, cols, fm, win):
                 votes[rows, lab[yy, np.clip(xs + dx, 0, w - 1)]] += 1
         lab[ys, xs] = votes.argmax(1)
     return lab
+
+
+def blobs_of(img, cols, paper, pad=3):
+    """(slice, mask) per connected piece of artwork, with its soft edge."""
+    pc = np.array(cols[paper], np.int32)
+    ink = (np.abs(img - pc).max(-1) > 16)
+    ink = ndi.binary_dilation(ink, np.ones((2 * pad + 1,) * 2))
+    L, n = ndi.label(ink)
+    out = []
+    for i, sl in enumerate(ndi.find_objects(L), start=1):
+        if sl is None:
+            continue
+        m = L[sl] == i
+        if m.sum() >= 64:
+            out.append((sl, m))
+    return out
 
 
 NUM = re.compile(r'-?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?')
@@ -250,6 +283,8 @@ def main():
                     help='flat-area fraction for a colour to count as a fill')
     ap.add_argument('--merge', type=float, default=26.0,
                     help='fold fills closer than this in RGB')
+    ap.add_argument('--one-palette', action='store_true',
+                    help='match the whole page against every fill at once')
     ap.add_argument('--clean', type=int, default=3,
                     help='majority-filter window for edge pixels; 0 = off')
     ap.add_argument('--speckle', type=int, default=4,
@@ -276,8 +311,11 @@ def main():
     t = time.time()
     fm = flat_mask(img)
     cols = palette(img, fm, a.min_area, a.merge)
-    lab = quantize(img, cols, fm, a.clean)
-    print(f'{100*fm.mean():.1f}% flat, {len(cols)} fills  [{time.time()-t:.1f}s]',
+    paper = max(range(len(cols)), key=lambda i: int(sum(cols[i])))
+    blobs = None if a.one_palette else blobs_of(img, cols, paper)
+    lab = quantize(img, cols, fm, a.clean, paper, blobs)
+    print(f'{100*fm.mean():.1f}% flat, {len(cols)} fills, '
+          f'{0 if blobs is None else len(blobs)} blobs  [{time.time()-t:.1f}s]',
           file=sys.stderr)
 
     band = kcol = None
