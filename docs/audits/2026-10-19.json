@@ -1,0 +1,225 @@
+{
+  "date": "2026-10-19T12:34:00.631Z",
+  "origin": "https://www.oberndoerferco.com",
+  "pagesChecked": 40,
+  "productPagesChecked": 8,
+  "linksChecked": 152,
+  "seconds": 225,
+  "counts": {
+    "high": 6,
+    "medium": 0,
+    "low": 24
+  },
+  "findings": [
+    {
+      "severity": "high",
+      "area": "catalogue",
+      "page": "/products/wall-art-no-19-violet",
+      "message": "active product priced at 0",
+      "detail": "Wall Art No. 19 · Violet"
+    },
+    {
+      "severity": "high",
+      "area": "catalogue",
+      "page": "/products/wall-art-no-52-grey",
+      "message": "active product priced at 0",
+      "detail": "Wall Art No. 52 · Grey"
+    },
+    {
+      "severity": "high",
+      "area": "catalogue",
+      "page": "/products/wall-art-no-11-ochre-ii",
+      "message": "active product priced at 0",
+      "detail": "Wall Art No. 11 · Ochre II"
+    },
+    {
+      "severity": "high",
+      "area": "catalogue",
+      "page": "/products/wall-art-no-87-ochre-i",
+      "message": "active product priced at 0",
+      "detail": "Wall Art No. 87 · Ochre I"
+    },
+    {
+      "severity": "high",
+      "area": "catalogue",
+      "page": "/products/wall-art-no-34-taupe",
+      "message": "active product priced at 0",
+      "detail": "Wall Art No. 34 · Taupe"
+    },
+    {
+      "severity": "high",
+      "area": "catalogue",
+      "page": "/products/personalisation",
+      "message": "active product without a photograph",
+      "detail": "Personalisation"
+    },
+    {
+      "severity": "low",
+      "area": "catalogue",
+      "page": "/products/wall-art-no-19-violet",
+      "message": "no variant purchasable (sold out)",
+      "detail": "Wall Art No. 19 · Violet"
+    },
+    {
+      "severity": "low",
+      "area": "catalogue",
+      "page": "/products/wall-art-no-52-grey",
+      "message": "no variant purchasable (sold out)",
+      "detail": "Wall Art No. 52 · Grey"
+    },
+    {
+      "severity": "low",
+      "area": "catalogue",
+      "page": "/products/wall-art-no-11-ochre-ii",
+      "message": "no variant purchasable (sold out)",
+      "detail": "Wall Art No. 11 · Ochre II"
+    },
+    {
+      "severity": "low",
+      "area": "catalogue",
+      "page": "/products/wall-art-no-87-ochre-i",
+      "message": "no variant purchasable (sold out)",
+      "detail": "Wall Art No. 87 · Ochre I"
+    },
+    {
+      "severity": "low",
+      "area": "catalogue",
+      "page": "/products/wall-art-no-34-taupe",
+      "message": "no variant purchasable (sold out)",
+      "detail": "Wall Art No. 34 · Taupe"
+    },
+    {
+      "severity": "low",
+      "area": "catalogue",
+      "page": "/products/pink-bag-model-017",
+      "message": "no variant purchasable (sold out)",
+      "detail": "BAG MODEL 017 - Pink"
+    },
+    {
+      "severity": "low",
+      "area": "catalogue",
+      "page": "/products/blue-bag-model-017",
+      "message": "no variant purchasable (sold out)",
+      "detail": "BAG MODEL 017 - Light Blue"
+    },
+    {
+      "severity": "low",
+      "area": "catalogue",
+      "page": "/products/sac-himalaya-crocodile-leather-bag-italy",
+      "message": "no variant purchasable (sold out)",
+      "detail": "SAC Alligator - Himalaya"
+    },
+    {
+      "severity": "low",
+      "area": "catalogue",
+      "page": "/products/sac-brown-crocodile-leather-bag-italy",
+      "message": "no variant purchasable (sold out)",
+      "detail": "SAC Alligator - Brown"
+    },
+    {
+      "severity": "low",
+      "area": "catalogue",
+      "page": "/products/sac-green-crocodile-leather-bag-italy",
+      "message": "no variant purchasable (sold out)",
+      "detail": "SAC Alligator - Green"
+    },
+    {
+      "severity": "low",
+      "area": "catalogue",
+      "page": "/products/sac-blue-crocodile-leather-bag-italy",
+      "message": "no variant purchasable (sold out)",
+      "detail": "SAC Alligator - Blue"
+    },
+    {
+      "severity": "low",
+      "area": "catalogue",
+      "page": "/products/sac-black-crocodile-leather-bag-italy",
+      "message": "no variant purchasable (sold out)",
+      "detail": "SAC Alligator - Black"
+    },
+    {
+      "severity": "low",
+      "area": "catalogue",
+      "page": "/products/sac-yellow-crocodile-leather-bag-italy",
+      "message": "no variant purchasable (sold out)",
+      "detail": "SAC Alligator - Yellow"
+    },
+    {
+      "severity": "low",
+      "area": "catalogue",
+      "page": "/products/brown-suede-leather-watch-box",
+      "message": "no variant purchasable (sold out)",
+      "detail": "Leather Watch Box - Cognac Suede"
+    },
+    {
+      "severity": "low",
+      "area": "catalogue",
+      "page": "/products/yellow-leather-watch-box",
+      "message": "no variant purchasable (sold out)",
+      "detail": "Leather Watch Box - Yellow"
+    },
+    {
+      "severity": "low",
+      "area": "catalogue",
+      "page": "/products/pastel-blue-leather-watch-box",
+      "message": "no variant purchasable (sold out)",
+      "detail": "Leather Watch Box - Pastel Blue"
+    },
+    {
+      "severity": "low",
+      "area": "catalogue",
+      "page": "/products/brown-bag-model-017-italian-leather-tote-bag",
+      "message": "no variant purchasable (sold out)",
+      "detail": "BAG MODEL 017 - Brown"
+    },
+    {
+      "severity": "low",
+      "area": "catalogue",
+      "page": "/products/black-bag-model-017-italian-leather-tote-bag",
+      "message": "no variant purchasable (sold out)",
+      "detail": "BAG MODEL 017 - Black"
+    },
+    {
+      "severity": "low",
+      "area": "catalogue",
+      "page": "/products/sac-italian-brown-leather-backpack",
+      "message": "no variant purchasable (sold out)",
+      "detail": "SAC - Brown"
+    },
+    {
+      "severity": "low",
+      "area": "catalogue",
+      "page": "/products/crossbody-leather-bag-grey-sac",
+      "message": "no variant purchasable (sold out)",
+      "detail": "SAC - Grey"
+    },
+    {
+      "severity": "low",
+      "area": "catalogue",
+      "page": "/products/crossbody-leather-bag-blue-sac",
+      "message": "no variant purchasable (sold out)",
+      "detail": "SAC - Blue"
+    },
+    {
+      "severity": "low",
+      "area": "catalogue",
+      "page": "/products/crossbody-leather-bag-black-sac",
+      "message": "no variant purchasable (sold out)",
+      "detail": "SAC - Black"
+    },
+    {
+      "severity": "low",
+      "area": "catalogue",
+      "page": "/products/jewelry-box-x-trax-nyc",
+      "message": "no variant purchasable (sold out)",
+      "detail": "Jewelry Box x Trax Nyc"
+    },
+    {
+      "severity": "low",
+      "area": "catalogue",
+      "page": "/products/nabuk-red-jewelry-leather-box",
+      "message": "no variant purchasable (sold out)",
+      "detail": "Nabuk Leather Jewelry Box - Red"
+    }
+  ]
+}
