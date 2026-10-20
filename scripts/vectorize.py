@@ -258,9 +258,6 @@ def main():
     ap.add_argument('--corner', type=int, default=60, help='corner threshold, degrees')
     ap.add_argument('--splice', type=int, default=45)
     ap.add_argument('--length', type=float, default=4.0)
-    ap.add_argument('--grow', type=int, default=0,
-                    help='px of overlap between fills; bridges narrow gaps, '
-                         'so off by default')
     ap.add_argument('--even-keyline', action='store_true',
                     help='redraw the dark hairline as one constant-width stroke')
     ap.add_argument('--keyline-lum', type=float, default=60.0,
@@ -297,30 +294,26 @@ def main():
 
     work = tempfile.mkdtemp()
     order = sorted(range(len(cols)), key=lambda i: -(lab == i).sum())
-    # each layer carries everything painted after it, so a contour that a
-    # tracer pulls in by a fraction of a pixel uncovers the fill below rather
-    # than the bare page: no white or black fringe along a shared edge
-    rank = np.empty(len(cols), np.int32)
-    rank[np.array(order)] = np.arange(len(order))
-    R = rank[lab]
-    grow = np.ones((2 * a.grow + 1,) * 2, bool)
+    # Overlap each fill into its neighbours by a pixel, but never into the
+    # paper. Spline fitting pulls every contour in by a fraction of a pixel,
+    # so two fills traced as exact tiles stop meeting and the bare page shows
+    # between them; overlapping closes that. Growing into the paper as well
+    # is what welded the two dots of the umlaut together and onto the O, and
+    # against the paper there is nothing to hide anyway.
+    ink = lab != order[0]
+    grow = np.ones((3, 3), bool)
 
     doc = pymupdf.open()
     page = doc.new_page(width=w_pt, height=h_pt)
     nfill = nband = 0
     t = time.time()
-    for k, i in enumerate(order):
-        n = int((lab == i).sum())
+    for i in order:
+        m = lab == i
+        n = int(m.sum())
         if n < a.speckle:
             continue
-        m = R >= k
-        if a.grow:
-            # overlapping the fills hides any seam at a shared edge, but it
-            # also closes narrow gaps — at 400 dpi one pixel was enough to
-            # weld the two dots of the umlaut together and onto the O. Two
-            # binary masks traced on the same pixel grid already share their
-            # boundary exactly, so this is off unless asked for.
-            m = ndi.binary_dilation(m, grow)
+        if i != order[0]:
+            m = ndi.binary_dilation(m, grow) & (m | ink)
         shapes = trace_mask(m, work, a)
         if not shapes:
             continue
