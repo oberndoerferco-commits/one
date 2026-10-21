@@ -33,10 +33,17 @@ def glyphs(page, fill):
     return out
 
 
-def ink_boxes(page, dpi=300, floor=8000):
+def ink_boxes(page, dpi=300, floor=8000, drop=None):
+    """Badge boxes. The wordmark is dropped first: where it curves close in
+    it merges with the badge and the two come back as one blob."""
     pm = page.get_pixmap(dpi=dpi, alpha=False)
     a = np.frombuffer(pm.samples, np.uint8).reshape(pm.height, pm.width, 3)
-    L, n = ndi.label(ndi.binary_closing(a.min(-1) < 236, np.ones((7, 7))))
+    ink = a.min(-1) < 236
+    if drop:
+        c = np.array([int(drop[i:i + 2], 16) for i in (1, 3, 5)])
+        ink &= ~ndi.binary_dilation(np.abs(a.astype(int) - c).max(-1) < 70,
+                                    np.ones((5, 5)))
+    L, n = ndi.label(ndi.binary_closing(ink, np.ones((7, 7))))
     out = []
     for i, sl in enumerate(ndi.find_objects(L), 1):
         if sl and (L[sl] == i).sum() > floor:
@@ -57,14 +64,30 @@ def main():
     ap.add_argument('--pad', type=float, default=4.0)
     ap.add_argument('--size-mm', type=float, default=30.0)
     ap.add_argument('--gap-mm', type=float, default=5.0)
+    ap.add_argument('--region', default=None,
+                    help='x0,y0,x1,y1 to take just one lockup off the page')
     ap.add_argument('--text-under', type=float, default=380.0,
                     help='the wordmark belongs to badges right of this')
     a = ap.parse_args()
 
     doc = pymupdf.open(a.src)
     page = doc[a.page]
-    boxes = [b for b in ink_boxes(page) if b[0] >= a.min_x]
+    R = [float(v) for v in a.region.split(',')] if a.region else None
+    def inside(b):
+        if b[0] < a.min_x:
+            return False
+        return R is None or (b[0] >= R[0] and b[1] >= R[1]
+                             and b[2] <= R[2] and b[3] <= R[3])
+    boxes = [b for b in ink_boxes(page, drop=a.text_fill) if inside(b)]
     gl = glyphs(page, a.text_fill)
+    if R:
+        def within(sh):
+            q = [p for sp in sh for op, p in sp
+                 for p in ([p] if op != 'C' else p)]
+            cx = sum(v[0] for v in q) / len(q)
+            cy = sum(v[1] for v in q) / len(q)
+            return R[0] <= cx <= R[2] and R[1] <= cy <= R[3]
+        gl = [sh for sh in gl if within(sh)]
     pts = [p for sh in gl for sp in sh for op, p in sp
            for p in ([p] if op != 'C' else p)]
     gx0 = min(q[0] for q in pts); gx1 = max(q[0] for q in pts)
@@ -115,16 +138,25 @@ def main():
     by = cy
     TX = lambda q: ((q[0] - ax) * sc + bx, (q[1] - ay) * sc + by)
 
-    pw_total = a.pad * 2 + n * W + (n - 1) * gap
+    # the page has to hold the wordmark too: it reaches wider than the
+    # badges it curves around, and above and below them
     tp = [TX(q) for sh in gl for sp in sh for op, p in sp
-          for q in ([p] if op != 'C' else p)]
-    ph_total = max([p[1] + p[3] for p in placed] + [max(q[1] for q in tp)]) + a.pad
+          for q in ([p] if op != 'C' else p)] or [(0, 0)]
+    lo_x = min([p[0] for p in placed] + [q[0] for q in tp])
+    hi_x = max([p[0] + p[2] for p in placed] + [q[0] for q in tp])
+    lo_y = min([p[1] for p in placed] + [q[1] for q in tp])
+    hi_y = max([p[1] + p[3] for p in placed] + [q[1] for q in tp])
+    ox, oy = a.pad - lo_x, a.pad - lo_y
+    pw_total = hi_x - lo_x + 2 * a.pad
+    ph_total = hi_y - lo_y + 2 * a.pad
+    TX0, TX = TX, (lambda q, f=TX: (f(q)[0] + ox, f(q)[1] + oy))
 
     out = pymupdf.open()
     pg = out.new_page(width=pw_total, height=ph_total)
     for f, (x, y, w, h) in zip(a.badges, placed):
         d = pymupdf.open(f)
-        pg.show_pdf_page(pymupdf.Rect(x, y, x + w, y + h), d, 0)
+        pg.show_pdf_page(pymupdf.Rect(x + ox, y + oy,
+                                      x + ox + w, y + oy + h), d, 0)
     col = [int(a.text_fill[i:i + 2], 16) / 255 for i in (1, 3, 5)]
     for sh in gl:
         s = pg.new_shape()
