@@ -123,10 +123,21 @@ def main():
                     draw(page, np.array(geo.exterior.coords), g['fill'], key, 0)
 
         if g['dot_r'] > 0:
+            c = pymupdf.Point(W / 2, W / 2)
+            ring = g.get('dot_ring', 0.0) * W
+            edge = g.get('dot_edge') or key
+            if ring > 0:
+                # the ring is its own disc beneath, not a stroke, so its
+                # weight is exactly what was measured
+                sh = page.new_shape()
+                sh.draw_circle(c, g['dot_r'] * W + ring)
+                sh.finish(color=None, fill=[v / 255 for v in edge], width=0)
+                sh.commit()
             sh = page.new_shape()
-            sh.draw_circle(pymupdf.Point(W / 2, W / 2), g['dot_r'] * W)
-            sh.finish(color=[v / 255 for v in key] if kw else None,
-                      fill=[v / 255 for v in g['dot']], width=kw, closePath=True)
+            sh.draw_circle(c, g['dot_r'] * W)
+            sh.finish(color=[v / 255 for v in key] if (kw and not ring) else None,
+                      fill=[v / 255 for v in g['dot']],
+                      width=kw if (kw and not ring) else 0, closePath=True)
             sh.commit()
 
         f = os.path.join(a.out_dir, f'badge-{n}.pdf')
@@ -135,7 +146,8 @@ def main():
         print(f"badge {n}: {g['shape'] or 'no ground'}, cross "
               f"#{'%02x%02x%02x' % g['fill']}, "
               f"{'keyline' if dark else 'band'} #{'%02x%02x%02x' % key} "
-              f"{(kw or band):.2f} pt, dot r {g['dot_r']*W:.2f} pt", file=sys.stderr)
+              f"{(kw or band):.2f} pt, dot r {g['dot_r']*W:.2f} pt"
+              f" + ring {g.get('dot_ring',0)*W:.2f} pt", file=sys.stderr)
 
     gap = pad = 6 * MM
     tw = sum(w for _, w, _ in made) + gap * (len(made) - 1) + 2 * pad

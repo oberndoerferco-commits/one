@@ -145,12 +145,26 @@ def measure(img, cross, a):
     yy, xx = np.ogrid[:H, :W]
     rr = np.hypot(yy - cy, xx - cx)
     dot_col = _modal(rgb, rr <= side * 0.012)
-    dot_r = 0.0
+    dot_r = dot_ring = 0.0
+    dot_edge = None
     for r in np.arange(side * 0.012, side * 0.10, 0.5):
         ring = (rr > r) & (rr <= r + 2)
-        if np.abs(np.array(_modal(rgb, ring)) - np.array(dot_col)).max() > 40:
-            dot_r = r / side
+        c = _modal(rgb, ring)
+        # tighter than elsewhere: this badge's two greens differ by 38, so a
+        # threshold of 40 reads the dot and its ring as one colour
+        if np.abs(np.array(c) - np.array(dot_col)).max() > 22:
+            dot_r, dot_edge = r / side, c
             break
+    if dot_edge is not None:
+        # the dot has its own outline, a ring of its own colour round it,
+        # and drawing it as one flat disc loses that
+        # start past the boundary itself, or the core colour still in the
+        # first ring ends the walk before it begins
+        for r in np.arange(dot_r * side + 2.5, side * 0.16, 0.5):
+            ring = (rr > r) & (rr <= r + 2)
+            if np.abs(np.array(_modal(rgb, ring)) - np.array(dot_edge)).max() > 22:
+                dot_ring = r / side - dot_r
+                break
 
     # the keyline round the ground, same ink as the band when it is dark
     gw, gh = box[2] - box[0], box[3] - box[1]
@@ -168,6 +182,7 @@ def measure(img, cross, a):
     return dict(ground=ground, shape=shape, band=outer, band_w=band_w / side,
                 key=key, key_w=key_w, bw=bw,
                 fill=fill, dot=dot_col, dot_r=dot_r,
+                dot_ring=dot_ring, dot_edge=dot_edge,
                 cross_w=gw / bw, cross_h=gh / bh, side=side,
                 box=box, H=H, W=W)
 
