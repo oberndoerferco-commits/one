@@ -22,35 +22,94 @@ from vectorize import _key, parse_svg, emit, _lut   # noqa: E402
 MM = 72.0 / 25.4
 
 
-def badges_of(src, dpi, min_mm, pad=4):
-    """Each badge on the page as its own RGBA crop.
+def _top(rgb, m, k=3):
+    """The k commonest colours inside a mask, with the share each covers."""
+    v = rgb[m]
+    q = (v // 8).astype(np.int64)
+    ks, cnt = np.unique((q[:, 0] << 16) | (q[:, 1] << 8) | q[:, 2], return_counts=True)
+    out = []
+    for i in np.argsort(-cnt)[:k]:
+        key = int(ks[i])
+        out.append((np.array([(key >> 16) & 255, (key >> 8) & 255, key & 255]) * 8 + 4,
+                    float(cnt[i]) / m.sum()))
+    return out
 
-    Not the embedded rasters: each of those holds several colourways at once
-    and the page clips it down to the one it shows, so the raster carries
-    artwork that is not on the page, and its placement box spans the lot.
-    The rendered page is what the file actually shows, and the badges are
-    well separated on it, so one connected piece of ink is one badge.
+
+def _dist(x, y):
+    """How unlike two colourways are, by colour and by how much each covers.
+
+    The share matters as much as the colour: two colourways of one badge are
+    often the same two inks swapped over -- a tan ground with a blue cross
+    and a blue ground with a tan cross -- and on colour alone they match
+    each other exactly.
     """
-    page = pymupdf.open(src)[0]
+    if not x or not y:
+        return 1e9
+    tot = 0.0
+    for c, f in x:
+        d, g = min(((np.linalg.norm(c - o), fo) for o, fo in y), key=lambda t: t[0])
+        tot += d + 400.0 * abs(f - g)
+    return tot / len(x)
+
+
+def badges_of(src, dpi, min_mm, pad=4):
+    """Each badge the page shows, at its raster's own resolution.
+
+    The page is only used to find out which artwork it shows. Reading the
+    badges off the rendered page instead costs real detail: each raster
+    carries three colourways at four or five hundred pixels each, the page
+    clips it to one and scales that up past eight hundred, and the renderer
+    doubles pixels rather than interpolating -- so a diagonal edge arrives
+    as a staircase with two-pixel steps that no amount of smoothing
+    afterwards can undo. The raster still has the artwork as drawn.
+    """
+    doc = pymupdf.open(src)
+    page = doc[0]
     pm = page.get_pixmap(dpi=dpi, alpha=False)
-    img = np.frombuffer(pm.samples, np.uint8).reshape(pm.height, pm.width, 3)
-    ink = img.min(-1) < 236
+    pimg = np.frombuffer(pm.samples, np.uint8).reshape(pm.height, pm.width, 3)
+    ink = pimg.min(-1) < 236
     L, n = ndi.label(ndi.binary_closing(ink, np.ones((5, 5))))
-    out, floor = [], (min_mm / 25.4 * dpi) ** 2 * 0.1
+    floor = (min_mm / 25.4 * dpi) ** 2 * 0.1
+    shown = []
     for i, sl in enumerate(ndi.find_objects(L), start=1):
         if sl is None:
             continue
         m = L[sl] == i
-        if m.sum() < floor:
+        if m.sum() >= floor:
+            shown.append((sl[1].start, _top(pimg[sl], m)))
+    shown.sort(key=lambda t: t[0])
+
+    # every colourway in every raster, at native size
+    cands = []
+    for xr in dict.fromkeys(b['xref'] for b in page.get_image_info(xrefs=True)):
+        pix = pymupdf.Pixmap(doc, xr)
+        sm = doc.xref_get_key(xr, 'SMask')
+        if sm[0] == 'xref':
+            pix = pymupdf.Pixmap(pix, pymupdf.Pixmap(doc, int(sm[1].split()[0])))
+        a = np.frombuffer(pix.samples, np.uint8).reshape(pix.height, pix.width, pix.n)
+        if pix.n == 3:
+            a = np.dstack([a, np.full(a.shape[:2], 255, np.uint8)])
+        al = a[..., 3] > 128
+        Lr, nr = ndi.label(ndi.binary_closing(al, np.ones((5, 5))))
+        for i, sl in enumerate(ndi.find_objects(Lr), start=1):
+            if sl is None:
+                continue
+            m = ndi.binary_fill_holes(Lr[sl] == i)
+            if m.sum() < 20000:
+                continue
+            c = a[sl][..., :3].copy()
+            crop = np.dstack([c, np.where(m, 255, 0).astype(np.uint8)])
+            cands.append((_top(c, m), np.pad(crop, ((pad, pad), (pad, pad), (0, 0)))))
+
+    out, used = [], set()
+    for _, want in shown:
+        best = min((j for j in range(len(cands)) if j not in used),
+                   key=lambda j: _dist(want, cands[j][0]), default=None)
+        if best is None:
             continue
-        m = ndi.binary_fill_holes(m)
-        y, x = sl
-        c = img[sl].astype(np.uint8)
-        a = np.dstack([c, np.where(m, 255, 0).astype(np.uint8)])
-        a = np.pad(a, ((pad, pad), (pad, pad), (0, 0)))
-        out.append((a, x.start, y.start))
-    out.sort(key=lambda t: t[1])
-    return [a for a, _, _ in out]
+        used.add(best)
+        out.append(cands[best][1])
+    return out
 
 
 def flat_mask(img, need=5):
@@ -216,6 +275,31 @@ def even_outline(lab, cols, lum, min_frac):
     return out, band, w, kcol
 
 
+def upsample(m, u, sigma):
+    """A mask at u times the scale, with its edge placed between pixels.
+
+    A binary mask only knows whole pixels, so a diagonal edge is a
+    staircase, and the tracer reproduces the staircase faithfully --
+    it has nothing else to go on, whatever the corner threshold. Scaling
+    the mask up as a continuous field and cutting it at a half puts the
+    edge where it actually falls, between pixels, and the steps shrink with
+    u rather than surviving at full size.
+    """
+    if u <= 1:
+        return m
+    # Scale up the signed distance to the edge, not the mask itself. A mask
+    # interpolates between 0 and 1 and can still only put the edge at a
+    # pixel centre, so the staircase survives at a quarter the size; the
+    # distance field is smooth and roughly linear across the edge, so
+    # interpolating it puts the edge where it belongs and the steps go.
+    d = (ndi.distance_transform_edt(m).astype(np.float32)
+         - ndi.distance_transform_edt(~m).astype(np.float32))
+    f = ndi.zoom(d, u, order=1, mode='nearest')
+    if sigma:
+        f = ndi.gaussian_filter(f, sigma, truncate=2.0, mode='nearest')
+    return f >= 0
+
+
 def trace(mask, work, opts):
     png, svg = os.path.join(work, 'm.png'), os.path.join(work, 'm.svg')
     Image.fromarray(np.where(mask, 0, 255).astype(np.uint8)).save(png)
@@ -234,7 +318,9 @@ def main():
     ap.add_argument('--width-mm', type=float, default=30.0)
     ap.add_argument('--dpi', type=int, default=600,
                     help='resolution the page is read at')
-    ap.add_argument('--sigma', type=float, default=1.7, help='edge smoothing, px')
+    ap.add_argument('--sigma', type=float, default=0.6,
+                    help='edge smoothing in source px; the hairline is only '
+                         'two px wide, so this cannot go much higher')
     ap.add_argument('--min-area', type=float, default=0.0006)
     ap.add_argument('--merge', type=float, default=26.0)
     ap.add_argument('--blend-tol', type=float, default=0.18,
@@ -243,6 +329,11 @@ def main():
     ap.add_argument('--min-blob', type=float, default=0.002,
                     help="smallest island of a fill to keep, as a "
                          "fraction of the badge's ink")
+    ap.add_argument('--supersample', type=int, default=4,
+                    help='scale the mask up by this before tracing, so the\n'
+                         'edge can fall between pixels')
+    ap.add_argument('--up-sigma', type=float, default=2.0,
+                    help='smoothing on the scaled-up mask, in its own px')
     ap.add_argument('--speckle', type=int, default=4)
     ap.add_argument('--corner', type=int, default=60)
     ap.add_argument('--splice', type=int, default=45)
@@ -285,23 +376,25 @@ def main():
         page = out.new_page(width=pw * s, height=ph * s)
 
         order = sorted(range(len(cols)), key=lambda i: -(lab == i).sum())
+        keep_u = upsample(lab >= 0, a.supersample, a.up_sigma)
         shapes = 0
         for i in order:
             m = lab == i
             if m.sum() < a.speckle:
                 continue
-            m = ndi.binary_dilation(m, np.ones((3, 3), bool)) & (lab >= 0)
-            for subs in trace(m, work, a):
+            mu = upsample(m, a.supersample, a.up_sigma)
+            mu = ndi.binary_dilation(mu, np.ones((3, 3), bool)) & keep_u
+            for subs in trace(mu, work, a):
                 sh = page.new_shape()
-                emit(sh, subs, s, s)
+                emit(sh, subs, s / a.supersample, s / a.supersample)
                 sh.finish(color=None, fill=[v / 255 for v in cols[i]],
                           even_odd=True, closePath=True, width=0)
                 sh.commit()
                 shapes += 1
         if band is not None and band.any():
-            for subs in trace(band, work, a):
+            for subs in trace(upsample(band, a.supersample, a.up_sigma), work, a):
                 sh = page.new_shape()
-                emit(sh, subs, s, s)
+                emit(sh, subs, s / a.supersample, s / a.supersample)
                 sh.finish(color=None, fill=[v / 255 for v in cols[kcol]],
                           even_odd=True, closePath=True, width=0)
                 sh.commit()
