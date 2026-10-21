@@ -142,7 +142,9 @@ def blobs_of(img, cols, paper, pad=3):
     return out
 
 
-NUM = re.compile(r'-?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?')
+# SVG writes decimals without a leading zero, and a pattern that
+# demands one reads ".0376" as the integer 376
+NUM = re.compile(r'[-+]?(?:\d+\.?\d*|\.\d+)(?:[eE][-+]?\d+)?')
 PATH = re.compile(r'<path\s+d="([^"]+)"(?:[^>]*?fill="#([0-9a-fA-F]{6})")?'
                   r'(?:[^>]*?transform="translate\(([^)]*)\)")?[^>]*>')
 

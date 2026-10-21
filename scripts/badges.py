@@ -52,7 +52,7 @@ def _dist(x, y):
     return tot / len(x)
 
 
-def badges_of(src, dpi, min_mm, scale=2, pad=4):
+def badges_of(src, dpi, min_mm, scale=2, pad=4, pageno=0):
     """Each badge the page shows, at its raster's own resolution.
 
     The page is only used to find out which artwork it shows. Reading the
@@ -64,7 +64,7 @@ def badges_of(src, dpi, min_mm, scale=2, pad=4):
     afterwards can undo. The raster still has the artwork as drawn.
     """
     doc = pymupdf.open(src)
-    page = doc[0]
+    page = doc[pageno]
     pm = page.get_pixmap(dpi=dpi, alpha=False)
     pimg = np.frombuffer(pm.samples, np.uint8).reshape(pm.height, pm.width, 3)
     ink = pimg.min(-1) < 236

@@ -58,6 +58,8 @@ def main():
     ap.add_argument('out_dir')
     ap.add_argument('--width-mm', type=float, default=30.0)
     ap.add_argument('--dpi', type=int, default=600)
+    ap.add_argument('--page', type=int, default=0)
+    ap.add_argument('--start', type=int, default=1)
     ap.add_argument('--pre-scale', type=int, default=2)
     ap.add_argument('--sigma', type=float, default=1.1)
     ap.add_argument('--min-area', type=float, default=0.0006)
@@ -89,7 +91,7 @@ def main():
 
     W = a.width_mm * MM
     made = []
-    for n, img in enumerate(badges_of(a.src, a.dpi, a.width_mm, a.pre_scale), 1):
+    for n, img in enumerate(badges_of(a.src, a.dpi, a.width_mm, a.pre_scale, pageno=a.page), 1):
         g = measure(img, ref, a)
         kd, bd = g['key_w'] * W, g['band_w'] * W
         dark = g['key'] is not None and kd >= bd
@@ -140,7 +142,7 @@ def main():
                       width=kw if (kw and not ring) else 0, closePath=True)
             sh.commit()
 
-        f = os.path.join(a.out_dir, f'badge-{n}.pdf')
+        f = os.path.join(a.out_dir, f'badge-{a.start + n - 1}.pdf')
         out.save(f, garbage=4, deflate=True)
         made.append((f, W, W))
         print(f"badge {n}: {g['shape'] or 'no ground'}, cross "
