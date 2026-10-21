@@ -66,6 +66,8 @@ def main():
     ap.add_argument('--min-blob', type=float, default=0.002)
     ap.add_argument('--outline-lum', type=float, default=90.0)
     ap.add_argument('--corner', type=int, default=60)
+    ap.add_argument('--band-scale', type=float, default=0.88,
+                    help='trim the coloured band by this factor')
     a = ap.parse_args()
 
     os.makedirs(a.out_dir, exist_ok=True)
@@ -93,7 +95,7 @@ def main():
         dark = g['key'] is not None and kd >= bd
         key = g['key'] if dark else g['band']
         kw = kd if dark else 0.0
-        band = 0.0 if dark else bd
+        band = 0.0 if dark else bd * a.band_scale
 
         out = pymupdf.open()
         page = out.new_page(width=W, height=W)
