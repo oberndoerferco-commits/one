@@ -348,6 +348,8 @@ def main():
     ap.add_argument('--supersample', type=int, default=4,
                     help='scale the mask up by this before tracing, so the\n'
                          'edge can fall between pixels')
+    ap.add_argument('--band-sigma', type=float, default=4.0,
+                    help='smoothing on the outline band, in upscaled px')
     ap.add_argument('--up-sigma', type=float, default=2.0,
                     help='smoothing on the scaled-up mask, in its own px')
     ap.add_argument('--speckle', type=int, default=4)
@@ -408,7 +410,16 @@ def main():
                 sh.commit()
                 shapes += 1
         if band is not None and band.any():
-            for subs in trace(upsample(band, a.supersample, a.up_sigma), work, a):
+            # the band gets the same dilation the fills got, or they eat into
+            # it from both sides and the outline comes out uneven -- thick at
+            # a spike's tip, thin along its flank
+            # the band is grown off a skeleton, and a skeleton jitters by a
+            # pixel wherever the shape it came from is a little fatter on one
+            # side; dilated, that jitter becomes a visibly wavy outline, so
+            # the band is smoothed harder than the fills are
+            bu = upsample(band, a.supersample, a.band_sigma)
+            bu = ndi.binary_dilation(bu, np.ones((3, 3), bool)) & keep_u
+            for subs in trace(bu, work, a):
                 sh = page.new_shape()
                 emit(sh, subs, s / a.supersample, s / a.supersample)
                 sh.finish(color=None, fill=[v / 255 for v in cols[kcol]],
