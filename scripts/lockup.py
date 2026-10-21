@@ -52,7 +52,8 @@ def main():
     ap.add_argument('badges', nargs='+', help='vector badge PDFs, left to right')
     ap.add_argument('--page', type=int, default=1)
     ap.add_argument('--text-fill', default='#25754a')
-    ap.add_argument('--min-x', type=float, default=380.0)
+    ap.add_argument('--min-x', type=float, default=0.0,
+                    help='ignore ink left of this; 0 keeps the whole row')
     ap.add_argument('--pad', type=float, default=4.0)
     a = ap.parse_args()
 
