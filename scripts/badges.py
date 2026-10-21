@@ -72,7 +72,7 @@ def flat_mask(img, need=5):
     return out
 
 
-def palette(img, fm, frac, merge, blend_tol):
+def palette(img, fm, frac, merge, blend_tol, thick=2.0):
     """The badge's own fills: flat colours by area, blends discarded.
 
     Relaxing the flatness test enough to admit a two-pixel hairline also
@@ -95,23 +95,36 @@ def palette(img, fm, frac, merge, blend_tol):
             continue
         keep.append(tuple(int(v) for v in c))
         keep_n.append(int(cnt[i]))
+    # Sitting on the line is necessary but not sufficient: a real ink can
+    # land there by chance, as this artwork's mid green does between its
+    # yellow and its dark green. What a blend cannot have is body. It exists
+    # only as a film along the boundary it divides, so it is thin
+    # everywhere, while an ink -- even a hairline -- has a core.
+    lut = _lut(keep, list(range(len(keep))))
+    qq = (img >> 2).astype(np.int32)
+    hard = lut[(qq[..., 0] << 12) | (qq[..., 1] << 6) | qq[..., 2]]
+    hard[~fm & ~ndi.binary_dilation(fm, np.ones((3, 3)))] = -1
     out = []
     for i, c in enumerate(keep):
         p0 = np.array(c, float)
-        blend = False
-        for j, cj in enumerate(keep):
-            for l, cl in enumerate(keep):
-                if j >= l or i in (j, l) or keep_n[j] <= keep_n[i] or keep_n[l] <= keep_n[i]:
+        on_line = False
+        for j in range(len(keep)):
+            for l in range(j + 1, len(keep)):
+                if i in (j, l) or keep_n[j] <= keep_n[i] or keep_n[l] <= keep_n[i]:
                     continue
-                a, b = np.array(cj, float), np.array(cl, float)
+                a, b = np.array(keep[j], float), np.array(keep[l], float)
                 ab = b - a
                 n = np.dot(ab, ab)
                 if n < 1:
                     continue
                 t = np.clip(np.dot(p0 - a, ab) / n, 0, 1)
                 if 0.1 < t < 0.9 and np.linalg.norm(p0 - (a + t * ab)) < blend_tol * np.sqrt(n):
-                    blend = True
-        if not blend:
+                    on_line = True
+        if not on_line:
+            out.append(c)
+            continue
+        d = ndi.distance_transform_edt(hard == i)
+        if d.max() >= thick:
             out.append(c)
     return out
 
@@ -135,6 +148,44 @@ def label_badge(img, ink, cols, sigma):
                                 truncate=2.0, mode='nearest')
         np.copyto(out, np.int16(i), where=(v > best) & ink)
         np.maximum(best, v, out=best)
+    return out
+
+
+def despeckle(lab, ink, floor, skip=()):
+    """Drop each fill's small islands into whatever surrounds them.
+
+    Two fills a few levels apart -- this artwork's two greens -- swap
+    pixels wherever JPEG noise pushes one over the line, and the band comes
+    out mottled with patches of the other. What separates a patch from the
+    real thing is not colour but size: the centre dot is one solid region,
+    the mottle is scattered crumbs.
+    """
+    out = lab.copy()
+    drop = np.zeros(lab.shape, bool)
+    for i in range(int(lab.max()) + 1):
+        # the hairline is exempt: it is legitimately small and broken into
+        # short runs, and sweeping it up takes the ring off every centre dot
+        if i in skip:
+            continue
+        m = lab == i
+        if not m.any():
+            continue
+        L, n = ndi.label(m)
+        if n < 2:
+            continue
+        sz = np.bincount(L.ravel())
+        small = np.flatnonzero(sz < floor)
+        if small.size:
+            drop |= np.isin(L, small[small > 0])
+    if not drop.any():
+        return out
+    out[drop] = -1
+    keep = (out >= 0)
+    if not keep.any():
+        return lab
+    idx = ndi.distance_transform_edt(~keep, return_distances=False, return_indices=True)
+    out = out[tuple(idx)]
+    out[~ink] = -1
     return out
 
 
@@ -189,6 +240,9 @@ def main():
     ap.add_argument('--blend-tol', type=float, default=0.18,
                     help='how near the line between two fills a colour '
                          'must sit to count as their blend')
+    ap.add_argument('--min-blob', type=float, default=0.002,
+                    help="smallest island of a fill to keep, as a "
+                         "fraction of the badge's ink")
     ap.add_argument('--speckle', type=int, default=4)
     ap.add_argument('--corner', type=int, default=60)
     ap.add_argument('--splice', type=int, default=45)
@@ -212,6 +266,8 @@ def main():
                        a.merge, a.blend_tol)
         lab = label_badge(img[..., :3].astype(np.int32), ink, cols, a.sigma)
 
+        dark = {i for i, c in enumerate(cols) if max(c) < a.outline_lum}
+        lab = despeckle(lab, ink, a.min_blob * ink.sum(), dark)
         band = kcol = None
         res = None if a.no_even_outline else even_outline(lab, cols, a.outline_lum, 0.002)
         if res:
