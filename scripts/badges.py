@@ -52,7 +52,7 @@ def _dist(x, y):
     return tot / len(x)
 
 
-def badges_of(src, dpi, min_mm, pad=4):
+def badges_of(src, dpi, min_mm, scale=2, pad=4):
     """Each badge the page shows, at its raster's own resolution.
 
     The page is only used to find out which artwork it shows. Reading the
@@ -99,7 +99,18 @@ def badges_of(src, dpi, min_mm, pad=4):
                 continue
             c = a[sl][..., :3].copy()
             crop = np.dstack([c, np.where(m, 255, 0).astype(np.uint8)])
-            cands.append((_top(c, m), np.pad(crop, ((pad, pad), (pad, pad), (0, 0)))))
+            crop = np.pad(crop, ((pad, pad), (pad, pad), (0, 0)))
+            if scale > 1:
+                # Cubic, not the pixel doubling the page renderer does. The
+                # extra pixels carry no new detail, but a hairline two pixels
+                # wide cannot be measured or redrawn to better than half a
+                # pixel, and at this size half a pixel is a fifth of its
+                # width -- which is what made the outline come out heavy.
+                crop = np.dstack([
+                    np.clip(ndi.zoom(crop[..., i].astype(np.float32), scale,
+                                     order=3, mode='nearest'), 0, 255)
+                    for i in range(4)]).astype(np.uint8)
+            cands.append((_top(c, m), crop))
 
     out, used = [], set()
     for _, want in shown:
@@ -260,7 +271,10 @@ def even_outline(lab, cols, lum, min_frac):
     sk = skeletonize(m)
     if not sk.any():
         return None
-    w = 2 * float(np.median(dist[sk]))
+    # area over length, not twice the median distance: on a line only a
+    # few pixels wide the distance transform rounds up at every step and
+    # the outline comes back a third too heavy
+    w = float(m.sum()) / max(int(sk.sum()), 1)
     core = dist > w * 2.5
     fill = ndi.binary_propagation(core, mask=m)
     key = m & ~fill
@@ -318,7 +332,9 @@ def main():
     ap.add_argument('--width-mm', type=float, default=30.0)
     ap.add_argument('--dpi', type=int, default=600,
                     help='resolution the page is read at')
-    ap.add_argument('--sigma', type=float, default=0.6,
+    ap.add_argument('--pre-scale', type=int, default=2,
+                    help='scale the raster up by this before reading it')
+    ap.add_argument('--sigma', type=float, default=1.1,
                     help='edge smoothing in source px; the hairline is only '
                          'two px wide, so this cannot go much higher')
     ap.add_argument('--min-area', type=float, default=0.0006)
@@ -343,7 +359,7 @@ def main():
     a = ap.parse_args()
 
     os.makedirs(a.out_dir, exist_ok=True)
-    imgs = badges_of(a.src, a.dpi, a.width_mm)
+    imgs = badges_of(a.src, a.dpi, a.width_mm, a.pre_scale)
     print(f'{len(imgs)} badges on the page', file=sys.stderr)
     work = tempfile.mkdtemp()
     W = a.width_mm * MM
