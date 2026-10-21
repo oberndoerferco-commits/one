@@ -284,7 +284,10 @@ def even_outline(lab, cols, lum, min_frac):
     idx = ndi.distance_transform_edt(key, return_distances=False, return_indices=True)
     out[key] = lab[tuple(idx)][key]
     spine = skeletonize(key)
-    band = (ndi.distance_transform_edt(~spine) <= w / 2.0) & (lab >= 0)
+    # a threshold of w/2 round a one-pixel spine gives a band of w+1, and
+    # the fills' dilation adds more on top, so the outline printed a
+    # third heavier than the drawing's
+    band = (ndi.distance_transform_edt(~spine) <= (w - 1.0) / 2.0) & (lab >= 0)
     kcol = min(dark, key=lambda i: sum(cols[i]))
     return out, band, w, kcol
 
@@ -357,7 +360,11 @@ def main():
     ap.add_argument('--splice', type=int, default=45)
     ap.add_argument('--length', type=float, default=4.0)
     ap.add_argument('--outline-lum', type=float, default=90.0)
-    ap.add_argument('--no-even-outline', action='store_true')
+    ap.add_argument('--even-outline', action='store_true',
+                    help='rebuild the hairline at one width. Measured worse '
+                         'than tracing it as drawn: 44% variation against 12%')
+    ap.add_argument('--outline-trim', type=int, default=1,
+                    help='shave this many upscaled px off the hairline')
     a = ap.parse_args()
 
     os.makedirs(a.out_dir, exist_ok=True)
@@ -378,7 +385,7 @@ def main():
         dark = {i for i, c in enumerate(cols) if max(c) < a.outline_lum}
         lab = despeckle(lab, ink, a.min_blob * ink.sum(), dark)
         band = kcol = None
-        res = None if a.no_even_outline else even_outline(lab, cols, a.outline_lum, 0.002)
+        res = even_outline(lab, cols, a.outline_lum, 0.002) if a.even_outline else None
         if res:
             lab, band, w, kcol = res
 
@@ -401,7 +408,17 @@ def main():
             if m.sum() < a.speckle:
                 continue
             mu = upsample(m, a.supersample, a.up_sigma)
-            mu = ndi.binary_dilation(mu, np.ones((3, 3), bool)) & keep_u
+            if i in dark and a.outline_trim:
+                # the hairline's soft flanks classify as hairline too, so it
+                # traces a touch heavier than it is drawn
+                # a cross, not a square: a square erodes diagonally too and
+                # takes off about twice as much as intended
+                mu = ndi.binary_erosion(
+                    mu, np.array([[0, 1, 0], [1, 1, 1], [0, 1, 0]], bool),
+                    iterations=a.outline_trim)
+            else:
+                mu = ndi.binary_dilation(mu, np.ones((3, 3), bool))
+            mu &= keep_u
             for subs in trace(mu, work, a):
                 sh = page.new_shape()
                 emit(sh, subs, s / a.supersample, s / a.supersample)
@@ -417,8 +434,7 @@ def main():
             # pixel wherever the shape it came from is a little fatter on one
             # side; dilated, that jitter becomes a visibly wavy outline, so
             # the band is smoothed harder than the fills are
-            bu = upsample(band, a.supersample, a.band_sigma)
-            bu = ndi.binary_dilation(bu, np.ones((3, 3), bool)) & keep_u
+            bu = upsample(band, a.supersample, a.band_sigma) & keep_u
             for subs in trace(bu, work, a):
                 sh = page.new_shape()
                 emit(sh, subs, s / a.supersample, s / a.supersample)
