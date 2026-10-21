@@ -68,6 +68,8 @@ def main():
     ap.add_argument('--min-blob', type=float, default=0.002)
     ap.add_argument('--outline-lum', type=float, default=90.0)
     ap.add_argument('--corner', type=int, default=60)
+    ap.add_argument('--band-out', type=float, default=0.7,
+                    help='share of the band carried outside the cross')
     ap.add_argument('--band-scale', type=float, default=0.88,
                     help='trim the coloured band by this factor')
     a = ap.parse_args()
@@ -112,17 +114,24 @@ def main():
             sh.commit()
 
         # the cross: the logo's curve, sized to the badge, centred
-        side = g['cross_w'] * (W - 2 * (kw + band))
+        side = g['cross_w'] * (W - 2 * (kw + band * a.band_out))
         P = poly * side + np.array([(W - side) / 2, (W - side) / 2])
-        draw(page, P, g['band'] if band else g['fill'], key, kw)
-
-        if band > 0:
-            # a true parallel offset, not a stroke: the band belongs inside
-            # the silhouette, and a stroke would straddle it
-            inner = Polygon(P).buffer(0).buffer(-band, join_style=1, resolution=32)
-            for geo in ([inner] if inner.geom_type == 'Polygon' else inner.geoms):
-                if not geo.is_empty:
-                    draw(page, np.array(geo.exterior.coords), g['fill'], key, 0)
+        if band <= 0:
+            draw(page, P, g['fill'], key, kw)
+        else:
+            # The band is split across the cross's edge rather than laid
+            # wholly inside it. Taking it all from the inside thins the
+            # cross by its full width; carrying most of it outward keeps the
+            # cross the size it is drawn and lets the band sit around it.
+            sil = Polygon(P).buffer(0)
+            out_g = sil.buffer(band * a.band_out, join_style=1, resolution=32)
+            in_g = sil.buffer(-band * (1 - a.band_out), join_style=1, resolution=32)
+            for geo, col in ((out_g, g['band']), (in_g, g['fill'])):
+                if geo.is_empty:
+                    continue
+                for gg in ([geo] if geo.geom_type == 'Polygon' else geo.geoms):
+                    draw(page, np.array(gg.exterior.coords), col,
+                         key, kw if col is g['band'] else 0)
 
         if g['dot_r'] > 0:
             c = pymupdf.Point(W / 2, W / 2)
