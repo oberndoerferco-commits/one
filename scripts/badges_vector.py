@@ -21,13 +21,30 @@ MM = 72.0 / 25.4
 
 def cross_path(mask, work, opts):
     """Trace the vector cross once, at the resolution it was rendered."""
+    return _trace(mask, work, opts), mask.shape
+
+
+def _trace(mask, work, opts):
     png, svg = os.path.join(work, 'c.png'), os.path.join(work, 'c.svg')
     Image.fromarray(np.where(mask, 0, 255).astype(np.uint8)).save(png)
     vtracer.convert_image_to_svg_py(
         png, svg, colormode='binary', hierarchical='stacked', mode='spline',
         filter_speckle=4, corner_threshold=opts.corner, length_threshold=4.0,
         max_iterations=10, splice_threshold=45, path_precision=5)
-    return parse_svg(open(svg).read()), mask.shape
+    return parse_svg(open(svg).read())
+
+
+def inset(mask, px):
+    """The cross shrunk inward by px, as a real offset of its own outline.
+
+    The band round the cross lies inside its silhouette. Stroking the
+    silhouette instead centres the line on it, so half the band falls
+    outside -- which both halves its apparent weight and pushes the arm tips
+    off the page.
+    """
+    if px <= 0:
+        return mask
+    return ndi.distance_transform_edt(mask) > px
 
 
 def _modal(rgb, m):
@@ -109,8 +126,19 @@ def measure(img, cross, a):
     fill = outer
     for d, c in prof[i:]:
         if not same(c, outer):
-            band_w, fill = d - prof[i][0], c
+            fill = c
             break
+    if not same(fill, outer):
+        # width as area over length, the same way the keyline is measured.
+        # Walking inwards in steps only says which ring the colour changes
+        # in, which rounds the band down by a third.
+        from skimage.morphology import skeletonize as _sk
+        # over the whole badge, not inside the registered outline: that
+        # outline sits a shade inside the band's true edge, which clipped
+        # the band by about a quarter
+        bm = ink & (np.abs(rgb - np.array(outer)).max(-1) <= 40)
+        if bm.any():
+            band_w = bm.sum() / max(int(_sk(bm).sum()), 1)
 
     # the dot at the centre
     cy, cx = (box[1] + box[3]) / 2, (box[0] + box[2]) / 2
@@ -185,26 +213,36 @@ def main():
         if g['ground'] is not None:
             # a true square or a true circle, not a traced one
             sh = page.new_shape()
-            r = pymupdf.Rect(kw / 2, kw / 2, W - kw / 2, W - kw / 2)
+            r = pymupdf.Rect(kw, kw, W - kw, W - kw)
             sh.draw_rect(r) if g['shape'] == 'square' else sh.draw_oval(r)
             sh.finish(color=[v / 255 for v in key] if dark else None,
                       fill=[v / 255 for v in g['ground']],
                       width=kw if dark else 0, closePath=True, lineJoin=1)
             sh.commit()
 
-        # the logo's own cross: filled, and stroked to give the band
+        # the logo's own cross. The band is a second, smaller copy of the
+        # same curve rather than a stroke, so it sits wholly inside the
+        # silhouette at its full weight and nothing overhangs the page.
         ch, cw = cross.shape
-        s_ = g['cross_w'] * W / cw
+        s_ = g['cross_w'] * (W - 2 * kw) / cw
         ox, oy = (W - cw * s_) / 2, (W - ch * s_) / 2
-        for subs in shapes:
-            sh = page.new_shape()
-            emit(sh, [[(op, (p[0] + ox / s_, p[1] + oy / s_)) if op != 'C' else
-                       (op, [(q[0] + ox / s_, q[1] + oy / s_) for q in p])
-                       for op, p in sp] for sp in subs], s_, s_)
-            sh.finish(color=[v / 255 for v in (key if dark else g['band'])],
-                      fill=[v / 255 for v in g['fill']],
-                      width=band_w, even_odd=True, closePath=True, lineJoin=1)
-            sh.commit()
+        shift = lambda subs: [[(op, (q[0] + ox / s_, q[1] + oy / s_)) if op != 'C'
+                               else (op, [(r[0] + ox / s_, r[1] + oy / s_) for r in q])
+                               for op, q in sp] for sp in subs]
+        layers = [(shapes, g['band'] if band_w > 0 else g['fill'])]
+        if band_w > 0:
+            inner = _trace(inset(cross, band_w / s_), work, a)
+            if inner:
+                layers.append((inner, g['fill']))
+        for i, (shps, col) in enumerate(layers):
+            for subs in shps:
+                sh = page.new_shape()
+                emit(sh, shift(subs), s_, s_)
+                sh.finish(color=[v / 255 for v in key] if (dark and i == 0) else None,
+                          fill=[v / 255 for v in col],
+                          width=kw if (dark and i == 0) else 0,
+                          even_odd=True, closePath=True, lineJoin=1)
+                sh.commit()
 
         if g['dot_r'] > 0:
             sh = page.new_shape()
