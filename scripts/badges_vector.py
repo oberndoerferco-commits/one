@@ -177,8 +177,16 @@ def measure(img, cross, a):
     dk = ink & (rgb.max(-1) < 90)
     key, key_w = None, 0.0
     if dk.sum() > 0.0005 * ink.sum():
-        key = _modal(rgb, dk)
-        key_w = dk.sum() / max(int(skeletonize(dk).sum()), 1) / bw
+        # only the thin dark ink counts. On a badge whose cross is itself
+        # dark, area over length measures the cross, not the keyline, and
+        # came back at sixteen points -- wide enough to swallow the badge.
+        dd = ndi.distance_transform_edt(dk)
+        sk = skeletonize(dk)
+        w = 2 * dd[sk]
+        w = w[w <= 0.03 * bw]
+        if w.size:
+            key = _modal(rgb, dk & (dd <= 0.015 * bw))
+            key_w = float(np.median(w)) / bw
     return dict(ground=ground, shape=shape, band=outer, band_w=band_w / side,
                 key=key, key_w=key_w, bw=bw,
                 fill=fill, dot=dot_col, dot_r=dot_r,
