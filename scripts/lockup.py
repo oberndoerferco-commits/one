@@ -55,6 +55,10 @@ def main():
     ap.add_argument('--min-x', type=float, default=0.0,
                     help='ignore ink left of this; 0 keeps the whole row')
     ap.add_argument('--pad', type=float, default=4.0)
+    ap.add_argument('--size-mm', type=float, default=30.0)
+    ap.add_argument('--gap-mm', type=float, default=5.0)
+    ap.add_argument('--text-under', type=float, default=380.0,
+                    help='the wordmark belongs to badges right of this')
     a = ap.parse_args()
 
     doc = pymupdf.open(a.src)
@@ -67,26 +71,68 @@ def main():
     gy0 = min(q[1] for q in pts); gy1 = max(q[1] for q in pts)
     print(f'{len(boxes)} badges, {len(gl)} glyphs', file=sys.stderr)
 
-    x0 = min([b[0] for b in boxes] + [gx0]) - a.pad
-    y0 = min([b[1] for b in boxes] + [gy0]) - a.pad
-    x1 = max([b[2] for b in boxes] + [gx1]) + a.pad
-    y1 = max([b[3] for b in boxes] + [gy1]) + a.pad
+    # Each badge fills its 30 mm page differently -- one with a square
+    # ground, one with a circle, one a bare cross -- so laying them out at
+    # their page size leaves the artwork itself unequal. Scale each by its
+    # own ink instead, sit them on one centre line, and space them evenly.
+    ink = []
+    for f in a.badges:
+        d = pymupdf.open(f)
+        pm = d[0].get_pixmap(dpi=600, alpha=False)
+        arr = np.frombuffer(pm.samples, np.uint8).reshape(pm.height, pm.width, 3)
+        ys, xs = np.nonzero(arr.min(-1) < 238)
+        ink.append((xs.min() * 72 / 600, ys.min() * 72 / 600,
+                    (xs.max() + 1) * 72 / 600, (ys.max() + 1) * 72 / 600,
+                    d[0].rect.width, d[0].rect.height))
+
+    W = a.size_mm * MM
+    gap = a.gap_mm * MM
+    pitch = W + gap
+    n = len(a.badges)
+    cy = W / 2 + a.pad
+    placed = []
+    for i, (bx0, by0, bx1, by1, pw, ph) in enumerate(ink):
+        s_ = W / max(bx1 - bx0, by1 - by0)          # its own artwork to size
+        cx = a.pad + W / 2 + i * pitch
+        w, h = pw * s_, ph * s_
+        x = cx - (bx0 + bx1) / 2 * s_
+        y = cy - (by0 + by1) / 2 * s_
+        placed.append((x, y, w, h))
+
+    # keep the wordmark where it sits under the badges it belongs to
+    keep = [i for i, b in enumerate(boxes) if b[0] >= a.text_under]
+    if keep:
+        dx = np.mean([placed[i][0] + (ink[i][0] * (W / max(ink[i][2] - ink[i][0],
+                      ink[i][3] - ink[i][1]))) - boxes[i][0] for i in keep])
+        dy = np.mean([placed[i][1] + (ink[i][1] * (W / max(ink[i][2] - ink[i][0],
+                      ink[i][3] - ink[i][1]))) - boxes[i][1] for i in keep])
+        sc = np.mean([W / (boxes[i][2] - boxes[i][0]) for i in keep])
+    else:
+        dx = dy = 0.0; sc = 1.0
+    ax = np.mean([(boxes[i][0] + boxes[i][2]) / 2 for i in keep]) if keep else 0
+    ay = np.mean([(boxes[i][1] + boxes[i][3]) / 2 for i in keep]) if keep else 0
+    bx = np.mean([placed[i][0] + placed[i][2] / 2 for i in keep]) if keep else 0
+    by = cy
+    TX = lambda q: ((q[0] - ax) * sc + bx, (q[1] - ay) * sc + by)
+
+    pw_total = a.pad * 2 + n * W + (n - 1) * gap
+    tp = [TX(q) for sh in gl for sp in sh for op, p in sp
+          for q in ([p] if op != 'C' else p)]
+    ph_total = max([p[1] + p[3] for p in placed] + [max(q[1] for q in tp)]) + a.pad
 
     out = pymupdf.open()
-    pg = out.new_page(width=x1 - x0, height=y1 - y0)
-    for f, b in zip(a.badges, boxes):
+    pg = out.new_page(width=pw_total, height=ph_total)
+    for f, (x, y, w, h) in zip(a.badges, placed):
         d = pymupdf.open(f)
-        pg.show_pdf_page(pymupdf.Rect(b[0] - x0, b[1] - y0,
-                                      b[0] - x0 + d[0].rect.width,
-                                      b[1] - y0 + d[0].rect.height), d, 0)
+        pg.show_pdf_page(pymupdf.Rect(x, y, x + w, y + h), d, 0)
     col = [int(a.text_fill[i:i + 2], 16) / 255 for i in (1, 3, 5)]
     for sh in gl:
         s = pg.new_shape()
-        emit(s, [[(op, (p[0] - x0, p[1] - y0)) if op != 'C'
-                  else (op, [(q[0] - x0, q[1] - y0) for q in p])
+        emit(s, [[(op, TX(p)) if op != 'C' else (op, [TX(q) for q in p])
                   for op, p in sp] for sp in sh], 1.0, 1.0)
         s.finish(color=None, fill=col, even_odd=True, closePath=True, width=0)
         s.commit()
+    x1 = pw_total; x0 = 0; y1 = ph_total; y0 = 0
     out.save(a.out_pdf, garbage=4, deflate=True)
     print(f'{a.out_pdf}: {x1-x0:.1f} x {y1-y0:.1f} pt '
           f'({(x1-x0)/MM:.1f} x {(y1-y0)/MM:.1f} mm)', file=sys.stderr)
