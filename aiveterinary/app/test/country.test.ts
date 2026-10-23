@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { readFileSync } from 'node:fs';
 import { ClinicalRecord, PatientHeader } from '../src/schema.js';
 import { normalizeNotes } from '../src/normalize.js';
-import { countryMissing, VisitContext, provenance } from '../src/country.js';
+import { countryMissing, isFoodProducing, VisitContext, provenance } from '../src/country.js';
 import { renderConsultReport } from '../src/render.js';
 
 const load = (id: string) => JSON.parse(readFileSync(new URL(`../eval/cases/${id}.json`, import.meta.url), 'utf8'));
@@ -68,6 +68,64 @@ describe('country field packs', () => {
   });
 });
 
+describe('dispensing records per country (TAMG § 68, TAMV art. 25–27, D.Lgs. 218/2023 art. 37)', () => {
+  const dispensed = () => { const { record, header } = prep('002-milo-otitis-de'); const r = structuredClone(record); r.medications.forEach((m) => (m.status = 'dispensed')); return { r, header }; };
+  const fields = (f: { field: string; rule: string }[], rule: string) => f.filter((x) => x.rule === rule).map((x) => x.field.replace(/^dispensings\[\d+\]\./, ''));
+  it('Austria asks for the authorisation number and keeps the batch, for a dog too', () => {
+    const { r, header } = dispensed();
+    expect(header.species).toBe('dog');
+    const got = new Set(fields(countryMissing(r, header, ctx({ country: 'AT' })), 'at_tamg_abgabe'));
+    expect([...got].sort()).toEqual(['authorisation_number', 'batch', 'product', 'quantity']);
+    const full = r.medications.map((_, i) => ({ medication_index: i, product: 'P', authorisation_number: '8-001', batch: 'B1', quantity: { value: 1, unit: 'pack' } }));
+    expect(rules(countryMissing(r, header, ctx({ country: 'AT', dispensings: full })))).not.toContain('at_tamg_abgabe');
+  });
+  it('Switzerland: no TAMV dispensing flag for a dog or cat, still flagged for a horse or a stated farm animal', () => {
+    const { r, header } = dispensed();
+    expect(rules(countryMissing(r, header, ctx({ country: 'CH' })))).not.toContain('ch_tamv_abgabe');
+    expect(rules(countryMissing(r, { ...header, species: 'cat' }, ctx({ country: 'CH' })))).not.toContain('ch_tamv_abgabe');
+    const horse = countryMissing(r, { ...header, species: 'horse' }, ctx({ country: 'CH' }));
+    expect(new Set(fields(horse, 'ch_tamv_abgabe'))).toEqual(new Set(['product', 'quantity']));
+    expect(horse.filter((x) => x.rule === 'ch_tamv_abgabe').every((x) => x.severity === 'warn')).toBe(true);
+    expect(rules(countryMissing(r, { ...header, species: 'horse' }, ctx({ country: 'CH', food_producing: false })))).not.toContain('ch_tamv_abgabe');
+    expect(rules(countryMissing(r, header, ctx({ country: 'CH', food_producing: true })))).toContain('ch_tamv_abgabe');
+  });
+  it('Switzerland keeps the IS ABV antibiotic flags for pets', () => {
+    const { r, header } = dispensed();
+    const f = countryMissing(r, header, ctx({ country: 'CH', dispensings: [{ medication_index: 0, is_antibiotic: true }] }));
+    expect(rules(f)).toContain('ch_antibiotic_justification'); expect(rules(f)).toContain('ch_isabv_pack');
+  });
+  it('isFoodProducing: dogs, cats and ferrets never; horses unless the vet says otherwise', () => {
+    expect(isFoodProducing({ species: 'dog' }, { food_producing: null })).toBe(false);
+    expect(isFoodProducing({ species: 'ferret' }, { food_producing: null })).toBe(false);
+    expect(isFoodProducing({ species: 'horse' }, { food_producing: null })).toBe(true);
+    expect(isFoodProducing({ species: 'horse' }, { food_producing: false })).toBe(false);
+    expect(VisitContext.parse({ country: 'CH' }).food_producing).toBeNull();
+  });
+  it('Italy flags the quantity handed over from stock (scarico within 7 days), not for a prescription', () => {
+    const { r, header } = dispensed();
+    const f = countryMissing(r, header, ctx({ country: 'IT' }));
+    expect(f.filter((x) => x.rule === 'it_scarico_quantita').length).toBe(r.medications.length);
+    expect(f.find((x) => x.rule === 'it_scarico_quantita')?.severity).toBe('warn');
+    const withQty = r.medications.map((_, i) => ({ medication_index: i, quantity: { value: 1, unit: 'confezione' } }));
+    expect(rules(countryMissing(r, header, ctx({ country: 'IT', dispensings: withQty })))).not.toContain('it_scarico_quantita');
+    const rx = structuredClone(r); rx.medications.forEach((m) => (m.status = 'prescribed'));
+    expect(rules(countryMissing(rx, header, ctx({ country: 'IT' })))).not.toContain('it_scarico_quantita');
+  });
+  it('the changed reasons exist in all three languages', () => {
+    const { r, header } = dispensed();
+    const c = ctx({ country: 'IT' });
+    for (const lang of ['en', 'de', 'it'] as const) {
+      const f = countryMissing(r, header, c, lang);
+      expect(f.find((x) => x.rule === 'it_scarico_quantita')?.reason).toContain('218/2023');
+      expect(f.find((x) => x.rule === 'it_codice_fiscale')?.reason).toContain('Sistema TS');
+      const at = countryMissing(r, header, ctx({ country: 'AT' }), lang).find((x) => x.rule === 'at_tamg_abgabe')?.reason;
+      expect(at).toContain('§ 68'); expect(at).toContain('103(3)');
+      const ch = countryMissing(r, { ...header, species: 'horse' }, ctx({ country: 'CH' }), lang).find((x) => x.rule === 'ch_tamv_abgabe')?.reason;
+      expect(ch).toContain('25–27'); expect(ch).toContain('Nutztiere');
+    }
+  });
+});
+
 describe('country flag language', () => {
   it('keeps the English reasons by default and translates them when asked, rule ids unchanged', () => {
     const { record: r, header } = prep('003-gatto-inappetenza-it');
@@ -77,8 +135,8 @@ describe('country flag language', () => {
     const de = countryMissing(r, header, ctxIT, 'de');
     expect(it_.map((f) => [f.field, f.rule, f.severity])).toEqual(en.map((f) => [f.field, f.rule, f.severity]));
     expect(de.map((f) => f.rule)).toEqual(en.map((f) => f.rule));
-    expect(en.find((f) => f.rule === 'it_codice_fiscale')?.reason).toBe('Codice fiscale of the owner is needed for the invoice and the REV');
-    expect(it_.find((f) => f.rule === 'it_codice_fiscale')?.reason).toBe('Il codice fiscale del proprietario serve per la fattura e per la REV');
+    expect(en.find((f) => f.rule === 'it_codice_fiscale')?.reason).toBe('Codice fiscale of the owner (the person paying) is needed for the invoice, the REV and the Sistema TS expense data (D.M. MEF 1/9/2016 art. 2; D.M. RGS 16/9/2016 art. 2 c. 2)');
+    expect(it_.find((f) => f.rule === 'it_codice_fiscale')?.reason).toBe('Il codice fiscale del proprietario (di chi paga) serve per la fattura, la REV e l\'invio delle spese al Sistema TS (D.M. MEF 1/9/2016 art. 2; D.M. RGS 16/9/2016 art. 2 c. 2)');
     for (const f of [...it_, ...de]) expect(f.reason).not.toBe(en.find((e) => e.rule === f.rule && e.field === f.field)?.reason);
   });
 });

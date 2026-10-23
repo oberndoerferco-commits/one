@@ -34,6 +34,13 @@ export const VisitContext = z.object({
   author: z.object({ name: z.string().nullable().default(null), registration: z.string().nullable().default(null) }).prefault({}),
   consent: z.object({ obtained: z.boolean(), scope: z.string().nullable().default(null), method: z.enum(['written', 'verbal', 'electronic']).nullable().default(null) }).nullable().default(null),
   prescription_number: z.string().nullable().default(null), // IT REV number
+  /**
+   * Whether the treated animal is kept for food production, as the vet states it. `null` = not
+   * stated: derived from the species (see `isFoodProducing`). Needed where the law depends on it,
+   * e.g. CH TAMV art. 25–27 (Nutztiere only); a horse, rabbit or bird is a Heimtier only when
+   * kept as a companion (TAMV art. 3 para. 1 let. b), which the species alone cannot say.
+   */
+  food_producing: z.boolean().nullable().default(null),
   interpretations: z.array(z.object({ diagnostic_index: z.number().int().nonnegative(), text: z.string() })).default([]), // vet's own words per result, for the owner explanation
   dispensings: z.array(Dispensing).default([]),
 });
@@ -53,8 +60,8 @@ const REASON: Record<Lang, Record<string, string>> = {
     vaccine_batch: 'Vaccine batch/lot number must be recorded',
     microchip_for_vaccine: 'Vaccination entries need the animal\'s identification',
     de_taehav_abgabebeleg: 'TÄHAV §15 with Art. 103(3) Reg. (EU) 2019/6: dispensing record requires product, authorisation no., batch and quantity',
-    at_tamg_abgabe: 'TAMG dispensing documentation requires product, batch and quantity',
-    ch_tamv_abgabe: 'TAMV requires product and quantity for dispensed medicines',
+    at_tamg_abgabe: 'TAMG § 68(1): dispensing from the practice pharmacy requires product with authorisation no. and quantity; batch no. under Art. 103(3) Reg. (EU) 2019/6 (prescription-only products) and § 68(2) (food-producing animals)',
+    ch_tamv_abgabe: 'TAMV art. 25–27: dispensing for farm animals (Nutztiere) requires product and quantity',
     it_rev_prodotto: 'The electronic prescription (REV) is issued per product',
     de_taehav_anwendung: 'TÄHAV §15(3) with Art. 105(5) Reg. (EU) 2019/6: dosage regimen must be on the dispensing record',
     de_antibiotic_justification: 'TÄHAV §13: antibiogram for the listed cases in dogs and cats, otherwise documented reasons for antibiotic use',
@@ -64,7 +71,8 @@ const REASON: Record<Lang, Record<string, string>> = {
     ch_isabv_pack: 'IS ABV reporting needs the pack size',
     it_rev_number: 'Prescribed medicines in Italy go through the REV; record its number',
     it_microchip: 'Anagrafe degli animali d\'affezione: identification on every record',
-    it_codice_fiscale: 'Codice fiscale of the owner is needed for the invoice and the REV',
+    it_codice_fiscale: 'Codice fiscale of the owner (the person paying) is needed for the invoice, the REV and the Sistema TS expense data (D.M. MEF 1/9/2016 art. 2; D.M. RGS 16/9/2016 art. 2 c. 2)',
+    it_scarico_quantita: 'D.Lgs. 218/2023 art. 37 c. 2: record the packs or fractions handed over from stock; the scarico is due within 7 days',
     it_consenso_modi_tempi: 'Consenso informato must state modi e tempi of the procedure',
     de_rezept_halter: 'A prescription (Art. 105 Reg. 2019/6) names the animal keeper',
   },
@@ -75,8 +83,8 @@ const REASON: Record<Lang, Record<string, string>> = {
     vaccine_batch: 'Die Chargennummer des Impfstoffs muss erfasst werden',
     microchip_for_vaccine: 'Impfeinträge brauchen die Kennzeichnung des Tieres',
     de_taehav_abgabebeleg: 'TÄHAV §15 i. V. m. Art. 103(3) VO (EU) 2019/6: der Abgabebeleg erfordert Präparat, Zulassungsnummer, Charge und Menge',
-    at_tamg_abgabe: 'TAMG: die Abgabedokumentation erfordert Präparat, Charge und Menge',
-    ch_tamv_abgabe: 'TAMV: für abgegebene Arzneimittel sind Präparat und Menge erforderlich',
+    at_tamg_abgabe: 'TAMG § 68(1): die Abgabe aus der Hausapotheke erfordert Präparat mit Zulassungsnummer und Menge; Chargennummer nach Art. 103(3) VO (EU) 2019/6 (verschreibungspflichtige Präparate) und § 68(2) (Lebensmittel liefernde Tiere)',
+    ch_tamv_abgabe: 'TAMV Art. 25–27: bei der Abgabe für Nutztiere sind Präparat und Menge erforderlich',
     it_rev_prodotto: 'Das elektronische Rezept (REV) wird je Präparat ausgestellt',
     de_taehav_anwendung: 'TÄHAV §15(3) i. V. m. Art. 105(5) VO (EU) 2019/6: das Dosierungsschema muss auf dem Abgabebeleg stehen',
     de_antibiotic_justification: 'TÄHAV §13: Antibiogramm in den genannten Fällen bei Hund und Katze, sonst dokumentierte Gründe für den Antibiotikaeinsatz',
@@ -86,7 +94,8 @@ const REASON: Record<Lang, Record<string, string>> = {
     ch_isabv_pack: 'Die Meldung an IS ABV braucht die Packungsgröße',
     it_rev_number: 'Verschriebene Arzneimittel laufen in Italien über das REV; dessen Nummer erfassen',
     it_microchip: 'Anagrafe degli animali d\'affezione: Kennzeichnung auf jedem Eintrag',
-    it_codice_fiscale: 'Der Codice fiscale des Halters wird für die Rechnung und das REV benötigt',
+    it_codice_fiscale: 'Der Codice fiscale des Halters (der zahlenden Person) wird für die Rechnung, das REV und die Ausgabendaten an Sistema TS benötigt (D.M. MEF 1/9/2016 Art. 2; D.M. RGS 16/9/2016 Art. 2 c. 2)',
+    it_scarico_quantita: 'D.Lgs. 218/2023 Art. 37 c. 2: die aus dem Bestand abgegebenen Packungen oder Teilmengen erfassen; das scarico ist binnen 7 Tagen fällig',
     it_consenso_modi_tempi: 'Der Consenso informato muss modi e tempi (Art und Zeitpunkt) des Eingriffs angeben',
     de_rezept_halter: 'Ein Rezept (Art. 105 VO 2019/6) nennt den Tierhalter',
   },
@@ -97,8 +106,8 @@ const REASON: Record<Lang, Record<string, string>> = {
     vaccine_batch: 'Il numero di lotto del vaccino deve essere registrato',
     microchip_for_vaccine: 'Le registrazioni delle vaccinazioni richiedono l\'identificazione dell\'animale',
     de_taehav_abgabebeleg: 'TÄHAV §15 in combinato disposto con art. 103(3) Reg. (UE) 2019/6: il documento di cessione richiede prodotto, n. di autorizzazione, lotto e quantità',
-    at_tamg_abgabe: 'TAMG: la documentazione della cessione richiede prodotto, lotto e quantità',
-    ch_tamv_abgabe: 'TAMV: per i medicinali ceduti servono prodotto e quantità',
+    at_tamg_abgabe: 'TAMG § 68(1): la cessione dalla farmacia dell\'ambulatorio richiede prodotto con n. di autorizzazione e quantità; n. di lotto ai sensi dell\'art. 103(3) Reg. (UE) 2019/6 (prodotti soggetti a prescrizione) e del § 68(2) (animali destinati alla produzione di alimenti)',
+    ch_tamv_abgabe: 'TAMV art. 25–27: per la cessione per animali da reddito (Nutztiere) servono prodotto e quantità',
     it_rev_prodotto: 'La ricetta elettronica veterinaria (REV) si emette per singolo prodotto',
     de_taehav_anwendung: 'TÄHAV §15(3) in combinato disposto con art. 105(5) Reg. (UE) 2019/6: lo schema posologico deve figurare nel documento di cessione',
     de_antibiotic_justification: 'TÄHAV §13: antibiogramma nei casi previsti per cani e gatti, altrimenti motivazioni documentate per l\'uso dell\'antibiotico',
@@ -108,7 +117,8 @@ const REASON: Record<Lang, Record<string, string>> = {
     ch_isabv_pack: 'La segnalazione a IS ABV richiede la dimensione della confezione',
     it_rev_number: 'In Italia i medicinali prescritti passano dalla REV; registrarne il numero',
     it_microchip: 'Anagrafe degli animali d\'affezione: identificazione su ogni registrazione',
-    it_codice_fiscale: 'Il codice fiscale del proprietario serve per la fattura e per la REV',
+    it_codice_fiscale: 'Il codice fiscale del proprietario (di chi paga) serve per la fattura, la REV e l\'invio delle spese al Sistema TS (D.M. MEF 1/9/2016 art. 2; D.M. RGS 16/9/2016 art. 2 c. 2)',
+    it_scarico_quantita: 'D.Lgs. 218/2023 art. 37 c. 2: registrare le confezioni o frazioni consegnate dalla scorta; lo scarico va fatto entro 7 giorni',
     it_consenso_modi_tempi: 'Il consenso informato deve indicare modi e tempi della procedura',
     de_rezept_halter: 'Una ricetta (art. 105 Reg. 2019/6) indica il detentore dell\'animale',
   },
@@ -139,23 +149,44 @@ function common(record: ClinicalRecord, ctx: VisitContext, F: ReturnType<typeof 
 }
 
 /** Per-medication dispensing record fields: which ones a country requires. */
-const dispensingFields: Record<Country, { fields: Array<keyof Dispensing>; rule: string }> = {
+const dispensingFields: Record<Country, { fields: Array<keyof Dispensing>; rule: string; foodProducingOnly?: true }> = {
   DE: { fields: ['product', 'authorisation_number', 'batch', 'quantity'], rule: 'de_taehav_abgabebeleg' },
-  AT: { fields: ['product', 'batch', 'quantity'], rule: 'at_tamg_abgabe' },
-  CH: { fields: ['product', 'quantity'], rule: 'ch_tamv_abgabe' },
+  // TAMG § 68(1) Z 4–5: quantity, product and authorisation no. for every dispensing, pets included.
+  // Batch: § 68(2) Z 8 for food-producing animals, and § 68(1) is "unbeschadet des Art. 103" Reg. 2019/6,
+  // whose para. 3 lit. c wants the batch for every prescription-only transaction, so it stays for all species.
+  AT: { fields: ['product', 'authorisation_number', 'batch', 'quantity'], rule: 'at_tamg_abgabe' },
+  // TAMV art. 25 (bookkeeping duty) and art. 27 para. 1 ("bei jeder Abgabe von Arzneimitteln für Nutztiere").
+  CH: { fields: ['product', 'quantity'], rule: 'ch_tamv_abgabe', foodProducingOnly: true },
   IT: { fields: ['product'], rule: 'it_rev_prodotto' },
 };
 
-export function countryMissing(record: ClinicalRecord, _header: PatientHeader, ctx: VisitContext, lang: Lang = 'en'): CountryFlag[] {
+/**
+ * Species that are never food-producing under the packs' laws (dogs, cats, ferrets). Every other
+ * species (horse, rabbit, bird, reptile, other) can be: in the EU an equine is food-producing unless
+ * its passport declares it not intended for slaughter (Art. 112(4) Reg. 2019/6, TAMG § 57(3)); in CH
+ * equids, domestic rabbits and poultry, farmed reptiles etc. are Heimtiere only when kept as companions
+ * (TAMV art. 3 para. 1 let. b). Without the vet's statement those count as food-producing, so the
+ * stricter record is asked for.
+ */
+const NEVER_FOOD_PRODUCING: ReadonlySet<PatientHeader['species']> = new Set(['dog', 'cat', 'ferret']);
+export const isFoodProducing = (header: Pick<PatientHeader, 'species'>, ctx: Pick<VisitContext, 'food_producing'>): boolean =>
+  ctx.food_producing ?? !NEVER_FOOD_PRODUCING.has(header.species);
+
+export function countryMissing(record: ClinicalRecord, header: PatientHeader, ctx: VisitContext, lang: Lang = 'en'): CountryFlag[] {
   const F = flagger(lang);
   const out = common(record, ctx, F);
   const pack = dispensingFields[ctx.country];
+  const packApplies = !pack.foodProducingOnly || isFoodProducing(header, ctx);
   record.medications.forEach((m, i) => {
     if (!given(m)) return;
     const d = ctx.dispensings.find((x) => x.medication_index === i);
-    for (const f of pack.fields) {
-      if (!d || d[f] == null) out.push(F(`dispensings[${i}].${f}`, pack.rule));
+    if (packApplies) {
+      for (const f of pack.fields) {
+        if (!d || d[f] == null) out.push(F(`dispensings[${i}].${f}`, pack.rule));
+      }
     }
+    // IT: a medicine handed over from the vet's own stock is unloaded (scarico) in the traceability system within 7 days.
+    if (ctx.country === 'IT' && m.status === 'dispensed' && !d?.quantity) out.push(F(`dispensings[${i}].quantity`, 'it_scarico_quantita'));
     if (ctx.country === 'DE' && (m.dose == null || !m.route || !m.duration)) out.push(F(`medications[${i}]`, 'de_taehav_anwendung'));
     if (d?.is_antibiotic && !d.antibiotic_justification) {
       out.push(F(`dispensings[${i}].antibiotic_justification`, `${ctx.country.toLowerCase()}_antibiotic_justification`, 'block'));
