@@ -66,7 +66,9 @@ def main():
     ap.add_argument('--merge', type=float, default=26.0)
     ap.add_argument('--blend-tol', type=float, default=0.18)
     ap.add_argument('--min-blob', type=float, default=0.002)
-    ap.add_argument('--outline-lum', type=float, default=90.0)
+    ap.add_argument('--outline-lum', type=float, default=60.0,
+                    help='max RGB channel for keyline ink; a dark ground such '
+                         'as the bottle green counts as keyline above about 75')
     ap.add_argument('--corner', type=int, default=60)
     ap.add_argument('--band-out', type=float, default=0.7,
                     help='share of the band carried outside the cross')
