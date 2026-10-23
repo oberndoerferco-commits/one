@@ -4,7 +4,7 @@ description: "Perché non esiste un tariffario nazionale, quali cifre sono reali
 species: general
 category: care
 urgency: routine
-updated: 2026-10-19
+updated: 2026-10-23
 draft: true
 lang: it
 references:
@@ -16,6 +16,8 @@ references:
     url: "https://fnovi.it/sites/default/files/Aprile%202026%20-%20IVA%20sulle%20prestazioni%20veterinarie%20-%20FNOVI%20-%20ENPAV_0.pdf"
   - title: "Agenzia delle Entrate, \"Tutte le agevolazioni della dichiarazione 2026\", sezione \"Spese veterinarie (Rigo E8/E10, cod. 29)\", art. 15 comma 1 lett. c-bis TUIR"
     url: "https://www.agenziaentrate.gov.it/portale/documents/20143/10186910/Spese_sanitarie.pdf/13188590-40b3-8e92-c766-bbc1f24e1ba7?t=1782456676212"
+  - title: "D.M. Ministero dell'economia e delle finanze 1° settembre 2016, art. 2: trasmissione al Sistema Tessera Sanitaria delle spese veterinarie (Gazzetta Ufficiale n. 214 del 13 settembre 2016)"
+    url: "https://www.gazzettaufficiale.it/eli/gu/2016/09/13/214/sg/pdf"
   - title: "Altroconsumo, \"Costi cure veterinarie per cani e gatti\", indagine giugno 2025, pubblicata il 21 agosto 2025 (altroconsumo.it)"
     url: "https://www.altroconsumo.it/vita-privata-famiglia/animali-domestici/speciali/costi-cure-veterinarie-per-cani-e-gatti"
   - title: "Università degli Studi di Sassari, Ospedale didattico veterinario universitario, tariffario (uniss.it)"
@@ -69,6 +71,8 @@ Per le prestazioni veterinarie va emessa fattura (o ricevuta fiscale). Perché t
 - le **voci dettagliate**: visita, esami, farmaci somministrati, materiali, ciascuno con il proprio importo
 - l'indicazione dell'**IVA**
 - l'annotazione del **pagamento tracciabile** (carta, bonifico, app), che il veterinario può riportare in fattura
+
+Il veterinario iscritto all'albo trasmette al Sistema Tessera Sanitaria i dati delle spese veterinarie pagate dalle persone fisiche, perché compaiano nella dichiarazione precompilata (D.M. 1° settembre 2016, art. 2).
 
 Se la fattura riporta una sola riga generica, puoi chiedere al veterinario il dettaglio delle voci, da confrontare con il preventivo di massima.
 

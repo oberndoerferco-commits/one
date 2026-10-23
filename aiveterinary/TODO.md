@@ -194,9 +194,10 @@ Everything costs €0 unless marked €. Legend:
 
 ## 7. Open research (unverified, confirm before building)
 
-- [ ] CH GST retention rule for records; AMICUS vet duties; AT Standesregeln and bite-report duty
-- [ ] IT: final text of D.Lgs 218/2023 on registering dispensing to pet owners; Sistema TS optionality for vets
+- [x] CH GST retention rule; AMICUS vet duties; AT Standesregeln (23 Oct 2026, `docs/19-legal-research-2026-10.md`): the GST Standesordnung sets no retention period, only "hinreichende Dokumentation"; TAMV art. 29 gives 3 years for farm-animal medicine records and OR art. 958f 10 years for business books. AMICUS: the vet chips, enters the dog and checks imports within 10 days (TSV art. 17–17c); owners record handover and death within 10 days (art. 17d). CH bite reports are a duty for vets (TSchV art. 78). AT: Standesregeln are statutory, TÄG §§ 27–32; the TÄG sets no general retention period, TAMG § 66 para. 2 and § 53 set 7 years for medicine records and prescriptions
+- [ ] AT bite-report duty for vets: none in the TÄG and none found in a RIS Land-law search; still to do: read each Land's dog act (NÖ, OÖ, Wien …) and the ÖTK Ordinationsrichtlinien
+- [x] IT: D.Lgs 218/2023 and Sistema TS (23 Oct 2026, `docs/19-legal-research-2026-10.md`): art. 37 lets the vet hand over medicines from stock to start therapy; the *scarico* is recorded in the traceability system within 7 days (fine €2,600–15,500, art. 42 c. 30); human medicines from stock may not be handed over (art. 33 c. 6). Sistema TS is **mandatory** for vets: D.M. MEF 1/9/2016 art. 2, with the payer's codice fiscale; 2026 expenses due 1 Feb 2027; €100 per missed or wrong record (D.Lgs 175/2014 art. 3 c. 5-bis). Still open: Vetinfo operating manual for the *scarico* function; whether the e-invoice ban (D.L. 119/2018 art. 10-bis) still applies in 2026
 - [ ] DE: Petplan/Barmenia/Allianz claim forms; HABS status between TASSO and FINDEFIX
 - [ ] Whether a third-party SaaS may connect to Provet MCP on a clinic's behalf; ezyVet/Provet/Digitail free-text write-back permissions
-- [ ] L. 132/2025 health-sector decrees adopted?
+- [~] L. 132/2025 decrees (23 Oct 2026, `docs/19-legal-research-2026-10.md`): no Ministry of Health decree under art. 9 or art. 12-bis D.L. 179/2012 found, so nothing new for vets there. D.Lgs 179/2026 (in force 23 Oct 2026) adds AI training to the ordini's courses (art. 47) and to ECM (art. 51); art. 13 is unchanged. D.Lgs 160/2026 covers police and liability. Recheck the health decrees on the Ministry of Health site and the Normattiva "atti attuativi" panel in early 2027
 - [ ] Vet-forum complaints about Vetera/easyVET/Italian PIMS (needs interviews or group access)
