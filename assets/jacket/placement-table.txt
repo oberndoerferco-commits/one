@@ -1,0 +1,32 @@
+BADGE PLACEMENT — positions as a share of the jacket, measured off the mockup
+Multiply by the real jacket width/height to get millimetres.
+
+  #  side    across    down
+            (from left edge)  (from shoulder)
+  1  front    32.9%   30.4%
+  2  front    66.0%   37.0%
+  3  front    87.0%   63.2%
+  4  front    92.4%   70.6%
+  5  front    40.7%   68.9%
+  6  front    45.4%   71.7%
+  7  front    65.1%   81.6%
+  8  front    62.9%   84.5%
+  9  front    13.0%   84.6%
+ 10  front    26.7%   86.7%
+ 11  back     42.3%   21.2%
+ 12  back     33.3%   26.7%
+ 13  back     44.0%   26.1%
+ 14  back     65.9%   29.9%
+ 15  back     68.1%   33.5%
+ 16  back     35.3%   49.5%
+ 17  back     58.9%   56.4%
+ 18  back     65.0%   59.1%
+ 19  back     67.6%   69.0%
+ 20  back     40.6%   73.9%
+ 21  back     38.9%   79.4%
+ 22  back     13.9%   78.5%
+ 23  back     80.7%   86.4%
+ 24  back     43.3%   89.9%
+
+Indicative only. The mockup is a photograph of a soft garment, so these
+cannot be trusted to the millimetre — use them to lay out, then eye the result.
