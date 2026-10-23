@@ -4,7 +4,7 @@ description: "Cosa ti serve prima di attraversare un confine: microchip, vaccina
 species: general
 category: travel
 urgency: routine
-updated: 2026-10-19
+updated: 2026-10-23
 draft: true
 lang: it
 references:
@@ -16,6 +16,12 @@ references:
     url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/faqs_en"
   - title: "EUR-Lex: Regolamento delegato (UE) 2026/131 sulle prescrizioni di sanità animale per i movimenti a carattere non commerciale di animali da compagnia"
     url: "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R0131"
+  - title: "Regolamento di esecuzione (UE) 2026/705 sui modelli di passaporto e certificato (articolo 6, misure transitorie)"
+    url: "https://publications.europa.eu/resource/celex/32026R0705"
+  - title: "Regolamento di esecuzione (UE) 2021/620, testo consolidato del 10 agosto 2026, allegato XIX (Stati membri indenni da Echinococcus multilocularis)"
+    url: "https://publications.europa.eu/resource/celex/02021R0620-20260810"
+  - title: "Mattilsynet (Autorità norvegese per la sicurezza alimentare): viaggiare in Norvegia con un cane dall'UE/SEE (in norvegese)"
+    url: "https://www.mattilsynet.no/dyr/kjaeledyr/reise-med-kjaeledyr/reise-til-norge-med-hund-fra-eu-eos"
 ---
 
 ## Cosa serve per viaggiare nell'UE con cane o gatto?
@@ -32,7 +38,7 @@ Per cani, gatti e furetti che si spostano tra paesi dell'UE con il proprietario 
 
 Cambia il regolamento europeo di riferimento ma non i requisiti di base, con il passaporto riservato a chi risiede nell'UE e un massimo di cinque animali per movimento.
 
-Dal 22 aprile 2026 queste regole sono fissate dal Regolamento delegato (UE) 2026/131, che ha preso il posto del Regolamento (UE) 576/2013 (applicato ai viaggi con animali da compagnia fino al 21 aprile 2026). I requisiti di base non cambiano. Punti da sapere: il passaporto europeo viene rilasciato solo ad animali il cui proprietario risiede abitualmente nell'UE; un movimento a carattere non commerciale comprende al massimo cinque cani, gatti o furetti, in un solo veicolo salvo che si usino mezzi pubblici (di più solo per gare, mostre o eventi sportivi, con prova scritta dell'iscrizione e animali di più di sei mesi); e i passaporti del vecchio modello rilasciati prima del 22 aprile 2026 restano validi. La lista completa è nella nostra [pagina viaggi](/it/travel).
+Dal 22 aprile 2026 queste regole sono fissate dal Regolamento delegato (UE) 2026/131, che ha preso il posto del Regolamento (UE) 576/2013 (applicato ai viaggi con animali da compagnia fino al 21 aprile 2026). I requisiti di base non cambiano. Punti da sapere: il passaporto europeo viene rilasciato solo ad animali il cui proprietario risiede abitualmente nell'UE; un movimento a carattere non commerciale comprende al massimo cinque cani, gatti o furetti, in un solo veicolo salvo che si usino mezzi pubblici (di più solo per gare, mostre o eventi sportivi, con prova scritta dell'iscrizione e animali di più di sei mesi); e i passaporti del vecchio modello restano validi se sono stati rilasciati prima del 1° gennaio 2028 (Regolamento di esecuzione (UE) 2026/705, articolo 6). La lista completa è nella nostra [pagina viaggi](/it/travel).
 
 ## Alcuni paesi chiedono requisiti aggiuntivi?
 
@@ -40,7 +46,7 @@ Sì, per esempio il trattamento contro la tenia per i cani o le condizioni per g
 
 Alcuni paesi aggiungono requisiti. Controlla le regole ufficiali della destinazione prima di ogni viaggio, perché cambiano. Esempi noti:
 
-- **Trattamento contro la tenia per i cani** (non per gatti e furetti) che entrano in Finlandia, Irlanda, Malta, Irlanda del Nord e Norvegia: un prodotto contro *Echinococcus multilocularis* somministrato da un veterinario tra 24 e 120 ore prima dell'arrivo e registrato sul passaporto. I cani che si spostano direttamente tra questi paesi ne sono esenti.
+- **Trattamento contro la tenia per i cani** (non per gatti e furetti) che entrano in Finlandia, Irlanda, Malta o Irlanda del Nord, le zone che l'UE elenca come indenni dal parassita: un prodotto contro *Echinococcus multilocularis* somministrato da un veterinario tra 24 e 120 ore prima dell'arrivo e registrato sul passaporto. I cani che si spostano direttamente tra questi paesi ne sono esenti. La Norvegia, che non fa parte dell'UE, richiede lo stesso trattamento in base alle proprie regole, tranne per i cani che arrivano direttamente da Finlandia, Irlanda o Malta.
 - **Regole nazionali sui cani**: le norme su certe razze, museruola o guinzaglio non fanno parte delle regole UE sui viaggi con animali da compagnia, quindi verificale a parte con le autorità della destinazione.
 - **Animali giovani**: cuccioli, gattini e giovani furetti sotto le 12 settimane senza vaccinazione antirabbica, o tra le 12 e le 16 settimane la cui vaccinazione non ha ancora 21 giorni, possono viaggiare solo verso i paesi che lo consentono, e solo con una dichiarazione del proprietario che non hanno avuto contatti con animali selvatici sensibili alla rabbia, oppure insieme alla madre da cui dipendono ancora, se il suo passaporto mostra una vaccinazione antirabbica valida fatta prima della loro nascita. Gli altri paesi non lo consentono.
 

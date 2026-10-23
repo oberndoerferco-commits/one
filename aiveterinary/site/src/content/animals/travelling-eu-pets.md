@@ -4,7 +4,7 @@ description: "What you need before you cross a border: microchip, rabies vaccina
 species: general
 category: travel
 urgency: routine
-updated: 2026-10-19
+updated: 2026-10-23
 draft: true
 references:
   - title: "European Commission: Dogs, cats and ferrets"
@@ -15,6 +15,12 @@ references:
     url: "https://food.ec.europa.eu/animals/live-animal-movements/dogs-cats-and-ferrets/faqs_en"
   - title: "EUR-Lex: Commission Delegated Regulation (EU) 2026/131 on animal health requirements for non-commercial movement of pet animals"
     url: "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32026R0131"
+  - title: "Commission Implementing Regulation (EU) 2026/705 on model passports and certificates (Article 6, transitional measures)"
+    url: "https://publications.europa.eu/resource/celex/32026R0705"
+  - title: "Commission Implementing Regulation (EU) 2021/620, consolidated text of 10 August 2026, Annex XIX (Member States free from Echinococcus multilocularis)"
+    url: "https://publications.europa.eu/resource/celex/02021R0620-20260810"
+  - title: "Mattilsynet (Norwegian Food Safety Authority): Travelling to Norway with a dog from the EU/EEA (in Norwegian)"
+    url: "https://www.mattilsynet.no/dyr/kjaeledyr/reise-med-kjaeledyr/reise-til-norge-med-hund-fra-eu-eos"
 ---
 
 ## What does my pet need to travel within the EU?
@@ -29,7 +35,7 @@ For dogs, cats and ferrets moving between EU countries with their owner (non-com
 
 ## Which EU rules apply to pet travel since April 2026?
 
-Since 22 April 2026 these rules come from Commission Delegated Regulation (EU) 2026/131, which took over from Regulation (EU) 576/2013 (applied to pet travel until 21 April 2026). The core requirements stayed the same. Points worth knowing: the EU pet passport is issued only to animals whose owner habitually resides in the EU; a non-commercial movement covers at most five dogs, cats or ferrets, travelling in a single vehicle unless you use public transport (more are allowed only for competitions, exhibitions or sporting events, with written proof of registration and animals over six months old); and passports issued under the old model before 22 April 2026 remain valid. The full checklist is on our [travel page](/travel).
+Since 22 April 2026 these rules come from Commission Delegated Regulation (EU) 2026/131, which took over from Regulation (EU) 576/2013 (applied to pet travel until 21 April 2026). The core requirements stayed the same. Points worth knowing: the EU pet passport is issued only to animals whose owner habitually resides in the EU; a non-commercial movement covers at most five dogs, cats or ferrets, travelling in a single vehicle unless you use public transport (more are allowed only for competitions, exhibitions or sporting events, with written proof of registration and animals over six months old); and passports on the old model remain valid if they were issued before 1 January 2028 (Implementing Regulation (EU) 2026/705, Article 6). The full checklist is on our [travel page](/travel).
 
 ## Do some EU countries have extra rules for pets?
 
@@ -37,7 +43,7 @@ Yes: for example tapeworm treatment for dogs or conditions for young animals, an
 
 Some countries add requirements. Check the destination's official rules before every trip, because they change. Well-known examples:
 
-- **Tapeworm treatment for dogs** (not cats or ferrets) entering Finland, Ireland, Malta, Northern Ireland and Norway: a product against *Echinococcus multilocularis* given by a vet between 24 and 120 hours before arrival and recorded in the passport. Dogs travelling directly between these countries are exempt.
+- **Tapeworm treatment for dogs** (not cats or ferrets) entering Finland, Ireland, Malta or Northern Ireland, the areas the EU lists as free of the parasite: a product against *Echinococcus multilocularis* given by a vet between 24 and 120 hours before arrival and recorded in the passport. Dogs travelling directly between these countries are exempt. Norway, which is not in the EU, requires the same treatment under its own rules, except for dogs coming directly from Finland, Ireland or Malta.
 - **National dog rules**: rules on certain breeds, muzzles or leads are not part of the EU pet-travel rules, so check them separately with the destination's authorities.
 - **Young animals**: puppies, kittens and young ferrets under 12 weeks without a rabies vaccination, or between 12 and 16 weeks whose vaccination is not yet 21 days old, can travel only to the countries that allow it, and only with an owner's declaration that they have had no contact with wild animals susceptible to rabies, or together with their mother, on whom they still depend, if her passport shows a valid rabies vaccination given before their birth. Other countries do not allow it.
 
