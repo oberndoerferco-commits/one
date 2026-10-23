@@ -40,7 +40,7 @@ export type ClaimOpts = {
   condition_type?: 'illness' | 'accident' | null;
   first_symptom_date?: string | null; // ISO; only if the vet typed it
   diagnosis?: string | null;          // vet's wording for the insurer; overrides the assessment sentence
-  pre_existing?: boolean | null;      // the vet's answer; never derived
+  pre_existing?: boolean | 'unknown' | null; // the vet's answer ('unknown' = the vet does not know); never derived
   pre_existing_note?: string | null;
   surgery?: boolean | null;           // AGILA asks for "OP" to be marked on surgery invoices
   setting?: 'outpatient' | 'day_hospital' | 'inpatient' | null;
@@ -82,7 +82,7 @@ export type ClaimPack = {
     treatments: Sourced<string>[];      // performed treatments, record wording
     diagnostics: Sourced<string>[];     // performed diagnostics with result, record wording
     medications: Medication[];          // given today (dispensed / prescribed / performed), record items
-    pre_existing: Sourced<boolean> | null;
+    pre_existing: Sourced<boolean | 'unknown'> | null;
     pre_existing_note: Sourced<string> | null;
     surgery: Sourced<boolean> | null;
     setting: Sourced<'outpatient' | 'day_hospital' | 'inpatient'> | null;
@@ -198,7 +198,7 @@ const T = {
     invoice: 'Invoice', invNo: 'Invoice number', invDate: 'Invoice date', date: 'Date', service: 'Service', got: 'GOT no.', factor: 'Factor', qty: 'Qty', amount: 'Amount', total: 'Invoice total (as entered)', vat: 'VAT (as entered)',
     practice: 'Practice', vet: 'Treating veterinarian', reg: 'Registration', pname: 'Practice', address: 'Address', stamp: 'Practice stamp and signature of the veterinarian', place: 'Place, date',
     missing: 'Missing', missingIntro: 'Not in the record and not entered; to be completed before sending:',
-    yes: 'yes', no: 'no', illness: 'illness', accident: 'accident', outpatient: 'outpatient', day_hospital: 'day hospital', inpatient: 'inpatient',
+    yes: 'yes', no: 'no', unknown: 'not known to the veterinarian', illness: 'illness', accident: 'accident', outpatient: 'outpatient', day_hospital: 'day hospital', inpatient: 'inpatient',
     species_: { dog: 'dog', cat: 'cat', rabbit: 'rabbit', ferret: 'ferret', horse: 'horse', bird: 'bird', reptile: 'reptile', other: 'other' } as Record<string, string>,
     sex_: { female: 'female', male: 'male' } as Record<string, string>, unit: { day: 'days', week: 'weeks', month: 'months', year: 'years' } as Record<string, string>,
   },
@@ -210,7 +210,7 @@ const T = {
     invoice: 'Rechnung', invNo: 'Rechnungsnummer', invDate: 'Rechnungsdatum', date: 'Datum', service: 'Leistung', got: 'GOT-Nr.', factor: 'Faktor', qty: 'Menge', amount: 'Betrag', total: 'Rechnungsbetrag (wie eingetragen)', vat: 'USt. (wie eingetragen)',
     practice: 'Praxis', vet: 'Behandelnde Tierärztin / behandelnder Tierarzt', reg: 'Registrierung', pname: 'Praxis', address: 'Anschrift', stamp: 'Praxisstempel und Unterschrift der Tierärztin / des Tierarztes', place: 'Ort, Datum',
     missing: 'Fehlt', missingIntro: 'Weder im Datensatz noch eingetragen; vor dem Versand ergänzen:',
-    yes: 'ja', no: 'nein', illness: 'Krankheit', accident: 'Unfall', outpatient: 'ambulant', day_hospital: 'tagesstationär', inpatient: 'stationär',
+    yes: 'ja', no: 'nein', unknown: 'der Tierärztin / dem Tierarzt nicht bekannt', illness: 'Krankheit', accident: 'Unfall', outpatient: 'ambulant', day_hospital: 'tagesstationär', inpatient: 'stationär',
     species_: { dog: 'Hund', cat: 'Katze', rabbit: 'Kaninchen', ferret: 'Frettchen', horse: 'Pferd', bird: 'Vogel', reptile: 'Reptil', other: 'anderes Tier' } as Record<string, string>,
     sex_: { female: 'weiblich', male: 'männlich' } as Record<string, string>, unit: { day: 'Tage', week: 'Wochen', month: 'Monate', year: 'Jahre' } as Record<string, string>,
   },
@@ -222,7 +222,7 @@ const T = {
     invoice: 'Fattura', invNo: 'Numero fattura', invDate: 'Data fattura', date: 'Data', service: 'Prestazione', got: 'Codice', factor: 'Fattore', qty: 'Q.tà', amount: 'Importo', total: 'Totale fattura (come inserito)', vat: 'IVA (come inserita)',
     practice: 'Struttura', vet: 'Medico veterinario curante', reg: 'Iscrizione all\'Ordine', pname: 'Struttura', address: 'Indirizzo', stamp: 'Timbro della struttura e firma del medico veterinario', place: 'Luogo, data',
     missing: 'Mancante', missingIntro: 'Non presente nella cartella e non inserito; da completare prima dell\'invio:',
-    yes: 'sì', no: 'no', illness: 'malattia', accident: 'infortunio', outpatient: 'ambulatoriale', day_hospital: 'day hospital', inpatient: 'ricovero',
+    yes: 'sì', no: 'no', unknown: 'non noto al veterinario', illness: 'malattia', accident: 'infortunio', outpatient: 'ambulatoriale', day_hospital: 'day hospital', inpatient: 'ricovero',
     species_: { dog: 'cane', cat: 'gatto', rabbit: 'coniglio', ferret: 'furetto', horse: 'cavallo', bird: 'uccello', reptile: 'rettile', other: 'altro' } as Record<string, string>,
     sex_: { female: 'femmina', male: 'maschio' } as Record<string, string>, unit: { day: 'giorni', week: 'settimane', month: 'mesi', year: 'anni' } as Record<string, string>,
   },
@@ -278,7 +278,7 @@ export function renderClaimSummary(pack: ClaimPack, lang: Lang = 'en'): string {
   out.push(`- ${t.diagnosis}: ${v(c.diagnosis)}`);
   out.push(`- ${t.dates}: ${v(c.treatment_dates, (d) => d.join(', '))}`);
   out.push(`- ${t.surgery}: ${v(c.surgery, yn)}${c.setting ? ` · ${t.setting}: ${t[c.setting.value]}` : ''}`);
-  out.push(`- ${t.pre}: ${v(c.pre_existing, yn)}${c.pre_existing?.value && c.pre_existing_note ? ` — ${c.pre_existing_note.value}` : ''}`);
+  out.push(`- ${t.pre}: ${v(c.pre_existing, (x) => (x === 'unknown' ? t.unknown : yn(x)))}${c.pre_existing?.value === true && c.pre_existing_note ? ` — ${c.pre_existing_note.value}` : ''}`);
   if (c.treatments.length) { out.push(`- ${t.treatments}:`); for (const x of c.treatments) out.push(`  - ${x.value}`); }
   if (c.diagnostics.length) { out.push(`- ${t.diagnostics}:`); for (const x of c.diagnostics) out.push(`  - ${x.value}`); }
   if (c.medications.length) { out.push(''); out.push(`### ${t.meds}`); out.push(renderMedicationTable(c.medications, lang)); }

@@ -89,6 +89,15 @@ describe('claim pack: absent means null and listed', () => {
     expect(bare.missing).not.toContain('patient.breed');
   });
 
+  it('prints the vet\'s "unknown" answer to pre-existing as a statement, not as missing', () => {
+    const p = buildClaimPack(record, header, ctxDE, { pre_existing: 'unknown', pre_existing_note: 'ignored without a yes' });
+    expect(p.clinical.pre_existing).toEqual({ value: 'unknown', source: 'opts.pre_existing' });
+    expect(p.missing).not.toContain('clinical.pre_existing');
+    expect(renderClaimSummary(p, 'de')).toContain('Vorerkrankung (Angabe der Tierärztin / des Tierarztes): der Tierärztin / dem Tierarzt nicht bekannt');
+    expect(renderClaimSummary(p, 'it')).toContain('non noto al veterinario');
+    expect(renderClaimSummary(p, 'en')).not.toContain('ignored without a yes');
+  });
+
   it('never derives the first-symptom date from "seit 5 Tagen", nor pre-existing from history', () => {
     const p = buildClaimPack(record, header, ctxDE, { visit_date: '2026-10-15' });
     expect(p.clinical.first_symptom_date).toBeNull();
