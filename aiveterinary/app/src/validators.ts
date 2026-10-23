@@ -507,7 +507,7 @@ export function validateNotesContradiction(record: ClinicalRecord, notes: string
 }
 
 /** The spans of one fact, by its factPaths path ("assessment.text" uses the assessment's own spans). */
-function factSpans(record: ClinicalRecord, path: string): Span[] {
+export function factSpans(record: ClinicalRecord, path: string): Span[] {
   if (path === 'assessment.text') return record.assessment.source_spans;
   let x: any = record;
   for (const [, key, idx] of path.matchAll(/([a-z_]+)(?:\[(\d+)\])?/g)) { x = x?.[key]; if (idx !== undefined) x = x?.[Number(idx)]; }

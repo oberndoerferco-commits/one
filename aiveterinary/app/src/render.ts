@@ -284,6 +284,8 @@ export const DISCHARGE_LABELS = {
 
 /** Labels of the consultation report (status words, table headings, flags) that other documents reuse. */
 export const REPORT_LABELS = L;
+/** Owner-facing headings (owner summary, referral, discharge), exported for documents composed from the owner summary. */
+export const OWNER_LABELS = D;
 
 const fold = (s: string) => s.toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '');
 /**

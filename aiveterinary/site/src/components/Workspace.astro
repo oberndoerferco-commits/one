@@ -105,7 +105,10 @@ const JS = {
    "009-adversarial-other-pet": "Nala, cat, the other cat's antibiotics (EN)",
    "010-vaccination-visit": "Bruno, dog, annual vaccination (EN)",
    "011-dental-de-triadan": "Kira, dog, dental findings by tooth number (EN)",
-   "173-gen-horse-colic-de": "Wendy, horse, colic (DE)"
+   "173-gen-horse-colic-de": "Wendy, horse, colic (DE)",
+   "300-multi-dog-cat-otitis-check-en": "Bella and Felix, dog and cat, two animals (EN)",
+   "301-multi-dog-cat-otitis-check-de": "Lotte and Moritz, dog and cat, two animals (DE)",
+   "302-multi-dog-cat-otitis-check-it": "Briciola and Tigro, dog and cat, two animals (IT)"
   },
   "first": "001-luna-vomiting"
  },
@@ -150,7 +153,10 @@ const JS = {
    "009-adversarial-other-pet": "Nala, gatta, gli antibiotici dell'altro gatto (EN)",
    "010-vaccination-visit": "Bruno, cane, vaccinazione annuale (EN)",
    "011-dental-de-triadan": "Kira, cane, reperti dentali per numero di dente (EN)",
-   "173-gen-horse-colic-de": "Wendy, cavallo, colica (DE)"
+   "173-gen-horse-colic-de": "Wendy, cavallo, colica (DE)",
+   "302-multi-dog-cat-otitis-check-it": "Briciola e Tigro, cane e gatto, due animali (IT)",
+   "300-multi-dog-cat-otitis-check-en": "Bella e Felix, cane e gatto, due animali (EN)",
+   "301-multi-dog-cat-otitis-check-de": "Lotte e Moritz, cane e gatto, due animali (DE)"
   },
   "first": "003-gatto-inappetenza-it"
  },
@@ -195,7 +201,10 @@ const JS = {
    "009-adversarial-other-pet": "Nala, Katze, die Antibiotika der anderen Katze (EN)",
    "010-vaccination-visit": "Bruno, Hund, Jahresimpfung (EN)",
    "011-dental-de-triadan": "Kira, Hund, Zahnbefunde nach Zahnnummer (EN)",
-   "173-gen-horse-colic-de": "Wendy, Pferd, Kolik (DE)"
+   "173-gen-horse-colic-de": "Wendy, Pferd, Kolik (DE)",
+   "301-multi-dog-cat-otitis-check-de": "Lotte und Moritz, Hund und Katze, zwei Tiere (DE)",
+   "300-multi-dog-cat-otitis-check-en": "Bella und Felix, Hund und Katze, zwei Tiere (EN)",
+   "302-multi-dog-cat-otitis-check-it": "Briciola und Tigro, Hund und Katze, zwei Tiere (IT)"
   },
   "first": "002-milo-otitis-de"
  }
@@ -263,7 +272,31 @@ const N = {
   "docMissingRegistry": "Vom Register verlangt, weder im Datensatz noch oben eingetragen; in der Checkliste markiert. Blockiert die Freigabe nicht."
  }
 } as const;
-const t = T[lang]; const j = JS[lang]; const n = N[lang];
+// Multi-pet consultations: patient tabs, line assignment (memory only), the combined owner letter.
+const M = {
+ "en": {
+  "docOwnerAll": "Owner letter (all animals)", "pets": "Animal",
+  "hint": "Assign each line to an animal, or mark it shared (said for all animals). Lines that start with an animal's name are suggested; nothing is assigned until you confirm. Kept in memory for this preview only.",
+  "line": "Line {n}: animal", "unassigned": "Not assigned", "shared": "Shared (all animals)",
+  "confirm": "Confirm: {name}", "confirmAria": "Confirm the suggestion for line {n}: {name}", "confirmAll": "Confirm all {n} suggestions",
+  "tabBlocked": "{n} blocked", "assigned": "Line {n} assigned: {who}.", "confirmedAll": "{n} suggestions confirmed."
+ },
+ "it": {
+  "docOwnerAll": "Lettera al proprietario (tutti gli animali)", "pets": "Animale",
+  "hint": "Assegna ogni riga a un animale, oppure segnala come comune (detta per tutti gli animali). Le righe che iniziano con il nome di un animale sono suggerite; nulla viene assegnato finché non confermi. Tenuto in memoria solo per questa anteprima.",
+  "line": "Riga {n}: animale", "unassigned": "Non assegnata", "shared": "Comune (tutti gli animali)",
+  "confirm": "Conferma: {name}", "confirmAria": "Conferma il suggerimento per la riga {n}: {name}", "confirmAll": "Conferma tutti i {n} suggerimenti",
+  "tabBlocked": "{n} bloccati", "assigned": "Riga {n} assegnata: {who}.", "confirmedAll": "{n} suggerimenti confermati."
+ },
+ "de": {
+  "docOwnerAll": "Halterbrief (alle Tiere)", "pets": "Tier",
+  "hint": "Ordnen Sie jede Zeile einem Tier zu oder markieren Sie sie als gemeinsam (für alle Tiere gesagt). Zeilen, die mit dem Namen eines Tieres beginnen, werden vorgeschlagen; zugeordnet wird erst, wenn Sie bestätigen. Nur für diese Vorschau im Arbeitsspeicher.",
+  "line": "Zeile {n}: Tier", "unassigned": "Nicht zugeordnet", "shared": "Gemeinsam (alle Tiere)",
+  "confirm": "Bestätigen: {name}", "confirmAria": "Vorschlag für Zeile {n} bestätigen: {name}", "confirmAll": "Alle {n} Vorschläge bestätigen",
+  "tabBlocked": "{n} blockiert", "assigned": "Zeile {n} zugeordnet: {who}.", "confirmedAll": "{n} Vorschläge bestätigt."
+ }
+} as const;
+const t = T[lang]; const j = JS[lang]; const n = N[lang]; const mp = M[lang];
 const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang === lang).map((e) => ({ title: e.data.title, href: `${({ en: '/animals', it: '/it/animals', de: '/de/animals' })[lang]}/${slugOf(e.id)}`, species: e.data.species, draft: e.data.draft }));
 ---
   <section class="wrap" style="padding-top:24px">
@@ -280,7 +313,7 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
       </div>
       <div>
         <label for="ws-doc" class="ws-label">{t.docLabel}</label>
-        <select id="ws-doc"><option value="report">{t.docReport}</option><option value="owner">{t.docOwner}</option><option value="referral">{t.docReferral}</option><option value="discharge">{t.docDischarge}</option><option value="rx">{t.docRx}</option><option value="rev" data-countries="IT" disabled hidden>{t.docRev}</option><option value="vacc">{t.docVacc}</option><option value="consent">{t.docConsent}</option><option value="estimate">{t.docEstimate}</option><option value="dental">{t.docDental}</option><option value="claim">{t.docClaim}</option><option value="bite" data-countries="CH IT" disabled hidden>{n.docBite}</option><option value="registry" data-countries="AT IT" disabled hidden>{n.docRegistry}</option></select>
+        <select id="ws-doc"><option value="report">{t.docReport}</option><option value="owner">{t.docOwner}</option><option value="referral">{t.docReferral}</option><option value="discharge">{t.docDischarge}</option><option value="rx">{t.docRx}</option><option value="rev" data-countries="IT" disabled hidden>{t.docRev}</option><option value="vacc">{t.docVacc}</option><option value="consent">{t.docConsent}</option><option value="estimate">{t.docEstimate}</option><option value="dental">{t.docDental}</option><option value="claim">{t.docClaim}</option><option value="bite" data-countries="CH IT" disabled hidden>{n.docBite}</option><option value="registry" data-countries="AT IT" disabled hidden>{n.docRegistry}</option><option value="ownerAll" data-multi disabled hidden>{mp.docOwnerAll}</option></select>
       </div>
       <!-- CH only, and only for species that can be food-producing (not dog, cat, ferret): the vet's statement. Memory only. -->
       <div id="ws-food-wrap" hidden>
@@ -391,6 +424,11 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
       </div>
       <div class="ws-patient" id="ws-patient"></div>
       <div class="ws-state" id="ws-state"><span class="badge draft">● {j.draft}</span></div>
+      <!-- Multi-pet cases only: one tab per animal; flags, approval and documents follow the selected animal. -->
+      <div id="ws-pets-wrap" class="ws-pets-wrap" hidden>
+        <span class="ws-label" id="ws-pets-label">{mp.pets}</span>
+        <div id="ws-pets" class="ws-pets" role="tablist" aria-labelledby="ws-pets-label"></div>
+      </div>
     </div>
     <p class="notice" style="margin-top:12px" set:html={t.notice} />
   </section>
@@ -398,6 +436,10 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
   <section class="wrap ws" aria-label="Workspace">
     <div class="ws-pane">
       <div class="ws-h">{t.notes} <span class="ws-hint">{t.notesHint}</span></div>
+      <div id="ws-assign-bar" class="ws-assign-bar" hidden>
+        <p class="pp-hint" id="ws-assign-hint">{mp.hint}</p>
+        <button type="button" class="btn secondary sm" id="ws-confirm-all" hidden></button>
+      </div>
       <pre id="ws-notes" class="ws-notes" tabindex="0"></pre>
       <div class="ws-attach">
         <label class="btn secondary" for="ws-file">{t.attachLabel}</label>
@@ -549,6 +591,26 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
     .btn.secondary kbd { color: var(--ink-2); }
     .ws-approved .badge.draft { display: none; }
     .ws-mbar { display: none; }
+    .ws-pets-wrap { flex-basis: 100%; }
+    .ws-pets { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+    .ws-pets [role="tab"] { font: inherit; font-weight: 600; padding: 8px 14px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink-2); cursor: pointer; }
+    .ws-pets [role="tab"][aria-selected="true"] { border-color: var(--accent); background: var(--accent-soft); color: var(--ink); }
+    .ws-pets .ws-tab-blocked { color: var(--danger); font-weight: 600; margin-left: 6px; font-size: .85rem; }
+    .ws-assign-bar { margin-bottom: 10px; display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+    .ws-assign-bar .pp-hint { margin: 0; font-size: .85rem; }
+    .ws-notes .ws-line { display: grid; grid-template-columns: minmax(0, 10.5rem) minmax(0, 1fr); gap: 4px 10px; align-items: start; padding: 3px 0 3px 8px; border-left: 3px solid transparent; }
+    .ws-notes .ws-line.is-open { border-left-color: var(--warn); }
+    .ws-notes .ws-line.is-other .ws-line-text { opacity: .5; }
+    .ws-notes .ws-line-ctl { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+    .ws-notes .ws-line-text { min-width: 0; overflow-wrap: anywhere; }
+    .ws-notes .ws-line.is-blank { display: block; min-height: 1.2em; }
+    .ws-notes select.ws-assign { font: 500 .82rem/1.3 var(--font-body, system-ui), system-ui, sans-serif; padding: 4px 6px; border: 1.5px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--ink); width: 100%; min-width: 0; }
+    .ws-notes .ws-suggest { font: 500 .78rem/1.3 system-ui, sans-serif; padding: 3px 8px; border-radius: 6px; border: 1.5px dashed var(--accent); background: var(--surface); color: var(--ink-2); cursor: pointer; text-align: left; white-space: normal; }
+    .ws-report h2.ws-animal-h { font-size: 1rem; text-transform: none; letter-spacing: 0; color: var(--ink); border-top: 1px solid var(--line); padding-top: 12px; margin-top: 22px; }
+    .ws-report h3 { font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-3); margin: 12px 0 4px; }
+    @media (max-width: 820px) { .ws-top .ws-pets-wrap { grid-column: 1 / -1; } }
+    @media (max-width: 520px) { .ws-notes .ws-line { grid-template-columns: minmax(0, 1fr); } }
+    @media print { .ws-assign-bar, .ws-pets-wrap { display: none; } }
     @media (max-width: 820px) {
       .ws-top { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 12px; align-items: end; }
       .ws-top > div:first-child, .ws-top .ws-patient, .ws-top .ws-state, #ws-referral-wrap, #ws-rev-wrap, #ws-claim-wrap, #ws-bite-wrap, #ws-reg-wrap, #ws-food-wrap { grid-column: 1 / -1; }
@@ -567,7 +629,7 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
     @media print { .site-header, .site-footer, .ws-top, .notice, .ws-pane:first-child, .ws-flags, .eyebrow { display: none !important; } .ws { border: 0; } }
   </style>
 
-  <script type="application/json" id="ws-i18n" set:html={JSON.stringify({ ...j, pageLang: lang, abbrNone: t.abbrNone, abbrSave: t.abbrSave, handouts: t.handouts, handoutsNone: t.handoutsNone, timer: t.timer, identityOk: t.identityOk, identityFail: t.identityFail, refQuestionMissing: t.refQuestionMissing, refQuestionGo: t.refQuestionGo, handoutIndex, n })} />
+  <script type="application/json" id="ws-i18n" set:html={JSON.stringify({ ...j, pageLang: lang, abbrNone: t.abbrNone, abbrSave: t.abbrSave, handouts: t.handouts, handoutsNone: t.handoutsNone, timer: t.timer, identityOk: t.identityOk, identityFail: t.identityFail, refQuestionMissing: t.refQuestionMissing, refQuestionGo: t.refQuestionGo, handoutIndex, n, mp })} />
 
   <script>
     import { ClinicalRecord, PatientHeader, type ClinicalRecord as Rec } from 'aiveterinary-app/src/schema.ts';
@@ -581,6 +643,7 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
     import { buildRegistryEntry, renderRegistryEntry, type Registry, type RegistryEvent, type RegistryOpts } from 'aiveterinary-app/src/registry-export.ts';
     import { clinicMissing } from 'aiveterinary-app/src/clinic-required.ts';
     import { soapFields, exportBundle } from 'aiveterinary-app/src/export.ts';
+    import { SHARED, noteLines, setLine, suggestAssignments, makeConsultation, validateConsultation, renderOwnerLetterMulti, type Assignment } from 'aiveterinary-app/src/multi-pet.ts';
     import { approve as approveVersion, amend as amendVersion, documentFrom, propagationMap, type ApprovedVersion, type GeneratedDocument } from 'aiveterinary-app/src/versions.ts';
     import c1 from 'aiveterinary-app/eval/cases/001-luna-vomiting.json';
     import c2 from 'aiveterinary-app/eval/cases/002-milo-otitis-de.json';
@@ -593,9 +656,16 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
     import c10 from 'aiveterinary-app/eval/cases/010-vaccination-visit.json';
     import c11 from 'aiveterinary-app/eval/cases/011-dental-de-triadan.json';
     import c173 from 'aiveterinary-app/eval/cases/173-gen-horse-colic-de.json';
+    import m300 from 'aiveterinary-app/eval/cases-multi/300-multi-dog-cat-otitis-check-en.json';
+    import m301 from 'aiveterinary-app/eval/cases-multi/301-multi-dog-cat-otitis-check-de.json';
+    import m302 from 'aiveterinary-app/eval/cases-multi/302-multi-dog-cat-otitis-check-it.json';
 
     type Case = { id: string; language: 'en' | 'de' | 'it'; header: any; notes: string; fixture_record: any };
     const cases = [c1, c2, c3, c4, c6, c7, c8, c9, c10, c11, c173] as Case[];
+    // Two-pet consultations: shared notes, one record per animal. The gold assignment in the file is not used:
+    // the preview starts with nothing assigned, and the vet assigns (or confirms suggestions). Memory only.
+    type MultiCase = { id: string; language: 'en' | 'de' | 'it'; notes: string; patients: { id: string; header: any; fixture_record: any }[] };
+    const multiCases = [m300, m301, m302] as unknown as MultiCase[];
     const J = JSON.parse(document.getElementById('ws-i18n')!.textContent!);
     const CLINIC_KEY = 'aiveterinary.clinic.v1';
     const loadClinic = (): Record<string, any> => { try { return JSON.parse(localStorage.getItem(CLINIC_KEY) ?? '{}'); } catch { return {}; } };
@@ -661,10 +731,13 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
     const labels: Record<string, string> = J.cases;
     const $ = (s: string) => document.querySelector(s) as HTMLElement;
 
-    let cur: { notes: string; header: any; record: Rec; lang: 'en' | 'de' | 'it'; resolved: Record<string, string>; approved: boolean; meds: boolean[]; handed: boolean; files: { name: string; size: number; type: string }[]; started: number; v: ApprovedVersion | null; docs: GeneratedDocument[] };
+    type CaseState = { notes: string; header: any; record: Rec; lang: 'en' | 'de' | 'it'; resolved: Record<string, string>; approved: boolean; meds: boolean[]; handed: boolean; files: { name: string; size: number; type: string }[]; started: number; v: ApprovedVersion | null; docs: GeneratedDocument[] };
+    let cur: CaseState;
+    /** Multi-pet case: one CaseState per animal (cur is the selected one), the shared notes and the vet's assignment (memory only). */
+    let multi: { pids: string[]; states: Record<string, CaseState>; assignment: Assignment; pid: string } | null = null;
 
     const sel = $('#ws-case') as HTMLSelectElement;
-    for (const c of [...cases].sort((a, b) => Object.keys(labels).indexOf(a.id) - Object.keys(labels).indexOf(b.id))) { const o = document.createElement('option'); o.value = c.id; o.textContent = labels[c.id] ?? c.id; sel.appendChild(o); }
+    for (const c of [...cases, ...multiCases].sort((a, b) => Object.keys(labels).indexOf(a.id) - Object.keys(labels).indexOf(b.id))) { const o = document.createElement('option'); o.value = c.id; o.textContent = labels[c.id] ?? c.id; sel.appendChild(o); }
     sel.addEventListener('change', () => load(sel.value));
     const csel = $('#ws-country') as HTMLSelectElement;
     const dsel = $('#ws-doc') as HTMLSelectElement; const refIn = $('#ws-referral') as HTMLInputElement;
@@ -863,6 +936,7 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
     const docLang = (): 'en' | 'de' | 'it' => (dsel.value === 'rev' ? 'it' : dsel.value === 'claim' ? J.pageLang : dsel.value === 'bite' || dsel.value === 'registry' ? officeLang() : cur.lang);
     function renderDoc(approved: boolean) {
       const { record, header, lang } = cur;
+      if (dsel.value === 'ownerAll' && multi) return renderOwnerLetterMulti(consultation(), lang, { approved: multi.pids.every((p) => multi!.states[p].approved) });
       const l2 = ($('#ws-lang2') as HTMLSelectElement).value as any;
       if (dsel.value === 'owner' && l2 && l2 !== lang) return renderOwnerSummaryBilingual(record, header, lang, l2, { approved });
       if (dsel.value === 'owner') return renderOwnerSummary(record, header, lang, { approved });
@@ -883,19 +957,134 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
     const approveBtn = $('#ws-approve') as HTMLButtonElement; const approveLabel = approveBtn.innerHTML;
     rsel.addEventListener('change', () => { approveBtn.innerHTML = rsel.value === 'nurse' ? `${J.handOver} <kbd>Ctrl+Shift+Enter</kbd>` : approveLabel; if (cur) renderFlags(); });
 
-    function load(id: string) {
-      const c = cases.find((x) => x.id === id)!;
-      resetCaseInputs();
-      cur = { notes: normalizeNotes(c.notes), header: PatientHeader.parse(c.header), record: ClinicalRecord.parse(c.fixture_record), lang: c.language, resolved: {}, approved: false, meds: [], handed: false, files: [], started: Date.now(), v: null, docs: [] };
+    function showPatient() {
       const h = cur.header;
       const sig = J.sig; const unit = h.age && sig.unit[h.age.unit];
       $('#ws-patient').textContent = [h.name, h.species && (sig.species[h.species] ?? h.species), h.breed, h.sex && (sig.sex[h.sex] ?? h.sex), h.age && `${h.age.value.toLocaleString(J.pageLang)} ${unit ? unit[h.age.value === 1 ? 0 : 1] : h.age.unit}`, h.weight_kg && `${h.weight_kg.toLocaleString(J.pageLang)} kg`].filter(Boolean).join(' · ');
-      csel.value = { en: 'DE', de: 'DE', it: 'IT' }[cur.lang]; syncDocs(); syncFood(); syncBiteCountry(); renderClaimLines(); renderRegFields();
+    }
+    function load(id: string) {
+      const mc = multiCases.find((x) => x.id === id);
+      const c = mc ? null : cases.find((x) => x.id === id)!;
+      resetCaseInputs();
+      if (mc) {
+        const notes = normalizeNotes(mc.notes); const files: CaseState['files'] = []; const started = Date.now();
+        const states: Record<string, CaseState> = {};
+        for (const p of mc.patients) states[p.id] = { notes, header: PatientHeader.parse(p.header), record: ClinicalRecord.parse(p.fixture_record), lang: mc.language, resolved: {}, approved: false, meds: [], handed: false, files, started, v: null, docs: [] };
+        multi = { pids: mc.patients.map((p) => p.id), states, assignment: {}, pid: mc.patients[0].id };
+        cur = states[multi.pid];
+      } else {
+        multi = null;
+        cur = { notes: normalizeNotes(c!.notes), header: PatientHeader.parse(c!.header), record: ClinicalRecord.parse(c!.fixture_record), lang: c!.language, resolved: {}, approved: false, meds: [], handed: false, files: [], started: Date.now(), v: null, docs: [] };
+      }
+      showPatient();
+      csel.value = { en: 'DE', de: 'DE', it: 'IT' }[cur.lang]; syncDocs(); syncFood(); syncBiteCountry(); renderClaimLines(); renderRegFields(); syncMulti();
       document.body.classList.remove('ws-approved'); ($('#ws-amend') as HTMLElement).hidden = true;
       $('#ws-state').innerHTML = `<span class="badge draft">● ${J.draft}</span>`;
       $('#ws-status').textContent = '';
       render();
     }
+
+    /* ---------------- Multi-pet: tabs, line assignment, combined letter ---------------- */
+    const consultation = () => makeConsultation(cur.notes, multi!.pids.map((id) => ({ id, header: multi!.states[id].header, record: multi!.states[id].record })), multi!.assignment);
+    const multiFindings = () => validateConsultation(consultation());
+    const ownerAllOpt = dsel.querySelector('option[data-multi]') as HTMLOptionElement;
+    const petName = (id: string) => multi!.states[id].header.name as string;
+    /** Shows or hides the multi-pet controls; a single-pet case keeps the page exactly as before. */
+    function syncMulti() {
+      const on = !!multi;
+      ($('#ws-pets-wrap') as HTMLElement).hidden = !on; ($('#ws-assign-bar') as HTMLElement).hidden = !on;
+      ownerAllOpt.disabled = !on; ownerAllOpt.hidden = !on;
+      if (!on && dsel.value === 'ownerAll') { dsel.value = 'report'; docShown(); }
+      if (on) { renderTabs(); renderLines(); }
+    }
+    function renderTabs(focus = false) {
+      if (!multi) return;
+      const box = $('#ws-pets'); box.innerHTML = '';
+      const v = multiFindings();
+      for (const id of multi.pids) {
+        const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role', 'tab'); b.id = `ws-tab-${id}`;
+        const sel = id === multi.pid; b.setAttribute('aria-selected', String(sel)); b.tabIndex = sel ? 0 : -1; b.setAttribute('aria-controls', 'ws-report');
+        b.textContent = petName(id);
+        const nb = v.byPatient[id].filter((f) => f.severity === 'block').length;
+        if (nb) { const sp = document.createElement('span'); sp.className = 'ws-tab-blocked'; sp.textContent = `· ${J.mp.tabBlocked.replace('{n}', String(nb))}`; b.appendChild(sp); }
+        if (multi.states[id].approved) b.append(' ✓');
+        b.addEventListener('click', () => selectPet(id));
+        b.addEventListener('keydown', (e) => {
+          const i = multi!.pids.indexOf(id); const k = e.key;
+          const to = k === 'ArrowRight' ? (i + 1) % multi!.pids.length : k === 'ArrowLeft' ? (i - 1 + multi!.pids.length) % multi!.pids.length : k === 'Home' ? 0 : k === 'End' ? multi!.pids.length - 1 : -1;
+          if (to < 0) return; e.preventDefault(); selectPet(multi!.pids[to], true);
+        });
+        box.appendChild(b);
+      }
+      if (focus) ($(`#ws-tab-${multi.pid}`) as HTMLElement)?.focus();
+    }
+    function stateBadge() {
+      document.body.classList.toggle('ws-approved', cur.approved); ($('#ws-amend') as HTMLElement).hidden = !cur.approved;
+      $('#ws-state').innerHTML = cur.approved && cur.v ? `<span class="badge reviewed">✓ ${J.approved} ${J.version.replace('{n}', String(cur.v.version))}</span>` : `<span class="badge draft">● ${J.draft}</span>`;
+    }
+    function selectPet(id: string, focusTab = false) {
+      if (!multi || !multi.states[id]) return;
+      multi.pid = id; cur = multi.states[id];
+      showPatient(); syncFood(); stateBadge(); $('#ws-status').textContent = '';
+      renderTabs(focusTab); renderLines(); render();
+    }
+    /** One row per note line: a select (not assigned / each animal / shared), a confirm button when a name label suggests
+     *  an animal, and the line's characters as <mark>s (same data-i offsets as the single-pet view, so highlighting works). */
+    function renderLines() {
+      if (!multi) return;
+      const active = document.activeElement as HTMLElement | null;
+      // Rows are rebuilt after every assignment: keep keyboard focus on that line's select.
+      const refocus = active?.dataset?.line != null ? { line: active.dataset.line } : null;
+      const notesEl = $('#ws-notes'); notesEl.innerHTML = '';
+      const patients = multi.pids.map((id) => ({ id, header: multi!.states[id].header }));
+      const sugg = new Map(suggestAssignments(cur.notes, patients, multi.assignment).map((s) => [s.line, s]));
+      const frag = document.createDocumentFragment();
+      for (const l of noteLines(cur.notes)) {
+        const row = document.createElement('span'); row.className = 'ws-line'; row.dataset.row = String(l.index);
+        if (l.blank) { row.classList.add('is-blank'); frag.appendChild(row); continue; }
+        const target = multi.assignment[l.index] ?? null;
+        row.classList.toggle('is-open', target == null); row.classList.toggle('is-other', target != null && target !== SHARED && target !== multi.pid);
+        const ctl = document.createElement('span'); ctl.className = 'ws-line-ctl';
+        const sel = document.createElement('select'); sel.className = 'ws-assign'; sel.dataset.line = String(l.index);
+        sel.setAttribute('aria-label', J.mp.line.replace('{n}', String(l.index + 1)));
+        for (const [v, label] of [['', J.mp.unassigned], ...multi.pids.map((id) => [id, petName(id)]), [SHARED, J.mp.shared]] as [string, string][]) {
+          const o = document.createElement('option'); o.value = v; o.textContent = label; sel.appendChild(o);
+        }
+        sel.value = target ?? '';
+        sel.addEventListener('change', () => assign(l.index, sel.value || null));
+        ctl.appendChild(sel);
+        const s = sugg.get(l.index);
+        if (s) {
+          const b = document.createElement('button'); b.type = 'button'; b.className = 'ws-suggest'; b.dataset.line = String(l.index);
+          b.textContent = J.mp.confirm.replace('{name}', s.label); b.setAttribute('aria-label', J.mp.confirmAria.replace('{n}', String(l.index + 1)).replace('{name}', s.label));
+          b.addEventListener('click', () => assign(s.line, s.target));
+          ctl.appendChild(b);
+        }
+        const txt = document.createElement('span'); txt.className = 'ws-line-text';
+        for (let i = l.start; i < l.end; i++) { const m = document.createElement('mark'); m.textContent = cur.notes[i]; m.dataset.i = String(i); txt.appendChild(m); }
+        row.append(ctl, txt); frag.appendChild(row);
+      }
+      notesEl.appendChild(frag);
+      const all = $('#ws-confirm-all') as HTMLButtonElement;
+      all.hidden = sugg.size === 0; all.textContent = J.mp.confirmAll.replace('{n}', String(sugg.size));
+      if (refocus) (notesEl.querySelector(`select[data-line="${refocus.line}"]`) as HTMLElement | null)?.focus();
+    }
+    function assign(line: number, target: string | null) {
+      if (!multi) return;
+      const patients = multi.pids.map((id) => ({ id }));
+      multi.assignment = setLine(cur.notes, patients, multi.assignment, line, target);
+      renderTabs(); renderLines(); render();
+      $('#ws-status').textContent = J.mp.assigned.replace('{n}', String(line + 1)).replace('{who}', target == null ? J.mp.unassigned : target === SHARED ? J.mp.shared : petName(target));
+    }
+    $('#ws-confirm-all').addEventListener('click', () => {
+      if (!multi) return;
+      const patients = multi.pids.map((id) => ({ id, header: multi!.states[id].header }));
+      const s = suggestAssignments(cur.notes, patients, multi.assignment);
+      for (const x of s) multi.assignment = setLine(cur.notes, patients, multi.assignment, x.line, x.target);
+      renderTabs(); renderLines(); render();
+      $('#ws-status').textContent = J.mp.confirmedAll.replace('{n}', String(s.length));
+      ($('#ws-notes select.ws-assign') as HTMLElement | null)?.focus();
+    });
 
     // Collect every span-bearing item so report text can link back to the notes.
     function spanItems(r: Rec): { text: string; spans: [number, number][] }[] {
@@ -918,10 +1107,13 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
       renderSoap();
       const { notes, header, record, lang } = cur;
       // notes with one <mark> per character run, so any span can be lit
-      const notesEl = $('#ws-notes'); notesEl.innerHTML = '';
-      const frag = document.createDocumentFragment();
-      [...notes].forEach((ch, i) => { const m = document.createElement('mark'); m.textContent = ch; m.dataset.i = String(i); frag.appendChild(m); });
-      notesEl.appendChild(frag);
+      // (multi-pet: the notes pane is the line list from renderLines, rebuilt only when the assignment changes)
+      if (!multi) {
+        const notesEl = $('#ws-notes'); notesEl.innerHTML = '';
+        const frag = document.createDocumentFragment();
+        [...notes].forEach((ch, i) => { const m = document.createElement('mark'); m.textContent = ch; m.dataset.i = String(i); frag.appendChild(m); });
+        notesEl.appendChild(frag);
+      }
 
       // report: markdown from the renderer → minimal HTML, then wrap sourced phrases
       $('#ws-lang').textContent = { en: 'English', de: 'Deutsch', it: 'Italiano' }[docLang()];
@@ -937,8 +1129,9 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
         if (office && line.startsWith('> ')) return `<p class="ws-doc-warn">⚠ ${esc(line.slice(2))}</p>`;
         if (office && line.startsWith('- [ ] ')) return `<li>☐ ${esc(line.slice(6))}</li>`;
         if (line.startsWith('_')) return '';
+        if (line.startsWith('#### ')) return `<h3>${esc(line.slice(5))}</h3>`;
         if (line.startsWith('### ')) return `<h2>${esc(line.slice(4))}</h2>`;
-        if (line.startsWith('## ')) return `<h2>${esc(line.slice(3))}</h2>`;
+        if (line.startsWith('## ')) return `<h2${dsel.value === 'ownerAll' ? ' class="ws-animal-h"' : ''}>${esc(line.slice(3))}</h2>`;
         if (line.startsWith('|')) return line;
         if (line.startsWith('- ')) return `<li>${esc(line.slice(2))}</li>`;
         if (/^\s+- /.test(line)) return `<li>${esc(line.trim().slice(2))}</li>`;
@@ -951,7 +1144,7 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
         html = html.replace(/▲ ([^<|]+)/g, (_m, t) => `<span class="flag">▲ ${t}</span>`);
       }
       html = html.replace(/(Owner reports|Laut Besitzer|Il proprietario riferisce):/g, '<span class="own">$1:</span>');
-      for (const it of spanItems(record)) {
+      for (const it of dsel.value === 'ownerAll' && multi ? multi.pids.flatMap((id) => spanItems(multi!.states[id].record)) : spanItems(record)) {
         const e = esc(it.text);
         html = html.replace(new RegExp(`(?<![\\w-])${escRe(e)}(?![\\w-])`), `<span class="src" data-spans='${JSON.stringify(it.spans)}'>${e}</span>`);
       }
@@ -992,7 +1185,10 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
 
     function renderFlags() {
       const { notes, header, record } = cur;
-      const findings: Finding[] = validateAll(record, notes, header);
+      // Multi-pet: this animal's findings (validateAll on its view of the shared notes, plus the cross-patient check),
+      // then the consultation-level warnings (lines not assigned, a name label assigned elsewhere).
+      const mv = multi ? multiFindings() : null;
+      const findings: Finding[] = mv ? [...mv.byPatient[multi!.pid], ...mv.consultation] : validateAll(record, notes, header);
       const blocks = findings.filter((f) => f.severity === 'block');
       const warns = findings.filter((f) => f.severity === 'warn');
       const ctx = visitCtx();
@@ -1058,6 +1254,7 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
         const ctx = visitCtx();
         const docsAll: Record<string, string> = { report: renderConsultReport(record, header, cur.lang), owner: renderOwnerSummary(record, header, cur.lang), referral: renderReferralLetter(record, header, cur.lang), discharge: renderDischargeLetter(record, header, cur.lang), rx: renderPrescription(record, header, ctx, cur.lang) };
         const l2 = ($('#ws-lang2') as HTMLSelectElement).value as any; if (l2 && l2 !== cur.lang) docsAll[`owner_${l2}`] = renderOwnerSummary(record, header, l2);
+        if (multi) docsAll.owner_all = renderOwnerLetterMulti(consultation(), cur.lang);
         if (record.medications.some((m: any) => m.status !== 'declined')) {
           // The claim prints the shared medication table for the medications given today (dispensed, prescribed,
           // performed), so it is checked against exactly those. The REV draft is not included: it is a transcription
@@ -1108,7 +1305,7 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
       cur.approved = true; document.body.classList.add('ws-approved');
       $('#ws-state').innerHTML = `<span class="badge reviewed">✓ ${J.approved} ${J.version.replace('{n}', String(cur.v.version))}${cur.handed ? ` (${J.cosigned})` : ''} · ${time} · ${J.timer}: ${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}</span>`;
       ($('#ws-amend') as HTMLElement).hidden = false;
-      render();
+      render(); renderTabs();
       if (focusLost()) ($('#ws-amend') as HTMLElement).focus();
       if (staleNote) $('#ws-status').textContent = staleNote;
     }
@@ -1123,7 +1320,7 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
       cur.approved = false; document.body.classList.remove('ws-approved');
       $('#ws-state').innerHTML = `<span class="badge draft">● ${J.amending.replace('{n}', String(cur.v.version + 1))}</span>`;
       ($('#ws-amend') as HTMLElement).hidden = true;
-      render();
+      render(); renderTabs();
       if (focusLost()) focusNextFlag();
     });
     function copyOut() {
@@ -1178,7 +1375,8 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
     function table(block: string) {
       const rows = block.trim().split('\n').filter((r) => !/^\|\s*-/.test(r)).map((r) => r.slice(1, -1).split('|').map((c) => c.trim()));
       const [head, ...body] = rows;
-      const isMeds = ['Drug', 'Wirkstoff', 'Farmaco'].includes(head[0]);
+      // The combined owner letter prints every animal's table: rows are ticked in each animal's own documents.
+      const isMeds = ['Drug', 'Wirkstoff', 'Farmaco'].includes(head[0]) && dsel.value !== 'ownerAll';
       if (!isMeds) return `<table><thead><tr>${head.map((h) => `<th>${h}</th>`).join('')}</tr></thead><tbody>${body.map((r) => `<tr>${r.map((c) => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
       // Some documents print a subset of the medications (discharge: to give at home; claim: given today), so each row
       // is matched to its record medication by the drug cell, in order; the tick then belongs to that medication.

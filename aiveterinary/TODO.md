@@ -142,7 +142,7 @@ Everything costs €0 unless marked €. Legend:
 - [x] Snippets / dot-phrases: clinic-written, expand only on a typed trigger, before structuring so spans still hold (`expandSnippets`)
 - [x] Clinic abbreviation + glossary manager — S ★★★
 - [~] Template builder: clinic-required fields done (flags only, `app/src/clinic-required.ts`); sections, order, per-vet defaults and specialty sets (derm, ortho, dental, ophtho, cardio, exotics, equine) still to do — M ★★
-- [ ] Multi-pet consultation UI (assign bullets, split documents, one owner letter) — M ★★
+- [x] Multi-pet consultation (`app/src/multi-pet.ts`): vet assigns each note line to an animal or "shared" (name labels only suggested), facts from another animal's line blocked, per-animal documents, one owner letter; 3 eval cases; workspace tabs — M ★★
 - [x] Image attachment (stored, referenced, never interpreted) — S ★★
 - [x] Nurse draft → vet co-sign with stamp and audit — S ★★★
 - [x] Time-to-approval counter shown on approval (clinic median on the quality page needs stored data)

@@ -9,22 +9,27 @@
  * extractor returns. Expectations (missing fields, drugs, statuses) are derived
  * from it, so the model run is scored against the same truth.
  *
+ * Multi-pet consultations (eval/cases-multi, 300–399; see MULTI below) are written the same way,
+ * one line at a time, into every patient's record at once.
+ *
  * All patients and notes are invented. Medication lines deliberately carry no
  * dose numbers: the cases test whether a missing dose is flagged, not dosing.
  */
-import { writeFileSync, readdirSync, unlinkSync } from 'node:fs';
+import { writeFileSync, readdirSync, unlinkSync, mkdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { ClinicalRecord, PatientHeader, type Span } from '../schema.js';
 import { normalizeNotes } from '../normalize.js';
 import { validateAll, requiredMissing } from '../validators.js';
+import { makeConsultation, validateConsultation, suggestAssignments, SHARED } from '../multi-pet.js';
 
 type Lang = 'en' | 'de' | 'it';
 type St = 'planned' | 'performed' | 'declined' | 'recommended' | 'dispensed' | 'prescribed';
 type Role = 'owner_reported' | 'vet_observed' | 'vet_stated';
 
 class Case {
-  private lines: string[] = [];
+  /** Read by MultiCase, which writes the same lines into every patient's case. */
+  lines: string[] = [];
   private len = 0;
   r: any = {
     schema_version: '0.2',
@@ -39,11 +44,14 @@ class Case {
   seeded: { rule: string; field: string }[] = [];
   comment: string | null = null;
   constructor(public id: string, public language: Lang, public header: any) {}
+  /** Written before the next line's text (a multi-pet name label such as "Bella: "); never part of a span. */
+  prefix = '';
   /** Appends a line and returns the span of `part` inside it (the whole line by default). */
   line(text: string, part = text): Span[] {
     const start = this.len + (this.lines.length ? 1 : 0);
+    const p = this.prefix; text = p + text;
     this.lines.push(text); this.len = start + text.length;
-    const i = text.indexOf(part); if (i < 0) throw new Error(`${this.id}: "${part}" not in "${text}"`);
+    const i = text.indexOf(part, p.length); if (i < 0) throw new Error(`${this.id}: "${part}" not in "${text}"`);
     return [[start + i, start + i + part.length]];
   }
   plain(text: string) { this.line(text); return this; }
@@ -323,6 +331,103 @@ const SEEDED: Scenario[] = [
   } },
 ];
 
+/**
+ * Multi-pet consultation: one set of notes, one Case per patient sharing the same lines. `line(who, f)`
+ * writes one line through `f` on the case of `who` (a patient id, or SHARED for every patient); the other
+ * patients' cases get the same line as plain text, so the notes and offsets are identical in all records.
+ * The gold assignment is the line's owner. The build checks that the gold consultation has no blocking
+ * finding and no warning at all, and that every suggestion agrees with the gold assignment.
+ */
+class MultiCase {
+  cases: Record<string, Case> = {};
+  assignment: Record<number, string> = {};
+  constructor(public id: string, public language: Lang, public headers: Record<string, any>) {
+    for (const [pid, h] of Object.entries(headers)) this.cases[pid] = new Case(`${id}/${pid}`, language, h);
+  }
+  /** One line `prefix + text`, written by `f` on the case of `who` (SHARED: every patient); `prefix` is the name label. */
+  line(who: string, prefix: string, f: (c: Case) => Case) {
+    const ids = Object.keys(this.cases); const writers = who === SHARED ? ids : [who];
+    const n = this.cases[ids[0]].lines.length; let text: string | null = null;
+    for (const pid of writers) {
+      const c = this.cases[pid]; c.prefix = prefix; f(c); c.prefix = ''; const l = c.lines;
+      if (l.length !== n + 1 || (text !== null && l[n] !== text)) throw new Error(`${this.id}: each line() must write exactly one, identical line`);
+      text = l[n];
+    }
+    for (const pid of ids) if (!writers.includes(pid)) this.cases[pid].plain(text!);
+    this.assignment[n] = who;
+    return this;
+  }
+  build() {
+    const per = Object.entries(this.cases).map(([pid, c]) => ({ pid, built: c.build() }));
+    const notes = per[0].built.notes;
+    const patients = per.map(({ pid, built }) => ({ id: pid, header: PatientHeader.parse(built.header), record: ClinicalRecord.parse(built.fixture_record) }));
+    const cons = makeConsultation(notes, patients, this.assignment);
+    const v = validateConsultation(cons);
+    const all = [...v.consultation, ...Object.values(v.byPatient).flat()];
+    if (all.length) throw new Error(`${this.id}: gold consultation has findings ${JSON.stringify(all.map((x) => `${x.rule}@${x.field}`))}`);
+    for (const s of suggestAssignments(notes, patients)) if (this.assignment[s.line] !== s.target) throw new Error(`${this.id}: suggestion for line ${s.line + 1} disagrees with the gold assignment`);
+    return {
+      id: this.id, language: this.language, synthetic: true, multi_pet: true, notes,
+      assignment: this.assignment,
+      patients: per.map(({ pid, built }) => ({ id: pid, header: built.header, expect: built.expect, fixture_record: built.fixture_record })),
+    };
+  }
+}
+
+type MultiScenario = { slug: string; headers: Record<Lang, Record<string, any>>; build: Record<Lang, (c: MultiCase) => MultiCase> };
+/**
+ * Two animals of one owner seen together. Most lines carry the animal's name label ("Bella:"), which the
+ * workspace offers as a suggestion; one instruction is said for both (shared) and one line names the
+ * animal later in the sentence ("recheck Bella …"), so the vet has to assign it by hand.
+ */
+const MULTI: MultiScenario[] = [
+  { slug: 'dog-cat-otitis-check', headers: {
+    en: { bella: dog('Bella', 'Beagle', 6, 'female'), felix: { ...cat('Felix', 3, 'male') } },
+    de: { lotte: dog('Lotte', 'Beagle', 6, 'female'), moritz: { ...cat('Moritz', 3, 'male') } },
+    it: { briciola: dog('Briciola', 'Beagle', 6, 'female'), tigro: { ...cat('Tigro', 3, 'male') } },
+  }, build: {
+    en: (m) => m
+      .line('bella', 'Bella: ', (c) => c.complaint('shaking head, scratching right ear for 1 week'))
+      .line('bella', 'Bella: ', (c) => c.vital('temperature', 38.7, 'C', 'T 38.7'))
+      .line('bella', 'Bella: ', (c) => c.finding('ears', 'right ear canal red, brown discharge'))
+      .line('bella', 'Bella: ', (c) => c.diag('ear cytology', 'performed', 'yeast ++', 'ear cytology: yeast ++'))
+      .line('bella', 'Bella: ', (c) => c.assess('otitis externa right'))
+      .line('bella', 'Bella: ', (c) => c.med({ drug: 'Surolan', route: 'auricular', frequency: 'twice daily', duration: '7 days', status: 'dispensed' }, 'Surolan auricular twice daily 7 days, dispensed'))
+      .line('felix', 'Felix: ', (c) => c.complaint('annual check, no problems per owner'))
+      .line('felix', 'Felix: ', (c) => c.vital('temperature', 38.4, 'C', 'T 38.4'))
+      .line('felix', 'Felix: ', (c) => c.finding('heart and lungs', 'heart and lungs NAD'))
+      .line('felix', 'Felix: ', (c) => c.med({ drug: 'Milbemax', dose: 1, dose_unit: 'tablet', route: 'PO', frequency: 'once', status: 'dispensed' }, 'Milbemax 1 tablet PO once, dispensed'))
+      .line(SHARED, 'both: ', (c) => c.instr('flea treatment monthly for all pets in the house'))
+      .line('bella', '', (c) => c.follow('recheck Bella in 7 days', 7, 'day')),
+    de: (m) => m
+      .line('lotte', 'Lotte: ', (c) => c.complaint('schüttelt den Kopf, kratzt seit 1 Woche am rechten Ohr'))
+      .line('lotte', 'Lotte: ', (c) => c.vital('temperature', 38.7, 'C', 'T 38,7'))
+      .line('lotte', 'Lotte: ', (c) => c.finding('Ohren', 'Gehörgang re. gerötet, braunes Sekret'))
+      .line('lotte', 'Lotte: ', (c) => c.diag('Ohrzytologie', 'performed', 'Hefen ++', 'Ohrzytologie: Hefen ++'))
+      .line('lotte', 'Lotte: ', (c) => c.assess('Otitis externa rechts'))
+      .line('lotte', 'Lotte: ', (c) => c.med({ drug: 'Surolan', route: 'aurikulär', frequency: '2x täglich', duration: '7 Tage', status: 'dispensed' }, 'Surolan aurikulär 2x täglich 7 Tage, mitgegeben'))
+      .line('moritz', 'Moritz: ', (c) => c.complaint('Jahrescheck, laut Besitzer keine Probleme'))
+      .line('moritz', 'Moritz: ', (c) => c.vital('temperature', 38.4, 'C', 'T 38,4'))
+      .line('moritz', 'Moritz: ', (c) => c.finding('Herz und Lunge', 'Herz und Lunge obB'))
+      .line('moritz', 'Moritz: ', (c) => c.med({ drug: 'Milbemax', dose: 1, dose_unit: 'Tablette', route: 'p.o.', frequency: 'einmalig', status: 'dispensed' }, 'Milbemax 1 Tablette p.o. einmalig, mitgegeben'))
+      .line(SHARED, 'beide: ', (c) => c.instr('Flohschutz monatlich für alle Tiere im Haushalt'))
+      .line('lotte', '', (c) => c.follow('WV Lotte in 7 Tagen', 7, 'day')),
+    it: (m) => m
+      .line('briciola', 'Briciola: ', (c) => c.complaint("scuote la testa, si gratta l'orecchio destro da 1 settimana"))
+      .line('briciola', 'Briciola: ', (c) => c.vital('temperature', 38.7, 'C', 'T 38,7'))
+      .line('briciola', 'Briciola: ', (c) => c.finding('orecchie', 'condotto dx arrossato, secrezione marrone'))
+      .line('briciola', 'Briciola: ', (c) => c.diag('citologia auricolare', 'performed', 'lieviti ++', 'citologia auricolare: lieviti ++'))
+      .line('briciola', 'Briciola: ', (c) => c.assess('otite esterna destra'))
+      .line('briciola', 'Briciola: ', (c) => c.med({ drug: 'Surolan', route: 'auricolare', frequency: 'due volte al giorno', duration: '7 giorni', status: 'dispensed' }, 'Surolan auricolare due volte al giorno per 7 giorni, consegnato'))
+      .line('tigro', 'Tigro: ', (c) => c.complaint('controllo annuale, secondo il proprietario nessun problema'))
+      .line('tigro', 'Tigro: ', (c) => c.vital('temperature', 38.4, 'C', 'T 38,4'))
+      .line('tigro', 'Tigro: ', (c) => c.finding('cuore e polmoni', 'cuore e polmoni nella norma'))
+      .line('tigro', 'Tigro: ', (c) => c.med({ drug: 'Milbemax', dose: 1, dose_unit: 'compressa', route: 'per bocca', frequency: 'una volta', status: 'dispensed' }, 'Milbemax 1 compressa per bocca una volta, consegnato'))
+      .line(SHARED, 'entrambi: ', (c) => c.instr('antiparassitario contro le pulci ogni mese per tutti gli animali di casa'))
+      .line('briciola', '', (c) => c.follow('controllo Briciola tra 7 giorni', 7, 'day')),
+  } },
+];
+
 const here = dirname(fileURLToPath(import.meta.url));
 const dir = join(here, '..', '..', 'eval', 'cases');
 for (const f of readdirSync(dir)) if (/^(1\d\d-gen|2\d\d-seeded)-/.test(f)) unlinkSync(join(dir, f));
@@ -338,4 +443,15 @@ const write = (list: Scenario[], start: number, kind: string) => {
 };
 const gen = write(S, 100, 'gen');
 const seeded = write(SEEDED, 200, 'seeded');
-console.log(`wrote ${gen} cases and ${seeded} seeded-error cases`);
+// Multi-pet consultations live in their own folder: their shape (shared notes, several patients) is not a
+// single-patient case, and the harness scores them apart (see eval.ts), outside every published rate.
+const multiDir = join(here, '..', '..', 'eval', 'cases-multi');
+mkdirSync(multiDir, { recursive: true });
+for (const f of readdirSync(multiDir)) if (/^3\d\d-multi-/.test(f)) unlinkSync(join(multiDir, f));
+let multi = 0;
+for (const sc of MULTI) for (const lang of ['en', 'de', 'it'] as Lang[]) {
+  const id = `${300 + multi}-multi-${sc.slug}-${lang}`;
+  writeFileSync(join(multiDir, `${id}.json`), JSON.stringify(sc.build[lang](new MultiCase(id, lang, sc.headers[lang])).build(), null, 2) + '\n');
+  multi++;
+}
+console.log(`wrote ${gen} cases, ${seeded} seeded-error cases and ${multi} multi-pet consultations`);
