@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "node scripts/review.mjs check && astro build && node scripts/copy-ocr.mjs && pagefind --site dist",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "test:db": "bash supabase/tests/run.sh"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

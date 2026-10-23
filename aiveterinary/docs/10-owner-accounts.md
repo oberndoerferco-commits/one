@@ -82,7 +82,7 @@ then deletion after 60 days. Logs: 30 days.
 ## Database shape
 
 See `site/supabase/schema.sql`. One table `passports`: `id`, `user_id`,
-`animal` (JSON, same shape as the local store), `updated_at`. One row per
+`animal` (JSON, same shape as the local store), `updated_at`, keyed by `(user_id, id)`. One row per
 animal. RLS: owner only. A `profiles` row per user holds reminder preferences.
 
 ## Sync rules

@@ -9,12 +9,16 @@ create table if not exists public.profiles (
 );
 
 create table if not exists public.passports (
-  id text primary key,                     -- same id as the local store
+  id text not null,                        -- same id as the local store (client-generated)
   user_id uuid not null references auth.users (id) on delete cascade,
   animal jsonb not null,                   -- full animal object, same shape as the browser store
-  updated_at timestamptz not null default now()
+  updated_at timestamptz not null default now(),
+  -- Keyed per user: ids come from the browser and from backup files, so two
+  -- owners can hold the same id. A global key would let one user's row block
+  -- another user's sync and reveal that the id exists. The key also serves
+  -- as the user_id index.
+  primary key (user_id, id)
 );
-create index if not exists passports_user_idx on public.passports (user_id);
 
 -- Row-level security: a user sees and changes only their own rows.
 alter table public.profiles enable row level security;
@@ -38,5 +42,7 @@ create or replace function public.delete_my_account() returns void
 language sql security definer set search_path = public as $$
   delete from auth.users where id = auth.uid();
 $$;
-revoke all on function public.delete_my_account() from public;
+-- Supabase's default privileges also grant EXECUTE on new public functions to
+-- anon explicitly, so revoking from PUBLIC alone leaves anon able to call it.
+revoke all on function public.delete_my_account() from public, anon;
 grant execute on function public.delete_my_account() to authenticated;

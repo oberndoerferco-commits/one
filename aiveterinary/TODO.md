@@ -162,7 +162,8 @@ Everything costs €0 unless marked €. Legend:
 - [x] Retention controls (auto-delete drafts/raw notes): rule in `app/src/retention.ts`, approved records never auto-deleted — immutable approved versions with amendment reason done in `versions.ts`
 - [x] Clinic-owner analytics (time-to-approved, edit ratio, open flags) — no clinical text (`app/src/analytics.ts`) — S ★★
 - [x] Rate limits, spend caps, prompt caching, model fallback — S ★★★
-- [ ] Cross-tenant isolation test suite; pen test (€) and DPIA before real data — M ★★★
+- [x] Cross-tenant isolation test suite for the owner-accounts schema (`npm run test:db` in site, 76 checks on local Postgres with a Supabase stand-in; found and fixed 2 schema bugs; docs/24) — clinic-side tests are a written plan until a clinic schema exists
+- [ ] Pen test (€) and DPIA before real data; repeat the isolation checks through the real Supabase API once the project exists — M ★★★
 - [ ] SSO (Google/Microsoft) and multi-clinic groups — L ★ (later, for chains)
 
 ## 6. Go-to-market — mostly **You**, prepared by **Me**
