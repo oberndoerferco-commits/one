@@ -55,6 +55,80 @@ def _inks(rgb, mask, k=2, bucket=16):
             for i in np.argsort(-c)[:k]]
 
 
+def patches_boxed(page, dpi=1600, min_pt=5.0):
+    """One patch per placement, cut from a page holding only the patches.
+
+    Segmenting the page alone merges any two patches that touch, and this
+    artwork overlaps them deliberately. The file still lists a placement
+    per patch, so each is cut at its own box and the piece nearest its
+    centre is taken.
+    """
+    out = []
+    for b in page.get_image_info(xrefs=True):
+        if b['width'] >= 200:
+            continue
+        r = pymupdf.Rect(b['bbox'])
+        pm = page.get_pixmap(dpi=dpi, clip=r, alpha=False)
+        a = np.frombuffer(pm.samples, np.uint8).reshape(pm.height, pm.width, 3)
+        s = r.width / pm.width
+        L, n = ndi.label(ndi.binary_closing(a.min(-1) < 242, np.ones((3, 3))))
+        if not n:
+            continue
+        cy, cx = a.shape[0] / 2, a.shape[1] / 2
+        best, bd = None, 1e9
+        for i, sl in enumerate(ndi.find_objects(L), 1):
+            if sl is None:
+                continue
+            m = ndi.binary_fill_holes(L[sl] == i)
+            if m.sum() < 1200:
+                continue
+            yy, xx = ndi.center_of_mass(m)
+            d = np.hypot(yy + sl[0].start - cy, xx + sl[1].start - cx)
+            if d < bd:
+                bd, best = d, (sl, m)
+        if best is None:
+            continue
+        sl, m = best
+        if (sl[1].stop - sl[1].start) * s < min_pt:
+            continue
+        crop = np.dstack([a[sl], np.where(m, 255, 0).astype(np.uint8)])
+        out.append((pymupdf.Rect(r.x0 + sl[1].start * s, r.y0 + sl[0].start * s,
+                                 r.x0 + sl[1].stop * s, r.y0 + sl[0].stop * s),
+                    np.pad(crop, ((6, 6), (6, 6), (0, 0)))))
+    ded = []
+    for r, c in out:
+        if all(abs(r.x0 - e.x0) > 2 or abs(r.y0 - e.y0) > 2 for e, _ in ded):
+            ded.append((r, c))
+    return ded
+
+
+def patches_on_white(page, dpi=1200, min_pt=5.0, close=5):
+    """Each patch cut straight off a page that has nothing else on it.
+
+    This is the way to do it. On a garment mockup a patch is a few
+    millimetres across on patterned cloth and its colours read back as the
+    cloth's; with the garment layer hidden they are simply the artwork's.
+    """
+    pm = page.get_pixmap(dpi=dpi, alpha=False)
+    a = np.frombuffer(pm.samples, np.uint8).reshape(pm.height, pm.width, 3)
+    s = 72.0 / dpi
+    ink = a.min(-1) < 242
+    L, n = ndi.label(ndi.binary_closing(ink, np.ones((close, close))))
+    out = []
+    for i, sl in enumerate(ndi.find_objects(L), 1):
+        if sl is None:
+            continue
+        m = ndi.binary_fill_holes(L[sl] == i)
+        w = (sl[1].stop - sl[1].start) * s
+        if m.sum() < 1500 or w < min_pt or w > 60:
+            continue
+        crop = np.dstack([a[sl], np.where(m, 255, 0).astype(np.uint8)])
+        out.append((pymupdf.Rect(sl[1].start * s, sl[0].start * s,
+                                 sl[1].stop * s, sl[0].stop * s),
+                    np.pad(crop, ((6, 6), (6, 6), (0, 0)))))
+    return out
+
+
 def patches(page, dpi=1600, min_pt=8.0, doc=None):
     """(rect on the page, RGBA crop) for each patch.
 
@@ -176,6 +250,12 @@ def main():
     ap.add_argument('--band-out', type=float, default=0.7)
     ap.add_argument('--band-scale', type=float, default=0.88)
     ap.add_argument('--corner', type=int, default=60)
+    ap.add_argument('--on-white', action='store_true',
+                    help='the page holds only the patches')
+    ap.add_argument('--min-pt', type=float, default=5.0)
+    ap.add_argument('--close', type=int, default=5)
+    ap.add_argument('--over', default=None,
+                    help='a mockup to lay the vector patches onto')
     a = ap.parse_args()
 
     os.makedirs(a.out_dir, exist_ok=True)
@@ -191,7 +271,8 @@ def main():
     ref = np.asarray(im) > 127
 
     doc = pymupdf.open(a.src)
-    found = patches(doc[a.page], a.dpi, doc=doc)
+    found = (patches_boxed(doc[a.page], a.dpi, a.min_pt)
+             if a.on_white else patches(doc[a.page], a.dpi, doc=doc))
     print(f'{len(found)} patches on the mockup', file=sys.stderr)
 
     # the mockup with its patch rasters taken out
@@ -201,12 +282,28 @@ def main():
             base[a.page].delete_image(b['xref'])
 
     out = pymupdf.open()
-    pg = out.new_page(width=doc[a.page].rect.width, height=doc[a.page].rect.height)
-    pg.show_pdf_page(doc[a.page].rect, base, a.page)
+    W, H = doc[a.page].rect.width, doc[a.page].rect.height
+    # page objects go stale when another page is added, so they are fetched
+    # by index at the point of drawing
+    idx = []
+    if a.over:
+        ob = pymupdf.open(a.over)
+        for b in ob[0].get_image_info(xrefs=True):
+            if b['width'] < 200:
+                ob[0].delete_image(b['xref'])
+        out.new_page(width=W, height=H).show_pdf_page(
+            pymupdf.Rect(0, 0, W, H), ob, 0)
+        idx.append(0)
+    k = len(out)
+    out.new_page(width=W, height=H)
+    if not a.over:
+        out[k].show_pdf_page(doc[a.page].rect, base, a.page)
+    idx.append(k)
 
     for n, (rect, crop) in enumerate(found, 1):
         g = measure(crop, ref, a)
-        build(pg, rect, g, poly, ref.shape, a)
+        for j in idx:
+            build(out[j], rect, g, poly, ref.shape, a)
         one = pymupdf.open()
         q = one.new_page(width=max(rect.width, rect.height),
                          height=max(rect.width, rect.height))
