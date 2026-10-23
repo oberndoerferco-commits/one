@@ -15,7 +15,7 @@ it goes into a contract or onto a page as a duty.
 | 4b | CH: what are the vet's duties in AMICUS? | Only a vet with a cantonal licence and a Swiss practice may chip a dog (TSV art. 17 para. 2, art. 17a para. 2). The vet enters the chipping data (art. 17c para. 1) and checks imported dogs within 10 days of entry (art. 17b). They *may* record a dog's death for the owner (art. 17c para. 2). Owners record a sale, handover or death within **10 days** (art. 17d). | High |
 | 4c | CH: is there a bite-report duty? (asked as part of the CH/AT item) | **Yes.** Vets must report to the cantonal office any dog that has injured people or animals significantly, or that shows excessive aggression (TSchV art. 78, as amended 1 Feb 2025). | High |
 | 5a | AT: what are the Standesregeln? | Statutory, in the Tierärztegesetz (TÄG, BGBl. I 171/2021), §§ 27–32. The Kammer issues the practice guidelines (§ 16 para. 3). The TÄG sets no general retention period for treatment records. The medicines law does: TAMG § 66 para. 2 and § 53, **7 years**. | High for the TÄG and TAMG; the Kammer's own guideline texts were not opened |
-| 5b | AT: do vets have a duty to report bites? | **Not settled.** The TÄG has no such duty. A full-text search of Land law in RIS found nothing that obliges vets. The Länder dog laws (e.g. Wien, NÖ) were not read in full. | Low; still open |
+| 5b | AT: do vets have a duty to report bites? | **No, not for ordinary bites.** The TÄG has none. I read all nine Länder dog acts (RIS, consolidated as of 23 Oct 2026): none obliges private vets, doctors, keepers or the public. The Gemeinde acts once it learns of facts. Only officials must report: Tirol (Amtstierarzt and police) and Burgenland (police). OÖ adds two narrow duties: the examiner of the Alltagstauglichkeitsprüfung, and the keeper telling the evaluating vet. Federal: EpiG § 3 para. 1 Z 9 obliges vets to report, within 24 h, a **person** bitten by a rabid or rabies-suspected animal. TGG 2024 § 36 obliges them to report suspected rabies in an animal. Details: `docs/25-at-bite-report.md`. | High for the texts read; medium for "no duty anywhere" (implementing ordinances and municipal rules not read) |
 
 ---
 
@@ -138,15 +138,28 @@ Related provisions in the same act:
 
 ### 5b. Bite reports
 
+Full research, a table for each Land and the sources: `docs/25-at-bite-report.md` (23 Oct 2026). In short:
+
 - The TÄG contains no duty for vets to report bites.
-- A full-text search of consolidated Land law (RIS OGD API, "Tierarzt Hundebiss melden" and variants) found only Wiener Tierhaltegesetz § 8. That section covers dangerous wild animals, not a duty on vets.
-- **Still open:** read the dog provisions of each Land in full (e.g. NÖ Hundehaltegesetz, OÖ Hundehaltegesetz, Wiener Tierhaltegesetz §§ 5–6) to see whether a Land puts a reporting duty on vets, as Swiss TSchV art. 78 does.
+- **No Land obliges private vets, doctors, keepers or the public to report a bite.** I read the dog provisions of all nine Länder: Wiener Tierhaltegesetz, NÖ Hundehaltegesetz, Oö. Hundehaltegesetz 2024 with the Hundehalteverordnung, Salzburger, Steiermärkisches, Kärntner, Vorarlberger and Burgenländisches Landessicherheitsgesetz, and the Tiroler Landes-Polizeigesetz. In each, the Gemeinde (Bürgermeister, Magistrat) acts once it learns of facts. It declares the dog bissig, auffällig or gefährlich and imposes measures: muzzle and leash, Sachkunde or Hundeführschein, a behavioural evaluation (OÖ), a Wesenstest (Sbg), a permit (Sbg, Bgld), or seizure.
+- Duties exist only for officials:
+  - Tirol LPG § 6a para. 4: the Amtstierarzt reports a dog he assessed as auffällig.
+  - Tirol LPG § 28 para. 2 and § 23 para. 3: the police and the penal authority report on-duty observations of a dog injuring or endangering someone.
+  - Bgld LSG § 30: the police report an auffällig dog.
+  - OÖ HHVO § 5 para. 3: the examiner of the Alltagstauglichkeitsprüfung reports aggression shown during the exam.
+- Salzburg (§ 19 para. 3) and Burgenland (§ 22 para. 1) act on a **written notice backed by facts** from anyone. That is where a voluntary vet letter fits. TÄG § 29 (confidentiality) must be cleared first.
+- **Correction:** Wiener Tierhaltegesetz § 8 is not only about wild animals. Para. 5 makes the Hundeführschein mandatory for a "bissig" dog (as defined in § 2 para. 3). It also orders seizure, and euthanasia ex lege, after a bite that seriously injures or kills a person. It still puts no reporting duty on anyone.
+- **Federal, rabies only:**
+  - EpiG §§ 1–3: a bite injury from a rabid or rabies-suspected animal goes to the Bezirksverwaltungsbehörde (Gesundheitsamt) within 24 h. Vets are among those obliged (§ 3 para. 1 Z 9).
+  - TGG 2024 § 36: vets report suspected animal diseases.
+  - TGG 2024 § 48: a rabies-suspected dog or cat is isolated. If vaccinated, it is observed for ≥ 10 days, with a vet exam at the start and at the end.
+  - The ÖTK vaccination guideline (2017) still cites the old TSG.
 
 **Sources**
 - TÄG, consolidated: https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20011642&FassungVom=2026-10-23 (opened 23 Oct 2026)
 - TAMG, consolidated: https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20012477&FassungVom=2026-10-23 (opened 23 Oct 2026)
 - Wiener Tierhaltegesetz § 8: https://www.ris.bka.gv.at/Dokumente/Landesnormen/LWI40016669/LWI40016669.html (opened 23 Oct 2026)
-- Not opened: the ÖTK's own guideline texts (Ordinationsrichtlinien).
+- Land acts, EpiG, TGG 2024, ÖTK Ordinationsrichtlinie, Berufsordnung 2026 and vaccination guideline: see `docs/25-at-bite-report.md` (all opened 23 Oct 2026).
 
 ---
 

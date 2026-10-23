@@ -79,6 +79,27 @@ Italian text (OPAn) art. 78: "I veterinari, i medici, … sono tenuti a notifica
 
 **Fields.** There is no national form. The letter uses the same core fields as the Swiss forms, plus the observation dates and the rabies line. ASLs typically ask for their own form.
 
+## Austria (research only; not in the module)
+
+Full research: `docs/25-at-bite-report.md` (23 Oct 2026). In short: **no Land and no federal act obliges a private vet to report an ordinary dog bite.**
+- The Gemeinde (Bürgermeister, Magistrat) acts once it learns of facts. It declares the dog bissig, auffällig or gefährlich and orders muzzle and leash, Sachkunde or Hundeführschein, a behavioural evaluation, a Wesenstest, a permit, or seizure.
+- Reporting duties fall only on officials: the Amtstierarzt and police in Tirol, the police in Burgenland, and the OÖ exam examiner.
+- Salzburg (LSG § 19 para. 3) and Burgenland (LSG § 22 para. 1) act on a **written notice backed by facts** from anyone.
+- The only federal duty on vets is rabies-related:
+  - EpiG §§ 1–3: a person bitten by a rabid or rabies-suspected animal goes to the Gesundheitsamt within 24 h, with the person's name, age and address.
+  - TGG 2024 § 36: suspected rabies in an animal goes to the Bezirksverwaltungsbehörde.
+  - TGG 2024 § 48: isolation of a suspected dog or cat; if vaccinated, ≥ 10 days' observation with a vet exam at the start and at the end.
+
+**Could `app/src/bite-report.ts` support AT?** Partly, as a *voluntary notice* (Hinweis/Mitteilung), not as a statutory report. The app code was not changed. It would need the following.
+- **Country gate and type:** `country: 'CH' | 'IT' | 'AT'`, plus a required `land` field (the nine Länder). Criteria, addressee and wording differ by Land.
+- **Addressee:** `opts.to` stays typed by the vet. The help text names the Gemeinde (Tirol and Vorarlberg: Bürgermeister; Wien: Magistrat or LPD Wien), not a Veterinäramt.
+- **Title and basis line:** no "Meldung nach …" wording, because there is no duty to cite. Use a neutral title ("Mitteilung über einen Vorfall mit einem Hund"). The basis line cites the Land provision the authority acts under (e.g. Sbg LSG § 19 Abs. 3, Bgld LSG § 22 Abs. 1, NÖ HHG § 3, Oö. HHG 2024 § 7, Tirol LPG § 6a Abs. 4) and says the notice is voluntary.
+- **Confidentiality gate:** a required `keeper_consent` (or a vet-confirmed legal basis) before the keeper's identity or clinical details are printed. TÄG § 29 binds the vet, and its exceptions were not checked (`docs/25`). This works like the CH consent gate, but on the keeper's side.
+- **One new typed field:** "provoked / attacked first", as observed or as reported, with its source. NÖ § 3, OÖ § 7 and Bgld § 22 turn on "ohne selbst angegriffen oder provoziert". The module must not decide it, and must not decide "schwer verletzt", "bissig" or "auffällig". Those go to `left_to_vet` or stay the vet's own words.
+- **No observation dates required** (unlike IT). TGG § 48 observation applies only on suspicion of rabies.
+- **A static rabies note**, like IT's. It says: suspected rabies → Bezirksverwaltungsbehörde (TGG 2024 § 36). A person bitten by a rabid or rabies-suspected animal → Gesundheitsamt within 24 h (EpiG § 2, § 3 para. 1 Z 9). That second report is about the person and is a different document, so it stays out of this letter.
+- **New `BITE_SOURCES` entries** with the RIS URLs from `docs/25`, and German labels. The `de` labels currently use Swiss spelling ("innert", "Grössenklasse"), so AT needs its own variants.
+
 ## What the module does with this
 
 - `opts.to` is the office **the vet names**. No cantonal or ASL address is hard-coded, although ZH, BE and VD print theirs on the forms.
@@ -99,4 +120,4 @@ Italian text (OPAn) art. 78: "I veterinari, i medici, … sono tenuti a notifica
 - D.Lgs. 136/2022 itself (to confirm which article, if any, carries a bite-observation rule): not opened.
 - The GU issue of 5 Sep 2026 directly on gazzettaufficiale.it: the connection was reset. I read the same GU pages through Certifico's copy.
 - CH rabies/observation rules (TSV): not researched. Switzerland is officially rabies-free, and TSchV art. 78 does not deal with observation.
-- Austria: out of scope here; see `docs/19` §5b.
+- Austria: researched in `docs/25-at-bite-report.md`. Not implemented; see "Austria" above.
