@@ -174,7 +174,7 @@ def measure(img, cross, a):
     # the dark keyline measured on its own: a hairline this thin slips
     # between the steps of the walk above
     from skimage.morphology import skeletonize
-    dk = ink & (rgb.max(-1) < 90)
+    dk = ink & (rgb.max(-1) < a.outline_lum)
     key, key_w = None, 0.0
     if dk.sum() > 0.0005 * ink.sum():
         # only the thin dark ink counts. On a badge whose cross is itself
