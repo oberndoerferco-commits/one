@@ -1,5 +1,6 @@
 import type { ClinicalRecord, PatientHeader, Span } from './schema.js';
 import { factPaths } from './metrics.js';
+import type { FindingParams } from './finding-messages.js';
 
 /**
  * Validators run on every model output. They never "fix" anything: they report,
@@ -9,7 +10,8 @@ import { factPaths } from './metrics.js';
  *  - block: approval impossible (invented drug/number, conflicting patient facts)
  *  - warn: shown to the vet (plausibility, style)
  */
-export type Finding = { rule: string; severity: 'block' | 'warn'; field: string; message: string; span?: Span };
+/** `params`: the values the message quotes, for findingMessage (finding-messages.ts) to render it in EN/DE/IT. */
+export type Finding = { rule: string; severity: 'block' | 'warn'; field: string; message: string; span?: Span; params?: FindingParams };
 
 const num = (s: string) => s.replace(',', '.');
 
@@ -121,9 +123,9 @@ export function drugInText(drug: string, src: string): boolean {
 }
 
 function checkSpans(field: string, spans: Span[] | undefined, notes: string, findings: Finding[]) {
-  if (!spans || spans.length === 0) { findings.push({ rule: 'source_required', severity: 'block', field, message: 'No source in the notes for this item.' }); return; }
+  if (!spans || spans.length === 0) { findings.push({ rule: 'source_required', severity: 'block', field, message: 'No source in the notes for this item.', params: { kind: 'item' } }); return; }
   for (const [a, b] of spans) {
-    if (a >= b || b > notes.length) findings.push({ rule: 'span_invalid', severity: 'block', field, message: `Source span [${a},${b}] is outside the notes.`, span: [a, b] });
+    if (a >= b || b > notes.length) findings.push({ rule: 'span_invalid', severity: 'block', field, message: `Source span [${a},${b}] is outside the notes.`, span: [a, b], params: { a, b } });
   }
 }
 
@@ -138,10 +140,10 @@ export function validateGrounding(record: ClinicalRecord, notes: string): Findin
    */
   const checkNumber = (field: string, value: number | string | null | undefined, spans?: Span[], opts: { lines?: boolean; rule?: string } = {}) => {
     if (value == null) return;
-    if (!hasNum(nums, value)) { f.push({ rule: opts.rule === 'text_number_not_in_source' ? opts.rule : 'number_not_in_notes', severity: 'block', field, message: `The value ${value} does not appear in the notes.`, span: spans?.[0] }); return; }
+    if (!hasNum(nums, value)) { f.push({ rule: opts.rule === 'text_number_not_in_source' ? opts.rule : 'number_not_in_notes', severity: 'block', field, message: `The value ${value} does not appear in the notes.`, span: spans?.[0], params: { kind: 'absent', value: String(value) } }); return; }
     if (!spans || spans.length === 0) return;
     const src = opts.lines ? spanLines(notes, spans) : spanText(notes, spans);
-    if (!hasNum(numbersIn(src), value)) f.push({ rule: opts.rule ?? 'number_not_in_source', severity: 'block', field, message: `The value ${value} is in the notes, but not in the text this item points to ("${spanText(notes, spans).trim()}").`, span: spans[0] });
+    if (!hasNum(numbersIn(src), value)) f.push({ rule: opts.rule ?? 'number_not_in_source', severity: 'block', field, message: `The value ${value} is in the notes, but not in the text this item points to ("${spanText(notes, spans).trim()}").`, span: spans[0], params: { kind: 'elsewhere', value: String(value), quote: spanText(notes, spans).trim() } });
   };
   const checkText = (field: string, text: string | null | undefined, spans: Span[]) => {
     if (!text) return;
@@ -162,7 +164,7 @@ export function validateGrounding(record: ClinicalRecord, notes: string): Findin
   });
   record.treatments.forEach((t, i) => { checkSpans(`treatments[${i}]`, t.source_spans, notes, f); checkText(`treatments[${i}].text`, t.text, t.source_spans); });
   record.assessment.differentials.forEach((d, i) => { checkSpans(`assessment.differentials[${i}]`, d.source_spans, notes, f); checkText(`assessment.differentials[${i}].text`, d.text, d.source_spans); });
-  if (record.assessment.text && record.assessment.source_spans.length === 0) f.push({ rule: 'source_required', severity: 'block', field: 'assessment.text', message: 'Assessment has no source in the notes. The AI must not add a diagnosis.' });
+  if (record.assessment.text && record.assessment.source_spans.length === 0) f.push({ rule: 'source_required', severity: 'block', field: 'assessment.text', message: 'Assessment has no source in the notes. The AI must not add a diagnosis.', params: { kind: 'assessment' } });
   else if (record.assessment.text) checkText('assessment.text', record.assessment.text, record.assessment.source_spans);
   if (record.plan.follow_up) {
     const fu = record.plan.follow_up;
@@ -190,21 +192,21 @@ export function validateMedications(record: ClinicalRecord, notes: string): Find
     const quoted = `("${src.trim()}")`;
     if (m.drug && !drugInText(m.drug, src)) {
       const elsewhere = drugInText(m.drug, notes);
-      f.push({ rule: elsewhere ? 'drug_not_in_source' : 'drug_not_in_notes', severity: 'block', field: `${field}.drug`, message: elsewhere ? `"${m.drug}" is in the notes, but not in the text this medication points to ${quoted}.` : `"${m.drug}" is not in the notes.` });
+      f.push({ rule: elsewhere ? 'drug_not_in_source' : 'drug_not_in_notes', severity: 'block', field: `${field}.drug`, message: elsewhere ? `"${m.drug}" is in the notes, but not in the text this medication points to ${quoted}.` : `"${m.drug}" is not in the notes.`, params: elsewhere ? { drug: m.drug, quote: src.trim() } : { drug: m.drug } });
     }
     if (m.dose != null) {
-      if (!hasNum(nums, m.dose)) f.push({ rule: 'dose_not_in_notes', severity: 'block', field: `${field}.dose`, message: `Dose ${m.dose} is not in the notes.` });
-      else if (!hasNum(srcNums, m.dose)) f.push({ rule: 'dose_not_in_source', severity: 'block', field: `${field}.dose`, message: `Dose ${m.dose} is in the notes, but not in the text this medication points to ${quoted}.` });
+      if (!hasNum(nums, m.dose)) f.push({ rule: 'dose_not_in_notes', severity: 'block', field: `${field}.dose`, message: `Dose ${m.dose} is not in the notes.`, params: { dose: String(m.dose) } });
+      else if (!hasNum(srcNums, m.dose)) f.push({ rule: 'dose_not_in_source', severity: 'block', field: `${field}.dose`, message: `Dose ${m.dose} is in the notes, but not in the text this medication points to ${quoted}.`, params: { dose: String(m.dose), quote: src.trim() } });
     }
-    if (m.dose_unit && !norm(notes).includes(norm(m.dose_unit)) && !/^(mg|ml|g|iu|mcg|µg|tablet|tablets|tab|tabs|capsule|drops|ml\/kg|mg\/kg)$/i.test(m.dose_unit)) f.push({ rule: 'unit_not_in_notes', severity: 'warn', field: `${field}.dose_unit`, message: `Unit "${m.dose_unit}" was not written in the notes.` });
+    if (m.dose_unit && !norm(notes).includes(norm(m.dose_unit)) && !/^(mg|ml|g|iu|mcg|µg|tablet|tablets|tab|tabs|capsule|drops|ml\/kg|mg\/kg)$/i.test(m.dose_unit)) f.push({ rule: 'unit_not_in_notes', severity: 'warn', field: `${field}.dose_unit`, message: `Unit "${m.dose_unit}" was not written in the notes.`, params: { unit: m.dose_unit } });
     if (m.duration) for (const n of m.duration.matchAll(/\d+(?:[.,]\d+)?/g)) {
-      if (!hasNum(nums, n[0])) f.push({ rule: 'duration_not_in_notes', severity: 'block', field: `${field}.duration`, message: `Duration "${m.duration}" contains a number not in the notes.` });
-      else if (!hasNum(srcNums, n[0])) f.push({ rule: 'duration_not_in_source', severity: 'block', field: `${field}.duration`, message: `Duration "${m.duration}": ${n[0]} is not in the text this medication points to ${quoted}.` });
+      if (!hasNum(nums, n[0])) f.push({ rule: 'duration_not_in_notes', severity: 'block', field: `${field}.duration`, message: `Duration "${m.duration}" contains a number not in the notes.`, params: { duration: m.duration } });
+      else if (!hasNum(srcNums, n[0])) f.push({ rule: 'duration_not_in_source', severity: 'block', field: `${field}.duration`, message: `Duration "${m.duration}": ${n[0]} is not in the text this medication points to ${quoted}.`, params: { duration: m.duration, number: n[0], quote: src.trim() } });
     }
-    if (m.route && !supportedBy(m.route, src, ROUTE_EQUIVALENTS)) f.push({ rule: 'route_not_in_source', severity: 'block', field: `${field}.route`, message: `Route "${m.route}" is not written in the text this medication points to ${quoted}.` });
-    if (m.frequency && !supportedBy(m.frequency, src, FREQUENCY_EQUIVALENTS)) f.push({ rule: 'frequency_not_in_source', severity: 'block', field: `${field}.frequency`, message: `Frequency "${m.frequency}" is not written in the text this medication points to ${quoted}.` });
-    if (m.dose != null && !m.drug) f.push({ rule: 'dose_without_drug', severity: 'block', field, message: 'A dose without a drug name.' });
-    if (!src.trim()) f.push({ rule: 'empty_source', severity: 'block', field, message: 'Medication has an empty source.' });
+    if (m.route && !supportedBy(m.route, src, ROUTE_EQUIVALENTS)) f.push({ rule: 'route_not_in_source', severity: 'block', field: `${field}.route`, message: `Route "${m.route}" is not written in the text this medication points to ${quoted}.`, params: { route: m.route, quote: src.trim() } });
+    if (m.frequency && !supportedBy(m.frequency, src, FREQUENCY_EQUIVALENTS)) f.push({ rule: 'frequency_not_in_source', severity: 'block', field: `${field}.frequency`, message: `Frequency "${m.frequency}" is not written in the text this medication points to ${quoted}.`, params: { frequency: m.frequency, quote: src.trim() } });
+    if (m.dose != null && !m.drug) f.push({ rule: 'dose_without_drug', severity: 'block', field, message: 'A dose without a drug name.', params: {} });
+    if (!src.trim()) f.push({ rule: 'empty_source', severity: 'block', field, message: 'Medication has an empty source.', params: {} });
   });
   return f;
 }
@@ -213,11 +215,11 @@ export function validateMedications(record: ClinicalRecord, notes: string): Find
 export function validatePatient(record: ClinicalRecord, header: PatientHeader): Finding[] {
   const f: Finding[] = [];
   const p = record.patient;
-  if (p.species && p.species !== header.species) f.push({ rule: 'patient_conflict', severity: 'block', field: 'patient.species', message: `Notes imply species "${p.species}" but the patient is a ${header.species}.` });
-  if (p.sex && header.sex && p.sex !== header.sex) f.push({ rule: 'patient_conflict', severity: 'block', field: 'patient.sex', message: `Notes imply sex "${p.sex}" but the patient record says ${header.sex}.` });
+  if (p.species && p.species !== header.species) f.push({ rule: 'patient_conflict', severity: 'block', field: 'patient.species', message: `Notes imply species "${p.species}" but the patient is a ${header.species}.`, params: { kind: 'species', value: p.species, expected: header.species } });
+  if (p.sex && header.sex && p.sex !== header.sex) f.push({ rule: 'patient_conflict', severity: 'block', field: 'patient.sex', message: `Notes imply sex "${p.sex}" but the patient record says ${header.sex}.`, params: { kind: 'sex', value: p.sex, expected: header.sex } });
   const text = JSON.stringify({ ...record, uncertain: [] }).toLowerCase();
-  if (header.sex === 'male' && /pregnan|gravid|trächtig|incinta|gestante/.test(text)) f.push({ rule: 'patient_conflict', severity: 'block', field: 'patient', message: 'Pregnancy mentioned for a male patient. Check whether this refers to the owner or another animal.' });
-  if (header.neuter_status === 'neutered' && /in heat|oestrus|estrus|läufig|in calore/.test(text)) f.push({ rule: 'patient_plausibility', severity: 'warn', field: 'patient', message: 'Heat/oestrus mentioned for a neutered patient.' });
+  if (header.sex === 'male' && /pregnan|gravid|trächtig|incinta|gestante/.test(text)) f.push({ rule: 'patient_conflict', severity: 'block', field: 'patient', message: 'Pregnancy mentioned for a male patient. Check whether this refers to the owner or another animal.', params: { kind: 'pregnancy' } });
+  if (header.neuter_status === 'neutered' && /in heat|oestrus|estrus|läufig|in calore/.test(text)) f.push({ rule: 'patient_plausibility', severity: 'warn', field: 'patient', message: 'Heat/oestrus mentioned for a neutered patient.', params: { kind: 'heat' } });
   return f;
 }
 
@@ -228,10 +230,10 @@ export function validatePlausibility(record: ClinicalRecord, header: PatientHead
   const ranges: Record<string, [number, number]> = { dog: [35, 42.5], cat: [35, 42.5], rabbit: [36, 42], horse: [35, 41], ferret: [35, 42], bird: [38, 44], reptile: [15, 40], other: [30, 45] };
   if (t && t.unit.toUpperCase().startsWith('C')) {
     const [lo, hi] = ranges[header.species] ?? ranges.other;
-    if (t.value < lo || t.value > hi) f.push({ rule: 'implausible_value', severity: 'warn', field: 'examination.vitals.temperature', message: `Temperature ${t.value} °C is outside the usual range for a ${header.species}. Typo?` });
+    if (t.value < lo || t.value > hi) f.push({ rule: 'implausible_value', severity: 'warn', field: 'examination.vitals.temperature', message: `Temperature ${t.value} °C is outside the usual range for a ${header.species}. Typo?`, params: { kind: 'temperature', value: String(t.value), species: header.species } });
   }
   const w = record.patient.weight ?? record.examination.vitals.weight;
-  if (w && w.unit === 'kg' && header.species === 'cat' && w.value > 15) f.push({ rule: 'implausible_value', severity: 'warn', field: 'weight', message: `${w.value} kg is unusually heavy for a cat.` });
+  if (w && w.unit === 'kg' && header.species === 'cat' && w.value > 15) f.push({ rule: 'implausible_value', severity: 'warn', field: 'weight', message: `${w.value} kg is unusually heavy for a cat.`, params: { kind: 'cat_weight', value: String(w.value) } });
   return f;
 }
 
@@ -242,9 +244,9 @@ export function validateDerivedText(text: string, record: ClinicalRecord, notes:
   // numbers that are part of medication rendering are allowed; everything else must be in notes
   for (const m of text.matchAll(/\d+(?:[.,]\d+)?/g)) {
     const v = num(m[0]);
-    if (!allowed.has(v) && !allowed.has(String(parseFloat(v)))) f.push({ rule: 'derived_number_not_in_record', severity: 'block', field: 'derived', message: `"${m[0]}" is not in the approved record.` });
+    if (!allowed.has(v) && !allowed.has(String(parseFloat(v)))) f.push({ rule: 'derived_number_not_in_record', severity: 'block', field: 'derived', message: `"${m[0]}" is not in the approved record.`, params: { value: m[0] } });
   }
-  for (const med of record.medications) if (med.drug && !wordInNotes(med.drug, text)) f.push({ rule: 'medication_missing_in_derived', severity: 'warn', field: 'derived', message: `Medication "${med.drug}" from the record is not mentioned.` });
+  for (const med of record.medications) if (med.drug && !wordInNotes(med.drug, text)) f.push({ rule: 'medication_missing_in_derived', severity: 'warn', field: 'derived', message: `Medication "${med.drug}" from the record is not mentioned.`, params: { drug: med.drug } });
   return f;
 }
 
@@ -390,7 +392,7 @@ export function validateStatus(record: ClinicalRecord, notes: string): Finding[]
     else if (said === 'declined' && (status === 'planned' || status === 'recommended')) severity = 'warn';
     else if (said === 'planned' && status === 'performed') severity = 'warn';
     else if (said === 'performed' && status === 'planned') severity = 'warn';
-    if (severity) f.push({ rule: 'status_conflicts_source', severity, field: `${field}.status`, message: `Recorded as "${status}", but the text this item points to says ${said} ("${src.trim()}").`, span: spans[0] });
+    if (severity) f.push({ rule: 'status_conflicts_source', severity, field: `${field}.status`, message: `Recorded as "${status}", but the text this item points to says ${said} ("${src.trim()}").`, span: spans[0], params: { status, said, quote: src.trim() } });
   };
   record.diagnostics.forEach((d, i) => check(`diagnostics[${i}]`, d.status, d.source_spans));
   record.treatments.forEach((t, i) => check(`treatments[${i}]`, t.status, t.source_spans));
@@ -398,7 +400,7 @@ export function validateStatus(record: ClinicalRecord, notes: string): Finding[]
   record.examination.findings.forEach((x, i) => {
     if (x.source_role === 'owner_reported' || !x.source_spans?.length) return;
     const src = spanText(notes, x.source_spans); const t = foldText(src);
-    if (OWNER_REPORT_MARKERS.some((re) => re.test(t))) f.push({ rule: 'owner_report_as_finding', severity: 'warn', field: `examination.findings[${i}].source_role`, message: `Recorded as the vet's finding, but the text it points to is the owner's report ("${src.trim()}"). Move it to history or mark it owner-reported.`, span: x.source_spans[0] });
+    if (OWNER_REPORT_MARKERS.some((re) => re.test(t))) f.push({ rule: 'owner_report_as_finding', severity: 'warn', field: `examination.findings[${i}].source_role`, message: `Recorded as the vet's finding, but the text it points to is the owner's report ("${src.trim()}"). Move it to history or mark it owner-reported.`, span: x.source_spans[0], params: { quote: src.trim() } });
   });
   return f;
 }
@@ -501,7 +503,7 @@ export function validateNotesContradiction(record: ClinicalRecord, notes: string
     if (!diff.length) continue;
     const q = recs[0]; const keptText = `${q.value}${k === 'weight' ? ' ' + q.unit : ''}`;
     const field = v[k] ? `examination.vitals.${k}` : 'patient.weight';
-    f.push({ rule: 'notes_contradiction', severity: 'warn', field, message: `Notes give ${keptText} and ${diff.map((d) => d.text).join(' and ')} for ${VITAL_NAMES[k]}; the record keeps ${keptText}. Check which is right.`, span: [diff[0].at, diff[0].end] });
+    f.push({ rule: 'notes_contradiction', severity: 'warn', field, message: `Notes give ${keptText} and ${diff.map((d) => d.text).join(' and ')} for ${VITAL_NAMES[k]}; the record keeps ${keptText}. Check which is right.`, span: [diff[0].at, diff[0].end], params: { kept: keptText, others: diff.map((d) => d.text), vital: k } });
   }
   return f;
 }
@@ -534,7 +536,7 @@ export function validateOtherAnimal(record: ClinicalRecord, notes: string): Find
   for (const path of factPaths(record)) for (const span of factSpans(record, path)) {
     const sentence = spanSentence(notes, span);
     if (!OTHER_ANIMAL_MARKERS.some((re) => re.test(foldText(sentence)))) continue;
-    f.push({ rule: 'other_animal_fact', severity: 'warn', field: path, message: `This comes from a line about another animal ("${sentence.trim()}"). Check it belongs to this patient.`, span });
+    f.push({ rule: 'other_animal_fact', severity: 'warn', field: path, message: `This comes from a line about another animal ("${sentence.trim()}"). Check it belongs to this patient.`, span, params: { quote: sentence.trim() } });
     break;
   }
   return f;

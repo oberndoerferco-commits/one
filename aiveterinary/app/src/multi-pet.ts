@@ -138,8 +138,8 @@ export function validateCrossPatient(c: Consultation, patientId: string): Findin
       if (t == null) open ??= { line: i, span };
       else if (t !== SHARED && t !== patientId) other ??= { line: i, owner: t, span };
     }
-    if (other) f.push({ rule: 'wrong_animal_line', severity: 'block', field: path, message: `This comes from line ${other.line + 1} ("${quote(lines[other.line].text)}"), which is assigned to ${nameOf(c, other.owner)}. It cannot be in ${p.header.name}'s record.`, span: other.span });
-    else if (open) f.push({ rule: 'unassigned_line_fact', severity: 'block', field: path, message: `This comes from line ${open.line + 1} ("${quote(lines[open.line].text)}"), which is not assigned to an animal yet. Assign the line first.`, span: open.span });
+    if (other) f.push({ rule: 'wrong_animal_line', severity: 'block', field: path, message: `This comes from line ${other.line + 1} ("${quote(lines[other.line].text)}"), which is assigned to ${nameOf(c, other.owner)}. It cannot be in ${p.header.name}'s record.`, span: other.span, params: { line: other.line + 1, quote: quote(lines[other.line].text), owner: nameOf(c, other.owner), patient: p.header.name } });
+    else if (open) f.push({ rule: 'unassigned_line_fact', severity: 'block', field: path, message: `This comes from line ${open.line + 1} ("${quote(lines[open.line].text)}"), which is not assigned to an animal yet. Assign the line first.`, span: open.span, params: { line: open.line + 1, quote: quote(lines[open.line].text) } });
   }
   return f;
 }
@@ -167,11 +167,11 @@ export function validateConsultation(c: Consultation): ConsultationFindings {
   const byPatient: Record<string, Finding[]> = {};
   for (const p of c.patients) byPatient[p.id] = [...validateCrossPatient(c, p.id), ...validateAll(p.record, patientView(c, p.id), p.header)];
   const consultation: Finding[] = [];
-  for (const i of unassigned) consultation.push({ rule: 'unassigned_line', severity: 'warn', field: `notes.line[${i + 1}]`, message: `Line ${i + 1} ("${quote(lines[i].text)}") is not assigned to an animal or marked shared.`, span: [lines[i].start, lines[i].end] });
+  for (const i of unassigned) consultation.push({ rule: 'unassigned_line', severity: 'warn', field: `notes.line[${i + 1}]`, message: `Line ${i + 1} ("${quote(lines[i].text)}") is not assigned to an animal or marked shared.`, span: [lines[i].start, lines[i].end], params: { line: i + 1, quote: quote(lines[i].text) } });
   for (const l of lines) {
     if (l.target == null) continue;
     const named = labelledPatient(l.text, c.patients);
-    if (named && named.id !== l.target) consultation.push({ rule: 'label_mismatch', severity: 'warn', field: `notes.line[${l.index + 1}]`, message: `Line ${l.index + 1} starts with "${named.label}:" but is assigned to ${l.target === SHARED ? 'all animals (shared)' : nameOf(c, l.target)}. Check the assignment.`, span: [l.start, l.end] });
+    if (named && named.id !== l.target) consultation.push({ rule: 'label_mismatch', severity: 'warn', field: `notes.line[${l.index + 1}]`, message: `Line ${l.index + 1} starts with "${named.label}:" but is assigned to ${l.target === SHARED ? 'all animals (shared)' : nameOf(c, l.target)}. Check the assignment.`, span: [l.start, l.end], params: { line: l.index + 1, label: named.label, shared: l.target === SHARED, target: l.target === SHARED ? '' : nameOf(c, l.target) } });
   }
   const blocked = Object.values(byPatient).some((fs) => fs.some((x) => x.severity === 'block')) || consultation.some((x) => x.severity === 'block');
   return { byPatient, consultation, blocked };

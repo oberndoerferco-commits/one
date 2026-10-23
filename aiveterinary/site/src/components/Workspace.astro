@@ -635,6 +635,7 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
     import { ClinicalRecord, PatientHeader, type ClinicalRecord as Rec } from 'aiveterinary-app/src/schema.ts';
     import { normalizeNotes, findAbbreviations, DEFAULT_ABBREVIATIONS } from 'aiveterinary-app/src/normalize.ts';
     import { validateAll, requiredMissing, type Finding } from 'aiveterinary-app/src/validators.ts';
+    import { findingMessage } from 'aiveterinary-app/src/finding-messages.ts';
     import { renderConsultReport, renderOwnerSummary, renderReferralLetter, renderDischargeLetter, renderPrescription, renderVaccinationEntry, renderConsentForm, renderCostEstimate, renderDentalChart, renderOwnerSummaryBilingual, crossDocumentMedicationCheck } from 'aiveterinary-app/src/render.ts';
     import { countryMissing, VisitContext } from 'aiveterinary-app/src/country.ts';
     import { buildRevDraft, renderRevDraftText } from 'aiveterinary-app/src/rev.ts';
@@ -1183,6 +1184,18 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
       for (const [a, b] of spans) for (let i = a; i < b; i++) document.querySelector(`#ws-notes mark[data-i="${i}"]`)?.classList.toggle('on', on);
     }
 
+    // Cross-document check: document keys and medication field names in the page language (English keeps the raw keys).
+    const MED_FIELD: Record<string, Record<string, string>> = {
+      de: { drug: 'Präparat', dose: 'Dosis', route: 'Applikationsart', frequency: 'Häufigkeit', duration: 'Behandlungsdauer' },
+      it: { drug: 'farmaco', dose: 'dose', route: 'via di somministrazione', frequency: 'frequenza', duration: 'durata' },
+    };
+    const identityField = (f: string) => (J.pageLang === 'en' ? f : MED_FIELD[J.pageLang]?.[f] ?? f);
+    const identityDoc = (d: string) => {
+      if (J.pageLang === 'en') return d;
+      const docText = (v: string) => dsel.querySelector<HTMLOptionElement>(`option[value="${v}"]`)?.text ?? v;
+      const second = /^owner_(en|de|it)$/.exec(d);
+      return second ? `${docText('owner')} (${second[1].toUpperCase()})` : docText(d === 'owner_all' ? 'ownerAll' : d);
+    };
     function renderFlags() {
       const { notes, header, record } = cur;
       // Multi-pet: this animal's findings (validateAll on its view of the shared notes, plus the cross-patient check),
@@ -1199,8 +1212,8 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
       const missing = [...requiredMissing(record, 'consult_report', header), ...cflags.map((f) => f.field), ...clinic.map((f) => f.field)].filter((f, i, a) => a.indexOf(f) === i);
       const list = $('#ws-flaglist'); list.innerHTML = '';
       const li = (html: string) => { const el = document.createElement('li'); el.innerHTML = html; list.appendChild(el); return el; };
-      for (const b of blocks) li(`<span class="f-block">${J.blocked}</span> ${esc(b.field)}: ${esc(b.message)}`);
-      for (const w of warns) li(`<span class="f-warn">${J.check}</span> ${esc(w.field)}: ${esc(w.message)}`);
+      for (const b of blocks) li(`<span class="f-block">${J.blocked}</span> ${esc(b.field)}: ${esc(findingMessage(b, J.pageLang))}`);
+      for (const w of warns) li(`<span class="f-warn">${J.check}</span> ${esc(w.field)}: ${esc(findingMessage(w, J.pageLang))}`);
       for (const m of missing) {
         const done = cur.resolved[m];
         const el = li(`<span class="f-miss">${done ? '✓' : '▲'} ${J.missing}</span> <code>${esc(m)}</code> ${reasons[m] ? `<span class="ws-hint">${esc(reasons[m])}</span> ` : ''}${done ? `<em>${esc(done)}</em>` : ''}`);
@@ -1265,7 +1278,7 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
           // as the record's sentences; the registry lists no medicines), so there is nothing for this check to compare.
           const pack = claimPack(false);
           const probs = [...crossDocumentMedicationCheck(record, docsAll), ...crossDocumentMedicationCheck({ ...record, medications: pack.clinical.medications }, { claim: renderClaimSummary(pack, J.pageLang) })]; identityProblems = probs.length;
-          li(probs.length ? `<span class="f-block">${J.blocked}</span> ${esc(J.identityFail)} ${esc(probs.map((p) => `${p.doc}: ${p.field} "${p.value}"`).join('; '))}` : `<span style="color:var(--ok);font-weight:600">✓</span> ${esc(J.identityOk)}`);
+          li(probs.length ? `<span class="f-block">${J.blocked}</span> ${esc(J.identityFail)} ${esc(probs.map((p) => `${identityDoc(p.doc)}: ${identityField(p.field)} "${p.value}"`).join('; '))}` : `<span style="color:var(--ok);font-weight:600">✓</span> ${esc(J.identityOk)}`);
         }
       }
       const unresolved = missing.filter((m) => !cur.resolved[m]).length;
