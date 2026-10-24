@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/review.mjs check && astro build && node scripts/copy-ocr.mjs && pagefind --site dist",
+    "build": "node scripts/review.mjs check && node scripts/check-species.mjs && astro build && node scripts/copy-ocr.mjs && pagefind --site dist",
     "preview": "astro preview",
     "test:db": "bash supabase/tests/run.sh"
   },
