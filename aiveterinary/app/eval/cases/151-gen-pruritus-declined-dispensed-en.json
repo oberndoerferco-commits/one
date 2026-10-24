@@ -1,0 +1,205 @@
+{
+  "id": "151-gen-pruritus-declined-dispensed-en",
+  "language": "en",
+  "synthetic": true,
+  "header": {
+    "name": "Ben",
+    "species": "dog",
+    "breed": "West Highland White Terrier",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 5,
+      "unit": "year"
+    }
+  },
+  "notes": "itchy paws and ears for 1 month\ninterdigital erythema all 4 feet, both ears red\ntape cytology paws: cocci +\nallergy blood test offered, O declined (cost)\nskin scrape planned at recheck\natopic dermatitis\nfood allergy\nchlorhexidine shampoo dispensed, twice weekly\nApoquel discussed, O prefers not to start yet\nelimination diet recommended\nrecheck 3 weeks",
+  "expect": {
+    "missing_includes": [
+      "medications[0].dose",
+      "medications[0].route"
+    ],
+    "drugs": [
+      "chlorhexidine shampoo",
+      "Apoquel"
+    ],
+    "assessment_text": null,
+    "statuses": {
+      "treatments[0]": "recommended",
+      "medications[0]": "dispensed",
+      "medications[1]": "declined",
+      "diagnostics[0]": "performed",
+      "diagnostics[1]": "declined",
+      "diagnostics[2]": "planned"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "itchy paws and ears for 1 month",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          31
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "skin",
+          "text": "interdigital erythema all 4 feet, both ears red",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              32,
+              79
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "tape cytology paws",
+        "status": "performed",
+        "result": "cocci +",
+        "source_spans": [
+          [
+            80,
+            107
+          ]
+        ]
+      },
+      {
+        "test": "allergy blood test",
+        "status": "declined",
+        "result": null,
+        "source_spans": [
+          [
+            108,
+            153
+          ]
+        ]
+      },
+      {
+        "test": "skin scrape",
+        "status": "planned",
+        "result": null,
+        "source_spans": [
+          [
+            154,
+            184
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": null,
+      "differentials": [
+        {
+          "text": "atopic dermatitis",
+          "source_spans": [
+            [
+              185,
+              202
+            ]
+          ]
+        },
+        {
+          "text": "food allergy",
+          "source_spans": [
+            [
+              203,
+              215
+            ]
+          ]
+        }
+      ],
+      "source_spans": []
+    },
+    "treatments": [
+      {
+        "type": "advice",
+        "text": "elimination diet recommended",
+        "status": "recommended",
+        "source_spans": [
+          [
+            308,
+            336
+          ]
+        ]
+      }
+    ],
+    "medications": [
+      {
+        "drug": "chlorhexidine shampoo",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": null,
+        "frequency": "twice weekly",
+        "duration": null,
+        "status": "dispensed",
+        "source_spans": [
+          [
+            216,
+            261
+          ]
+        ]
+      },
+      {
+        "drug": "Apoquel",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": null,
+        "frequency": null,
+        "duration": null,
+        "status": "declined",
+        "source_spans": [
+          [
+            262,
+            307
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "recheck 3 weeks",
+        "interval": {
+          "value": 3,
+          "unit": "week"
+        },
+        "source_spans": [
+          [
+            337,
+            352
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

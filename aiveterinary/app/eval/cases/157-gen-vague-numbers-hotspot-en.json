@@ -1,0 +1,179 @@
+{
+  "id": "157-gen-vague-numbers-hotspot-en",
+  "language": "en",
+  "synthetic": true,
+  "header": {
+    "name": "Bailey",
+    "species": "dog",
+    "breed": "Golden Retriever",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 4,
+      "unit": "year"
+    }
+  },
+  "notes": "licking right hip for a few days\ndrinking more than usual lately\nT 38.7\nmoist dermatitis R hip, about coin-sized\narea clipped and cleaned\nbuster collar fitted\nchlorhexidine solution dispensed, topical, twice a day for a few days\nurine sample next week re drinking\nhot spot R hip\nrecheck next week",
+  "expect": {
+    "missing_includes": [
+      "medications[0].dose"
+    ],
+    "drugs": [
+      "chlorhexidine solution"
+    ],
+    "assessment_text": "hot spot R hip",
+    "temperature": 38.7,
+    "statuses": {
+      "treatments[0]": "performed",
+      "treatments[1]": "performed",
+      "medications[0]": "dispensed",
+      "diagnostics[0]": "planned"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "licking right hip for a few days",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          32
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "drinking",
+        "value": "drinking more than usual lately",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            33,
+            64
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.7,
+          "unit": "C",
+          "source_spans": [
+            [
+              65,
+              71
+            ]
+          ]
+        },
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "skin",
+          "text": "moist dermatitis R hip, about coin-sized",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              72,
+              112
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "urinalysis",
+        "status": "planned",
+        "result": null,
+        "source_spans": [
+          [
+            229,
+            263
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": "hot spot R hip",
+      "differentials": [],
+      "source_spans": [
+        [
+          264,
+          278
+        ]
+      ]
+    },
+    "treatments": [
+      {
+        "type": "procedure",
+        "text": "area clipped and cleaned",
+        "status": "performed",
+        "source_spans": [
+          [
+            113,
+            137
+          ]
+        ]
+      },
+      {
+        "type": "other",
+        "text": "buster collar fitted",
+        "status": "performed",
+        "source_spans": [
+          [
+            138,
+            158
+          ]
+        ]
+      }
+    ],
+    "medications": [
+      {
+        "drug": "chlorhexidine solution",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": "topical",
+        "frequency": "twice a day",
+        "duration": "a few days",
+        "status": "dispensed",
+        "source_spans": [
+          [
+            159,
+            228
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "recheck next week",
+        "interval": null,
+        "source_spans": [
+          [
+            279,
+            296
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

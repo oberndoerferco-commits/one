@@ -1,0 +1,15 @@
+---
+import Base from '../../layouts/Base.astro';
+import AnimalsFilter from '../../components/AnimalsFilter.astro';
+import { ANIMALS } from '../../lib/animals-i18n';
+import { PROFILES } from '../../data/species';
+export async function getStaticPaths() {
+  return [...Object.keys(ANIMALS.en.species), ...Object.keys(ANIMALS.en.categories)].map((filter) => ({ params: { filter } }));
+}
+const { filter } = Astro.params;
+const profile = (PROFILES as any)[filter!];
+const label = profile?.name.en ?? (ANIMALS.en.species as any)[filter!] ?? (ANIMALS.en.categories as any)[filter!]?.[0];
+---
+<Base title={label} description={profile ? profile.intro.en : `${label}: plain-language articles for owners on symptoms, when to see a vet, care and prevention, from veterinary sources. Each one shows whether a vet has reviewed it.`}>
+  <AnimalsFilter lang="en" filter={filter!} />
+</Base>

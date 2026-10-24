@@ -1,0 +1,177 @@
+{
+  "id": "181-gen-horse-vaccine-other-horse-en",
+  "language": "en",
+  "synthetic": true,
+  "header": {
+    "name": "Merlin",
+    "species": "horse",
+    "breed": "Haflinger",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 8,
+      "unit": "year"
+    }
+  },
+  "notes": "annual flu and tetanus vaccination\nT 37.6\nHR 36\nRR 12\nbright, good condition\nlungs clear, LNs normal\ngrey mare in the next box (Sky) coughing since Monday, T 39.5, not our patient, owner to call her own vet\ninfluenza/tetanus vaccine given i.m. left neck\nlight work only for 2 days\nnext vaccination in 1 year",
+  "expect": {
+    "missing_includes": [
+      "assessment",
+      "medications[0].batch"
+    ],
+    "drugs": [
+      "influenza/tetanus vaccine"
+    ],
+    "assessment_text": null,
+    "temperature": 37.6,
+    "statuses": {
+      "medications[0]": "performed"
+    },
+    "must_not_contain": [
+      "sky",
+      "cough",
+      "39.5"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "annual flu and tetanus vaccination",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          34
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 37.6,
+          "unit": "C",
+          "source_spans": [
+            [
+              35,
+              41
+            ]
+          ]
+        },
+        "heart_rate": {
+          "value": 36,
+          "unit": "/min",
+          "source_spans": [
+            [
+              42,
+              47
+            ]
+          ]
+        },
+        "respiratory_rate": {
+          "value": 12,
+          "unit": "/min",
+          "source_spans": [
+            [
+              48,
+              53
+            ]
+          ]
+        },
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "general",
+          "text": "bright, good condition",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              54,
+              76
+            ]
+          ]
+        },
+        {
+          "system": "respiratory",
+          "text": "lungs clear, LNs normal",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              77,
+              100
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": null,
+      "differentials": [],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "influenza/tetanus vaccine",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": "i.m.",
+        "frequency": null,
+        "duration": null,
+        "status": "performed",
+        "source_spans": [
+          [
+            207,
+            253
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "next vaccination in 1 year",
+        "interval": {
+          "value": 1,
+          "unit": "year"
+        },
+        "source_spans": [
+          [
+            281,
+            307
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "light work only for 2 days",
+          "source_spans": [
+            [
+              254,
+              280
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [
+      {
+        "field": "medications[0].batch",
+        "reason": "vaccine batch not in the notes"
+      }
+    ],
+    "uncertain": []
+  }
+}

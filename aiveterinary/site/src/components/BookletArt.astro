@@ -1,0 +1,42 @@
+---
+/** Health booklet illustration: a closed booklet with a paw on the cover and a cat peeking over it. Same rules as HeroScene. */
+interface Props { size?: number; class?: string }
+const { size = 360, class: cls = '' } = Astro.props;
+const eye = (x: number, y: number, r: number) =>
+  `<g class="hs-eye"><circle cx="${x}" cy="${y}" r="${r}" fill="#fff"/><circle cx="${x + r * 0.12}" cy="${y + r * 0.12}" r="${r * 0.72}" fill="var(--art-ink)" stroke="none"/><circle cx="${x - r * 0.22}" cy="${y - r * 0.25}" r="${r * 0.26}" fill="#fff" stroke="none"/></g>`;
+const art = `
+<path d="M40 150C30 80 90 30 170 32c80 2 132 50 128 118-4 66-56 96-120 96H90C56 246 46 196 40 150Z" fill="var(--hs-blob)" stroke="none"/>
+<path d="M286 58l3 8 8 3-8 3-3 8-3-8-8-3 8-3z" fill="var(--warm)" stroke="none"/>
+<ellipse cx="170" cy="240" rx="110" ry="8" fill="var(--art-ink)" opacity=".08" stroke="none"/>
+<!-- cat behind the booklet -->
+<g transform="translate(0 -16)">
+<path d="M196 70l-4-34c0-5 5-7 8-4l22 20z" fill="var(--hs-cat)"/>
+<path d="M254 70l4-34c0-5-5-7-8-4l-22 20z" fill="var(--hs-cat)"/>
+<path d="M198 56l-1-12 9 8zM252 56l1-12-9 8z" fill="var(--ic-ear)" stroke="none"/>
+<circle cx="225" cy="88" r="38" fill="var(--hs-cat)"/>
+${eye(209, 86, 8)}${eye(241, 86, 8)}
+<path d="M221.5 99h7l-3.5 3.5z" fill="var(--coral)" stroke-width="1.4"/>
+<path d="M218 106c3 3 7 3 7-1 0 4 4 4 7 1" stroke-width="2"/>
+<ellipse cx="198" cy="100" rx="6" ry="3.5" fill="var(--ic-blush)" stroke="none"/><ellipse cx="252" cy="100" rx="6" ry="3.5" fill="var(--ic-blush)" stroke="none"/>
+</g>
+<!-- booklet -->
+<g transform="rotate(-5 160 160)">
+  <rect x="92" y="104" width="150" height="132" rx="14" fill="#1f7a70"/>
+  <path d="M112 104v132" stroke="#0f4d47" stroke-width="3"/>
+  <rect x="134" y="126" width="88" height="22" rx="11" fill="var(--hs-cream)" stroke="none"/>
+  <ellipse cx="178" cy="196" rx="17" ry="14" fill="var(--hs-cream)" stroke="none"/>
+  <ellipse cx="158" cy="176" rx="6.5" ry="8" fill="var(--hs-cream)" stroke="none" transform="rotate(-20 158 176)"/>
+  <ellipse cx="171" cy="166" rx="6.5" ry="8" fill="var(--hs-cream)" stroke="none"/>
+  <ellipse cx="185" cy="166" rx="6.5" ry="8" fill="var(--hs-cream)" stroke="none"/>
+  <ellipse cx="198" cy="176" rx="6.5" ry="8" fill="var(--hs-cream)" stroke="none" transform="rotate(20 198 176)"/>
+</g>
+<!-- cat paws over the top edge -->
+<ellipse cx="204" cy="108" rx="11" ry="8" fill="var(--hs-cat)"/>
+<ellipse cx="246" cy="104" rx="11" ry="8" fill="var(--hs-cat)"/>
+<!-- heart -->
+<path d="M70 92c-6-6-16 0-10 8l10 10 10-10c6-8-4-14-10-8z" fill="var(--coral)" stroke="none"/>
+`;
+---
+<svg class={`booklet-art ${cls}`} width={size} height={size * 0.88} viewBox="30 4 290 256" fill="none" stroke="var(--art-ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <Fragment set:html={art} />
+</svg>

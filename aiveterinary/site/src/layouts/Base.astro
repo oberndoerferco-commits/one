@@ -1,0 +1,425 @@
+---
+import { TRANSLATION_GROUPS } from '../lib/translations';
+import AnimalIcon from '../components/AnimalIcon.astro';
+import '@fontsource-variable/fraunces/full.css';
+import '@fontsource-variable/plus-jakarta-sans/index.css';
+import '../styles.css';
+interface Props {
+  title: string;
+  description: string;
+  lang?: string;
+}
+const { title, description, lang = 'en' } = Astro.props;
+// Cookie-free analytics (Cloudflare Web Analytics) is loaded only when a token is configured at build time.
+const cfToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN as string | undefined;
+const path = Astro.url.pathname.replace(/\.html$/, '');
+
+type Lang = 'en' | 'it' | 'de';
+const L: Lang = lang === 'it' || lang === 'de' ? lang : 'en';
+// hreflang: pages that exist under the same path in all three languages.
+const shared = new Set(['', '/about', '/passport', '/visit-brief', '/newsletter', '/vets', '/vets/workspace', '/vets/data', '/vets/quality', '/vets/research', '/editorial', '/animals', '/animals/all', '/registry', '/travel', '/emergency', '/chocolate', '/can-eat', '/vaccine-planner', '/end-of-life', '/impressum']);
+const basePath = path.replace(/^\/(it|de)(?=\/|$)/, '').replace(/^\/$/, '');
+const isSharedAnimals = /^\/animals\/(dog|cat|rabbit|horse|bird|general|symptoms|conditions|medications|first-aid|travel|care)$/.test(basePath);
+// Articles that exist under the same slug in other languages are translations of each other.
+const articleFiles = Object.keys(import.meta.glob('../content/animals/**/*.md'));
+const articleIn = (l: string, slug: string) => articleFiles.includes(`../content/animals/${l === 'en' ? '' : l + '/'}${slug}.md`);
+const articleSlug = /^\/animals\/([a-z0-9-]+)$/.exec(basePath)?.[1];
+const group = articleSlug ? TRANSLATION_GROUPS.find((g) => (g as any)[L] === articleSlug) : undefined;
+const articleAlts = !articleSlug || isSharedAnimals || basePath === '/animals/all' ? []
+  : group ? (['en', 'it', 'de'] as const).filter((l) => group[l]).map((l) => [l, `${l === 'en' ? '' : `/${l}`}/animals/${group[l]}`])
+  : (['en', 'it', 'de'] as const).filter((l) => articleIn(l, articleSlug)).map((l) => [l, l === 'en' ? basePath : `/${l}${basePath}`]);
+const alternates = shared.has(basePath) || isSharedAnimals
+  ? [['en', basePath || '/'], ['it', `/it${basePath}`], ['de', `/de${basePath}`]]
+  : articleAlts.length > 1 ? articleAlts : [];
+// Site-wide structured data: who publishes, and how to search the articles in this language.
+const homeHref = L === 'en' ? '/' : `/${L}`;
+const siteLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'Organization', '@id': 'https://aiveterinary.org/#org', name: 'AI Veterinary', url: 'https://aiveterinary.org/', logo: 'https://aiveterinary.org/favicon.svg', email: 'hello@aiveterinary.org' },
+    { '@type': 'WebSite', '@id': `https://aiveterinary.org${homeHref === '/' ? '/' : homeHref}#site`, name: 'AI Veterinary', url: new URL(homeHref, Astro.site).href, inLanguage: L, publisher: { '@id': 'https://aiveterinary.org/#org' },
+      potentialAction: { '@type': 'SearchAction', target: `${new URL(L === 'en' ? '/animals' : `/${L}/animals`, Astro.site).href}?q={search_term_string}`, 'query-input': 'required name=search_term_string' } },
+  ],
+};
+// Search snippets cut off around 160 characters: shorten the meta description at a word boundary
+// (the page itself keeps the full text), and drop the brand suffix when the title is already long.
+const metaDescription = description.length <= 158 ? description : description.slice(0, 157).replace(/[\s,;:.–-]+\S*$/, '') + '…';
+const homeTitle = ({ en: 'AI Veterinary: pet health in plain language', it: 'AI Veterinary: salute degli animali in parole semplici', de: 'AI Veterinary: Tiergesundheit verständlich erklärt' } as const)[L];
+const fullTitle = title === 'AI Veterinary' ? homeTitle : title.length > 52 ? title : `${title} · AI Veterinary`;
+const ogLocale = ({ en: 'en_GB', it: 'it_IT', de: 'de_DE' } as const)[L];
+
+const strings = {
+  en: {
+    home: '/',
+    menu: {
+      urgent: { href: '/emergency', label: 'Is it urgent?', short: 'Emergency', desc: 'Signs that mean a vet now, and what to do first' },
+      symptoms: { href: '/animals/symptoms', label: 'Symptoms', desc: 'What a sign can mean and when to call a vet' },
+      guide: { href: '/animals', label: 'Animal guide', desc: 'Dogs, cats and rabbits: signs, health topics and care' },
+      checks: { label: 'Quick checks', desc: 'Short tools for common questions', items: [
+        { href: '/emergency', label: 'Is it an emergency?' },
+        { href: '/chocolate', label: 'Dog ate chocolate?' },
+        { href: '/can-eat', label: 'Can my pet eat that?' },
+        { href: '/vaccine-planner', label: 'Puppy and kitten vaccine planner' },
+        { href: '/travel', label: 'Travelling with a pet in Europe' },
+        { href: '/registry', label: 'Pet registries by country' },
+      ] },
+      booklet: { href: '/passport', label: 'My booklet', desc: 'Vaccines, treatments and vet contacts in one place' },
+      vets: { href: '/vets', label: 'For vets' },
+      about: { href: '/about', label: 'About' },
+      privacy: { href: '/privacy', label: 'Privacy' },
+      open: 'Menu', openAria: 'Open menu', close: 'Close menu', lang: 'Language', more: 'More',
+    },
+    tagline: 'Less paperwork. More animal care.',
+    disclaimer: 'Information on this site is general and reviewed by veterinarians where marked. It does not replace an examination by a vet. In an emergency, contact a veterinary clinic immediately.',
+    footer1: [
+      { href: '/animals', label: 'Animal information' },
+      { href: '/passport', label: 'Digital health booklet' },
+      { href: '/vets', label: 'For veterinary teams' },
+      { href: '/vets/research', label: 'Research' },
+      { href: '/registry', label: 'Pet registries by country' },
+      { href: '/emergency', label: 'Is it an emergency?' },
+      { href: '/chocolate', label: 'Dog ate chocolate? Check the amount' },
+      { href: '/can-eat', label: 'Can my pet eat that?' },
+      { href: '/vaccine-planner', label: 'Puppy and kitten vaccine planner' },
+      { href: '/travel', label: 'Travelling with a pet in Europe' },
+      { href: '/end-of-life', label: 'When the time comes' },
+    ],
+    footer2: [
+      { href: '/about', label: 'About' },
+      { href: '/editorial', label: 'Editorial policy' },
+      { href: '/newsletter', label: 'Newsletter' },
+      { href: '/privacy', label: 'Privacy' },
+      { href: '/terms', label: 'Terms' },
+      { href: '/impressum', label: 'Legal notice' },
+    ],
+    brandAria: 'AI Veterinary home',
+    navAria: 'Main',
+    langAria: 'Language',
+  },
+  it: {
+    home: '/it',
+    menu: {
+      urgent: { href: '/it/emergency', label: 'È urgente?', short: 'Urgente', desc: 'I segni che richiedono subito il veterinario e cosa fare prima' },
+      symptoms: { href: '/it/animals/symptoms', label: 'Sintomi', desc: 'Cosa può significare un segno e quando chiamare il veterinario' },
+      guide: { href: '/it/animals', label: 'Guida agli animali', desc: 'Cani, gatti e conigli: segnali, salute e cura' },
+      checks: { label: 'Verifiche rapide', desc: 'Strumenti brevi per le domande più comuni', items: [
+        { href: '/it/emergency', label: "È un'emergenza?" },
+        { href: '/it/chocolate', label: 'Il cane ha mangiato cioccolato?' },
+        { href: '/it/can-eat', label: 'Il mio animale può mangiarlo?' },
+        { href: '/it/vaccine-planner', label: 'Calendario vaccini cuccioli e gattini' },
+        { href: '/it/travel', label: 'Viaggiare con un animale in Europa' },
+        { href: '/it/registry', label: 'Anagrafi e registri per Paese' },
+      ] },
+      booklet: { href: '/it/passport', label: 'Il mio libretto', desc: 'Vaccini, trattamenti e contatti del veterinario in un unico posto' },
+      vets: { href: '/it/vets', label: 'Per i veterinari' },
+      about: { href: '/it/about', label: 'Chi siamo' },
+      privacy: { href: '/privacy', label: 'Privacy' },
+      open: 'Menu', openAria: 'Apri il menu', close: 'Chiudi il menu', lang: 'Lingua', more: 'Altro',
+    },
+    tagline: 'Meno burocrazia. Più cura degli animali.',
+    disclaimer: 'Le informazioni su questo sito sono di carattere generale e, dove indicato, sono state riviste da veterinari. Non sostituiscono la visita di un veterinario. In caso di emergenza, contatta subito una clinica veterinaria.',
+    footer1: [
+      { href: '/it/animals', label: 'Informazioni sugli animali' },
+      { href: '/it/passport', label: 'Libretto sanitario digitale' },
+      { href: '/it/vets', label: 'Per i team veterinari' },
+      { href: '/it/vets/research', label: 'Ricerca' },
+      { href: '/it/registry', label: 'Anagrafi e registri per Paese' },
+      { href: '/it/emergency', label: "È un'emergenza?" },
+      { href: '/it/chocolate', label: 'Il cane ha mangiato cioccolato?' },
+      { href: '/it/can-eat', label: 'Il mio animale può mangiarlo?' },
+      { href: '/it/vaccine-planner', label: 'Calendario vaccini cuccioli e gattini' },
+      { href: '/it/travel', label: 'Viaggiare con un animale in Europa' },
+      { href: '/it/end-of-life', label: 'Quando arriva il momento' },
+    ],
+    footer2: [
+      { href: '/it/about', label: 'Chi siamo' },
+      { href: '/it/editorial', label: 'Politica editoriale' },
+      { href: '/it/newsletter', label: 'Newsletter' },
+      { href: '/privacy', label: 'Privacy' },
+      { href: '/terms', label: 'Termini' },
+      { href: '/it/impressum', label: 'Note legali' },
+    ],
+    brandAria: 'AI Veterinary, pagina iniziale',
+    navAria: 'Principale',
+    langAria: 'Lingua',
+  },
+  de: {
+    home: '/de',
+    menu: {
+      urgent: { href: '/de/emergency', label: 'Ist es dringend?', short: 'Notfall', desc: 'Anzeichen, die sofort zum Tierarzt gehören, und was zuerst zu tun ist' },
+      symptoms: { href: '/de/animals/symptoms', label: 'Symptome', desc: 'Was ein Anzeichen bedeuten kann und wann Sie anrufen sollten' },
+      guide: { href: '/de/animals', label: 'Tierratgeber', desc: 'Hunde, Katzen und Kaninchen: Anzeichen, Gesundheit und Pflege' },
+      checks: { label: 'Schnell-Checks', desc: 'Kurze Hilfen für häufige Fragen', items: [
+        { href: '/de/emergency', label: 'Ist es ein Notfall?' },
+        { href: '/de/chocolate', label: 'Hund hat Schokolade gefressen?' },
+        { href: '/de/can-eat', label: 'Darf mein Tier das fressen?' },
+        { href: '/de/vaccine-planner', label: 'Impfplaner für Welpen und Kitten' },
+        { href: '/de/travel', label: 'Mit Haustier in Europa reisen' },
+        { href: '/de/registry', label: 'Heimtierregister nach Land' },
+      ] },
+      booklet: { href: '/de/passport', label: 'Mein Heimtierpass', desc: 'Impfungen, Behandlungen und Tierarztkontakte an einem Ort' },
+      vets: { href: '/de/vets', label: 'Für Tierärzte' },
+      about: { href: '/de/about', label: 'Über uns' },
+      privacy: { href: '/privacy', label: 'Datenschutz' },
+      open: 'Menü', openAria: 'Menü öffnen', close: 'Menü schließen', lang: 'Sprache', more: 'Mehr',
+    },
+    tagline: 'Weniger Papierkram. Mehr Zeit für Tiere.',
+    disclaimer: 'Die Informationen auf dieser Website sind allgemeiner Art und, wo gekennzeichnet, von Tierärztinnen und Tierärzten geprüft. Sie ersetzen keine tierärztliche Untersuchung. Wenden Sie sich im Notfall sofort an eine Tierarztpraxis oder Tierklinik.',
+    footer1: [
+      { href: '/de/animals', label: 'Tierinformationen' },
+      { href: '/de/passport', label: 'Digitaler Heimtierpass' },
+      { href: '/de/vets', label: 'Für Praxisteams' },
+      { href: '/de/vets/research', label: 'Recherche' },
+      { href: '/de/registry', label: 'Heimtierregister nach Land' },
+      { href: '/de/emergency', label: 'Ist es ein Notfall?' },
+      { href: '/de/chocolate', label: 'Hund hat Schokolade gefressen?' },
+      { href: '/de/can-eat', label: 'Darf mein Tier das fressen?' },
+      { href: '/de/vaccine-planner', label: 'Impfplaner für Welpen und Kitten' },
+      { href: '/de/travel', label: 'Mit Haustier in Europa reisen' },
+      { href: '/de/end-of-life', label: 'Wenn die Zeit kommt' },
+    ],
+    footer2: [
+      { href: '/de/about', label: 'Über uns' },
+      { href: '/de/editorial', label: 'Redaktionelle Grundsätze' },
+      { href: '/de/newsletter', label: 'Newsletter' },
+      { href: '/privacy', label: 'Datenschutz' },
+      { href: '/terms', label: 'Nutzungsbedingungen' },
+      { href: '/de/impressum', label: 'Impressum' },
+    ],
+    brandAria: 'AI Veterinary Startseite',
+    navAria: 'Hauptnavigation',
+    langAria: 'Sprache',
+  },
+} as const;
+
+const t = strings[L];
+const fh = ({ en: ['Explore', 'About'], it: ['Scopri', 'Chi siamo'], de: ['Entdecken', 'Über uns'] } as any)[L] as [string, string];
+const m = t.menu;
+const languages: { code: Lang; href: string; label: string }[] = [
+  { code: 'en', href: '/', label: 'EN' },
+  { code: 'it', href: '/it', label: 'IT' },
+  { code: 'de', href: '/de', label: 'DE' },
+];
+const current = (href: string) => path === href || path.startsWith(href + '/');
+const isUrgent = current(m.urgent.href);
+const isSymptoms = current(m.symptoms.href);
+const isGuide = current(m.guide.href) && !isSymptoms;
+const checksActive = m.checks.items.some((c) => current(c.href));
+const langNames = { en: 'English', it: 'Italiano', de: 'Deutsch' } as const;
+const langLinks = languages.map((l) => ({ ...l, name: langNames[l.code], href: (alternates.find(([c]) => c === l.code)?.[1]) ?? l.href }));
+// Stroke icons for the header and the phone menu (decorative; labels carry the meaning).
+const svg = (d: string) => `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${d}</svg>`;
+const ic = {
+  alert: svg('<path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/>'),
+  symptoms: svg('<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>'),
+  guide: svg('<circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="4" cy="8" r="2"/><circle cx="20" cy="16" r="2"/><path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.05Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"/>'),
+  checks: svg('<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>'),
+  booklet: svg('<path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/><path d="M12 7v6M9 10h6"/>'),
+  chev: svg('<path d="m6 9 6 6 6-6"/>'),
+  menu: svg('<path d="M4 6h16M4 12h16M4 18h16"/>'),
+  close: svg('<path d="M18 6 6 18M6 6l12 12"/>'),
+  globe: svg('<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>'),
+};
+const rows = [
+  { ...m.urgent, icon: ic.alert, urgent: true, cur: isUrgent },
+  { ...m.symptoms, icon: ic.symptoms, cur: isSymptoms },
+  { ...m.guide, icon: ic.guide, cur: isGuide },
+  { ...m.booklet, icon: ic.booklet, cur: current(m.booklet.href) },
+];
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+    <title>{fullTitle}</title>
+    <meta name="description" content={metaDescription} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={new URL(path === '/' ? '/' : path, Astro.site)} />
+    {alternates.map(([l, href]) => <link rel="alternate" hreflang={l} href={new URL(href, Astro.site)} />)}
+    {alternates.length > 0 && <link rel="alternate" hreflang="x-default" href={new URL(alternates[0][1], Astro.site)} />}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:type" content={articleSlug && !isSharedAnimals && basePath !== '/animals/all' ? 'article' : 'website'} />
+    <meta property="og:url" content={new URL(path === '/' ? '/' : path, Astro.site)} />
+    <meta property="og:site_name" content="AI Veterinary" />
+    <meta property="og:locale" content={ogLocale} />
+    {alternates.filter(([l]) => l !== L).map(([l]) => <meta property="og:locale:alternate" content={({ en: 'en_GB', it: 'it_IT', de: 'de_DE' } as any)[l]} />)}
+    <script type="application/ld+json" set:html={JSON.stringify(siteLd)} />
+    <meta property="og:image" content={new URL(L === 'en' ? '/og.png' : `/og-${L}.png`, Astro.site)} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    {cfToken && <script is:inline defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={JSON.stringify({ token: cfToken })}></script>}
+  </head>
+  <body>
+    <a class="skip" href="#main">{({ en: 'Skip to content', it: 'Vai al contenuto', de: 'Zum Inhalt springen' } as any)[L]}</a>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href={t.home} aria-label={t.brandAria}>
+          <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="var(--accent)"/><path d="M11 12.5a2.2 2.2 0 1 1 0 .1zm10 0a2.2 2.2 0 1 1 0 .1zM8.5 17a2 2 0 1 1 0 .1zm15 0a2 2 0 1 1 0 .1zM16 15.5c2.9 0 5.5 2.6 5.5 5.2 0 1.7-1.2 2.8-2.7 2.8-1.1 0-1.9-.6-2.8-.6s-1.7.6-2.8.6c-1.5 0-2.7-1.1-2.7-2.8 0-2.6 2.6-5.2 5.5-5.2z" fill="var(--accent-ink)"/></svg>
+          <span class="brand-name">AI Veterinary</span>
+        </a>
+        <nav class="hn" aria-label={t.navAria}>
+          <ul class="hn-list">
+            <li><a class="hn-urgent" href={m.urgent.href} aria-current={isUrgent ? 'page' : undefined}><span class="hn-ic" set:html={ic.alert} />{m.urgent.label}</a></li>
+            <li><a class="hn-link" href={m.symptoms.href} aria-current={isSymptoms ? 'page' : undefined}>{m.symptoms.label}</a></li>
+            <li><a class="hn-link" href={m.guide.href} aria-current={isGuide ? 'page' : undefined}>{m.guide.label}</a></li>
+            <li class="hn-dd" data-hn-dd>
+              <button type="button" class:list={['hn-link', 'hn-dd-btn', { 'is-active': checksActive }]} aria-expanded="false" aria-controls="hn-checks">{m.checks.label}<span class="hn-chev" set:html={ic.chev} /></button>
+              <ul class="hn-dd-panel" id="hn-checks">
+                {m.checks.items.map((c) => <li><a href={c.href} aria-current={current(c.href) ? 'page' : undefined}>{c.label}</a></li>)}
+              </ul>
+            </li>
+            <li><a class="hn-link" href={m.booklet.href} aria-current={current(m.booklet.href) ? 'page' : undefined}>{m.booklet.label}</a></li>
+          </ul>
+          <div class="hn-right">
+            <a class="hn-vets" href={m.vets.href} aria-current={current(m.vets.href) ? 'page' : undefined}>{m.vets.label}</a>
+            <span class="lang-switch" role="group" aria-label={t.langAria}>
+              {langLinks.map((l, i) => (
+                <>
+                  {i > 0 && <span aria-hidden="true">·</span>}
+                  <a href={l.href} hreflang={l.code} lang={l.code} aria-current={L === l.code ? 'true' : undefined}>{l.label}</a>
+                </>
+              ))}
+            </span>
+          </div>
+        </nav>
+        <div class="hn-phone">
+          <a class="hn-urgent hn-urgent-sm" href={m.urgent.href} aria-current={isUrgent ? 'page' : undefined}><span class="hn-ic" set:html={ic.alert} />{m.urgent.short}</a>
+          <button type="button" class="hn-menu-btn" aria-label={m.openAria} aria-expanded="false" aria-controls="hn-sheet" aria-haspopup="dialog"><span class="hn-ic" set:html={ic.menu} /><span class="hn-menu-txt" aria-hidden="true">{m.open}</span></button>
+          <a class="hn-menu-btn hn-menu-nojs" href="#hn-sheet" aria-label={m.openAria}><span class="hn-ic" set:html={ic.menu} /><span class="hn-menu-txt" aria-hidden="true">{m.open}</span></a>
+        </div>
+      </div>
+      <dialog class="hn-sheet" id="hn-sheet" aria-label={m.open}>
+        <div class="hn-sheet-top">
+          <a class="brand" href={t.home} aria-label={t.brandAria}>
+            <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="var(--accent)"/><path d="M11 12.5a2.2 2.2 0 1 1 0 .1zm10 0a2.2 2.2 0 1 1 0 .1zM8.5 17a2 2 0 1 1 0 .1zm15 0a2 2 0 1 1 0 .1zM16 15.5c2.9 0 5.5 2.6 5.5 5.2 0 1.7-1.2 2.8-2.7 2.8-1.1 0-1.9-.6-2.8-.6s-1.7.6-2.8.6c-1.5 0-2.7-1.1-2.7-2.8 0-2.6 2.6-5.2 5.5-5.2z" fill="var(--accent-ink)"/></svg>
+            <span class="brand-name">AI Veterinary</span>
+          </a>
+          <a class="hn-close" href="#" data-hn-close aria-label={m.close}><span class="hn-ic" set:html={ic.close} /></a>
+        </div>
+        <nav aria-label={t.navAria}>
+          <ul class="hn-rows">
+            {rows.slice(0, 3).map((r) => (
+              <li><a class:list={['hn-row', { 'hn-row-urgent': r.urgent }]} href={r.href} aria-current={r.cur ? 'page' : undefined}>
+                <span class="hn-row-ic" set:html={r.icon} />
+                <span class="hn-row-txt"><span class="hn-row-l">{r.label}</span><span class="hn-row-d">{r.desc}</span></span>
+              </a></li>
+            ))}
+          </ul>
+          <p class="hn-sub-h" id="hn-checks-h"><span class="hn-row-ic" set:html={ic.checks} /><span class="hn-row-txt"><span class="hn-row-l">{m.checks.label}</span><span class="hn-row-d">{m.checks.desc}</span></span></p>
+          <ul class="hn-sub" aria-labelledby="hn-checks-h">
+            {m.checks.items.slice(1).map((c) => <li><a href={c.href} aria-current={current(c.href) ? 'page' : undefined}>{c.label}</a></li>)}
+          </ul>
+          <ul class="hn-rows">
+            {rows.slice(3).map((r) => (
+              <li><a class:list={['hn-row', { 'hn-row-urgent': r.urgent }]} href={r.href} aria-current={r.cur ? 'page' : undefined}>
+                <span class="hn-row-ic" set:html={r.icon} />
+                <span class="hn-row-txt"><span class="hn-row-l">{r.label}</span><span class="hn-row-d">{r.desc}</span></span>
+              </a></li>
+            ))}
+          </ul>
+        </nav>
+        <div class="hn-langs" role="group" aria-label={t.langAria}>
+          <p class="hn-sub-h" aria-hidden="true"><span class="hn-row-ic" set:html={ic.globe} />{m.lang}</p>
+          <div class="hn-lang-btns">
+            {langLinks.map((l) => <a href={l.href} hreflang={l.code} lang={l.code} aria-current={L === l.code ? 'true' : undefined}>{l.name}</a>)}
+          </div>
+        </div>
+        <ul class="hn-foot">
+          <li><a href={m.vets.href} aria-current={current(m.vets.href) ? 'page' : undefined}>{m.vets.label}</a></li>
+          <li><a href={m.about.href} aria-current={current(m.about.href) ? 'page' : undefined}>{m.about.label}</a></li>
+          <li><a href={m.privacy.href} aria-current={current(m.privacy.href) ? 'page' : undefined}>{m.privacy.label}</a></li>
+        </ul>
+      </dialog>
+    </header>
+
+    <div id="lang-suggest" class="lang-suggest" hidden role="region" aria-label="Language">
+      <span id="lang-suggest-text"></span>
+      <a id="lang-suggest-link" class="btn" href="/"></a>
+      <button id="lang-suggest-close" type="button" class="lang-suggest-close" aria-label="Dismiss">×</button>
+    </div>
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+
+    <div class="foot-peek" aria-hidden="true"><AnimalIcon kind="cat" size={64} /><AnimalIcon kind="dog" size={72} /><AnimalIcon kind="rabbit" size={60} /></div>
+    <footer class="site-footer">
+      <div class="wrap">
+        <div class="foot-brand">
+          <strong>AI Veterinary</strong>
+          <p class="foot-tag">{t.tagline}</p>
+          <p class="foot-disc">{t.disclaimer}</p>
+        </div>
+        <nav aria-label={fh[0]}>
+          <p class="foot-h">{fh[0]}</p>
+          <ul>{t.footer1.map((f) => <li><a href={f.href}>{f.label}</a></li>)}</ul>
+        </nav>
+        <nav aria-label={fh[1]}>
+          <p class="foot-h">{fh[1]}</p>
+          <ul>{t.footer2.map((f) => <li><a href={f.href}>{f.label}</a></li>)}</ul>
+        </nav>
+      </div>
+    </footer>
+  <script is:inline>
+    // Header: "Quick checks" disclosure and the phone menu sheet.
+    (function () {
+      var dd = document.querySelector('[data-hn-dd]');
+      if (dd) {
+        var btn = dd.querySelector('button'), panel = dd.querySelector('.hn-dd-panel');
+        var set = function (open, refocus) { btn.setAttribute('aria-expanded', String(open)); if (!open && refocus) btn.focus(); };
+        btn.addEventListener('click', function () { set(btn.getAttribute('aria-expanded') !== 'true'); });
+        dd.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true') { e.preventDefault(); set(false, true); }
+        });
+        dd.addEventListener('focusout', function (e) { if (e.relatedTarget && !dd.contains(e.relatedTarget)) set(false); });
+        document.addEventListener('click', function (e) { if (!dd.contains(e.target)) set(false); });
+      }
+      var sheet = document.getElementById('hn-sheet'), opener = document.querySelector('button.hn-menu-btn');
+      if (!sheet || !opener || typeof sheet.showModal !== 'function') { document.documentElement.classList.remove('js'); return; }
+      var root = document.documentElement;
+      var open = function () {
+        sheet.showModal(); root.classList.add('hn-locked'); opener.setAttribute('aria-expanded', 'true');
+        var first = sheet.querySelector('.hn-close'); if (first) first.focus();
+      };
+      var close = function () { if (sheet.open) sheet.close(); };
+      opener.addEventListener('click', open);
+      sheet.addEventListener('close', function () { root.classList.remove('hn-locked'); opener.setAttribute('aria-expanded', 'false'); opener.focus(); });
+      sheet.querySelector('[data-hn-close]').addEventListener('click', function (e) { e.preventDefault(); close(); });
+      sheet.addEventListener('keydown', function (e) {
+        if (e.key !== 'Tab') return;
+        var f = Array.prototype.filter.call(sheet.querySelectorAll('a[href], button:not([disabled])'), function (el) { return el.offsetParent !== null; });
+        if (!f.length) return;
+        var a = f[0], z = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === a) { e.preventDefault(); z.focus(); }
+        else if (!e.shiftKey && document.activeElement === z) { e.preventDefault(); a.focus(); }
+      });
+      // A wide window shows the full header: close the sheet when the menu button is no longer shown.
+      window.addEventListener('resize', function () { if (sheet.open && opener.offsetParent === null) close(); });
+    })();
+  </script>
+  <script is:inline define:vars={{ pageLang: L, alternates }}>
+    // Offer the page in the browser's language once; remembered on this device.
+    (function () {
+      try {
+        if (!alternates || !alternates.length || localStorage.getItem('aiveterinary.langSuggest') === 'off') return;
+        var wanted = (navigator.languages || [navigator.language || '']).map(function (l) { return String(l).slice(0, 2).toLowerCase(); });
+        var target = null;
+        for (var i = 0; i < wanted.length; i++) { if (['en', 'it', 'de'].indexOf(wanted[i]) >= 0) { target = wanted[i]; break; } }
+        if (!target || target === pageLang) return;
+        var alt = alternates.filter(function (a) { return a[0] === target; })[0]; if (!alt) return;
+        var text = { en: 'This page is also available in English.', it: 'Questa pagina è disponibile anche in italiano.', de: 'Diese Seite gibt es auch auf Deutsch.' }[target];
+        var label = { en: 'Switch to English', it: 'Passa all\'italiano', de: 'Zu Deutsch wechseln' }[target];
+        var box = document.getElementById('lang-suggest'); document.getElementById('lang-suggest-text').textContent = text;
+        var link = document.getElementById('lang-suggest-link'); link.textContent = label; link.href = alt[1]; link.setAttribute('hreflang', target);
+        box.hidden = false;
+        var off = function () { try { localStorage.setItem('aiveterinary.langSuggest', 'off'); } catch (e) {} box.hidden = true; };
+        document.getElementById('lang-suggest-close').addEventListener('click', off);
+        link.addEventListener('click', off);
+      } catch (e) {}
+    })();
+  </script>
+  </body>
+</html>

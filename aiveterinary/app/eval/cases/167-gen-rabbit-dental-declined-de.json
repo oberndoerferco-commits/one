@@ -1,0 +1,196 @@
+{
+  "id": "167-gen-rabbit-dental-declined-de",
+  "language": "de",
+  "synthetic": true,
+  "header": {
+    "name": "Flocke",
+    "species": "rabbit",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 4,
+      "unit": "year"
+    }
+  },
+  "notes": "speichelt und lässt Futter fallen seit 1 Woche\nv. a. Pellets, wenig Heu\nKGW 1,85 kg\nT 38,7\nHF 220\nAF 48\nSchneidezähne zu lang, Kinn nass\nSchneidezähne gekürzt\nRö Schädel angeboten, Besitzerin lehnt ab\nMaulhöhlenuntersuchung in Sedation geplant\nZahnerkrankung\nHeu ad lib, Pellets reduzieren\nWV in 2 Wochen",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": "Zahnerkrankung",
+    "temperature": 38.7,
+    "statuses": {
+      "treatments[0]": "performed",
+      "diagnostics[0]": "declined",
+      "diagnostics[1]": "planned"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "speichelt und lässt Futter fallen seit 1 Woche",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          46
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "Fütterung",
+        "value": "v. a. Pellets, wenig Heu",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            47,
+            71
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.7,
+          "unit": "C",
+          "source_spans": [
+            [
+              84,
+              90
+            ]
+          ]
+        },
+        "heart_rate": {
+          "value": 220,
+          "unit": "/min",
+          "source_spans": [
+            [
+              91,
+              97
+            ]
+          ]
+        },
+        "respiratory_rate": {
+          "value": 48,
+          "unit": "/min",
+          "source_spans": [
+            [
+              98,
+              103
+            ]
+          ]
+        },
+        "weight": {
+          "value": 1.85,
+          "unit": "kg",
+          "source_spans": [
+            [
+              72,
+              83
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "Maulhöhle",
+          "text": "Schneidezähne zu lang, Kinn nass",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              104,
+              136
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "Röntgen Schädel",
+        "status": "declined",
+        "result": null,
+        "source_spans": [
+          [
+            159,
+            200
+          ]
+        ]
+      },
+      {
+        "test": "Maulhöhlenuntersuchung in Sedation",
+        "status": "planned",
+        "result": null,
+        "source_spans": [
+          [
+            201,
+            243
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": "Zahnerkrankung",
+      "differentials": [],
+      "source_spans": [
+        [
+          244,
+          258
+        ]
+      ]
+    },
+    "treatments": [
+      {
+        "type": "procedure",
+        "text": "Schneidezähne gekürzt",
+        "status": "performed",
+        "source_spans": [
+          [
+            137,
+            158
+          ]
+        ]
+      }
+    ],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "WV in 2 Wochen",
+        "interval": {
+          "value": 2,
+          "unit": "week"
+        },
+        "source_spans": [
+          [
+            290,
+            304
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "Heu ad lib, Pellets reduzieren",
+          "source_spans": [
+            [
+              259,
+              289
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

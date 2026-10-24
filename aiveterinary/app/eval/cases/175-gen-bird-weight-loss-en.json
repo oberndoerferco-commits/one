@@ -1,0 +1,202 @@
+{
+  "id": "175-gen-bird-weight-loss-en",
+  "language": "en",
+  "synthetic": true,
+  "header": {
+    "name": "Kiwi",
+    "species": "bird",
+    "breed": "Budgerigar",
+    "sex": "male",
+    "age": {
+      "value": 3,
+      "unit": "year"
+    }
+  },
+  "notes": "fluffed up and sleeping more for 2 days\neating seeds per owner\nlost 2 g in a week on kitchen scale per owner\nwt 34 g\nfluffed, tail bobbing\nkeel prominent\ndroppings green, scant\nfaecal wet mount: no parasites seen\nbloods offered, O declined\ngastrointestinal disease\nliver disease\nkeep warm, offer usual seeds and millet\nrecheck 3 days",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": null,
+    "statuses": {
+      "diagnostics[0]": "performed",
+      "diagnostics[1]": "declined"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "fluffed up and sleeping more for 2 days",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          39
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "appetite",
+        "value": "eating seeds per owner",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            40,
+            62
+          ]
+        ]
+      },
+      {
+        "finding": "weight",
+        "value": "lost 2 g in a week on kitchen scale per owner",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            63,
+            108
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": {
+          "value": 34,
+          "unit": "g",
+          "source_spans": [
+            [
+              109,
+              116
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "general",
+          "text": "fluffed, tail bobbing",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              117,
+              138
+            ]
+          ]
+        },
+        {
+          "system": "body condition",
+          "text": "keel prominent",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              139,
+              153
+            ]
+          ]
+        },
+        {
+          "system": "droppings",
+          "text": "droppings green, scant",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              154,
+              176
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "faecal wet mount",
+        "status": "performed",
+        "result": "no parasites seen",
+        "source_spans": [
+          [
+            177,
+            212
+          ]
+        ]
+      },
+      {
+        "test": "blood test",
+        "status": "declined",
+        "result": null,
+        "source_spans": [
+          [
+            213,
+            239
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": null,
+      "differentials": [
+        {
+          "text": "gastrointestinal disease",
+          "source_spans": [
+            [
+              240,
+              264
+            ]
+          ]
+        },
+        {
+          "text": "liver disease",
+          "source_spans": [
+            [
+              265,
+              278
+            ]
+          ]
+        }
+      ],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "recheck 3 days",
+        "interval": {
+          "value": 3,
+          "unit": "day"
+        },
+        "source_spans": [
+          [
+            319,
+            333
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "keep warm, offer usual seeds and millet",
+          "source_spans": [
+            [
+              279,
+              318
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

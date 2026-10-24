@@ -1,0 +1,187 @@
+---
+/**
+ * "Is it an emergency?" — a fixed, rule-based check. No AI, no diagnosis.
+ * Any sign in the first group → go now; any in the second → today; none → watch at home with a deadline.
+ * Each sign links to the article whose sources back it. The result can be saved to the booklet's symptom
+ * diary, which the visit brief already pulls in.
+ */
+import AnimalIcon from './AnimalIcon.astro';
+interface Props { lang: 'en' | 'it' | 'de' }
+const { lang } = Astro.props;
+const base = { en: '/animals/', it: '/it/animals/', de: '/de/animals/' }[lang];
+type Sign = { id: string; text: string; link?: string };
+const T = {
+  en: {
+    title: 'Is it an emergency?',
+    lead: 'Tick everything you see right now. You get one of three answers: go now, see a vet today, or watch at home. This is a fixed checklist written from veterinary sources, not AI and not a diagnosis. If you are worried, call your vet anyway.',
+    now: 'Signs that mean go now', today: 'Signs that mean see a vet today', more: 'more',
+    signsNow: [
+      { id: 'breath', text: 'Struggling to breathe, breathing with an open mouth (cats), or blue, grey or very pale gums' },
+      { id: 'collapse', text: 'Collapsed, cannot stand, or does not respond normally' },
+      { id: 'seizure', text: 'A seizure that does not stop, or several seizures in a row' },
+      { id: 'bleeding', text: 'Bleeding that does not stop with gentle pressure' },
+      { id: 'bloat', text: 'Swollen, hard belly with retching that brings nothing up (dogs)', link: 'dog-vomiting' },
+      { id: 'poison', text: 'Ate, or may have eaten, something poisonous: chocolate, grapes or raisins, xylitol, rat poison, lilies (cats), human painkillers', link: 'poisoning-first-aid' },
+      { id: 'urine', text: 'Straining to pee with little or nothing coming out, especially a male cat', link: 'cat-straining-litter-box' },
+      { id: 'heat', text: 'Heavy panting, weakness or collapse after heat or exercise', link: 'heatstroke' },
+      { id: 'rabbit', text: 'Rabbit: not eating or no droppings for about 12 hours', link: 'rabbit-not-eating' },
+    ] as Sign[],
+    signsToday: [
+      { id: 'vomit', text: 'Vomiting or diarrhoea more than two or three times today', link: 'dog-vomiting' },
+      { id: 'blood', text: 'Blood in the vomit or the stool', link: 'dog-bloody-diarrhoea' },
+      { id: 'eat', text: 'Not eating for a day (a cat that stops eating should be seen sooner rather than later)', link: 'cat-not-eating' },
+      { id: 'drink', text: 'Suddenly drinking or peeing much more than usual' },
+      { id: 'limp', text: 'Not putting weight on a leg', link: 'dog-limping' },
+      { id: 'eye', text: 'An eye that is red, painful, cloudy or kept shut' },
+      { id: 'pain', text: 'Hunched, hiding, trembling or crying when touched' },
+      { id: 'fever', text: 'A measured temperature above about 39.5 °C', link: 'dog-fever' },
+    ] as Sign[],
+    check: 'Show the answer',
+    rNow: ['Go to a vet now', 'Call the nearest open clinic while you are on your way so they can prepare. Do not wait to see whether it passes, and do not give human medicines.'],
+    rToday: ['See a vet today', 'Call your vet now and ask for an appointment today. If anything from the first list appears, go straight away.'],
+    rWatch: ['Watch at home, with a deadline', 'Nothing you ticked needs a vet right now. Keep an eye on eating, drinking, peeing, energy and breathing. If it is not clearly better within 24 hours, or anything from the lists appears, call your vet.'],
+    save: 'Save to the symptom diary', saved: 'Saved in the diary of', noAnimal: 'Start a health booklet to keep this in a diary.', brief: 'Prepare the visit brief', booklet: '/passport', briefHref: '/visit-brief',
+    diaryNote: 'Emergency check', none: 'no signs ticked',
+  },
+  it: {
+    title: 'È un\'emergenza?',
+    lead: 'Spunta tutto ciò che vedi adesso. Avrai una di tre risposte: vai subito, dal veterinario oggi, oppure osserva a casa. È una lista fissa scritta a partire da fonti veterinarie, non è IA e non è una diagnosi. Se sei preoccupato, chiama comunque il tuo veterinario.',
+    now: 'Segni per cui andare subito', today: 'Segni per cui andare oggi', more: 'approfondisci',
+    signsNow: [
+      { id: 'breath', text: 'Fatica a respirare, respira a bocca aperta (gatti), gengive blu, grigie o molto pallide', link: 'cane-respira-male' },
+      { id: 'collapse', text: 'Collassato, non riesce a stare in piedi o non risponde come al solito' },
+      { id: 'seizure', text: 'Una crisi convulsiva che non si ferma, o più crisi una dopo l\'altra' },
+      { id: 'bleeding', text: 'Un sanguinamento che non si ferma con una leggera pressione' },
+      { id: 'bloat', text: 'Pancia gonfia e dura con conati che non portano fuori nulla (cani)' },
+      { id: 'poison', text: 'Ha mangiato, o potrebbe aver mangiato, qualcosa di velenoso: cioccolato, uva o uvetta, xilitolo, veleno per topi, gigli (gatti), antidolorifici umani', link: 'poisoning-first-aid' },
+      { id: 'urine', text: 'Si sforza di urinare ed esce poco o niente, soprattutto un gatto maschio', link: 'gatto-non-fa-pipi' },
+      { id: 'heat', text: 'Ansima forte, è debole o crolla dopo caldo o sforzo', link: 'heatstroke' },
+      { id: 'rabbit', text: 'Coniglio: non mangia o non fa feci da circa 12 ore', link: 'rabbit-not-eating' },
+    ] as Sign[],
+    signsToday: [
+      { id: 'vomit', text: 'Vomito o diarrea più di due o tre volte oggi', link: 'dog-vomiting' },
+      { id: 'blood', text: 'Sangue nel vomito o nelle feci', link: 'cane-diarrea-con-sangue' },
+      { id: 'eat', text: 'Non mangia da un giorno (un gatto che smette di mangiare va visto presto)', link: 'cat-not-eating' },
+      { id: 'drink', text: 'All\'improvviso beve o urina molto più del solito', link: 'cane-beve-tanto' },
+      { id: 'limp', text: 'Non appoggia una zampa', link: 'dog-limping' },
+      { id: 'eye', text: 'Un occhio rosso, dolorante, opaco o tenuto chiuso' },
+      { id: 'pain', text: 'Ingobbito, si nasconde, trema o si lamenta se lo tocchi' },
+      { id: 'fever', text: 'Temperatura misurata sopra circa 39,5 °C', link: 'cane-febbre' },
+    ] as Sign[],
+    check: 'Mostra la risposta',
+    rNow: ['Vai subito dal veterinario', 'Chiama la clinica aperta più vicina mentre sei in viaggio, così si preparano. Non aspettare che passi e non dare farmaci per uso umano.'],
+    rToday: ['Dal veterinario oggi', 'Chiama ora il tuo veterinario e chiedi una visita in giornata. Se compare qualcosa della prima lista, vai subito.'],
+    rWatch: ['Osserva a casa, con una scadenza', 'Niente di ciò che hai spuntato richiede il veterinario adesso. Tieni d\'occhio appetito, sete, pipì, energia e respiro. Se entro 24 ore non va chiaramente meglio, o compare qualcosa delle liste, chiama il veterinario.'],
+    save: 'Salva nel diario dei sintomi', saved: 'Salvato nel diario di', noAnimal: 'Crea un libretto sanitario per tenerlo in un diario.', brief: 'Prepara il riepilogo per la visita', booklet: '/it/passport', briefHref: '/it/visit-brief',
+    diaryNote: 'Controllo emergenza', none: 'nessun segno spuntato',
+  },
+  de: {
+    title: 'Ist es ein Notfall?',
+    lead: 'Haken Sie alles an, was Sie gerade sehen. Sie erhalten eine von drei Antworten: sofort los, heute in die Praxis oder zu Hause beobachten. Das ist eine feste Checkliste aus tierärztlichen Quellen, keine KI und keine Diagnose. Wenn Sie sich Sorgen machen, rufen Sie trotzdem Ihre Praxis an.',
+    now: 'Zeichen für: sofort los', today: 'Zeichen für: heute in die Praxis', more: 'mehr',
+    signsNow: [
+      { id: 'breath', text: 'Atemnot, Atmen mit offenem Maul (Katzen), blaue, graue oder sehr blasse Schleimhäute' },
+      { id: 'collapse', text: 'Zusammengebrochen, kann nicht stehen oder reagiert nicht normal' },
+      { id: 'seizure', text: 'Ein Krampfanfall, der nicht aufhört, oder mehrere Anfälle hintereinander' },
+      { id: 'bleeding', text: 'Eine Blutung, die mit leichtem Druck nicht aufhört' },
+      { id: 'bloat', text: 'Aufgeblähter, harter Bauch mit Würgen ohne Erbrechen (Hunde)', link: 'hund-hustet-und-wuergt' },
+      { id: 'poison', text: 'Hat etwas Giftiges gefressen oder könnte es haben: Schokolade, Weintrauben oder Rosinen, Xylit, Rattengift, Lilien (Katzen), Schmerzmittel für Menschen', link: 'poisoning-first-aid' },
+      { id: 'urine', text: 'Presst beim Urinieren und es kommt wenig oder nichts, vor allem bei Katern', link: 'katze-blasenentzuendung' },
+      { id: 'heat', text: 'Starkes Hecheln, Schwäche oder Zusammenbruch nach Hitze oder Anstrengung', link: 'heatstroke' },
+      { id: 'rabbit', text: 'Kaninchen: frisst seit etwa 12 Stunden nicht oder setzt keinen Kot ab', link: 'rabbit-not-eating' },
+    ] as Sign[],
+    signsToday: [
+      { id: 'vomit', text: 'Heute mehr als zwei- oder dreimal Erbrechen oder Durchfall', link: 'dog-vomiting' },
+      { id: 'blood', text: 'Blut im Erbrochenen oder im Kot', link: 'hund-durchfall-mit-blut' },
+      { id: 'eat', text: 'Frisst seit einem Tag nicht (eine Katze, die nicht frisst, gehört früher in die Praxis)', link: 'katze-frisst-nicht' },
+      { id: 'drink', text: 'Trinkt oder uriniert plötzlich viel mehr als sonst', link: 'hund-trinkt-viel' },
+      { id: 'limp', text: 'Belastet ein Bein nicht', link: 'dog-limping' },
+      { id: 'eye', text: 'Ein Auge ist rot, schmerzhaft, trüb oder wird zugekniffen' },
+      { id: 'pain', text: 'Gekrümmte Haltung, versteckt sich, zittert oder jammert bei Berührung' },
+      { id: 'fever', text: 'Gemessene Temperatur über etwa 39,5 °C', link: 'hund-fieber' },
+    ] as Sign[],
+    check: 'Antwort anzeigen',
+    rNow: ['Sofort in die Tierarztpraxis', 'Rufen Sie unterwegs die nächste geöffnete Praxis oder Klinik an, damit sie sich vorbereiten kann. Warten Sie nicht ab und geben Sie keine Medikamente für Menschen.'],
+    rToday: ['Heute in die Praxis', 'Rufen Sie jetzt Ihre Praxis an und bitten Sie um einen Termin für heute. Tritt etwas aus der ersten Liste auf, fahren Sie sofort.'],
+    rWatch: ['Zu Hause beobachten, mit Frist', 'Nichts von dem, was Sie angehakt haben, braucht jetzt eine Praxis. Achten Sie auf Fressen, Trinken, Urinieren, Energie und Atmung. Wenn es nicht innerhalb von 24 Stunden deutlich besser ist oder etwas aus den Listen auftritt, rufen Sie Ihre Praxis an.'],
+    save: 'Im Symptomtagebuch speichern', saved: 'Gespeichert im Tagebuch von', noAnimal: 'Legen Sie einen Heimtierpass an, um das im Tagebuch zu behalten.', brief: 'Übersicht für den Besuch vorbereiten', booklet: '/de/passport', briefHref: '/de/visit-brief',
+    diaryNote: 'Notfall-Check', none: 'keine Zeichen angehakt',
+  },
+}[lang];
+const sign = (s: Sign, group: string) => ({ ...s, group, href: s.link ? `${base}${s.link}` : null });
+const all = [...T.signsNow.map((s) => sign(s, 'now')), ...T.signsToday.map((s) => sign(s, 'today'))];
+---
+<section class="wrap narrow hero ec-hero">
+  <div class="ec-head"><div><h1>{T.title}</h1><p class="lead">{T.lead}</p></div><div class="ec-art" aria-hidden="true"><AnimalIcon kind="dog" size={88} /><AnimalIcon kind="cat" size={80} /></div></div>
+</section>
+<section class="wrap narrow">
+  <form id="ec-form" class="ec-form">
+    <fieldset class="ec-group ec-now"><legend>{T.now}</legend>
+      {all.filter((s) => s.group === 'now').map((s) => <label class="ec-sign"><input type="checkbox" name="s" value={s.id} data-group="now" data-text={s.text} /><span>{s.text}{s.href && <> · <a href={s.href}>{T.more}</a></>}</span></label>)}
+    </fieldset>
+    <fieldset class="ec-group ec-today"><legend>{T.today}</legend>
+      {all.filter((s) => s.group === 'today').map((s) => <label class="ec-sign"><input type="checkbox" name="s" value={s.id} data-group="today" data-text={s.text} /><span>{s.text}{s.href && <> · <a href={s.href}>{T.more}</a></>}</span></label>)}
+    </fieldset>
+    <button class="btn lg" type="submit">{T.check}</button>
+  </form>
+  <div id="ec-result" class="ec-result" hidden>
+    <h2 id="ec-r-h" tabindex="-1"></h2>
+    <p id="ec-r-p"></p>
+    <p class="ec-actions"><button class="btn secondary" type="button" id="ec-save">{T.save}</button> <a class="btn secondary" href={T.briefHref}>{T.brief}</a></p>
+    <p id="ec-saved" class="pp-hint" role="status"></p>
+  </div>
+</section>
+<script type="application/json" id="ec-i18n" set:html={JSON.stringify({ rNow: T.rNow, rToday: T.rToday, rWatch: T.rWatch, saved: T.saved, noAnimal: T.noAnimal, booklet: T.booklet, diaryNote: T.diaryNote, none: T.none })} />
+<script>
+  const J = JSON.parse(document.getElementById('ec-i18n')!.textContent!);
+  const form = document.getElementById('ec-form') as HTMLFormElement;
+  const box = document.getElementById('ec-result') as HTMLElement;
+  let last: { tier: string; signs: string[] } | null = null;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const ticked = Array.from(form.querySelectorAll<HTMLInputElement>('input[name="s"]:checked'));
+    const tier = ticked.some((i) => i.dataset.group === 'now') ? 'now' : ticked.length ? 'today' : 'watch';
+    const [h, p] = tier === 'now' ? J.rNow : tier === 'today' ? J.rToday : J.rWatch;
+    document.getElementById('ec-r-h')!.textContent = h;
+    document.getElementById('ec-r-p')!.textContent = p;
+    box.className = `ec-result ec-${tier}`; box.hidden = false;
+    (document.getElementById('ec-saved') as HTMLElement).textContent = '';
+    last = { tier: h, signs: ticked.map((i) => i.dataset.text!) };
+    box.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+    // move focus to the answer so screen readers read it and keyboard users continue from there
+    document.getElementById('ec-r-h')!.focus({ preventScroll: true });
+  });
+  document.getElementById('ec-save')!.addEventListener('click', () => {
+    const out = document.getElementById('ec-saved')!;
+    if (!last) return;
+    try {
+      const KEY = 'aiveterinary.passport.v1';
+      const store = JSON.parse(localStorage.getItem(KEY) ?? 'null');
+      const a = store?.animals?.find((x: any) => x.id === store.current) ?? store?.animals?.[0];
+      if (!a) { out.innerHTML = `<a href="${J.booklet}">${J.noAnimal}</a>`; return; }
+      a.diary ??= [];
+      a.diary.push({ date: new Date().toISOString().slice(0, 10), note: `${J.diaryNote}: ${last.tier}. ${last.signs.length ? last.signs.join('; ') : J.none}` });
+      localStorage.setItem(KEY, JSON.stringify(store));
+      out.textContent = `${J.saved} ${a.name || '—'}.`;
+    } catch { out.innerHTML = `<a href="${J.booklet}">${J.noAnimal}</a>`; }
+  });
+</script>
+<style is:global>
+  .ec-head { display: flex; gap: 20px; align-items: center; justify-content: space-between; }
+  .ec-art { flex: none; display: flex; align-items: flex-end; }
+  .ec-form { display: grid; gap: 18px; margin-bottom: 18px; }
+  .ec-group { border: 0; margin: 0; padding: 18px 20px; border-radius: 20px; background: var(--surface); box-shadow: 0 1px 0 var(--line); }
+  .ec-group legend { font-family: var(--font-display); font-weight: 600; font-size: 1.25rem; padding: 0 6px; }
+  .ec-now { border-left: 6px solid var(--danger); }
+  .ec-today { border-left: 6px solid var(--warn); }
+  .ec-sign { display: flex; gap: 12px; align-items: flex-start; padding: 10px 2px; border-bottom: 1px solid var(--line); cursor: pointer; }
+  .ec-sign:last-child { border-bottom: 0; }
+  .ec-sign input { width: 22px; height: 22px; margin-top: 2px; flex: none; accent-color: var(--accent); }
+  .ec-result { padding: 22px 24px; border-radius: 20px; margin-bottom: 28px; scroll-margin-top: 20px; }
+  .ec-result h2 { margin-top: 0; }
+  .ec-now.ec-result, .ec-result.ec-now { background: var(--danger-soft); border-left: 6px solid var(--danger); }
+  .ec-result.ec-today { background: var(--warn-soft); border-left: 6px solid var(--warn); }
+  .ec-result.ec-watch { background: var(--ok-soft); border-left: 6px solid var(--ok); }
+  .ec-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+  @media (max-width: 640px) { .ec-art { display: none; } }
+</style>

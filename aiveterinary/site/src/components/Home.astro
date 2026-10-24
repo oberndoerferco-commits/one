@@ -1,0 +1,247 @@
+---
+import { getCollection } from 'astro:content';
+import { ANIMALS, slugOf, type Lang } from '../lib/animals-i18n';
+import AnimalIcon from './AnimalIcon.astro';
+import AskBox from './AskBox.astro';
+import BookletArt from './BookletArt.astro';
+import Newsletter from './Newsletter.astro';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const a = ANIMALS[lang];
+const P = { en: { passport: '/passport', brief: '/visit-brief', vets: '/vets', about: '/about', editorial: '/editorial' },
+            it: { passport: '/it/passport', brief: '/it/visit-brief', vets: '/it/vets', about: '/it/about', editorial: '/it/editorial' },
+            de: { passport: '/de/passport', brief: '/de/visit-brief', vets: '/de/vets', about: '/de/about', editorial: '/de/editorial' } }[lang];
+const T = {
+  en: {
+    kickerAI: 'Your AI vet assistant', kicker: 'Your pet-health assistant',
+    h1: 'Ask any question about your pet\'s health.',
+    sub: 'Plain answers from veterinary sources, and always what to do next: go to a vet now, call today, or watch at home.',
+    cta: 'Find help by animal', cta2: 'Open the health booklet', emerg: 'Worried right now? Check if it is an emergency', search: 'Search', or: 'or pick an animal', proofShort: ['Vet review shown on every article', 'Free, no ads', 'Your data stays on your device', 'No online diagnoses, no doses'],
+    proof: [['Vets sign', 'Every article names the vet who reviewed it. Until then it is labelled a draft.'], ['Free, no ads', 'No sponsors, no affiliate links, no tracking pixels.'], ['Your data stays yours', 'The booklet lives on your device. Export it any time.'], ['Honest limits', 'No diagnoses over the internet and no doses. If it needs a vet, we say so.']],
+    species: 'Which animal?', latest: 'Latest articles', all: 'All articles →', draft: a.draft, reviewed: a.reviewedBy,
+    how: 'How it works', steps: [['Read', 'Find the symptom or question. Each article tells you at the top whether it can wait.'], ['Keep', 'Vaccinations, medications, microchip and your vet\'s number in one booklet, on your phone.'], ['Bring', 'Before a visit, make a one-page brief so the vet sees the whole picture in a minute.']],
+    vetsKicker: 'For veterinary teams', vetsH: 'Type five lines. Approve the report.', vetsP: 'A documentation assistant for the keyboard: rough notes in, structured record out, nothing on the page you did not write. Built in Europe, data stays in the EU.', vetsCta: 'See how it works',
+    faq: 'Questions', faqs: [['Is this a replacement for my vet?', 'No. It helps you understand what is going on and decide when to go. The examination, diagnosis and treatment are the vet\'s.'], ['Who writes the articles?', 'Drafts are written with AI assistance from veterinary guidelines and the sources listed under each article, then reviewed, corrected and signed by a practising veterinarian. Until then the article says clearly that it is an unreviewed draft.'], ['What does it cost?', 'Nothing for owners, and that will not change. The vet tool will be paid per vet, which is how the site is funded.'], ['Where is my booklet stored?', 'In your browser on your device. Nothing is sent to us. Back it up to a file and open it on any device.']],
+  },
+  it: {
+    kickerAI: 'Il tuo assistente veterinario AI', kicker: 'Il tuo assistente per la salute del tuo animale',
+    h1: 'Fai qualsiasi domanda sulla salute del tuo animale.',
+    sub: 'Risposte semplici da fonti veterinarie, e sempre il passo successivo: dal veterinario subito, chiamare oggi o osservare a casa.',
+    cta: 'Cerca per animale', cta2: 'Apri il libretto sanitario', emerg: "Preoccupato adesso? Controlla se è un'emergenza", search: 'Cerca', or: 'oppure scegli un animale', proofShort: ['Revisione veterinaria indicata su ogni articolo', 'Gratis, senza pubblicità', 'I dati restano sul tuo dispositivo', 'Nessuna diagnosi online, nessuna dose'],
+    proof: [['I veterinari firmano', 'Ogni articolo indica il veterinario che lo ha rivisto. Fino ad allora è segnato come bozza.'], ['Gratis, senza pubblicità', 'Nessuno sponsor, nessun link di affiliazione, nessun tracciamento.'], ['I tuoi dati restano tuoi', 'Il libretto vive sul tuo dispositivo. Esportalo quando vuoi.'], ['Limiti chiari', 'Nessuna diagnosi via internet e nessuna dose. Se serve il veterinario, lo diciamo.']],
+    species: 'Quale animale?', latest: 'Ultimi articoli', all: 'Tutti gli articoli →', draft: a.draft, reviewed: a.reviewedBy,
+    how: 'Come funziona', steps: [['Leggi', 'Trova il sintomo o la domanda. Ogni articolo dice subito se può aspettare.'], ['Conserva', 'Vaccini, farmaci, microchip e il numero del veterinario in un unico libretto, sul telefono.'], ['Porta', 'Prima della visita prepara un riepilogo di una pagina: il veterinario vede tutto in un minuto.']],
+    vetsKicker: 'Per i team veterinari', vetsH: 'Cinque righe. Referto approvato.', vetsP: 'Un assistente di documentazione da tastiera: note grezze in entrata, cartella strutturata in uscita, niente sulla pagina che non abbia scritto Lei. Fatto in Europa, dati nell\'UE.', vetsCta: 'Scopri come funziona',
+    faq: 'Domande', faqs: [['Sostituisce il mio veterinario?', 'No. Ti aiuta a capire cosa sta succedendo e a decidere quando andare. Visita, diagnosi e terapia sono del veterinario.'], ['Chi scrive gli articoli?', 'Le bozze sono scritte con l\'aiuto dell\'IA a partire dalle linee guida veterinarie e dalle fonti indicate sotto ogni articolo, poi riviste, corrette e firmate da un veterinario in attività. Fino ad allora l\'articolo dice chiaramente che è una bozza non rivista.'], ['Quanto costa?', 'Niente per i proprietari, e non cambierà. Lo strumento per i veterinari sarà a pagamento per veterinario: è così che il sito si sostiene.'], ['Dove è salvato il libretto?', 'Nel tuo browser, sul tuo dispositivo. Non ci viene inviato nulla. Fai una copia su file e aprila su qualsiasi dispositivo.']],
+  },
+  de: {
+    kickerAI: 'Ihr KI-Tierarzt-Assistent', kicker: 'Ihr Assistent für die Tiergesundheit',
+    h1: 'Stellen Sie jede Frage zur Gesundheit Ihres Tieres.',
+    sub: 'Verständliche Antworten aus tierärztlichen Quellen, und immer der nächste Schritt: sofort in die Praxis, heute anrufen oder zu Hause beobachten.',
+    cta: 'Hilfe nach Tierart', cta2: 'Heimtierpass öffnen', emerg: 'Gerade besorgt? Prüfen, ob es ein Notfall ist', search: 'Suchen', or: 'oder Tierart wählen', proofShort: ['Prüfstatus an jedem Artikel', 'Kostenlos, ohne Werbung', 'Daten bleiben auf Ihrem Gerät', 'Keine Online-Diagnosen, keine Dosierungen'],
+    proof: [['Tierärzte zeichnen', 'Jeder Artikel nennt die prüfende Tierärztin oder den Tierarzt. Bis dahin ist er als Entwurf markiert.'], ['Kostenlos, ohne Werbung', 'Keine Sponsoren, keine Affiliate-Links, kein Tracking.'], ['Ihre Daten bleiben Ihre', 'Der Pass liegt auf Ihrem Gerät. Jederzeit exportierbar.'], ['Ehrliche Grenzen', 'Keine Diagnosen übers Internet, keine Dosierungen. Wenn es in die Praxis gehört, sagen wir es.']],
+    species: 'Welches Tier?', latest: 'Neueste Artikel', all: 'Alle Artikel →', draft: a.draft, reviewed: a.reviewedBy,
+    how: 'So funktioniert es', steps: [['Lesen', 'Symptom oder Frage finden. Jeder Artikel sagt oben, ob es warten kann.'], ['Aufbewahren', 'Impfungen, Medikamente, Chipnummer und die Nummer der Praxis in einem Pass, auf dem Handy.'], ['Mitbringen', 'Vor dem Besuch eine Seite Übersicht erstellen, damit die Praxis in einer Minute das ganze Bild hat.']],
+    vetsKicker: 'Für Praxisteams', vetsH: 'Fünf Zeilen tippen. Bericht freigeben.', vetsP: 'Ein Dokumentationsassistent für die Tastatur: grobe Notizen hinein, strukturierter Befund heraus, nichts auf der Seite, was Sie nicht geschrieben haben. In Europa gebaut, Daten bleiben in der EU.', vetsCta: 'So funktioniert es',
+    faq: 'Fragen', faqs: [['Ersetzt das meine Praxis?', 'Nein. Es hilft zu verstehen, was los ist, und zu entscheiden, wann Sie gehen sollten. Untersuchung, Diagnose und Behandlung gehören in die Praxis.'], ['Wer schreibt die Artikel?', 'Entwürfe entstehen mit KI-Unterstützung aus tierärztlichen Leitlinien und den unter jedem Artikel genannten Quellen und werden dann von einer praktizierenden Tierärztin oder einem Tierarzt geprüft, korrigiert und gezeichnet. Bis dahin steht deutlich dabei, dass es ein ungeprüfter Entwurf ist.'], ['Was kostet es?', 'Für Halter nichts, und das bleibt so. Das Werkzeug für Praxen wird pro Tierarzt bezahlt; so finanziert sich die Seite.'], ['Wo liegt mein Heimtierpass?', 'In Ihrem Browser auf Ihrem Gerät. An uns wird nichts gesendet. Sichern Sie ihn als Datei und öffnen Sie ihn auf jedem Gerät.']],
+  },
+}[lang];
+// Common questions: the articles owners most often need first, per language; topped up with the most urgent others.
+const COMMON = {
+  en: ['dog-ate-chocolate', 'cat-not-eating', 'rabbit-not-eating', 'dog-vomiting', 'cat-straining-litter-box', 'heatstroke', 'dog-limping', 'dog-diarrhoea'],
+  it: ['cane-ha-mangiato-cioccolato', 'cat-not-eating', 'rabbit-not-eating', 'dog-vomiting', 'gatto-non-fa-pipi', 'heatstroke', 'dog-limping', 'dog-diarrhoea'],
+  de: ['hund-schokolade-gefressen', 'katze-frisst-nicht', 'rabbit-not-eating', 'dog-vomiting', 'katze-blasenentzuendung', 'heatstroke', 'dog-limping', 'dog-diarrhoea'],
+}[lang];
+const mine = (await getCollection('animals')).filter((e) => e.data.lang === lang);
+const rank: Record<string, number> = { emergency: 0, today: 1, 'this-week': 2, routine: 3 };
+const common = [
+  ...COMMON.map((s) => mine.find((e) => slugOf(e.id) === s)).filter(Boolean),
+  ...mine.filter((e) => !COMMON.includes(slugOf(e.id))).sort((x, y) => (rank[x.data.urgency ?? ''] ?? 4) - (rank[y.data.urgency ?? ''] ?? 4)),
+].slice(0, 8) as typeof mine;
+const askAI = import.meta.env.PUBLIC_ASK_AI === 'true';
+const VERDICT = {
+  en: { emergency: 'Go now', today: 'See a vet today', 'this-week': 'Book a visit this week', routine: 'Watch and ask at the next visit' },
+  it: { emergency: 'Vai subito', today: 'Dal veterinario oggi', 'this-week': 'Prenota una visita questa settimana', routine: 'Osserva e chiedi alla prossima visita' },
+  de: { emergency: 'Sofort in die Praxis', today: 'Heute in die Praxis', 'this-week': 'Diese Woche einen Termin', routine: 'Beobachten, beim nächsten Besuch fragen' },
+}[lang] as Record<string, string>;
+const C = {
+  en: { h: 'Common questions', sub: 'What owners ask most often, with the verdict from each article.', browse: 'Or browse by animal' },
+  it: { h: 'Domande frequenti', sub: 'Quello che i proprietari chiedono più spesso, con l’indicazione di ogni articolo.', browse: 'Oppure sfoglia per animale' },
+  de: { h: 'Häufige Fragen', sub: 'Was Halter am häufigsten fragen, mit der Einschätzung aus jedem Artikel.', browse: 'Oder nach Tierart stöbern' },
+}[lang];
+const BOOK = {
+  en: { k: 'Free health booklet', h: 'Your pet’s health booklet, on your phone', p: 'Vaccinations, medications, microchip and your vet’s number in one place. Before a visit, make a one-page brief so the vet sees the whole picture in a minute.', cta: 'Open the health booklet', cta2: 'Prepare a vet visit' },
+  it: { k: 'Libretto sanitario gratuito', h: 'Il libretto sanitario del tuo animale, sul telefono', p: 'Vaccini, farmaci, microchip e il numero del veterinario in un unico posto. Prima della visita prepara un riepilogo di una pagina: il veterinario vede tutto in un minuto.', cta: 'Apri il libretto sanitario', cta2: 'Prepara la visita' },
+  de: { k: 'Kostenloser Heimtierpass', h: 'Der Gesundheitspass Ihres Tieres, auf dem Handy', p: 'Impfungen, Medikamente, Chipnummer und die Nummer der Praxis an einem Ort. Vor dem Besuch eine Seite Übersicht erstellen, damit die Praxis in einer Minute das ganze Bild hat.', cta: 'Heimtierpass öffnen', cta2: 'Praxisbesuch vorbereiten' },
+}[lang];
+const PRIV = {
+  en: { h: 'What happens to what you type', items: [['Questions are not stored', 'The search runs in your browser: your question is not sent to us or saved. The browser only downloads pieces of our search index.'], ['The booklet stays on your device', 'Your pet’s health booklet is saved in your browser. Nothing is sent to us; export it to a file whenever you like.'], ['No ads, no tracking cookies', 'No sponsors and no affiliate links. If we count visits, it is only as anonymous totals.']], more: 'Privacy policy', href: '/privacy' },
+  it: { h: 'Cosa succede a quello che scrivi', items: [['Le domande non vengono salvate', 'La ricerca avviene nel tuo browser: la domanda non ci viene inviata né salvata. Il browser scarica solo parti del nostro indice di ricerca.'], ['Il libretto resta sul tuo dispositivo', 'Il libretto sanitario è salvato nel tuo browser. Non ci viene inviato nulla; esportalo su file quando vuoi.'], ['Niente pubblicità, niente cookie di tracciamento', 'Nessuno sponsor e nessun link di affiliazione. Se contiamo le visite, lo facciamo solo come totali anonimi.']], more: 'Informativa privacy', href: '/privacy' },
+  de: { h: 'Was mit Ihren Eingaben passiert', items: [['Fragen werden nicht gespeichert', 'Die Suche läuft in Ihrem Browser: Ihre Frage wird weder an uns gesendet noch gespeichert. Der Browser lädt nur Teile unseres Suchindex.'], ['Der Pass bleibt auf Ihrem Gerät', 'Der Heimtierpass wird in Ihrem Browser gespeichert. An uns wird nichts gesendet; jederzeit als Datei exportierbar.'], ['Keine Werbung, keine Tracking-Cookies', 'Keine Sponsoren, keine Affiliate-Links. Wenn wir Besuche zählen, dann nur als anonyme Summen.']], more: 'Datenschutzerklärung', href: '/privacy' },
+}[lang];
+const short = { en: { rabbit: 'Rabbits', general: 'All' }, it: { rabbit: 'Conigli', general: 'Tutti' }, de: { rabbit: 'Kaninchen', general: 'Alle' } }[lang] as Record<string, string>;
+const speciesKeys = ['dog', 'cat', 'rabbit', 'horse', 'bird', 'general'] as const;
+const pre = lang === 'en' ? '' : `/${lang}`;
+// Quick tools: fixed rules from named sources, shown right under the hero for owners who need an answer now.
+const TOOLS = {
+  en: { h: 'Quick checks', sub: 'Fixed rules from named veterinary sources. No AI, and none of them will tell you an animal is safe.', items: [['Is it an emergency?', 'Tick what you see: go now, today, or watch with a deadline.', '/emergency', 'emerg'], ['Dog ate chocolate?', 'Work out the dose from type, grams and weight.', '/chocolate', 'choc'], ['Can my pet eat that?', 'People foods that harm pets, and which animals.', '/can-eat', 'food'], ['Vaccine planner', 'First-year dates for a puppy or kitten.', '/vaccine-planner', 'vacc']] },
+  it: { h: 'Controlli rapidi', sub: 'Regole fisse da fonti veterinarie citate. Niente IA, e nessuno ti dirà che un animale è al sicuro.', items: [["È un'emergenza?", 'Spunta cosa vedi: subito, oggi, oppure osserva con una scadenza.', '/emergency', 'emerg'], ['Ha mangiato cioccolato?', 'Calcola la dose da tipo, grammi e peso.', '/chocolate', 'choc'], ['Può mangiarlo?', 'Cibi umani che fanno male agli animali, e a quali.', '/can-eat', 'food'], ['Calendario vaccini', 'Le date del primo anno per cuccioli e gattini.', '/vaccine-planner', 'vacc']] },
+  de: { h: 'Schnell prüfen', sub: 'Feste Regeln aus genannten tierärztlichen Quellen. Keine KI, und keines davon sagt Ihnen, ein Tier sei sicher.', items: [['Ist es ein Notfall?', 'Ankreuzen, was Sie sehen: sofort, heute oder beobachten mit Frist.', '/emergency', 'emerg'], ['Schokolade gefressen?', 'Dosis aus Sorte, Gramm und Gewicht berechnen.', '/chocolate', 'choc'], ['Darf mein Tier das fressen?', 'Lebensmittel, die Tieren schaden, und welchen.', '/can-eat', 'food'], ['Impfplaner', 'Termine im ersten Jahr für Welpen und Kitten.', '/vaccine-planner', 'vacc']] },
+}[lang];
+const TOOL_ART: Record<string, string> = {
+  emerg: `<circle cx="32" cy="32" r="24" fill="var(--danger-soft)"/><path d="M32 18v18" stroke-width="5"/><circle cx="32" cy="45" r="3" fill="var(--art-ink)" stroke="none"/>`,
+  choc: `<rect x="14" y="16" width="36" height="32" rx="5" fill="#8a5a3b"/><path d="M14 27h36M14 38h36M26 16v32M38 16v32" stroke="#5e3a24"/><path d="M40 12l10 6-6 4z" fill="var(--hs-cream)"/>`,
+  food: `<circle cx="32" cy="36" r="18" fill="var(--hs-cream)"/><circle cx="26" cy="32" r="5" fill="#7b4fa0"/><circle cx="35" cy="30" r="5" fill="#7b4fa0"/><circle cx="31" cy="39" r="5" fill="#7b4fa0"/><path d="M33 22c2-6 6-8 10-8" />`,
+  vacc: `<rect x="14" y="14" width="36" height="38" rx="6" fill="var(--ic-sun)"/><path d="M14 24h36"/><path d="M22 10v8M42 10v8"/><path d="M23 36l6 6 12-12"/>`,
+};
+const AI = {
+  en: { h: 'How AI is used here, and where it is not', more: 'Read the editorial policy', items: [['Articles', 'Drafted with AI help from the sources listed under each one. A vet checks and signs them; until then they are labelled as unreviewed drafts.'], ['Quick checks', 'No AI. Fixed rules from named sources, for example the MSD Veterinary Manual, ASPCA and WSAVA, so the same input always gives the same answer.'], ['Your booklet', 'No AI. It stays on your device; photo import reads the text on your phone and uploads nothing.'], ['For vets', 'AI only puts the vet\'s own typed notes in order. It adds nothing, flags what is missing, and the vet approves every line.']] },
+  it: { h: "Come usiamo l'IA, e dove no", more: 'Leggi la politica editoriale', items: [['Articoli', "Scritti con l'aiuto dell'IA a partire dalle fonti indicate sotto ciascuno. Un veterinario li controlla e li firma; fino ad allora sono segnati come bozze non riviste."], ['Controlli rapidi', 'Niente IA. Regole fisse da fonti citate, per esempio MSD Veterinary Manual, ASPCA e WSAVA: a parità di dati, sempre la stessa risposta.'], ['Il tuo libretto', "Niente IA. Resta sul tuo dispositivo; l'importazione da foto legge il testo sul telefono e non carica nulla."], ['Per i veterinari', "L'IA mette solo in ordine le note scritte dal veterinario. Non aggiunge nulla, segnala ciò che manca e il veterinario approva ogni riga."]] },
+  de: { h: 'Wo KI hier hilft, und wo nicht', more: 'Zu den redaktionellen Grundsätzen', items: [['Artikel', 'Mit KI-Unterstützung aus den unter jedem Artikel genannten Quellen entworfen. Eine Tierärztin oder ein Tierarzt prüft und zeichnet; bis dahin sind sie als ungeprüfte Entwürfe markiert.'], ['Schnell prüfen', 'Keine KI. Feste Regeln aus genannten Quellen, etwa dem MSD Veterinary Manual, ASPCA und WSAVA: gleiche Eingabe, gleiche Antwort.'], ['Ihr Heimtierpass', 'Keine KI. Er bleibt auf Ihrem Gerät; der Foto-Import liest den Text auf dem Handy und lädt nichts hoch.'], ['Für Praxen', 'KI ordnet nur die selbst getippten Notizen der Tierärztin oder des Tierarztes. Sie ergänzt nichts, markiert Fehlendes, und jede Zeile wird freigegeben.']] },
+}[lang];
+---
+<section class="hero-ask">
+  <div class="wrap hero-ask-in">
+    <span class="hero-tile" aria-hidden="true"><svg viewBox="0 0 32 32" width="34" height="34"><path d="M11 12.5a2.2 2.2 0 1 1 0 .1zm10 0a2.2 2.2 0 1 1 0 .1zM8.5 17a2 2 0 1 1 0 .1zm15 0a2 2 0 1 1 0 .1zM16 15.5c2.9 0 5.5 2.6 5.5 5.2 0 1.7-1.2 2.8-2.7 2.8-1.1 0-1.9-.6-2.8-.6s-1.7.6-2.8.6c-1.5 0-2.7-1.1-2.7-2.8 0-2.6 2.6-5.2 5.5-5.2z" fill="currentColor"/></svg></span>
+    <p class="hero-kicker">{askAI ? T.kickerAI : T.kicker}</p>
+    <h1>{T.h1}</h1>
+    <p class="hero-sub">{T.sub}</p>
+    <AskBox lang={lang} />
+  </div>
+</section>
+
+<section class="wrap section cq">
+  <div class="section-row"><h2 class="section-h">{C.h}</h2><a class="more" href={`${a.base}/all`}>{T.all}</a></div>
+  <p class="cq-sub">{C.sub}</p>
+  <ul class="cq-list">
+    {common.map((e) => (
+      <li><a href={`${a.base}/${slugOf(e.id)}`}>
+        <span class="cq-ic" aria-hidden="true"><AnimalIcon kind={e.data.species === 'general' ? 'dog' : e.data.species} size={36} /></span>
+        <span class="cq-t">{e.data.title}</span>
+        {e.data.urgency && <span class={`ask-vl ask-v-${e.data.urgency}`}>{VERDICT[e.data.urgency]}</span>}
+      </a></li>
+    ))}
+  </ul>
+  <p class="cq-browse" id="cq-browse">{C.browse}</p>
+  <ul class="pets" id="species" aria-labelledby="cq-browse">
+    {speciesKeys.map((k) => (
+      <li><a class={`pet pet-${k}`} href={`${a.base}/${k}`}><span class="pet-c"><AnimalIcon kind={k} size={44} /></span><span class="pet-t">{short[k] ?? (a.species as any)[k]}</span></a></li>
+    ))}
+  </ul>
+</section>
+
+<section class="wrap section tools4">
+  <div class="section-row"><h2 class="section-h">{TOOLS.h}</h2></div>
+  <p class="tools4-sub">{TOOLS.sub}</p>
+  <ul class="tools4-list">
+    {TOOLS.items.map(([t, d, href, art]) => (
+      <li><a class={`tool4 tool4-${art}`} href={`${pre}${href}`}>
+        <svg class="tool4-art" viewBox="0 0 64 64" width="56" height="56" fill="none" stroke="var(--art-ink)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><Fragment set:html={TOOL_ART[art]} /></svg>
+        <span class="tool4-t">{t}</span><span class="tool4-d">{d}</span>
+      </a></li>
+    ))}
+  </ul>
+</section>
+
+<section class="wrap section">
+  <div class="book">
+    <div class="book-art" aria-hidden="true"><BookletArt size={220} /></div>
+    <div>
+      <p class="kicker">{BOOK.k}</p>
+      <h2>{BOOK.h}</h2>
+      <p>{BOOK.p}</p>
+      <p class="book-cta"><a class="btn lg" href={P.passport}>{BOOK.cta}</a> <a class="btn lg secondary" href={P.brief}>{BOOK.cta2}</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap section priv" aria-labelledby="priv-h">
+  <h2 class="section-h" id="priv-h">{PRIV.h}</h2>
+  <ul class="priv-list">{PRIV.items.map(([h, d]) => <li><strong>{h}</strong><span>{d}</span></li>)}</ul>
+  <ul class="ticks ticks-priv" aria-label={({ en: "What you can count on", it: "Su cosa puoi contare", de: "Worauf Sie sich verlassen können" } as any)[lang]}>
+    {T.proofShort.map((x) => <li>{x}</li>)}
+  </ul>
+  <p><a class="more" href={`${pre}${PRIV.href}`}>{PRIV.more} →</a></p>
+</section>
+
+<section class="wrap section">
+  <div class="vet-band vet-band-compact">
+    <div>
+      <p class="kicker light">{T.vetsKicker}</p>
+      <h2>{T.vetsH}</h2>
+      <p>{T.vetsP}</p>
+      <a class="btn lg invert" href={P.vets}>{T.vetsCta}</a>
+    </div>
+    <div class="vet-band-mock" aria-hidden="true">
+      <div class="mock-line">vomiting x2 since yest, eating less, T 38.6, abd soft</div>
+      <div class="mock-arrow">↓</div>
+      <div class="mock-doc"><b>History</b> Owner reports: vomiting, twice since yesterday · appetite reduced<br /><b>Examination</b> Temperature 38.6 °C · abdomen soft<br /><span class="mock-flag">▲ Missing: weight</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap section ai4">
+  <h2 class="section-h">{AI.h}</h2>
+  <ul class="ai4-list">{AI.items.map(([h, d], i) => <li class={i === 0 || i === 3 ? 'ai4-yes' : 'ai4-no'}><span class="ai4-badge">{i === 0 || i === 3 ? 'AI' : ({ en: 'No AI', it: 'No IA', de: 'Keine KI' } as any)[lang]}</span><strong>{h}</strong><span>{d}</span></li>)}</ul>
+  <p><a class="more" href={P.editorial}>{AI.more} →</a></p>
+</section>
+
+<section class="wrap section narrow">
+  <h2 class="section-h">{T.faq}</h2>
+  <div class="faq">
+    {T.faqs.map(([q, ans]) => <details><summary>{q}</summary><p>{ans}</p></details>)}
+  </div>
+</section>
+
+<section class="wrap section narrow">
+  <Newsletter lang={lang} />
+</section>
+
+<style is:global>
+  .hero-ask { min-height: min(calc(100svh - 64px), 820px); display: flex; align-items: center; padding: 56px 0 48px; }
+  .hero-ask-in { width: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .hero-tile { width: 60px; height: 60px; border-radius: 18px; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; box-shadow: 0 10px 24px rgba(20, 101, 94, .25); margin-bottom: 18px; }
+  .hero-kicker { display: inline-block; margin: 0 0 16px; padding: 6px 14px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 700; font-size: .88rem; letter-spacing: .02em; }
+  .hero-ask h1 { font-size: clamp(2.1rem, 5.4vw, 3.6rem); line-height: 1.08; max-width: 16ch; margin: 0 0 16px; text-wrap: balance; }
+  .hero-sub { font-size: 1.15rem; color: var(--ink-2); max-width: 36em; margin: 0 0 32px; text-wrap: pretty; }
+  @media (max-width: 640px) { .hero-ask { min-height: 0; padding: 28px 0 24px; } .hero-tile { width: 48px; height: 48px; border-radius: 14px; margin-bottom: 12px; } .hero-sub { font-size: 1.02rem; margin-bottom: 22px; } }
+  .cq-sub { color: var(--ink-2); margin: -6px 0 16px; max-width: 60ch; }
+  .cq-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 16px; }
+  .cq-list a { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px; min-height: 64px; height: 100%; padding: 12px 16px; border-radius: 16px; background: var(--surface); box-shadow: 0 1px 0 var(--line); border: 1px solid var(--line); text-decoration: none; color: var(--ink); }
+  .cq-list a:hover { border-color: var(--accent); }
+  .cq-ic { flex: none; display: grid; }
+  .cq-t { flex: 1 1 12em; font-weight: 650; line-height: 1.3; min-width: 0; }
+  .cq-list .ask-vl { flex: none; }
+  .cq-browse { color: var(--ink-2); font-size: .95rem; font-weight: 600; margin: 24px 0 10px; }
+  @media (max-width: 720px) { .cq-list { grid-template-columns: minmax(0, 1fr); } }
+  .book { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 32px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 28px 36px; }
+  .book h2 { margin-top: 0; }
+  .book p { color: var(--ink-2); max-width: 56ch; }
+  .book-cta { display: flex; flex-wrap: wrap; gap: 10px; }
+  .book-art svg { width: 100%; height: auto; }
+  @media (max-width: 720px) { .book { grid-template-columns: minmax(0, 1fr); padding: 22px 18px; } .book-art { max-width: 180px; } }
+  .priv-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .priv-list li { display: grid; gap: 6px; align-content: start; padding: 18px 20px; border-radius: 20px; background: var(--ok-soft); min-width: 0; }
+  .priv-list span { color: var(--ink-2); }
+  .ticks-priv { margin-top: 24px; }
+  @media (max-width: 820px) { .priv-list { grid-template-columns: minmax(0, 1fr); } }
+  .vet-band-compact { padding: 28px 32px; gap: 24px; }
+  .vet-band-compact h2 { font-size: 1.6rem; margin-bottom: 8px; }
+
+  .tools4-sub { color: var(--ink-2); margin: -6px 0 16px; max-width: 60ch; }
+  .tools4-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+  .tool4 { display: grid; gap: 6px; height: 100%; padding: 18px; border-radius: 22px; background: var(--surface); box-shadow: 0 1px 0 var(--line), 0 8px 24px rgba(18, 48, 74, .06); text-decoration: none; color: var(--ink); transition: transform .15s ease, box-shadow .15s ease; }
+  .tool4:hover { transform: translateY(-2px); box-shadow: 0 1px 0 var(--line), 0 14px 30px rgba(18, 48, 74, .1); }
+  .tool4-emerg { box-shadow: inset 0 0 0 2px var(--danger-soft), 0 8px 24px rgba(18, 48, 74, .06); }
+  .tool4-t { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; }
+  .tool4-d { color: var(--ink-2); font-size: .95rem; }
+  @media (max-width: 900px) { .tools4-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 480px) { .tools4-list { grid-template-columns: 1fr; } .tool4 { grid-template-columns: 56px 1fr; column-gap: 14px; } .tool4-art { grid-row: span 2; } }
+  .ai4-list { list-style: none; margin: 0 0 12px; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .ai4-list li { display: grid; gap: 6px; padding: 18px 20px; border-radius: 20px; background: var(--surface); box-shadow: 0 1px 0 var(--line); min-width: 0; }
+  .ai4-list li span:last-child { color: var(--ink-2); }
+  .ai4-badge { justify-self: start; font-size: .75rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; }
+  .ai4-yes .ai4-badge { background: var(--accent-soft); color: var(--accent); }
+  .ai4-no .ai4-badge { background: var(--ok-soft); color: var(--ink); }
+  @media (max-width: 640px) { .ai4-list { grid-template-columns: 1fr; } }
+</style>

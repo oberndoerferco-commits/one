@@ -1,0 +1,280 @@
+---
+import YarnCat from './YarnCat.astro';
+interface Props { lang?: 'en' | 'it' | 'de' }
+const { lang = 'en' } = Astro.props;
+const T = {
+  en: {
+    eyebrow: 'For animal owners', h1: 'Prepare for the vet visit',
+    lead: 'Vets ask the same questions at every visit: since when, how often, what changed, what does the animal eat, which medications. Answer them calmly at home and bring a one-page brief. The visit goes faster and nothing is forgotten.',
+    notDiag: '<strong>This is not a diagnosis.</strong> The brief organises what you know. It does not tell you what your animal has, and it does not replace calling your vet. If any of the emergency signs below apply, stop and call a clinic now.',
+    goNow: '<strong>Go now, don\'t fill in forms:</strong> trouble breathing, collapse, uncontrolled bleeding, seizures, a hard swollen belly, suspected poisoning, a cat straining to urinate, a rabbit that hasn\'t eaten for 12 hours.',
+    about: 'About your animal', passportHint: 'If you keep a <a href="/passport">digital pet passport</a> on this device, pick the animal and these fields fill themselves.',
+    fromPassport: 'From passport', name: 'Name', species: 'Species', breed: 'Breed', age: 'Age', agePh: 'e.g. 6 years', sex: 'Sex', weight: 'Weight (kg), if known',
+    going: 'What is going on', concern: 'Main concern, in your own words', concernPh: 'e.g. She has been vomiting since yesterday evening, three times, and doesn\'t want her food.',
+    since: 'Since when', sincePh: 'e.g. yesterday evening / 3 days / 2 weeks', freq: 'How often / how bad', freqPh: 'e.g. 3 times, getting worse',
+    trend: 'Getting better, worse or the same?', trendOpts: ['Better', 'Same', 'Worse', 'Comes and goes'], trigger: 'Anything that happened before it started', triggerPh: 'new food, walk in the woods, visitors, something eaten…',
+    noticed: 'Other things you have noticed',
+    signs: ['Eating less', 'Not eating at all', 'Drinking more', 'Drinking less', 'Vomiting', 'Diarrhoea', 'Constipation', 'Straining to urinate', 'Urinating more', 'Coughing', 'Sneezing', 'Breathing differently', 'Limping', 'Scratching / itching', 'Lethargic, sleeping more', 'Restless, pacing', 'Hiding', 'Aggressive or unusual behaviour', 'Weight loss', 'Weight gain', 'Lump or swelling', 'Bad smell (mouth, ears, skin)'],
+    other: 'Anything else', food: 'Food, medication, history', diet: 'What does your animal eat (brand, type, treats, scraps)?', meds: 'Current medications or supplements, exactly as on the label', medsPh: 'name, strength, how often, since when',
+    history: 'Known conditions, allergies, past surgeries', vacc: 'Vaccinations up to date?', vaccOpts: ['Yes', 'No', 'Not sure'], parasite: 'Parasite treatment (flea/tick/worm) last given', parasitePh: 'e.g. 3 weeks ago, product name',
+    lifestyle: 'Indoor / outdoor / travel recently?', others: 'Other animals at home, are they well?', forVet: 'For the vet', questions: 'Questions you want to ask', media: 'Photos or videos you will show (note what and when)', mediaPh: 'e.g. video of the limp from this morning on my phone',
+    make: 'Make the brief', clear: 'Clear', copy: 'Copy', print: 'Print / save as PDF', email: 'Email to the clinic', diary: 'From the symptom diary (last entries)', briefTitle: 'Veterinary visit brief', footer: 'Prepared by the owner with aiveterinary.org. This is the owner\'s account, not a clinical record. This page organises your answers with software; it contains no AI-generated medical content and no diagnosis.',
+    speciesTitle: 'Questions vets ask about this animal',
+    speciesQ: {
+      Dog: [['stool', 'Stool: normal, soft, blood, none?', ''], ['exercise', 'Tiring faster on walks?', 'yes / no / not sure'], ['scavenge', 'Could it have eaten something (bin, bones, chocolate, grapes, plants)?', '']],
+      Cat: [['litter', 'Litter box: urinating normally, straining, going outside the box?', ''], ['water', 'Drinking more than usual?', 'yes / no / not sure'], ['hiding', 'Hiding, less grooming, or more vocal?', ''], ['outdoor', 'Indoor only or goes outside?', '']],
+      Rabbit: [['droppings', 'Droppings in the last 12 hours: normal, smaller, fewer, none?', ''], ['hay', 'Still eating hay?', 'yes / less / no'], ['teeth', 'Drooling, wet chin, dropping food?', ''], ['lastate', 'When did it last eat?', 'e.g. this morning']],
+      'Guinea pig': [['droppings', 'Droppings in the last 12 hours: normal, smaller, fewer, none?', ''], ['hay', 'Still eating hay?', 'yes / less / no'], ['teeth', 'Drooling, wet chin, dropping food?', ''], ['lastate', 'When did it last eat?', 'e.g. this morning']],
+      Horse: [['manure', 'Manure: normal amount and consistency?', ''], ['colic', 'Pawing, looking at the flank, lying down and getting up?', ''], ['feed', 'Any change in feed, pasture or water?', '']],
+      Bird: [['droppings', 'Droppings: colour, consistency, amount?', ''], ['fluffed', 'Sitting fluffed up, on the cage floor, or tail bobbing?', ''], ['diet', 'Diet: seeds, pellets, fresh food?', '']],
+    },
+    species_opts: { Dog: 'Dog', Cat: 'Cat', Rabbit: 'Rabbit', 'Guinea pig': 'Guinea pig', Horse: 'Horse', Bird: 'Bird', Other: 'Other' },
+    sex_opts: { Female: 'Female', Male: 'Male', 'Female, spayed': 'Female, spayed', 'Male, neutered': 'Male, neutered' },
+  },
+  it: {
+    eyebrow: 'Per chi ha un animale', h1: 'Prepara la visita dal veterinario',
+    lead: 'I veterinari fanno le stesse domande a ogni visita: da quando, quanto spesso, cosa è cambiato, cosa mangia l\'animale, quali farmaci prende. Rispondi con calma a casa e porta un riepilogo di una pagina. La visita è più rapida e non si dimentica nulla.',
+    notDiag: '<strong>Non è una diagnosi.</strong> Il riepilogo organizza quello che sai. Non ti dice cosa ha il tuo animale e non sostituisce una telefonata al veterinario. Se uno dei segni di emergenza qui sotto è presente, fermati e chiama subito una clinica.',
+    goNow: '<strong>Vai subito, senza compilare moduli:</strong> difficoltà a respirare, collasso, sanguinamento che non si ferma, convulsioni, addome duro e gonfio, sospetto avvelenamento, gatto che si sforza di urinare, coniglio che non mangia da 12 ore.',
+    about: 'Il tuo animale', passportHint: 'Se tieni un <a href="/it/passport">passaporto digitale</a> su questo dispositivo, scegli l\'animale e questi campi si compilano da soli.',
+    fromPassport: 'Dal passaporto', name: 'Nome', species: 'Specie', breed: 'Razza', age: 'Età', agePh: 'es. 6 anni', sex: 'Sesso', weight: 'Peso (kg), se lo conosci',
+    going: 'Cosa sta succedendo', concern: 'Il problema principale, con parole tue', concernPh: 'es. Vomita da ieri sera, tre volte, e non vuole il suo cibo.',
+    since: 'Da quando', sincePh: 'es. ieri sera / 3 giorni / 2 settimane', freq: 'Quanto spesso / quanto grave', freqPh: 'es. 3 volte, peggiora',
+    trend: 'Migliora, peggiora o è uguale?', trendOpts: ['Migliora', 'Uguale', 'Peggiora', 'Va e viene'], trigger: 'È successo qualcosa prima che iniziasse?', triggerPh: 'cibo nuovo, passeggiata nel bosco, ospiti, qualcosa ingerito…',
+    noticed: 'Altre cose che hai notato',
+    signs: ['Mangia meno', 'Non mangia affatto', 'Beve di più', 'Beve di meno', 'Vomito', 'Diarrea', 'Stitichezza', 'Si sforza per urinare', 'Urina di più', 'Tosse', 'Starnuti', 'Respira in modo diverso', 'Zoppica', 'Si gratta / prurito', 'Apatico, dorme di più', 'Irrequieto, cammina avanti e indietro', 'Si nasconde', 'Comportamento aggressivo o insolito', 'Perdita di peso', 'Aumento di peso', 'Nodulo o gonfiore', 'Cattivo odore (bocca, orecchie, pelle)'],
+    other: 'Altro', food: 'Alimentazione, farmaci, storia', diet: 'Cosa mangia il tuo animale (marca, tipo, snack, avanzi)?', meds: 'Farmaci o integratori in corso, esattamente come sull\'etichetta', medsPh: 'nome, dosaggio, quante volte, da quando',
+    history: 'Malattie note, allergie, interventi passati', vacc: 'Vaccinazioni in regola?', vaccOpts: ['Sì', 'No', 'Non so'], parasite: 'Ultimo antiparassitario (pulci/zecche/vermi)', parasitePh: 'es. 3 settimane fa, nome del prodotto',
+    lifestyle: 'Vive in casa / fuori / ha viaggiato di recente?', others: 'Altri animali in casa: stanno bene?', forVet: 'Per il veterinario', questions: 'Domande che vuoi fare', media: 'Foto o video che mostrerai (cosa e quando)', mediaPh: 'es. video della zoppia di stamattina sul telefono',
+    make: 'Crea il riepilogo', clear: 'Cancella', copy: 'Copia', print: 'Stampa / salva come PDF', email: 'Invia alla clinica via email', diary: 'Dal diario dei sintomi (ultime voci)', briefTitle: 'Riepilogo per la visita veterinaria', footer: 'Preparato dal proprietario con aiveterinary.org. È il racconto del proprietario, non una cartella clinica. Questa pagina ordina le tue risposte con un software; non contiene contenuti medici generati da IA né diagnosi.',
+    speciesTitle: 'Domande che il veterinario fa su questo animale',
+    speciesQ: {
+      Dog: [['stool', 'Feci: normali, molli, con sangue, assenti?', ''], ['exercise', 'Si stanca prima durante le passeggiate?', 'sì / no / non so'], ['scavenge', 'Può aver mangiato qualcosa (spazzatura, ossa, cioccolato, uva, piante)?', '']],
+      Cat: [['litter', 'Lettiera: urina normalmente, si sforza, fa fuori dalla lettiera?', ''], ['water', 'Beve più del solito?', 'sì / no / non so'], ['hiding', 'Si nasconde, si pulisce meno o miagola di più?', ''], ['outdoor', 'Vive solo in casa o esce?', '']],
+      Rabbit: [['droppings', 'Feci nelle ultime 12 ore: normali, più piccole, meno, assenti?', ''], ['hay', 'Mangia ancora il fieno?', 'sì / meno / no'], ['teeth', 'Saliva, mento bagnato, fa cadere il cibo?', ''], ['lastate', 'Quando ha mangiato l\'ultima volta?', 'es. stamattina']],
+      'Guinea pig': [['droppings', 'Feci nelle ultime 12 ore: normali, più piccole, meno, assenti?', ''], ['hay', 'Mangia ancora il fieno?', 'sì / meno / no'], ['teeth', 'Saliva, mento bagnato, fa cadere il cibo?', ''], ['lastate', 'Quando ha mangiato l\'ultima volta?', 'es. stamattina']],
+      Horse: [['manure', 'Feci: quantità e consistenza normali?', ''], ['colic', 'Raspa, guarda il fianco, si sdraia e si rialza?', ''], ['feed', 'Cambiamenti di mangime, pascolo o acqua?', '']],
+      Bird: [['droppings', 'Feci: colore, consistenza, quantità?', ''], ['fluffed', 'Sta gonfio, sul fondo della gabbia, muove la coda respirando?', ''], ['diet', 'Dieta: semi, pellet, cibo fresco?', '']],
+    },
+    species_opts: { Dog: 'Cane', Cat: 'Gatto', Rabbit: 'Coniglio', 'Guinea pig': 'Porcellino d\'India', Horse: 'Cavallo', Bird: 'Uccello', Other: 'Altro' },
+    sex_opts: { Female: 'Femmina', Male: 'Maschio', 'Female, spayed': 'Femmina sterilizzata', 'Male, neutered': 'Maschio castrato' },
+  },
+  de: {
+    eyebrow: 'Für Tierhalter', h1: 'Den Tierarztbesuch vorbereiten',
+    lead: 'Tierärzte stellen bei jedem Besuch dieselben Fragen: seit wann, wie oft, was hat sich geändert, was frisst das Tier, welche Medikamente. Beantworten Sie sie in Ruhe zu Hause und bringen Sie eine Seite mit. Der Besuch geht schneller, und nichts wird vergessen.',
+    notDiag: '<strong>Das ist keine Diagnose.</strong> Die Übersicht ordnet, was Sie wissen. Sie sagt Ihnen nicht, was Ihr Tier hat, und ersetzt keinen Anruf in der Praxis. Trifft eines der Notfallzeichen unten zu, hören Sie auf und rufen Sie sofort eine Klinik an.',
+    goNow: '<strong>Sofort fahren, keine Formulare:</strong> Atemnot, Zusammenbruch, unstillbare Blutung, Krampfanfälle, harter aufgeblähter Bauch, Verdacht auf Vergiftung, ein Kater, der beim Urinieren presst, ein Kaninchen, das seit 12 Stunden nicht frisst.',
+    about: 'Ihr Tier', passportHint: 'Wenn Sie auf diesem Gerät einen <a href="/de/passport">digitalen Heimtierausweis</a> führen, wählen Sie das Tier aus; die Felder füllen sich von selbst.',
+    fromPassport: 'Aus dem Ausweis', name: 'Name', species: 'Tierart', breed: 'Rasse', age: 'Alter', agePh: 'z. B. 6 Jahre', sex: 'Geschlecht', weight: 'Gewicht (kg), falls bekannt',
+    going: 'Was ist los', concern: 'Das Hauptproblem, in Ihren Worten', concernPh: 'z. B. Sie erbricht seit gestern Abend, dreimal, und will ihr Futter nicht.',
+    since: 'Seit wann', sincePh: 'z. B. gestern Abend / 3 Tage / 2 Wochen', freq: 'Wie oft / wie schlimm', freqPh: 'z. B. 3-mal, wird schlimmer',
+    trend: 'Besser, schlimmer oder gleich?', trendOpts: ['Besser', 'Gleich', 'Schlimmer', 'Kommt und geht'], trigger: 'Ist vorher etwas passiert?', triggerPh: 'neues Futter, Waldspaziergang, Besuch, etwas gefressen…',
+    noticed: 'Was Ihnen sonst aufgefallen ist',
+    signs: ['Frisst weniger', 'Frisst gar nicht', 'Trinkt mehr', 'Trinkt weniger', 'Erbrechen', 'Durchfall', 'Verstopfung', 'Pressen beim Urinieren', 'Uriniert häufiger', 'Husten', 'Niesen', 'Atmet anders', 'Lahmt', 'Kratzt sich / Juckreiz', 'Matt, schläft mehr', 'Unruhig, läuft umher', 'Versteckt sich', 'Aggressives oder ungewohntes Verhalten', 'Gewichtsverlust', 'Gewichtszunahme', 'Knoten oder Schwellung', 'Übler Geruch (Maul, Ohren, Haut)'],
+    other: 'Sonstiges', food: 'Futter, Medikamente, Vorgeschichte', diet: 'Was frisst Ihr Tier (Marke, Art, Leckerlis, Reste)?', meds: 'Aktuelle Medikamente oder Ergänzungsmittel, genau wie auf dem Etikett', medsPh: 'Name, Stärke, wie oft, seit wann',
+    history: 'Bekannte Erkrankungen, Allergien, frühere Operationen', vacc: 'Impfungen aktuell?', vaccOpts: ['Ja', 'Nein', 'Nicht sicher'], parasite: 'Letzte Parasitenbehandlung (Floh/Zecke/Wurm)', parasitePh: 'z. B. vor 3 Wochen, Präparatname',
+    lifestyle: 'Wohnung / Freigang / kürzlich gereist?', others: 'Andere Tiere im Haushalt, geht es ihnen gut?', forVet: 'Für die Praxis', questions: 'Fragen, die Sie stellen möchten', media: 'Fotos oder Videos, die Sie zeigen (was und wann)', mediaPh: 'z. B. Video vom Lahmen heute Morgen auf dem Handy',
+    make: 'Übersicht erstellen', clear: 'Leeren', copy: 'Kopieren', print: 'Drucken / als PDF speichern', email: 'Per E-Mail an die Praxis', diary: 'Aus dem Symptomtagebuch (letzte Einträge)', briefTitle: 'Übersicht für den Tierarztbesuch', footer: 'Vom Halter mit aiveterinary.org vorbereitet. Dies ist die Schilderung des Halters, keine klinische Akte. Diese Seite ordnet Ihre Antworten per Software; sie enthält keine KI-generierten medizinischen Inhalte und keine Diagnose.',
+    speciesTitle: 'Fragen, die die Praxis zu diesem Tier stellt',
+    speciesQ: {
+      Dog: [['stool', 'Kot: normal, weich, blutig, keiner?', ''], ['exercise', 'Beim Spaziergang schneller müde?', 'ja / nein / unsicher'], ['scavenge', 'Könnte es etwas gefressen haben (Müll, Knochen, Schokolade, Trauben, Pflanzen)?', '']],
+      Cat: [['litter', 'Katzenklo: normaler Urinabsatz, Pressen, unsauber?', ''], ['water', 'Trinkt mehr als sonst?', 'ja / nein / unsicher'], ['hiding', 'Versteckt sich, putzt sich weniger, miaut mehr?', ''], ['outdoor', 'Nur Wohnung oder Freigang?', '']],
+      Rabbit: [['droppings', 'Köttel in den letzten 12 Stunden: normal, kleiner, weniger, keine?', ''], ['hay', 'Frisst noch Heu?', 'ja / weniger / nein'], ['teeth', 'Speicheln, nasses Kinn, lässt Futter fallen?', ''], ['lastate', 'Wann zuletzt gefressen?', 'z. B. heute Morgen']],
+      'Guinea pig': [['droppings', 'Köttel in den letzten 12 Stunden: normal, kleiner, weniger, keine?', ''], ['hay', 'Frisst noch Heu?', 'ja / weniger / nein'], ['teeth', 'Speicheln, nasses Kinn, lässt Futter fallen?', ''], ['lastate', 'Wann zuletzt gefressen?', 'z. B. heute Morgen']],
+      Horse: [['manure', 'Kot: Menge und Konsistenz normal?', ''], ['colic', 'Scharren, zur Flanke schauen, Hinlegen und Aufstehen?', ''], ['feed', 'Änderung bei Futter, Weide oder Wasser?', '']],
+      Bird: [['droppings', 'Kot: Farbe, Konsistenz, Menge?', ''], ['fluffed', 'Aufgeplustert, am Käfigboden, Schwanzwippen beim Atmen?', ''], ['diet', 'Futter: Körner, Pellets, Frischfutter?', '']],
+    },
+    species_opts: { Dog: 'Hund', Cat: 'Katze', Rabbit: 'Kaninchen', 'Guinea pig': 'Meerschweinchen', Horse: 'Pferd', Bird: 'Vogel', Other: 'Sonstiges' },
+    sex_opts: { Female: 'Weiblich', Male: 'Männlich', 'Female, spayed': 'Weiblich, kastriert', 'Male, neutered': 'Männlich, kastriert' },
+  },
+} as const;
+const t = T[lang];
+const J = {
+  en: { unnamed: 'Unnamed', animal: 'Animal', notDescribed: 'not described', main: 'Main concern', since: 'Since', freq: 'How often / how bad', trend: 'Trend', trigger: 'Possible trigger', signs: 'Other signs noticed', none: 'None ticked', food: 'Food, medication, history', diet: 'Diet', meds: 'Medications', hist: 'Known conditions', vacc: 'Vaccinations up to date', par: 'Last parasite treatment', life: 'Lifestyle', others: 'Other animals', q: 'Questions for the vet', media: 'Photos / videos to show', title: 'Veterinary visit brief', copied: 'Copied.', months: 'months', years: 'years', since2: 'since', spayed: 'spayed', neutered: 'neutered', locale: 'en-GB' },
+  it: { unnamed: 'Senza nome', animal: 'Animale', notDescribed: 'non descritto', main: 'Problema principale', since: 'Da quando', freq: 'Quanto spesso / quanto grave', trend: 'Andamento', trigger: 'Possibile causa scatenante', signs: 'Altri segni notati', none: 'Nessuno', food: 'Alimentazione, farmaci, storia', diet: 'Alimentazione', meds: 'Farmaci', hist: 'Malattie note', vacc: 'Vaccinazioni in regola', par: 'Ultimo antiparassitario', life: 'Stile di vita', others: 'Altri animali', q: 'Domande per il veterinario', media: 'Foto / video da mostrare', title: 'Riepilogo per la visita veterinaria', copied: 'Copiato.', months: 'mesi', years: 'anni', since2: 'dal', spayed: 'sterilizzata', neutered: 'castrato', locale: 'it-IT' },
+  de: { unnamed: 'Ohne Namen', animal: 'Tier', notDescribed: 'nicht beschrieben', main: 'Hauptproblem', since: 'Seit wann', freq: 'Wie oft / wie schlimm', trend: 'Verlauf', trigger: 'Möglicher Auslöser', signs: 'Weitere Anzeichen', none: 'Keine angekreuzt', food: 'Futter, Medikamente, Vorgeschichte', diet: 'Fütterung', meds: 'Medikamente', hist: 'Bekannte Erkrankungen', vacc: 'Impfungen aktuell', par: 'Letzte Parasitenbehandlung', life: 'Haltung', others: 'Andere Tiere', q: 'Fragen an die Praxis', media: 'Fotos / Videos zum Zeigen', title: 'Übersicht für den Tierarztbesuch', copied: 'Kopiert.', months: 'Monate', years: 'Jahre', since2: 'seit', spayed: 'kastriert', neutered: 'kastriert', locale: 'de-DE' },
+}[lang];
+---
+<section class="wrap hero">
+  <p class="eyebrow">{t.eyebrow}</p>
+  <h1>{t.h1}</h1>
+  <p class="lead">{t.lead}</p>
+  <div class="notice"><p set:html={t.notDiag} /></div>
+  <div class="notice danger"><p set:html={t.goNow} /></div>
+</section>
+
+<section class="wrap" id="vb-app">
+  <form id="vb-form" class="card" autocomplete="off">
+    <h2>{t.about}</h2>
+    <p class="pp-hint" set:html={t.passportHint} />
+    <div class="pp-fields">
+      <label>{t.fromPassport}<select id="vb-passport"><option value="">—</option></select></label>
+      <label>{t.name}<input name="name" /></label>
+      <label>{t.species}<select name="species"><option value="">—</option>{Object.entries(t.species_opts).map(([v, l]) => <option value={v}>{l}</option>)}</select></label>
+      <label>{t.breed}<input name="breed" /></label>
+      <label>{t.age}<input name="age" placeholder={t.agePh} /></label>
+      <label>{t.sex}<select name="sex"><option value="">—</option>{Object.entries(t.sex_opts).map(([v, l]) => <option value={v}>{l}</option>)}</select></label>
+      <label>{t.weight}<input name="weight" type="number" step="0.1" min="0" /></label>
+    </div>
+
+    <h2>{t.going}</h2>
+    <div class="pp-fields">
+      <label class="wide">{t.concern}<textarea name="concern" rows="3" placeholder={t.concernPh}></textarea></label>
+      <label>{t.since}<input name="since" placeholder={t.sincePh} /></label>
+      <label>{t.freq}<input name="frequency" placeholder={t.freqPh} /></label>
+      <label>{t.trend}<select name="trend"><option value="">—</option>{t.trendOpts.map((o) => <option>{o}</option>)}</select></label>
+      <label>{t.trigger}<input name="trigger" placeholder={t.triggerPh} /></label>
+      <label class="wide">{t.diary}<textarea name="diary" rows="3"></textarea></label>
+    </div>
+
+    <div id="vb-species" hidden>
+      <h2>{t.speciesTitle}</h2>
+      <div class="pp-fields" id="vb-species-fields"></div>
+    </div>
+
+    <h2>{t.noticed}</h2>
+    <div class="vb-checks">
+      {t.signs.map((s) => (<label><input type="checkbox" name="signs" value={s} /> {s}</label>))}
+    </div>
+    <div class="pp-fields" style="margin-top:12px">
+      <label class="wide">{t.other}<input name="other" /></label>
+    </div>
+
+    <h2>{t.food}</h2>
+    <div class="pp-fields">
+      <label class="wide">{t.diet}<input name="diet" /></label>
+      <label class="wide">{t.meds}<textarea name="meds" rows="2" placeholder={t.medsPh}></textarea></label>
+      <label class="wide">{t.history}<input name="history" /></label>
+      <label>{t.vacc}<select name="vacc"><option value="">—</option>{t.vaccOpts.map((o) => <option>{o}</option>)}</select></label>
+      <label>{t.parasite}<input name="parasite" placeholder={t.parasitePh} /></label>
+      <label>{t.lifestyle}<input name="lifestyle" /></label>
+      <label>{t.others}<input name="others" /></label>
+    </div>
+
+    <h2>{t.forVet}</h2>
+    <div class="pp-fields">
+      <label class="wide">{t.questions}<textarea name="questions" rows="2"></textarea></label>
+      <label class="wide">{t.media}<input name="media" placeholder={t.mediaPh} /></label>
+    </div>
+
+    <div class="ws-actions" style="margin-top:20px">
+      <button class="btn" type="button" id="vb-make">{t.make}</button>
+      <button class="btn secondary" type="button" id="vb-clear">{t.clear}</button>
+    </div>
+    <p class="pp-status" id="vb-status" role="status"></p>
+    <div id="vb-loading" hidden style="margin-top:12px"><YarnCat label={({ en: 'Putting your brief together…', it: 'Sto preparando il riepilogo…', de: 'Übersicht wird erstellt…' } as any)[lang]} /></div>
+  </form>
+
+  <article id="vb-out" class="card vb-out" hidden>
+    <div class="ws-actions" style="float:right">
+      <button class="btn secondary" type="button" id="vb-copy">{t.copy}</button>
+      <button class="btn secondary" type="button" id="vb-print">{t.print}</button>
+      <a class="btn secondary" id="vb-email" href="#">{t.email}</a>
+    </div>
+    <h2 style="margin-top:0" id="vb-out-h" tabindex="-1">{t.briefTitle}</h2>
+    <div id="vb-content" class="prose"></div>
+    <p class="pp-hint" style="margin-top:16px">{t.footer}</p>
+  </article>
+</section>
+
+<style is:global>
+  #vb-form { counter-reset: vbstep; padding: 28px; }
+  #vb-form h2 { font-size: 1.25rem; margin: 34px 0 10px; padding-top: 26px; border-top: 1px solid var(--line); display: flex; align-items: center; gap: 12px; }
+  #vb-form h2::before { counter-increment: vbstep; content: counter(vbstep); flex: none; width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-family: var(--font); font-size: .95rem; font-weight: 700; display: grid; place-items: center; }
+  #vb-form h2:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+  .pp-fields label.wide { grid-column: 1 / -1; }
+  .vb-checks { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 6px 14px; }
+  .vb-checks label { display: flex; gap: 8px; align-items: center; font-size: .95rem; }
+  .vb-out { margin-top: 24px; }
+  .vb-out dl { display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; margin: 0; }
+  .vb-out dt { color: var(--ink-3); font-weight: 600; }
+  .vb-out dd { margin: 0; }
+  .vb-out h3 { margin: 18px 0 6px; font-size: 1rem; }
+  @media print { .site-header, .site-footer, .hero, #vb-form, .vb-out .ws-actions, .pp-hint { display: none !important; } .vb-out { border: 0; } }
+</style>
+
+<script type="application/json" id="vb-i18n" set:html={JSON.stringify({ ...J, species_opts: t.species_opts, sex_opts: t.sex_opts, speciesQ: t.speciesQ, speciesTitle: t.speciesTitle, diary: t.diary })} />
+<script>
+  const J = JSON.parse(document.getElementById('vb-i18n')!.textContent!);
+  const $ = (s: string) => document.querySelector(s) as HTMLElement;
+  const form = $('#vb-form') as HTMLFormElement;
+  const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
+
+  // passport on this device → prefill
+  try {
+    const raw = localStorage.getItem('aiveterinary.passport.v1');
+    const store = raw ? JSON.parse(raw) : null;
+    const sel = $('#vb-passport') as HTMLSelectElement;
+    if (store?.animals?.length) {
+      for (const a of store.animals) { const o = document.createElement('option'); o.value = a.id; o.textContent = a.name || J.unnamed; sel.appendChild(o); }
+      sel.addEventListener('change', () => {
+        const a = store.animals.find((x: any) => x.id === sel.value); if (!a) return;
+        const set = (n: string, v: string) => { const el = form.elements.namedItem(n) as HTMLInputElement | null; if (el && v) el.value = v; };
+        set('name', a.name); set('species', a.species); set('breed', a.breed); set('weight', a.weight);
+        (form.querySelector('[name="species"]') as HTMLSelectElement).dispatchEvent(new Event('change'));
+        set('sex', a.sex && a.neutered === 'Yes' ? `${a.sex}, ${a.sex === 'Female' ? 'spayed' : 'neutered'}` : a.sex);
+        if (a.dob) { const y = (Date.now() - new Date(a.dob).getTime()) / 31557600000; set('age', y < 1 ? `${Math.round(y * 12)} ${J.months}` : `${Math.floor(y)} ${J.years}`); }
+        set('diary', (a.diary ?? []).filter((d: any) => d.date || d.note).slice(-8).map((d: any) => [d.date, d.note].filter(Boolean).join(': ')).join('\n'));
+        set('meds', (a.medications ?? []).map((m: any) => [m.name, m.dose, m.started && `${J.since2} ${m.started}`].filter(Boolean).join(', ')).join('\n'));
+        set('history', (a.conditions ?? []).map((c: any) => [c.type, c.description].filter(Boolean).join(': ')).join('; '));
+        const lastVac = (a.vaccinations ?? []).map((v: any) => v.validUntil).filter(Boolean).sort().pop();
+        if (lastVac) { const el = form.elements.namedItem('vacc') as HTMLSelectElement; el.selectedIndex = new Date(lastVac) > new Date() ? 1 : 2; }
+        const lastPar = (a.treatments ?? []).map((t: any) => `${t.product ?? ''} ${t.date ?? ''}`.trim()).filter(Boolean).pop();
+        if (lastPar) set('parasite', lastPar);
+      });
+    } else { (sel.closest('label') as HTMLElement).hidden = true; }
+  } catch {}
+
+  $('#vb-make').addEventListener('click', () => {
+    const loading = $('#vb-loading') as HTMLElement; loading.hidden = false; ($('#vb-out') as HTMLElement).hidden = true;
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setTimeout(() => { loading.hidden = true; makeBrief(); }, reduce ? 0 : 900);
+  });
+  const speciesSel = form.querySelector('[name="species"]') as HTMLSelectElement;
+  function renderSpeciesQ() {
+    const qs = (J.speciesQ ?? {})[speciesSel.value] ?? [];
+    const box = $('#vb-species') as HTMLElement; const fields = $('#vb-species-fields') as HTMLElement;
+    const keep: Record<string, string> = {}; fields.querySelectorAll('input').forEach((i) => { keep[i.name] = i.value; });
+    fields.innerHTML = qs.map(([k, label, ph]: string[]) => `<label class="wide">${esc(label)}<input name="sq_${k}" data-label="${esc(label)}" placeholder="${esc(ph)}" value="${esc(keep['sq_' + k] ?? '')}"></label>`).join('');
+    box.hidden = qs.length === 0;
+  }
+  speciesSel.addEventListener('change', renderSpeciesQ);
+  form.addEventListener('reset', () => setTimeout(renderSpeciesQ, 0));
+  renderSpeciesQ();
+  function makeBrief() {
+    const d = new FormData(form);
+    const g = (n: string) => String(d.get(n) ?? '').trim();
+    const signs = d.getAll('signs').map(String);
+    const row = (k: string, v: string) => (v ? `<dt>${esc(k)}</dt><dd>${esc(v).replace(/\n/g, '<br>')}</dd>` : '');
+    const animal = [g('name'), J.species_opts[g('species')] ?? g('species'), g('breed'), J.sex_opts[g('sex')] ?? g('sex'), g('age'), g('weight') && `${g('weight')} kg`].filter(Boolean).join(' · ');
+    const html = `
+      <p><strong>${esc(animal || J.animal)}</strong> — ${new Date().toLocaleDateString(J.locale)}</p>
+      <h3>${J.main}</h3>
+      <p>${esc(g('concern')) || `<em>${J.notDescribed}</em>`}</p>
+      <dl>${row(J.since, g('since'))}${row(J.freq, g('frequency'))}${row(J.trend, g('trend'))}${row(J.trigger, g('trigger'))}</dl>
+      ${g('diary') ? `<h3>${esc(J.diary)}</h3><p>${esc(g('diary')).replace(/\n/g, '<br>')}</p>` : ''}
+      ${(() => { const rows = Array.from(form.querySelectorAll<HTMLInputElement>('#vb-species-fields input')).filter((i) => i.value.trim()).map((i) => row(i.dataset.label ?? i.name, i.value)).join(''); return rows ? `<h3>${esc(J.speciesTitle)}</h3><dl>${rows}</dl>` : ''; })()}
+      <h3>${J.signs}</h3>
+      <p>${signs.length ? esc(signs.join(', ')) : J.none}${g('other') ? '. ' + esc(g('other')) : ''}</p>
+      <h3>${J.food}</h3>
+      <dl>${row(J.diet, g('diet'))}${row(J.meds, g('meds'))}${row(J.hist, g('history'))}${row(J.vacc, g('vacc'))}${row(J.par, g('parasite'))}${row(J.life, g('lifestyle'))}${row(J.others, g('others'))}</dl>
+      ${g('questions') ? `<h3>${J.q}</h3><p>${esc(g('questions')).replace(/\n/g, '<br>')}</p>` : ''}
+      ${g('media') ? `<h3>${J.media}</h3><p>${esc(g('media'))}</p>` : ''}`;
+    $('#vb-content').innerHTML = html;
+    {
+      // mailto bodies are limited by mail clients; keep well under 2000 characters, the print covers the rest
+      const text = J.title + '\n\n' + ($('#vb-content') as HTMLElement).innerText;
+      const body = text.length > 1800 ? text.slice(0, 1750) + '\n…' : text;
+      ($('#vb-email') as HTMLAnchorElement).href = `mailto:?subject=${encodeURIComponent(J.title + (g('name') ? ' – ' + g('name') : ''))}&body=${encodeURIComponent(body)}`;
+    }
+    ($('#vb-out') as HTMLElement).hidden = false;
+    $('#vb-out').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    ($('#vb-out-h') as HTMLElement).focus({ preventScroll: true });
+  }
+  $('#vb-clear').addEventListener('click', () => { form.reset(); ($('#vb-out') as HTMLElement).hidden = true; });
+  $('#vb-print').addEventListener('click', () => window.print());
+  $('#vb-copy').addEventListener('click', () => {
+    const t = ($('#vb-content') as HTMLElement).innerText;
+    navigator.clipboard?.writeText(J.title + '\n\n' + t).then(() => { $('#vb-status').textContent = J.copied; });
+  });
+</script>

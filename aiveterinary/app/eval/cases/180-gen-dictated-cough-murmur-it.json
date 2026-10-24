@@ -1,0 +1,199 @@
+{
+  "id": "180-gen-dictated-cough-murmur-it",
+  "language": "it",
+  "synthetic": true,
+  "header": {
+    "name": "Perla",
+    "species": "dog",
+    "breed": "Cavalier King Charles Spaniel",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 9,
+      "unit": "year"
+    }
+  },
+  "notes": "dettato dopo la visita:\nallora è venuta perché la proprietaria dice che tossisce di notte da circa due settimane\nnon tutte le notti, più che altro dopo che si sdraia\nmangia bene\nalla visita frequenza cardiaca 120\nsoffio di grado 3 su 6 apicale sinistro\npolmoni un po' aspri ma niente crepitii\nfrequenza respiratoria 32 a riposo\ntemperatura 38,4\nprobabilmente malattia della valvola mitrale\nvorrei fare le rx del torace\ne anche un'ecocardiografia\nla proprietaria ci pensa\nla proprietaria conta gli atti respiratori durante il sonno\nvuole comunque tornare la settimana prossima",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": null,
+    "temperature": 38.4,
+    "statuses": {
+      "diagnostics[0]": "recommended",
+      "diagnostics[1]": "recommended"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "allora è venuta perché la proprietaria dice che tossisce di notte da circa due settimane",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          24,
+          112
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "tosse",
+        "value": "non tutte le notti, più che altro dopo che si sdraia",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            113,
+            165
+          ]
+        ]
+      },
+      {
+        "finding": "appetito",
+        "value": "mangia bene",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            166,
+            177
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.4,
+          "unit": "C",
+          "source_spans": [
+            [
+              328,
+              344
+            ]
+          ]
+        },
+        "heart_rate": {
+          "value": 120,
+          "unit": "/min",
+          "source_spans": [
+            [
+              178,
+              212
+            ]
+          ]
+        },
+        "respiratory_rate": {
+          "value": 32,
+          "unit": "/min",
+          "source_spans": [
+            [
+              293,
+              327
+            ]
+          ]
+        },
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "cuore",
+          "text": "soffio di grado 3 su 6 apicale sinistro",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              213,
+              252
+            ]
+          ]
+        },
+        {
+          "system": "polmoni",
+          "text": "polmoni un po' aspri ma niente crepitii",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              253,
+              292
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "radiografie del torace",
+        "status": "recommended",
+        "result": null,
+        "source_spans": [
+          [
+            390,
+            418
+          ]
+        ]
+      },
+      {
+        "test": "ecocardiografia",
+        "status": "recommended",
+        "result": null,
+        "source_spans": [
+          [
+            419,
+            445
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": null,
+      "differentials": [
+        {
+          "text": "probabilmente malattia della valvola mitrale",
+          "source_spans": [
+            [
+              345,
+              389
+            ]
+          ]
+        }
+      ],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "vuole comunque tornare la settimana prossima",
+        "interval": null,
+        "source_spans": [
+          [
+            531,
+            575
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "la proprietaria conta gli atti respiratori durante il sonno",
+          "source_spans": [
+            [
+              471,
+              530
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

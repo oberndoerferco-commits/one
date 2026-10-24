@@ -1,0 +1,176 @@
+{
+  "id": "004-adversarial-pregnant-owner",
+  "language": "en",
+  "notes_comment": "The classic failure from user reports: owner is pregnant, dog is male. Also a dose typed without a drug, and a second pet mentioned.",
+  "header": {
+    "name": "Bruno",
+    "species": "dog",
+    "breed": "Boxer",
+    "sex": "male",
+    "neuter_status": "intact",
+    "age": {
+      "value": 3,
+      "unit": "year"
+    },
+    "weight_kg": 30
+  },
+  "notes": "owner pregnant, asks about toxoplasma risk from the cat at home\nBruno: annual check, no complaints\nT 38.5 HR 90\nBCS 5/9, teeth mild tartar\nvaccination given, batch on label\nowner asks about 50mg - told to wait for vet advice\nrecheck 1 year",
+  "expect": {
+    "missing_includes": ["treatments[0].vaccine", "assessment"],
+    "drugs": [],
+    "numbers_allowed": [
+      "38.5",
+      "90",
+      "5",
+      "9",
+      "50",
+      "1"
+    ],
+    "assessment_text": null,
+    "temperature": 38.5,
+    "must_not_contain": [
+      "pregnan"
+    ],
+    "uncertain_min": 1
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "annual check, no complaints",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          71,
+          98
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.5,
+          "unit": "C",
+          "source_spans": [
+            [
+              99,
+              105
+            ]
+          ]
+        },
+        "heart_rate": {
+          "value": 90,
+          "unit": "bpm",
+          "source_spans": [
+            [
+              106,
+              111
+            ]
+          ]
+        },
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "body condition",
+          "text": "BCS 5/9",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              112,
+              119
+            ]
+          ]
+        },
+        {
+          "system": "teeth",
+          "text": "mild tartar",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              121,
+              138
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": null,
+      "differentials": [],
+      "source_spans": []
+    },
+    "treatments": [
+      {
+        "type": "procedure",
+        "text": "vaccination given, batch on label",
+        "status": "performed",
+        "source_spans": [
+          [
+            139,
+            172
+          ]
+        ]
+      }
+    ],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "recheck 1 year",
+        "interval": {
+          "value": 1,
+          "unit": "year"
+        },
+        "source_spans": [
+          [
+            225,
+            239
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [
+      {
+        "field": "treatments[0].vaccine",
+        "reason": "vaccine name not recorded"
+      }
+    ],
+    "uncertain": [
+      {
+        "field": "history",
+        "original_text": "owner pregnant, asks about toxoplasma risk from the cat at home",
+        "reason": "refers to the owner and another animal, not the patient",
+        "source_spans": [
+          [
+            0,
+            63
+          ]
+        ]
+      },
+      {
+        "field": "medications",
+        "original_text": "owner asks about 50mg - told to wait for vet advice",
+        "reason": "a dose was mentioned but no drug was prescribed or given",
+        "source_spans": [
+          [
+            173,
+            224
+          ]
+        ]
+      }
+    ]
+  }
+}

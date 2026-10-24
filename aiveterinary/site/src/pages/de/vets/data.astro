@@ -1,0 +1,76 @@
+---
+import Base from '../../../layouts/Base.astro';
+---
+<Base title="Datenverarbeitung für Praxen" description="Wo Praxisdaten liegen, wer sie verarbeitet, wie lange sie bleiben und wie sie die Praxis wieder verlassen. Die öffentliche Fassung unseres Auftragsverarbeitungsvertrags." lang="de">
+  <article class="wrap narrow hero prose">
+    <p class="eyebrow"><a href="/de/vets">Für Praxisteams</a> · Datenverarbeitung</p>
+    <h1>Wohin Ihre Daten gehen, und wohin nicht</h1>
+    <p class="lead">Diese Seite ist die öffentliche Fassung des Auftragsverarbeitungsvertrags, den jede Praxis mit uns schließt. Steht etwas hier und nicht im Vertrag, ist der Vertrag falsch. Status: Entwurf, bis die erste Pilotpraxis unterschreibt; Änderungen werden unten aufgeführt.</p>
+
+    <h2>Rollen</h2>
+    <p>Ihre Praxis ist Verantwortliche für ihre Behandlungsdokumentation. AI Veterinary ist Auftragsverarbeiter und handelt nach Ihren dokumentierten Weisungen (Art. 28 DSGVO). Wir nutzen Praxisdaten nie für eigene Zwecke, und nichts wird zum Trainieren von KI-Modellen verwendet, weder unserer noch fremder.</p>
+
+    <h2>Was verarbeitet wird</h2>
+    <ul>
+      <li>Ihre getippten Notizen, der daraus gebaute strukturierte Datensatz und die Dokumente, die Sie freigeben. Das ist eine Einheit: ein Dokument wird nie ohne die Notizen gespeichert, aus denen es entstand.</li>
+      <li>Patientenidentität: Name, Tierart, Rasse, Geschlecht, Geburtsdatum, Chipnummer. Halteridentität nur, soweit ein Dokument sie braucht (Name und, wo ein Land es auf Rechnung oder Rezept verlangt, die Steuernummer).</li>
+      <li>Kontodaten Ihrer Teammitglieder (Name, E-Mail, Rolle) und ein unveränderliches Protokoll, wer was wann freigegeben hat.</li>
+    </ul>
+    <p>Kein Audio. Der Assistent hat keine Mikrofonfunktion, es wird nichts aufgezeichnet, und es gibt nichts, wofür Sie Halter um Einwilligung bitten müssten.</p>
+
+    <h2>Unterauftragsverarbeiter</h2>
+    <p>Die vollständige Liste. Über jede Ergänzung informieren wir 30 Tage vorher; Sie können widersprechen.</p>
+    <table>
+      <thead><tr><th>Anbieter</th><th>Zweck</th><th>Standort</th><th>Klinische Inhalte?</th></tr></thead>
+      <tbody>
+        <tr><td>Cloudflare</td><td>Hosting von Website und Anwendung, TLS, DDoS-Schutz</td><td>EU-Edge, globales Netz für statische Dateien</td><td>Verschlüsselt durchgeleitet; nicht gespeichert</td></tr>
+        <tr><td>Supabase</td><td>Datenbank, Anmeldung, Dateispeicher</td><td>Frankfurt am Main</td><td>Ja, verschlüsselt gespeichert; Zugriff je Praxis getrennt (Row-Level Security)</td></tr>
+        <tr><td>Anthropic</td><td>Sprachmodell, das Notizen in den Datensatz strukturiert</td><td>EU-Region, wo angeboten; sonst Standardvertragsklauseln</td><td>Ja, für die Dauer der Anfrage; kein Training; kürzeste vom Anbieter angebotene Speicherfrist (null, wo verfügbar)</td></tr>
+        <tr><td>E-Mail-Anbieter (noch auszuwählen, EU)</td><td>Transaktions-E-Mails: Anmeldelinks, Freigabehinweise</td><td>EU</td><td>Nein</td></tr>
+      </tbody>
+    </table>
+    <p>In der Anwendung gibt es keine Analyse-Skripte, Werbe-Pixel oder Sitzungsaufzeichnungen.</p>
+
+    <h2>Aufbewahrung</h2>
+    <table>
+      <thead><tr><th>Daten</th><th>Dauer</th></tr></thead>
+      <tbody>
+        <tr><td>Behandlungsdokumentation, Notizen, freigegebene Dokumente, KI-Generierungen</td><td>So lange die Praxis es bestimmt; die tierärztliche Aufbewahrungspflicht (in Deutschland in der Regel fünf Jahre) legt die Praxis fest</td></tr>
+        <tr><td>Protokoll</td><td>Mindestens so lange wie der zugehörige Datensatz</td></tr>
+        <tr><td>Anwendungs-Logs (ohne klinische Inhalte)</td><td>30 Tage</td></tr>
+        <tr><td>Backups (verschlüsselt, in der Region)</td><td>35 Tage, dann überschrieben</td></tr>
+        <tr><td>Nach Kontoschließung</td><td>Zuerst vollständiger Export; Löschung innerhalb von 30 Tagen; Backups laufen innerhalb von 35 Tagen aus; schriftlich bestätigt</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Ihre Rechte als Praxis</h2>
+    <ul class="paw-list">
+      <li><strong>Alles exportieren, jederzeit.</strong> Jeder Datensatz und jedes Dokument mit Notizen und Protokoll, als JSON und PDF. Ohne Gebühr, ohne Frist.</li>
+      <li><strong>Halteranfragen laufen über Sie.</strong> Bittet ein Halter um Auskunft oder Löschung, entscheiden Sie; wir liefern die Werkzeuge dafür.</li>
+      <li><strong>Prüfen Sie uns.</strong> Auf Anfrage erhalten Sie unsere Sicherheitsdokumentation, die Verträge mit Unterauftragsverarbeitern und, sobald vorhanden, Prüfberichte Dritter.</li>
+      <li><strong>Meldung einer Datenpanne innerhalb von 24 Stunden</strong>, nachdem wir davon erfahren, mit dem, was wir wissen und was wir tun.</li>
+    </ul>
+
+    <h2>EU-KI-Verordnung und Berufsrecht</h2>
+    <p>Unsere Lesart, Stand Oktober 2026, vor dem ersten Pilotbetrieb anwaltlich zu bestätigen. Wo die Rechtslage unklar ist, wählen wir die strengere Variante.</p>
+    <ul>
+      <li><strong>Transparenz (Art. 50, anwendbar seit 2. August 2026).</strong> Jedes Dokument für Tierhalter sagt in einfachen Worten, dass es mit KI-Unterstützung aus den eigenen Notizen der Tierärztin oder des Tierarztes strukturiert und tierärztlich freigegeben wurde. Ob ein strukturierter Befund als KI-Zusammenfassung gekennzeichnet werden muss, ist nicht geklärt; wir kennzeichnen ihn trotzdem.</li>
+      <li><strong>Kein Hochrisiko-System, kein Medizinprodukt.</strong> Tierärztliche Dokumentation steht nicht in Anhang III der KI-Verordnung, und die Medizinprodukte-Verordnung gilt nur für Produkte für Menschen.</li>
+      <li><strong>Die Tierärztin oder der Tierarzt entscheidet.</strong> Nichts verlässt den Arbeitsbereich ohne Freigabe durch eine namentlich genannte Tierärztin oder einen Tierarzt, wie es die Bundestierärztekammer, die FNOVI und das RCVS für KI in der Dokumentation verlangen.</li>
+      <li><strong>Keine Aufnahme.</strong> Es gibt kein Audio; § 201 StGB (Deutschland), § 120 StGB (Österreich) und Art. 179ter StGB (Schweiz) zur Aufnahme von Gesprächen werden nicht berührt.</li>
+      <li><strong>Berufsgeheimnis.</strong> Bevor echte Praxisdaten verarbeitet werden, unterschreiben alle, die technisch darauf zugreifen könnten, unsere Mitarbeitenden und jeder Unterauftragsverarbeiter, eine schriftliche Verschwiegenheitsverpflichtung. Der Tierarzt ist in § 203 Abs. 1 StGB genannt und kann selbst haften, wenn eine mitwirkende Person nicht zur Geheimhaltung verpflichtet wurde (§ 203 Abs. 4).</li>
+      <li><strong>Tierhalter informieren.</strong> Das KI-Merkblatt der Bundestierärztekammer verlangt, Tierhalter über den KI-Einsatz zu informieren und KI-Inhalte in Berichten zu kennzeichnen. Die Hinweiszeile auf jedem Dokument für Tierhalter dient genau dazu.</li>
+    </ul>
+    <h2>Vorlagen für Ihre eigenen Pflichten</h2>
+    <p>Mit der Pilotvereinbarung erhalten Sie, jeweils als Entwurf bis zur anwaltlichen Prüfung:</p>
+    <ul>
+      <li>einen <em>Auftragsverarbeitungsvertrag</em> nach Art. 28 DSGVO mit den Angaben dieser Seite, für österreichische Praxen angepasst, und für Schweizer Praxen einen DSG-Zusatz;</li>
+      <li>eine Verschwiegenheitsverpflichtung nach § 203 StGB, unterschrieben von uns und allen, die am Dienst mitwirken;</li>
+      <li>einen Aushang für Tierhalter nach den KI-Hinweisen der Bundestierärztekammer (Oktober 2026);</li>
+      <li>eine 45-minütige KI-Schulung für das ganze Team mit kurzer Lernkontrolle und Teilnahmeliste (Art. 4 KI-Verordnung, BTK-Hinweis Nr. 9).</li>
+    </ul>
+
+    <h2>Änderungen an dieser Seite</h2>
+    <p>18. Oktober 2026: Berufsgeheimnis als Zusage formuliert, weil noch keine Praxisdaten verarbeitet werden; Vorlagenliste ergänzt. Jede Änderung wird hier datiert. Fragen: <a href="mailto:privacy@aiveterinary.org">privacy@aiveterinary.org</a>.</p>
+  </article>
+</Base>

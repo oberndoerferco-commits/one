@@ -1,0 +1,205 @@
+{
+  "id": "153-gen-pruritus-declined-dispensed-it",
+  "language": "it",
+  "synthetic": true,
+  "header": {
+    "name": "Ugo",
+    "species": "dog",
+    "breed": "West Highland White Terrier",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 5,
+      "unit": "year"
+    }
+  },
+  "notes": "prurito zampe e orecchie da 1 mese\neritema interdigitale su tutte e 4 le zampe, orecchie arrossate\ncitologia scotch zampe: cocchi +\ntest allergologico su sangue proposto, la proprietaria rifiuta (costi)\nraschiato cutaneo previsto al controllo\ndermatite atopica\nallergia alimentare\nshampoo alla clorexidina consegnato, 2 volte a settimana\nApoquel discusso, la proprietaria preferisce non iniziare per ora\ndieta di eliminazione consigliata\ncontrollo tra 3 settimane",
+  "expect": {
+    "missing_includes": [
+      "medications[0].dose",
+      "medications[0].route"
+    ],
+    "drugs": [
+      "shampoo alla clorexidina",
+      "Apoquel"
+    ],
+    "assessment_text": null,
+    "statuses": {
+      "treatments[0]": "recommended",
+      "medications[0]": "dispensed",
+      "medications[1]": "declined",
+      "diagnostics[0]": "performed",
+      "diagnostics[1]": "declined",
+      "diagnostics[2]": "planned"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "prurito zampe e orecchie da 1 mese",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          34
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "cute",
+          "text": "eritema interdigitale su tutte e 4 le zampe, orecchie arrossate",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              35,
+              98
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "citologia scotch zampe",
+        "status": "performed",
+        "result": "cocchi +",
+        "source_spans": [
+          [
+            99,
+            131
+          ]
+        ]
+      },
+      {
+        "test": "test allergologico su sangue",
+        "status": "declined",
+        "result": null,
+        "source_spans": [
+          [
+            132,
+            202
+          ]
+        ]
+      },
+      {
+        "test": "raschiato cutaneo",
+        "status": "planned",
+        "result": null,
+        "source_spans": [
+          [
+            203,
+            242
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": null,
+      "differentials": [
+        {
+          "text": "dermatite atopica",
+          "source_spans": [
+            [
+              243,
+              260
+            ]
+          ]
+        },
+        {
+          "text": "allergia alimentare",
+          "source_spans": [
+            [
+              261,
+              280
+            ]
+          ]
+        }
+      ],
+      "source_spans": []
+    },
+    "treatments": [
+      {
+        "type": "advice",
+        "text": "dieta di eliminazione consigliata",
+        "status": "recommended",
+        "source_spans": [
+          [
+            404,
+            437
+          ]
+        ]
+      }
+    ],
+    "medications": [
+      {
+        "drug": "shampoo alla clorexidina",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": null,
+        "frequency": "2 volte a settimana",
+        "duration": null,
+        "status": "dispensed",
+        "source_spans": [
+          [
+            281,
+            337
+          ]
+        ]
+      },
+      {
+        "drug": "Apoquel",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": null,
+        "frequency": null,
+        "duration": null,
+        "status": "declined",
+        "source_spans": [
+          [
+            338,
+            403
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "controllo tra 3 settimane",
+        "interval": {
+          "value": 3,
+          "unit": "week"
+        },
+        "source_spans": [
+          [
+            438,
+            463
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

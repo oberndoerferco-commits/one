@@ -1,0 +1,177 @@
+{
+  "id": "146-gen-contradiction-vomiting-de",
+  "language": "de",
+  "synthetic": true,
+  "header": {
+    "name": "Susi",
+    "species": "cat",
+    "breed": "European Shorthair",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 7,
+      "unit": "year"
+    }
+  },
+  "notes": "frisst seit 2 Tagen schlecht\nlaut Besitzerin kein Erbrechen\nT 38,9\nKGW 4,2 kg\nggr. Gingivitis\nAbdomen weich, nicht schmerzhaft\nam Ende sagt Besitzerin doch, heute früh 1x erbrochen\nBlut beim nächsten Termin, falls sie weiter schlecht frisst\nWV in ein paar Tagen",
+  "expect": {
+    "missing_includes": [
+      "assessment"
+    ],
+    "drugs": [],
+    "assessment_text": null,
+    "temperature": 38.9,
+    "statuses": {
+      "diagnostics[0]": "planned"
+    },
+    "uncertain_min": 1
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "frisst seit 2 Tagen schlecht",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          28
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "Erbrechen",
+        "value": "laut Besitzerin kein Erbrechen",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            29,
+            59
+          ]
+        ]
+      },
+      {
+        "finding": "Erbrechen",
+        "value": "am Ende sagt Besitzerin doch, heute früh 1x erbrochen",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            127,
+            180
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.9,
+          "unit": "C",
+          "source_spans": [
+            [
+              60,
+              66
+            ]
+          ]
+        },
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": {
+          "value": 4.2,
+          "unit": "kg",
+          "source_spans": [
+            [
+              67,
+              77
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "Maulhöhle",
+          "text": "ggr. Gingivitis",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              78,
+              93
+            ]
+          ]
+        },
+        {
+          "system": "Abdomen",
+          "text": "Abdomen weich, nicht schmerzhaft",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              94,
+              126
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "Blutuntersuchung",
+        "status": "planned",
+        "result": null,
+        "source_spans": [
+          [
+            181,
+            240
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": null,
+      "differentials": [],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "WV in ein paar Tagen",
+        "interval": null,
+        "source_spans": [
+          [
+            241,
+            261
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": [
+      {
+        "field": "history",
+        "original_text": "laut Besitzerin kein Erbrechen / am Ende sagt Besitzerin doch, heute früh 1x erbrochen",
+        "reason": "Besitzerin verneint zuerst Erbrechen, berichtet später 1x heute früh; in den Notizen nicht geklärt",
+        "source_spans": [
+          [
+            29,
+            59
+          ],
+          [
+            127,
+            180
+          ]
+        ]
+      }
+    ]
+  }
+}

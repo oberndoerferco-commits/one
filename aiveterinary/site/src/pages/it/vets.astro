@@ -1,0 +1,96 @@
+---
+import Base from '../../layouts/Base.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import NotesToRecord from '../../components/NotesToRecord.astro';
+---
+<Base title="Per i team veterinari" description="Un assistente AI per la documentazione pensato per la tastiera: digiti appunti grezzi, approvi la cartella finita, generi da essa le istruzioni per il proprietario e le lettere di riferimento." lang="it">
+  <section class="wrap hero hero-split vets-hero">
+    <div>
+    <p class="eyebrow">Assistente per la documentazione · in sviluppo</p>
+    <h1>Tu visiti. Noi scriviamo.<br />Tu approvi.</h1>
+    <p class="lead">Dopo la visita si digitano poche righe grezze. Si riceve una cartella strutturata e professionale da rivedere. Niente sulla pagina che non sia stato scritto da Lei. Poi, dalla stessa cartella approvata, si generano le istruzioni per il proprietario, la lettera di riferimento e una traduzione, senza digitare nulla due volte.</p>
+    <p><a class="btn" href="#waitlist">Iscriviti alla lista per l'accesso anticipato</a> <a class="btn secondary" href="/it/vets/workspace" style="margin-left:8px">Prova l'anteprima</a></p>
+    <ul class="chips"><li>Conforme al GDPR</li><li>Dati ospitati nell'UE</li><li>Nessun addestramento sui Suoi dati</li><li>Nessuna registrazione, nessun microfono</li></ul>
+    </div>
+    <div class="vets-hero-art"><NotesToRecord lang="it" /></div>
+  </section>
+
+  <section class="wrap">
+    <h2>Come si presenta</h2>
+    <div class="mock" aria-label="Esempio: appunti a sinistra, referto generato a destra">
+      <div>
+        <div class="h">I Suoi appunti</div>
+<pre>Luna, Labrador, F, 6 a
+vomito 3x da ieri
+no diarrea
+appetito ridotto, beve ok
+T 39,1
+addome morbido, lieve dolore
+esami sangue + eco fatti
+fluidi + antiemetico
+ricontrollo 48h</pre>
+      </div>
+      <div>
+        <div class="h">Referto della visita · bozza</div>
+        <div class="sec">Motivo della visita</div>
+        <div>Vomito 3x da ieri.</div>
+        <div class="sec">Anamnesi</div>
+        <div>Il proprietario riferisce: no diarrea; appetito ridotto; beve ok.</div>
+        <div class="sec">Esame clinico</div>
+        <div>Temperatura 39,1 °C. Addome: morbido, lieve dolore.</div>
+        <div class="sec">Diagnostica</div>
+        <div>Esami sangue, eco (fatti). <span class="flag">▲ Mancante: risultati</span></div>
+        <div class="sec">Trattamento</div>
+        <div>Fluidi, antiemetico. <span class="flag">▲ Mancante: farmaco, dose, via</span></div>
+        <div class="sec">Follow-up</div>
+        <div>Ricontrollo 48h.</div>
+      </div>
+    </div>
+    <p>Le Sue parole, solo messe in ordine: nulla viene riformulato in qualcosa che non ha detto. Le segnalazioni sono il punto centrale. L'assistente non riempie i vuoti con testo plausibile. Mostra cosa manca; si aggiunge o si contrassegna come "non registrato", e si approva con un solo tasto.</p>
+  </section>
+
+  <section class="wrap">
+    <h2>Cosa serve in più a una clinica italiana</h2>
+    <p>Per l'Italia l'assistente controlla, al momento della firma, alcuni dati che non stanno negli appunti ma nella pratica.</p>
+    <p><b>REV.</b> Dal 16 aprile 2019 la ricetta elettronica veterinaria (L. 167/2017, D.M. 8 febbraio 2019) sostituisce quella cartacea; ogni REV ha un numero e un PIN generati dal sistema. Per i farmaci prescritti l'assistente chiede il prodotto e il numero REV per ogni prescrizione; segnala inoltre se mancano il codice fiscale del proprietario e il microchip dell'animale, che le linee di indirizzo FNOVI indicano tra i dati minimi della cartella clinica. Quali campi siano obbligatori nel sistema REV per gli animali da compagnia lo verifichi con il Suo Ordine.</p>
+    <p><b>Farmaci ceduti dalla scorta.</b> Il veterinario può consegnare al proprietario medicinali veterinari della propria scorta per avviare la terapia prescritta, e registra entro sette giorni lo scarico delle confezioni o frazioni consegnate nel sistema informativo della tracciabilità (D.Lgs. 218/2023, art. 37; sanzione da 2.600 a 15.500 euro, art. 42, comma 30). I medicinali a uso umano tenuti in scorta non possono essere ceduti (art. 33, comma 6). L'assistente non registra nulla nel sistema: segnala il prodotto mancante per ogni farmaco ceduto.</p>
+    <p><b>Spese veterinarie al Sistema Tessera Sanitaria.</b> Gli iscritti all'albo dei veterinari trasmettono al Sistema TS i dati delle spese veterinarie sostenute dalle persone fisiche per gli animali previsti dal D.M. 289/2001 (D.M. MEF 1° settembre 2016, art. 2), con il codice fiscale di chi paga; per le spese 2026 la scadenza è il 1° febbraio 2027 (calendario Sistema TS). Omissioni o errori costano 100 euro per comunicazione (D.Lgs. 175/2014, art. 3, comma 5-bis). Per questo l'assistente segnala il codice fiscale mancante; la trasmissione resta a Lei o al Suo gestionale.</p>
+    <p><b>Consenso informato.</b> L'art. 29 del Codice deontologico FNOVI rende l'acquisizione del consenso un atto non delegabile, in forma scritta nei casi a rischio elevato; l'approfondimento all'art. 32 chiede di registrare nella relazione clinica "i modi e i tempi dell'informazione fornita al cliente e i termini del consenso". Se una procedura è stata eseguita, l'assistente segnala un consenso senza oggetto, modalità e momento.</p>
+    <p><b>Preventivo scritto.</b> L'art. 9, comma 4, del D.L. 1/2012, come modificato dalla L. 124/2017, impone che il compenso sia reso noto in anticipo "in forma scritta o digitale, con un preventivo di massima" che elenchi le singole voci. Un referto in cui ogni prestazione è una voce separata è più facile da riconciliare con il preventivo che un paragrafo di testo.</p>
+    <p><b>Conservazione.</b> Il Codice FNOVI (approfondimento n. 3) rileva che non esiste un termine di legge specifico per la documentazione clinica veterinaria e indica 5 anni, 10 per la massima prudenza. Verifichi con il Suo Ordine.</p>
+    <p><b>Anagrafe e SINAC.</b> Il D.M. 2 novembre 2023 fissa le modalità del Sistema di identificazione nazionale degli animali da compagnia (SINAC), avviato con il D.Lgs. 220/2024 che modifica il D.Lgs. 134/2022; il microchip è l'identificativo. Per questo l'assistente segnala l'identificativo mancante su ogni referto.</p>
+    <p><b>Informativa sull'uso dell'IA.</b> Con il pilota riceve un modello di informativa per i proprietari sull'uso dell'IA nella documentazione.</p>
+    <p class="pp-hint">Fonti: <a href="https://www.fnovi.it/sites/default/files/FNOVI-CodiceDeontologico_7aprile2017.pdf">Codice deontologico FNOVI (2017)</a>, artt. 29 e 32 con approfondimento n. 3 · <a href="https://www.fnovi.it/sites/default/files/LINEE%20DI%20INDIRIZZO%20RELATIVE%20AGLI%20ASPETTI%20ORGANIZZATIVI.pdf">FNOVI, Linee di indirizzo sugli aspetti organizzativi</a> · <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legge:2012-01-24;1~art9">D.L. 1/2012, art. 9</a> · L. 167/2017 e D.M. 8 febbraio 2019 (REV) · <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2023-12-07;218~art37">D.Lgs. 218/2023, art. 37</a> e artt. 33, 42 (<a href="https://www.gazzettaufficiale.it/eli/gu/2024/01/03/2/sg/pdf">GU n. 2 del 3 gennaio 2024</a>) · <a href="https://www.gazzettaufficiale.it/eli/gu/2016/09/13/214/sg/pdf">D.M. MEF 1° settembre 2016 (GU n. 214 del 13 settembre 2016)</a> · <a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2014-11-21;175~art3">D.Lgs. 175/2014, art. 3</a> · <a href="https://sistemats1.sanita.finanze.it/portale/spese-sanitarie-normativa">Sistema TS, normativa spese sanitarie e veterinarie</a> · D.M. 2 novembre 2023 e D.Lgs. 220/2024 (SINAC). Aggiornato a ottobre 2026; non costituisce consulenza legale.</p>
+  </section>
+
+  <section class="wrap">
+    <h2>I nostri impegni</h2>
+    <p>Abbiamo studiato più di trenta strumenti AI per la stesura di appunti e ciò che i veterinari dicono di loro. Queste sono le risposte.</p>
+    <ol class="commit">
+      <li><b>Niente sulla pagina che non abbia scritto Lei.</b> Nessun farmaco, dose, via di somministrazione, numero o diagnosi compare se non è nei Suoi appunti.</li>
+      <li><b>Ogni frase mostra la sua fonte.</b> Cliccando una riga del referto si vede l'appunto da cui proviene.</li>
+      <li><b>Le informazioni mancanti vengono segnalate, mai inventate.</b> Prima di firmare, si vede cosa non c'è.</li>
+      <li><b>Le parole del proprietario restano le parole del proprietario.</b> "Il proprietario riferisce…" non viene mai trasformato in un Suo rilievo.</li>
+      <li><b>I dati del paziente sono bloccati.</b> Specie, sesso e stato riproduttivo provengono dalla scheda del paziente, mai dal testo.</li>
+      <li><b>Una cartella approvata, ogni documento.</b> Riepilogo per il proprietario con piano delle somministrazioni, lettera di riferimento, prescrizione, registrazione vaccinale, consenso informato e preventivo derivano solo da ciò che ha firmato. <a href="/it/vets/workspace">Cambi documento nell'anteprima.</a></li>
+      <li><b>Le Sue modifiche non vanno mai perse.</b> Rigenerare una sezione mostra le differenze e conserva il Suo testo.</li>
+      <li><b>Nessuna registrazione audio.</b> Niente consensi da raccogliere, niente da archiviare, nessun problema di cani che abbaiano. Funziona con la tastiera.</li>
+      <li><b>Tedesco, italiano e inglese nativi.</b> Documenti per il proprietario nella lingua del proprietario, con i dettagli dei farmaci copiati esattamente.</li>
+      <li><b>I Suoi dati restano nell'UE e non vengono mai usati per addestrare l'AI.</b> In ogni piano. <a href="/it/vets/data">Sub-responsabili, conservazione e diritti, pubblicati.</a></li>
+      <li><b>Disdetta in qualsiasi mese.</b> Prezzi chiari per veterinario; infermieri e reception sono gratuiti.</li>
+      <li><b>Una pagina pubblica sulla qualità.</b> Pubblichiamo come viene testato l'assistente, su tipi di documento reali, con i numeri.</li>
+    </ol>
+  </section>
+
+  <section class="wrap">
+    <h2>Funziona accanto al Suo gestionale</h2>
+    <p>Gira nel browser accanto a qualsiasi sistema usi la Sua clinica. Dopo l'approvazione la cartella si copia campo per campo (S, O, A, P) nel gestionale, si scarica in JSON con i dati di approvazione, si esporta in PDF su carta intestata o si stampa. Le integrazioni dirette arriveranno solo attraverso programmi ufficiali dei fornitori, mai tramite soluzioni improvvisate.</p>
+  </section>
+
+  <section class="wrap narrow" id="waitlist" style="margin-top:56px">
+    <h2>Accesso anticipato</h2>
+    <p>Cerchiamo un piccolo numero di cliniche in Germania, Austria, Svizzera e Italia con cui fare i test. Se digita personalmente i Suoi appunti e vorrebbe che la documentazione occupasse meno delle Sue serate, lasci la Sua email e selezioni "professionista veterinario".</p>
+    <Newsletter compact lang="it" />
+    <p style="margin-top:16px"><a href="/it/vets/research">Leggi la nostra ricerca sugli strumenti esistenti →</a></p>
+  </section>
+</Base>

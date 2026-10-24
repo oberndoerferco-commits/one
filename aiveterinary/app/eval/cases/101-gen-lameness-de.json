@@ -1,0 +1,148 @@
+{
+  "id": "101-gen-lameness-de",
+  "language": "de",
+  "synthetic": true,
+  "header": {
+    "name": "Balu",
+    "species": "dog",
+    "breed": "Labrador",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 5,
+      "unit": "year"
+    }
+  },
+  "notes": "lahmt hinten rechts seit 3 Tagen\nfrisst normal\nT 38,6\nLahmheit HR Grad 2/5, Schmerz bei Streckung Knie\nV. a. Kreuzbandriss HR\nRöntgen Knie re. nächste Woche in Sedation geplant\nstrenge Ruhe, nur an der Leine\nWV in 14 Tagen",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": "V. a. Kreuzbandriss HR",
+    "temperature": 38.6,
+    "statuses": {
+      "treatments[0]": "recommended",
+      "diagnostics[0]": "planned"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "lahmt hinten rechts seit 3 Tagen",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          32
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "Appetit",
+        "value": "frisst normal",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            33,
+            46
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.6,
+          "unit": "C",
+          "source_spans": [
+            [
+              47,
+              53
+            ]
+          ]
+        },
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "Bewegungsapparat",
+          "text": "Lahmheit HR Grad 2/5, Schmerz bei Streckung Knie",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              54,
+              102
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "Röntgen Knie rechts",
+        "status": "planned",
+        "result": null,
+        "source_spans": [
+          [
+            126,
+            176
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": "V. a. Kreuzbandriss HR",
+      "differentials": [],
+      "source_spans": [
+        [
+          103,
+          125
+        ]
+      ]
+    },
+    "treatments": [
+      {
+        "type": "advice",
+        "text": "strenge Ruhe, nur an der Leine",
+        "status": "recommended",
+        "source_spans": [
+          [
+            177,
+            207
+          ]
+        ]
+      }
+    ],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "WV in 14 Tagen",
+        "interval": {
+          "value": 14,
+          "unit": "day"
+        },
+        "source_spans": [
+          [
+            208,
+            222
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

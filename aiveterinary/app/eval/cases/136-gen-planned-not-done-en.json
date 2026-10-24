@@ -1,0 +1,113 @@
+{
+  "id": "136-gen-planned-not-done-en",
+  "language": "en",
+  "synthetic": true,
+  "header": {
+    "name": "Milo",
+    "species": "dog",
+    "breed": "Golden Retriever",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 8,
+      "unit": "year"
+    }
+  },
+  "notes": "lump on left flank noticed 2 weeks ago\nsoft mobile mass left flank, about 2 cm\nFNA at next visit\nlipoma suspected\nrecheck 1 month",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": "lipoma suspected",
+    "statuses": {
+      "diagnostics[0]": "planned"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "lump on left flank noticed 2 weeks ago",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          38
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "skin",
+          "text": "soft mobile mass left flank, about 2 cm",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              39,
+              78
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "fine needle aspirate",
+        "status": "planned",
+        "result": null,
+        "source_spans": [
+          [
+            79,
+            96
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": "lipoma suspected",
+      "differentials": [],
+      "source_spans": [
+        [
+          97,
+          113
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "recheck 1 month",
+        "interval": {
+          "value": 1,
+          "unit": "month"
+        },
+        "source_spans": [
+          [
+            114,
+            129
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

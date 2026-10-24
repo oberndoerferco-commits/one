@@ -1,0 +1,199 @@
+{
+  "id": "178-gen-dictated-cough-murmur-en",
+  "language": "en",
+  "synthetic": true,
+  "header": {
+    "name": "Bonnie",
+    "species": "dog",
+    "breed": "Cavalier King Charles Spaniel",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 9,
+      "unit": "year"
+    }
+  },
+  "notes": "dictated after the consult:\nso she came in because the owner says she has been coughing at night for about two weeks\nnot every night though, mostly after lying down\neating fine\non exam heart rate 120\nmurmur grade 3 of 6 left apical\nlungs a bit harsh but no crackles\nresp rate 32 at rest\ntemp 38.4\nprobably mitral valve disease\nI would like chest rads\nand an echo too\nowner will think about it\nowner to count breaths while she sleeps\nshe wants to come back next week anyway",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": null,
+    "temperature": 38.4,
+    "statuses": {
+      "diagnostics[0]": "recommended",
+      "diagnostics[1]": "recommended"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "so she came in because the owner says she has been coughing at night for about two weeks",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          28,
+          116
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "cough",
+        "value": "not every night though, mostly after lying down",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            117,
+            164
+          ]
+        ]
+      },
+      {
+        "finding": "appetite",
+        "value": "eating fine",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            165,
+            176
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.4,
+          "unit": "C",
+          "source_spans": [
+            [
+              287,
+              296
+            ]
+          ]
+        },
+        "heart_rate": {
+          "value": 120,
+          "unit": "/min",
+          "source_spans": [
+            [
+              177,
+              199
+            ]
+          ]
+        },
+        "respiratory_rate": {
+          "value": 32,
+          "unit": "/min",
+          "source_spans": [
+            [
+              266,
+              286
+            ]
+          ]
+        },
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "cardiovascular",
+          "text": "murmur grade 3 of 6 left apical",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              200,
+              231
+            ]
+          ]
+        },
+        {
+          "system": "respiratory",
+          "text": "lungs a bit harsh but no crackles",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              232,
+              265
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "chest radiographs",
+        "status": "recommended",
+        "result": null,
+        "source_spans": [
+          [
+            327,
+            350
+          ]
+        ]
+      },
+      {
+        "test": "echocardiography",
+        "status": "recommended",
+        "result": null,
+        "source_spans": [
+          [
+            351,
+            366
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": null,
+      "differentials": [
+        {
+          "text": "probably mitral valve disease",
+          "source_spans": [
+            [
+              297,
+              326
+            ]
+          ]
+        }
+      ],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "she wants to come back next week anyway",
+        "interval": null,
+        "source_spans": [
+          [
+            433,
+            472
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "owner to count breaths while she sleeps",
+          "source_spans": [
+            [
+              393,
+              432
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

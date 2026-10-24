@@ -1,0 +1,132 @@
+{
+  "id": "109-gen-cat-vaccine-en",
+  "language": "en",
+  "synthetic": true,
+  "header": {
+    "name": "Tiger",
+    "species": "cat",
+    "breed": "European Shorthair",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 2,
+      "unit": "year"
+    }
+  },
+  "notes": "annual vaccination, no concerns\nbright, good body condition\nHR 180\nRCP vaccine given s.c. right flank\nnext vaccination in 1 year",
+  "expect": {
+    "missing_includes": [
+      "assessment",
+      "medications[0].batch"
+    ],
+    "drugs": [
+      "RCP vaccine"
+    ],
+    "assessment_text": null,
+    "statuses": {
+      "medications[0]": "performed"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "annual vaccination, no concerns",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          31
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": {
+          "value": 180,
+          "unit": "/min",
+          "source_spans": [
+            [
+              60,
+              66
+            ]
+          ]
+        },
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "general",
+          "text": "bright, good body condition",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              32,
+              59
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": null,
+      "differentials": [],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "RCP vaccine",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": "s.c.",
+        "frequency": null,
+        "duration": null,
+        "status": "performed",
+        "source_spans": [
+          [
+            67,
+            101
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "next vaccination in 1 year",
+        "interval": {
+          "value": 1,
+          "unit": "year"
+        },
+        "source_spans": [
+          [
+            102,
+            128
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [
+      {
+        "field": "medications[0].batch",
+        "reason": "vaccine batch not in the notes"
+      }
+    ],
+    "uncertain": []
+  }
+}

@@ -1,0 +1,40 @@
+---
+/** Travel illustration: a cat sitting on a suitcase with stickers. Same drawing rules as HeroScene. */
+interface Props { size?: number }
+const { size = 300 } = Astro.props;
+const eye = (x: number, y: number, r: number) =>
+  `<g class="hs-eye"><circle cx="${x}" cy="${y}" r="${r}" fill="#fff"/><circle cx="${x + r * 0.12}" cy="${y + r * 0.12}" r="${r * 0.72}" fill="var(--art-ink)" stroke="none"/><circle cx="${x - r * 0.22}" cy="${y - r * 0.25}" r="${r * 0.26}" fill="#fff" stroke="none"/></g>`;
+const art = `
+<path d="M30 150C24 86 76 40 150 40c74 0 126 44 124 108-2 62-50 90-108 90H84C48 238 34 196 30 150Z" fill="var(--hs-blob)" stroke="none"/>
+<ellipse cx="150" cy="232" rx="104" ry="8" fill="var(--art-ink)" opacity=".08" stroke="none"/>
+<!-- suitcase -->
+<path d="M126 132v-14c0-5 4-9 9-9h30c5 0 9 4 9 9v14" stroke-width="6" stroke="var(--art-ink)"/>
+<rect x="74" y="130" width="152" height="98" rx="16" fill="var(--coral)"/>
+<path d="M104 130v98M196 130v98" stroke-width="3"/>
+<circle cx="132" cy="176" r="13" fill="var(--ic-sun)" stroke-width="2.4"/>
+<path d="M128 176l3 3 6-6" stroke-width="2.4"/>
+<rect x="150" y="190" width="34" height="20" rx="5" fill="var(--hs-cream)" stroke-width="2.4"/>
+<path d="M156 197h22M156 203h14" stroke-width="2"/>
+<!-- cat on top -->
+<path d="M196 128c32 2 38-28 22-40" stroke="var(--art-ink)" stroke-width="14"/>
+<path d="M196 128c32 2 38-28 22-40" stroke="var(--hs-cat)" stroke-width="8"/>
+<path d="M126 132c-6-22 2-44 24-48 22 4 30 26 24 48z" fill="var(--hs-cat)"/>
+<path d="M126 70l-4-30c0-4 4-6 7-3l19 17z" fill="var(--hs-cat)"/>
+<path d="M174 70l4-30c0-4-4-6-7-3l-19 17z" fill="var(--hs-cat)"/>
+<path d="M127 56l-1-11 8 7zM173 56l1-11-8 7z" fill="var(--ic-ear)" stroke="none"/>
+<circle cx="150" cy="80" r="30" fill="var(--hs-cat)"/>
+${eye(138, 80, 6.5)}${eye(162, 80, 6.5)}
+<path d="M147 90h6l-3 3z" fill="var(--coral)" stroke-width="1.4"/>
+<path d="M144 97c2 3 6 3 6-1 0 4 4 4 6 1" stroke-width="2"/>
+<ellipse cx="128" cy="92" rx="5" ry="3" fill="var(--ic-blush)" stroke="none"/><ellipse cx="172" cy="92" rx="5" ry="3" fill="var(--ic-blush)" stroke="none"/>
+<path d="M120 88l-12-2M120 94l-12 2M180 88l12-2M180 94l12 2" stroke-width="1.6"/>
+<ellipse cx="138" cy="132" rx="9" ry="6" fill="var(--hs-cat)"/>
+<ellipse cx="162" cy="132" rx="9" ry="6" fill="var(--hs-cat)"/>
+<!-- plane trail -->
+<path d="M226 64c14-10 26-12 36-8" stroke-dasharray="4 7" stroke-width="2.2"/>
+<path d="M262 52l12 4-12 6 2-5z" fill="var(--hs-cream)" stroke-width="2"/>
+`;
+---
+<svg class="travel-art" width={size} height={size * 0.84} viewBox="20 22 270 226" fill="none" stroke="var(--art-ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <Fragment set:html={art} />
+</svg>

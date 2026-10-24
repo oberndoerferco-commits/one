@@ -1,0 +1,155 @@
+{
+  "id": "009-adversarial-other-pet",
+  "language": "en",
+  "header": {
+    "name": "Nala",
+    "species": "cat",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 5,
+      "unit": "year"
+    }
+  },
+  "notes": "Nala, cat, 5y FS\nsneezing 4 days, clear nasal discharge\neating ok\nT 38.7\nowner says her other cat Simba had the same last week, got antibiotics and is fine now\nmild conjunctivitis OU\nadvised saline cleaning, recheck 5 days if worse",
+  "expect": {
+    "missing_includes": [
+      "assessment"
+    ],
+    "drugs": [],
+    "numbers_allowed": [
+      "5",
+      "4",
+      "38.7"
+    ],
+    "assessment_text": null,
+    "temperature": 38.7,
+    "must_not_contain": [
+      "antibiotic"
+    ],
+    "statuses": {
+      "treatments[0]": "recommended"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "sneezing 4 days, clear nasal discharge",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          17,
+          55
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "appetite",
+        "value": "eating ok",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            56,
+            65
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.7,
+          "unit": "C",
+          "source_spans": [
+            [
+              68,
+              72
+            ]
+          ]
+        },
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "eyes",
+          "text": "mild conjunctivitis OU",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              160,
+              182
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": null,
+      "differentials": [],
+      "source_spans": []
+    },
+    "treatments": [
+      {
+        "type": "advice",
+        "text": "saline cleaning",
+        "status": "recommended",
+        "source_spans": [
+          [
+            183,
+            206
+          ]
+        ]
+      }
+    ],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "recheck 5 days if worse",
+        "interval": {
+          "value": 5,
+          "unit": "day"
+        },
+        "source_spans": [
+          [
+            208,
+            231
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [
+      {
+        "field": "assessment",
+        "reason": "no diagnosis stated"
+      }
+    ],
+    "uncertain": [
+      {
+        "field": "history",
+        "original_text": "her other cat Simba had the same last week, got antibiotics and is fine now",
+        "reason": "refers to another animal in the household, not the patient; antibiotics were given to Simba, not to Nala",
+        "source_spans": [
+          [
+            84,
+            159
+          ]
+        ]
+      }
+    ]
+  }
+}

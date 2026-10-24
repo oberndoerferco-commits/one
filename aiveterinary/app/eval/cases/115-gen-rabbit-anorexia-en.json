@@ -1,0 +1,143 @@
+{
+  "id": "115-gen-rabbit-anorexia-en",
+  "language": "en",
+  "synthetic": true,
+  "header": {
+    "name": "Coco",
+    "species": "rabbit",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 5,
+      "unit": "year"
+    }
+  },
+  "notes": "not eating since this morning, few droppings\nT 38.4\ngut sounds reduced, stomach firm\ngastrointestinal stasis\ndental disease\noral exam: molar spurs not seen\nsyringe feeding critical care food, offer fresh hay\nrecheck tomorrow morning",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": null,
+    "temperature": 38.4,
+    "statuses": {
+      "diagnostics[0]": "performed"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "not eating since this morning, few droppings",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          44
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.4,
+          "unit": "C",
+          "source_spans": [
+            [
+              45,
+              51
+            ]
+          ]
+        },
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "abdomen",
+          "text": "gut sounds reduced, stomach firm",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              52,
+              84
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "dental check",
+        "status": "performed",
+        "result": "molar spurs not seen",
+        "source_spans": [
+          [
+            124,
+            155
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": null,
+      "differentials": [
+        {
+          "text": "gastrointestinal stasis",
+          "source_spans": [
+            [
+              85,
+              108
+            ]
+          ]
+        },
+        {
+          "text": "dental disease",
+          "source_spans": [
+            [
+              109,
+              123
+            ]
+          ]
+        }
+      ],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "recheck tomorrow morning",
+        "interval": null,
+        "source_spans": [
+          [
+            208,
+            232
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "syringe feeding critical care food, offer fresh hay",
+          "source_spans": [
+            [
+              156,
+              207
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

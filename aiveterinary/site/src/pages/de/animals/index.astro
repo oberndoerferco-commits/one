@@ -1,0 +1,8 @@
+---
+import Base from '../../../layouts/Base.astro';
+import AnimalsIndex from '../../../components/AnimalsIndex.astro';
+import { GUIDE } from '../../../data/species';
+---
+<Base title={GUIDE.de.title} description={GUIDE.de.desc} lang="de">
+  <AnimalsIndex lang="de" />
+</Base>

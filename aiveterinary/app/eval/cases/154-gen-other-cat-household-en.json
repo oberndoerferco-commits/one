@@ -1,0 +1,154 @@
+{
+  "id": "154-gen-other-cat-household-en",
+  "language": "en",
+  "synthetic": true,
+  "header": {
+    "name": "Lola",
+    "species": "cat",
+    "breed": "European Shorthair",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 3,
+      "unit": "year"
+    }
+  },
+  "notes": "sneezing for 3 days, clear nasal discharge\neating normally\nother cat at home (Pepper) coughing since last week, not examined today\nPepper 5.1 kg, vaccinated last month per owner\nT 38.6\nwt 3.8 kg\nserous nasal discharge both nostrils\nlungs clear\ncat flu suspected\nsteam inhalation, keep nose clean\nrecheck if not eating",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": "cat flu suspected",
+    "temperature": 38.6,
+    "statuses": {},
+    "must_not_contain": [
+      "pepper",
+      "cough",
+      "5.1",
+      "vaccinat"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "sneezing for 3 days, clear nasal discharge",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          42
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "appetite",
+        "value": "eating normally",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            43,
+            58
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.6,
+          "unit": "C",
+          "source_spans": [
+            [
+              178,
+              184
+            ]
+          ]
+        },
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": {
+          "value": 3.8,
+          "unit": "kg",
+          "source_spans": [
+            [
+              185,
+              194
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "nose",
+          "text": "serous nasal discharge both nostrils",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              195,
+              231
+            ]
+          ]
+        },
+        {
+          "system": "respiratory",
+          "text": "lungs clear",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              232,
+              243
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": "cat flu suspected",
+      "differentials": [],
+      "source_spans": [
+        [
+          244,
+          261
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "recheck if not eating",
+        "interval": null,
+        "source_spans": [
+          [
+            296,
+            317
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "steam inhalation, keep nose clean",
+          "source_spans": [
+            [
+              262,
+              295
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

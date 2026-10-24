@@ -1,0 +1,71 @@
+---
+// The verdict at the top of an article: the urgency from the frontmatter, the article's own
+// "go now" list when it has one (quoted from the rendered body, never rewritten), and the next actions.
+interface Props {
+  urgency: 'emergency' | 'today' | 'this-week' | 'routine';
+  label: string; whenToSee: string; sentence: string;
+  section: { id: string; heading: string; intro: string | null; list: string } | null;
+  readLabel: string; call: string; callAdd: string; note: string; brief: string;
+  passport: string; visitBrief: string; phoneIc: string; briefIc: string;
+}
+const p = Astro.props;
+const noteIc = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6 2h11a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zm2 2v16h9V4H8zm1.5 3h6v1.6h-6V7zm0 3.4h6V12h-6v-1.6z"/></svg>';
+const mark: Record<string, string> = { emergency: '!', today: '!', 'this-week': '·', routine: 'i' };
+---
+<section class={`av-verdict av-v-${p.urgency}`} aria-labelledby="av-verdict-h" data-pagefind-ignore data-av-gonow={p.section ? p.section.id : 'fallback'}>
+  <div class="av-v-head">
+    <span class="av-v-mark" aria-hidden="true">{mark[p.urgency]}</span>
+    <h2 id="av-verdict-h">{p.label}</h2>
+  </div>
+  <div class="av-v-body">
+    <p class="av-v-when"><strong>{p.whenToSee}</strong> {p.sentence}</p>
+    {p.section && (
+      <div class="av-v-signs">
+        <h3>{p.section.heading}</h3>
+        {p.section.intro && <p set:html={p.section.intro} />}
+        <Fragment set:html={p.section.list} />
+        <p class="av-v-more"><a href={`#${p.section.id}`}>{p.readLabel}</a></p>
+      </div>
+    )}
+    <div class="av-v-actions">
+      <a class="av-v-btn av-v-call" href={p.passport} data-av-call><Fragment set:html={p.phoneIc} /><span><span class="av-v-bt">{p.call}</span><span class="av-v-bs" data-av-call-sub>{p.callAdd}</span></span></a>
+      <a class="av-v-btn av-v-sec" href={p.passport}><Fragment set:html={noteIc} /><span class="av-v-bt">{p.note}</span></a>
+      <a class="av-v-btn av-v-sec" href={p.visitBrief}><Fragment set:html={p.briefIc} /><span class="av-v-bt">{p.brief}</span></a>
+    </div>
+  </div>
+</section>
+<style is:global>
+  .av-verdict { --v: var(--accent); --v-soft: var(--accent-soft); margin: 4px 0 8px; border-radius: 20px; overflow: hidden; background: var(--v-soft); border: 1.5px solid var(--v); }
+  .av-v-emergency { --v: var(--danger); --v-soft: var(--danger-soft); }
+  .av-v-today { --v: var(--warn); --v-soft: var(--warn-soft); }
+  .av-v-routine { --v: var(--ok); --v-soft: var(--ok-soft); }
+  .av-v-head { display: flex; align-items: center; gap: 12px; padding: 12px 18px; background: var(--v); color: var(--surface); }
+  .av-v-head h2 { margin: 0; font-family: var(--font); font-size: 1.15rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; line-height: 1.25; color: inherit; }
+  .av-v-mark { flex: none; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--surface); color: var(--v); font-weight: 900; font-size: 1.05rem; line-height: 1; }
+  .av-v-body { padding: 14px 18px 16px; color: var(--ink); }
+  .av-v-body p { margin: 0 0 10px; }
+  .av-v-when { font-size: 1rem; }
+  .av-v-signs { border-top: 1px solid color-mix(in srgb, var(--v) 35%, transparent); padding-top: 12px; margin-top: 4px; }
+  .av-v-signs h3 { font-family: var(--font); font-size: 1rem; font-weight: 700; margin: 0 0 6px; }
+  .av-v-signs ul { margin: 0 0 8px; padding-left: 1.25em; }
+  .av-v-signs li { margin-bottom: .3em; }
+  .av-v-signs li::marker { color: var(--v); }
+  .av-v-signs a { color: inherit; }
+  .av-v-more { font-size: .92rem; }
+  .av-v-more a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink); font-weight: 600; }
+  .av-v-actions { display: grid; gap: 8px; margin-top: 6px; }
+  .av-v-btn { display: flex; align-items: center; gap: 10px; min-height: 48px; padding: 8px 16px; border-radius: 14px; font-weight: 700; text-decoration: none; line-height: 1.2; }
+  .av-v-btn svg { flex: none; }
+  .av-v-btn > span { min-width: 0; }
+  .av-v-call { background: var(--v); color: var(--surface); }
+  .av-v-call:hover { filter: brightness(1.06); }
+  .av-v-sec { background: var(--surface); color: var(--ink); border: 1.5px solid var(--line); }
+  .av-v-sec:hover { border-color: var(--v); }
+  .av-v-bt { display: block; }
+  .av-v-bs { display: block; font-size: .8rem; font-weight: 500; overflow-wrap: anywhere; }
+  .av-v-btn:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+  @media (min-width: 560px) {
+    .av-v-actions { grid-template-columns: 1.3fr 1fr 1fr; }
+  }
+  @media print { .av-verdict { border: 1px solid #999; background: #fff; } .av-v-head { background: #fff; color: #000; border-bottom: 1px solid #999; } }
+</style>

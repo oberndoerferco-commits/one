@@ -1,0 +1,320 @@
+---
+import { render, getCollection } from 'astro:content';
+import { ANIMALS, type Lang } from '../lib/animals-i18n';
+import AnimalIcon from './AnimalIcon.astro';
+import VerdictCard from './VerdictCard.astro';
+import { findSection, firstList, textOf } from './article-sections';
+interface Props { lang: Lang; entry: any }
+const { lang, entry } = Astro.props;
+const t = ANIMALS[lang];
+const { Content, headings } = await render(entry);
+const toc = headings.filter((h: any) => h.depth === 2);
+const L = ({ en: { toc: 'In this article' }, it: { toc: 'In questo articolo' }, de: { toc: 'In diesem Artikel' } } as any)[lang];
+const d = entry.data;
+// Feedback goes out as an email the reader sends themselves: nothing is stored or tracked on this site.
+const F = ({
+  en: { q: 'Is anything wrong or unclear on this page?', opts: ['A fact looks wrong', 'It is unclear', 'It seems out of date', 'Something is missing', 'Other'], note: 'What should we check? (optional, please no personal or health details of people)', how: 'This opens an email to hello@aiveterinary.org from your own mail app. Nothing is saved on this site. Corrections are checked against the sources and by the reviewing vet.', send: 'Write the email', subject: 'Page feedback' },
+  it: { q: 'In questa pagina c’è qualcosa di sbagliato o poco chiaro?', opts: ['Un dato sembra errato', 'Non è chiaro', 'Sembra superato', 'Manca qualcosa', 'Altro'], note: 'Cosa dovremmo controllare? (facoltativo, per favore senza dati personali o sanitari di persone)', how: 'Si apre un’email a hello@aiveterinary.org dalla tua app di posta. Su questo sito non viene salvato nulla. Le correzioni vengono verificate sulle fonti e dal veterinario revisore.', send: 'Scrivi l’email', subject: 'Segnalazione pagina' },
+  de: { q: 'Ist auf dieser Seite etwas falsch oder unklar?', opts: ['Eine Angabe scheint falsch', 'Es ist unklar', 'Es wirkt veraltet', 'Es fehlt etwas', 'Anderes'], note: 'Was sollen wir prüfen? (freiwillig, bitte keine persönlichen oder Gesundheitsdaten von Menschen)', how: 'Damit öffnet sich eine E-Mail an hello@aiveterinary.org in Ihrem eigenen Mailprogramm. Auf dieser Seite wird nichts gespeichert. Korrekturen werden anhand der Quellen und von der prüfenden Tierärztin oder dem prüfenden Tierarzt kontrolliert.', send: 'E-Mail schreiben', subject: 'Rückmeldung zur Seite' },
+} as any)[lang];
+// Tool links shown beside the article, kept out of the body so signed reviews are not invalidated.
+const slug = String(entry.id).split('/').pop();
+const CHOC = new Set(['dog-toxic-foods', 'dog-ate-chocolate', 'cane-ha-mangiato-cioccolato', 'alimenti-tossici-cane', 'hund-schokolade-gefressen', 'giftige-lebensmittel-hund']);
+// One next step matched to the article's urgency, at the end of every article.
+const NEXT = ({
+  en: { emergency: ['Call your vet or an emergency clinic now. Unsure? Check the signs', '/emergency'], today: ['Seeing the vet today? Prepare a one-page brief', '/visit-brief'], 'this-week': ['Keep notes until the visit in the symptom diary', '/passport'], routine: ['Keep dates and notes in the health booklet', '/passport'], h: 'Next step' },
+  it: { emergency: ['Chiama ora il veterinario o un pronto soccorso veterinario. Hai dubbi? Controlla i segnali', '/it/emergency'], today: ['Vai dal veterinario oggi? Prepara una scheda di una pagina', '/it/visit-brief'], 'this-week': ['Fino alla visita, annota tutto nel diario dei sintomi', '/it/passport'], routine: ['Tieni date e note nel libretto sanitario', '/it/passport'], h: 'Il prossimo passo' },
+  de: { emergency: ['Rufen Sie jetzt Ihre Praxis oder eine Notdienstklinik an. Unsicher? Zeichen prüfen', '/de/emergency'], today: ['Heute zur Praxis? Einseitige Übersicht vorbereiten', '/de/visit-brief'], 'this-week': ['Bis zum Termin im Symptomtagebuch notieren', '/de/passport'], routine: ['Termine und Notizen im Gesundheitspass festhalten', '/de/passport'], h: 'Nächster Schritt' },
+} as any)[lang];
+const next = d.urgency ? NEXT[d.urgency] : null;
+// Related reading: same animal and topic first, then same topic, then same animal; newest first on ties.
+const others = (await getCollection('animals')).filter((e) => e.data.lang === lang && e.id !== entry.id);
+const score = (e: any) => (e.data.species === d.species ? 2 : e.data.species === 'general' || d.species === 'general' ? 1 : 0) + (e.data.category === d.category ? 2 : 0);
+const related = others.map((e) => ({ e, s: score(e) })).filter((x) => x.s >= 2).sort((x, y) => y.s - x.s || y.e.data.updated.valueOf() - x.e.data.updated.valueOf()).slice(0, 3).map((x) => x.e);
+// Provenance in plain words: how the article was made, who checked it, and how to correct it.
+const nRefs = d.references?.length ?? 0;
+const PV = ({
+  en: { h: 'About this article', made: nRefs ? `Drafted with AI assistance from the ${nRefs} sources listed below.` : 'Drafted with AI assistance. Sources are still to be added.', draft: 'Not yet reviewed by a veterinarian.', rev: (who: string, when: string) => `Checked and approved by ${who}${when ? ` on ${when}` : ''}; no AI changes after sign-off.`, upd: 'Last updated', policy: 'How we write and review', href: '/editorial' },
+  it: { h: 'Su questo articolo', made: nRefs ? `Redatto con l'assistenza dell'IA a partire dalle ${nRefs} fonti elencate qui sotto.` : "Redatto con l'assistenza dell'IA. Le fonti devono ancora essere aggiunte.", draft: 'Non ancora rivisto da un veterinario.', rev: (who: string, when: string) => `Controllato e approvato da ${who}${when ? ` il ${when}` : ''}; nessuna modifica dell'IA dopo la firma.`, upd: 'Ultimo aggiornamento', policy: 'Come scriviamo e rivediamo', href: '/it/editorial' },
+  de: { h: 'Über diesen Artikel', made: nRefs ? `Mit KI-Unterstützung aus den ${nRefs} unten genannten Quellen entworfen.` : 'Mit KI-Unterstützung entworfen. Quellen werden noch ergänzt.', draft: 'Noch nicht tierärztlich geprüft.', rev: (who: string, when: string) => `Geprüft und freigegeben von ${who}${when ? ` am ${when}` : ''}; keine KI-Änderungen nach der Freigabe.`, upd: 'Zuletzt aktualisiert', policy: 'So schreiben und prüfen wir', href: '/de/editorial' },
+} as any)[lang];
+const RL = ({ en: 'Related articles', it: 'Articoli correlati', de: 'Verwandte Artikel' } as any)[lang];
+const VACC = new Set(['puppy-kitten-first-year', 'vaccinations-dogs-cats', 'primo-anno-cucciolo-gattino', 'vaccini-cane-obbligatori-italia', 'erstes-jahr-welpe-kitten', 'hund-impfung-kosten', 'leptospirose-hund']);
+const vaccLink = ({ en: ['Plan the first-year vaccination dates', '/vaccine-planner'], it: ['Pianifica le date dei vaccini del primo anno', '/it/vaccine-planner'], de: ['Impftermine im ersten Jahr planen', '/de/vaccine-planner'] } as any)[lang];
+const toolLink = CHOC.has(slug!) ? ({ en: ['Ate chocolate? Work out the dose for your dog', '/chocolate'], it: ['Ha mangiato cioccolato? Calcola la dose per il tuo cane', '/it/chocolate'], de: ['Schokolade gefressen? Dosis für Ihren Hund berechnen', '/de/chocolate'] } as any)[lang] : VACC.has(slug!) ? vaccLink : null;
+const minutes = Math.max(1, Math.round(((entry.body ?? '').split(/\s+/).length) / 200));
+const minLabel = ({ en: 'min read', it: 'min di lettura', de: 'Min. Lesezeit' } as any)[lang];
+const fmt = (x: Date) => x.toLocaleDateString(t.locale, { day: 'numeric', month: 'long', year: 'numeric' });
+// Layout labels. Only interface words: medical text on the page always comes from the article itself.
+const S = ({
+  en: { passport: '/passport', call: 'Call my vet', callAdd: 'Add the number in your booklet', note: 'Note it in my booklet', brief: 'Make a visit brief', briefShort: 'Visit brief', actions: 'Quick actions', draft: 'Draft written with AI assistance', draftNot: 'not yet reviewed by a vet', src: (n: number) => (n === 1 ? '1 source' : `${n} sources`), noSrc: 'sources still to be added', how: 'How we write', ready: 'Ready for the call', readyText: 'The questions the vet is likely to ask are in this article:', allSrc: (n: number) => `All ${n} sources`, side: 'Article tools',
+    verdict: { emergency: 'Go now', today: 'See a vet today', 'this-week': 'Book a visit this week', routine: 'Watch and ask at the next visit' }, read: 'Read the full section' },
+  it: { passport: '/it/passport', call: 'Chiama il mio veterinario', callAdd: 'Aggiungi il numero nel libretto', note: 'Annotalo nel libretto', brief: 'Prepara la scheda per la visita', briefShort: 'Scheda visita', actions: 'Azioni rapide', draft: "Bozza scritta con l'assistenza dell'IA", draftNot: 'non ancora rivista da un veterinario', src: (n: number) => (n === 1 ? '1 fonte' : `${n} fonti`), noSrc: 'fonti ancora da aggiungere', how: 'Come scriviamo', ready: 'Pronti per la telefonata', readyText: 'Le domande che probabilmente ti farà il veterinario sono in questo articolo:', allSrc: (n: number) => `Tutte le ${n} fonti`, side: "Strumenti dell'articolo",
+    verdict: { emergency: 'Vai subito', today: 'Dal veterinario oggi', 'this-week': 'Prenota una visita questa settimana', routine: 'Osserva e chiedi alla prossima visita' }, read: 'Leggi la sezione completa' },
+  de: { passport: '/de/passport', call: 'Meine Praxis anrufen', callAdd: 'Nummer im Gesundheitspass eintragen', note: 'Im Gesundheitspass notieren', brief: 'Übersicht für den Besuch erstellen', briefShort: 'Übersicht', actions: 'Schnellaktionen', draft: 'Entwurf mit KI-Unterstützung', draftNot: 'noch nicht tierärztlich geprüft', src: (n: number) => (n === 1 ? '1 Quelle' : `${n} Quellen`), noSrc: 'Quellen werden noch ergänzt', how: 'So schreiben wir', ready: 'Bereit für den Anruf', readyText: 'Was die Praxis wahrscheinlich fragen wird, steht in diesem Artikel:', allSrc: (n: number) => `Alle ${n} Quellen`, side: 'Werkzeuge zum Artikel',
+    verdict: { emergency: 'Sofort in die Praxis', today: 'Heute in die Praxis', 'this-week': 'Diese Woche einen Termin', routine: 'Beobachten, beim nächsten Besuch fragen' }, read: 'Ganzen Abschnitt lesen' },
+} as any)[lang];
+// Sections found in the rendered article (build time). Nothing is rewritten: the card quotes the article's own list.
+const html: string = entry.rendered?.html ?? '';
+const goNow = findSection(html, lang, 'gonow');
+const goList = goNow ? firstList(goNow) : null;
+const askSec = findSection(html, lang, 'ask');
+const editorialHref = PV.href;
+// Structured data mirrors only what the page shows: same dates, a reviewer only when one is named on the page.
+const iso = (x: Date) => x.toISOString().slice(0, 10);
+const url = new URL(Astro.url.pathname.replace(/\.html$/, ''), Astro.site).href;
+const catLabel = (t.categories as any)[d.category]?.[0] ?? d.category;
+const ld = [
+  {
+    '@context': 'https://schema.org', '@type': 'MedicalWebPage', '@id': url, url,
+    headline: d.title, name: d.title, description: d.description, inLanguage: lang,
+    dateModified: iso(d.updated),
+    ...(d.reviewedBy && d.reviewedOn ? { lastReviewed: iso(d.reviewedOn), reviewedBy: { '@type': 'Person', name: d.reviewedBy, ...(d.reviewerRegistration ? { description: d.reviewerRegistration } : {}) } } : {}),
+    ...(d.author ? { author: { '@type': 'Person', name: d.author } } : { author: { '@type': 'Organization', name: 'AI Veterinary', url: 'https://aiveterinary.org' } }),
+    publisher: { '@type': 'Organization', name: 'AI Veterinary', url: 'https://aiveterinary.org' },
+    ...(d.references?.length ? { citation: d.references.filter((r: any) => r.url).map((r: any) => ({ '@type': 'CreativeWork', name: r.title, url: r.url })) } : {}),
+  },
+  {
+    '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: t.title, item: new URL(t.base, Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: catLabel, item: new URL(`${t.base}/${d.category}`, Astro.site).href },
+      { '@type': 'ListItem', position: 3, name: d.title, item: url },
+    ],
+  },
+];
+const phoneIc = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>';
+const briefIc = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M7 2h7l5 5v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm6 1.5V8h4.5L13 3.5zM8 12v1.6h8V12H8zm0 3.4V17h8v-1.6H8z"/></svg>';
+---
+<script type="application/ld+json" set:html={JSON.stringify(ld)} />
+<div class="av-page" data-pagefind-body data-pagefind-meta={`species:${d.species}`}>
+<div class="av-grid">
+<article class="av-main" aria-labelledby="av-title">
+  <header class="av-head">
+    <p class="eyebrow av-crumbs"><span class={`av-ic tint-${d.species}`} aria-hidden="true"><AnimalIcon kind={d.species === 'general' ? 'dog' : d.species} size={30} /></span><span><a href={t.base}>{t.title}</a> · <a href={`${t.base}/${d.category}`}>{catLabel}</a> · <a href={`${t.base}/${d.species}`}>{(t.species as any)[d.species] ?? d.species}</a></span></p>
+    <h1 id="av-title">{d.title}</h1>
+    <p class="av-status">
+      {d.draft
+        ? <span class="av-st-draft"><strong>{S.draft}</strong> · {S.draftNot}</span>
+        : <span class="av-st-rev">{t.reviewedBy} {d.reviewedBy}{d.reviewerRegistration && ` (${d.reviewerRegistration})`}{d.reviewedOn && `, ${fmt(d.reviewedOn)}`}</span>}
+      <span aria-hidden="true"> · </span>{nRefs ? <a href="#av-sources">{S.src(nRefs)}</a> : <span>{S.noSrc}</span>}
+      <span aria-hidden="true"> · </span><span>{t.updated} {fmt(d.updated)}</span>
+      {d.author && <><span aria-hidden="true"> · </span><span>{t.author} {d.author}</span></>}
+      {d.nextReview && <><span aria-hidden="true"> · </span><span>{t.nextReview} {fmt(d.nextReview)}</span></>}
+      <span aria-hidden="true"> · </span><span>{minutes} {minLabel}</span>
+      <span aria-hidden="true"> · </span><a href={editorialHref}>{S.how}</a>
+    </p>
+  </header>
+  {d.urgency && (
+    <VerdictCard
+      urgency={d.urgency} label={S.verdict[d.urgency]} whenToSee={t.whenToSee} sentence={(t.urgency as any)[d.urgency]}
+      section={goNow && goList ? { id: goNow.id, heading: goNow.text, intro: goList.intro, list: goList.html } : null}
+      readLabel={S.read} call={S.call} callAdd={S.callAdd} note={S.note} brief={S.brief}
+      passport={S.passport} visitBrief={t.visitBrief} phoneIc={phoneIc} briefIc={briefIc}
+    />
+  )}
+  <p class="lead av-lead">{d.description}</p>
+  {toolLink && <p class="tool-link" data-pagefind-ignore><a class="btn" href={toolLink[1]}>{toolLink[0]}</a></p>}
+  {toc.length >= 3 && (
+    <details class="av-toc-m" data-pagefind-ignore>
+      <summary>{L.toc} <span class="av-n">({toc.length})</span></summary>
+      <nav aria-label={L.toc}><ol>{toc.map((h: any) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol></nav>
+    </details>
+  )}
+  <div class="prose av-prose"><Content /></div>
+  {next && <div class={`next-step ns-${d.urgency}`} data-pagefind-ignore><span class="ns-h">{NEXT.h}</span> <a href={next[1]}>{next[0]} →</a></div>}
+  <aside class="provenance" aria-labelledby="pv-h" data-pagefind-ignore>
+    <h2 id="pv-h">{PV.h}</h2>
+    <p>{PV.made} {d.draft ? <strong>{PV.draft}</strong> : PV.rev(`${d.reviewedBy}${d.reviewerRegistration ? ` (${d.reviewerRegistration})` : ''}`, d.reviewedOn ? fmt(d.reviewedOn) : '')} {PV.upd}: {fmt(d.updated)}. <a href={PV.href}>{PV.policy} →</a></p>
+  </aside>
+  {d.references?.length && (
+    <section class="article-refs" id="av-sources" aria-labelledby="av-sources-h" tabindex="-1"><h2 id="av-sources-h">{t.references}</h2><ol>{d.references.map((r: any) => <li>{r.url ? <a href={r.url} rel="noopener">{r.title}</a> : r.title}</li>)}</ol></section>
+  )}
+  {related.length > 0 && (
+    <nav class="related" aria-label={RL} data-pagefind-ignore>
+      <h2>{RL}</h2>
+      <ul>{related.map((r) => <li><a href={`${t.base}/${String(r.id).split('/').pop()}`} class={`related-a tint-${r.data.species}`}><span class="related-ic" aria-hidden="true"><AnimalIcon kind={r.data.species === 'general' ? 'dog' : r.data.species} size={40} /></span><span><span class="related-t">{r.data.title}</span><span class="related-d">{(t.categories as any)[r.data.category]?.[0] ?? r.data.category}</span></span></a></li>)}</ul>
+    </nav>
+  )}
+  <p class="article-actions" data-pagefind-ignore><a class="btn secondary" href={`mailto:?subject=${encodeURIComponent(d.title)}&body=${encodeURIComponent(Astro.url.href)}`}>{t.share}</a></p>
+  <form class="fb" data-pagefind-ignore data-title={d.title} data-url={url} data-subject={F.subject}>
+    <fieldset><legend>{F.q}</legend>
+      <div class="fb-opts">{F.opts.map((o: string, i: number) => <label><input type="radio" name="fb" value={o} required={i === 0} /> {o}</label>)}</div>
+      <label class="fb-note">{F.note}<textarea name="note" rows="3"></textarea></label>
+      <p class="pp-hint">{F.how}</p>
+      <button class="btn secondary" type="submit">{F.send}</button>
+    </fieldset>
+  </form>
+  <div class="notice" style="margin-top:24px" data-pagefind-ignore><p>{t.footer}</p></div>
+</article>
+<aside class="av-side" aria-label={S.side} data-pagefind-ignore>
+  <div class="av-side-in">
+    <p class={`av-side-call av-v-${d.urgency ?? 'this-week'}`}><a class="av-v-btn av-v-call" href={S.passport} data-av-call><Fragment set:html={phoneIc} /><span><span class="av-v-bt">{S.call}</span><span class="av-v-bs" data-av-call-sub>{S.callAdd}</span></span></a></p>
+    {toc.length >= 3 && (
+      <nav class="av-toc" aria-label={L.toc}>
+        <h2 class="av-side-h">{L.toc}</h2>
+        <ol>{toc.map((h: any) => <li><a href={`#${h.slug}`} data-av-toc={h.slug}>{h.text}</a></li>)}</ol>
+      </nav>
+    )}
+    {askSec && (
+      <div class="av-box av-ready">
+        <h2 class="av-side-h" id="av-ready-h">{S.ready}</h2>
+        <p>{S.readyText}</p>
+        <p><a href={`#${askSec.id}`}>{askSec.text} →</a></p>
+        <p><a class="av-small-btn" href={t.visitBrief}><Fragment set:html={briefIc} /> {S.brief}</a></p>
+      </div>
+    )}
+    {nRefs > 0 && (
+      <div class="av-box av-src">
+        <h2 class="av-side-h" id="av-src-h">{t.references}</h2>
+        <ul>{d.references.slice(0, 4).map((r: any) => <li>{r.title}</li>)}</ul>
+        <p><a href="#av-sources">{S.allSrc(nRefs)} →</a></p>
+      </div>
+    )}
+  </div>
+</aside>
+</div>
+<nav class="av-bar" aria-label={S.actions} data-pagefind-ignore>
+  <a class={`av-bar-a av-bar-call u-${d.urgency ?? 'none'}`} href={S.passport} data-av-call><Fragment set:html={phoneIc} /><span><span class="av-bar-t">{S.call}</span><span class="av-bar-s" data-av-call-sub>{S.callAdd}</span></span></a>
+  <a class="av-bar-a av-bar-brief" href={t.visitBrief}><Fragment set:html={briefIc} /><span class="av-bar-t">{S.briefShort}</span></a>
+</nav>
+</div>
+<script>
+  document.querySelectorAll<HTMLFormElement>('form.fb').forEach((f) => f.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const kind = (f.querySelector('input[name=fb]:checked') as HTMLInputElement)?.value ?? '';
+    const note = (f.elements.namedItem('note') as HTMLTextAreaElement).value.trim();
+    const body = `${f.dataset.url}\n\n${kind}${note ? `\n\n${note}` : ''}\n`;
+    location.href = `mailto:hello@aiveterinary.org?subject=${encodeURIComponent(`${f.dataset.subject}: ${f.dataset.title}`)}&body=${encodeURIComponent(body)}`;
+  }));
+  // "Call my vet": the clinic number from the health booklet on this device (localStorage, never sent anywhere).
+  try {
+    const raw = localStorage.getItem('aiveterinary.passport.v1');
+    const store = raw ? JSON.parse(raw) : null;
+    const animals: any[] = Array.isArray(store?.animals) ? store.animals : [];
+    const cur = animals.find((a) => a?.id === store?.current && String(a?.vetPhone ?? '').trim()) ?? animals.find((a) => String(a?.vetPhone ?? '').trim());
+    const phone = cur ? String(cur.vetPhone).trim() : '';
+    const dial = phone.replace(/[^\d+]/g, '');
+    if (dial.length >= 3) {
+      const sub = [String(cur.vetClinic ?? '').trim(), phone].filter(Boolean).join(' · ');
+      document.querySelectorAll<HTMLAnchorElement>('[data-av-call]').forEach((a) => {
+        a.href = `tel:${dial}`;
+        const s = a.querySelector('[data-av-call-sub]'); if (s) s.textContent = sub;
+      });
+    }
+  } catch {}
+  // Highlight the section being read in the sidebar table of contents.
+  const links = new Map<string, HTMLAnchorElement>();
+  document.querySelectorAll<HTMLAnchorElement>('[data-av-toc]').forEach((a) => links.set(a.dataset.avToc!, a));
+  const hs = Array.from(document.querySelectorAll<HTMLElement>('.av-prose h2[id]')).filter((h) => links.has(h.id));
+  if (links.size && hs.length && 'IntersectionObserver' in window) {
+    const setCur = (id: string) => links.forEach((a, k) => (k === id ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current')));
+    const pick = () => {
+      let cur = hs[0].id;
+      for (const h of hs) { if (h.getBoundingClientRect().top < window.innerHeight * 0.3) cur = h.id; else break; }
+      setCur(cur);
+    };
+    const io = new IntersectionObserver(pick, { rootMargin: '0px 0px -60% 0px' });
+    hs.forEach((h) => io.observe(h));
+    pick();
+  }
+</script>
+<style is:global>
+  .av-page { --av-side: 300px; }
+  .av-grid { max-width: 720px; margin: 0 auto; padding: 0 16px; }
+  .av-main { min-width: 0; }
+  .av-head { padding-top: 22px; }
+  .av-crumbs { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .av-crumbs a { color: var(--ink-2); }
+  .av-ic { flex: none; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--tint, var(--accent-soft)); overflow: hidden; }
+  .av-ic svg { width: 30px; height: 30px; }
+  .av-head h1 { font-size: clamp(1.7rem, 4.2vw, 2.6rem); margin: 0 0 10px; overflow-wrap: break-word; hyphens: auto; }
+  .av-status { color: var(--ink-2); font-size: .88rem; line-height: 1.6; margin: 0 0 18px; }
+  .av-status a { color: var(--ink-2); }
+  .av-status a:hover { color: var(--accent); }
+  .av-st-draft strong { color: color-mix(in srgb, var(--warn) 75%, var(--ink)); font-weight: 700; }
+  .av-st-rev { color: var(--ok); font-weight: 600; }
+  .av-lead { color: var(--ink-2); font-size: 1.12rem; margin: 22px 0 18px; }
+  .av-prose h2[id] { scroll-margin-top: 84px; }
+  #av-sources { scroll-margin-top: 84px; }
+  #av-sources:focus { outline: none; }
+
+  /* Phone table of contents */
+  .av-toc-m { margin: 8px 0 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; }
+  .av-toc-m summary { cursor: pointer; min-height: 48px; display: flex; align-items: center; padding: 0 18px; font-weight: 700; list-style: none; }
+  .av-toc-m summary::-webkit-details-marker { display: none; }
+  .av-toc-m summary::after { content: ""; margin-left: auto; width: 9px; height: 9px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg); transition: transform .15s; }
+  .av-toc-m[open] summary::after { transform: rotate(-135deg); }
+  .av-n { color: var(--ink-3); font-weight: 600; margin-left: 6px; }
+  .av-toc-m ol { margin: 0; padding: 0 18px 14px 2.4em; }
+  .av-toc-m li { margin: 0; }
+  .av-toc-m a { display: block; padding: 9px 0; color: var(--ink); text-decoration: none; line-height: 1.35; }
+  .av-toc-m a:hover { color: var(--accent); text-decoration: underline; }
+
+  /* Sidebar (desktop) */
+  .av-side { display: none; }
+  .av-side-h { font-family: var(--font); font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-2); margin: 0 0 8px; }
+  .av-toc ol { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--line); }
+  .av-toc a { display: block; padding: 6px 10px 6px 14px; margin-left: -2px; border-left: 2px solid transparent; color: var(--ink-2); text-decoration: none; font-size: .92rem; line-height: 1.35; }
+  .av-toc a:hover { color: var(--accent); }
+  .av-toc a[aria-current="true"] { color: var(--ink); font-weight: 700; border-left-color: var(--accent); }
+  .av-side-call { margin: 0 0 22px; }
+  .av-side-call.av-v-this-week { --v: var(--accent); }
+  .av-box { margin-top: 20px; padding: 14px 16px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); font-size: .92rem; }
+  .av-box p { margin: 0 0 8px; }
+  .av-box p:last-child { margin-bottom: 0; }
+  .av-ready { background: var(--accent-soft); border-color: transparent; }
+  .av-ready a { font-weight: 600; }
+  .av-small-btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px; border-radius: 999px; border: 1.5px solid var(--accent); color: var(--accent); text-decoration: none; }
+  .av-small-btn:hover { background: var(--surface); }
+  .av-src ul { margin: 0 0 8px; padding-left: 1.1em; color: var(--ink-2); }
+  .av-src li { margin-bottom: 4px; display: list-item; }
+
+  /* Fixed bottom bar (phone and tablet) */
+  .av-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: flex; gap: 10px; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: color-mix(in srgb, var(--bg) 94%, transparent); backdrop-filter: blur(8px); border-top: 1px solid var(--line); }
+  .av-bar-a { flex: 1 1 0; min-width: 0; min-height: 48px; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 6px 12px; border-radius: 14px; font-weight: 700; text-decoration: none; line-height: 1.15; text-align: left; }
+  .av-bar-a svg { flex: none; }
+  .av-bar-call { background: var(--accent); color: var(--accent-ink); flex-grow: 1.4; }
+  .av-bar-call.u-emergency { background: var(--danger); color: var(--surface); }
+  .av-bar-brief { background: var(--surface); color: var(--accent); border: 1.5px solid var(--accent); }
+  .av-bar-t { display: block; overflow-wrap: anywhere; }
+  .av-bar-s { display: block; font-size: .75rem; font-weight: 500; opacity: .92; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; }
+  .av-bar-a > span { min-width: 0; }
+  .av-bar-a:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+  @media (max-width: 1099.98px) {
+    body:has(.av-bar) { padding-bottom: calc(76px + env(safe-area-inset-bottom)); }
+    html:has(.av-bar) { scroll-padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
+  }
+  @media (min-width: 1100px) {
+    .av-grid { max-width: calc(720px + var(--av-side) + 56px + 32px); display: grid; grid-template-columns: minmax(0, 720px) var(--av-side); gap: 56px; justify-content: center; }
+    .av-side { display: block; }
+    .av-side-in { position: sticky; top: 88px; max-height: calc(100vh - 104px); overflow-y: auto; padding: 28px 4px 24px 0; }
+    .av-toc-m, .av-bar { display: none; }
+    .av-head { padding-top: 34px; }
+  }
+  @media print { .av-bar, .av-side, .av-toc-m, .av-v-actions { display: none !important; } }
+
+  .provenance { margin: 28px 0 0; padding: 14px 18px; border-left: 4px solid var(--accent); background: var(--accent-soft); border-radius: 0 14px 14px 0; }
+  .provenance h2 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; margin: 0 0 4px; color: var(--ink-2); font-family: var(--font); }
+  .provenance p { margin: 0; }
+  .related { margin: 32px 0 8px; }
+  .related h2 { font-size: 1.2rem; margin: 0 0 12px; }
+  .related ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+  .related-a { display: flex; gap: 14px; align-items: center; padding: 12px 16px; border-radius: 16px; background: var(--surface); box-shadow: 0 1px 0 var(--line); text-decoration: none; color: var(--ink); }
+  .related-a:hover { box-shadow: 0 1px 0 var(--line), 0 8px 20px rgba(18, 48, 74, .08); }
+  .related-ic { flex: none; width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; background: var(--tint, var(--accent-soft)); }
+  .related-t { display: block; font-weight: 600; line-height: 1.3; }
+  .related-d { display: block; font-size: .85rem; color: var(--ink-2); margin-top: 2px; }
+  .next-step { margin: 28px 0 8px; padding: 16px 20px; border-radius: 18px; background: var(--accent-soft); font-weight: 600; }
+  .next-step.ns-emergency { background: var(--danger-soft); }
+  .next-step.ns-today { background: var(--warn-soft); }
+  .next-step .ns-h { display: block; font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-2); margin-bottom: 4px; }
+  .fb { margin-top: 28px; }
+  .fb fieldset { border: 0; margin: 0; padding: 18px 20px; border-radius: 20px; background: var(--surface); box-shadow: 0 1px 0 var(--line); display: grid; gap: 12px; min-width: 0; }
+  .fb legend { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; padding: 0 6px; }
+  .fb-opts { display: flex; flex-wrap: wrap; gap: 4px 16px; }
+  .fb-opts label { display: inline-flex; gap: 8px; align-items: center; min-height: 44px; }
+  .fb-note { display: grid; gap: 6px; font-weight: 600; }
+  .fb textarea { font: inherit; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); color: var(--ink); max-width: 100%; }
+  .fb .btn { justify-self: start; }
+</style>

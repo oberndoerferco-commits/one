@@ -1,0 +1,199 @@
+{
+  "id": "179-gen-dictated-cough-murmur-de",
+  "language": "de",
+  "synthetic": true,
+  "header": {
+    "name": "Lotte",
+    "species": "dog",
+    "breed": "Cavalier King Charles Spaniel",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 9,
+      "unit": "year"
+    }
+  },
+  "notes": "nachträglich diktiert:\nalso sie war heute da, weil sie laut Besitzerin seit etwa zwei Wochen nachts hustet\nnicht jede Nacht, eher nach dem Hinlegen\nfrisst gut\nbei der Untersuchung Herzfrequenz 120\nHerzgeräusch Grad 3 von 6 links apikal\nLunge etwas verschärft, aber kein Knistern\nAtemfrequenz 32 in Ruhe\nTemperatur 38,4\nwahrscheinlich Mitralklappenerkrankung\nich würde gern ein Thoraxröntgen machen\nund auch einen Herzultraschall\nBesitzerin überlegt es sich noch\nBesitzerin soll die Atemzüge im Schlaf zählen\nsie will sowieso nächste Woche wiederkommen",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": null,
+    "temperature": 38.4,
+    "statuses": {
+      "diagnostics[0]": "recommended",
+      "diagnostics[1]": "recommended"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "also sie war heute da, weil sie laut Besitzerin seit etwa zwei Wochen nachts hustet",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          23,
+          106
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "Husten",
+        "value": "nicht jede Nacht, eher nach dem Hinlegen",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            107,
+            147
+          ]
+        ]
+      },
+      {
+        "finding": "Appetit",
+        "value": "frisst gut",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            148,
+            158
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.4,
+          "unit": "C",
+          "source_spans": [
+            [
+              303,
+              318
+            ]
+          ]
+        },
+        "heart_rate": {
+          "value": 120,
+          "unit": "/min",
+          "source_spans": [
+            [
+              159,
+              196
+            ]
+          ]
+        },
+        "respiratory_rate": {
+          "value": 32,
+          "unit": "/min",
+          "source_spans": [
+            [
+              279,
+              302
+            ]
+          ]
+        },
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "Herz",
+          "text": "Herzgeräusch Grad 3 von 6 links apikal",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              197,
+              235
+            ]
+          ]
+        },
+        {
+          "system": "Lunge",
+          "text": "Lunge etwas verschärft, aber kein Knistern",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              236,
+              278
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "Röntgen Thorax",
+        "status": "recommended",
+        "result": null,
+        "source_spans": [
+          [
+            358,
+            397
+          ]
+        ]
+      },
+      {
+        "test": "Herzultraschall",
+        "status": "recommended",
+        "result": null,
+        "source_spans": [
+          [
+            398,
+            428
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": null,
+      "differentials": [
+        {
+          "text": "wahrscheinlich Mitralklappenerkrankung",
+          "source_spans": [
+            [
+              319,
+              357
+            ]
+          ]
+        }
+      ],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "sie will sowieso nächste Woche wiederkommen",
+        "interval": null,
+        "source_spans": [
+          [
+            508,
+            551
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "Besitzerin soll die Atemzüge im Schlaf zählen",
+          "source_spans": [
+            [
+              462,
+              507
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

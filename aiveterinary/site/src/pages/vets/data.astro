@@ -1,0 +1,76 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base title="Data handling for clinics" description="Where clinic data lives, who processes it, how long it is kept and how it leaves. The public version of our data processing agreement.">
+  <article class="wrap narrow hero prose">
+    <p class="eyebrow"><a href="/vets">For veterinary teams</a> · Data handling</p>
+    <h1>Where your data goes, and where it doesn't</h1>
+    <p class="lead">This page is the public version of the data processing agreement every clinic signs with us. If something here is not in the contract, the contract is wrong. Status: draft until the first pilot clinic signs; what changes will be listed at the bottom.</p>
+
+    <h2>Roles</h2>
+    <p>Your clinic is the controller of its clinical records. AI Veterinary is a processor acting on your documented instructions (Art. 28 GDPR). We never use clinic data for our own purposes, and nothing is used to train AI models, ours or anyone else's.</p>
+
+    <h2>What is processed</h2>
+    <ul>
+      <li>Your typed notes, the structured record built from them, and the documents you approve. These are one unit: a document is never stored without the notes it came from.</li>
+      <li>Patient identity: name, species, breed, sex, date of birth, microchip. Owner identity only as far as a document needs it (name, and the tax identifier where a country requires it on an invoice or prescription).</li>
+      <li>Account data of your team members (name, email, role) and an append-only audit log of who approved what, when.</li>
+    </ul>
+    <p>No audio. The assistant has no microphone feature, so there is nothing recorded and nothing to ask owners to consent to.</p>
+
+    <h2>Subprocessors</h2>
+    <p>The complete list. You are notified 30 days before any addition and may object.</p>
+    <table>
+      <thead><tr><th>Provider</th><th>Purpose</th><th>Location</th><th>Clinical content?</th></tr></thead>
+      <tbody>
+        <tr><td>Cloudflare</td><td>Hosting of the website and application, TLS, DDoS protection</td><td>EU edge, global network for static assets</td><td>Passes through encrypted; not stored</td></tr>
+        <tr><td>Supabase</td><td>Database, authentication, file storage</td><td>Frankfurt, Germany</td><td>Yes, encrypted at rest; access restricted per clinic by row-level security</td></tr>
+        <tr><td>Anthropic</td><td>Language model that structures notes into the record</td><td>EU region where offered; otherwise under standard contractual clauses</td><td>Yes, for the duration of the request; no training; shortest retention the provider offers (zero-retention where available)</td></tr>
+        <tr><td>Email provider (to be selected, EU)</td><td>Transactional email: login links, approval notifications</td><td>EU</td><td>No</td></tr>
+      </tbody>
+    </table>
+    <p>There are no analytics scripts, advertising pixels or session recordings on the application.</p>
+
+    <h2>Retention</h2>
+    <table>
+      <thead><tr><th>Data</th><th>Kept for</th></tr></thead>
+      <tbody>
+        <tr><td>Clinical records, notes, approved documents, AI generations</td><td>As long as your clinic decides; many countries require multi-year retention of veterinary records and your clinic sets that period</td></tr>
+        <tr><td>Audit log</td><td>At least as long as the record it belongs to</td></tr>
+        <tr><td>Application logs (redacted, no clinical content)</td><td>30 days</td></tr>
+        <tr><td>Backups (encrypted, in region)</td><td>35 days, then overwritten</td></tr>
+        <tr><td>After account closure</td><td>Full export offered first; deletion within 30 days; backups age out within 35 days; confirmed in writing</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Your rights as a clinic</h2>
+    <ul class="paw-list">
+      <li><strong>Export anything, any time.</strong> Every record and document, with its notes and audit trail, as JSON and PDF. No fee, no notice period.</li>
+      <li><strong>Owner requests go through you.</strong> When an owner asks for access or erasure, you decide; we give you the tools to fulfil it.</li>
+      <li><strong>Audit us.</strong> On request we provide our security documentation, subprocessor contracts and, once in place, third-party audit reports.</li>
+      <li><strong>Breach notice within 24 hours</strong> of us becoming aware, with what we know and what we are doing.</li>
+    </ul>
+
+    <h2>EU AI Act and professional rules</h2>
+    <p>Our reading as of October 2026, to be confirmed by counsel before the first pilot. Where the law is unclear we take the stricter option.</p>
+    <ul>
+      <li><strong>Transparency (Art. 50, applicable since 2 August 2026).</strong> Every document meant for an owner states in plain words that it was structured with AI assistance from the veterinarian's own notes and approved by the veterinarian. Whether a structured record counts as an AI summary that needs marking is not settled; we mark it anyway.</li>
+      <li><strong>Not high-risk, not a medical device.</strong> Veterinary documentation is not listed in Annex III of the AI Act, and the EU Medical Device Regulation covers devices for human beings only.</li>
+      <li><strong>The veterinarian decides.</strong> Nothing leaves the workspace without approval by a named veterinarian, which is what the German Bundestierärztekammer, the Italian FNOVI and the UK RCVS ask of AI in clinical records.</li>
+      <li><strong>No recording.</strong> There is no audio, so the rules on recording conversations (§ 201 StGB in Germany, § 120 StGB in Austria, Art. 179ter StGB in Switzerland) are not engaged.</li>
+      <li><strong>Professional secrecy.</strong> Before any real clinic data is processed, everyone who could technically reach it, our staff and every subprocessor, signs a written secrecy undertaking. German vets are named in § 203(1) StGB and can themselves be liable if a contributor was not bound to secrecy (§ 203(4)).</li>
+      <li><strong>Telling owners.</strong> Italian Law 132/2025 (Art. 13) asks professionals to tell clients when they use AI. The Italian template below does exactly that, in plain language.</li>
+    </ul>
+    <h2>Templates for your own obligations</h2>
+    <p>Available with the pilot agreement, all drafts until a lawyer has reviewed them:</p>
+    <ul>
+      <li>an <em>Auftragsverarbeitungsvertrag</em> (Art. 28 GDPR) for German and Austrian practices, and a Swiss DSG addendum;</li>
+      <li>a § 203 StGB secrecy undertaking signed by us and by everyone who works on the service;</li>
+      <li>an owner notice in German, following the Bundestierärztekammer's October 2026 guidance, and an <em>Informativa sull'uso dell'intelligenza artificiale</em> for Italian clinics;</li>
+      <li>a 45-minute AI-literacy session for the whole team, with a short check and an attendance sheet (EU AI Act Art. 4).</li>
+    </ul>
+
+    <h2>Changes to this page</h2>
+    <p>18 October 2026: professional secrecy reworded as a commitment, because no clinic data is processed yet; template list extended. Every change is dated here. Questions: <a href="mailto:privacy@aiveterinary.org">privacy@aiveterinary.org</a>.</p>
+  </article>
+</Base>

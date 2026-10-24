@@ -1,0 +1,202 @@
+{
+  "id": "177-gen-bird-weight-loss-it",
+  "language": "it",
+  "synthetic": true,
+  "header": {
+    "name": "Cip",
+    "species": "bird",
+    "breed": "Budgerigar",
+    "sex": "male",
+    "age": {
+      "value": 3,
+      "unit": "year"
+    }
+  },
+  "notes": "arruffato e dorme di più da 2 giorni\nmangia i semi secondo il proprietario\nperso 2 g in una settimana sulla bilancia di casa secondo il proprietario\npeso 34 g\narruffato, coda che oscilla con il respiro\ncarena prominente\nfeci verdi, scarse\nesame feci a fresco: nessun parassita visto\nesami del sangue proposti, il proprietario rifiuta\nmalattia gastrointestinale\nmalattia epatica\ntenere al caldo, offrire i soliti semi e il miglio\ncontrollo tra 3 giorni",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": null,
+    "statuses": {
+      "diagnostics[0]": "performed",
+      "diagnostics[1]": "declined"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "arruffato e dorme di più da 2 giorni",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          36
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "appetito",
+        "value": "mangia i semi secondo il proprietario",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            37,
+            74
+          ]
+        ]
+      },
+      {
+        "finding": "peso",
+        "value": "perso 2 g in una settimana sulla bilancia di casa secondo il proprietario",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            75,
+            148
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": {
+          "value": 34,
+          "unit": "g",
+          "source_spans": [
+            [
+              149,
+              158
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "generale",
+          "text": "arruffato, coda che oscilla con il respiro",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              159,
+              201
+            ]
+          ]
+        },
+        {
+          "system": "condizione corporea",
+          "text": "carena prominente",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              202,
+              219
+            ]
+          ]
+        },
+        {
+          "system": "feci",
+          "text": "feci verdi, scarse",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              220,
+              238
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "esame feci a fresco",
+        "status": "performed",
+        "result": "nessun parassita visto",
+        "source_spans": [
+          [
+            239,
+            282
+          ]
+        ]
+      },
+      {
+        "test": "esami del sangue",
+        "status": "declined",
+        "result": null,
+        "source_spans": [
+          [
+            283,
+            333
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": null,
+      "differentials": [
+        {
+          "text": "malattia gastrointestinale",
+          "source_spans": [
+            [
+              334,
+              360
+            ]
+          ]
+        },
+        {
+          "text": "malattia epatica",
+          "source_spans": [
+            [
+              361,
+              377
+            ]
+          ]
+        }
+      ],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "controllo tra 3 giorni",
+        "interval": {
+          "value": 3,
+          "unit": "day"
+        },
+        "source_spans": [
+          [
+            429,
+            451
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "tenere al caldo, offrire i soliti semi e il miglio",
+          "source_spans": [
+            [
+              378,
+              428
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

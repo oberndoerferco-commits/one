@@ -1,0 +1,298 @@
+{
+  "id": "300-multi-dog-cat-otitis-check-en",
+  "language": "en",
+  "synthetic": true,
+  "multi_pet": true,
+  "notes": "Bella: shaking head, scratching right ear for 1 week\nBella: T 38.7\nBella: right ear canal red, brown discharge\nBella: ear cytology: yeast ++\nBella: otitis externa right\nBella: Surolan auricular twice daily 7 days, dispensed\nFelix: annual check, no problems per owner\nFelix: T 38.4\nFelix: heart and lungs NAD\nFelix: Milbemax 1 tablet PO once, dispensed\nboth: flea treatment monthly for all pets in the house\nrecheck Bella in 7 days",
+  "assignment": {
+    "0": "bella",
+    "1": "bella",
+    "2": "bella",
+    "3": "bella",
+    "4": "bella",
+    "5": "bella",
+    "6": "felix",
+    "7": "felix",
+    "8": "felix",
+    "9": "felix",
+    "10": "shared",
+    "11": "bella"
+  },
+  "patients": [
+    {
+      "id": "bella",
+      "header": {
+        "name": "Bella",
+        "species": "dog",
+        "breed": "Beagle",
+        "sex": "female",
+        "neuter_status": "neutered",
+        "age": {
+          "value": 6,
+          "unit": "year"
+        }
+      },
+      "expect": {
+        "missing_includes": [
+          "medications[0].dose"
+        ],
+        "drugs": [
+          "Surolan"
+        ],
+        "assessment_text": "otitis externa right",
+        "temperature": 38.7,
+        "statuses": {
+          "medications[0]": "dispensed",
+          "diagnostics[0]": "performed"
+        }
+      },
+      "fixture_record": {
+        "schema_version": "0.2",
+        "patient": {
+          "name": null,
+          "species": null,
+          "breed": null,
+          "sex": null,
+          "neuter_status": null,
+          "age": null,
+          "weight": null
+        },
+        "presenting_complaint": {
+          "text": "shaking head, scratching right ear for 1 week",
+          "source_role": "owner_reported",
+          "source_spans": [
+            [
+              7,
+              52
+            ]
+          ]
+        },
+        "history": [],
+        "examination": {
+          "vitals": {
+            "temperature": {
+              "value": 38.7,
+              "unit": "C",
+              "source_spans": [
+                [
+                  60,
+                  66
+                ]
+              ]
+            },
+            "heart_rate": null,
+            "respiratory_rate": null,
+            "weight": null,
+            "crt_seconds": null
+          },
+          "findings": [
+            {
+              "system": "ears",
+              "text": "right ear canal red, brown discharge",
+              "source_role": "vet_observed",
+              "source_spans": [
+                [
+                  74,
+                  110
+                ]
+              ]
+            }
+          ]
+        },
+        "diagnostics": [
+          {
+            "test": "ear cytology",
+            "status": "performed",
+            "result": "yeast ++",
+            "source_spans": [
+              [
+                118,
+                140
+              ]
+            ]
+          }
+        ],
+        "assessment": {
+          "text": "otitis externa right",
+          "differentials": [],
+          "source_spans": [
+            [
+              148,
+              168
+            ]
+          ]
+        },
+        "treatments": [],
+        "medications": [
+          {
+            "drug": "Surolan",
+            "class_as_written": null,
+            "dose": null,
+            "dose_unit": null,
+            "route": "auricular",
+            "frequency": "twice daily",
+            "duration": "7 days",
+            "status": "dispensed",
+            "source_spans": [
+              [
+                176,
+                223
+              ]
+            ]
+          }
+        ],
+        "plan": {
+          "follow_up": {
+            "text": "recheck Bella in 7 days",
+            "interval": {
+              "value": 7,
+              "unit": "day"
+            },
+            "source_spans": [
+              [
+                407,
+                430
+              ]
+            ]
+          },
+          "instructions": [
+            {
+              "text": "flea treatment monthly for all pets in the house",
+              "source_spans": [
+                [
+                  358,
+                  406
+                ]
+              ]
+            }
+          ]
+        },
+        "missing": [],
+        "uncertain": []
+      }
+    },
+    {
+      "id": "felix",
+      "header": {
+        "name": "Felix",
+        "species": "cat",
+        "breed": "European Shorthair",
+        "sex": "male",
+        "neuter_status": "neutered",
+        "age": {
+          "value": 3,
+          "unit": "year"
+        }
+      },
+      "expect": {
+        "missing_includes": [
+          "assessment",
+          "patient.weight"
+        ],
+        "drugs": [
+          "Milbemax"
+        ],
+        "assessment_text": null,
+        "temperature": 38.4,
+        "statuses": {
+          "medications[0]": "dispensed"
+        }
+      },
+      "fixture_record": {
+        "schema_version": "0.2",
+        "patient": {
+          "name": null,
+          "species": null,
+          "breed": null,
+          "sex": null,
+          "neuter_status": null,
+          "age": null,
+          "weight": null
+        },
+        "presenting_complaint": {
+          "text": "annual check, no problems per owner",
+          "source_role": "owner_reported",
+          "source_spans": [
+            [
+              231,
+              266
+            ]
+          ]
+        },
+        "history": [],
+        "examination": {
+          "vitals": {
+            "temperature": {
+              "value": 38.4,
+              "unit": "C",
+              "source_spans": [
+                [
+                  274,
+                  280
+                ]
+              ]
+            },
+            "heart_rate": null,
+            "respiratory_rate": null,
+            "weight": null,
+            "crt_seconds": null
+          },
+          "findings": [
+            {
+              "system": "heart and lungs",
+              "text": "heart and lungs NAD",
+              "source_role": "vet_observed",
+              "source_spans": [
+                [
+                  288,
+                  307
+                ]
+              ]
+            }
+          ]
+        },
+        "diagnostics": [],
+        "assessment": {
+          "text": null,
+          "differentials": [],
+          "source_spans": []
+        },
+        "treatments": [],
+        "medications": [
+          {
+            "drug": "Milbemax",
+            "class_as_written": null,
+            "dose": 1,
+            "dose_unit": "tablet",
+            "route": "PO",
+            "frequency": "once",
+            "duration": null,
+            "status": "dispensed",
+            "source_spans": [
+              [
+                315,
+                351
+              ]
+            ]
+          }
+        ],
+        "plan": {
+          "follow_up": null,
+          "instructions": [
+            {
+              "text": "flea treatment monthly for all pets in the house",
+              "source_spans": [
+                [
+                  358,
+                  406
+                ]
+              ]
+            }
+          ]
+        },
+        "missing": [],
+        "uncertain": []
+      }
+    }
+  ]
+}

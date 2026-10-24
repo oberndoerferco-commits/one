@@ -1,0 +1,158 @@
+{
+  "id": "122-gen-senior-weight-loss-de",
+  "language": "de",
+  "synthetic": true,
+  "header": {
+    "name": "Mausi",
+    "species": "cat",
+    "breed": "European Shorthair",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 14,
+      "unit": "year"
+    }
+  },
+  "notes": "nimmt seit 3 Monaten ab, trinkt mehr\nguter Appetit\nKGW 3,9 kg\nmager, Fell ungepflegt\nkleiner Knoten im Bereich Schilddrüse li.\nBlut inkl. T4 heute entnommen\nHyperthyreose\nchronische Nierenerkrankung\nAnruf mit Ergebnissen",
+  "expect": {
+    "missing_includes": [
+      "diagnostics[0].result"
+    ],
+    "drugs": [],
+    "assessment_text": null,
+    "statuses": {
+      "diagnostics[0]": "performed"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "nimmt seit 3 Monaten ab, trinkt mehr",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          36
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "Appetit",
+        "value": "guter Appetit",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            37,
+            50
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": {
+          "value": 3.9,
+          "unit": "kg",
+          "source_spans": [
+            [
+              51,
+              61
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "Allgemein",
+          "text": "mager, Fell ungepflegt",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              62,
+              84
+            ]
+          ]
+        },
+        {
+          "system": "Hals",
+          "text": "kleiner Knoten im Bereich Schilddrüse li.",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              85,
+              126
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "Blutuntersuchung inkl. T4",
+        "status": "performed",
+        "result": null,
+        "source_spans": [
+          [
+            127,
+            156
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": null,
+      "differentials": [
+        {
+          "text": "Hyperthyreose",
+          "source_spans": [
+            [
+              157,
+              170
+            ]
+          ]
+        },
+        {
+          "text": "chronische Nierenerkrankung",
+          "source_spans": [
+            [
+              171,
+              198
+            ]
+          ]
+        }
+      ],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "Anruf mit Ergebnissen",
+        "interval": null,
+        "source_spans": [
+          [
+            199,
+            220
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

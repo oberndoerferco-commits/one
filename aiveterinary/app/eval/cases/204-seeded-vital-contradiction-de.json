@@ -1,0 +1,108 @@
+{
+  "id": "204-seeded-vital-contradiction-de",
+  "language": "de",
+  "synthetic": true,
+  "notes_comment": "Seeded error: the notes give two heart rates (160 and 220); the record keeps 160 and says nothing about the other. notes_contradiction must flag it.",
+  "header": {
+    "name": "Mohrle",
+    "species": "cat",
+    "breed": "European Shorthair",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 8,
+      "unit": "year"
+    }
+  },
+  "notes": "seit gestern matt\nHF 160\nruhig, ggr. dehydriert\nHerzfrequenz 220\nMattigkeit, Ursache unklar\nWV in 2 Tagen",
+  "expect": {
+    "must_flag": [
+      "notes_contradiction"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "seit gestern matt",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          17
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": {
+          "value": 160,
+          "unit": "/min",
+          "source_spans": [
+            [
+              18,
+              24
+            ]
+          ]
+        },
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "Allgemein",
+          "text": "ruhig, ggr. dehydriert",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              25,
+              47
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": "Mattigkeit, Ursache unklar",
+      "differentials": [],
+      "source_spans": [
+        [
+          65,
+          91
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "WV in 2 Tagen",
+        "interval": {
+          "value": 2,
+          "unit": "day"
+        },
+        "source_spans": [
+          [
+            92,
+            105
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}
