@@ -7,7 +7,7 @@ const animals = defineCollection({
     title: z.string(),
     seoTitle: z.string().max(70).optional(),
     description: z.string(),
-    species: z.enum(['dog', 'cat', 'rabbit', 'horse', 'bird', 'general']),
+    species: z.enum(['dog', 'cat', 'rabbit', 'guinea-pig', 'ferret', 'horse', 'bird', 'reptile', 'general']),
     category: z.enum(['symptoms', 'conditions', 'medications', 'travel', 'first-aid', 'care']),
     urgency: z.enum(['emergency', 'today', 'this-week', 'routine']).optional(),
     author: z.string().optional(),               // "Dr. Name, DVM"
