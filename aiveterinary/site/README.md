@@ -76,6 +76,8 @@ Brevo all have free tiers), take its form action URL, and set it as
 `PUBLIC_NEWSLETTER_ACTION` in the hosting provider's environment variables.
 The form already sends `email` and `audience` (`owner` or `vet`).
 
+`PUBLIC_ASK_AI` (default off): set to `true` only once a server-side AI answer exists for the home page question box; it switches the hero kicker to "Your AI vet assistant". Until then the box only matches existing articles via Pagefind.
+
 ## Signing a vet review
 
 When a veterinarian has checked an article and approves it:
