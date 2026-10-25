@@ -62,4 +62,8 @@ export const TRANSLATION_GROUPS: { en?: string; it?: string; de?: string }[] = [
   { en: 'cat-swallowed-string', it: 'gatto-ha-ingerito-filo', de: 'katze-hat-faden-gefressen' }, // cat-string
   { en: 'cat-peeing-outside-litter-box', it: 'gatto-pipi-fuori-lettiera', de: 'katze-pinkelt-ins-bett' }, // cat-house-soiling
   { en: 'rabbit-vaccinations', it: 'vaccino-coniglio', de: 'kaninchen-impfen-rhd-myxomatose' }, // rabbit-vaccinations
+  { en: 'cat-eye-problems', it: 'gatto-occhio-chiuso-lacrima', de: 'katze-auge-traenend-rot' }, // cat-eyes
+  { en: 'dog-panting', it: 'cane-respira-male', de: 'hund-hechelt-staendig' }, // dog-panting
+  { en: 'dog-cat-fleas-what-to-do', it: 'cane-gatto-pulci-cosa-fare', de: 'hund-katze-floehe-was-tun' }, // fleas
+  { en: 'dog-ate-xylitol', it: 'cane-ha-mangiato-xilitolo', de: 'hund-hat-xylit-gefressen' }, // xylitol
 ];
