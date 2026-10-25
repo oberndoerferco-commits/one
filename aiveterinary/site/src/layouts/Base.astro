@@ -1,5 +1,6 @@
 ---
 import { pageSeo, ORG, LANGS, WEBSITE_ID } from '../lib/seo';
+import { ogImageFor } from '../lib/og';
 import AnimalIcon from '../components/AnimalIcon.astro';
 import Logo from '../components/Logo.astro';
 import '@fontsource-variable/fraunces/full.css';
@@ -191,6 +192,9 @@ const m = t.menu;
 const labels = new Map<string, string>();
 for (const x of [...t.footer1, ...t.footer2, m.urgent, m.symptoms, m.guide, ...m.checks.items, m.booklet, m.vets, m.about]) if (!labels.has(x.href)) labels.set(x.href, x.label);
 const seo = await pageSeo(path, L, { title, description, labels });
+// Share image: the page's own card (articles and animal pages, src/lib/og.ts), otherwise the site default.
+// The image only repeats the page title, so its alt text is the title.
+const ogImage = (await ogImageFor(path)) ?? { url: L === 'en' ? '/og.png' : `/og-${L}.png`, alt: fullTitle };
 const noindex = !!Astro.props.noindex || seo.noindex;
 const alternates = noindex ? [] : (Astro.props.alternates ?? seo.alternates);
 // The organisation on the home and About pages, the WebSite (site name) on the root home page only,
@@ -263,9 +267,10 @@ const rows = [
     <meta property="og:locale" content={ogLocale} />
     {alternates.filter(([l]) => l !== L).map(([l]) => <meta property="og:locale:alternate" content={({ en: 'en_GB', it: 'it_IT', de: 'de_DE' } as any)[l]} />)}
     {siteLd && <script type="application/ld+json" set:html={siteLd} />}
-    <meta property="og:image" content={new URL(L === 'en' ? '/og.png' : `/og-${L}.png`, Astro.site)} />
+    <meta property="og:image" content={new URL(ogImage.url, Astro.site)} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={ogImage.alt} />
     <meta name="twitter:card" content="summary_large_image" />
     {cfToken && <script is:inline defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon={JSON.stringify({ token: cfToken })}></script>}
   </head>

@@ -5,7 +5,8 @@
 // Errors (exit 1): page without title or description, duplicate title, canonical not the page's own URL,
 // internal link to a page that was not built, hreflang that points nowhere, is one-way or lacks the page
 // itself or x-default, sitemap URL that is missing or noindex, indexable page missing from the sitemap,
-// JSON-LD that does not parse, duplicate element ids, robots.txt or llms.txt missing.
+// JSON-LD that does not parse, duplicate element ids, robots.txt or llms.txt missing, og:image that is not
+// a file in the build (or lacks its alt text).
 // Warnings: titles over 70 characters (search results cut them by width, about 600 px), descriptions under
 // 50 characters, pages with more than one h1.
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
@@ -37,6 +38,8 @@ const walk = (d) => {
       links: [...h.matchAll(/<a\b[^>]*\shref="(\/[^"#?]*)/g)].map((m) => m[1]).filter((x) => !x.startsWith('//')),
       ld: [...h.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => m[1]),
       h1: (h.match(/<h1[\s>]/g) ?? []).length,
+      og: dec(/<meta property="og:image" content="([^"]*)"/.exec(head)?.[1] ?? ''),
+      ogAlt: /<meta property="og:image:alt" content="[^"]+"/.test(head),
       dupIds: [...new Set(ids.filter((x, i) => ids.indexOf(x) !== i))],
     });
   }
@@ -45,6 +48,7 @@ if (!existsSync(DIR)) { console.error(`seo check: ${DIR} does not exist; build f
 walk(DIR);
 
 const titles = new Map();
+let ogCards = 0;
 for (const [u, p] of pages) {
   if (u === '/404') continue;
   if (p.dupIds.length) errors.push(`${u}: duplicate id ${p.dupIds.join(', ')}`);
@@ -53,6 +57,10 @@ for (const [u, p] of pages) {
     const t = l.replace(/\/$/, '') || '/';
     if (!pages.has(t) && !existsSync(join(DIR, l))) errors.push(`${u}: link to ${l}, which was not built`);
   }
+  if (!p.og) errors.push(`${u}: no og:image`);
+  else if (!p.og.startsWith(SITE + '/') || !existsSync(join(DIR, decodeURIComponent(p.og.slice(SITE.length))))) errors.push(`${u}: og:image ${p.og} is not in the build`);
+  else if (!p.ogAlt) errors.push(`${u}: og:image without og:image:alt`);
+  if (p.og.includes('/og/')) ogCards++;
   if (p.noindex) continue;
   if (!p.title) errors.push(`${u}: no <title>`);
   if (!p.desc) errors.push(`${u}: no meta description`);
@@ -84,5 +92,5 @@ for (const f of ['robots.txt', 'llms.txt']) if (!existsSync(join(DIR, f))) error
 
 for (const w of warnings) console.warn(`warning: ${w}`);
 for (const e of errors) console.error(`error: ${e}`);
-console.log(`seo check: ${pages.size} pages, ${locs.size} sitemap URLs, ${errors.length} errors, ${warnings.length} warnings`);
+console.log(`seo check: ${pages.size} pages (${ogCards} with their own share image), ${locs.size} sitemap URLs, ${errors.length} errors, ${warnings.length} warnings`);
 process.exit(errors.length ? 1 : 0);
