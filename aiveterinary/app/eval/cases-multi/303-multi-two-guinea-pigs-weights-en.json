@@ -1,0 +1,248 @@
+{
+  "id": "303-multi-two-guinea-pigs-weights-en",
+  "language": "en",
+  "synthetic": true,
+  "multi_pet": true,
+  "notes": "Pip: not eating hay since yesterday\nPip: wt 950 g\nPip: incisors overgrown, drooling\nPip: incisors trimmed\nSqueak: routine check, no problems per owner\nSqueak: wt 1100 g\nSqueak: nails trimmed\nboth: more hay, fresh vitamin C rich vegetables daily\nrecheck Pip in 1 week",
+  "assignment": {
+    "0": "pip",
+    "1": "pip",
+    "2": "pip",
+    "3": "pip",
+    "4": "squeak",
+    "5": "squeak",
+    "6": "squeak",
+    "7": "shared",
+    "8": "pip"
+  },
+  "patients": [
+    {
+      "id": "pip",
+      "header": {
+        "name": "Pip",
+        "species": "other",
+        "breed": "Guinea pig",
+        "sex": "female",
+        "neuter_status": "intact",
+        "age": {
+          "value": 3,
+          "unit": "year"
+        }
+      },
+      "expect": {
+        "missing_includes": [
+          "assessment"
+        ],
+        "drugs": [],
+        "assessment_text": null,
+        "statuses": {
+          "treatments[0]": "performed"
+        }
+      },
+      "fixture_record": {
+        "schema_version": "0.2",
+        "patient": {
+          "name": null,
+          "species": null,
+          "breed": null,
+          "sex": null,
+          "neuter_status": null,
+          "age": null,
+          "weight": null
+        },
+        "presenting_complaint": {
+          "text": "not eating hay since yesterday",
+          "source_role": "owner_reported",
+          "source_spans": [
+            [
+              5,
+              35
+            ]
+          ]
+        },
+        "history": [],
+        "examination": {
+          "vitals": {
+            "temperature": null,
+            "heart_rate": null,
+            "respiratory_rate": null,
+            "weight": {
+              "value": 950,
+              "unit": "g",
+              "source_spans": [
+                [
+                  41,
+                  49
+                ]
+              ]
+            },
+            "crt_seconds": null
+          },
+          "findings": [
+            {
+              "system": "oral",
+              "text": "incisors overgrown, drooling",
+              "source_role": "vet_observed",
+              "source_spans": [
+                [
+                  55,
+                  83
+                ]
+              ]
+            }
+          ]
+        },
+        "diagnostics": [],
+        "assessment": {
+          "text": null,
+          "differentials": [],
+          "source_spans": []
+        },
+        "treatments": [
+          {
+            "type": "procedure",
+            "text": "incisors trimmed",
+            "status": "performed",
+            "source_spans": [
+              [
+                89,
+                105
+              ]
+            ]
+          }
+        ],
+        "medications": [],
+        "plan": {
+          "follow_up": {
+            "text": "recheck Pip in 1 week",
+            "interval": {
+              "value": 1,
+              "unit": "week"
+            },
+            "source_spans": [
+              [
+                245,
+                266
+              ]
+            ]
+          },
+          "instructions": [
+            {
+              "text": "more hay, fresh vitamin C rich vegetables daily",
+              "source_spans": [
+                [
+                  197,
+                  244
+                ]
+              ]
+            }
+          ]
+        },
+        "missing": [],
+        "uncertain": []
+      }
+    },
+    {
+      "id": "squeak",
+      "header": {
+        "name": "Squeak",
+        "species": "other",
+        "breed": "Guinea pig",
+        "sex": "female",
+        "neuter_status": "intact",
+        "age": {
+          "value": 2,
+          "unit": "year"
+        }
+      },
+      "expect": {
+        "missing_includes": [
+          "assessment"
+        ],
+        "drugs": [],
+        "assessment_text": null,
+        "statuses": {
+          "treatments[0]": "performed"
+        }
+      },
+      "fixture_record": {
+        "schema_version": "0.2",
+        "patient": {
+          "name": null,
+          "species": null,
+          "breed": null,
+          "sex": null,
+          "neuter_status": null,
+          "age": null,
+          "weight": null
+        },
+        "presenting_complaint": {
+          "text": "routine check, no problems per owner",
+          "source_role": "owner_reported",
+          "source_spans": [
+            [
+              114,
+              150
+            ]
+          ]
+        },
+        "history": [],
+        "examination": {
+          "vitals": {
+            "temperature": null,
+            "heart_rate": null,
+            "respiratory_rate": null,
+            "weight": {
+              "value": 1100,
+              "unit": "g",
+              "source_spans": [
+                [
+                  159,
+                  168
+                ]
+              ]
+            },
+            "crt_seconds": null
+          },
+          "findings": []
+        },
+        "diagnostics": [],
+        "assessment": {
+          "text": null,
+          "differentials": [],
+          "source_spans": []
+        },
+        "treatments": [
+          {
+            "type": "procedure",
+            "text": "nails trimmed",
+            "status": "performed",
+            "source_spans": [
+              [
+                177,
+                190
+              ]
+            ]
+          }
+        ],
+        "medications": [],
+        "plan": {
+          "follow_up": null,
+          "instructions": [
+            {
+              "text": "more hay, fresh vitamin C rich vegetables daily",
+              "source_spans": [
+                [
+                  197,
+                  244
+                ]
+              ]
+            }
+          ]
+        },
+        "missing": [],
+        "uncertain": []
+      }
+    }
+  ]
+}

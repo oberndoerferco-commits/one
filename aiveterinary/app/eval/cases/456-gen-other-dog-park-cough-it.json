@@ -1,0 +1,136 @@
+{
+  "id": "456-gen-other-dog-park-cough-it",
+  "language": "it",
+  "synthetic": true,
+  "header": {
+    "name": "Lampo",
+    "species": "dog",
+    "breed": "Cocker Spaniel",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 3,
+      "unit": "year"
+    }
+  },
+  "notes": "tosse secca da sabato\nla settimana scorsa ha giocato al parco con un altro cane che aveva la tosse dei canili e 39,9 di febbre\nmangia e gioca normalmente\nT 38,6\ntosse alla palpazione tracheale, polmoni puliti\nsospetta tracheobronchite infettiva\nniente contatti con altri cani per 2 settimane\nricontrollo se non migliora entro 1 settimana",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": "sospetta tracheobronchite infettiva",
+    "temperature": 38.6,
+    "statuses": {},
+    "must_not_contain": [
+      "39.9",
+      "febbre",
+      "tosse dei canili"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "tosse secca da sabato",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          21
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "appetito",
+        "value": "mangia e gioca normalmente",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            127,
+            153
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.6,
+          "unit": "C",
+          "source_spans": [
+            [
+              154,
+              160
+            ]
+          ]
+        },
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "respiratorio",
+          "text": "tosse alla palpazione tracheale, polmoni puliti",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              161,
+              208
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": "sospetta tracheobronchite infettiva",
+      "differentials": [],
+      "source_spans": [
+        [
+          209,
+          244
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "ricontrollo se non migliora entro 1 settimana",
+        "interval": {
+          "value": 1,
+          "unit": "week"
+        },
+        "source_spans": [
+          [
+            292,
+            337
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "niente contatti con altri cani per 2 settimane",
+          "source_spans": [
+            [
+              245,
+              291
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

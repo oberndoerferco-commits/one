@@ -1,0 +1,145 @@
+{
+  "id": "410-gen-typo-temperature-decimal-de",
+  "language": "de",
+  "synthetic": true,
+  "header": {
+    "name": "Minou",
+    "species": "cat",
+    "breed": "European Shorthair",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 6,
+      "unit": "year"
+    }
+  },
+  "notes": "niest seit 4 Tagen, Augenausfluss\nT 3,89\nHF 190\nseröser Augenausfluss bds., Konjunktiven ggr. gerötet\nniest während der Untersuchung\nV. a. Katzenschnupfen\nAugen 2x täglich mit Kochsalzlösung reinigen\nWV in 5 Tagen, falls nicht besser",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": "V. a. Katzenschnupfen",
+    "statuses": {},
+    "uncertain_min": 1,
+    "must_not_contain": [
+      "38.9"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "niest seit 4 Tagen, Augenausfluss",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          33
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": {
+          "value": 190,
+          "unit": "/min",
+          "source_spans": [
+            [
+              41,
+              47
+            ]
+          ]
+        },
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "Augen",
+          "text": "seröser Augenausfluss bds., Konjunktiven ggr. gerötet",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              48,
+              101
+            ]
+          ]
+        },
+        {
+          "system": "Nase",
+          "text": "niest während der Untersuchung",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              102,
+              132
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": "V. a. Katzenschnupfen",
+      "differentials": [],
+      "source_spans": [
+        [
+          133,
+          154
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "WV in 5 Tagen, falls nicht besser",
+        "interval": {
+          "value": 5,
+          "unit": "day"
+        },
+        "source_spans": [
+          [
+            200,
+            233
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "Augen 2x täglich mit Kochsalzlösung reinigen",
+          "source_spans": [
+            [
+              155,
+              199
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": [
+      {
+        "field": "examination.vitals.temperature",
+        "original_text": "T 3,89",
+        "reason": "als 3,89 geschrieben, Komma vermutlich verrutscht; nicht korrigiert und nicht als Temperatur übernommen",
+        "source_spans": [
+          [
+            34,
+            40
+          ]
+        ]
+      }
+    ]
+  }
+}

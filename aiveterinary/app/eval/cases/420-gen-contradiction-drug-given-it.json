@@ -1,0 +1,153 @@
+{
+  "id": "420-gen-contradiction-drug-given-it",
+  "language": "it",
+  "synthetic": true,
+  "header": {
+    "name": "Zucca",
+    "species": "cat",
+    "breed": "European Shorthair",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 9,
+      "unit": "year"
+    }
+  },
+  "notes": "zoppia anteriore dx da ieri\nT 38,6\nzoppia AD 3/5, gonfiore e dolore carpo dx, ferita da morso\nsospetto ascesso da morso carpo dx\nferita tosata e lavata\nConvenia oggi non somministrato\nConvenia sc somministrato a fine visita\ntenere in casa, controllare la ferita ogni giorno\ncontrollo tra 3 giorni",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": "sospetto ascesso da morso carpo dx",
+    "temperature": 38.6,
+    "statuses": {
+      "treatments[0]": "performed"
+    },
+    "uncertain_min": 1,
+    "must_not_contain": [
+      "convenia"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "zoppia anteriore dx da ieri",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          27
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.6,
+          "unit": "C",
+          "source_spans": [
+            [
+              28,
+              34
+            ]
+          ]
+        },
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "apparato locomotore",
+          "text": "zoppia AD 3/5, gonfiore e dolore carpo dx, ferita da morso",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              35,
+              93
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": "sospetto ascesso da morso carpo dx",
+      "differentials": [],
+      "source_spans": [
+        [
+          94,
+          128
+        ]
+      ]
+    },
+    "treatments": [
+      {
+        "type": "procedure",
+        "text": "ferita tosata e lavata",
+        "status": "performed",
+        "source_spans": [
+          [
+            129,
+            151
+          ]
+        ]
+      }
+    ],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "controllo tra 3 giorni",
+        "interval": {
+          "value": 3,
+          "unit": "day"
+        },
+        "source_spans": [
+          [
+            274,
+            296
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "tenere in casa, controllare la ferita ogni giorno",
+          "source_spans": [
+            [
+              224,
+              273
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": [
+      {
+        "field": "medications",
+        "original_text": "Convenia oggi non somministrato / Convenia sc somministrato a fine visita",
+        "reason": "una riga dice che Convenia non è stato somministrato, una successiva che è stato dato sc; non chiarito, quindi nessun farmaco registrato",
+        "source_spans": [
+          [
+            152,
+            183
+          ],
+          [
+            184,
+            223
+          ]
+        ]
+      }
+    ]
+  }
+}

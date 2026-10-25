@@ -1,52 +1,52 @@
 {
   "metrics": {
     "attribution": {
-      "k": 827,
-      "n": 827,
+      "k": 1358,
+      "n": 1358,
       "rate": 1,
-      "lo": 0.9954,
+      "lo": 0.9972,
       "hi": 1
     },
     "unsupported_content": {
       "k": 0,
-      "n": 827,
+      "n": 1358,
       "rate": 0,
       "lo": 0,
-      "hi": 0.0046
+      "hi": 0.0028
     },
     "cases_with_blocking_finding": {
       "k": 0,
-      "n": 97,
+      "n": 160,
       "rate": 0,
       "lo": 0,
-      "hi": 0.0381
+      "hi": 0.0234
     },
     "missing_field_detection": {
-      "k": 86,
-      "n": 86,
+      "k": 143,
+      "n": 143,
       "rate": 1,
-      "lo": 0.9572,
+      "lo": 0.9738,
       "hi": 1
     },
     "missing_flag_precision": {
-      "k": 86,
-      "n": 86,
+      "k": 143,
+      "n": 143,
       "rate": 1,
-      "lo": 0.9572,
+      "lo": 0.9738,
       "hi": 1
     },
     "seeded_error_detection": {
-      "k": 9,
-      "n": 9,
+      "k": 18,
+      "n": 18,
       "rate": 1,
-      "lo": 0.7008,
+      "lo": 0.8241,
       "hi": 1
     }
   },
-  "run_at": "2026-10-23T16:16:29.768Z",
+  "run_at": "2026-10-25T23:16:34.113Z",
   "extractor": "fixture",
   "prompt": "extract-v1",
-  "cases": 107,
+  "cases": 179,
   "failed": 0,
   "blocking": 6,
   "warnings": 0,
@@ -55,11 +55,11 @@
   "missing_recall": 1,
   "false_missing_flags": [],
   "seeded": {
-    "cases": 9,
-    "errors": 9,
-    "caught": 9,
-    "blocking": 3,
-    "warnings": 6
+    "cases": 18,
+    "errors": 18,
+    "caught": 18,
+    "blocking": 9,
+    "warnings": 9
   },
   "languages": [
     "de",
@@ -494,16 +494,304 @@
     {
       "id": "208-seeded-other-animal-it",
       "pass": true
+    },
+    {
+      "id": "209-seeded-owner-report-as-finding-en",
+      "pass": true
+    },
+    {
+      "id": "210-seeded-owner-report-as-finding-de",
+      "pass": true
+    },
+    {
+      "id": "211-seeded-owner-report-as-finding-it",
+      "pass": true
+    },
+    {
+      "id": "212-seeded-invented-dose-en",
+      "pass": true
+    },
+    {
+      "id": "213-seeded-invented-dose-de",
+      "pass": true
+    },
+    {
+      "id": "214-seeded-invented-dose-it",
+      "pass": true
+    },
+    {
+      "id": "215-seeded-invented-diagnosis-en",
+      "pass": true
+    },
+    {
+      "id": "216-seeded-invented-diagnosis-de",
+      "pass": true
+    },
+    {
+      "id": "217-seeded-invented-diagnosis-it",
+      "pass": true
+    },
+    {
+      "id": "400-gen-shorthand-otitis-q12h-en",
+      "pass": true
+    },
+    {
+      "id": "401-gen-shorthand-otitis-q12h-de",
+      "pass": true
+    },
+    {
+      "id": "402-gen-shorthand-otitis-q12h-it",
+      "pass": true
+    },
+    {
+      "id": "403-gen-shorthand-ckd-same-dose-en",
+      "pass": true
+    },
+    {
+      "id": "404-gen-shorthand-ckd-same-dose-de",
+      "pass": true
+    },
+    {
+      "id": "405-gen-shorthand-ckd-same-dose-it",
+      "pass": true
+    },
+    {
+      "id": "406-gen-typos-dictation-gastro-en",
+      "pass": true
+    },
+    {
+      "id": "407-gen-typos-dictation-gastro-de",
+      "pass": true
+    },
+    {
+      "id": "408-gen-typos-dictation-gastro-it",
+      "pass": true
+    },
+    {
+      "id": "409-gen-typo-temperature-decimal-en",
+      "pass": true
+    },
+    {
+      "id": "410-gen-typo-temperature-decimal-de",
+      "pass": true
+    },
+    {
+      "id": "411-gen-typo-temperature-decimal-it",
+      "pass": true
+    },
+    {
+      "id": "412-gen-contradiction-weight-twice-en",
+      "pass": true
+    },
+    {
+      "id": "413-gen-contradiction-weight-twice-de",
+      "pass": true
+    },
+    {
+      "id": "414-gen-contradiction-weight-twice-it",
+      "pass": true
+    },
+    {
+      "id": "415-gen-contradiction-no-vomiting-twice-en",
+      "pass": true
+    },
+    {
+      "id": "416-gen-contradiction-no-vomiting-twice-de",
+      "pass": true
+    },
+    {
+      "id": "417-gen-contradiction-no-vomiting-twice-it",
+      "pass": true
+    },
+    {
+      "id": "418-gen-contradiction-drug-given-en",
+      "pass": true
+    },
+    {
+      "id": "419-gen-contradiction-drug-given-de",
+      "pass": true
+    },
+    {
+      "id": "420-gen-contradiction-drug-given-it",
+      "pass": true
+    },
+    {
+      "id": "421-gen-owner-vs-vet-seizure-en",
+      "pass": true
+    },
+    {
+      "id": "422-gen-owner-vs-vet-seizure-de",
+      "pass": true
+    },
+    {
+      "id": "423-gen-owner-vs-vet-seizure-it",
+      "pass": true
+    },
+    {
+      "id": "424-gen-owner-vs-vet-weight-thirst-en",
+      "pass": true
+    },
+    {
+      "id": "425-gen-owner-vs-vet-weight-thirst-de",
+      "pass": true
+    },
+    {
+      "id": "426-gen-owner-vs-vet-weight-thirst-it",
+      "pass": true
+    },
+    {
+      "id": "427-gen-written-later-hospital-day-en",
+      "pass": true
+    },
+    {
+      "id": "428-gen-written-later-hospital-day-de",
+      "pass": true
+    },
+    {
+      "id": "429-gen-written-later-hospital-day-it",
+      "pass": true
+    },
+    {
+      "id": "430-gen-written-later-next-day-en",
+      "pass": true
+    },
+    {
+      "id": "431-gen-written-later-next-day-de",
+      "pass": true
+    },
+    {
+      "id": "432-gen-written-later-next-day-it",
+      "pass": true
+    },
+    {
+      "id": "433-gen-guinea-pig-mites-en",
+      "pass": true
+    },
+    {
+      "id": "434-gen-guinea-pig-mites-de",
+      "pass": true
+    },
+    {
+      "id": "435-gen-guinea-pig-mites-it",
+      "pass": true
+    },
+    {
+      "id": "436-gen-reptile-husbandry-mbd-en",
+      "pass": true
+    },
+    {
+      "id": "437-gen-reptile-husbandry-mbd-de",
+      "pass": true
+    },
+    {
+      "id": "438-gen-reptile-husbandry-mbd-it",
+      "pass": true
+    },
+    {
+      "id": "439-gen-ferret-alopecia-implant-discussed-en",
+      "pass": true
+    },
+    {
+      "id": "440-gen-ferret-alopecia-implant-discussed-de",
+      "pass": true
+    },
+    {
+      "id": "441-gen-ferret-alopecia-implant-discussed-it",
+      "pass": true
+    },
+    {
+      "id": "442-gen-horse-hoof-abscess-dose-en",
+      "pass": true
+    },
+    {
+      "id": "443-gen-horse-hoof-abscess-dose-de",
+      "pass": true
+    },
+    {
+      "id": "444-gen-horse-hoof-abscess-dose-it",
+      "pass": true
+    },
+    {
+      "id": "445-gen-adversarial-no-diagnosis-pupd-en",
+      "pass": true
+    },
+    {
+      "id": "446-gen-adversarial-no-diagnosis-pupd-de",
+      "pass": true
+    },
+    {
+      "id": "447-gen-adversarial-no-diagnosis-pupd-it",
+      "pass": true
+    },
+    {
+      "id": "448-gen-adversarial-dose-to-calculate-en",
+      "pass": true
+    },
+    {
+      "id": "449-gen-adversarial-dose-to-calculate-de",
+      "pass": true
+    },
+    {
+      "id": "450-gen-adversarial-dose-to-calculate-it",
+      "pass": true
+    },
+    {
+      "id": "451-gen-adversarial-dose-kept-exact-en",
+      "pass": true
+    },
+    {
+      "id": "452-gen-adversarial-dose-kept-exact-de",
+      "pass": true
+    },
+    {
+      "id": "453-gen-adversarial-dose-kept-exact-it",
+      "pass": true
+    },
+    {
+      "id": "454-gen-other-dog-park-cough-en",
+      "pass": true
+    },
+    {
+      "id": "455-gen-other-dog-park-cough-de",
+      "pass": true
+    },
+    {
+      "id": "456-gen-other-dog-park-cough-it",
+      "pass": true
+    },
+    {
+      "id": "457-gen-puppy-vaccine-littermate-en",
+      "pass": true
+    },
+    {
+      "id": "458-gen-puppy-vaccine-littermate-de",
+      "pass": true
+    },
+    {
+      "id": "459-gen-puppy-vaccine-littermate-it",
+      "pass": true
+    },
+    {
+      "id": "460-gen-rabbit-shorthand-rhinitis-en",
+      "pass": true
+    },
+    {
+      "id": "461-gen-rabbit-shorthand-rhinitis-de",
+      "pass": true
+    },
+    {
+      "id": "462-gen-rabbit-shorthand-rhinitis-it",
+      "pass": true
     }
   ],
   "multi_pet": {
-    "cases": 3,
+    "cases": 9,
     "failed": 0,
-    "patients": 6,
+    "patients": 18,
     "blocking": 0,
     "warnings": 0,
-    "probes": 6,
-    "probes_caught": 6,
+    "probes": 18,
+    "probes_caught": 18,
     "per_case": [
       {
         "id": "300-multi-dog-cat-otitis-check-en",
@@ -515,6 +803,30 @@
       },
       {
         "id": "302-multi-dog-cat-otitis-check-it",
+        "pass": true
+      },
+      {
+        "id": "303-multi-two-guinea-pigs-weights-en",
+        "pass": true
+      },
+      {
+        "id": "304-multi-two-guinea-pigs-weights-de",
+        "pass": true
+      },
+      {
+        "id": "305-multi-two-guinea-pigs-weights-it",
+        "pass": true
+      },
+      {
+        "id": "306-multi-two-dogs-written-later-en",
+        "pass": true
+      },
+      {
+        "id": "307-multi-two-dogs-written-later-de",
+        "pass": true
+      },
+      {
+        "id": "308-multi-two-dogs-written-later-it",
         "pass": true
       }
     ]

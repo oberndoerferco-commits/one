@@ -32,6 +32,16 @@ describe('other_animal_fact: a fact taken from a line about another animal → w
     ['it', 'Fido, cane\nl\'altro cane ha diarrea\nT 38,6', 'ha diarrea'],
     ['it', 'zoppia posteriore sinistra\nla cavalla nel box accanto tossisce, non è nostra paziente', 'tossisce'],
     ['it', 'mangia bene. L\'altro gatto ha vomitato ieri. T 38,6', 'ha vomitato ieri'],
+    // regression: littermates and the schema's smaller species (ferret, guinea pig) were not recognised
+    ['en', 'breeder says a littermate died of parvo last week', 'died of parvo last week'],
+    ['en', 'the other guinea pig has crusts on the back', 'has crusts on the back'],
+    ['en', 'another ferret at home lost weight', 'lost weight'],
+    ['de', 'laut Züchter ist ein Wurfgeschwister an Parvovirose gestorben', 'an Parvovirose gestorben'],
+    ['de', 'das andere Meerschweinchen hat Krusten', 'hat Krusten'],
+    ['de', 'das zweite Frettchen hat abgenommen', 'hat abgenommen'],
+    ['it', "un fratello di cucciolata è morto di parvovirosi", 'morto di parvovirosi'],
+    ['it', "l'altra cavia ha croste sul dorso", 'ha croste sul dorso'],
+    ['it', "l'altro furetto perde pelo", 'perde pelo'],
   ])('%s: %j', (_l, notes, text) => {
     const fs = hist(notes, text);
     expect(fs.map((f) => [f.rule, f.severity, f.field])).toEqual([['other_animal_fact', 'warn', 'history[0]']]);
@@ -76,6 +86,9 @@ describe('other_animal_fact: conservative', () => {
     ['it', 'vive con un altro cane\nvomito da 2 giorni', 'vomito da 2 giorni'],
     ['it', 'vive con un altro cane. Vomito da 2 giorni.', 'Vomito da 2 giorni'],
     ['it', 'nessun altri animali in casa\nvomito da 2 giorni', 'vomito da 2 giorni'],
+    ['en', 'treat both guinea pigs\nhair loss dorsum', 'hair loss dorsum'],
+    ['de', 'beide Meerschweinchen behandeln\nHaarausfall Rücken', 'Haarausfall Rücken'],
+    ['it', 'trattare entrambe le cavie\nalopecia dorsale', 'alopecia dorsale'],
   ])('%s: a housemate on another line or sentence is left alone (%j)', (_l, notes, text) => {
     expect(hist(notes, text)).toEqual([]);
   });

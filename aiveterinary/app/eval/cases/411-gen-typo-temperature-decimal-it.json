@@ -1,0 +1,145 @@
+{
+  "id": "411-gen-typo-temperature-decimal-it",
+  "language": "it",
+  "synthetic": true,
+  "header": {
+    "name": "Silvestro",
+    "species": "cat",
+    "breed": "European Shorthair",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 6,
+      "unit": "year"
+    }
+  },
+  "notes": "starnuti e scolo oculare da 4 giorni\nT 3,89\nFC 190\nscolo oculare sieroso bilaterale, congiuntive lievemente arrossate\nstarnutisce durante la visita\nsospetta rinotracheite\npulire gli occhi con soluzione fisiologica due volte al giorno\ncontrollo tra 5 giorni se non migliora",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": "sospetta rinotracheite",
+    "statuses": {},
+    "uncertain_min": 1,
+    "must_not_contain": [
+      "38.9"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "starnuti e scolo oculare da 4 giorni",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          36
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": {
+          "value": 190,
+          "unit": "/min",
+          "source_spans": [
+            [
+              44,
+              50
+            ]
+          ]
+        },
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "occhi",
+          "text": "scolo oculare sieroso bilaterale, congiuntive lievemente arrossate",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              51,
+              117
+            ]
+          ]
+        },
+        {
+          "system": "naso",
+          "text": "starnutisce durante la visita",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              118,
+              147
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": "sospetta rinotracheite",
+      "differentials": [],
+      "source_spans": [
+        [
+          148,
+          170
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "controllo tra 5 giorni se non migliora",
+        "interval": {
+          "value": 5,
+          "unit": "day"
+        },
+        "source_spans": [
+          [
+            234,
+            272
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "pulire gli occhi con soluzione fisiologica due volte al giorno",
+          "source_spans": [
+            [
+              171,
+              233
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": [
+      {
+        "field": "examination.vitals.temperature",
+        "original_text": "T 3,89",
+        "reason": "scritto 3,89, virgola probabilmente spostata; non corretto e non registrato come temperatura",
+        "source_spans": [
+          [
+            37,
+            43
+          ]
+        ]
+      }
+    ]
+  }
+}

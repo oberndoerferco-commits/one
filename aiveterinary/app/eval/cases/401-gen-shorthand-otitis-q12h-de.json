@@ -1,0 +1,143 @@
+{
+  "id": "401-gen-shorthand-otitis-q12h-de",
+  "language": "de",
+  "synthetic": true,
+  "header": {
+    "name": "Hasso",
+    "species": "dog",
+    "breed": "Deutscher Schäferhund",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 5,
+      "unit": "year"
+    }
+  },
+  "notes": "schüttelt seit 3 Tagen den Kopf, kratzt re. Ohr\nAZ o.B., Herz/Lunge o.B.\nGehörgang re. gerötet, Cerumen ++, li. o.B.\nZyto re.: Kokken +++, Stäbchen neg.\nOtitis externa re.\nOtomax 4 Tr. re. Ohr 2x tgl. 7 Tage, mitgegeben\nWV in 10-14 Tagen",
+  "expect": {
+    "missing_includes": [
+      "patient.weight"
+    ],
+    "drugs": [
+      "Otomax"
+    ],
+    "assessment_text": "Otitis externa re.",
+    "statuses": {
+      "medications[0]": "dispensed",
+      "diagnostics[0]": "performed"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "schüttelt seit 3 Tagen den Kopf, kratzt re. Ohr",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          47
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "Allgemein",
+          "text": "AZ o.B., Herz/Lunge o.B.",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              48,
+              72
+            ]
+          ]
+        },
+        {
+          "system": "Ohren",
+          "text": "Gehörgang re. gerötet, Cerumen ++, li. o.B.",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              73,
+              116
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "Ohrzytologie re.",
+        "status": "performed",
+        "result": "Kokken +++, Stäbchen neg.",
+        "source_spans": [
+          [
+            117,
+            152
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": "Otitis externa re.",
+      "differentials": [],
+      "source_spans": [
+        [
+          153,
+          171
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "Otomax",
+        "class_as_written": null,
+        "dose": 4,
+        "dose_unit": "Tr.",
+        "route": "re. Ohr",
+        "frequency": "2x tgl.",
+        "duration": "7 Tage",
+        "status": "dispensed",
+        "source_spans": [
+          [
+            172,
+            219
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "WV in 10-14 Tagen",
+        "interval": null,
+        "source_spans": [
+          [
+            220,
+            237
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

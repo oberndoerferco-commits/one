@@ -140,3 +140,53 @@ describe('country flag language', () => {
     for (const f of [...it_, ...de]) expect(f.reason).not.toBe(en.find((e) => e.rule === f.rule && e.field === f.field)?.reason);
   });
 });
+
+/**
+ * Country rules on the eval cases that carry them (400+): exotics and a horse where food-producing status
+ * decides CH/AT, a dose written in full where the DE regimen is complete, a dose left open, an antibiotic,
+ * and a vaccination needing identification. Each case runs in the language of its country.
+ */
+describe('country rules on the 400+ eval cases', () => {
+  const ALL = ['DE', 'AT', 'CH', 'IT'] as const;
+  it('guinea pig (species other): CH asks for the TAMV dispensing record unless the vet says it is a companion animal', () => {
+    for (const id of ['433-gen-guinea-pig-mites-en', '434-gen-guinea-pig-mites-de']) {
+      const { record, header } = prep(id);
+      expect(rules(countryMissing(record, header, ctx({ country: 'CH' })))).toContain('ch_tamv_abgabe');
+      expect(rules(countryMissing(record, header, ctx({ country: 'CH', food_producing: false })))).not.toContain('ch_tamv_abgabe');
+    }
+  });
+  it('horse with a full regimen (2 g PO BID 3 days): dispensing record flagged in DE/AT/CH, DE regimen complete', () => {
+    const { record, header } = prep('443-gen-horse-hoof-abscess-dose-de');
+    expect(rules(countryMissing(record, header, ctx({ country: 'DE' })))).toContain('de_taehav_abgabebeleg');
+    expect(rules(countryMissing(record, header, ctx({ country: 'DE' })))).not.toContain('de_taehav_anwendung');
+    expect(rules(countryMissing(record, header, ctx({ country: 'AT' })))).toContain('at_tamg_abgabe');
+    expect(rules(countryMissing(record, header, ctx({ country: 'CH' })))).toContain('ch_tamv_abgabe');
+    // two procedures performed, no consent recorded yet
+    for (const country of ALL) expect(rules(countryMissing(record, header, ctx({ country })))).toContain('consent_for_procedure');
+  });
+  it('dose left open ("same dose as before"): DE regimen and keeper flagged, IT REV number flagged; nothing filled in', () => {
+    const de = prep('404-gen-shorthand-ckd-same-dose-de');
+    expect(de.record.medications[0].dose).toBeNull();
+    const f = rules(countryMissing(de.record, de.header, ctx({ country: 'DE' })));
+    expect(f).toContain('de_taehav_anwendung'); expect(f).toContain('de_rezept_halter');
+    const it_ = prep('405-gen-shorthand-ckd-same-dose-it');
+    expect(rules(countryMissing(it_.record, it_.header, ctx({ country: 'IT' })))).toEqual(expect.arrayContaining(['it_rev_number', 'it_microchip', 'it_codice_fiscale']));
+    expect(rules(countryMissing(it_.record, it_.header, ctx({ country: 'IT', prescription_number: 'REV-TEST-0001', microchip: '380260000000001', owner: { tax_id: 'TSTXXX00A01H501X' } })))).not.toContain('it_rev_number');
+  });
+  it('antibiotic dispensed: justification blocks in every country until written; IT scarico needs the quantity', () => {
+    const { record, header } = prep('453-gen-adversarial-dose-kept-exact-it');
+    expect(record.medications[0]).toMatchObject({ dose: 12.5, dose_unit: 'mg/kg' });
+    for (const country of ALL) {
+      const f = countryMissing(record, header, ctx({ country, dispensings: [{ medication_index: 0, is_antibiotic: true }] }));
+      expect(f.find((x) => x.rule === `${country.toLowerCase()}_antibiotic_justification`)?.severity, country).toBe('block');
+    }
+    expect(rules(countryMissing(record, header, ctx({ country: 'IT' })))).toContain('it_scarico_quantita');
+  });
+  it('puppy vaccination: identification asked for until the vet enters it; the batch comes from the dispensing record', () => {
+    const { record, header } = prep('459-gen-puppy-vaccine-littermate-it');
+    const f = rules(countryMissing(record, header, ctx({ country: 'IT' })));
+    expect(f).toEqual(expect.arrayContaining(['it_microchip', 'microchip_for_vaccine', 'vaccine_batch']));
+    const done = rules(countryMissing(record, header, ctx({ country: 'IT', microchip: '380260000000001', dispensings: [{ medication_index: 0, batch: 'QZ4417', product: 'DHPPi' }] })));
+    expect(done).not.toContain('it_microchip'); expect(done).not.toContain('microchip_for_vaccine'); expect(done).not.toContain('vaccine_batch');
+  });
+});

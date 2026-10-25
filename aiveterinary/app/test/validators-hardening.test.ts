@@ -25,7 +25,7 @@ const NEW_RULES = ['number_not_in_source', 'text_number_not_in_source', 'dose_no
 
 describe('gold records stay clean', () => {
   const ids = readdirSync(casesDir).filter((f) => f.endsWith('.json')).map((f) => f.replace(/\.json$/, '')).sort();
-  it('covers all 107 cases', () => { expect(ids.length).toBe(107); });
+  it('covers all 179 cases', () => { expect(ids.length).toBe(179); });
   for (const id of ids) {
     const { c, record, notes, header } = prep(id);
     if (c.expect?.fixture_must_fail || c.expect?.must_flag) continue; // deliberately wrong records
@@ -126,6 +126,18 @@ describe('C. route and frequency must be supported by the medication\'s span', (
     for (const fq of ['bid', 'BID', 'b.i.d.', 'twice daily', '2x täglich', 'due volte al giorno', 'q12h']) expect(mutate('103-gen-otitis-cat-en', (r) => { r.medications[0].frequency = fq; }), fq).toEqual([]);
     expect(supportedBy('twice daily', 'Surolan 5 Tropfen 2x tgl 7 Tage', FREQUENCY_EQUIVALENTS)).toBe(true);
     expect(supportedBy('bid', 'Surolan 3x täglich', FREQUENCY_EQUIVALENTS)).toBe(false);
+  });
+  it('interval forms are equivalents in all three languages (regression: "ogni 12 ore" normalised to BID blocked)', () => {
+    // 402: "Otomax 4 gtt orecchio dx ogni 12 ore per 7 giorni, consegnato"
+    for (const fq of ['BID', 'q12h', 'twice daily', 'due volte al giorno', '2x täglich']) expect(mutate('402-gen-shorthand-otitis-q12h-it', (r) => { r.medications[0].frequency = fq; }), fq).toEqual([]);
+    expect(supportedBy('bid', 'Otomax alle 12 Stunden', FREQUENCY_EQUIVALENTS)).toBe(true);
+    expect(supportedBy('q8h', 'Metacam alle 8 Stunden', FREQUENCY_EQUIVALENTS)).toBe(true);
+    expect(supportedBy('once daily', 'meloxicam ogni 24 ore', FREQUENCY_EQUIVALENTS)).toBe(true);
+    expect(supportedBy('BID', 'Surolan 2x tägl. 7 Tage', FREQUENCY_EQUIVALENTS)).toBe(true);
+    // still exact: a different interval is not an equivalent
+    expect(supportedBy('bid', 'Otomax ogni 8 ore', FREQUENCY_EQUIVALENTS)).toBe(false);
+    expect(supportedBy('sid', 'Otomax alle 12 Stunden', FREQUENCY_EQUIVALENTS)).toBe(false);
+    expect(has(mutate('402-gen-shorthand-otitis-q12h-it', (r) => { r.medications[0].frequency = 'tre volte al giorno'; }), 'frequency_not_in_source')).toBe(true);
   });
 });
 

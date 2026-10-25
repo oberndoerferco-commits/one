@@ -29,8 +29,8 @@ describe('seeded-error cases on disk', () => {
   it('one case per rule and language', () => {
     const byRule: Record<string, string[]> = {};
     for (const f of seededFiles) { const c = load(f); for (const r of c.expect.must_flag) (byRule[r] ??= []).push(c.language); }
-    for (const r of ['status_conflicts_source', 'notes_contradiction', 'other_animal_fact']) expect(byRule[r]?.sort()).toEqual(['de', 'en', 'it']);
-    expect(seededFiles).toHaveLength(9);
+    for (const r of ['status_conflicts_source', 'notes_contradiction', 'other_animal_fact', 'owner_report_as_finding', 'dose_not_in_notes', 'source_required']) expect(byRule[r]?.sort()).toEqual(['de', 'en', 'it']);
+    expect(seededFiles).toHaveLength(18);
   });
   it.each(seededFiles)('%s raises its must_flag rule and nothing else', (f) => {
     const c = load(f);

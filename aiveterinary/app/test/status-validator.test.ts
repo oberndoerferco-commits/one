@@ -100,6 +100,10 @@ describe('owner_report_as_finding (warn)', () => {
     ['en', 'owner reports limping LF'], ['en', 'coughing at night per owner'],
     ['de', 'Besitzer berichtet Husten nachts'], ['de', 'laut Besitzerin lahmt er vorne links'],
     ['it', 'la proprietaria riferisce tosse notturna'], ['it', 'tosse notturna (riferito)'], ['it', 'secondo il proprietario zoppica'],
+    // regression: the same reporting verbs in every language (IT had no "dice"/"pensa", EN no "mentions", DE no "erwähnt")
+    ['en', 'owner then mentions she vomited twice overnight'], ['en', 'O said he limps after walks'], ['en', 'owner thinks she is drinking more'],
+    ['de', 'Besitzerin erwähnt dann, dass sie nachts 2x erbrochen hat'], ['de', 'Besitzer sagt, er frisst schlecht'], ['de', 'Besitzerin meint, sie trinkt mehr'],
+    ['it', 'poi la proprietaria dice che ha vomitato 2 volte stanotte'], ['it', 'la proprietaria pensa che beva di più'], ['it', 'il proprietario racconta che zoppica dopo le passeggiate'],
   ])('%s: "%s" recorded as a vet finding', (_l, notes) => {
     expect(sev(finding(notes))).toEqual(['warn']);
     expect(sev(finding(notes, 'vet_observed'))).toEqual(['warn']);

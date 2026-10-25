@@ -1,0 +1,162 @@
+{
+  "id": "424-gen-owner-vs-vet-weight-thirst-en",
+  "language": "en",
+  "synthetic": true,
+  "header": {
+    "name": "Mittens",
+    "species": "cat",
+    "breed": "European Shorthair",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 11,
+      "unit": "year"
+    }
+  },
+  "notes": "owner thinks she is drinking a lot more\nowner says 4 kg on the home scale\neating normally per owner\nwt 4.6 kg\nhydration normal, BCS 6/9\nno thyroid nodule palpable\nUSG 1.045\nbloods planned next week, fasted\nrecheck with bloods next week",
+  "expect": {
+    "missing_includes": [
+      "assessment"
+    ],
+    "drugs": [],
+    "assessment_text": null,
+    "statuses": {
+      "diagnostics[0]": "performed",
+      "diagnostics[1]": "planned"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "owner thinks she is drinking a lot more",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          39
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "weight",
+        "value": "owner says 4 kg on the home scale",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            40,
+            73
+          ]
+        ]
+      },
+      {
+        "finding": "appetite",
+        "value": "eating normally per owner",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            74,
+            99
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": {
+          "value": 4.6,
+          "unit": "kg",
+          "source_spans": [
+            [
+              100,
+              109
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "general",
+          "text": "hydration normal, BCS 6/9",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              110,
+              135
+            ]
+          ]
+        },
+        {
+          "system": "neck",
+          "text": "no thyroid nodule palpable",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              136,
+              162
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "urine specific gravity",
+        "status": "performed",
+        "result": "1.045",
+        "source_spans": [
+          [
+            163,
+            172
+          ]
+        ]
+      },
+      {
+        "test": "blood test",
+        "status": "planned",
+        "result": null,
+        "source_spans": [
+          [
+            173,
+            205
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": null,
+      "differentials": [],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "recheck with bloods next week",
+        "interval": null,
+        "source_spans": [
+          [
+            206,
+            235
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

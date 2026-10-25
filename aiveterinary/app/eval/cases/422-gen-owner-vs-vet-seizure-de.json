@@ -1,0 +1,185 @@
+{
+  "id": "422-gen-owner-vs-vet-seizure-de",
+  "language": "de",
+  "synthetic": true,
+  "header": {
+    "name": "Fiete",
+    "species": "dog",
+    "breed": "Border Terrier",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 6,
+      "unit": "year"
+    }
+  },
+  "notes": "laut Besitzer heute Morgen Krampfanfall zu Hause, ca. 2 min, Zittern und Ruderbewegungen\nnach ca. 30 min laut Besitzer wieder normal\nBesitzer sagt, zum ersten Mal\nkein bekannter Zugang zu Giften\nT 38,5\nHF 96\nneurologische Untersuchung o.B., Bewusstsein ungestört\nAZ ungestört, keine Verletzungen gesehen\nBlut inkl. Glukose entnommen\nBesitzer filmt weitere Anfälle und notiert die Uhrzeit\nAnruf mit Blutergebnissen",
+  "expect": {
+    "missing_includes": [
+      "assessment",
+      "diagnostics[0].result"
+    ],
+    "drugs": [],
+    "assessment_text": null,
+    "temperature": 38.5,
+    "statuses": {
+      "diagnostics[0]": "performed"
+    },
+    "must_not_contain": [
+      "epilep"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "laut Besitzer heute Morgen Krampfanfall zu Hause, ca. 2 min, Zittern und Ruderbewegungen",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          88
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "Erholung",
+        "value": "nach ca. 30 min laut Besitzer wieder normal",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            89,
+            132
+          ]
+        ]
+      },
+      {
+        "finding": "frühere Episoden",
+        "value": "Besitzer sagt, zum ersten Mal",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            133,
+            162
+          ]
+        ]
+      },
+      {
+        "finding": "Giftstoffe",
+        "value": "kein bekannter Zugang zu Giften",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            163,
+            194
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.5,
+          "unit": "C",
+          "source_spans": [
+            [
+              195,
+              201
+            ]
+          ]
+        },
+        "heart_rate": {
+          "value": 96,
+          "unit": "/min",
+          "source_spans": [
+            [
+              202,
+              207
+            ]
+          ]
+        },
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "Neurologie",
+          "text": "neurologische Untersuchung o.B., Bewusstsein ungestört",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              208,
+              262
+            ]
+          ]
+        },
+        {
+          "system": "Allgemein",
+          "text": "AZ ungestört, keine Verletzungen gesehen",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              263,
+              303
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "Blutuntersuchung inkl. Glukose",
+        "status": "performed",
+        "result": null,
+        "source_spans": [
+          [
+            304,
+            332
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": null,
+      "differentials": [],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "Anruf mit Blutergebnissen",
+        "interval": null,
+        "source_spans": [
+          [
+            388,
+            413
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "Besitzer filmt weitere Anfälle und notiert die Uhrzeit",
+          "source_spans": [
+            [
+              333,
+              387
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

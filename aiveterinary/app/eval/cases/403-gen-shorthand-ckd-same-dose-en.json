@@ -1,0 +1,174 @@
+{
+  "id": "403-gen-shorthand-ckd-same-dose-en",
+  "language": "en",
+  "synthetic": true,
+  "header": {
+    "name": "Smudge",
+    "species": "cat",
+    "breed": "European Shorthair",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 15,
+      "unit": "year"
+    }
+  },
+  "notes": "CKD recheck, O reports eating well, no V/D\nBW 3.62 kg\nQAR, MM pk moist, CRT <2s\nkidneys small, irregular, non-painful\nH/L NSF\nBP 165 mmHg\nUPC + chem next visit\ncont. Semintra PO SID, same dose as before\nrecheck 3 months",
+  "expect": {
+    "missing_includes": [
+      "assessment",
+      "medications[0].dose"
+    ],
+    "drugs": [
+      "Semintra"
+    ],
+    "assessment_text": null,
+    "statuses": {
+      "medications[0]": "prescribed",
+      "diagnostics[0]": "performed",
+      "diagnostics[1]": "planned"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "CKD recheck, O reports eating well, no V/D",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          42
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": {
+          "value": 3.62,
+          "unit": "kg",
+          "source_spans": [
+            [
+              43,
+              53
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "general",
+          "text": "QAR, MM pk moist, CRT <2s",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              54,
+              79
+            ]
+          ]
+        },
+        {
+          "system": "abdomen",
+          "text": "kidneys small, irregular, non-painful",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              80,
+              117
+            ]
+          ]
+        },
+        {
+          "system": "cardiorespiratory",
+          "text": "H/L NSF",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              118,
+              125
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "blood pressure",
+        "status": "performed",
+        "result": "165 mmHg",
+        "source_spans": [
+          [
+            126,
+            137
+          ]
+        ]
+      },
+      {
+        "test": "UPC and biochemistry",
+        "status": "planned",
+        "result": null,
+        "source_spans": [
+          [
+            138,
+            159
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": null,
+      "differentials": [],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "Semintra",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": "PO",
+        "frequency": "SID",
+        "duration": null,
+        "status": "prescribed",
+        "source_spans": [
+          [
+            160,
+            202
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "recheck 3 months",
+        "interval": {
+          "value": 3,
+          "unit": "month"
+        },
+        "source_spans": [
+          [
+            203,
+            219
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

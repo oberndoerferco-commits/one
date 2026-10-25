@@ -71,12 +71,16 @@ export const ROUTE_EQUIVALENTS: string[][] = [
   ['ocular', 'okular', 'oculare', 'ophthalmic', 'eye drops', 'eye gel', 'eye ointment', 'augentropfen', 'augengel', 'augensalbe', 'collirio', 'gel oftalmico'],
 ];
 
-/** Explicit frequency equivalences (normalised as above; "2 x" becomes "2x"). */
+/**
+ * Explicit frequency equivalences (normalised as above; "2 x" becomes "2x"). Each interval form is listed
+ * in all three languages ("every 12 hours", "alle 12 Stunden", "ogni 12 ore"), and the German "tägl."
+ * abbreviation next to "tgl.".
+ */
 export const FREQUENCY_EQUIVALENTS: string[][] = [
-  ['sid', 'q24h', 'once daily', 'once a day', 'daily', '1x daily', '1x a day', 'every 24 hours', 'einmal taglich', '1x taglich', '1x tgl', 'taglich', 'una volta al giorno', '1 volta al giorno'],
-  ['bid', 'q12h', 'twice daily', 'twice a day', '2x daily', '2x a day', 'every 12 hours', 'zweimal taglich', '2x taglich', '2x tgl', 'due volte al giorno', '2 volte al giorno'],
-  ['tid', 'q8h', 'three times daily', 'three times a day', '3x daily', '3x a day', 'every 8 hours', 'dreimal taglich', '3x taglich', '3x tgl', 'tre volte al giorno', '3 volte al giorno'],
-  ['qid', 'q6h', 'four times daily', 'four times a day', '4x daily', '4x a day', 'every 6 hours', 'viermal taglich', '4x taglich', '4x tgl', 'quattro volte al giorno', '4 volte al giorno'],
+  ['sid', 'q24h', 'once daily', 'once a day', 'daily', '1x daily', '1x a day', 'every 24 hours', 'einmal taglich', '1x taglich', '1x tgl', '1x tagl', 'taglich', 'alle 24 stunden', 'una volta al giorno', '1 volta al giorno', 'ogni 24 ore'],
+  ['bid', 'q12h', 'twice daily', 'twice a day', '2x daily', '2x a day', 'every 12 hours', 'zweimal taglich', '2x taglich', '2x tgl', '2x tagl', 'alle 12 stunden', 'due volte al giorno', '2 volte al giorno', 'ogni 12 ore'],
+  ['tid', 'q8h', 'three times daily', 'three times a day', '3x daily', '3x a day', 'every 8 hours', 'dreimal taglich', '3x taglich', '3x tgl', '3x tagl', 'alle 8 stunden', 'tre volte al giorno', '3 volte al giorno', 'ogni 8 ore'],
+  ['qid', 'q6h', 'four times daily', 'four times a day', '4x daily', '4x a day', 'every 6 hours', 'viermal taglich', '4x taglich', '4x tgl', '4x tagl', 'alle 6 stunden', 'quattro volte al giorno', '4 volte al giorno', 'ogni 6 ore'],
   ['eod', 'every other day', 'alle 2 tage', 'jeden 2 tag', 'a giorni alterni'],
   ['weekly', 'once weekly', 'once a week', '1x weekly', 'wochentlich', '1x pro woche', 'einmal pro woche', 'settimanale', 'una volta a settimana', '1 volta a settimana'],
   ['twice weekly', 'twice a week', '2x weekly', '2x a week', '2x pro woche', 'zweimal pro woche', '2x wochentlich', 'due volte a settimana', '2 volte a settimana'],
@@ -356,15 +360,16 @@ export function statusMarkers(src: string): Set<'declined' | 'planned' | 'perfor
 }
 
 /**
- * Owner-report markers (EN/DE/IT): "owner reports", "per owner", "Besitzer berichtet", "laut Besitzerin",
- * "la proprietaria riferisce", "riferito" (not "dolore riferito", referred pain).
+ * Owner-report markers (EN/DE/IT): "owner reports / says / mentions", "per owner", "Besitzer berichtet /
+ * sagt / erwähnt", "laut Besitzerin", "la proprietaria riferisce / dice / pensa", "riferito" (not "dolore
+ * riferito", referred pain). The same verbs in each language; "then", "also", "later" may come between.
  */
 export const OWNER_REPORT_MARKERS: RegExp[] = [
-  /\b(?:owner|o)\s+(?:reports?|reported|says|states|thinks|noticed)\b/,
+  /\b(?:owner|o)\s+(?:(?:then|also|later)\s+)?(?:reports?|reported|says|said|states|thinks|noticed|mentions|mentioned)\b/,
   /\b(?:per|according to(?: the)?) owner\b/,
-  /\bbesitzer(?:in)?\s+(?:berichtet|meint|sagt|erzahlt|hat bemerkt|bemerkt)\b/,
+  /\bbesitzer(?:in)?\s+(?:(?:dann|auch|spater)\s+)?(?:berichtet|meint|sagt|erzahlt|erwahnt|hat bemerkt|bemerkt)\b/,
   /\blaut besitzer(?:in)?\b/,
-  /\b(?:il |la )?proprietari[oa] riferisce\b/,
+  /\b(?:il |la )?proprietari[oa]\s+(?:(?:poi|anche)\s+)?(?:riferisce|dice|pensa|racconta|ha notato)\b/,
   /\bsecondo (?:il |la )?proprietari[oa]\b/,
   /(?<!\bdolore )\briferit[oaie]\b/,
 ];
@@ -428,14 +433,15 @@ export const VITAL_LABELS: Record<VitalKey, RegExp[]> = {
 const BARE_WEIGHT = /(?<![\p{L}\d/.,])(\d+(?:[.,]\d+)?)\s*(kg|g)(?![\p{L}\d/])/gdu;
 const bareWeightLine = (line: string, m: RegExpMatchArray) => !line.replace(m[0], '').replace(/\([^)]*\)/g, '').replace(/\b(?:ca|approx|approximately|about|circa|etwa|wt|weight|peso|kgw|gewicht)\b\.?/gi, '').replace(/[\s,;:.~]/g, '');
 /**
- * Explicit other-animal markers (EN/DE/IT, matched on folded text): "other/another/second dog", "not our
- * patient", "next box"; "andere Katze", "nicht unser Patient", "Nachbarbox"; "altro gatto",
- * "non è nostra paziente", "box accanto". Singular nouns only, so "no other pets" does not match.
+ * Explicit other-animal markers (EN/DE/IT, matched on folded text): "other/another/second dog" (every
+ * species of the schema, guinea pig and ferret included), "littermate", "not our patient", "next box";
+ * "andere Katze", "Wurfgeschwister", "nicht unser Patient", "Nachbarbox"; "altro gatto", "fratello di
+ * cucciolata", "non è nostra paziente", "box accanto". Singular nouns only, so "no other pets" does not match.
  */
 export const OTHER_ANIMAL_MARKERS: RegExp[] = [
-  /\b(?:other|another|second) (?:cat|dog|horse|pet|animal|rabbit|bird)\b|\bnot our patient\b|\bnext (?:box|stall)\b/,
-  /\b(?:andere[nrs]?|zweite[nrs]?) (?:katze|hund|pferd|tier|kaninchen|vogel)\b|\bnicht unser(?:e)? patient(?:in)?\b|\bnachbarbox\b/,
-  /\b(?:altr[oa]|second[oa]) (?:gatt[oa]|cane|cavall[oa]|animale|coniglio|uccello)\b|\bnon e (?:il |la )?nostr[oa] paziente\b|\bbox accanto\b/,
+  /\b(?:other|another|second) (?:cat|dog|horse|pet|animal|rabbit|bird|ferret|guinea pig|reptile)\b|\blittermate\b|\bnot our patient\b|\bnext (?:box|stall)\b/,
+  /\b(?:andere[nrs]?|zweite[nrs]?) (?:katze|hund|pferd|tier|kaninchen|vogel|frettchen|meerschweinchen)\b|\bwurfgeschwister\b|\bnicht unser(?:e)? patient(?:in)?\b|\bnachbarbox\b/,
+  /\b(?:altr[oa]|second[oa]) (?:gatt[oa]|cane|cavall[oa]|animale|coniglio|uccello|furett[oa]|cavia)\b|\b(?:fratell|sorell)[oa] di cucciolata\b|\bnon e (?:il |la )?nostr[oa] paziente\b|\bbox accanto\b/,
 ];
 /**
  * A second value that is not a contradiction: an earlier or home measurement, a time course or a change

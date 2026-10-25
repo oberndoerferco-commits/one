@@ -1,0 +1,185 @@
+{
+  "id": "421-gen-owner-vs-vet-seizure-en",
+  "language": "en",
+  "synthetic": true,
+  "header": {
+    "name": "Jasper",
+    "species": "dog",
+    "breed": "Border Terrier",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 6,
+      "unit": "year"
+    }
+  },
+  "notes": "owner reports a fit at home this morning, about 2 min, shaking and paddling\nback to normal after about 30 min per owner\nowner says first time ever\nno known access to toxins\nT 38.5\nHR 96\nneuro exam NAD, mentation normal\nBAR, no injuries seen\nbloods incl. glucose taken\nowner to video any further episode and note the time\ncall with blood results",
+  "expect": {
+    "missing_includes": [
+      "assessment",
+      "diagnostics[0].result"
+    ],
+    "drugs": [],
+    "assessment_text": null,
+    "temperature": 38.5,
+    "statuses": {
+      "diagnostics[0]": "performed"
+    },
+    "must_not_contain": [
+      "epilep"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "owner reports a fit at home this morning, about 2 min, shaking and paddling",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          75
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "recovery",
+        "value": "back to normal after about 30 min per owner",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            76,
+            119
+          ]
+        ]
+      },
+      {
+        "finding": "previous episodes",
+        "value": "owner says first time ever",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            120,
+            146
+          ]
+        ]
+      },
+      {
+        "finding": "toxins",
+        "value": "no known access to toxins",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            147,
+            172
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.5,
+          "unit": "C",
+          "source_spans": [
+            [
+              173,
+              179
+            ]
+          ]
+        },
+        "heart_rate": {
+          "value": 96,
+          "unit": "/min",
+          "source_spans": [
+            [
+              180,
+              185
+            ]
+          ]
+        },
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "neurological",
+          "text": "neuro exam NAD, mentation normal",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              186,
+              218
+            ]
+          ]
+        },
+        {
+          "system": "general",
+          "text": "BAR, no injuries seen",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              219,
+              240
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "blood test incl. glucose",
+        "status": "performed",
+        "result": null,
+        "source_spans": [
+          [
+            241,
+            267
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": null,
+      "differentials": [],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "call with blood results",
+        "interval": null,
+        "source_spans": [
+          [
+            321,
+            344
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "owner to video any further episode and note the time",
+          "source_spans": [
+            [
+              268,
+              320
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

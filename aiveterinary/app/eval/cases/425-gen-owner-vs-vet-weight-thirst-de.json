@@ -1,0 +1,162 @@
+{
+  "id": "425-gen-owner-vs-vet-weight-thirst-de",
+  "language": "de",
+  "synthetic": true,
+  "header": {
+    "name": "Lilli",
+    "species": "cat",
+    "breed": "European Shorthair",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 11,
+      "unit": "year"
+    }
+  },
+  "notes": "Besitzerin meint, sie trinkt viel mehr\nlaut Besitzerin 4 kg auf der Waage zu Hause\nfrisst laut Besitzerin normal\nKGW 4,6 kg\nHydratation normal, BCS 6/9\nkein Schilddrüsenknoten tastbar\nUSG 1,045\nBlut nächste Woche nüchtern geplant\nWV mit Blut nächste Woche",
+  "expect": {
+    "missing_includes": [
+      "assessment"
+    ],
+    "drugs": [],
+    "assessment_text": null,
+    "statuses": {
+      "diagnostics[0]": "performed",
+      "diagnostics[1]": "planned"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "Besitzerin meint, sie trinkt viel mehr",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          38
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "Gewicht",
+        "value": "laut Besitzerin 4 kg auf der Waage zu Hause",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            39,
+            82
+          ]
+        ]
+      },
+      {
+        "finding": "Appetit",
+        "value": "frisst laut Besitzerin normal",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            83,
+            112
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": {
+          "value": 4.6,
+          "unit": "kg",
+          "source_spans": [
+            [
+              113,
+              123
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "Allgemein",
+          "text": "Hydratation normal, BCS 6/9",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              124,
+              151
+            ]
+          ]
+        },
+        {
+          "system": "Hals",
+          "text": "kein Schilddrüsenknoten tastbar",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              152,
+              183
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "spezifisches Gewicht Harn",
+        "status": "performed",
+        "result": "1,045",
+        "source_spans": [
+          [
+            184,
+            193
+          ]
+        ]
+      },
+      {
+        "test": "Blutuntersuchung",
+        "status": "planned",
+        "result": null,
+        "source_spans": [
+          [
+            194,
+            229
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": null,
+      "differentials": [],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "WV mit Blut nächste Woche",
+        "interval": null,
+        "source_spans": [
+          [
+            230,
+            255
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

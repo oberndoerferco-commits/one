@@ -1,0 +1,147 @@
+{
+  "id": "453-gen-adversarial-dose-kept-exact-it",
+  "language": "it",
+  "synthetic": true,
+  "header": {
+    "name": "Tobia",
+    "species": "dog",
+    "breed": "Labrador",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 4,
+      "unit": "year"
+    }
+  },
+  "notes": "puntini rossi pruriginosi sulla pancia da 10 giorni\npeso 21,6 kg\npapule e pustole addome ventrale\ncitologia pustola: neutrofili, cocchi ++\npiodermite superficiale\namoxicillina/acido clavulanico 12,5 mg/kg per os due volte al giorno per 14 giorni, consegnata\ncontrollo tra 2 settimane",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [
+      "amoxicillina/acido clavulanico"
+    ],
+    "assessment_text": "piodermite superficiale",
+    "statuses": {
+      "medications[0]": "dispensed",
+      "diagnostics[0]": "performed"
+    },
+    "must_not_contain": [
+      "compress",
+      "\"dose\":13",
+      "\"dose\":12,"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "puntini rossi pruriginosi sulla pancia da 10 giorni",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          51
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": {
+          "value": 21.6,
+          "unit": "kg",
+          "source_spans": [
+            [
+              52,
+              64
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "cute",
+          "text": "papule e pustole addome ventrale",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              65,
+              97
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "citologia pustola",
+        "status": "performed",
+        "result": "neutrofili, cocchi ++",
+        "source_spans": [
+          [
+            98,
+            138
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": "piodermite superficiale",
+      "differentials": [],
+      "source_spans": [
+        [
+          139,
+          162
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "amoxicillina/acido clavulanico",
+        "class_as_written": null,
+        "dose": 12.5,
+        "dose_unit": "mg/kg",
+        "route": "per os",
+        "frequency": "due volte al giorno",
+        "duration": "14 giorni",
+        "status": "dispensed",
+        "source_spans": [
+          [
+            163,
+            257
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "controllo tra 2 settimane",
+        "interval": {
+          "value": 2,
+          "unit": "week"
+        },
+        "source_spans": [
+          [
+            258,
+            283
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

@@ -254,9 +254,10 @@ describe('documents', () => {
 });
 
 describe('eval: multi-pet consultations', () => {
-  it('three cases, EN/DE/IT, two patients each, one shared line, in their own folder', () => {
-    expect(files).toHaveLength(3);
-    expect(files.map((f) => JSON.parse(readFileSync(join(multiDir, f), 'utf8')).language).sort()).toEqual(['de', 'en', 'it']);
+  it('each consultation in EN, DE and IT, two patients each, one shared line, in their own folder', () => {
+    expect(files).toHaveLength(9);
+    const langs = files.map((f) => JSON.parse(readFileSync(join(multiDir, f), 'utf8')).language);
+    for (const l of ['en', 'de', 'it']) expect(langs.filter((x) => x === l), l).toHaveLength(files.length / 3);
     for (const f of files) {
       const c = JSON.parse(readFileSync(join(multiDir, f), 'utf8'));
       expect(c.multi_pet).toBe(true); expect(c.patients).toHaveLength(2);
@@ -275,7 +276,7 @@ describe('eval: multi-pet consultations', () => {
     expect(r.cases).toBe(1);
     expect(r.per_case.map((p: any) => p.id)).toEqual(['001-luna-vomiting']);
     expect(r.metrics.cases_with_blocking_finding).toMatchObject({ n: 1 });
-    expect(r.multi_pet).toMatchObject({ cases: 3, failed: 0, patients: 6, blocking: 0, warnings: 0, probes: 6, probes_caught: 6 });
+    expect(r.multi_pet).toMatchObject({ cases: files.length, failed: 0, patients: 2 * files.length, blocking: 0, warnings: 0, probes: 2 * files.length, probes_caught: 2 * files.length });
   });
   it('a custom cases folder without multiDir reads no multi-pet cases (other harness tests unchanged)', async () => {
     const dir = mkdtempSync(join(tmpdir(), 'aivet-multi-')); const out = join(dir, 'out');

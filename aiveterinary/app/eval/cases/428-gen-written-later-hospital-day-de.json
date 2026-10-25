@@ -1,0 +1,185 @@
+{
+  "id": "428-gen-written-later-hospital-day-de",
+  "language": "de",
+  "synthetic": true,
+  "header": {
+    "name": "Theo",
+    "species": "dog",
+    "breed": "Boxer",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 4,
+      "unit": "year"
+    }
+  },
+  "notes": "geschrieben um 18:30, Patient gesehen um 09:15\nErbrechen seit gestern Abend, laut Besitzer 5x\nT 39,4 bei Ankunft\nca. 5 % dehydriert, SH klebrig\nAbdomen gespannt, kranial schmerzhaft\nInfusion i.v. um 10:00 begonnen\nCerenia s.c. um 10:00\nT 38,9 um 12:00 nach Infusion\nUS Abdomen um 14:00: kein Hinweis auf Verlegung\num 16:00 mit Besitzer entlassen\nBesitzer ruft um 17:00 an: seit Entlassung kein Erbrechen\nWV morgen früh",
+  "expect": {
+    "missing_includes": [
+      "assessment",
+      "medications[0].dose"
+    ],
+    "drugs": [
+      "Cerenia"
+    ],
+    "assessment_text": null,
+    "temperature": 39.4,
+    "statuses": {
+      "treatments[0]": "performed",
+      "medications[0]": "performed",
+      "diagnostics[0]": "performed"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "Erbrechen seit gestern Abend, laut Besitzer 5x",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          47,
+          93
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "Verlauf",
+        "value": "Besitzer ruft um 17:00 an: seit Entlassung kein Erbrechen",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            346,
+            403
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 39.4,
+          "unit": "C",
+          "source_spans": [
+            [
+              94,
+              112
+            ]
+          ]
+        },
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "Allgemein",
+          "text": "ca. 5 % dehydriert, SH klebrig",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              113,
+              143
+            ]
+          ]
+        },
+        {
+          "system": "Abdomen",
+          "text": "Abdomen gespannt, kranial schmerzhaft",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              144,
+              181
+            ]
+          ]
+        },
+        {
+          "system": "Kontrolle",
+          "text": "T 38,9 um 12:00 nach Infusion",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              236,
+              265
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "Ultraschall Abdomen",
+        "status": "performed",
+        "result": "kein Hinweis auf Verlegung",
+        "source_spans": [
+          [
+            266,
+            313
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": null,
+      "differentials": [],
+      "source_spans": []
+    },
+    "treatments": [
+      {
+        "type": "other",
+        "text": "Infusion i.v. um 10:00 begonnen",
+        "status": "performed",
+        "source_spans": [
+          [
+            182,
+            213
+          ]
+        ]
+      }
+    ],
+    "medications": [
+      {
+        "drug": "Cerenia",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": "s.c.",
+        "frequency": null,
+        "duration": null,
+        "status": "performed",
+        "source_spans": [
+          [
+            214,
+            235
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "WV morgen früh",
+        "interval": null,
+        "source_spans": [
+          [
+            404,
+            418
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

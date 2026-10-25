@@ -1,0 +1,174 @@
+{
+  "id": "408-gen-typos-dictation-gastro-it",
+  "language": "it",
+  "synthetic": true,
+  "header": {
+    "name": "Argo",
+    "species": "dog",
+    "breed": "Springer Spaniel",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 3,
+      "unit": "year"
+    }
+  },
+  "notes": "vomitto da stamatina, 4 volte\nsecondo il proprietario ieri sera ha rovistato nella spazzatura\nT 38,9\nlieve dolore alla palpazone addominale, nessuna massa\nMarapitant sc somministrato\ndigiuno 12 ore poi dieta leggera\nricontrollo domani se non migliora",
+  "expect": {
+    "missing_includes": [
+      "assessment",
+      "medications[0].dose"
+    ],
+    "drugs": [
+      "Marapitant"
+    ],
+    "assessment_text": null,
+    "temperature": 38.9,
+    "statuses": {
+      "medications[0]": "performed"
+    },
+    "uncertain_min": 2,
+    "must_not_contain": [
+      "maropitant"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "vomitto da stamatina, 4 volte",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          29
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "alimentazione",
+        "value": "secondo il proprietario ieri sera ha rovistato nella spazzatura",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            30,
+            93
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.9,
+          "unit": "C",
+          "source_spans": [
+            [
+              94,
+              100
+            ]
+          ]
+        },
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "addome",
+          "text": "lieve dolore alla palpazone addominale, nessuna massa",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              101,
+              154
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": null,
+      "differentials": [],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "Marapitant",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": "sc",
+        "frequency": null,
+        "duration": null,
+        "status": "performed",
+        "source_spans": [
+          [
+            155,
+            182
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "ricontrollo domani se non migliora",
+        "interval": null,
+        "source_spans": [
+          [
+            216,
+            250
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "digiuno 12 ore poi dieta leggera",
+          "source_spans": [
+            [
+              183,
+              215
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": [
+      {
+        "field": "examination.findings[0]",
+        "original_text": "palpazone",
+        "reason": "\"palpazone\" riportato come scritto, probabilmente palpazione; non corretto",
+        "source_spans": [
+          [
+            119,
+            128
+          ]
+        ]
+      },
+      {
+        "field": "medications[0].drug",
+        "original_text": "Marapitant",
+        "reason": "nome del farmaco riportato come scritto, possibile errore di battitura; non corretto",
+        "source_spans": [
+          [
+            155,
+            165
+          ]
+        ]
+      }
+    ]
+  }
+}

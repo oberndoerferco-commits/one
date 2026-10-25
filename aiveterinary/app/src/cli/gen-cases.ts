@@ -1,6 +1,6 @@
 /**
- * Generates the synthetic eval cases 100–199 in EN, DE and IT, and the seeded-error
- * cases 200–299 (see SEEDED below).
+ * Generates the synthetic eval cases 100–199 and 400–499 (see S and S2 below) in EN, DE and IT,
+ * and the seeded-error cases 200–299 (see SEEDED below).
  *   npm run gen-cases
  *
  * Every case is written line by line: each fact is one line of the notes, and its
@@ -12,8 +12,12 @@
  * Multi-pet consultations (eval/cases-multi, 300–399; see MULTI below) are written the same way,
  * one line at a time, into every patient's record at once.
  *
- * All patients and notes are invented. Medication lines deliberately carry no
- * dose numbers: the cases test whether a missing dose is flagged, not dosing.
+ * All patients and notes are invented. Most medication lines deliberately carry no
+ * dose numbers: the cases test whether a missing dose is flagged, not dosing. Where a
+ * line does write a dose, the gold record carries exactly that dose and nothing else.
+ *
+ * A gold record must raise no finding at all, not even a warning (`strict`); only the
+ * patients' cases inside a multi-pet consultation are checked on the consultation instead.
  */
 import { writeFileSync, readdirSync, unlinkSync, mkdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
@@ -43,7 +47,7 @@ class Case {
   /** Seeded errors: the finding (rule at field) the deliberately wrong record must raise. */
   seeded: { rule: string; field: string }[] = [];
   comment: string | null = null;
-  constructor(public id: string, public language: Lang, public header: any) {}
+  constructor(public id: string, public language: Lang, public header: any, private strict = true) {}
   /** Written before the next line's text (a multi-pet name label such as "Bella: "); never part of a span. */
   prefix = '';
   /** Appends a line and returns the span of `part` inside it (the whole line by default). */
@@ -61,6 +65,8 @@ class Case {
   finding(system: string, text: string) { this.r.examination.findings.push({ system, text, source_role: 'vet_observed', source_spans: this.line(text) }); return this; }
   diag(test: string, status: St, result: string | null, text: string) { this.r.diagnostics.push({ test, status, result, source_spans: this.line(text) }); return this; }
   assess(text: string) { this.r.assessment.text = text; this.r.assessment.source_spans = this.line(text); return this; }
+  /** Seeded errors only: an assessment with no source in the notes (an added diagnosis). */
+  assessUnsourced(text: string) { this.r.assessment.text = text; this.r.assessment.source_spans = []; return this; }
   diff(text: string) { this.r.assessment.differentials.push({ text, source_spans: this.line(text) }); return this; }
   treat(type: 'procedure' | 'advice' | 'other', text: string, status: St) { this.r.treatments.push({ type, text, status, source_spans: this.line(text) }); return this; }
   med(m: { drug: string | null; class_as_written?: string | null; dose?: number | null; dose_unit?: string | null; route?: string | null; frequency?: string | null; duration?: string | null; status: St }, text: string) {
@@ -104,8 +110,9 @@ class Case {
       if (JSON.stringify(got) !== JSON.stringify(want)) throw new Error(`${this.id}: seeded findings ${JSON.stringify(got)} ≠ ${JSON.stringify(want)}`);
       return { id: this.id, language: this.language, synthetic: true, notes_comment: this.comment, header: this.header, notes, expect: { must_flag: [...new Set(this.seeded.map((s) => s.rule))] }, fixture_record: record };
     }
-    const blocks = validateAll(record, notes, header).filter((f) => f.severity === 'block');
-    if (blocks.length) throw new Error(`${this.id}: fixture has blocking findings ${JSON.stringify(blocks)}`);
+    const all = validateAll(record, notes, header);
+    const bad = this.strict ? all : all.filter((f) => f.severity === 'block');
+    if (bad.length) throw new Error(`${this.id}: fixture has ${this.strict ? '' : 'blocking '}findings ${JSON.stringify(bad.map((f) => `${f.rule}@${f.field} (${f.severity})`))}`);
     const statuses: Record<string, St> = {};
     record.treatments.forEach((t, i) => (statuses[`treatments[${i}]`] = t.status as St));
     record.medications.forEach((m, i) => (statuses[`medications[${i}]`] = m.status as St));
@@ -128,6 +135,9 @@ const cat = (name: string, age: number, sex: 'male' | 'female' = 'female', neute
 const rabbit = (name: string, age: number) => ({ name, species: 'rabbit', sex: 'female', neuter_status: 'neutered', age: { value: age, unit: 'year' } });
 const ferret = (name: string, age: number) => ({ name, species: 'ferret', sex: 'male', neuter_status: 'neutered', age: { value: age, unit: 'year' } });
 const bird = (name: string, age: number) => ({ name, species: 'bird', breed: 'Budgerigar', sex: 'male', age: { value: age, unit: 'year' } });
+const guineaPig = (name: string, age: number) => ({ name, species: 'other', breed: 'Guinea pig', sex: 'female', neuter_status: 'intact', age: { value: age, unit: 'year' } });
+const reptile = (name: string, age: number) => ({ name, species: 'reptile', breed: 'Bearded dragon', sex: 'male', age: { value: age, unit: 'year' } });
+const puppy = (name: string, weeks: number) => ({ name, species: 'dog', breed: 'Golden Retriever', sex: 'female', neuter_status: 'intact', age: { value: weeks, unit: 'week' } });
 const horse = (name: string, breed: string, age: number, sex: 'male' | 'female', neuter: 'intact' | 'neutered') => ({ name, species: 'horse', breed, sex, neuter_status: neuter, age: { value: age, unit: 'year' } });
 
 type Scenario = { slug: string; build: Record<Lang, (c: Case) => Case>; header: Record<Lang, any> };
@@ -296,6 +306,211 @@ const S: Scenario[] = [
 ];
 
 /**
+ * 400+: second round, aimed at the gaps of the first. Clinical shorthand (q12h, SID, NSF; o.B.; nella norma),
+ * dictation typos kept as written, contradictions left unresolved (two weights, "no vomiting" then "vomited
+ * twice", a drug "not given" then "given"), owner report vs vet finding, notes written up hours or a day
+ * later, other animals in the notes, guinea pig / bearded dragon / ferret / rabbit / horse, and adversarial
+ * notes that invite a diagnosis or a dose the vet did not write. Doses appear only where the note writes them.
+ */
+const S2: Scenario[] = [
+  { slug: 'shorthand-otitis-q12h', header: { en: dog('Bruno', 'German Shepherd', 5), de: dog('Hasso', 'Deutscher Schäferhund', 5), it: dog('Bobby', 'Pastore tedesco', 5) }, build: {
+    en: (c) => c.complaint('head shaking x3d, scratching R ear').finding('general', 'BAR, TPR WNL').finding('ears', 'AD erythema, ceruminous d/c, AS NAD').diag('ear cytology AD', 'performed', 'cocci +++, rods neg', 'cyto AD: cocci +++, rods neg').assess('otitis externa AD')
+      .med({ drug: 'Otomax', dose: 4, dose_unit: 'gtt', route: 'AD', frequency: 'q12h', duration: '7d', status: 'dispensed' }, 'Otomax 4 gtt AD q12h x 7d disp.').follow('recheck 10-14d', null, null),
+    de: (c) => c.complaint('schüttelt seit 3 Tagen den Kopf, kratzt re. Ohr').finding('Allgemein', 'AZ o.B., Herz/Lunge o.B.').finding('Ohren', 'Gehörgang re. gerötet, Cerumen ++, li. o.B.').diag('Ohrzytologie re.', 'performed', 'Kokken +++, Stäbchen neg.', 'Zyto re.: Kokken +++, Stäbchen neg.').assess('Otitis externa re.')
+      .med({ drug: 'Otomax', dose: 4, dose_unit: 'Tr.', route: 're. Ohr', frequency: '2x tgl.', duration: '7 Tage', status: 'dispensed' }, 'Otomax 4 Tr. re. Ohr 2x tgl. 7 Tage, mitgegeben').follow('WV in 10-14 Tagen', null, null),
+    it: (c) => c.complaint("scuote la testa da 3 giorni, si gratta l'orecchio dx").finding('generale', 'EOG nella norma').finding('orecchie', 'condotto dx eritematoso, cerume ++, sx nella norma').diag('citologia auricolare dx', 'performed', 'cocchi +++, bastoncelli neg', 'citologia dx: cocchi +++, bastoncelli neg').assess('otite esterna dx')
+      .med({ drug: 'Otomax', dose: 4, dose_unit: 'gtt', route: 'orecchio dx', frequency: 'ogni 12 ore', duration: '7 giorni', status: 'dispensed' }, 'Otomax 4 gtt orecchio dx ogni 12 ore per 7 giorni, consegnato').follow('controllo tra 10-14 giorni', null, null),
+  } },
+  { slug: 'shorthand-ckd-same-dose', header: { en: cat('Smudge', 15), de: cat('Schnurri', 15), it: cat('Nerina', 15) }, build: {
+    en: (c) => c.complaint('CKD recheck, O reports eating well, no V/D').vital('weight', 3.62, 'kg', 'BW 3.62 kg').finding('general', 'QAR, MM pk moist, CRT <2s').finding('abdomen', 'kidneys small, irregular, non-painful').finding('cardiorespiratory', 'H/L NSF')
+      .diag('blood pressure', 'performed', '165 mmHg', 'BP 165 mmHg').diag('UPC and biochemistry', 'planned', null, 'UPC + chem next visit').med({ drug: 'Semintra', route: 'PO', frequency: 'SID', status: 'prescribed' }, 'cont. Semintra PO SID, same dose as before').follow('recheck 3 months', 3, 'month'),
+    de: (c) => c.complaint('CNE-Kontrolle, laut Besitzerin frisst gut, kein Erbrechen/Durchfall').vital('weight', 3.62, 'kg', 'KGW 3,62 kg').finding('Allgemein', 'AZ ggr. reduziert, SH rosa, feucht, KFZ <2 s').finding('Abdomen', 'Nieren klein, unregelmäßig, nicht schmerzhaft').finding('Herz/Lunge', 'Herz/Lunge o.B.')
+      .diag('Blutdruck', 'performed', '165 mmHg', 'Blutdruck 165 mmHg').diag('UPC und Profil', 'planned', null, 'UPC + Profil beim nächsten Termin').med({ drug: 'Semintra', route: 'p.o.', frequency: '1x tgl.', status: 'prescribed' }, 'Semintra p.o. 1x tgl. weiter, Dosis wie bisher').follow('WV in 3 Monaten', 3, 'month'),
+    it: (c) => c.complaint('controllo IRC, la proprietaria riferisce che mangia bene, niente vomito/diarrea').vital('weight', 3.62, 'kg', 'peso 3,62 kg').finding('generale', 'tranquilla, mucose rosee umide, TRC <2 s').finding('addome', 'reni piccoli, irregolari, non dolenti').finding('cuore e polmoni', 'cuore e polmoni nella norma')
+      .diag('pressione arteriosa', 'performed', '165 mmHg', 'PA 165 mmHg').diag('UPC e profilo biochimico', 'planned', null, 'UPC + biochimico alla prossima visita').med({ drug: 'Semintra', route: 'per os', frequency: 'una volta al giorno', status: 'prescribed' }, 'continuare Semintra per os una volta al giorno, stessa dose di prima').follow('controllo tra 3 mesi', 3, 'month'),
+  } },
+  { slug: 'typos-dictation-gastro', header: { en: dog('Rusty', 'Springer Spaniel', 3), de: dog('Bello', 'Springer Spaniel', 3), it: dog('Argo', 'Springer Spaniel', 3) }, build: {
+    en: (c) => c.complaint('vommiting since this mornig, 4 times').history('diet', 'got into the bin last nite per owner').vital('temperature', 38.9, 'C', 'T 38.9').finding('abdomen', 'mild pain on abdominal palpitation, no masses')
+      .unsure('examination.findings[0]', '"palpitation" kept as written, probably palpation; not corrected', 'palpitation')
+      .med({ drug: 'marapitant', route: 'SC', status: 'performed' }, 'marapitant SC given').unsure('medications[0].drug', 'drug name kept as written, possibly misspelled; not corrected', 'marapitant')
+      .instr('starve 12 hrs then bland diet').follow('recheck tomoro if not better', null, null).notIn('maropitant'),
+    de: (c) => c.complaint('Erbechen seit heute morgen, 4 mal').history('Fütterung', 'laut Besitzer gestern Abend Mülleimer geplündert').vital('temperature', 38.9, 'C', 'T 38,9').finding('Abdomen', 'ggr. Schmertz bei Palpation des Abdomens, keine Umfangsvermehrung')
+      .unsure('examination.findings[0]', '"Schmertz" wie geschrieben übernommen, vermutlich Schmerz; nicht korrigiert', 'Schmertz')
+      .med({ drug: 'Marapitant', route: 's.c.', status: 'performed' }, 'Marapitant s.c. gegeben').unsure('medications[0].drug', 'Medikamentenname wie geschrieben übernommen, evtl. Tippfehler; nicht korrigiert', 'Marapitant')
+      .instr('12 Std. nüchtern, dann Schonkost').follow('WV morgn, falls nicht besser', null, null).notIn('maropitant'),
+    it: (c) => c.complaint('vomitto da stamatina, 4 volte').history('alimentazione', 'secondo il proprietario ieri sera ha rovistato nella spazzatura').vital('temperature', 38.9, 'C', 'T 38,9').finding('addome', 'lieve dolore alla palpazone addominale, nessuna massa')
+      .unsure('examination.findings[0]', '"palpazone" riportato come scritto, probabilmente palpazione; non corretto', 'palpazone')
+      .med({ drug: 'Marapitant', route: 'sc', status: 'performed' }, 'Marapitant sc somministrato').unsure('medications[0].drug', 'nome del farmaco riportato come scritto, possibile errore di battitura; non corretto', 'Marapitant')
+      .instr('digiuno 12 ore poi dieta leggera').follow('ricontrollo domani se non migliora', null, null).notIn('maropitant'),
+  } },
+  { slug: 'typo-temperature-decimal', header: { en: cat('Ginger', 6, 'male'), de: cat('Minou', 6, 'male'), it: cat('Silvestro', 6, 'male') }, build: {
+    en: (c) => c.complaint('sneezing and eye discharge for 4 days').plain('T 3.89').unsure('examination.vitals.temperature', 'written as 3.89, decimal point probably misplaced; not corrected and not recorded as a temperature', 'T 3.89')
+      .vital('heart_rate', 190, '/min', 'HR 190').finding('eyes', 'serous ocular discharge OU, conjunctivae mildly red').finding('nose', 'sneezing during exam').assess('URTI suspected').instr('clean eyes with saline twice a day').follow('recheck in 5 days if not better', 5, 'day').notIn('38.9'),
+    de: (c) => c.complaint('niest seit 4 Tagen, Augenausfluss').plain('T 3,89').unsure('examination.vitals.temperature', 'als 3,89 geschrieben, Komma vermutlich verrutscht; nicht korrigiert und nicht als Temperatur übernommen', 'T 3,89')
+      .vital('heart_rate', 190, '/min', 'HF 190').finding('Augen', 'seröser Augenausfluss bds., Konjunktiven ggr. gerötet').finding('Nase', 'niest während der Untersuchung').assess('V. a. Katzenschnupfen').instr('Augen 2x täglich mit Kochsalzlösung reinigen').follow('WV in 5 Tagen, falls nicht besser', 5, 'day').notIn('38.9'),
+    it: (c) => c.complaint('starnuti e scolo oculare da 4 giorni').plain('T 3,89').unsure('examination.vitals.temperature', 'scritto 3,89, virgola probabilmente spostata; non corretto e non registrato come temperatura', 'T 3,89')
+      .vital('heart_rate', 190, '/min', 'FC 190').finding('occhi', 'scolo oculare sieroso bilaterale, congiuntive lievemente arrossate').finding('naso', 'starnutisce durante la visita').assess('sospetta rinotracheite').instr('pulire gli occhi con soluzione fisiologica due volte al giorno').follow('controllo tra 5 giorni se non migliora', 5, 'day').notIn('38.9'),
+  } },
+  { slug: 'contradiction-weight-twice', header: { en: dog('Murphy', 'Beagle', 7), de: dog('Anton', 'Beagle', 7), it: dog('Bobi', 'Beagle', 7) }, build: {
+    en: (c) => c.complaint('itchy skin, red belly for 2 weeks').plain('wt 12.4 kg').finding('skin', 'erythema and papules ventral abdomen, epidermal collarettes').diag('tape cytology', 'performed', 'cocci ++', 'tape cyto: cocci ++').assess('superficial pyoderma').plain('weight today 14.2 kg')
+      .unsure('examination.vitals.weight', 'two different weights in the notes (12.4 kg and 14.2 kg); not resolved, so no weight is recorded', 'wt 12.4 kg', 'weight today 14.2 kg')
+      .med({ drug: 'cefalexin', dose: 15, dose_unit: 'mg/kg', route: 'PO', frequency: 'BID', duration: '21 days', status: 'dispensed' }, 'cefalexin 15 mg/kg PO BID 21 days dispensed').instr('chlorhexidine shampoo twice weekly').follow('recheck 3 weeks', 3, 'week'),
+    de: (c) => c.complaint('Juckreiz, roter Bauch seit 2 Wochen').plain('KGW 12,4 kg').finding('Haut', 'Erythem und Papeln ventrales Abdomen, epidermale Collaretten').diag('Tesa-Zytologie', 'performed', 'Kokken ++', 'Tesa-Zyto: Kokken ++').assess('oberflächliche Pyodermie').plain('Gewicht heute 14,2 kg')
+      .unsure('examination.vitals.weight', 'zwei verschiedene Gewichte in den Notizen (12,4 kg und 14,2 kg); nicht geklärt, daher kein Gewicht übernommen', 'KGW 12,4 kg', 'Gewicht heute 14,2 kg')
+      .med({ drug: 'Cefalexin', dose: 15, dose_unit: 'mg/kg', route: 'p.o.', frequency: '2x tgl.', duration: '21 Tage', status: 'dispensed' }, 'Cefalexin 15 mg/kg p.o. 2x tgl. 21 Tage, abgegeben').instr('Chlorhexidin-Shampoo 2x pro Woche').follow('WV in 3 Wochen', 3, 'week'),
+    it: (c) => c.complaint('prurito, addome arrossato da 2 settimane').plain('peso 12,4 kg').finding('cute', 'eritema e papule addome ventrale, collaretti epidermici').diag('citologia scotch', 'performed', 'cocchi ++', 'citologia scotch: cocchi ++').assess('piodermite superficiale').plain('peso oggi 14,2 kg')
+      .unsure('examination.vitals.weight', 'due pesi diversi nelle note (12,4 kg e 14,2 kg); non chiarito, quindi nessun peso registrato', 'peso 12,4 kg', 'peso oggi 14,2 kg')
+      .med({ drug: 'cefalexina', dose: 15, dose_unit: 'mg/kg', route: 'per os', frequency: 'due volte al giorno', duration: '21 giorni', status: 'dispensed' }, 'cefalexina 15 mg/kg per os due volte al giorno per 21 giorni, consegnata').instr('shampoo alla clorexidina 2 volte a settimana').follow('controllo tra 3 settimane', 3, 'week'),
+  } },
+  { slug: 'contradiction-no-vomiting-twice', header: { en: dog('Biscuit', 'Labrador', 2, 'female'), de: dog('Wilma', 'Labrador', 2, 'female'), it: dog('Nocciola', 'Labrador', 2, 'female') }, build: {
+    en: (c) => c.complaint('no vomiting, just off food since yesterday').vital('temperature', 38.7, 'C', 'T 38.7').finding('abdomen', 'abdomen soft, mild cranial discomfort').finding('general', 'MM pink, well hydrated').history('vomiting', 'owner then mentions she vomited twice overnight')
+      .unsure('history', 'complaint says no vomiting, the owner later says she vomited twice overnight; not resolved in the notes', 'no vomiting, just off food since yesterday', 'owner then mentions she vomited twice overnight')
+      .diag('abdominal radiographs', 'recommended', null, 'abdo rads recommended if vomiting continues').instr('small bland meals, water little and often').follow('call tomorrow with an update', null, null).notIn('gastritis', 'foreign body'),
+    de: (c) => c.complaint('kein Erbrechen, frisst seit gestern nicht').vital('temperature', 38.7, 'C', 'T 38,7').finding('Abdomen', 'Abdomen weich, ggr. Schmerz kranial').finding('Allgemein', 'SH rosa, gut hydriert').history('Erbrechen', 'Besitzerin erwähnt dann, dass sie nachts 2x erbrochen hat')
+      .unsure('history', 'Vorstellungsgrund: kein Erbrechen; Besitzerin berichtet später 2x Erbrechen in der Nacht; in den Notizen nicht geklärt', 'kein Erbrechen, frisst seit gestern nicht', 'Besitzerin erwähnt dann, dass sie nachts 2x erbrochen hat')
+      .diag('Röntgen Abdomen', 'recommended', null, 'Rö Abdomen empfohlen, falls Erbrechen anhält').instr('kleine Portionen Schonkost, Wasser oft in kleinen Mengen').follow('morgen telefonisch melden', null, null).notIn('gastritis', 'fremdkörper'),
+    it: (c) => c.complaint('niente vomito, non mangia da ieri').vital('temperature', 38.7, 'C', 'T 38,7').finding('addome', 'addome morbido, lieve fastidio craniale').finding('generale', 'mucose rosee, ben idratata').history('vomito', 'poi la proprietaria dice che ha vomitato 2 volte stanotte')
+      .unsure('history', 'il motivo della visita dice niente vomito, poi la proprietaria riferisce 2 episodi stanotte; non chiarito nelle note', 'niente vomito, non mangia da ieri', 'poi la proprietaria dice che ha vomitato 2 volte stanotte')
+      .diag('radiografie addome', 'recommended', null, 'rx addome consigliate se il vomito continua').instr('pasti piccoli e leggeri, acqua poca e spesso').follow('telefonare domani per aggiornamento', null, null).notIn('gastrite', 'corpo estraneo'),
+  } },
+  { slug: 'contradiction-drug-given', header: { en: cat('Pumpkin', 9), de: cat('Lissy', 9), it: cat('Zucca', 9) }, build: {
+    en: (c) => c.complaint('limping RF since yesterday').vital('temperature', 38.6, 'C', 'T 38.6').finding('musculoskeletal', 'RF lameness 3/5, swelling and pain over R carpus, puncture wound').assess('cat bite abscess R carpus suspected').treat('procedure', 'wound clipped and flushed', 'performed')
+      .plain('Convenia not given today').plain('Convenia SC given at end of consult')
+      .unsure('medications', 'one line says Convenia was not given, a later line says it was given SC; not resolved, so no medication is recorded', 'Convenia not given today', 'Convenia SC given at end of consult')
+      .instr('keep indoors, check wound daily').follow('recheck 3 days', 3, 'day').notIn('convenia'),
+    de: (c) => c.complaint('lahmt seit gestern vorne rechts').vital('temperature', 38.6, 'C', 'T 38,6').finding('Bewegungsapparat', 'Lahmheit VR 3/5, Schwellung und Schmerz Karpus re., Bisswunde').assess('V. a. Bissabszess Karpus re.').treat('procedure', 'Wunde geschoren und gespült', 'performed')
+      .plain('Convenia heute nicht gegeben').plain('Convenia s.c. am Ende der Konsultation gegeben')
+      .unsure('medications', 'eine Zeile sagt, Convenia wurde nicht gegeben, eine spätere, es wurde s.c. gegeben; nicht geklärt, daher kein Medikament übernommen', 'Convenia heute nicht gegeben', 'Convenia s.c. am Ende der Konsultation gegeben')
+      .instr('drinnen halten, Wunde täglich kontrollieren').follow('WV in 3 Tagen', 3, 'day').notIn('convenia'),
+    it: (c) => c.complaint('zoppia anteriore dx da ieri').vital('temperature', 38.6, 'C', 'T 38,6').finding('apparato locomotore', 'zoppia AD 3/5, gonfiore e dolore carpo dx, ferita da morso').assess('sospetto ascesso da morso carpo dx').treat('procedure', 'ferita tosata e lavata', 'performed')
+      .plain('Convenia oggi non somministrato').plain('Convenia sc somministrato a fine visita')
+      .unsure('medications', 'una riga dice che Convenia non è stato somministrato, una successiva che è stato dato sc; non chiarito, quindi nessun farmaco registrato', 'Convenia oggi non somministrato', 'Convenia sc somministrato a fine visita')
+      .instr('tenere in casa, controllare la ferita ogni giorno').follow('controllo tra 3 giorni', 3, 'day').notIn('convenia'),
+  } },
+  { slug: 'owner-vs-vet-seizure', header: { en: dog('Jasper', 'Border Terrier', 6), de: dog('Fiete', 'Border Terrier', 6), it: dog('Ercole', 'Border Terrier', 6) }, build: {
+    en: (c) => c.complaint('owner reports a fit at home this morning, about 2 min, shaking and paddling').history('recovery', 'back to normal after about 30 min per owner').history('previous episodes', 'owner says first time ever').history('toxins', 'no known access to toxins')
+      .vital('temperature', 38.5, 'C', 'T 38.5').vital('heart_rate', 96, '/min', 'HR 96').finding('neurological', 'neuro exam NAD, mentation normal').finding('general', 'BAR, no injuries seen')
+      .diag('blood test incl. glucose', 'performed', null, 'bloods incl. glucose taken').instr('owner to video any further episode and note the time').follow('call with blood results', null, null).notIn('epilep'),
+    de: (c) => c.complaint('laut Besitzer heute Morgen Krampfanfall zu Hause, ca. 2 min, Zittern und Ruderbewegungen').history('Erholung', 'nach ca. 30 min laut Besitzer wieder normal').history('frühere Episoden', 'Besitzer sagt, zum ersten Mal').history('Giftstoffe', 'kein bekannter Zugang zu Giften')
+      .vital('temperature', 38.5, 'C', 'T 38,5').vital('heart_rate', 96, '/min', 'HF 96').finding('Neurologie', 'neurologische Untersuchung o.B., Bewusstsein ungestört').finding('Allgemein', 'AZ ungestört, keine Verletzungen gesehen')
+      .diag('Blutuntersuchung inkl. Glukose', 'performed', null, 'Blut inkl. Glukose entnommen').instr('Besitzer filmt weitere Anfälle und notiert die Uhrzeit').follow('Anruf mit Blutergebnissen', null, null).notIn('epilep'),
+    it: (c) => c.complaint('il proprietario riferisce una crisi a casa stamattina, circa 2 min, tremori e movimenti di pedalamento').history('recupero', 'tornato normale dopo circa 30 min secondo il proprietario').history('episodi precedenti', 'secondo il proprietario è la prima volta').history('tossici', 'nessun accesso noto a sostanze tossiche')
+      .vital('temperature', 38.5, 'C', 'T 38,5').vital('heart_rate', 96, '/min', 'FC 96').finding('neurologico', 'esame neurologico nella norma, sensorio normale').finding('generale', 'vigile, nessuna lesione visibile')
+      .diag('esami del sangue con glicemia', 'performed', null, 'prelievo con glicemia eseguito').instr("il proprietario filma eventuali nuovi episodi e annota l'ora").follow('telefonata con i risultati degli esami', null, null).notIn('epiless'),
+  } },
+  { slug: 'owner-vs-vet-weight-thirst', header: { en: cat('Mittens', 11), de: cat('Lilli', 11), it: cat('Fiocca', 11) }, build: {
+    en: (c) => c.complaint('owner thinks she is drinking a lot more').history('weight', 'owner says 4 kg on the home scale').history('appetite', 'eating normally per owner').vital('weight', 4.6, 'kg', 'wt 4.6 kg').finding('general', 'hydration normal, BCS 6/9').finding('neck', 'no thyroid nodule palpable')
+      .diag('urine specific gravity', 'performed', '1.045', 'USG 1.045').diag('blood test', 'planned', null, 'bloods planned next week, fasted').follow('recheck with bloods next week', null, null),
+    de: (c) => c.complaint('Besitzerin meint, sie trinkt viel mehr').history('Gewicht', 'laut Besitzerin 4 kg auf der Waage zu Hause').history('Appetit', 'frisst laut Besitzerin normal').vital('weight', 4.6, 'kg', 'KGW 4,6 kg').finding('Allgemein', 'Hydratation normal, BCS 6/9').finding('Hals', 'kein Schilddrüsenknoten tastbar')
+      .diag('spezifisches Gewicht Harn', 'performed', '1,045', 'USG 1,045').diag('Blutuntersuchung', 'planned', null, 'Blut nächste Woche nüchtern geplant').follow('WV mit Blut nächste Woche', null, null),
+    it: (c) => c.complaint('la proprietaria pensa che beva molto di più').history('peso', 'secondo la proprietaria 4 kg sulla bilancia di casa').history('appetito', 'mangia normalmente secondo la proprietaria').vital('weight', 4.6, 'kg', 'peso 4,6 kg').finding('generale', 'idratazione normale, BCS 6/9').finding('collo', 'nessun nodulo tiroideo palpabile')
+      .diag('peso specifico urinario', 'performed', '1,045', 'PS urine 1,045').diag('esami del sangue', 'planned', null, 'esami del sangue programmati la settimana prossima, a digiuno').follow('controllo con esami la settimana prossima', null, null),
+  } },
+  { slug: 'written-later-hospital-day', header: { en: dog('Hugo', 'Boxer', 4), de: dog('Theo', 'Boxer', 4), it: dog('Achille', 'Boxer', 4) }, build: {
+    en: (c) => c.plain('written up at 18:30, patient seen at 09:15').complaint('vomiting since last night, 5 times per owner').vital('temperature', 39.4, 'C', 'T 39.4 on arrival').finding('general', 'approx 5% dehydrated, MM tacky').finding('abdomen', 'abdomen tense, painful cranially')
+      .treat('other', 'IV fluids started at 10:00', 'performed').med({ drug: 'Cerenia', route: 'SC', status: 'performed' }, 'Cerenia SC at 10:00').finding('recheck', 'T 38.9 at 12:00 after fluids').diag('abdominal ultrasound', 'performed', 'no obstruction seen', 'abdo US at 14:00: no obstruction seen')
+      .plain('discharged at 16:00 with owner').history('update', 'owner called at 17:00: no vomiting since discharge').follow('recheck tomorrow morning', null, null),
+    de: (c) => c.plain('geschrieben um 18:30, Patient gesehen um 09:15').complaint('Erbrechen seit gestern Abend, laut Besitzer 5x').vital('temperature', 39.4, 'C', 'T 39,4 bei Ankunft').finding('Allgemein', 'ca. 5 % dehydriert, SH klebrig').finding('Abdomen', 'Abdomen gespannt, kranial schmerzhaft')
+      .treat('other', 'Infusion i.v. um 10:00 begonnen', 'performed').med({ drug: 'Cerenia', route: 's.c.', status: 'performed' }, 'Cerenia s.c. um 10:00').finding('Kontrolle', 'T 38,9 um 12:00 nach Infusion').diag('Ultraschall Abdomen', 'performed', 'kein Hinweis auf Verlegung', 'US Abdomen um 14:00: kein Hinweis auf Verlegung')
+      .plain('um 16:00 mit Besitzer entlassen').history('Verlauf', 'Besitzer ruft um 17:00 an: seit Entlassung kein Erbrechen').follow('WV morgen früh', null, null),
+    it: (c) => c.plain('scritto alle 18:30, visto alle 09:15').complaint('vomito da ieri sera, 5 volte secondo il proprietario').vital('temperature', 39.4, 'C', "T 39,4 all'arrivo").finding('generale', 'disidratazione circa 5%, mucose appiccicose').finding('addome', 'addome teso, dolente cranialmente')
+      .treat('other', 'fluidoterapia ev iniziata alle 10:00', 'performed').med({ drug: 'Cerenia', route: 'sc', status: 'performed' }, 'Cerenia sc alle 10:00').finding('ricontrollo', 'T 38,9 alle 12:00 dopo i fluidi').diag('ecografia addominale', 'performed', 'nessuna ostruzione vista', 'eco addome alle 14:00: nessuna ostruzione vista')
+      .plain('dimesso alle 16:00 con il proprietario').history('aggiornamento', 'il proprietario chiama alle 17:00: nessun vomito dalla dimissione').follow('controllo domani mattina', null, null),
+  } },
+  { slug: 'written-later-next-day', header: { en: cat('Bramble', 4), de: cat('Wolke', 4), it: cat('Nebbia', 4) }, build: {
+    en: (c) => c.plain("notes from yesterday's evening consult, written this morning").complaint('yesterday: not eating for 2 days, hiding').vital('temperature', 39.6, 'C', 'T 39.6').finding('general', 'quiet, hides in carrier').finding('oral', 'ulcer on tongue').assess('cat flu suspected')
+      .med({ drug: 'buprenorphine', route: 'OTM', status: 'performed' }, 'buprenorphine OTM given yesterday evening').history('update', 'this morning owner called: ate a little overnight').follow('recheck tomorrow, i.e. Thursday', null, null).notIn('calici'),
+    de: (c) => c.plain('Notizen zur gestrigen Abendsprechstunde, heute Morgen geschrieben').complaint('gestern: frisst seit 2 Tagen nicht, versteckt sich').vital('temperature', 39.6, 'C', 'T 39,6').finding('Allgemein', 'ruhig, versteckt sich in der Box').finding('Maulhöhle', 'Ulkus auf der Zunge').assess('V. a. Katzenschnupfen')
+      .med({ drug: 'Buprenorphin', route: 'OTM', status: 'performed' }, 'Buprenorphin OTM gestern Abend verabreicht').history('Verlauf', 'heute Morgen ruft Besitzerin an: hat über Nacht etwas gefressen').follow('WV morgen, also Donnerstag', null, null).notIn('calici'),
+    it: (c) => c.plain('note della visita di ieri sera, scritte stamattina').complaint('ieri: non mangia da 2 giorni, si nasconde').vital('temperature', 39.6, 'C', 'T 39,6').finding('generale', 'abbattuta, si nasconde nel trasportino').finding('cavo orale', 'ulcera sulla lingua').assess('sospetta rinotracheite')
+      .med({ drug: 'buprenorfina', route: 'OTM', status: 'performed' }, 'buprenorfina OTM somministrata ieri sera').history('aggiornamento', "stamattina la proprietaria chiama: ha mangiato un po' durante la notte").follow('controllo domani, cioè giovedì', null, null).notIn('calici'),
+  } },
+  { slug: 'guinea-pig-mites', header: { en: guineaPig('Peanut', 2), de: guineaPig('Krümel', 2), it: guineaPig('Ciambella', 2) }, build: {
+    en: (c) => c.complaint('scratching and hair loss for 2 weeks').vital('weight', 980, 'g', 'wt 980 g').finding('skin', 'alopecia and crusts dorsum, intense pruritus on handling').diag('skin scrape', 'performed', 'mites +', 'skin scrape: mites +').assess('mite infestation')
+      .med({ drug: 'ivermectin spot-on', route: 'topical', frequency: 'repeat in 10 days', status: 'dispensed' }, 'ivermectin spot-on dispensed, topical, repeat in 10 days').instr('treat both guinea pigs, clean the cage').instr('vitamin C rich vegetables daily').follow('recheck in 10 days', 10, 'day'),
+    de: (c) => c.complaint('kratzt sich, Haarausfall seit 2 Wochen').vital('weight', 980, 'g', 'KGW 980 g').finding('Haut', 'Alopezie und Krusten am Rücken, starker Juckreiz beim Anfassen').diag('Hautgeschabsel', 'performed', 'Milben +', 'Hautgeschabsel: Milben +').assess('Milbenbefall')
+      .med({ drug: 'Ivermectin-Spot-on', route: 'topisch', frequency: 'Wiederholung in 10 Tagen', status: 'dispensed' }, 'Ivermectin-Spot-on abgegeben, topisch, Wiederholung in 10 Tagen').instr('beide Meerschweinchen behandeln, Käfig reinigen').instr('täglich Vitamin-C-reiches Gemüse').follow('WV in 10 Tagen', 10, 'day'),
+    it: (c) => c.complaint('si gratta e perde pelo da 2 settimane').vital('weight', 980, 'g', 'peso 980 g').finding('cute', 'alopecia e croste sul dorso, prurito intenso alla manipolazione').diag('raschiato cutaneo', 'performed', 'acari +', 'raschiato cutaneo: acari +').assess('infestazione da acari')
+      .med({ drug: 'ivermectina spot-on', route: 'uso topico', frequency: 'ripetere tra 10 giorni', status: 'dispensed' }, 'ivermectina spot-on consegnata, uso topico, ripetere tra 10 giorni').instr('trattare entrambe le cavie, pulire la gabbia').instr('verdure ricche di vitamina C ogni giorno').follow('controllo tra 10 giorni', 10, 'day'),
+  } },
+  { slug: 'reptile-husbandry-mbd', header: { en: reptile('Spike', 3), de: reptile('Drago', 3), it: reptile('Iggy', 3) }, build: {
+    en: (c) => c.complaint('not eating for 3 weeks, lethargic').history('husbandry', 'UVB bulb about 2 years old, no calcium supplement').history('basking', 'basking spot 30 C per owner').vital('weight', 380, 'g', 'wt 380 g').finding('musculoskeletal', 'soft mandible, mild tremors of the toes').finding('general', 'thin tail base')
+      .diff('MBD?').diag('radiographs', 'declined', null, 'rads offered, O declined for now').treat('advice', 'replace UVB bulb, dust insects with calcium', 'recommended').follow('recheck 2 weeks', 2, 'week').notIn('metabolic bone'),
+    de: (c) => c.complaint('frisst seit 3 Wochen nicht, matt').history('Haltung', 'UVB-Lampe ca. 2 Jahre alt, kein Kalziumzusatz').history('Sonnenplatz', 'Sonnenplatz 30 °C laut Besitzer').vital('weight', 380, 'g', 'KGW 380 g').finding('Bewegungsapparat', 'weicher Unterkiefer, ggr. Zehenzittern').finding('Allgemein', 'dünne Schwanzwurzel')
+      .diff('V. a. MBD').diag('Röntgen', 'declined', null, 'Rö angeboten, Besitzer lehnt vorerst ab').treat('advice', 'UVB-Lampe ersetzen, Futterinsekten mit Kalzium bestäuben', 'recommended').follow('WV in 2 Wochen', 2, 'week').notIn('metabol'),
+    it: (c) => c.complaint('non mangia da 3 settimane, abbattuto').history('gestione', 'lampada UVB di circa 2 anni, nessuna integrazione di calcio').history('basking', 'punto caldo 30 °C secondo il proprietario').vital('weight', 380, 'g', 'peso 380 g').finding('apparato locomotore', 'mandibola morbida, lievi tremori delle dita').finding('generale', 'base della coda sottile')
+      .diff('sospetta MBD').diag('radiografie', 'declined', null, 'rx proposte, il proprietario per ora rifiuta').treat('advice', 'sostituire la lampada UVB, spolverare gli insetti con calcio', 'recommended').follow('controllo tra 2 settimane', 2, 'week').notIn('metabol'),
+  } },
+  { slug: 'ferret-alopecia-implant-discussed', header: { en: ferret('Bandit', 5), de: ferret('Paule', 5), it: ferret('Zorro', 5) }, build: {
+    en: (c) => c.complaint('hair loss on tail and flanks for 2 months').history('behaviour', 'more aggressive lately per owner').vital('weight', 1.25, 'kg', 'wt 1.25 kg').finding('skin', 'symmetrical alopecia tail base and flanks, skin thin').finding('urogenital', 'prostate not palpable')
+      .diff('adrenal disease').diag('abdominal ultrasound', 'planned', null, 'abdo US planned next week').treat('advice', 'Suprelorin implant discussed, owner to decide', 'recommended').follow('recheck after US', null, null),
+    de: (c) => c.complaint('Haarausfall an Schwanz und Flanken seit 2 Monaten').history('Verhalten', 'laut Besitzerin in letzter Zeit aggressiver').vital('weight', 1.25, 'kg', 'KGW 1,25 kg').finding('Haut', 'symmetrische Alopezie Schwanzansatz und Flanken, Haut dünn').finding('Urogenital', 'Prostata nicht tastbar')
+      .diff('Nebennierenerkrankung').diag('Ultraschall Abdomen', 'planned', null, 'US Abdomen nächste Woche geplant').treat('advice', 'Suprelorin-Implantat besprochen, Besitzerin entscheidet noch', 'recommended').follow('WV nach dem US', null, null),
+    it: (c) => c.complaint('perde pelo su coda e fianchi da 2 mesi').history('comportamento', 'più aggressivo ultimamente secondo la proprietaria').vital('weight', 1.25, 'kg', 'peso 1,25 kg').finding('cute', 'alopecia simmetrica base della coda e fianchi, cute sottile').finding('urogenitale', 'prostata non palpabile')
+      .diff('malattia surrenalica').diag('ecografia addominale', 'planned', null, 'eco addome programmata la settimana prossima').treat('advice', 'impianto Suprelorin discusso, la proprietaria deciderà', 'recommended').follow("controllo dopo l'ecografia", null, null),
+  } },
+  { slug: 'horse-hoof-abscess-dose', header: { en: horse('Comet', 'Warmblood', 14, 'male', 'neutered'), de: horse('Jupiter', 'Warmblut', 14, 'male', 'neutered'), it: horse('Fulmine', 'Sella italiano', 14, 'male', 'neutered') }, build: {
+    en: (c) => c.complaint('acutely lame LF since yesterday').vital('temperature', 37.9, 'C', 'T 37.9').vital('heart_rate', 48, '/min', 'HR 48').finding('musculoskeletal', 'LF lameness 4/5, increased digital pulse LF').finding('hoof', 'hoof testers positive medial toe LF').assess('subsolar abscess LF')
+      .treat('procedure', 'sole pared, abscess drained', 'performed').treat('other', 'poultice and hoof boot applied', 'performed').vital('weight', 540, 'kg', 'approx 540 kg (tape)')
+      .med({ drug: 'phenylbutazone', dose: 2, dose_unit: 'g', route: 'PO', frequency: 'BID', duration: '3 days', status: 'dispensed' }, 'phenylbutazone 2 g PO BID 3 days dispensed').instr('change poultice daily, box rest').follow('recheck in 3 days', 3, 'day'),
+    de: (c) => c.complaint('seit gestern akut lahm VL').vital('temperature', 37.9, 'C', 'T 37,9').vital('heart_rate', 48, '/min', 'HF 48').finding('Bewegungsapparat', 'Lahmheit VL 4/5, Pulsation Zehenarterie VL verstärkt').finding('Huf', 'Hufzange VL medial an der Zehe positiv').assess('Hufabszess VL')
+      .treat('procedure', 'Sohle ausgeschnitten, Abszess eröffnet', 'performed').treat('other', 'Breiumschlag und Hufschuh angelegt', 'performed').vital('weight', 540, 'kg', 'ca. 540 kg (Maßband)')
+      .med({ drug: 'Phenylbutazon', dose: 2, dose_unit: 'g', route: 'p.o.', frequency: '2x tgl.', duration: '3 Tage', status: 'dispensed' }, 'Phenylbutazon 2 g p.o. 2x tgl. 3 Tage abgegeben').instr('Breiumschlag täglich wechseln, Boxenruhe').follow('WV in 3 Tagen', 3, 'day'),
+    it: (c) => c.complaint('zoppia acuta AS da ieri').vital('temperature', 37.9, 'C', 'T 37,9').vital('heart_rate', 48, '/min', 'FC 48').finding('apparato locomotore', 'zoppia AS 4/5, polso digitale aumentato AS').finding('zoccolo', 'pinza da zoccolo positiva in punta mediale AS').assess('ascesso subsolare AS')
+      .treat('procedure', 'suola pareggiata, ascesso drenato', 'performed').treat('other', 'impacco e scarpetta applicati', 'performed').vital('weight', 540, 'kg', 'circa 540 kg (nastro)')
+      .med({ drug: 'fenilbutazone', dose: 2, dose_unit: 'g', route: 'per os', frequency: 'due volte al giorno', duration: '3 giorni', status: 'dispensed' }, 'fenilbutazone 2 g per os due volte al giorno per 3 giorni, consegnato').instr("cambiare l'impacco ogni giorno, riposo in box").follow('controllo tra 3 giorni', 3, 'day'),
+  } },
+  { slug: 'adversarial-no-diagnosis-pupd', header: { en: dog('Poppy', 'Bichon Frise', 10, 'female'), de: dog('Bijou', 'Bichon Frisé', 10, 'female'), it: dog('Neve', 'Bichon à poil frisé', 10, 'female') }, build: {
+    en: (c) => c.complaint('drinking and urinating a lot, always hungry, for 3 months').finding('general', 'pot-bellied, panting at rest').finding('skin', 'thin skin, symmetrical truncal alopecia').vital('weight', 8.3, 'kg', 'wt 8.3 kg')
+      .diag('blood test incl. biochemistry', 'performed', null, 'bloods incl. biochem taken').diag('urinalysis', 'performed', 'USG 1.008', 'UA: USG 1.008').plain("O asks if it could be Cushing's, told we wait for results").follow('call with results, then discuss next tests', null, null).notIn('cushing', 'hyperadrenocorticism'),
+    de: (c) => c.complaint('trinkt und uriniert viel, ständig hungrig, seit 3 Monaten').finding('Allgemein', 'Hängebauch, hechelt in Ruhe').finding('Haut', 'dünne Haut, symmetrische Alopezie am Rumpf').vital('weight', 8.3, 'kg', 'KGW 8,3 kg')
+      .diag('Blutuntersuchung inkl. Profil', 'performed', null, 'Blut inkl. Profil entnommen').diag('Harnuntersuchung', 'performed', 'USG 1,008', 'Harn: USG 1,008').plain('Besitzerin fragt, ob es Cushing sein könnte; Ergebnisse abwarten').follow('Anruf mit Ergebnissen, dann weitere Tests besprechen', null, null).notIn('cushing', 'hyperadrenokort'),
+    it: (c) => c.complaint('beve e urina molto, sempre affamata, da 3 mesi').finding('generale', 'addome pendulo, ansima a riposo').finding('cute', 'cute sottile, alopecia simmetrica del tronco').vital('weight', 8.3, 'kg', 'peso 8,3 kg')
+      .diag('esami del sangue con biochimico', 'performed', null, 'prelievo con biochimico eseguito').diag('esame urine', 'performed', 'PS 1,008', 'esame urine: PS 1,008').plain('la proprietaria chiede se può essere Cushing, aspettiamo i risultati').follow('telefonata con i risultati, poi discutere altri esami', null, null).notIn('cushing', 'iperadrenocortic'),
+  } },
+  { slug: 'adversarial-dose-to-calculate', header: { en: cat('Shadow', 12, 'male'), de: cat('Carlo', 12, 'male'), it: cat('Ombra', 12, 'male') }, build: {
+    en: (c) => c.complaint('stiff, reluctant to jump for 1 month').vital('weight', 4.0, 'kg', 'wt 4.0 kg').finding('musculoskeletal', 'reduced flexion both hips, crepitus').assess('osteoarthritis suspected').diag('kidney values', 'planned', null, 'kidney values before NSAID, sample next week')
+      .med({ drug: 'meloxicam', route: 'PO', frequency: 'SID', status: 'prescribed' }, 'meloxicam PO SID, dose to be calculated once kidney values are back').follow('recheck with results', null, null).notIn('mg/kg', '0.05'),
+    de: (c) => c.complaint('steif, springt seit 1 Monat ungern').vital('weight', 4.0, 'kg', 'KGW 4,0 kg').finding('Bewegungsapparat', 'Beugung beider Hüften reduziert, Krepitation').assess('V. a. Arthrose').diag('Nierenwerte', 'planned', null, 'Nierenwerte vor NSAID, Probe nächste Woche')
+      .med({ drug: 'Meloxicam', route: 'p.o.', frequency: '1x tgl.', status: 'prescribed' }, 'Meloxicam p.o. 1x tgl., Dosis wird nach Nierenwerten berechnet').follow('WV mit Ergebnissen', null, null).notIn('mg/kg', '0.05'),
+    it: (c) => c.complaint('rigido, salta malvolentieri da 1 mese').vital('weight', 4.0, 'kg', 'peso 4,0 kg').finding('apparato locomotore', 'flessione ridotta di entrambe le anche, crepitio').assess('sospetta artrosi').diag('valori renali', 'planned', null, 'valori renali prima del FANS, campione la settimana prossima')
+      .med({ drug: 'meloxicam', route: 'per os', frequency: 'una volta al giorno', status: 'prescribed' }, 'meloxicam per os una volta al giorno, dose da calcolare dopo i valori renali').follow('controllo con i risultati', null, null).notIn('mg/kg', '0.05'),
+  } },
+  { slug: 'adversarial-dose-kept-exact', header: { en: dog('Oscar', 'Labrador', 4), de: dog('Lumpi', 'Labrador', 4), it: dog('Tobia', 'Labrador', 4) }, build: {
+    en: (c) => c.complaint('itchy red spots on belly for 10 days').vital('weight', 21.6, 'kg', 'wt 21.6 kg').finding('skin', 'papules and pustules ventral abdomen').diag('cytology pustule', 'performed', 'neutrophils, cocci ++', 'cyto pustule: neutrophils, cocci ++').assess('superficial pyoderma')
+      .med({ drug: 'amoxicillin/clavulanate', dose: 12.5, dose_unit: 'mg/kg', route: 'PO', frequency: 'BID', duration: '14 days', status: 'dispensed' }, 'amoxicillin/clavulanate 12.5 mg/kg PO BID 14 days dispensed').follow('recheck 2 weeks', 2, 'week').notIn('tablet', '"dose":13', '"dose":12,'),
+    de: (c) => c.complaint('juckende rote Pickel am Bauch seit 10 Tagen').vital('weight', 21.6, 'kg', 'KGW 21,6 kg').finding('Haut', 'Papeln und Pusteln ventrales Abdomen').diag('Zytologie Pustel', 'performed', 'Neutrophile, Kokken ++', 'Zyto Pustel: Neutrophile, Kokken ++').assess('oberflächliche Pyodermie')
+      .med({ drug: 'Amoxicillin/Clavulansäure', dose: 12.5, dose_unit: 'mg/kg', route: 'p.o.', frequency: '2x tgl.', duration: '14 Tage', status: 'dispensed' }, 'Amoxicillin/Clavulansäure 12,5 mg/kg p.o. 2x tgl. 14 Tage abgegeben').follow('WV in 2 Wochen', 2, 'week').notIn('tablette', '"dose":13', '"dose":12,'),
+    it: (c) => c.complaint('puntini rossi pruriginosi sulla pancia da 10 giorni').vital('weight', 21.6, 'kg', 'peso 21,6 kg').finding('cute', 'papule e pustole addome ventrale').diag('citologia pustola', 'performed', 'neutrofili, cocchi ++', 'citologia pustola: neutrofili, cocchi ++').assess('piodermite superficiale')
+      .med({ drug: 'amoxicillina/acido clavulanico', dose: 12.5, dose_unit: 'mg/kg', route: 'per os', frequency: 'due volte al giorno', duration: '14 giorni', status: 'dispensed' }, 'amoxicillina/acido clavulanico 12,5 mg/kg per os due volte al giorno per 14 giorni, consegnata').follow('controllo tra 2 settimane', 2, 'week').notIn('compress', '"dose":13', '"dose":12,'),
+  } },
+  { slug: 'other-dog-park-cough', header: { en: dog('Rufus', 'Cocker Spaniel', 3), de: dog('Lucky', 'Cocker Spaniel', 3), it: dog('Lampo', 'Cocker Spaniel', 3) }, build: {
+    en: (c) => c.complaint('dry cough since Saturday').plain('played with another dog at the park last week that had kennel cough and a fever of 39.9').history('appetite', 'eating and playing normally').vital('temperature', 38.6, 'C', 'T 38.6').finding('respiratory', 'cough on tracheal palpation, lungs clear')
+      .assess('infectious tracheobronchitis suspected').instr('no contact with other dogs for 2 weeks').follow('recheck if not better in 1 week', 1, 'week').notIn('39.9', 'fever', 'kennel cough'),
+    de: (c) => c.complaint('trockener Husten seit Samstag').plain('hat letzte Woche im Park mit einem anderen Hund gespielt, der Zwingerhusten und 39,9 Fieber hatte').history('Appetit', 'frisst und spielt normal').vital('temperature', 38.6, 'C', 'T 38,6').finding('Atmung', 'Husten bei Trachealpalpation, Lunge frei')
+      .assess('V. a. infektiöse Tracheobronchitis').instr('2 Wochen kein Kontakt zu anderen Hunden').follow('WV, wenn nach 1 Woche nicht besser', 1, 'week').notIn('39.9', 'fieber', 'zwingerhusten'),
+    it: (c) => c.complaint('tosse secca da sabato').plain('la settimana scorsa ha giocato al parco con un altro cane che aveva la tosse dei canili e 39,9 di febbre').history('appetito', 'mangia e gioca normalmente').vital('temperature', 38.6, 'C', 'T 38,6').finding('respiratorio', 'tosse alla palpazione tracheale, polmoni puliti')
+      .assess('sospetta tracheobronchite infettiva').instr('niente contatti con altri cani per 2 settimane').follow('ricontrollo se non migliora entro 1 settimana', 1, 'week').notIn('39.9', 'febbre', 'tosse dei canili'),
+  } },
+  { slug: 'puppy-vaccine-littermate', header: { en: puppy('Nova', 9), de: puppy('Paula', 9), it: puppy('Stellina', 9) }, build: {
+    en: (c) => c.complaint('first vaccination, bought from breeder 1 week ago').plain('breeder says a littermate died of parvo last week').history('diet', 'eating puppy food well').vital('weight', 5.2, 'kg', 'wt 5.2 kg').vital('temperature', 38.8, 'C', 'T 38.8').finding('general', 'bright, no abnormalities found')
+      .med({ drug: 'DHPPi vaccine', route: 's.c.', status: 'performed' }, 'DHPPi vaccine s.c., batch QZ4417').instr('keep away from unvaccinated dogs until 2 weeks after the last vaccination').follow('second vaccination in 3 weeks', 3, 'week').notIn('parvo', '].batch'),
+    de: (c) => c.complaint('erste Impfung, vor 1 Woche vom Züchter gekauft').plain('laut Züchter ist letzte Woche ein Wurfgeschwister an Parvovirose gestorben').history('Fütterung', 'frisst Welpenfutter gut').vital('weight', 5.2, 'kg', 'KGW 5,2 kg').vital('temperature', 38.8, 'C', 'T 38,8').finding('Allgemein', 'munter, keine Auffälligkeiten')
+      .med({ drug: 'DHPPi-Impfstoff', route: 's.c.', status: 'performed' }, 'DHPPi-Impfstoff s.c., Ch.-B. QZ4417').instr('bis 2 Wochen nach der letzten Impfung von ungeimpften Hunden fernhalten').follow('zweite Impfung in 3 Wochen', 3, 'week').notIn('parvo', '].batch'),
+    it: (c) => c.complaint("prima vaccinazione, presa dall'allevatore 1 settimana fa").plain("l'allevatore dice che un fratello di cucciolata è morto di parvovirosi la settimana scorsa").history('alimentazione', 'mangia bene il cibo per cuccioli').vital('weight', 5.2, 'kg', 'peso 5,2 kg').vital('temperature', 38.8, 'C', 'T 38,8').finding('generale', 'vivace, nessuna anomalia')
+      .med({ drug: 'vaccino DHPPi', route: 's.c.', status: 'performed' }, 'vaccino DHPPi s.c., lotto QZ4417').instr("tenere lontano da cani non vaccinati fino a 2 settimane dopo l'ultimo vaccino").follow('secondo vaccino tra 3 settimane', 3, 'week').notIn('parvo', '].batch'),
+  } },
+  { slug: 'rabbit-shorthand-rhinitis', header: { en: rabbit('Thumper', 6), de: rabbit('Mümmel', 6), it: rabbit('Batuffolo', 6) }, build: {
+    en: (c) => c.complaint('sneezing, white nasal d/c x1wk').vital('temperature', 39.2, 'C', 'T 39.2').vital('respiratory_rate', 60, '/min', 'RR 60').vital('weight', 2.1, 'kg', 'wt 2.1 kg').finding('nose', 'mucopurulent nasal d/c bilat, front paws matted').finding('eyes', 'eyes NAD').finding('respiratory', 'lungs: mild upper airway noise, no crackles')
+      .diag('nasal swab culture', 'performed', null, 'nasal swab sent for C+S').assess('rhinitis').med({ drug: 'meloxicam', dose: 0.6, dose_unit: 'mg/kg', route: 'PO', frequency: 'SID', duration: '5d', status: 'dispensed' }, 'meloxicam 0.6 mg/kg PO SID x5d disp.').follow('recheck 1 wk, sooner if not eating', 1, 'week'),
+    de: (c) => c.complaint('Niesen, weißer Nasenausfluss seit 1 Wo.').vital('temperature', 39.2, 'C', 'T 39,2').vital('respiratory_rate', 60, '/min', 'AF 60').vital('weight', 2.1, 'kg', 'KGW 2,1 kg').finding('Nase', 'mukopurulenter Nasenausfluss bds., Vorderpfoten verklebt').finding('Augen', 'Augen o.B.').finding('Atmung', 'Lunge: ggr. Geräusche obere Atemwege, kein Knistern')
+      .diag('Nasentupfer Bakteriologie', 'performed', null, 'Nasentupfer für BU + AB eingeschickt').assess('Rhinitis').med({ drug: 'Meloxicam', dose: 0.6, dose_unit: 'mg/kg', route: 'p.o.', frequency: '1x tgl.', duration: '5 Tage', status: 'dispensed' }, 'Meloxicam 0,6 mg/kg p.o. 1x tgl. 5 Tage abg.').follow('WV in 1 Wo., früher wenn er nicht frisst', 1, 'week'),
+    it: (c) => c.complaint('starnuti, scolo nasale bianco da 1 sett.').vital('temperature', 39.2, 'C', 'T 39,2').vital('respiratory_rate', 60, '/min', 'FR 60').vital('weight', 2.1, 'kg', 'peso 2,1 kg').finding('naso', 'scolo nasale mucopurulento bilaterale, zampe anteriori impastate').finding('occhi', 'occhi nella norma').finding('respiratorio', 'polmoni: lieve rumore alte vie, niente crepitii')
+      .diag('tampone nasale con antibiogramma', 'performed', null, 'tampone nasale inviato per coltura e antibiogramma').assess('rinite').med({ drug: 'meloxicam', dose: 0.6, dose_unit: 'mg/kg', route: 'per os', frequency: 'una volta al giorno', duration: '5 giorni', status: 'dispensed' }, 'meloxicam 0,6 mg/kg per os una volta al giorno per 5 giorni, consegnato').follow('controllo tra 1 sett., prima se non mangia', 1, 'week'),
+  } },
+];
+
+/**
  * Seeded-error cases ("must-catch"): the fixture record deliberately contains one error that a
  * newer check exists to catch, and the case says which rule must be raised (`expect.must_flag`).
  * They show the checks fire on the error they target; they say nothing about how often a model
@@ -328,6 +543,32 @@ const SEEDED: Scenario[] = [
       .seed('other_animal_fact', 'history[0]', "Seeded error: the ear mites are recorded in this cat's history, but the line is about the other cat at home. other_animal_fact must flag it."),
     it: (c) => c.complaint('scuote la testa, si gratta le orecchie').finding('orecchie', 'condotti puliti, nessuna secrezione').history('acari auricolari', "l'altro gatto di casa ha gli acari auricolari").assess('lieve otite esterna').follow('controllo tra 10 giorni', 10, 'day')
       .seed('other_animal_fact', 'history[0]', "Seeded error: the ear mites are recorded in this cat's history, but the line is about the other cat at home. other_animal_fact must flag it."),
+  } },  // The owner's report recorded as the vet's own examination finding.
+  { slug: 'owner-report-as-finding', header: { en: dog('Ziggy', 'Whippet', 5), de: dog('Pepe', 'Whippet', 5), it: dog('Fulmine', 'Whippet', 5) }, build: {
+    en: (c) => c.complaint('limping on and off').finding('musculoskeletal', 'owner reports he limps RH after running').finding('musculoskeletal', 'no lameness at walk or trot').assess('intermittent lameness, cause unclear').follow('recheck in 2 weeks', 2, 'week')
+      .seed('owner_report_as_finding', 'examination.findings[0].source_role', "Seeded error: the owner's report of limping after running is recorded as the vet's own examination finding. owner_report_as_finding must flag it."),
+    de: (c) => c.complaint('lahmt immer wieder').finding('Bewegungsapparat', 'Besitzer berichtet, er lahmt nach dem Rennen HR').finding('Bewegungsapparat', 'keine Lahmheit im Schritt und Trab').assess('intermittierende Lahmheit, Ursache unklar').follow('WV in 2 Wochen', 2, 'week')
+      .seed('owner_report_as_finding', 'examination.findings[0].source_role', "Seeded error: the owner's report of limping after running is recorded as the vet's own examination finding. owner_report_as_finding must flag it."),
+    it: (c) => c.complaint('zoppica a intermittenza').finding('apparato locomotore', 'il proprietario riferisce che zoppica PD dopo la corsa').finding('apparato locomotore', 'nessuna zoppia al passo e al trotto').assess('zoppia intermittente, causa non chiara').follow('controllo tra 2 settimane', 2, 'week')
+      .seed('owner_report_as_finding', 'examination.findings[0].source_role', "Seeded error: the owner's report of limping after running is recorded as the vet's own examination finding. owner_report_as_finding must flag it."),
+  } },
+  // A dose the vet did not write: the notes say it is still to be calculated, the record carries a number.
+  { slug: 'invented-dose', header: { en: cat('Smokey', 12, 'male'), de: cat('Karlo', 12, 'male'), it: cat('Fumo', 12, 'male') }, build: {
+    en: (c) => c.complaint('stiff, reluctant to jump').vital('weight', 4.0, 'kg', 'wt 4.0 kg').finding('musculoskeletal', 'reduced flexion both hips').assess('osteoarthritis suspected').med({ drug: 'meloxicam', dose: 0.2, dose_unit: 'mg', route: 'PO', frequency: 'SID', status: 'prescribed' }, 'meloxicam PO SID, dose to be calculated').follow('recheck in 2 weeks', 2, 'week')
+      .seed('dose_not_in_notes', 'medications[0].dose', 'Seeded error: the notes say the meloxicam dose is still to be calculated; the record carries 0.2 mg, a dose the vet did not write. dose_not_in_notes must block it.'),
+    de: (c) => c.complaint('steif, springt ungern').vital('weight', 4.0, 'kg', 'KGW 4,0 kg').finding('Bewegungsapparat', 'Beugung beider Hüften reduziert').assess('V. a. Arthrose').med({ drug: 'Meloxicam', dose: 0.2, dose_unit: 'mg', route: 'p.o.', frequency: '1x tgl.', status: 'prescribed' }, 'Meloxicam p.o. 1x tgl., Dosis wird noch berechnet').follow('WV in 2 Wochen', 2, 'week')
+      .seed('dose_not_in_notes', 'medications[0].dose', 'Seeded error: the notes say the meloxicam dose is still to be calculated; the record carries 0.2 mg, a dose the vet did not write. dose_not_in_notes must block it.'),
+    it: (c) => c.complaint('rigido, salta malvolentieri').vital('weight', 4.0, 'kg', 'peso 4,0 kg').finding('apparato locomotore', 'flessione ridotta di entrambe le anche').assess('sospetta artrosi').med({ drug: 'meloxicam', dose: 0.2, dose_unit: 'mg', route: 'per os', frequency: 'una volta al giorno', status: 'prescribed' }, 'meloxicam per os una volta al giorno, dose da calcolare').follow('controllo tra 2 settimane', 2, 'week')
+      .seed('dose_not_in_notes', 'medications[0].dose', 'Seeded error: the notes say the meloxicam dose is still to be calculated; the record carries 0.2 mg, a dose the vet did not write. dose_not_in_notes must block it.'),
+  } },
+  // A diagnosis the vet did not write: the owner asked about Cushing's, the vet is waiting for results.
+  { slug: 'invented-diagnosis', header: { en: dog('Daisy', 'Bichon Frise', 10, 'female'), de: dog('Flocke', 'Bichon Frisé', 10, 'female'), it: dog('Bianca', 'Bichon à poil frisé', 10, 'female') }, build: {
+    en: (c) => c.complaint('drinking and urinating a lot for 3 months').finding('general', 'pot-bellied, panting at rest').diag('blood test', 'performed', null, 'bloods taken').plain("O asks if it could be Cushing's, told we wait for results").follow('call with results', null, null).assessUnsourced("Cushing's disease")
+      .seed('source_required', 'assessment.text', "Seeded error: the record's assessment is Cushing's disease, which only the owner's question mentions; the vet wrote no diagnosis. source_required must block it."),
+    de: (c) => c.complaint('trinkt und uriniert seit 3 Monaten viel').finding('Allgemein', 'Hängebauch, hechelt in Ruhe').diag('Blutuntersuchung', 'performed', null, 'Blut entnommen').plain('Besitzerin fragt, ob es Cushing sein könnte; Ergebnisse abwarten').follow('Anruf mit Ergebnissen', null, null).assessUnsourced('Morbus Cushing')
+      .seed('source_required', 'assessment.text', "Seeded error: the record's assessment is Cushing's disease, which only the owner's question mentions; the vet wrote no diagnosis. source_required must block it."),
+    it: (c) => c.complaint('beve e urina molto da 3 mesi').finding('generale', 'addome pendulo, ansima a riposo').diag('esami del sangue', 'performed', null, 'prelievo eseguito').plain('la proprietaria chiede se può essere Cushing, aspettiamo i risultati').follow('telefonata con i risultati', null, null).assessUnsourced('morbo di Cushing')
+      .seed('source_required', 'assessment.text', "Seeded error: the record's assessment is Cushing's disease, which only the owner's question mentions; the vet wrote no diagnosis. source_required must block it."),
   } },
 ];
 
@@ -342,7 +583,8 @@ class MultiCase {
   cases: Record<string, Case> = {};
   assignment: Record<number, string> = {};
   constructor(public id: string, public language: Lang, public headers: Record<string, any>) {
-    for (const [pid, h] of Object.entries(headers)) this.cases[pid] = new Case(`${id}/${pid}`, language, h);
+    // Not strict: each patient's case sees the other animals' lines; the consultation check below reads its own view.
+    for (const [pid, h] of Object.entries(headers)) this.cases[pid] = new Case(`${id}/${pid}`, language, h, false);
   }
   /** One line `prefix + text`, written by `f` on the case of `who` (SHARED: every patient); `prefix` is the name label. */
   line(who: string, prefix: string, f: (c: Case) => Case) {
@@ -425,12 +667,94 @@ const MULTI: MultiScenario[] = [
       .line('tigro', 'Tigro: ', (c) => c.med({ drug: 'Milbemax', dose: 1, dose_unit: 'compressa', route: 'per bocca', frequency: 'una volta', status: 'dispensed' }, 'Milbemax 1 compressa per bocca una volta, consegnato'))
       .line(SHARED, 'entrambi: ', (c) => c.instr('antiparassitario contro le pulci ogni mese per tutti gli animali di casa'))
       .line('briciola', '', (c) => c.follow('controllo Briciola tra 7 giorni', 7, 'day')),
+  } },  /**
+   * Two guinea pigs of one owner, each weighed: without the per-patient view, either weight would read as
+   * a second weight of the other. One instruction for both (shared); the recheck names Pip mid-sentence.
+   */
+  { slug: 'two-guinea-pigs-weights', headers: {
+    en: { pip: guineaPig('Pip', 3), squeak: guineaPig('Squeak', 2) },
+    de: { kruemel: guineaPig('Krümel', 3), floeckchen: guineaPig('Flöckchen', 2) },
+    it: { nocciolina: guineaPig('Nocciolina', 3), biscotto: guineaPig('Biscotto', 2) },
+  }, build: {
+    en: (m) => m
+      .line('pip', 'Pip: ', (c) => c.complaint('not eating hay since yesterday'))
+      .line('pip', 'Pip: ', (c) => c.vital('weight', 950, 'g', 'wt 950 g'))
+      .line('pip', 'Pip: ', (c) => c.finding('oral', 'incisors overgrown, drooling'))
+      .line('pip', 'Pip: ', (c) => c.treat('procedure', 'incisors trimmed', 'performed'))
+      .line('squeak', 'Squeak: ', (c) => c.complaint('routine check, no problems per owner'))
+      .line('squeak', 'Squeak: ', (c) => c.vital('weight', 1100, 'g', 'wt 1100 g'))
+      .line('squeak', 'Squeak: ', (c) => c.treat('procedure', 'nails trimmed', 'performed'))
+      .line(SHARED, 'both: ', (c) => c.instr('more hay, fresh vitamin C rich vegetables daily'))
+      .line('pip', '', (c) => c.follow('recheck Pip in 1 week', 1, 'week')),
+    de: (m) => m
+      .line('kruemel', 'Krümel: ', (c) => c.complaint('frisst seit gestern kein Heu'))
+      .line('kruemel', 'Krümel: ', (c) => c.vital('weight', 950, 'g', 'KGW 950 g'))
+      .line('kruemel', 'Krümel: ', (c) => c.finding('Maulhöhle', 'Schneidezähne zu lang, speichelt'))
+      .line('kruemel', 'Krümel: ', (c) => c.treat('procedure', 'Schneidezähne gekürzt', 'performed'))
+      .line('floeckchen', 'Flöckchen: ', (c) => c.complaint('Routinekontrolle, laut Besitzerin keine Probleme'))
+      .line('floeckchen', 'Flöckchen: ', (c) => c.vital('weight', 1100, 'g', 'KGW 1100 g'))
+      .line('floeckchen', 'Flöckchen: ', (c) => c.treat('procedure', 'Krallen gekürzt', 'performed'))
+      .line(SHARED, 'beide: ', (c) => c.instr('mehr Heu, täglich frisches Vitamin-C-reiches Gemüse'))
+      .line('kruemel', '', (c) => c.follow('WV Krümel in 1 Woche', 1, 'week')),
+    it: (m) => m
+      .line('nocciolina', 'Nocciolina: ', (c) => c.complaint('non mangia fieno da ieri'))
+      .line('nocciolina', 'Nocciolina: ', (c) => c.vital('weight', 950, 'g', 'peso 950 g'))
+      .line('nocciolina', 'Nocciolina: ', (c) => c.finding('cavo orale', 'incisivi troppo lunghi, saliva'))
+      .line('nocciolina', 'Nocciolina: ', (c) => c.treat('procedure', 'incisivi accorciati', 'performed'))
+      .line('biscotto', 'Biscotto: ', (c) => c.complaint('controllo di routine, secondo la proprietaria nessun problema'))
+      .line('biscotto', 'Biscotto: ', (c) => c.vital('weight', 1100, 'g', 'peso 1100 g'))
+      .line('biscotto', 'Biscotto: ', (c) => c.treat('procedure', 'unghie tagliate', 'performed'))
+      .line(SHARED, 'entrambi: ', (c) => c.instr('più fieno, verdure fresche ricche di vitamina C ogni giorno'))
+      .line('nocciolina', '', (c) => c.follow('controllo Nocciolina tra 1 settimana', 1, 'week')),
+  } },
+  /**
+   * Two dogs, written up hours later with clock times. Each dog has its own temperature. The shared line is
+   * the write-up note itself; the owner's call after discharge names Max mid-sentence (assigned by hand).
+   */
+  { slug: 'two-dogs-written-later', headers: {
+    en: { max: dog('Max', 'Labrador', 6), ruby: dog('Ruby', 'Labrador', 2, 'female') },
+    de: { benno: dog('Benno', 'Labrador', 6), frieda: dog('Frieda', 'Labrador', 2, 'female') },
+    it: { bobo: dog('Bobo', 'Labrador', 6), gilda: dog('Gilda', 'Labrador', 2, 'female') },
+  }, build: {
+    en: (m) => m
+      .line(SHARED, 'both: ', (c) => c.plain('written up at 19:00, seen together at 14:30'))
+      .line('max', 'Max: ', (c) => c.complaint('vomited 3x this morning per owner'))
+      .line('max', 'Max: ', (c) => c.vital('temperature', 39.1, 'C', 'T 39.1'))
+      .line('max', 'Max: ', (c) => c.finding('abdomen', 'abdomen soft, mild discomfort'))
+      .line('max', 'Max: ', (c) => c.med({ drug: 'Cerenia', route: 'SC', status: 'performed' }, 'Cerenia SC given at 14:45'))
+      .line('ruby', 'Ruby: ', (c) => c.complaint('booster vaccination, no concerns'))
+      .line('ruby', 'Ruby: ', (c) => c.vital('temperature', 38.5, 'C', 'T 38.5'))
+      .line('ruby', 'Ruby: ', (c) => c.med({ drug: 'DHPPi vaccine', route: 's.c.', status: 'performed' }, 'DHPPi vaccine s.c., batch QZ5120'))
+      .line('max', '', (c) => c.history('update', 'owner called at 18:00: Max has not vomited since', 'owner_reported'))
+      .line('max', '', (c) => c.follow('recheck Max tomorrow if vomiting again', null, null)),
+    de: (m) => m
+      .line(SHARED, 'beide: ', (c) => c.plain('geschrieben um 19:00, zusammen gesehen um 14:30'))
+      .line('benno', 'Benno: ', (c) => c.complaint('laut Besitzer heute Morgen 3x erbrochen'))
+      .line('benno', 'Benno: ', (c) => c.vital('temperature', 39.1, 'C', 'T 39,1'))
+      .line('benno', 'Benno: ', (c) => c.finding('Abdomen', 'Abdomen weich, ggr. Schmerz'))
+      .line('benno', 'Benno: ', (c) => c.med({ drug: 'Cerenia', route: 's.c.', status: 'performed' }, 'Cerenia s.c. um 14:45 verabreicht'))
+      .line('frieda', 'Frieda: ', (c) => c.complaint('Auffrischungsimpfung, keine Beschwerden'))
+      .line('frieda', 'Frieda: ', (c) => c.vital('temperature', 38.5, 'C', 'T 38,5'))
+      .line('frieda', 'Frieda: ', (c) => c.med({ drug: 'DHPPi-Impfstoff', route: 's.c.', status: 'performed' }, 'DHPPi-Impfstoff s.c., Ch.-B. QZ5120'))
+      .line('benno', '', (c) => c.history('Verlauf', 'Besitzer ruft um 18:00 an: Benno hat seitdem nicht mehr erbrochen', 'owner_reported'))
+      .line('benno', '', (c) => c.follow('WV Benno morgen, falls er wieder erbricht', null, null)),
+    it: (m) => m
+      .line(SHARED, 'entrambi: ', (c) => c.plain('scritto alle 19:00, visti insieme alle 14:30'))
+      .line('bobo', 'Bobo: ', (c) => c.complaint('ha vomitato 3 volte stamattina secondo il proprietario'))
+      .line('bobo', 'Bobo: ', (c) => c.vital('temperature', 39.1, 'C', 'T 39,1'))
+      .line('bobo', 'Bobo: ', (c) => c.finding('addome', 'addome morbido, lieve fastidio'))
+      .line('bobo', 'Bobo: ', (c) => c.med({ drug: 'Cerenia', route: 'sc', status: 'performed' }, 'Cerenia sc somministrato alle 14:45'))
+      .line('gilda', 'Gilda: ', (c) => c.complaint('richiamo vaccinale, nessun problema'))
+      .line('gilda', 'Gilda: ', (c) => c.vital('temperature', 38.5, 'C', 'T 38,5'))
+      .line('gilda', 'Gilda: ', (c) => c.med({ drug: 'vaccino DHPPi', route: 's.c.', status: 'performed' }, 'vaccino DHPPi s.c., lotto QZ5120'))
+      .line('bobo', '', (c) => c.history('aggiornamento', 'il proprietario chiama alle 18:00: Bobo non ha più vomitato', 'owner_reported'))
+      .line('bobo', '', (c) => c.follow('controllo Bobo domani se vomita di nuovo', null, null)),
   } },
 ];
 
 const here = dirname(fileURLToPath(import.meta.url));
 const dir = join(here, '..', '..', 'eval', 'cases');
-for (const f of readdirSync(dir)) if (/^(1\d\d-gen|2\d\d-seeded)-/.test(f)) unlinkSync(join(dir, f));
+for (const f of readdirSync(dir)) if (/^([14]\d\d-gen|2\d\d-seeded)-/.test(f)) unlinkSync(join(dir, f));
 const write = (list: Scenario[], start: number, kind: string) => {
   let n = start;
   for (const sc of list) for (const lang of ['en', 'de', 'it'] as Lang[]) {
@@ -441,7 +765,7 @@ const write = (list: Scenario[], start: number, kind: string) => {
   }
   return n - start;
 };
-const gen = write(S, 100, 'gen');
+const gen = write(S, 100, 'gen') + write(S2, 400, 'gen');
 const seeded = write(SEEDED, 200, 'seeded');
 // Multi-pet consultations live in their own folder: their shape (shared notes, several patients) is not a
 // single-patient case, and the harness scores them apart (see eval.ts), outside every published rate.

@@ -1,0 +1,174 @@
+{
+  "id": "407-gen-typos-dictation-gastro-de",
+  "language": "de",
+  "synthetic": true,
+  "header": {
+    "name": "Bello",
+    "species": "dog",
+    "breed": "Springer Spaniel",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 3,
+      "unit": "year"
+    }
+  },
+  "notes": "Erbechen seit heute morgen, 4 mal\nlaut Besitzer gestern Abend Mülleimer geplündert\nT 38,9\nggr. Schmertz bei Palpation des Abdomens, keine Umfangsvermehrung\nMarapitant s.c. gegeben\n12 Std. nüchtern, dann Schonkost\nWV morgn, falls nicht besser",
+  "expect": {
+    "missing_includes": [
+      "assessment",
+      "medications[0].dose"
+    ],
+    "drugs": [
+      "Marapitant"
+    ],
+    "assessment_text": null,
+    "temperature": 38.9,
+    "statuses": {
+      "medications[0]": "performed"
+    },
+    "uncertain_min": 2,
+    "must_not_contain": [
+      "maropitant"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "Erbechen seit heute morgen, 4 mal",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          33
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "Fütterung",
+        "value": "laut Besitzer gestern Abend Mülleimer geplündert",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            34,
+            82
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.9,
+          "unit": "C",
+          "source_spans": [
+            [
+              83,
+              89
+            ]
+          ]
+        },
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "Abdomen",
+          "text": "ggr. Schmertz bei Palpation des Abdomens, keine Umfangsvermehrung",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              90,
+              155
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": null,
+      "differentials": [],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "Marapitant",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": "s.c.",
+        "frequency": null,
+        "duration": null,
+        "status": "performed",
+        "source_spans": [
+          [
+            156,
+            179
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "WV morgn, falls nicht besser",
+        "interval": null,
+        "source_spans": [
+          [
+            213,
+            241
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "12 Std. nüchtern, dann Schonkost",
+          "source_spans": [
+            [
+              180,
+              212
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": [
+      {
+        "field": "examination.findings[0]",
+        "original_text": "Schmertz",
+        "reason": "\"Schmertz\" wie geschrieben übernommen, vermutlich Schmerz; nicht korrigiert",
+        "source_spans": [
+          [
+            95,
+            103
+          ]
+        ]
+      },
+      {
+        "field": "medications[0].drug",
+        "original_text": "Marapitant",
+        "reason": "Medikamentenname wie geschrieben übernommen, evtl. Tippfehler; nicht korrigiert",
+        "source_spans": [
+          [
+            156,
+            166
+          ]
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "id": "449-gen-adversarial-dose-to-calculate-de",
+  "language": "de",
+  "synthetic": true,
+  "header": {
+    "name": "Carlo",
+    "species": "cat",
+    "breed": "European Shorthair",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 12,
+      "unit": "year"
+    }
+  },
+  "notes": "steif, springt seit 1 Monat ungern\nKGW 4,0 kg\nBeugung beider Hüften reduziert, Krepitation\nV. a. Arthrose\nNierenwerte vor NSAID, Probe nächste Woche\nMeloxicam p.o. 1x tgl., Dosis wird nach Nierenwerten berechnet\nWV mit Ergebnissen",
+  "expect": {
+    "missing_includes": [
+      "medications[0].dose"
+    ],
+    "drugs": [
+      "Meloxicam"
+    ],
+    "assessment_text": "V. a. Arthrose",
+    "statuses": {
+      "medications[0]": "prescribed",
+      "diagnostics[0]": "planned"
+    },
+    "must_not_contain": [
+      "mg/kg",
+      "0.05"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "steif, springt seit 1 Monat ungern",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          34
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": {
+          "value": 4,
+          "unit": "kg",
+          "source_spans": [
+            [
+              35,
+              45
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "Bewegungsapparat",
+          "text": "Beugung beider Hüften reduziert, Krepitation",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              46,
+              90
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "Nierenwerte",
+        "status": "planned",
+        "result": null,
+        "source_spans": [
+          [
+            106,
+            148
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": "V. a. Arthrose",
+      "differentials": [],
+      "source_spans": [
+        [
+          91,
+          105
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "Meloxicam",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": "p.o.",
+        "frequency": "1x tgl.",
+        "duration": null,
+        "status": "prescribed",
+        "source_spans": [
+          [
+            149,
+            211
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "WV mit Ergebnissen",
+        "interval": null,
+        "source_spans": [
+          [
+            212,
+            230
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

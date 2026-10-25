@@ -1,0 +1,162 @@
+{
+  "id": "412-gen-contradiction-weight-twice-en",
+  "language": "en",
+  "synthetic": true,
+  "header": {
+    "name": "Murphy",
+    "species": "dog",
+    "breed": "Beagle",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 7,
+      "unit": "year"
+    }
+  },
+  "notes": "itchy skin, red belly for 2 weeks\nwt 12.4 kg\nerythema and papules ventral abdomen, epidermal collarettes\ntape cyto: cocci ++\nsuperficial pyoderma\nweight today 14.2 kg\ncefalexin 15 mg/kg PO BID 21 days dispensed\nchlorhexidine shampoo twice weekly\nrecheck 3 weeks",
+  "expect": {
+    "missing_includes": [
+      "patient.weight"
+    ],
+    "drugs": [
+      "cefalexin"
+    ],
+    "assessment_text": "superficial pyoderma",
+    "statuses": {
+      "medications[0]": "dispensed",
+      "diagnostics[0]": "performed"
+    },
+    "uncertain_min": 1
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "itchy skin, red belly for 2 weeks",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          33
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "skin",
+          "text": "erythema and papules ventral abdomen, epidermal collarettes",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              45,
+              104
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "tape cytology",
+        "status": "performed",
+        "result": "cocci ++",
+        "source_spans": [
+          [
+            105,
+            124
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": "superficial pyoderma",
+      "differentials": [],
+      "source_spans": [
+        [
+          125,
+          145
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "cefalexin",
+        "class_as_written": null,
+        "dose": 15,
+        "dose_unit": "mg/kg",
+        "route": "PO",
+        "frequency": "BID",
+        "duration": "21 days",
+        "status": "dispensed",
+        "source_spans": [
+          [
+            167,
+            210
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "recheck 3 weeks",
+        "interval": {
+          "value": 3,
+          "unit": "week"
+        },
+        "source_spans": [
+          [
+            246,
+            261
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "chlorhexidine shampoo twice weekly",
+          "source_spans": [
+            [
+              211,
+              245
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": [
+      {
+        "field": "examination.vitals.weight",
+        "original_text": "wt 12.4 kg / weight today 14.2 kg",
+        "reason": "two different weights in the notes (12.4 kg and 14.2 kg); not resolved, so no weight is recorded",
+        "source_spans": [
+          [
+            34,
+            44
+          ],
+          [
+            146,
+            166
+          ]
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,145 @@
+{
+  "id": "409-gen-typo-temperature-decimal-en",
+  "language": "en",
+  "synthetic": true,
+  "header": {
+    "name": "Ginger",
+    "species": "cat",
+    "breed": "European Shorthair",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 6,
+      "unit": "year"
+    }
+  },
+  "notes": "sneezing and eye discharge for 4 days\nT 3.89\nHR 190\nserous ocular discharge OU, conjunctivae mildly red\nsneezing during exam\nURTI suspected\nclean eyes with saline twice a day\nrecheck in 5 days if not better",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": "URTI suspected",
+    "statuses": {},
+    "uncertain_min": 1,
+    "must_not_contain": [
+      "38.9"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "sneezing and eye discharge for 4 days",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          37
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": {
+          "value": 190,
+          "unit": "/min",
+          "source_spans": [
+            [
+              45,
+              51
+            ]
+          ]
+        },
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "eyes",
+          "text": "serous ocular discharge OU, conjunctivae mildly red",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              52,
+              103
+            ]
+          ]
+        },
+        {
+          "system": "nose",
+          "text": "sneezing during exam",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              104,
+              124
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": "URTI suspected",
+      "differentials": [],
+      "source_spans": [
+        [
+          125,
+          139
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "recheck in 5 days if not better",
+        "interval": {
+          "value": 5,
+          "unit": "day"
+        },
+        "source_spans": [
+          [
+            175,
+            206
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "clean eyes with saline twice a day",
+          "source_spans": [
+            [
+              140,
+              174
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": [
+      {
+        "field": "examination.vitals.temperature",
+        "original_text": "T 3.89",
+        "reason": "written as 3.89, decimal point probably misplaced; not corrected and not recorded as a temperature",
+        "source_spans": [
+          [
+            38,
+            44
+          ]
+        ]
+      }
+    ]
+  }
+}

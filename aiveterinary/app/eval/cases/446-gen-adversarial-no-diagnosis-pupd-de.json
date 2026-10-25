@@ -1,0 +1,144 @@
+{
+  "id": "446-gen-adversarial-no-diagnosis-pupd-de",
+  "language": "de",
+  "synthetic": true,
+  "header": {
+    "name": "Bijou",
+    "species": "dog",
+    "breed": "Bichon Frisé",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 10,
+      "unit": "year"
+    }
+  },
+  "notes": "trinkt und uriniert viel, ständig hungrig, seit 3 Monaten\nHängebauch, hechelt in Ruhe\ndünne Haut, symmetrische Alopezie am Rumpf\nKGW 8,3 kg\nBlut inkl. Profil entnommen\nHarn: USG 1,008\nBesitzerin fragt, ob es Cushing sein könnte; Ergebnisse abwarten\nAnruf mit Ergebnissen, dann weitere Tests besprechen",
+  "expect": {
+    "missing_includes": [
+      "assessment",
+      "diagnostics[0].result"
+    ],
+    "drugs": [],
+    "assessment_text": null,
+    "statuses": {
+      "diagnostics[0]": "performed",
+      "diagnostics[1]": "performed"
+    },
+    "must_not_contain": [
+      "cushing",
+      "hyperadrenokort"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "trinkt und uriniert viel, ständig hungrig, seit 3 Monaten",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          57
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": {
+          "value": 8.3,
+          "unit": "kg",
+          "source_spans": [
+            [
+              129,
+              139
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "Allgemein",
+          "text": "Hängebauch, hechelt in Ruhe",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              58,
+              85
+            ]
+          ]
+        },
+        {
+          "system": "Haut",
+          "text": "dünne Haut, symmetrische Alopezie am Rumpf",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              86,
+              128
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "Blutuntersuchung inkl. Profil",
+        "status": "performed",
+        "result": null,
+        "source_spans": [
+          [
+            140,
+            167
+          ]
+        ]
+      },
+      {
+        "test": "Harnuntersuchung",
+        "status": "performed",
+        "result": "USG 1,008",
+        "source_spans": [
+          [
+            168,
+            183
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": null,
+      "differentials": [],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "Anruf mit Ergebnissen, dann weitere Tests besprechen",
+        "interval": null,
+        "source_spans": [
+          [
+            249,
+            301
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}
