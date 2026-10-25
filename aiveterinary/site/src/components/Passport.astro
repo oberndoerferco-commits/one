@@ -542,6 +542,12 @@ const SCAN = {
 } as const;
 const t = T[lang]; const j = JS[lang]; const opt = OPT[lang];
 const sc = SCAN[lang];
+// Install as an app (buttons and the iOS hint are switched on by the script in Base.astro; docs/29-pwa.md).
+const inst = {
+  en: { btn: 'Install the app', ios: 'Keep the booklet on your home screen: tap Share, then “Add to Home Screen”. It works offline too.', hide: 'Hide this hint' },
+  it: { btn: 'Installa l’app', ios: 'Tieni il libretto sulla schermata Home: tocca Condividi, poi “Aggiungi alla schermata Home”. Funziona anche offline.', hide: 'Nascondi questo suggerimento' },
+  de: { btn: 'App installieren', ios: 'Den Heimtierpass auf den Home-Bildschirm legen: Tippen Sie auf Teilen und dann auf „Zum Home-Bildschirm“. Er funktioniert auch offline.', hide: 'Hinweis ausblenden' },
+}[lang];
 const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'Next', unnamed: 'New animal' }, it: { y: 'anni', y1: 'anno', m: 'mesi', chip: 'Chip', next: 'Prossima scadenza', unnamed: 'Nuovo animale' }, de: { y: 'Jahre', y1: 'Jahr', m: 'Monate', chip: 'Chip', next: 'Als Nächstes', unnamed: 'Neues Tier' } }[lang];
 ---
   <section class="wrap hero hero-split" id="pp-intro">
@@ -550,6 +556,8 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
     <h1>{t.h1}</h1>
     <p class="lead">{t.lead}</p>
     <ul class="ticks ticks-plain">{t.privTicks.map((x: string) => <li>{x}</li>)}</ul>
+    <button type="button" class="btn secondary pwa-install" data-pwa-install hidden>{inst.btn}</button>
+    <p class="pwa-ios" data-pwa-ios hidden><span>{inst.ios}</span><button type="button" aria-label={inst.hide}>×</button></p>
     </div>
     <div class="hero-side"><BookletArt /></div>
   </section>

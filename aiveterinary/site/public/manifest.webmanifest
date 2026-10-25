@@ -1,10 +1,17 @@
 {
+  "id": "/",
   "name": "AI Veterinary",
   "short_name": "AI Vet",
-  "start_url": "/",
+  "description": "Pet health in plain language, an emergency check and a health booklet that stays on your device. Works offline.",
+  "lang": "en",
+  "dir": "ltr",
+  "start_url": "/?source=pwa",
+  "scope": "/",
   "display": "standalone",
+  "orientation": "any",
   "background_color": "#fbf7f2",
   "theme_color": "#fbf7f2",
+  "categories": ["health", "lifestyle", "medical"],
   "icons": [
     {
       "src": "/icon-192.png",
@@ -21,6 +28,29 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "My booklet",
+      "short_name": "Booklet",
+      "description": "Vaccines, treatments and vet contacts, on this device",
+      "url": "/passport?source=pwa-shortcut",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Is it urgent?",
+      "short_name": "Urgent?",
+      "description": "Go to a vet now, today, or watch at home",
+      "url": "/emergency?source=pwa-shortcut",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Can my pet eat that?",
+      "short_name": "Can it eat?",
+      "description": "Foods that are safe, risky or toxic for pets",
+      "url": "/can-eat?source=pwa-shortcut",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" }]
     }
   ]
 }

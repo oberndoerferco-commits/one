@@ -1,7 +1,9 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import { fileURLToPath } from 'node:url';
-import { readdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { readdirSync, readFileSync, writeFileSync, existsSync, statSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { posix } from 'node:path';
 
 // lastmod for article URLs, from each article's own `updated:` date.
 const contentDir = fileURLToPath(new URL('./src/content/animals/', import.meta.url));
@@ -128,6 +130,65 @@ function seoAfterBuild() {
   };
 }
 
+// Runs after seoAfterBuild (so it hashes the final HTML). Fills in dist/sw.js (see public/sw.js and
+// docs/29-pwa.md):
+//  - the app shell to store at install: the offline pages, the booklet, the emergency check and the home
+//    pages in all three languages, plus every style, script, font and icon those pages load (read from the
+//    built HTML, CSS and JS, so new hashed file names are picked up without a hand-kept list);
+//  - a version: a hash of every built file, so each deploy that changes anything gets fresh caches.
+function pwaAfterBuild() {
+  const SHELL_PAGES = ['/offline', '/passport', '/emergency', '/'];
+  const SHELL_FILES = ['/manifest.webmanifest', '/favicon.ico', '/favicon.svg', '/apple-touch-icon.png', '/icon-192.png', '/icon-512.png', '/icon-maskable-512.png'];
+  return {
+    name: 'pwa-after-build',
+    hooks: {
+      'astro:build:done': ({ dir, logger }) => {
+        const out = fileURLToPath(dir).replace(/\/$/, '');
+        const swFile = `${out}/sw.js`;
+        if (!existsSync(swFile)) { logger.warn('pwa: dist/sw.js missing, service worker not built'); return; }
+        const isFile = (p) => existsSync(out + p) && statSync(out + p).isFile();
+        const htmlOf = (u) => (u === '/' ? '/index.html' : `${u}.html`);
+        const pages = SHELL_PAGES.flatMap((p) => ['', '/it', '/de'].map((l) => (p === '/' ? l || '/' : l + p)));
+        const missing = pages.filter((u) => !isFile(htmlOf(u)));
+        if (missing.length) throw new Error(`pwa: shell pages not built: ${missing.join(', ')}`);
+        const files = new Set(SHELL_FILES.filter(isFile));
+        // Scripts in other alphabets would never be requested for EN/IT/DE text.
+        const skipFont = /(cyrillic|greek|vietnamese|hebrew|math|symbols)[^/]*\.woff2?$/;
+        const add = (ref, from) => {
+          const clean = ref.split(/[?#]/)[0];
+          if (!clean || /^(data:|https?:|\/\/)/.test(clean)) return;
+          const abs = clean.startsWith('/') ? clean : posix.join(posix.dirname(from), clean);
+          if (files.has(abs) || !isFile(abs) || /\.html$/.test(abs) || /^\/(pagefind|ocr)\//.test(abs) || skipFont.test(abs)) return;
+          files.add(abs);
+          if (abs.endsWith('.css')) for (const m of readFileSync(out + abs, 'utf8').matchAll(/url\(\s*["']?([^"')]+)["']?\s*\)/g)) add(m[1], abs);
+          if (abs.endsWith('.js')) for (const m of readFileSync(out + abs, 'utf8').matchAll(/["'`]((?:\.{1,2}|\/_astro)\/[^"'`\s]+\.(?:js|css))["'`]/g)) add(m[1], abs);
+        };
+        for (const u of pages) {
+          const html = readFileSync(out + htmlOf(u), 'utf8');
+          for (const m of html.matchAll(/\s(?:href|src)="(\/[^"]*)"/g)) add(m[1], htmlOf(u));
+        }
+        const precache = [...pages, ...[...files].sort()];
+        // Version: every built file except the worker itself, by path and content.
+        const hash = createHash('sha256');
+        const walk = (d) => {
+          for (const f of readdirSync(d, { withFileTypes: true }).sort((a, b) => (a.name < b.name ? -1 : 1))) {
+            const p = `${d}/${f.name}`;
+            if (f.isDirectory()) walk(p);
+            else if (p !== swFile) hash.update(p.slice(out.length)).update(readFileSync(p));
+          }
+        };
+        walk(out);
+        const version = hash.digest('hex').slice(0, 12);
+        const src = readFileSync(swFile, 'utf8');
+        if (!src.includes('__PWA_VERSION__') || !src.includes('/* __PWA_PRECACHE__ */ []')) throw new Error('pwa: placeholders missing in sw.js');
+        writeFileSync(swFile, src.replace('__PWA_VERSION__', version).replace('/* __PWA_PRECACHE__ */ []', JSON.stringify(precache)));
+        const bytes = precache.reduce((n, u) => n + statSync(out + (files.has(u) ? u : htmlOf(u))).size, 0);
+        logger.info(`pwa: sw.js version ${version}, ${precache.length} files in the app shell (${Math.round(bytes / 1024)} KB)`);
+      },
+    },
+  };
+}
+
 // The site imports the app package's TypeScript sources directly (file:../app).
 // Their own dependency (zod) must resolve from this package's node_modules so a
 // site-only install (CI, Cloudflare Pages) builds without installing ../app.
@@ -143,7 +204,7 @@ export default defineConfig({
       if (d) item.lastmod = new Date(`${d}T00:00:00Z`).toISOString();
       return item;
     },
-  }), seoAfterBuild()],
+  }), seoAfterBuild(), pwaAfterBuild()],
   vite: {
     server: { fs: { allow: ['..'] } },
     optimizeDeps: { exclude: ['aiveterinary-app'] },

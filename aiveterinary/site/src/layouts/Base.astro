@@ -174,6 +174,13 @@ const strings = {
 } as const;
 
 const t = strings[L];
+// Installable app (docs/29-pwa.md): the service worker is registered only in production builds.
+const isProd = import.meta.env.PROD;
+const pwa = ({
+  en: { install: 'Install the app', update: 'A new version of AI Veterinary is available.', reload: 'Update now', later: 'Later' },
+  it: { install: 'Installa l’app', update: 'È disponibile una nuova versione di AI Veterinary.', reload: 'Aggiorna ora', later: 'Più tardi' },
+  de: { install: 'App installieren', update: 'Eine neue Version von AI Veterinary ist verfügbar.', reload: 'Jetzt aktualisieren', later: 'Später' },
+} as const)[L];
 const fh = ({ en: ['Explore', 'About'], it: ['Scopri', 'Chi siamo'], de: ['Entdecken', 'Über uns'] } as any)[L] as [string, string];
 const m = t.menu;
 // hreflang, noindex and page structured data (src/lib/seo.ts): derived from the collections and the route
@@ -230,7 +237,9 @@ const rows = [
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script is:inline>document.documentElement.classList.add('js');</script>
+    <script is:inline>document.documentElement.classList.add('js');
+      // Chromium/Android install prompt: keep it for the discreet "Install the app" buttons instead of the browser's banner.
+      addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); window.__aivInstall = e; document.dispatchEvent(new Event('aiv:installable')); });</script>
     <title>{fullTitle}</title>
     <meta name="description" content={metaDescription} />
     {noindex && <meta name="robots" content="noindex" />}
@@ -332,6 +341,7 @@ const rows = [
             {langLinks.map((l) => <a href={l.href} hreflang={l.code} lang={l.code} aria-current={L === l.code ? 'true' : undefined}>{l.name}</a>)}
           </div>
         </div>
+        <p class="pwa-sheet"><button type="button" class="btn secondary pwa-install" data-pwa-install hidden>{pwa.install}</button></p>
         <ul class="hn-foot">
           <li><a href={m.vets.href} aria-current={current(m.vets.href) ? 'page' : undefined}>{m.vets.label}</a></li>
           <li><a href={m.about.href} aria-current={current(m.about.href) ? 'page' : undefined}>{m.about.label}</a></li>
@@ -426,5 +436,76 @@ const rows = [
       window.addEventListener('resize', function () { if (sheet.open && opener.offsetParent === null) close(); });
     })();
   </script>
+  <div class="pwa-toast" id="pwa-toast" role="status" aria-live="polite" hidden>
+    <span>{pwa.update}</span>
+    <span class="pwa-toast-btns"><button type="button" class="btn" id="pwa-reload">{pwa.reload}</button><button type="button" class="pwa-later" id="pwa-later">{pwa.later}</button></span>
+  </div>
+  <script is:inline>
+    // Install UI: "Install the app" buttons (Chromium/Android, from beforeinstallprompt) and the iOS hint on
+    // the booklet page. Nothing is shown when the site already runs as an installed app.
+    (function () {
+      var standalone = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
+      var buttons = Array.prototype.slice.call(document.querySelectorAll('[data-pwa-install]'));
+      var show = function () { buttons.forEach(function (b) { b.hidden = standalone || !window.__aivInstall; }); };
+      buttons.forEach(function (b) {
+        b.addEventListener('click', function () {
+          var e = window.__aivInstall; if (!e) return;
+          e.prompt();
+          (e.userChoice || Promise.resolve()).finally(function () { window.__aivInstall = null; show(); });
+        });
+      });
+      document.addEventListener('aiv:installable', show);
+      addEventListener('appinstalled', function () { window.__aivInstall = null; show(); });
+      show();
+      var hint = document.querySelector('[data-pwa-ios]'); if (!hint || standalone) return;
+      var KEY = 'aiveterinary.iosInstallHint';
+      var ios = /iP(hone|od|ad)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      var off = false; try { off = localStorage.getItem(KEY) === 'off'; } catch (e) {}
+      if (!ios || off) return;
+      hint.hidden = false;
+      var close = hint.querySelector('button');
+      if (close) close.addEventListener('click', function () { try { localStorage.setItem(KEY, 'off'); } catch (e) {} hint.hidden = true; });
+    })();
+  </script>
+  {isProd && (
+  <script is:inline>
+    // Service worker (public/sw.js): offline booklet, emergency check and pages already read. Production
+    // builds only, over https or on localhost. A new version waits until the user chooses "Update now",
+    // so the page is never reloaded under someone typing in the booklet.
+    (function () {
+      if (!('serviceWorker' in navigator)) return;
+      var local = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+      if (location.protocol !== 'https:' && !local) return;
+      var toast = document.getElementById('pwa-toast'), asked = false, waiting = null;
+      var offer = function (w) {
+        // Only an update: on the very first install there is no old version to replace.
+        if (!w || !navigator.serviceWorker.controller) return;
+        waiting = w; toast.hidden = false;
+      };
+      document.getElementById('pwa-reload').addEventListener('click', function () {
+        if (!waiting) return;
+        asked = true; toast.hidden = true;
+        waiting.postMessage({ type: 'SKIP_WAITING' });
+      });
+      document.getElementById('pwa-later').addEventListener('click', function () { toast.hidden = true; });
+      // Reload only the tab where the user chose to update (other tabs keep working on what they have).
+      navigator.serviceWorker.addEventListener('controllerchange', function () { if (asked) location.reload(); });
+      addEventListener('load', function () {
+        navigator.serviceWorker.register('/sw.js').then(function (reg) {
+          offer(reg.waiting);
+          reg.addEventListener('updatefound', function () {
+            var w = reg.installing; if (!w) return;
+            w.addEventListener('statechange', function () { if (w.state === 'installed') offer(w); });
+          });
+          // The booklet may stay open for days: look for a new deploy when the tab comes back, at most hourly.
+          var last = Date.now();
+          document.addEventListener('visibilitychange', function () {
+            if (document.visibilityState === 'visible' && Date.now() - last > 36e5) { last = Date.now(); reg.update().catch(function () {}); }
+          });
+        }).catch(function () {});
+      });
+    })();
+  </script>
+  )}
   </body>
 </html>

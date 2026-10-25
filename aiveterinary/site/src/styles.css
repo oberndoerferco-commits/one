@@ -578,3 +578,20 @@ html, body { overflow-x: clip; }
 
 .emerg-pill { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 14px; padding: 8px 14px; border-radius: 999px; background: var(--danger-soft); color: var(--danger); font-weight: 700; font-size: .92rem; text-decoration: none; }
 .emerg-pill:hover { text-decoration: underline; }
+
+/* Installable app (docs/29-pwa.md): install button, iOS hint, "new version" notice. */
+.pwa-sheet { margin: 0 0 12px; }
+.pwa-sheet:not(:has(> :not([hidden]))) { display: none; }
+.pwa-install { padding: 8px 16px; font-size: .95rem; }
+.ticks + .pwa-install { margin-top: 14px; }
+.pwa-ios[hidden] { display: none; }
+.pwa-ios { display: flex; gap: 8px; align-items: flex-start; margin: 14px 0 0; padding: 10px 12px 10px 16px; border-radius: 12px; background: var(--accent-soft); color: var(--ink); font-size: .95rem; max-width: 560px; }
+.pwa-ios span { flex: 1; min-width: 0; padding-top: 4px; }
+.pwa-ios button { flex: none; font: inherit; font-size: 1.2rem; line-height: 1; border: 0; background: transparent; color: var(--ink-2); cursor: pointer; min-width: 36px; min-height: 36px; border-radius: 8px; }
+.pwa-toast[hidden] { display: none; }
+.pwa-toast { position: fixed; left: 16px; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 60; max-width: 520px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; justify-content: space-between; padding: 12px 14px 12px 18px; border-radius: 14px; background: var(--surface); color: var(--ink); border: 1px solid var(--line); box-shadow: 0 10px 30px rgba(18, 48, 74, .18); font-size: .95rem; }
+.pwa-toast-btns { display: flex; gap: 6px; align-items: center; }
+.pwa-toast .btn { padding: 8px 16px; font-size: .92rem; }
+.pwa-later { font: inherit; font-size: .92rem; border: 0; background: transparent; color: var(--ink-2); cursor: pointer; padding: 8px 10px; min-height: 40px; border-radius: 8px; }
+@media print { .pwa-toast, .pwa-ios, .pwa-install { display: none !important; } }
+@media (display-mode: standalone) { .pwa-install, .pwa-ios { display: none !important; } }

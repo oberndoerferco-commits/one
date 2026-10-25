@@ -1,0 +1,8 @@
+---
+// Offline fallback, served by the service worker (public/sw.js). Not for search engines.
+import Base from '../../layouts/Base.astro';
+import Offline from '../../components/Offline.astro';
+---
+<Base title="Sie sind offline" description="Keine Verbindung. Heimtierpass und Notfall-Check funktionieren auf diesem Gerät trotzdem." lang="de" noindex>
+  <Offline lang="de" />
+</Base>
