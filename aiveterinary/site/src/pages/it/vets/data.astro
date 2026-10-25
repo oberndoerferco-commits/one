@@ -73,3 +73,8 @@ import Base from '../../../layouts/Base.astro';
     <p>18 ottobre 2026: il segreto professionale è ora formulato come impegno, perché non si trattano ancora dati di cliniche; elenco dei modelli ampliato. Ogni modifica è datata qui. Domande: <a href="mailto:privacy@aiveterinary.org">privacy@aiveterinary.org</a>.</p>
   </article>
 </Base>
+<style>
+  /* Phones: a table wider than the screen scrolls inside itself. The page has overflow-x: clip, so without this
+     the right-hand columns were cut off and unreachable at 320–390 px (German and Italian above all). */
+  @media (max-width: 760px) { table { display: block; max-width: 100%; overflow-x: auto; } }
+</style>

@@ -56,16 +56,20 @@ const mark: Record<string, string> = { emergency: '!', today: '!', 'this-week': 
   .av-v-actions { display: grid; gap: 8px; margin-top: 6px; }
   .av-v-btn { display: flex; align-items: center; gap: 10px; min-height: 48px; padding: 8px 16px; border-radius: 14px; font-weight: 700; text-decoration: none; line-height: 1.2; }
   .av-v-btn svg { flex: none; }
-  .av-v-btn > span { min-width: 0; }
+  .av-v-btn > span { min-width: 0; flex: 1 1 auto; }
   .av-v-call { background: var(--v); color: var(--surface); }
   .av-v-call:hover { filter: brightness(1.06); }
   .av-v-sec { background: var(--surface); color: var(--ink); border: 1.5px solid var(--line); }
   .av-v-sec:hover { border-color: var(--v); }
-  .av-v-bt { display: block; }
-  .av-v-bs { display: block; font-size: .8rem; font-weight: 500; overflow-wrap: anywhere; }
+  /* break-word, not anywhere: "anywhere" shrinks the call button's min-content to one letter, so in the three-column
+     row its column collapsed and the second line ("Add the number in your booklet", the clinic and phone once saved)
+     was cut into fragments ("Gesundhei|tspass"). The second line always wraps in full; it is never clipped. */
+  .av-v-bt { display: block; overflow-wrap: break-word; hyphens: auto; }
+  .av-v-bs { display: block; font-size: .8rem; font-weight: 500; overflow-wrap: break-word; white-space: normal; }
   .av-v-btn:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
-  @media (min-width: 560px) {
-    .av-v-actions { grid-template-columns: 1.3fr 1fr 1fr; }
+  /* Side by side only when all three fit with whole words (EN/IT/DE); below that they stack, full width. */
+  @media (min-width: 720px) {
+    .av-v-actions { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr); }
   }
   @media print { .av-verdict { border: 1px solid #999; background: #fff; } .av-v-head { background: #fff; color: #000; border-bottom: 1px solid #999; } }
 </style>

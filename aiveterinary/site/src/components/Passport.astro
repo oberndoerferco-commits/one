@@ -726,9 +726,9 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
         <h2>{t.notes}</h2>
         <textarea data-f="notes" rows="4" placeholder={t.phNotes}></textarea>
       </section>
-
-      <p class="pp-status" id="pp-status" aria-live="polite"></p>
     </div>
+    <!-- Outside #pp-form: with no animal yet the form is hidden, and a failed restore must still say why. -->
+    <p class="pp-status" id="pp-status" aria-live="polite"></p>
   </section>
 
   <section id="pp-claim-view" class="wrap narrow" hidden aria-hidden="true">
@@ -881,7 +881,7 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
   <script type="application/json" id="pp-l2" set:html={JSON.stringify(Object.fromEntries((["en", "it", "de"] as const).map((l) => [l, { ...Object.fromEntries(Object.entries(T[l]).filter(([, v]) => typeof v === "string")), cols: (JS[l] as any).cols }])))} />
   <script type="application/json" id="pp-prof-i18n" set:html={JSON.stringify(PROF)} />
   <script type="application/json" id="pp-scan-i18n" set:html={JSON.stringify({ ...sc, lang: ({ en: "eng", it: "ita", de: "deu" } as any)[lang] })} />
-  <script type="application/json" id="pp-i18n" set:html={JSON.stringify({ ...j, posterWhere: t.posterWhere, locale: ({ en: 'en-GB', it: 'it-IT', de: 'de-DE' } as any)[lang], upcoming: { overdue: t.overdue, dueIn: t.dueIn, dueToday: t.dueToday, none: t.noUpcoming, vacc: t.vaccinations, treat: t.treatments, plan: ({ en: 'planned, confirm with your vet', it: 'in programma, da confermare con il veterinario', de: 'geplant, mit der Praxis abstimmen' } as any)[lang] } })} />
+  <script type="application/json" id="pp-i18n" set:html={JSON.stringify({ ...j, dob: t.dob, posterWhere: t.posterWhere, locale:({ en: 'en-GB', it: 'it-IT', de: 'de-DE' } as any)[lang], upcoming: { overdue: t.overdue, dueIn: t.dueIn, dueToday: t.dueToday, none: t.noUpcoming, vacc: t.vaccinations, treat: t.treatments, plan: ({ en: 'planned, confirm with your vet', it: 'in programma, da confermare con il veterinario', de: 'geplant, mit der Praxis abstimmen' } as any)[lang] } })} />
 
   <script>
     import { parseScan } from 'aiveterinary-app/src/scan.ts';
@@ -915,10 +915,29 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
     const $$ = <T extends Element>(s: string, root: ParentNode = document) => Array.from(root.querySelectorAll(s)) as T[];
     const uid = () => Math.random().toString(36).slice(2, 10) + Date.now().toString(36);
 
+    // Stored data and backup files are checked before use: list fields must be arrays of rows of text, the photo an
+    // image data URL (it is put into the page as markup), the dates real ISO dates. A crafted or damaged backup could
+    // otherwise run script through the photo, or leave a record that throws on every later page load.
+    const LIST_KEYS = ['vaccinations', 'treatments', 'medications', 'conditions', 'visits', 'weights', 'diary', 'plans'];
+    function tidy(x: any): Animal | null {
+      if (!x || typeof x !== 'object' || Array.isArray(x)) return null;
+      const text = (v: unknown) => (typeof v === 'string' ? v : typeof v === 'number' && isFinite(v) ? String(v) : undefined);
+      const a: any = {};
+      for (const [k, v] of Object.entries(x)) if (!LIST_KEYS.includes(k) && text(v) !== undefined) a[k] = text(v);
+      for (const k of LIST_KEYS) a[k] = Array.isArray(x[k]) ? x[k].filter((r: any) => r && typeof r === 'object' && !Array.isArray(r)).map((r: any) => Object.fromEntries(Object.entries(r).filter(([, c]) => text(c) !== undefined).map(([c, v]) => [c, text(v)]))) : [];
+      a.plans = a.plans.filter((r: Row) => r.label && r.date);
+      if (a.photo && !/^data:image\/(png|jpe?g|gif|webp);base64,[A-Za-z0-9+/=]+$/.test(a.photo)) delete a.photo;
+      for (const k of ['dob', 'microchipDate']) if (a[k] && !/^\d{4}-\d{2}-\d{2}$/.test(a[k])) delete a[k];
+      a.id = a.id || uid(); a.name ??= ''; a.notes ??= '';
+      return a;
+    }
     function load(): Store {
       try {
         const raw = localStorage.getItem(KEY);
-        if (raw) { const s = JSON.parse(raw); if (s && Array.isArray(s.animals)) return s; }
+        if (raw) {
+          const s = JSON.parse(raw);
+          if (s && Array.isArray(s.animals)) { const animals = s.animals.map(tidy).filter(Boolean) as Animal[]; return { ...s, animals, current: animals.some((a) => a.id === s.current) ? s.current : animals[0]?.id ?? null }; }
+        }
       } catch {}
       return { version: 1, animals: [], current: null };
     }
@@ -1001,7 +1020,8 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
     }
 
     const PR = JSON.parse(document.getElementById('pp-prof-i18n')!.textContent!);
-    const ICON_OF: Record<string, string> = { Dog: 'dog', Cat: 'cat', Rabbit: 'rabbit', 'Guinea pig': 'rabbit', Hamster: 'rabbit', Horse: 'horse', Bird: 'bird' };
+    // Booklet species → face. A hamster borrows the guinea pig (closest drawn rodent); "Other" gets the paw.
+    const ICON_OF: Record<string, string> = { Dog: 'dog', Cat: 'cat', Ferret: 'ferret', Rabbit: 'rabbit', 'Guinea pig': 'guinea-pig', Hamster: 'guinea-pig', Horse: 'horse', Bird: 'bird', Reptile: 'reptile' };
     function renderProfile(a: Animal) {
       const av = $('#pp-avatar');
       av.innerHTML = a.photo ? `<img src="${a.photo}" alt="">` : `<svg viewBox="0 0 48 48" width="64" height="64" fill="none" stroke="var(--art-ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[ICON_OF[a.species] ?? 'paw']}</svg>`;
@@ -1177,11 +1197,13 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
     // "More" menu: Escape closes it and returns focus to its toggle.
     const more = $<HTMLDetailsElement>('.pp-more');
     more.addEventListener('keydown', (e) => { if (e.key === 'Escape' && more.open) { more.open = false; more.querySelector('summary')!.focus(); } });
+    // Species and sex are stored as English keys ("Dog", "Female"); printouts show the page's own option labels.
+    const optText = (f: string, v: unknown) => (typeof v === 'string' && v ? $$<HTMLOptionElement>(`#pp-form select[data-f="${f}"] option`).find((o) => o.value === v)?.textContent ?? v : '');
     $('#pp-claim')!.addEventListener('click', () => {
       const a = current(); if (!a) return;
       const q = (k: string) => $(`[data-q="${k}"]`) as HTMLElement;
       const esc = (v: any) => String(v ?? '').replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' } as any)[c]);
-      q('name').textContent = a.name || J.unnamed; q('animal').textContent = [a.species, a.breed, a.sex, a.dob && `${J.cols?.['Date'] ?? ''} ${a.dob}`.trim()].filter(Boolean).join(' · ');
+      q('name').textContent = a.name || J.unnamed; q('animal').textContent = [optText('species', a.species), a.breed, optText('sex', a.sex), a.dob && `${J.dob ?? ''} ${a.dob}`.trim()].filter(Boolean).join(' · ');
       q('microchip').textContent = a.microchip || '—'; q('owner').textContent = [a.ownerName, a.ownerAddress].filter(Boolean).join(', ') || '—'; q('insurance').textContent = a.insurance || '—';
       q('visits').innerHTML = (a.visits ?? []).filter((v: any) => v.date || v.reason).map((v: any) => `<tr><td>${esc(v.date)}</td><td>${esc(v.reason)}</td><td>${esc(v.outcome)}</td><td>${esc(v.clinic)}</td></tr>`).join('') || '<tr><td colspan="4">—</td></tr>';
       q('meds').innerHTML = (a.medications ?? []).filter((m: any) => m.name).map((m: any) => `<li>${esc(m.name)} ${esc(m.dose)}${m.started ? ` (${esc(m.started)})` : ''}</li>`).join('') || '<li>—</li>';
@@ -1197,7 +1219,7 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
       const seen = window.prompt(J.posterWhere ?? 'Where and when was the animal last seen?', '') ?? '';
       const set = (k: string, v: string) => { const el = $(`[data-p="${k}"]`) as HTMLElement | null; if (el) el.textContent = v; };
       set('name', a.name || J.unnamed);
-      set('desc', [a.species, a.breed, a.colour, a.sex, a.weight && `${a.weight} kg`].filter(Boolean).join(' · '));
+      set('desc', [optText('species', a.species), a.breed, a.colour, optText('sex', a.sex), a.weight && `${a.weight} kg`].filter(Boolean).join(' · '));
       set('seen', seen || '—');
       set('phone', [a.ownerPhone, a.ownerName].filter(Boolean).join(' · ') || '—');
       const chip = $('[data-p="chip"]') as HTMLElement; chip.hidden = !a.microchip;
@@ -1212,7 +1234,7 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
       const a = current(); if (!a) return;
       const set = (k: string, v: string) => { for (const el of $$(`[data-c="${k}"]`)) el.textContent = v || '—'; };
       set('name', a.name || J.unnamed);
-      set('animal', [a.species, a.breed, a.sex, a.dob].filter(Boolean).join(' · '));
+      set('animal', [optText('species', a.species), a.breed, optText('sex', a.sex), a.dob].filter(Boolean).join(' · '));
       set('microchip', a.microchip);
       set('conditions', (a.conditions ?? []).map((c: any) => [c.type, c.description].filter(Boolean).join(': ')).join('; '));
       set('medications', (a.medications ?? []).map((m: any) => [m.name, m.dose].filter(Boolean).join(' ')).join('; '));
@@ -1229,7 +1251,8 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
     // photo: resize to 320px max side before storing, to keep localStorage small
     $<HTMLInputElement>('#pp-photo-input').addEventListener('change', async (e) => {
       const file = (e.target as HTMLInputElement).files?.[0]; const a = current(); if (!file || !a) return;
-      const bmp = await createImageBitmap(file);
+      let bmp: ImageBitmap;
+      try { bmp = await createImageBitmap(file); } catch { status(SC.fail); (e.target as HTMLInputElement).value = ''; return; }
       const scale = Math.min(1, 320 / Math.max(bmp.width, bmp.height));
       const c = document.createElement('canvas'); c.width = Math.round(bmp.width * scale); c.height = Math.round(bmp.height * scale);
       c.getContext('2d')!.drawImage(bmp, 0, 0, c.width, c.height);
@@ -1267,12 +1290,15 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
       try {
         const data = JSON.parse(await file.text());
         if (!data || !Array.isArray(data.animals)) throw new Error('bad');
-        const incoming: Animal[] = data.animals.map((x: any) => ({ ...blank(), ...x, id: x.id || uid() }));
+        // Checked before anything in the store changes, so a bad file leaves the booklet exactly as it was.
+        const incoming = data.animals.map(tidy).filter(Boolean) as Animal[];
+        if (!incoming.length || incoming.length !== data.animals.length) throw new Error('bad');
         if (store.animals.length && !confirm(J.confirmRestore.replace('{n}', String(incoming.length)))) return;
         for (const inc of incoming) { const i = store.animals.findIndex((x) => x.id === inc.id); if (i >= 0) store.animals[i] = inc; else store.animals.push(inc); }
         store.current = incoming[0]?.id ?? store.current; render(); save(J.restored);
       } catch { status(J.notBackup); }
-      (e.target as HTMLInputElement).value = '';
+      // Reset in every case (also after "Cancel"), or choosing the same file again fires no change event.
+      finally { (e.target as HTMLInputElement).value = ''; }
     });
 
     // ---------- Optional account sync (Supabase). Dormant unless PUBLIC_SUPABASE_URL is set. ----------

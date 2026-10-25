@@ -89,3 +89,8 @@ const runs = [{ label: 'Validators on prepared records', note: 'Proves the check
     <p>The test harness, the rules and the cases are in the project repository, so a reviewer can rerun them.</p>
   </article>
 </Base>
+<style>
+  /* Phones: a table wider than the screen scrolls inside itself. The page has overflow-x: clip, so without this
+     the right-hand columns were cut off and unreachable at 320–390 px (German and Italian above all). */
+  @media (max-width: 760px) { table { display: block; max-width: 100%; overflow-x: auto; } }
+</style>

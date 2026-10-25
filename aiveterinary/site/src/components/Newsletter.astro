@@ -2,8 +2,10 @@
 interface Props { compact?: boolean; lang?: 'en' | 'it' | 'de' }
 const { compact = false, lang = 'en' } = Astro.props;
 // Form posts to a free newsletter service once one is connected (see site/README.md).
-// Until then the action is a placeholder; the form is inert but the layout is final.
-const action = import.meta.env.PUBLIC_NEWSLETTER_ACTION ?? '#newsletter';
+// Until then the action is a placeholder and the script below keeps the form inert: a real POST to the
+// page itself fails on a static host (405 on Cloudflare Pages), so the visitor is told instead.
+const configured = !!import.meta.env.PUBLIC_NEWSLETTER_ACTION;
+const action = import.meta.env.PUBLIC_NEWSLETTER_ACTION || '#newsletter';
 
 const strings = {
   en: {
@@ -16,6 +18,7 @@ const strings = {
     placeholder: 'you@example.com',
     button: 'Subscribe',
     doi: 'You will get one email to confirm. Nothing is sent before you click it.',
+    notYet: 'Sign-up is not open yet, so nothing was sent or stored. Please check back soon.',
   },
   it: {
     heading: 'Restiamo in contatto',
@@ -27,6 +30,7 @@ const strings = {
     placeholder: 'tu@esempio.it',
     button: 'Iscriviti',
     doi: 'Riceverai una email di conferma. Non invieremo nulla prima che tu la confermi.',
+    notYet: 'Le iscrizioni non sono ancora aperte: non è stato inviato né salvato nulla. Riprova tra poco.',
   },
   de: {
     heading: 'In Kontakt bleiben',
@@ -38,11 +42,12 @@ const strings = {
     placeholder: 'sie@beispiel.de',
     button: 'Abonnieren',
     doi: 'Sie erhalten eine E-Mail zur Bestätigung. Vorher wird nichts verschickt.',
+    notYet: 'Die Anmeldung ist noch nicht geöffnet; es wurde nichts gesendet oder gespeichert. Bitte schauen Sie bald wieder vorbei.',
   },
 } as const;
 const t = strings[lang] ?? strings.en;
 ---
-<form class="card" action={action} method="post" id="newsletter">
+<form class="card" action={action} method="post" id="newsletter" data-nl-inert={configured ? undefined : t.notYet}>
   {!compact && <h2>{t.heading}</h2>}
   <p>{t.text}</p>
   <div class="choice" role="group" aria-label={t.group}>
@@ -55,4 +60,16 @@ const t = strings[lang] ?? strings.en;
     <button class="btn" type="submit">{t.button}</button>
   </div>
     <p class="pp-hint" style="margin-top:8px">{t.doi}</p>
+    <p class="nl-status" role="status"></p>
 </form>
+<script>
+  // No provider configured: keep the visitor on the page and say so (the browser still checks the email first).
+  document.querySelectorAll<HTMLFormElement>('form[data-nl-inert]').forEach((f) => f.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const s = f.querySelector<HTMLElement>('.nl-status'); if (s) s.textContent = f.dataset.nlInert ?? '';
+  }));
+</script>
+<style>
+  .nl-status { margin: 8px 0 0; font-weight: 600; }
+  .nl-status:empty { margin: 0; } /* stays in the accessibility tree so the message is announced */
+</style>

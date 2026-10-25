@@ -629,7 +629,7 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
     @media print { .site-header, .site-footer, .ws-top, .notice, .ws-pane:first-child, .ws-flags, .eyebrow { display: none !important; } .ws { border: 0; } }
   </style>
 
-  <script type="application/json" id="ws-i18n" set:html={JSON.stringify({ ...j, pageLang: lang, abbrNone: t.abbrNone, abbrSave: t.abbrSave, handouts: t.handouts, handoutsNone: t.handoutsNone, timer: t.timer, identityOk: t.identityOk, identityFail: t.identityFail, refQuestionMissing: t.refQuestionMissing, refQuestionGo: t.refQuestionGo, handoutIndex, n, mp })} />
+  <script type="application/json" id="ws-i18n" set:html={JSON.stringify({ ...j, pageLang: lang, abbrNone: t.abbrNone, abbrSave: t.abbrSave, handouts: t.handouts, handoutsNone: t.handoutsNone, timer: t.timer, noChange: t.noChange, identityOk: t.identityOk, identityFail: t.identityFail, refQuestionMissing: t.refQuestionMissing, refQuestionGo: t.refQuestionGo, handoutIndex, n, mp })} />
 
   <script>
     import { ClinicalRecord, PatientHeader, type ClinicalRecord as Rec } from 'aiveterinary-app/src/schema.ts';
@@ -1134,10 +1134,10 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
         if (line.startsWith('### ')) return `<h2>${esc(line.slice(4))}</h2>`;
         if (line.startsWith('## ')) return `<h2${dsel.value === 'ownerAll' ? ' class="ws-animal-h"' : ''}>${esc(line.slice(3))}</h2>`;
         if (line.startsWith('|')) return line;
-        if (line.startsWith('- ')) return `<li>${esc(line.slice(2))}</li>`;
-        if (/^\s+- /.test(line)) return `<li>${esc(line.trim().slice(2))}</li>`;
+        if (line.startsWith('- ')) return `<li>${inline(line.slice(2))}</li>`;
+        if (/^\s+- /.test(line)) return `<li>${inline(line.trim().slice(2))}</li>`;
         if (!line.trim()) return '';
-        return `<p>${esc(line).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')}</p>`;
+        return `<p>${inline(line)}</p>`;
       }).join('\n');
       if (dsel.value !== 'rev') {
         html = html.replace(/((?:^\|.*\n?)+)/gm, (t) => table(t));
@@ -1284,7 +1284,8 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
       const unresolved = missing.filter((m) => !cur.resolved[m]).length;
       const unticked = record.medications.filter((_, i) => !cur.meds[i]).length;
       ($('#ws-approve') as HTMLButtonElement).disabled = cur.approved || blocks.length > 0 || identityProblems > 0 || unresolved > 0 || unticked > 0;
-      $('#ws-status').textContent = cur.approved ? J.approvedStatus : blocks.length ? J.blocking.replace('{n}', String(blocks.length)) : unresolved ? J.unresolved.replace('{n}', String(unresolved)) : unticked ? J.medsUnchecked.replace('{n}', String(unticked)) : J.ready;
+      // A medication-identity block disables Approve too, so the status line must not say "Ready to approve" then.
+      $('#ws-status').textContent = cur.approved ? J.approvedStatus : blocks.length ? J.blocking.replace('{n}', String(blocks.length)) : identityProblems ? J.identityFail.replace(/:\s*$/, '.') : unresolved ? J.unresolved.replace('{n}', String(unresolved)) : unticked ? J.medsUnchecked.replace('{n}', String(unticked)) : J.ready;
     }
 
     // The flag list is rebuilt on every change: keep keyboard focus on the next thing to do.
@@ -1339,7 +1340,7 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
     function copyOut() {
       const md = renderDoc(cur.approved);
       const txt = dsel.value === 'rev' ? md : md
-        .replace(/^#+ (.*)$/gm, (_m, h) => h.toUpperCase()).replace(/^_|_$/gm, '').replace(/\*\*/g, '').replace(/\|/g, ' ').replace(/^ *-{3,}.*$/gm, '').replace(/\n{3,}/g, '\n\n');
+        .replace(/^#+ (.*)$/gm, (_m, h) => h.toUpperCase()).replace(/^_|_$/gm, '').replace(/\*\*/g, '').replace(/(?<!\\)\|/g, ' ').replace(/\\\|/g, '|').replace(/^ *-{3,}.*$/gm, '').replace(/\n{3,}/g, '\n\n');
       navigator.clipboard?.writeText(txt).then(() => { $('#ws-status').textContent = J.copied; }, () => { $('#ws-status').textContent = J.copyFail; });
     }
     function renderSoap() {
@@ -1385,12 +1386,17 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
 
     const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
     const escRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    /** Escaped text with the renderers' only inline markup, **bold** (dental chart marks, estimate total, owner letter). */
+    const inline = (s: string) => esc(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
     function table(block: string) {
-      const rows = block.trim().split('\n').filter((r) => !/^\|\s*-/.test(r)).map((r) => r.slice(1, -1).split('|').map((c) => c.trim()));
+      // Cells are split on unescaped pipes (a typed "\|" stays text) and escaped: they carry typed values such as
+      // invoice lines, which must never become markup ("<b>", "<img onerror>") or shift the columns.
+      const rows = block.trim().split('\n').filter((r) => !/^\|\s*-/.test(r)).map((r) => r.slice(1, -1).split(/(?<!\\)\|/).map((c) => c.trim().replace(/\\\|/g, '|')));
       const [head, ...body] = rows;
+      const td = (c: string) => `<td>${inline(c)}</td>`;
       // The combined owner letter prints every animal's table: rows are ticked in each animal's own documents.
       const isMeds = ['Drug', 'Wirkstoff', 'Farmaco'].includes(head[0]) && dsel.value !== 'ownerAll';
-      if (!isMeds) return `<table><thead><tr>${head.map((h) => `<th>${h}</th>`).join('')}</tr></thead><tbody>${body.map((r) => `<tr>${r.map((c) => `<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+      if (!isMeds) return `<table><thead><tr>${head.map((h) => `<th>${inline(h)}</th>`).join('')}</tr></thead><tbody>${body.map((r) => `<tr>${r.map(td).join('')}</tr>`).join('')}</tbody></table>`;
       // Some documents print a subset of the medications (discharge: to give at home; claim: given today), so each row
       // is matched to its record medication by the drug cell, in order; the tick then belongs to that medication.
       const used = new Set<number>();
@@ -1399,7 +1405,7 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
         const k = j >= 0 ? j : i; used.add(k); return k;
       });
       const tick = (i: number) => `<td class="ws-tick"><label><input type="checkbox" class="ws-med-tick" data-i="${i}" ${cur.meds[i] ? 'checked' : ''} ${cur.approved ? 'disabled' : ''} aria-label="${J.medsTick}"> ${J.medsTick}</label></td>`;
-      return `<table><thead><tr>${head.map((h) => h ? `<th>${h}</th>` : `<th><span class="sr-only">Status</span></th>`).join('')}<th>${J.medsTick}</th></tr></thead><tbody>${body.map((r, i) => `<tr>${r.map((c) => `<td>${c}</td>`).join('')}${tick(recIdx[i])}</tr>`).join('')}</tbody></table>`;
+      return `<table><thead><tr>${head.map((h) => h ? `<th>${inline(h)}</th>` : `<th><span class="sr-only">Status</span></th>`).join('')}<th>${J.medsTick}</th></tr></thead><tbody>${body.map((r, i) => `<tr>${r.map(td).join('')}${tick(recIdx[i])}</tr>`).join('')}</tbody></table>`;
     }
 
     const fileInput = $('#ws-file') as HTMLInputElement;

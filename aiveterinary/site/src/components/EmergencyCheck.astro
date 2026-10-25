@@ -41,7 +41,7 @@ const T = {
     rToday: ['See a vet today', 'Call your vet now and ask for an appointment today. If anything from the first list appears, go straight away.'],
     rWatch: ['Watch at home, with a deadline', 'Nothing you ticked needs a vet right now. Keep an eye on eating, drinking, peeing, energy and breathing. If it is not clearly better within 24 hours, or anything from the lists appears, call your vet.'],
     save: 'Save to the symptom diary', saved: 'Saved in the diary of', noAnimal: 'Start a health booklet to keep this in a diary.', brief: 'Prepare the visit brief', booklet: '/passport', briefHref: '/visit-brief',
-    diaryNote: 'Emergency check', none: 'no signs ticked',
+    diaryNote: 'Emergency check', none: 'no signs ticked', saveFail: 'Could not save: browser storage is full or blocked.',
   },
   it: {
     title: 'È un\'emergenza?',
@@ -73,7 +73,7 @@ const T = {
     rToday: ['Dal veterinario oggi', 'Chiama ora il tuo veterinario e chiedi una visita in giornata. Se compare qualcosa della prima lista, vai subito.'],
     rWatch: ['Osserva a casa, con una scadenza', 'Niente di ciò che hai spuntato richiede il veterinario adesso. Tieni d\'occhio appetito, sete, pipì, energia e respiro. Se entro 24 ore non va chiaramente meglio, o compare qualcosa delle liste, chiama il veterinario.'],
     save: 'Salva nel diario dei sintomi', saved: 'Salvato nel diario di', noAnimal: 'Crea un libretto sanitario per tenerlo in un diario.', brief: 'Prepara il riepilogo per la visita', booklet: '/it/passport', briefHref: '/it/visit-brief',
-    diaryNote: 'Controllo emergenza', none: 'nessun segno spuntato',
+    diaryNote: 'Controllo emergenza', none: 'nessun segno spuntato', saveFail: 'Impossibile salvare: la memoria del browser è piena o bloccata.',
   },
   de: {
     title: 'Ist es ein Notfall?',
@@ -105,7 +105,7 @@ const T = {
     rToday: ['Heute in die Praxis', 'Rufen Sie jetzt Ihre Praxis an und bitten Sie um einen Termin für heute. Tritt etwas aus der ersten Liste auf, fahren Sie sofort.'],
     rWatch: ['Zu Hause beobachten, mit Frist', 'Nichts von dem, was Sie angehakt haben, braucht jetzt eine Praxis. Achten Sie auf Fressen, Trinken, Urinieren, Energie und Atmung. Wenn es nicht innerhalb von 24 Stunden deutlich besser ist oder etwas aus den Listen auftritt, rufen Sie Ihre Praxis an.'],
     save: 'Im Symptomtagebuch speichern', saved: 'Gespeichert im Tagebuch von', noAnimal: 'Legen Sie einen Heimtierpass an, um das im Tagebuch zu behalten.', brief: 'Übersicht für den Besuch vorbereiten', booklet: '/de/passport', briefHref: '/de/visit-brief',
-    diaryNote: 'Notfall-Check', none: 'keine Zeichen angehakt',
+    diaryNote: 'Notfall-Check', none: 'keine Zeichen angehakt', saveFail: 'Speichern nicht möglich: Browserspeicher voll oder blockiert.',
   },
 }[lang];
 const sign = (s: Sign, group: string) => ({ ...s, group, href: s.link ? `${base}${s.link}` : null });
@@ -131,12 +131,13 @@ const all = [...T.signsNow.map((s) => sign(s, 'now')), ...T.signsToday.map((s) =
     <p id="ec-saved" class="pp-hint" role="status"></p>
   </div>
 </section>
-<script type="application/json" id="ec-i18n" set:html={JSON.stringify({ rNow: T.rNow, rToday: T.rToday, rWatch: T.rWatch, saved: T.saved, noAnimal: T.noAnimal, booklet: T.booklet, diaryNote: T.diaryNote, none: T.none })} />
+<script type="application/json" id="ec-i18n" set:html={JSON.stringify({ rNow: T.rNow, rToday: T.rToday, rWatch: T.rWatch, saved: T.saved, noAnimal: T.noAnimal, booklet: T.booklet, diaryNote: T.diaryNote, none: T.none, saveFail: T.saveFail })} />
 <script>
   const J = JSON.parse(document.getElementById('ec-i18n')!.textContent!);
   const form = document.getElementById('ec-form') as HTMLFormElement;
   const box = document.getElementById('ec-result') as HTMLElement;
-  let last: { tier: string; signs: string[] } | null = null;
+  // `saved` makes a second click on "Save" repeat the confirmation instead of adding the same diary line again.
+  let last: { tier: string; signs: string[]; saved?: string } | null = null;
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const ticked = Array.from(form.querySelectorAll<HTMLInputElement>('input[name="s"]:checked'));
@@ -154,16 +155,18 @@ const all = [...T.signsNow.map((s) => sign(s, 'now')), ...T.signsToday.map((s) =
   document.getElementById('ec-save')!.addEventListener('click', () => {
     const out = document.getElementById('ec-saved')!;
     if (!last) return;
-    try {
-      const KEY = 'aiveterinary.passport.v1';
-      const store = JSON.parse(localStorage.getItem(KEY) ?? 'null');
-      const a = store?.animals?.find((x: any) => x.id === store.current) ?? store?.animals?.[0];
-      if (!a) { out.innerHTML = `<a href="${J.booklet}">${J.noAnimal}</a>`; return; }
-      a.diary ??= [];
-      a.diary.push({ date: new Date().toISOString().slice(0, 10), note: `${J.diaryNote}: ${last.tier}. ${last.signs.length ? last.signs.join('; ') : J.none}` });
-      localStorage.setItem(KEY, JSON.stringify(store));
-      out.textContent = `${J.saved} ${a.name || '—'}.`;
-    } catch { out.innerHTML = `<a href="${J.booklet}">${J.noAnimal}</a>`; }
+    if (last.saved) { out.textContent = last.saved; return; }
+    let store: any;
+    try { store = JSON.parse(localStorage.getItem('aiveterinary.passport.v1') ?? 'null'); } catch { out.textContent = J.saveFail; return; }
+    const a = store?.animals?.find((x: any) => x.id === store.current) ?? store?.animals?.[0];
+    if (!a) { out.innerHTML = `<a href="${J.booklet}">${J.noAnimal}</a>`; return; }
+    // The owner's calendar day, not the UTC one: a check at 00:30 in Rome belongs to today's date.
+    const d = new Date(); const today = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    if (!Array.isArray(a.diary)) a.diary = [];
+    a.diary.push({ date: today, note: `${J.diaryNote}: ${last.tier}. ${last.signs.length ? last.signs.join('; ') : J.none}` });
+    try { localStorage.setItem('aiveterinary.passport.v1', JSON.stringify(store)); } catch { out.textContent = J.saveFail; return; }
+    last.saved = `${J.saved} ${a.name || '—'}.`;
+    out.textContent = last.saved;
   });
 </script>
 <style is:global>

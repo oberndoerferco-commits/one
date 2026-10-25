@@ -64,6 +64,7 @@ const BATCH_RE = /\b(?:batch|lot|lotto|ch\.?-?\s?b\.?|charge|chargen?-?nr\.?|ser
 export function parseScan(text: string): ScanResult {
   const lines = text.split(/\r?\n/).map((l) => l.trim()).filter(Boolean);
   const vaccinations: ScanVaccination[] = [];
+  const at = new Map<ScanVaccination, number>(); // line index of each suggestion
   lines.forEach((line, i) => {
     const hit = VACCINE_WORDS.find(([re]) => re.test(line));
     if (!hit) return;
@@ -71,10 +72,15 @@ export function parseScan(text: string): ScanResult {
     const window = [line, lines[i + 1] ?? '', lines[i + 2] ?? ''].join(' ');
     const ds = datesIn(window).sort();
     const batch = window.match(BATCH_RE)?.[1] ?? null;
-    vaccinations.push({ vaccine: hit[1], date: ds[0] ?? null, validUntil: ds.length > 1 ? ds[ds.length - 1] : null, batch, line });
+    const v: ScanVaccination = { vaccine: hit[1], date: ds[0] ?? null, validUntil: ds.length > 1 ? ds[ds.length - 1] : null, batch, line };
+    vaccinations.push(v); at.set(v, i);
   });
-  // A heading such as "Impfung gegen Tollwut" names the vaccine but carries no data; drop it when a real entry exists.
-  const useful = vaccinations.filter((v) => v.date || v.batch || !vaccinations.some((o) => o !== v && o.vaccine === v.vaccine && (o.date || o.batch)));
+  // A heading such as "Impfung gegen Tollwut" names the vaccine but carries no data: drop it when a real entry exists.
+  // A heading with no data on its own line whose window reaches the next entry for the same vaccine would repeat that
+  // entry's dates without its batch: drop it too.
+  const ownData = (v: ScanVaccination) => datesIn(v.line).length > 0 || BATCH_RE.test(v.line);
+  const useful = vaccinations.filter((v) => (v.date || v.batch || !vaccinations.some((o) => o !== v && o.vaccine === v.vaccine && (o.date || o.batch)))
+    && (ownData(v) || !vaccinations.some((o) => o !== v && o.vaccine === v.vaccine && (o.date || o.batch) && at.get(o)! > at.get(v)! && at.get(o)! <= at.get(v)! + 2)));
   const dates = [...new Set(lines.flatMap(datesIn))].sort();
   return { microchip: findMicrochips(text), vaccinations: useful, dates };
 }

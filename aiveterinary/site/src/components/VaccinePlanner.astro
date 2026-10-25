@@ -12,6 +12,7 @@ const T = {
     species: 'Animal', dog: 'Puppy', cat: 'Kitten', dob: 'Date of birth', first: 'First core vaccination, if already given or booked (optional)',
     lepto: 'My vet recommends vaccination against leptospirosis', risk: 'My cat goes outdoors or meets other cats',
     go: 'Show the plan', save: 'Save as planned dates in the health booklet', saved: 'Saved as planned dates for', noAnimal: 'Start a health booklet first, then come back to save these dates.', booklet: '/passport', bookletLabel: 'Open the health booklet',
+    badDate: 'Check the dates: the date of birth must be a real date between 1990 and 2100, and the first vaccination cannot be before the birth.', saveFail: 'Could not save: browser storage is full or blocked.',
     th: ['Date', 'What to discuss', 'Age'], weeks: 'weeks', months: 'months', years: 'years',
     k: {
       coreDog: 'Core vaccination {n}: distemper, hepatitis (adenovirus), parvovirus', coreCat: 'Core vaccination {n}: panleukopenia and cat flu (herpesvirus, calicivirus)',
@@ -29,6 +30,7 @@ const T = {
     species: 'Animale', dog: 'Cucciolo', cat: 'Gattino', dob: 'Data di nascita', first: 'Prima vaccinazione di base, se già fatta o prenotata (facoltativo)',
     lepto: 'Il mio veterinario consiglia il vaccino contro la leptospirosi', risk: 'Il mio gatto esce o incontra altri gatti',
     go: 'Mostra il calendario', save: 'Salva come date in programma nel libretto sanitario', saved: 'Salvate come date in programma per', noAnimal: 'Prima crea un libretto sanitario, poi torna qui per salvare queste date.', booklet: '/it/passport', bookletLabel: 'Apri il libretto sanitario',
+    badDate: 'Controlla le date: la data di nascita deve essere una data valida tra il 1990 e il 2100, e la prima vaccinazione non può essere precedente alla nascita.', saveFail: 'Impossibile salvare: la memoria del browser è piena o bloccata.',
     th: ['Data', 'Di cosa parlare', 'Età'], weeks: 'settimane', months: 'mesi', years: 'anni',
     k: {
       coreDog: 'Vaccinazione di base {n}: cimurro, epatite (adenovirus), parvovirosi', coreCat: 'Vaccinazione di base {n}: panleucopenia e raffreddore felino (herpesvirus, calicivirus)',
@@ -46,6 +48,7 @@ const T = {
     species: 'Tier', dog: 'Welpe', cat: 'Kitten', dob: 'Geburtsdatum', first: 'Erste Grundimpfung, falls schon erfolgt oder geplant (freiwillig)',
     lepto: 'Meine Praxis empfiehlt die Impfung gegen Leptospirose', risk: 'Meine Katze ist Freigänger oder hat Kontakt zu anderen Katzen',
     go: 'Plan anzeigen', save: 'Als geplante Termine im Gesundheitspass speichern', saved: 'Als geplante Termine gespeichert für', noAnimal: 'Legen Sie zuerst einen Gesundheitspass an und speichern Sie die Termine danach.', booklet: '/de/passport', bookletLabel: 'Gesundheitspass öffnen',
+    badDate: 'Bitte die Daten prüfen: Das Geburtsdatum muss ein gültiges Datum zwischen 1990 und 2100 sein, und die erste Impfung kann nicht vor der Geburt liegen.', saveFail: 'Speichern nicht möglich: Browserspeicher voll oder blockiert.',
     th: ['Datum', 'Was Sie besprechen', 'Alter'], weeks: 'Wochen', months: 'Monate', years: 'Jahre',
     k: {
       coreDog: 'Grundimpfung {n}: Staupe, Hepatitis (Adenovirus), Parvovirose', coreCat: 'Grundimpfung {n}: Katzenseuche und Katzenschnupfen (Herpesvirus, Calicivirus)',
@@ -68,11 +71,11 @@ const locale = { en: 'en-GB', it: 'it-IT', de: 'de-DE' }[lang];
       <label><input type="radio" name="sp" value="dog" checked /> {T.dog}</label>
       <label><input type="radio" name="sp" value="cat" /> {T.cat}</label>
     </fieldset>
-    <label>{T.dob}<input name="dob" type="date" required /></label>
-    <label>{T.first}<input name="first" type="date" /></label>
+    <label>{T.dob}<input name="dob" type="date" min="1990-01-01" max="2100-12-31" required /></label>
+    <label>{T.first}<input name="first" type="date" min="1990-01-01" max="2100-12-31" /></label>
     <label class="vp-check" data-for="dog"><input type="checkbox" name="lepto" /> {T.lepto}</label>
     <label class="vp-check" data-for="cat" hidden><input type="checkbox" name="risk" /> {T.risk}</label>
-    <button class="btn" type="submit">{T.go}</button>
+    <div class="vp-go"><button class="btn" type="submit">{T.go}</button><p id="vp-err" class="vp-err" aria-live="polite"></p></div>
   </form>
   <div id="vp-out" hidden>
     <table class="vp-table" id="vp-table" tabindex="-1"><caption class="sr-only">{T.title}</caption><thead><tr>{T.th.map((h) => <th scope="col">{h}</th>)}</tr></thead><tbody id="vp-rows"></tbody></table>
@@ -82,7 +85,7 @@ const locale = { en: 'en-GB', it: 'it-IT', de: 'de-DE' }[lang];
   </div>
   <p class="pp-hint">{T.source} <a href="https://wsava.org/global-guidelines/vaccination-guidelines/" rel="noopener">wsava.org</a> · <a href="https://food.ec.europa.eu/animals/movement-pets/eu-legislation/non-commercial-movement-within-eu_en" rel="noopener">food.ec.europa.eu</a></p>
 </section>
-<script type="application/json" id="vp-i18n" set:html={JSON.stringify({ k: T.k, weeks: T.weeks, months: T.months, years: T.years, saved: T.saved, noAnimal: T.noAnimal, booklet: T.booklet, bookletLabel: T.bookletLabel, locale })} />
+<script type="application/json" id="vp-i18n" set:html={JSON.stringify({ k: T.k, weeks: T.weeks, months: T.months, years: T.years, saved: T.saved, noAnimal: T.noAnimal, booklet: T.booklet, bookletLabel: T.bookletLabel, badDate: T.badDate, saveFail: T.saveFail, locale })} />
 <script>
   import { planVaccines, type PlanItem } from 'aiveterinary-app/src/vaccine-plan.ts';
   const J = JSON.parse(document.getElementById('vp-i18n')!.textContent!);
@@ -108,7 +111,15 @@ const locale = { en: 'en-GB', it: 'it-IT', de: 'de-DE' }[lang];
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const sp = species(), dob = val('dob').value; if (!dob) return;
-    const plan = planVaccines({ species: sp, dob, firstDose: val('first').value || null, lepto: val('lepto').checked, higherRisk: val('risk').checked });
+    const first = val('first').value || null;
+    const err = document.getElementById('vp-err')!;
+    // A date field accepts years up to 275760 and a first dose before the birth; both used to fail silently
+    // (planVaccines throws on a five-digit year) or print a plan with negative ages.
+    const bad = () => { err.textContent = J.badDate; (document.getElementById('vp-out') as HTMLElement).hidden = true; items = []; };
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(dob) || dob < '1990-01-01' || dob > '2100-12-31' || (first && (!/^\d{4}-\d{2}-\d{2}$/.test(first) || first < dob))) return bad();
+    let plan: PlanItem[];
+    try { plan = planVaccines({ species: sp, dob, firstDose: first, lepto: val('lepto').checked, higherRisk: val('risk').checked }); } catch { return bad(); }
+    err.textContent = '';
     const fmt = (d: string) => new Date(`${d}T00:00:00`).toLocaleDateString(J.locale, { day: 'numeric', month: 'short', year: 'numeric' });
     const esc = (s: string) => s.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]!));
     items = plan.filter((p) => p.key !== 'rabiesValid').map((p) => ({ label: label(p, sp), date: p.date }));
@@ -123,7 +134,7 @@ const locale = { en: 'en-GB', it: 'it-IT', de: 'de-DE' }[lang];
     if (!a) { out.innerHTML = `${J.noAnimal} <a href="${J.booklet}">${J.bookletLabel}</a>`; return; }
     // Replaces earlier planner dates for this animal; nothing else in the booklet is touched.
     a.plans = items.map((i) => ({ ...i, source: 'planner' }));
-    try { localStorage.setItem(KEY, JSON.stringify(s)); out.innerHTML = `${J.saved} ${(a.name || '').replace(/</g, '&lt;')}. <a href="${J.booklet}#pp-upcoming">${J.bookletLabel}</a>`; } catch { out.textContent = J.noAnimal; }
+    try { localStorage.setItem(KEY, JSON.stringify(s)); out.innerHTML = `${J.saved} ${(a.name || '').replace(/</g, '&lt;')}. <a href="${J.booklet}#pp-upcoming">${J.bookletLabel}</a>`; } catch { out.textContent = J.saveFail; }
   });
 </script>
 <style is:global>
@@ -138,7 +149,9 @@ const locale = { en: 'en-GB', it: 'it-IT', de: 'de-DE' }[lang];
   .vp-table th, .vp-table td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
   .vp-table td:first-child { white-space: nowrap; font-variant-numeric: tabular-nums; }
   .vp-table tr.vp-opt td { color: var(--ink-2); }
-  .vp-warn { color: var(--danger); }
+  .vp-warn, .vp-err { color: var(--danger); }
+  .vp-err { margin: 10px 0 0; font-weight: 600; }
+  .vp-err:empty { margin: 0; }
   .vp-notes { color: var(--ink-2); }
   @media (max-width: 520px) { .vp-table td:first-child { white-space: normal; } .vp-table th:last-child, .vp-table td:last-child { display: none; } }
 </style>

@@ -88,3 +88,8 @@ const runs = [{ label: 'Validatoren auf vorbereiteten Datensätzen', note: 'Bele
     <p>Die Testumgebung, die Regeln und die Fälle liegen im Projekt-Repository, damit ein Prüfer sie erneut ausführen kann.</p>
   </article>
 </Base>
+<style>
+  /* Phones: a table wider than the screen scrolls inside itself. The page has overflow-x: clip, so without this
+     the right-hand columns were cut off and unreachable at 320–390 px (German and Italian above all). */
+  @media (max-width: 760px) { table { display: block; max-width: 100%; overflow-x: auto; } }
+</style>

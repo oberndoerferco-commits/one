@@ -289,15 +289,17 @@ export function renderClaimSummary(pack: ClaimPack, lang: Lang = 'en'): string {
   out.push(`- ${t.invNo}: ${v(inv.number)} · ${t.invDate}: ${v(inv.date)}`);
   if (inv.lines) {
     const showGot = pack.country === 'DE' || inv.lines.value.some((l) => typed(l.got_number) || typed(l.factor));
-    const cell = (x: string | null | undefined, required: boolean) => typed(x) ?? (required ? `▲` : '');
+    // Invoice lines are typed by the vet: a "|" in them is escaped (GFM "\|") so it stays text instead of adding a column.
+    const md = (x: string) => x.replace(/\|/g, '\\|');
+    const cell = (x: string | null | undefined, required: boolean) => { const v = typed(x); return v != null ? md(v) : required ? `▲` : ''; };
     out.push('');
     out.push(showGot ? `| ${t.date} | ${t.service} | ${t.got} | ${t.factor} | ${t.qty} | ${t.amount} |` : `| ${t.date} | ${t.service} | ${t.qty} | ${t.amount} |`);
     out.push(showGot ? '|---|---|---|---|---|---|' : '|---|---|---|---|');
     for (const l of inv.lines.value) {
       const de = pack.country === 'DE';
       out.push(showGot
-        ? `| ${cell(l.date, true)} | ${l.description} | ${cell(l.got_number, de)} | ${cell(l.factor, de)} | ${cell(l.quantity, false)} | ${cell(l.amount, true)} |`
-        : `| ${cell(l.date, true)} | ${l.description} | ${cell(l.quantity, false)} | ${cell(l.amount, true)} |`);
+        ? `| ${cell(l.date, true)} | ${md(l.description)} | ${cell(l.got_number, de)} | ${cell(l.factor, de)} | ${cell(l.quantity, false)} | ${cell(l.amount, true)} |`
+        : `| ${cell(l.date, true)} | ${md(l.description)} | ${cell(l.quantity, false)} | ${cell(l.amount, true)} |`);
     }
     out.push('');
   } else {

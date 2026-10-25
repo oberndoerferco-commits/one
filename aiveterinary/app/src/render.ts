@@ -808,17 +808,26 @@ export function renderOwnerSummaryBilingual(record: ClinicalRecord, header: Pati
   return `${a}\n\n---\n\n${b}`;
 }
 
-/** Every medication's drug, dose, route, frequency and duration must appear in every document, character for character. */
+/**
+ * Every medication's drug, dose, route, frequency and duration must appear in every document that prints its
+ * details, character for character. A medication handed over (dispensed or prescribed) is printed in full by every
+ * document; one given in the clinic, planned or recommended has its details only in a medication table, while the
+ * owner letter names it without them and the prescription leaves it out. So for those, a document without a table
+ * row for the drug has nothing to compare (before this, any record with an injection given in the clinic could never
+ * be approved: 17 of the 107 evaluation cases were blocked).
+ */
 export function crossDocumentMedicationCheck(record: ClinicalRecord, documents: Record<string, string>): { doc: string; medication: number; field: string; value: string }[] {
   const problems: { doc: string; medication: number; field: string; value: string }[] = [];
   record.medications.forEach((m, i) => {
     if (m.status === 'declined') return;
+    const handedOver = m.status === 'dispensed' || m.status === 'prescribed';
     const fields: [string, string | null][] = [['drug', m.drug], ['dose', m.dose != null ? `${m.dose} ${m.dose_unit ?? ''}`.trim() : null], ['route', m.route], ['frequency', m.frequency], ['duration', m.duration]];
     const name0 = m.drug ?? m.class_as_written;
     for (const [name, value] of Object.entries(documents)) {
       // Where the document has a medication table, the drug's own row must carry every value;
       // a matching value elsewhere in the text (a checklist, the follow-up) does not count.
       const rows = name0 ? value.split('\n').filter((l) => l.startsWith('|') && l.includes(name0)) : [];
+      if (!rows.length && !handedOver) continue;
       const haystacks = rows.length ? rows : [value];
       for (const [field, v] of fields) if (v && !haystacks.some((h) => h.includes(v))) problems.push({ doc: name, medication: i, field, value: v });
     }

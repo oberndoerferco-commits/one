@@ -31,3 +31,17 @@ describe('scan suggestions', () => {
     expect(r.microchip).toEqual([]);
   });
 });
+
+describe('parseScan duplicates', () => {
+  it('offers a sticker once when a heading line above it names the same vaccine', () => {
+    const r = parseScan('PET PASSPORT - VACCINATION AGAINST RABIES\nMicrochip: 380 260 000 123 456\nRabies Nobivac RL 12.03.2025 valid until 11.03.2028\nBatch: AB1234');
+    expect(r.vaccinations.filter((v) => v.vaccine === 'Rabies')).toEqual([expect.objectContaining({ date: '2025-03-12', validUntil: '2028-03-11', batch: 'AB1234' })]);
+  });
+});
+
+describe('parseScan keeps real stickers', () => {
+  it('keeps two stickers whose data sit on the line below each product', () => {
+    const r = parseScan('Nobivac Rabies\nCh.-B. A12 12.03.2025\n\nfiller\nmore filler\nRabies Purevax\nLot B77 01.04.2026');
+    expect(r.vaccinations.map((v) => v.batch)).toEqual(['A12', 'B77']);
+  });
+});

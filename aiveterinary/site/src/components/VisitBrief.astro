@@ -28,7 +28,7 @@ const T = {
       Horse: [['manure', 'Manure: normal amount and consistency?', ''], ['colic', 'Pawing, looking at the flank, lying down and getting up?', ''], ['feed', 'Any change in feed, pasture or water?', '']],
       Bird: [['droppings', 'Droppings: colour, consistency, amount?', ''], ['fluffed', 'Sitting fluffed up, on the cage floor, or tail bobbing?', ''], ['diet', 'Diet: seeds, pellets, fresh food?', '']],
     },
-    species_opts: { Dog: 'Dog', Cat: 'Cat', Rabbit: 'Rabbit', 'Guinea pig': 'Guinea pig', Horse: 'Horse', Bird: 'Bird', Other: 'Other' },
+    species_opts: { Dog: 'Dog', Cat: 'Cat', Rabbit: 'Rabbit', 'Guinea pig': 'Guinea pig', Ferret: 'Ferret', Horse: 'Horse', Bird: 'Bird', Reptile: 'Reptile', Other: 'Other' },
     sex_opts: { Female: 'Female', Male: 'Male', 'Female, spayed': 'Female, spayed', 'Male, neutered': 'Male, neutered' },
   },
   it: {
@@ -56,7 +56,7 @@ const T = {
       Horse: [['manure', 'Feci: quantità e consistenza normali?', ''], ['colic', 'Raspa, guarda il fianco, si sdraia e si rialza?', ''], ['feed', 'Cambiamenti di mangime, pascolo o acqua?', '']],
       Bird: [['droppings', 'Feci: colore, consistenza, quantità?', ''], ['fluffed', 'Sta gonfio, sul fondo della gabbia, muove la coda respirando?', ''], ['diet', 'Dieta: semi, pellet, cibo fresco?', '']],
     },
-    species_opts: { Dog: 'Cane', Cat: 'Gatto', Rabbit: 'Coniglio', 'Guinea pig': 'Porcellino d\'India', Horse: 'Cavallo', Bird: 'Uccello', Other: 'Altro' },
+    species_opts: { Dog: 'Cane', Cat: 'Gatto', Rabbit: 'Coniglio', 'Guinea pig': 'Porcellino d\'India', Ferret: 'Furetto', Horse: 'Cavallo', Bird: 'Uccello', Reptile: 'Rettile', Other: 'Altro' },
     sex_opts: { Female: 'Femmina', Male: 'Maschio', 'Female, spayed': 'Femmina sterilizzata', 'Male, neutered': 'Maschio castrato' },
   },
   de: {
@@ -84,7 +84,7 @@ const T = {
       Horse: [['manure', 'Kot: Menge und Konsistenz normal?', ''], ['colic', 'Scharren, zur Flanke schauen, Hinlegen und Aufstehen?', ''], ['feed', 'Änderung bei Futter, Weide oder Wasser?', '']],
       Bird: [['droppings', 'Kot: Farbe, Konsistenz, Menge?', ''], ['fluffed', 'Aufgeplustert, am Käfigboden, Schwanzwippen beim Atmen?', ''], ['diet', 'Futter: Körner, Pellets, Frischfutter?', '']],
     },
-    species_opts: { Dog: 'Hund', Cat: 'Katze', Rabbit: 'Kaninchen', 'Guinea pig': 'Meerschweinchen', Horse: 'Pferd', Bird: 'Vogel', Other: 'Sonstiges' },
+    species_opts: { Dog: 'Hund', Cat: 'Katze', Rabbit: 'Kaninchen', 'Guinea pig': 'Meerschweinchen', Ferret: 'Frettchen', Horse: 'Pferd', Bird: 'Vogel', Reptile: 'Reptil', Other: 'Sonstiges' },
     sex_opts: { Female: 'Weiblich', Male: 'Männlich', 'Female, spayed': 'Weiblich, kastriert', 'Male, neutered': 'Männlich, kastriert' },
   },
 } as const;
@@ -173,7 +173,7 @@ const J = {
     </div>
     <h2 style="margin-top:0" id="vb-out-h" tabindex="-1">{t.briefTitle}</h2>
     <div id="vb-content" class="prose"></div>
-    <p class="pp-hint" style="margin-top:16px">{t.footer}</p>
+    <p class="pp-hint vb-foot" style="margin-top:16px">{t.footer}</p>
   </article>
 </section>
 
@@ -190,7 +190,7 @@ const J = {
   .vb-out dt { color: var(--ink-3); font-weight: 600; }
   .vb-out dd { margin: 0; }
   .vb-out h3 { margin: 18px 0 6px; font-size: 1rem; }
-  @media print { .site-header, .site-footer, .hero, #vb-form, .vb-out .ws-actions, .pp-hint { display: none !important; } .vb-out { border: 0; } }
+  @media print { .site-header, .site-footer, .hero, #vb-form, .vb-out .ws-actions, .pp-hint { display: none !important; } .vb-out { border: 0; } .vb-out .vb-foot { display: block !important; color: #333; } }
 </style>
 
 <script type="application/json" id="vb-i18n" set:html={JSON.stringify({ ...J, species_opts: t.species_opts, sex_opts: t.sex_opts, speciesQ: t.speciesQ, speciesTitle: t.speciesTitle, diary: t.diary })} />
@@ -209,18 +209,28 @@ const J = {
       for (const a of store.animals) { const o = document.createElement('option'); o.value = a.id; o.textContent = a.name || J.unnamed; sel.appendChild(o); }
       sel.addEventListener('change', () => {
         const a = store.animals.find((x: any) => x.id === sel.value); if (!a) return;
-        const set = (n: string, v: string) => { const el = form.elements.namedItem(n) as HTMLInputElement | null; if (el && v) el.value = v; };
-        set('name', a.name); set('species', a.species); set('breed', a.breed); set('weight', a.weight);
-        (form.querySelector('[name="species"]') as HTMLSelectElement).dispatchEvent(new Event('change'));
+        // Every field the booklet fills is replaced, empty values included: switching from one animal to another
+        // must never carry the first one's diary, medications or allergies into the second one's brief.
+        const set = (n: string, v: unknown) => { const el = form.elements.namedItem(n) as HTMLInputElement | null; if (el) el.value = typeof v === 'string' || typeof v === 'number' ? String(v) : ''; };
+        const list = (x: unknown): any[] => (Array.isArray(x) ? x.filter((r) => r && typeof r === 'object') : []);
+        set('name', a.name);
+        const sp = form.elements.namedItem('species') as HTMLSelectElement;
+        sp.value = typeof a.species === 'string' ? a.species : '';
+        if (a.species && !sp.value) sp.value = 'Other'; // a booklet species this form has no questions for (e.g. hamster)
+        set('breed', a.breed); set('weight', a.weight);
+        sp.dispatchEvent(new Event('change'));
         set('sex', a.sex && a.neutered === 'Yes' ? `${a.sex}, ${a.sex === 'Female' ? 'spayed' : 'neutered'}` : a.sex);
-        if (a.dob) { const y = (Date.now() - new Date(a.dob).getTime()) / 31557600000; set('age', y < 1 ? `${Math.round(y * 12)} ${J.months}` : `${Math.floor(y)} ${J.years}`); }
-        set('diary', (a.diary ?? []).filter((d: any) => d.date || d.note).slice(-8).map((d: any) => [d.date, d.note].filter(Boolean).join(': ')).join('\n'));
-        set('meds', (a.medications ?? []).map((m: any) => [m.name, m.dose, m.started && `${J.since2} ${m.started}`].filter(Boolean).join(', ')).join('\n'));
-        set('history', (a.conditions ?? []).map((c: any) => [c.type, c.description].filter(Boolean).join(': ')).join('; '));
-        const lastVac = (a.vaccinations ?? []).map((v: any) => v.validUntil).filter(Boolean).sort().pop();
-        if (lastVac) { const el = form.elements.namedItem('vacc') as HTMLSelectElement; el.selectedIndex = new Date(lastVac) > new Date() ? 1 : 2; }
-        const lastPar = (a.treatments ?? []).map((t: any) => `${t.product ?? ''} ${t.date ?? ''}`.trim()).filter(Boolean).pop();
-        if (lastPar) set('parasite', lastPar);
+        const born = typeof a.dob === 'string' ? Date.parse(a.dob) : NaN;
+        const y = (Date.now() - born) / 31557600000;
+        set('age', isNaN(born) ? '' : y < 1 ? `${Math.max(0, Math.round(y * 12))} ${J.months}` : `${Math.floor(y)} ${J.years}`);
+        set('diary', list(a.diary).filter((d) => d.date || d.note).slice(-8).map((d) => [d.date, d.note].filter(Boolean).join(': ')).join('\n'));
+        set('meds', list(a.medications).map((m) => [m.name, m.dose, m.started && `${J.since2} ${m.started}`].filter(Boolean).join(', ')).filter(Boolean).join('\n'));
+        set('history', list(a.conditions).map((c) => [c.type, c.description].filter(Boolean).join(': ')).filter(Boolean).join('; '));
+        const lastVac = list(a.vaccinations).map((v) => v.validUntil).filter(Boolean).sort().pop();
+        (form.elements.namedItem('vacc') as HTMLSelectElement).selectedIndex = lastVac ? (new Date(lastVac) > new Date() ? 1 : 2) : 0;
+        // The most recent treatment by date, not the last row typed.
+        const lastPar = list(a.treatments).filter((t) => t.product || t.date).sort((p, q) => String(p.date ?? '').localeCompare(String(q.date ?? ''))).map((t) => `${t.product ?? ''} ${t.date ?? ''}`.trim()).pop();
+        set('parasite', lastPar ?? '');
       });
     } else { (sel.closest('label') as HTMLElement).hidden = true; }
   } catch {}
