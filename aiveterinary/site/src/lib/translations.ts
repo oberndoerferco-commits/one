@@ -38,4 +38,8 @@ export const TRANSLATION_GROUPS: { en?: string; it?: string; de?: string }[] = [
   { en: 'dog-in-heat', it: 'cagna-in-calore', de: 'huendin-laeufig' }, // dog-in-heat
   { en: 'dog-ear-infection', it: 'cane-otite', de: 'hund-ohrenentzuendung' }, // dog-ear-infection
   { en: 'cat-not-eating', it: 'cat-not-eating', de: 'katze-frisst-nicht' }, // cat-not-eating
+  { en: 'horse-colic', it: 'colica-cavallo', de: 'kolik-pferd' }, // horse-colic
+  { en: 'horse-laminitis', it: 'laminite-cavallo', de: 'hufrehe-pferd' }, // horse-laminitis
+  { en: 'horse-vital-signs', it: 'parametri-vitali-cavallo', de: 'vitalwerte-pferd' }, // horse-vital-signs
+  { en: 'horse-coughing', it: 'cavallo-tosse', de: 'pferd-hustet' }, // horse-coughing
 ];
