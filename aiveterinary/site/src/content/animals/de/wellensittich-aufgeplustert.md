@@ -31,6 +31,8 @@ references:
     url: "https://vetmed.illinois.edu/pet-health-columns/bad-for-birds-prevent-poisoning-in-avian-pets/"
   - title: "Texas A&M Veterinary Medical Diagnostic Laboratory: Polytetrafluoroethylene toxicosis (Teflon toxicity)"
     url: "https://tvmdl.tamu.edu/case-studies/polytetrafluoroethylene-toxicosis-teflontm-toxicity/"
+  - title: "Pet Poison Helpline: Top 5 toxins in companion birds"
+    url: "https://www.petpoisonhelpline.com/uncategorized/top-5-toxins-companion-birds/"
   - title: "RSPCA: Birds' diet"
     url: "https://www.rspca.org.uk/adviceandwelfare/pets/birds/diet"
   - title: "RSPCA: Birds' environment"
@@ -117,7 +119,7 @@ Weitere Gefahren, die das College of Veterinary Medicine der University of Illin
 - **Schokolade und Koffein**, die bei Vögeln aufputschend wirken (Illinois)
 - **Zink und Blei** aus verzinkten Käfigen, Metallteilen und billigem Spielzeug sowie aus alten Farbanstrichen (Illinois)
 
-Illinois ergänzt, dass es für eingeatmete Giftstoffe und für Avocado kein spezifisches Gegenmittel gibt: Vorbeugen ist das Wichtigste. Die RSPCA rät, Vögel nicht in die Küche fliegen zu lassen und den Käfig nicht neben Heizkörper, Kamin oder Herd oder in die Zugluft zu stellen.
+Illinois ergänzt, dass es für eingeatmete Giftstoffe und für Avocado kein spezifisches Gegenmittel gibt: Vorbeugen ist das Wichtigste. Die RSPCA rät, Vögel nicht in die Küche fliegen zu lassen und den Käfig nicht neben Heizkörper, Kamin oder Herd oder in die Zugluft zu stellen. Wenn Sie Produkte mit starken Dämpfen verwenden, rät Pet Poison Helpline, ein Giftnotruf für Tiere, den Vogel in einen anderen Raum zu bringen und die Fenster zu öffnen; ein Handtuch unter der Tür seines Zimmers kann die Belastung zusätzlich verringern.
 
 ## Was mache ich, bis ich mit meinem Vogel in der Praxis bin?
 

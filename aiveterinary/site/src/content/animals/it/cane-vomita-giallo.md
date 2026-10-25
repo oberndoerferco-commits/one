@@ -4,12 +4,16 @@ description: "Il vomito giallo è quasi sempre bile, la schiuma bianca è spesso
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-10-19
+updated: 2026-10-25
 draft: true
 lang: it
 references:
-  - title: "VCA Animal Hospitals: Vomiting in Dogs"
-    url: "https://vcahospitals.com/know-your-pet/vomiting-in-dogs"
+  - title: "MSD Veterinary Manual (versione per proprietari): Vomiting in Dogs"
+    url: "https://www.msdvetmanual.com/dog-owners/digestive-disorders-of-dogs/vomiting-in-dogs"
+  - title: "University of Illinois College of Veterinary Medicine: Why Is My Pet Vomiting? Bilious Vomiting Syndrome"
+    url: "https://vetmed.illinois.edu/pet-health-columns/bilious-vomiting-syndrome-pet/"
+  - title: "American Kennel Club: Why Is My Dog Throwing Up White Foam?"
+    url: "https://www.akc.org/expert-advice/health/dog-throwing-up-white-foam/"
   - title: "PDSA: Vomiting in dogs"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/vomiting-in-dogs"
   - title: "PDSA: GDV (Gastric Dilatation Volvulus) in dogs"
@@ -24,7 +28,7 @@ references:
 
 Vai immediatamente in una clinica veterinaria, avvisando per telefono, se il tuo cane:
 
-- prova a vomitare più volte ma non esce nulla, o esce solo un po' di schiuma, e ha la pancia gonfia o tesa (è il quadro tipico della dilatazione-torsione gastrica, che è letale nel giro di ore)
+- prova a vomitare più volte ma non esce nulla, o esce solo un po' di schiuma, e ha la pancia gonfia o tesa (è il quadro tipico della dilatazione-torsione gastrica: secondo la PDSA i sintomi peggiorano rapidamente ed è potenzialmente mortale)
 - vomita schiuma o liquido e nello stesso tempo respira male, tossisce in continuazione o ha le gengive pallide o bluastre
 - vomita giallo o schiuma più volte in poche ore e sta diventando debole, barcolla o non riesce a stare in piedi
 - ha vomito con sangue, anche solo striature, o materiale scuro simile a fondi di caffè
@@ -35,9 +39,9 @@ Vai immediatamente in una clinica veterinaria, avvisando per telefono, se il tuo
 
 Il giallo è quasi sempre bile che irrita lo stomaco vuoto, mentre la schiuma bianca di solito è saliva mista a succhi gastrici e aria, ma a volte è tosse.
 
-**Il vomito giallo** è quasi sempre **bile**, il liquido prodotto dal fegato che arriva nell'intestino per digerire i grassi. Quando lo stomaco è vuoto da molte ore, un po' di bile può risalire e irritarlo. Per questo molti cani vomitano giallo la mattina presto o a notte fonda, prima del pasto: è la cosiddetta "sindrome del vomito biliare". Se succede ogni tanto, il cane è vivace e mangia normalmente, in genere non è grave.
+**Il vomito giallo** è quasi sempre **bile**, il liquido prodotto dal fegato che arriva nell'intestino per digerire i grassi. Secondo la facoltà di medicina veterinaria dell'Università dell'Illinois, quando lo stomaco è vuoto da molte ore un po' di bile può risalire dall'intestino e irritarlo. Per questo molti cani vomitano giallo la mattina presto o a notte fonda, prima del pasto: è la cosiddetta "sindrome del vomito biliare". Non è considerata un'emergenza, ma il veterinario la ipotizza solo dopo aver escluso altre cause.
 
-**La schiuma bianca** è di solito saliva mescolata a succhi gastrici e aria. Può comparire quando il cane ha lo stomaco vuoto, quando ha la nausea, quando ha mangiato erba, o quando ha bevuto troppo in fretta. Attenzione a una differenza importante: nella **tosse dei canili** gli accessi di tosse secca possono essere seguiti da conati, e la scena può sembrare vomito. Guarda se prima del "vomito" il cane ha tossito. Se puoi, filma l'episodio: per il veterinario fa la differenza.
+**La schiuma bianca**, secondo l'American Kennel Club (AKC), si forma spesso quando gas, succhi gastrici di uno stomaco vuoto e irritato e saliva si mescolano. Attenzione a una differenza importante: nella **tosse dei canili** gli accessi di tosse secca possono essere seguiti da conati, e la scena può sembrare vomito. Guarda se prima del "vomito" il cane ha tossito. Se puoi, filma l'episodio: per il veterinario fa la differenza.
 
 Il colore da solo non dice la causa. Dice però da quanto tempo lo stomaco è vuoto e se c'è irritazione.
 
@@ -45,7 +49,7 @@ Il colore da solo non dice la causa. Dice però da quanto tempo lo stomaco è vu
 
 Se il cane ha vomitato una sola volta e per il resto sta bene, puoi tenerlo d'occhio a casa, e chiamare il veterinario se vomita ancora, se dopo 24 ore non è tornato quello di sempre o se peggiora.
 
-- Non lasciarlo a stomaco vuoto per lunghi periodi. Se il vomito compare la mattina presto, prova a **dividere la razione in più pasti piccoli**, con uno spuntino leggero la sera tardi. Spesso basta questo.
+- Non lasciarlo a stomaco vuoto per lunghi periodi. Se il vomito compare la mattina presto, chiedi al veterinario se può aiutare **un piccolo pasto la sera tardi**, poco prima di dormire, come suggeriscono l'Università dell'Illinois e l'AKC.
 - Lascia l'acqua a disposizione, ma in piccole quantità alla volta. Bere molto in un colpo solo può far ripartire il vomito.
 - Non dare farmaci per lo stomaco di uso umano: alcuni sono pericolosi per il cane.
 - Annota quando vomita, quante volte, com'è il materiale, e se ha mangiato qualcosa di insolito. Una foto sul telefono aiuta.
@@ -58,7 +62,7 @@ Prenota una visita oggi se vomita più di una volta, se dopo 24 ore non sta bene
 Prenota una visita oggi se:
 
 - il vomito giallo o schiumoso si ripete, cioè vomita più di una volta
-- dopo 24 ore il cane non è tornato quello di sempre, o il vomito torna ogni mattina per più di uno o due giorni nonostante i pasti frazionati
+- dopo 24 ore il cane non è tornato quello di sempre, o il vomito torna ogni mattina per più di uno o due giorni nonostante lo spuntino serale
 - il cane non mangia da più di un giorno, o beve molto più o molto meno del solito
 - c'è anche diarrea, soprattutto con sangue o molto scura
 - il cane è spento, dimagrisce, o ha la pancia dolente

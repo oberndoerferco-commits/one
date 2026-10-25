@@ -23,6 +23,10 @@ references:
     url: "https://www.msdvetmanual.com/all-other-pets/ferrets/providing-a-home-for-a-ferret"
   - title: "RSPCA: Caring for your ferrets"
     url: "https://www.rspca.org.uk/adviceandwelfare/pets/ferrets/health"
+  - title: "PDSA: First aid for heatstroke"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/other-veterinary-advice/first-aid-for-heatstroke"
+  - title: "LafeberVet: Heatstroke in Exotic Companion Mammals"
+    url: "https://lafeber.com/vet/heatstroke-in-exotic-companion-mammals/"
   - title: "Wenker C., Christen C.: Frettchen in der Tierarztpraxis. Schweizer Archiv für Tierheilkunde 2002;144(11):575–584, Universität Zürich (PDF)"
     url: "https://sat.gstsvs.ch/fileadmin/media/pdf/archive/2002/11/SAT144110575.pdf"
   - title: "Wenker C., Christen C.: Frettchen in der Tierarztpraxis. Schweizer Archiv für Tierheilkunde 2002;144(11):575–584, Abteilung für Zoo-, Heim- und Wildtiere, Universität Zürich (PDF)"
@@ -58,6 +62,7 @@ Außerdem:
 - **Fahren Sie trotzdem, auch wenn Ihr Frettchen munterer wird.** Ein Frettchen, dem es nach dem Fressen besser geht, gehört trotzdem in die Praxis.
 - **Nehmen Sie eine sichere Transportbox.** Laut MSD reicht eine Kunststoff-Transportbox für Katzen.
 - **Geben Sie keine Medikamente auf eigene Faust.** Die RSPCA, eine britische Tierschutzorganisation, rät, Frettchen nur Medikamente zu geben, die die Praxis für sie empfohlen hat, und warnt, dass für andere Tiere verschriebene Medikamente für Frettchen sehr gefährlich sein können.
+- **Bei Verdacht auf Hitzschlag** kühlen Sie sofort und fahren Sie dann in die Praxis. Die PDSA, die betont, dass ein Hitzschlag jedes Tier treffen kann, das zu warm wird, rät als Erste Hilfe: das Tier an einen kühlen Ort oder in den Schatten bringen, den Körper vorsichtig mit Wasser aus dem Kaltwasserhahn befeuchten, dabei Nase und Maul aussparen und kleine Tiere, die kein Wasser gewohnt sind, nicht stressen, und für einen Luftzug sorgen. Decken Sie es nicht mit einem nassen Handtuch zu, das macht es laut PDSA noch wärmer. LafeberVet warnt Tierärzte davor, exotische Heimtiere wie Kaninchen und Chinchillas in kaltes Wasser oder Eisbäder zu legen.
 - **Notieren Sie, was passiert ist:** wann es begann, wie lange es dauerte und wann Ihr Frettchen zuletzt gefressen hat. Ein kurzes Video kann der Praxis helfen.
 
 ## Was ist ein Insulinom beim Frettchen?

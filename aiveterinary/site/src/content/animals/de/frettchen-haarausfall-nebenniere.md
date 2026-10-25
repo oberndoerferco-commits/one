@@ -24,6 +24,10 @@ references:
     url: "https://www.msdvetmanual.com/all-other-pets/ferrets/infectious-diseases-of-ferrets"
   - title: "RSPCA: Neutering and contraception methods for ferrets"
     url: "https://www.rspca.org.uk/adviceandwelfare/pets/ferrets/health/neutering"
+  - title: "RSPCA: How to get rid of fleas"
+    url: "https://www.rspca.org.uk/adviceandwelfare/pets/general/fleas"
+  - title: "RSPCA: Caring for your ferrets"
+    url: "https://www.rspca.org.uk/adviceandwelfare/pets/ferrets/health"
   - title: "PDSA: Ferrets as pets"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/small-pets/ferrets-as-pets"
 ---
@@ -104,7 +108,7 @@ Welche Behandlung für Ihr Frettchen passt und wann, entscheiden Sie gemeinsam m
 
 Nicht immer weiter gegen Flöhe behandeln und abwarten, sich nicht auf Melatonin verlassen und den Termin nicht verschieben, weil Ihr Frettchen munter wirkt.
 
-- **Behandeln Sie nicht ohne Rücksprache gegen Parasiten.** Das MSD Veterinary Manual rät, die Flohbehandlung aller Tiere im Haushalt und der Umgebung mit der Praxis zu besprechen.
+- **Verwenden Sie kein Flohmittel für Hunde oder Katzen ohne Rücksprache mit der Praxis.** Die RSPCA warnt, dass ein Flohmittel, das für eine Tierart geeignet ist, für eine andere ungeeignet sein kann und nur bei der angegebenen Tierart verwendet werden sollte; in ihren Frettchen-Ratschlägen ergänzt sie, dass für andere Tiere verschriebene Medikamente für Frettchen sehr gefährlich sein können. Das MSD Veterinary Manual rät, die Flohbehandlung aller Tiere im Haushalt und der Umgebung mit der Praxis zu besprechen.
 - **Halten Sie nachwachsendes Fell nicht für eine Heilung.** Wie die Zürcher Übersicht von 2002 feststellt, wird eine Parasitenbehandlung oft fälschlicherweise für erfolgreich gehalten, wenn das Fell einfach mit dem Fellwechsel nachgewachsen ist.
 - **Verlassen Sie sich nicht auf Melatonin.** Laut MSD Veterinary Manual wurde es gegen den Haarausfall bei Nebennierenerkrankung eingesetzt, stoppt aber das Wachstum des Nebennierentumors nicht.
 - **Warten Sie nicht ab, weil Ihr Frettchen gesund wirkt.** Die Zürcher Übersicht von 2002 hält fest, dass das Allgemeinbefinden anfangs oft ungestört ist, sich aber nach einigen Monaten ändern kann.

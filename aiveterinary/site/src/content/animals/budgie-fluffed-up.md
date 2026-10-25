@@ -26,6 +26,8 @@ references:
     url: "https://vetmed.illinois.edu/pet-health-columns/bad-for-birds-prevent-poisoning-in-avian-pets/"
   - title: "Texas A&M Veterinary Medical Diagnostic Laboratory: Polytetrafluoroethylene toxicosis (Teflon toxicity)"
     url: "https://tvmdl.tamu.edu/case-studies/polytetrafluoroethylene-toxicosis-teflontm-toxicity/"
+  - title: "Pet Poison Helpline: Top 5 toxins in companion birds"
+    url: "https://www.petpoisonhelpline.com/uncategorized/top-5-toxins-companion-birds/"
   - title: "RSPCA: Birds' diet"
     url: "https://www.rspca.org.uk/adviceandwelfare/pets/birds/diet"
   - title: "RSPCA: Birds' environment"
@@ -112,7 +114,7 @@ Other dangers named by the University of Illinois College of Veterinary Medicine
 - **chocolate and caffeine**, which act as stimulants in birds (Illinois)
 - **zinc and lead** from galvanised cages, hardware and cheap toys, and from old paint (Illinois)
 
-Illinois adds that there is no specific antidote for inhaled toxins or avocado, so prevention matters most. The RSPCA advises not letting your bird fly into the kitchen, and not putting the cage near a radiator, fire or stove, or in a draught.
+Illinois adds that there is no specific antidote for inhaled toxins or avocado, so prevention matters most. The RSPCA advises not letting your bird fly into the kitchen, and not putting the cage near a radiator, fire or stove, or in a draught. When you use products that give off strong fumes, Pet Poison Helpline, an animal poison control service, advises moving your bird to a separate room and opening the windows, and says a towel under the door of the bird's room can help reduce its exposure.
 
 ## What should I do while I get my bird to the vet?
 

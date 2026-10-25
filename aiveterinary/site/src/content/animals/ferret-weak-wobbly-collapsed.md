@@ -22,6 +22,10 @@ references:
     url: "https://www.msdvetmanual.com/all-other-pets/ferrets/providing-a-home-for-a-ferret"
   - title: "RSPCA: Caring for your ferrets"
     url: "https://www.rspca.org.uk/adviceandwelfare/pets/ferrets/health"
+  - title: "PDSA: First aid for heatstroke"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/other-veterinary-advice/first-aid-for-heatstroke"
+  - title: "LafeberVet: Heatstroke in Exotic Companion Mammals"
+    url: "https://lafeber.com/vet/heatstroke-in-exotic-companion-mammals/"
   - title: "Wenker C., Christen C.: Frettchen in der Tierarztpraxis. Schweizer Archiv für Tierheilkunde 2002;144(11):575–584, University of Zurich (in German, PDF)"
     url: "https://sat.gstsvs.ch/fileadmin/media/pdf/archive/2002/11/SAT144110575.pdf"
 ---
@@ -55,6 +59,7 @@ Beyond that:
 - **Keep going, even if your ferret perks up.** A ferret that seems better after eating still needs the vet.
 - **Use a secure carrier.** MSD says a plastic cat carrier is enough for the journey.
 - **Don't give any medicine of your own.** The RSPCA advises giving ferrets only medicines a vet has recommended for them, and warns that medicines prescribed for other animals can be very dangerous to them.
+- **If it may be heatstroke,** start cooling straight away and then go to the vet. PDSA's first aid for heatstroke, which it says can affect any animal that gets too hot, is to move the animal somewhere cool or into the shade, gently wet its body with water from the cold tap, keeping water away from the nose and mouth and taking care not to stress small animals that aren't used to water, and create a breeze. Don't cover it with a wet towel, which PDSA says makes it hotter. LafeberVet warns vets not to put exotic pets such as rabbits and chinchillas into cold water or ice baths.
 - **Note what happened:** when it started, how long it lasted, and when your ferret last ate. A short video can help the vet.
 
 ## What is an insulinoma in a ferret?

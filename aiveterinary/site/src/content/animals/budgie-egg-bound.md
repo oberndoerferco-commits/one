@@ -10,6 +10,8 @@ lang: en
 references:
   - title: "LafeberVet: Egg Laying Problems (client education handout)"
     url: "https://lafeber.com/vet/wp-content/uploads/Egg-laying-problems-Klaphake.pdf"
+  - title: "LafeberVet: Reproductive Emergencies in Birds"
+    url: "https://lafeber.com/vet/reproductive-emergencies/"
   - title: "MSD Veterinary Manual (Pet Owner Version): Reproductive Disorders of Pet Birds"
     url: "https://www.msdvetmanual.com/bird-owners/disorders-and-diseases-of-birds/reproductive-disorders-of-pet-birds"
   - title: "Merck Veterinary Manual (Professional Version): Reproductive Diseases of Pet Birds"
@@ -24,7 +26,7 @@ references:
 
 ## First, the signs that mean go now
 
-Egg binding means a female bird can't pass an egg. The Merck Veterinary Manual says egg-bound birds often arrive at the vet as emergencies, and a client handout from LafeberVet, an educational website for veterinarians, says a bird with signs of egg binding should be seen by an avian vet right away.
+Egg binding means a female bird can't pass an egg. The Merck Veterinary Manual says egg-bound birds often arrive at the vet as emergencies, and a client handout from LafeberVet, an educational website for veterinarians, says a bird with signs of egg binding should be seen by an avian vet right away. LafeberVet's article on reproductive emergencies counts egg binding among the conditions vets commonly see as emergencies, most often in small parrots such as cockatiels, lovebirds and budgies.
 
 Go to a vet who treats birds now, and call ahead, if your female bird:
 

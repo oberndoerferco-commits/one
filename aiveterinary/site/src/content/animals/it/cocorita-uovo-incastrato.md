@@ -10,6 +10,8 @@ lang: it
 references:
   - title: "LafeberVet: Egg Laying Problems (scheda informativa per proprietari)"
     url: "https://lafeber.com/vet/wp-content/uploads/Egg-laying-problems-Klaphake.pdf"
+  - title: "LafeberVet: Reproductive Emergencies in Birds"
+    url: "https://lafeber.com/vet/reproductive-emergencies/"
   - title: "MSD Veterinary Manual (versione per proprietari): Reproductive Disorders of Pet Birds"
     url: "https://www.msdvetmanual.com/bird-owners/disorders-and-diseases-of-birds/reproductive-disorders-of-pet-birds"
   - title: "Merck Veterinary Manual (versione per veterinari): Reproductive Diseases of Pet Birds"
@@ -26,7 +28,7 @@ references:
 
 ## Prima di tutto: i segni per cui andare subito dal veterinario
 
-Si parla di uovo incastrato, o ritenzione dell'uovo, quando una femmina non riesce a deporre un uovo. Il Merck Veterinary Manual scrive che gli uccelli con un uovo incastrato arrivano spesso dal veterinario come emergenze, e una scheda di LafeberVet, un sito di formazione per veterinari, raccomanda di far vedere subito a un veterinario aviare un uccello con i segni di un uovo incastrato.
+Si parla di uovo incastrato, o ritenzione dell'uovo, quando una femmina non riesce a deporre un uovo. Il Merck Veterinary Manual scrive che gli uccelli con un uovo incastrato arrivano spesso dal veterinario come emergenze, e una scheda di LafeberVet, un sito di formazione per veterinari, raccomanda di far vedere subito a un veterinario aviare un uccello con i segni di un uovo incastrato. L'articolo di LafeberVet sulle emergenze riproduttive conta l'uovo incastrato tra i problemi che i veterinari vedono spesso come emergenze, soprattutto nei piccoli pappagalli come calopsiti, inseparabili e cocorite.
 
 Vai subito da un veterinario che cura gli uccelli, e telefona prima, se la tua femmina:
 

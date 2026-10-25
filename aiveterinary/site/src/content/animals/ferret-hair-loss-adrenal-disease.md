@@ -20,6 +20,10 @@ references:
     url: "https://www.msdvetmanual.com/all-other-pets/ferrets/infectious-diseases-of-ferrets"
   - title: "RSPCA: Neutering and contraception methods for ferrets"
     url: "https://www.rspca.org.uk/adviceandwelfare/pets/ferrets/health/neutering"
+  - title: "RSPCA: How to get rid of fleas"
+    url: "https://www.rspca.org.uk/adviceandwelfare/pets/general/fleas"
+  - title: "RSPCA: Caring for your ferrets"
+    url: "https://www.rspca.org.uk/adviceandwelfare/pets/ferrets/health"
   - title: "PDSA: Ferrets as pets"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/small-pets/ferrets-as-pets"
   - title: "Tierspital Zürich, University of Zurich, Clinic for Zoo Animals, Exotic Pets and Wildlife: Hyperadrenokortizismus beim Frettchen, information sheet for owners (in German, PDF)"
@@ -104,7 +108,7 @@ Which option suits your ferret, and when, is a decision for you and your vet.
 
 Don't keep treating for fleas and wait, don't rely on melatonin, and don't put off the visit because your ferret seems well.
 
-- **Don't treat for parasites without asking your vet.** The MSD Veterinary Manual advises talking to your vet about flea treatment for all the animals in your home and for the home itself.
+- **Don't use a dog or cat flea product on your ferret without asking your vet.** The RSPCA warns that flea products suitable for one species may not be suitable for another, and should only be used on the species listed; its ferret advice adds that medicines prescribed for other animals can be very dangerous to ferrets. The MSD Veterinary Manual advises talking to your vet about flea treatment for all the animals in your home and for the home itself.
 - **Don't take regrowth as a cure.** As the 2002 Zurich review notes, parasite treatments are often wrongly thought to have worked when the hair simply regrew with the moult.
 - **Don't rely on melatonin.** The MSD Veterinary Manual says it has been used for hair loss in adrenal disease but does not stop the adrenal tumour growing.
 - **Don't wait because your ferret seems well.** The 2002 Zurich review notes that ferrets with adrenal disease are often well at first, but that this can change after some months.

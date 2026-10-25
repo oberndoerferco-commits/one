@@ -29,6 +29,8 @@ references:
     url: "https://vetmed.illinois.edu/pet-health-columns/bad-for-birds-prevent-poisoning-in-avian-pets/"
   - title: "Texas A&M Veterinary Medical Diagnostic Laboratory: Polytetrafluoroethylene toxicosis (Teflon toxicity)"
     url: "https://tvmdl.tamu.edu/case-studies/polytetrafluoroethylene-toxicosis-teflontm-toxicity/"
+  - title: "Pet Poison Helpline: Top 5 toxins in companion birds"
+    url: "https://www.petpoisonhelpline.com/uncategorized/top-5-toxins-companion-birds/"
   - title: "RSPCA: Birds' diet"
     url: "https://www.rspca.org.uk/adviceandwelfare/pets/birds/diet"
   - title: "RSPCA: Birds' environment"
@@ -115,7 +117,7 @@ Altri pericoli indicati dal College of Veterinary Medicine dell'Università dell
 - **cioccolato e caffeina**, che negli uccelli agiscono da stimolanti (Illinois)
 - **zinco e piombo** da gabbie zincate, minuteria metallica e giochi economici, e da vecchie vernici (Illinois)
 
-L'Università dell'Illinois aggiunge che per i fumi respirati e per l'avocado non esiste un antidoto specifico: la prevenzione è ciò che conta di più. La RSPCA consiglia di non far volare l'uccellino in cucina e di non mettere la gabbia vicino a termosifoni, camini o fornelli, né in una corrente d'aria.
+L'Università dell'Illinois aggiunge che per i fumi respirati e per l'avocado non esiste un antidoto specifico: la prevenzione è ciò che conta di più. La RSPCA consiglia di non far volare l'uccellino in cucina e di non mettere la gabbia vicino a termosifoni, camini o fornelli, né in una corrente d'aria. Quando usi prodotti che sprigionano fumi forti, Pet Poison Helpline, un servizio antiveleni per animali, consiglia di spostare l'uccellino in un'altra stanza e di aprire le finestre, e ricorda che un asciugamano sotto la porta della sua stanza può ridurre l'esposizione ai fumi.
 
 ## Cosa faccio mentre porto la cocorita dal veterinario?
 

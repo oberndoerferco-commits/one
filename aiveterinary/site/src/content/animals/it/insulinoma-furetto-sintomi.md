@@ -23,6 +23,10 @@ references:
     url: "https://www.msdvetmanual.com/all-other-pets/ferrets/providing-a-home-for-a-ferret"
   - title: "RSPCA: Caring for your ferrets"
     url: "https://www.rspca.org.uk/adviceandwelfare/pets/ferrets/health"
+  - title: "PDSA: First aid for heatstroke"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/other-veterinary-advice/first-aid-for-heatstroke"
+  - title: "LafeberVet: Heatstroke in Exotic Companion Mammals"
+    url: "https://lafeber.com/vet/heatstroke-in-exotic-companion-mammals/"
   - title: "Wenker C., Christen C.: Frettchen in der Tierarztpraxis. Schweizer Archiv für Tierheilkunde 2002;144(11):575–584, Università di Zurigo (in tedesco, PDF)"
     url: "https://sat.gstsvs.ch/fileadmin/media/pdf/archive/2002/11/SAT144110575.pdf"
 ---
@@ -56,6 +60,7 @@ Inoltre:
 - **Vai comunque, anche se il furetto si riprende.** Un furetto che sembra stare meglio dopo aver mangiato ha bisogno lo stesso del veterinario.
 - **Usa un trasportino sicuro.** Secondo l'MSD basta un trasportino di plastica per gatti.
 - **Non dargli farmaci di tua iniziativa.** La RSPCA, un'associazione britannica per la protezione degli animali, raccomanda di dare ai furetti solo farmaci consigliati dal veterinario per loro, e avverte che i farmaci prescritti ad altri animali possono essere molto pericolosi.
+- **Se pensi a un colpo di calore,** comincia subito a raffreddarlo e poi vai dal veterinario. Il primo soccorso della PDSA, che ricorda che il colpo di calore può colpire qualsiasi animale che si surriscalda, consiste nel portare l'animale in un luogo fresco o all'ombra, bagnargli delicatamente il corpo con l'acqua fredda del rubinetto, tenendola lontana da naso e bocca e facendo attenzione a non stressare i piccoli animali non abituati all'acqua, e creare un po' di corrente d'aria. Non coprirlo con un asciugamano bagnato: secondo la PDSA lo scalda ancora di più. LafeberVet avverte i veterinari di non immergere animali esotici come conigli e cincillà in acqua fredda o in bagni di ghiaccio.
 - **Annota cosa è successo:** quando è iniziato, quanto è durato e quando ha mangiato l'ultima volta. Un breve video può aiutare il veterinario.
 
 ## Che cos'è l'insulinoma del furetto?

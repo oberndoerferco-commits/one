@@ -21,6 +21,10 @@ references:
     url: "https://www.msdvetmanual.com/all-other-pets/ferrets/infectious-diseases-of-ferrets"
   - title: "RSPCA: Neutering and contraception methods for ferrets"
     url: "https://www.rspca.org.uk/adviceandwelfare/pets/ferrets/health/neutering"
+  - title: "RSPCA: How to get rid of fleas"
+    url: "https://www.rspca.org.uk/adviceandwelfare/pets/general/fleas"
+  - title: "RSPCA: Caring for your ferrets"
+    url: "https://www.rspca.org.uk/adviceandwelfare/pets/ferrets/health"
   - title: "PDSA: Ferrets as pets"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/small-pets/ferrets-as-pets"
   - title: "Tierspital Zürich, Università di Zurigo, Clinica per animali da zoo, esotici e selvatici: Hyperadrenokortizismus beim Frettchen, scheda informativa per i proprietari (in tedesco, PDF)"
@@ -105,7 +109,7 @@ Quale opzione sia adatta al tuo furetto, e quando, lo decidi insieme al veterina
 
 Non continuare con i trattamenti antipulci aspettando, non affidarti alla melatonina e non rimandare la visita perché il furetto sembra stare bene.
 
-- **Non trattare contro i parassiti senza chiedere al veterinario.** L'MSD Veterinary Manual consiglia di parlare con il veterinario del trattamento antipulci per tutti gli animali di casa e per l'ambiente.
+- **Non usare sul furetto un antipulci per cani o gatti senza chiedere al veterinario.** La RSPCA avverte che un antipulci adatto a una specie può non esserlo per un'altra e va usato solo sulla specie indicata; nei suoi consigli sui furetti aggiunge che i farmaci prescritti ad altri animali possono essere molto pericolosi per loro. L'MSD Veterinary Manual consiglia di parlare con il veterinario del trattamento antipulci per tutti gli animali di casa e per l'ambiente.
 - **Non prendere la ricrescita per una guarigione.** Come osserva la rassegna di Zurigo del 2002, spesso si crede per errore che un trattamento antiparassitario abbia funzionato quando il pelo è semplicemente ricresciuto con la muta.
 - **Non affidarti alla melatonina.** L'MSD Veterinary Manual dice che è stata usata per la perdita di pelo nella malattia surrenalica ma non ferma la crescita del tumore.
 - **Non aspettare perché il furetto sembra stare bene.** La rassegna di Zurigo del 2002 osserva che i furetti con malattia surrenalica all'inizio stanno spesso bene, ma che la situazione può cambiare dopo qualche mese.

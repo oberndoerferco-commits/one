@@ -4,12 +4,16 @@ description: "Gelbes Erbrochenes ist meist Galle auf leeren Magen, weißer Schau
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-10-19
+updated: 2026-10-25
 draft: true
 lang: de
 references:
-  - title: "VCA Animal Hospitals: Vomiting in Dogs"
-    url: "https://vcahospitals.com/know-your-pet/vomiting-in-dogs"
+  - title: "MSD Veterinary Manual (Pet Owner Version): Vomiting in Dogs"
+    url: "https://www.msdvetmanual.com/dog-owners/digestive-disorders-of-dogs/vomiting-in-dogs"
+  - title: "University of Illinois College of Veterinary Medicine: Why Is My Pet Vomiting? Bilious Vomiting Syndrome"
+    url: "https://vetmed.illinois.edu/pet-health-columns/bilious-vomiting-syndrome-pet/"
+  - title: "American Kennel Club: Why Is My Dog Throwing Up White Foam?"
+    url: "https://www.akc.org/expert-advice/health/dog-throwing-up-white-foam/"
   - title: "PDSA: Vomiting in dogs"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/vomiting-in-dogs"
   - title: "PDSA: GDV (Gastric Dilatation Volvulus) in dogs"
@@ -27,7 +31,7 @@ Fahren Sie sofort in eine Tierarztpraxis und rufen Sie vorher an, wenn Ihr Hund 
 - würgt oder schäumt, ohne dass etwas hochkommt, vor allem mit aufgetriebenem, hartem Bauch und Unruhe (Verdacht auf Magendrehung, besonders bei großen Rassen mit tiefem Brustkorb)
 - Blut im Erbrochenen hat, hellrot oder dunkel wie Kaffeesatz
 - schwach ist, zusammenbricht oder blasses, graues oder bläuliches Zahnfleisch hat
-- Krampfanfälle hat oder verwirrt wirkt
+- verwirrt oder orientierungslos wirkt
 - möglicherweise etwas Giftiges oder einen Gegenstand gefressen hat
 - ein Welpe, sehr alt oder chronisch krank ist (Diabetes, Niere, Herz)
 - innerhalb weniger Stunden mehrfach erbricht und kein Wasser bei sich behält
@@ -36,9 +40,9 @@ Fahren Sie sofort in eine Tierarztpraxis und rufen Sie vorher an, wenn Ihr Hund 
 
 Gelbes Erbrochenes ist in aller Regel Galle auf leerem Magen, weißer Schaum meist Magensaft mit Speichel und Luft; manchmal steckt hinter dem Würgen aber auch ein Husten.
 
-**Gelbes oder gelbgrünes Erbrochenes** ist in aller Regel Galle. Sie gelangt aus dem Zwölffingerdarm zurück in den leeren Magen und reizt dort die Schleimhaut. Typisch ist das frühmorgens oder nach langen Fütterungspausen, oft bei einem Hund, der danach ganz normal weitermacht. Tierärztinnen und Tierärzte sprechen dann vom „Galle-Erbrechen-Syndrom“ (bilious vomiting syndrome). Es ist lästig, aber meist ungefährlich.
+**Gelbes oder gelbgrünes Erbrochenes** ist in aller Regel Galle. Laut der tiermedizinischen Fakultät der University of Illinois fließt sie aus dem Darm zurück in den leeren Magen und reizt ihn. Typisch ist das frühmorgens oder nach langen Fütterungspausen, oft bei einem Hund, der danach ganz normal weitermacht. Tierärztinnen und Tierärzte sprechen dann vom „Galle-Erbrechen-Syndrom“ (bilious vomiting syndrome). Es gilt nicht als Notfall, wird aber erst angenommen, wenn andere Ursachen ausgeschlossen sind.
 
-**Weißer Schaum** ist in den meisten Fällen Magensaft, der mit Speichel und Luft vermischt wurde. Auch das sieht man vor allem auf nüchternen Magen oder nach dem Fressen von Gras. Nicht alles, was nach Erbrechen aussieht, kommt aus dem Magen: Bei Zwingerhusten können auf trockene Hustenanfälle Würgen und Brechreiz folgen. Achten Sie darauf, ob dem „Erbrechen“ ein Husten vorausgeht.
+**Weißer Schaum** entsteht laut American Kennel Club (AKC) oft, wenn sich Gas, Magensäure aus einem leeren, gereizten Magen und Speichel vermischen. Nicht alles, was nach Erbrechen aussieht, kommt aus dem Magen: Bei Zwingerhusten können auf trockene Hustenanfälle Würgen und Brechreiz folgen. Achten Sie darauf, ob dem „Erbrechen“ ein Husten vorausgeht.
 
 Weder die Farbe Gelb noch der Schaum allein sagen etwas über die Schwere aus. Entscheidend ist, wie es Ihrem Hund insgesamt geht und wie oft es passiert.
 
@@ -48,7 +52,7 @@ Bei einem einmaligen Ereignis bei einem munteren Hund: Fütterungspause verkürz
 
 Bei einem einmaligen Ereignis bei einem munteren Hund:
 
-- **Verkürzen Sie die Fütterungspause.** Wenn Ihr Hund regelmäßig morgens Galle erbricht, hilft oft schon ein kleiner Snack am späten Abend oder die Aufteilung der Tagesration auf drei Mahlzeiten.
+- **Verkürzen Sie die Fütterungspause.** Wenn Ihr Hund regelmäßig morgens Galle erbricht, kann laut University of Illinois und AKC eine kleine Mahlzeit spät am Abend, kurz vor dem Schlafengehen, helfen.
 - **Wasser in kleinen Mengen** anbieten, nicht den ganzen Napf auf einmal.
 - **Futter nicht komplett streichen**, sondern nach ein paar Stunden eine kleine, leicht verdauliche Portion geben. Bei Welpen und sehr kleinen Hunden fragen Sie Ihre Praxis, bevor Sie Futter zurückhalten.
 - **Beobachten Sie Husten, Hecheln und Würgen** getrennt vom Erbrechen und notieren Sie, was zuerst kam.

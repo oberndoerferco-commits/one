@@ -10,6 +10,8 @@ lang: de
 references:
   - title: "LafeberVet: Egg Laying Problems (Merkblatt für Tierhalter, auf Englisch)"
     url: "https://lafeber.com/vet/wp-content/uploads/Egg-laying-problems-Klaphake.pdf"
+  - title: "LafeberVet: Reproductive Emergencies in Birds"
+    url: "https://lafeber.com/vet/reproductive-emergencies/"
   - title: "MSD Veterinary Manual (Pet Owner Version): Reproductive Disorders of Pet Birds"
     url: "https://www.msdvetmanual.com/bird-owners/disorders-and-diseases-of-birds/reproductive-disorders-of-pet-birds"
   - title: "Merck Veterinary Manual (Professional Version): Reproductive Diseases of Pet Birds"
@@ -28,7 +30,7 @@ references:
 
 ## Zuerst: die Anzeichen, bei denen Sie sofort fahren sollten
 
-Legenot bedeutet, dass ein Vogelweibchen ein Ei nicht legen kann. Das Merck Veterinary Manual schreibt, dass Vögel mit Legenot oft als Notfall in die Praxis kommen, und ein Merkblatt von LafeberVet, einer Fortbildungsseite für Tierärztinnen und Tierärzte, rät, einen Vogel mit Zeichen einer Legenot sofort in einer vogelkundigen Praxis vorzustellen.
+Legenot bedeutet, dass ein Vogelweibchen ein Ei nicht legen kann. Das Merck Veterinary Manual schreibt, dass Vögel mit Legenot oft als Notfall in die Praxis kommen, und ein Merkblatt von LafeberVet, einer Fortbildungsseite für Tierärztinnen und Tierärzte, rät, einen Vogel mit Zeichen einer Legenot sofort in einer vogelkundigen Praxis vorzustellen. Der LafeberVet-Artikel über Fortpflanzungsnotfälle zählt die Legenot zu den Erkrankungen, die Tierärzte häufig als Notfall sehen, am häufigsten bei kleinen Papageien wie Nymphensittichen, Unzertrennlichen und Wellensittichen.
 
 Fahren Sie sofort in eine Praxis, die Vögel behandelt, und rufen Sie vorher an, wenn Ihr Weibchen:
 
