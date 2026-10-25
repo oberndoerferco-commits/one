@@ -4,7 +4,7 @@ description: "Mild diarrhoea in a dog that is otherwise well often settles quick
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-10-19
+updated: 2026-10-25
 draft: true
 references:
   - title: "PDSA: Dog diarrhoea"
@@ -13,21 +13,21 @@ references:
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/haemorrhagic-gastroenteritis-hge-in-dogs"
   - title: "PDSA: Parvovirus in dogs"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/parvovirus-in-dogs-and-puppies"
-  - title: "VCA Animal Hospitals: Diarrhea in Dogs"
-    url: "https://vcahospitals.com/know-your-pet/diarrhea-in-dogs"
-  - title: "VCA Animal Hospitals: Bland Diet Instructions for Dogs and Cats"
-    url: "https://vcahospitals.com/know-your-pet/bland-diet-instructions-for-dogs-and-cats"
+  - title: "PDSA: Colitis in dogs"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/colitis-in-dogs"
+  - title: "Cornell Riney Canine Health Center: Diarrhea"
+    url: "https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/canine-health-topics/diarrhea"
 ---
 
 ## First, the signs that mean go now
 
 Go to a veterinary clinic immediately, and call ahead, if your dog:
 
-- has diarrhoea that is mostly blood, or looks like raspberry jam
+- has diarrhoea that is mostly blood, or looks like strawberry jam
 - is also vomiting repeatedly and cannot keep water down
 - is very weak, wobbly, or collapses
-- has pale, grey or very dark red gums
-- has a swollen, hard or painful belly
+- has pale gums
+- has a painful belly
 - may have eaten something poisonous or swallowed an object
 - is a puppy, especially one that is not fully vaccinated (parvovirus is a real risk)
 - is very old, or already has a condition such as diabetes, kidney disease or heart disease
@@ -42,11 +42,11 @@ Soft or watery stools for a day in a dog that is still bright, eating and drinki
 
 What you can do at home for the first 24 hours:
 
-- Keep fresh water available at all times. Diarrhoea loses fluid, and dehydration is the main risk.
+- Keep fresh water available at all times. Diarrhoea drains water from the body, and dehydration is the danger.
 - Ask your vet how to feed your dog for now. Many recommend small, frequent meals of a bland, easily digested food; some suggest withholding food for a short time instead, which is not suitable for dogs that are very young, old, or have another illness.
 - Avoid treats, scraps and rich food until stools are normal.
-- Walk on the lead so you can see what is passed and stop your dog eating anything.
-- Note the colour, consistency and frequency. A photo helps your vet more than a description.
+- Take your dog out often, on the lead, so you can see what is passed and stop any scavenging.
+- Note the colour, consistency and frequency. The PDSA suggests taking a photo of the poo, or a sample, to show your vet.
 - Do not give any medicine, including human anti-diarrhoea medicine, without asking your vet first. Whether any medication is appropriate is a vet decision.
 
 ## When should I take my dog to the vet for diarrhoea?
@@ -57,10 +57,9 @@ Book an appointment today if:
 
 - diarrhoea has been going on for more than 24 hours
 - there are streaks of fresh blood, or mucus, in the stools
-- your dog is also vomiting, off food, or drinking much more than usual
-- your dog is straining repeatedly and passing only small amounts of mucus or liquid
+- your dog is also vomiting, off food or unusually tired
+- your dog keeps straining to poo, or there is mucus in the stools
 - your dog is losing weight, or this keeps happening every few weeks
-- other animals in the house are also affected
 - your dog has not been wormed in a while
 
 Repeated or long-running diarrhoea is not something to manage at home indefinitely. It can point to parasites, food intolerance or bowel disease that your vet needs to investigate.
@@ -88,7 +87,7 @@ Scavenging, sudden food changes, stress, mild infections, worms or giardia and f
 |---|---|
 | Scavenging or eating something unsuitable | Parvovirus (mainly unvaccinated puppies) |
 | Sudden change of food | Foreign body partly blocking the gut |
-| Stress (kennels, travel, new home) | Pancreatitis |
+| Stress, such as boarding kennels or a vet visit | Pancreatitis |
 | Mild gut infection | Inflammatory bowel disease |
 | Intestinal worms or giardia | Poisoning |
 | Food intolerance | Liver disease or other organ disease |

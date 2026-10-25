@@ -4,16 +4,18 @@ description: "La maggior parte degli episodi isolati di vomito nel cane passa da
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-10-19
+updated: 2026-10-25
 draft: true
 lang: it
 references:
   - title: "PDSA: Vomiting in dogs"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/vomiting-in-dogs"
-  - title: "VCA Animal Hospitals: Vomiting in Dogs"
-    url: "https://vcahospitals.com/know-your-pet/vomiting-in-dogs"
-  - title: "VCA Animal Hospitals: Gastritis in Dogs"
-    url: "https://vcahospitals.com/know-your-pet/gastritis-in-dogs"
+  - title: "Cornell Riney Canine Health Center: Vomiting"
+    url: "https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/canine-health-topics/vomiting"
+  - title: "PDSA: Are my dog's gums pale?"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/other-veterinary-advice/are-my-dog-s-gums-pale"
+  - title: "PDSA: Gastroenteritis (stomach upset) in dogs"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/gastroenteritis-stomach-upset-in-dogs"
   - title: "MSD Veterinary Manual: Gastric Dilation and Volvulus in Small Animals"
     url: "https://www.msdvetmanual.com/digestive-system/surgical-problems-of-the-gastrointestinal-tract-in-small-animals/gastric-dilation-and-volvulus-in-small-animals"
   - title: "ASPCA: People Foods to Avoid Feeding Your Pets"
@@ -30,37 +32,37 @@ Vai immediatamente in una clinica veterinaria, avvisando per telefono, se il tuo
 
 - cerca di vomitare ma non esce nulla, soprattutto se ha la pancia gonfia e dura (può essere una dilatazione-torsione gastrica, un'emergenza che mette in pericolo la vita)
 - vomita sangue, o materiale che sembra fondi di caffè
-- è molto debole, collassa, o ha le gengive pallide o bluastre
+- è molto debole, disorientato, o collassa
+- ha le gengive pallide, bianche, bluastre o gialle: la PDSA dice di contattare subito il veterinario se le gengive del cane hanno un colore diverso dal rosa salmone (le macchie scure di pigmento sono normali)
 - potrebbe aver mangiato qualcosa di velenoso: cioccolato, uva o uvetta, xilitolo (usato in alcune gomme da masticare, caramelle, prodotti da forno e dentifrici), antidolorifici per uso umano come l'ibuprofene, antigelo
 - potrebbe aver ingoiato un oggetto: un giocattolo, un calzino, un osso
-- è un cucciolo, è molto anziano, o ha già una malattia come diabete o insufficienza renale
 - vomita ripetutamente e non trattiene nemmeno l'acqua
 
 ## Cosa posso fare a casa se il cane vomita ma sta bene?
 
 Lascia poca acqua alla volta, chiedi al veterinario se tenere lo stomaco a riposo per poco tempo o offrire piccoli pasti leggeri, e chiamalo se il cane vomita di nuovo.
 
-Un singolo episodio di vomito in un cane per il resto vivace è frequente. I cani mangiano cose che non dovrebbero, mangiano troppo in fretta, o hanno lo stomaco in disordine per un cambio di cibo.
+Un singolo episodio di vomito in un cane per il resto vivace è frequente. I cani mangiano cose che non dovrebbero, come l'erba, o hanno lo stomaco in disordine per un cambio di cibo.
 
 Cosa puoi fare a casa:
 
-- Chiedi al veterinario come gestire il cibo. Alcuni consigliano di togliere il cibo per poco tempo (spesso 8-12 ore) prima di offrire piccoli pasti leggeri; altri consigliano piccole porzioni di un cibo leggero e facilmente digeribile, poco e spesso, senza digiuno.
-- Lascia l'acqua a disposizione in piccole quantità. Grandi sorsate possono scatenare altro vomito.
+- Chiedi al veterinario come gestire il cibo. Il Riney Canine Health Center della Cornell suggerisce, dopo un vomito isolato, di togliere il cibo ma non l'acqua per circa 12 ore; la PDSA suggerisce invece piccole porzioni regolari di un cibo leggero e povero di grassi.
+- Offri l'acqua poca alla volta, durante tutta la giornata.
 - Quando offri il cibo, dai una piccola porzione di qualcosa di leggero, poi torna al cibo normale nell'arco di due o tre giorni.
-- Annota com'era il vomito, quante volte, e se il tuo cane ha mangiato qualcosa di insolito. Se puoi, fai una foto. Il veterinario te lo chiederà.
+- Annota com'era il vomito, quante volte, e se il tuo cane ha mangiato qualcosa di insolito. Il veterinario te lo chiederà.
 
 ## Quando portare oggi dal veterinario il cane che vomita?
 
-Chiama il veterinario oggi se vomita più di una volta o continua a vomitare per più di 24 ore, ha diarrea, beve molto più o meno, non mangia da più di un giorno o sembra avere dolore.
+Chiama il veterinario oggi se vomita più di una volta o continua a vomitare per più di 24 ore, è abbattuto, ha la febbre, ha diarrea o sembra avere mal di pancia.
 
 Chiama il veterinario oggi per un consiglio o una visita se:
 
 - il tuo cane vomita più di una volta, o continua a vomitare
 - continua per più di 24 ore
+- il tuo cane è molto giovane o molto anziano, o ha un'altra malattia: la PDSA li mette tra i motivi per far vedere al veterinario un cane con disturbi di stomaco
 - c'è anche diarrea, soprattutto con sangue
-- il tuo cane beve molto di più o molto di meno del solito
-- il tuo cane non mangia da più di un giorno
-- il tuo cane sembra avere dolore: schiena inarcata, riluttanza a muoversi, lamenti quando gli si tocca la pancia
+- il tuo cane è abbattuto o ha la febbre
+- il tuo cane sembra avere mal di pancia
 
 ## Cosa vorrà sapere il veterinario?
 
@@ -77,13 +79,13 @@ Portare queste informazioni, anche solo come qualche appunto sul telefono, rende
 
 ## Perché il cane vomita?
 
-Le cause più probabili sono aver mangiato qualcosa di inadatto, un cambio di cibo, mangiare troppo in fretta, lievi disturbi di stomaco e mal d'auto, ma ci sono anche cause gravi come la torsione gastrica.
+Le cause più probabili sono aver mangiato qualcosa di inadatto, un cambio di cibo, allergie alimentari, lievi disturbi di stomaco e mal d'auto, ma ci sono anche cause gravi come la torsione gastrica.
 
 | Probabili | Meno comuni ma importanti |
 |---|---|
 | Aver mangiato qualcosa di inadatto ("indiscrezione alimentare") | Corpo estraneo che ostruisce l'intestino |
 | Cambio improvviso di cibo | Pancreatite |
-| Mangiare troppo in fretta | Malattia dei reni o del fegato |
+| Allergia alimentare | Malattia dei reni o del fegato |
 | Lieve disturbo di stomaco o infezione | Avvelenamento |
 | Mal d'auto | Dilatazione-torsione gastrica, soprattutto nelle razze con torace profondo |
 

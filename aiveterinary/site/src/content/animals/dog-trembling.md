@@ -4,18 +4,20 @@ description: "Cold, fear, excitement, pain or something more serious: trembling 
 species: dog
 category: symptoms
 urgency: this-week
-updated: 2026-10-19
+updated: 2026-10-25
 draft: true
 lang: en
 references:
   - title: "PDSA Pet Health Hub: Seizures and epilepsy in dogs"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/seizures-in-dogs"
-  - title: "VCA Animal Hospitals: Shaker Syndrome in Dogs"
-    url: "https://vcahospitals.com/know-your-pet/shaker-syndrome-in-dogs"
-  - title: "VCA Animal Hospitals: Eclampsia in Dogs"
-    url: "https://vcahospitals.com/know-your-pet/eclampsia-in-dogs"
-  - title: "VCA Animal Hospitals: Testing for Low Blood Sugar"
-    url: "https://vcahospitals.com/know-your-pet/testing-for-low-blood-sugar"
+  - title: "Frontiers in Veterinary Science (2024): Canine idiopathic generalized tremor syndrome, immune-mediated?"
+    url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11449864/"
+  - title: "MSD Veterinary Manual (dog owners): Disorders of calcium metabolism in dogs"
+    url: "https://www.msdvetmanual.com/dog-owners/metabolic-disorders-of-dogs/disorders-of-calcium-metabolism-in-dogs"
+  - title: "MSD Veterinary Manual (dog owners): Congenital and inherited disorders of the nervous system in dogs"
+    url: "https://www.msdvetmanual.com/dog-owners/brain-spinal-cord-and-nerve-disorders-of-dogs/congenital-and-inherited-disorders-of-the-nervous-system-in-dogs"
+  - title: "MSD Veterinary Manual (dog owners): Disorders of the pancreas in dogs"
+    url: "https://www.msdvetmanual.com/dog-owners/hormonal-disorders-of-dogs/disorders-of-the-pancreas-in-dogs"
   - title: "MSD Veterinary Manual (Professional Version): Metaldehyde Poisoning in Animals"
     url: "https://www.msdvetmanual.com/toxicology/metaldehyde-poisoning/metaldehyde-poisoning-in-animals"
   - title: "Journal of Veterinary Internal Medicine: Generalized Tremors in Dogs: 198 Cases (2003–2023)"
@@ -30,8 +32,8 @@ Go to a vet straight away, and call ahead, if your dog is trembling and:
 - may have eaten something poisonous. Slug and snail pellets, [chocolate](/animals/dog-ate-chocolate) and sugar-free products containing xylitol can all cause tremors, sometimes before other signs.
 - is vomiting, has diarrhoea, or has a swollen tummy as well
 - is very weak, wobbly, or has pale or bluish gums
-- is a **small puppy or toy-breed dog** that is trembling, weak and not eating: low blood sugar is possible
-- is a **nursing mother** who is restless, panting, stiff or trembling. This can be **eclampsia** (low blood calcium), a true emergency, most often a few weeks after giving birth and in small breeds. Keep the puppies from feeding and call your vet
+- is a **toy-breed puppy** that is weak, unsteady or collapses: the MSD Veterinary Manual notes that toy breeds can have low blood sugar in their first six months, and that dangerously low blood sugar shows as weakness, poor coordination, seizures and collapse
+- is a **nursing mother** who is panting, restless, trembling or stiff. This can be **eclampsia** (low blood calcium), which the MSD Veterinary Manual calls life-threatening and in need of immediate treatment. It usually appears 2 to 3 weeks after the birth, most often in small breeds with large litters. Keep the puppies off her until your vet says otherwise
 - has been in the heat or exercising hard and won't settle, or has been out in cold water or weather and feels cold
 - seems in obvious pain: crying out, a hunched back, not wanting to move, yelping when picked up
 
@@ -87,12 +89,12 @@ Most often cold, fear, excitement, or weakness and arthritis in older dogs, but 
 |---|---|
 | Cold or wet | Poisoning (slug pellets, chocolate, xylitol) |
 | Fear, anxiety, excitement | Back or neck pain |
-| Muscle weakness and arthritis in older dogs | Low blood sugar in puppies and toy breeds |
+| Muscle weakness and arthritis in older dogs | Low blood sugar in toy-breed puppies |
 | Mild muscle or joint pain | Low blood calcium in nursing mothers (eclampsia) |
 | Feeling sick | Seizures, liver or kidney disease, infections |
 | | Tremor syndromes |
 
-One example of a tremor syndrome is **shaker syndrome**, which mostly affects small dogs, often white breeds such as the Maltese, West Highland White Terrier and Bichon Frise, though any dog can get it. It usually starts in young adult dogs, and the tremors tend to get worse with excitement and better at rest or during sleep. Vets diagnose it only after ruling out other causes with blood and urine tests.
+One example of a tremor syndrome is **shaker syndrome** (idiopathic generalised tremor syndrome). A 2024 review in *Frontiers in Veterinary Science* explains that it was first described in small white dogs such as the Maltese, West Highland White Terrier and Bichon Frise, and has since been seen in other breeds and coat colours. Most affected dogs are under five years old, and the fine whole-body tremor gets worse with anxiety and excitement. There is no single test for it: vets reach the diagnosis from the signs and by ruling out other causes of whole-body trembling.
 
 This table is to help you follow the conversation with your vet, not to diagnose your own dog.
 

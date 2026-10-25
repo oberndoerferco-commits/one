@@ -1,10 +1,10 @@
 ---
 title: "Katze frisst nicht mehr: wann es gefährlich wird"
-description: "Eine Katze, die nicht frisst, hat weniger Zeit als ein Hund. Schon 24 Stunden ohne Futter können einer erwachsenen Katze ernsthaft schaden, und nach wenigen Tagen, meist drei bis vier, kann sich eine lebensbedrohliche Fettleber entwickeln. Hat sie 24 Stunden nichts gefressen, gehört sie heute in die Praxis. Was Sie prüfen sollten, wann Sie anrufen müssen und warum die Frage „wie lange darf sie?“ die falsche ist."
+description: "Eine Katze, die nicht frisst, hat weniger Zeit als ein Hund. Schon 24 Stunden ohne Futter können einer erwachsenen Katze ernsthaft schaden, und schon nach wenigen Tagen mit schlechtem Appetit kann sich eine lebensbedrohliche Fettleber entwickeln. Hat sie 24 Stunden nichts gefressen, gehört sie heute in die Praxis. Was Sie prüfen sollten, wann Sie anrufen müssen und warum die Frage „wie lange darf sie?“ die falsche ist."
 species: cat
 category: symptoms
 urgency: today
-updated: 2026-10-19
+updated: 2026-10-25
 draft: true
 lang: de
 references:
@@ -16,12 +16,12 @@ references:
     url: "https://icatcare.org/articles/helping-your-cat-through-the-recovery-process"
   - title: "PDSA: My cat isn't eating (anorexia in cats)"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/my-cats-not-eating"
-  - title: "VCA Animal Hospitals: Hepatic Lipidosis in Cats (Fatty Liver Syndrome in Cats)"
-    url: "https://vcahospitals.com/know-your-pet/liver-disease-fatty-liver-syndrome-in-cats"
+  - title: "Cornell Feline Health Center: Hepatic lipidosis"
+    url: "https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/hepatic-lipidosis"
+  - title: "MSD Veterinary Manual (cat owners): Disorders of the liver and gallbladder in cats"
+    url: "https://www.msdvetmanual.com/cat-owners/digestive-disorders-of-cats/disorders-of-the-liver-and-gallbladder-in-cats"
   - title: "MSD Veterinary Manual: Feline Hepatic Lipidosis"
     url: "https://www.msdvetmanual.com/digestive-system/hepatic-disease-in-small-animals/feline-hepatic-lipidosis"
-  - title: "VCA Animal Hospitals: My Cat Won't Eat: Feeding Picky Eaters"
-    url: "https://vcahospitals.com/know-your-pet/feline-picky-eaters"
   - title: "Cornell Feline Health Center: Feline Lower Urinary Tract Disease"
     url: "https://vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/feline-lower-urinary-tract-disease"
   - title: "PDSA: Breathing problems in cats"
@@ -46,7 +46,7 @@ Fahren Sie sofort in eine Tierarztpraxis und rufen Sie vorher an, wenn Ihre Katz
 
 - in der Katzentoilette presst und wenig oder gar keinen Urin absetzt oder beim Pressen schreit, vor allem bei einem Kater (ein Harnröhrenverschluss ist ein Notfall)
 - mit offenem Maul atmet, hechelt, schnell, schwer oder geräuschvoll atmet, blasses Zahnfleisch hat oder zusammengebrochen ist
-- gelbliche Ohren, gelbes Zahnfleisch oder gelbe Augen hat (Gelbsucht)
+- einen gelblichen Schimmer an Zahnfleisch, Augen oder der Haut der Ohren zeigt (Gelbsucht)
 - wiederholt erbricht, weder Futter noch Wasser bei sich behält, Blut im Erbrochenen hat oder dabei matt ist oder einen schmerzhaften Bauch hat
 - möglicherweise irgendeinen Teil einer Lilie (alle Teile sind giftig, auch Pollen und Vasenwasser), Frostschutzmittel oder ein Schmerzmittel für Menschen wie Paracetamol aufgenommen hat
 - ein junges Kätzchen ist: Bei Kätzchen unter sechs Wochen können schon 12 Stunden ohne Futter lebensbedrohlich sein
@@ -58,7 +58,7 @@ Nach 24 Stunden ohne Fressen gehört sie heute in die Praxis, und zwei Tage ohne
 
 Die Frage, die Halter am häufigsten stellen, lautet: „Wie lange darf meine Katze nicht fressen?“ Eine ehrliche Antwort ist: deutlich kürzer, als es sich anfühlt. Schon 24 Stunden ohne Futter können die Gesundheit einer erwachsenen Katze ernsthaft beeinträchtigen.
 
-Wenn eine Katze keine Nahrung aufnimmt, baut ihr Körper rasch Fettreserven ab, um Energie zu gewinnen. Die Katzenleber kann diese Menge Fett nur schlecht verarbeiten, es lagert sich in der Leber ein, und die Leber arbeitet zunehmend schlechter. Dieses Bild heißt **hepatische Lipidose** („Fettleber“) und ist lebensbedrohlich. Es entwickelt sich meist nach drei bis vier Tagen, in denen die Katze kaum oder gar nicht frisst, und das Risiko ist bei übergewichtigen Katzen höher. Betroffene Katzen haben oft deutlich abgenommen und werden gelb (Gelbsucht). Die Lipidose ist meistens die Folge einer anderen Erkrankung, die zum Nicht-Fressen geführt hat. Dieser Kreislauf ist der Grund, warum Tierärztinnen und Tierärzte Katzen früh sehen wollen.
+Frisst eine Katze nicht, holt sich ihr Körper die Energie aus den Fettreserven. Nach dem MSD Veterinary Manual kommt dabei mehr Fett in der Leber an, als sie weiterverwerten kann; es sammelt sich in den Leberzellen, bis die Leber versagen kann. Diese **hepatische Lipidose** („Fettleber“) ist lebensbedrohlich. Ihr geht eine Zeit mit schlechtem Appetit voraus, die nur wenige Tage, aber auch mehrere Wochen dauern kann, und übergewichtige Katzen trifft sie besonders. Viele betroffene Katzen haben stark abgenommen, manche werden gelb (Gelbsucht). Fast immer steckt eine andere Erkrankung oder Stress dahinter, die der Katze den Appetit genommen hat. Dieser Kreislauf ist der Grund, warum Tierärztinnen und Tierärzte Katzen früh sehen wollen.
 
 Praktisch heißt das:
 
@@ -70,13 +70,13 @@ Praktisch heißt das:
 
 Prüfen Sie, ob sie nur dieses Futter verweigert, ob sie trinkt, wie das Maul aussieht und was sich verändert hat. Bieten Sie Verlockendes an, ohne zu zwingen, und geben Sie keine Medikamente für Menschen.
 
-- **Frisst sie wirklich nicht, oder frisst sie nur *dieses* Futter nicht?** Wurde das Futter plötzlich umgestellt oder der Napf an einen anderen Platz gestellt? Beides kann Katzen vom Fressen abhalten.
+- **Frisst sie wirklich nicht, oder frisst sie nur *dieses* Futter nicht?** Wurde das Futter umgestellt? Laut International Cat Care kann schon ein Futterwechsel dazu führen, dass eine Katze ihren Napf meidet.
 - **Trinkt sie?** Eine Katze, die mehr trinkt als sonst, kann zum Beispiel eine Nierenerkrankung haben. Trinkt sie weniger als sonst, notieren Sie das ebenfalls für die Praxis.
-- **Wie sieht das Maul aus?** Speicheln, Pfoten am Maul, Zurückweichen vom Futter oder Kauen nur auf einer Seite sprechen für Schmerzen im Maul. Zahnerkrankungen sind eine häufige Ursache.
+- **Wie sieht das Maul aus?** Speicheln, Pfoten am Maul oder Kauen nur auf einer Seite sprechen für Schmerzen im Maul. Zahnerkrankungen sind eine häufige Ursache.
 - **Katzentoilette:** Hat sich beim Urin oder Kot etwas verändert?
 - **Hat sich etwas verändert?** Umzug, neues Tier, Streit mit einer anderen Katze, geänderter Tagesablauf. Katzen können durch Stress aufhören zu fressen, aber diese Diagnose sollte Ihre Praxis stellen, nachdem Krankheiten ausgeschlossen wurden.
 - **Bieten Sie Verlockendes an:** Nassfutter leicht anwärmen (die Mitte prüfen, damit nichts zu heiß ist), oder Trockenfutter in warmem, nicht kochendem Wasser bzw. dem Wasser aus einer Thunfischdose (in Wasser, nicht in Öl) einweichen. Mit der Hand anbieten und ruhig dabeibleiben hilft manchen Katzen. Hühnchen oder Thunfisch selbst als „Menschenessen“ besser nicht anbieten. Nur anbieten, nie erzwingen.
-- **Nicht mit der Spritze zwangsfüttern.** Zwang kann Stress und eine Abneigung gegen das Futter auslösen, und eingeatmetes Futter kann schwere Folgen haben. Ob und wie eine Katze beim Fressen unterstützt werden muss, entscheidet die Praxis.
+- **Nicht mit der Spritze zwangsfüttern.** International Cat Care rät davon ab: Zwang belastet die Katze und kann ihr das Futter verleiden, und gerät Futter in die Atemwege, drohen schwere Folgen. Ob und wie eine Katze beim Fressen unterstützt werden muss, entscheidet die Praxis.
 - **Keine Medikamente für Menschen.** Katzen sind besonders empfindlich gegenüber Paracetamol, schon viel kleinere Mengen als beim Hund können sie vergiften, und eine Vergiftung kann tödlich enden.
 - **Gewicht:** Hat die Katze in den letzten Wochen abgenommen oder wirkt das Fell struppig? Sich selbst mit und ohne Katze auf der Personenwaage zu wiegen ist ungenau und übersieht kleine Veränderungen. Genauer ist eine elektronische Babywaage oder das Wiegen in der Praxis.
 
@@ -94,14 +94,14 @@ Vereinbaren Sie noch heute einen Termin, wenn:
 - sie sich anders verhält als sonst: zurückgezogen, reizbar, ungepflegtes Fell
 - sie übergewichtig ist (höheres Lipidose-Risiko)
 
-Frisst sie nur etwas weniger und ist ansonsten munter, sprechen Sie trotzdem zeitnah mit Ihrer Praxis. Jeder Tag, an dem eine Katze weniger frisst als normal, kann ihrer Gesundheit schaden.
+Frisst sie nur etwas weniger und ist ansonsten munter, sprechen Sie trotzdem zeitnah mit Ihrer Praxis. Nach International Cat Care können Katzen schon nach kurzer Zeit ohne Futter Leberprobleme bekommen.
 
 ## Was wird die Tierärztin oder der Tierarzt über den Appetit meiner Katze wissen wollen?
 
 Seit wann sie weniger frisst, was sie üblicherweise frisst, ob sie trinkt und wie sie aufs Futter reagiert, Erbrechen, Kot und Urin, Freigang, Impfungen und Medikamente, Veränderungen und das Gewicht.
 
 - Seit wann sie weniger oder gar nichts frisst, was sie üblicherweise frisst und ob sie trinkt
-- Ob sie ans Futter geht und sich abwendet (kann auf Übelkeit oder Maulschmerz hinweisen) oder gar kein Interesse zeigt
+- Ob sie ans Futter geht und sich dann abwendet oder gar kein Interesse zeigt
 - Erbrechen, Kot, Urinabsatz
 - Freigänger oder Wohnungskatze, Kontakt zu anderen Katzen, Zugang zu Pflanzen oder Chemikalien
 - Impfstatus, Entwurmung, Medikamente
@@ -117,7 +117,7 @@ Zahnschmerzen, Stress, Magen-Darm-Störungen, Futterumstellung, Fieber, Schmerze
 | Zahnschmerzen, Zahnfleischentzündung | Chronische Nierenerkrankung (häufig bei älteren Katzen) |
 | Stress, Veränderung im Haushalt | Schilddrüsenüberfunktion, Diabetes |
 | Magen-Darm-Störung | Pankreatitis, Lebererkrankung |
-| Futterumstellung, Napf an neuem Platz | Herzerkrankung |
+| Futterumstellung | Herzerkrankung |
 | Fieber, Schmerzen jeglicher Ursache (z. B. Arthrose bei älteren Katzen) | Fremdkörper im Darm, Tumor |
 | Atemwegsinfekt (Katzenschnupfen) | Vergiftung (Lilien, Frostschutzmittel, Schmerzmittel für Menschen) |
 

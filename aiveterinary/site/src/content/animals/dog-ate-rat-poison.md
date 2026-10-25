@@ -5,7 +5,7 @@ description: "Most rat and mouse baits stop the blood from clotting, and a dog c
 species: dog
 category: first-aid
 urgency: emergency
-updated: 2026-10-19
+updated: 2026-10-25
 draft: true
 references:
   - title: "MSD Veterinary Manual (Professional Version): Anticoagulant Rodenticide Poisoning in Animals"
@@ -14,8 +14,6 @@ references:
     url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/rodenticide-poisoning"
   - title: "PDSA: Rat poisoning in dogs"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/rat-poisoning-in-dogs"
-  - title: "VCA Animal Hospitals: Anticoagulant rodenticide poisoning in dogs"
-    url: "https://vcahospitals.com/know-your-pet/rodenticide-warfarin-poisoning-in-dogs"
   - title: "MSD Veterinary Manual (Professional Version): Bromethalin Poisoning in Animals"
     url: "https://www.msdvetmanual.com/toxicology/rodenticide-poisoning/bromethalin-poisoning-in-animals"
 ---
@@ -30,7 +28,7 @@ Go now, and call ahead, if your dog has eaten bait at any time in the past ten d
 - has pale gums
 - is bleeding from the nose or gums, or coughing or vomiting blood
 - has blood in the urine or poo, or black, tarry poo
-- has bruises, or swollen or painful joints
+- has bruising, or seems sore in the joints
 - is trembling, wobbly or having a seizure
 
 ## How do most rat poisons work in dogs?
@@ -89,7 +87,7 @@ Your vet decides what your dog needs. Depending on the product, how much was eat
 
 - **making your dog vomit**, if the bait was eaten within the last few hours
 - **activated charcoal**, to bind poison still in the gut
-- **vitamin K treatment**, the antidote for anticoagulant baits, usually given as tablets at home **for several weeks**. It is very important to give every dose and finish the course; a blood test then shows whether it can stop.
+- **vitamin K treatment**, the antidote for anticoagulant baits, usually given as tablets at home **for several weeks**. It is very important to give every dose and finish the course.
 - **a clotting blood test** two to three days after the course ends, to check your dog no longer needs treatment
 - for dogs that are already bleeding: hospital care, fluids, oxygen and sometimes **blood or plasma transfusions**
 - for other types of bait: different treatments, such as seizure control or fluids

@@ -4,16 +4,26 @@ description: "Eine Lahmheit ist einen Anruf in der Tierarztpraxis wert, auch wen
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-10-19
+updated: 2026-10-25
 draft: true
 lang: de
 references:
   - title: "PDSA: Limping and stiffness in dogs"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/limping-and-stiffness-in-dogs"
-  - title: "VCA Animal Hospitals: First Aid for Limping Dogs"
-    url: "https://vcahospitals.com/know-your-pet/first-aid-for-limping-dogs"
-  - title: "VCA Urgent Care: Pain or Limping"
-    url: "https://vcahospitals.com/urgent-care/health-concerns/pain-or-limping"
+  - title: "Cornell Riney Canine Health Center: What to expect when taking your limping dog to the veterinarian"
+    url: "https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/canine-health-information/what-to-expect-when-taking-your-limping-dog-to-the-veterinarian"
+  - title: "Cornell Riney Canine Health Center: Intervertebral disc disease"
+    url: "https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/canine-health-information/intervertebral-disc-disease"
+  - title: "PDSA: Road traffic accidents (RTA)"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/road-traffic-accidents-rta"
+  - title: "MSD Veterinary Manual (pet owners): When to see a veterinarian (table)"
+    url: "https://www.msdvetmanual.com/multimedia/table/when-to-see-a-veterinarian"
+  - title: "RSPCA: First aid for your dog"
+    url: "https://www.rspca.org.uk/adviceandwelfare/pets/dogs/health/firstaid"
+  - title: "PDSA: First aid for broken bones"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/other-veterinary-advice/first-aid-for-broken-bones"
+  - title: "MSD Veterinary Manual: Joint trauma in dogs and cats"
+    url: "https://www.msdvetmanual.com/musculoskeletal-system/arthropathies-and-related-disorders-in-small-animals/joint-trauma-in-dogs-and-cats"
   - title: "Merck Veterinary Manual: Toxicoses From Human Analgesics in Animals"
     url: "https://www.merckvetmanual.com/toxicology/toxicities-from-human-drugs/analgesics-toxicity"
 ---
@@ -23,44 +33,41 @@ references:
 Fahren Sie sofort in eine Tierarztpraxis und rufen Sie vorher an, wenn Ihr Hund:
 
 - das Bein überhaupt nicht belasten kann oder es ständig hochhält
-- ein Bein hat, das verbogen oder verdreht aussieht oder in einem ungewöhnlichen Winkel herabhängt
-- von einem Auto angefahren oder von einem größeren Tier gepackt und geschüttelt wurde, auch wenn die Lahmheit leicht erscheint
-- eine stark blutende Wunde hat oder eine Wunde, in der Knochen sichtbar ist
-- eine heiße, geschwollene Gliedmaße hat und zusätzlich ruhig ist, nicht frisst oder Fieber hat
-- die Hinterbeine nachzieht oder plötzlich auf mehr als einem Bein wackelig geworden ist
+- plötzlich stark lahmt: Das MSD Veterinary Manual zählt eine plötzliche, starke Lahmheit zu den Zeichen, bei denen sofort eine Tierärztin oder ein Tierarzt nötig ist
+- ein Bein hat, das verformt aussieht, in einer seltsamen Stellung gehalten wird oder kürzer wirkt als das andere
+- von einem Auto angefahren wurde, auch wenn die Lahmheit leicht erscheint: Die PDSA, eine britische Tierhilfsorganisation, warnt vor inneren Verletzungen, die man von außen nicht sieht
+- eine ernste Wunde hat, zum Beispiel eine, die stark blutet oder in der Knochen zu sehen ist
+- die Hinterbeine plötzlich nicht mehr gebrauchen kann oder wackelig läuft
 - vor Schmerz aufschreit, wenn er bewegt wird oder wenn das Bein oder der Rücken berührt wird
-- ein Welpe einer großen Rasse ist, der plötzlich stark lahmt und sich nicht bewegen will
 
-Ein Hund, der auf einem Vorderbein lahmt und zusätzlich einen geschwollenen oder schmerzhaften Hals oder Rücken hat, sollte ebenfalls dringend vorgestellt werden; nicht jede Lahmheit beginnt im Bein.
+Nicht jede Lahmheit beginnt im Bein: Eine Lahmheit vorne kann vom Hals oder von der Wirbelsäule ausgehen. Das Riney Canine Health Center der Cornell University rät, beim ersten Anzeichen von Rückenbeschwerden die Praxis anzurufen, denn je länger man wartet, desto geringer ist die Chance, dass sich ein geschädigtes Rückenmark erholt.
 
 ## Kann ich die Lahmheit meines Hundes zu Hause beobachten?
 
-Nur kurz, und fragen Sie Ihre Tierarztpraxis um Rat: Eine plötzliche Lahmheit, die sich nicht innerhalb einer Stunde legt, oder jede Lahmheit, die länger als 24 Stunden anhält, gehört in die Praxis. Prüfen Sie in der Zwischenzeit die Pfote, tasten Sie das Bein ab und schonen Sie ihn konsequent.
+Nur so lange, bis Sie Ihre Tierarztpraxis erreicht haben, denn jede Lahmheit sollte angeschaut werden, auch eine leichte, und innerhalb von 24 Stunden, wenn sie nicht vorbei ist. Halten Sie Ihren Hund in der Zwischenzeit ruhig, prüfen Sie die Pfote und geben Sie keine Schmerzmittel für Menschen.
 
-Rufen Sie wegen jeder Lahmheit in der Praxis an, auch wenn sie leicht wirkt: Manche Hunde verbergen Schmerzen gut. Auch ein Hund, der das Bein noch teilweise belastet, munter ist, frisst und in Ruhe entspannt wirkt, sollte vorgestellt werden, wenn sich eine plötzliche Lahmheit nicht innerhalb einer Stunde legt oder die Lahmheit länger als 24 Stunden anhält.
+Rufen Sie wegen jeder Lahmheit in der Praxis an, auch wenn sie leicht wirkt: Die PDSA weist darauf hin, dass manche Hunde Schmerzen sehr gut verbergen. Das MSD Veterinary Manual rät, eine Lahmheit, die länger als 24 Stunden anhält, innerhalb von 24 Stunden ansehen zu lassen, und das Riney Canine Health Center der Cornell University ergänzt: Ist der Schmerz stark, plötzlich oder wird er schlimmer, sollten Sie nicht abwarten.
 
 Was Sie zu Hause tun können:
 
-- Prüfen Sie zuerst die Pfote. Schauen Sie zwischen den Zehen und Ballen nach Schnitten, Grannen, Dornen, Steinchen, eingerissenen Krallen oder etwas, das festsitzt. Viele Lahmheiten sind ein Pfotenproblem.
-- Tasten Sie das Bein vorsichtig von den Zehen bis zur Schulter oder Hüfte ab und vergleichen Sie mit der anderen Seite. Achten Sie auf Schwellung, Wärme oder eine Stelle, an der Ihr Hund zuckt. Hören Sie auf, wenn Ihr Hund knurrt oder gestresst wirkt.
-- Schonen Sie Ihren Hund konsequent: nur kurze Leinengänge zum Lösen, kein Rennen, kein Springen auf und von Möbeln, möglichst keine Treppen.
+- Prüfen Sie zuerst die Pfote. Schauen Sie zwischen den Zehen und Ballen nach Schnitten, Grannen, Dornen, Steinchen, eingerissenen Krallen oder etwas, das festsitzt. Die PDSA zählt eine Granne oder einen anderen Fremdkörper im Fuß sowie Krallenverletzungen zu den häufigen Ursachen einer Lahmheit.
+- Schränken Sie die Bewegung Ihres Hundes ein, während Sie die Praxis anrufen: Die britische Tierschutzorganisation RSPCA rät, einen Hund mit möglichem Knochenbruch im Haus zu lassen, zum Beispiel in einer Box, und die PDSA sagt, ihn mit einem möglicherweise gebrochenen Bein nicht laufen zu lassen.
 - Geben Sie keine Schmerzmittel für Menschen. Ibuprofen und Paracetamol können für Hunde gefährlich sein. Wenn Ihr Hund Schmerzmittel braucht, ist das eine tierärztliche Entscheidung und ein Rezept.
-- Filmen Sie die Lahmheit, wenn Sie können. Lahmheiten verschwinden im Behandlungsraum oft, und ein kurzes Video hilft Ihrer Tierärztin oder Ihrem Tierarzt zu sehen, welches Bein betroffen ist und wie stark.
+- Filmen Sie die Lahmheit, wenn Sie können. Manche Hunde laufen in der Praxis plötzlich normal, und das Riney Canine Health Center der Cornell University nennt Videos von zu Hause äußerst hilfreich.
 
 ## Wann sollte ich mit meinem lahmenden Hund zur Tierärztin oder zum Tierarzt?
 
-Rufen Sie wegen jeder Lahmheit an: noch heute, wenn sich eine plötzliche Lahmheit nicht innerhalb einer Stunde legt oder eine Lahmheit länger als 24 Stunden anhält, und vereinbaren Sie einen Termin, wenn sie immer wiederkommt oder mit Schwellung, Wärme, Steifheit oder Lecken einhergeht.
+Rufen Sie wegen jeder Lahmheit an: ohne abzuwarten, wenn der Schmerz stark, plötzlich oder zunehmend ist, innerhalb von 24 Stunden, wenn die Lahmheit länger als 24 Stunden anhält, und vereinbaren Sie einen Termin, wenn sie immer wiederkommt oder mit Schwellung, Steifheit oder Lecken einhergeht.
 
 Melden Sie sich noch heute in der Praxis, wenn:
 
-- sich eine plötzliche Lahmheit nicht innerhalb von etwa einer Stunde gelegt hat
-- eine Lahmheit länger als 24 Stunden anhält, auch wenn sie leicht wirkt, auch bei einem Welpen oder jungen Hund einer großen Rasse
+- der Schmerz stark wirkt, plötzlich begonnen hat oder schlimmer wird
+- die Lahmheit länger als 24 Stunden anhält, auch wenn sie leicht wirkt
 
 Vereinbaren Sie einen Termin, wenn:
 
-- die Lahmheit zurückkommt, sobald Ihr Hund wieder aktiv ist
-- Ihr Hund über mehrere Wochen immer wieder lahmt
-- eine Schwellung, Wärme oder ein Knoten am Bein vorhanden ist
+- die Lahmheit immer wiederkommt
+- ein Bein oder Gelenk geschwollen aussieht
 - Ihr Hund nach dem Ruhen steif ist, langsam aufsteht oder sich sträubt, zu springen oder Treppen zu steigen
 - Ihr Hund wiederholt eine Stelle am Bein leckt
 - Ihr Hund älter ist und die Lahmheit neu auftritt
@@ -80,16 +87,16 @@ Welches Bein, seit wann und was passiert ist, wie es sich mit Ruhe und Bewegung 
 
 ## Warum lahmt mein Hund?
 
-Pfotenverletzungen, Zerrungen, eingerissene Krallen, Prellungen, Arthrose und Abszesse oder Hautinfektionen an der Pfote sind wahrscheinlich; Kreuzbandriss, Frakturen, Dysplasie, Gelenkinfektionen, Knochentumoren und Bandscheibenprobleme sind seltener, aber wichtig.
+Pfotenverletzungen, Zerrungen, eingerissene Krallen, Muskelverletzungen, Arthrose und bei jungen Hunden Wachstumsschmerzen sind wahrscheinlich; Kreuzbandriss, Frakturen, Dysplasie, Gelenkinfektionen, Knochentumoren und Bandscheibenprobleme sind seltener, aber wichtig.
 
 | Wahrscheinlich | Seltener, aber wichtig |
 |---|---|
 | Schnitt, Dorn oder Granne in der Pfote | Kreuzbandriss im Knie |
 | Zerrung oder Verstauchung durch Bewegung | Fraktur oder Luxation |
 | Eingerissene oder abgebrochene Kralle | Hüft- oder Ellbogendysplasie bei jungen Hunden |
-| Prellung durch einen Stoß | Gelenkinfektion (septische Arthritis) |
+| Muskelverletzung | Gelenkinfektion (septische Arthritis) |
 | Arthrose bei älteren Hunden | Knochentumor |
-| Abszess oder Hautinfektion an der Pfote | Bandscheibenerkrankung im Hals oder Rücken |
+| Wachstumsschmerzen (Panostitis) bei jungen Hunden | Bandscheibenerkrankung im Hals oder Rücken |
 
 Ihre Tierärztin oder Ihr Tierarzt entscheidet anhand der Untersuchung und, wo nötig, Röntgenaufnahmen oder anderer Tests, was bei *Ihrem* Hund wahrscheinlich ist. Diese Liste soll Ihnen helfen, das Gespräch zu verstehen, nicht eine Diagnose zu stellen.
 

@@ -4,7 +4,7 @@ description: "Cats hide illness well, and a cat that stops eating is worth takin
 species: cat
 category: symptoms
 urgency: today
-updated: 2026-10-19
+updated: 2026-10-25
 draft: true
 references:
   - title: "International Cat Care: Helping your cat through the recovery process"
@@ -17,8 +17,8 @@ references:
     url: "https://icatcare.org/articles/inappetence-in-cats"
   - title: "MSD Veterinary Manual: Feline Hepatic Lipidosis"
     url: "https://www.msdvetmanual.com/digestive-system/hepatic-disease-in-small-animals/feline-hepatic-lipidosis"
-  - title: "VCA Animal Hospitals: Hepatic Lipidosis in Cats (Fatty Liver Syndrome in Cats)"
-    url: "https://vcahospitals.com/know-your-pet/liver-disease-fatty-liver-syndrome-in-cats"
+  - title: "Cornell Feline Health Center: Hepatic lipidosis"
+    url: "https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/hepatic-lipidosis"
   - title: "Cornell Feline Health Center: Feline Lower Urinary Tract Disease"
     url: "https://vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center/health-information/feline-health-topics/feline-lower-urinary-tract-disease"
   - title: "PDSA: Breathing problems in cats"
@@ -44,7 +44,7 @@ A cat that stops eating can develop a liver problem called hepatic lipidosis, es
 - has a swollen, painful belly
 - has vomited several times, cannot keep food or water down, or there is blood in the vomit
 - may have eaten any part of a lily (all parts of the plant, including pollen and vase water, are toxic to cats), antifreeze, or a human painkiller such as paracetamol
-- has yellowish ears, gums or eyes (jaundice)
+- has a yellow tinge to the gums, the eyes or the skin of the ears (jaundice)
 - is a young kitten: in kittens under six weeks old, just 12 hours without food can be life-threatening
 - has eaten nothing at all for two days, even if it otherwise seems normal
 

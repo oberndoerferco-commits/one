@@ -4,7 +4,7 @@ description: "Una diarrea lieve in un cane che per il resto sta bene spesso pass
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-10-19
+updated: 2026-10-25
 draft: true
 lang: it
 references:
@@ -14,21 +14,21 @@ references:
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/haemorrhagic-gastroenteritis-hge-in-dogs"
   - title: "PDSA: Parvovirus in dogs"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/parvovirus-in-dogs-and-puppies"
-  - title: "VCA Animal Hospitals: Diarrhea in Dogs"
-    url: "https://vcahospitals.com/know-your-pet/diarrhea-in-dogs"
-  - title: "VCA Animal Hospitals: Bland Diet Instructions for Dogs and Cats"
-    url: "https://vcahospitals.com/know-your-pet/bland-diet-instructions-for-dogs-and-cats"
+  - title: "PDSA: Colitis in dogs"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/colitis-in-dogs"
+  - title: "Cornell Riney Canine Health Center: Diarrhea"
+    url: "https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/canine-health-topics/diarrhea"
 ---
 
 ## Prima di tutto: i segni per cui andare subito dal veterinario
 
 Vai immediatamente in una clinica veterinaria, avvisando per telefono, se il tuo cane:
 
-- ha una diarrea composta soprattutto da sangue, o che sembra marmellata di lamponi
+- ha una diarrea composta soprattutto da sangue, o che sembra marmellata di fragole
 - vomita anche ripetutamente e non trattiene nemmeno l'acqua
 - è molto debole, barcolla, o collassa
-- ha le gengive pallide, grigie o rosso molto scuro
-- ha la pancia gonfia, dura o dolente
+- ha le gengive pallide
+- ha la pancia dolente
 - potrebbe aver mangiato qualcosa di velenoso o ingoiato un oggetto
 - è un cucciolo, soprattutto se non ha completato le vaccinazioni (la parvovirosi è un rischio reale)
 - è molto anziano, o ha già una malattia come diabete, insufficienza renale o malattia cardiaca
@@ -43,11 +43,11 @@ Feci molli o acquose per un giorno in un cane che resta vivace, mangia e beve so
 
 Cosa puoi fare a casa nelle prime 24 ore:
 
-- Lascia sempre a disposizione acqua fresca. Con la diarrea si perdono liquidi, e la disidratazione è il rischio principale.
+- Lascia sempre a disposizione acqua fresca. La diarrea sottrae acqua al corpo, e il pericolo è la disidratazione.
 - Chiedi al veterinario come alimentare il cane per ora. Molti consigliano pasti piccoli e frequenti di un cibo leggero e facilmente digeribile; alcuni suggeriscono invece un breve digiuno, che non è adatto a cani molto giovani, anziani o con un'altra malattia.
 - Evita premi, avanzi e cibi ricchi finché le feci non tornano normali.
-- Porta il cane al guinzaglio, così vedi cosa espelle e gli impedisci di mangiare qualcosa.
-- Annota colore, consistenza e frequenza. Una foto aiuta il veterinario più di una descrizione.
+- Portalo fuori spesso, al guinzaglio, così vedi cosa espelle e gli impedisci di rovistare.
+- Annota colore, consistenza e frequenza. La PDSA suggerisce di fotografare le feci, o di portarne un campione, da mostrare al veterinario.
 - Non dare nessun farmaco, compresi gli antidiarroici per uso umano, senza prima chiedere al veterinario. Se un farmaco è indicato lo decide il veterinario.
 
 ## Quando portare dal veterinario il cane con la diarrea?
@@ -58,10 +58,9 @@ Prenota una visita oggi se:
 
 - la diarrea dura da più di 24 ore
 - ci sono striature di sangue fresco, o muco, nelle feci
-- il tuo cane vomita anche, non mangia, o beve molto più del solito
-- il tuo cane si sforza ripetutamente ed espelle solo piccole quantità di muco o liquido
+- il tuo cane vomita anche, non mangia o è insolitamente stanco
+- il tuo cane continua a sforzarsi per evacuare, o c'è muco nelle feci
 - il tuo cane perde peso, o la cosa si ripete ogni poche settimane
-- anche altri animali in casa hanno sintomi
 - il tuo cane non viene sverminato da un po'
 
 Una diarrea ripetuta o che dura a lungo non è qualcosa da gestire a casa all'infinito. Può indicare parassiti, un'intolleranza alimentare o una malattia intestinale che il veterinario deve indagare.
@@ -89,7 +88,7 @@ Le cause più probabili sono aver mangiato qualcosa di inadatto, un cambio di ci
 |---|---|
 | Rovistare o mangiare qualcosa di inadatto | Parvovirosi (soprattutto cuccioli non vaccinati) |
 | Cambio improvviso di cibo | Corpo estraneo che ostruisce in parte l'intestino |
-| Stress (pensione, viaggi, nuova casa) | Pancreatite |
+| Stress, per esempio la pensione o una visita dal veterinario | Pancreatite |
 | Lieve infezione intestinale | Malattia infiammatoria intestinale |
 | Vermi intestinali o giardia | Avvelenamento |
 | Intolleranza alimentare | Malattia del fegato o di altri organi |

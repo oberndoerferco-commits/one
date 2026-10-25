@@ -4,7 +4,7 @@ description: "Hunde lassen aus allen möglichen harmlosen Gründen eine Mahlzeit
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-10-19
+updated: 2026-10-25
 draft: true
 lang: de
 references:
@@ -12,8 +12,12 @@ references:
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/my-dog-isn-t-eating-properly"
   - title: "PDSA: Why is my pet off their food?"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/all-pets/why-is-my-pet-off-their-food"
-  - title: "VCA Urgent Care: Loss of Appetite"
-    url: "https://vcahospitals.com/urgent-care/health-concerns/loss-of-appetite"
+  - title: "Cornell Riney Canine Health Center: When to go to the ER"
+    url: "https://riney.vet.cornell.edu/member-benefits-health-tips/when-to-go-to-the-er-june-2025"
+  - title: "PDSA: Are my dog's gums pale?"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/other-veterinary-advice/are-my-dog-s-gums-pale"
+  - title: "MSD Veterinary Manual (pet owners): When to see a veterinarian (table)"
+    url: "https://www.msdvetmanual.com/multimedia/table/when-to-see-a-veterinarian"
   - title: "PDSA: Diabetes in dogs"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/diabetes-in-dogs"
   - title: "MSD Veterinary Manual: Gastric Dilation and Volvulus in Small Animals"
@@ -25,12 +29,13 @@ references:
 Fahren Sie sofort in eine Tierarztpraxis und rufen Sie vorher an, wenn Ihr Hund nicht frisst und zusätzlich:
 
 - würgt, ohne etwas hochzubringen, oder einen aufgetriebenen, harten Bauch hat
-- sehr schwach oder wackelig ist oder zusammenbricht
-- blasses, graues, gelbliches oder bläulich verfärbtes Zahnfleisch hat
-- offensichtlich Schmerzen hat: gekrümmter Rücken, Zittern, Jaulen bei Berührung oder Bewegung
-- Atemnot hat oder in Ruhe schnell atmet
+- plötzlich zusammenbricht oder sehr schwach wirkt
+- blasses, weißes, bläuliches oder gelbes Zahnfleisch hat: Die PDSA rät, sofort die Praxis zu kontaktieren, wenn das Zahnfleisch eine andere Farbe als lachsrosa hat (dunkle Pigmentflecken sind normal)
+- offensichtlich Schmerzen hat, zum Beispiel aufjault, wenn er berührt oder bewegt wird
+- in Ruhe schneller oder angestrengter atmet als sonst, geräuschvoll atmet oder bläuliches Zahnfleisch oder eine bläuliche Zunge hat
 - möglicherweise etwas Giftiges gefressen oder einen Gegenstand verschluckt hat
-- nicht trinken kann oder Wasser wieder erbricht
+- immer wieder erbricht
+- seit 24 Stunden weder gefressen noch getrunken hat: Das MSD Veterinary Manual zählt das zu den Gründen, sofort in die Praxis zu gehen
 - Diabetiker ist (ein diabetischer Hund, der nicht frisst, braucht sofort tierärztlichen Rat)
 
 ## Was tue ich, wenn mein Hund eine Mahlzeit auslässt, aber munter ist?
@@ -42,24 +47,23 @@ Ein gesunder erwachsener Hund, der eine Mahlzeit auslässt, aber munter ist, tri
 Was Sie zu Hause tun können:
 
 - Halten Sie frisches Wasser bereit und prüfen Sie, ob Ihr Hund trinkt.
-- Bieten Sie das gewohnte Futter zur gewohnten Zeit an. Nehmen Sie es nach 15 Minuten weg, wenn es nicht angerührt wurde, und versuchen Sie es bei der nächsten Mahlzeit erneut. Futter den ganzen Tag stehen zu lassen, macht Wählerischsein eher schlimmer.
-- Schauen Sie ins Maul, wenn Ihr Hund es zulässt: ein abgebrochener Zahn, ein quer im Gaumen verkeilter Stock oder entzündetes Zahnfleisch können einen Hund am Fressen hindern.
+- Bieten Sie das gewohnte Futter zur gewohnten Zeit an. Nehmen Sie es nach 15 Minuten weg, wenn es nicht angerührt wurde, und versuchen Sie es später erneut, wie es die PDSA empfiehlt.
+- Schauen Sie ins Maul, wenn Ihr Hund es zulässt: Zahnstein, ein lockerer oder abgebrochener Zahn, entzündetes Zahnfleisch oder ein Abszess können so wehtun, dass ein Hund nicht mehr frisst.
 - Notieren Sie alles Weitere: Energie, Kot, Erbrechen, Trinken, Lahmheit oder Steifheit.
-- Locken Sie nicht mit fettreichem Essen vom Tisch. Es kann den Magen belasten und erschwert Ihrer Tierärztin oder Ihrem Tierarzt die Beurteilung.
+- Locken Sie nicht mit Essen vom Tisch: Es kann den Magen belasten, und manche menschlichen Lebensmittel sind für Hunde gefährlich.
 
 ## Wann sollte ich mit meinem Hund zur Tierärztin oder zum Tierarzt, wenn er nicht frisst?
 
-Rufen Sie nach 12 Stunden ohne Futter für eine Einschätzung in der Praxis an; noch heute in die Praxis, wenn er seit mehr als 24 Stunden gar nichts gefressen hat oder zusätzlich erbricht, ruhig ist, Probleme beim Fressen hat oder abnimmt.
+Sehr bald in die Praxis, wenn er seit mehr als 24 Stunden gar nichts gefressen hat, und noch heute, wenn er zusätzlich erbricht, ruhig ist, Probleme beim Fressen hat oder abnimmt.
 
 Vereinbaren Sie noch heute einen Termin, wenn:
 
-- Ihr Hund seit mehr als 24 Stunden gar nichts gefressen hat (anrufen schon nach 12 Stunden)
-- Ihr Hund zusätzlich erbricht, Durchfall hat oder deutlich mehr oder weniger trinkt
-- Ihr Hund ruhig ist, mehr schläft oder nicht spazieren gehen will
-- Ihr Hund Futter zu wollen scheint, es aber fallen lässt, einseitig kaut oder sich mit der Pfote ans Maul fasst
-- ein übler Geruch aus dem Maul kommt, er speichelt oder das Gesicht geschwollen ist
-- Ihr Hund an Gewicht verliert oder der Appetit seit einer Woche oder länger unregelmäßig ist
-- Ihr Hund älter ist und dies neu auftritt
+- Ihr Hund keinen Appetit hat, auch ohne andere Krankheitszeichen: Das MSD Veterinary Manual rät, ihn innerhalb von 24 Stunden vorzustellen
+- Ihr Hund zusätzlich erbricht, Durchfall hat oder nicht trinken will
+- Ihr Hund ruhig oder mürrisch ist oder viel mehr schläft als sonst
+- Ihr Hund Mühe beim Fressen hat oder nur auf einer Seite kaut
+- ein übler Geruch aus dem Maul kommt, er speichelt oder sich immer wieder das Gesicht reibt
+- Ihr Hund an Gewicht verliert oder schon länger mal frisst, mal nicht
 
 Ein Hund, der nicht frisst *und* ruhig ist, ist etwas anderes als ein Hund, der nicht frisst, aber ansonsten ganz der Alte ist. Vertrauen Sie Ihrem Gefühl, ob mit Ihrem Hund „etwas nicht stimmt“.
 

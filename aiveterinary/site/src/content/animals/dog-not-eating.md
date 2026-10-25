@@ -4,15 +4,19 @@ description: "Dogs skip a meal for all sorts of harmless reasons. Here is how to
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-10-19
+updated: 2026-10-25
 draft: true
 references:
   - title: "PDSA: My dog isn't eating properly"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/my-dog-isn-t-eating-properly"
   - title: "PDSA: Why is my pet off their food?"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/all-pets/why-is-my-pet-off-their-food"
-  - title: "VCA Urgent Care: Loss of Appetite"
-    url: "https://vcahospitals.com/urgent-care/health-concerns/loss-of-appetite"
+  - title: "Cornell Riney Canine Health Center: When to go to the ER"
+    url: "https://riney.vet.cornell.edu/member-benefits-health-tips/when-to-go-to-the-er-june-2025"
+  - title: "PDSA: Are my dog's gums pale?"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/other-veterinary-advice/are-my-dog-s-gums-pale"
+  - title: "MSD Veterinary Manual (pet owners): When to see a veterinarian (table)"
+    url: "https://www.msdvetmanual.com/multimedia/table/when-to-see-a-veterinarian"
   - title: "PDSA: Diabetes in dogs"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/diabetes-in-dogs"
   - title: "MSD Veterinary Manual: Gastric Dilation and Volvulus in Small Animals"
@@ -24,12 +28,13 @@ references:
 Go to a veterinary clinic immediately, and call ahead, if your dog is off food and also:
 
 - is retching without bringing anything up, or has a swollen, hard belly
-- is very weak, wobbly, or collapses
-- has pale, grey, yellow or blue-tinged gums
-- is in obvious pain: hunched, trembling, crying when touched or moved
-- is struggling to breathe, or breathing fast at rest
+- suddenly collapses or seems very weak
+- has pale, white, blue or yellow gums: the PDSA says to contact your vet straight away if your dog's gums are any colour other than salmon pink (dark patches of pigment are normal)
+- is in obvious pain, for example crying out when touched or moved
+- is breathing faster or harder than normal at rest, or noisily, or has blue-tinged gums or tongue
 - may have eaten something poisonous or swallowed an object
-- cannot drink, or is vomiting water back up
+- is vomiting again and again
+- has not eaten or drunk anything for 24 hours: the MSD Veterinary Manual lists this among the reasons to see a vet immediately
 - is diabetic (a diabetic dog that will not eat needs your vet's advice straight away)
 
 ## What should I do if my dog skips a meal but seems well?
@@ -41,24 +46,23 @@ A healthy adult dog that skips one meal but is bright, drinking and behaving nor
 What you can do at home:
 
 - Keep fresh water available and check your dog is drinking.
-- Offer the normal food at the normal time. Take it away after 15 minutes if untouched, and try again at the next meal. Leaving food down all day tends to make fussiness worse.
-- Look in the mouth if your dog will let you: a broken tooth, a stick wedged across the roof of the mouth, or sore gums can stop a dog eating.
+- Offer the normal food at the normal time. Take it away after 15 minutes if untouched, and try again later, as the PDSA suggests.
+- Look in the mouth if your dog will let you: tartar, a loose or broken tooth, sore gums or an abscess can hurt enough to stop a dog eating.
 - Note everything else: energy, stools, vomiting, drinking, any limping or stiffness.
-- Do not tempt with rich human food. It can upset the stomach and makes it harder for your vet to judge what is going on.
+- Do not tempt with human food or table scraps: it can upset the stomach, and some human foods are dangerous for dogs.
 
 ## When should I take my dog to the vet for not eating?
 
-Call your vet for advice if your dog has eaten nothing for more than 12 hours, and see them today if it has been more than 24 hours, or is also vomiting, quiet, struggling to eat, or losing weight.
+See your vet very quickly if your dog has eaten nothing for more than 24 hours, and today if it is also vomiting, quiet, struggling to eat, or losing weight.
 
 Book an appointment today if:
 
-- your dog has not eaten anything for more than 24 hours (call for advice already after 12 hours)
-- your dog is also vomiting, has diarrhoea, or is drinking noticeably more or less
-- your dog is quiet, sleeping more, or reluctant to walk
-- your dog seems to want food but drops it, chews on one side, or paws at the mouth
-- there is a bad smell from the mouth, drooling, or a swollen face
-- your dog is losing weight, or appetite has been patchy for a week or more
-- your dog is older and this is new
+- your dog has lost its appetite, even with no other signs of illness: the MSD Veterinary Manual advises seeing a vet within 24 hours
+- your dog is also vomiting, has diarrhoea, or does not want to drink
+- your dog is quiet, grumpy, or sleeping much more than usual
+- your dog struggles to eat, or chews on one side only
+- there is a bad smell from the mouth, drooling, or your dog keeps rubbing its face
+- your dog is losing weight, or has been off its food on and off for a while
 
 A dog that is off food *and* quiet is a different situation from a dog that is off food and otherwise its usual self. Trust your sense of whether your dog is "right".
 

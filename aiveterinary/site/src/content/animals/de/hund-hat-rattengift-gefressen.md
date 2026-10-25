@@ -5,7 +5,7 @@ description: "Die meisten Rattengifte hemmen die Blutgerinnung. Die gefährliche
 species: dog
 category: first-aid
 urgency: emergency
-updated: 2026-10-19
+updated: 2026-10-25
 draft: true
 lang: de
 references:
@@ -23,8 +23,6 @@ references:
     url: "https://www.merckvetmanual.com/toxicology/toxicities-from-human-drugs/analgesics-toxicity"
   - title: "PDSA Pet Health Hub: Rat poisoning in dogs"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/rat-poisoning-in-dogs"
-  - title: "VCA Animal Hospitals: Anticoagulant rodenticide poisoning in dogs"
-    url: "https://vcahospitals.com/know-your-pet/rodenticide-warfarin-poisoning-in-dogs"
   - title: "MSD Veterinary Manual (Professional Version): Bromethalin Poisoning in Animals"
     url: "https://www.msdvetmanual.com/toxicology/rodenticide-poisoning/bromethalin-poisoning-in-animals"
 ---
@@ -41,7 +39,7 @@ Dringend ist es auch, wenn Ihr Hund vor Tagen an einem Köder oder einer toten M
 - blasses Zahnfleisch hat, schnell oder schwer atmet
 - Nasenbluten, Zahnfleischbluten oder blaue Flecken hat
 - Blut erbricht, schwarzen, teerartigen oder blutigen Kot hat oder Blut im Urin
-- schmerzende oder geschwollene Gelenke hat, taumelt oder zusammenbricht
+- schmerzende Gelenke zu haben scheint, taumelt oder zusammenbricht
 - zittert, Krampfanfälle hat, sehr unruhig ist oder sich kalt anfühlt
 
 ## Was muss ich sofort tun, wenn mein Hund Rattengift gefressen hat?

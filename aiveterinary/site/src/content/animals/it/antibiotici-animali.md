@@ -5,7 +5,7 @@ description: "Cosa possono e cosa non possono fare gli antibiotici, come far ing
 species: general
 category: medications
 urgency: routine
-updated: 2026-10-19
+updated: 2026-10-25
 draft: true
 lang: it
 references:
@@ -23,10 +23,12 @@ references:
     url: "https://www.ema.europa.eu/en/partners-networks/animal-health-professionals/reporting-adverse-events-veterinary-medicines"
   - title: "PDSA: How to give your pet a tablet"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/all-pets/how-to-give-your-pet-a-tablet"
-  - title: "VCA Animal Hospitals: Giving liquid medication to dogs"
-    url: "https://vcahospitals.com/know-your-pet/giving-liquid-medication-to-dogs"
-  - title: "VCA Animal Hospitals: Amoxicillin"
-    url: "https://vcahospitals.com/know-your-pet/amoxicillin"
+  - title: "Washington State University Veterinary Teaching Hospital: Giving oral medications to your dog"
+    url: "https://hospital.vetmed.wsu.edu/2022/01/12/giving-oral-medications-to-your-dog/"
+  - title: "PDSA: Antibiotics for pets"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/medications/antibiotics-for-pets"
+  - title: "MSD Veterinary Manual (dog owners): Disorders involving anaphylactic reactions in dogs"
+    url: "https://www.msdvetmanual.com/dog-owners/immune-disorders-of-dogs/disorders-involving-anaphylactic-reactions-type-i-reactions-atopy-in-dogs"
 ---
 
 ## A cosa servono gli antibiotici per cani e gatti?
@@ -61,9 +63,9 @@ Se si può dare con il cibo nascondila in un bocconcino, altrimenti appoggiala i
 
 ## Come si dà uno sciroppo con la siringa?
 
-Infila la punta nell'angolo della bocca, mira verso la guancia e spingi lentamente lasciando deglutire l'animale.
+Svuota la siringa nella tasca tra guancia e denti, tenendo la testa dritta e non piegata all'indietro.
 
-Aspira la dose con la siringa fornita, infila la punta nell'angolo della bocca dietro il canino e spingi lentamente, lasciando che l'animale deglutisca tra uno spruzzo e l'altro. Mira verso la guancia, non direttamente in gola, perché il liquido non finisca nei polmoni. Agita il flacone se l'etichetta lo chiede e conservalo come indicato nel foglietto: alcune sospensioni vanno in frigorifero e, una volta preparate, si possono usare solo per il tempo indicato.
+Aspira la dose con la siringa fornita e svuotala nella tasca tra la guancia e i denti. Tieni la testa dritta invece di piegarla all'indietro: l'ospedale veterinario universitario della Washington State University fa notare che i liquidi finiscono nella trachea più facilmente delle compresse. Poi tieni la bocca chiusa e accarezza la gola finché l'animale deglutisce. Agita e conserva il flacone come indica l'etichetta.
 
 ## Cosa faccio se salto una dose di antibiotico?
 
@@ -73,15 +75,18 @@ Succede. Non raddoppiare la dose successiva per recuperare e non andare a tentat
 
 ## Quali effetti collaterali devo segnalare al veterinario?
 
-Chiama la clinica per vomito, diarrea o rifiuto del cibo, segni di allergia come gonfiore del muso, eruzioni cutanee o difficoltà a respirare, o qualunque cosa ti preoccupi.
+Chiama la clinica per vomito, diarrea, poca energia, appetito ridotto, eruzioni cutanee o gonfiori, o qualunque cosa ti preoccupi.
 
-La maggior parte dei cicli passa senza problemi. Chiama la clinica se vedi:
+La maggior parte dei cicli passa senza problemi. La PDSA chiede di avvisare il veterinario se un animale che ha iniziato da poco un antibiotico presenta:
 
-- vomito, diarrea o rifiuto del cibo
-- gonfiore del muso, eruzioni cutanee, febbre, difficoltà a respirare (sospendi l'antibiotico e chiama o vai subito)
+- diarrea e/o vomito
+- poca energia o appetito ridotto
+- eruzioni cutanee o gonfiori
 - qualunque cosa ti preoccupi, anche se non è in questa lista
 
-Salvo in caso di reazione allergica, non sospendere l'antibiotico di tua iniziativa: il veterinario può cambiarlo, modificare il modo di darlo o aggiungere qualcosa per lo stomaco. Effetti collaterali e terapie che non hanno funzionato vanno segnalati, perché alimentano la farmacovigilanza veterinaria; secondo le linee guida del Ministero possono segnalarli anche i proprietari.
+Alcuni animali sono allergici ad alcuni antibiotici. Se l'animale collassa all'improvviso, o comincia di colpo a vomitare, sbavare o avere diarrea, vai subito dal veterinario: l'MSD Veterinary Manual definisce una reazione allergica grave un'emergenza estrema.
+
+Non sospendere l'antibiotico di tua iniziativa: il veterinario può cambiarlo, modificare il modo di darlo o aggiungere qualcosa per lo stomaco. Effetti collaterali e terapie che non hanno funzionato vanno segnalati, perché alimentano la farmacovigilanza veterinaria; secondo le linee guida del Ministero possono segnalarli anche i proprietari.
 
 ## Posso riutilizzare l'antibiotico avanzato?
 
@@ -106,5 +111,6 @@ Quale antibiotico, per quanto tempo e con o senza cibo sono decisioni del veteri
 - [Ministero della Salute, Linee guida "Uso prudente dell'antibiotico nel cane e nel gatto", 2026](https://www.salute.gov.it/new/sites/default/files/2026-05/Linee%20Guida%20per%20l%27uso%20prudente%20degli%20antibiotici%20nel%20cane%20e%20nel%20gatto.pdf)
 - [EMA: Reporting adverse events for veterinary medicines](https://www.ema.europa.eu/en/partners-networks/animal-health-professionals/reporting-adverse-events-veterinary-medicines)
 - [PDSA: How to give your pet a tablet](https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/all-pets/how-to-give-your-pet-a-tablet)
-- [VCA: Giving liquid medication to dogs](https://vcahospitals.com/know-your-pet/giving-liquid-medication-to-dogs)
-- [VCA: Amoxicillin](https://vcahospitals.com/know-your-pet/amoxicillin)
+- [Washington State University Veterinary Teaching Hospital: Giving oral medications to your dog](https://hospital.vetmed.wsu.edu/2022/01/12/giving-oral-medications-to-your-dog/)
+- [PDSA: Antibiotics for pets](https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/medications/antibiotics-for-pets)
+- [MSD Veterinary Manual: Disorders involving anaphylactic reactions in dogs](https://www.msdvetmanual.com/dog-owners/immune-disorders-of-dogs/disorders-involving-anaphylactic-reactions-type-i-reactions-atopy-in-dogs)

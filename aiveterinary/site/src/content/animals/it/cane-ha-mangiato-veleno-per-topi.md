@@ -4,7 +4,7 @@ description: "Il veleno per topi e ratti è molto pericoloso per il cane, anche 
 species: dog
 category: first-aid
 urgency: emergency
-updated: 2026-10-19
+updated: 2026-10-25
 draft: true
 lang: it
 references:
@@ -18,8 +18,6 @@ references:
     url: "https://www.izsvenezie.it/documenti/comunicazione/materiale-editoriale/1-comunicazione-scientifica/appunti-scienza/avvelenamenti.pdf"
   - title: "Pet Poison Helpline: Top ten things to remember when your pet is poisoned"
     url: "https://petpoisonhelpline.com/uncategorized/top-ten-things-to-remember-when-your-pet-is-poisoned/"
-  - title: "VCA Animal Hospitals: Anticoagulant rodenticide poisoning in dogs"
-    url: "https://vcahospitals.com/know-your-pet/rodenticide-warfarin-poisoning-in-dogs"
 ---
 
 ## Prima di tutto: quando andare subito dal veterinario

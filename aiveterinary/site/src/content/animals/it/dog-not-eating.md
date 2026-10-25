@@ -4,7 +4,7 @@ description: "I cani saltano un pasto per tanti motivi innocui. Ecco come distin
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-10-19
+updated: 2026-10-25
 draft: true
 lang: it
 references:
@@ -12,8 +12,12 @@ references:
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/my-dog-isn-t-eating-properly"
   - title: "PDSA: Why is my pet off their food?"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/all-pets/why-is-my-pet-off-their-food"
-  - title: "VCA Urgent Care: Loss of Appetite"
-    url: "https://vcahospitals.com/urgent-care/health-concerns/loss-of-appetite"
+  - title: "Cornell Riney Canine Health Center: When to go to the ER"
+    url: "https://riney.vet.cornell.edu/member-benefits-health-tips/when-to-go-to-the-er-june-2025"
+  - title: "PDSA: Are my dog's gums pale?"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/other-veterinary-advice/are-my-dog-s-gums-pale"
+  - title: "MSD Veterinary Manual (pet owners): When to see a veterinarian (table)"
+    url: "https://www.msdvetmanual.com/multimedia/table/when-to-see-a-veterinarian"
   - title: "PDSA: Diabetes in dogs"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/diabetes-in-dogs"
   - title: "MSD Veterinary Manual: Gastric Dilation and Volvulus in Small Animals"
@@ -25,12 +29,13 @@ references:
 Vai immediatamente in una clinica veterinaria, avvisando per telefono, se il tuo cane non mangia e inoltre:
 
 - ha conati senza espellere nulla, o ha la pancia gonfia e dura
-- è molto debole, barcolla, o collassa
-- ha le gengive pallide, grigie, giallastre o bluastre
-- ha un dolore evidente: schiena inarcata, tremori, lamenti quando viene toccato o spostato
-- fa fatica a respirare, o respira in fretta a riposo
+- collassa all'improvviso o sembra molto debole
+- ha le gengive pallide, bianche, bluastre o gialle: la PDSA dice di contattare subito il veterinario se le gengive del cane hanno un colore diverso dal rosa salmone (le macchie scure di pigmento sono normali)
+- ha un dolore evidente, per esempio si lamenta quando viene toccato o spostato
+- respira più in fretta o con più fatica del normale a riposo, o rumorosamente, o ha gengive o lingua bluastre
 - potrebbe aver mangiato qualcosa di velenoso o ingoiato un oggetto
-- non riesce a bere, o vomita l'acqua
+- vomita ripetutamente
+- non mangia né beve nulla da 24 ore: l'MSD Veterinary Manual lo mette tra i motivi per andare subito dal veterinario
 - è diabetico (un cane diabetico che non mangia ha bisogno subito del consiglio del veterinario)
 
 ## Cosa posso fare a casa se il cane non mangia ma sta bene?
@@ -42,24 +47,23 @@ Un cane adulto sano che salta un pasto ma è vivace, beve e si comporta normalme
 Cosa puoi fare a casa:
 
 - Lascia a disposizione acqua fresca e controlla che il cane beva.
-- Offri il cibo abituale all'orario abituale. Se non lo tocca, toglilo dopo 15 minuti e riprova al pasto successivo. Lasciare il cibo a disposizione tutto il giorno tende a peggiorare i capricci.
-- Guarda in bocca, se il cane te lo permette: un dente rotto, un bastoncino incastrato di traverso sul palato, o gengive infiammate possono impedire a un cane di mangiare.
+- Offri il cibo abituale all'orario abituale. Se non lo tocca, toglilo dopo 15 minuti e riprova più tardi, come suggerisce la PDSA.
+- Guarda in bocca, se il cane te lo permette: tartaro, un dente che si muove o è rotto, gengive infiammate o un ascesso possono fare abbastanza male da impedire a un cane di mangiare.
 - Annota tutto il resto: energia, feci, vomito, quanto beve, eventuale zoppia o rigidità.
-- Non tentarlo con cibi umani ricchi. Possono irritare lo stomaco e rendono più difficile per il veterinario capire cosa sta succedendo.
+- Non tentarlo con cibi umani o avanzi della tavola: possono irritare lo stomaco, e alcuni cibi umani sono pericolosi per il cane.
 
 ## Quando portare dal veterinario il cane che non mangia?
 
-Chiama il veterinario per un consiglio se non mangia nulla da più di 12 ore, e prenota una visita oggi se sono più di 24 ore, o se ci sono altri sintomi.
+Fallo vedere al veterinario molto presto se non mangia nulla da più di 24 ore, e oggi se ci sono anche altri sintomi.
 
 Prenota una visita oggi se:
 
-- il tuo cane non mangia nulla da più di 24 ore (chiama per un consiglio già dopo 12 ore)
-- il tuo cane vomita anche, ha la diarrea, o beve visibilmente di più o di meno
-- il tuo cane è spento, dorme di più, o è riluttante a camminare
-- il tuo cane sembra volere il cibo ma lo lascia cadere, mastica da un solo lato, o si tocca la bocca con la zampa
-- c'è un cattivo odore dalla bocca, salivazione abbondante, o il muso è gonfio
-- il tuo cane perde peso, o l'appetito è irregolare da una settimana o più
-- il tuo cane è anziano e la cosa è nuova
+- il tuo cane ha perso l'appetito, anche senza altri segni di malattia: l'MSD Veterinary Manual consiglia di farlo vedere entro 24 ore
+- il tuo cane vomita anche, ha la diarrea, o non vuole bere
+- il tuo cane è spento, scontroso, o dorme molto più del solito
+- il tuo cane fa fatica a mangiare, o mastica da un solo lato
+- c'è un cattivo odore dalla bocca, salivazione abbondante, o il cane si strofina spesso il muso
+- il tuo cane perde peso, o da un po' di tempo mangia a fasi alterne
 
 Un cane che non mangia *ed* è spento è una situazione diversa da un cane che non mangia ma per il resto è il solito. Fidati della tua sensazione sul fatto che il tuo cane "stia bene" o no.
 

@@ -5,7 +5,7 @@ description: "Chronic kidney disease is one of the most common conditions of old
 species: cat
 category: conditions
 urgency: this-week
-updated: 2026-10-19
+updated: 2026-10-25
 draft: true
 lang: en
 references:
@@ -25,8 +25,8 @@ references:
     url: "https://icatcare.org/articles/lily-poisoning-in-cats"
   - title: "MSD Veterinary Manual: Ethylene glycol (antifreeze) poisoning"
     url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/ethylene-glycol-antifreeze-poisoning"
-  - title: "VCA Animal Hospitals: Acetaminophen toxicity in cats"
-    url: "https://vcahospitals.com/know-your-pet/acetaminophen-toxicity-in-cats"
+  - title: "International Cat Care: Paracetamol poisoning in cats"
+    url: "https://icatcare.org/articles/paracetamol-poisoning-in-cats"
 ---
 
 ## First, the signs that mean go now
@@ -38,7 +38,7 @@ Go to a clinic straight away, calling ahead, if an older cat, or a cat already k
 - has sores in the mouth
 - produces no urine at all (in males, think of a blocked urethra too)
 - suddenly seems unable to see, or is suddenly disoriented, wobbly or has other nervous-system signs (high blood pressure can damage the eyes and brain)
-- may have eaten any part of a lily, antifreeze, or a human medicine such as paracetamol (these can damage the kidneys within hours)
+- may have eaten any part of a lily or antifreeze (these can damage the kidneys within hours), or swallowed a human medicine such as paracetamol, which International Cat Care warns can kill a cat even as part of a single tablet
 
 These point to a kidney crisis or an acute problem on top of the chronic one, and need hospital treatment.
 
@@ -115,4 +115,4 @@ Staging, diet and the treatment plan are decided cat by cat, so take these terms
 - [MSD Veterinary Manual: Renal dysfunction in dogs and cats](https://www.msdvetmanual.com/urinary-system/noninfectious-diseases-of-the-urinary-system-in-small-animals/renal-dysfunction-in-dogs-and-cats)
 - [International Cat Care: Lily poisoning in cats](https://icatcare.org/articles/lily-poisoning-in-cats)
 - [MSD Veterinary Manual: Ethylene glycol (antifreeze) poisoning](https://www.msdvetmanual.com/special-pet-topics/poisoning/ethylene-glycol-antifreeze-poisoning)
-- [VCA: Acetaminophen toxicity in cats](https://vcahospitals.com/know-your-pet/acetaminophen-toxicity-in-cats)
+- [International Cat Care: Paracetamol poisoning in cats](https://icatcare.org/articles/paracetamol-poisoning-in-cats)

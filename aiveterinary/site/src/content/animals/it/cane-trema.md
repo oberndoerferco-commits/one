@@ -4,7 +4,7 @@ description: "Freddo, paura, eccitazione, dolore o qualcosa di più serio: il tr
 species: dog
 category: symptoms
 urgency: this-week
-updated: 2026-10-19
+updated: 2026-10-25
 draft: true
 lang: it
 references:
@@ -12,16 +12,18 @@ references:
     url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11951301/"
   - title: "American Kennel Club: Why Is My Dog Shaking? Causes & Solutions"
     url: "https://www.akc.org/expert-advice/health/why-is-my-dog-shaking/"
-  - title: "VCA Animal Hospitals: Shaker Syndrome in Dogs"
-    url: "https://vcahospitals.com/know-your-pet/shaker-syndrome-in-dogs"
-  - title: "VCA Animal Hospitals: Testing for Low Blood Sugar"
-    url: "https://vcahospitals.com/know-your-pet/testing-for-low-blood-sugar"
+  - title: "Frontiers in Veterinary Science (2024): Canine idiopathic generalized tremor syndrome, immune-mediated?"
+    url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11449864/"
+  - title: "MSD Veterinary Manual (dog owners): Congenital and inherited disorders of the nervous system in dogs"
+    url: "https://www.msdvetmanual.com/dog-owners/brain-spinal-cord-and-nerve-disorders-of-dogs/congenital-and-inherited-disorders-of-the-nervous-system-in-dogs"
+  - title: "MSD Veterinary Manual (dog owners): Disorders of the pancreas in dogs"
+    url: "https://www.msdvetmanual.com/dog-owners/hormonal-disorders-of-dogs/disorders-of-the-pancreas-in-dogs"
   - title: "MSD Veterinary Manual: What to Do in a Dog or Cat Emergency"
     url: "https://www.msdvetmanual.com/special-pet-topics/emergencies/what-to-do-in-a-dog-or-cat-emergency"
   - title: "MSD Veterinary Manual: Poisoning from Human Over-the-Counter Drugs"
     url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/poisoning-from-human-over-the-counter-drugs"
-  - title: "VCA Animal Hospitals: Eclampsia in Dogs"
-    url: "https://vcahospitals.com/know-your-pet/eclampsia-in-dogs"
+  - title: "MSD Veterinary Manual (dog owners): Disorders of calcium metabolism in dogs"
+    url: "https://www.msdvetmanual.com/dog-owners/metabolic-disorders-of-dogs/disorders-of-calcium-metabolism-in-dogs"
 ---
 
 ## Prima di tutto: i segni per cui andare subito dal veterinario
@@ -31,9 +33,9 @@ Vai immediatamente in una clinica veterinaria, avvisando per telefono, se il tuo
 - il tremore diventa una **convulsione**: l'American Kennel Club (AKC) ricorda che una crisi può presentarsi come scosse incontrollabili per alcuni minuti, ma anche con contrazioni muscolari, movimenti a scatti, collasso e breve perdita di coscienza
 - potrebbe aver mangiato qualcosa di tossico (cioccolato, xilitolo dei prodotti senza zucchero, mozziconi di sigaretta, lumachicida, farmaci per uso umano). In uno studio del Journal of Veterinary Internal Medicine su 198 cani con tremori di tutto il corpo, l'**intossicazione era la causa più frequente** (46% dei casi), con sintomi comparsi in genere in meno di 24 ore
 - insieme al tremore ha **vomito o diarrea**, **sbava** molto, ha le **pupille dilatate**, si comporta in modo strano o sembra confuso: nello stesso studio questi segni erano più comuni nei cani intossicati
-- è **molto debole, barcolla, è disorientato o collassa**: secondo VCA Animal Hospitals sono i segni tipici dello **zucchero basso nel sangue** (ipoglicemia), che può dare anche tremori e convulsioni. L'AKC indica che i più esposti sono i cani di taglia piccola e toy e i cuccioli molto giovani; nel cane diabetico in terapia con insulina può dipendere da una dose eccessiva
+- è **molto debole, barcolla o collassa**: per l'MSD Veterinary Manual debolezza, scarsa coordinazione, convulsioni e collasso sono i segni di uno **zucchero nel sangue pericolosamente basso** (ipoglicemia), che nel cane diabetico in terapia può dipendere da una dose eccessiva di insulina. L'AKC indica che i più esposti sono i cani di taglia piccola e toy e i cuccioli molto giovani, e l'MSD Veterinary Manual ricorda che nelle razze toy l'ipoglicemia del cucciolo compare nei primi sei mesi di vita
 - dopo caldo o sforzo ha la pelle calda, ansima forte, sbava, vomita o barcolla: l'MSD Veterinary Manual descrive questi segni nel **colpo di calore**, che è un'emergenza
-- è una **cagna che allatta** ed è agitata, ansima, è rigida o trema: può essere un'**eclampsia** (calcio basso nel sangue), che secondo VCA Animal Hospitals è una vera emergenza, più frequente quando i cuccioli hanno da una a quattro settimane. Impedisci ai cuccioli di poppare e chiama subito il veterinario
+- è una **cagna che allatta** e ansima, è agitata, trema o è rigida: può essere un'**eclampsia** (calcio basso nel sangue), che l'MSD Veterinary Manual definisce pericolosa per la vita e da curare subito. Compare di solito 2-3 settimane dopo il parto, più spesso nelle razze piccole con cucciolate numerose. Tieni i cuccioli lontani dalla mamma finché il veterinario non dice altrimenti e chiamalo subito
 - dopo esposizione al freddo o all'acqua è confuso, respira in modo superficiale o collassa: possono essere segni di **ipotermia**, e l'MSD Veterinary Manual avverte che il tremore da solo non è un segno affidabile per riconoscerla
 
 ## È normale che il cane tremi?
@@ -104,6 +106,6 @@ Nella vita di tutti i giorni le più frequenti sono stress, paura, eccitazione e
 | Tendenza a tremare di alcune razze toy | Squilibri del calcio nel sangue, infiammazioni del cervello, cimurro |
 | | Dolore o nausea |
 
-Lo studio su 198 cani con tremori generalizzati, condotto in un ospedale veterinario di referenza, ha trovato come cause principali **intossicazioni** (46%), **sindrome del tremore generalizzato idiopatico** (circa 25%), **calcio basso** (6,6%), **meningoencefaliti** (4,5%) e **ipoglicemia** (3%). Secondo VCA Animal Hospitals, la sindrome del tremore idiopatico è più frequente nei cani piccoli e bianchi come Maltese, West Highland White Terrier e Bichon Frisé, ma può colpire qualsiasi cane; compare di solito tra 1 e 2 anni, il veterinario la diagnostica escludendo le altre cause e di solito risponde bene alla terapia che lui prescrive.
+Lo studio su 198 cani con tremori generalizzati, condotto in un ospedale veterinario di referenza, ha trovato come cause principali **intossicazioni** (46%), **sindrome del tremore generalizzato idiopatico** (circa 25%), **calcio basso** (6,6%), **meningoencefaliti** (4,5%) e **ipoglicemia** (3%). Una revisione del 2024 su *Frontiers in Veterinary Science* spiega che la sindrome del tremore idiopatico è stata descritta all'inizio in cani piccoli e bianchi come Maltese, West Highland White Terrier e Bichon Frisé, ma è stata vista poi anche in altre razze e con altri colori del mantello; la maggior parte dei cani colpiti ha meno di cinque anni. Non esiste un esame specifico: il veterinario la riconosce dai segni ed escludendo le altre cause, e di solito risponde bene alla terapia che lui prescrive.
 
 È il veterinario a decidere quale di queste è probabile per il *tuo* cane, con la visita e, se serve, qualche esame. Questo elenco ti aiuta a capire il colloquio, non a fare una diagnosi: per il tuo cane, la parola giusta è quella del tuo veterinario.

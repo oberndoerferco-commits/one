@@ -5,7 +5,7 @@ description: "What antibiotics can and cannot do, how to get tablets and liquids
 species: general
 category: medications
 urgency: routine
-updated: 2026-10-19
+updated: 2026-10-25
 draft: true
 lang: en
 references:
@@ -23,10 +23,12 @@ references:
     url: "https://www.ema.europa.eu/en/partners-networks/animal-health-professionals/reporting-adverse-events-veterinary-medicines"
   - title: "PDSA: How to give your pet a tablet"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/all-pets/how-to-give-your-pet-a-tablet"
-  - title: "VCA Animal Hospitals: Giving liquid medication to dogs"
-    url: "https://vcahospitals.com/know-your-pet/giving-liquid-medication-to-dogs"
-  - title: "VCA Animal Hospitals: Amoxicillin"
-    url: "https://vcahospitals.com/know-your-pet/amoxicillin"
+  - title: "Washington State University Veterinary Teaching Hospital: Giving oral medications to your dog"
+    url: "https://hospital.vetmed.wsu.edu/2022/01/12/giving-oral-medications-to-your-dog/"
+  - title: "PDSA: Antibiotics for pets"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/medications/antibiotics-for-pets"
+  - title: "MSD Veterinary Manual (dog owners): Disorders involving anaphylactic reactions in dogs"
+    url: "https://www.msdvetmanual.com/dog-owners/immune-disorders-of-dogs/disorders-involving-anaphylactic-reactions-type-i-reactions-atopy-in-dogs"
 ---
 
 ## When does my pet actually need antibiotics?
@@ -61,7 +63,7 @@ Hide it in a small piece of food if it can be given with food, or place it far b
 
 ## How do I give my pet a liquid antibiotic?
 
-Draw up the dose in the syringe provided, slide the tip into the corner of the mouth behind the canine tooth, and press slowly so your pet can swallow between squirts. Aim towards the cheek, not straight into the throat, so the liquid does not go into the lungs. Shake the bottle if the label says so, and store it as instructed: some liquids belong in the fridge, and once made up they keep only for the time stated on the label.
+Draw up the dose in the syringe provided and empty it into the pouch between your pet's cheek and teeth. Keep the head level rather than tipping it back: the veterinary teaching hospital at Washington State University points out that liquids get into the windpipe more easily than tablets. Then hold the mouth closed and stroke the throat until your pet swallows. Shake and store the bottle as the label says.
 
 ## What should I do if I miss a dose of my pet's antibiotic?
 
@@ -71,15 +73,18 @@ It happens. Do not double the next dose to catch up, and do not guess. Call your
 
 ## Which antibiotic side effects should I report to the vet?
 
-Call the clinic about vomiting, diarrhoea or refusing food, signs of an allergic reaction such as facial swelling, rash or difficulty breathing, or anything else that worries you.
+Call the clinic about vomiting, diarrhoea, low energy, a reduced appetite, a rash or swellings, or anything else that worries you.
 
-Most courses pass without trouble. Call the clinic if you see:
+Most courses pass without trouble. The PDSA asks owners to let the vet know if a pet that has recently started antibiotics shows:
 
-- vomiting, diarrhoea or refusing food
-- swelling of the face, skin rash, fever, difficulty breathing (stop the antibiotic and call or go now)
+- diarrhoea and/or vomiting
+- low energy or a reduced appetite
+- a rash or swellings
 - any sign that worries you, even if it is not on this list
 
-Apart from an allergic reaction, do not stop the antibiotic on your own; your vet may switch it, adjust how it is given, or add something to settle the stomach. Side effects, and treatments that did not work, are worth reporting because that information feeds the official monitoring of veterinary medicines.
+Some pets are allergic to some antibiotics. If your pet suddenly collapses, or starts vomiting, drooling or having diarrhoea out of the blue, go to a vet now: the MSD Veterinary Manual calls a severe allergic reaction an extreme emergency.
+
+Do not stop the antibiotic on your own; your vet may switch it, adjust how it is given, or add something to settle the stomach. Side effects, and treatments that did not work, are worth reporting because that information feeds the official monitoring of veterinary medicines.
 
 ## Can I reuse leftover antibiotics for my pet?
 
@@ -102,5 +107,6 @@ Which antibiotic, how long, and with or without food are decisions for the vet w
 - [WVA / WSAVA Therapeutics Guidelines Group: global repository of guidelines on responsible antimicrobial use](https://www.acipc.org.au/wp-content/uploads/2025/07/WSAVA-TGG-library-on-responsible-antimicrobial-use-and-AMR-prevention-2.pdf)
 - [EMA: Reporting adverse events for veterinary medicines](https://www.ema.europa.eu/en/partners-networks/animal-health-professionals/reporting-adverse-events-veterinary-medicines)
 - [PDSA: How to give your pet a tablet](https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/all-pets/how-to-give-your-pet-a-tablet)
-- [VCA: Giving liquid medication to dogs](https://vcahospitals.com/know-your-pet/giving-liquid-medication-to-dogs)
-- [VCA: Amoxicillin](https://vcahospitals.com/know-your-pet/amoxicillin)
+- [Washington State University Veterinary Teaching Hospital: Giving oral medications to your dog](https://hospital.vetmed.wsu.edu/2022/01/12/giving-oral-medications-to-your-dog/)
+- [PDSA: Antibiotics for pets](https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/medications/antibiotics-for-pets)
+- [MSD Veterinary Manual: Disorders involving anaphylactic reactions in dogs](https://www.msdvetmanual.com/dog-owners/immune-disorders-of-dogs/disorders-involving-anaphylactic-reactions-type-i-reactions-atopy-in-dogs)

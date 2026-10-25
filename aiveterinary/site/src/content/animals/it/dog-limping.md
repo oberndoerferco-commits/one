@@ -4,16 +4,26 @@ description: "Una zoppia merita una telefonata al veterinario anche quando sembr
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-10-19
+updated: 2026-10-25
 draft: true
 lang: it
 references:
   - title: "PDSA: Limping and stiffness in dogs"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/limping-and-stiffness-in-dogs"
-  - title: "VCA Animal Hospitals: First Aid for Limping Dogs"
-    url: "https://vcahospitals.com/know-your-pet/first-aid-for-limping-dogs"
-  - title: "VCA Urgent Care: Pain or Limping"
-    url: "https://vcahospitals.com/urgent-care/health-concerns/pain-or-limping"
+  - title: "Cornell Riney Canine Health Center: What to expect when taking your limping dog to the veterinarian"
+    url: "https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/canine-health-information/what-to-expect-when-taking-your-limping-dog-to-the-veterinarian"
+  - title: "Cornell Riney Canine Health Center: Intervertebral disc disease"
+    url: "https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/canine-health-information/intervertebral-disc-disease"
+  - title: "PDSA: Road traffic accidents (RTA)"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/road-traffic-accidents-rta"
+  - title: "MSD Veterinary Manual (pet owners): When to see a veterinarian (table)"
+    url: "https://www.msdvetmanual.com/multimedia/table/when-to-see-a-veterinarian"
+  - title: "RSPCA: First aid for your dog"
+    url: "https://www.rspca.org.uk/adviceandwelfare/pets/dogs/health/firstaid"
+  - title: "PDSA: First aid for broken bones"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/other-veterinary-advice/first-aid-for-broken-bones"
+  - title: "MSD Veterinary Manual: Joint trauma in dogs and cats"
+    url: "https://www.msdvetmanual.com/musculoskeletal-system/arthropathies-and-related-disorders-in-small-animals/joint-trauma-in-dogs-and-cats"
   - title: "Merck Veterinary Manual: Toxicoses From Human Analgesics in Animals"
     url: "https://www.merckvetmanual.com/toxicology/toxicities-from-human-drugs/analgesics-toxicity"
 ---
@@ -23,44 +33,41 @@ references:
 Vai immediatamente in una clinica veterinaria, avvisando per telefono, se il tuo cane:
 
 - non riesce ad appoggiare per niente la zampa, o la tiene sempre sollevata
-- ha una zampa che sembra piegata, storta, o penzola con un'angolazione strana
-- è stato investito da un'auto, o afferrato e scosso da un animale più grande, anche se la zoppia sembra lieve
-- ha una ferita che sanguina molto, o in cui si vede l'osso
-- ha un arto caldo e gonfio ed è anche spento, non mangia o ha la febbre
-- trascina le zampe posteriori, o è diventato all'improvviso instabile su più di una zampa
+- all'improvviso zoppica in modo grave: l'MSD Veterinary Manual mette la zoppia grave e improvvisa tra i segni per cui serve subito un veterinario
+- ha una zampa deformata, tenuta in una posizione strana o che sembra più corta dell'altra
+- è stato investito da un'auto, anche se la zoppia sembra lieve: la PDSA avverte che possono esserci lesioni interne che da fuori non si vedono
+- ha una ferita seria, per esempio che sanguina molto o in cui si vede l'osso
+- all'improvviso non riesce a usare le zampe posteriori, o cammina barcollando
 - grida di dolore quando viene spostato, o quando gli si tocca la zampa o la schiena
-- è un cucciolo di taglia grande che all'improvviso zoppica molto e non vuole muoversi
 
-Anche un cane che zoppica su una zampa anteriore e ha anche il collo o la schiena gonfi o dolenti va visitato con urgenza: non tutte le zoppie partono dalla zampa.
+Non tutte le zoppie partono dalla zampa: una zoppia anteriore può nascere dal collo o dalla colonna. Il Riney Canine Health Center della Cornell consiglia di chiamare il veterinario al primo segno di mal di schiena, perché più si aspetta, meno è probabile che il midollo spinale danneggiato si riprenda.
 
 ## Cosa posso fare a casa se il cane zoppica ma sta bene?
 
-Solo per poco tempo, e chiedi consiglio al veterinario: una zoppia improvvisa che non passa entro un'ora, o qualsiasi zoppia che dura più di 24 ore, va visitata. Nel frattempo controlla zampa e cuscinetti, palpa con delicatezza l'arto, fallo riposare sul serio e non dargli antidolorifici per uso umano.
+Solo mentre contatti il veterinario, che dovrebbe vedere qualsiasi zoppia, anche se sembra lieve, ed entro 24 ore se non è passata. Nel frattempo tieni il cane fermo, controlla zampa e cuscinetti e non dargli antidolorifici per uso umano.
 
-Chiama il veterinario per qualsiasi zoppia, anche se sembra lieve: alcuni cani nascondono bene il dolore. Anche un cane che appoggia ancora un po' di peso, è vivace, mangia ed è tranquillo a riposo va visitato se una zoppia improvvisa non passa entro un'ora, o se la zoppia dura più di 24 ore.
+Chiama il veterinario per qualsiasi zoppia, anche se sembra lieve: la PDSA fa notare che alcuni cani sono bravissimi a nascondere il dolore. L'MSD Veterinary Manual consiglia di vedere un veterinario entro 24 ore se la zoppia dura da più di 24 ore, e il Riney Canine Health Center della Cornell aggiunge che un dolore forte, improvviso o in peggioramento non va lasciato in attesa.
 
 Cosa puoi fare a casa:
 
-- Controlla prima la zampa. Guarda tra le dita e i cuscinetti: tagli, spighe di graminacee (forasacchi), spine, sassolini, unghie rotte o qualsiasi cosa incastrata. Molte zoppie sono un problema della zampa.
-- Palpa con delicatezza l'arto dalle dita fino alla spalla o all'anca, confrontandolo con l'altro lato. Nota gonfiori, calore, o un punto in cui il cane si ritrae. Fermati se il cane ringhia o sembra in difficoltà.
-- Fai riposare il cane sul serio: solo brevi uscite al guinzaglio per i bisogni, niente corse, niente salti su e giù dai divani, niente scale se puoi evitarle.
+- Controlla prima la zampa. Guarda tra le dita e i cuscinetti: tagli, spighe di graminacee (forasacchi), spine, sassolini, unghie rotte o qualsiasi cosa incastrata. La PDSA mette un forasacco o un altro corpo estraneo nella zampa, e le lesioni delle unghie, tra le cause comuni di zoppia.
+- Limita i movimenti del cane mentre chiami il veterinario: la RSPCA consiglia di tenere in casa, per esempio in un trasportino, un cane che potrebbe avere una frattura, e la PDSA dice di non farlo camminare su una zampa che potrebbe essere rotta.
 - Non dare antidolorifici per uso umano. Ibuprofene e paracetamolo possono essere pericolosi per i cani. Se il tuo cane ha bisogno di un antidolorifico, è una decisione del veterinario e serve una prescrizione.
-- Se puoi, filma la zoppia. Le zoppie spesso spariscono in ambulatorio, e un breve video aiuta il veterinario a vedere quale zampa è coinvolta e quanto.
+- Se puoi, filma la zoppia. Alcuni cani camminano normalmente appena arrivano in clinica, e il Riney Canine Health Center della Cornell definisce i video girati a casa estremamente utili.
 
 ## Quando portare dal veterinario il cane che zoppica?
 
-Chiama il veterinario per qualsiasi zoppia: oggi se una zoppia improvvisa non passa entro un'ora o una zoppia dura più di 24 ore, e prenota una visita se torna con l'attività, dura da settimane o si accompagna a gonfiore, rigidità o leccamento.
+Chiama il veterinario per qualsiasi zoppia: senza aspettare se il dolore è forte, improvviso o in peggioramento, entro 24 ore se la zoppia dura da più di 24 ore, e prenota una visita se continua a tornare o si accompagna a gonfiore, rigidità o leccamento.
 
 Contatta il veterinario oggi se:
 
-- una zoppia improvvisa non è passata entro circa un'ora
-- una zoppia di qualsiasi tipo dura più di 24 ore, anche se sembra lieve, anche in un cucciolo o in un giovane cane di taglia grande
+- il dolore sembra forte, è comparso all'improvviso o sta peggiorando
+- la zoppia dura da più di 24 ore, anche se sembra lieve
 
 Prenota una visita dal veterinario se:
 
-- la zoppia torna appena il cane riprende l'attività
-- il tuo cane zoppica a intermittenza da diverse settimane
-- c'è gonfiore, calore, o un nodulo sulla zampa
+- la zoppia continua a tornare
+- una zampa o un'articolazione sembra gonfia
 - il tuo cane è rigido dopo il riposo, lento ad alzarsi, o riluttante a saltare o fare le scale
 - il tuo cane si lecca ripetutamente un punto della zampa
 - il tuo cane è anziano e la zoppia è nuova
@@ -80,16 +87,16 @@ Quale zampa, quando è iniziata e cosa è successo, come cambia con riposo ed es
 
 ## Perché il cane zoppica?
 
-Le cause più probabili sono tagli, spine o forasacchi, distorsioni, unghie rotte, contusioni, artrosi e ascessi o infezioni della pelle della zampa, ma sono possibili anche fratture o la rottura del crociato.
+Le cause più probabili sono tagli, spine o forasacchi, distorsioni, unghie rotte, lesioni muscolari, artrosi e, nei cani giovani, dolori della crescita, ma sono possibili anche fratture o la rottura del crociato.
 
 | Probabili | Meno comuni ma importanti |
 |---|---|
 | Taglio, spina o forasacco nella zampa | Rottura del legamento crociato del ginocchio |
 | Distorsione o stiramento da esercizio | Frattura o lussazione |
 | Unghia strappata o rotta | Displasia dell'anca o del gomito nei cani giovani |
-| Contusione da urto | Infezione articolare (artrite settica) |
+| Lesione muscolare | Infezione articolare (artrite settica) |
 | Artrosi nei cani anziani | Tumore osseo |
-| Ascesso o infezione della pelle della zampa | Ernia del disco al collo o alla schiena |
+| Dolori della crescita (panosteite) nei cani giovani | Ernia del disco al collo o alla schiena |
 
 È il veterinario a decidere quale di queste è probabile per il *tuo* cane, in base alla visita e, se serve, a radiografie o altri esami. Questo elenco serve ad aiutarti a capire il colloquio, non a fare una diagnosi.
 

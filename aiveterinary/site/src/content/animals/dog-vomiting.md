@@ -4,15 +4,17 @@ description: "Most single episodes of vomiting in dogs pass on their own. Here i
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-10-19
+updated: 2026-10-25
 draft: true
 references:
   - title: "PDSA: Vomiting in dogs"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/vomiting-in-dogs"
-  - title: "VCA Animal Hospitals: Vomiting in Dogs"
-    url: "https://vcahospitals.com/know-your-pet/vomiting-in-dogs"
-  - title: "VCA Animal Hospitals: Gastritis in Dogs"
-    url: "https://vcahospitals.com/know-your-pet/gastritis-in-dogs"
+  - title: "Cornell Riney Canine Health Center: Vomiting"
+    url: "https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/canine-health-topics/vomiting"
+  - title: "PDSA: Are my dog's gums pale?"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/other-veterinary-advice/are-my-dog-s-gums-pale"
+  - title: "PDSA: Gastroenteritis (stomach upset) in dogs"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/gastroenteritis-stomach-upset-in-dogs"
   - title: "MSD Veterinary Manual: Gastric Dilation and Volvulus in Small Animals"
     url: "https://www.msdvetmanual.com/digestive-system/surgical-problems-of-the-gastrointestinal-tract-in-small-animals/gastric-dilation-and-volvulus-in-small-animals"
   - title: "ASPCA: People Foods to Avoid Feeding Your Pets"
@@ -29,37 +31,37 @@ Go to a veterinary clinic immediately, and call ahead, if your dog:
 
 - is trying to vomit but nothing comes up, especially with a swollen, hard belly (this can be bloat, which is a life-threatening emergency)
 - vomits blood, or material that looks like coffee grounds
-- is very weak, collapses, or has pale or blue-tinged gums
+- is very weak, disoriented, or collapses
+- has pale, white, blue or yellow gums: the PDSA says to contact your vet straight away if your dog's gums are any colour other than salmon pink (dark patches of pigment are normal)
 - may have eaten something poisonous: chocolate, grapes or raisins, xylitol (used in some gum, sweets, baked goods and toothpaste), human painkillers such as ibuprofen, antifreeze
 - may have swallowed an object: a toy, sock, bone
-- is a puppy, very old, or already has a condition such as diabetes or kidney disease
 - vomits repeatedly and cannot keep water down
 
 ## What can I do at home if my dog vomited once?
 
 A single episode in an otherwise bright dog is common: offer small amounts of water, ask your vet whether to rest the stomach briefly or offer small bland meals, and call if your dog vomits again.
 
-A single episode of vomiting in an otherwise bright dog is common. Dogs eat things they shouldn't, eat too fast, or get an upset stomach from a change in food.
+A single episode of vomiting in an otherwise bright dog is common. Dogs eat things they shouldn't, such as grass, or get an upset stomach from a change in food.
 
 What you can do at home:
 
-- Ask your vet about food. Some advise taking food away for a short time (often 8 to 12 hours) before offering small bland meals; others advise small portions of a bland, easily digested food little and often, without a fasting period.
-- Leave water available in small amounts. Large gulps can trigger more vomiting.
+- Ask your vet about food. Cornell's Riney Canine Health Center suggests holding back food, but not water, for about 12 hours after a one-off vomit; the PDSA suggests small, regular portions of a bland, low-fat food instead.
+- Offer water little and often through the day.
 - When you offer food, give a small portion of something bland, then return to normal food over two or three days.
-- Note what the vomit looked like, how many times, and whether your dog ate anything unusual. Take a photo if you can. Your vet will ask.
+- Note what the vomit looked like, how many times, and whether your dog ate anything unusual. Your vet will ask.
 
 ## When should I take my vomiting dog to the vet?
 
-Call your vet today if your dog vomits more than once, keeps vomiting for more than 24 hours, or also has diarrhoea, changes in drinking, no appetite for over a day or seems in pain.
+Call your vet today if your dog vomits more than once, keeps vomiting for more than 24 hours, or is also lethargic, feverish, has diarrhoea or seems to have a painful belly.
 
 Call your vet today for advice or an appointment if:
 
 - your dog vomits more than once, or keeps vomiting
 - it continues for more than 24 hours
+- your dog is very young or very old, or has another illness: the PDSA counts these among the reasons to see a vet for a stomach upset
 - there is also diarrhoea, especially with blood
-- your dog is drinking much more or much less than usual
-- your dog is off food for more than a day
-- your dog seems in pain: hunched back, reluctance to move, whining when the belly is touched
+- your dog is lethargic or has a fever
+- your dog seems to have a painful belly
 
 ## What will the vet want to know about my dog's vomiting?
 
@@ -76,13 +78,13 @@ Bringing this information, even as a few notes on your phone, makes the visit fa
 
 ## Why is my dog vomiting?
 
-Eating something unsuitable, sudden food changes, eating too fast, mild stomach upsets and travel sickness are likely; blockages, pancreatitis, kidney or liver disease, poisoning and bloat are less common but important.
+Eating something unsuitable, sudden food changes, food allergies, mild stomach upsets and travel sickness are likely; blockages, pancreatitis, kidney or liver disease, poisoning and bloat are less common but important.
 
 | Likely | Less common but important |
 |---|---|
 | Eating something unsuitable ("dietary indiscretion") | Foreign body blocking the gut |
 | Sudden food change | Pancreatitis |
-| Eating too fast | Kidney or liver disease |
+| Food allergy | Kidney or liver disease |
 | Mild stomach upset or infection | Poisoning |
 | Travel sickness | Bloat (GDV), especially in deep-chested breeds |
 

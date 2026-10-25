@@ -5,7 +5,7 @@ description: "Was Antibiotika können und was nicht, wie Tabletten und Säfte in
 species: general
 category: medications
 urgency: routine
-updated: 2026-10-19
+updated: 2026-10-25
 draft: true
 lang: de
 references:
@@ -23,10 +23,12 @@ references:
     url: "https://www.ema.europa.eu/en/partners-networks/animal-health-professionals/reporting-adverse-events-veterinary-medicines"
   - title: "PDSA: How to give your pet a tablet"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/all-pets/how-to-give-your-pet-a-tablet"
-  - title: "VCA Animal Hospitals: Giving liquid medication to dogs"
-    url: "https://vcahospitals.com/know-your-pet/giving-liquid-medication-to-dogs"
-  - title: "VCA Animal Hospitals: Amoxicillin"
-    url: "https://vcahospitals.com/know-your-pet/amoxicillin"
+  - title: "Washington State University Veterinary Teaching Hospital: Giving oral medications to your dog"
+    url: "https://hospital.vetmed.wsu.edu/2022/01/12/giving-oral-medications-to-your-dog/"
+  - title: "PDSA: Antibiotics for pets"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/medications/antibiotics-for-pets"
+  - title: "MSD Veterinary Manual (dog owners): Disorders involving anaphylactic reactions in dogs"
+    url: "https://www.msdvetmanual.com/dog-owners/immune-disorders-of-dogs/disorders-involving-anaphylactic-reactions-type-i-reactions-atopy-in-dogs"
 ---
 
 ## Wann braucht mein Tier wirklich ein Antibiotikum?
@@ -61,7 +63,7 @@ Verstecken Sie sie in etwas Futter, wenn das erlaubt ist, oder legen Sie sie wei
 
 ## Wie gebe ich meinem Tier einen Antibiotika-Saft?
 
-Ziehen Sie die Dosis mit der mitgelieferten Spritze auf, schieben Sie die Spitze im Mundwinkel hinter den Fangzahn und drücken Sie langsam, damit Ihr Tier zwischen den Portionen schlucken kann. Zielen Sie in Richtung Backe, nicht direkt in den Rachen, damit nichts in die Lunge gelangt. Schütteln Sie die Flasche, wenn das Etikett es verlangt, und lagern Sie sie wie angegeben; manche Suspensionen gehören in den Kühlschrank und sind nach dem Anmischen nur so lange haltbar, wie auf dem Etikett steht.
+Ziehen Sie die Dosis mit der mitgelieferten Spritze auf und entleeren Sie sie in die Tasche zwischen Backe und Zähnen. Halten Sie den Kopf gerade, statt ihn nach hinten zu kippen: Die Tierklinik der Washington State University weist darauf hin, dass Flüssigkeiten leichter in die Luftröhre geraten als Tabletten. Halten Sie dann das Maul geschlossen und streicheln Sie die Kehle, bis Ihr Tier schluckt. Schütteln und lagern Sie die Flasche so, wie es auf dem Etikett steht.
 
 ## Was tue ich, wenn ich eine Antibiotika-Dosis vergessen habe?
 
@@ -71,15 +73,18 @@ Das passiert. Geben Sie die nächste Dosis nicht doppelt, um aufzuholen, und rat
 
 ## Welche Nebenwirkungen von Antibiotika sollte ich der Praxis melden?
 
-Rufen Sie an bei Erbrechen, Durchfall oder Futterverweigerung, Zeichen einer Allergie wie Gesichtsschwellung, Hautausschlag oder Atemnot, oder allem, was Sie beunruhigt.
+Rufen Sie an bei Erbrechen, Durchfall, Mattigkeit, weniger Appetit, Hautausschlag oder Schwellungen, oder allem, was Sie beunruhigt.
 
-Die meisten Behandlungen verlaufen ohne Probleme. Rufen Sie in der Praxis an, wenn Sie sehen:
+Die meisten Behandlungen verlaufen ohne Probleme. Die PDSA, eine britische Tierhilfsorganisation, bittet Halter, die Praxis zu informieren, wenn ein Tier kurz nach Beginn einer Antibiotikabehandlung Folgendes zeigt:
 
-- Erbrechen, Durchfall oder Futterverweigerung
-- Schwellung des Gesichts, Hautausschlag, Fieber, Atemnot (Antibiotikum absetzen und sofort anrufen oder fahren)
+- Durchfall und/oder Erbrechen
+- Mattigkeit oder weniger Appetit
+- Hautausschlag oder Schwellungen
 - alles, was Sie beunruhigt, auch wenn es nicht auf dieser Liste steht
 
-Außer bei einer allergischen Reaktion setzen Sie das Antibiotikum nicht eigenmächtig ab; Ihre Tierärztin kann es wechseln, die Gabe anpassen oder etwas für den Magen dazugeben. Nebenwirkungen und Behandlungen, die nicht gewirkt haben, sollten gemeldet werden: Melden kann laut Europäischer Arzneimittel-Agentur jede Person, also auch Tierhalterinnen und Tierhalter; in Deutschland erfasst und bewertet das Bundesamt für Verbraucherschutz und Lebensmittelsicherheit (BVL) diese Meldungen, und sie fließen in die Überwachung der Tierarzneimittel ein.
+Manche Tiere sind gegen bestimmte Antibiotika allergisch. Bricht Ihr Tier plötzlich zusammen oder beginnt es aus heiterem Himmel zu erbrechen, zu speicheln oder Durchfall zu haben, fahren Sie sofort in die Praxis: Das MSD Veterinary Manual nennt eine schwere allergische Reaktion einen äußersten Notfall.
+
+Setzen Sie das Antibiotikum nicht eigenmächtig ab; Ihre Tierärztin kann es wechseln, die Gabe anpassen oder etwas für den Magen dazugeben. Nebenwirkungen und Behandlungen, die nicht gewirkt haben, sollten gemeldet werden: Melden kann laut Europäischer Arzneimittel-Agentur jede Person, also auch Tierhalterinnen und Tierhalter; in Deutschland erfasst und bewertet das Bundesamt für Verbraucherschutz und Lebensmittelsicherheit (BVL) diese Meldungen, und sie fließen in die Überwachung der Tierarzneimittel ein.
 
 ## Darf ich übrig gebliebene Antibiotika später wieder verwenden?
 
@@ -102,5 +107,6 @@ Welches Antibiotikum, wie lange und mit oder ohne Futter entscheidet die Tierär
 - [EMA: Antimicrobial resistance in veterinary medicine](https://www.ema.europa.eu/en/veterinary-regulatory-overview/antimicrobial-resistance-veterinary-medicine)
 - [EMA: Reporting adverse events for veterinary medicines](https://www.ema.europa.eu/en/partners-networks/animal-health-professionals/reporting-adverse-events-veterinary-medicines)
 - [PDSA: How to give your pet a tablet](https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/all-pets/how-to-give-your-pet-a-tablet)
-- [VCA: Giving liquid medication to dogs](https://vcahospitals.com/know-your-pet/giving-liquid-medication-to-dogs)
-- [VCA: Amoxicillin](https://vcahospitals.com/know-your-pet/amoxicillin)
+- [Washington State University Veterinary Teaching Hospital: Giving oral medications to your dog](https://hospital.vetmed.wsu.edu/2022/01/12/giving-oral-medications-to-your-dog/)
+- [PDSA: Antibiotics for pets](https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/medications/antibiotics-for-pets)
+- [MSD Veterinary Manual: Disorders involving anaphylactic reactions in dogs](https://www.msdvetmanual.com/dog-owners/immune-disorders-of-dogs/disorders-involving-anaphylactic-reactions-type-i-reactions-atopy-in-dogs)

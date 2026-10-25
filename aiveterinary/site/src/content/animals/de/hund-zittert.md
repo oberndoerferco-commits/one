@@ -4,7 +4,7 @@ description: "Zittern und Hecheln haben beim Hund viele harmlose Gründe, von Au
 species: dog
 category: symptoms
 urgency: this-week
-updated: 2026-10-19
+updated: 2026-10-25
 draft: true
 lang: de
 references:
@@ -12,10 +12,20 @@ references:
     url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11951301/"
   - title: "RSPCA: How to Recognise & Treat Heatstroke in Dogs"
     url: "https://www.rspca.org.uk/adviceandwelfare/pets/dogs/health/heatstroke"
-  - title: "VCA Animal Hospitals: Eclampsia in Dogs"
-    url: "https://vcahospitals.com/know-your-pet/eclampsia-in-dogs"
-  - title: "VCA Animal Hospitals: Taking Your Pet's Temperature"
-    url: "https://vcahospitals.com/know-your-pet/taking-your-pets-temperature"
+  - title: "MSD Veterinary Manual (dog owners): Disorders of calcium metabolism in dogs"
+    url: "https://www.msdvetmanual.com/dog-owners/metabolic-disorders-of-dogs/disorders-of-calcium-metabolism-in-dogs"
+  - title: "MSD Veterinary Manual (dog owners): Congenital and inherited disorders of the nervous system in dogs"
+    url: "https://www.msdvetmanual.com/dog-owners/brain-spinal-cord-and-nerve-disorders-of-dogs/congenital-and-inherited-disorders-of-the-nervous-system-in-dogs"
+  - title: "MSD Veterinary Manual (dog owners): Disorders of the pancreas in dogs"
+    url: "https://www.msdvetmanual.com/dog-owners/hormonal-disorders-of-dogs/disorders-of-the-pancreas-in-dogs"
+  - title: "MSD Veterinary Manual: Normal rectal temperature ranges (table)"
+    url: "https://www.msdvetmanual.com/multimedia/table/normal-rectal-temperature-ranges"
+  - title: "MSD Veterinary Manual: Overview of fever of unknown origin"
+    url: "https://www.msdvetmanual.com/metabolic-disorders/fever-of-unknown-origin/overview-of-fever-of-unknown-origin"
+  - title: "MSD Veterinary Manual (pet owners): When to see a veterinarian (table)"
+    url: "https://www.msdvetmanual.com/multimedia/table/when-to-see-a-veterinarian"
+  - title: "MSD Veterinary Manual: What to do in a dog or cat emergency"
+    url: "https://www.msdvetmanual.com/special-pet-topics/emergencies/what-to-do-in-a-dog-or-cat-emergency"
   - title: "MSD Veterinary Manual: Poisoning from Human Over-the-Counter Drugs"
     url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/poisoning-from-human-over-the-counter-drugs"
   - title: "PDSA: GDV (Gastric Dilatation Volvulus) in dogs"
@@ -32,8 +42,9 @@ Fahren Sie sofort in eine Tierarztpraxis und rufen Sie vorher an, wenn Ihr Hund 
 - einen aufgeblähten Bauch hat, unruhig hechelt und würgt, ohne dass etwas oder nur etwas Schaum kommt (Verdacht auf Magendrehung)
 - blasses, graues oder bläuliches Zahnfleisch hat oder sehr schnell und flach atmet
 - Schmerzen zeigt: gekrümmter Rücken, Schreien bei Berührung, Unfähigkeit zu stehen oder zu liegen
-- ein kleiner Welpe oder Zwerghund ist, der schlapp wird (Unterzuckerung)
-- eine säugende Hündin ist, die steif wird und stark hechelt (Kalziummangel, lebensbedrohlich)
+- ein Welpe einer Zwergrasse ist, der schwach oder wackelig wird oder zusammenbricht: Laut MSD Veterinary Manual kann bei Zwergrassen in den ersten sechs Lebensmonaten der Blutzucker absinken, und ein gefährlich niedriger Blutzucker zeigt sich durch Schwäche, unsichere Bewegungen, Krampfanfälle und Zusammenbrechen
+- nach Kälte oder Nässe verwirrt ist, flach atmet oder zusammenbricht: Das können laut MSD Veterinary Manual Zeichen einer Unterkühlung sein, und Zittern allein ist dafür kein verlässliches Zeichen
+- eine säugende Hündin ist, die hechelt, unruhig ist, zittert oder steif wird: Das kann eine Eklampsie (Kalziummangel) sein, die laut MSD Veterinary Manual lebensbedrohlich ist und sofort behandelt werden muss. Sie tritt meist 2 bis 3 Wochen nach der Geburt auf, am häufigsten bei kleinen Rassen mit großen Würfen. Lassen Sie die Welpen nicht mehr trinken, bis die Praxis etwas anderes sagt
 
 ## Warum zittert und hechelt mein Hund?
 
@@ -54,7 +65,7 @@ Beides sind unspezifische Reaktionen. Hecheln ist beim Hund der normale Weg, Wä
 - der Hund in Ruhe, bei normaler Temperatur und ohne erkennbaren Anlass hechelt und zittert
 - er dabei unruhig ist, sich nicht hinlegen will, den Rücken krümmt oder sich zurückzieht
 - der Zustand neu ist und nicht nach wenigen Minuten vorübergeht
-- die Temperatur außerhalb des Normalbereichs liegt (bei Hunden etwa 37,7 bis 39,2 °C, gemessen rektal)
+- die Temperatur außerhalb des Normalbereichs liegt (beim Hund laut MSD Veterinary Manual 37,5 bis 39,2 °C, rektal gemessen)
 - Erbrechen, Durchfall, Lahmheit oder Appetitlosigkeit dazukommen
 
 Schmerz ist der am häufigsten übersehene Grund. Ein Hund mit Rücken- oder Bauchschmerzen zeigt oft nur Hecheln, Zittern und Unruhe und frisst noch.
@@ -64,7 +75,7 @@ Schmerz ist der am häufigsten übersehene Grund. Ein Hund mit Rücken- oder Bau
 Prüfen und beseitigen Sie mögliche Auslöser, messen Sie Fieber, schauen Sie aufs Zahnfleisch, tasten Sie vorsichtig ab und filmen Sie das Zittern.
 
 - **Prüfen Sie die Situation:** Wärme, Kälte, Anstrengung, Angstauslöser? Beseitigen Sie den Auslöser und beobachten Sie zehn Minuten.
-- **Messen Sie Fieber**, wenn Sie ein digitales Thermometer haben und Ihr Hund es duldet. Normal sind etwa 37,7 bis 39,2 °C. Liegt der Wert darüber, rufen Sie Ihre Praxis an. Über 40 °C oder unter 37,2 °C ist ein Notfall: Fahren Sie sofort.
+- **Messen Sie Fieber**, wenn Sie ein digitales Thermometer haben und Ihr Hund es duldet. Normal sind laut MSD Veterinary Manual 37,5 bis 39,2 °C. Liegt der Wert darüber, rufen Sie Ihre Praxis an. Über 40,5 °C gehört Ihr Hund laut MSD Veterinary Manual sofort in die Praxis. Ist die Temperatur zu niedrig und wirkt Ihr Hund verwirrt, atmet flach oder bricht zusammen, kann das eine Unterkühlung sein: Fahren Sie ebenfalls sofort.
 - **Schauen Sie ins Maul:** rosa Zahnfleisch ist beruhigend, blass, dunkelrot oder bläulich nicht.
 - **Tasten Sie vorsichtig** Bauch, Rücken und Beine ab. Zuckt der Hund, schreit er oder weicht er aus, notieren Sie die Stelle.
 - **Filmen Sie das Zittern.** Viele Episoden sind in der Praxis vorbei, ein kurzes Video ist dann sehr hilfreich.

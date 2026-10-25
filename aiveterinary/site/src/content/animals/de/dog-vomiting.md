@@ -5,16 +5,18 @@ description: "Die meisten einmaligen Erbrechensepisoden bei Hunden gehen von sel
 species: dog
 category: symptoms
 urgency: today
-updated: 2026-10-19
+updated: 2026-10-25
 draft: true
 lang: de
 references:
   - title: "PDSA: Vomiting in dogs"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/vomiting-in-dogs"
-  - title: "VCA Animal Hospitals: Vomiting in Dogs"
-    url: "https://vcahospitals.com/know-your-pet/vomiting-in-dogs"
-  - title: "VCA Animal Hospitals: Gastritis in Dogs"
-    url: "https://vcahospitals.com/know-your-pet/gastritis-in-dogs"
+  - title: "Cornell Riney Canine Health Center: Vomiting"
+    url: "https://www.vet.cornell.edu/departments-centers-and-institutes/riney-canine-health-center/canine-health-topics/vomiting"
+  - title: "PDSA: Are my dog's gums pale?"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/other-veterinary-advice/are-my-dog-s-gums-pale"
+  - title: "PDSA: Gastroenteritis (stomach upset) in dogs"
+    url: "https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/conditions/gastroenteritis-stomach-upset-in-dogs"
   - title: "MSD Veterinary Manual: Gastric Dilation and Volvulus in Small Animals"
     url: "https://www.msdvetmanual.com/digestive-system/surgical-problems-of-the-gastrointestinal-tract-in-small-animals/gastric-dilation-and-volvulus-in-small-animals"
   - title: "ASPCA: People Foods to Avoid Feeding Your Pets"
@@ -31,37 +33,37 @@ Fahren Sie sofort in eine Tierarztpraxis und rufen Sie vorher an, wenn Ihr Hund:
 
 - versucht zu erbrechen, aber nichts hochkommt, vor allem mit einem aufgetriebenen, harten Bauch (das kann eine Magendrehung sein, ein lebensbedrohlicher Notfall)
 - Blut erbricht oder Erbrochenes, das wie Kaffeesatz aussieht
-- sehr schwach ist, zusammenbricht oder blasses oder bläulich verfärbtes Zahnfleisch hat
+- sehr schwach oder desorientiert ist oder zusammenbricht
+- blasses, weißes, bläuliches oder gelbes Zahnfleisch hat: Die PDSA rät, sofort die Praxis zu kontaktieren, wenn das Zahnfleisch eine andere Farbe als lachsrosa hat (dunkle Pigmentflecken sind normal)
 - möglicherweise etwas Giftiges gefressen hat: Schokolade, Weintrauben oder Rosinen, Xylit (in manchen Kaugummis, Süßigkeiten, Backwaren und Zahnpasten), Schmerzmittel für Menschen wie Ibuprofen, Frostschutzmittel
 - möglicherweise einen Gegenstand verschluckt hat: ein Spielzeug, eine Socke, einen Knochen
-- ein Welpe oder sehr alt ist oder bereits eine Erkrankung wie Diabetes oder eine Nierenerkrankung hat
 - wiederholt erbricht und kein Wasser bei sich behalten kann
 
 ## Was kann ich zu Hause tun, wenn mein Hund einmal erbrochen hat?
 
 Ein einmaliges Erbrechen bei einem munteren Hund ist häufig: Bieten Sie Wasser in kleinen Mengen an, fragen Sie Ihre Tierarztpraxis, ob eine kurze Futterpause oder kleine, schonende Mahlzeiten besser sind, und rufen Sie an, wenn Ihr Hund erneut erbricht.
 
-Ein einmaliges Erbrechen bei einem ansonsten munteren Hund ist häufig. Hunde fressen Dinge, die sie nicht fressen sollten, fressen zu schnell oder bekommen durch einen Futterwechsel eine Magenverstimmung.
+Ein einmaliges Erbrechen bei einem ansonsten munteren Hund ist häufig. Hunde fressen Dinge, die sie nicht fressen sollten, etwa Gras, oder bekommen durch einen Futterwechsel eine Magenverstimmung.
 
 Was Sie zu Hause tun können:
 
-- Fragen Sie Ihre Tierärztin oder Ihren Tierarzt zur Fütterung. Manche raten, das Futter für kurze Zeit (oft 8 bis 12 Stunden) wegzunehmen und dann kleine, schonende Mahlzeiten zu geben; andere raten zu kleinen Portionen eines schonenden, leicht verdaulichen Futters, wenig und oft, ohne Futterpause.
-- Lassen Sie Wasser in kleinen Mengen zur Verfügung. Große Schlucke können weiteres Erbrechen auslösen.
+- Fragen Sie Ihre Tierärztin oder Ihren Tierarzt zur Fütterung. Das Riney Canine Health Center der Cornell University schlägt nach einmaligem Erbrechen vor, etwa 12 Stunden lang kein Futter, aber weiter Wasser zu geben; die PDSA rät stattdessen zu kleinen, regelmäßigen Portionen eines schonenden, fettarmen Futters.
+- Bieten Sie über den Tag verteilt immer wieder etwas Wasser an.
 - Wenn Sie füttern, geben Sie eine kleine Portion von etwas Schonendem und kehren Sie über zwei bis drei Tage zum normalen Futter zurück.
-- Notieren Sie, wie das Erbrochene aussah, wie oft es vorkam und ob Ihr Hund etwas Ungewöhnliches gefressen hat. Machen Sie ein Foto, wenn Sie können. Ihre Tierärztin oder Ihr Tierarzt wird danach fragen.
+- Notieren Sie, wie das Erbrochene aussah, wie oft es vorkam und ob Ihr Hund etwas Ungewöhnliches gefressen hat. Ihre Tierärztin oder Ihr Tierarzt wird danach fragen.
 
 ## Wann sollte ich mit meinem erbrechenden Hund zur Tierärztin oder zum Tierarzt?
 
-Rufen Sie noch heute an, wenn er mehr als einmal oder länger als 24 Stunden erbricht, zusätzlich Durchfall hat, auffällig anders trinkt, länger als einen Tag nicht frisst oder Schmerzen zu haben scheint.
+Rufen Sie noch heute an, wenn er mehr als einmal oder länger als 24 Stunden erbricht, matt ist, Fieber oder Durchfall hat oder Bauchschmerzen zu haben scheint.
 
 Rufen Sie noch heute in der Praxis an, zur Beratung oder für einen Termin, wenn:
 
 - Ihr Hund mehr als einmal erbricht oder weiter erbricht
 - es länger als 24 Stunden anhält
+- Ihr Hund sehr jung oder sehr alt ist oder eine andere Erkrankung hat: Die PDSA nennt das als Grund, mit einer Magen-Darm-Verstimmung in die Praxis zu gehen
 - zusätzlich Durchfall besteht, vor allem mit Blut
-- Ihr Hund deutlich mehr oder deutlich weniger trinkt als sonst
-- Ihr Hund länger als einen Tag nicht frisst
-- Ihr Hund Schmerzen zu haben scheint: gekrümmter Rücken, Bewegungsunlust, Winseln bei Berührung des Bauches
+- Ihr Hund matt ist oder Fieber hat
+- Ihr Hund Bauchschmerzen zu haben scheint
 
 ## Was wird die Tierärztin oder der Tierarzt über das Erbrechen meines Hundes wissen wollen?
 
@@ -78,13 +80,13 @@ Wenn Sie diese Informationen mitbringen, auch nur als ein paar Notizen auf dem H
 
 ## Warum erbricht mein Hund?
 
-Diätfehler, plötzlicher Futterwechsel, zu schnelles Fressen, leichte Magenverstimmungen und Reisekrankheit sind wahrscheinlich; Fremdkörper, Pankreatitis, Nieren- oder Lebererkrankungen, Vergiftungen und Magendrehung sind seltener, aber wichtig.
+Diätfehler, plötzlicher Futterwechsel, Futterallergien, leichte Magenverstimmungen und Reisekrankheit sind wahrscheinlich; Fremdkörper, Pankreatitis, Nieren- oder Lebererkrankungen, Vergiftungen und Magendrehung sind seltener, aber wichtig.
 
 | Wahrscheinlich | Seltener, aber wichtig |
 |---|---|
 | Ungeeignetes gefressen („Diätfehler“) | Fremdkörper, der den Darm verlegt |
 | Plötzlicher Futterwechsel | Pankreatitis |
-| Zu schnelles Fressen | Nieren- oder Lebererkrankung |
+| Futterallergie | Nieren- oder Lebererkrankung |
 | Leichte Magenverstimmung oder Infektion | Vergiftung |
 | Reisekrankheit | Magendrehung (GDV), vor allem bei Rassen mit tiefem Brustkorb |
 

@@ -5,7 +5,7 @@ description: "Die chronische Nierenerkrankung ist bei älteren Katzen sehr häuf
 species: cat
 category: conditions
 urgency: this-week
-updated: 2026-10-19
+updated: 2026-10-25
 draft: true
 lang: de
 references:
@@ -23,8 +23,8 @@ references:
     url: "https://icatcare.org/articles/lily-poisoning-in-cats"
   - title: "MSD Veterinary Manual: Ethylene glycol (antifreeze) poisoning"
     url: "https://www.msdvetmanual.com/special-pet-topics/poisoning/ethylene-glycol-antifreeze-poisoning"
-  - title: "VCA Animal Hospitals: Acetaminophen toxicity in cats"
-    url: "https://vcahospitals.com/know-your-pet/acetaminophen-toxicity-in-cats"
+  - title: "International Cat Care: Paracetamol poisoning in cats"
+    url: "https://icatcare.org/articles/paracetamol-poisoning-in-cats"
 ---
 
 ## Zuerst: die Anzeichen, bei denen Sie sofort fahren sollten
@@ -36,7 +36,7 @@ Fahren Sie sofort in eine Tierarztpraxis, wenn Ihre Katze, vor allem eine älter
 - Geschwüre im Maul hat
 - gar keinen Urin mehr absetzt (bei Katern auch an Harnröhrenverschluss denken)
 - plötzlich nicht mehr zu sehen scheint, plötzlich desorientiert ist, schwankt, Krampfanfälle oder andere neurologische Zeichen zeigt (Bluthochdruck kann Augen und Gehirn schädigen)
-- möglicherweise einen Teil einer Lilie, Frostschutzmittel oder ein Humanmedikament wie Paracetamol gefressen hat (das kann die Nieren innerhalb von Stunden schädigen)
+- möglicherweise einen Teil einer Lilie oder Frostschutzmittel gefressen hat (das kann die Nieren innerhalb von Stunden schädigen) oder ein Humanmedikament wie Paracetamol geschluckt hat
 
 Das sind Zeichen einer akuten Verschlechterung oder einer Nierenkrise, die stationär behandelt werden muss.
 
@@ -90,7 +90,7 @@ Die Behandlung ist keine Pille, sondern ein Bündel kleiner Maßnahmen:
 - **Kontrollen:** Zu Beginn und nach jeder Anpassung engmaschig, später regelmäßig Blut, Urin, Blutdruck und Gewicht; bei Blutdruckbehandlung mindestens alle drei Monate.
 - **Zähne und Gelenke** nicht vergessen; Schmerz und Zahnentzündungen drücken den Appetit.
 - **Gewicht zu Hause wöchentlich wiegen.** Ein Abfall ist das früheste Warnzeichen.
-- **Keine Schmerzmittel für Menschen** und keine nierenbelastenden Medikamente ohne Rücksprache. Paracetamol darf einer Katze nie gegeben werden; es kann tödlich sein.
+- **Keine Schmerzmittel für Menschen** und keine nierenbelastenden Medikamente ohne Rücksprache. Geben Sie Ihrer Katze nie Paracetamol: Laut International Cat Care kann schon ein Teil einer einzigen Tablette eine Katze töten.
 
 ## Was wird die Tierärztin oder der Tierarzt über meine Nierenkatze wissen wollen?
 
