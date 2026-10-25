@@ -1,0 +1,173 @@
+---
+/**
+ * "What can <animal> eat? A–Z" (/can-eat/<species>, /it/…, /de/…): every food src/data/foods.ts has a source for,
+ * grouped by first letter, each with a stable anchor (#banana, #anguria, #wassermelone), its verdict, the note and
+ * the sources. Filter chips narrow the list by verdict (without JavaScript everything is shown).
+ */
+import AnimalIcon from './AnimalIcon.astro';
+import './food-verdict.css';
+import { SPECIES, UI, anchorOf, azPath, canEatPath, foodsFor, iconSvg, VERDICTS, type Lang, type Species, type Verdict } from '../data/foods';
+interface Props { lang: Lang; species: Species }
+const { lang, species } = Astro.props;
+const u = UI[lang];
+const T = {
+  en: { back: 'Can my pet eat that?', search: 'Check a food', other: 'Other animals', show: 'Show', all: 'All', letters: 'Jump to letter', showing: (n: number, t: number) => `Showing ${n} of ${t} foods.`, legend: 'What the labels mean', notListed: 'Not in the list? Then we have no source for it: ask your vet before feeding it.', toxicMore: 'Already eaten?' },
+  it: { back: 'Il mio animale può mangiarlo?', search: 'Controlla un alimento', other: 'Altri animali', show: 'Mostra', all: 'Tutti', letters: 'Vai alla lettera', showing: (n: number, t: number) => `${n} alimenti su ${t}.`, legend: 'Cosa significano le etichette', notListed: 'Non è nell’elenco? Allora non abbiamo una fonte: chiedi al veterinario prima di darlo.', toxicMore: 'L’ha già mangiato?' },
+  de: { back: 'Darf mein Tier das fressen?', search: 'Lebensmittel prüfen', other: 'Andere Tiere', show: 'Anzeigen', all: 'Alle', letters: 'Zum Buchstaben', showing: (n: number, t: number) => `${n} von ${t} Lebensmitteln.`, legend: 'Was die Einstufungen bedeuten', notListed: 'Nicht in der Liste? Dann haben wir keine Quelle: Fragen Sie Ihre Praxis, bevor Sie es füttern.', toxicMore: 'Schon gefressen?' },
+}[lang];
+const legend: Record<Verdict, Record<Lang, string>> = {
+  toxic: { en: 'dangerous: call your vet if your animal ate it.', it: 'pericoloso: chiama il veterinario se l’ha mangiato.', de: 'gefährlich: rufen Sie die Praxis an, wenn Ihr Tier es gefressen hat.' },
+  avoid: { en: 'not recommended by the source, or sources disagree.', it: 'sconsigliato dalla fonte, oppure le fonti non concordano.', de: 'von der Quelle nicht empfohlen, oder die Quellen sind sich uneinig.' },
+  treat: { en: 'the source says it is fine now and then, in small amounts, with its conditions.', it: 'per la fonte va bene ogni tanto, in piccole quantità, alle sue condizioni.', de: 'laut Quelle ab und zu in kleinen Mengen in Ordnung, unter ihren Bedingungen.' },
+  ok: { en: 'the source counts it as part of the normal diet.', it: 'per la fonte fa parte della dieta normale.', de: 'gehört laut Quelle zum normalen Futter.' },
+};
+const foods = foodsFor(species, lang);
+const letterOf = (s: string) => { const c = s.normalize('NFD').replace(/[̀-ͯ]/g, '').charAt(0).toUpperCase(); return /[A-Z]/.test(c) ? c : '#'; };
+const groups = [...new Set(foods.map((f) => letterOf(f.name[lang])))].map((l) => ({ l, id: `letter-${l === '#' ? 'other' : l.toLowerCase()}`, items: foods.filter((f) => letterOf(f.name[lang]) === l) }));
+const count = Object.fromEntries(VERDICTS.map((v) => [v, foods.filter((f) => f.verdicts[species]!.v === v).length])) as Record<Verdict, number>;
+const title = u.azTitle[species];
+const pageUrl = new URL(azPath(lang, species), Astro.site).href;
+// Structured data mirrors only what the page lists: the page and the food names, nothing else.
+const ld = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'WebPage', '@id': pageUrl, url: pageUrl, name: title, inLanguage: lang, isPartOf: { '@id': 'https://aiveterinary.org/#website' }, mainEntity: { '@id': `${pageUrl}#foods` } },
+    { '@type': 'ItemList', '@id': `${pageUrl}#foods`, name: title, numberOfItems: foods.length, itemListOrder: 'https://schema.org/ItemListOrderAscending',
+      itemListElement: foods.map((f, i) => ({ '@type': 'ListItem', position: i + 1, name: f.name[lang] })) },
+  ],
+};
+const langNote = (l?: Lang) => (l && l !== lang ? (u.langNote as Partial<Record<Lang, string>>)[l] ?? '' : '');
+---
+<script type="application/ld+json" set:html={JSON.stringify(ld).replace(/</g, '\\u003c')} />
+<section class={`ce-hero tint-${species}`}>
+  <div class="wrap ce-hero-in">
+    <div>
+      <p class="eyebrow ce-crumb"><a href={canEatPath(lang)}>{T.back}</a></p>
+      <h1>{title}</h1>
+      <p class="lead">{u.azLead(foods.length)}</p>
+      <p class="fv-draft"><strong>{u.draft}</strong> · {u.draftNot}</p>
+    </div>
+    <div class="ce-art" aria-hidden="true"><AnimalIcon kind={species} size={130} /></div>
+  </div>
+</section>
+<div class="wrap ce-body">
+  <nav class="ce-others" aria-label={T.other}>
+    <ul>
+      {SPECIES.map((s) => (
+        <li><a href={azPath(lang, s)} class={`tint-${s}`} aria-current={s === species ? 'page' : undefined}><span aria-hidden="true"><AnimalIcon kind={s} size={26} /></span>{u.species[s]}</a></li>
+      ))}
+      <li><a href={`${canEatPath(lang)}?a=${species}`} class="ce-search-link">{T.search} →</a></li>
+    </ul>
+  </nav>
+  <div class="fv-ate"><p><strong>{u.ate}</strong> {u.ateMore} <a href={u.emergencyHref}>{u.emergency}</a></p></div>
+  <details class="ce-legend">
+    <summary>{T.legend}</summary>
+    <ul>
+      {VERDICTS.map((v) => <li><span class={`fv fv-${v}`}><span class="fv-icon" set:html={iconSvg(v)} />{u.verdict[v]}</span> {legend[v][lang]}</li>)}
+    </ul>
+    <p>{T.notListed}</p>
+  </details>
+  <div class="ce-filters" id="ce-filters" role="group" aria-label={T.show} hidden>
+    <button type="button" class="ce-chip" data-f="all" aria-pressed="true">{T.all} <span class="ce-n">{foods.length}</span></button>
+    {VERDICTS.filter((v) => count[v]).map((v) => (
+      <button type="button" class={`ce-chip ce-chip-${v}`} data-f={v} aria-pressed="false"><span class="fv-icon" set:html={iconSvg(v)} />{u.verdictShort[v]} <span class="ce-n">{count[v]}</span></button>
+    ))}
+  </div>
+  <p id="ce-status" class="sr-only" role="status" aria-live="polite"></p>
+  <nav class="ce-letters" aria-label={T.letters}>
+    <ul>{groups.map((g) => <li><a href={`#${g.id}`} data-letter={g.id}>{g.l}</a></li>)}</ul>
+  </nav>
+  <div class="ce-list" data-total={foods.length}>
+    {groups.map((g) => (
+      <section class="ce-group" id={g.id} aria-labelledby={`${g.id}-h`}>
+        <h2 class="ce-letter" id={`${g.id}-h`}>{g.l}</h2>
+        {g.items.map((f) => {
+          const v = f.verdicts[species]!;
+          const id = anchorOf(f, lang);
+          return (
+            <article class={`ce-food ce-${v.v}`} id={id} data-v={v.v} aria-labelledby={`${id}-h`}>
+              <h3 id={`${id}-h`}>{f.name[lang]}</h3>
+              <p class={`fv fv-${v.v}`}><span class="fv-icon" set:html={iconSvg(v.v)} />{u.verdict[v.v]}</p>
+              <p class="ce-note">{v.note[lang]}</p>
+              {v.v === 'toxic' && (
+                <p class="ce-ate"><strong>{T.toxicMore}</strong> {u.ate.replace(/^[^?]*\?\s*/, '')}. <a href={u.emergencyHref}>{u.emergency}</a>{f.tool === 'chocolate' && species === 'dog' && <a href={u.chocHref}>{u.choc}</a>}</p>
+              )}
+              <ul class="fv-src" aria-label={u.sources}>
+                {v.refs.map((i) => { const r = f.references[i]; const extra = [langNote(r.lang), r.maker ? u.maker : ''].filter(Boolean).join(', '); return <li><a href={r.url} rel="noopener">{r.title}</a>{extra && <small>({extra})</small>}</li>; })}
+              </ul>
+            </article>
+          );
+        })}
+      </section>
+    ))}
+  </div>
+  <p class="pp-hint ce-foot">{T.notListed} {u.accessed} {u.scope}</p>
+</div>
+<script define:vars={{ showing: { en: 'Showing {n} of {t} foods.', it: '{n} alimenti su {t}.', de: '{n} von {t} Lebensmitteln.' }[lang] }}>
+  (function () {
+    var bar = document.getElementById('ce-filters'); if (!bar) return;
+    bar.hidden = false;
+    var chips = Array.prototype.slice.call(bar.querySelectorAll('.ce-chip'));
+    var foods = Array.prototype.slice.call(document.querySelectorAll('.ce-food'));
+    var groups = Array.prototype.slice.call(document.querySelectorAll('.ce-group'));
+    var status = document.getElementById('ce-status');
+    var apply = function (f) {
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c.dataset.f === f)); });
+      var n = 0;
+      foods.forEach(function (el) { var on = f === 'all' || el.dataset.v === f; el.hidden = !on; if (on) n++; });
+      groups.forEach(function (g) {
+        var any = g.querySelector('.ce-food:not([hidden])');
+        g.hidden = !any;
+        var link = document.querySelector('.ce-letters a[data-letter="' + g.id + '"]');
+        if (link) link.parentElement.hidden = !any;
+      });
+      status.textContent = showing.replace('{n}', n).replace('{t}', foods.length);
+      try { if (f === 'all') history.replaceState(null, '', location.pathname + location.hash); else history.replaceState(null, '', location.pathname + '?show=' + f + location.hash); } catch (e) {}
+    };
+    chips.forEach(function (c) { c.addEventListener('click', function () { apply(c.getAttribute('aria-pressed') === 'true' && c.dataset.f !== 'all' ? 'all' : c.dataset.f); }); });
+    var start = new URLSearchParams(location.search).get('show');
+    if (start && chips.some(function (c) { return c.dataset.f === start; })) apply(start);
+    // a link to #anchor of a filtered-out food shows everything again
+    window.addEventListener('hashchange', function () { var t = document.getElementById(location.hash.slice(1)); if (t && t.closest('[hidden]')) { apply('all'); t.scrollIntoView(); } });
+  })();
+</script>
+<style is:global>
+  .ce-hero { background: var(--tint, var(--accent-soft)); padding: 28px 0 18px; }
+  .ce-hero-in { display: flex; align-items: center; gap: 24px; justify-content: space-between; }
+  .ce-hero h1 { font-size: clamp(1.8rem, 4.6vw, 2.8rem); overflow-wrap: break-word; hyphens: auto; }
+  .ce-hero .lead { color: var(--ink); max-width: 62ch; font-size: 1.08rem; }
+  .ce-crumb a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink-2); }
+  .ce-art { flex: none; }
+  .ce-body { padding-top: 16px; padding-bottom: 48px; max-width: 860px; }
+  .ce-others ul, .ce-letters ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .ce-others a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 12px 0 6px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); text-decoration: none; font-weight: 600; font-size: .92rem; }
+  .ce-others a > span { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--tint, var(--accent-soft)); }
+  .ce-others a[aria-current="page"] { border-color: var(--accent); box-shadow: inset 0 0 0 1.5px var(--accent); }
+  .ce-others .ce-search-link { padding: 0 14px; color: var(--accent); }
+  .ce-legend { margin: 12px 0; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 0 16px; }
+  .ce-legend summary { min-height: 48px; display: flex; align-items: center; cursor: pointer; font-weight: 700; }
+  .ce-legend ul { list-style: none; padding: 0; margin: 0 0 10px; display: grid; gap: 10px; }
+  .ce-legend p { margin: 0 0 14px; }
+  .ce-filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 8px; }
+  .ce-chip { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px 0 10px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); font: inherit; font-weight: 600; cursor: pointer; }
+  .ce-chip[data-f="all"] { padding-left: 14px; }
+  .ce-chip .fv-icon { --v: var(--ink-3); background: var(--v); color: var(--surface); }
+  .ce-chip-toxic .fv-icon { --v: var(--danger); } .ce-chip-avoid .fv-icon { --v: var(--warn); } .ce-chip-treat .fv-icon { --v: var(--accent); } .ce-chip-ok .fv-icon { --v: var(--ok); }
+  .ce-chip[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--bg); }
+  .ce-n { font-weight: 500; opacity: .85; }
+  .ce-letters { position: sticky; top: 64px; z-index: 2; background: color-mix(in srgb, var(--bg) 94%, transparent); padding: 6px 0; margin: 0 0 8px; border-bottom: 1px solid var(--line); }
+  .ce-letters a { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; height: 44px; border-radius: 10px; font-weight: 700; color: var(--accent); background: var(--surface); border: 1px solid var(--line); text-decoration: none; }
+  .ce-letters a:hover { border-color: var(--accent); }
+  .ce-group { scroll-margin-top: 130px; }
+  .ce-letter { font-size: 1.6rem; margin: 26px 0 6px; padding-bottom: 4px; border-bottom: 2px solid var(--line); }
+  .ce-food { scroll-margin-top: 130px; padding: 14px 18px; margin: 10px 0; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); border-left: 6px solid var(--ink-3); }
+  .ce-food:target { box-shadow: 0 0 0 3px var(--accent); }
+  .ce-toxic { border-left-color: var(--danger); } .ce-avoid { border-left-color: var(--warn); } .ce-treat { border-left-color: var(--accent); } .ce-ok { border-left-color: var(--ok); }
+  .ce-food h3 { font-family: var(--font-display); font-size: 1.3rem; margin: 0 0 8px; }
+  .ce-food .fv { margin: 0 0 8px; }
+  .ce-note { margin: 0 0 4px; }
+  .ce-ate { margin: 8px 0 4px; padding: 6px 12px; border-radius: 8px; background: var(--danger-soft); }
+  .ce-ate a { display: inline-flex; align-items: center; min-height: 44px; margin-right: 14px; font-weight: 600; color: var(--ink); }
+  .ce-foot { margin-top: 28px; }
+  @media (max-width: 640px) { .ce-art { display: none; } .ce-hero { padding-top: 16px; } .ce-food { padding: 12px 14px; } }
+</style>
