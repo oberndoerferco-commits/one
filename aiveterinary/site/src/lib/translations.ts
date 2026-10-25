@@ -58,4 +58,8 @@ export const TRANSLATION_GROUPS: { en?: string; it?: string; de?: string }[] = [
   { en: 'reptile-not-eating', it: 'rettile-non-mangia', de: 'reptil-frisst-nicht' }, // reptile-not-eating
   { en: 'reptile-metabolic-bone-disease', it: 'malattia-ossea-metabolica-rettili', de: 'rachitis-reptilien' }, // reptile-mbd
   { en: 'reptile-stuck-shed', it: 'problemi-muta-rettili', de: 'haeutungsprobleme-reptilien' }, // reptile-stuck-shed
+  { en: 'dog-swallowed-object', it: 'cane-ha-ingerito-corpo-estraneo', de: 'hund-hat-plastik-socke-gefressen' }, // dog-foreign-body
+  { en: 'cat-swallowed-string', it: 'gatto-ha-ingerito-filo', de: 'katze-hat-faden-gefressen' }, // cat-string
+  { en: 'cat-peeing-outside-litter-box', it: 'gatto-pipi-fuori-lettiera', de: 'katze-pinkelt-ins-bett' }, // cat-house-soiling
+  { en: 'rabbit-vaccinations', it: 'vaccino-coniglio', de: 'kaninchen-impfen-rhd-myxomatose' }, // rabbit-vaccinations
 ];
