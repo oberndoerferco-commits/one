@@ -6,7 +6,7 @@ group: reptiles
 species: reptile
 description: "Il geco leopardino può vivere fino a 20 anni (RSPCA). È attivo all'alba e al tramonto, mangia insetti vivi e vuole un lato caldo a 28–30 °C, un lato fresco, un rifugio umido e poca luce UVB."
 facts:
-  - { field: lifespan, value: "Può vivere fino a 20 anni (RSPCA); VCA indica 10–15 anni con buone cure", ref: 1 }
+  - { field: lifespan, value: "Può vivere fino a 20 anni (RSPCA)", ref: 1 }
   - { field: size, value: "Di solito arriva a circa 25 cm di lunghezza (RSPCA)", ref: 1 }
   - { field: social, value: "Meglio da solo: non ha bisogno di compagnia e può essere aggressivo (RSPCA)", ref: 1 }
   - { field: activity, value: "Crepuscolare: attivo all'alba e al tramonto, si ripara sotto le rocce nelle ore più calde", ref: 1 }
@@ -14,12 +14,10 @@ facts:
   - { field: housing, value: "Almeno 60 cm di lunghezza, 40 di altezza e 30 di profondità per un adulto, più un rifugio umido; il più grande possibile", ref: 1 }
   - { field: housing, value: "Tubo UVB 2–5% sopra metà o un terzo del terrario, UVI 0,7 nella zona di basking (RSPCA)", ref: 1 }
   - { field: temperature, value: "Zona calda 28–30 °C, lato fresco 24–26 °C; calore in più se di notte la stanza scende sotto i 18 °C (RSPCA)", ref: 1 }
-  - { field: temperature, value: "VCA: terrario intorno a metà degli 80 °F (circa 30 °C); tollera notti fino a 21 °C", ref: 2 }
   - { field: handling, value: "Mai afferrarlo né premere sulla coda, che può perdere; sollevarlo con due mani (RSPCA)", ref: 1 }
   - { field: vet, value: "Contrazioni muscolari, zampe gonfie o ossa fragili possono indicare malattia ossea metabolica: subito dal veterinario (RSPCA)", ref: 1 }
 references:
   - { title: "RSPCA: How to care for a leopard gecko", url: "https://www.rspca.org.uk/adviceandwelfare/pets/other/leopardgecko" }
-  - { title: "VCA Animal Hospitals: Leopard Geckos, Care and Feeding (Gregory Rich, DVM)", url: "https://vcahospitals.com/know-your-pet/leopard-geckos-care-and-feeding" }
   - { title: "CDC: Reptiles and Amphibians (Healthy Pets, Healthy People)", url: "https://www.cdc.gov/healthy-pets/about/reptiles-and-amphibians.html" }
   - { title: "Robert Koch-Institut: RKI-Ratgeber Salmonellose", url: "https://www.rki.de/DE/Aktuelles/Publikationen/RKI-Ratgeber/Ratgeber/Ratgeber_Salmonellose.html" }
 updated: 2026-10-25
@@ -29,18 +27,18 @@ lang: it
 
 ## Quanto vive un geco leopardino?
 
-Il geco leopardino può vivere fino a 20 anni, secondo la RSPCA, la principale associazione britannica per la protezione degli animali; VCA indica 10–15 anni con buone cure veterinarie, un terrario pulito e un'alimentazione corretta.
+Il geco leopardino può vivere fino a 20 anni, secondo la RSPCA, la principale associazione britannica per la protezione degli animali.
 
-Di solito arriva a circa 25 cm (RSPCA); VCA indica 12–25 cm da adulto. Viene dalle boscaglie aride e rocciose di Pakistan e Afghanistan, e quelli tenuti nel Regno Unito sono tutti nati in cattività (RSPCA).
+Di solito arriva a circa 25 cm (RSPCA). Viene dalle boscaglie aride e rocciose di Pakistan e Afghanistan, e quelli tenuti nel Regno Unito sono tutti nati in cattività (RSPCA).
 
 ## Cosa mangia il geco leopardino?
 
 Solo insetti vivi, come grilli, calciworm e locuste, non più grandi della testa del geco (RSPCA).
 
-- **Gut-loading:** nutrite gli insetti con un alimento apposito per 24–48 ore prima di darli al geco (RSPCA); VCA dice almeno 24 ore.
-- **Integratori:** spolverate gli insetti con un integratore di vitamine e calcio subito prima del pasto, e lasciate sempre nel terrario una ciotolina di calcio in polvere puro (RSPCA). VCA consiglia un calcio in polvere senza fosforo.
+- **Gut-loading:** nutrite gli insetti con un alimento apposito per 24–48 ore prima di darli al geco (RSPCA).
+- **Integratori:** spolverate gli insetti con un integratore di vitamine e calcio subito prima del pasto, e lasciate sempre nel terrario una ciotolina di calcio in polvere puro (RSPCA).
 - **Tarme della cera (waxworm):** solo ogni tanto, perché sono molto grasse (RSPCA).
-- **Quanto spesso:** i giovani ogni giorno, gli adulti a giorni alterni (RSPCA); VCA dice i giovani ogni 1–2 giorni e gli adulti 2–3 volte a settimana.
+- **Quanto spesso:** i giovani ogni giorno, gli adulti a giorni alterni (RSPCA).
 - **Acqua:** sempre una ciotola bassa di acqua pulita nel lato fresco, cambiata almeno ogni giorno (RSPCA).
 
 ## Che temperatura serve a un geco leopardino?
@@ -48,14 +46,13 @@ Solo insetti vivi, come grilli, calciworm e locuste, non più grandi della testa
 Un lato caldo e uno fresco: la RSPCA indica una zona calda a 28–30 °C e un lato fresco a 24–26 °C. Di notte il riscaldamento si può spegnere, a meno che la stanza scenda sotto i 18 °C.
 
 - **RSPCA:** una lampada riscaldante o in ceramica con termostato per la zona calda; se usate un tappetino riscaldante, impostate il termostato a 30 °C. Controllate le temperature ogni giorno con un termometro digitale o a infrarossi.
-- **VCA:** il geco leopardino sta meglio con il terrario intorno a metà degli 80 °F (circa 30 °C) e tollera notti fino a 21 °C. Cavi riscaldanti, tappetini sotto la vasca o lampade di basking basse sono buone fonti di calore.
 - **Umidità:** il geco leopardino vuole un terrario piuttosto secco, intorno al 30–40% di umidità nel lato fresco, più un rifugio umido con muschio bagnato, spruzzato ogni pochi giorni (RSPCA).
 - **Spazio:** almeno 60 cm di lunghezza, 40 di altezza e 30 di profondità per un adulto, e il più grande possibile (RSPCA).
 - **Fondo:** per gli adulti sani va bene un misto di circa metà terriccio organico e metà sabbia; i giovani vanno tenuti su un fondo non sciolto, e sabbia calcarea e trucioli di faggio vanno evitati (RSPCA).
 
 ## Il geco leopardino ha bisogno della luce UVB?
 
-Le fonti non coincidono. La RSPCA dice che il geco leopardino ha bisogno di un gradiente di UVB, da un indice UV di 0,7 nella zona calda fino a zero all'ombra, con un tubo UVB al 2–5%; VCA dice che gli UVB non sono indispensabili ma sono consigliati.
+Sì, a basso livello. La RSPCA dice che il geco leopardino ha bisogno di un gradiente di UVB, da un indice UV di 0,7 nella zona calda fino a zero all'ombra, con un tubo UVB al 2–5%.
 
 - La RSPCA mette il tubo nel lato caldo, per una lunghezza da metà a un terzo del terrario, con 12 ore di luce e 12 di buio.
 - Controllate l'emissione con un misuratore di UVI e sostituite il tubo come indica il produttore (RSPCA).
@@ -89,7 +86,7 @@ Non afferratelo mai: sollevatelo con due mani sostenendo tutte e quattro le zamp
 
 - Non premete mai sulla coda: il geco può perderla. Ricresce, ma consuma le riserve di grasso ed è pesante per l'animale (RSPCA).
 - Lasciate ambientare un geco nuovo per circa una settimana prima di prenderlo in mano, e tenete lontani gli altri animali (RSPCA).
-- La RSPCA consiglia di tenere il geco leopardino da solo; VCA avverte che i maschi possono essere territoriali, quindi attenzione con due o più maschi nello stesso terrario.
+- La RSPCA consiglia di tenere il geco leopardino da solo: non ha bisogno di compagnia e può essere aggressivo.
 
 ## Salmonella: l'igiene con un geco leopardino
 

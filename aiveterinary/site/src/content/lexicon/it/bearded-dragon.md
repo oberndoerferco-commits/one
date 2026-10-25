@@ -6,7 +6,7 @@ group: reptiles
 species: reptile
 description: "Il drago barbuto (pogona) vive di solito 10–15 anni o più (RSPCA). Ha bisogno di un terrario grande con un punto caldo a 38–42 °C, luce UVB intensa e insetti vivi più verdure."
 facts:
-  - { field: lifespan, value: "Di solito 10–15 anni o più (RSPCA); VCA indica circa 7–12 anni con cure adeguate", ref: 1 }
+  - { field: lifespan, value: "Di solito 10–15 anni o più (RSPCA)", ref: 1 }
   - { field: size, value: "Arriva a circa 45 cm compresa la lunga coda (RSPCA)", ref: 1 }
   - { field: social, value: "Territoriale; in natura i maschi vivono da soli. Meglio tenerlo da solo (RSPCA)", ref: 1 }
   - { field: activity, value: "Nelle stagioni fredde rallenta, dorme di più e mangia meno (brumazione); dal veterinario se perde peso", ref: 1 }
@@ -15,14 +15,13 @@ facts:
   - { field: housing, value: "Tubo UVB ad alta emissione 10–12%, UVI 3,0–5,0 nella zona di basking fino a zero all'ombra (RSPCA)", ref: 1 }
   - { field: temperature, value: "Lato caldo 38–42 °C, lato fresco 22–26 °C, di notte non sotto i 20–22 °C (RSPCA)", ref: 1 }
   - { field: handling, value: "Sollevarlo con due mani, sostenendo tutte e quattro le zampe; circa 10–15 minuti per volta (RSPCA)", ref: 1 }
-  - { field: vet, value: "Farlo visitare da un veterinario esperto di rettili poco dopo l'arrivo a casa (VCA)", ref: 2 }
-  - { field: vet, value: "Starnuti, secrezioni, bolle da bocca o naso o respiro a bocca aperta richiedono subito il veterinario (VCA)", ref: 4 }
+  - { field: vet, value: "Una prima visita dal veterinario poco dopo l'arrivo, poi un controllo ogni anno (MSD)", ref: 2 }
+  - { field: vet, value: "Respiro a bocca aperta, secrezioni dal naso o difficoltà a respirare sono segni frequenti di un'infezione respiratoria (MSD)", ref: 3 }
 references:
   - { title: "RSPCA: How to care for your bearded dragon", url: "https://www.rspca.org.uk/adviceandwelfare/pets/other/beardeddragon" }
-  - { title: "VCA Animal Hospitals: Owning Bearded Dragons", url: "https://vcahospitals.com/know-your-pet/bearded-dragons-owning" }
-  - { title: "VCA Animal Hospitals: Bearded Dragons – Housing", url: "https://vcahospitals.com/know-your-pet/bearded-dragons-housing" }
-  - { title: "VCA Animal Hospitals: Bearded Dragons – Diseases", url: "https://vcahospitals.com/know-your-pet/bearded-dragons-diseases" }
-  - { title: "VCA Animal Hospitals: Brumation in Bearded Dragons", url: "https://vcahospitals.com/know-your-pet/brumation-in-bearded-dragons" }
+  - { title: "MSD Veterinary Manual (Pet Owner Version): Routine Health Care of Reptiles", url: "https://www.msdvetmanual.com/all-other-pets/reptiles/routine-health-care-of-reptiles" }
+  - { title: "MSD Veterinary Manual (Pet Owner Version): Disorders and Diseases of Reptiles", url: "https://www.msdvetmanual.com/all-other-pets/reptiles/disorders-and-diseases-of-reptiles" }
+  - { title: "Royal Veterinary College (RVC) Exotics Service: Bearded dragon care (reviewed December 2024, PDF)", url: "https://rvc.ac.uk/Media/Default/Beaumont%20Sainsbury%20Animal%20Hospital/EXOTICS/Animal%20Care%20Factsheets/Bearded%20dragon%20care%202024%20jh.pdf" }
   - { title: "CDC: Reptiles and Amphibians (Healthy Pets, Healthy People)", url: "https://www.cdc.gov/healthy-pets/about/reptiles-and-amphibians.html" }
   - { title: "Robert Koch-Institut: RKI-Ratgeber Salmonellose", url: "https://www.rki.de/DE/Aktuelles/Publikationen/RKI-Ratgeber/Ratgeber/Ratgeber_Salmonellose.html" }
 updated: 2026-10-25
@@ -32,15 +31,15 @@ lang: it
 
 ## Quanto vive un drago barbuto?
 
-Di solito da 10 a 15 anni o più, secondo la RSPCA, la principale associazione britannica per la protezione degli animali; VCA indica circa 7–12 anni con cure adeguate. In ogni caso è un impegno lungo.
+Di solito da 10 a 15 anni o più, secondo la RSPCA, la principale associazione britannica per la protezione degli animali: è un impegno lungo.
 
-Il drago barbuto viene dalle boscaglie e dai boschi aridi dell'Australia (RSPCA) e arriva a circa 45 cm compresa la lunga coda (RSPCA); VCA indica 45–56 cm dalla punta del muso alla punta della coda negli adulti sani.
+Il drago barbuto viene dalle boscaglie e dai boschi aridi dell'Australia (RSPCA) e arriva a circa 45 cm compresa la lunga coda (RSPCA).
 
 ## Cosa mangia il drago barbuto?
 
 È onnivoro: mangia insetti vivi e vegetali, e la parte di verdure cresce con l'età. La RSPCA suggerisce circa 65% di insetti vivi e 35% di verdure per i giovani, e circa 40% di insetti e 60% di verdure quando superano i 30 cm.
 
-- **Verdure:** crescione d'acqua, rucola, cicoria, crescione e zucca butternut grattugiata vanno bene (RSPCA). VCA dice che gli adulti dovrebbero ricavare la maggior parte del nutrimento da verdure a foglia.
+- **Verdure:** crescione d'acqua, rucola, cicoria, crescione e zucca butternut grattugiata vanno bene (RSPCA). Il Royal Veterinary College (RVC) dice che verdure a foglia scura ed erbe selvatiche devono essere la parte principale dei vegetali.
 - **Da evitare:** gli spinaci, che impediscono l'assorbimento del calcio, e troppo cavolo o cavolo riccio, che possono influire sugli ormoni (RSPCA).
 - **Insetti vivi:** non più grandi della bocca del drago, nutriti con un alimento apposito per 24–48 ore prima (gut-loading) e spolverati leggermente con una polvere di vitamine e minerali (RSPCA).
 - **Quanto spesso:** i piccoli due volte al giorno con le verdure tagliate fini; giovani e adulti una volta al giorno, al mattino (RSPCA).
@@ -50,63 +49,56 @@ Il drago barbuto viene dalle boscaglie e dai boschi aridi dell'Australia (RSPCA)
 
 Serve un gradiente di temperatura: la RSPCA indica 38–42 °C nel lato caldo e luminoso, 22–26 °C nel lato fresco in ombra e non meno di 20–22 °C di notte.
 
-- VCA indica 32–38 °C nel lato caldo di basking e 24–27 °C in quello fresco, e dice che di notte può non servire altro calore se il lato fresco resta tra 18 e 27 °C.
-- Il dorso del drago deve restare ad almeno 25–30 cm dalla lampada (RSPCA); usate termostati perché i riscaldatori non lo brucino (VCA).
-- Mettete un termometro a ogni estremità (VCA). Mai le "pietre riscaldanti": possono diventare abbastanza calde da ustionare (VCA).
+- Il dorso del drago deve restare ad almeno 25–30 cm dalla lampada, e la temperatura va regolata con un termostato (RSPCA). L'RVC dice che le fonti di calore vanno protette per evitare ustioni.
+- Misurate ogni giorno la temperatura a entrambe le estremità con un termometro a infrarossi (RSPCA).
 - L'umidità nel lato fresco di norma è intorno al 30–40% (RSPCA).
-- La RSPCA indica almeno 120 cm di lunghezza × 60 cm di altezza × 60 cm di profondità per un adulto. VCA dice che il terrario deve essere lungo almeno tre volte la lucertola.
+- La RSPCA indica almeno 120 cm di lunghezza × 60 cm di altezza × 60 cm di profondità per un adulto.
 
 ## Il drago barbuto ha bisogno della luce UVB?
 
-Sì. Il drago barbuto ha bisogno di UVB per produrre vitamina D3 nella pelle (VCA). La RSPCA consiglia un tubo UVB ad alta emissione al 10–12%, con un indice UV di 3,0–5,0 nella zona di basking e zero all'ombra.
+Sì. La RSPCA consiglia un tubo UVB ad alta emissione al 10–12%, con un indice UV di 3,0–5,0 nella zona di basking e zero all'ombra.
 
 - Gli esemplari albini e le varietà chiare simili vogliono al massimo un UVI di 3,0 nella zona di basking (RSPCA).
-- Una lampada con la scritta "full spectrum" non dà necessariamente abbastanza UVB (VCA).
-- Gli UVB devono arrivare al drago senza vetro o plastica in mezzo; anche le reti li riducono (VCA).
-- Sostituite la lampada quando lo consiglia il produttore (RSPCA); VCA dice ogni sei mesi o come indica il produttore, perché l'emissione cala anche se la lampada fa ancora luce.
+- Gli UVB non passano attraverso il vetro delle finestre, quindi la lampada UVB va montata dentro il terrario (RSPCA).
+- L'emissione UV cala col tempo: controllatela regolarmente e sostituite la lampada quando lo consiglia il produttore (RSPCA).
 - Luci accese 12 ore e spente 12 ore (RSPCA).
 
 Pochi UVB e poco calcio causano la malattia ossea metabolica, uno dei problemi più comuni dei rettili in cattività (RSPCA). Approfondite nella pagina sulla [malattia ossea metabolica](/it/animals/malattia-ossea-metabolica-rettili).
 
 ## Il mio drago barbuto è in brumazione o sta male?
 
-Nelle stagioni fredde il drago barbuto rallenta in modo naturale, dorme di più e mangia meno: si chiama brumazione (RSPCA). Ma un drago tenuto alle normali temperature di casa che è apatico o non mangia potrebbe essere malato, dice VCA: fatelo controllare da un veterinario per rettili invece di dare per scontata la brumazione.
+Nelle stagioni fredde il drago barbuto rallenta in modo naturale, dorme di più e mangia meno: si chiama brumazione (RSPCA). Ma non deve perdere peso né smettere del tutto di mangiare, quindi tenetelo d'occhio.
 
 - Contattate il veterinario se in questo periodo perde peso (RSPCA).
-- VCA consiglia un controllo dal veterinario per rettili prima della brumazione, perché un drago non sano può risvegliarsi in condizioni critiche.
-- In brumazione di solito è apatico, rifiuta il cibo, probabilmente non defeca e la pelle può apparire più scura (VCA).
-- Finita la fase di crescita, verso i 10–12 mesi, il drago mangia solo ogni 48–72 ore, quindi mangiare meno da solo non prova una malattia (VCA).
 
 Altro aiuto: [rettile che non mangia](/it/animals/rettile-non-mangia).
 
 ## Come capisco se il mio drago barbuto sta bene?
 
-Un drago barbuto sano è attento, attivo e vigile, con occhi limpidi e brillanti (VCA, RSPCA).
+Un drago barbuto sano ha occhi limpidi e brillanti e diventa più vivace di colore dopo il basking (RSPCA).
 
-- La coda vicino alle zampe posteriori è tonda e piena, non infossata e ossuta (VCA).
-- La cloaca è pulita, senza umidità o feci attaccate (VCA).
+- Un drago ben nutrito ha la base della coda spessa e le anche non sporgono (RSPCA).
 - Le feci sono lunghe e abbastanza sode (RSPCA).
 
 ## Quando portare il drago barbuto dal veterinario?
 
-VCA dice che qualsiasi cambiamento rispetto al normale va fatto valutare subito dal veterinario. Andate immediatamente se il drago starnutisce, ha secrezioni da occhi o naso, bolle da bocca o naso, o respira in modo rapido, superficiale o a bocca aperta (VCA).
+Andate dal veterinario per rettili se avete qualsiasi dubbio (RSPCA). Respiro a bocca aperta, secrezioni dal naso e difficoltà a respirare sono segni frequenti di un'infezione respiratoria (Manuale Veterinario MSD).
 
 Portatelo presto da un veterinario per rettili anche se:
 
-- ha la mandibola gonfia o molle ("mascella di gomma"), contrazioni muscolari, zampe gonfie o convulsioni, segni di malattia ossea metabolica (VCA, RSPCA)
-- ha stitichezza o diarrea insieme a calo di peso, che possono dipendere da parassiti intestinali (RSPCA), o feci maleodoranti (VCA)
-- è debole e non mangia; l'atadenovirus, molto comune nei draghi giovani, può causare morte improvvisa (VCA)
+- ha contrazioni muscolari, zampe gonfie o la mandibola gonfia o deformata, segni di malattia ossea metabolica (RSPCA, MSD)
+- ha stitichezza o diarrea insieme a calo di peso, che possono dipendere da parassiti intestinali (RSPCA)
 - ha pelle vecchia rimasta attaccata alle zampe, che può bloccare la circolazione e far perdere le dita (RSPCA); vedi [problemi di muta](/it/animals/problemi-muta-rettili)
 - è una femmina che non riesce a deporre le uova: la ritenzione delle uova è una condizione seria (RSPCA)
-- ha piccole emorragie puntiformi sulle gengive o materiale simile a ricotta in bocca, segni di stomatite (VCA)
+- ha minuscole macchie rosso-violacee in bocca, un primo segno di stomatite (MSD)
 
-VCA consiglia anche una visita da un veterinario per rettili poco dopo l'arrivo di un nuovo drago.
+Il Manuale Veterinario MSD consiglia anche una prima visita dal veterinario subito dopo l'arrivo di un nuovo rettile, e l'RVC raccomanda un controllo ogni anno.
 
 ## Come si prende in mano un drago barbuto?
 
 Sollevatelo con delicatezza con due mani, sostenendo tutte e quattro le zampe, per circa 10–15 minuti per volta, a seconda della temperatura dell'aria (RSPCA).
 
-Non sorprendetelo e non afferratelo mai, perché si stressa, e lasciate ambientare un drago nuovo per la prima settimana prima di prenderlo in mano (RSPCA). VCA descrive i draghi barbuti come spesso curiosi, docili e reattivi verso il proprietario, e dice che di solito è meglio tenerli da soli: insieme possono contendersi cibo e posto al caldo e litigare.
+Non sorprendetelo e non afferratelo mai, perché si stressa, e lasciate ambientare un drago nuovo per la prima settimana prima di prenderlo in mano (RSPCA). È meglio tenere i draghi barbuti separati (RSPCA); anche l'RVC consiglia di tenerli da soli.
 
 ## Salmonella: l'igiene con un drago barbuto
 

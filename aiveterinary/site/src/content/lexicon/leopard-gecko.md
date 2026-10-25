@@ -6,7 +6,7 @@ group: reptiles
 species: reptile
 description: "Leopard geckos can live up to 20 years (RSPCA). They are active at dawn and dusk, eat live insects and need a warm end of 28–30 °C, a cool end, a moist hide and low-level UVB."
 facts:
-  - { field: lifespan, value: "Can live up to 20 years (RSPCA); VCA gives 10–15 years with good care", ref: 1 }
+  - { field: lifespan, value: "Can live up to 20 years (RSPCA)", ref: 1 }
   - { field: size, value: "Usually grows to around 25 cm in length (RSPCA)", ref: 1 }
   - { field: social, value: "Best kept alone: they don't need company and can be aggressive (RSPCA)", ref: 1 }
   - { field: activity, value: "Crepuscular: active at dawn and dusk, sheltering under rocks in the hottest part of the day", ref: 1 }
@@ -14,12 +14,10 @@ facts:
   - { field: housing, value: "At least 60 cm long, 40 cm high and 30 cm deep for one adult, plus a moist hide; as large as possible (RSPCA)", ref: 1 }
   - { field: housing, value: "A 2–5% UVB tube over one-half to one-third of the vivarium, UVI 0.7 in the basking zone (RSPCA)", ref: 1 }
   - { field: temperature, value: "Basking zone 28–30 °C, cool end 24–26 °C; add heat if the room drops below 18 °C at night (RSPCA)", ref: 1 }
-  - { field: temperature, value: "VCA: cage temperature in the mid-80s °F (about 30 °C); nights down to 21 °C are tolerated", ref: 2 }
   - { field: handling, value: "Never grab it or put pressure on the tail, which it can drop; scoop it up with both hands (RSPCA)", ref: 1 }
   - { field: vet, value: "Muscle twitching, swollen legs or fragile bones can mean metabolic bone disease: get urgent vet advice (RSPCA)", ref: 1 }
 references:
   - { title: "RSPCA: How to care for a leopard gecko", url: "https://www.rspca.org.uk/adviceandwelfare/pets/other/leopardgecko" }
-  - { title: "VCA Animal Hospitals: Leopard Geckos, Care and Feeding (Gregory Rich, DVM)", url: "https://vcahospitals.com/know-your-pet/leopard-geckos-care-and-feeding" }
   - { title: "CDC: Reptiles and Amphibians (Healthy Pets, Healthy People)", url: "https://www.cdc.gov/healthy-pets/about/reptiles-and-amphibians.html" }
   - { title: "Robert Koch-Institut: RKI-Ratgeber Salmonellose", url: "https://www.rki.de/DE/Aktuelles/Publikationen/RKI-Ratgeber/Ratgeber/Ratgeber_Salmonellose.html" }
 updated: 2026-10-25
@@ -29,18 +27,18 @@ lang: en
 
 ## How long do leopard geckos live?
 
-Leopard geckos can live up to 20 years, according to the RSPCA; VCA gives 10 to 15 years with good health care, a clean enclosure and proper feeding.
+Leopard geckos can live up to 20 years, according to the RSPCA.
 
-They usually grow to around 25 cm (RSPCA); VCA gives an adult size of 12–25 cm. Leopard geckos come from dry, rocky scrubland in Pakistan and Afghanistan, and all those kept in the UK are captive bred (RSPCA).
+They usually grow to around 25 cm (RSPCA). Leopard geckos come from dry, rocky scrubland in Pakistan and Afghanistan, and all those kept in the UK are captive bred (RSPCA).
 
 ## What do leopard geckos eat?
 
 Leopard geckos eat live insects only, such as crickets, calciworms and locusts, no bigger than the gecko's head (RSPCA).
 
-- **Gut-loading:** feed the insects a formulated diet for 24–48 hours before you give them to the gecko (RSPCA); VCA says at least 24 hours.
-- **Supplements:** dust livefood with a vitamin and calcium supplement just before feeding, and keep a small bowl of plain calcium powder in the vivarium at all times (RSPCA). VCA advises a phosphorus-free calcium powder.
+- **Gut-loading:** feed the insects a formulated diet for 24–48 hours before you give them to the gecko (RSPCA).
+- **Supplements:** dust livefood with a vitamin and calcium supplement just before feeding, and keep a small bowl of plain calcium powder in the vivarium at all times (RSPCA).
 - **Waxworms:** only sparingly, because they are high in fat (RSPCA).
-- **How often:** juveniles every day and adults every other day (RSPCA); VCA says juveniles every 1–2 days and adults 2–3 times a week.
+- **How often:** juveniles every day and adults every other day (RSPCA).
 - **Water:** a shallow dish of clean water at the cool end at all times, changed at least daily (RSPCA).
 
 ## What temperature does a leopard gecko need?
@@ -48,14 +46,13 @@ Leopard geckos eat live insects only, such as crickets, calciworms and locusts, 
 A warm end and a cool end: the RSPCA gives a basking zone of 28–30 °C and a cool end of 24–26 °C. At night the heat can go off, unless the room drops below 18 °C.
 
 - **RSPCA:** a basking or ceramic lamp on a thermostat for the warm zone; if you use a heat mat, set its thermostat to 30 °C. Check temperatures every day with a digital or infrared thermometer.
-- **VCA:** leopard geckos do best with a cage temperature in the mid-80s °F (about 30 °C) and can tolerate nights as low as 21 °C. Heat tapes, under-tank heaters or low-level basking lights are good heat sources.
 - **Humidity:** leopard geckos need a relatively dry vivarium, around 30–40% humidity at the cool end, plus a moist hide with damp moss, sprayed every few days (RSPCA).
 - **Space:** at least 60 cm long, 40 cm high and 30 cm deep for one adult, and as large as possible (RSPCA).
 - **Floor:** for healthy adults, a mix of about half organic soil and half sand works; young geckos should be kept on a non-loose floor, and calcisand and beech chips should be avoided (RSPCA).
 
 ## Does my leopard gecko need UVB light?
 
-The sources differ. The RSPCA says leopard geckos need a gradient of UVB, from a UV index of 0.7 in the basking zone down to zero in the shade, from a 2–5% UVB tube; VCA says UVB is not required but is recommended.
+Yes, at a low level. The RSPCA says leopard geckos need a gradient of UVB, from a UV index of 0.7 in the basking zone down to zero in the shade, from a 2–5% UVB tube.
 
 - The RSPCA places the tube at the hot end, over one-half to one-third of the vivarium length, on a 12-hour day and 12-hour night.
 - Check the output with a UVI meter and replace the tube as the manufacturer advises (RSPCA).
@@ -89,7 +86,7 @@ Never grab your gecko: scoop it up with both hands so all four feet are supporte
 
 - Never put pressure on the tail: the gecko can drop it. It can grow back, but that uses up fat reserves and is hard on the animal (RSPCA).
 - Let a new gecko settle for about a week before handling it, and keep other pets away (RSPCA).
-- The RSPCA recommends keeping leopard geckos alone; VCA warns that males can be territorial, so take care with two or more males in one enclosure.
+- The RSPCA recommends keeping leopard geckos alone: they don't need company and can be aggressive.
 
 ## Salmonella: hygiene with a leopard gecko
 

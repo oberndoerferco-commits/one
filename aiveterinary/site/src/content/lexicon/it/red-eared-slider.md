@@ -9,19 +9,19 @@ facts:
   - { field: lifespan, value: "In cattività sono riportate durate di circa 30–40 anni (RSPCA)", ref: 1 }
   - { field: size, value: "Le femmine sono più grandi, circa 25 cm; i maschi arrivano a circa 21 cm (RSPCA)", ref: 1 }
   - { field: social, value: "Possono diventare aggressive, soprattutto se sovraffollate; in più servono punti caldo separati e cibo per tutte", ref: 1 }
-  - { field: activity, value: "In cattività è meglio evitare il letargo: temperatura della vasca e ciclo di luce costanti (VCA)", ref: 3 }
-  - { field: diet, value: "Onnivora: pellet per tartarughe, piccoli pesci e verdure varie, più calcio e un multivitaminico (VCA)", ref: 3 }
+  - { field: diet, value: "Onnivora: circa 70–80% di cibo animale e 20–30% di verdure a foglia o piante acquatiche, con integratori di calcio e vitamine (RVC)", ref: 2 }
   - { field: housing, value: "Circa 80 litri d'acqua ogni 5 cm di carapace, quindi 400 litri per 25 cm; filtrazione potente (RSPCA)", ref: 1 }
   - { field: housing, value: "Lampada UVB 7–12% sopra due terzi della vasca, UVI 3,0–5,0 nella zona di basking (RSPCA)", ref: 1 }
   - { field: temperature, value: "Acqua circa 25 °C per i piccoli, 22 °C per gli adulti; zona di basking 30–35 °C (RSPCA)", ref: 1 }
-  - { field: vet, value: "Visita entro 48–72 ore dall'arrivo, poi almeno una volta l'anno con esame delle feci per i parassiti (VCA)", ref: 3 }
-  - { field: legal, value: "UE: specie esotica invasiva di rilevanza unionale (regolamento di esecuzione (UE) 2016/1141, Trachemys scripta)", ref: 5 }
-  - { field: legal, value: "UE: gli animali da compagnia detenuti prima dell'iscrizione possono restare fino alla morte naturale, senza riproduzione né fuga", ref: 4 }
-  - { field: legal, value: "Italia: il possesso andava denunciato al Ministero dell'Ambiente; se si riproducono possono essere confiscate", ref: 6 }
+  - { field: vet, value: "Un controllo con esame delle feci dal veterinario ogni anno (MSD)", ref: 3 }
+  - { field: legal, value: "UE: specie esotica invasiva di rilevanza unionale (regolamento di esecuzione (UE) 2016/1141, Trachemys scripta)", ref: 6 }
+  - { field: legal, value: "UE: gli animali da compagnia detenuti prima dell'iscrizione possono restare fino alla morte naturale, senza riproduzione né fuga", ref: 5 }
+  - { field: legal, value: "Italia: il possesso andava denunciato al Ministero dell'Ambiente; se si riproducono possono essere confiscate", ref: 7 }
 references:
   - { title: "RSPCA: How to care for a terrapin", url: "https://www.rspca.org.uk/adviceandwelfare/pets/other/terrapin" }
-  - { title: "VCA Animal Hospitals: Housing Aquatic Turtles", url: "https://vcahospitals.com/know-your-pet/turtles-aquatic-housing" }
-  - { title: "VCA Animal Hospitals: Owning Aquatic Turtles", url: "https://vcahospitals.com/know-your-pet/turtles---aquatic---owning" }
+  - { title: "Royal Veterinary College (RVC) Exotics Service: Terrapin care (reviewed December 2024, PDF)", url: "https://rvc.ac.uk/Media/Default/Beaumont%20Sainsbury%20Animal%20Hospital/EXOTICS/Animal%20Care%20Factsheets/Red%20eared%20terrapin%20care%202024%20jh.pdf" }
+  - { title: "MSD Veterinary Manual (Pet Owner Version): Special Considerations for Reptiles", url: "https://www.msdvetmanual.com/all-other-pets/reptiles/special-considerations-for-reptiles" }
+  - { title: "MSD Veterinary Manual (Pet Owner Version): Routine Health Care of Reptiles", url: "https://www.msdvetmanual.com/all-other-pets/reptiles/routine-health-care-of-reptiles" }
   - { title: "Regolamento (UE) n. 1143/2014 sulle specie esotiche invasive, articoli 7 e 31, EUR-Lex", url: "https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX:32014R1143" }
   - { title: "Regolamento di esecuzione (UE) 2016/1141 della Commissione che adotta un elenco delle specie esotiche invasive di rilevanza unionale, EUR-Lex", url: "https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX:32016R1141" }
   - { title: "Decreto legislativo 15 dicembre 2017, n. 230 (specie esotiche invasive), articoli 6, 26 e 27, Ministero dell'Ambiente e della Sicurezza Energetica", url: "https://www.mase.gov.it/portale/documents/d/guest/dlgs_15_12_2017_230_specie_esotiche_invasive_0-pdf" }
@@ -39,68 +39,63 @@ A lungo: la RSPCA, la principale associazione britannica per la protezione degli
 
 ## Quanto diventa grande?
 
-Molto più delle tartarughine vendute un tempo. La RSPCA indica circa 25 cm per le femmine e circa 21 cm per i maschi; VCA indica in media 25–31 cm di carapace per le femmine adulte e 18–23 cm per i maschi.
+Molto più delle tartarughine vendute un tempo. La RSPCA indica circa 25 cm per le femmine e circa 21 cm per i maschi, e dice che le piccole crescono in fretta fino a diventare grandi come un piatto da portata.
 
 È questa misura a decidere la vasca: una tartaruga partita in una vaschetta di plastica da adulta avrà bisogno di centinaia di litri d'acqua.
 
 ## Cosa mangia la tartaruga d'acqua dalle orecchie rosse?
 
-È onnivora. VCA suggerisce pellet commerciali per tartarughe, piccoli pesci e verdure varie, con un'integrazione di calcio e un multivitaminico; la RSPCA suggerisce un buon mangime secco per tartarughe d'acqua con pesce d'acqua dolce ben scongelato.
+È onnivora. Il Royal Veterinary College (RVC) suggerisce circa 70–80% di cibo animale e 20–30% di verdure a foglia verde o piante acquatiche, con integratori di calcio e vitamine; la RSPCA suggerisce un buon mangime secco per tartarughe d'acqua con pesce d'acqua dolce ben scongelato, più tante verdure ricche di betacarotene, come la patata dolce.
 
 - Nutritela ogni due giorni, solo quanto mangia in cinque minuti (RSPCA).
+- Scongelate il pesce del tutto, fino a temperatura ambiente, altrimenti può farla stare molto male (RSPCA).
 - Offrite osso di seppia come fonte di calcio (RSPCA).
 - Non tenetela con pesci vivi: può inseguirli o ucciderli (RSPCA).
-- VCA sconsiglia la carne cruda del supermercato e dice di non dare mai cibi lavorati come würstel, affettati e pane.
 
 ## Che vasca e che temperatura dell'acqua servono?
 
 Una vasca grande, riscaldata e filtrata, con una zona asciutta per scaldarsi. La RSPCA indica circa 80 litri d'acqua ogni 5 cm di carapace, acqua a circa 25 °C per i piccoli e 22 °C per gli adulti, e una zona di basking a 30–35 °C.
 
-- **Volume d'acqua:** una tartaruga con un carapace di 25 cm ha bisogno di 400 litri, e deve almeno poter nuotare senza toccare pareti o fondo (RSPCA). VCA suggerisce una profondità pari ad almeno 1,5–2 volte la lunghezza del carapace.
-- **Temperatura dell'acqua:** per la RSPCA circa 25 °C per i piccoli, scendendo a 22 °C per gli adulti, con un riscaldatore protetto e termostato. VCA indica 24–29 °C e dice che di notte l'acqua non deve scendere sotto i 18–24 °C. Le fonti non coincidono: chiedete al vostro veterinario.
-- **Zona di basking:** la tartaruga deve poter uscire del tutto dall'acqua (VCA), sotto una lampada che scaldi tutto il corpo. La RSPCA indica 30–35 °C, VCA 24–31 °C. VCA suggerisce una zona asciutta pari al 15–25% della superficie.
-- **Acqua pulita:** filtrazione potente e un cambio del 20% dell'acqua ogni settimana (RSPCA). VCA dice di cambiare l'acqua almeno una volta a settimana, o più spesso se si sporca.
-- **Compagnia:** possono litigare per le risorse, soprattutto se sovraffollate, quindi ognuna ha bisogno del suo punto caldo e di cibo a sufficienza (RSPCA); VCA consiglia compagne di taglia simile per evitare prepotenze.
+- **Volume d'acqua:** una tartaruga con un carapace di 25 cm ha bisogno di 400 litri, e deve almeno poter nuotare senza toccare pareti o fondo (RSPCA).
+- **Temperatura dell'acqua:** circa 25 °C per i piccoli, scendendo a 22 °C per gli adulti, con un riscaldatore protetto e termostato; controllatela ogni giorno con un termometro impermeabile (RSPCA).
+- **Zona di basking:** una zona asciutta sotto la lampada, abbastanza grande da sostenere la tartaruga, con una rampa per salire dall'acqua, e una seconda piattaforma asciutta in una parte più fresca della vasca (RSPCA). La lampada deve scaldare tutto il corpo, non solo il carapace, e la zona di basking deve arrivare a 30–35 °C (RSPCA).
+- **Acqua pulita:** filtrazione potente e un cambio del 20% dell'acqua ogni settimana (RSPCA).
+- **Compagnia:** possono litigare per le risorse, soprattutto se sovraffollate, quindi ognuna ha bisogno del suo punto caldo e di cibo a sufficienza (RSPCA).
 
 ## La mia tartaruga ha bisogno della luce UVB?
 
 Sì. Senza UVB le tartarughe possono sviluppare la malattia ossea metabolica. La RSPCA consiglia una lampada UVB per rettili al 7–12% sopra due terzi della vasca, con un indice UV di 3,0–5,0 nella zona di basking che scende a zero all'ombra.
 
-- Gli UV devono arrivare alla tartaruga senza filtri: niente vetro o plastica tra lampada e animale (VCA).
-- VCA dice che la lampada deve stare entro 30–45 cm dalla tartaruga ed essere sostituita ogni 6 mesi, o come indica il produttore.
+- Gli UVB calano con la distanza, quindi seguite le indicazioni del produttore sulla distanza dal carapace (RSPCA).
+- L'emissione UVB cala col tempo: controllatela regolarmente e sostituite la lampada come indica il produttore (RSPCA).
+- Come le lampade riscaldanti, anche quelle UV vanno protette contro le ustioni e nel caso la lampadina si rompa (RSPCA).
 
 Gonfiori intorno a bocca o occhi, un carapace irregolare o, nei piccoli, un carapace molle come gomma possono essere segni di malattia ossea metabolica (RSPCA). Approfondite nella pagina sulla [malattia ossea metabolica](/it/animals/malattia-ossea-metabolica-rettili).
 
-## La mia tartaruga d'acqua deve andare in letargo?
-
-Per una Trachemys da compagnia di solito no. VCA spiega che in cattività l'obiettivo è mantenere costanti temperatura della vasca e ciclo di luce, così che le tartarughe non vadano in letargo, ed è meglio evitarlo se possibile.
-
-Una tartaruga che rallenta e smette di mangiare in una vasca calda non sta "solo andando in letargo": vedi [rettile che non mangia](/it/animals/rettile-non-mangia).
-
 ## Come capisco se la mia tartaruga sta bene?
 
-Una tartaruga d'acqua sana ha occhi limpidi e brillanti e un carapace liscio (RSPCA), è attiva e non ha secrezioni da naso o occhi.
+Una tartaruga d'acqua sana ha occhi limpidi e brillanti e un carapace liscio (RSPCA).
 
-VCA descrive questi segnali d'allarme:
+La RSPCA descrive questi segnali d'allarme:
 
-- secrezioni dalle narici o dagli occhi, o una tartaruga inattiva e apatica
-- occhi infossati o gonfi e chiusi, che spesso indicano disidratazione, denutrizione e/o carenza di vitamina A
-- un carapace molle, che è un segno di malattia
-- muco da naso o bocca, o arrossamenti o piccole emorragie puntiformi in bocca, che possono indicare un'infezione della bocca
+- problemi agli occhi, a cui le tartarughe d'acqua sono molto soggette, che possono dipendere dalla qualità dell'acqua o da una carenza di vitamina A
+- vesciche sulla pelle, che possono essere segno di un'infezione
+- cambiamenti in bocca: le Trachemys possono avere infezioni della bocca (stomatite)
+- un carapace molle in una tartaruga giovane, segno di malattia ossea metabolica
 
-Una tartaruga che non mangia come al solito può avere parassiti intestinali (RSPCA).
+Una tartaruga che non mangia come al solito può avere parassiti intestinali (RSPCA): vedi [rettile che non mangia](/it/animals/rettile-non-mangia).
 
 ## Quando portarla dal veterinario?
 
-Contattate subito il veterinario per rettili se avete qualsiasi dubbio, dice la RSPCA, e controllate la salute della tartaruga ogni giorno. VCA consiglia una prima visita entro 48–72 ore dall'acquisto o dall'adozione.
+Contattate subito il veterinario per rettili se avete qualsiasi dubbio, dice la RSPCA, e controllate la salute della tartaruga ogni giorno. Il Manuale Veterinario MSD consiglia una prima visita subito dopo l'arrivo di un rettile.
 
 - Trovate un veterinario per rettili prima che serva (RSPCA).
-- Fatela visitare almeno una volta l'anno, con l'esame delle feci per i parassiti a ogni visita (VCA).
+- Fatela controllare una volta l'anno, con l'esame delle feci (MSD).
 - Andate presto se notate uno dei segnali sopra, un carapace molle o una tartaruga che smette di mangiare.
 
 ## Salmonella: la tartaruga è sicura con i bambini?
 
-Sì, con una buona igiene. VCA spiega che la maggior parte delle tartarughe porta la salmonella senza mostrare sintomi, e che può causare malattie serie nei bambini piccoli, negli anziani e nelle persone con difese immunitarie ridotte.
+Sì, con una buona igiene. I rettili possono portare la salmonella anche quando sembrano puliti e sani, e bambini sotto i 5 anni, adulti sopra i 65 e persone con difese immunitarie ridotte si ammalano più facilmente (CDC).
 
 - Lavatevi le mani prima e dopo aver toccato la tartaruga o i suoi accessori (RSPCA), con acqua corrente e sapone (CDC).
 - Tenete tartaruga, acqua della vasca e accessori fuori dalla cucina e lontani dal cibo (CDC).
