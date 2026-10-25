@@ -1,5 +1,6 @@
 ---
 title: "The first year with a puppy or kitten: a month-by-month health schedule"
+seoTitle: "Puppy or kitten first year: month-by-month health schedule"
 description: "First vet visit, vaccination series, worming, flea and tick cover, microchip and registration deadlines, teeth, food and the neutering conversation: what happens when, and why, in the first twelve months."
 species: general
 category: care

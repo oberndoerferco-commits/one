@@ -1,5 +1,6 @@
 ---
 title: "Das erste Jahr mit Welpe oder Kitten: der Gesundheitsplan Monat für Monat"
+seoTitle: "Erstes Jahr mit Welpe oder Kitten: Gesundheitsplan"
 description: "Erster Tierarztbesuch, Grundimmunisierung nach WSAVA, Entwurmung und Parasitenschutz nach ESCCAP, Chip und Registrierung, Zähne, Futterumstellung und das Gespräch über die Kastration: was wann passiert, und warum."
 species: general
 category: care

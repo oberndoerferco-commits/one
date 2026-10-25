@@ -1,5 +1,6 @@
 ---
 title: "Guinea pig vitamin C deficiency: scurvy symptoms and the foods that prevent it"
+seoTitle: "Guinea pig vitamin C deficiency: scurvy signs and foods"
 description: "Guinea pigs cannot make their own vitamin C, so it has to come from their food. The signs of scurvy, when to see a vet, which foods help, and why old pellets and drops in the water are not enough."
 species: guinea-pig
 category: conditions

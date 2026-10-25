@@ -1,5 +1,6 @@
 ---
 title: "Meerschweinchen kratzt sich ständig und verliert Haare: Milben, Hautpilz und andere Ursachen"
+seoTitle: "Meerschweinchen hat Milben oder verliert Haare: Ursachen"
 description: "Juckreiz und kahle Stellen beim Meerschweinchen gehen oft auf Milben oder Hautpilz zurück, und das muss die Praxis bestätigen. Die Warnzeichen, weitere Ursachen und was auf Menschen übertragbar ist."
 species: guinea-pig
 category: symptoms

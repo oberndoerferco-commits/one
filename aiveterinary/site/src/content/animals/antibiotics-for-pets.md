@@ -1,5 +1,6 @@
 ---
 title: "Antibiotics for dogs and cats: why the whole course matters and how to give them properly"
+seoTitle: "Antibiotics for dogs and cats: why to finish the course"
 description: "What antibiotics can and cannot do, how to get tablets and liquids into a dog or cat, what to do about a missed dose, the side effects worth a phone call, and why leftover antibiotics never go back in the cupboard."
 species: general
 category: medications

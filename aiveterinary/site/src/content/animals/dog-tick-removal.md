@@ -1,5 +1,6 @@
 ---
 title: "How to remove a tick from your dog, and which tick-borne diseases to watch for"
+seoTitle: "How to remove a tick from a dog, and diseases to watch for"
 description: "Ticks should come off as soon as you find them. How to remove one safely, what to look for afterwards, the tick-borne diseases dogs pick up in Europe, and why some dog tick products can poison a cat."
 species: dog
 category: first-aid

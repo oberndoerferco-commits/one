@@ -1,5 +1,6 @@
 ---
 title: "Ohrenentzündung beim Hund: Anzeichen, Ursachen und warum Sie nicht selbst behandeln sollten"
+seoTitle: "Ohrenentzündung beim Hund: Anzeichen und Ursachen"
 description: "Kopfschütteln, Kratzen und ein unangenehmer Geruch aus dem Ohr deuten auf eine Entzündung des Gehörgangs hin. Was dahintersteckt, wann es eilig wird und warum Wattestäbchen, Hausmittel und Reste aus dem Schrank die Sache verschlimmern können."
 species: dog
 category: conditions

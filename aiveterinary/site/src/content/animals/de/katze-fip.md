@@ -1,5 +1,6 @@
 ---
 title: "FIP bei der Katze: Symptome und was sich bei der Behandlung geändert hat"
+seoTitle: "FIP bei der Katze: Symptome und neue Behandlung"
 description: "Die Feline Infektiöse Peritonitis galt jahrzehntelang als Todesurteil. Inzwischen können Tierärztinnen und Tierärzte in Deutschland eine wirksame Behandlung legal als Rezepturarzneimittel verordnen. Woran Sie FIP erkennen, wie die Diagnose läuft und was die neue Therapie bedeutet."
 species: cat
 category: conditions

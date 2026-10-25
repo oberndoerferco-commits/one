@@ -1,5 +1,6 @@
 ---
 title: "Meerschweinchen niest oder atmet schwer: Schnupfen und wann es ein Notfall ist"
+seoTitle: "Meerschweinchen niest oder atmet schwer: wann zum Tierarzt?"
 description: "Niesen mit Nasen- oder Augenausfluss kann beim Meerschweinchen eine Atemwegsinfektion ankündigen, und Lungenentzündung ist eine der häufigsten Todesursachen. Notfallzeichen, Ursachen, Vorbeugung."
 species: guinea-pig
 category: symptoms

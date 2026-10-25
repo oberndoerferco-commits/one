@@ -1,5 +1,6 @@
 ---
 title: "Hund hustet und würgt: Zwingerhusten, Fremdkörper, Herz oder Magendrehung?"
+seoTitle: "Hund hustet und würgt: Ursachen und wann es eilt"
 description: "Husten mit anschließendem Würgen ist beim Hund häufig harmloser Zwingerhusten. Würgt Ihr Hund aber, ohne dass etwas kommt, und wird der Bauch dick, kann es eine Magendrehung sein, ein Notfall. So ordnen Sie die Anzeichen ein."
 species: dog
 category: symptoms

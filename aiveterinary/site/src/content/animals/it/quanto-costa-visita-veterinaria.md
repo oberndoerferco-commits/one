@@ -1,5 +1,6 @@
 ---
 title: "Quanto costa una visita veterinaria in Italia e perché i prezzi cambiano"
+seoTitle: "Quanto costa una visita veterinaria in Italia"
 description: "Perché non esiste un tariffario nazionale, quali cifre sono realistiche, cosa devono contenere preventivo e fattura, come funziona la detrazione del 19% e cosa aspettarsi dal pronto soccorso notturno."
 species: general
 category: care

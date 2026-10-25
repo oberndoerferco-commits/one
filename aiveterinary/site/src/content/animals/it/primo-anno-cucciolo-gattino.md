@@ -1,5 +1,6 @@
 ---
 title: "Il primo anno con un cucciolo o un gattino: il calendario della salute mese per mese"
+seoTitle: "Primo anno di cucciolo o gattino: la salute mese per mese"
 description: "Prima visita, ciclo vaccinale, sverminazioni, antiparassitari, microchip e anagrafe, denti, cambio di alimentazione e il discorso sulla sterilizzazione: cosa succede quando, e perché, nei primi dodici mesi."
 species: general
 category: care

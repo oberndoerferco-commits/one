@@ -3,9 +3,10 @@
  * Cute animal faces drawn from geometric shapes (48×48 grid, 2.2 stroke).
  * Rules used: big round head, eyes about a fifth of the head width, placed
  * below the centre line and wide apart, small nose and mouth, soft fills.
+ * `kind` takes any article species, a lexicon group icon (fish, hen) or the paw.
  */
-import { ICONS } from '../lib/animal-icons';
-interface Props { kind: 'dog' | 'cat' | 'rabbit' | 'horse' | 'bird' | 'general' | 'paw' | 'ferret'; size?: number; class?: string; title?: string }
+import { ICONS, type IconKind } from '../lib/animal-icons';
+interface Props { kind: IconKind; size?: number; class?: string; title?: string }
 const { kind, size = 40, class: cls = '', title } = Astro.props;
 ---
 <svg class={`ai-icon ${cls}`} width={size} height={size} viewBox="0 0 48 48" fill="none" stroke="var(--art-ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden={title ? undefined : 'true'} role={title ? 'img' : undefined}>

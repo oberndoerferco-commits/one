@@ -1,5 +1,6 @@
 ---
 title: "Tierarztkosten 2026: Wie die GOT funktioniert und was eine Behandlung kostet"
+seoTitle: "Tierarztkosten 2026: So funktioniert die GOT"
 description: "Warum dieselbe Behandlung in zwei Praxen unterschiedlich viel kostet, was auf einer korrekten Tierarztrechnung stehen muss und wie Sie vorher nach den voraussichtlichen Kosten fragen."
 species: general
 category: care

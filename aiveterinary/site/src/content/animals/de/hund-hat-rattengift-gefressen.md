@@ -1,5 +1,6 @@
 ---
 title: "Hund hat Rattengift gefressen: sofort handeln, auch wenn er noch fit wirkt"
+seoTitle: "Hund hat Rattengift gefressen: sofort handeln"
 description: "Die meisten Rattengifte hemmen die Blutgerinnung. Die gefährlichen Blutungen beginnen oft erst Tage später, wenn der Hund längst wieder normal wirkt. Warum Sie sofort in die Praxis fahren sollten, warum Sie Ihren Hund nicht selbst erbrechen lassen dürfen und was die Behandlung bedeutet."
 species: dog
 category: first-aid

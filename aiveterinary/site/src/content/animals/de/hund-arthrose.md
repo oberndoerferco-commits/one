@@ -1,5 +1,6 @@
 ---
 title: "Arthrose beim Hund: frühe Anzeichen erkennen und den Alltag leichter machen"
+seoTitle: "Arthrose beim Hund: frühe Anzeichen und Hilfe im Alltag"
 description: "Arthrose ist eine der häufigsten Ursachen für Dauerschmerzen beim Hund und beginnt oft schon in jungen Jahren. Woran Sie sie erkennen, warum Gewicht und gleichmäßige Bewegung so viel bewirken, welche Behandlungen es gibt und warum menschliche Schmerzmittel tabu sind."
 species: dog
 category: conditions

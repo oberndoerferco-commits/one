@@ -1,5 +1,6 @@
 ---
 title: "Hund atmet schnell im Schlaf: so zählen Sie die Atemzüge richtig und wann es ernst ist"
+seoTitle: "Hund atmet schnell im Schlaf: wann ist es ernst?"
 description: "Die Atemfrequenz im Schlaf ist ein einfacher und aussagekräftiger Wert, den Sie zu Hause messen können, besonders bei herzkranken Hunden. Wie Sie richtig zählen, welche Werte Fachleute als normal ansehen, wann Ihr Hund sofort in die Praxis muss und was hinter schneller Atmung stecken kann."
 species: dog
 category: symptoms

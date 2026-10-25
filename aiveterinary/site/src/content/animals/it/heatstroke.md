@@ -1,5 +1,6 @@
 ---
 title: "Colpo di calore nel cane: segni, raffreddamento immediato e corsa dal veterinario"
+seoTitle: "Colpo di calore nel cane: segni e cosa fare subito"
 description: "Il colpo di calore uccide cani ogni estate, e può succedere durante una passeggiata, non solo in auto. Come riconoscerlo, come raffreddare un cane in fretta e in sicurezza, e perché serve comunque il veterinario."
 species: dog
 category: first-aid

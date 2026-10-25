@@ -1,5 +1,6 @@
 ---
 title: "Avvelenamento negli animali da compagnia: i veleni più comuni e cosa fare per primo"
+seoTitle: "Animale avvelenato: i veleni più comuni e cosa fare subito"
 description: "Cioccolato, uva, xilitolo, gigli, esche per topi, antigelo e antidolorifici per uso umano sono veleni comuni per gli animali da compagnia. Cosa fare, cosa non fare, e perché contano i minuti."
 species: general
 category: first-aid

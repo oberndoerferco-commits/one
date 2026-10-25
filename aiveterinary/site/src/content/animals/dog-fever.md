@@ -1,5 +1,6 @@
 ---
 title: "Fever in dogs: how to take your dog's temperature and when to call the vet"
+seoTitle: "Dog fever: taking the temperature and when to call the vet"
 description: "A warm-feeling dog doesn't necessarily have a fever. How to measure your dog's temperature properly, the normal range, when a reading means go to the vet, and why you must never give your own fever medicines."
 species: dog
 category: symptoms

@@ -1,5 +1,6 @@
 ---
 title: "Diabetes bei Hund und Katze: erste Anzeichen, Diagnose und wie der Alltag aussieht"
+seoTitle: "Diabetes bei Hund und Katze: Anzeichen, Diagnose, Alltag"
 description: "Mehr trinken, mehr Urin, mehr Hunger und trotzdem Gewichtsverlust: die vier Zeichen, mit denen ein zuckerkranker Hund oder eine Katze meist in die Praxis kommt. Wie die Diagnose gestellt wird, was Insulin im Alltag bedeutet und was Sie erwarten können."
 species: general
 category: conditions

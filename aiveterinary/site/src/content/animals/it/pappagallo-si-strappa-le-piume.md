@@ -1,5 +1,6 @@
 ---
 title: "Il pappagallo si strappa le piume o perde piume: muta, stress o malattia?"
+seoTitle: "Pappagallo che si strappa le piume: muta, stress o malattia?"
 description: "Un pappagallo che si strappa le piume, o una cocorita o un canarino che perde piume fuori dalla muta, va visto dal veterinario. Come distinguere muta e autodeplumazione, le cause e cosa aiuta."
 species: bird
 category: symptoms

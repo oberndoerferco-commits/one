@@ -1,5 +1,6 @@
 ---
 title: "Antibiotici al cane e al gatto: perché conta tutto il ciclo e come darli bene"
+seoTitle: "Antibiotici a cane e gatto: perché finire il ciclo"
 description: "Cosa possono e cosa non possono fare gli antibiotici, come far ingoiare compresse e sciroppi, cosa fare se salti una dose, gli effetti collaterali da segnalare e perché gli avanzi non tornano mai nell'armadietto."
 species: general
 category: medications

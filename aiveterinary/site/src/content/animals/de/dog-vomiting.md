@@ -1,5 +1,6 @@
 ---
 title: "Mein Hund erbricht: was es bedeuten kann und wann Sie sich Sorgen machen sollten"
+seoTitle: "Mein Hund erbricht: Ursachen und wann es ernst wird"
 description: "Die meisten einmaligen Erbrechensepisoden bei Hunden gehen von selbst vorbei. So unterscheiden Sie „beobachten und abwarten“ von „sofort fahren“."
 species: dog
 category: symptoms

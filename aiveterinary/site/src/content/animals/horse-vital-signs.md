@@ -1,5 +1,6 @@
 ---
 title: "Horse vital signs: normal temperature, pulse and breathing, and how to check them"
+seoTitle: "Horse vital signs: normal temperature, pulse and breathing"
 description: "Normal temperature, heart rate and breathing rate for an adult horse at rest, how to measure each safely, what gums and gut sounds tell you, and which readings mean calling the vet."
 species: horse
 category: care

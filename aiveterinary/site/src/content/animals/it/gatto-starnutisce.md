@@ -1,5 +1,6 @@
 ---
 title: "Il gatto starnutisce: raffreddore felino e altre cause, quando preoccuparsi"
+seoTitle: "Il gatto starnutisce: cause e quando preoccuparsi"
 description: "Uno starnuto ogni tanto è normale, starnuti frequenti con occhi che lacrimano e naso che cola fanno pensare al raffreddore felino. Le cause, i segni per cui andare subito dal veterinario, perché il gatto smette di mangiare e come assisterlo a casa."
 species: cat
 category: symptoms

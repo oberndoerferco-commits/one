@@ -1,5 +1,6 @@
 ---
 title: "Cane punto da un'ape o da una vespa: primo soccorso e segni di shock allergico"
+seoTitle: "Cane punto da ape o vespa: primo soccorso e shock allergico"
 description: "Di solito una puntura d'ape o di vespa dà solo gonfiore e dolore locale. Ma una reazione allergica grave può comparire in pochi minuti, e le punture in bocca o in gola possono ostacolare il respiro. Cosa fare subito, come togliere il pungiglione e quando correre dal veterinario."
 species: dog
 category: first-aid

@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import { ANIMALS, slugOf, type Lang } from '../lib/animals-i18n';
 import AnimalIcon from './AnimalIcon.astro';
+import Logo from './Logo.astro';
 import AskBox from './AskBox.astro';
 import BookletArt from './BookletArt.astro';
 import Newsletter from './Newsletter.astro';
@@ -79,8 +80,8 @@ const PRIV = {
   it: { h: 'Cosa succede a quello che scrivi', items: [['Le domande non vengono salvate', 'La ricerca avviene nel tuo browser: la domanda non ci viene inviata né salvata. Il browser scarica solo parti del nostro indice di ricerca.'], ['Il libretto resta sul tuo dispositivo', 'Il libretto sanitario è salvato nel tuo browser. Non ci viene inviato nulla; esportalo su file quando vuoi.'], ['Niente pubblicità, niente cookie di tracciamento', 'Nessuno sponsor e nessun link di affiliazione. Se contiamo le visite, lo facciamo solo come totali anonimi.']], more: 'Informativa privacy', href: '/privacy' },
   de: { h: 'Was mit Ihren Eingaben passiert', items: [['Fragen werden nicht gespeichert', 'Die Suche läuft in Ihrem Browser: Ihre Frage wird weder an uns gesendet noch gespeichert. Der Browser lädt nur Teile unseres Suchindex.'], ['Der Pass bleibt auf Ihrem Gerät', 'Der Heimtierpass wird in Ihrem Browser gespeichert. An uns wird nichts gesendet; jederzeit als Datei exportierbar.'], ['Keine Werbung, keine Tracking-Cookies', 'Keine Sponsoren, keine Affiliate-Links. Wenn wir Besuche zählen, dann nur als anonyme Summen.']], more: 'Datenschutzerklärung', href: '/privacy' },
 }[lang];
-const short = { en: { rabbit: 'Rabbits', general: 'All' }, it: { rabbit: 'Conigli', general: 'Tutti' }, de: { rabbit: 'Kaninchen', general: 'Alle' } }[lang] as Record<string, string>;
-const speciesKeys = ['dog', 'cat', 'rabbit', 'horse', 'bird', 'general'] as const;
+const short = { en: { general: 'All' }, it: { general: 'Tutti' }, de: { general: 'Alle' } }[lang] as Record<string, string>;
+const speciesKeys = ['dog', 'cat', 'rabbit', 'guinea-pig', 'ferret', 'horse', 'bird', 'reptile', 'general'] as const;
 const pre = lang === 'en' ? '' : `/${lang}`;
 // Quick tools: fixed rules from named sources, shown right under the hero for owners who need an answer now.
 const TOOLS = {
@@ -102,7 +103,7 @@ const AI = {
 ---
 <section class="hero-ask">
   <div class="wrap hero-ask-in">
-    <span class="hero-tile" aria-hidden="true"><svg viewBox="0 0 32 32" width="34" height="34"><path d="M11 12.5a2.2 2.2 0 1 1 0 .1zm10 0a2.2 2.2 0 1 1 0 .1zM8.5 17a2 2 0 1 1 0 .1zm15 0a2 2 0 1 1 0 .1zM16 15.5c2.9 0 5.5 2.6 5.5 5.2 0 1.7-1.2 2.8-2.7 2.8-1.1 0-1.9-.6-2.8-.6s-1.7.6-2.8.6c-1.5 0-2.7-1.1-2.7-2.8 0-2.6 2.6-5.2 5.5-5.2z" fill="currentColor"/></svg></span>
+    <span class="hero-tile" aria-hidden="true"><Logo size={60} /></span>
     <p class="hero-kicker">{askAI ? T.kickerAI : T.kicker}</p>
     <h1>{T.h1}</h1>
     <p class="hero-sub">{T.sub}</p>
@@ -161,7 +162,7 @@ const AI = {
   <ul class="ticks ticks-priv" aria-label={({ en: "What you can count on", it: "Su cosa puoi contare", de: "Worauf Sie sich verlassen können" } as any)[lang]}>
     {T.proofShort.map((x) => <li>{x}</li>)}
   </ul>
-  <p><a class="more" href={`${pre}${PRIV.href}`}>{PRIV.more} →</a></p>
+  <p><a class="more" href={PRIV.href}>{PRIV.more} →</a></p>
 </section>
 
 <section class="wrap section">
@@ -200,12 +201,14 @@ const AI = {
 <style is:global>
   .hero-ask { min-height: min(calc(100svh - 64px), 820px); display: flex; align-items: center; padding: 56px 0 48px; }
   .hero-ask-in { width: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; }
-  .hero-tile { width: 60px; height: 60px; border-radius: 18px; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; box-shadow: 0 10px 24px rgba(20, 101, 94, .25); margin-bottom: 18px; }
+  .hero-tile { width: 60px; height: 60px; border-radius: 22%; display: grid; place-items: center; box-shadow: 0 10px 24px rgba(216, 108, 80, .25); margin-bottom: 18px; }
+  .hero-tile svg { width: 100%; height: 100%; }
   .hero-kicker { display: inline-block; margin: 0 0 16px; padding: 6px 14px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-weight: 700; font-size: .88rem; letter-spacing: .02em; }
-  .hero-ask h1 { font-size: clamp(2.1rem, 5.4vw, 3.6rem); line-height: 1.08; max-width: 16ch; margin: 0 0 16px; text-wrap: balance; }
+  /* Widths in em, not ch: ch depends on the font, so it would change when the web font replaces the fallback (layout shift). */
+  .hero-ask h1 { font-size: clamp(2.1rem, 5.4vw, 3.6rem); line-height: 1.08; max-width: 9.87em; margin: 0 0 16px; text-wrap: balance; }
   .hero-sub { font-size: 1.15rem; color: var(--ink-2); max-width: 36em; margin: 0 0 32px; text-wrap: pretty; }
   @media (max-width: 640px) { .hero-ask { min-height: 0; padding: 28px 0 24px; } .hero-tile { width: 48px; height: 48px; border-radius: 14px; margin-bottom: 12px; } .hero-sub { font-size: 1.02rem; margin-bottom: 22px; } }
-  .cq-sub { color: var(--ink-2); margin: -6px 0 16px; max-width: 60ch; }
+  .cq-sub { color: var(--ink-2); margin: -6px 0 16px; max-width: 43.9em; }
   .cq-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 16px; }
   .cq-list a { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 12px; min-height: 64px; height: 100%; padding: 12px 16px; border-radius: 16px; background: var(--surface); box-shadow: 0 1px 0 var(--line); border: 1px solid var(--line); text-decoration: none; color: var(--ink); }
   .cq-list a:hover { border-color: var(--accent); }
@@ -216,7 +219,7 @@ const AI = {
   @media (max-width: 720px) { .cq-list { grid-template-columns: minmax(0, 1fr); } }
   .book { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 32px; align-items: center; background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 28px 36px; }
   .book h2 { margin-top: 0; }
-  .book p { color: var(--ink-2); max-width: 56ch; }
+  .book p { color: var(--ink-2); max-width: 39.6em; }
   .book-cta { display: flex; flex-wrap: wrap; gap: 10px; }
   .book-art svg { width: 100%; height: auto; }
   @media (max-width: 720px) { .book { grid-template-columns: minmax(0, 1fr); padding: 22px 18px; } .book-art { max-width: 180px; } }
@@ -228,7 +231,7 @@ const AI = {
   .vet-band-compact { padding: 28px 32px; gap: 24px; }
   .vet-band-compact h2 { font-size: 1.6rem; margin-bottom: 8px; }
 
-  .tools4-sub { color: var(--ink-2); margin: -6px 0 16px; max-width: 60ch; }
+  .tools4-sub { color: var(--ink-2); margin: -6px 0 16px; max-width: 43.9em; }
   .tools4-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
   .tool4 { display: grid; gap: 6px; height: 100%; padding: 18px; border-radius: 22px; background: var(--surface); box-shadow: 0 1px 0 var(--line), 0 8px 24px rgba(18, 48, 74, .06); text-decoration: none; color: var(--ink); transition: transform .15s ease, box-shadow .15s ease; }
   .tool4:hover { transform: translateY(-2px); box-shadow: 0 1px 0 var(--line), 0 14px 30px rgba(18, 48, 74, .1); }

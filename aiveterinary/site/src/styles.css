@@ -1,3 +1,15 @@
+/* Metric-matched fallbacks. Until Plus Jakarta Sans and Fraunces arrive, local fonts are scaled to
+   the same text width and line metrics, so the page does not re-flow (layout shift, CLS) when the
+   web fonts swap in. Ratios measured in Chromium on mixed EN/IT/DE text: Arial-compatible faces
+   (Arial, Helvetica, Liberation Sans) and Times-compatible faces, plus Roboto and Noto Serif for
+   Android. Headings are matched at their own settings (Fraunces 600, opsz 96, SOFT 100). */
+@font-face { font-family: "Jakarta Fallback"; src: local("Arial"), local("ArialMT"), local("Helvetica"), local("Liberation Sans"); font-weight: 100 549; size-adjust: 103.6%; ascent-override: 100.4%; descent-override: 21.2%; line-gap-override: 0%; }
+@font-face { font-family: "Jakarta Fallback"; src: local("Arial Bold"), local("Arial-BoldMT"), local("Helvetica Bold"), local("Helvetica-Bold"), local("Liberation Sans Bold"); font-weight: 550 900; size-adjust: 99.8%; ascent-override: 104.2%; descent-override: 22%; line-gap-override: 0%; }
+@font-face { font-family: "Jakarta Fallback Android"; src: local("Roboto"), local("Roboto-Regular"); font-weight: 100 549; size-adjust: 104.3%; ascent-override: 99.7%; descent-override: 21.1%; line-gap-override: 0%; }
+@font-face { font-family: "Jakarta Fallback Android"; src: local("Roboto Bold"), local("Roboto-Bold"); font-weight: 550 900; size-adjust: 106.5%; ascent-override: 97.7%; descent-override: 20.7%; line-gap-override: 0%; }
+@font-face { font-family: "Fraunces Fallback"; src: local("Times New Roman"), local("TimesNewRomanPSMT"), local("Liberation Serif"); font-weight: 100 499; size-adjust: 92.7%; ascent-override: 105.7%; descent-override: 28%; line-gap-override: 0%; }
+@font-face { font-family: "Fraunces Fallback"; src: local("Times New Roman Bold"), local("TimesNewRomanPS-BoldMT"), local("Liberation Serif Bold"); font-weight: 500 900; size-adjust: 94.1%; ascent-override: 104.1%; descent-override: 27.6%; line-gap-override: 0%; }
+@font-face { font-family: "Fraunces Fallback Android"; src: local("Noto Serif Bold"), local("NotoSerif-Bold"); font-weight: 500 900; size-adjust: 79.5%; ascent-override: 123.3%; descent-override: 32.7%; line-gap-override: 0%; }
 :root {
   --bg: #fbf7f2;
   --surface: #ffffff;
@@ -17,9 +29,10 @@
   --radius: 14px;
   --max: 1080px;
   --ic-soft: #e6f1ef; --ic-ear: #f6d6d0; --ic-blush: #f6b9b0; --ic-sun: #fde9c4; --ic-hill: #dcebe3;
-  --font: "Plus Jakarta Sans Variable", "Plus Jakarta Sans", "Source Sans 3", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-display: "Fraunces Variable", "Fraunces", Georgia, "Times New Roman", serif;
+  --font: "Plus Jakarta Sans Variable", "Plus Jakarta Sans", "Jakarta Fallback", "Jakarta Fallback Android", "Source Sans 3", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Fraunces Variable", "Fraunces", "Fraunces Fallback", "Fraunces Fallback Android", Georgia, "Times New Roman", serif;
   --hs-blob: #f3e3d3; --hs-dog: #f2c894; --hs-dog-2: #c98c55; --hs-cream: #fff7ec; --hs-cat: #cfdde4; --ic-rabbit: #f1e6dc; --ic-horse: #d9a27a; --ic-horse-2: #8a5a3a; --ic-bird: #ffd66b; --ic-bird-2: #f2a03d;
+  --ic-ferret: #dcc3a1; --ic-ferret-2: #8a5d40; --ic-shell: #8cc28a; --ic-shell-2: #c5e4a8;
   --art-ink: #12304a;
   --coral: #e8735a; --coral-soft: #fbe6e0; --cream: #f6efe4; --warm: #ffb400;
 }
@@ -31,6 +44,7 @@
     --ok: #8ccf9f; --ok-soft: #1a2e21;
     --ic-soft: #243734; --ic-ear: #4a3a3a; --ic-blush: #6b4040; --ic-sun: #4a3f26; --ic-hill: #1f2f2a;
     --hs-blob: #2a2420; --hs-dog: #c79a66; --hs-dog-2: #8a5c35; --hs-cream: #e9dccb; --hs-cat: #8ea3ad; --ic-rabbit: #b9aa9c; --ic-horse: #a8724e; --ic-horse-2: #5e3b24; --ic-bird: #d6ad3e; --ic-bird-2: #b9782a;
+    --ic-ferret: #c4a987; --ic-ferret-2: #8d6446; --ic-shell: #6e9f69; --ic-shell-2: #95ba86;
   }
 }
 :root[data-theme="dark"] {
@@ -40,6 +54,7 @@
   --ok: #8ccf9f; --ok-soft: #1a2e21;
   --ic-soft: #243734; --ic-ear: #4a3a3a; --ic-blush: #6b4040; --ic-sun: #4a3f26; --ic-hill: #1f2f2a;
     --hs-blob: #2a2420; --hs-dog: #c79a66; --hs-dog-2: #8a5c35; --hs-cream: #e9dccb; --hs-cat: #8ea3ad; --ic-rabbit: #b9aa9c; --ic-horse: #a8724e; --ic-horse-2: #5e3b24; --ic-bird: #d6ad3e; --ic-bird-2: #b9782a;
+    --ic-ferret: #c4a987; --ic-ferret-2: #8d6446; --ic-shell: #6e9f69; --ic-shell-2: #95ba86;
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
@@ -410,6 +425,8 @@ h1, h2 { font-variation-settings: "opsz" 96, "SOFT" 100, "WONK" 0; }
 .pet:hover .pet-t { color: var(--accent); }
 .pet-dog, .tint-dog { --tint: #fbe8d2; } .pet-cat, .tint-cat { --tint: #e3edf1; } .pet-rabbit, .tint-rabbit { --tint: #f7e4e4; }
 .pet-horse, .tint-horse { --tint: #f1e2d6; } .pet-bird, .tint-bird { --tint: #fdf0c8; } .pet-general, .tint-general { --tint: #e6f1ef; }
+.pet-guinea-pig, .tint-guinea-pig { --tint: #f3eaf6; } .pet-ferret, .tint-ferret { --tint: #efeae2; } .pet-reptile, .tint-reptile { --tint: #e6f1e1; }
+.pet-fish, .tint-fish { --tint: #e2eef7; } .pet-poultry, .tint-poultry { --tint: #fbecdf; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .pets, :root:not([data-theme="light"]) .cards3 { --dk: 1; } :root:not([data-theme="light"]) [class*="pet-"], :root:not([data-theme="light"]) [class*="tint-"] { --tint: var(--surface); } }
 :root[data-theme="dark"] [class*="pet-"], :root[data-theme="dark"] [class*="tint-"] { --tint: var(--surface); }
 .h3ro-art { display: flex; justify-content: center; }

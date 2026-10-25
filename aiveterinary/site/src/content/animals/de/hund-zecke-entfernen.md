@@ -1,5 +1,6 @@
 ---
 title: "Zecke beim Hund entfernen: so geht es richtig, und worauf Sie danach achten sollten"
+seoTitle: "Zecke beim Hund entfernen: so geht es richtig"
 description: "Eine Zecke sollte so schnell wie möglich und ohne Öl oder Kleber entfernt werden. Schritt für Schritt erklärt, welche Krankheiten Zecken in Deutschland, Österreich und der Schweiz übertragen können und warum Zeckenmittel für Hunde für Katzen gefährlich sind."
 species: dog
 category: first-aid

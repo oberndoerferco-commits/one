@@ -1,5 +1,6 @@
 ---
 title: "Ansia da separazione nel cane: segnali, cosa fare e quando chiedere aiuto"
+seoTitle: "Ansia da separazione nel cane: segnali e cosa fare"
 description: "Abbaia, distrugge la porta o fa pipì in casa quando resta solo? Può essere ansia da separazione. Come riconoscerla, perché le punizioni peggiorano le cose, come abituare il cane a stare solo a piccoli passi e quando rivolgersi al veterinario o a un veterinario esperto in comportamento."
 species: dog
 category: conditions

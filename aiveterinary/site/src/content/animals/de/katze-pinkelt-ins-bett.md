@@ -1,5 +1,6 @@
 ---
 title: "Katze pinkelt ins Bett oder wird unsauber: Ursachen finden statt schimpfen"
+seoTitle: "Katze pinkelt ins Bett: Ursachen finden statt schimpfen"
 description: "Wenn eine Katze ins Bett, aufs Sofa oder auf Kleidung uriniert, ist das keine Rache. Oft steckt eine Erkrankung dahinter, manchmal Stress oder ein Problem mit der Katzentoilette. Wann es ein Notfall ist, wie Sie Urinieren und Markieren unterscheiden und was Sie zu Hause verbessern können."
 species: cat
 category: symptoms

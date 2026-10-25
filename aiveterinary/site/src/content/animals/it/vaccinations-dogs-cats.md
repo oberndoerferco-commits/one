@@ -1,5 +1,6 @@
 ---
 title: "Vaccinazioni per cani e gatti in Europa: cosa coprono e perché i richiami sono importanti"
+seoTitle: "Vaccini per cani e gatti in Europa: cosa coprono i richiami"
 description: "Quali vaccini sono considerati core per cani e gatti, perché cuccioli e gattini hanno bisogno di un ciclo, cosa fa davvero un richiamo, e perché il libretto delle vaccinazioni è importante."
 species: general
 category: care

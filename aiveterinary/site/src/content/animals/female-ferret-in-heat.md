@@ -1,5 +1,6 @@
 ---
 title: "Female ferret in heat: why a jill shouldn't stay in season, and your options"
+seoTitle: "Female ferret in heat: why a jill shouldn't stay in season"
 description: "An unspayed female ferret can stay in season until she is mated, and the high oestrogen can cause life-threatening anaemia. The signs, the danger signs, and the options to discuss with your vet."
 species: ferret
 category: care

@@ -1,5 +1,6 @@
 ---
 title: "Chronische Niereninsuffizienz bei der Katze: erste Anzeichen, Stadien, Alltag"
+seoTitle: "Niereninsuffizienz bei der Katze: Anzeichen, Stadien, Alltag"
 description: "Die chronische Nierenerkrankung ist bei älteren Katzen sehr häufig und beginnt leise: mehr trinken, mehr Urin, langsam weniger Gewicht. Wie Sie sie früh erkennen, was die IRIS-Stadien bedeuten und wie der Alltag mit einer Nierenkatze aussieht."
 species: cat
 category: conditions

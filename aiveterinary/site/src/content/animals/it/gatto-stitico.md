@@ -1,5 +1,6 @@
 ---
 title: "Gatto stitico: cause, cosa fare e perché spingere in lettiera può essere un'emergenza"
+seoTitle: "Gatto stitico: cause, cosa fare e quando è un'emergenza"
 description: "Un gatto che spinge in lettiera può essere stitico, ma può anche avere l'uretra bloccata e non riuscire a fare pipì, un'emergenza soprattutto nei maschi. Come riconoscere la stitichezza, cosa non fare a casa e quando andare dal veterinario."
 species: cat
 category: symptoms

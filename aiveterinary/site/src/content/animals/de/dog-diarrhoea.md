@@ -1,5 +1,6 @@
 ---
 title: "Mein Hund hat Durchfall: worauf Sie achten sollten und wann es ernst wird"
+seoTitle: "Mein Hund hat Durchfall: wann wird es ernst?"
 description: "Leichter Durchfall bei einem ansonsten gesunden Hund legt sich oft schnell, aber rufen Sie Ihre Tierarztpraxis an, wenn er länger als 24 Stunden anhält. So unterscheiden Sie ihn von den Fällen, die sofort zum Tierarzt müssen."
 species: dog
 category: symptoms

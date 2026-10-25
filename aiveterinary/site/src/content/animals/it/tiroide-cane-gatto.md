@@ -1,5 +1,6 @@
 ---
 title: "Tiroide pigra nel cane, tiroide iperattiva nel gatto: i segni, la diagnosi e la terapia"
+seoTitle: "Tiroide nel cane e nel gatto: segni, diagnosi e terapia"
 description: "Il cane ingrassa, ha freddo e perde il pelo; il gatto anziano mangia tanto e dimagrisce. Sono le due malattie della tiroide più frequenti negli animali da compagnia, speculari tra loro: come riconoscerle, come si diagnosticano e cosa comporta la cura."
 species: general
 category: conditions

@@ -1,5 +1,6 @@
 ---
 title: "Sterilizzazione del cane: costi, cosa include e cosa chiedere al veterinario"
+seoTitle: "Sterilizzazione del cane: quanto costa e cosa include"
 description: "Quanto costa sterilizzare una femmina o castrare un maschio in Italia, perché la cifra cambia così tanto, cosa deve esserci nel preventivo e dove esistono campagne agevolate."
 species: dog
 category: care

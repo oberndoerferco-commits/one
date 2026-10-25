@@ -1,5 +1,6 @@
 ---
 title: "Mein Meerschweinchen frisst nicht mehr: warum das immer ein Notfall ist"
+seoTitle: "Meerschweinchen frisst nicht mehr: warum das ein Notfall ist"
 description: "Frisst Ihr Meerschweinchen nicht mehr oder setzt keinen Kot ab, kann das schnell lebensbedrohlich werden. Die Notfallzeichen, häufige Ursachen wie Zahnprobleme und was Sie nicht tun sollten."
 species: guinea-pig
 category: symptoms

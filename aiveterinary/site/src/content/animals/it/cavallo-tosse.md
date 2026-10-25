@@ -1,5 +1,6 @@
 ---
 title: "Il mio cavallo ha la tosse: quando chiamare il veterinario e le possibili cause"
+seoTitle: "Cavallo con la tosse: cause e quando chiamare il veterinario"
 description: "La tosse può venire da polvere e asma equina o da un'infezione contagiosa come influenza o adenite. I segni per chiamare subito il veterinario, quando prenotare e come proteggere gli altri cavalli."
 species: horse
 category: symptoms

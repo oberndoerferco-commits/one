@@ -1,5 +1,6 @@
 ---
 title: "Milben beim Hund: Räude, Demodex, Ohrmilben und Pelzmilben erkennen und richtig handeln"
+seoTitle: "Milben beim Hund: Räude, Demodex und Ohrmilben erkennen"
 description: "Milben gehören zu den häufigsten Ursachen für Juckreiz und Haarausfall beim Hund. Welche Milbenarten es gibt, welche auch Menschen befallen können, wann Ihr Hund rasch in die Praxis sollte, wie die Diagnose gestellt wird und was Sie im Haushalt tun können."
 species: dog
 category: conditions

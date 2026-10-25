@@ -1,15 +1,15 @@
 ---
 import Base from '../../layouts/Base.astro';
 import AnimalsFilter from '../../components/AnimalsFilter.astro';
-import { ANIMALS } from '../../lib/animals-i18n';
-import { PROFILES } from '../../data/species';
-export async function getStaticPaths() {
-  return [...Object.keys(ANIMALS.en.species), ...Object.keys(ANIMALS.en.categories)].map((filter) => ({ params: { filter } }));
+import AnimalPage from '../../components/AnimalPage.astro';
+import { animalPaths, animalPage } from '../../lib/animal-data';
+// /animals/<key>: species and topics (src/lib/animals-i18n.ts) plus every lexicon entry in this language.
+export function getStaticPaths() {
+  return animalPaths('en');
 }
 const { filter } = Astro.params;
-const profile = (PROFILES as any)[filter!];
-const label = profile?.name.en ?? (ANIMALS.en.species as any)[filter!] ?? (ANIMALS.en.categories as any)[filter!]?.[0];
+const page = await animalPage('en', filter!);
 ---
-<Base title={label} description={profile ? profile.intro.en : `${label}: plain-language articles for owners on symptoms, when to see a vet, care and prevention, from veterinary sources. Each one shows whether a vet has reviewed it.`}>
-  <AnimalsFilter lang="en" filter={filter!} />
+<Base title={page.title} description={page.description}>
+  {page.kind === 'animal' ? <AnimalPage lang="en" filter={filter!} /> : <AnimalsFilter lang="en" filter={filter!} />}
 </Base>

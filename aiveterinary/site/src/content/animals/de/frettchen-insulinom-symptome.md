@@ -1,5 +1,6 @@
 ---
 title: "Insulinom beim Frettchen: Symptome wie Zittern, schwache Hinterbeine und Zusammenbruch"
+seoTitle: "Insulinom beim Frettchen: Symptome und Notfallzeichen"
 description: "Ein Frettchen, das schwach ist, die Hinterbeine nachzieht, speichelt, zittert oder zusammenbricht, kann gefährlich unterzuckert sein, oft durch ein Insulinom. Die Anzeichen und was jetzt zählt."
 species: ferret
 category: symptoms

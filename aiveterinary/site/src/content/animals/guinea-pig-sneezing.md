@@ -1,5 +1,6 @@
 ---
 title: "Guinea pig sneezing or breathing heavily: respiratory infection and when to worry"
+seoTitle: "Guinea pig sneezing or wheezing: when to worry"
 description: "In guinea pigs, sneezing with a runny nose or eyes can be the start of a respiratory infection, and pneumonia is a leading cause of death. The signs that mean go now, causes and prevention."
 species: guinea-pig
 category: symptoms

@@ -1,5 +1,6 @@
 ---
 title: "Kaninchen Zähne zu lang: Anzeichen, Ursachen und warum Sie nicht selbst kürzen sollten"
+seoTitle: "Kaninchen Zähne zu lang: Anzeichen und Ursachen"
 description: "Kaninchenzähne wachsen ein Leben lang nach. Nutzen sie sich nicht genug ab oder stehen sie schief, werden sie zu lang und bilden scharfe Kanten. Woran Sie Zahnprobleme erkennen, wann Ihr Kaninchen sofort in die Praxis muss, was die Tierärztin oder der Tierarzt tut und wie Heu vorbeugt."
 species: rabbit
 category: conditions

@@ -1,5 +1,6 @@
 ---
 title: "Frettchen frisst nicht mehr oder erbricht: Steckt ein Darmverschluss dahinter?"
+seoTitle: "Frettchen frisst nicht oder erbricht: Darmverschluss?"
 description: "Frettchen verschlucken oft Gummi, Schaumstoff oder Plastik. Frisst es nicht mehr, speichelt, setzt kaum Kot ab oder erbricht, kann der Darm blockiert sein. Wann es eilt und welche Anzeichen zählen."
 species: ferret
 category: symptoms

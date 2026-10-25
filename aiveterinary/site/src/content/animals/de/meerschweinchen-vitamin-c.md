@@ -1,5 +1,6 @@
 ---
 title: "Vitamin-C-Mangel beim Meerschweinchen: Skorbut erkennen und richtig füttern"
+seoTitle: "Vitamin-C-Mangel beim Meerschweinchen: Skorbut erkennen"
 description: "Meerschweinchen können Vitamin C nicht selbst bilden. Woran Sie Skorbut erkennen, wann Ihr Tier in die Praxis muss, welches Frischfutter hilft und warum Tropfen im Trinkwasser keine gute Idee sind."
 species: guinea-pig
 category: conditions

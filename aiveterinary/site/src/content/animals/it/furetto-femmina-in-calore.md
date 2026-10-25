@@ -1,5 +1,6 @@
 ---
 title: "Furetto femmina in calore: perché il calore prolungato è pericoloso e cosa fare"
+seoTitle: "Furetto femmina in calore: rischi e cosa fare"
 description: "Una femmina di furetto non sterilizzata può restare in calore finché non si accoppia, e gli estrogeni alti possono dare un'anemia mortale. Segni d'allarme e opzioni da discutere con il veterinario."
 species: ferret
 category: care

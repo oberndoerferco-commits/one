@@ -1,5 +1,5 @@
 /**
- * Animal guide: curated, sourced content for the species profile pages (/animals/dog, /cat, /rabbit).
+ * Animal guide: curated, sourced content for the species profile pages (/animals/dog, /animals/guinea-pig, …).
  *
  * CONTENT RULE: nothing here is a new medical fact. Every go-now sign, key fact and care item is
  * quoted or closely paraphrased from a sentence that already exists in one of our articles, in
@@ -17,7 +17,11 @@
  * Checked by `node scripts/check-species.mjs` and asserted at build time in AnimalsFilter.astro.
  */
 export type Lang = 'en' | 'it' | 'de';
-export type ProfileKey = 'dog' | 'cat' | 'rabbit';
+/** Every article species except 'general', in the order the guide shows them. Route slug = key (/animals/guinea-pig). */
+export const SPECIES = ['dog', 'cat', 'rabbit', 'guinea-pig', 'ferret', 'horse', 'bird', 'reptile'] as const;
+export type SpeciesKey = (typeof SPECIES)[number];
+/** Every species has a profile entry; most are still empty and fill in as sourced items are added. */
+export type ProfileKey = SpeciesKey;
 export interface Cited { text: string; sources: string[]; slug: string; anchor: string; via: 'text' | 'ref' }
 export type Item = Partial<Record<Lang, Cited>>;
 export interface Profile {
@@ -31,6 +35,13 @@ export interface Profile {
 }
 
 const t = (text: string, sources: string[], slug: string, anchor: string, via: 'text' | 'ref' = 'text'): Cited => ({ text, sources, slug, anchor, via });
+
+/** The rabbit article that also covers guinea pigs (filed under species: rabbit). */
+export const GUINEA_PIG_ARTICLE: Record<Lang, string> = {
+  en: 'rabbit-guinea-pig-toxic-plants',
+  it: 'piante-tossiche-coniglio-cavia',
+  de: 'giftige-pflanzen-kaninchen-meerschweinchen',
+};
 
 export const PROFILES: Record<ProfileKey, Profile> = {
   dog: {
@@ -276,18 +287,124 @@ export const PROFILES: Record<ProfileKey, Profile> = {
       },
     ],
   },
+
+  // Species added in October 2026. Their pages list every health topic (most urgent first); go-now signs,
+  // key facts and care basics show once sourced items are added here, under the same rules as above.
+  // `mostRead` is the card's "Start with" list; the card tops it up with the most urgent topics.
+  'guinea-pig': {
+    key: 'guinea-pig',
+    name: { en: 'Guinea pigs', it: 'Cavie', de: 'Meerschweinchen' },
+    intro: {
+      en: 'Everything this site has on guinea pigs in one place: every health topic, the most urgent first.',
+      it: 'Tutto quello che questo sito dice sulle cavie in un unico posto: tutti gli argomenti di salute, prima i più urgenti.',
+      de: 'Alles, was diese Seite über Meerschweinchen hat, an einem Ort: alle Gesundheitsthemen, die dringendsten zuerst.',
+    },
+    mostRead: {
+      en: ['guinea-pig-not-eating', GUINEA_PIG_ARTICLE.en],
+      it: ['cavia-non-mangia', GUINEA_PIG_ARTICLE.it],
+      de: ['meerschweinchen-frisst-nicht', GUINEA_PIG_ARTICLE.de],
+    },
+    goNow: [
+      {
+        en: t('Your guinea pig has stopped eating: a guinea pig that stops eating is at risk of a life-threatening problem called gut stasis.', ['PDSA'], 'guinea-pig-not-eating', 'The PDSA warns that a guinea pig that stops eating is at risk of a life-threatening problem called gut stasis'),
+        it: t('La cavia ha smesso di mangiare: una cavia che smette di mangiare rischia un problema potenzialmente mortale, la stasi intestinale.', ['PDSA'], 'cavia-non-mangia', 'avverte che una cavia che smette di mangiare rischia un problema potenzialmente mortale, la stasi intestinale'),
+        de: t('Ihr Meerschweinchen frisst nicht mehr: Futterverweigerung ist immer ein Notfall.', ['TVT'], 'meerschweinchen-frisst-nicht', 'Futterverweigerung stellt immer einen Notfall dar'),
+      },
+      {
+        en: t('Its eating or drinking changes, or its droppings get fewer or stop: consult your vet immediately, because it could be seriously ill. Do not wait for a set number of hours.', ['RSPCA'], 'guinea-pig-not-eating', "The RSPCA advises consulting your vet immediately if your guinea pig's eating or drinking changes, or its droppings get fewer or stop"),
+        it: t('Cambia il modo in cui mangia o beve, o le palline diminuiscono o spariscono: consulta subito il veterinario, potrebbe essere gravemente malata. Non aspettare un certo numero di ore.', ['RSPCA'], 'cavia-non-mangia', 'La RSPCA raccomanda di consultare subito il veterinario se cambia il modo in cui la cavia mangia o beve, o se le palline diminuiscono o spariscono'),
+        de: t('Das Fress- oder Trinkverhalten ändert sich, oder es kommt weniger oder gar kein Kot mehr: Fragen Sie sofort die Tierarztpraxis, das Tier könnte ernsthaft krank sein. Warten Sie keine bestimmte Stundenzahl ab.', ['RSPCA'], 'meerschweinchen-frisst-nicht', 'Die britische Tierschutzorganisation RSPCA rät, sofort die Tierarztpraxis zu fragen, wenn sich das Fress- oder Trinkverhalten ändert oder weniger oder gar kein Kot mehr kommt'),
+      },
+    ],
+    facts: [
+      {
+        en: t('Unusually for mammals, guinea pigs cannot make their own vitamin C, so it has to come from their food.', ['PDSA'], 'guinea-pig-vitamin-c', 'Unusually for mammals, guinea pigs cannot produce vitamin C, the PDSA explains, so they need it from their food'),
+        it: t('Le cavie, cosa insolita per un mammifero, non possono produrre la vitamina C e devono assumerla con il cibo.', ['PDSA'], 'cavia-vitamina-c', 'spiega che le cavie, cosa insolita per un mammifero, non possono produrre la vitamina C e devono assumerla con il cibo'),
+        de: t('Meerschweinchen können Vitamin C nicht selbst herstellen und leiden daher häufig an Skorbut.', ['TVT'], 'meerschweinchen-vitamin-c', 'Meerschweinchen können Vitamin C nicht selbst herstellen und leiden daher häufig an Skorbut'),
+      },
+      {
+        en: t('Pneumonia is a leading cause of death in guinea pigs, especially young ones, and is usually caused by bacteria.', ['MSD Veterinary Manual'], 'guinea-pig-sneezing', 'The MSD Veterinary Manual says pneumonia is a leading cause of death in guinea pigs, especially young ones, and is usually caused by bacteria'),
+        it: t('La polmonite è una delle principali cause di morte nelle cavie, soprattutto in quelle giovani, ed è di solito causata da batteri.', ['MSD Veterinary Manual'], 'cavia-starnutisce', 'spiega che la polmonite è una delle principali cause di morte nelle cavie, soprattutto in quelle giovani'),
+        de: t('Die Lungenentzündung ist eine der häufigsten Todesursachen bei Meerschweinchen, vor allem bei jungen Tieren; meist stecken Bakterien dahinter.', ['MSD Veterinary Manual'], 'meerschweinchen-niest', 'Das MSD Veterinary Manual nennt die Lungenentzündung eine der häufigsten Todesursachen bei Meerschweinchen'),
+      },
+      {
+        en: t("Guinea pigs' teeth keep growing throughout their lives. If they are not worn down, they can grow too long and cut the gums, cheeks and tongue.", ['PDSA'], 'guinea-pig-not-eating', "The PDSA explains that guinea pigs' teeth keep growing throughout their lives"),
+        it: t('I denti delle cavie crescono per tutta la vita: se non si consumano, possono allungarsi troppo e ferire gengive, guance e lingua.', ['PDSA'], 'cavia-non-mangia', 'La PDSA spiega che i denti delle cavie crescono per tutta la vita.'),
+        de: t('Meerschweinchenzähne wachsen ein Leben lang nach und nutzen sich vor allem beim Kauen von rohfaserhaltigem Grundfutter ab.', ['TVT'], 'meerschweinchen-frisst-nicht', 'Laut TVT nutzen sich die lebenslang wachsenden Zähne vor allem beim Kauen von rohfaserhaltigem Grundfutter ab'),
+      },
+    ],
+    care: [],
+  },
+
+  ferret: {
+    key: 'ferret',
+    name: { en: 'Ferrets', it: 'Furetti', de: 'Frettchen' },
+    intro: {
+      en: 'Everything this site has on ferrets in one place: every health topic, the most urgent first.',
+      it: 'Tutto quello che questo sito dice sui furetti in un unico posto: tutti gli argomenti di salute, prima i più urgenti.',
+      de: 'Alles, was diese Seite über Frettchen hat, an einem Ort: alle Gesundheitsthemen, die dringendsten zuerst.',
+    },
+    mostRead: { en: [], it: [], de: [] },
+    goNow: [],
+    facts: [],
+    care: [],
+  },
+
+  horse: {
+    key: 'horse',
+    name: { en: 'Horses', it: 'Cavalli', de: 'Pferde' },
+    intro: {
+      en: 'Everything this site has on horses in one place: every health topic, the most urgent first.',
+      it: 'Tutto quello che questo sito dice sui cavalli in un unico posto: tutti gli argomenti di salute, prima i più urgenti.',
+      de: 'Alles, was diese Seite über Pferde hat, an einem Ort: alle Gesundheitsthemen, die dringendsten zuerst.',
+    },
+    mostRead: { en: [], it: [], de: [] },
+    goNow: [],
+    facts: [],
+    care: [],
+  },
+
+  bird: {
+    key: 'bird',
+    name: { en: 'Birds', it: 'Uccelli', de: 'Vögel' },
+    intro: {
+      en: 'Everything this site has on pet birds in one place: every health topic, the most urgent first.',
+      it: 'Tutto quello che questo sito dice sugli uccelli da compagnia in un unico posto: tutti gli argomenti di salute, prima i più urgenti.',
+      de: 'Alles, was diese Seite über Ziervögel hat, an einem Ort: alle Gesundheitsthemen, die dringendsten zuerst.',
+    },
+    mostRead: { en: [], it: [], de: [] },
+    goNow: [],
+    facts: [],
+    care: [],
+  },
+
+  reptile: {
+    key: 'reptile',
+    name: { en: 'Reptiles', it: 'Rettili', de: 'Reptilien' },
+    intro: {
+      en: 'Everything this site has on reptiles in one place: every health topic, the most urgent first.',
+      it: 'Tutto quello che questo sito dice sui rettili in un unico posto: tutti gli argomenti di salute, prima i più urgenti.',
+      de: 'Alles, was diese Seite über Reptilien hat, an einem Ort: alle Gesundheitsthemen, die dringendsten zuerst.',
+    },
+    mostRead: { en: [], it: [], de: [] },
+    goNow: [],
+    facts: [],
+    care: [],
+  },
 };
 
-/** Guinea pigs: one article covers them so far. */
-export const GUINEA_PIG_ARTICLE: Record<Lang, string> = {
-  en: 'rabbit-guinea-pig-toxic-plants',
-  it: 'piante-tossiche-coniglio-cavia',
-  de: 'giftige-pflanzen-kaninchen-meerschweinchen',
+/**
+ * Articles filed under another species that also cover this one: they are listed among its health
+ * topics and counted on its card, besides the articles with that species.
+ */
+export const SHARED_TOPICS: Partial<Record<SpeciesKey, Record<Lang, string[]>>> = {
+  'guinea-pig': { en: [GUINEA_PIG_ARTICLE.en], it: [GUINEA_PIG_ARTICLE.it], de: [GUINEA_PIG_ARTICLE.de] },
 };
 
 /** All article slugs this file points to, per language (used by the checks). */
 export function referencedSlugs(lang: Lang): string[] {
   const out = new Set<string>([GUINEA_PIG_ARTICLE[lang]]);
+  for (const s of Object.values(SHARED_TOPICS)) s?.[lang].forEach((x) => out.add(x));
   for (const p of Object.values(PROFILES)) {
     p.mostRead[lang].forEach((s) => out.add(s));
     for (const it of [...p.goNow, ...p.facts, ...p.care]) { const c = it[lang]; if (c) out.add(c.slug); }
@@ -297,61 +414,66 @@ export function referencedSlugs(lang: Lang): string[] {
 
 export const GUIDE = {
   en: {
-    title: 'Animal guide', desc: 'Get to know your animal: the signs that mean go now, common health problems, key facts and good care, with the source named for every fact.',
-    intro: 'Get to know your animal: the signs that mean go now, common health problems, key facts and good care. Every fact names its source.',
-    find: 'Find an animal', findPh: 'Dog, cat, rabbit…', none: 'No animal matches “{q}”. Try another name, or search all articles below.', shown: '{n} of {t} animals shown',
-    cardSub: 'Go-now signs · health topics · key facts · care', mostRead: 'Start with', open: 'Open the {name} page',
-    gp: 'Guinea pigs', gpSub: '1 topic so far', soon: 'Coming soon',
-    soonList: [['horse', 'Horses'], ['bird', 'Birds'], ['ferret', 'Ferrets'], ['paw', 'Reptiles']],
+    title: 'Animals A–Z', desc: 'Fact sheets for the animals people keep, with the health topics for each, from veterinary sources. Every fact names its source.',
+    intro: 'Fact sheets for the animals people keep, and the health topics for each: the signs that mean go now, common problems and good care. Every fact names its source.',
+    find: 'Find an animal', findPh: 'Dog, hamster, budgie…', none: 'No animal matches “{q}”. Try another name, or search all articles below.', shown: '{n} of {t} animals shown',
+    // A–Z fact sheets
+    lexH: 'Fact sheets', lexCount: (n: number) => (n === 1 ? '1 animal' : `${n} animals`), view: 'View', viewAz: 'A–Z', viewGroups: 'By group', letters: 'Jump to a letter',
+    // health hubs: one card per species with articles
+    hubsH: 'Health topics by animal', hubsLead: 'Every health article for each animal, the most urgent first, plus go-now signs and care basics where our articles give a source for them.',
+    cardParts: { goNow: 'go-now signs', topics: 'health topics', facts: 'key facts', care: 'care' }, startWith: 'Start with', soon: 'Coming soon',
     searchH: 'Search all articles', az: 'All articles, A to Z',
-    stripH: 'What every animal page gives you',
-    strip: [['Go-now signs', 'The signs that mean go to a vet now, at the top of the page.'], ['Key facts', 'Short facts from our articles, each naming its source.'], ['Health topics', 'Every article for that animal, emergencies first.'], ['Care basics', 'Everyday care, sourced like everything else.'], ['Health booklet', 'Keep vaccinations, medications and your vet\'s number on your phone.']],
-    // profile page
+    stripH: 'What the animal pages give you',
+    strip: [['Go-now signs', 'The signs that mean go to a vet now, at the top of the page.'], ['Fact sheet', 'Lifespan, size, diet and housing at a glance, each with its source.'], ['Health topics', 'Every article for that animal, emergencies first.'], ['Care basics', 'Everyday care, sourced like everything else.'], ['Health booklet', 'Keep vaccinations, medications and your vet\'s number on your phone.']],
+    // animal page
     goNowH: 'Go now', goNowLead: 'Go to a vet now, and call ahead, if you see any of these.', emergencyLink: 'All emergency signs', factsH: 'Key facts', topicsH: 'Health topics', careH: 'Care basics',
-    source: 'Source', read: 'Read', topicsLead: '{n} articles, the most urgent first.', bookletH: 'Keep your animal\'s health in one place', bookletP: 'Vaccinations, medications, microchip and your vet\'s number in one booklet, on your phone. Free, and it stays on your device.', bookletCta: 'Open the health booklet', otherH: 'Other animals', guide: 'Animal guide',
+    source: 'Source', read: 'Read', topicsLead: '{n} articles, the most urgent first.', topicsLeadOne: '1 article.', topicsNone: 'We have no health articles on this animal yet. If you are worried, call your vet.',
+    bookletH: 'Keep your animal\'s health in one place', bookletP: 'Vaccinations, medications, microchip and your vet\'s number in one booklet, on your phone. Free, and it stays on your device.', bookletCta: 'Open the health booklet', otherH: 'Other animals', guide: 'Animals A–Z',
     urgency: { emergency: 'Go now', today: 'See a vet today', 'this-week': 'Book a visit this week', routine: 'Watch and ask at the next visit' },
     emergencyHref: '/emergency', booklet: '/passport',
   },
   it: {
-    title: 'Guida agli animali', desc: 'Conosci il tuo animale: i segni per correre dal veterinario, i problemi di salute più comuni, i fatti chiave e la cura giusta, con la fonte indicata per ogni fatto.',
-    intro: 'Conosci il tuo animale: i segni per correre dal veterinario, i problemi di salute più comuni, i fatti chiave e la cura giusta. Ogni fatto indica la sua fonte.',
-    find: 'Trova un animale', findPh: 'Cane, gatto, coniglio…', none: 'Nessun animale corrisponde a “{q}”. Prova un altro nome o cerca tra tutti gli articoli qui sotto.', shown: '{n} animali su {t}',
-    cardSub: 'Segni per correre dal veterinario · argomenti di salute · fatti chiave · cura', mostRead: 'Per iniziare', open: 'Apri la pagina {name}',
-    gp: 'Cavie', gpSub: '1 argomento per ora', soon: 'In arrivo',
-    soonList: [['horse', 'Cavalli'], ['bird', 'Uccelli'], ['ferret', 'Furetti'], ['paw', 'Rettili']],
+    title: 'Animali dalla A alla Z', desc: 'Schede degli animali che teniamo in casa, con gli argomenti di salute per ognuno, da fonti veterinarie. Ogni fatto indica la sua fonte.',
+    intro: 'Le schede degli animali che teniamo in casa e gli argomenti di salute per ognuno: i segni per correre dal veterinario, i problemi più comuni e la cura giusta. Ogni fatto indica la sua fonte.',
+    find: 'Trova un animale', findPh: 'Cane, criceto, cocorita…', none: 'Nessun animale corrisponde a “{q}”. Prova un altro nome o cerca tra tutti gli articoli qui sotto.', shown: '{n} animali su {t}',
+    lexH: 'Schede', lexCount: (n: number) => (n === 1 ? '1 animale' : `${n} animali`), view: 'Vista', viewAz: 'A–Z', viewGroups: 'Per gruppo', letters: 'Vai alla lettera',
+    hubsH: 'Salute per animale', hubsLead: 'Tutti gli articoli di salute per ogni animale, prima i più urgenti, più i segni per correre dal veterinario e la cura di base dove i nostri articoli ne indicano la fonte.',
+    cardParts: { goNow: 'segni per correre dal veterinario', topics: 'argomenti di salute', facts: 'fatti chiave', care: 'cura' }, startWith: 'Per iniziare', soon: 'In arrivo',
     searchH: 'Cerca in tutti gli articoli', az: 'Tutti gli articoli, dalla A alla Z',
-    stripH: 'Cosa trovi in ogni pagina animale',
-    strip: [['Segni per correre dal veterinario', 'I segni per andare subito dal veterinario, in cima alla pagina.'], ['Fatti chiave', 'Fatti brevi dai nostri articoli, ognuno con la sua fonte.'], ['Argomenti di salute', 'Tutti gli articoli su quell\'animale, prima le emergenze.'], ['Cura di base', 'La cura di ogni giorno, con le fonti come tutto il resto.'], ['Libretto sanitario', 'Vaccinazioni, farmaci e il numero del veterinario sul telefono.']],
+    stripH: 'Cosa trovi nelle pagine degli animali',
+    strip: [['Segni per correre dal veterinario', 'I segni per andare subito dal veterinario, in cima alla pagina.'], ['Scheda', 'Durata della vita, taglia, alimentazione e alloggio a colpo d\'occhio, ognuno con la sua fonte.'], ['Argomenti di salute', 'Tutti gli articoli su quell\'animale, prima le emergenze.'], ['Cura di base', 'La cura di ogni giorno, con le fonti come tutto il resto.'], ['Libretto sanitario', 'Vaccinazioni, farmaci e il numero del veterinario sul telefono.']],
     goNowH: 'Vai subito', goNowLead: 'Vai subito dal veterinario, telefonando prima, se vedi uno di questi segni.', emergencyLink: 'Tutti i segni di emergenza', factsH: 'Fatti chiave', topicsH: 'Argomenti di salute', careH: 'Cura di base',
-    source: 'Fonte', read: 'Leggi', topicsLead: '{n} articoli, prima i più urgenti.', bookletH: 'La salute del tuo animale in un unico posto', bookletP: 'Vaccinazioni, farmaci, microchip e il numero del veterinario in un solo libretto, sul telefono. Gratis, e resta sul tuo dispositivo.', bookletCta: 'Apri il libretto sanitario', otherH: 'Altri animali', guide: 'Guida agli animali',
+    source: 'Fonte', read: 'Leggi', topicsLead: '{n} articoli, prima i più urgenti.', topicsLeadOne: '1 articolo.', topicsNone: 'Non abbiamo ancora articoli di salute su questo animale. Se sei preoccupato, chiama il veterinario.',
+    bookletH: 'La salute del tuo animale in un unico posto', bookletP: 'Vaccinazioni, farmaci, microchip e il numero del veterinario in un solo libretto, sul telefono. Gratis, e resta sul tuo dispositivo.', bookletCta: 'Apri il libretto sanitario', otherH: 'Altri animali', guide: 'Animali dalla A alla Z',
     urgency: { emergency: 'Vai subito', today: 'Dal veterinario oggi', 'this-week': 'Prenota una visita questa settimana', routine: 'Osserva e chiedi alla prossima visita' },
     emergencyHref: '/it/emergency', booklet: '/it/passport',
   },
   de: {
-    title: 'Tierratgeber', desc: 'Lernen Sie Ihr Tier kennen: die Zeichen für sofort in die Praxis, häufige Gesundheitsprobleme, wichtige Fakten und gute Pflege, mit Quelle zu jedem Fakt.',
-    intro: 'Lernen Sie Ihr Tier kennen: die Zeichen für sofort in die Praxis, häufige Gesundheitsprobleme, wichtige Fakten und gute Pflege. Jeder Fakt nennt seine Quelle.',
-    find: 'Tier finden', findPh: 'Hund, Katze, Kaninchen…', none: 'Kein Tier passt zu „{q}“. Versuchen Sie einen anderen Namen oder durchsuchen Sie unten alle Artikel.', shown: '{n} von {t} Tieren',
-    cardSub: 'Notfallzeichen · Gesundheitsthemen · wichtige Fakten · Pflege', mostRead: 'Zum Einstieg', open: 'Seite {name} öffnen',
-    gp: 'Meerschweinchen', gpSub: 'Bisher 1 Thema', soon: 'Demnächst',
-    soonList: [['horse', 'Pferde'], ['bird', 'Vögel'], ['ferret', 'Frettchen'], ['paw', 'Reptilien']],
+    title: 'Tierlexikon', desc: 'Steckbriefe der Tiere, die Menschen halten, mit den Gesundheitsthemen zu jedem Tier, aus tierärztlichen Quellen. Jeder Fakt nennt seine Quelle.',
+    intro: 'Steckbriefe der Tiere, die Menschen halten, und die Gesundheitsthemen zu jedem Tier: die Zeichen für sofort in die Praxis, häufige Probleme und gute Pflege. Jeder Fakt nennt seine Quelle.',
+    find: 'Tier finden', findPh: 'Hund, Hamster, Wellensittich…', none: 'Kein Tier passt zu „{q}“. Versuchen Sie einen anderen Namen oder durchsuchen Sie unten alle Artikel.', shown: '{n} von {t} Tieren',
+    lexH: 'Steckbriefe', lexCount: (n: number) => (n === 1 ? '1 Tier' : `${n} Tiere`), view: 'Ansicht', viewAz: 'A–Z', viewGroups: 'Nach Gruppe', letters: 'Zum Buchstaben springen',
+    hubsH: 'Gesundheit nach Tierart', hubsLead: 'Alle Gesundheitsartikel je Tier, die dringendsten zuerst, dazu Notfallzeichen und Pflege-Grundlagen, wo unsere Artikel eine Quelle dafür nennen.',
+    cardParts: { goNow: 'Notfallzeichen', topics: 'Gesundheitsthemen', facts: 'wichtige Fakten', care: 'Pflege' }, startWith: 'Zum Einstieg', soon: 'Demnächst',
     searchH: 'Alle Artikel durchsuchen', az: 'Alle Artikel von A bis Z',
-    stripH: 'Was jede Tierseite bietet',
-    strip: [['Notfallzeichen', 'Die Zeichen für sofort in die Praxis, ganz oben auf der Seite.'], ['Wichtige Fakten', 'Kurze Fakten aus unseren Artikeln, jeweils mit Quelle.'], ['Gesundheitsthemen', 'Alle Artikel zu diesem Tier, Notfälle zuerst.'], ['Pflege-Grundlagen', 'Die tägliche Pflege, mit Quellen wie alles andere.'], ['Heimtierpass', 'Impfungen, Medikamente und die Nummer Ihrer Praxis auf dem Handy.']],
+    stripH: 'Was die Tierseiten bieten',
+    strip: [['Notfallzeichen', 'Die Zeichen für sofort in die Praxis, ganz oben auf der Seite.'], ['Steckbrief', 'Lebenserwartung, Größe, Ernährung und Haltung auf einen Blick, jeweils mit Quelle.'], ['Gesundheitsthemen', 'Alle Artikel zu diesem Tier, Notfälle zuerst.'], ['Pflege-Grundlagen', 'Die tägliche Pflege, mit Quellen wie alles andere.'], ['Heimtierpass', 'Impfungen, Medikamente und die Nummer Ihrer Praxis auf dem Handy.']],
     goNowH: 'Sofort in die Praxis', goNowLead: 'Fahren Sie sofort in die Praxis und rufen Sie vorher an, wenn Sie eines dieser Zeichen sehen.', emergencyLink: 'Alle Notfallzeichen', factsH: 'Wichtige Fakten', topicsH: 'Gesundheitsthemen', careH: 'Pflege-Grundlagen',
-    source: 'Quelle', read: 'Lesen', topicsLead: '{n} Artikel, die dringendsten zuerst.', bookletH: 'Die Gesundheit Ihres Tieres an einem Ort', bookletP: 'Impfungen, Medikamente, Mikrochip und die Nummer Ihrer Praxis in einem Pass, auf dem Handy. Kostenlos, und er bleibt auf Ihrem Gerät.', bookletCta: 'Heimtierpass öffnen', otherH: 'Andere Tiere', guide: 'Tierratgeber',
+    source: 'Quelle', read: 'Lesen', topicsLead: '{n} Artikel, die dringendsten zuerst.', topicsLeadOne: '1 Artikel.', topicsNone: 'Zu diesem Tier haben wir noch keine Gesundheitsartikel. Wenn Sie sich Sorgen machen, rufen Sie Ihre Praxis an.',
+    bookletH: 'Die Gesundheit Ihres Tieres an einem Ort', bookletP: 'Impfungen, Medikamente, Mikrochip und die Nummer Ihrer Praxis in einem Pass, auf dem Handy. Kostenlos, und er bleibt auf Ihrem Gerät.', bookletCta: 'Heimtierpass öffnen', otherH: 'Andere Tiere', guide: 'Tierlexikon',
     urgency: { emergency: 'Sofort in die Praxis', today: 'Heute in die Praxis', 'this-week': 'Diese Woche einen Termin', routine: 'Beobachten, beim nächsten Besuch fragen' },
     emergencyHref: '/de/emergency', booklet: '/de/passport',
   },
 } as const;
 
-/** Extra names the find-an-animal filter accepts, per card. */
-export const ALIASES: Record<string, string> = {
+/** Extra names the find-an-animal filter accepts, per species card. */
+export const ALIASES: Record<SpeciesKey, string> = {
   dog: 'dog dogs puppy puppies cane cani cucciolo hund hunde welpe',
   cat: 'cat cats kitten kittens gatto gatti gattino katze katzen kater kitten',
   rabbit: 'rabbit rabbits bunny coniglio conigli kaninchen hase',
-  guinea: 'guinea pig guinea pigs cavia cavie porcellino porcellini meerschweinchen',
-  horse: 'horse horses pony cavallo cavalli pferd pferde pony',
-  bird: 'bird birds parrot budgie uccello uccelli pappagallo vogel vögel sittich papagei',
+  'guinea-pig': 'guinea pig guinea pigs cavy cavia cavie porcellino porcellini meerschweinchen',
   ferret: 'ferret ferrets furetto furetti frettchen',
-  paw: 'reptile reptiles tortoise turtle lizard snake rettile rettili tartaruga reptil reptilien schildkröte',
+  horse: 'horse horses pony donkey cavallo cavalli asino pferd pferde pony esel',
+  bird: 'bird birds parrot budgie canary cockatiel uccello uccelli pappagallo cocorita canarino vogel vögel sittich papagei wellensittich kanarienvogel',
+  reptile: 'reptile reptiles tortoise turtle lizard snake gecko rettile rettili tartaruga lucertola serpente geco reptil reptilien schildkröte eidechse schlange gecko',
 };

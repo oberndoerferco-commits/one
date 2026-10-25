@@ -1,5 +1,6 @@
 ---
 title: "Giftige Lebensmittel für Hunde: Was tun, wenn Ihr Hund etwas davon gefressen hat"
+seoTitle: "Giftige Lebensmittel für Hunde: was tun im Ernstfall?"
 description: "Schokolade, Weintrauben, Xylit, Zwiebeln, Macadamianüsse, Alkohol und roher Hefeteig sind die häufigsten Küchengifte für Hunde. Was Sie in den ersten Minuten tun, was Sie lassen sollten und was die Tierarztpraxis fragen wird."
 species: dog
 category: first-aid

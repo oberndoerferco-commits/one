@@ -1,5 +1,6 @@
 ---
 title: "Leptospirose beim Hund: Anzeichen, Ansteckung, Impfung und Schutz für die Familie"
+seoTitle: "Leptospirose beim Hund: Anzeichen, Ansteckung, Impfung"
 description: "Leptospirose ist eine bakterielle Infektion, die Nieren und Leber des Hundes schwer schädigen und auch Menschen anstecken kann. Woran Sie sie erkennen, wann Ihr Hund sofort in die Praxis muss, was die Impfempfehlungen sagen und wie Sie sich im Haushalt schützen."
 species: dog
 category: conditions

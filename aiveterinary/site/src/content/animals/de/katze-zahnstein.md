@@ -1,5 +1,6 @@
 ---
 title: "Katze hat Zahnstein: was dahintersteckt, warum Narkose nötig ist und was FORL bedeutet"
+seoTitle: "Katze hat Zahnstein: Ursachen, Narkose und FORL erklärt"
 description: "Zahnstein bei der Katze ist mehr als ein Schönheitsfehler. Darunter können Zahnfleischentzündung, Parodontitis und schmerzhafte Zahnresorptionen (FORL) stecken. Woran Sie Zahnschmerzen erkennen, wann Ihre Katze sofort in die Praxis muss, warum eine Zahnreinigung nur in Narkose sinnvoll ist und wie Sie vorbeugen."
 species: cat
 category: conditions

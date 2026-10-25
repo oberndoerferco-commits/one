@@ -1,5 +1,6 @@
 ---
 title: "Frettchen-Fähe in der Ranz: Warum Dauerranz gefährlich ist und was hilft"
+seoTitle: "Frettchen-Fähe in der Ranz: Warum Dauerranz gefährlich ist"
 description: "Eine unkastrierte Frettchen-Fähe kann in der Ranz bleiben, bis sie gedeckt wird, und das viele Östrogen kann eine lebensgefährliche Blutarmut auslösen. Anzeichen, Warnzeichen und Ihre Möglichkeiten."
 species: ferret
 category: care

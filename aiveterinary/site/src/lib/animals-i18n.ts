@@ -8,7 +8,7 @@ export const ANIMALS = {
     lead: 'Written for owners from veterinary sources. Each article says whether a vet has reviewed it yet, and if so who and when. If something needs a veterinarian, the article says so at the top, not at the bottom.',
     prepare: 'Prepare for a vet visit →',
     emergency: '<strong>Emergency?</strong> Collapse, difficulty breathing, severe bleeding, a bloated hard belly, seizures that don\'t stop, poisoning, or a cat that cannot urinate: go to a veterinary clinic now. Call ahead so they can prepare.',
-    byTopic: 'By topic', byAnimal: 'By animal', latest: 'Latest', articles: 'articles', draft: 'Draft written with AI help, awaiting vet review',
+    byTopic: 'By topic', byAnimal: 'By animal', latest: 'Latest', articles: 'articles', article: 'article', draft: 'Draft written with AI help, awaiting vet review',
     nothing: 'Nothing here yet. Articles are being written and reviewed; check back soon or <a href="/newsletter">subscribe</a> to hear when they\'re published.',
     reviewedBy: 'Reviewed by', author: 'Written by', nextReview: 'Next review', references: 'Sources', share: 'Share this article with your vet', updated: 'Updated', draftLong: 'Draft written with AI assistance from the cited sources, not yet reviewed by a veterinarian', whenToSee: 'When to see a vet:',
     footer: 'This article is general information and cannot take your animal\'s history, breed or medications into account. It is not a diagnosis and does not replace an examination. If you are worried, call your vet; they would rather hear from you early.',
@@ -18,7 +18,7 @@ export const ANIMALS = {
       'this-week': 'Book a vet appointment this week if it continues or gets worse.',
       routine: 'Routine information. Mention it at your next visit if you have questions.',
     },
-    species: { dog: 'Dogs', cat: 'Cats', rabbit: 'Rabbits & small mammals', horse: 'Horses', bird: 'Birds', general: 'All animals' },
+    species: { dog: 'Dogs', cat: 'Cats', rabbit: 'Rabbits', 'guinea-pig': 'Guinea pigs', ferret: 'Ferrets', horse: 'Horses', bird: 'Birds', reptile: 'Reptiles', general: 'All animals' },
     categories: {
       symptoms: ['Symptoms', 'What a sign can mean and when to call a vet'],
       conditions: ['Conditions', 'Common diagnoses explained plainly'],
@@ -37,7 +37,7 @@ export const ANIMALS = {
     lead: 'Scritte per i proprietari a partire da fonti veterinarie. Ogni articolo dice se un veterinario lo ha già rivisto e, in quel caso, chi e quando. Se serve un veterinario, l\'articolo lo dice all\'inizio, non alla fine.',
     prepare: 'Prepara la visita dal veterinario →',
     emergency: '<strong>Emergenza?</strong> Collasso, difficoltà a respirare, sanguinamento grave, addome gonfio e duro, convulsioni che non si fermano, avvelenamento, o un gatto che non riesce a urinare: vai subito in una clinica veterinaria. Telefona prima, così possono prepararsi.',
-    byTopic: 'Per argomento', byAnimal: 'Per animale', latest: 'Ultimi articoli', articles: 'articoli', draft: "Bozza scritta con l'aiuto dell'IA, in attesa di revisione veterinaria",
+    byTopic: 'Per argomento', byAnimal: 'Per animale', latest: 'Ultimi articoli', articles: 'articoli', article: 'articolo', draft: "Bozza scritta con l'aiuto dell'IA, in attesa di revisione veterinaria",
     nothing: 'Ancora niente qui. Gli articoli sono in scrittura e revisione; torna presto o <a href="/newsletter">iscriviti</a> per sapere quando saranno pubblicati.',
     reviewedBy: 'Rivisto da', author: 'Scritto da', nextReview: 'Prossima revisione', references: 'Fonti', share: 'Condividi questo articolo con il tuo veterinario', updated: 'Aggiornato', draftLong: "Bozza redatta con l'assistenza dell'IA a partire dalle fonti citate, non ancora rivista da un veterinario", whenToSee: 'Quando andare dal veterinario:',
     footer: 'Questo articolo è un\'informazione generale e non può tenere conto della storia, della razza o dei farmaci del tuo animale. Non è una diagnosi e non sostituisce una visita. Se sei preoccupato, chiama il tuo veterinario: preferisce sentirti presto.',
@@ -47,7 +47,7 @@ export const ANIMALS = {
       'this-week': 'Prenota una visita questa settimana se continua o peggiora.',
       routine: 'Informazione di routine. Parlane alla prossima visita se hai domande.',
     },
-    species: { dog: 'Cani', cat: 'Gatti', rabbit: 'Conigli e piccoli mammiferi', horse: 'Cavalli', bird: 'Uccelli', general: 'Tutti gli animali' },
+    species: { dog: 'Cani', cat: 'Gatti', rabbit: 'Conigli', 'guinea-pig': 'Cavie', ferret: 'Furetti', horse: 'Cavalli', bird: 'Uccelli', reptile: 'Rettili', general: 'Tutti gli animali' },
     categories: {
       symptoms: ['Sintomi', 'Cosa può significare un segno e quando chiamare il veterinario'],
       conditions: ['Malattie', 'Le diagnosi più comuni spiegate in modo semplice'],
@@ -66,7 +66,7 @@ export const ANIMALS = {
     lead: 'Für Halter geschrieben, aus tierärztlichen Quellen. Jeder Artikel sagt, ob er schon tierärztlich geprüft ist, und wenn ja, von wem und wann. Wenn etwas in die Praxis gehört, steht es oben im Artikel, nicht unten.',
     prepare: 'Den Tierarztbesuch vorbereiten →',
     emergency: '<strong>Notfall?</strong> Zusammenbruch, Atemnot, starke Blutung, aufgeblähter harter Bauch, Krampfanfälle, die nicht aufhören, Vergiftung oder ein Kater, der nicht urinieren kann: Fahren Sie sofort in eine Tierklinik. Rufen Sie vorher an, damit man sich vorbereiten kann.',
-    byTopic: 'Nach Thema', byAnimal: 'Nach Tierart', latest: 'Neueste Artikel', articles: 'Artikel', draft: 'Entwurf mit KI-Unterstützung, tierärztliche Prüfung steht aus',
+    byTopic: 'Nach Thema', byAnimal: 'Nach Tierart', latest: 'Neueste Artikel', articles: 'Artikel', article: 'Artikel', draft: 'Entwurf mit KI-Unterstützung, tierärztliche Prüfung steht aus',
     nothing: 'Hier gibt es noch nichts. Die Artikel werden geschrieben und geprüft; schauen Sie bald wieder vorbei oder <a href="/de/newsletter">abonnieren Sie den Newsletter</a>.',
     reviewedBy: 'Geprüft von', author: 'Geschrieben von', nextReview: 'Nächste Prüfung', references: 'Quellen', share: 'Diesen Artikel mit Ihrer Praxis teilen', updated: 'Aktualisiert', draftLong: 'Entwurf, mit KI-Unterstützung aus den genannten Quellen erstellt, noch nicht tierärztlich geprüft', whenToSee: 'Wann zum Tierarzt:',
     footer: 'Dieser Artikel ist eine allgemeine Information und kann Vorgeschichte, Rasse oder Medikamente Ihres Tieres nicht berücksichtigen. Er ist keine Diagnose und ersetzt keine Untersuchung. Wenn Sie sich Sorgen machen, rufen Sie Ihre Praxis an; sie hört lieber früh von Ihnen.',
@@ -76,7 +76,7 @@ export const ANIMALS = {
       'this-week': 'Vereinbaren Sie diese Woche einen Termin, wenn es anhält oder schlimmer wird.',
       routine: 'Routineinformation. Sprechen Sie es beim nächsten Besuch an, wenn Sie Fragen haben.',
     },
-    species: { dog: 'Hunde', cat: 'Katzen', rabbit: 'Kaninchen und Kleinsäuger', horse: 'Pferde', bird: 'Vögel', general: 'Alle Tiere' },
+    species: { dog: 'Hunde', cat: 'Katzen', rabbit: 'Kaninchen', 'guinea-pig': 'Meerschweinchen', ferret: 'Frettchen', horse: 'Pferde', bird: 'Vögel', reptile: 'Reptilien', general: 'Alle Tiere' },
     categories: {
       symptoms: ['Symptome', 'Was ein Anzeichen bedeuten kann und wann Sie anrufen sollten'],
       conditions: ['Erkrankungen', 'Häufige Diagnosen verständlich erklärt'],
@@ -90,6 +90,9 @@ export const ANIMALS = {
     search: { placeholder: 'Symptome, Krankheiten, Fragen suchen…', zero: 'Keine Treffer für [SEARCH_TERM]', results: '[COUNT] Treffer für [SEARCH_TERM]', loading: 'Suche läuft…' },
   },
 } as const;
+
+/** "1 article" / "12 articles" in the page language. */
+export const nArticles = (lang: Lang, n: number) => `${n} ${n === 1 ? ANIMALS[lang].article : ANIMALS[lang].articles}`;
 
 /** Article id without the language folder: 'it/dog-vomiting' → 'dog-vomiting'. */
 export const slugOf = (id: string) => id.replace(/^[a-z]{2}\//, '');

@@ -4,6 +4,7 @@ import { ANIMALS, type Lang } from '../lib/animals-i18n';
 import AnimalIcon from './AnimalIcon.astro';
 import VerdictCard from './VerdictCard.astro';
 import { findSection, firstList, textOf } from './article-sections';
+import { ORG, WEBSITE_ID, wikidata, collections } from '../lib/seo';
 interface Props { lang: Lang; entry: any }
 const { lang, entry } = Astro.props;
 const t = ANIMALS[lang];
@@ -44,6 +45,7 @@ const vaccLink = ({ en: ['Plan the first-year vaccination dates', '/vaccine-plan
 const toolLink = CHOC.has(slug!) ? ({ en: ['Ate chocolate? Work out the dose for your dog', '/chocolate'], it: ['Ha mangiato cioccolato? Calcola la dose per il tuo cane', '/it/chocolate'], de: ['Schokolade gefressen? Dosis für Ihren Hund berechnen', '/de/chocolate'] } as any)[lang] : VACC.has(slug!) ? vaccLink : null;
 const minutes = Math.max(1, Math.round(((entry.body ?? '').split(/\s+/).length) / 200));
 const minLabel = ({ en: 'min read', it: 'min di lettura', de: 'Min. Lesezeit' } as any)[lang];
+const PUB = ({ en: 'Published', it: 'Pubblicato', de: 'Veröffentlicht' } as any)[lang];
 const fmt = (x: Date) => x.toLocaleDateString(t.locale, { day: 'numeric', month: 'long', year: 'numeric' });
 // Layout labels. Only interface words: medical text on the page always comes from the article itself.
 const S = ({
@@ -60,44 +62,79 @@ const goNow = findSection(html, lang, 'gonow');
 const goList = goNow ? firstList(goNow) : null;
 const askSec = findSection(html, lang, 'ask');
 const editorialHref = PV.href;
-// Structured data mirrors only what the page shows: same dates, a reviewer only when one is named on the page.
+// Structured data mirrors only what the page shows: same title, dates and sources, and a reviewer
+// only when the page names one (never on a draft). Google reads the Article node for article
+// features; MedicalWebPage carries the review fields, which schema.org defines on WebPage.
 const iso = (x: Date) => x.toISOString().slice(0, 10);
 const url = new URL(Astro.url.pathname.replace(/\.html$/, ''), Astro.site).href;
 const catLabel = (t.categories as any)[d.category]?.[0] ?? d.category;
-const ld = [
-  {
-    '@context': 'https://schema.org', '@type': 'MedicalWebPage', '@id': url, url,
-    headline: d.title, name: d.title, description: d.description, inLanguage: lang,
-    dateModified: iso(d.updated),
-    ...(d.reviewedBy && d.reviewedOn ? { lastReviewed: iso(d.reviewedOn), reviewedBy: { '@type': 'Person', name: d.reviewedBy, ...(d.reviewerRegistration ? { description: d.reviewerRegistration } : {}) } } : {}),
-    ...(d.author ? { author: { '@type': 'Person', name: d.author } } : { author: { '@type': 'Organization', name: 'AI Veterinary', url: 'https://aiveterinary.org' } }),
-    publisher: { '@type': 'Organization', name: 'AI Veterinary', url: 'https://aiveterinary.org' },
-    ...(d.references?.length ? { citation: d.references.filter((r: any) => r.url).map((r: any) => ({ '@type': 'CreativeWork', name: r.title, url: r.url })) } : {}),
-  },
-  {
-    '@context': 'https://schema.org', '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: t.title, item: new URL(t.base, Astro.site).href },
-      { '@type': 'ListItem', position: 2, name: catLabel, item: new URL(`${t.base}/${d.category}`, Astro.site).href },
-      { '@type': 'ListItem', position: 3, name: d.title, item: url },
-    ],
-  },
-];
+// The species page exists only for species listed in animals-i18n; a new species without one links nowhere.
+const speciesLabel: string | undefined = (t.species as any)[d.species];
+const reviewed = !d.draft && !!d.reviewedBy;
+// The animals the article is about: its lexicon entries (frontmatter `animals`) where they exist in this
+// language, linked from the header, else its species. Named the same way in the structured data.
+const lexicon = (await collections())[1].filter((e) => e.data.lang === lang);
+const lexOf = (key: string) => lexicon.find((e) => String(e.id).split('/').pop() === key);
+const lexLinks = (d.animals ?? []).map((k: string) => ({ k, e: lexOf(k) })).filter((x: any) => x.e && !(x.k === d.species && speciesLabel))
+  .map((x: any) => ({ key: x.k, name: x.e.data.name as string, href: `${t.base}/${x.k}` }));
+const aboutKeys: string[] = d.animals?.length ? d.animals : d.species !== 'general' ? [d.species] : [];
+const about = aboutKeys.map((k) => {
+  const e = lexOf(k);
+  return { '@type': 'Thing', name: e?.data.name ?? (t.species as any)[k] ?? k, ...(e ? { url: new URL(`${t.base}/${k}`, Astro.site).href } : {}), ...(wikidata(k) ? { sameAs: wikidata(k) } : {}) };
+});
+const sources = (d.references ?? []).map((r: any) => ({ '@type': 'CreativeWork', name: r.title, ...(r.url ? { url: r.url } : {}) }));
+const ld = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'MedicalWebPage', '@id': url, url, name: d.title, description: d.description, inLanguage: lang,
+      isPartOf: { '@id': WEBSITE_ID },
+      breadcrumb: { '@id': `${url}#breadcrumb` },
+      mainEntity: { '@id': `${url}#article` },
+      dateModified: iso(d.updated),
+      ...(reviewed ? { reviewedBy: { '@type': 'Person', name: d.reviewedBy, ...(d.reviewerRegistration ? { description: d.reviewerRegistration } : {}) }, ...(d.reviewedOn ? { lastReviewed: iso(d.reviewedOn) } : {}) } : {}),
+    },
+    {
+      '@type': 'Article', '@id': `${url}#article`, mainEntityOfPage: { '@id': url },
+      headline: d.title, description: d.description, inLanguage: lang,
+      ...(d.published ? { datePublished: iso(d.published) } : {}),
+      dateModified: iso(d.updated),
+      author: d.author ? { '@type': 'Person', name: d.author } : { '@id': ORG['@id'], '@type': 'Organization', name: ORG.name, url: 'https://aiveterinary.org/about' },
+      publisher: ORG,
+      ...(about.length ? { about: about.length === 1 ? about[0] : about } : {}),
+      articleSection: catLabel,
+      isAccessibleForFree: true,
+      ...(sources.length ? { citation: sources } : {}),
+    },
+    {
+      '@type': 'BreadcrumbList', '@id': `${url}#breadcrumb`,
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: t.title, item: new URL(t.base, Astro.site).href },
+        { '@type': 'ListItem', position: 2, name: catLabel, item: new URL(`${t.base}/${d.category}`, Astro.site).href },
+        { '@type': 'ListItem', position: 3, name: d.title },
+      ],
+    },
+  ],
+};
 const phoneIc = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>';
 const briefIc = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M7 2h7l5 5v13a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm6 1.5V8h4.5L13 3.5zM8 12v1.6h8V12H8zm0 3.4V17h8v-1.6H8z"/></svg>';
 ---
-<script type="application/ld+json" set:html={JSON.stringify(ld)} />
+<script type="application/ld+json" set:html={JSON.stringify(ld).replace(/</g, '\\u003c')} />
 <div class="av-page" data-pagefind-body data-pagefind-meta={`species:${d.species}`}>
 <div class="av-grid">
 <article class="av-main" aria-labelledby="av-title">
   <header class="av-head">
-    <p class="eyebrow av-crumbs"><span class={`av-ic tint-${d.species}`} aria-hidden="true"><AnimalIcon kind={d.species === 'general' ? 'dog' : d.species} size={30} /></span><span><a href={t.base}>{t.title}</a> · <a href={`${t.base}/${d.category}`}>{catLabel}</a> · <a href={`${t.base}/${d.species}`}>{(t.species as any)[d.species] ?? d.species}</a></span></p>
+    <p class="eyebrow av-crumbs"><span class={`av-ic tint-${d.species}`} aria-hidden="true"><AnimalIcon kind={d.species === 'general' ? 'dog' : d.species} size={30} /></span><span><a href={t.base}>{t.title}</a> · <a href={`${t.base}/${d.category}`}>{catLabel}</a>{speciesLabel && <> · <a href={`${t.base}/${d.species}`}>{speciesLabel}</a></>}{lexLinks.map((x: any) => <> · <a href={x.href}>{x.name}</a></>)}</span></p>
     <h1 id="av-title">{d.title}</h1>
+    {/* Answer first: the article's own one-paragraph summary is the first text after the title, so
+        search snippets and AI assistants quote the answer, not the page furniture. */}
+    <p class="lead av-lead" id="av-summary">{d.description}</p>
     <p class="av-status">
       {d.draft
         ? <span class="av-st-draft"><strong>{S.draft}</strong> · {S.draftNot}</span>
         : <span class="av-st-rev">{t.reviewedBy} {d.reviewedBy}{d.reviewerRegistration && ` (${d.reviewerRegistration})`}{d.reviewedOn && `, ${fmt(d.reviewedOn)}`}</span>}
       <span aria-hidden="true"> · </span>{nRefs ? <a href="#av-sources">{S.src(nRefs)}</a> : <span>{S.noSrc}</span>}
+      {d.published && <><span aria-hidden="true"> · </span><span>{PUB} {fmt(d.published)}</span></>}
       <span aria-hidden="true"> · </span><span>{t.updated} {fmt(d.updated)}</span>
       {d.author && <><span aria-hidden="true"> · </span><span>{t.author} {d.author}</span></>}
       {d.nextReview && <><span aria-hidden="true"> · </span><span>{t.nextReview} {fmt(d.nextReview)}</span></>}
@@ -113,7 +150,6 @@ const briefIc = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="tr
       passport={S.passport} visitBrief={t.visitBrief} phoneIc={phoneIc} briefIc={briefIc}
     />
   )}
-  <p class="lead av-lead">{d.description}</p>
   {toolLink && <p class="tool-link" data-pagefind-ignore><a class="btn" href={toolLink[1]}>{toolLink[0]}</a></p>}
   {toc.length >= 3 && (
     <details class="av-toc-m" data-pagefind-ignore>
@@ -234,9 +270,11 @@ const briefIc = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="tr
   .av-status a:hover { color: var(--accent); }
   .av-st-draft strong { color: color-mix(in srgb, var(--warn) 75%, var(--ink)); font-weight: 700; }
   .av-st-rev { color: var(--ok); font-weight: 600; }
-  .av-lead { color: var(--ink-2); font-size: 1.12rem; margin: 22px 0 18px; }
+  .av-lead { color: var(--ink); font-size: 1.12rem; line-height: 1.5; margin: 0 0 12px; }
   .av-prose h2[id] { scroll-margin-top: 84px; }
   #av-sources { scroll-margin-top: 84px; }
+  /* Source links sit in a list, so each needs a 24px target (WCAG 2.5.8): spaced lines, not cramped. */
+  .article-refs li { line-height: 1.5; padding: 3px 0; }
   #av-sources:focus { outline: none; }
 
   /* Phone table of contents */

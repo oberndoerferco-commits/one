@@ -1,5 +1,6 @@
 ---
 title: "Vitalwerte beim Pferd: normale Temperatur, Puls und Atmung und wie Sie sie messen"
+seoTitle: "Vitalwerte beim Pferd: Temperatur, Puls und Atmung messen"
 description: "Normale Temperatur, Herz- und Atemfrequenz eines erwachsenen Pferdes in Ruhe, wie Sie sie sicher messen, was Schleimhäute und Darmgeräusche verraten und bei welchen Werten Sie anrufen sollten."
 species: horse
 category: care

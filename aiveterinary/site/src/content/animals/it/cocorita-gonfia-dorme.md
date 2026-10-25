@@ -1,5 +1,6 @@
 ---
 title: "Cocorita gonfia che dorme sempre o sta sul fondo della gabbia: è malata?"
+seoTitle: "Cocorita gonfia che dorme sempre: è malata?"
 description: "Gli uccelli nascondono la malattia: una cocorita, una calopsite o un canarino che sta gonfio, dorme molto o resta sul fondo della gabbia può essere già grave. I segni per andare subito e cosa fare."
 species: bird
 category: symptoms

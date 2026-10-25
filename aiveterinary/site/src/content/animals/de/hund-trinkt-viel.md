@@ -1,5 +1,6 @@
 ---
 title: "Hund trinkt viel: wie viel normal ist, woran Sie zu viel erkennen und wann es eilig wird"
+seoTitle: "Hund trinkt viel: wie viel ist normal, wann zum Tierarzt?"
 description: "Wenn Ihr Hund plötzlich deutlich mehr trinkt, steckt oft eine Erkrankung dahinter, etwa der Nieren, ein Diabetes oder eine Hormonstörung. Wie Sie die Trinkmenge messen, welche Ursachen in Frage kommen, wann Sie sofort in die Praxis fahren sollten und warum Sie das Wasser nicht wegnehmen dürfen."
 species: dog
 category: symptoms

@@ -1,15 +1,15 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import AnimalsFilter from '../../../components/AnimalsFilter.astro';
-import { ANIMALS } from '../../../lib/animals-i18n';
-import { PROFILES } from '../../../data/species';
-export async function getStaticPaths() {
-  return [...Object.keys(ANIMALS.de.species), ...Object.keys(ANIMALS.de.categories)].map((filter) => ({ params: { filter } }));
+import AnimalPage from '../../../components/AnimalPage.astro';
+import { animalPaths, animalPage } from '../../../lib/animal-data';
+// /animals/<key>: species and topics (src/lib/animals-i18n.ts) plus every lexicon entry in this language.
+export function getStaticPaths() {
+  return animalPaths('de');
 }
 const { filter } = Astro.params;
-const profile = (PROFILES as any)[filter!];
-const label = profile?.name.de ?? (ANIMALS.de.species as any)[filter!] ?? (ANIMALS.de.categories as any)[filter!]?.[0];
+const page = await animalPage('de', filter!);
 ---
-<Base title={label} description={profile ? profile.intro.de : `${label}: verständliche Artikel für Halter zu Symptomen, wann in die Praxis, Pflege und Vorbeugung, aus tierärztlichen Quellen. Jeder zeigt, ob er schon tierärztlich geprüft ist.`} lang="de">
-  <AnimalsFilter lang="de" filter={filter!} />
+<Base title={page.title} description={page.description} lang="de">
+  {page.kind === 'animal' ? <AnimalPage lang="de" filter={filter!} /> : <AnimalsFilter lang="de" filter={filter!} />}
 </Base>

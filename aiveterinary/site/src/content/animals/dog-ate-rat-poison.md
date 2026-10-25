@@ -1,5 +1,6 @@
 ---
 title: "My dog ate rat poison: what to do, and why bleeding can start days later"
+seoTitle: "Dog ate rat poison: act now, bleeding can start days later"
 description: "Most rat and mouse baits stop the blood from clotting, and a dog can look perfectly well for several days before bleeding starts. Why you should go to the vet now, what to bring, and what treatment involves."
 species: dog
 category: first-aid

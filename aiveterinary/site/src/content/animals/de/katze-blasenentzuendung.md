@@ -1,5 +1,6 @@
 ---
 title: "Blasenentzündung bei der Katze: Symptome, Stress als Auslöser, wann es ein Notfall ist"
+seoTitle: "Blasenentzündung bei der Katze: Symptome und Notfallzeichen"
 description: "Die meisten Blasenentzündungen bei Katzen sind keine bakteriellen Infektionen, sondern stressbedingt. Bei Katern kann daraus innerhalb von Stunden ein lebensbedrohlicher Harnröhrenverschluss werden. Was Sie erkennen, wann Sie fahren müssen und was im Alltag hilft."
 species: cat
 category: conditions

@@ -1,5 +1,7 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
+import { ANIMALS } from '../lib/animals-i18n';
+import { SHARED_TOPICS } from '../data/species';
 
 // A plain-text map of the site for AI assistants (llmstxt.org format), rebuilt with every
 // deploy so article lists and review status never go stale.
@@ -7,9 +9,12 @@ const SITE = 'https://aiveterinary.org';
 const slugOf = (id: string) => id.split('/').pop()!;
 const base = { en: '/animals', it: '/it/animals', de: '/de/animals' } as const;
 const LANG = { en: 'English', it: 'Italiano', de: 'Deutsch' } as const;
+// The verdict each article shows at the top (frontmatter `urgency`), in words an assistant can repeat.
+const URGENCY = { emergency: 'emergency: go to a vet now', today: 'see a vet today', 'this-week': 'book a vet visit this week if it continues', routine: 'routine: ask at the next visit' } as const;
 
 export const GET: APIRoute = async () => {
   const entries = await getCollection('animals');
+  const lexicon = await getCollection('lexicon');
   const lines: string[] = [];
   lines.push('# AI Veterinary');
   lines.push('');
@@ -41,14 +46,49 @@ export const GET: APIRoute = async () => {
   lines.push(`- [Quality](${SITE}/vets/quality): test set, published rates with 95 % confidence intervals, a repeatable 20-case stopwatch test`);
   lines.push(`- [Data and law](${SITE}/vets/data): GDPR roles, subprocessors, EU AI Act Article 50, professional secrecy`);
   lines.push(`- [Workspace preview](${SITE}/vets/workspace): try it on synthetic patients`);
+  // Animal guide: the listing and profile pages that have something on them in each language.
+  lines.push('');
+  lines.push('## Animal guide');
+  for (const l of ['en', 'it', 'de'] as const) {
+    const t = ANIMALS[l];
+    const has = (key: string) => entries.some((e) => e.data.lang === l && (e.data.species === key || e.data.category === key || (SHARED_TOPICS as any)[key]?.[l]?.includes(slugOf(e.id)))) || lexicon.some((e) => e.data.lang === l && slugOf(e.id) === key);
+    const pages: string[] = [`[${t.title}](${SITE}${base[l]})`, `[${t.allTitle}](${SITE}${base[l]}/all)`];
+    for (const [key, label] of Object.entries(t.species)) if (has(key)) pages.push(`[${label}](${SITE}${base[l]}/${key})`);
+    for (const [key, [label]] of Object.entries(t.categories)) if (has(key)) pages.push(`[${label}](${SITE}${base[l]}/${key})`);
+    lines.push(`- ${LANG[l]}: ${pages.join(', ')}`);
+  }
   for (const l of ['en', 'it', 'de'] as const) {
     const list = entries.filter((e) => e.data.lang === l).sort((a, b) => a.data.title.localeCompare(b.data.title, l));
     lines.push('');
     lines.push(`## Articles (${LANG[l]}, ${list.length})`);
     for (const e of list) {
-      const status = (e.data.references?.length ? '' : 'no sources listed yet; ') + (e.data.draft ? 'draft, not yet vet-reviewed' : `reviewed by ${e.data.reviewedBy}${e.data.reviewedOn ? ` on ${e.data.reviewedOn.toISOString().slice(0, 10)}` : ''}`);
-      lines.push(`- [${e.data.title}](${SITE}${base[l]}/${slugOf(e.id)}): ${e.data.description} (${status}; updated ${e.data.updated.toISOString().slice(0, 10)})`);
+      const reviewed = !e.data.draft && e.data.reviewedBy;
+      const status = [
+        e.data.urgency ? URGENCY[e.data.urgency] : '',
+        e.data.references?.length ? `${e.data.references.length} source${e.data.references.length === 1 ? '' : 's'}` : 'no sources listed yet',
+        reviewed ? `reviewed by ${e.data.reviewedBy}${e.data.reviewedOn ? ` on ${e.data.reviewedOn.toISOString().slice(0, 10)}` : ''}` : 'draft, not yet vet-reviewed',
+        `updated ${e.data.updated.toISOString().slice(0, 10)}`,
+      ].filter(Boolean).join('; ');
+      lines.push(`- [${e.data.title}](${SITE}${base[l]}/${slugOf(e.id)}): ${e.data.description.replace(/\s+/g, ' ').trim()} (${status})`);
     }
   }
+  // Animal lexicon: one page per animal (/animals/<entry>), each fact tied to the entry's own sources.
+  for (const l of ['en', 'it', 'de'] as const) {
+    const list = lexicon.filter((e) => e.data.lang === l).sort((a, b) => a.data.name.localeCompare(b.data.name, l));
+    if (!list.length) continue;
+    lines.push('');
+    lines.push(`## Animal lexicon (${LANG[l]}, ${list.length})`);
+    for (const e of list) {
+      const status = [e.data.scientific, `${e.data.references.length} source${e.data.references.length === 1 ? '' : 's'}`, e.data.draft ? 'draft, not yet vet-reviewed' : '', `updated ${e.data.updated.toISOString().slice(0, 10)}`].filter(Boolean).join('; ');
+      lines.push(`- [${e.data.name}](${SITE}${base[l]}/${slugOf(e.id)}): ${e.data.description.replace(/\s+/g, ' ').trim()} (${status})`);
+    }
+  }
+  lines.push('');
+  lines.push('## Optional');
+  lines.push(`- [Terms](${SITE}/terms)`);
+  lines.push(`- [Legal notice](${SITE}/impressum)`);
+  lines.push(`- [Research notes for veterinary teams](${SITE}/vets/research)`);
+  lines.push(`- [Pet registries by country](${SITE}/registry)`);
+  lines.push(`- [When the time comes (end of life)](${SITE}/end-of-life)`);
   return new Response(lines.join('\n') + '\n', { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });
 };

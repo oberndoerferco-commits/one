@@ -1,5 +1,6 @@
 ---
 title: "Parametri vitali del cavallo: temperatura, polso e respiro normali e come misurarli"
+seoTitle: "Parametri vitali del cavallo: valori normali e misurazione"
 description: "Temperatura, frequenza cardiaca e respiratoria normali del cavallo adulto a riposo, come misurarle in sicurezza, cosa dicono mucose e rumori intestinali e quali valori richiedono il veterinario."
 species: horse
 category: care

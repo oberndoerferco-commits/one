@@ -1,5 +1,6 @@
 ---
 title: "Hitzschlag beim Hund: Anzeichen, sofortige Kühlung und der Weg zum Tierarzt"
+seoTitle: "Hitzschlag beim Hund: Anzeichen und sofortige Kühlung"
 description: "Hitzschlag tötet jeden Sommer Hunde, und er kann beim Spaziergang passieren, nicht nur im Auto. Wie Sie ihn erkennen, wie Sie einen Hund schnell und sicher kühlen und warum ein Tierarztbesuch trotzdem nötig ist."
 species: dog
 category: first-aid

@@ -1,5 +1,6 @@
 ---
 title: "Katze Verstopfung: wann es nur Verstopfung ist und wann ein Notfall dahintersteckt"
+seoTitle: "Katze Verstopfung: wann ist es ein Notfall?"
 description: "Eine Katze, die in der Katzentoilette presst, ist nicht unbedingt verstopft. Gerade bei Katern kann ein lebensgefährlicher Harnröhrenverschluss dahinterstecken. Wie Sie die Anzeichen einordnen, was Verstopfung bei Katzen verursacht und warum Klistiere aus der Apotheke gefährlich sind."
 species: cat
 category: symptoms

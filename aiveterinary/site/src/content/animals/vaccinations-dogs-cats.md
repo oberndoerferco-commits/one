@@ -1,5 +1,6 @@
 ---
 title: "Vaccinations for dogs and cats in Europe: what they cover and why boosters matter"
+seoTitle: "Dog and cat vaccinations in Europe: why boosters matter"
 description: "Which vaccines are considered core for dogs and cats, why puppies and kittens need a course, what a booster actually does, and why the vaccination record matters."
 species: general
 category: care

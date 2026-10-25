@@ -1,5 +1,6 @@
 ---
 title: "Wellensittich aufgeplustert, schläft viel oder sitzt am Boden: ist er krank?"
+seoTitle: "Wellensittich aufgeplustert: ist er krank?"
 description: "Vögel verbergen Krankheiten: Ein Wellensittich, Nymphensittich oder Kanarienvogel, der aufgeplustert dasitzt, viel schläft oder am Boden sitzt, kann schon schwer krank sein. Wann es eilt."
 species: bird
 category: symptoms

@@ -1,5 +1,6 @@
 ---
 title: "Horse colic: the signs, what to do until the vet arrives, and what not to do"
+seoTitle: "Horse colic: signs and what to do until the vet arrives"
 description: "Colic means belly pain, and a horse with any colic sign needs a vet now. The signs to look for, how to keep your horse and yourself safe until the vet arrives, and why the passport matters."
 species: horse
 category: symptoms

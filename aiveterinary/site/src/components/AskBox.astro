@@ -70,7 +70,7 @@ const cfg = { ...T, lang, uLine: a.urgency, draft: a.draft, emergency: `${pre}/e
 <script type="application/json" id="ask-cfg" set:html={JSON.stringify(cfg)} />
 
 <script>
-  type Entry = { t: string; d: string; u: string | null; s: string; c: string; draft: boolean };
+  type Entry = { t: string; d: string; u: string | null; s: string; c: string; draft: boolean; x?: string[] };
   type Match = { url: string; e: Entry };
   const root = document.querySelector<HTMLElement>('[data-ask]');
   const cfgEl = document.getElementById('ask-cfg');
@@ -91,10 +91,14 @@ const cfg = { ...T, lang, uLine: a.urgency, draft: a.draft, emergency: `${pre}/e
     const SPECIES: Record<string, string[]> = {
       dog: ['dog', 'dogs', 'puppy', 'puppies', 'cane', 'cani', 'cucciolo', 'cagna', 'hund', 'hunde', 'hundin', 'welpe', 'welpen'],
       cat: ['cat', 'cats', 'kitten', 'kittens', 'gatto', 'gatta', 'gatti', 'gattino', 'katze', 'katzen', 'kater'],
-      rabbit: ['rabbit', 'rabbits', 'bunny', 'guinea', 'hamster', 'ferret', 'coniglio', 'conigli', 'cavia', 'criceto', 'furetto', 'kaninchen', 'meerschweinchen'],
-      horse: ['horse', 'horses', 'pony', 'cavallo', 'pferd', 'pferde'],
+      rabbit: ['rabbit', 'rabbits', 'bunny', 'bunnies', 'coniglio', 'conigli', 'coniglietto', 'kaninchen'],
+      'guinea-pig': ['guinea', 'cavy', 'cavies', 'cavia', 'cavie', 'porcellino', 'porcellini', 'meerschweinchen'],
+      ferret: ['ferret', 'ferrets', 'furetto', 'furetti', 'frettchen'],
+      horse: ['horse', 'horses', 'pony', 'ponies', 'cavallo', 'cavalli', 'pferd', 'pferde'],
       bird: ['bird', 'birds', 'parrot', 'budgie', 'canary', 'uccello', 'pappagallo', 'canarino', 'vogel', 'papagei', 'wellensittich'],
-      none: ['fish', 'goldfish', 'snake', 'turtle', 'tortoise', 'lizard', 'gecko', 'frog', 'pesce', 'pesci', 'pesciolino', 'serpente', 'tartaruga', 'lucertola', 'rana', 'fisch', 'goldfisch', 'schlange', 'schildkrote', 'eidechse', 'frosch'],
+      reptile: ['reptile', 'reptiles', 'snake', 'snakes', 'turtle', 'turtles', 'tortoise', 'tortoises', 'lizard', 'lizards', 'gecko', 'geckos', 'iguana', 'rettile', 'rettili', 'serpente', 'serpenti', 'tartaruga', 'tartarughe', 'lucertola', 'geco', 'reptil', 'reptilien', 'schlange', 'schlangen', 'schildkrote', 'schildkroten', 'eidechse', 'eidechsen', 'leguan'],
+      // Animals we have no articles for: a question about only these finds nothing rather than another animal's article.
+      none: ['fish', 'goldfish', 'frog', 'hamster', 'hamsters', 'pesce', 'pesci', 'pesciolino', 'rana', 'criceto', 'criceti', 'fisch', 'goldfisch', 'frosch'],
     };
     const STOP = new Set(('a an the my our your his her its is are was were be been it this that what which who how why when where do does did can could should would will i me we you he she they to of in on at for with from and or not no but if so very just about since has have had there here any some than then too also please help ' +
       'il lo la le gli i un una uno mio mia miei mie tuo tua suo sua di da del della dei delle al alla ai in con su per tra fra e o ma non che chi come cosa perche quando dove sono ha ho hai abbiamo e stato si mi ti ci vi ne piu molto anche se gia ' +
@@ -121,7 +125,7 @@ const cfg = { ...T, lang, uLine: a.urgency, draft: a.draft, emergency: `${pre}/e
       const sp = speciesOf(ws);
       const sig = ws.filter((w) => w.length >= 3 && !STOP.has(w) && !allSpecies.has(w));
       if (sp.size === 1 && sp.has('none')) return [];
-      const allowed = (e: Entry) => !sp.size || sp.has(e.s) || (e.s === 'general' && !sp.has('none'));
+      const allowed = (e: Entry) => !sp.size || sp.has(e.s) || !!e.x?.some((s) => sp.has(s)) || (e.s === 'general' && !sp.has('none'));
       // Relevance gate: a significant (non-species) word of the question must appear in the title or description.
       // Title words count double, so "cat not eating" beats an article that only mentions it.
       const hits = (text: string) => { const dw = words(text); return sig.filter((w) => dw.some((d) => same(w, d))).length; };

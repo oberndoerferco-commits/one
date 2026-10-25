@@ -1,5 +1,6 @@
 ---
 title: "Insulinoma nel furetto: sintomi, perché trema o è debole e quando è un'emergenza"
+seoTitle: "Insulinoma nel furetto: sintomi e quando è un'emergenza"
 description: "Un furetto debole, che barcolla sulle zampe posteriori, sbava, trema o collassa può avere la glicemia pericolosamente bassa, spesso per un insulinoma. I segni, cosa fare e perché non si aspetta."
 species: ferret
 category: symptoms

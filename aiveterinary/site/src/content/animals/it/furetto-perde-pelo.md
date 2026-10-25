@@ -1,5 +1,6 @@
 ---
 title: "Il furetto perde il pelo sulla coda o sulla schiena: è la malattia surrenalica?"
+seoTitle: "Furetto che perde il pelo: è la malattia surrenalica?"
 description: "Un furetto che perde il pelo partendo dalla coda mostra il segno tipico della malattia surrenalica. Gli altri segni, l'emergenza nei maschi, la differenza con la muta normale e le possibili cure."
 species: ferret
 category: symptoms

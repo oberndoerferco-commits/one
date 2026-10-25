@@ -1,5 +1,6 @@
 ---
 title: "Hund hat Durchfall mit Blut: wann es ein Notfall ist und was dahinterstecken kann"
+seoTitle: "Hund hat Durchfall mit Blut: wann ist es ein Notfall?"
 description: "Blut im Durchfall sieht erschreckend aus. Manchmal ist es eine eher leichte Dickdarmentzündung, manchmal ein lebensbedrohlicher Notfall wie Parvovirose, eine Vergiftung mit Rattengift oder ein akutes blutiges Durchfallsyndrom. Woran Sie den Unterschied erkennen, was Sie der Praxis sagen sollten und warum Schmerzmittel aus Ihrer Hausapotheke tabu sind."
 species: dog
 category: symptoms

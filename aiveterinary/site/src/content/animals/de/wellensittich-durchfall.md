@@ -1,5 +1,6 @@
 ---
 title: "Wellensittich hat Durchfall: was normaler Kot ist und wann es ernst wird"
+seoTitle: "Wellensittich hat Durchfall: wann wird es ernst?"
 description: "Vogelkot hat drei Teile, und mehr klarer Urin ist noch kein Durchfall. Wie normaler Kot bei Wellensittich, Nymphensittich und Kanarienvogel aussieht, wann es ernst wird und welche Hygiene hilft."
 species: bird
 category: symptoms

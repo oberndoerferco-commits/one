@@ -1,5 +1,6 @@
 ---
 title: "Leishmaniosi nel cane: sintomi iniziali, prevenzione e cosa sapere in Italia"
+seoTitle: "Leishmaniosi nel cane: primi sintomi e prevenzione"
 description: "La leishmaniosi è trasmessa dai flebotomi, piccoli insetti attivi nelle sere calde, ed è presente in gran parte d'Italia. I primi segni, come si previene, cosa fa il test annuale e cosa chiedere al veterinario."
 species: dog
 category: conditions
