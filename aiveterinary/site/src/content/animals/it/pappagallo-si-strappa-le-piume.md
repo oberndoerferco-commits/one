@@ -5,20 +5,18 @@ description: "Un pappagallo che si strappa le piume, o una cocorita o un canarin
 species: bird
 category: symptoms
 urgency: this-week
-updated: 2026-10-24
+updated: 2026-10-25
 draft: true
 lang: it
 references:
   - title: "MSD Veterinary Manual (versione per proprietari): Skin and Feather Disorders of Pet Birds"
     url: "https://www.msdvetmanual.com/bird-owners/disorders-and-diseases-of-birds/skin-and-feather-disorders-of-pet-birds"
-  - title: "VCA Animal Hospitals: Feather Problems in Birds"
-    url: "https://vcahospitals.com/know-your-pet/feather-problems-in-birds"
-  - title: "VCA Animal Hospitals: Recognizing the Signs of Illness in Pet Birds"
-    url: "https://vcahospitals.com/know-your-pet/recognizing-the-signs-of-illness-in-pet-birds"
   - title: "MSD Veterinary Manual (versione per proprietari): Injuries and Accidents of Pet Birds"
     url: "https://www.msdvetmanual.com/bird-owners/disorders-and-diseases-of-birds/injuries-and-accidents-of-pet-birds"
   - title: "Tierspital Zürich, Università di Zurigo: Federrupfen bei Papageien (scheda informativa per proprietari, in tedesco)"
     url: "https://www.tierspital.uzh.ch/wp-content/uploads/2023/03/Federrupfen_Papagei.pdf"
+  - title: "Tierspital Zürich, Università di Zurigo: PBFD – Psittacine Beak and Feather Disease (scheda informativa per proprietari, in tedesco)"
+    url: "https://www.tierspital.uzh.ch/wp-content/uploads/2023/03/PBFD.pdf"
   - title: "USAV, Ufficio federale della sicurezza alimentare e di veterinaria (Svizzera): Uccelli esotici"
     url: "https://www.blv.admin.ch/it/uccelli-esotici"
   - title: "RSPCA: Birds' behaviour"
@@ -41,9 +39,9 @@ Se non c'è nessuno di questi segni, prenota una visita entro la settimana (vedi
 
 ## È la muta o perde le piume perché qualcosa non va?
 
-Gli uccelli fanno la muta almeno una volta l'anno; se perde piume fuori dalla muta normale, di solito c'è un problema che va visto dal veterinario.
+Gli uccelli fanno la muta almeno una volta l'anno; se perde piume in un modo che non corrisponde a una muta normale, c'è una causa che il veterinario deve trovare.
 
-L'MSD Veterinary Manual spiega che gli uccelli normalmente perdono e sostituiscono la maggior parte delle piume almeno una volta l'anno, e che spesso fanno una muta parziale circa sei mesi dopo. Una perdita di piume anomala, scrive l'MSD, può essere lenta e parziale oppure improvvisa e completa. VCA Animal Hospitals, una grande rete di cliniche veterinarie americana, aggiunge che la vera perdita di piume, cioè quella che non fa parte di una muta normale, di solito è dovuta a una malattia, e tra i segni di malattia elenca anche una muta che dura troppo. Vale anche per il canarino che perde tante piume: se succede fuori dalla muta, o la muta non finisce più, fallo vedere.
+L'MSD Veterinary Manual spiega che gli uccelli normalmente perdono e sostituiscono la maggior parte delle piume almeno una volta l'anno, e che spesso fanno una muta parziale circa sei mesi dopo. Una perdita di piume anomala, scrive l'MSD, può essere lenta e parziale oppure improvvisa e completa. L'MSD sottolinea che è importante distinguere una muta normale da una perdita di piume anomala. Vale anche per il canarino che perde tante piume: se succede fuori dalla muta, o la muta non finisce più, fallo vedere.
 
 Indizi che le piume vengono strappate e non cadono per la muta:
 
@@ -51,7 +49,7 @@ Indizi che le piume vengono strappate e non cadono per la muta:
 - il Tierspital di Zurigo, l'ospedale veterinario dell'Università di Zurigo, spiega che un pappagallo che si spiuma di solito comincia sotto le ali e sul petto, mentre la testa resta piumata perché non riesce a raggiungerla. Se anche la testa è spoglia, può essere un compagno di gabbia a strappargli le piume
 - l'MSD descrive la malattia del becco e delle piume degli psittacidi (PBFD), una malattia virale, che fa perdere le piume nelle zone che l'uccello non raggiunge, come la sommità della testa
 
-VCA spiega che capire se le piume cadono o vengono tolte, dall'uccello stesso o da un compagno, aiuta a restringere le cause. Osserva il tuo uccellino e, se puoi, fai delle foto da mostrare al veterinario.
+Tra le cause di piume rovinate l'MSD cita anche i compagni di gabbia che strappano le piume. Osserva il tuo uccellino e gli eventuali compagni e, se puoi, fai delle foto da mostrare al veterinario.
 
 ## Perché il mio pappagallo si strappa le piume?
 
@@ -59,16 +57,15 @@ Le cause possono essere mediche o comportamentali, spesso più di una insieme, e
 
 L'MSD Veterinary Manual lo chiama comportamento distruttivo verso le piume: va da una pulizia delle piume un po' eccessiva fino a gravi autolesioni di piume e pelle. Le cause comprendono problemi medici e problemi psicologici come stress, noia e frustrazione sessuale, e si pensa a una causa comportamentale di solito quando non si trova una causa medica.
 
-Tra le cause mediche citate da VCA, dall'MSD e dal Tierspital di Zurigo:
+Tra le cause mediche citate dall'MSD e dal Tierspital di Zurigo:
 
 - infezioni virali, tra cui la PBFD
 - malattie del fegato
 - parassiti
 - un'alimentazione sbagliata o carenze nutrizionali
-- infezioni della pelle
 - avvelenamenti, traumi, disturbi ormonali, problemi ai reni e infezioni da batteri o funghi
 
-Sul comportamento, il Tierspital di Zurigo scrive che l'autodeplumazione è di solito un disturbo del comportamento, particolarmente frequente nei pappagalli come cacatua, pappagalli cenerini, ara e amazzoni, e che la causa sta spesso nel modo in cui l'uccello è tenuto. Come causa più frequente indica il fatto di vivere da solo. Cita anche cambiamenti nella routine o nell'ambiente, un compagno inadatto, la noia, troppo poco movimento, un'alimentazione sbagliata con sovrappeso, un clima inadatto, la mancanza di sonno e la paura. Anche l'USAV, l'Ufficio federale svizzero della sicurezza alimentare e di veterinaria, scrive che la detenzione individuale porta a disturbi comportamentali, ed è per questo vietata in Svizzera. VCA osserva che l'autodeplumazione di origine comportamentale si vede soprattutto nelle specie più grandi, e la RSPCA, la principale associazione britannica per la protezione degli animali, aggiunge la mancanza di occasioni per cercare il cibo e un'alimentazione povera che rovina le piume.
+Sul comportamento, il Tierspital di Zurigo scrive che l'autodeplumazione è di solito un disturbo del comportamento, particolarmente frequente nei pappagalli come cacatua, pappagalli cenerini, ara e amazzoni, e che la causa sta spesso nel modo in cui l'uccello è tenuto. Come causa più frequente indica il fatto di vivere da solo. Cita anche cambiamenti nella routine o nell'ambiente, un compagno inadatto, la noia, troppo poco movimento, un'alimentazione sbagliata con sovrappeso, un clima inadatto, la mancanza di sonno e la paura. Anche l'USAV, l'Ufficio federale svizzero della sicurezza alimentare e di veterinaria, scrive che la detenzione individuale porta a disturbi comportamentali, ed è per questo vietata in Svizzera. La RSPCA, la principale associazione britannica per la protezione degli animali, aggiunge la mancanza di occasioni per cercare il cibo e un'alimentazione povera che rovina le piume.
 
 ## Perché la mia cocorita o il mio canarino perde le piume?
 
@@ -80,17 +77,17 @@ Cosa dice l'MSD Veterinary Manual su alcuni dubbi frequenti:
 - gli **acari delle piume**, al contrario di quanto si pensa, colpiscono raramente gli uccelli da compagnia
 - per la **PBFD** non c'è cura, e gli uccelli infetti vanno tenuti separati dagli altri
 
-VCA scrive che, se le piume sono deformi e cadono facilmente, la causa può essere la PBFD, che richiede attenzione immediata.
+Il Tierspital di Zurigo spiega che gli uccelli con la PBFD vengono spesso portati dal veterinario perché la muta tarda e le piume che ricrescono sono atrofiche, e che può essere colpito anche il becco.
 
 ## Cosa posso fare a casa se il pappagallo si strappa le piume?
 
-Prima fallo visitare dal veterinario. Poi lavora con lui su compagnia, routine, alimentazione e arricchimento; non sgridarlo e non usare collari o altri prodotti da solo.
+Prima fallo visitare dal veterinario. Poi lavora con lui su compagnia, routine, alimentazione e arricchimento, e non sgridarlo.
 
 - **Non reagire.** La RSPCA spiega che dire "no" o "smettila" quando vedi l'uccello strapparsi le piume può addirittura incoraggiarlo. Piuttosto, esci dalla sua vista per qualche minuto.
 - **Compagnia.** La RSPCA scrive che la maggior parte degli uccelli sono animali sociali che stanno meglio in compagnia di altri uccelli. Il Tierspital di Zurigo spiega che per rispettare i bisogni sociali del pappagallo serve la vita in coppia o in gruppo, e che questo può dare i risultati migliori.
 - **Routine e arricchimento.** Il Tierspital di Zurigo consiglia di rendere la giornata dell'uccello il più varia e stimolante possibile, e la RSPCA parla di occasioni per cercare il cibo.
-- **Alimentazione.** Se serve, va migliorata, con i consigli del veterinario (Tierspital di Zurigo, VCA).
-- **Collari.** VCA scrive che vanno usati solo sotto la supervisione di un veterinario esperto in uccelli. Il Tierspital di Zurigo ricorda che un collare può aiutare solo per un po' e non elimina la causa.
+- **Alimentazione.** Se serve, va migliorata, con i consigli del veterinario (Tierspital di Zurigo).
+- **Collari.** Il Tierspital di Zurigo descrive il collare come una delle misure per gli uccelli molto danneggiati, ma ricorda che può aiutare solo per un po' e non elimina la causa.
 
 Non aspettare che passi da solo. Il Tierspital di Zurigo spiega che le prospettive dipendono da quanto dura il problema: se è iniziato da poco e si interviene con costanza, di solito sono buone, ma dopo mesi o anni la terapia di solito non funziona.
 
@@ -102,12 +99,12 @@ Prenota una visita da un veterinario che cura gli uccelli se il tuo uccellino:
 
 - si strappa, si rosicchia o si liscia troppo le piume
 - perde piume fuori dalla muta normale, o la muta sembra non finire mai
-- ha piume deformi o che cadono facilmente (VCA dice che richiede attenzione immediata)
+- ha piume nuove atrofiche o dall'aspetto anomalo, che possono essere un segno di PBFD (MSD, Tierspital di Zurigo)
 - ha croste o materiale squamoso su becco, faccia o zampe
 - ha la pelle che si sfalda o irritata, o si gratta molto
 - si fa strappare le piume da un altro uccello
 
-VCA raccomanda un controllo completo da parte di un veterinario esperto in uccelli. Il Tierspital di Zurigo descrive cosa comprende: una storia dettagliata e una visita generale, esami del sangue e delle feci e radiografie e, come consiglia, una biopsia di piume e pelle e colture per funghi e batteri.
+Il Tierspital di Zurigo descrive cosa comprende un controllo completo: una storia dettagliata e una visita generale, esami del sangue e delle feci e radiografie e, come consiglia, una biopsia di piume e pelle e colture per funghi e batteri.
 
 ## Cosa vorrà sapere il veterinario?
 

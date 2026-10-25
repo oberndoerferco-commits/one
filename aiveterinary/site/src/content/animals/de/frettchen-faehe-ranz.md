@@ -5,7 +5,7 @@ description: "Eine unkastrierte Frettchen-Fähe kann in der Ranz bleiben, bis si
 species: ferret
 category: care
 urgency: this-week
-updated: 2026-10-24
+updated: 2026-10-25
 draft: true
 lang: de
 references:
@@ -17,12 +17,8 @@ references:
     url: "https://www.rspca.org.uk/adviceandwelfare/pets/ferrets/health/neutering"
   - title: "PDSA: Ferrets as pets"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/small-pets/ferrets-as-pets"
-  - title: "VCA Animal Hospitals: Reproductive Diseases in Ferrets"
-    url: "https://vcahospitals.com/know-your-pet/reproductive-diseases-in-ferrets"
-  - title: "VCA Animal Hospitals: Ferrets: Health Problems"
-    url: "https://vcahospitals.com/know-your-pet/ferrets---"
-  - title: "VCA Animal Hospitals: Hormonal Diseases in Ferrets"
-    url: "https://vcahospitals.com/know-your-pet/hormonal-diseases-in-ferrets"
+  - title: "MSD Veterinary Manual (Pet Owner Version): Hormonal Disorders of Ferrets"
+    url: "https://www.msdvetmanual.com/all-other-pets/ferrets/hormonal-disorders-of-ferrets"
   - title: "MSD Veterinary Manual (Pet Owner Version): Breeding and Reproduction of Ferrets"
     url: "https://www.msdvetmanual.com/all-other-pets/ferrets/breeding-and-reproduction-of-ferrets"
   - title: "MSD Veterinary Manual (Pet Owner Version): Emergencies of Ferrets"
@@ -40,12 +36,12 @@ Eine unkastrierte Frettchen-Fähe kann sehr lange in der Ranz bleiben, und das v
 Fahren Sie **sofort** in eine Praxis oder Tierklinik, die Frettchen behandelt, und rufen Sie vorher an, wenn Ihre Fähe in der Ranz ist oder war und:
 
 - **blasses**, weißes oder bläuliches Zahnfleisch hat
-- teilnahmslos oder schwach ist oder schnell atmet
-- winzige rote Punkte oder blaue Flecken am Zahnfleisch hat, leicht blaue Flecken bekommt oder aus Zahnfleisch oder Vulva blutet
+- sehr teilnahmslos oder schwach ist oder Atemnot hat
+- blutet, zum Beispiel aus der Vulva
 - schwarzen, teerartigen Kot absetzt
-- weniger frisst oder niedergeschlagen und matt wirkt
+- seit 24 Stunden weder frisst noch trinkt
 
-Das sind Zeichen einer Blutarmut und eines Mangels an den Blutzellen, die Blutungen stillen. VCA, ein Verbund von Tierkliniken in den USA, warnt, dass Blutungen bei Fähen mit dieser Erkrankung eine häufige Todesursache sind und dass ein Frettchen mit schwerer Blutarmut eine Bluttransfusion brauchen kann, um zu überleben. Weitere Schritte finden Sie auf unserer [Notfallseite](/de/emergency).
+Alle diese Zeichen stehen auf der Notfallliste des MSD Veterinary Manual für Frettchen, und bei einer Fähe in der Ranz können sie auf eine Blutarmut und einen Mangel an den Blutzellen hinweisen, die Blutungen stillen. Tierärzte der Universität Zürich warnen in einer Übersicht von 2002, dass die Prognose sehr schlecht ist, wenn die Blutwerte stark gesunken sind, und dass dann eine Operation wegen der Blutungsgefahr nicht infrage kommt. Weitere Schritte finden Sie auf unserer [Notfallseite](/de/emergency).
 
 ## Kann eine Frettchen-Fähe sterben, wenn sie nicht gedeckt wird?
 
@@ -53,15 +49,15 @@ Ja, wenn sie in der Ranz bleibt: Das Östrogen kann eine tödliche Blutarmut aus
 
 Die RSPCA, eine britische Tierschutzorganisation, erklärt, dass Fähen sogenannte induzierte Ovulatoren sind: Erst der Deckakt löst den Eisprung aus. Bleibt der Eisprung aus, bildet die Fähe weiter Östrogen und bleibt in der Ranz, bis sie gedeckt wird. Laut RSPCA kann die anhaltende Ranz Haarausfall und sogar den Tod durch eine östrogenbedingte Blutarmut verursachen; die PDSA, eine britische Tierhilfsorganisation, nennt diesen Hyperöstrogenismus lebensbedrohlich.
 
-VCA beschreibt, was dabei passiert: Dauerhaft hohe Östrogenspiegel unterdrücken das Knochenmark, das rote und weiße Blutkörperchen und Blutplättchen bildet. Tierärzte der Universität Zürich schrieben 2002 im Schweizer Archiv für Tierheilkunde: „Bei 30–50% der betroffenen Fähen führt der Hyperöstrogenismus zu einer lebensgefährlichen Knochenmarksinsuffizienz mit Panzytopenie im fortgeschrittenen Stadium.“ Panzytopenie bedeutet einen Mangel an allen Arten von Blutzellen. Und weiter: „Im Falle einer Dauerbrunst muss deshalb tierärztlich eingegriffen werden“, hormonell oder durch eine Kastration.
+Das MSD Veterinary Manual erklärt, dass sehr hohe Östrogenspiegel das Knochenmark unterdrücken können, das die Blutzellen bildet. Die Zürcher Übersicht, erschienen im Schweizer Archiv für Tierheilkunde, hält fest: „Bei 30–50% der betroffenen Fähen führt der Hyperöstrogenismus zu einer lebensgefährlichen Knochenmarksinsuffizienz mit Panzytopenie im fortgeschrittenen Stadium.“ Panzytopenie bedeutet einen Mangel an allen Arten von Blutzellen. Und weiter: „Im Falle einer Dauerbrunst muss deshalb tierärztlich eingegriffen werden“, hormonell oder durch eine Kastration.
 
-VCA, eine US-Quelle, merkt an, dass die Erkrankung heute selten ist, weil die meisten Fähen schon vor dem Verkauf in der Zoohandlung kastriert werden. Das MSD-Kapitel für Tierärzte erklärt, dass in den USA die meisten Frettchen vor der 6. Lebenswoche kastriert werden, andernorts dagegen meist im Winter, kurz vor der Geschlechtsreife.
+Ob eine Fähe schon kastriert ist, wenn sie zu Ihnen kommt, hängt davon ab, woher sie stammt. Das MSD-Kapitel für Tierärzte erklärt, dass in den USA die meisten Frettchen vor der 6. Lebenswoche kastriert werden, andernorts dagegen meist im Winter, kurz vor der Geschlechtsreife.
 
 ## Woran erkenne ich, dass meine Fähe in der Ranz ist?
 
-Die Vulva schwillt an und rötet sich, die Zitzen können deutlicher hervortreten, und es kann Ausfluss geben. Die Ranzzeit fällt in Frühjahr und Sommer.
+Die Vulva schwillt an und rötet sich, und die Zitzen können deutlicher hervortreten. Die Ranzzeit fällt in Frühjahr und Sommer.
 
-Die Zürcher Übersicht von 2002 beschreibt die Ranzzeit des Frettchens von März bis August, gesteuert durch die Tageslänge, und als Ranzzeichen der Fähe eine angeschwollene, gerötete Vulva und hervortretende Zitzen. VCA nennt eine geschwollene Vulva und möglicherweise etwas Ausfluss.
+Die Zürcher Übersicht von 2002 beschreibt die Ranzzeit des Frettchens von März bis August, gesteuert durch die Tageslänge, und als Ranzzeichen der Fähe eine angeschwollene, gerötete Vulva und hervortretende Zitzen.
 
 Laut MSD Veterinary Manual werden Frettchen mit 4 bis 8 Monaten geschlechtsreif, im ersten Frühjahr nach ihrer Geburt; eine Fähe kommt mit der Geschlechtsreife in die Ranz und bleibt darin, solange sie nicht gedeckt wird.
 
@@ -79,7 +75,7 @@ Mit einer Kastration, einem Hormonimplantat oder, heute seltener, einer Hormonsp
 
 **Vasektomierter Rüde.** Eine Fähe von einem vasektomierten Rüden decken zu lassen, um die Ranz zu beenden, war in Großbritannien lange üblich, weil es einfach und billig ist, schreibt die RSPCA. Der Deckakt ist aber oft heftig und für die Fähe sehr belastend, wiederholte Deckakte können ihren Nacken verletzen, und die RSPCA rät davon ab.
 
-**Ist sie bereits krank,** muss die Operation womöglich warten. VCA schreibt, dass zuerst Blut untersucht wird, weil ein Frettchen mit gefährlich wenigen roten Blutkörperchen und Blutplättchen kein guter Kandidat für eine Operation ist; zunächst können eine Hormonbehandlung, die die Ranz beendet, eine Bluttransfusion sowie Flüssigkeit und Fütterung in der Klinik nötig sein. Die Zürcher Übersicht von 2002 rät, vor jeder Operation Blut zu untersuchen, wenn die Ranz länger als drei Wochen andauert.
+**Ist sie bereits krank,** muss die Operation womöglich warten. Die Zürcher Übersicht von 2002 rät, vor jeder Operation Blut zu untersuchen, wenn die Ranz länger als drei Wochen andauert, um den Hämatokrit und wenn möglich die Blutplättchen zu bestimmen. Sind die Werte stark gesunken, ist eine Operation wegen der Blutungsgefahr laut der Übersicht nicht zu denken; als andere Möglichkeit, die Ranz zu beenden, nennt sie eine Hormonbehandlung.
 
 Welche Möglichkeit für Ihre Fähe passt, entscheiden Sie gemeinsam mit der Praxis; dort erfahren Sie auch Nebenwirkungen und Kosten.
 
@@ -87,7 +83,7 @@ Welche Möglichkeit für Ihre Fähe passt, entscheiden Sie gemeinsam mit der Pra
 
 Eine kastrierte Fähe sollte nicht mehr in die Ranz kommen; eine geschwollene Vulva spricht deshalb für eine Nebennierenerkrankung oder einen zurückgebliebenen Rest Eierstock. Sie sollte untersucht werden.
 
-Das MSD-Kapitel für Tierärzte zählt eine geschwollene Vulva bei kastrierten Fähen zu den deutlichsten Zeichen einer Nebennierenerkrankung, nennt einen Eierstockrest als wichtigste andere Ursache, die ausgeschlossen werden muss, und den Ultraschall als hilfreichstes Mittel dafür. Laut Informationsblatt des Tierspitals Zürich haben 70% der Weibchen mit Nebennierenerkrankung eine vergrößerte Vulva, unabhängig davon, ob sie kastriert sind, und die Zürcher Übersicht von 2002 schreibt: „Vulvaschwellung bei kastrierten Fähen ist häufig eine Folge unvollständig entfernter Ovarien.“ VCA ergänzt, dass Haarausfall und eine geschwollene Vulva auch bei einer Fähe in Dauerranz häufig sind, was die Ursache ohne Untersuchungen schwer erkennbar macht.
+Das MSD-Kapitel für Tierärzte zählt eine geschwollene Vulva bei kastrierten Fähen zu den deutlichsten Zeichen einer Nebennierenerkrankung, nennt einen Eierstockrest als wichtigste andere Ursache, die ausgeschlossen werden muss, und den Ultraschall als hilfreichstes Mittel dafür. Laut Informationsblatt des Tierspitals Zürich haben 70% der Weibchen mit Nebennierenerkrankung eine vergrößerte Vulva, unabhängig davon, ob sie kastriert sind, und die Zürcher Übersicht von 2002 schreibt: „Vulvaschwellung bei kastrierten Fähen ist häufig eine Folge unvollständig entfernter Ovarien.“ Die Übersicht betont, dass diese Schwellung von der Dauerranz unkastrierter Fähen unterschieden werden muss, und die RSPCA weist darauf hin, dass auch eine Dauerranz Haarausfall verursachen kann. Oft sind deshalb Untersuchungen nötig, um die Ursache zu finden.
 
 ## Wann sollte ich mit meinem Frettchen zur Tierärztin oder zum Tierarzt?
 

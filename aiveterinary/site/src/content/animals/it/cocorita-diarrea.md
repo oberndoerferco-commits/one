@@ -1,17 +1,19 @@
 ---
 title: "Cocorita con la diarrea o feci acquose: come capire se è normale"
-description: "Le feci degli uccelli hanno tre parti, e più urina limpida non vuol dire diarrea. Come sono le feci normali di cocorite, calopsiti e canarini, quali cambiamenti richiedono il veterinario e l'igiene."
+description: "Le feci degli uccelli hanno tre parti, e più urina non vuol dire diarrea. Come sono le feci normali di cocorite, calopsiti e canarini, quali cambiamenti richiedono il veterinario e l'igiene."
 species: bird
 category: symptoms
 urgency: today
-updated: 2026-10-24
+updated: 2026-10-25
 draft: true
 lang: it
 references:
-  - title: "VCA Animal Hospitals: Abnormal Droppings in Birds"
-    url: "https://vcahospitals.com/know-your-pet/birds-abnormal-droppings"
-  - title: "VCA Animal Hospitals: Recognizing the Signs of Illness in Pet Birds"
-    url: "https://vcahospitals.com/know-your-pet/recognizing-the-signs-of-illness-in-pet-birds"
+  - title: "LafeberVet: Diarrhea"
+    url: "https://lafeber.com/vet/diarrhea/"
+  - title: "MSD Veterinary Manual (versione per proprietari): Kidney and Urinary Tract Disorders of Pet Birds"
+    url: "https://www.msdvetmanual.com/bird-owners/disorders-and-diseases-of-birds/kidney-and-urinary-tract-disorders-of-pet-birds"
+  - title: "MSD Veterinary Manual (versione per professionisti): Management of Pet Birds"
+    url: "https://www.msdvetmanual.com/exotic-and-laboratory-animals/pet-birds/management-of-pet-birds"
   - title: "MSD Veterinary Manual (versione per proprietari): Digestive Disorders of Pet Birds"
     url: "https://www.msdvetmanual.com/bird-owners/disorders-and-diseases-of-birds/digestive-disorders-of-pet-birds"
   - title: "MSD Veterinary Manual (versione per proprietari): Illness in Pet Birds"
@@ -20,6 +22,8 @@ references:
     url: "https://www.msdvetmanual.com/bird-owners/disorders-and-diseases-of-birds/injuries-and-accidents-of-pet-birds"
   - title: "University of Illinois College of Veterinary Medicine: Bad for Birds: Prevent Poisoning in Avian Pets"
     url: "https://vetmed.illinois.edu/pet-health-columns/bad-for-birds-prevent-poisoning-in-avian-pets/"
+  - title: "Tierspital Zürich, Università di Zurigo: Bleivergiftung beim Ziervogel (scheda informativa per proprietari, in tedesco)"
+    url: "https://www.tierspital.uzh.ch/wp-content/uploads/2023/03/Ziervogel_Bleivergiftung.pdf"
   - title: "USAV, Ufficio federale della sicurezza alimentare e di veterinaria (Svizzera): Clamidiosi degli uccelli"
     url: "https://www.blv.admin.ch/it/clamidiosi-degli-uccelli"
   - title: "Manuale MSD, versione per i pazienti: Psittacosi, tipo raro di polmonite"
@@ -34,7 +38,7 @@ Il cambiamento delle feci è uno dei segni di malattia elencati dall'MSD Veterin
 
 - è **gonfio, assonnato, debole** o sta sul **fondo della gabbia**: l'MSD Veterinary Manual considera un'emergenza un uccello rannicchiato, debole e sdraiato sul fondo della gabbia
 - **respira con fatica**, a becco aperto o muovendo la coda a ogni respiro
-- ha **sangue** nelle feci, o feci rosse o nere
+- ha **sangue** nelle feci
 - **spinge**, oppure è una femmina con la pancia gonfia (forse un [uovo incastrato](/it/animals/cocorita-uovo-incastrato))
 - fa **molte meno feci** del solito, o nessuna
 - può aver rosicchiato **metallo o vernice**, o mangiato qualcosa di tossico
@@ -42,42 +46,39 @@ Il cambiamento delle feci è uno dei segni di malattia elencati dall'MSD Veterin
 
 ## Come sono le feci normali di un uccellino?
 
-Una deiezione normale ha tre parti: una parte solida verde o marrone (le feci vere e proprie), gli urati bianchi e un po' di urina liquida e limpida.
+Una deiezione normale ha tre parti: le feci solide, gli urati bianchi e l'urina liquida.
 
-VCA Animal Hospitals, una grande rete di cliniche veterinarie americana, descrive le deiezioni sane come piccoli "vermicelli" arrotolati, verdi o marroncini e solidi, formati da:
+LafeberVet, un sito di formazione per veterinari, descrive la deiezione di un uccello come formata da tre componenti:
 
-- **feci**: la parte solida verde o marrone, il cui colore cambia con il cibo
-- **urati**: la parte solida dell'urina, di solito bianca e fatta di cristalli di acido urico
-- **urina**: la parte liquida e limpida
+- **feci**: la parte solida, che viene dall'intestino
+- **urati**: la parte bianca e gessosa. L'MSD Veterinary Manual spiega che si tratta di acido urico eliminato attraverso i reni
+- **urina**: la parte liquida
 
-Il cibo cambia l'aspetto delle deiezioni. VCA spiega che i mirtilli possono colorarle di blu o di viola per poco tempo, che i pellet rossi o arancioni possono colorare le feci e che gli uccelli che mangiano molta frutta fresca fanno molta urina. VCA indica anche come normale circa una deiezione ogni 20-30 minuti: anche molte meno feci del solito sono quindi un campanello d'allarme.
+Cosa è normale dipende dall'uccello e da cosa mangia. LafeberVet raccomanda ai veterinari di chiedere sempre come è alimentato l'uccello e di conoscere l'aspetto delle deiezioni normali per quella specie.
 
 Guarda le feci ogni volta che cambi la carta della gabbia, così sai cosa è normale per il tuo uccellino.
 
 ## È diarrea o solo più urina?
 
-Deiezioni acquose con la parte solida normale di solito significano più urina (poliuria); la vera diarrea è una parte fecale molle o semiliquida.
+Più liquido con la parte solida normale fa pensare a più urina (poliuria); la vera diarrea è un cambiamento della parte fecale stessa.
 
-VCA spiega che deiezioni acquose senza un vero cambiamento delle feci possono essere poliuria, cioè urina in eccesso. La vera diarrea è materiale fecale molle o semiliquido, e VCA avverte che può essere il segno di malattie pericolose per la vita.
+LafeberVet sottolinea che il veterinario deve distinguere la vera diarrea dalla poliuria, cioè l'urina in eccesso. Definisce diarrea qualsiasi cambiamento della consistenza o della forma della parte fecale della deiezione.
 
-In entrambi i casi serve attenzione se non passa. VCA consiglia di andare presto da un veterinario che cura gli uccelli se le feci restano anomale per più di 24 ore, e scrive che una diarrea che dura più di 24 ore va fatta vedere al veterinario il prima possibile.
+In entrambi i casi serve attenzione: l'MSD Veterinary Manual mette le feci anomale tra i problemi per cui chiedere presto il parere del veterinario.
 
 ## Quali cambiamenti delle feci sono anomali?
 
-VCA elenca più o meno deiezioni del solito, cambiamenti di colore o consistenza, cibo non digerito, bollicine, sangue, una consistenza "a passato di piselli" e tanta urina limpida.
+Qualsiasi cambiamento rispetto a ciò che è normale per il tuo uccellino: nelle feci, negli urati o nell'urina, nel numero di deiezioni, oppure sangue o cibo non digerito.
 
-Le deiezioni anomale descritte da VCA sono:
+Tra i cambiamenti descritti dall'MSD Veterinary Manual:
 
-- meno o più deiezioni del solito
-- un cambiamento di colore o di consistenza di una delle parti
-- cibo non digerito, per esempio semi interi
-- deiezioni con bollicine
-- più parte acquosa o liquida
-- sangue nelle feci o nell'urina
-- feci con la consistenza di un passato di piselli
-- grandi quantità di liquido limpido
+- semi o pellet non digeriti nelle feci
+- feci più grandi del solito, con un aspetto soffice "a popcorn"
+- feci verdi
+- sangue nelle feci
+- urati gialli o verde lime, che il manuale MSD per professionisti collega a malattie del fegato
 
-VCA spiega anche che l'avvelenamento da piombo può causare sangue nell'urina, che può far sembrare le deiezioni rosse o nere. Nel suo elenco dei segni di malattia, VCA aggiunge lo sforzo nel defecare e le piume sporche intorno alla cloaca.
+Anche un avvelenamento può vedersi nelle feci. Il Tierspital di Zurigo, l'ospedale veterinario dell'Università di Zurigo, indica vomito, apatia e diarrea giallo-verdastra come primi segni dell'avvelenamento da piombo, a volte con tracce di sangue nell'urina e nelle feci, e lo considera un'emergenza assoluta.
 
 ## Cosa può causare la diarrea nella cocorita e negli altri uccellini?
 
@@ -94,7 +95,7 @@ L'USAV, l'Ufficio federale svizzero della sicurezza alimentare e di veterinaria,
 
 Anche gli avvelenamenti contano: il College of Veterinary Medicine dell'Università dell'Illinois spiega che zinco e piombo possono provenire da gabbie zincate, minuteria metallica e giochi economici.
 
-Come descrive VCA, il veterinario può esaminare le feci al microscopio o metterle in coltura: per questo è utile portare un campione fresco.
+LafeberVet definisce l'esame delle feci uno strumento essenziale per il veterinario, e l'MSD Veterinary Manual descrive l'esame al microscopio delle feci fresche: per questo è utile portare un campione fresco.
 
 ## Posso prendere qualcosa dalle feci del mio uccellino?
 
@@ -112,14 +113,13 @@ L'ECDC ricorda che la forma grave è di solito una polmonite, che si cura effica
 
 ## Quando portare la cocorita dal veterinario?
 
-Oggi, se le feci sono anomale e l'uccellino sembra stare poco bene in qualsiasi modo; presto, se il cambiamento dura più di 24 ore, anche se sembra stare bene.
+Oggi, se le feci sono anomale e l'uccellino sembra stare poco bene in qualsiasi modo; presto, se il cambiamento non passa, anche se sembra stare bene.
 
 Porta il tuo uccellino da un veterinario che cura gli uccelli:
 
 - **oggi**, se le feci anomale si accompagnano a qualsiasi altro cambiamento: più silenzioso, gonfio, dorme di più, mangia o beve più o meno
-- **presto**, se le feci restano anomale per più di 24 ore (VCA)
+- **presto**, se le feci restano anomale, anche se sembra stare bene (MSD)
 - **presto**, se vedi semi non digeriti nelle feci o se continua a dimagrire (MSD)
-- **presto**, se le piume intorno alla cloaca sono bagnate, macchiate o sporche (VCA)
 
 ## Cosa vorrà sapere il veterinario?
 

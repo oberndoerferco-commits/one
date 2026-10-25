@@ -4,7 +4,7 @@ description: "Birds hide illness, so a budgie, cockatiel or canary that sits flu
 species: bird
 category: symptoms
 urgency: emergency
-updated: 2026-10-24
+updated: 2026-10-25
 draft: true
 lang: en
 references:
@@ -14,12 +14,14 @@ references:
     url: "https://www.msdvetmanual.com/bird-owners/disorders-and-diseases-of-birds/injuries-and-accidents-of-pet-birds"
   - title: "MSD Veterinary Manual (Pet Owner Version): Lung and Airway Disorders of Pet Birds"
     url: "https://www.msdvetmanual.com/bird-owners/disorders-and-diseases-of-birds/lung-and-airway-disorders-of-pet-birds"
-  - title: "VCA Animal Hospitals: Recognizing the Signs of Illness in Pet Birds"
-    url: "https://vcahospitals.com/know-your-pet/recognizing-the-signs-of-illness-in-pet-birds"
-  - title: "VCA Animal Hospitals: Teflon (Polytetrafluoroethylene) Poisoning in Birds"
-    url: "https://vcahospitals.com/know-your-pet/teflon-polytetrafluoroethylene-poisoning-in-birds"
-  - title: "VCA Animal Hospitals: Egg Binding in Birds"
-    url: "https://vcahospitals.com/know-your-pet/egg-binding-in-birds"
+  - title: "MSD Veterinary Manual (Professional Version): Management of Pet Birds"
+    url: "https://www.msdvetmanual.com/exotic-and-laboratory-animals/pet-birds/management-of-pet-birds"
+  - title: "MSD Veterinary Manual (Professional Version): Toxicoses of Pet Birds"
+    url: "https://www.msdvetmanual.com/exotic-and-laboratory-animals/pet-birds/toxicoses-of-pet-birds"
+  - title: "MSD Veterinary Manual (Pet Owner Version): Reproductive Disorders of Pet Birds"
+    url: "https://www.msdvetmanual.com/bird-owners/disorders-and-diseases-of-birds/reproductive-disorders-of-pet-birds"
+  - title: "Merck Veterinary Manual (Professional Version): Reproductive Diseases of Pet Birds"
+    url: "https://www.merckvetmanual.com/exotic-and-laboratory-animals/pet-birds/reproductive-diseases-of-pet-birds"
   - title: "University of Illinois College of Veterinary Medicine: Bad for Birds: Prevent Poisoning in Avian Pets"
     url: "https://vetmed.illinois.edu/pet-health-columns/bad-for-birds-prevent-poisoning-in-avian-pets/"
   - title: "Texas A&M Veterinary Medical Diagnostic Laboratory: Polytetrafluoroethylene toxicosis (Teflon toxicity)"
@@ -34,7 +36,7 @@ references:
 
 ## First, the signs that mean go now
 
-Birds are very good at hiding illness. The MSD Veterinary Manual explains that in nature, birds hide their sickness so they don't appear weak to other animals. VCA Animal Hospitals warns that by the time a pet bird shows symptoms, it has likely been sick for several days to weeks. So when you notice something, your bird may already have been ill for a while.
+Birds are very good at hiding illness. The MSD Veterinary Manual explains that in nature, birds hide their sickness so they don't appear weak to other animals. The professional version of the manual adds that birds can mask signs of illness until late in the disease. So when you notice something, your bird may already have been ill for a while.
 
 Go to a vet who treats birds now, and call ahead, if your budgie, cockatiel, canary or parrot:
 
@@ -46,7 +48,7 @@ Go to a vet who treats birds now, and call ahead, if your budgie, cockatiel, can
 - has eaten **avocado**, or may have chewed **metal or paint**
 - is **bleeding** and the bleeding doesn't stop
 - is a **female that is straining**, has a swollen belly or has an egg stuck (see [egg binding](/animals/budgie-egg-bound))
-- has **stopped eating or drinking**, or passes far fewer droppings than usual. VCA gives about one dropping every 20 to 30 minutes as normal
+- has **stopped eating or drinking**, or passes far fewer droppings than usual
 - has a **seizure**
 
 ## Why is my bird fluffed up and sleeping so much?
@@ -66,23 +68,23 @@ The MSD Veterinary Manual lists these signs of illness in pet birds:
 - eating or drinking more or less than usual
 - throwing up food
 
-Its advice is plain: if your bird shows any of these signs, take it to the vet. VCA Animal Hospitals says any change from normal should be taken as a sign of ill health, and not to delay, as serious illness can develop quickly. That is why it helps to know how your bird normally sits, sounds, eats and sleeps.
+Its advice is plain: if your bird shows any of these signs, take it to the vet. The professional version of the manual adds that even small changes, such as a bird no longer calling in the morning or taking less interest in its family, should be considered potential signs of illness. That is why it helps to know how your bird normally sits, sounds, eats and sleeps.
 
-The causes vary widely. VCA names an improper diet as one of the most common, alongside injury, toxins, poor hygiene, stress and infections. Your vet will need to examine your bird to find out which.
+Many different illnesses can cause these signs, and your vet will need to examine your bird to find out which.
 
 ## Is it an emergency if my bird is sitting on the cage floor?
 
 Yes. The MSD Veterinary Manual says a bird that is huddled, weak, unresponsive or lying on the cage bottom is an emergency.
 
-Healthy birds perch. VCA lists not perching and sitting on the bottom of the cage for a long time among the signs of illness. Don't wait until tomorrow to see whether your bird perches again.
+Sitting low on the perch or at the bottom of the cage is on MSD's list of signs of illness. Don't wait until tomorrow to see whether your bird perches again.
 
-In a female bird, sitting on the cage floor can also be a sign of egg binding. VCA warns that small birds can die within a few hours of becoming egg bound.
+In a female bird, sitting on the cage floor can also be a sign of egg binding, according to the MSD Veterinary Manual, and the Merck Veterinary Manual says egg-bound birds often arrive at the vet as emergencies.
 
 ## Is my bird breathing too hard? What tail bobbing means
 
 Open-beak breathing, wheezing, clicking sounds and a tail that bobs with every breath are signs of breathing trouble, and they need a vet now.
 
-VCA describes tail bobbing as the tail moving up and down with each breath. It lists it among the respiratory signs of illness, together with open-mouth or laboured breathing, wheezing, sneezing, coughing and discharge from the nostrils. The MSD Veterinary Manual says birds that are having trouble breathing usually need extra oxygen at the veterinary hospital, which is not something you can give at home.
+The MSD Veterinary Manual lists breathing difficulties, such as wheezing or tail bobbing while breathing, among the signs of illness; a bobbing tail moves up and down with each breath. MSD also says birds that are having trouble breathing usually need extra oxygen at the veterinary hospital, which is not something you can give at home.
 
 Some causes described by the MSD Veterinary Manual:
 
@@ -94,15 +96,13 @@ Some causes described by the MSD Veterinary Manual:
 
 Yes. Fumes from overheated non-stick (PTFE) cookware can kill birds quickly, and smoke, aerosol sprays and strong cleaners can also harm them.
 
-VCA Animal Hospitals explains that PTFE, the non-stick coating on many pans, releases particles and acidic gases that are toxic when inhaled once it is heated to high temperatures. Most cases involve overheated or burnt cookware, such as a non-stick pot boiling dry, but poisoning has also been reported at recommended temperatures. VCA also notes that:
+The professional version of the MSD Veterinary Manual says PTFE gas poisoning is common in pet birds kept in or near kitchens. The gas comes from some non-stick cookware when the pans are overheated, and the University of Illinois College of Veterinary Medicine notes that it can be produced even at normal cooking temperatures. MSD also explains that:
 
-- the gases are colourless and odourless, so owners often don't realise their bird has been exposed
-- birds can be poisoned even if they are not in the same room
-- smaller birds, including budgerigars, are the most sensitive
-- signs include agitation, rapid or laboured breathing with wheezing, incoordination, weakness and seizures, and sudden death may be the only sign
-- besides frying pans, PTFE is found in drip pans, waffle irons, clothes irons, ironing board covers, heating elements and heat lamps
+- sudden death is often the only sign, and small birds often die suddenly after very little exposure
+- larger birds may have laboured breathing, wheezing, unsteadiness and weakness
+- besides pans, PTFE is found in irons, ironing board covers, some self-cleaning ovens, the heating elements of some heat pumps and some heat lamps
 
-If you think your bird has breathed in fumes, VCA's advice is to move it away from the area into fresh air immediately, then call your vet or an animal poison centre. Hospital care is generally needed. VCA says the only reliable way to prevent this poisoning is to avoid using non-stick products containing PTFE.
+If you think your bird has breathed in fumes, call your vet straight away. MSD describes the treatment as supportive care in hospital, such as a warm, oxygenated incubator and fluids.
 
 Other dangers named by the University of Illinois College of Veterinary Medicine and the Texas A&M Veterinary Medical Diagnostic Laboratory (TVMDL):
 
@@ -124,14 +124,13 @@ The MSD Veterinary Manual sums up transport in three points: warmth, darkness an
 - Keep it **warm**: MSD suggests placing the carrier on a heating pad or next to a warm water bottle.
 - **Cover at least three sides** of the carrier with a towel to reduce stress.
 - **Don't syringe-feed** your bird or drip water into its beak unless your vet has told you to. MSD warns that syringe-feeding can cause aspiration and respiratory infections.
-- If you suspect fumes, get your bird into **fresh air** first (VCA).
 - **Don't give** human medicines, leftover medicines or home remedies.
 - If you can, bring the **paper from the cage floor** with the latest droppings, and anything your bird may have eaten or chewed.
 - **Wash your hands** after handling your bird. ECDC, the European Centre for Disease Prevention and Control, advises handwashing after contact with birds to reduce the risk of psittacosis, an infection that can pass from birds to people.
 
 ## When should I take my bird to the vet?
 
-Now, for any of the signs at the top of this page; today, for any other change from normal, because VCA advises contacting your vet immediately when something isn't right.
+Now, for any of the signs at the top of this page; today, for any other change from normal, because the MSD Veterinary Manual advises taking a bird with any sign of illness to the vet.
 
 Contact a vet who treats birds today if your bird:
 

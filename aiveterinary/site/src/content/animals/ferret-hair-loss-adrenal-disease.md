@@ -4,7 +4,7 @@ description: "Hair loss that starts at the tail is the classic sign of adrenal d
 species: ferret
 category: symptoms
 urgency: today
-updated: 2026-10-24
+updated: 2026-10-25
 draft: true
 lang: en
 references:
@@ -16,16 +16,8 @@ references:
     url: "https://www.msdvetmanual.com/all-other-pets/ferrets/emergencies-of-ferrets"
   - title: "MSD Veterinary Manual (Pet Owner Version): Routine Health Care for Ferrets"
     url: "https://www.msdvetmanual.com/all-other-pets/ferrets/routine-health-care-for-ferrets"
-  - title: "VCA Animal Hospitals: Hormonal Diseases in Ferrets"
-    url: "https://vcahospitals.com/know-your-pet/hormonal-diseases-in-ferrets"
-  - title: "VCA Animal Hospitals: Skin Diseases in Ferrets"
-    url: "https://vcahospitals.com/know-your-pet/ferrets-skin-disease"
-  - title: "VCA Animal Hospitals: Ferrets: Health Problems"
-    url: "https://vcahospitals.com/know-your-pet/ferrets---"
-  - title: "VCA Animal Hospitals: Diseases in Ferrets"
-    url: "https://vcahospitals.com/know-your-pet/ferrets-diseases"
-  - title: "VCA Animal Hospitals: Reproductive Diseases in Ferrets"
-    url: "https://vcahospitals.com/know-your-pet/reproductive-diseases-in-ferrets"
+  - title: "MSD Veterinary Manual (Pet Owner Version): Infectious Diseases of Ferrets"
+    url: "https://www.msdvetmanual.com/all-other-pets/ferrets/infectious-diseases-of-ferrets"
   - title: "RSPCA: Neutering and contraception methods for ferrets"
     url: "https://www.rspca.org.uk/adviceandwelfare/pets/ferrets/health/neutering"
   - title: "PDSA: Ferrets as pets"
@@ -40,36 +32,36 @@ references:
 
 Hair loss on its own is not an emergency, but adrenal disease can cause problems that are. Go to a vet that treats ferrets **now**, and phone ahead, if your ferret:
 
-- is a **male** who strains to pee, passes little or no urine, or has a swollen belly
+- is a **male** who strains to pee or passes little or no urine
 - has white or bluish gums, or is weak and breathing fast
-- bruises easily, bleeds from the gums or genitals, or has blood in its urine
+- bleeds from the genitals, or has blood in its urine
 - has black, tarry poo
 - is extremely lethargic, or has eaten or drunk nothing for 24 hours
 
-VCA explains that in male ferrets with adrenal disease, an enlarged prostate can press on the urinary tract until the ferret cannot pee, and calls this an emergency that needs immediate treatment. The hormones from adrenal tumours can also suppress the bone marrow and cause anaemia, in males and females alike, VCA adds. See also our [emergency page](/emergency).
+The MSD Veterinary Manual explains that male ferrets with adrenal disease may have difficulty peeing because of an enlarged prostate, its chapter for vets describes urinary blockage, and straining without passing urine is on MSD's list of ferret emergencies. MSD adds that very high oestrogen levels can suppress the bone marrow in males and females alike, and an information sheet from the University of Zurich's veterinary hospital (Tierspital Zürich) notes that this makes the outlook worse. See also our [emergency page](/emergency).
 
 ## Why is my ferret losing hair?
 
-The classic cause is adrenal disease, especially when the hair loss starts at the tail; a female who stays in season, fleas and ringworm are other possibilities.
+The classic cause is adrenal disease, especially when the hair loss starts at the tail; a female who stays in season, mange mites and ringworm are other possibilities.
 
 The MSD Veterinary Manual calls hair loss the most common sign of adrenal disease: it begins on the tail and rump and spreads up the body towards the head. The pattern helps your vet:
 
 | What you see | What it can point to |
 |---|---|
-| Hair loss starting at the tail or rump and spreading forward on both sides, sometimes with small pimples or blackheads along the tail | Adrenal disease (MSD, VCA) |
-| The same pattern in an **unspayed female**, with a swollen vulva | Staying in season too long (VCA) |
-| Itching, with hair loss around the top of the neck and down the back | A heavy flea infestation (VCA) |
-| Well-defined bald patches with dry, flaky skin | Ringworm, a fungal infection that people and other pets can catch (VCA) |
+| Hair loss starting at the tail or rump and spreading forward on both sides | Adrenal disease (MSD, Tierspital Zürich) |
+| Hair loss in an **unspayed female**, with a swollen vulva | Staying in season too long (RSPCA) |
+| Severe itching with inflamed skin and hair loss | Mange, caused by mites (MSD) |
+| Patchy hair loss, sometimes with dry, flaky skin | Ringworm, a fungal infection that can pass between ferrets and people (MSD) |
 
-VCA advises that any ferret with areas of hair loss should be seen by a vet experienced with exotic animals, because skin changes can be a sign of a more serious illness. This table is to help you understand the conversation, not to make a diagnosis.
+Whatever the pattern, have your ferret checked by a vet. This table is to help you understand the conversation, not to make a diagnosis.
 
 ## What is adrenal disease in ferrets?
 
 One or both adrenal glands, which sit just in front of the kidneys, enlarge and make too many sex hormones. It is one of the most common illnesses in ferrets.
 
-The MSD Veterinary Manual explains that in ferrets the adrenal glands overproduce sex hormones (progesterone, testosterone and oestrogen). That makes it different from Cushing's disease in dogs and cats, where the problem is too much of the hormone cortisol. According to VCA, most cases are caused by enlarged adrenal tissue or a benign tumour; a more aggressive form is a cancer of the gland. The MSD chapter for vets calls it the most common tumour of a hormone gland in ferrets.
+The MSD Veterinary Manual explains that in ferrets the adrenal glands overproduce sex hormones (progesterone, testosterone and oestrogen). That makes it different from Cushing's disease in dogs and cats, where the problem is too much of the hormone cortisol. The Zurich information sheet explains that the glands enlarge or turn cancerous, but that the disease progresses slowly and the tumours are mostly benign. The MSD chapter for vets calls it the most common tumour of a hormone gland in ferrets.
 
-MSD says the disease can appear in ferrets as young as 1.5 years. The University of Zurich's veterinary hospital (Tierspital Zürich) puts the average age at about 3.5 years, and says females are brought to the vet with it far more often than males.
+MSD says the disease can appear in ferrets as young as 1.5 years. The Zurich sheet puts the average age at about 3.5 years, and says females are brought to the vet with it far more often than males.
 
 Neutering plays a part. The RSPCA says neutering male and female ferrets can lead to adrenal disease, generally several years after the operation, and the PDSA that research has shown surgical neutering can increase the chance of it. The MSD chapter for vets gives the likely explanation: after neutering, the level of certain reproductive hormones (gonadotropins) rises, and these keep stimulating the adrenal glands. The Zurich information sheet adds that ferrets kept indoors, without the seasonal change in daylight, are more prone to it.
 
@@ -77,14 +69,13 @@ Neutering plays a part. The RSPCA says neutering male and female ferrets can lea
 
 Itching, a swollen vulva even in spayed females, enlarged nipples, aggression or a return of sexual behaviour in neutered males, a stronger smell, weight loss, and trouble peeing in males.
 
-According to the MSD Veterinary Manual, VCA, the RSPCA and the Zurich information sheet, signs can include:
+According to the MSD Veterinary Manual, the RSPCA and the Zurich information sheet, signs can include:
 
-- **itching,** often with no fleas or mites to explain it
+- **itching,** with or without hair loss
 - in females, a **swollen vulva**, even if she is spayed, and enlarged nipples
 - in males, **aggression** or a return of sexual behaviour after neutering
 - in males, **difficulty peeing** (and, the Zurich sheet adds, passing poo) because of an enlarged prostate
 - a dry, thin coat, weight loss or a stronger body smell
-- lethargy and muscle wasting
 
 The Zurich information sheet gives some figures: more than 90% of ferrets with adrenal disease lose hair, more than 30% are itchy, and 70% of females have an enlarged vulva, whether or not they are spayed.
 
@@ -104,18 +95,18 @@ The MSD Veterinary Manual says the vet can often make a first diagnosis from the
 
 On treatment:
 
-- **Hormone treatment:** VCA says hormone injections or a hormone implant resolve the signs in most ferrets; the itching should settle quickly, and the coat should be back to normal 1 to 2 months after starting. The Zurich sheet says that after an implant, the hair usually grows back within 4 to 6 weeks. The MSD chapter for vets notes that medical treatment has become preferred to surgery. MSD's pages for owners add that it controls the signs but doesn't shrink the tumour, so it continues for life.
+- **Hormone treatment:** The Zurich sheet explains that a hormone implant lowers the sex hormone levels, so the signs should go away or at least lessen, and that the hair usually grows back within 4 to 6 weeks; regular injections are another option. The MSD chapter for vets notes that medical treatment has become preferred to surgery. MSD's pages for owners add that it controls the signs but doesn't shrink the tumour, so it continues for life.
 - **Surgery:** MSD says removing the affected gland is more likely than medication to cure the disease, but it comes back in about 40% of ferrets.
 
-VCA says adrenal tumours should always be treated, because of the risk of urinary blockage in males and anaemia in both sexes. Which option suits your ferret, and when, is a decision for you and your vet.
+Which option suits your ferret, and when, is a decision for you and your vet.
 
 ## What should I not do?
 
 Don't keep treating for fleas and wait, don't rely on melatonin, and don't put off the visit because your ferret seems well.
 
-- **Don't use flea products without asking your vet.** VCA warns that a ferret given the amount of a flea product meant for a cat or small dog may absorb toxic levels of it.
+- **Don't treat for parasites without asking your vet.** The MSD Veterinary Manual advises talking to your vet about flea treatment for all the animals in your home and for the home itself.
 - **Don't take regrowth as a cure.** As the 2002 Zurich review notes, parasite treatments are often wrongly thought to have worked when the hair simply regrew with the moult.
-- **Don't rely on melatonin.** The MSD Veterinary Manual says it has been used for hair loss in adrenal disease but does not stop the adrenal tumour growing, and VCA says most vets don't recommend it.
+- **Don't rely on melatonin.** The MSD Veterinary Manual says it has been used for hair loss in adrenal disease but does not stop the adrenal tumour growing.
 - **Don't wait because your ferret seems well.** The 2002 Zurich review notes that ferrets with adrenal disease are often well at first, but that this can change after some months.
 
 ## When should I take my ferret to the vet?
@@ -123,7 +114,6 @@ Don't keep treating for fleas and wait, don't rely on melatonin, and don't put o
 Soon: the MSD Veterinary Manual says a ferret with signs of adrenal disease should see a vet as soon as possible. Go now for the signs at the top of this page.
 
 - In its guide to ferret emergencies, the MSD Veterinary Manual puts excessive shedding, a rash, or constant chewing or scratching of the body among the signs to see a vet about within 24 hours.
-- MSD and VCA both say a ferret with signs of adrenal disease should be seen as soon as possible.
 - An unspayed female with hair loss and a swollen vulva may be staying in season: see [female ferret in heat](/animals/female-ferret-in-heat).
 
 ## What will the vet want to know about my ferret?

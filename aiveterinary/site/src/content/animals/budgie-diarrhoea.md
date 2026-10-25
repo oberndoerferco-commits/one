@@ -1,17 +1,19 @@
 ---
 title: "Budgie diarrhoea or watery poop: what normal droppings look like"
-description: "A bird dropping has three parts, and extra clear urine is not the same as diarrhoea. What normal budgie, cockatiel and canary droppings look like, which changes need a vet, and simple hygiene."
+description: "A bird dropping has three parts, and extra urine is not the same as diarrhoea. What normal budgie, cockatiel and canary droppings look like, which changes need a vet, and simple hygiene."
 species: bird
 category: symptoms
 urgency: today
-updated: 2026-10-24
+updated: 2026-10-25
 draft: true
 lang: en
 references:
-  - title: "VCA Animal Hospitals: Abnormal Droppings in Birds"
-    url: "https://vcahospitals.com/know-your-pet/birds-abnormal-droppings"
-  - title: "VCA Animal Hospitals: Recognizing the Signs of Illness in Pet Birds"
-    url: "https://vcahospitals.com/know-your-pet/recognizing-the-signs-of-illness-in-pet-birds"
+  - title: "LafeberVet: Diarrhea"
+    url: "https://lafeber.com/vet/diarrhea/"
+  - title: "MSD Veterinary Manual (Pet Owner Version): Kidney and Urinary Tract Disorders of Pet Birds"
+    url: "https://www.msdvetmanual.com/bird-owners/disorders-and-diseases-of-birds/kidney-and-urinary-tract-disorders-of-pet-birds"
+  - title: "MSD Veterinary Manual (Professional Version): Management of Pet Birds"
+    url: "https://www.msdvetmanual.com/exotic-and-laboratory-animals/pet-birds/management-of-pet-birds"
   - title: "MSD Veterinary Manual (Pet Owner Version): Digestive Disorders of Pet Birds"
     url: "https://www.msdvetmanual.com/bird-owners/disorders-and-diseases-of-birds/digestive-disorders-of-pet-birds"
   - title: "MSD Veterinary Manual (Pet Owner Version): Illness in Pet Birds"
@@ -22,6 +24,8 @@ references:
     url: "https://vetmed.illinois.edu/pet-health-columns/bad-for-birds-prevent-poisoning-in-avian-pets/"
   - title: "Tierspital Zürich, University of Zurich: Chlamydiose (owner information sheet, in German)"
     url: "https://www.tierspital.uzh.ch/wp-content/uploads/2023/03/Chlamydiose.pdf"
+  - title: "Tierspital Zürich, University of Zurich: Bleivergiftung beim Ziervogel (owner information sheet, in German)"
+    url: "https://www.tierspital.uzh.ch/wp-content/uploads/2023/03/Ziervogel_Bleivergiftung.pdf"
   - title: "ECDC: Communicable Disease Threats Report, week 10, 2024 (increase in psittacosis cases)"
     url: "https://www.ecdc.europa.eu/sites/default/files/documents/communicable-disease-threats-report-week-10-2024.pdf"
 ---
@@ -32,7 +36,7 @@ Changes in droppings are on the MSD Veterinary Manual's list of signs that a bir
 
 - is **fluffed up, sleepy, weak** or sitting on the **cage floor**. The MSD Veterinary Manual calls a huddled, weak bird lying on the cage bottom an emergency
 - is **breathing hard**, with an open beak or a bobbing tail
-- passes **blood** in its droppings, or red or black droppings
+- passes **blood** in its droppings
 - is **straining**, or is a female with a swollen belly (possible [egg binding](/animals/budgie-egg-bound))
 - passes **far fewer droppings** than usual, or none
 - may have chewed **metal or paint**, or eaten something toxic
@@ -40,42 +44,39 @@ Changes in droppings are on the MSD Veterinary Manual's list of signs that a bir
 
 ## What do normal bird droppings look like?
 
-A normal dropping has three parts: a green or brown solid faecal part, white urates and a little clear liquid urine.
+A normal dropping has three parts: the solid faeces, the white urates and the liquid urine.
 
-VCA Animal Hospitals describes healthy droppings as green or brownish, solid, curled-up, worm-like shapes, made of:
+LafeberVet, an educational website for veterinarians, describes a bird's dropping as made of three components:
 
-- **faeces**: the green or brown solid part, whose colour varies with the food
-- **urates**: the solid part of the urine, usually white and made of uric acid crystals
-- **urine**: the clear liquid
+- **faeces**: the solid part, from the gut
+- **urates**: the white, chalky part. The MSD Veterinary Manual explains that this is uric acid, passed out through the kidneys
+- **urine**: the liquid part
 
-Food changes how droppings look. VCA notes that blueberries can turn them blue or purple for a short time, red or orange pellets can colour the faeces, and birds that eat a lot of fresh fruit pass a lot of urine. VCA also lists one dropping every 20 to 30 minutes as normal, so far fewer droppings than usual is a warning sign too.
+What is normal depends on the bird and its food. LafeberVet tells vets to always find out what the bird eats, and to know what normal droppings look like for that species.
 
 Look at the droppings each time you change the cage paper, so you know what is normal for your bird.
 
 ## Is it diarrhoea or just more urine?
 
-Watery droppings with a normal solid part usually mean more urine (polyuria); true diarrhoea is a mushy or semi-liquid faecal part.
+Extra liquid with a normal solid part points to more urine (polyuria); true diarrhoea is a change in the faecal part itself.
 
-VCA explains that watery droppings with no real change in the faeces may be polyuria, meaning excess urine. True diarrhoea is mushy or semi-liquid faecal material, and VCA warns that it can be a sign of life-threatening conditions.
+LafeberVet points out that vets have to tell true diarrhoea apart from polyuria, meaning excess urine. It defines diarrhoea as any change in the consistency or formation of the faecal part of the dropping.
 
-Both need attention if they don't settle. VCA advises seeing a vet who treats birds promptly if droppings stay abnormal for longer than 24 hours, and says diarrhoea that lasts longer than 24 hours needs veterinary attention as soon as possible.
+Both need attention. The MSD Veterinary Manual lists abnormal droppings among the problems to seek veterinary advice for promptly.
 
 ## Which dropping changes are abnormal?
 
-VCA lists more or fewer droppings, changes in colour or texture, undigested food, bubbles, blood, a pea-soup consistency and a lot of clear liquid.
+Any change from what is normal for your bird: in the faeces, the urates or the urine, in the number of droppings, or blood or undigested food.
 
-The abnormal droppings VCA describes are:
+Changes described by the MSD Veterinary Manual include:
 
-- fewer or more droppings than usual
-- a change in the colour or texture of any part
-- undigested food, such as whole seeds
-- bubbly droppings
-- more watery or liquid content
-- blood in the faeces or the urine
-- faeces with a pea-soup consistency
-- large volumes of clear liquid
+- undigested seeds or pellets in the droppings
+- droppings that are larger than usual and look fluffy or like popcorn
+- green droppings
+- blood in the droppings
+- yellow or lime-green urates, which MSD's professional manual links to liver disease
 
-VCA also explains that lead poisoning can cause blood in the urine, which may make droppings look red or black. In its list of signs of illness, VCA adds straining and feathers stained around the vent.
+Poisoning can show in the droppings too. The Tierspital Zürich, the University of Zurich's animal hospital, names vomiting, listlessness and yellow-green diarrhoea as early signs of lead poisoning, sometimes with traces of blood in the urine and faeces, and calls lead poisoning an absolute emergency.
 
 ## What can cause diarrhoea in budgies and other pet birds?
 
@@ -88,11 +89,11 @@ Some examples from the MSD Veterinary Manual:
 - **Papillomas**, growths that may be visible at the vent, which can cause straining and blood in the droppings.
 - **Avian ganglioneuritis** (formerly called proventricular dilatation disease), in which birds pass undigested food, especially whole seeds.
 
-The Tierspital Zürich, the University of Zurich's animal hospital, adds **chlamydiosis**: it often causes watery, greenish diarrhoea, together with tiredness, eating and drinking less, weight loss and fluffed-up feathers.
+The Tierspital Zürich adds **chlamydiosis**: it often causes watery, greenish diarrhoea, together with tiredness, eating and drinking less, weight loss and fluffed-up feathers.
 
 Poisoning matters too: the University of Illinois College of Veterinary Medicine notes that zinc and lead can come from galvanised cages, hardware and cheap toys.
 
-Your vet may examine the droppings under the microscope or send them for culture, as VCA describes, so a fresh sample helps.
+LafeberVet calls testing the droppings an essential tool for vets, and the MSD Veterinary Manual describes fresh droppings being examined under the microscope, so a fresh sample helps.
 
 ## Can I catch anything from my bird's droppings?
 
@@ -110,14 +111,13 @@ ECDC notes that the severe form is usually pneumonia, which can be treated effec
 
 ## When should I take my bird to the vet?
 
-Today, if your bird's droppings look abnormal and it seems unwell in any way; soon, if a change lasts longer than 24 hours, even if your bird seems fine.
+Today, if your bird's droppings look abnormal and it seems unwell in any way; promptly, if a change does not settle, even if your bird seems fine.
 
 See a vet who treats birds:
 
 - **today**, if abnormal droppings come with any other change: quieter, fluffed up, sleeping more, eating or drinking more or less
-- **promptly**, if droppings stay abnormal for longer than 24 hours (VCA)
+- **promptly**, if droppings stay abnormal, even if your bird seems well (MSD)
 - **soon**, if you see undigested seeds in the droppings, or your bird keeps losing weight (MSD)
-- **soon**, if the feathers around the vent are wet, stained or dirty (VCA)
 
 ## What will the vet want to know about my bird's droppings?
 

@@ -5,7 +5,7 @@ description: "Vögel verbergen Krankheiten: Ein Wellensittich, Nymphensittich od
 species: bird
 category: symptoms
 urgency: emergency
-updated: 2026-10-24
+updated: 2026-10-25
 draft: true
 lang: de
 references:
@@ -15,12 +15,14 @@ references:
     url: "https://www.msdvetmanual.com/bird-owners/disorders-and-diseases-of-birds/injuries-and-accidents-of-pet-birds"
   - title: "MSD Veterinary Manual (Pet Owner Version): Lung and Airway Disorders of Pet Birds"
     url: "https://www.msdvetmanual.com/bird-owners/disorders-and-diseases-of-birds/lung-and-airway-disorders-of-pet-birds"
-  - title: "VCA Animal Hospitals: Recognizing the Signs of Illness in Pet Birds"
-    url: "https://vcahospitals.com/know-your-pet/recognizing-the-signs-of-illness-in-pet-birds"
-  - title: "VCA Animal Hospitals: Teflon (Polytetrafluoroethylene) Poisoning in Birds"
-    url: "https://vcahospitals.com/know-your-pet/teflon-polytetrafluoroethylene-poisoning-in-birds"
-  - title: "VCA Animal Hospitals: Egg Binding in Birds"
-    url: "https://vcahospitals.com/know-your-pet/egg-binding-in-birds"
+  - title: "MSD Veterinary Manual (Professional Version): Management of Pet Birds"
+    url: "https://www.msdvetmanual.com/exotic-and-laboratory-animals/pet-birds/management-of-pet-birds"
+  - title: "MSD Veterinary Manual (Professional Version): Toxicoses of Pet Birds"
+    url: "https://www.msdvetmanual.com/exotic-and-laboratory-animals/pet-birds/toxicoses-of-pet-birds"
+  - title: "MSD Veterinary Manual (Pet Owner Version): Reproductive Disorders of Pet Birds"
+    url: "https://www.msdvetmanual.com/bird-owners/disorders-and-diseases-of-birds/reproductive-disorders-of-pet-birds"
+  - title: "Merck Veterinary Manual (Professional Version): Reproductive Diseases of Pet Birds"
+    url: "https://www.merckvetmanual.com/exotic-and-laboratory-animals/pet-birds/reproductive-diseases-of-pet-birds"
   - title: "Bundesamt für Lebensmittelsicherheit und Veterinärwesen BLV (Schweiz): Exotische Vögel"
     url: "https://www.blv.admin.ch/de/exotische-voegel"
   - title: "Tierspital Zürich, Universität Zürich: Chlamydiose. Ein Informationsblatt für Tierbesitzer"
@@ -39,7 +41,7 @@ references:
 
 ## Zuerst: die Anzeichen, bei denen Sie sofort fahren sollten
 
-Vögel können Krankheiten sehr gut verbergen. Das MSD Veterinary Manual erklärt, dass Vögel in der Natur ihre Krankheit verstecken, damit sie auf andere Tiere nicht schwach wirken. VCA Animal Hospitals, eine große US-amerikanische Gruppe von Tierkliniken, warnt: Wenn ein Ziervogel Symptome zeigt, ist er wahrscheinlich schon seit einigen Tagen bis Wochen krank. Wenn Ihnen etwas auffällt, kann Ihr Vogel also schon länger krank sein.
+Vögel können Krankheiten sehr gut verbergen. Das MSD Veterinary Manual erklärt, dass Vögel in der Natur ihre Krankheit verstecken, damit sie auf andere Tiere nicht schwach wirken. Die Fachversion des Handbuchs ergänzt, dass Vögel Krankheitszeichen bis in ein spätes Stadium verbergen können. Wenn Ihnen etwas auffällt, kann Ihr Vogel also schon länger krank sein.
 
 Fahren Sie sofort in eine Praxis, die Vögel behandelt, und rufen Sie vorher an, wenn Ihr Wellensittich, Nymphensittich, Kanarienvogel oder Papagei:
 
@@ -51,7 +53,7 @@ Fahren Sie sofort in eine Praxis, die Vögel behandelt, und rufen Sie vorher an,
 - **Avocado** gefressen oder vielleicht an **Metall oder Farbe** geknabbert hat
 - **blutet** und die Blutung nicht aufhört
 - ein **Weibchen ist, das presst**, einen dicken Bauch hat oder ein Ei nicht legen kann (siehe [Legenot](/de/animals/wellensittich-legenot))
-- **nicht mehr frisst oder trinkt** oder viel weniger Kot absetzt als sonst. VCA nennt etwa einen Kotklecks alle 20 bis 30 Minuten als normal
+- **nicht mehr frisst oder trinkt** oder viel weniger Kot absetzt als sonst
 - einen **Krampfanfall** hat
 
 ## Warum ist mein Wellensittich aufgeplustert und schläft so viel?
@@ -71,23 +73,23 @@ Das MSD Veterinary Manual nennt diese Krankheitszeichen bei Ziervögeln:
 - frisst oder trinkt mehr oder weniger als sonst
 - würgt Futter hoch
 
-Der Rat dazu ist eindeutig: Zeigt Ihr Vogel eines dieser Zeichen, bringen Sie ihn in die Praxis. VCA ergänzt, dass jede Abweichung vom Normalen als Zeichen einer Erkrankung gelten sollte, und rät, nicht zu warten, weil sich eine schwere Krankheit schnell entwickeln kann. Auch das Schweizer Bundesamt für Lebensmittelsicherheit und Veterinärwesen (BLV) schreibt, dass bei gesundheitlichen Auffälligkeiten wie aufgeplustertem Gefieder, Niesen, Durchfall, verklebten Augen oder Augenausfluss, Juckreiz, Unruhe oder auffälligem Verhalten umgehend eine Tierärztin oder ein Tierarzt beigezogen werden sollte. Deshalb hilft es, zu wissen, wie Ihr Vogel normalerweise sitzt, klingt, frisst und schläft.
+Der Rat dazu ist eindeutig: Zeigt Ihr Vogel eines dieser Zeichen, bringen Sie ihn in die Praxis. Die Fachversion des Handbuchs ergänzt, dass schon kleine Veränderungen, etwa wenn ein Vogel morgens nicht mehr ruft oder sich weniger für seine Familie interessiert, als mögliche Krankheitszeichen gelten sollten. Auch das Schweizer Bundesamt für Lebensmittelsicherheit und Veterinärwesen (BLV) schreibt, dass bei gesundheitlichen Auffälligkeiten wie aufgeplustertem Gefieder, Niesen, Durchfall, verklebten Augen oder Augenausfluss, Juckreiz, Unruhe oder auffälligem Verhalten umgehend eine Tierärztin oder ein Tierarzt beigezogen werden sollte. Deshalb hilft es, zu wissen, wie Ihr Vogel normalerweise sitzt, klingt, frisst und schläft.
 
-Die Ursachen sind vielfältig. VCA nennt falsche Ernährung als eine der häufigsten, daneben Verletzungen, Giftstoffe, mangelnde Hygiene, Stress und Infektionen. Ein Beispiel ist die Chlamydiose: Das Tierspital Zürich der Universität Zürich beschreibt dabei Müdigkeit, weniger Fressen und Trinken, Abmagerung, ein aufgeplustertes Federkleid und oft wässrigen, grünlichen Durchfall. Was dahintersteckt, kann nur die Praxis mit einer Untersuchung herausfinden.
+Viele verschiedene Krankheiten können dahinterstecken. Ein Beispiel ist die Chlamydiose: Das Tierspital Zürich der Universität Zürich beschreibt dabei Müdigkeit, weniger Fressen und Trinken, Abmagerung, ein aufgeplustertes Federkleid und oft wässrigen, grünlichen Durchfall. Was dahintersteckt, kann nur die Praxis mit einer Untersuchung herausfinden.
 
 ## Ist es ein Notfall, wenn mein Wellensittich am Boden sitzt?
 
 Ja. Laut MSD Veterinary Manual ist ein Vogel, der zusammengekauert, schwach oder teilnahmslos ist oder am Käfigboden liegt, ein Notfall.
 
-Gesunde Vögel sitzen auf der Stange. VCA zählt es zu den Krankheitszeichen, wenn ein Vogel nicht auf der Stange sitzt und längere Zeit am Käfigboden bleibt. Warten Sie nicht bis morgen, ob er wieder hochgeht.
+Tief auf der Stange oder am Käfigboden zu sitzen, steht auf der Liste der Krankheitszeichen des MSD. Warten Sie nicht bis morgen, ob er wieder hochgeht.
 
-Bei einem Weibchen kann das Sitzen am Boden auch ein Zeichen für Legenot sein. VCA warnt, dass kleine Vögel innerhalb weniger Stunden nach Beginn einer Legenot sterben können.
+Bei einem Weibchen kann das Sitzen am Boden laut MSD Veterinary Manual auch ein Zeichen für Legenot sein, und das Merck Veterinary Manual schreibt, dass Vögel mit Legenot oft als Notfall in die Praxis kommen.
 
 ## Atmet mein Wellensittich zu schnell? Was Schwanzwippen bedeutet
 
 Atmen mit offenem Schnabel, Pfeifen, Klickgeräusche und ein Schwanz, der bei jedem Atemzug wippt, sind Zeichen für Atemnot und gehören sofort in die Praxis.
 
-VCA beschreibt Schwanzwippen als Auf und Ab des Schwanzes bei jedem Atemzug und nennt es zusammen mit Atmen mit offenem Schnabel oder angestrengtem Atmen, Pfeifen, Niesen, Husten und Ausfluss aus den Nasenlöchern als Zeichen einer Atemwegserkrankung. Das MSD Veterinary Manual erklärt, dass Vögel mit Atemproblemen in der Tierklinik meist zusätzlichen Sauerstoff brauchen. Den können Sie zu Hause nicht geben.
+Das MSD Veterinary Manual zählt Atemprobleme wie pfeifende Atmung oder Schwanzwippen beim Atmen zu den Krankheitszeichen; beim Schwanzwippen geht der Schwanz bei jedem Atemzug auf und ab. MSD erklärt auch, dass Vögel mit Atemproblemen in der Tierklinik meist zusätzlichen Sauerstoff brauchen. Den können Sie zu Hause nicht geben.
 
 Einige Ursachen, die das MSD Veterinary Manual beschreibt:
 
@@ -99,15 +101,13 @@ Einige Ursachen, die das MSD Veterinary Manual beschreibt:
 
 Ja. Dämpfe von überhitztem antihaftbeschichtetem Kochgeschirr (PTFE, bekannt als Teflon) können Vögel schnell töten, und auch Rauch, Sprays und scharfe Reiniger können ihnen schaden.
 
-VCA erklärt, dass PTFE, die Antihaftbeschichtung vieler Pfannen, beim Erhitzen auf hohe Temperaturen Partikel und saure Gase freisetzt, die beim Einatmen giftig sind. Meist geht es um überhitztes oder angebranntes Kochgeschirr, etwa einen beschichteten Topf, der trocken kocht. Vergiftungen wurden aber auch bei den empfohlenen Temperaturen beschrieben. VCA weist außerdem darauf hin:
+Die Fachversion des MSD Veterinary Manual schreibt, dass Vergiftungen durch PTFE-Gas bei Ziervögeln, die in oder nahe der Küche gehalten werden, häufig sind. Das Gas entsteht bei manchem antihaftbeschichtetem Kochgeschirr, wenn die Pfannen überhitzt werden, und das College of Veterinary Medicine der University of Illinois weist darauf hin, dass es auch bei normalen Kochtemperaturen entstehen kann. MSD erklärt außerdem:
 
-- Die Gase sind farb- und geruchlos. Deshalb merken Halterinnen und Halter oft nicht, dass ihr Vogel ihnen ausgesetzt war.
-- Vögel können sich auch vergiften, wenn sie nicht im selben Raum sind.
-- Kleinere Vögel, auch Wellensittiche, gelten als am empfindlichsten.
-- Anzeichen sind Unruhe, schnelle oder angestrengte Atmung mit Pfeifen, unkoordinierte Bewegungen, Schwäche und Krampfanfälle. Ein plötzlicher Tod kann das einzige Zeichen sein.
-- Außer in Pfannen steckt PTFE auch in Tropfschalen, Waffeleisen, Bügeleisen und Bügelbrettbezügen, Heizelementen und Wärmelampen.
+- Oft ist ein plötzlicher Tod das einzige Zeichen, und kleine Vögel sterben oft schon nach geringer Belastung plötzlich.
+- Größere Vögel können angestrengt und pfeifend atmen, unsicher gehen und schwach sein.
+- Außer in Pfannen steckt PTFE auch in Bügeleisen, Bügelbrettbezügen, manchen selbstreinigenden Backöfen, den Heizelementen mancher Wärmepumpen und manchen Wärmelampen.
 
-Wenn Sie vermuten, dass Ihr Vogel Dämpfe eingeatmet hat, rät VCA, ihn sofort aus dem Bereich in frische Luft zu bringen und dann die Praxis oder einen Giftnotruf anzurufen. Meist ist eine Behandlung in der Klinik nötig. Laut VCA ist der einzige zuverlässige Schutz, keine Antihaftprodukte mit PTFE zu verwenden.
+Wenn Sie vermuten, dass Ihr Vogel Dämpfe eingeatmet hat, rufen Sie sofort in der Praxis an. MSD beschreibt die Behandlung als unterstützende Therapie in der Klinik, etwa in einem warmen Inkubator mit Sauerstoff und mit Infusionen.
 
 Weitere Gefahren, die das College of Veterinary Medicine der University of Illinois und das veterinärmedizinische Diagnoselabor der Texas A&M University (TVMDL) nennen:
 
@@ -129,14 +129,13 @@ Das MSD Veterinary Manual fasst den Transport in drei Punkten zusammen: Wärme, 
 - Halten Sie sie **warm**: MSD schlägt vor, die Box auf ein Heizkissen oder neben eine Wärmflasche zu stellen.
 - **Decken Sie mindestens drei Seiten** der Box mit einem Handtuch ab, um den Stress zu verringern.
 - **Füttern Sie nicht mit der Spritze** und tropfen Sie kein Wasser in den Schnabel, außer die Praxis hat es Ihnen ausdrücklich geraten. MSD warnt, dass bei der Spritzenfütterung Futter in die Atemwege geraten kann (Aspiration) und Atemwegsinfektionen folgen können.
-- Bei Verdacht auf Dämpfe bringen Sie Ihren Vogel zuerst in **frische Luft** (VCA).
 - **Geben Sie keine** Medikamente für Menschen, übrig gebliebene Medikamente oder Hausmittel.
 - Nehmen Sie, wenn möglich, das **Papier vom Käfigboden** mit dem frischesten Kot mit, dazu alles, was Ihr Vogel gefressen oder angeknabbert haben könnte.
 - **Waschen Sie sich die Hände**, nachdem Sie Ihren Vogel angefasst haben. Das Europäische Zentrum für die Prävention und die Kontrolle von Krankheiten (ECDC) empfiehlt Händewaschen nach dem Kontakt mit Vögeln, um das Risiko einer Psittakose (Papageienkrankheit) zu senken, einer Infektion, die von Vögeln auf Menschen übergehen kann.
 
 ## Wann sollte ich mit meinem Wellensittich zur Tierärztin oder zum Tierarzt?
 
-Sofort bei einem der Zeichen oben auf dieser Seite; noch heute bei jeder anderen Veränderung, denn VCA rät, sich sofort an die Praxis zu wenden, wenn etwas nicht stimmt.
+Sofort bei einem der Zeichen oben auf dieser Seite; noch heute bei jeder anderen Veränderung, denn das MSD Veterinary Manual rät, einen Vogel mit jedem Krankheitszeichen in die Praxis zu bringen.
 
 Rufen Sie noch heute in einer Praxis an, die Vögel behandelt, wenn Ihr Vogel:
 

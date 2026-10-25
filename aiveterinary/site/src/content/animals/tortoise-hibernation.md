@@ -4,7 +4,7 @@ description: "Hibernation is only safe for a healthy tortoise of a hibernating s
 species: reptile
 category: care
 urgency: this-week
-updated: 2026-10-24
+updated: 2026-10-25
 draft: true
 lang: en
 references:
@@ -26,8 +26,10 @@ references:
     url: "https://vet.ed.ac.uk/news-events/archive/2008/tortoise-hibernation"
   - title: "Vet Times: Post-hibernation anorexia in chelonia, diagnosis and care (Mark Rowland, 2012)"
     url: "https://www.vettimes.com/clinical/exotics/post-hibernation-anorexia-in-chelonia-diagnosis-and-care"
-  - title: "VCA Animal Hospitals: Common Diseases of Tortoises"
-    url: "https://vcahospitals.com/know-your-pet/common-diseases-of-tortoises"
+  - title: "Tierspital Zürich, University of Zurich: Mykoplasmen-Infektion (oder URTD = Upper Respiratory Tract Disease) bei Landschildkröten (owner information sheet, in German)"
+    url: "https://www.tierspital.uzh.ch/wp-content/uploads/2023/03/Mykoplasmen-bei-Schildkroeten.pdf"
+  - title: "Tierspital Zürich, University of Zurich: Stoffwechselbedingte Knochenerkrankung bei Reptilien (Metabolic Bone Disease – MBD) (owner information sheet, in German)"
+    url: "https://www.tierspital.uzh.ch/wp-content/uploads/2023/03/reptilien_MBD.pdf"
   - title: "MSD Veterinary Manual (Pet Owner Version): Disorders and Diseases of Reptiles"
     url: "https://www.msdvetmanual.com/all-other-pets/reptiles/disorders-and-diseases-of-reptiles"
   - title: "MSD Veterinary Manual (Pet Owner Version): Routine Health Care of Reptiles"
@@ -47,13 +49,13 @@ references:
 Hibernation and the weeks after it are a risky time for a tortoise. The British Chelonia Group (BCG), a UK charity for tortoises, turtles and terrapins, says that any tortoise that is not feeding or appears ill should be taken to a vet without delay. Go to a vet who treats reptiles now, and call ahead, if your tortoise:
 
 - has eyes that are **not clear** or look **swollen** after hibernation, or it seems **blind or disoriented**
-- has a **discharge** from the nose or eyes, **bubbles** at the mouth or nose, or is **breathing with its mouth open**
+- has a **discharge** from the nose or eyes, or is **breathing with its mouth open**
 - has a **yellowish-white, cheesy coating** inside its mouth (mouth rot)
 - is **weak**, cannot move its legs properly, or will not go to the warmth of its basking lamp
 - was exposed to **frost or freezing temperatures** while hibernating
 - **passed urine or lost a lot of weight** during hibernation, which the BCG says means something is wrong
 
-The BCG says blindness or disorientation after hibernation can be caused by frost damage, and that mouth rot (stomatitis) is often seen after hibernation. The Tortoise Protection Group (TPG), a UK group dedicated to protecting tortoises, warns that a tortoise that stays reluctant to find heat could have a problem. Open-mouth breathing and discharge from the nose are frequent signs of breathing problems in reptiles, according to the MSD Veterinary Manual, and VCA vets list bubbles in the mouth, nose and eyes among the signs of respiratory disease in tortoises.
+The BCG says blindness or disorientation after hibernation can be caused by frost damage, and that mouth rot (stomatitis) is often seen after hibernation. The Tortoise Protection Group (TPG), a UK group dedicated to protecting tortoises, warns that a tortoise that stays reluctant to find heat could have a problem. Open-mouth breathing and discharge from the nose are frequent signs of breathing problems in reptiles, according to the MSD Veterinary Manual, and the Tierspital Zürich, the University of Zurich's animal hospital, names nose and eye discharge among the signs of mycoplasma infection, an upper airway disease of tortoises.
 
 A tortoise that has not started eating within a week of waking also needs a vet: the TPG says all tortoises should start eating within one week of waking, and that veterinary help should be sought if they do not.
 
@@ -150,7 +152,7 @@ Keep it warm, keep up the baths and offer food, and if it has not started eating
 - **The timeline.** The TPG says food can be offered as soon as the tortoise has finished its bath; it may eat straight away, or it may take hours. Young tortoises should generally eat within 24 hours of waking, and all tortoises should start eating within one week. If they do not, the TPG says, veterinary help should be sought.
 - **Why it happens.** Writing in Vet Times, Mark Rowland describes not eating as a common problem in tortoises after hibernation, linked to poor preparation, hibernating for too long, unsuitable hibernation conditions and a suppressed immune system.
 - **Eyes.** A tortoise that seems blind or disoriented after hibernation may have frost damage, which the BCG and Rowland both describe.
-- **Swollen eyelids.** VCA vets list swollen eyelids, often with a pus-like discharge, together with a poor appetite and lethargy, among the signs of vitamin A deficiency in tortoises. They warn that treatment should only be given under veterinary supervision, because an overdose of vitamin A can occur, so do not give vitamins yourself.
+- **Swollen eyes.** The Tierspital Zürich lists swelling around the eyes, eye and nose discharge and conjunctivitis among the signs of mycoplasma infection in tortoises, often with a reduced appetite and less activity. It also warns that too many vitamins can themselves be harmful, so do not give vitamins yourself.
 - **Don't force-feed.** The MSD Veterinary Manual says assisted feeding of a reptile is best directed by your vet, because feeding a severely dehydrated, malnourished reptile can cause further problems. Rowland describes how vets look for the underlying cause and support the tortoise, and calls fluid therapy "profoundly important" for these patients.
 
 If your reptile is a lizard or a snake that is not eating, see [my reptile is not eating](/animals/reptile-not-eating).

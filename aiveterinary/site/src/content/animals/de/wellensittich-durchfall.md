@@ -1,18 +1,20 @@
 ---
 title: "Wellensittich hat Durchfall: was normaler Kot ist und wann es ernst wird"
 seoTitle: "Wellensittich hat Durchfall: wann wird es ernst?"
-description: "Vogelkot hat drei Teile, und mehr klarer Urin ist noch kein Durchfall. Wie normaler Kot bei Wellensittich, Nymphensittich und Kanarienvogel aussieht, wann es ernst wird und welche Hygiene hilft."
+description: "Vogelkot hat drei Teile, und mehr Urin ist noch kein Durchfall. Wie normaler Kot bei Wellensittich, Nymphensittich und Kanarienvogel aussieht, wann es ernst wird und welche Hygiene hilft."
 species: bird
 category: symptoms
 urgency: today
-updated: 2026-10-24
+updated: 2026-10-25
 draft: true
 lang: de
 references:
-  - title: "VCA Animal Hospitals: Abnormal Droppings in Birds"
-    url: "https://vcahospitals.com/know-your-pet/birds-abnormal-droppings"
-  - title: "VCA Animal Hospitals: Recognizing the Signs of Illness in Pet Birds"
-    url: "https://vcahospitals.com/know-your-pet/recognizing-the-signs-of-illness-in-pet-birds"
+  - title: "LafeberVet: Diarrhea"
+    url: "https://lafeber.com/vet/diarrhea/"
+  - title: "MSD Veterinary Manual (Pet Owner Version): Kidney and Urinary Tract Disorders of Pet Birds"
+    url: "https://www.msdvetmanual.com/bird-owners/disorders-and-diseases-of-birds/kidney-and-urinary-tract-disorders-of-pet-birds"
+  - title: "MSD Veterinary Manual (Professional Version): Management of Pet Birds"
+    url: "https://www.msdvetmanual.com/exotic-and-laboratory-animals/pet-birds/management-of-pet-birds"
   - title: "MSD Veterinary Manual (Pet Owner Version): Digestive Disorders of Pet Birds"
     url: "https://www.msdvetmanual.com/bird-owners/disorders-and-diseases-of-birds/digestive-disorders-of-pet-birds"
   - title: "MSD Veterinary Manual (Pet Owner Version): Illness in Pet Birds"
@@ -23,6 +25,8 @@ references:
     url: "https://www.tierspital.uzh.ch/wp-content/uploads/2023/03/Megabakteriose.pdf"
   - title: "Tierspital Zürich, Universität Zürich: Chlamydiose. Ein Informationsblatt für Tierbesitzer"
     url: "https://www.tierspital.uzh.ch/wp-content/uploads/2023/03/Chlamydiose.pdf"
+  - title: "Tierspital Zürich, Universität Zürich: Bleivergiftung beim Ziervogel. Ein Informationsblatt für Tierbesitzer"
+    url: "https://www.tierspital.uzh.ch/wp-content/uploads/2023/03/Ziervogel_Bleivergiftung.pdf"
   - title: "Bundesamt für Lebensmittelsicherheit und Veterinärwesen BLV (Schweiz): Chlamydiose der Vögel"
     url: "https://www.blv.admin.ch/de/chlamydiose-der-voegel"
   - title: "Robert Koch-Institut: RKI-Ratgeber Chlamydiosen (Teil 2): Erkrankungen durch Chlamydia psittaci, Chlamydia pneumoniae und Simkania negevensis"
@@ -39,7 +43,7 @@ Veränderter Kot steht im MSD Veterinary Manual auf der Liste der Krankheitszeic
 
 - **aufgeplustert, müde, schwach** ist oder am **Käfigboden** sitzt. Das MSD Veterinary Manual nennt einen zusammengekauerten, schwachen Vogel, der am Käfigboden liegt, einen Notfall
 - **schwer atmet**, mit offenem Schnabel oder wippendem Schwanz
-- **Blut** im Kot hat oder roten oder schwarzen Kot absetzt
+- **Blut** im Kot hat
 - **presst** oder ein Weibchen mit dickem Bauch ist (möglicherweise [Legenot](/de/animals/wellensittich-legenot))
 - **viel weniger Kot** absetzt als sonst oder gar keinen
 - vielleicht an **Metall oder Farbe** geknabbert oder etwas Giftiges gefressen hat
@@ -47,42 +51,39 @@ Veränderter Kot steht im MSD Veterinary Manual auf der Liste der Krankheitszeic
 
 ## Wie sieht normaler Vogelkot aus?
 
-Ein normaler Kotklecks hat drei Teile: einen grünen oder braunen festen Kotanteil, weiße Harnsäure (Urate) und etwas klaren, flüssigen Urin.
+Ein normaler Kotklecks hat drei Teile: den festen Kotanteil, die weiße Harnsäure (Urate) und den flüssigen Urin.
 
-VCA Animal Hospitals, eine große US-amerikanische Gruppe von Tierkliniken, beschreibt gesunden Vogelkot als grüne oder bräunliche, feste, eingerollte, wurmförmige Gebilde aus:
+LafeberVet, eine Fortbildungsseite für Tierärztinnen und Tierärzte, beschreibt den Kotklecks eines Vogels als aus drei Bestandteilen zusammengesetzt:
 
-- **Kot**: dem grünen oder braunen festen Teil, dessen Farbe sich mit dem Futter ändert
-- **Uraten**: dem festen Teil des Urins, meist weiß und aus Harnsäurekristallen
-- **Urin**: dem klaren, flüssigen Teil
+- **Kot**: der feste Teil aus dem Darm
+- **Urate**: der weiße, kreidige Teil. Das MSD Veterinary Manual erklärt, dass es sich um Harnsäure handelt, die über die Nieren ausgeschieden wird
+- **Urin**: der flüssige Teil
 
-Das Futter verändert das Aussehen. VCA nennt Beispiele: Heidelbeeren können den Kot kurz blau oder violett färben, rote oder orange Pellets färben den Kot, und Vögel, die viel frisches Obst fressen, setzen viel Urin ab. VCA gibt außerdem etwa einen Kotklecks alle 20 bis 30 Minuten als normal an. Viel weniger Kot als sonst ist also ebenfalls ein Warnzeichen.
+Was normal ist, hängt vom Vogel und seinem Futter ab. LafeberVet rät Tierärztinnen und Tierärzten, immer zu erfragen, was der Vogel frisst, und zu wissen, wie normaler Kot bei dieser Art aussieht.
 
 Schauen Sie sich den Kot jedes Mal an, wenn Sie das Käfigpapier wechseln. So wissen Sie, was für Ihren Vogel normal ist.
 
 ## Ist es Durchfall oder nur mehr Urin?
 
-Wässriger Kot mit normalem festem Anteil bedeutet meist mehr Urin (Polyurie). Echter Durchfall ist ein breiiger oder halbflüssiger Kotanteil.
+Mehr Flüssigkeit bei normalem festem Anteil spricht für mehr Urin (Polyurie). Echter Durchfall ist eine Veränderung des Kotanteils selbst.
 
-VCA erklärt, dass wässrige Kotkleckse ohne echte Veränderung des Kotanteils eine Polyurie sein können, also zu viel Urin. Echter Durchfall ist breiiges oder halbflüssiges Kotmaterial, und VCA warnt, dass er ein Zeichen lebensbedrohlicher Erkrankungen sein kann.
+LafeberVet betont, dass die Praxis echten Durchfall von einer Polyurie, also zu viel Urin, unterscheiden muss. Als Durchfall gilt dort jede Veränderung der Konsistenz oder Form des Kotanteils.
 
-Beides braucht Aufmerksamkeit, wenn es nicht vorbeigeht. VCA rät, zügig eine vogelkundige Praxis aufzusuchen, wenn der Kot länger als 24 Stunden auffällig bleibt, und schreibt, dass Durchfall, der länger als 24 Stunden anhält, so bald wie möglich tierärztlich behandelt werden sollte.
+Beides braucht Aufmerksamkeit: Das MSD Veterinary Manual zählt auffälligen Kot zu den Problemen, bei denen man zügig tierärztlichen Rat einholen sollte.
 
 ## Welche Veränderungen am Kot sind auffällig?
 
-VCA nennt mehr oder weniger Kotkleckse, veränderte Farbe oder Konsistenz, unverdautes Futter, Bläschen, Blut, eine erbsensuppenartige Konsistenz und viel klare Flüssigkeit.
+Jede Abweichung von dem, was für Ihren Vogel normal ist: am Kot, an den Uraten oder am Urin, bei der Zahl der Kotkleckse, oder Blut oder unverdautes Futter.
 
-Auffälliger Kot ist laut VCA:
+Veränderungen, die das MSD Veterinary Manual beschreibt, sind unter anderem:
 
-- weniger oder mehr Kotkleckse als sonst
-- eine veränderte Farbe oder Konsistenz eines Teils
-- unverdautes Futter, etwa ganze Körner
-- schaumiger Kot mit Bläschen
-- mehr wässriger oder flüssiger Anteil
-- Blut im Kot oder im Urin
-- Kot, der wie Erbsensuppe aussieht
-- große Mengen klarer Flüssigkeit
+- unverdaute Körner oder Pellets im Kot
+- Kot, der größer als sonst ist und locker, „wie Popcorn“, aussieht
+- grüner Kot
+- Blut im Kot
+- gelbe oder hellgrüne Urate, die das MSD-Handbuch für Fachleute mit Lebererkrankungen in Verbindung bringt
 
-VCA erklärt außerdem, dass eine Bleivergiftung Blut im Urin verursachen kann, wodurch der Kot rot oder schwarz aussehen kann. In seiner Liste der Krankheitszeichen nennt VCA zusätzlich Pressen und verschmutzte Federn rund um die Kloake.
+Auch eine Vergiftung kann sich am Kot zeigen. Das Tierspital Zürich der Universität Zürich nennt Erbrechen, Apathie und gelb-grünlichen Durchfall als erste Zeichen einer Bleivergiftung, manchmal mit Blutspuren in Harn und Kot, und zählt die Bleivergiftung zu den absoluten Notfällen.
 
 ## Was kann Durchfall beim Wellensittich und anderen Ziervögeln verursachen?
 
@@ -95,11 +96,11 @@ Einige Beispiele aus dem MSD Veterinary Manual:
 - **Papillome**, Wucherungen, die an der Kloake sichtbar sein können und Pressen und Blut im Kot verursachen können.
 - **Aviäre Ganglioneuritis** (früher Drüsenmagendilatation genannt), bei der Vögel unverdautes Futter ausscheiden, vor allem ganze Körner.
 
-Das Tierspital Zürich der Universität Zürich beschreibt bei der Megabakteriose, dass erkrankte Vögel trotz gutem, unverändertem Appetit über Monate abmagern. Dazu kommen Teilnahmslosigkeit, gesträubtes Gefieder, häufig Erbrechen von Schleim und grünlicher Durchfall, und in fortgeschrittenen Stadien werden unverdaute Körner mit dem Kot ausgeschieden. Bei der **Chlamydiose** nennt das Tierspital Müdigkeit, weniger Fressen und Trinken, Abmagerung, ein aufgeplustertes Federkleid und oft wässrigen, grünlichen Durchfall.
+Das Tierspital Zürich beschreibt bei der Megabakteriose, dass erkrankte Vögel trotz gutem, unverändertem Appetit über Monate abmagern. Dazu kommen Teilnahmslosigkeit, gesträubtes Gefieder, häufig Erbrechen von Schleim und grünlicher Durchfall, und in fortgeschrittenen Stadien werden unverdaute Körner mit dem Kot ausgeschieden. Bei der **Chlamydiose** nennt das Tierspital Müdigkeit, weniger Fressen und Trinken, Abmagerung, ein aufgeplustertes Federkleid und oft wässrigen, grünlichen Durchfall.
 
 Auch Vergiftungen kommen infrage: Das College of Veterinary Medicine der University of Illinois weist darauf hin, dass Zink und Blei aus verzinkten Käfigen, Metallteilen und billigem Spielzeug stammen können.
 
-Wie VCA beschreibt, kann die Praxis den Kot unter dem Mikroskop untersuchen oder eine Kultur anlegen. Eine frische Kotprobe hilft deshalb.
+LafeberVet nennt die Kotuntersuchung ein unverzichtbares Werkzeug der Praxis, und das MSD Veterinary Manual beschreibt, wie frischer Kot unter dem Mikroskop untersucht wird. Eine frische Kotprobe hilft deshalb.
 
 ## Kann ich mich über den Kot meines Vogels anstecken?
 
@@ -117,14 +118,13 @@ Das ECDC weist darauf hin, dass die schwere Form meist eine Lungenentzündung is
 
 ## Wann sollte ich mit meinem Wellensittich zur Tierärztin oder zum Tierarzt?
 
-Noch heute, wenn der Kot auffällig ist und Ihr Vogel irgendwie krank wirkt; bald, wenn eine Veränderung länger als 24 Stunden anhält, auch wenn er sonst munter ist.
+Noch heute, wenn der Kot auffällig ist und Ihr Vogel irgendwie krank wirkt; zügig, wenn eine Veränderung nicht vorbeigeht, auch wenn er sonst munter ist.
 
 Gehen Sie mit Ihrem Vogel in eine Praxis, die Vögel behandelt:
 
 - **noch heute**, wenn zum auffälligen Kot irgendeine andere Veränderung kommt: ruhiger, aufgeplustert, schläft mehr, frisst oder trinkt mehr oder weniger
-- **zügig**, wenn der Kot länger als 24 Stunden auffällig bleibt (VCA)
+- **zügig**, wenn der Kot auffällig bleibt, auch wenn Ihr Vogel munter wirkt (MSD)
 - **bald**, wenn Sie unverdaute Körner im Kot sehen oder Ihr Vogel immer weiter abnimmt (MSD, Tierspital Zürich)
-- **bald**, wenn die Federn rund um die Kloake nass, verfärbt oder verschmutzt sind (VCA)
 
 ## Was wird die Tierärztin oder der Tierarzt über den Kot meines Vogels wissen wollen?
 

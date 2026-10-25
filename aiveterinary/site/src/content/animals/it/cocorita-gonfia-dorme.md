@@ -5,7 +5,7 @@ description: "Gli uccelli nascondono la malattia: una cocorita, una calopsite o 
 species: bird
 category: symptoms
 urgency: emergency
-updated: 2026-10-24
+updated: 2026-10-25
 draft: true
 lang: it
 references:
@@ -15,12 +15,14 @@ references:
     url: "https://www.msdvetmanual.com/bird-owners/disorders-and-diseases-of-birds/injuries-and-accidents-of-pet-birds"
   - title: "MSD Veterinary Manual (versione per proprietari): Lung and Airway Disorders of Pet Birds"
     url: "https://www.msdvetmanual.com/bird-owners/disorders-and-diseases-of-birds/lung-and-airway-disorders-of-pet-birds"
-  - title: "VCA Animal Hospitals: Recognizing the Signs of Illness in Pet Birds"
-    url: "https://vcahospitals.com/know-your-pet/recognizing-the-signs-of-illness-in-pet-birds"
-  - title: "VCA Animal Hospitals: Teflon (Polytetrafluoroethylene) Poisoning in Birds"
-    url: "https://vcahospitals.com/know-your-pet/teflon-polytetrafluoroethylene-poisoning-in-birds"
-  - title: "VCA Animal Hospitals: Egg Binding in Birds"
-    url: "https://vcahospitals.com/know-your-pet/egg-binding-in-birds"
+  - title: "MSD Veterinary Manual (versione per professionisti): Management of Pet Birds"
+    url: "https://www.msdvetmanual.com/exotic-and-laboratory-animals/pet-birds/management-of-pet-birds"
+  - title: "MSD Veterinary Manual (versione per professionisti): Toxicoses of Pet Birds"
+    url: "https://www.msdvetmanual.com/exotic-and-laboratory-animals/pet-birds/toxicoses-of-pet-birds"
+  - title: "MSD Veterinary Manual (versione per proprietari): Reproductive Disorders of Pet Birds"
+    url: "https://www.msdvetmanual.com/bird-owners/disorders-and-diseases-of-birds/reproductive-disorders-of-pet-birds"
+  - title: "Merck Veterinary Manual (versione per professionisti): Reproductive Diseases of Pet Birds"
+    url: "https://www.merckvetmanual.com/exotic-and-laboratory-animals/pet-birds/reproductive-diseases-of-pet-birds"
   - title: "USAV, Ufficio federale della sicurezza alimentare e di veterinaria (Svizzera): Uccelli esotici"
     url: "https://www.blv.admin.ch/it/uccelli-esotici"
   - title: "University of Illinois College of Veterinary Medicine: Bad for Birds: Prevent Poisoning in Avian Pets"
@@ -37,7 +39,7 @@ references:
 
 ## Prima di tutto: i segni per cui andare subito dal veterinario
 
-Gli uccelli sono bravissimi a nascondere la malattia. L'MSD Veterinary Manual spiega che in natura gli uccelli nascondono di stare male per non sembrare deboli agli altri animali. VCA Animal Hospitals, una grande rete di cliniche veterinarie americana, avverte che quando un uccellino da compagnia mostra i primi sintomi, probabilmente è malato già da alcuni giorni o settimane. Quando te ne accorgi, quindi, può stare male da un po'.
+Gli uccelli sono bravissimi a nascondere la malattia. L'MSD Veterinary Manual spiega che in natura gli uccelli nascondono di stare male per non sembrare deboli agli altri animali. La versione per professionisti del manuale aggiunge che gli uccelli possono mascherare i segni di malattia fino a uno stadio avanzato. Quando te ne accorgi, quindi, può stare male da un po'.
 
 Vai subito da un veterinario che cura gli uccelli, e telefona prima, se il tuo uccellino (cocorita, calopsite, canarino o pappagallo):
 
@@ -49,7 +51,7 @@ Vai subito da un veterinario che cura gli uccelli, e telefona prima, se il tuo u
 - ha mangiato **avocado**, o può aver rosicchiato **metallo o vernice**
 - **perde sangue** e il sangue non si ferma
 - è una **femmina che spinge**, ha la pancia gonfia o un uovo che non esce (vedi [uovo incastrato](/it/animals/cocorita-uovo-incastrato))
-- **non mangia o non beve più**, oppure fa molte meno feci del solito: VCA indica come normale circa una deiezione ogni 20-30 minuti
+- **non mangia o non beve più**, oppure fa molte meno feci del solito
 - ha una **crisi convulsiva**
 
 ## Perché la mia cocorita è gonfia e dorme sempre?
@@ -69,23 +71,23 @@ L'MSD Veterinary Manual elenca questi segni di malattia negli uccelli da compagn
 - mangia o beve più o meno del solito
 - rigetta il cibo
 
-Il consiglio è netto: se il tuo uccellino mostra uno di questi segni, portalo dal veterinario. VCA aggiunge che qualsiasi cambiamento rispetto al normale va preso come un segno di malattia e raccomanda di non rimandare, perché una malattia grave può svilupparsi in fretta. Anche l'USAV, l'Ufficio federale svizzero della sicurezza alimentare e di veterinaria, scrive che il veterinario va consultato immediatamente in caso di problemi di salute come piumaggio arruffato, starnuti, diarrea, occhi incrostati o con secrezioni, prurito, irrequietezza o comportamento insolito. Per questo conviene sapere come il tuo uccellino di solito sta sul posatoio, canta, mangia e dorme.
+Il consiglio è netto: se il tuo uccellino mostra uno di questi segni, portalo dal veterinario. La versione per professionisti del manuale aggiunge che anche piccoli cambiamenti, come un uccello che al mattino non canta più o si interessa meno alla famiglia, vanno considerati possibili segni di malattia. Anche l'USAV, l'Ufficio federale svizzero della sicurezza alimentare e di veterinaria, scrive che il veterinario va consultato immediatamente in caso di problemi di salute come piumaggio arruffato, starnuti, diarrea, occhi incrostati o con secrezioni, prurito, irrequietezza o comportamento insolito. Per questo conviene sapere come il tuo uccellino di solito sta sul posatoio, canta, mangia e dorme.
 
-Le cause possibili sono tante. VCA cita un'alimentazione sbagliata tra le più comuni, insieme a traumi, sostanze tossiche, scarsa igiene, stress e infezioni. Per capire quale sia, il veterinario deve visitarlo.
+Molte malattie diverse possono dare questi segni, e per capire quale sia il veterinario deve visitarlo.
 
 ## Se la cocorita sta sul fondo della gabbia è un'emergenza?
 
 Sì. Per l'MSD Veterinary Manual un uccello rannicchiato, debole, che non reagisce o sdraiato sul fondo della gabbia è un'emergenza.
 
-Un uccellino sano sta sul posatoio. VCA indica tra i segni di malattia il fatto di non appollaiarsi e di restare a lungo sul fondo della gabbia. Non aspettare domani per vedere se torna su.
+Stare basso sul posatoio o sul fondo della gabbia è nell'elenco dei segni di malattia dell'MSD. Non aspettare domani per vedere se torna su.
 
-In una femmina, stare sul fondo della gabbia può essere anche un segno di uovo incastrato. VCA avverte che gli uccelli piccoli possono morire nel giro di poche ore da quando l'uovo resta bloccato.
+In una femmina, stare sul fondo della gabbia può essere anche un segno di uovo incastrato, secondo l'MSD Veterinary Manual, e il Merck Veterinary Manual scrive che questi uccelli arrivano spesso dal veterinario come emergenze.
 
 ## La cocorita respira male? Cosa vuol dire se muove la coda a ogni respiro
 
 Respirare a becco aperto, fischi, piccoli clic e una coda che va su e giù a ogni respiro sono segni di difficoltà respiratoria: serve subito il veterinario.
 
-VCA elenca la coda che si muove su e giù a ogni respiro tra i segni respiratori di malattia, insieme alla respirazione a bocca aperta o affannosa, ai sibili, agli starnuti, alla tosse e alle secrezioni dalle narici. L'MSD Veterinary Manual spiega che gli uccelli che fanno fatica a respirare di solito hanno bisogno di ossigeno in clinica, e a casa non si può dare.
+L'MSD Veterinary Manual mette le difficoltà respiratorie, come i sibili o la coda che si muove su e giù a ogni respiro, tra i segni di malattia. Spiega anche che gli uccelli che fanno fatica a respirare di solito hanno bisogno di ossigeno in clinica, e a casa non si può dare.
 
 Alcune cause descritte dall'MSD Veterinary Manual:
 
@@ -97,15 +99,13 @@ Alcune cause descritte dall'MSD Veterinary Manual:
 
 Sì. I fumi delle pentole antiaderenti (PTFE, cioè il Teflon) surriscaldate possono uccidere un uccellino in poco tempo, e anche fumo, spray e detersivi forti possono fargli male.
 
-VCA spiega che il PTFE, il rivestimento antiaderente di molte padelle, quando viene scaldato ad alte temperature libera particelle e gas acidi tossici da respirare. La maggior parte dei casi riguarda pentole surriscaldate o bruciate, per esempio una pentola antiaderente rimasta sul fuoco senza più acqua, ma sono stati segnalati avvelenamenti anche alle temperature raccomandate. VCA ricorda inoltre che:
+La versione per professionisti dell'MSD Veterinary Manual scrive che l'avvelenamento da gas di PTFE è frequente negli uccelli da compagnia tenuti in cucina o vicino alla cucina. Il gas viene liberato da alcune pentole antiaderenti quando si surriscaldano, e il College of Veterinary Medicine dell'Università dell'Illinois ricorda che può formarsi anche alle normali temperature di cottura. L'MSD spiega inoltre che:
 
-- i gas sono incolori e inodori, quindi spesso il proprietario non si accorge che l'uccello è stato esposto
-- un uccello può avvelenarsi anche se non si trova nella stessa stanza
-- gli uccelli più piccoli, cocorite comprese, sono i più sensibili
-- i segni sono agitazione, respiro rapido o affannoso con sibili, mancanza di coordinazione, debolezza e convulsioni, e la morte improvvisa può essere l'unico segno
-- oltre che nelle padelle, il PTFE si trova in vaschette raccogligocce, piastre per waffle, ferri da stiro e copriassi da stiro, resistenze elettriche e lampade riscaldanti
+- spesso l'unico segno è la morte improvvisa, e gli uccelli piccoli muoiono spesso all'improvviso anche dopo un'esposizione minima
+- gli uccelli più grandi possono avere respiro affannoso, sibili, andatura incerta e debolezza
+- oltre che nelle padelle, il PTFE si trova in ferri da stiro, copriassi da stiro, alcuni forni autopulenti, le resistenze di alcune pompe di calore e alcune lampade riscaldanti
 
-Se pensi che il tuo uccellino abbia respirato dei fumi, VCA consiglia di portarlo subito via da quella zona, in un posto con aria pulita, e poi di chiamare il veterinario o un centro antiveleni. Di solito serve il ricovero. Secondo VCA l'unico modo sicuro per prevenire questo avvelenamento è non usare prodotti antiaderenti che contengono PTFE.
+Se pensi che il tuo uccellino abbia respirato dei fumi, chiama subito il veterinario. L'MSD descrive la cura come terapia di supporto in clinica, per esempio un'incubatrice calda con ossigeno e liquidi.
 
 Altri pericoli indicati dal College of Veterinary Medicine dell'Università dell'Illinois e dal laboratorio diagnostico veterinario della Texas A&M (TVMDL):
 
@@ -127,14 +127,13 @@ L'MSD Veterinary Manual riassume il trasporto in tre punti: calore, buio e un tr
 - Tienilo **al caldo**: l'MSD suggerisce di appoggiarlo su un tappetino riscaldante o accanto a una borsa dell'acqua calda.
 - **Copri almeno tre lati** del trasportino con un asciugamano, per ridurre lo stress.
 - **Non imboccarla con la siringa** e non metterle acqua nel becco, a meno che il veterinario non te l'abbia indicato: l'MSD avverte che l'alimentazione con la siringa può far finire il cibo nelle vie respiratorie (aspirazione) e causare infezioni respiratorie.
-- Se sospetti dei fumi, prima di tutto portala in un posto con **aria pulita** (VCA).
 - **Non darle** farmaci per uso umano, farmaci avanzati o rimedi casalinghi.
 - Se puoi, porta la **carta del fondo della gabbia** con le ultime feci, e quello che potrebbe aver mangiato o rosicchiato.
 - **Lavati le mani** dopo averla maneggiata. L'ECDC, il Centro europeo per la prevenzione e il controllo delle malattie, consiglia di lavarsi le mani dopo il contatto con gli uccelli per ridurre il rischio di psittacosi, un'infezione che può passare dagli uccelli alle persone.
 
 ## Quando portare la cocorita dal veterinario?
 
-Subito, per uno qualsiasi dei segni elencati all'inizio; in giornata, per qualsiasi altro cambiamento rispetto al normale, perché VCA consiglia di contattare il veterinario immediatamente quando qualcosa non va.
+Subito, per uno qualsiasi dei segni elencati all'inizio; in giornata, per qualsiasi altro cambiamento rispetto al normale, perché l'MSD Veterinary Manual consiglia di portare dal veterinario un uccello con qualsiasi segno di malattia.
 
 Chiama oggi un veterinario che cura gli uccelli se il tuo uccellino:
 

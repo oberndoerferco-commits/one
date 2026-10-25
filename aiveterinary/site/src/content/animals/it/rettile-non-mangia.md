@@ -4,7 +4,7 @@ description: "Un rettile che non mangia può avere freddo, stare per fare la mut
 species: reptile
 category: symptoms
 urgency: today
-updated: 2026-10-24
+updated: 2026-10-25
 draft: true
 lang: it
 references:
@@ -12,16 +12,16 @@ references:
     url: "https://www.msdvetmanual.com/all-other-pets/reptiles/disorders-and-diseases-of-reptiles"
   - title: "MSD Veterinary Manual (versione per proprietari): Routine Health Care of Reptiles"
     url: "https://www.msdvetmanual.com/all-other-pets/reptiles/routine-health-care-of-reptiles"
-  - title: "VCA Animal Hospitals: Common Problems in Pet Snakes"
-    url: "https://vcahospitals.com/know-your-pet/snakes-problems"
-  - title: "VCA Animal Hospitals: Bearded Dragons – Diseases"
-    url: "https://vcahospitals.com/know-your-pet/bearded-dragons-diseases"
-  - title: "VCA Animal Hospitals: Bearded Dragons – Problems"
-    url: "https://vcahospitals.com/know-your-pet/bearded-dragons-problems"
-  - title: "VCA Animal Hospitals: Common Diseases of Tortoises"
-    url: "https://vcahospitals.com/know-your-pet/common-diseases-of-tortoises"
-  - title: "VCA Animal Hospitals: Lighting Requirements for Reptiles"
-    url: "https://vcahospitals.com/know-your-pet/reptiles---proper-lighting"
+  - title: "Tierspital Zürich, Università di Zurigo: Legenot bei Reptilien (scheda informativa per proprietari, in tedesco)"
+    url: "https://www.tierspital.uzh.ch/wp-content/uploads/2023/03/reptilien_legenot-1.pdf"
+  - title: "Tierspital Zürich, Università di Zurigo: Parasiten bei Reptilien (scheda informativa per proprietari, in tedesco)"
+    url: "https://www.tierspital.uzh.ch/wp-content/uploads/2023/03/Parasiten-bei-Reptilien.pdf"
+  - title: "Tierspital Zürich, Università di Zurigo: Vitamin A-Mangel bei Sumpfschildkröten (scheda informativa per proprietari, in tedesco)"
+    url: "https://www.tierspital.uzh.ch/wp-content/uploads/2023/03/Vitamin-A-Mangel-bei-Sumpfschildkroeten.pdf"
+  - title: "Tierspital Zürich, Università di Zurigo: Häutung von Schlangen (scheda informativa per proprietari, in tedesco)"
+    url: "https://www.tierspital.uzh.ch/wp-content/uploads/2023/03/schlangen_hautung.pdf"
+  - title: "Tierspital Zürich, Università di Zurigo: Stoffwechselbedingte Knochenerkrankung bei Reptilien (Metabolic Bone Disease – MBD) (scheda informativa per proprietari, in tedesco)"
+    url: "https://www.tierspital.uzh.ch/wp-content/uploads/2023/03/reptilien_MBD.pdf"
   - title: "RSPCA: How to care for your bearded dragon"
     url: "https://www.rspca.org.uk/adviceandwelfare/pets/other/beardeddragon"
   - title: "RSPCA: How to care for a leopard gecko"
@@ -42,7 +42,7 @@ references:
 
 ## Prima di tutto: i segni per cui andare subito dal veterinario
 
-Spesso il primo segnale che un rettile sta male è che mangia meno: i veterinari di VCA Animal Hospitals ricordano che mancanza di appetito e apatia compaiono in moltissime malattie diverse. Vai subito da un veterinario che cura i rettili, avvisando per telefono, se il tuo rettile non mangia e inoltre:
+Spesso il primo segnale che un rettile sta male è che mangia meno: l'MSD Veterinary Manual la elenca tra i segni di moltissime malattie diverse. Vai subito da un veterinario che cura i rettili, avvisando per telefono, se il tuo rettile non mangia e inoltre:
 
 - è **debole o non reagisce**, oppure non riesce a camminare o a sollevare il corpo da terra
 - **respira a bocca aperta**, boccheggia, sibila o fischia, oppure ha **secrezioni o bollicine** al naso, alla bocca o agli occhi
@@ -52,21 +52,19 @@ Spesso il primo segnale che un rettile sta male è che mangia meno: i veterinari
 
 Perché questi segni sono importanti:
 
-- Una femmina di drago barbuto che non riesce a deporre le uova (distocia) non mangia e in poco tempo sta male, diventa apatica o non reagisce: i veterinari di VCA raccomandano che la visiti subito un veterinario esperto di rettili. Descrivono lo stesso nei serpenti: un serpente con distocia non mangia ed è apatico, debole o non reagisce.
+- Una femmina che non riesce a deporre le uova (distocia) è nella maggior parte dei casi un'emergenza, spiega il Tierspital di Zurigo, l'ospedale veterinario dell'Università di Zurigo. Succede in serpenti, sauri e tartarughe, e tra i segni ci sono debolezza, apatia, spinte prolungate, prolasso, mancanza di appetito e difficoltà a respirare.
 - Respiro a bocca aperta, secrezioni dal naso e difficoltà a respirare sono segni frequenti di problemi respiratori secondo l'MSD Veterinary Manual. La RSPCA, la principale associazione britannica per il benessere animale, descrive nel pitone reale con un'infezione respiratoria un fischio quando respira e il boccheggiare in cerca d'aria.
-- Contrazioni muscolari, convulsioni e grave apatia possono essere segni di malattia ossea metabolica nel drago barbuto (VCA), e la RSPCA raccomanda di chiedere con urgenza il parere del veterinario se ne noti i segni.
+- Gli spasmi muscolari possono essere un segno di malattia ossea metabolica (MSD Veterinary Manual), e la RSPCA raccomanda di chiedere con urgenza il parere del veterinario se ne noti i segni. L'MSD elenca anche le convulsioni tra i segni della setticemia, un'infezione del sangue che è una causa frequente di morte nei rettili.
 - La RSPCA avverte che nel geco leopardino feci anomale o stitichezza insieme a perdita di peso possono essere gravi, e che l'occlusione intestinale (impattamento) può essere mortale.
 
 ## È normale che il mio rettile smetta di mangiare?
 
 A volte sì: i serpenti spesso rifiutano il cibo prima della muta, molti rettili mangiano meno nel periodo riproduttivo o nel riposo invernale e le femmine con le uova possono smettere di mangiare, ma un rettile che perde peso o sembra stare male va portato dal veterinario.
 
-- **Prima della muta.** Secondo l'MSD Veterinary Manual, prima della muta i serpenti perdono l'appetito e la pelle diventa leggermente traslucida e opaca; i veterinari di VCA aggiungono che gli occhi diventano di un colore grigio-azzurro torbido. La RSPCA scrive che il pitone reale può rifiutare il cibo quando è il momento della muta.
-- **Il periodo riproduttivo.** I veterinari di VCA spiegano che nei serpenti non mangiare può essere normale durante la stagione riproduttiva.
-- **Femmine con le uova.** Una femmina di drago barbuto sana che porta le uova può non mangiare, ma di solito resta vispa, attiva e attenta, secondo VCA. La British Chelonia Group (BCG), un ente benefico britannico che si occupa di tartarughe e testuggini, considera naturale il rifiuto del cibo nelle tartarughe femmine con le uova. Una femmina che diventa debole o apatica va portata subito dal veterinario.
+- **Prima della muta.** Secondo l'MSD Veterinary Manual, prima della muta i serpenti perdono l'appetito e la pelle diventa leggermente traslucida e opaca; il Tierspital di Zurigo aggiunge che qualche giorno prima gli occhi diventano torbidi. La RSPCA scrive che il pitone reale può rifiutare il cibo quando è il momento della muta.
+- **Femmine con le uova.** La British Chelonia Group (BCG), un ente benefico britannico che si occupa di tartarughe e testuggini, considera naturale il rifiuto del cibo nelle tartarughe femmine con le uova. Ma il Tierspital di Zurigo mette la mancanza di appetito, insieme a debolezza e apatia, tra i segni della distocia: una femmina che diventa debole o apatica va portata subito dal veterinario.
 - **Riposo invernale (brumazione) e letargo.** La RSPCA dice che drago barbuto, geco leopardino e serpente del grano possono mangiare meno durante il riposo invernale, ma non devono perdere peso, e che il drago barbuto non deve smettere del tutto di mangiare. Per le tartarughe di terra, la BCG considera naturale il rifiuto del cibo nel mese prima del letargo e quando fa freddo. Leggi anche [letargo della tartaruga di terra](/it/animals/tartaruga-di-terra-letargo).
 - **Il pitone reale.** La RSPCA nota che il pitone reale ha fama di smettere di mangiare, a volte in certi periodi dell'anno, ma raccomanda comunque di rivolgersi al veterinario se il serpente smette all'improvviso di nutrirsi.
-- **Una casa nuova o cambiata.** Secondo i veterinari di VCA, la causa più comune per cui un serpente non mangia è lo stress di un ambiente nuovo o cambiato.
 
 Pesa il tuo rettile regolarmente, così ti accorgi presto se dimagrisce. La RSPCA lo consiglia per i serpenti, per essere sicuri che non diventino sottopeso.
 
@@ -75,20 +73,20 @@ Pesa il tuo rettile regolarmente, così ti accorgi presto se dimagrisce. La RSPC
 Può darsi: i rettili dipendono dal calore e dalla luce del loro terrario, e l'MSD Veterinary Manual spiega che non riescono a utilizzare bene liquidi e nutrienti se le condizioni non sono quelle giuste per la loro specie.
 
 - **Temperature.** Controlla con un termometro la zona calda sotto la lampada e la zona fresca, e confrontale con una scheda di allevamento della tua specie o chiedi al veterinario. Secondo l'MSD Veterinary Manual, un rettile malato va tenuto a una temperatura vicina al limite superiore preferito dalla sua specie.
-- **Luce.** I veterinari di VCA consigliano di sostituire le lampade UVB ogni 9-12 mesi o come indica il produttore, senza vetro o plastica tra il rettile e la lampada. Una lampada UVB assente o esaurita è una delle cause della [malattia ossea metabolica](/it/animals/malattia-ossea-metabolica-rettili), che a sua volta toglie l'appetito.
+- **Luce.** Il Tierspital di Zurigo avverte che le lampade UV durano circa 6 mesi e che il vetro delle finestre filtra i raggi UV. Una lampada UVB assente o esaurita è una delle cause della [malattia ossea metabolica](/it/animals/malattia-ossea-metabolica-rettili), che a sua volta toglie l'appetito.
 - **Umidità.** Misurala con un igrometro: la RSPCA lo consiglia per i serpenti, e il livello giusto dipende dalla specie.
 - **Tartarughe d'acqua.** Anche per loro contano il calore dell'acqua e la zona dove si scaldano; la RSPCA cita i cambiamenti di appetito tra i segni che possono indicare parassiti intestinali nelle tartarughe d'acqua.
 
 ## Quali malattie tolgono l'appetito a un rettile?
 
-Molte: infezioni della bocca, parassiti, blocchi intestinali, infezioni respiratorie, malattia ossea metabolica, distocia e malattie dei reni o del fegato sono tra queste, quindi serve il veterinario per trovare la causa.
+Molte: infezioni, parassiti, blocchi intestinali, gotta, malattia ossea metabolica, carenza di vitamina A e distocia sono tra queste, quindi serve il veterinario per trovare la causa.
 
-- **Nei serpenti**, i veterinari di VCA citano tra le cause la stomatite infettiva ("bocca marcia"), i parassiti intestinali, l'occlusione intestinale (impattamento), le infezioni intestinali, le malattie respiratorie, l'insufficienza renale o epatica, i tumori e la gotta.
+- **Infezioni e gotta.** L'MSD Veterinary Manual elenca la perdita di appetito tra i segni della malattia da corpi inclusi in boa e pitoni e dell'infezione da herpesvirus nelle tartarughe di terra, e spiega che la gotta può essere così dolorosa che alcuni rettili smettono di muoversi, mangiare o bere.
 - **Malattia ossea metabolica**: un indebolimento delle ossa dovuto a una dieta con un rapporto sbagliato tra calcio e fosforo, a carenza di vitamina D3 o a mancanza di luce UVB, che secondo l'MSD Veterinary Manual causa scarso appetito e debolezza.
-- **Carenza di vitamina A nelle tartarughe**: secondo VCA provoca mancanza di appetito, apatia e palpebre gonfie, spesso con una secrezione simile a pus. VCA avverte che va trattata solo sotto controllo veterinario, perché è possibile un sovradosaggio di vitamina A. L'MSD Veterinary Manual aggiunge che le tartarughe con polmonite hanno spesso alla base una carenza di vitamina A.
-- **Parassiti**: nei casi avanzati, nel drago barbuto i parassiti intestinali possono causare feci maleodoranti, diarrea e perdita di peso (VCA).
+- **Carenza di vitamina A**: secondo il Tierspital di Zurigo è molto più frequente nelle tartarughe acquatiche che nelle tartarughe di terra erbivore, e può causare mancanza di appetito, palpebre gonfie e infiammate, ascessi alle orecchie e problemi respiratori. L'MSD Veterinary Manual aggiunge che le tartarughe con polmonite hanno spesso alla base una carenza di vitamina A.
+- **Parassiti**: il Tierspital di Zurigo spiega che i parassiti intestinali sottraggono nutrienti, per cui l'animale dimagrisce, o se giovane non cresce di peso, a volte con diarrea. L'MSD aggiunge che i serpenti con ascaridi possono non avere appetito.
 - **Impattamento** da substrato sciolto ingerito: la RSPCA lo definisce potenzialmente mortale nel geco leopardino.
-- **Distocia** nelle femmine (VCA).
+- **Distocia** nelle femmine (Tierspital di Zurigo).
 - **Problemi dopo il letargo** nelle tartarughe di terra: il Tortoise Protection Group (TPG), un gruppo britannico per la protezione delle tartarughe, scrive che tutte le tartarughe dovrebbero ricominciare a mangiare entro una settimana dal risveglio e che, se non lo fanno, bisogna chiedere aiuto al veterinario.
 
 ## Cosa posso fare mentre organizzo la visita?
@@ -99,21 +97,21 @@ Controlla e correggi il terrario, pesa il rettile, offrigli acqua e il suo cibo 
 - **Pesalo** e annota quando ha mangiato e fatto le feci l'ultima volta.
 - **Cerca i segni di disidratazione**: l'MSD Veterinary Manual cita pelle cadente o occhi infossati.
 - **Offrigli acqua e il suo cibo, ma non imboccarlo a forza.** L'MSD Veterinary Manual spiega che l'alimentazione assistita va decisa dal veterinario, perché nutrire un rettile molto disidratato e malnutrito può causare altri problemi.
-- **Non dare vitamine, calcio o farmaci** senza il parere del veterinario. I veterinari di VCA avvertono del rischio di sovradosaggio di vitamina A nelle tartarughe e, per la malattia ossea metabolica del drago barbuto, raccomandano di non tentare alcuna cura senza la guida del veterinario.
+- **Non dare vitamine, calcio o farmaci** senza il parere del veterinario. Il Tierspital di Zurigo avverte che anche troppe vitamine possono fare male.
 - **Lavati le mani** dopo aver toccato il rettile o qualunque cosa del suo terrario: i CDC statunitensi ricordano che anche i rettili sani possono essere portatori di salmonella.
 
 ## Quando portare dal veterinario il rettile che non mangia?
 
 Oggi stesso se non mangia e inoltre dimagrisce, è più quieto del solito o ha qualsiasi altro cambiamento, oppure se non trovi una ragione normale; subito per i segni elencati all'inizio.
 
-I veterinari di VCA scrivono che qualunque cambiamento rispetto al normale in un drago barbuto va valutato subito dal veterinario, e che ogni tartaruga che si discosta dal normale va visitata da un veterinario che conosce le malattie dei rettili. Vai dal veterinario oggi se il tuo rettile:
+Vai dal veterinario oggi se il tuo rettile:
 
 - non mangia e sembra più quieto, più magro o diverso in qualunque modo
 - ha perso peso, o la base della coda sembra più sottile (la RSPCA descrive una base della coda spessa come segno di un drago barbuto sano e di un geco leopardino ben nutrito)
 - è un serpente che smette all'improvviso di mangiare (RSPCA)
 - è una tartaruga che non mangia o sembra malata, che secondo la BCG va portata dal veterinario senza indugio
 - è una tartaruga di terra che entro una settimana dal risveglio non ha ricominciato a mangiare (TPG)
-- ha le palpebre gonfie o secrezioni dagli occhi o dal naso (VCA)
+- ha le palpebre gonfie o secrezioni dagli occhi o dal naso (Tierspital di Zurigo, MSD Veterinary Manual)
 - è un drago barbuto, un geco leopardino o un serpente del grano che perde peso durante il riposo invernale (RSPCA)
 
 Non tutti i veterinari curano i rettili. L'MSD Veterinary Manual consiglia di chiedere al veterinario che esperienza ha con i rettili, e ricorda che un controllo annuale aiuta a verificare che il tuo rettile sia ben nutrito e libero da malattie e parassiti.

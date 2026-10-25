@@ -5,7 +5,7 @@ description: "Una femmina di furetto non sterilizzata può restare in calore fin
 species: ferret
 category: care
 urgency: this-week
-updated: 2026-10-24
+updated: 2026-10-25
 draft: true
 lang: it
 references:
@@ -13,12 +13,8 @@ references:
     url: "https://www.rspca.org.uk/adviceandwelfare/pets/ferrets/health/neutering"
   - title: "PDSA: Ferrets as pets"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/small-pets/ferrets-as-pets"
-  - title: "VCA Animal Hospitals: Reproductive Diseases in Ferrets"
-    url: "https://vcahospitals.com/know-your-pet/reproductive-diseases-in-ferrets"
-  - title: "VCA Animal Hospitals: Ferrets: Health Problems"
-    url: "https://vcahospitals.com/know-your-pet/ferrets---"
-  - title: "VCA Animal Hospitals: Hormonal Diseases in Ferrets"
-    url: "https://vcahospitals.com/know-your-pet/hormonal-diseases-in-ferrets"
+  - title: "MSD Veterinary Manual (versione per proprietari): Hormonal Disorders of Ferrets"
+    url: "https://www.msdvetmanual.com/all-other-pets/ferrets/hormonal-disorders-of-ferrets"
   - title: "MSD Veterinary Manual (versione per proprietari): Breeding and Reproduction of Ferrets"
     url: "https://www.msdvetmanual.com/all-other-pets/ferrets/breeding-and-reproduction-of-ferrets"
   - title: "MSD Veterinary Manual (versione per proprietari): Emergencies of Ferrets"
@@ -40,12 +36,12 @@ Una femmina di furetto non sterilizzata può restare in calore a lungo, e gli es
 Vai **subito** da un veterinario che cura i furetti, e chiama prima, se la tua furetta è o è stata in calore e:
 
 - ha le gengive **pallide**, bianche o bluastre
-- è apatica, debole o respira in fretta
-- ha puntini rossi o lividi sulle gengive, le vengono lividi facilmente, o perde sangue dalle gengive o dalla vulva
+- è molto apatica o debole, o respira con fatica
+- perde sangue, per esempio dalla vulva
 - fa feci nere e catramose
-- mangia meno, o sembra depressa o abbattuta
+- non mangia e non beve da 24 ore
 
-Sono segni di anemia e di carenza delle cellule del sangue che fermano le emorragie. VCA, una rete di ospedali veterinari statunitense, avverte che le emorragie sono una causa frequente di morte nelle femmine con questo problema, e che una furetta con anemia grave può aver bisogno di una trasfusione di sangue per salvarsi. Trovi cosa fare anche nella nostra [pagina emergenze](/it/emergency).
+Sono tutti nell'elenco delle emergenze del furetto dell'MSD Veterinary Manual, e in una femmina in calore possono essere segni di anemia e di carenza delle cellule del sangue che fermano le emorragie. Una rassegna del 2002 di veterinari dell'Università di Zurigo avverte che, quando i valori del sangue sono scesi molto, le prospettive sono pessime e il rischio di emorragia esclude un intervento. Trovi cosa fare anche nella nostra [pagina emergenze](/it/emergency).
 
 ## Una furetta può morire se non si accoppia?
 
@@ -53,15 +49,15 @@ Sì, se resta in calore: gli estrogeni possono causare un'anemia mortale. Ma l'a
 
 La RSPCA, un'associazione britannica per la protezione degli animali, spiega che le femmine di furetto hanno un'ovulazione indotta: devono accoppiarsi perché le ovaie rilascino le uova. Se non ovula, la femmina continua a produrre estrogeni e resta in calore finché non si accoppia. Secondo la RSPCA, restare in calore può causare perdita di pelo e perfino la morte per anemia da estrogeni; la PDSA, un'importante associazione veterinaria britannica, definisce questo problema, l'iperestrogenismo, potenzialmente mortale.
 
-VCA descrive cosa succede: gli estrogeni alti per lungo tempo bloccano il midollo osseo, che produce globuli rossi, globuli bianchi e piastrine. Una rassegna del 2002 di veterinari dell'Università di Zurigo dice che nel 30-50% delle femmine che restano in calore gli estrogeni portano, nella fase avanzata, a un'insufficienza del midollo osseo pericolosa per la vita, e che per questo un calore che non finisce richiede l'intervento del veterinario.
+L'MSD Veterinary Manual spiega che estrogeni molto alti possono bloccare il midollo osseo, che produce le cellule del sangue. La rassegna di Zurigo del 2002 dice che nel 30-50% delle femmine che restano in calore gli estrogeni portano, nella fase avanzata, a un'insufficienza del midollo osseo pericolosa per la vita, con carenza di tutti i tipi di cellule del sangue, e che per questo un calore che non finisce richiede l'intervento del veterinario.
 
-VCA, una fonte statunitense, osserva che oggi il problema si vede di rado perché la maggior parte delle femmine viene sterilizzata prima di arrivare nei negozi. Il capitolo dell'MSD Veterinary Manual per i veterinari spiega che negli Stati Uniti la maggior parte dei furetti viene sterilizzata prima delle 6 settimane di vita, mentre altrove la sterilizzazione si fa di solito in inverno, poco prima che il furetto raggiunga la maturità sessuale.
+Se una femmina è già sterilizzata quando arriva da te dipende da dove viene. Il capitolo dell'MSD Veterinary Manual per i veterinari spiega che negli Stati Uniti la maggior parte dei furetti viene sterilizzata prima delle 6 settimane di vita, mentre altrove la sterilizzazione si fa di solito in inverno, poco prima che il furetto raggiunga la maturità sessuale.
 
 ## Come capisco se la mia furetta è in calore?
 
-La vulva si gonfia e si arrossa, i capezzoli possono diventare più evidenti e ci possono essere perdite. Le femmine vanno in calore in primavera ed estate.
+La vulva si gonfia e si arrossa, e i capezzoli possono diventare più evidenti. Le femmine vanno in calore in primavera ed estate.
 
-La rassegna di Zurigo del 2002 descrive la stagione riproduttiva del furetto da marzo ad agosto, regolata dalla durata del giorno, e i segni nella femmina come vulva gonfia e arrossata e capezzoli più sporgenti. VCA parla di vulva gonfia ed eventualmente di qualche perdita.
+La rassegna di Zurigo del 2002 descrive la stagione riproduttiva del furetto da marzo ad agosto, regolata dalla durata del giorno, e i segni nella femmina come vulva gonfia e arrossata e capezzoli più sporgenti.
 
 Secondo l'MSD Veterinary Manual, i furetti raggiungono la maturità sessuale tra i 4 e gli 8 mesi di età, nella prima primavera dopo la nascita, e la femmina va in calore alla maturità sessuale e resta in calore se non si accoppia.
 
@@ -79,7 +75,7 @@ Con la sterilizzazione chirurgica, un impianto ormonale oppure, più di rado ogg
 
 **Maschio vasectomizzato.** Far accoppiare la femmina con un maschio vasectomizzato per interrompere il calore è stato a lungo una pratica comune nel Regno Unito, perché è semplice ed economica, dice la RSPCA. Ma l'accoppiamento è spesso violento e molto stressante per la femmina, gli accoppiamenti ripetuti possono ferirle il collo, e la RSPCA non lo consiglia.
 
-**Se sta già male,** l'intervento può dover aspettare. VCA dice che prima servono gli esami del sangue, perché un furetto con globuli rossi e piastrine pericolosamente bassi non è un buon candidato alla chirurgia; può servire prima una terapia ormonale per interrompere il calore, una trasfusione e un supporto con fluidi e alimentazione in ospedale. La rassegna di Zurigo del 2002 consiglia un esame del sangue prima di qualsiasi intervento se il calore dura da più di tre settimane.
+**Se sta già male,** l'intervento può dover aspettare. La rassegna di Zurigo del 2002 consiglia un esame del sangue prima di qualsiasi intervento se il calore dura da più di tre settimane, per controllare i globuli rossi e, se possibile, le piastrine. Se sono scesi molto, avverte, un intervento è escluso per il rischio di emorragia; come alternativa per interrompere il calore la rassegna indica la terapia ormonale.
 
 Quale opzione sia adatta alla tua furetta lo decidi con il veterinario, che può spiegarti effetti collaterali e costi.
 
@@ -87,7 +83,7 @@ Quale opzione sia adatta alla tua furetta lo decidi con il veterinario, che può
 
 Una femmina sterilizzata non dovrebbe andare in calore, quindi una vulva gonfia fa pensare alla malattia surrenalica o a un pezzo di ovaio rimasto. Serve una visita.
 
-Il capitolo dell'MSD Veterinary Manual per i veterinari mette la vulva gonfia nelle femmine sterilizzate tra i segni più evidenti della malattia surrenalica, indica un residuo di ovaio come l'altra causa più importante da escludere, e considera l'ecografia lo strumento più utile per verificarlo. L'ospedale veterinario dell'Università di Zurigo dice che il 70% delle femmine con malattia surrenalica ha la vulva ingrossata, che sia sterilizzata o no, e la rassegna di Zurigo del 2002 dice che il gonfiore nelle femmine sterilizzate è spesso dovuto a ovaie non tolte del tutto. VCA aggiunge che perdita di pelo e vulva gonfia sono comuni anche in una femmina che resta in calore, il che può rendere difficile capire la causa senza esami.
+Il capitolo dell'MSD Veterinary Manual per i veterinari mette la vulva gonfia nelle femmine sterilizzate tra i segni più evidenti della malattia surrenalica, indica un residuo di ovaio come l'altra causa più importante da escludere, e considera l'ecografia lo strumento più utile per verificarlo. L'ospedale veterinario dell'Università di Zurigo dice che il 70% delle femmine con malattia surrenalica ha la vulva ingrossata, che sia sterilizzata o no, e la rassegna di Zurigo del 2002 dice che il gonfiore nelle femmine sterilizzate è spesso dovuto a ovaie non tolte del tutto. La rassegna aggiunge che questo gonfiore va distinto dal calore prolungato di una femmina non sterilizzata, e la RSPCA ricorda che anche restare in calore può far perdere il pelo: per questo spesso servono esami per trovare la causa.
 
 ## Quando portare il furetto dal veterinario?
 

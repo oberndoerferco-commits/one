@@ -5,7 +5,7 @@ description: "An unspayed female ferret can stay in season until she is mated, a
 species: ferret
 category: care
 urgency: this-week
-updated: 2026-10-24
+updated: 2026-10-25
 draft: true
 lang: en
 references:
@@ -13,12 +13,8 @@ references:
     url: "https://www.rspca.org.uk/adviceandwelfare/pets/ferrets/health/neutering"
   - title: "PDSA: Ferrets as pets"
     url: "https://www.pdsa.org.uk/pet-help-and-advice/looking-after-your-pet/small-pets/ferrets-as-pets"
-  - title: "VCA Animal Hospitals: Reproductive Diseases in Ferrets"
-    url: "https://vcahospitals.com/know-your-pet/reproductive-diseases-in-ferrets"
-  - title: "VCA Animal Hospitals: Ferrets: Health Problems"
-    url: "https://vcahospitals.com/know-your-pet/ferrets---"
-  - title: "VCA Animal Hospitals: Hormonal Diseases in Ferrets"
-    url: "https://vcahospitals.com/know-your-pet/hormonal-diseases-in-ferrets"
+  - title: "MSD Veterinary Manual (Pet Owner Version): Hormonal Disorders of Ferrets"
+    url: "https://www.msdvetmanual.com/all-other-pets/ferrets/hormonal-disorders-of-ferrets"
   - title: "MSD Veterinary Manual (Pet Owner Version): Breeding and Reproduction of Ferrets"
     url: "https://www.msdvetmanual.com/all-other-pets/ferrets/breeding-and-reproduction-of-ferrets"
   - title: "MSD Veterinary Manual (Pet Owner Version): Emergencies of Ferrets"
@@ -40,12 +36,12 @@ A female ferret (a jill) who isn't spayed can stay in season for a long time, an
 Go to a vet that treats ferrets **now**, and phone ahead, if your jill is or has been in season and:
 
 - has **pale**, white or bluish gums
-- is listless, weak or breathing fast
-- has tiny red spots or bruises on her gums, bruises easily, or is bleeding from her gums or vulva
+- is extremely listless or weak, or has difficulty breathing
+- is bleeding, for example from her vulva
 - has black, tarry poo
-- is eating less, or seems depressed or lethargic
+- hasn't eaten or drunk for 24 hours
 
-These are signs of anaemia and of a shortage of the blood cells that stop bleeding. VCA warns that bleeding is a common cause of death in jills with this condition, and that a ferret with severe anaemia may need a blood transfusion to save her life. See also our [emergency page](/emergency).
+All of these are on the MSD Veterinary Manual's list of ferret emergencies, and in a jill in season they can be signs of anaemia and of a shortage of the blood cells that stop bleeding. A 2002 review by vets at the University of Zurich warns that once her blood values have fallen very low, the outlook is very poor and the risk of bleeding rules out an operation. See also our [emergency page](/emergency).
 
 ## Can a female ferret die if she isn't mated?
 
@@ -53,15 +49,15 @@ She can, if she is left in season: the oestrogen can cause fatal anaemia. But ma
 
 The RSPCA explains that jills are "induced ovulators": they need to mate for the ovaries to release eggs. If a jill doesn't ovulate, she keeps producing oestrogen and stays in season until she is mated. The RSPCA says that remaining in season can cause hair loss "and even death from oestrogen-associated anaemia"; the PDSA calls the condition, hyperoestrogenism, "life-threatening".
 
-VCA describes what happens: persistently high oestrogen suppresses the bone marrow, which makes red blood cells, white blood cells and platelets. A 2002 review by vets at the University of Zurich says that in 30 to 50% of jills that stay in season, the oestrogen leads to life-threatening bone marrow failure in the advanced stage, and that a persistent season therefore needs a vet's intervention.
+The MSD Veterinary Manual explains that very high oestrogen levels can suppress the bone marrow, which makes the blood cells. The 2002 Zurich review says that in 30 to 50% of jills that stay in season, the oestrogen leads to life-threatening bone marrow failure, with a shortage of all types of blood cells, in the advanced stage, and that a persistent season therefore needs a vet's intervention.
 
-VCA, a US source, notes that the condition is rarely seen today because most female ferrets are spayed before they reach the pet shop. The MSD Veterinary Manual's chapter for vets explains that in the USA most ferrets are neutered before 6 weeks of age, while elsewhere neutering is usually done in winter, just before the ferret reaches sexual maturity.
+Whether a jill is already neutered when you get her depends on where she comes from. The MSD Veterinary Manual's chapter for vets explains that in the USA most ferrets are neutered before 6 weeks of age, while elsewhere neutering is usually done in winter, just before the ferret reaches sexual maturity.
 
 ## How do I know my ferret is in heat?
 
-Her vulva swells and reddens, her nipples may stand out, and there may be a discharge. Jills come into season in spring and summer.
+Her vulva swells and reddens, and her nipples may stand out. Jills come into season in spring and summer.
 
-The 2002 Zurich review describes the ferret's breeding season as running from March to August, controlled by the length of the day, and the signs in the jill as a swollen, reddened vulva and more prominent nipples. VCA mentions a swollen vulva and possibly some discharge.
+The 2002 Zurich review describes the ferret's breeding season as running from March to August, controlled by the length of the day, and the signs in the jill as a swollen, reddened vulva and more prominent nipples.
 
 According to the MSD Veterinary Manual, ferrets become sexually mature between 4 and 8 months of age, in the first spring after their birth, and a female comes into heat at sexual maturity and stays in heat unless she is bred.
 
@@ -79,7 +75,7 @@ With surgery (spaying), a hormone implant or, less often now, a hormone injectio
 
 **A vasectomised male.** Mating a jill with a vasectomised male (a "teaser") to bring her out of season has long been common in the UK because it is easy and cheap, the RSPCA says. But mating is often violent and very stressful for the jill, repeated matings may injure her neck, and the RSPCA does not recommend it.
 
-**If she is already unwell,** surgery may have to wait. VCA says blood tests come first, because a ferret with dangerously low red blood cells and platelets is not a good candidate for surgery; she may first need hormone treatment to end the season, a blood transfusion, and fluids and feeding support in hospital. The 2002 Zurich review advises a blood test before any operation if the season has lasted more than three weeks.
+**If she is already unwell,** surgery may have to wait. The 2002 Zurich review advises a blood test before any operation if the season has lasted more than three weeks, to check her red blood cells and, if possible, her platelets. If they have fallen very low, it warns, an operation is out of the question because of the risk of bleeding; the review names hormone treatment as the other way to end the season.
 
 Which option suits your ferret is a decision for you and your vet, who can explain the side effects and costs.
 
@@ -87,7 +83,7 @@ Which option suits your ferret is a decision for you and your vet, who can expla
 
 A spayed jill shouldn't come into season, so a swollen vulva points to adrenal disease or a piece of ovary left behind. She needs a vet check.
 
-The MSD Veterinary Manual's chapter for vets lists a swollen vulva in neutered females among the most prominent signs of adrenal disease, names a remnant of ovary as the most important other cause to rule out, and calls an ultrasound scan the most useful way to check. The University of Zurich's veterinary hospital says 70% of females with adrenal disease have an enlarged vulva, whether or not they are spayed, and the 2002 Zurich review says swelling in spayed jills is often caused by ovaries that were not completely removed. VCA adds that hair loss and a swollen vulva are also common in a jill who stays in season, which can make the cause hard to tell without tests.
+The MSD Veterinary Manual's chapter for vets lists a swollen vulva in neutered females among the most prominent signs of adrenal disease, names a remnant of ovary as the most important other cause to rule out, and calls an ultrasound scan the most useful way to check. The University of Zurich's veterinary hospital says 70% of females with adrenal disease have an enlarged vulva, whether or not they are spayed, and the 2002 Zurich review says swelling in spayed jills is often caused by ovaries that were not completely removed. The review adds that this swelling has to be told apart from the long season of an unspayed jill, and the RSPCA notes that staying in season can cause hair loss too, so tests are often needed to find the cause.
 
 ## When should I take my ferret to the vet?
 

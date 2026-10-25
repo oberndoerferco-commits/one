@@ -4,7 +4,7 @@ description: "Winterstarre nur für gesunde Landschildkröten einer überwintern
 species: reptile
 category: care
 urgency: this-week
-updated: 2026-10-24
+updated: 2026-10-25
 draft: true
 lang: de
 references:
@@ -28,8 +28,10 @@ references:
     url: "https://vet.ed.ac.uk/news-events/archive/2008/tortoise-hibernation"
   - title: "Vet Times: Post-hibernation anorexia in chelonia, diagnosis and care (Mark Rowland, 2012)"
     url: "https://www.vettimes.com/clinical/exotics/post-hibernation-anorexia-in-chelonia-diagnosis-and-care"
-  - title: "VCA Animal Hospitals: Common Diseases of Tortoises"
-    url: "https://vcahospitals.com/know-your-pet/common-diseases-of-tortoises"
+  - title: "Tierspital Zürich, Universität Zürich: Mykoplasmen-Infektion (oder URTD = Upper Respiratory Tract Disease) bei Landschildkröten (Ein Informationsblatt für Tierbesitzer)"
+    url: "https://www.tierspital.uzh.ch/wp-content/uploads/2023/03/Mykoplasmen-bei-Schildkroeten.pdf"
+  - title: "Tierspital Zürich, Universität Zürich: Stoffwechselbedingte Knochenerkrankung bei Reptilien (Metabolic Bone Disease – MBD) (Ein Informationsblatt für Tierbesitzer)"
+    url: "https://www.tierspital.uzh.ch/wp-content/uploads/2023/03/reptilien_MBD.pdf"
   - title: "MSD Veterinary Manual (Pet Owner Version): Disorders and Diseases of Reptiles"
     url: "https://www.msdvetmanual.com/all-other-pets/reptiles/disorders-and-diseases-of-reptiles"
   - title: "MSD Veterinary Manual (Pet Owner Version): Routine Health Care of Reptiles"
@@ -47,13 +49,13 @@ references:
 Die Winterstarre und die Wochen danach sind eine heikle Zeit für eine Schildkröte. Die British Chelonia Group (BCG), eine britische gemeinnützige Organisation für Schildkröten, rät, jede Schildkröte, die nicht frisst oder krank wirkt, ohne Verzögerung tierärztlich vorzustellen. Fahren Sie sofort in eine Tierarztpraxis, die Reptilien behandelt, und rufen Sie vorher an, wenn Ihre Schildkröte:
 
 - nach der Winterstarre **trübe oder geschwollene Augen** hat, **nicht zu sehen scheint** oder **orientierungslos** wirkt
-- **Ausfluss** aus Nase oder Augen hat, **Bläschen** an Maul oder Nase zeigt oder **mit offenem Maul atmet**
+- **Ausfluss** aus Nase oder Augen hat oder **mit offenem Maul atmet**
 - einen **gelblich-weißen, käsigen Belag** im Maul hat (Maulfäule)
 - **schwach** ist, die Beine nicht richtig bewegt oder nicht zur Wärmelampe geht
 - in der Winterstarre **Frost oder Temperaturen unter dem Gefrierpunkt** ausgesetzt war
 - während der Winterstarre **Urin abgesetzt oder stark an Gewicht verloren** hat: Laut BCG stimmt dann etwas nicht
 
-Die BCG erklärt, dass Blindheit oder Orientierungslosigkeit nach der Winterstarre durch Frostschäden entstehen können und dass Maulfäule (Stomatitis) häufig nach der Winterstarre auftritt. Die Tortoise Protection Group (TPG), eine britische Gruppe zum Schutz von Landschildkröten, warnt, dass eine Schildkröte, die weiterhin nicht zur Wärme will, ein Problem haben könnte. Atmen mit offenem Maul und Nasenausfluss sind laut MSD Veterinary Manual häufige Zeichen für Atemwegsprobleme bei Reptilien, und VCA Animal Hospitals nennen Bläschen in Maul, Nase und Augen als Zeichen von Atemwegserkrankungen bei Landschildkröten.
+Die BCG erklärt, dass Blindheit oder Orientierungslosigkeit nach der Winterstarre durch Frostschäden entstehen können und dass Maulfäule (Stomatitis) häufig nach der Winterstarre auftritt. Die Tortoise Protection Group (TPG), eine britische Gruppe zum Schutz von Landschildkröten, warnt, dass eine Schildkröte, die weiterhin nicht zur Wärme will, ein Problem haben könnte. Atmen mit offenem Maul und Nasenausfluss sind laut MSD Veterinary Manual häufige Zeichen für Atemwegsprobleme bei Reptilien, und das Tierspital Zürich der Universität Zürich nennt Nasen- und Augenausfluss unter den Zeichen einer Mykoplasmen-Infektion, einer Erkrankung der oberen Atemwege bei Landschildkröten.
 
 Auch eine Schildkröte, die eine Woche nach dem Aufwachen noch nicht frisst, gehört in die Praxis: Die TPG schreibt, dass alle Schildkröten innerhalb einer Woche nach dem Aufwachen wieder fressen sollten und dass sonst tierärztliche Hilfe nötig ist.
 
@@ -152,7 +154,7 @@ Warm halten, weiter baden und Futter anbieten; frisst sie eine Woche nach dem Au
 - **Der zeitliche Rahmen.** Laut TPG kann Futter angeboten werden, sobald das Bad vorbei ist; manche fressen sofort, andere erst nach Stunden. Junge Schildkröten fressen in der Regel innerhalb von 24 Stunden nach dem Aufwachen, und alle Schildkröten sollten innerhalb einer Woche wieder fressen. Sonst, so die TPG, ist tierärztliche Hilfe nötig.
 - **Warum das passiert.** In der Fachzeitschrift Vet Times beschreibt Mark Rowland Appetitlosigkeit nach der Winterstarre als häufiges Problem bei Schildkröten, verbunden mit schlechter Vorbereitung, zu langer Winterstarre, ungeeigneten Bedingungen und einem geschwächten Immunsystem.
 - **Augen.** Eine Schildkröte, die nach der Winterstarre nicht zu sehen scheint oder orientierungslos ist, kann Frostschäden haben, wie BCG und Rowland beschreiben.
-- **Geschwollene Lider.** VCA Animal Hospitals nennen geschwollene Augenlider, oft mit eitrigem Ausfluss, zusammen mit Appetitlosigkeit und Mattigkeit als Zeichen eines Vitamin-A-Mangels bei Landschildkröten. Behandelt werden sollte er nur unter tierärztlicher Aufsicht, weil eine Überdosierung von Vitamin A vorkommen kann: Geben Sie also keine Vitamine auf eigene Faust.
+- **Geschwollene Augen.** Das Tierspital Zürich nennt Schwellungen rund um die Augen, Augen- und Nasenausfluss und Bindehautentzündung als Zeichen einer Mykoplasmen-Infektion bei Landschildkröten, oft mit weniger Appetit und weniger Aktivität. Es warnt außerdem, dass zu viele Vitamine wiederum schädlich sein können: Geben Sie also keine Vitamine auf eigene Faust.
 - **Nicht zwangsfüttern.** Laut MSD Veterinary Manual sollte das Zufüttern eines Reptils von der Tierärztin oder dem Tierarzt angeleitet werden, weil die Fütterung eines stark ausgetrockneten, unterernährten Reptils weitere Probleme verursachen kann. Rowland beschreibt, wie die Praxis die Ursache sucht und die Schildkröte unterstützt, und nennt die Flüssigkeitstherapie bei diesen Patienten äußerst wichtig.
 
 Frisst bei Ihnen eine Bartagame, ein Leopardgecko oder eine Schlange nicht, lesen Sie [Schildkröte, Bartagame, Leopardgecko oder Schlange frisst nicht](/de/animals/reptil-frisst-nicht).

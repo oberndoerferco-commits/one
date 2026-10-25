@@ -4,7 +4,7 @@ description: "Il letargo è sicuro solo per una tartaruga sana di una specie che
 species: reptile
 category: care
 urgency: this-week
-updated: 2026-10-24
+updated: 2026-10-25
 draft: true
 lang: it
 references:
@@ -26,8 +26,10 @@ references:
     url: "https://vet.ed.ac.uk/news-events/archive/2008/tortoise-hibernation"
   - title: "Vet Times: Post-hibernation anorexia in chelonia, diagnosis and care (Mark Rowland, 2012)"
     url: "https://www.vettimes.com/clinical/exotics/post-hibernation-anorexia-in-chelonia-diagnosis-and-care"
-  - title: "VCA Animal Hospitals: Common Diseases of Tortoises"
-    url: "https://vcahospitals.com/know-your-pet/common-diseases-of-tortoises"
+  - title: "Tierspital Zürich, Università di Zurigo: Mykoplasmen-Infektion (oder URTD = Upper Respiratory Tract Disease) bei Landschildkröten (scheda informativa per proprietari, in tedesco)"
+    url: "https://www.tierspital.uzh.ch/wp-content/uploads/2023/03/Mykoplasmen-bei-Schildkroeten.pdf"
+  - title: "Tierspital Zürich, Università di Zurigo: Stoffwechselbedingte Knochenerkrankung bei Reptilien (Metabolic Bone Disease – MBD) (scheda informativa per proprietari, in tedesco)"
+    url: "https://www.tierspital.uzh.ch/wp-content/uploads/2023/03/reptilien_MBD.pdf"
   - title: "MSD Veterinary Manual (versione per proprietari): Disorders and Diseases of Reptiles"
     url: "https://www.msdvetmanual.com/all-other-pets/reptiles/disorders-and-diseases-of-reptiles"
   - title: "MSD Veterinary Manual (versione per proprietari): Routine Health Care of Reptiles"
@@ -49,13 +51,13 @@ references:
 Il letargo e le settimane che lo seguono sono un periodo delicato per la tartaruga. La British Chelonia Group (BCG), un ente benefico britannico che si occupa di tartarughe e testuggini, raccomanda di portare dal veterinario senza indugio qualsiasi tartaruga che non mangia o sembra malata. Vai subito da un veterinario che cura i rettili, avvisando per telefono, se la tua tartaruga:
 
 - dopo il letargo ha gli occhi **non limpidi** o **gonfi**, oppure sembra **non vederci** o è **disorientata**
-- ha **secrezioni** dal naso o dagli occhi, **bollicine** alla bocca o al naso, o **respira a bocca aperta**
+- ha **secrezioni** dal naso o dagli occhi, o **respira a bocca aperta**
 - ha in bocca una **patina giallo-biancastra simile a formaggio** (stomatite)
 - è **debole**, non muove bene le zampe o non va verso il calore della lampada
 - durante il letargo è rimasta esposta al **gelo**
 - durante il letargo ha **fatto pipì o perso molto peso**: secondo la BCG significa che qualcosa non va
 
-La BCG spiega che cecità o disorientamento dopo il letargo possono essere causati da danni da gelo, e che la stomatite si vede spesso dopo il letargo. Il Tortoise Protection Group (TPG), un gruppo britannico che si dedica alla protezione delle tartarughe, avverte che una tartaruga che continua a non cercare il calore potrebbe avere un problema. Respiro a bocca aperta e secrezioni dal naso sono segni frequenti di problemi respiratori nei rettili secondo l'MSD Veterinary Manual, e i veterinari di VCA Animal Hospitals citano le bollicine in bocca, al naso e agli occhi tra i segni delle malattie respiratorie delle tartarughe.
+La BCG spiega che cecità o disorientamento dopo il letargo possono essere causati da danni da gelo, e che la stomatite si vede spesso dopo il letargo. Il Tortoise Protection Group (TPG), un gruppo britannico che si dedica alla protezione delle tartarughe, avverte che una tartaruga che continua a non cercare il calore potrebbe avere un problema. Respiro a bocca aperta e secrezioni dal naso sono segni frequenti di problemi respiratori nei rettili secondo l'MSD Veterinary Manual, e il Tierspital di Zurigo, l'ospedale veterinario dell'Università di Zurigo, cita le secrezioni dal naso e dagli occhi tra i segni dell'infezione da micoplasmi, una malattia delle vie respiratorie superiori delle tartarughe di terra.
 
 Anche una tartaruga che non ha ricominciato a mangiare entro una settimana dal risveglio va portata dal veterinario: il TPG scrive che tutte le tartarughe dovrebbero ricominciare a mangiare entro una settimana dal risveglio e che, se non lo fanno, bisogna chiedere aiuto al veterinario.
 
@@ -152,7 +154,7 @@ Tienila al caldo, continua con i bagnetti e offrile il cibo; se entro una settim
 - **I tempi.** Il TPG dice che il cibo si può offrire appena finito il bagno: può mangiare subito o dopo qualche ora. Le tartarughe giovani in genere mangiano entro 24 ore dal risveglio, e tutte dovrebbero ricominciare a mangiare entro una settimana; se non lo fanno, bisogna chiedere aiuto al veterinario.
 - **Perché succede.** Sulla rivista veterinaria Vet Times, Mark Rowland descrive l'inappetenza dopo il letargo come un problema comune nelle tartarughe, legato a una preparazione insufficiente, a un letargo troppo lungo, a condizioni inadatte e a un sistema immunitario indebolito.
 - **Occhi.** Una tartaruga che dopo il letargo sembra non vederci o è disorientata può avere danni da gelo, descritti sia dalla BCG sia da Rowland.
-- **Palpebre gonfie.** I veterinari di VCA citano le palpebre gonfie, spesso con una secrezione simile a pus, insieme a poco appetito e apatia, tra i segni della carenza di vitamina A nelle tartarughe. Avvertono che va trattata solo sotto controllo veterinario, perché è possibile un sovradosaggio di vitamina A: non darle vitamine di tua iniziativa.
+- **Occhi gonfi.** Il Tierspital di Zurigo cita il gonfiore intorno agli occhi, le secrezioni da occhi e naso e la congiuntivite tra i segni dell'infezione da micoplasmi nelle tartarughe di terra, spesso con meno appetito e meno attività. Avverte anche che troppe vitamine possono fare male: non darle vitamine di tua iniziativa.
 - **Non imboccarla a forza.** L'MSD Veterinary Manual spiega che l'alimentazione assistita di un rettile va decisa dal veterinario, perché nutrire un rettile molto disidratato e malnutrito può causare altri problemi. Rowland descrive come il veterinario cerchi la causa e sostenga la tartaruga, e considera la terapia con i fluidi di grandissima importanza in questi casi.
 
 Se hai un geco, un drago barbuto o un serpente che non mangia, leggi [tartaruga, geco, drago barbuto o serpente che non mangia](/it/animals/rettile-non-mangia).

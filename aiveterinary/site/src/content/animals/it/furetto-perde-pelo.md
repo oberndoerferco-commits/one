@@ -5,7 +5,7 @@ description: "Un furetto che perde il pelo partendo dalla coda mostra il segno t
 species: ferret
 category: symptoms
 urgency: today
-updated: 2026-10-24
+updated: 2026-10-25
 draft: true
 lang: it
 references:
@@ -17,16 +17,8 @@ references:
     url: "https://www.msdvetmanual.com/all-other-pets/ferrets/emergencies-of-ferrets"
   - title: "MSD Veterinary Manual (versione per proprietari): Routine Health Care for Ferrets"
     url: "https://www.msdvetmanual.com/all-other-pets/ferrets/routine-health-care-for-ferrets"
-  - title: "VCA Animal Hospitals: Hormonal Diseases in Ferrets"
-    url: "https://vcahospitals.com/know-your-pet/hormonal-diseases-in-ferrets"
-  - title: "VCA Animal Hospitals: Skin Diseases in Ferrets"
-    url: "https://vcahospitals.com/know-your-pet/ferrets-skin-disease"
-  - title: "VCA Animal Hospitals: Ferrets: Health Problems"
-    url: "https://vcahospitals.com/know-your-pet/ferrets---"
-  - title: "VCA Animal Hospitals: Diseases in Ferrets"
-    url: "https://vcahospitals.com/know-your-pet/ferrets-diseases"
-  - title: "VCA Animal Hospitals: Reproductive Diseases in Ferrets"
-    url: "https://vcahospitals.com/know-your-pet/reproductive-diseases-in-ferrets"
+  - title: "MSD Veterinary Manual (versione per proprietari): Infectious Diseases of Ferrets"
+    url: "https://www.msdvetmanual.com/all-other-pets/ferrets/infectious-diseases-of-ferrets"
   - title: "RSPCA: Neutering and contraception methods for ferrets"
     url: "https://www.rspca.org.uk/adviceandwelfare/pets/ferrets/health/neutering"
   - title: "PDSA: Ferrets as pets"
@@ -41,34 +33,34 @@ references:
 
 La perdita di pelo da sola non è un'emergenza, ma la malattia surrenalica può causare problemi che lo sono. Vai **subito** da un veterinario che cura i furetti, e chiama prima, se il tuo furetto:
 
-- è un **maschio** che si sforza per urinare, fa poca o nessuna pipì, o ha la pancia gonfia
+- è un **maschio** che si sforza per urinare o fa poca o nessuna pipì
 - ha le gengive bianche o bluastre, oppure è debole e respira in fretta
-- gli vengono facilmente lividi, perde sangue dalle gengive o dai genitali, o ha sangue nelle urine
+- perde sangue dai genitali o ha sangue nelle urine
 - fa feci nere e catramose
 - è estremamente abbattuto, o non mangia né beve da 24 ore
 
-VCA, una rete di ospedali veterinari statunitense, spiega che nei furetti maschi con malattia surrenalica la prostata ingrossata può comprimere le vie urinarie fino a impedire di urinare, e la definisce un'emergenza da trattare immediatamente. Gli ormoni dei tumori surrenalici possono anche bloccare il midollo osseo e causare anemia, nei maschi come nelle femmine, aggiunge VCA. Trovi cosa fare anche nella nostra [pagina emergenze](/it/emergency).
+L'MSD Veterinary Manual spiega che i furetti maschi con malattia surrenalica possono avere difficoltà a urinare per la prostata ingrossata, il suo capitolo per i veterinari descrive il blocco urinario, e sforzarsi senza riuscire a urinare è nell'elenco MSD delle emergenze del furetto. L'MSD aggiunge che estrogeni molto alti possono bloccare il midollo osseo, nei maschi come nelle femmine, e una scheda informativa dell'ospedale veterinario dell'Università di Zurigo (Tierspital Zürich) osserva che questo peggiora le prospettive. Trovi cosa fare anche nella nostra [pagina emergenze](/it/emergency).
 
 ## Perché il mio furetto perde il pelo?
 
-La causa tipica è la malattia surrenalica, soprattutto se il pelo cade a partire dalla coda; altre possibilità sono una femmina che resta in calore, le pulci e la tigna.
+La causa tipica è la malattia surrenalica, soprattutto se il pelo cade a partire dalla coda; altre possibilità sono una femmina che resta in calore, gli acari della rogna e la tigna.
 
 L'MSD Veterinary Manual, un manuale veterinario di riferimento, indica la perdita di pelo come il segno più comune della malattia surrenalica: inizia sulla coda e sulla groppa e risale lungo il corpo verso la testa. Il tipo di perdita aiuta il veterinario:
 
 | Cosa vedi | A cosa può far pensare |
 |---|---|
-| Pelo che cade a partire dalla coda o dalla groppa e avanza sui due lati, a volte con brufoletti o punti neri lungo la coda | Malattia surrenalica (MSD, VCA) |
-| Lo stesso quadro in una **femmina non sterilizzata**, con la vulva gonfia | Calore che dura troppo (VCA) |
-| Prurito, con pelo che cade sulla parte alta del collo e lungo la schiena | Un'infestazione forte di pulci (VCA) |
-| Chiazze senza pelo ben delimitate, con pelle secca e squamosa | Tigna, un'infezione da funghi che possono prendere anche le persone e gli altri animali (VCA) |
+| Pelo che cade a partire dalla coda o dalla groppa e avanza sui due lati | Malattia surrenalica (MSD, Tierspital di Zurigo) |
+| Perdita di pelo in una **femmina non sterilizzata**, con la vulva gonfia | Calore che dura troppo (RSPCA) |
+| Prurito forte, con pelle infiammata e perdita di pelo | Rogna, causata da acari (MSD) |
+| Chiazze senza pelo, a volte con pelle secca e squamosa | Tigna, un'infezione da funghi che può passare tra furetti e persone (MSD) |
 
-VCA consiglia di far vedere a un veterinario esperto di animali esotici ogni furetto con zone senza pelo, perché i problemi della pelle possono essere il segno di una malattia più seria. Questa tabella serve a capire meglio la visita, non a fare una diagnosi.
+Qualunque sia il quadro, fai visitare il furetto dal veterinario. Questa tabella serve a capire meglio la visita, non a fare una diagnosi.
 
 ## Che cos'è la malattia surrenalica del furetto?
 
 Una o entrambe le ghiandole surrenali, che si trovano subito davanti ai reni, si ingrossano e producono troppi ormoni sessuali. È una delle malattie più comuni del furetto.
 
-L'MSD Veterinary Manual spiega che nel furetto le surrenali producono troppi ormoni sessuali (progesterone, testosterone ed estrogeni). Per questo è diversa dalla sindrome di Cushing di cani e gatti, dove il problema è un eccesso dell'ormone cortisolo. Secondo VCA, la maggior parte dei casi è dovuta a un ingrossamento del tessuto surrenalico o a un tumore benigno; una forma più aggressiva è un tumore maligno della ghiandola. Il capitolo dell'MSD per i veterinari la definisce il tumore delle ghiandole ormonali più comune nel furetto.
+L'MSD Veterinary Manual spiega che nel furetto le surrenali producono troppi ormoni sessuali (progesterone, testosterone ed estrogeni). Per questo è diversa dalla sindrome di Cushing di cani e gatti, dove il problema è un eccesso dell'ormone cortisolo. La scheda di Zurigo spiega che le ghiandole si ingrossano o diventano tumorali, ma che la malattia procede lentamente e i tumori sono per lo più benigni. Il capitolo dell'MSD per i veterinari la definisce il tumore delle ghiandole ormonali più comune nel furetto.
 
 L'MSD dice che la malattia può comparire già a 1 anno e mezzo. L'ospedale veterinario dell'Università di Zurigo (Tierspital Zürich) indica un'età media di circa 3 anni e mezzo, e dice che le femmine vengono portate dal veterinario per questa malattia molto più spesso dei maschi.
 
@@ -78,14 +70,13 @@ La sterilizzazione ha un ruolo. La RSPCA, un'associazione britannica per la prot
 
 Prurito, vulva gonfia anche nelle femmine sterilizzate, capezzoli ingrossati, aggressività o ritorno del comportamento sessuale nei maschi sterilizzati, odore più forte, dimagrimento e difficoltà a urinare nei maschi.
 
-Secondo l'MSD Veterinary Manual, VCA, la RSPCA e la scheda di Zurigo, i segni possono comprendere:
+Secondo l'MSD Veterinary Manual, la RSPCA e la scheda di Zurigo, i segni possono comprendere:
 
-- **prurito,** spesso senza pulci o acari che lo spieghino
+- **prurito,** con o senza perdita di pelo
 - nelle femmine, **vulva gonfia**, anche se sono sterilizzate, e capezzoli ingrossati
 - nei maschi, **aggressività** o ritorno del comportamento sessuale dopo la sterilizzazione
 - nei maschi, **difficoltà a urinare** (e, aggiunge la scheda di Zurigo, a fare le feci) per la prostata ingrossata
 - pelo secco e rado, dimagrimento o un odore più forte del solito
-- abbattimento e perdita di massa muscolare
 
 La scheda di Zurigo dà anche qualche cifra: oltre il 90% dei furetti con malattia surrenalica perde il pelo, oltre il 30% ha prurito, e il 70% delle femmine ha la vulva ingrossata, che sia sterilizzata o no.
 
@@ -105,18 +96,18 @@ L'MSD Veterinary Manual dice che il veterinario può spesso fare una prima diagn
 
 Sulla cura:
 
-- **Terapia ormonale:** VCA dice che le iniezioni ormonali o un impianto ormonale fanno sparire i segni nella maggior parte dei furetti; il prurito dovrebbe calmarsi in fretta e il pelo tornare normale 1-2 mesi dopo l'inizio. La scheda di Zurigo dice che, dopo un impianto, il pelo di solito ricresce entro 4-6 settimane. Il capitolo dell'MSD per i veterinari osserva che la terapia medica è ormai preferita alla chirurgia. Le pagine dell'MSD per i proprietari aggiungono che tiene sotto controllo i segni ma non riduce il tumore, quindi continua per tutta la vita.
+- **Terapia ormonale:** la scheda di Zurigo spiega che un impianto ormonale abbassa gli ormoni sessuali, così i segni dovrebbero sparire o almeno attenuarsi, e che il pelo di solito ricresce entro 4-6 settimane; un'altra possibilità sono le iniezioni regolari. Il capitolo dell'MSD per i veterinari osserva che la terapia medica è ormai preferita alla chirurgia. Le pagine dell'MSD per i proprietari aggiungono che tiene sotto controllo i segni ma non riduce il tumore, quindi continua per tutta la vita.
 - **Chirurgia:** secondo l'MSD, togliere la ghiandola colpita ha più probabilità di guarire la malattia rispetto ai farmaci, ma la malattia ritorna in circa il 40% dei furetti.
 
-VCA dice che i tumori surrenalici vanno sempre curati, per il rischio di blocco urinario nei maschi e di anemia in entrambi i sessi. Quale opzione sia adatta al tuo furetto, e quando, lo decidi insieme al veterinario.
+Quale opzione sia adatta al tuo furetto, e quando, lo decidi insieme al veterinario.
 
 ## Cosa non devo fare?
 
 Non continuare con i trattamenti antipulci aspettando, non affidarti alla melatonina e non rimandare la visita perché il furetto sembra stare bene.
 
-- **Non usare prodotti antipulci senza chiedere al veterinario.** VCA avverte che un furetto trattato con la quantità di prodotto pensata per un gatto o un cane piccolo può assorbirne livelli tossici.
+- **Non trattare contro i parassiti senza chiedere al veterinario.** L'MSD Veterinary Manual consiglia di parlare con il veterinario del trattamento antipulci per tutti gli animali di casa e per l'ambiente.
 - **Non prendere la ricrescita per una guarigione.** Come osserva la rassegna di Zurigo del 2002, spesso si crede per errore che un trattamento antiparassitario abbia funzionato quando il pelo è semplicemente ricresciuto con la muta.
-- **Non affidarti alla melatonina.** L'MSD Veterinary Manual dice che è stata usata per la perdita di pelo nella malattia surrenalica ma non ferma la crescita del tumore, e VCA che la maggior parte dei veterinari non la consiglia.
+- **Non affidarti alla melatonina.** L'MSD Veterinary Manual dice che è stata usata per la perdita di pelo nella malattia surrenalica ma non ferma la crescita del tumore.
 - **Non aspettare perché il furetto sembra stare bene.** La rassegna di Zurigo del 2002 osserva che i furetti con malattia surrenalica all'inizio stanno spesso bene, ma che la situazione può cambiare dopo qualche mese.
 
 ## Quando portare il furetto dal veterinario?
@@ -124,7 +115,6 @@ Non continuare con i trattamenti antipulci aspettando, non affidarti alla melato
 Presto: l'MSD Veterinary Manual dice che un furetto con segni di malattia surrenalica va portato dal veterinario il prima possibile. Vai subito in caso di uno dei segni elencati all'inizio.
 
 - Nella sua guida alle emergenze del furetto, l'MSD Veterinary Manual mette la perdita eccessiva di pelo, un'eruzione cutanea o il continuo mordicchiarsi o grattarsi tra i segni per cui farsi visitare entro 24 ore.
-- MSD e VCA dicono entrambi che un furetto con segni di malattia surrenalica va visitato il prima possibile.
 - Una femmina non sterilizzata che perde il pelo e ha la vulva gonfia potrebbe essere rimasta in calore: vedi [furetto femmina in calore](/it/animals/furetto-femmina-in-calore).
 
 ## Cosa vorrà sapere il veterinario sul tuo furetto?
