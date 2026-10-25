@@ -21,13 +21,19 @@ Everything costs €0 unless marked €. Legend:
 - [x] Vet tool core: record schema, validators, EN/DE/IT renderer, model adapter, eval harness, 15 tests, CI
 - [x] Workspace preview × EN/IT/DE on synthetic cases
 - [x] Public quality page fed by the eval results
+- [x] Oct 2026 redesign: urgent-first header and menu, Ask box on home, verdict-first article page, walking-paws logo with favicon/app icons
+- [x] Animal lexicon: Animals A–Z with fact sheets for 23 animals × EN/IT/DE (805 sourced facts), species pages for dogs, cats, rabbits, guinea pigs, ferrets, horses, birds, reptiles
+- [x] Articles for guinea pigs, horses, birds, ferrets, reptiles (60 pages) and search-gap topics, chosen from Google autocomplete (docs/27)
+- [x] Food lexicon "Can my pet eat …?": 107 foods × 6 animal groups × EN/IT/DE
+- [x] SEO and AI-search pass (docs/28), installable app with offline booklet (docs/29), bug sweep
+- [x] VCA removed as a source everywhere (its terms forbid AI reuse); build fails if it returns (scripts/check-sources.mjs)
 
 ---
 
 ## 1. Launch blockers — **You** (none can be done from the repo)
 
 - [ ] **GitHub**: confirm `oberndoerferco-commits` is yours or create an account; merge `claude/modest-dirac-s1uvdm`
-- [ ] **Cloudflare Pages**: connect the repo (root `aiveterinary/site`, build `npm run build`, output `dist`); add `aiveterinary.org`
+- [ ] **Cloudflare Pages**: connect the repo (root `aiveterinary/site`, build `npm run build`, output `dist`); add `aiveterinary.org` — step by step in docs/30-launch-guide.md. The domain still shows the GoDaddy placeholder, so nothing ranks yet
 - [ ] **GoDaddy**: nameservers to Cloudflare or CNAME; check `.com/.de/.it`; 2FA on
 - [ ] **Company details** for Impressum/privacy/terms: legal name, address, VAT/tax id, register, contact email (DE §5 DDG; IT D.Lgs 70/2003)
 - [ ] **Newsletter provider** (free tier, **double opt-in on**, EU-hosted): paste form URL into `PUBLIC_NEWSLETTER_ACTION`
