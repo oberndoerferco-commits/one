@@ -50,4 +50,8 @@ export const TRANSLATION_GROUPS: { en?: string; it?: string; de?: string }[] = [
   { en: 'budgie-egg-bound', it: 'cocorita-uovo-incastrato', de: 'wellensittich-legenot' }, // bird-egg-binding
   { en: 'budgie-diarrhoea', it: 'cocorita-diarrea', de: 'wellensittich-durchfall' }, // bird-droppings
   { en: 'bird-feather-plucking', it: 'pappagallo-si-strappa-le-piume', de: 'papagei-rupft-sich' }, // bird-feather-plucking
+  { en: 'ferret-weak-wobbly-collapsed', it: 'insulinoma-furetto-sintomi', de: 'frettchen-insulinom-symptome' }, // ferret-insulinoma
+  { en: 'ferret-not-eating-vomiting', it: 'furetto-non-mangia-vomita', de: 'frettchen-frisst-nicht-erbricht' }, // ferret-not-eating
+  { en: 'ferret-hair-loss-adrenal-disease', it: 'furetto-perde-pelo', de: 'frettchen-haarausfall-nebenniere' }, // ferret-adrenal
+  { en: 'female-ferret-in-heat', it: 'furetto-femmina-in-calore', de: 'frettchen-faehe-ranz' }, // ferret-in-heat
 ];
