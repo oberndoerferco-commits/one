@@ -70,8 +70,9 @@
     opacity: 0.5;
   }
 
+  /* Accessibility (22 Oct): no extra fade on the current page; the muted colour alone meets 4.5:1. */
   .pdp-breadcrumbs__current {
-    opacity: 0.6;
+    color: inherit;
   }
 {% endstylesheet %}
 
