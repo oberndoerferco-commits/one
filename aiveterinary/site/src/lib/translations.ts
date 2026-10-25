@@ -66,4 +66,10 @@ export const TRANSLATION_GROUPS: { en?: string; it?: string; de?: string }[] = [
   { en: 'dog-panting', it: 'cane-respira-male', de: 'hund-hechelt-staendig' }, // dog-panting
   { en: 'dog-cat-fleas-what-to-do', it: 'cane-gatto-pulci-cosa-fare', de: 'hund-katze-floehe-was-tun' }, // fleas
   { en: 'dog-ate-xylitol', it: 'cane-ha-mangiato-xilitolo', de: 'hund-hat-xylit-gefressen' }, // xylitol
+  { en: 'rabbit-sneezing-snuffles', it: 'coniglio-starnutisce', de: 'kaninchen-schnupfen' }, // rabbit-snuffles
+  { en: 'rabbit-head-tilt', it: 'coniglio-testa-storta', de: 'kaninchen-kopf-schief' }, // rabbit-head-tilt
+  { en: 'rabbit-flystrike', it: 'miasi-coniglio', de: 'kaninchen-fliegenmaden' }, // rabbit-flystrike
+  { en: 'cat-fever', it: 'gatto-febbre', de: 'katze-warme-ohren-fieber' }, // cat-fever
+  { en: 'dog-constipation', it: 'cane-stitico', de: 'hund-verstopfung' }, // dog-constipation
+  { en: 'dog-eats-grass-or-poo', it: 'cane-mangia-erba-o-cacca', de: 'warum-frisst-mein-hund-gras' }, // dog-grass-poo
 ];
