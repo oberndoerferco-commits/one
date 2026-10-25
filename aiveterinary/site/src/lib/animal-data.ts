@@ -31,6 +31,8 @@ export const lexiconIn = async (lang: Lang) => {
   return (await all())[1].filter((e) => e.data.lang === lang).sort((a, b) => c.compare(a.data.name, b.data.name));
 };
 export const entryOf = async (lang: Lang, key: string) => (await lexiconIn(lang)).find((e) => keyOf(e) === key);
+/** Breed entries of an animal (entries whose `parent` is that key), sorted by their localized name. */
+export const breedsOf = async (lang: Lang, key: string) => (await lexiconIn(lang)).filter((e) => e.data.parent === key);
 
 const URGENCY = { emergency: 0, today: 1, 'this-week': 2, routine: 3 } as const;
 /** Most urgent first, then by title. */
@@ -96,9 +98,14 @@ export async function animalPage(lang: Lang, key: string) {
   const t = ANIMALS[lang];
   const entry = await entryOf(lang, key);
   const species = isSpecies(key) ? key : undefined;
-  const topics = entry ? await entryTopics(lang, key, entry.data.species) : species ? await speciesTopics(lang, species) : [];
-  if (entry) return { kind: 'animal' as const, entry, species, topics, title: LEX[lang].title(entry.data.name, topics.length > 0), description: entry.data.description };
-  if (species && topics.length) return { kind: 'animal' as const, entry, species, topics, title: PROFILES[species].name[lang], description: PROFILES[species].intro[lang] };
+  // A breed shows its own tagged articles plus its parent animal's health topics.
+  const parent = entry?.data.parent ? await entryOf(lang, entry.data.parent) : undefined;
+  const parentTopics = parent ? await entryTopics(lang, keyOf(parent), parent.data.species) : [];
+  const own = entry ? await entryTopics(lang, key, parent ? undefined : entry.data.species) : species ? await speciesTopics(lang, species) : [];
+  const seen = new Set<string>();
+  const topics = [...own, ...parentTopics].filter((e) => !seen.has(e.id) && !!seen.add(e.id)).sort(byUrgency(lang));
+  if (entry) return { kind: 'animal' as const, entry, parent, species, topics, title: parent ? LEX[lang].breedTitle(entry.data.name) : LEX[lang].title(entry.data.name, topics.length > 0), description: entry.data.description };
+  if (species && topics.length) return { kind: 'animal' as const, entry, parent, species, topics, title: PROFILES[species].name[lang], description: PROFILES[species].intro[lang] };
   const label = (t.species as Record<string, string>)[key] ?? (t.categories as Record<string, readonly string[]>)[key]?.[0] ?? key;
-  return { kind: 'listing' as const, entry, species, topics, title: label, description: LISTING_DESC[lang](label) };
+  return { kind: 'listing' as const, entry, parent, species, topics, title: label, description: LISTING_DESC[lang](label) };
 }

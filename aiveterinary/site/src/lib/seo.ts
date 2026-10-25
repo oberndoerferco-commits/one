@@ -107,14 +107,18 @@ export async function pageSeo(path: string, lang: Lang, page: { title: string; d
   const graph: Record<string, unknown>[] = [];
   const parentPath = path.replace(/\/[^/]+$/, '');
   const parentLabel = /^(\/(it|de))?\/?$/.test(parentPath) ? undefined : page.labels.get(parentPath);
+  const entry = kind === 'lexicon' && key ? lexiconIn(lang, key) : undefined;
+  // A breed sits one level deeper: Animals A–Z › Dog › Labrador Retriever.
+  const parentEntry = entry?.data.parent ? lexiconIn(lang, entry.data.parent) : undefined;
+  const crumbs = parentLabel ? [
+    { name: parentLabel, item: new URL(parentPath, SITE).href },
+    ...(parentEntry ? [{ name: parentEntry.data.name, item: new URL(`${parentPath}/${entry!.data.parent}`, SITE).href }] : []),
+    { name: parentEntry ? entry!.data.name : page.title },
+  ] : [];
   const crumb = parentLabel && kind !== 'article' && !noindex ? {
     '@type': 'BreadcrumbList', '@id': `${url}#breadcrumb`,
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: parentLabel, item: new URL(parentPath, SITE).href },
-      { '@type': 'ListItem', position: 2, name: page.title },
-    ],
+    itemListElement: crumbs.map((c, i) => ({ '@type': 'ListItem', position: i + 1, ...c })),
   } : null;
-  const entry = kind === 'lexicon' && key ? lexiconIn(lang, key) : undefined;
   if (entry && !noindex) {
     const d = entry.data;
     graph.push({

@@ -35,9 +35,10 @@ const lexicon = defineCollection({
     scientific: z.string().optional(),           // "Cavia porcellus"
     group: z.enum(['dogs-cats', 'small-mammals', 'birds', 'reptiles', 'fish', 'horses', 'poultry']),
     species: z.enum(['dog', 'cat', 'rabbit', 'guinea-pig', 'ferret', 'horse', 'bird', 'reptile']).optional(), // articles listed as health topics
+    parent: z.string().optional(),               // a breed names its animal's entry (e.g. dog); check-lexicon makes sure it exists
     description: z.string(),
     facts: z.array(z.object({
-      field: z.enum(['lifespan', 'size', 'weight', 'social', 'activity', 'diet', 'housing', 'temperature', 'teeth', 'handling', 'vet', 'legal']),
+      field: z.enum(['lifespan', 'size', 'weight', 'coat', 'temperament', 'social', 'activity', 'diet', 'housing', 'temperature', 'teeth', 'handling', 'breed-health', 'vet', 'legal']),
       value: z.string(),
       ref: z.number().int().min(1),              // 1-based index into references
     })).min(1),

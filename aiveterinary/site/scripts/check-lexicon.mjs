@@ -7,6 +7,8 @@
 //   - a dose in a fact value (mg, mcg/µg, ml/kg, IU/UI/I.E.): fact sheets describe the animal, doses are the vet's
 //   - an entry whose `lang` does not match its folder (it would show up in the wrong language)
 //   - a key that would take over another page's URL: an article in that language, a topic, or "all"
+//   - a `parent` (breed entries: parent: dog) that names no entry in the same language, the entry itself,
+//     or an entry that is itself a breed (breeds hang directly off their animal)
 // Warnings (the build goes on):
 //   - an entry missing in a language that has its twin
 //   - an article whose `animals` names a key with no entry in that language
@@ -30,6 +32,7 @@ const parse = (file) => {
 const errors = [];
 const warnings = [];
 const keys = Object.fromEntries(LANGS.map((l) => [l, new Set()]));
+const parents = Object.fromEntries(LANGS.map((l) => [l, new Map()])); // key -> parent, per language
 let nEntries = 0;
 let nFacts = 0;
 
@@ -43,6 +46,7 @@ for (const lang of LANGS) {
     const entry = parse(join(dirOf(LEXICON, lang), f));
     if (!entry) { errors.push(`${where}: no frontmatter`); continue; }
     const d = entry.data;
+    if (d.parent !== undefined) parents[lang].set(key, d.parent);
     if ((d.lang ?? 'en') !== lang) errors.push(`${where}: lang is "${d.lang ?? 'en (default)'}" but the file is in the ${lang.toUpperCase()} folder`);
     if (key === 'all' || key in ANIMALS.en.categories) errors.push(`${where}: /animals/${key} is already a page of its own; rename the entry`);
     if (articles.has(key)) errors.push(`${where}: the ${lang.toUpperCase()} article ${key}.md already uses /animals/${key}; rename the entry`);
@@ -56,6 +60,18 @@ for (const lang of LANGS) {
     });
     const line = entry.body.split('\n').find((l) => DOSE.test(l));
     if (line) warnings.push(`${where}: the text mentions a dose ("${line.trim().slice(0, 80)}"); check that it belongs in a lexicon entry`);
+  }
+}
+
+let nBreeds = 0;
+for (const lang of LANGS) {
+  for (const [key, parent] of parents[lang]) {
+    nBreeds++;
+    const where = `${lang}/${key}`;
+    if (typeof parent !== 'string' || !parent) errors.push(`${where}: parent must be the file name of another entry (e.g. parent: dog)`);
+    else if (parent === key) errors.push(`${where}: parent is the entry itself`);
+    else if (!keys[lang].has(parent)) errors.push(`${where}: parent "${parent}" has no ${lang.toUpperCase()} lexicon entry`);
+    else if (parents[lang].has(parent)) errors.push(`${where}: parent "${parent}" is itself a breed of "${parents[lang].get(parent)}"; name the animal instead`);
   }
 }
 
@@ -74,4 +90,4 @@ for (const lang of LANGS) {
 
 if (warnings.length) console.warn(`lexicon check: ${warnings.length} warning(s)\n- ${warnings.join('\n- ')}`);
 if (errors.length) { console.error(`lexicon check: ${errors.length} error(s)\n- ${errors.join('\n- ')}`); process.exit(1); }
-console.log(`lexicon check: ${nEntries} entr${nEntries === 1 ? 'y' : 'ies'}, ${nFacts} facts OK across ${LANGS.length} languages`);
+console.log(`lexicon check: ${nEntries} entr${nEntries === 1 ? 'y' : 'ies'} (${nBreeds} breed${nBreeds === 1 ? '' : 's'}), ${nFacts} facts OK across ${LANGS.length} languages`);

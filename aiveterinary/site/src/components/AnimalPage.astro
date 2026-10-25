@@ -12,14 +12,16 @@ import AnimalIcon from './AnimalIcon.astro';
 import type { IconKind } from '../lib/animal-icons';
 import { PROFILES, GUIDE, type Cited, type Item } from '../data/species';
 import { FIELDS, FIELD_LABEL, LEX } from '../lib/lexicon';
-import { animalPage, articlesIn, iconOf, tintOf, liveSpecies, keyOf } from '../lib/animal-data';
+import { animalPage, articlesIn, breedsOf, iconOf, tintOf, liveSpecies, keyOf } from '../lib/animal-data';
 interface Props { lang: Lang; filter: string }
 const { lang, filter } = Astro.props;
 const t = ANIMALS[lang];
 const G = GUIDE[lang];
 const L = LEX[lang];
-const { entry, species, topics } = await animalPage(lang, filter);
+const { entry, parent, species, topics } = await animalPage(lang, filter);
 const d = entry?.data;
+// A breed (entry with `parent`) gets a breadcrumb to its animal; an animal with breeds lists them.
+const breeds = d && !parent ? await breedsOf(lang, filter) : [];
 const profile = species ? PROFILES[species] : undefined;
 // Go-now signs: the page's own species, or the species a lexicon entry belongs to (e.g. a budgie: birds).
 const goProfile = profile ?? (d?.species ? PROFILES[d.species] : undefined);
@@ -50,7 +52,15 @@ const topicsLead = topics.length === 1 ? G.topicsLeadOne : G.topicsLead.replace(
 <section class={`filter-hero tint-${tint}`}>
   <div class="wrap filter-hero-in">
     <div>
-      <p class="eyebrow"><a href={t.base}>{G.guide}</a></p>
+      {parent ? (
+        <nav class="eyebrow ap-crumbs" aria-label={L.breadcrumb}>
+          <ol>
+            <li><a href={t.base}>{G.guide}</a></li>
+            <li><a href={`${t.base}/${keyOf(parent)}`}>{parent.data.name}</a></li>
+            <li><span aria-current="page">{name}</span></li>
+          </ol>
+        </nav>
+      ) : <p class="eyebrow"><a href={t.base}>{G.guide}</a></p>}
       <h1>{name}</h1>
       {d?.scientific && <p class="ap-sci"><span class="sr-only">{L.sci}: </span><i lang="la">{d.scientific}</i></p>}
       <p class="lead">{d?.description ?? profile!.intro[lang]}</p>
@@ -99,6 +109,21 @@ const topicsLead = topics.length === 1 ? G.topicsLeadOne : G.topicsLead.replace(
         ))}
       </tbody>
     </table>
+  </section>
+)}
+
+{breeds.length > 0 && (
+  <section class="wrap ap-sec" aria-labelledby="ap-breeds-h" data-pagefind-ignore>
+    <h2 id="ap-breeds-h" class="section-h">{L.breeds}</h2>
+    <p class="ap-muted">{L.breedsLead(breeds.length)}</p>
+    <ul class="ap-breeds">
+      {breeds.map((b) => (
+        <li><a href={href(keyOf(b))}>
+          <span class="ap-breed-t">{b.data.name}</span>
+          <span class="ap-topic-d">{b.data.description}</span>
+        </a></li>
+      ))}
+    </ul>
   </section>
 )}
 
@@ -186,6 +211,10 @@ const topicsLead = topics.length === 1 ? G.topicsLeadOne : G.topicsLead.replace(
 <style>
   .ap-sec { margin-top: 40px; }
   .eyebrow a { display: inline-flex; align-items: center; min-height: 44px; }
+  .ap-crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; }
+  .ap-crumbs li { display: inline-flex; align-items: center; min-height: 44px; }
+  .ap-crumbs li + li::before { content: '›'; margin: 0 8px; color: var(--ink-3); }
+  .ap-crumbs [aria-current] { color: var(--ink-2); }
   .ap-sec .section-h { margin-bottom: 14px; }
   .ap-text { margin: 0 0 8px; overflow-wrap: anywhere; }
   .ap-src { margin: 0; font-size: .88rem; color: var(--ink-3); overflow-wrap: anywhere; }
@@ -241,6 +270,12 @@ const topicsLead = topics.length === 1 ? G.topicsLeadOne : G.topicsLead.replace(
   .ap-u-today { color: var(--danger); background: var(--danger-soft); }
   .ap-u-this-week { color: color-mix(in srgb, var(--warn) 80%, var(--ink)); background: var(--warn-soft); }
   .ap-u-routine { color: var(--ok); background: var(--ok-soft); }
+
+  .ap-breeds { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 12px; }
+  .ap-breeds a { display: flex; flex-direction: column; gap: 4px; height: 100%; box-sizing: border-box; padding: 14px 18px; min-height: 44px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); text-decoration: none; color: var(--ink); }
+  .ap-breeds a:hover { border-color: var(--accent); }
+  .ap-breeds a:hover .ap-breed-t { color: var(--accent); text-decoration: underline; }
+  .ap-breed-t { font-weight: 700; font-size: 1.05rem; overflow-wrap: anywhere; }
 
   .ap-care { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
   .ap-care .ap-src { color: var(--ink-2); }

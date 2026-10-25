@@ -9,7 +9,7 @@ import { ANIMALS, nArticles, type Lang } from '../lib/animals-i18n';
 import AnimalIcon from './AnimalIcon.astro';
 import { TOPIC } from '../lib/topic-icons';
 import { PROFILES, GUIDE, ALIASES, SPECIES, referencedSlugs, type Cited, type Item } from '../data/species';
-import { GROUPS, GROUP_LABEL, letterOf } from '../lib/lexicon';
+import { GROUPS, GROUP_LABEL, LEX, letterOf } from '../lib/lexicon';
 import { articlesIn, lexiconIn, speciesTopics, keyOf, iconOf, tintOf, isSpecies } from '../lib/animal-data';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -35,20 +35,25 @@ const hubs = await Promise.all(SPECIES.map(async (k) => {
 const live = hubs.filter((h) => h.topics.length);
 const soon = hubs.filter((h) => !h.topics.length);
 
-// Lexicon: every entry in this language, by localized name.
-const lex = (await lexiconIn(lang)).map((e) => {
+// Lexicon: every entry in this language, by localized name. Breeds (entries with a `parent`) get their own
+// "Dog breeds / Cat breeds" blocks below the A–Z and group views, so the animal list stays one entry per animal.
+const allLex = (await lexiconIn(lang)).map((e) => {
   const key = keyOf(e);
   const d = e.data;
   return { key, d, letter: letterOf(d.name), icon: iconOf(key, d.group, d.species), tint: tintOf(key, d.group, d.species),
     names: [d.name, d.plural, d.scientific ?? '', key.replace(/-/g, ' '), isSpecies(key) ? ALIASES[key] : ''].join(' ') };
 });
+const lex = allLex.filter((x) => !x.d.parent);
+const L = LEX[lang];
+const breedGroups = lex.map((p) => ({ p, items: allLex.filter((x) => x.d.parent === p.key) })).filter((x) => x.items.length)
+  .map(({ p, items }) => ({ p, h: L.breedsOf(p.key, p.d.name), items: items.map((x) => ({ ...x, names: `${x.names} ${p.names}` })) }));
 const LETTERS = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ', '#'];
 const sections = LETTERS.map((l) => ({ l, id: `az-${l === '#' ? 'other' : l.toLowerCase()}`, items: lex.filter((x) => x.letter === l) }));
 // Letter bar: every letter, linked only where entries exist ('#' only when some name starts with a non-letter).
 const bar = sections.filter((s) => s.l !== '#' || s.items.length).map((s) => ({ l: s.l, href: s.items.length ? '#' + s.id : '' }));
 const groups = GROUPS.map((g) => ({ g, items: lex.filter((x) => x.d.group === g) })).filter((x) => x.items.length);
 // The filter counts animals once, whether they match in the A–Z list, a health-hub card or both.
-const total = new Set([...lex.map((x) => x.key), ...SPECIES]).size;
+const total = new Set([...allLex.map((x) => x.key), ...SPECIES]).size;
 // Template expressions cannot hold TS generics (<…> reads as a tag), so these lookups live up here.
 const emergencyCta = ({ en: 'Is it an emergency? Check the signs', it: "È un'emergenza? Controlla i segni", de: 'Ist es ein Notfall? Zeichen prüfen' } as Record<Lang, string>)[lang];
 const speciesKey = ({ en: 'animals', it: 'animali', de: 'Tiere' } as Record<Lang, string>)[lang];
@@ -110,6 +115,25 @@ const stripIc = ['M16 5l12 21H4z M16 13v6 M16 23v.5', 'M6 5h20v22H6z M10 11h12 M
         </div>
       ))}
     </div>
+    {breedGroups.length > 0 && (
+      <div class="lx-breeds" id="lx-breeds">
+        <div class="lx-blocks lx-breed-blocks">
+          {breedGroups.map(({ p, h, items }) => (
+            <div class="lx-block" id={`lx-breeds-${p.key}`}>
+              <h3 class="lx-block-h lx-group-h"><a href={`${t.base}/${p.key}`}>{h}</a> <span class="lx-n">({L.nBreeds(items.length)})</span></h3>
+              <ul class="lx-list">
+                {items.map((x) => (
+                  <li data-names={x.names} data-key={x.key}><a class={`lx-item tint-${x.tint}`} href={`${t.base}/${x.key}`}>
+                    <span class="lx-ic" aria-hidden="true"><AnimalIcon kind={x.icon} size={34} /></span>
+                    <span class="lx-txt"><span class="lx-name">{x.d.name}</span><span class="lx-sci">{p.d.name}</span></span>
+                  </a></li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
   </section>
 )}
 
@@ -220,6 +244,10 @@ const stripIc = ['M16 5l12 21H4z M16 13v6 M16 23v.5', 'M6 5h20v22H6z M10 11h12 M
   .lx-txt { display: flex; flex-direction: column; min-width: 0; }
   .lx-name { font-weight: 700; overflow-wrap: anywhere; }
   .lx-sci { color: var(--ink-3); font-size: .88rem; overflow-wrap: anywhere; }
+  .lx-breeds { margin-top: 10px; padding-top: 18px; border-top: 1px solid var(--line); }
+  .lx-breed-blocks { margin-top: 0; }
+  .lx-group-h a { color: inherit; text-decoration: none; }
+  .lx-group-h a:hover { color: var(--accent); text-decoration: underline; }
 
   /* Health hubs */
   .ag-grid-wrap { margin-top: 40px; }
@@ -302,6 +330,8 @@ const stripIc = ['M16 5l12 21H4z M16 13v6 M16 23v.5', 'M6 5h20v22H6z M10 11h12 M
       const keys = new Set<string>();
       for (const el of [...cards, ...items]) { const h = hit(el); el.hidden = !h; if (h && el.dataset.key) keys.add(el.dataset.key); }
       for (const b of blocks) b.hidden = !b.querySelector('li[data-names]:not([hidden])');
+      const breeds = document.getElementById('lx-breeds');
+      if (breeds) breeds.hidden = !breeds.querySelector('.lx-block:not([hidden])');
       if (letters) letters.hidden = !!q;
       const n = keys.size;
       const nothing = !n;
