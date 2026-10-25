@@ -1,0 +1,22 @@
+---
+/**
+ * The AI Veterinary mark: two white paw prints walking up and to the right on a coral tile
+ * (corner radius 22 % of the tile). Rules and files: docs/06-brand.md, "Logo".
+ * Decorative by default (aria-hidden), for use next to the live-text name; pass `title` when
+ * the mark stands alone and has to be announced. The two-paw mark is for 24 px and up: below
+ * that, browsers use /favicon.svg, a one-paw version drawn for 16 px.
+ */
+interface Props {
+  /** Width and height in px (or any CSS length). */
+  size?: number | string;
+  class?: string;
+  /** Accessible name; when set the mark is exposed as an image instead of hidden. */
+  title?: string;
+}
+const { size = 32, class: cls, title } = Astro.props;
+---
+<svg class={cls} width={size} height={size} viewBox="0 0 100 100" role={title ? 'img' : undefined} aria-hidden={title ? undefined : 'true'} focusable="false">
+  {title && <title>{title}</title>}
+  <rect width="100" height="100" rx="22" fill="#d86c50" />
+  <path fill="#ffffff" d="M27.19 65.15A7.68 7.68 0 0 1 38.56 69.74L40.63 77.45A5.28 5.28 0 0 1 31.84 82.6A12.49 12.49 0 0 0 23.09 79.06A5.28 5.28 0 0 1 20.35 69.25L27.19 65.15ZM20.58 53.15A3.72 5 -4 1 0 21.28 63.13A3.72 5 -4 1 0 20.58 53.15ZM32.85 50.58A3.72 5 13 1 0 30.6 60.32A3.72 5 13 1 0 32.85 50.58ZM44.61 55.33A3.72 5 31 1 0 39.46 63.9A3.72 5 31 1 0 44.61 55.33ZM51.65 65.71A3.72 5 48 1 0 44.21 72.4A3.72 5 48 1 0 51.65 65.71ZM59.59 29.75A7.68 7.68 0 0 1 70.96 34.34L73.03 42.05A5.28 5.28 0 0 1 64.24 47.2A12.49 12.49 0 0 0 55.49 43.66A5.28 5.28 0 0 1 52.75 33.85L59.59 29.75ZM52.98 17.75A3.72 5 -4 1 0 53.68 27.73A3.72 5 -4 1 0 52.98 17.75ZM65.25 15.18A3.72 5 13 1 0 63 24.92A3.72 5 13 1 0 65.25 15.18ZM77.01 19.93A3.72 5 31 1 0 71.86 28.5A3.72 5 31 1 0 77.01 19.93ZM84.05 30.31A3.72 5 48 1 0 76.61 37A3.72 5 48 1 0 84.05 30.31Z" />
+</svg>

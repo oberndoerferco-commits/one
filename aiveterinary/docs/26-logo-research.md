@@ -211,13 +211,60 @@ Only survey data I opened:
 
 ---
 
+## Part 4: Trade-mark note on the final logo (25 Oct 2026)
+
+The owner chose concept D2: two white paw prints walking up and to the right on a coral tile, with "AI Veterinary" and the tagline (`docs/06-brand.md`, "Logo"). §3.2 above advised against paw prints. This note says plainly what the choice means for protection. It is not legal advice, and no clearance search has been run yet.
+
+### The symbol on its own is weakly distinctive
+
+- **Paw prints are among the most common signs in the pet sector.** Pet shops, food brands, insurers and registries all use them (TASSO in Part 1), and so did our old favicon.
+- **CP3 (quoted in Part 2.1) gives little weight to standard drawings.** It treats a stylised picture that "does not depart significantly from the common representation" of the services as non-distinctive. Our prints are cleanly drawn, but they are still recognisably ordinary paw prints.
+- **The tile adds little.** It is a plain rounded square. CP3 says descriptive words combined with "simple geometric shapes", squares among them, are "unlikely to be acceptable".
+- **What is ours is the combination:** two prints turned 22° and walking diagonally, the particular pad drawing, and the coral tile. At best that is narrow protection of a look. It cannot stop anyone else from using paw prints.
+
+### The words are descriptive
+
+Regulation (EU) 2017/1001 (EUTMR), Article 7(1), lists signs that "shall not be registered", including:
+
+- **(b)** "trade marks which are devoid of any distinctive character";
+- **(c)** "trade marks which consist exclusively of signs or indications which may serve, in trade, to designate the kind, quality, quantity, intended purpose, value, geographical origin or the time of production of the goods or of rendering of the service, or other characteristics of the goods or service".
+
+How these apply to us:
+
+- **(c), descriptive.** For veterinary information services, "AI Veterinary" names the kind of service: veterinary information made with AI. A word mark that only describes the service also has no distinctive character, so expect **(b)** to be raised alongside **(c)**. That is our reading; the lawyer confirms it.
+- **Art. 7(2): German and Italian readers don't help.** Refusal applies "notwithstanding that the grounds of non-registrability obtain in only part of the Union". English is an official language in Ireland and Malta, and "AI" is widely understood across the EU. So the fact that German and Italian say "KI" and "IA" does not rescue the words.
+- **Art. 7(3): a later route through use.** Grounds (b), (c) and (d) "shall not apply if the trade mark has become distinctive in relation to the goods or services for which registration is requested as a consequence of the use which has been made of it". That needs proof of substantial use and is years away.
+
+### What would be filed
+
+- **The combined figurative mark:** the coral tile with the two prints, plus "AI Veterinary" in its drawn letterforms (the horizontal lockup, probably without the tagline). The tagline "Know what to do for your animal" is a promotional phrase with little distinctiveness of its own.
+- **Protection would be narrow.** It would cover the overall look, not the words and not paw prints in general. Others could still use "AI" and "veterinary" in their own get-up.
+- **Classes** are for the lawyer to set. The likely candidates are 44 (veterinary information), 42 (software for veterinary teams) and 9 (an app).
+- **Colour or black and white:** decide with the lawyer.
+
+### Before filing
+
+1. **Clearance search** in EUIPO eSearch plus, TMview and the national registers (DPMA, UIBM):
+   - figurative marks with paw prints in the planned classes, especially two or more prints on a tile or square;
+   - word searches for "AI Vet", "AI Veterinary", "VetAI" and close variants.
+
+   This is the Article 8(1)(b) risk: on opposition by the owner of an earlier mark, our application is refused "if, because of its identity with, or similarity to, the earlier trade mark and the identity or similarity of the goods or services covered by the trade marks there exists a likelihood of confusion on the part of the public in the territory in which the earlier trade mark is protected".
+2. **The lawyer's view** on Article 7 for the combined mark, on the class list, and on whether to file an EUTM or national DE/IT marks first.
+3. **Keep the evidence.** Keep the dated drawing files (`site/public/logo-*.svg`), the design canvas and its brand sheet as evidence of authorship and first use.
+
+**Bottom line.** A registration would protect our particular look, not paws and not the name. Real distinctiveness has to come from use: the same mark, coral tile and wordmark everywhere, across the site, the booklet and the vet tools.
+
+*Source:* Regulation (EU) 2017/1001 of the European Parliament and of the Council of 14 June 2017 on the European Union trade mark (codification), OJ L 154, 16.6.2017, p. 1, Articles 7 and 8, read on EUR-Lex (CELEX 32017R1001) on 25 Oct 2026. Quotations are from that text.
+
+---
+
 ## Not opened, or opened only indirectly
 
 - **Brand homepages:** Blue Cross (403), Boehringer Ingelheim (bot challenge), Prima (403), I‑Vet (connection failure / 503), LMU Kleintierklinik (502), Chewy Vet Care (404/429).
 - **Canva:** canva.com pages return 403 to curl and WebFetch. The Content License Agreement was read through the r.jina.ai text mirror of the official URL; the "licensing explained" and Learn pages couldn't be opened.
 - **Apple HIG:** the HTML page is JavaScript-only, so it was read through Apple's documentation JSON for the same page.
 - **Legal texts:**
-  - EUR-Lex (Reg. 2017/1001, Art. 7) returned a WAF 202 with an empty body, so the Article 7 wording here comes only via the EUIPO PDFs.
+  - EUR-Lex (Reg. 2017/1001, Art. 7) returned a WAF 202 with an empty body on 24 Oct, so Parts 1–3 take the Article 7 wording from the EUIPO PDFs. On 25 Oct the page opened in a headless browser, which runs the site's check page; Part 4 quotes Articles 7 and 8 from it.
   - The current consolidated EUIPO Guidelines web version wasn't opened; the 2017 draft chapter 9 PDF was used.
   - ICRC IHL database (GC I arts. 44/53) returned empty JS pages.
   - ICRC 5kze8s returned 403 or a redirect.
