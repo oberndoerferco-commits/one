@@ -54,4 +54,8 @@ export const TRANSLATION_GROUPS: { en?: string; it?: string; de?: string }[] = [
   { en: 'ferret-not-eating-vomiting', it: 'furetto-non-mangia-vomita', de: 'frettchen-frisst-nicht-erbricht' }, // ferret-not-eating
   { en: 'ferret-hair-loss-adrenal-disease', it: 'furetto-perde-pelo', de: 'frettchen-haarausfall-nebenniere' }, // ferret-adrenal
   { en: 'female-ferret-in-heat', it: 'furetto-femmina-in-calore', de: 'frettchen-faehe-ranz' }, // ferret-in-heat
+  { en: 'tortoise-hibernation', it: 'tartaruga-di-terra-letargo', de: 'schildkroete-winterstarre' }, // tortoise-hibernation
+  { en: 'reptile-not-eating', it: 'rettile-non-mangia', de: 'reptil-frisst-nicht' }, // reptile-not-eating
+  { en: 'reptile-metabolic-bone-disease', it: 'malattia-ossea-metabolica-rettili', de: 'rachitis-reptilien' }, // reptile-mbd
+  { en: 'reptile-stuck-shed', it: 'problemi-muta-rettili', de: 'haeutungsprobleme-reptilien' }, // reptile-stuck-shed
 ];
