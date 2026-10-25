@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/review.mjs check && node scripts/check-species.mjs && node scripts/check-lexicon.mjs && node scripts/check-foods.mjs && node scripts/check-sources.mjs && node scripts/check-daily-rules.mjs && node scripts/check-seasonal.mjs && astro build && node scripts/copy-ocr.mjs && pagefind --site dist",
+    "build": "node scripts/review.mjs check && node scripts/check-species.mjs && node scripts/check-lexicon.mjs && node scripts/check-foods.mjs && node scripts/check-sources.mjs && node scripts/check-daily-rules.mjs && node scripts/check-seasonal.mjs && node scripts/check-health-terms.mjs && astro build && node scripts/copy-ocr.mjs && pagefind --site dist",
     "preview": "astro preview",
     "check:seo": "node scripts/seo-check.mjs dist",
     "test:db": "bash supabase/tests/run.sh",

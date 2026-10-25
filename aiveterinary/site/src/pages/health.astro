@@ -1,0 +1,8 @@
+---
+import Base from '../layouts/Base.astro';
+import HealthAZ from '../components/HealthAZ.astro';
+import { UI } from '../data/health-terms';
+---
+<Base title={UI.en.title} description={UI.en.desc}>
+  <HealthAZ lang="en" />
+</Base>

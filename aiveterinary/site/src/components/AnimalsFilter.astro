@@ -10,6 +10,7 @@ import type { IconKind } from '../lib/animal-icons';
 import { TOPIC } from '../lib/topic-icons';
 import { GUIDE } from '../data/species';
 import { articlesIn } from '../lib/animal-data';
+import { UI as HEALTH, healthPath, termsIn } from '../data/health-terms';
 interface Props { lang: Lang; filter: string }
 const { lang, filter } = Astro.props;
 const t = ANIMALS[lang];
@@ -17,6 +18,9 @@ const G = GUIDE[lang];
 const isSpecies = filter in t.species;
 const label = (t.species as Record<string, string>)[filter] ?? (t.categories as Record<string, readonly string[]>)[filter]?.[0] ?? filter;
 const sub = isSpecies ? null : (t.categories as Record<string, readonly string[]>)[filter]?.[1] ?? null;
+// Symptoms and conditions listings point to the Health A–Z, where every term our articles cover is explained.
+const HZ = { en: (n: number) => `Looking up a word? The Health A–Z explains ${n} symptoms and conditions in a sentence or two, with the articles for each.`, it: (n: number) => `Cerchi una parola? La Salute dalla A alla Z spiega ${n} sintomi e malattie in una o due frasi, con gli articoli di ciascuno.`, de: (n: number) => `Sie suchen einen Begriff? Gesundheit von A bis Z erklärt ${n} Symptome und Erkrankungen in ein, zwei Sätzen, mit den Artikeln dazu.` }[lang];
+const healthLink = filter === 'symptoms' || filter === 'conditions';
 const entries = (await articlesIn(lang))
   .filter((e) => e.data.species === filter || e.data.category === filter)
   .sort((a, b) => b.data.updated.valueOf() - a.data.updated.valueOf());
@@ -36,6 +40,9 @@ const entries = (await articlesIn(lang))
     </div>
   </div>
 </section>
+{healthLink && (
+  <section class="wrap"><div class="notice health-az"><p>{HZ(termsIn(lang).length)}</p><p><a class="btn secondary" href={healthPath(lang)}>{HEALTH[lang].h1} →</a></p></div></section>
+)}
 <section class="wrap section">
   {entries.length === 0 && <p class="lead" set:html={t.nothing} />}
   <div class="cards3">
@@ -54,4 +61,5 @@ const entries = (await articlesIn(lang))
 
 <style>
   .eyebrow a { display: inline-flex; align-items: center; min-height: 44px; }
+  .health-az .btn { min-height: 44px; display: inline-flex; align-items: center; }
 </style>
