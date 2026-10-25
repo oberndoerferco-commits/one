@@ -105,7 +105,7 @@ const cfg = { ...T, lang, uLine: a.urgency, draft: a.draft, emergency: `${pre}/e
       'der die das den dem des ein eine einen einem einer mein meine meinen meinem meiner dein sein ihr ist sind war hat habe haben wird kann soll was wie warum wann wo wer und oder aber nicht kein keine mit von zu zum zur bei fur auf in im an am aus nach seit sehr auch schon ich du er sie es wir mir mich').split(/\s+/));
     const speciesOf = (ws: string[]) => { const s = new Set<string>(); for (const w of ws) for (const [k, list] of Object.entries(SPECIES)) if (list.includes(w)) s.add(k); return s; };
     const allSpecies = new Set(Object.values(SPECIES).flat());
-    const same = (q: string, d: string) => (q.length >= 5 && d.length >= 5 ? q.slice(0, 5) === d.slice(0, 5) : q.length >= 3 && (d.startsWith(q) || (d.length >= 3 && q.startsWith(d) && d.length >= 4)));
+    const same = (q: string, d: string) => (q.length >= 5 && d.length >= 5 ? q.slice(0, 5) === d.slice(0, 5) : q.length >= 4 ? d.startsWith(q) || (q.startsWith(d) && d.length >= 4) : q === d);
 
     let index: Record<string, Entry> | null = null;
     const loadIndex = async () => index ??= await (await fetch(C.index)).json();

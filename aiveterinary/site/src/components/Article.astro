@@ -312,15 +312,16 @@ const briefIc = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="tr
   .av-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: flex; gap: 10px; padding: 10px 16px calc(10px + env(safe-area-inset-bottom)); background: color-mix(in srgb, var(--bg) 94%, transparent); backdrop-filter: blur(8px); border-top: 1px solid var(--line); }
   .av-bar-a { flex: 1 1 0; min-width: 0; min-height: 48px; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 6px 12px; border-radius: 14px; font-weight: 700; text-decoration: none; line-height: 1.15; text-align: left; }
   .av-bar-a svg { flex: none; }
-  .av-bar-call { background: var(--accent); color: var(--accent-ink); flex-grow: 1.4; }
+  .av-bar-call { background: var(--accent); color: var(--accent-ink); flex-grow: 2.2; }
   .av-bar-call.u-emergency { background: var(--danger); color: var(--surface); }
   .av-bar-brief { background: var(--surface); color: var(--accent); border: 1.5px solid var(--accent); }
-  .av-bar-t { display: block; overflow-wrap: anywhere; }
-  .av-bar-s { display: block; font-size: .75rem; font-weight: 500; opacity: .92; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; }
+  .av-bar-t { display: block; overflow-wrap: break-word; hyphens: auto; }
+  @media (max-width: 360px) { .av-bar-brief { flex: 0 0 auto; padding: 6px 10px; } .av-bar-brief svg { display: none; } }
+  .av-bar-s { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; font-size: .75rem; font-weight: 500; opacity: .92; overflow: hidden; overflow-wrap: break-word; max-width: 100%; line-height: 1.2; }
   .av-bar-a > span { min-width: 0; }
   .av-bar-a:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
   @media (max-width: 1099.98px) {
-    body:has(.av-bar) { padding-bottom: calc(76px + env(safe-area-inset-bottom)); }
+    body:has(.av-bar) { padding-bottom: calc(92px + env(safe-area-inset-bottom)); }
     html:has(.av-bar) { scroll-padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
   }
   @media (min-width: 1100px) {

@@ -203,7 +203,8 @@ const isSymptoms = current(m.symptoms.href);
 const isGuide = current(m.guide.href) && !isSymptoms;
 const checksActive = m.checks.items.some((c) => current(c.href));
 const langNames = { en: 'English', it: 'Italiano', de: 'Deutsch' } as const;
-const langLinks = languages.map((l) => ({ ...l, name: langNames[l.code], href: (alternates.find(([c]) => c === l.code)?.[1]) ?? l.href }));
+// The current language always links to this page itself (untranslated pages have no alternate entry for it).
+const langLinks = languages.map((l) => ({ ...l, name: langNames[l.code], href: l.code === L ? path : (alternates.find(([c]) => c === l.code)?.[1]) ?? l.href }));
 // Stroke icons for the header and the phone menu (decorative; labels carry the meaning).
 const svg = (d: string) => `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${d}</svg>`;
 const ic = {
@@ -339,10 +340,10 @@ const rows = [
       </dialog>
     </header>
 
-    <div id="lang-suggest" class="lang-suggest" hidden role="region" aria-label="Language">
+    <div id="lang-suggest" class="lang-suggest" hidden role="region" aria-label={t.langAria}>
       <span id="lang-suggest-text"></span>
       <a id="lang-suggest-link" class="btn" href="/"></a>
-      <button id="lang-suggest-close" type="button" class="lang-suggest-close" aria-label="Dismiss">×</button>
+      <button id="lang-suggest-close" type="button" class="lang-suggest-close" aria-label={L === 'it' ? 'Chiudi' : L === 'de' ? 'Schließen' : 'Dismiss'}>×</button>
     </div>
   <script is:inline define:vars={{ pageLang: L, alternates }}>
     // Offer the page in the browser's language once; remembered on this device. Runs right after the

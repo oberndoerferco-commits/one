@@ -733,7 +733,7 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
 
   <section id="pp-claim-view" class="wrap narrow" hidden aria-hidden="true">
     <div class="pp-claim">
-      <h1>{t.claimTitle}</h1>
+      <h2 class="pp-claim-h">{t.claimTitle}</h2>
       <p>{t.claimIntro}</p>
       <p><b data-q="name"></b> <span data-q="animal"></span></p>
       <p><b>{t.microchip}:</b> <span data-q="microchip"></span> · <b>{t.ownerName}:</b> <span data-q="owner"></span></p>
@@ -848,7 +848,7 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
     @media print { .pp-l2 { color: #333; } .pp-print-lang { display: none !important; } }
     #pp-claim-view { display: none; }
     .pp-claim { color: #000; background: #fff; padding: 10mm; font-size: 11pt; }
-    .pp-claim h1 { font-size: 18pt; } .pp-claim h2 { font-size: 13pt; margin-top: 14pt; }
+    .pp-claim .pp-claim-h { font-size: 18pt; margin-top: 0; } .pp-claim h2:not(.pp-claim-h) { font-size: 13pt; margin-top: 14pt; }
     .pp-claim table { border-collapse: collapse; width: 100%; } .pp-claim th, .pp-claim td { border: 1px solid #999; padding: 4px 6px; text-align: left; }
     @media print {
       body.pp-print-claim main > *:not(#pp-claim-view), body.pp-print-claim .site-header, body.pp-print-claim .site-footer { display: none !important; }
