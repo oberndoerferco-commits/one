@@ -101,6 +101,22 @@ const AI = {
   it: { h: "Come usiamo l'IA, e dove no", more: 'Leggi la politica editoriale', items: [['Articoli', "Scritti con l'aiuto dell'IA a partire dalle fonti indicate sotto ciascuno. Un veterinario li controlla e li firma; fino ad allora sono segnati come bozze non riviste."], ['Controlli rapidi', 'Niente IA. Regole fisse da fonti citate, per esempio MSD Veterinary Manual, ASPCA e WSAVA: a parità di dati, sempre la stessa risposta.'], ['Il tuo libretto', "Niente IA. Resta sul tuo dispositivo; l'importazione da foto legge il testo sul telefono e non carica nulla."], ['Per i veterinari', "L'IA mette solo in ordine le note scritte dal veterinario. Non aggiunge nulla, segnala ciò che manca e il veterinario approva ogni riga."]] },
   de: { h: 'Wo KI hier hilft, und wo nicht', more: 'Zu den redaktionellen Grundsätzen', items: [['Artikel', 'Mit KI-Unterstützung aus den unter jedem Artikel genannten Quellen entworfen. Eine Tierärztin oder ein Tierarzt prüft und zeichnet; bis dahin sind sie als ungeprüfte Entwürfe markiert.'], ['Schnell prüfen', 'Keine KI. Feste Regeln aus genannten Quellen, etwa dem MSD Veterinary Manual, ASPCA und WSAVA: gleiche Eingabe, gleiche Antwort.'], ['Ihr Heimtierpass', 'Keine KI. Er bleibt auf Ihrem Gerät; der Foto-Import liest den Text auf dem Handy und lädt nichts hoch.'], ['Für Praxen', 'KI ordnet nur die selbst getippten Notizen der Tierärztin oder des Tierarztes. Sie ergänzt nichts, markiert Fehlendes, und jede Zeile wird freigegeben.']] },
 }[lang];
+// With the AI answer switched on (PUBLIC_ASK_AI=true) the question leaves the browser: say so.
+// LAWYER: wording to be checked (see README, "Ask box AI answer").
+if (askAI) {
+  PRIV.items[0] = ({
+    en: ['Questions are not stored', 'Your question is sent to our AI provider only to write the answer, and we don’t store it. Without the AI answer, the search runs in your browser.'],
+    it: ['Le domande non vengono salvate', 'La domanda viene inviata al nostro fornitore di IA solo per scrivere la risposta, e noi non la salviamo. Senza la risposta dell’IA, la ricerca avviene nel tuo browser.'],
+    de: ['Fragen werden nicht gespeichert', 'Ihre Frage wird nur zum Erstellen der Antwort an unseren KI-Anbieter gesendet, und wir speichern sie nicht. Ohne KI-Antwort läuft die Suche in Ihrem Browser.'],
+  } as Record<string, string[]>)[lang] as any;
+  AI.items.splice(1, 0, ({
+    en: ['Question box', 'AI writes a short answer only from our own articles, links the articles it used and takes the urgency from them. It gives no diagnosis and no doses; if our articles don’t cover a question, it says so.'],
+    it: ['Casella delle domande', 'L’IA scrive una breve risposta solo dai nostri articoli, collega gli articoli usati e ne riprende l’urgenza. Non fa diagnosi e non indica dosi; se i nostri articoli non trattano la domanda, lo dice.'],
+    de: ['Fragefeld', 'KI schreibt eine kurze Antwort nur aus unseren eigenen Artikeln, verlinkt die verwendeten Artikel und übernimmt deren Dringlichkeit. Sie stellt keine Diagnose und nennt keine Dosierungen; deckt kein Artikel die Frage ab, sagt sie das.'],
+  } as Record<string, string[]>)[lang] as any);
+}
+// Items that use AI: articles and vets, plus the question box when it is on.
+const AI_YES = askAI ? [0, 1, 4] : [0, 3];
 ---
 <section class="hero-ask">
   <div class="wrap hero-ask-in">
@@ -186,7 +202,7 @@ const AI = {
 
 <section class="wrap section ai4">
   <h2 class="section-h">{AI.h}</h2>
-  <ul class="ai4-list">{AI.items.map(([h, d], i) => <li class={i === 0 || i === 3 ? 'ai4-yes' : 'ai4-no'}><span class="ai4-badge">{i === 0 || i === 3 ? 'AI' : ({ en: 'No AI', it: 'No IA', de: 'Keine KI' } as any)[lang]}</span><strong>{h}</strong><span>{d}</span></li>)}</ul>
+  <ul class="ai4-list">{AI.items.map(([h, d], i) => <li class={AI_YES.includes(i) ? 'ai4-yes' : 'ai4-no'}><span class="ai4-badge">{AI_YES.includes(i) ? 'AI' : ({ en: 'No AI', it: 'No IA', de: 'Keine KI' } as any)[lang]}</span><strong>{h}</strong><span>{d}</span></li>)}</ul>
   <p><a class="more" href={P.editorial}>{AI.more} →</a></p>
 </section>
 

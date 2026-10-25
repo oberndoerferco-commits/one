@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 const updated = '13 October 2026';
+// Shown only when the AI answer is switched on (PUBLIC_ASK_AI=true). LAWYER: to be reviewed (README, "Ask box AI answer").
+const askAI = import.meta.env.PUBLIC_ASK_AI === 'true';
 ---
 <Base title="Privacy" description="How AI Veterinary handles your data: this website, the newsletter, and pet-passport accounts.">
   <article class="wrap narrow hero prose">
@@ -15,6 +17,12 @@ const updated = '13 October 2026';
 
     <h2>Animal information</h2>
     <p>Reading articles is anonymous. We do not ask for or store anything about you or your animals when you read.</p>
+
+    {askAI && <>
+      <h2>Questions in the question box</h2>
+      <p>Without an account, the question box on the home page first searches our articles in your browser. It also sends your question and the page language to our server, which passes the question, with passages from our articles, to our AI provider [Anthropic, PBC] to write a short answer from those articles. The answer is labelled as written by AI.</p>
+      <p>We do not log or store your question or the answer. [Provider's processing, retention period and transfer safeguards, from the data-processing agreement.] Please do not type names, addresses or other personal details into the box.</p>
+    </>}
 
     <h2>Digital pet passport without an account</h2>
     <p>Everything you enter stays in your browser on your device. It is never sent to us. Backups are files you download yourself.</p>
@@ -36,7 +44,7 @@ const updated = '13 October 2026';
     <p>If you subscribe we store your email address and whether you are an owner or a veterinary professional, with our newsletter provider [provider name], only to send the newsletter. Every email has an unsubscribe link; unsubscribing deletes your address.</p>
 
     <h2>Who else sees data</h2>
-    <p>Our processors: Supabase (database and login, EU), Cloudflare (hosting, email), [newsletter provider]. They act only on our instructions. We do not sell data, do not use it for advertising and do not use it to train AI.</p>
+    <p>Our processors: Supabase (database and login, EU), Cloudflare (hosting, email), [newsletter provider]{askAI && ', [Anthropic, PBC] (AI answers in the question box)'}. They act only on our instructions. We do not sell data, do not use it for advertising and do not use it to train AI.</p>
 
     <h2>Your rights</h2>
     <ul>

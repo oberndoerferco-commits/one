@@ -76,7 +76,11 @@ Brevo all have free tiers), take its form action URL, and set it as
 `PUBLIC_NEWSLETTER_ACTION` in the hosting provider's environment variables.
 The form already sends `email` and `audience` (`owner` or `vet`).
 
-`PUBLIC_ASK_AI` (default off): set to `true` only once a server-side AI answer exists for the home page question box; it switches the hero kicker to "Your AI vet assistant". Until then the box only matches existing articles via Pagefind.
+## Ask box AI answer
+
+`PUBLIC_ASK_AI` (default off): with `true`, the home page question box also asks the Cloudflare Pages Function `functions/api/ask.ts` for an AI answer written only from our articles, labelled "AI answer based on our articles", and the hero kicker reads "Your AI vet assistant". It needs the secret `ANTHROPIC_API_KEY` in the Pages environment; without the key the function answers 503 and the box silently keeps its Pagefind answer. Optional: `ASK_MODEL` (default `claude-opus-5-5`), `ASK_EFFORT` (`low`, default). To switch it on: set both variables in Cloudflare Pages (Settings → Environment variables, Production), then redeploy. The function runs only on Cloudflare Pages, not on GitHub Pages. Design, safety rules, cost and the dashboard rate-limit TODO: `../docs/31-ai-answer.md`. Tests: `npm test`.
+
+**For the lawyer** (shown only when the flag is on, wording to be checked): the privacy line under the box ("Your question is sent to our AI provider to write the answer. We don’t store it." and the IT/DE versions in `src/components/AskBox.astro`, `privacyAI`), the first item of "What happens to what you type" and the "Question box" item in `src/components/Home.astro`, and the "Questions in the question box" section plus the processor entry in `src/pages/privacy.astro` (bracketed placeholders for the provider, its retention and transfer safeguards). Points to check are listed in `../docs/31-ai-answer.md` §7.
 
 ## Signing a vet review
 

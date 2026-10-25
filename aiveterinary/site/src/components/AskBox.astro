@@ -1,20 +1,27 @@
 ---
 /**
- * Home page question box. There is no AI behind it yet: a question is matched against the
- * articles with Pagefind (current language index) and the answer card shows only existing
- * article data (title, urgency verdict, description, link). Nothing is generated.
- * A future server-side AI answer plugs in at `aiAnswer()` in the script below.
+ * Home page question box. A question is matched against the articles with Pagefind (current
+ * language index) and the answer card shows only existing article data (title, urgency verdict,
+ * description, link). Nothing is generated.
+ * With PUBLIC_ASK_AI=true (build time), `aiAnswer()` below also asks /api/ask (functions/api/ask.ts)
+ * for an AI answer written only from our articles, and shows it labelled as AI (EU AI Act art. 50).
+ * Any error, a 503 (no API key) or a "not covered" reply falls back silently to the Pagefind card.
+ * See docs/31-ai-answer.md.
  */
 import { ANIMALS, type Lang } from '../lib/animals-i18n';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const a = ANIMALS[lang];
 const pre = lang === 'en' ? '' : `/${lang}`;
+const askAI = import.meta.env.PUBLIC_ASK_AI === 'true';
 const T = ({
   en: {
     label: 'Your question', ph: 'My dog ate a chocolate bar an hour ago and…', ask: 'Ask', chipsH: 'Start with a topic', chipHint: 'Starts a question in the box above.',
     chips: [['Emergency', 'Is it an emergency if my pet '], ['Symptoms', 'My pet has had '], ['Poisoning & food', 'My dog ate '], ['Care', 'How often should I '], ['Travel', 'What does my pet need to travel to ']],
     privacy: 'We don’t store your question: the search runs in your browser.',
+    // LAWYER: wording of the AI privacy line (see README, "Ask box AI answer").
+    privacyAI: 'Your question is sent to our AI provider to write the answer. We don’t store it.',
+    aiLabel: 'AI answer based on our articles', aiHow: 'Written by AI from the articles listed above. It can make mistakes: the articles and your vet come first.', sources: 'From our articles',
     youAsked: 'You asked', best: 'Best match from our articles', read: 'Read the full article', also: 'Also related',
     note: 'Not a diagnosis. In an emergency, call a vet first.', how: 'Found by search in our articles. Nothing here is generated.',
     noneH: 'We don’t cover this yet', noneP: 'None of our articles matches your question. If you are worried, call your vet: they would rather hear from you early.', noneEmerg: 'Check if it is an emergency',
@@ -26,6 +33,8 @@ const T = ({
     label: 'La tua domanda', ph: 'Il mio cane ha mangiato una tavoletta di cioccolato un’ora fa e…', ask: 'Chiedi', chipsH: 'Parti da un argomento', chipHint: 'Inizia una domanda nella casella qui sopra.',
     chips: [['Emergenza', 'È un’emergenza se il mio animale '], ['Sintomi', 'Il mio animale ha da ieri '], ['Avvelenamenti e cibo', 'Il mio cane ha mangiato '], ['Cura', 'Ogni quanto devo '], ['Viaggi', 'Cosa serve al mio animale per viaggiare in ']],
     privacy: 'Non salviamo la tua domanda: la ricerca avviene nel tuo browser.',
+    privacyAI: 'La tua domanda viene inviata al nostro fornitore di IA per scrivere la risposta. Noi non la salviamo.',
+    aiLabel: 'Risposta dell’IA basata sui nostri articoli', aiHow: 'Scritta dall’IA a partire dagli articoli elencati sopra. Può sbagliare: contano prima gli articoli e il tuo veterinario.', sources: 'Dai nostri articoli',
     youAsked: 'Hai chiesto', best: 'L’articolo più vicino alla tua domanda', read: 'Leggi l’articolo completo', also: 'Anche correlati',
     note: 'Non è una diagnosi. In caso di emergenza, chiama prima il veterinario.', how: 'Trovato con la ricerca nei nostri articoli. Niente qui è generato.',
     noneH: 'Non ne parliamo ancora', noneP: 'Nessuno dei nostri articoli corrisponde alla tua domanda. Se sei preoccupato, chiama il veterinario: preferisce sentirti presto.', noneEmerg: 'Controlla se è un’emergenza',
@@ -37,6 +46,8 @@ const T = ({
     label: 'Ihre Frage', ph: 'Mein Hund hat vor einer Stunde eine Tafel Schokolade gefressen und…', ask: 'Fragen', chipsH: 'Mit einem Thema beginnen', chipHint: 'Beginnt eine Frage im Feld oben.',
     chips: [['Notfall', 'Ist es ein Notfall, wenn mein Tier '], ['Symptome', 'Mein Tier hat seit gestern '], ['Vergiftung & Futter', 'Mein Hund hat Folgendes gefressen: '], ['Pflege', 'Wie oft sollte ich '], ['Reisen', 'Was braucht mein Tier für eine Reise nach ']],
     privacy: 'Wir speichern Ihre Frage nicht: Die Suche läuft in Ihrem Browser.',
+    privacyAI: 'Ihre Frage wird an unseren KI-Anbieter gesendet, um die Antwort zu erstellen. Wir speichern sie nicht.',
+    aiLabel: 'KI-Antwort auf Grundlage unserer Artikel', aiHow: 'Von KI aus den oben genannten Artikeln verfasst. Sie kann Fehler machen: Maßgeblich sind die Artikel und Ihre Tierarztpraxis.', sources: 'Aus unseren Artikeln',
     youAsked: 'Ihre Frage', best: 'Passendster Artikel', read: 'Ganzen Artikel lesen', also: 'Auch passend',
     note: 'Keine Diagnose. Im Notfall zuerst die Tierarztpraxis anrufen.', how: 'Per Suche in unseren Artikeln gefunden. Nichts davon ist generiert.',
     noneH: 'Dazu haben wir noch nichts', noneP: 'Keiner unserer Artikel passt zu Ihrer Frage. Wenn Sie besorgt sind, rufen Sie Ihre Praxis an: Dort hört man lieber früh von Ihnen.', noneEmerg: 'Prüfen, ob es ein Notfall ist',
@@ -45,7 +56,7 @@ const T = ({
     v: { emergency: 'Sofort in die Praxis', today: 'Heute in die Praxis', 'this-week': 'Diese Woche einen Termin', routine: 'Beobachten, beim nächsten Besuch fragen' },
   },
 } as const)[lang];
-const cfg = { ...T, lang, uLine: a.urgency, draft: a.draft, emergency: `${pre}/emergency`, index: `${pre}/ask-index.json` };
+const cfg = { ...T, lang, uLine: a.urgency, draft: a.draft, emergency: `${pre}/emergency`, index: `${pre}/ask-index.json`, base: a.base, ai: askAI };
 ---
 <div class="ask" data-ask>
   <form class="ask-form" novalidate>
@@ -63,7 +74,7 @@ const cfg = { ...T, lang, uLine: a.urgency, draft: a.draft, emergency: `${pre}/e
   <ul class="ask-chips" aria-labelledby="ask-chips-h">
     {T.chips.map(([label, start]) => <li><button type="button" class="ask-chip" data-start={start} aria-describedby="ask-chip-hint">{label}</button></li>)}
   </ul>
-  <p class="ask-privacy" id="ask-privacy"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>{T.privacy}</p>
+  <p class="ask-privacy" id="ask-privacy"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>{askAI ? T.privacyAI : T.privacy}</p>
   <p class="sr-only" role="status" id="ask-status"></p>
   <div class="ask-out" id="ask-out"></div>
 </div>
@@ -149,13 +160,25 @@ const cfg = { ...T, lang, uLine: a.urgency, draft: a.draft, emergency: `${pre}/e
     }
 
     /**
-     * FUTURE AI HOOK. When a server endpoint for AI answers exists (and PUBLIC_ASK_AI is "true"),
-     * call it here with the question, the language and the matched articles, and return
-     * { html, sources } to show above the matches. Until then it returns null and only existing
-     * article data is shown. Do not call any API from this static site before that exists.
+     * AI answer (only when built with PUBLIC_ASK_AI=true). POSTs the question to /api/ask, which answers
+     * only from our articles (functions/api/ask.ts). Returns null on any error, a 503 (no API key yet),
+     * a timeout or a "not covered" reply, and the caller then shows the Pagefind card as before.
      */
-    async function aiAnswer(_question: string, _lang: string, _matches: Match[]): Promise<null> {
-      return null;
+    type AI = { verdict: string; answer: string; citations: string[]; covered: boolean };
+    let aiOff = !C.ai;
+    async function aiAnswer(question: string, lang: string): Promise<AI | null> {
+      if (aiOff) return null;
+      try {
+        const res = await fetch('/api/ask', {
+          method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ question, lang }), signal: AbortSignal.timeout(45000),
+        });
+        if (res.status === 503) { const d = await res.json().catch(() => null); if (d?.disabled) aiOff = true; return null; }
+        if (!res.ok) return null;
+        const d = await res.json();
+        if (!d || d.covered !== true || typeof d.answer !== 'string' || typeof d.verdict !== 'string' || !Array.isArray(d.citations)) return null;
+        return d as AI;
+      } catch { return null; }
     }
 
     const verdict = (u: string | null, long = true) => u
@@ -181,15 +204,41 @@ const cfg = { ...T, lang, uLine: a.urgency, draft: a.draft, emergency: `${pre}/e
       out.querySelector<HTMLElement>('.ans-h')?.focus();
     }
 
+    const el = (tag: string, cls?: string, text?: string) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+    /** The AI card, built with textContent only (never innerHTML). False if no citation is one of our articles. */
+    function renderAI(q: string, r: AI): boolean {
+      const idx = index ?? {};
+      const cites = r.citations.map((slug) => `${C.base}/${slug}`).filter((u, i, a) => idx[u] && a.indexOf(u) === i);
+      if (!cites.length) return false;
+      const card = el('div', 'ans ans-ai');
+      const asked = el('p', 'ans-q'); asked.append(el('span', '', `${C.youAsked}:`), ` “${q}”`); card.append(asked);
+      const h = el('h2', 'ans-h ans-ai-h', C.aiLabel); h.tabIndex = -1; card.append(h);
+      const u = r.verdict in C.v ? r.verdict : null;
+      if (u) { const v = el('p', `ask-v ask-v-${u}`); v.append(el('span', 'ask-vl', C.v[u]), ' ', el('span', 'ask-vs', C.uLine[u] ?? '')); card.append(v); }
+      for (const para of r.answer.split(/\n\s*\n/)) if (para.trim()) card.append(el('p', 'ans-d', para.trim()));
+      if (cites.some((c) => idx[c].draft)) card.append(el('p', 'ans-draft', C.draft));
+      card.append(el('h3', 'ans-also', C.sources));
+      const ul = el('ul', 'ans-more');
+      for (const c of cites) {
+        const li = el('li'); const a = el('a', '', idx[c].t) as HTMLAnchorElement; a.href = c; li.append(a);
+        const cu = idx[c].u; if (cu) { const v = el('p', `ask-v ask-v-${cu}`); v.append(el('span', 'ask-vl', C.v[cu] ?? cu)); li.append(v); }
+        ul.append(li);
+      }
+      card.append(ul, el('p', 'ans-note', C.note), el('p', 'ans-how', C.aiHow));
+      out.replaceChildren(card);
+      status.textContent = `${C.aiLabel}.${u ? ` ${C.v[u]}.` : ''}`;
+      h.focus();
+      return true;
+    }
+
     async function ask(q: string) {
       q = q.trim();
       if (!q) { err.textContent = C.empty; ta.setAttribute('aria-invalid', 'true'); ta.focus(); return; }
       err.textContent = ''; ta.removeAttribute('aria-invalid');
       btn.disabled = true; out.setAttribute('aria-busy', 'true'); status.textContent = C.searching;
       try {
-        const m = await findMatches(q);
-        await aiAnswer(q, C.lang, m);
-        render(q, m);
+        const [m, ai] = await Promise.all([findMatches(q), aiAnswer(q, C.lang)]);
+        if (!(ai && renderAI(q, ai))) render(q, m);
       } finally { btn.disabled = false; out.removeAttribute('aria-busy'); }
     }
 
@@ -244,6 +293,8 @@ const cfg = { ...T, lang, uLine: a.urgency, draft: a.draft, emergency: `${pre}/e
   .ask-out :global(.ans-more .ask-v) { margin: 0; }
   .ask-out :global(.ans-note) { margin: 16px 0 0; padding-top: 12px; border-top: 1px solid var(--line); font-size: .95rem; font-weight: 700; color: var(--ink); }
   .ask-out :global(.ans-how) { margin: 4px 0 0; font-size: .85rem; color: var(--ink-2); }
+  .ask-out :global(.ans-ai-h) { font-size: 1.15rem; font-family: var(--font); font-weight: 700; }
+  .ask-out :global(.ans-ai .ans-d) { white-space: pre-line; overflow-wrap: anywhere; }
 
   /* Urgency verdict, same colour families as the article "When to see a vet" notice. */
   :global(.ask-v) { margin: 0 0 14px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 10px; }
