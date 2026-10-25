@@ -133,7 +133,7 @@ Everything costs €0 unless marked €. Legend:
 - [x] Controlled-drugs register entry prepared from the dispensing record (monthly check reminder still open)
 - [x] Registry entry checklist (AT Heimtierdatenbank per TSchG § 24a, IT SINAC per DM 2.11.2023; `app/src/registry-export.ts`, docs/21); national SINAC field list ("istruzioni") still not found ★★
 - [x] Dog-bite report letter (CH TSchV art. 78, IT O.M. 2013 as extended 2026; `app/src/bite-report.ts`, docs/20). AT researched in docs/25: no duty on private vets, so at most a voluntary notice to the Gemeinde ★
-- [ ] Third-country certificate pre-fill from record ★
+- [x] Third-country certificate pre-fill from record (`app/src/travel-certificate.ts`, docs/22) ★
 - [x] Antibiotic structured block rendered per marked antibiotic (IS ABV push via BLV REST and HI-Tier 2029 still open)
 - [x] Lab-result explanation for owners from vet-entered interpretation only ★★
 
