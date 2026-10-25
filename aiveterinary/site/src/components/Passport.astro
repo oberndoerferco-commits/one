@@ -2,8 +2,23 @@
 import YarnCat from './YarnCat.astro';
 import AnimalIcon from './AnimalIcon.astro';
 import BookletArt from './BookletArt.astro';
+import { getCollection } from 'astro:content';
+import { RULES, ANSWERS, SPECIES_QUESTIONS, DEFAULT_QUESTIONS, QUESTION_LABELS, ANSWER_LABELS, DROPPINGS } from '../data/daily-rules';
+import { slugOf } from '../lib/animals-i18n';
 interface Props { lang?: 'en' | 'it' | 'de' }
 const { lang = 'en' } = Astro.props;
+// Daily check: every warning links the article it comes from, in this page's language. A missing article fails the build.
+const articleTitles = new Map((await getCollection('animals')).filter((e) => e.data.lang === lang).map((e) => [slugOf(e.id), e.data.title]));
+const DC_RULES = RULES.map((r) => {
+  const slug = r.article[lang].slug; const title = articleTitles.get(slug);
+  if (!title) throw new Error(`daily-rules: ${r.id} links "${slug}", which is not a ${lang} article`);
+  return { id: r.id, species: r.species, level: r.level, when: r.when, days: r.days, label: r.label[lang], href: `${lang === 'en' ? '' : '/' + lang}/animals/${slug}`, title };
+});
+const DC = {
+  en: { title: 'Daily check', intro: 'About 20 seconds. Compared with a normal day for this animal, how was today?', day: 'Day', note: 'Note (optional)', notePh: 'Anything unusual, in a few words', saved: 'Daily check saved', removed: 'Daily check removed', clear: "Remove this day's check", strip: 'Last 14 days', logged: 'logged', notLogged: 'not logged', flagged: 'warning shown', streak: '{n} days in a row', streak1: '1 day logged', last14: '{n} of the last 14 days logged', speciesHint: 'Choose the species under Identity to get questions that fit your animal.', heads: { 'go-now': 'Go to a vet now', today: 'Call your vet today', watch: 'Keep an eye on it' }, prefix: { 'go-now': 'Our article says this can be an emergency: ', today: 'Our article says to contact your vet today: ', watch: 'Our article says: ' }, read: 'Read the article:', notDiag: 'This is not a diagnosis. If you are worried, call your vet.', call: 'Call', reminder: 'Daily reminder in your calendar (.ics)', reminderTime: 'Reminder time', reminderHint: 'Adds a daily repeating event to your own calendar app. Nothing is sent from this site, and there are no notifications from us; delete the event in your calendar to stop it.', reminderSummary: 'Daily check: {name}', reminderDesc: 'About 20 seconds in the health booklet', reminderDone: 'Calendar file downloaded. Open it to add the daily reminder.' },
+  it: { title: 'Controllo quotidiano', intro: "Circa 20 secondi. Rispetto a una giornata normale per questo animale, com'è andata oggi?", day: 'Giorno', note: 'Nota (facoltativa)', notePh: 'Qualcosa di insolito, in poche parole', saved: 'Controllo quotidiano salvato', removed: 'Controllo quotidiano rimosso', clear: 'Rimuovi il controllo di questo giorno', strip: 'Ultimi 14 giorni', logged: 'registrato', notLogged: 'non registrato', flagged: 'avviso mostrato', streak: '{n} giorni di fila', streak1: '1 giorno registrato', last14: '{n} degli ultimi 14 giorni registrati', speciesHint: 'Scegli la specie in Identità per avere domande adatte al tuo animale.', heads: { 'go-now': 'Vai subito dal veterinario', today: 'Chiama il veterinario oggi', watch: "Tienilo d'occhio" }, prefix: { 'go-now': "Il nostro articolo dice che può essere un'emergenza: ", today: 'Il nostro articolo dice di sentire il veterinario oggi: ', watch: 'Il nostro articolo dice: ' }, read: "Leggi l'articolo:", notDiag: 'Questa non è una diagnosi. Se sei preoccupato, chiama il veterinario.', call: 'Chiama', reminder: 'Promemoria quotidiano nel calendario (.ics)', reminderTime: 'Ora del promemoria', reminderHint: "Aggiunge un evento che si ripete ogni giorno nel calendario del tuo dispositivo. Questo sito non invia nulla e non manda notifiche; per fermarlo, elimina l'evento dal calendario.", reminderSummary: 'Controllo quotidiano: {name}', reminderDesc: 'Circa 20 secondi nel libretto sanitario', reminderDone: 'File del calendario scaricato. Aprilo per aggiungere il promemoria quotidiano.' },
+  de: { title: 'Täglicher Check', intro: 'Etwa 20 Sekunden. Wie war heute, verglichen mit einem normalen Tag für dieses Tier?', day: 'Tag', note: 'Notiz (optional)', notePh: 'Was ungewöhnlich war, in wenigen Worten', saved: 'Täglicher Check gespeichert', removed: 'Täglicher Check entfernt', clear: 'Check für diesen Tag entfernen', strip: 'Letzte 14 Tage', logged: 'eingetragen', notLogged: 'nicht eingetragen', flagged: 'Hinweis angezeigt', streak: '{n} Tage in Folge', streak1: '1 Tag eingetragen', last14: '{n} der letzten 14 Tage eingetragen', speciesHint: 'Wählen Sie unter Identität die Tierart, damit die Fragen zu Ihrem Tier passen.', heads: { 'go-now': 'Jetzt in die Tierarztpraxis', today: 'Heute die Praxis anrufen', watch: 'Im Auge behalten' }, prefix: { 'go-now': 'Unser Artikel sagt, dass das ein Notfall sein kann: ', today: 'Unser Artikel rät, heute die Praxis zu kontaktieren: ', watch: 'Unser Artikel sagt: ' }, read: 'Zum Artikel:', notDiag: 'Das ist keine Diagnose. Wenn Sie sich Sorgen machen, rufen Sie Ihre Tierarztpraxis an.', call: 'Anrufen:', reminder: 'Tägliche Erinnerung im Kalender (.ics)', reminderTime: 'Uhrzeit der Erinnerung', reminderHint: 'Legt in Ihrer eigenen Kalender-App einen täglich wiederkehrenden Termin an. Diese Seite sendet nichts und schickt keine Benachrichtigungen; löschen Sie den Termin im Kalender, um ihn zu beenden.', reminderSummary: 'Täglicher Check: {name}', reminderDesc: 'Etwa 20 Sekunden im Heimtierpass', reminderDone: 'Kalenderdatei heruntergeladen. Öffnen Sie sie, um die tägliche Erinnerung hinzuzufügen.' },
+}[lang];
 const T = {
  "en": {
   "eyebrow": "For animal owners",
@@ -533,8 +548,8 @@ const JS = {
   }
  }
 } as const;
-const OPT = {"en": {"Dog": "Dog", "Cat": "Cat", "Ferret": "Ferret", "Rabbit": "Rabbit", "Guinea pig": "Guinea pig", "Hamster": "Hamster", "Horse": "Horse", "Bird": "Bird", "Reptile": "Reptile", "Other": "Other", "Female": "Female", "Male": "Male", "Yes": "Yes", "No": "No"}, "it": {"Dog": "Cane", "Cat": "Gatto", "Ferret": "Furetto", "Rabbit": "Coniglio", "Guinea pig": "Porcellino d'India", "Hamster": "Criceto", "Horse": "Cavallo", "Bird": "Uccello", "Reptile": "Rettile", "Other": "Altro", "Female": "Femmina", "Male": "Maschio", "Yes": "Sì", "No": "No"}, "de": {"Dog": "Hund", "Cat": "Katze", "Ferret": "Frettchen", "Rabbit": "Kaninchen", "Guinea pig": "Meerschweinchen", "Hamster": "Hamster", "Horse": "Pferd", "Bird": "Vogel", "Reptile": "Reptil", "Other": "Sonstiges", "Female": "Weiblich", "Male": "Männlich", "Yes": "Ja", "No": "Nein"}} as const;
-const speciesOpts = ['Dog','Cat','Ferret','Rabbit','Guinea pig','Hamster','Horse','Bird','Reptile','Other'] as const;
+const OPT = {"en": {"Dog": "Dog", "Cat": "Cat", "Ferret": "Ferret", "Rabbit": "Rabbit", "Guinea pig": "Guinea pig", "Hamster": "Hamster", "Horse": "Horse", "Bird": "Bird", "Reptile": "Reptile", "Fish": "Fish", "Other": "Other", "Female": "Female", "Male": "Male", "Yes": "Yes", "No": "No"}, "it": {"Dog": "Cane", "Cat": "Gatto", "Ferret": "Furetto", "Rabbit": "Coniglio", "Guinea pig": "Porcellino d'India", "Hamster": "Criceto", "Horse": "Cavallo", "Bird": "Uccello", "Reptile": "Rettile", "Fish": "Pesce", "Other": "Altro", "Female": "Femmina", "Male": "Maschio", "Yes": "Sì", "No": "No"}, "de": {"Dog": "Hund", "Cat": "Katze", "Ferret": "Frettchen", "Rabbit": "Kaninchen", "Guinea pig": "Meerschweinchen", "Hamster": "Hamster", "Horse": "Pferd", "Bird": "Vogel", "Reptile": "Reptil", "Fish": "Fisch", "Other": "Sonstiges", "Female": "Weiblich", "Male": "Männlich", "Yes": "Ja", "No": "Nein"}} as const;
+const speciesOpts = ['Dog','Cat','Ferret','Rabbit','Guinea pig','Hamster','Horse','Bird','Reptile','Fish','Other'] as const;
 const SCAN = {
   en: { names: {}, btn: 'Import from photo', title: 'Import from a photo', intro: 'Take a clear photo of one page of the paper passport, libretto or vaccination card. The text is read on this device; the photo is not uploaded or stored. The first time, about 10 MB of reading data is downloaded from this site.', reading: 'Reading the photo…', none: 'Nothing recognisable found. Try a sharper, straight photo in good light, one page at a time.', check: 'Tick only what is correct. You can edit each value before adding it.', chip: 'Microchip', vacc: 'Vaccination', date: 'given', valid: 'valid until', batch: 'batch', add: 'Add ticked items', cancel: 'Cancel', added: 'Added from photo. Check the entries below.', chipKept: 'A microchip number is already saved; it was not changed.', fail: 'The photo could not be read on this device.', pdf: 'PDFs are not supported yet: take a photo or screenshot of the page instead.' },
   it: { names: { 'Rabies': 'Antirabbica', 'Leptospirosis': 'Leptospirosi', 'Distemper/hepatitis/parvovirus combination': 'Polivalente cimurro/epatite/parvovirosi', 'Distemper': 'Cimurro', 'Parvovirus': 'Parvovirosi', 'Kennel cough': 'Tosse dei canili', 'Cat flu / panleukopenia combination': 'Trivalente gatto (rinotracheite/calicivirosi/panleucopenia)', 'FeLV': 'FeLV', 'Rabbit RHD / myxomatosis': 'Coniglio MEV/mixomatosi' }, btn: 'Importa da foto', title: 'Importa da una foto', intro: 'Scatta una foto nitida di una pagina del passaporto, del libretto o del certificato vaccinale. Il testo viene letto su questo dispositivo; la foto non viene caricata né salvata. La prima volta vengono scaricati circa 10 MB di dati di lettura da questo sito.', reading: 'Lettura della foto…', none: 'Non ho trovato nulla di riconoscibile. Prova con una foto più nitida e dritta, con buona luce, una pagina alla volta.', check: 'Spunta solo ciò che è corretto. Puoi modificare ogni valore prima di aggiungerlo.', chip: 'Microchip', vacc: 'Vaccinazione', date: 'eseguita', valid: 'valida fino al', batch: 'lotto', add: 'Aggiungi le voci spuntate', cancel: 'Annulla', added: 'Aggiunto dalla foto. Controlla le voci qui sotto.', chipKept: 'Un numero di microchip è già salvato; non è stato modificato.', fail: 'Non è stato possibile leggere la foto su questo dispositivo.', pdf: 'I PDF non sono ancora supportati: fai una foto o uno screenshot della pagina.' },
@@ -630,6 +645,32 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
         <div class="pp-avatar" id="pp-avatar"></div>
         <div class="pp-prof-text"><div class="pp-prof-name" id="pp-prof-name"></div><div class="pp-prof-sub" id="pp-prof-sub"></div><div class="pp-prof-next" id="pp-prof-next"></div></div>
       </div>
+      <section class="card dc-card" id="dc-card" aria-labelledby="dc-h" hidden>
+        <div class="dc-head">
+          <h2 id="dc-h">{DC.title}</h2>
+          <p class="dc-streak" id="dc-streak"></p>
+        </div>
+        <p class="pp-hint">{DC.intro}</p>
+        <p class="pp-hint" id="dc-species-hint" hidden>{DC.speciesHint}</p>
+        <div class="dc-day"><label for="dc-date">{DC.day}</label><input id="dc-date" type="date" /></div>
+        <div class="dc-qs" id="dc-qs"></div>
+        <label class="dc-note">{DC.note}<input id="dc-note" maxlength="300" placeholder={DC.notePh} /></label>
+        <div id="dc-warn" class="dc-warn" aria-live="assertive"></div>
+        <p class="dc-notdiag">{DC.notDiag}</p>
+        <div class="dc-strip-wrap">
+          <h3 class="dc-strip-h" id="dc-strip-h">{DC.strip}</h3>
+          <ol class="dc-strip" id="dc-strip" aria-labelledby="dc-strip-h"></ol>
+          <p class="pp-hint dc-count" id="dc-count"></p>
+        </div>
+        <div class="dc-actions">
+          <button class="btn secondary" type="button" id="dc-clear" hidden>{DC.clear}</button>
+        </div>
+        <details class="dc-remind">
+          <summary>{DC.reminder}</summary>
+          <p class="pp-hint">{DC.reminderHint}</p>
+          <div class="dc-remind-row"><label for="dc-time">{DC.reminderTime}</label><input id="dc-time" type="time" value="08:00" /><button class="btn secondary" type="button" id="dc-ics">{t.addCalendar}</button></div>
+        </details>
+      </section>
       <nav class="pp-jump" aria-label={t.selAria}>{([['pp-sec-identity', t.identity], ['pp-upcoming', t.upcoming], ['pp-sec-vaccinations', t.vaccinations], ['pp-sec-treatments', t.treatments], ['pp-sec-medications', t.medications], ['pp-sec-conditions', t.conditions], ['pp-sec-visits', t.visits], ['pp-sec-diary', t.diary], ['pp-sec-weights', t.weights]] as [string, string][]).map(([id, l]) => <a href={`#${id}`}>{l}</a>)}</nav>
       <div class="pp-grid">
         <section class="card" id="pp-sec-identity">
@@ -831,6 +872,57 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
       .pp-list td:last-child { position: absolute; top: 4px; right: 4px; width: auto; }
       .pp-list td::before { content: attr(data-label); display: block; font-size: .78rem; color: var(--ink-3); font-weight: 600; }
     }
+    /* daily check */
+    .dc-card { margin-bottom: 20px; }
+    .dc-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px 16px; flex-wrap: wrap; }
+    .dc-head h2 { margin: 0 0 6px; }
+    .dc-streak { margin: 0; color: var(--ok); font-weight: 650; font-size: .95rem; }
+    .dc-streak:empty { display: none; }
+    .dc-day { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 4px 0 14px; font-weight: 600; font-size: .9rem; color: var(--ink-2); }
+    .dc-day input, .dc-remind-row input { min-height: 44px; padding: 8px 10px; font: inherit; border: 1.5px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); max-width: 100%; }
+    .dc-qs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 14px 24px; }
+    .dc-q { border: 0; padding: 0; margin: 0; min-width: 0; }
+    .dc-q legend { font-weight: 650; padding: 0; margin-bottom: 6px; }
+    .dc-opts { display: grid; grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); gap: 6px; }
+    @media (max-width: 359px) { .dc-opts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    .dc-opt { position: relative; display: flex; align-items: center; justify-content: center; gap: 4px; min-height: 44px; padding: 6px 8px; border: 1.5px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink); font-weight: 600; font-size: .9rem; line-height: 1.2; text-align: center; cursor: pointer; hyphens: auto; overflow-wrap: break-word; min-width: 0; }
+    .dc-opt input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+    .dc-opt:hover { border-color: var(--accent); }
+    .dc-opt:has(input:checked) { background: var(--accent-soft); border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+    .dc-opt:has(input:checked) span::before { content: "✓ "; }
+    .dc-opt:has(input:focus-visible) { outline: 3px solid var(--accent); outline-offset: 2px; }
+    .dc-note { display: block; margin-top: 14px; font-size: .85rem; color: var(--ink-2); font-weight: 600; }
+    .dc-note input { width: 100%; min-height: 44px; margin-top: 4px; padding: 8px 10px; font: inherit; border: 1.5px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); }
+    .dc-warn:empty { display: none; }
+    .dc-warn { margin-top: 16px; display: grid; gap: 10px; }
+    .dc-alert { border-left: 4px solid var(--accent); background: var(--accent-soft); border-radius: 6px; padding: 12px 16px; }
+    .dc-alert.go-now { border-color: var(--danger); background: var(--danger-soft); }
+    .dc-alert.today { border-color: var(--warn); background: var(--warn-soft); }
+    .dc-alert h3 { margin: 0 0 6px; font-size: 1.05rem; }
+    .dc-alert.go-now h3 { color: var(--danger); }
+    .dc-alert ul { margin: 0; padding-left: 1.1em; }
+    .dc-alert li + li { margin-top: 6px; }
+    .dc-alert .dc-src { display: block; font-size: .9rem; }
+    .dc-alert .dc-src a { display: inline-block; padding: 4px 0; overflow-wrap: anywhere; }
+    .dc-call { display: inline-flex; align-items: center; min-height: 44px; margin-top: 8px; padding: 0 16px; border-radius: 999px; background: var(--danger); color: var(--surface); font-weight: 650; text-decoration: none; }
+    .dc-notdiag { margin: 12px 0 0; font-size: .9rem; color: var(--ink-2); font-weight: 600; }
+    .dc-strip-wrap { margin-top: 18px; }
+    .dc-strip-h { font-size: .85rem; text-transform: uppercase; letter-spacing: .05em; color: var(--ink-3); margin: 0 0 6px; }
+    .dc-strip { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(14, minmax(0, 1fr)); gap: 3px; max-width: 520px; }
+    .dc-strip li { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: .7rem; color: var(--ink-3); }
+    .dc-dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--line); box-sizing: border-box; }
+    .dc-strip li.on .dc-dot { background: var(--accent); border-color: var(--accent); }
+    .dc-strip li.go-now .dc-dot { background: var(--danger); border-color: var(--danger); }
+    .dc-strip li.today .dc-dot { background: var(--warn); border-color: var(--warn); }
+    .dc-strip li.is-today { color: var(--ink); font-weight: 700; }
+    .dc-strip li.is-today .dc-dot { box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--ink-3); }
+    .dc-count { margin: 6px 0 0; }
+    .dc-actions { margin-top: 10px; }
+    .dc-actions .btn, .dc-remind-row .btn { min-height: 44px; }
+    .dc-remind { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 10px; }
+    .dc-remind summary { cursor: pointer; font-weight: 600; min-height: 44px; display: flex; align-items: center; }
+    .dc-remind-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-size: .9rem; font-weight: 600; color: var(--ink-2); }
+    @media print { .dc-card { display: none !important; } }
     /* print */
     @media print {
       .site-header, .site-footer, .pp-toolbar, #pp-account, .pp-add, .pp-rm, #pp-faq, .pp-hint, .notice, label[for="pp-photo-input"], #pp-photo-remove, .pp-status { display: none !important; }
@@ -888,20 +980,25 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
 
   <script type="application/json" id="pp-l2" set:html={JSON.stringify(Object.fromEntries((["en", "it", "de"] as const).map((l) => [l, { ...Object.fromEntries(Object.entries(T[l]).filter(([, v]) => typeof v === "string")), cols: (JS[l] as any).cols }])))} />
   <script type="application/json" id="pp-prof-i18n" set:html={JSON.stringify(PROF)} />
+  <script type="application/json" id="dc-i18n" set:html={JSON.stringify({ ...DC, q: QUESTION_LABELS[lang], ans: ANSWER_LABELS[lang], answers: ANSWERS, speciesQ: SPECIES_QUESTIONS, def: DEFAULT_QUESTIONS, droppings: DROPPINGS, rules: DC_RULES })} />
   <script type="application/json" id="pp-scan-i18n" set:html={JSON.stringify({ ...sc, lang: ({ en: "eng", it: "ita", de: "deu" } as any)[lang] })} />
   <script type="application/json" id="pp-i18n" set:html={JSON.stringify({ ...j, dob: t.dob, posterWhere: t.posterWhere, locale:({ en: 'en-GB', it: 'it-IT', de: 'de-DE' } as any)[lang], upcoming: { overdue: t.overdue, dueIn: t.dueIn, dueToday: t.dueToday, none: t.noUpcoming, vacc: t.vaccinations, treat: t.treatments, plan: ({ en: 'planned, confirm with your vet', it: 'in programma, da confermare con il veterinario', de: 'geplant, mit der Praxis abstimmen' } as any)[lang] } })} />
 
   <script>
     import { parseScan } from 'aiveterinary-app/src/scan.ts';
     import { ICONS } from '../lib/animal-icons';
+    import { evaluateRules, daysBefore } from '../data/daily-rules';
     // Digital pet passport. Local-first: all data lives in localStorage under one key.
-    // Shape: { version: 1, animals: [ { id, name, ..., vaccinations: [], treatments: [], medications: [], conditions: [], visits: [], notes, photo } ], current }
+    // Shape: { version: 1, animals: [ { id, name, ..., vaccinations: [], treatments: [], medications: [], conditions: [], visits: [], checks: [], notes, photo } ], current }
+    // checks (daily check, added later): one row per day, { date: 'YYYY-MM-DD', eat, drink, poo, pee, strain, energy, vomit, note }.
+    // Older backups simply have no checks and load with an empty list; the store version stays 1 because the change is additive.
     type Row = Record<string, string>;
-    type Animal = Record<string, any> & { id: string; vaccinations: Row[]; treatments: Row[]; medications: Row[]; conditions: Row[]; visits: Row[]; weights: Row[]; diary: Row[] };
+    type Animal = Record<string, any> & { id: string; vaccinations: Row[]; treatments: Row[]; medications: Row[]; conditions: Row[]; visits: Row[]; weights: Row[]; diary: Row[]; checks: Row[] };
     type Store = { version: number; animals: Animal[]; current: string | null };
 
     const KEY = 'aiveterinary.passport.v1';
     const J = JSON.parse(document.getElementById('pp-i18n')!.textContent!);
+    const DCJ = JSON.parse(document.getElementById('dc-i18n')!.textContent!);
     const LISTS: Record<string, { cols: { key: string; label: string; type?: string; options?: string[] }[] }> = {
       vaccinations: { cols: [
         { key: 'vaccine', label: J.cols["Vaccine"] }, { key: 'date', label: J.cols["Date given"], type: 'date' }, { key: 'validUntil', label: J.cols["Valid until"], type: 'date' },
@@ -926,7 +1023,7 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
     // Stored data and backup files are checked before use: list fields must be arrays of rows of text, the photo an
     // image data URL (it is put into the page as markup), the dates real ISO dates. A crafted or damaged backup could
     // otherwise run script through the photo, or leave a record that throws on every later page load.
-    const LIST_KEYS = ['vaccinations', 'treatments', 'medications', 'conditions', 'visits', 'weights', 'diary', 'plans'];
+    const LIST_KEYS = ['vaccinations', 'treatments', 'medications', 'conditions', 'visits', 'weights', 'diary', 'plans', 'checks'];
     function tidy(x: any): Animal | null {
       if (!x || typeof x !== 'object' || Array.isArray(x)) return null;
       const text = (v: unknown) => (typeof v === 'string' ? v : typeof v === 'number' && isFinite(v) ? String(v) : undefined);
@@ -934,10 +1031,23 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
       for (const [k, v] of Object.entries(x)) if (!LIST_KEYS.includes(k) && text(v) !== undefined) a[k] = text(v);
       for (const k of LIST_KEYS) a[k] = Array.isArray(x[k]) ? x[k].filter((r: any) => r && typeof r === 'object' && !Array.isArray(r)).map((r: any) => Object.fromEntries(Object.entries(r).filter(([, c]) => text(c) !== undefined).map(([c, v]) => [c, text(v)]))) : [];
       a.plans = a.plans.filter((r: Row) => r.label && r.date);
+      a.checks = tidyChecks(a.checks);
       if (a.photo && !/^data:image\/(png|jpe?g|gif|webp);base64,[A-Za-z0-9+/=]+$/.test(a.photo)) delete a.photo;
       for (const k of ['dob', 'microchipDate']) if (a[k] && !/^\d{4}-\d{2}-\d{2}$/.test(a[k])) delete a[k];
       a.id = a.id || uid(); a.name ??= ''; a.notes ??= '';
       return a;
+    }
+    // Daily checks: real dates only, known answers only, one row per day (the last one wins), oldest first.
+    function tidyChecks(rows: Row[]): Row[] {
+      const byDate = new Map<string, Row>();
+      for (const r of rows) {
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(r.date ?? '') || isNaN(Date.parse(r.date))) continue;
+        const c: Row = { date: r.date };
+        for (const [q, vals] of Object.entries(DCJ.answers as Record<string, string[]>)) if (vals.includes(r[q])) c[q] = r[q];
+        if (r.note) c.note = r.note.slice(0, 300);
+        byDate.set(c.date, c);
+      }
+      return [...byDate.values()].sort((x, y) => x.date.localeCompare(y.date));
     }
     function load(): Store {
       try {
@@ -961,7 +1071,7 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
     window.addEventListener('pagehide', () => { if (saveTimer) { clearTimeout(saveTimer); saveTimer = 0; try { localStorage.setItem(KEY, JSON.stringify(store)); } catch {} } });
     function status(t: string) { const el = $('#pp-status'); if (el) el.textContent = t; }
 
-    const blank = (): Animal => ({ id: uid(), name: '', vaccinations: [], treatments: [], medications: [], conditions: [], visits: [], weights: [], diary: [], notes: '' });
+    const blank = (): Animal => ({ id: uid(), name: '', vaccinations: [], treatments: [], medications: [], conditions: [], visits: [], weights: [], diary: [], checks: [], notes: '' });
     const current = () => store.animals.find((a) => a.id === store.current) ?? null;
 
     function renderSelect() {
@@ -1025,6 +1135,7 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
       renderUpcoming(a);
       renderChart(a);
       renderProfile(a);
+      renderDaily(a, true);
     }
 
     const PR = JSON.parse(document.getElementById('pp-prof-i18n')!.textContent!);
@@ -1067,15 +1178,21 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
         ul.appendChild(li);
       }
     }
+    // Calendar files (.ics): built on the device and downloaded; the owner's own calendar app does the reminding.
+    const icsEsc = (x: string) => x.replace(/[\\;,]/g, (m) => '\\' + m).replace(/\n/g, '\\n');
+    const icsStamp = () => new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';
+    function downloadIcs(events: string[][], file: string) {
+      const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//aiveterinary.org//health booklet//EN', ...events.map((e) => e.join('\r\n')), 'END:VCALENDAR'].join('\r\n') + '\r\n';
+      const blob = new Blob([ics], { type: 'text/calendar' }); const url = URL.createObjectURL(blob);
+      const link = document.createElement('a'); link.href = url; link.download = file; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+    const fileBase = (a: Animal) => (a.name || 'animal').replace(/[^\w-]+/g, '_');
     $('#pp-ics')?.addEventListener('click', () => {
       const a = current(); if (!a) return;
       const fmt = (iso: string) => iso.slice(0, 10).replace(/-/g, '');
-      const esc = (x: string) => x.replace(/[\\;,]/g, (m) => '\\' + m).replace(/\n/g, '\\n');
-      const stamp = new Date().toISOString().replace(/[-:]/g, '').slice(0, 15) + 'Z';
-      const events = dueItems(a).map((it, i) => ['BEGIN:VEVENT', `UID:${a.id}-${i}-${fmt(it.date)}@aiveterinary.org`, `DTSTAMP:${stamp}`, `DTSTART;VALUE=DATE:${fmt(it.date)}`, `SUMMARY:${esc((a.name || J.unnamed) + ': ' + it.label)}`, `DESCRIPTION:${esc(it.kind)}`, 'BEGIN:VALARM', 'TRIGGER:-P7D', 'ACTION:DISPLAY', `DESCRIPTION:${esc(it.label)}`, 'END:VALARM', 'END:VEVENT'].join('\r\n'));
-      const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//aiveterinary.org//health booklet//EN', ...events, 'END:VCALENDAR'].join('\r\n') + '\r\n';
-      const blob = new Blob([ics], { type: 'text/calendar' }); const url = URL.createObjectURL(blob);
-      const link = document.createElement('a'); link.href = url; link.download = `${(a.name || 'animal').replace(/[^\w-]+/g, '_')}-reminders.ics`; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+      const stamp = icsStamp();
+      const events = dueItems(a).map((it, i) => ['BEGIN:VEVENT', `UID:${a.id}-${i}-${fmt(it.date)}@aiveterinary.org`, `DTSTAMP:${stamp}`, `DTSTART;VALUE=DATE:${fmt(it.date)}`, `SUMMARY:${icsEsc((a.name || J.unnamed) + ': ' + it.label)}`, `DESCRIPTION:${icsEsc(it.kind)}`, 'BEGIN:VALARM', 'TRIGGER:-P7D', 'ACTION:DISPLAY', `DESCRIPTION:${icsEsc(it.label)}`, 'END:VALARM', 'END:VEVENT']);
+      downloadIcs(events, `${fileBase(a)}-reminders.ics`);
     });
     function renderChart(a: Animal) {
       const svg = $('#pp-weight-chart') as unknown as SVGSVGElement; if (!svg) return;
@@ -1114,6 +1231,98 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
     }
     plSel?.addEventListener('change', () => { try { localStorage.setItem(PRINT_LANG_KEY, plSel.value); } catch {} applyPrintLang(); });
     try { if (plSel) plSel.value = localStorage.getItem(PRINT_LANG_KEY) ?? ''; } catch {}
+    // ---------- Daily check: a few taps per day, one row per day in a.checks, warnings only from article-backed rules ----------
+    const localIso = (d = new Date()) => new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+    const dcDate = $<HTMLInputElement>('#dc-date');
+    const dcEsc = (v: string) => String(v ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' } as any)[c]);
+    const questionsOf = (a: Animal): string[] => (DCJ.speciesQ[a.species] ?? DCJ.def);
+    const qLabel = (q: string, species: string) => (q === 'poo' && DCJ.droppings.includes(species) ? DCJ.q.droppings : DCJ.q[q]);
+    const checkOn = (a: Animal, date: string) => (a.checks ?? []).find((c: Row) => c.date === date);
+    function upsertCheck(a: Animal, date: string): Row {
+      a.checks ??= [];
+      let c = checkOn(a, date);
+      if (!c) { c = { date }; a.checks.push(c); a.checks.sort((x: Row, y: Row) => x.date.localeCompare(y.date)); }
+      return c;
+    }
+    /** Re-renders the card. `full` rebuilds the questions too (new animal, species or day); answering only refreshes warnings and the strip. */
+    function renderDaily(a: Animal, full = false) {
+      const card = $<HTMLElement>('#dc-card');
+      const qs = questionsOf(a);
+      card.hidden = qs.length === 0; // fish: no daily check
+      if (!qs.length) return;
+      const today = localIso();
+      dcDate.max = today;
+      if (!dcDate.value || dcDate.value > today) dcDate.value = today;
+      const date = dcDate.value;
+      const entry = checkOn(a, date);
+      $<HTMLElement>('#dc-species-hint').hidden = !!a.species;
+      if (full) {
+        const box = $('#dc-qs'); box.innerHTML = '';
+        for (const q of qs) {
+          const fs = document.createElement('fieldset'); fs.className = 'dc-q';
+          const lg = document.createElement('legend'); lg.textContent = qLabel(q, a.species); fs.appendChild(lg);
+          const opts = document.createElement('div'); opts.className = 'dc-opts'; opts.style.setProperty('--n', String(DCJ.answers[q].length));
+          for (const v of DCJ.answers[q] as string[]) {
+            const lab = document.createElement('label'); lab.className = 'dc-opt';
+            const inp = document.createElement('input'); inp.type = 'radio'; inp.name = `dc-${q}`; inp.value = v; inp.checked = entry?.[q] === v;
+            inp.addEventListener('change', () => {
+              const cur = current(); if (!cur || !inp.checked) return;
+              upsertCheck(cur, dcDate.value)[q] = v;
+              save(DCJ.saved); renderDaily(cur);
+            });
+            const sp = document.createElement('span'); sp.textContent = DCJ.ans[v];
+            lab.append(inp, sp); opts.appendChild(lab);
+          }
+          fs.appendChild(opts); box.appendChild(fs);
+        }
+        $<HTMLInputElement>('#dc-note').value = entry?.note ?? '';
+      }
+      $<HTMLElement>('#dc-clear').hidden = !entry;
+      // warnings for the chosen day
+      const hits = evaluateRules(DCJ.rules as any[], a.species, a.checks ?? [], date);
+      const warn = $('#dc-warn');
+      const levels = ['go-now', 'today', 'watch'].filter((l) => hits.some((h: any) => h.level === l));
+      const phone = a.emergencyPhone || a.vetPhone || '';
+      warn.innerHTML = levels.map((l) => `<div class="dc-alert ${l}"><h3>${dcEsc(DCJ.heads[l])}</h3><ul>${hits.filter((h: any) => h.level === l).map((h: any) => `<li>${dcEsc(DCJ.prefix[l] + h.label)}<span class="dc-src">${dcEsc(DCJ.read)} <a href="${dcEsc(h.href)}">${dcEsc(h.title)}</a></span></li>`).join('')}</ul>${l === 'go-now' && phone ? `<a class="dc-call" href="tel:${dcEsc(phone.replace(/[^\d+]/g, ''))}">${dcEsc(DCJ.call)} ${dcEsc(phone)}</a>` : ''}</div>`).join('');
+      // 14-day strip, streak (no nagging: a missed day is simply an empty dot)
+      const strip = $('#dc-strip'); strip.innerHTML = '';
+      const fmtDay = (iso: string, o: Intl.DateTimeFormatOptions) => new Date(iso + 'T12:00:00').toLocaleDateString(J.locale, o);
+      let logged = 0;
+      for (let i = 13; i >= 0; i--) {
+        const d = daysBefore(today, i); const c = checkOn(a, d);
+        const top = c ? evaluateRules(DCJ.rules as any[], a.species, a.checks, d)[0]?.level : undefined;
+        if (c) logged++;
+        const li = document.createElement('li');
+        li.className = [c ? 'on' : '', top === 'go-now' || top === 'today' ? top : '', d === today ? 'is-today' : ''].filter(Boolean).join(' ');
+        li.innerHTML = `<span class="dc-dot" aria-hidden="true"></span><span aria-hidden="true">${dcEsc(fmtDay(d, { weekday: 'narrow' }))}</span><span class="sr-only">${dcEsc(fmtDay(d, { weekday: 'long', day: 'numeric', month: 'long' }))}: ${dcEsc(c ? DCJ.logged : DCJ.notLogged)}${top === 'go-now' || top === 'today' ? ', ' + dcEsc(DCJ.flagged) : ''}</span>`;
+        strip.appendChild(li);
+      }
+      $('#dc-count').textContent = DCJ.last14.replace('{n}', String(logged));
+      let streak = 0; let d = checkOn(a, today) ? today : daysBefore(today, 1);
+      while (checkOn(a, d)) { streak++; d = daysBefore(d, 1); }
+      $('#dc-streak').textContent = streak >= 2 ? DCJ.streak.replace('{n}', String(streak)) : streak === 1 ? DCJ.streak1 : '';
+    }
+    dcDate.addEventListener('change', () => { const a = current(); if (a) renderDaily(a, true); });
+    $<HTMLInputElement>('#dc-note').addEventListener('input', (e) => {
+      const a = current(); if (!a) return;
+      const v = (e.target as HTMLInputElement).value;
+      if (!v && !checkOn(a, dcDate.value)) return;
+      upsertCheck(a, dcDate.value).note = v; scheduleSave(); $<HTMLElement>('#dc-clear').hidden = false;
+    });
+    $('#dc-clear').addEventListener('click', () => {
+      const a = current(); if (!a) return;
+      a.checks = (a.checks ?? []).filter((c: Row) => c.date !== dcDate.value);
+      save(DCJ.removed); renderDaily(a, true); dcDate.focus();
+    });
+    $('#dc-ics').addEventListener('click', () => {
+      const a = current(); if (!a) return;
+      const [hh, mm] = (($<HTMLInputElement>('#dc-time').value || '08:00').split(':'));
+      const start = localIso().replace(/-/g, '') + `T${hh.padStart(2, '0')}${(mm ?? '00').padStart(2, '0')}00`; // floating local time
+      const name = a.name || J.unnamed; const url = location.origin + location.pathname;
+      downloadIcs([['BEGIN:VEVENT', `UID:daily-check-${a.id}@aiveterinary.org`, `DTSTAMP:${icsStamp()}`, `DTSTART:${start}`, 'DURATION:PT5M', 'RRULE:FREQ=DAILY', `SUMMARY:${icsEsc(DCJ.reminderSummary.replace('{name}', name))}`, `DESCRIPTION:${icsEsc(DCJ.reminderDesc + ': ' + url)}`, `URL:${url}`, 'BEGIN:VALARM', 'TRIGGER:PT0M', 'ACTION:DISPLAY', `DESCRIPTION:${icsEsc(DCJ.reminderSummary.replace('{name}', name))}`, 'END:VALARM', 'END:VEVENT']], `${fileBase(a)}-daily-check.ics`);
+      status(DCJ.reminderDone);
+    });
+
     function render() { renderSelect(); renderForm(); applyPrintLang(); }
 
     // field bindings
@@ -1122,6 +1331,7 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
         const a = current(); if (!a) return;
         a[el.dataset.f!] = el.value;
         if (el.dataset.f === 'name') { renderSelect(); $('h1')!.setAttribute('data-animal', el.value); }
+        if (el.dataset.f === 'species') renderDaily(a, true);
         renderProfile(a);
         scheduleSave();
       });

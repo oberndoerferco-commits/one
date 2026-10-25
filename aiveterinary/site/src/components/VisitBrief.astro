@@ -1,7 +1,14 @@
 ---
 import YarnCat from './YarnCat.astro';
+import { QUESTION_ORDER, QUESTION_LABELS, ANSWER_LABELS, SPECIES_QUESTIONS, DEFAULT_QUESTIONS, DROPPINGS } from '../data/daily-rules';
 interface Props { lang?: 'en' | 'it' | 'de' }
 const { lang = 'en' } = Astro.props;
+// Daily checks from the health booklet: the last 7 days go into the brief as a compact table.
+const DAILY = {
+  en: { title: 'Daily checks, last 7 days', date: 'Date', note: 'Note', hint: 'Answers the owner logged in the health booklet, compared with a normal day for this animal.' },
+  it: { title: 'Controlli quotidiani, ultimi 7 giorni', date: 'Data', note: 'Nota', hint: 'Risposte registrate dal proprietario nel libretto sanitario, rispetto a una giornata normale per questo animale.' },
+  de: { title: 'Tägliche Checks, letzte 7 Tage', date: 'Datum', note: 'Notiz', hint: 'Angaben, die die Halterin oder der Halter im Heimtierpass eingetragen hat, verglichen mit einem normalen Tag für dieses Tier.' },
+}[lang];
 const T = {
   en: {
     eyebrow: 'For animal owners', h1: 'Prepare for the vet visit',
@@ -190,17 +197,24 @@ const J = {
   .vb-out dt { color: var(--ink-3); font-weight: 600; }
   .vb-out dd { margin: 0; }
   .vb-out h3 { margin: 18px 0 6px; font-size: 1rem; }
+  .vb-daily-wrap { overflow-x: auto; max-width: 100%; }
+  .vb-out .prose table.vb-daily, .vb-daily { display: table; overflow: visible; border-collapse: collapse; font-size: .85rem; width: 100%; margin: 0; }
+  .vb-daily th, .vb-daily td { border: 1px solid var(--line); padding: 4px 6px; text-align: left; vertical-align: top; }
+  .vb-daily th { color: var(--ink-3); font-weight: 600; }
+  .vb-daily td.vb-off { font-weight: 700; }
+  @media print { .vb-daily th, .vb-daily td { border-color: #999; } .vb-daily-wrap { overflow: visible; } }
   @media print { .site-header, .site-footer, .hero, #vb-form, .vb-out .ws-actions, .pp-hint { display: none !important; } .vb-out { border: 0; } .vb-out .vb-foot { display: block !important; color: #333; } }
 </style>
 
-<script type="application/json" id="vb-i18n" set:html={JSON.stringify({ ...J, species_opts: t.species_opts, sex_opts: t.sex_opts, speciesQ: t.speciesQ, speciesTitle: t.speciesTitle, diary: t.diary })} />
+<script type="application/json" id="vb-i18n" set:html={JSON.stringify({ ...J, species_opts: t.species_opts, sex_opts: t.sex_opts, speciesQ: t.speciesQ, speciesTitle: t.speciesTitle, diary: t.diary, daily: { ...DAILY, order: QUESTION_ORDER, q: QUESTION_LABELS[lang], ans: ANSWER_LABELS[lang], speciesQ: SPECIES_QUESTIONS, def: DEFAULT_QUESTIONS, droppings: DROPPINGS } })} />
 <script>
   const J = JSON.parse(document.getElementById('vb-i18n')!.textContent!);
   const $ = (s: string) => document.querySelector(s) as HTMLElement;
   const form = $('#vb-form') as HTMLFormElement;
   const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
 
-  // passport on this device → prefill
+  // passport on this device → prefill; the picked animal's daily checks go into the brief
+  let picked: any = null;
   try {
     const raw = localStorage.getItem('aiveterinary.passport.v1');
     const store = raw ? JSON.parse(raw) : null;
@@ -208,7 +222,7 @@ const J = {
     if (store?.animals?.length) {
       for (const a of store.animals) { const o = document.createElement('option'); o.value = a.id; o.textContent = a.name || J.unnamed; sel.appendChild(o); }
       sel.addEventListener('change', () => {
-        const a = store.animals.find((x: any) => x.id === sel.value); if (!a) return;
+        const a = store.animals.find((x: any) => x.id === sel.value); picked = a ?? null; if (!a) return;
         // Every field the booklet fills is replaced, empty values included: switching from one animal to another
         // must never carry the first one's diary, medications or allergies into the second one's brief.
         const set = (n: string, v: unknown) => { const el = form.elements.namedItem(n) as HTMLInputElement | null; if (el) el.value = typeof v === 'string' || typeof v === 'number' ? String(v) : ''; };
@@ -251,6 +265,23 @@ const J = {
   speciesSel.addEventListener('change', renderSpeciesQ);
   form.addEventListener('reset', () => setTimeout(renderSpeciesQ, 0));
   renderSpeciesQ();
+  // Last 7 days of the booklet's daily check (today and the 6 days before), only the questions that have answers.
+  function dailyTable(): string {
+    const D = J.daily; const a = picked;
+    const rows: any[] = Array.isArray(a?.checks) ? a.checks.filter((c: any) => c && typeof c.date === 'string') : [];
+    const now = new Date(); const today = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+    const from = new Date(today + 'T12:00:00Z'); from.setUTCDate(from.getUTCDate() - 6); const fromIso = from.toISOString().slice(0, 10);
+    const last = rows.filter((c) => c.date >= fromIso && c.date <= today).sort((x, y) => x.date.localeCompare(y.date));
+    if (!last.length) return '';
+    const asked: string[] = D.speciesQ[a.species] ?? D.def;
+    const qs = (D.order as string[]).filter((q) => asked.includes(q) && last.some((c) => c[q]));
+    const hasNote = last.some((c) => typeof c.note === 'string' && c.note.trim());
+    const label = (q: string) => (q === 'poo' && D.droppings.includes(a.species) ? D.q.droppings : D.q[q]);
+    const day = (iso: string) => new Date(iso + 'T12:00:00').toLocaleDateString(J.locale, { weekday: 'short', day: 'numeric', month: 'short' });
+    const head = `<tr><th scope="col">${esc(D.date)}</th>${qs.map((q) => `<th scope="col">${esc(label(q))}</th>`).join('')}${hasNote ? `<th scope="col">${esc(D.note)}</th>` : ''}</tr>`;
+    const body = last.map((c) => `<tr><th scope="row">${esc(day(c.date))}</th>${qs.map((q) => { const v = c[q]; const off = v && !['normal', 'no'].includes(v); return `<td${off ? ' class="vb-off"' : ''}>${v ? esc(D.ans[v] ?? String(v)) : '—'}</td>`; }).join('')}${hasNote ? `<td>${esc(String(c.note ?? ''))}</td>` : ''}</tr>`).join('');
+    return `<h3>${esc(D.title)}</h3><p class="vb-daily-hint">${esc(D.hint)}</p><div class="vb-daily-wrap" tabindex="0" role="region" aria-label="${esc(D.title)}"><table class="vb-daily"><thead>${head}</thead><tbody>${body}</tbody></table></div>`;
+  }
   function makeBrief() {
     const d = new FormData(form);
     const g = (n: string) => String(d.get(n) ?? '').trim();
@@ -263,6 +294,7 @@ const J = {
       <p>${esc(g('concern')) || `<em>${J.notDescribed}</em>`}</p>
       <dl>${row(J.since, g('since'))}${row(J.freq, g('frequency'))}${row(J.trend, g('trend'))}${row(J.trigger, g('trigger'))}</dl>
       ${g('diary') ? `<h3>${esc(J.diary)}</h3><p>${esc(g('diary')).replace(/\n/g, '<br>')}</p>` : ''}
+      ${dailyTable()}
       ${(() => { const rows = Array.from(form.querySelectorAll<HTMLInputElement>('#vb-species-fields input')).filter((i) => i.value.trim()).map((i) => row(i.dataset.label ?? i.name, i.value)).join(''); return rows ? `<h3>${esc(J.speciesTitle)}</h3><dl>${rows}</dl>` : ''; })()}
       <h3>${J.signs}</h3>
       <p>${signs.length ? esc(signs.join(', ')) : J.none}${g('other') ? '. ' + esc(g('other')) : ''}</p>
@@ -281,7 +313,7 @@ const J = {
     $('#vb-out').scrollIntoView({ behavior: 'smooth', block: 'start' });
     ($('#vb-out-h') as HTMLElement).focus({ preventScroll: true });
   }
-  $('#vb-clear').addEventListener('click', () => { form.reset(); ($('#vb-out') as HTMLElement).hidden = true; });
+  $('#vb-clear').addEventListener('click', () => { form.reset(); picked = null; ($('#vb-out') as HTMLElement).hidden = true; });
   $('#vb-print').addEventListener('click', () => window.print());
   $('#vb-copy').addEventListener('click', () => {
     const t = ($('#vb-content') as HTMLElement).innerText;
