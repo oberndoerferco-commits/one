@@ -87,7 +87,7 @@ const JS = {
   "medsTick": "Checked","medsUnchecked": "{n} medication row(s) to tick against your notes before approval.",
   "copied": "Copied as plain text.",
   "copyFail": "Copy failed; select the report and copy manually.",
-  "mFlags": "Flags","mApprove": "Approve","soapTitle": "Paste into your practice software, box by box","soapHint": "Plain text, one field per box. Only the approved version can be copied or exported.","soapCopy": "Copy","soapCopied": "{label} copied.","json": "Download JSON with approval details",
+  "mFlags": "Flags","mApprove": "Approve","soapTitle": "Paste into your practice software, box by box","soapHint": "Plain text, one field per box. Only the approved version can be copied or exported.","soapCopy": "Copy","soapCopied": "{label} copied.","json": "Download JSON with approval details","jsonCopy": "Copy for the browser helper","jsonCopied": "Approved record copied for the browser helper.",
   "clinicRequire": "Always require","clinicRequireHint": "Adds a flag when the field is absent from the record. Nothing is filled in: you type the value or mark it not recorded.","clinicFields": {"weight": "Weight","temperature": "Temperature","heart_rate": "Heart rate","respiratory_rate": "Respiratory rate","assessment": "Assessment","follow_up": "Follow-up"},
   "approved": "APPROVED",
   "draft": "DRAFT",
@@ -135,7 +135,7 @@ const JS = {
   "medsTick": "Verificato","medsUnchecked": "{n} riga/e della terapia da spuntare rispetto alle tue note prima dell'approvazione.",
   "copied": "Copiato come testo semplice.",
   "copyFail": "Copia non riuscita; seleziona il referto e copia manualmente.",
-  "mFlags": "Segnalazioni","mApprove": "Approva","soapTitle": "Incolla nel gestionale, campo per campo","soapHint": "Testo semplice, un campo per riquadro. Si può copiare o esportare solo la versione approvata.","soapCopy": "Copia","soapCopied": "{label} copiato.","json": "Scarica JSON con i dati di approvazione",
+  "mFlags": "Segnalazioni","mApprove": "Approva","soapTitle": "Incolla nel gestionale, campo per campo","soapHint": "Testo semplice, un campo per riquadro. Si può copiare o esportare solo la versione approvata.","soapCopy": "Copia","soapCopied": "{label} copiato.","json": "Scarica JSON con i dati di approvazione","jsonCopy": "Copia per l'estensione del browser","jsonCopied": "Referto approvato copiato per l'estensione del browser.",
   "clinicRequire": "Richiedi sempre","clinicRequireHint": "Aggiunge una segnalazione quando il campo manca nella cartella. Non viene compilato nulla: scrivi il valore o segnalo come non registrato.","clinicFields": {"weight": "Peso","temperature": "Temperatura","heart_rate": "Frequenza cardiaca","respiratory_rate": "Frequenza respiratoria","assessment": "Valutazione","follow_up": "Controllo successivo"},
   "approved": "APPROVATO",
   "draft": "BOZZA",
@@ -183,7 +183,7 @@ const JS = {
   "medsTick": "Geprüft","medsUnchecked": "{n} Medikationszeile(n) vor der Freigabe gegen die Notizen abhaken.",
   "copied": "Als Klartext kopiert.",
   "copyFail": "Kopieren fehlgeschlagen; Bericht markieren und manuell kopieren.",
-  "mFlags": "Markierungen","mApprove": "Freigeben","soapTitle": "Feld für Feld in die Praxissoftware einfügen","soapHint": "Klartext, ein Feld pro Eingabefeld. Kopieren und Exportieren nur für die freigegebene Version.","soapCopy": "Kopieren","soapCopied": "{label} kopiert.","json": "JSON mit Freigabedaten herunterladen",
+  "mFlags": "Markierungen","mApprove": "Freigeben","soapTitle": "Feld für Feld in die Praxissoftware einfügen","soapHint": "Klartext, ein Feld pro Eingabefeld. Kopieren und Exportieren nur für die freigegebene Version.","soapCopy": "Kopieren","soapCopied": "{label} kopiert.","json": "JSON mit Freigabedaten herunterladen","jsonCopy": "Für die Browser-Erweiterung kopieren","jsonCopied": "Freigegebener Bericht für die Browser-Erweiterung kopiert.",
   "clinicRequire": "Immer verlangen","clinicRequireHint": "Fügt einen Hinweis hinzu, wenn das Feld in der Akte fehlt. Nichts wird ausgefüllt: Sie tragen den Wert ein oder markieren ihn als nicht erfasst.","clinicFields": {"weight": "Gewicht","temperature": "Temperatur","heart_rate": "Herzfrequenz","respiratory_rate": "Atemfrequenz","assessment": "Beurteilung","follow_up": "Nachkontrolle"},
   "approved": "FREIGEGEBEN",
   "draft": "ENTWURF",
@@ -495,7 +495,7 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
         <button class="btn secondary" id="ws-print" type="button">{t.print}</button>
       </div>
       <p class="pp-status" id="ws-status" aria-live="polite"></p>
-      <div class="ws-soap" id="ws-soap" hidden><div class="ws-h">{(JS[lang] as any).soapTitle}</div><p class="pp-hint">{(JS[lang] as any).soapHint}</p><div id="ws-soap-fields" class="ws-soap-fields"></div><button class="btn secondary" id="ws-json" type="button">{(JS[lang] as any).json}</button></div>
+      <div class="ws-soap" id="ws-soap" hidden><div class="ws-h">{(JS[lang] as any).soapTitle}</div><p class="pp-hint">{(JS[lang] as any).soapHint}</p><div id="ws-soap-fields" class="ws-soap-fields"></div><button class="btn secondary" id="ws-json" type="button">{(JS[lang] as any).json}</button> <button class="btn secondary" id="ws-json-copy" type="button">{(JS[lang] as any).jsonCopy}</button></div>
       <div class="ws-handouts"><div class="ws-h">{t.handouts}</div><ul id="ws-handouts"></ul></div>
     </div>
   </section>
@@ -1361,6 +1361,12 @@ const handoutIndex = (await getCollection('animals')).filter((e) => e.data.lang 
       a.href = URL.createObjectURL(new Blob([JSON.stringify(bundle, null, 2)], { type: 'application/json' }));
       a.download = `${String(cur.header.name || 'record').replace(/[^\p{L}\p{N}_-]+/gu, '-')}-v${cur.v.version}.json`;
       a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    });
+    // The same approved bundle as the download, as text for the browser helper (extension/), which re-checks the approval.
+    $('#ws-json-copy').addEventListener('click', () => {
+      if (!cur.approved || !cur.v) return;
+      const bundle = exportBundle(cur.v, cur.header, cur.lang, undefined, cur.resolved);
+      navigator.clipboard?.writeText(JSON.stringify(bundle)).then(() => { $('#ws-status').textContent = J.jsonCopied; }, () => { $('#ws-status').textContent = J.copyFail; });
     });
     $('#ws-approve').addEventListener('click', approve);
     // Phone bar: a mirror of the status line and the real Approve button, so the rules are identical.

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Fake PIMS (test page)</title>
+<style>
+  body { font: 14px/1.4 system-ui, sans-serif; margin: 0; background: #f4f6f8; color: #1b2430; }
+  header { background: #2d3e50; color: #fff; padding: 10px 16px; display: flex; gap: 24px; flex-wrap: wrap; }
+  header b { font-weight: 600; }
+  main { padding: 16px; display: grid; gap: 12px; max-width: 760px; }
+  label { display: grid; gap: 4px; font-weight: 600; }
+  textarea { font: inherit; min-height: 70px; padding: 6px; }
+  .note { color: #5b6676; font-size: 12px; }
+</style>
+</head>
+<body>
+  <!-- A static stand-in for a practice management system. Query: ?patient=Luna&species=Hund&id=10442 -->
+  <header>
+    <div>Patient: <b id="pt-name"></b></div>
+    <div>Species: <b class="pt-species"></b></div>
+    <div>ID: <b id="pt-id"></b></div>
+    <div>Owner: Rossi, Maria</div>
+  </header>
+  <main>
+    <form id="consult" action="/never" method="post">
+      <label>Subjective <textarea id="soap-s" name="subjective"></textarea></label>
+      <label>Objective <textarea name="objective"></textarea></label>
+      <div class="box"><label>Assessment <textarea></textarea></label></div>
+      <label>Plan (React-like controlled input) <textarea id="soap-p"></textarea></label>
+      <p class="note">Component state for Plan: <span id="react-state"></span></p>
+      <button type="submit">Save consultation</button>
+    </form>
+  </main>
+<script>
+  const q = new URLSearchParams(location.search);
+  document.getElementById('pt-name').textContent = q.get('patient') ?? 'Luna';
+  document.querySelector('.pt-species').textContent = q.get('species') ?? 'Hund';
+  document.getElementById('pt-id').textContent = q.get('id') ?? '10442';
+
+  // Counts any save attempt; the tests require it to stay 0.
+  window.__submits = 0;
+  document.getElementById('consult').addEventListener('submit', (e) => { e.preventDefault(); window.__submits++; });
+
+  // React-like controlled textarea. React tracks the last value it set through an own `value`
+  // property; on "input" it compares the DOM value with that tracker and only then updates state,
+  // and every render writes state back. Setting `el.value = x` from page script updates the
+  // tracker, so the change is ignored and the next render wipes it. Only the native setter plus an
+  // input event (what the extension does) gets into state.
+  const p = document.getElementById('soap-p');
+  const native = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value');
+  let tracker = '', state = '';
+  Object.defineProperty(p, 'value', { configurable: true, get() { return native.get.call(this); }, set(v) { tracker = String(v); native.set.call(this, v); } });
+  const render = () => { p.value = state; document.getElementById('react-state').textContent = state; };
+  p.addEventListener('input', () => { const dom = native.get.call(p); if (dom !== tracker) state = dom; render(); });
+</script>
+</body>
+</html>

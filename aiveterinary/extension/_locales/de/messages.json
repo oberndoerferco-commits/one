@@ -1,0 +1,152 @@
+{
+  "extName": {
+    "message": "AI Veterinary – Praxissoftware-Helfer"
+  },
+  "extDescription": {
+    "message": "Fügt einen freigegebenen AI-Veterinary-Bericht in die Praxissoftware ein, nachdem der Patient geprüft wurde. Funktioniert offline."
+  },
+  "popupTitle": {
+    "message": "Freigegebenen Bericht einfügen"
+  },
+  "step1": {
+    "message": "1. Freigegebener Export"
+  },
+  "step1Hint": {
+    "message": "Im Arbeitsbereich auf „Für die Browser-Erweiterung kopieren\" klicken, dann hier einfügen (Strg+V) oder die Zwischenablage lesen."
+  },
+  "readClipboard": {
+    "message": "Zwischenablage lesen"
+  },
+  "approvedOk": {
+    "message": "Freigegeben: $1 ($2), Version $3, von $4 am $5."
+  },
+  "refused_not_json": {
+    "message": "Abgelehnt: kein AI-Veterinary-Export (kein JSON)."
+  },
+  "refused_wrong_format": {
+    "message": "Abgelehnt: unbekanntes Format. Nur der Export des freigegebenen Berichts aus dem Arbeitsbereich wird angenommen."
+  },
+  "refused_not_approved": {
+    "message": "Abgelehnt: Freigabedaten fehlen. Bericht zuerst im Arbeitsbereich freigeben."
+  },
+  "refused_fingerprint": {
+    "message": "Abgelehnt: Der Bericht passt nicht zum Freigabe-Fingerabdruck. Er wurde nach der Freigabe geändert."
+  },
+  "refused_soap_changed": {
+    "message": "Abgelehnt: Die S/O/A/P-Texte entsprechen nicht dem freigegebenen Bericht."
+  },
+  "refused_patient_missing": {
+    "message": "Abgelehnt: Im Export fehlen Name oder Tierart, der Patient kann nicht gesperrt werden."
+  },
+  "refused_patient_changed": {
+    "message": "Abgelehnt: Der Patientenkopf passt nicht zum Patienten im freigegebenen Bericht."
+  },
+  "step2": {
+    "message": "2. Felder auf dieser Website"
+  },
+  "siteUnsupported": {
+    "message": "Zuerst die Praxissoftware in diesem Tab öffnen."
+  },
+  "siteMapped": {
+    "message": "Felder für $1 zugeordnet."
+  },
+  "siteNotMapped": {
+    "message": "Für $1 noch keine Felder zugeordnet. Einmal zuordnen."
+  },
+  "map": {
+    "message": "Felder zuordnen (anklicken)"
+  },
+  "remap": {
+    "message": "Neu zuordnen"
+  },
+  "forget": {
+    "message": "Website vergessen"
+  },
+  "pickStarted": {
+    "message": "Jetzt auf der Seite klicken, wie im Hinweis beschrieben."
+  },
+  "clipboardDenied": {
+    "message": "Zwischenablage nicht verfügbar. Mit Strg+V einfügen."
+  },
+  "step3": {
+    "message": "3. Einfügen"
+  },
+  "step3Hint": {
+    "message": "Prüft den angezeigten Patienten und füllt dann die vier Felder. Nichts wird gespeichert: Sie speichern in der Praxissoftware."
+  },
+  "paste": {
+    "message": "Patient prüfen und einfügen"
+  },
+  "privacy": {
+    "message": "Arbeitet nur in diesem Browser. Keine Netzwerkanfragen; der Bericht verlässt den Computer nicht. Gespeichert wird nur, welche Seitenelemente Sie gewählt haben."
+  },
+  "pickTitle": {
+    "message": "Felder zuordnen"
+  },
+  "pick_name": {
+    "message": "Auf das Element klicken, das den Patientennamen zeigt."
+  },
+  "pick_species": {
+    "message": "Auf das Element klicken, das die Tierart zeigt."
+  },
+  "pick_S": {
+    "message": "Auf das Textfeld für S (Anamnese) klicken."
+  },
+  "pick_O": {
+    "message": "Auf das Textfeld für O (Befund) klicken."
+  },
+  "pick_A": {
+    "message": "Auf das Textfeld für A (Beurteilung) klicken."
+  },
+  "pick_P": {
+    "message": "Auf das Textfeld für P (Plan) klicken."
+  },
+  "pickNotText": {
+    "message": "Das ist kein mehrzeiliges Textfeld. Bitte ein Textfeld wählen."
+  },
+  "pickEmpty": {
+    "message": "Dieses Element zeigt keinen Text. Bitte das Element mit der Patientenangabe wählen."
+  },
+  "mapSaved": {
+    "message": "Zuordnung für $1 gespeichert."
+  },
+  "close": {
+    "message": "Schließen"
+  },
+  "cancel": {
+    "message": "Abbrechen"
+  },
+  "pastedTitle": {
+    "message": "Eingefügt. Prüfen und in der Praxissoftware speichern."
+  },
+  "rowOk": {
+    "message": "$1 Zeichen, exakt"
+  },
+  "rowChanged": {
+    "message": "das Feld hat den Text verändert: bitte prüfen"
+  },
+  "saveYourself": {
+    "message": "Es wurde nichts gespeichert oder abgeschickt."
+  },
+  "blockedTitle": {
+    "message": "Einfügen blockiert"
+  },
+  "mismatchName": {
+    "message": "Die Seite zeigt den Patienten „$1\", der freigegebene Bericht gilt für „$2\"."
+  },
+  "mismatchSpecies": {
+    "message": "Die Seite zeigt die Tierart „$1\", der freigegebene Bericht gilt für: $2."
+  },
+  "mismatchHelp": {
+    "message": "Den richtigen Patienten in der Praxissoftware öffnen oder abbrechen. Es wurde nichts eingefügt."
+  },
+  "no_mapping": {
+    "message": "Für $1 sind keine Felder zugeordnet. Zuerst zuordnen."
+  },
+  "field_missing": {
+    "message": "Das zugeordnete Element „$1\" fehlt auf dieser Seite. Konsultationsansicht öffnen oder neu zuordnen. Es wurde nichts eingefügt."
+  },
+  "not_empty": {
+    "message": "Diese Felder enthalten bereits Text: $1. Zuerst in der Praxissoftware leeren; nichts wird überschrieben. Es wurde nichts eingefügt."
+  }
+}

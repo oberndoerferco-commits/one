@@ -1,0 +1,152 @@
+{
+  "extName": {
+    "message": "AI Veterinary PIMS helper"
+  },
+  "extDescription": {
+    "message": "Pastes an approved AI Veterinary record into your practice software, after checking it is the right patient. Works offline."
+  },
+  "popupTitle": {
+    "message": "Paste the approved record"
+  },
+  "step1": {
+    "message": "1. Approved export"
+  },
+  "step1Hint": {
+    "message": "In the workspace, click \"Copy for the browser helper\", then paste here (Ctrl+V) or read the clipboard."
+  },
+  "readClipboard": {
+    "message": "Read clipboard"
+  },
+  "approvedOk": {
+    "message": "Approved: $1 ($2), version $3, by $4 on $5."
+  },
+  "refused_not_json": {
+    "message": "Refused: this is not an AI Veterinary export (not JSON)."
+  },
+  "refused_wrong_format": {
+    "message": "Refused: unknown format. Only the approved-record export from the workspace is accepted."
+  },
+  "refused_not_approved": {
+    "message": "Refused: the approval details are missing. Approve the record in the workspace first."
+  },
+  "refused_fingerprint": {
+    "message": "Refused: the record does not match its approval fingerprint. It was changed after approval."
+  },
+  "refused_soap_changed": {
+    "message": "Refused: the S/O/A/P texts are not the ones generated from the approved record."
+  },
+  "refused_patient_missing": {
+    "message": "Refused: the export has no patient name or species, so the patient cannot be locked."
+  },
+  "refused_patient_changed": {
+    "message": "Refused: the patient header does not match the patient in the approved record."
+  },
+  "step2": {
+    "message": "2. Fields on this site"
+  },
+  "siteUnsupported": {
+    "message": "Open your practice software in this tab first."
+  },
+  "siteMapped": {
+    "message": "Fields mapped for $1."
+  },
+  "siteNotMapped": {
+    "message": "No fields mapped yet for $1. Map them once."
+  },
+  "map": {
+    "message": "Map fields (click to pick)"
+  },
+  "remap": {
+    "message": "Map again"
+  },
+  "forget": {
+    "message": "Forget this site"
+  },
+  "pickStarted": {
+    "message": "Now click on the page as the banner asks."
+  },
+  "clipboardDenied": {
+    "message": "Clipboard not available. Paste with Ctrl+V instead."
+  },
+  "step3": {
+    "message": "3. Paste"
+  },
+  "step3Hint": {
+    "message": "Checks the patient shown on the page, then fills the four boxes. Nothing is saved: you save in your practice software."
+  },
+  "paste": {
+    "message": "Check patient and paste"
+  },
+  "privacy": {
+    "message": "Works only in this browser. No network requests; the record never leaves your computer. Only which page elements you picked is stored."
+  },
+  "pickTitle": {
+    "message": "Map fields"
+  },
+  "pick_name": {
+    "message": "Click the element that shows the patient name."
+  },
+  "pick_species": {
+    "message": "Click the element that shows the species."
+  },
+  "pick_S": {
+    "message": "Click the text box for S (Subjective)."
+  },
+  "pick_O": {
+    "message": "Click the text box for O (Objective)."
+  },
+  "pick_A": {
+    "message": "Click the text box for A (Assessment)."
+  },
+  "pick_P": {
+    "message": "Click the text box for P (Plan)."
+  },
+  "pickNotText": {
+    "message": "That is not a multi-line text box. Pick a text area."
+  },
+  "pickEmpty": {
+    "message": "That element shows no text. Pick the one with the patient detail."
+  },
+  "mapSaved": {
+    "message": "Mapping saved for $1."
+  },
+  "close": {
+    "message": "Close"
+  },
+  "cancel": {
+    "message": "Cancel"
+  },
+  "pastedTitle": {
+    "message": "Pasted. Check and save in your practice software."
+  },
+  "rowOk": {
+    "message": "$1 characters, exact"
+  },
+  "rowChanged": {
+    "message": "the field changed the text: check it"
+  },
+  "saveYourself": {
+    "message": "Nothing was saved or submitted."
+  },
+  "blockedTitle": {
+    "message": "Paste blocked"
+  },
+  "mismatchName": {
+    "message": "The page shows patient \"$1\", the approved record is for \"$2\"."
+  },
+  "mismatchSpecies": {
+    "message": "The page shows species \"$1\", the approved record is for a $2."
+  },
+  "mismatchHelp": {
+    "message": "Open the right patient in your practice software, or cancel. Nothing was pasted."
+  },
+  "no_mapping": {
+    "message": "No fields mapped for $1. Map them first."
+  },
+  "field_missing": {
+    "message": "The mapped element \"$1\" is not on this page. Open the consultation screen or map again. Nothing was pasted."
+  },
+  "not_empty": {
+    "message": "These boxes already contain text: $1. Clear them in your practice software first; nothing is overwritten. Nothing was pasted."
+  }
+}

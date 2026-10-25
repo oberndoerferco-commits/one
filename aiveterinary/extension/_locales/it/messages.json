@@ -1,0 +1,152 @@
+{
+  "extName": {
+    "message": "AI Veterinary – assistente gestionale"
+  },
+  "extDescription": {
+    "message": "Incolla un referto AI Veterinary approvato nel gestionale, dopo aver verificato che sia il paziente giusto. Funziona offline."
+  },
+  "popupTitle": {
+    "message": "Incolla il referto approvato"
+  },
+  "step1": {
+    "message": "1. Export approvato"
+  },
+  "step1Hint": {
+    "message": "Nel workspace clicca \"Copia per l'estensione del browser\", poi incolla qui (Ctrl+V) o leggi gli appunti."
+  },
+  "readClipboard": {
+    "message": "Leggi appunti"
+  },
+  "approvedOk": {
+    "message": "Approvato: $1 ($2), versione $3, da $4 il $5."
+  },
+  "refused_not_json": {
+    "message": "Rifiutato: non è un export AI Veterinary (non è JSON)."
+  },
+  "refused_wrong_format": {
+    "message": "Rifiutato: formato sconosciuto. Si accetta solo l'export del referto approvato dal workspace."
+  },
+  "refused_not_approved": {
+    "message": "Rifiutato: mancano i dati di approvazione. Approva prima il referto nel workspace."
+  },
+  "refused_fingerprint": {
+    "message": "Rifiutato: il referto non corrisponde all'impronta di approvazione. È stato modificato dopo l'approvazione."
+  },
+  "refused_soap_changed": {
+    "message": "Rifiutato: i testi S/O/A/P non sono quelli generati dal referto approvato."
+  },
+  "refused_patient_missing": {
+    "message": "Rifiutato: l'export non ha nome o specie del paziente, quindi il paziente non può essere bloccato."
+  },
+  "refused_patient_changed": {
+    "message": "Rifiutato: l'intestazione paziente non corrisponde al paziente nel referto approvato."
+  },
+  "step2": {
+    "message": "2. Campi su questo sito"
+  },
+  "siteUnsupported": {
+    "message": "Apri prima il gestionale in questa scheda."
+  },
+  "siteMapped": {
+    "message": "Campi mappati per $1."
+  },
+  "siteNotMapped": {
+    "message": "Nessun campo mappato per $1. Mappali una volta."
+  },
+  "map": {
+    "message": "Mappa i campi (clic per scegliere)"
+  },
+  "remap": {
+    "message": "Mappa di nuovo"
+  },
+  "forget": {
+    "message": "Dimentica questo sito"
+  },
+  "pickStarted": {
+    "message": "Ora clicca sulla pagina come indicato nel riquadro."
+  },
+  "clipboardDenied": {
+    "message": "Appunti non disponibili. Incolla con Ctrl+V."
+  },
+  "step3": {
+    "message": "3. Incolla"
+  },
+  "step3Hint": {
+    "message": "Verifica il paziente mostrato nella pagina, poi compila i quattro campi. Non viene salvato nulla: salvi tu nel gestionale."
+  },
+  "paste": {
+    "message": "Verifica paziente e incolla"
+  },
+  "privacy": {
+    "message": "Funziona solo in questo browser. Nessuna richiesta di rete; il referto non lascia il computer. Si salvano solo gli elementi della pagina che hai scelto."
+  },
+  "pickTitle": {
+    "message": "Mappa i campi"
+  },
+  "pick_name": {
+    "message": "Clicca sull'elemento che mostra il nome del paziente."
+  },
+  "pick_species": {
+    "message": "Clicca sull'elemento che mostra la specie."
+  },
+  "pick_S": {
+    "message": "Clicca sul campo di testo per S (Anamnesi)."
+  },
+  "pick_O": {
+    "message": "Clicca sul campo di testo per O (Esame obiettivo)."
+  },
+  "pick_A": {
+    "message": "Clicca sul campo di testo per A (Valutazione)."
+  },
+  "pick_P": {
+    "message": "Clicca sul campo di testo per P (Piano)."
+  },
+  "pickNotText": {
+    "message": "Non è un campo di testo multiriga. Scegli un'area di testo."
+  },
+  "pickEmpty": {
+    "message": "Quell'elemento non mostra testo. Scegli quello con il dato del paziente."
+  },
+  "mapSaved": {
+    "message": "Mappatura salvata per $1."
+  },
+  "close": {
+    "message": "Chiudi"
+  },
+  "cancel": {
+    "message": "Annulla"
+  },
+  "pastedTitle": {
+    "message": "Incollato. Controlla e salva nel gestionale."
+  },
+  "rowOk": {
+    "message": "$1 caratteri, identico"
+  },
+  "rowChanged": {
+    "message": "il campo ha modificato il testo: controllalo"
+  },
+  "saveYourself": {
+    "message": "Non è stato salvato né inviato nulla."
+  },
+  "blockedTitle": {
+    "message": "Incolla bloccato"
+  },
+  "mismatchName": {
+    "message": "La pagina mostra il paziente \"$1\", il referto approvato è per \"$2\"."
+  },
+  "mismatchSpecies": {
+    "message": "La pagina mostra la specie \"$1\", il referto approvato è per: $2."
+  },
+  "mismatchHelp": {
+    "message": "Apri il paziente giusto nel gestionale, oppure annulla. Non è stato incollato nulla."
+  },
+  "no_mapping": {
+    "message": "Nessun campo mappato per $1. Mappali prima."
+  },
+  "field_missing": {
+    "message": "L'elemento mappato \"$1\" non è in questa pagina. Apri la schermata della visita o mappa di nuovo. Non è stato incollato nulla."
+  },
+  "not_empty": {
+    "message": "Questi campi contengono già testo: $1. Svuotali prima nel gestionale; nulla viene sovrascritto. Non è stato incollato nulla."
+  }
+}

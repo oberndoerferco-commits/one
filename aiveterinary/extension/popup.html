@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>AI Veterinary PIMS helper</title>
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <h1 data-i18n="popupTitle"></h1>
+
+  <section>
+    <h2 data-i18n="step1"></h2>
+    <p class="hint" data-i18n="step1Hint"></p>
+    <textarea id="export" rows="4" spellcheck="false"></textarea>
+    <button id="clip" type="button" data-i18n="readClipboard"></button>
+    <p id="verdict" role="status"></p>
+  </section>
+
+  <section>
+    <h2 data-i18n="step2"></h2>
+    <p id="site" class="hint"></p>
+    <button id="map" type="button"></button>
+    <button id="forget" type="button" data-i18n="forget" hidden></button>
+  </section>
+
+  <section>
+    <h2 data-i18n="step3"></h2>
+    <p class="hint" data-i18n="step3Hint"></p>
+    <button id="paste" type="button" class="primary" data-i18n="paste" disabled></button>
+    <div id="result" role="status"></div>
+  </section>
+
+  <p class="foot" data-i18n="privacy"></p>
+  <script src="dist/popup.js"></script>
+</body>
+</html>
