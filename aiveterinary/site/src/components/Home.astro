@@ -6,6 +6,7 @@ import Logo from './Logo.astro';
 import AskBox from './AskBox.astro';
 import BookletArt from './BookletArt.astro';
 import Newsletter from './Newsletter.astro';
+import Seasonal from './Seasonal.astro';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const a = ANIMALS[lang];
@@ -110,6 +111,8 @@ const AI = {
     <AskBox lang={lang} />
   </div>
 </section>
+
+<Seasonal lang={lang} variant="strip" />
 
 <section class="wrap section cq">
   <div class="section-row"><h2 class="section-h">{C.h}</h2><a class="more" href={`${a.base}/all`}>{T.all}</a></div>
