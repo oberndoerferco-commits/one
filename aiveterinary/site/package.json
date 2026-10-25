@@ -9,7 +9,9 @@
     "preview": "astro preview",
     "check:seo": "node scripts/seo-check.mjs dist",
     "test:db": "bash supabase/tests/run.sh",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:review": "node --test scripts/review.test.mjs",
+    "review:pack": "node scripts/reviewer-pack.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "1.3.0",

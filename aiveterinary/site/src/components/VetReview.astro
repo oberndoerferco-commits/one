@@ -1,0 +1,161 @@
+---
+// /vets/review (+ /it, /de): why we need veterinary reviewers, what they get, and how to apply.
+// Counts and time estimates come from the articles themselves (same estimate as scripts/reviewer-pack.mjs).
+import { getCollection } from 'astro:content';
+type Lang = 'en' | 'it' | 'de';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const CONTACT = 'hello@aiveterinary.org'; // as on the editorial policy and legal notice pages
+
+const mine = await getCollection('animals', (e) => e.data.lang === lang);
+const waiting = mine.filter((e) => !(e.data.draft === false || e.data.reviewedBy));
+const emergency = waiting.filter((e) => e.data.urgency === 'emergency').length;
+const words = (e: (typeof mine)[number]) => ([e.data.title, e.data.description, (e.body ?? '').replace(/\]\([^)]*\)/g, ']').replace(/[#*_>`|[\]-]/g, ' ')].join(' ').match(/[\p{L}\p{N}][\p{L}\p{N}'’.,-]*/gu) ?? []).length;
+const minutes = waiting.map((e) => Math.ceil(words(e) / 130) + 4);
+const avg = minutes.length ? Math.round(minutes.reduce((a, b) => a + b, 0) / minutes.length) : 15;
+const p = lang === 'en' ? '' : `/${lang}`;
+
+const T = {
+  en: {
+    eyebrow: 'For veterinary teams', eyebrow2: 'Reviewing',
+    h1: 'Review an article. Your name goes on it.',
+    lead: `AI Veterinary publishes free, plain-language articles for animal owners in English, Italian and German. ${waiting.length} English articles, ${emergency} of them about emergencies, are drafts waiting for a practising veterinarian to check and sign them.`,
+    whyH: 'Why we need you',
+    why: [
+      'Owners read these pages when something is wrong, often at night, to decide whether to go to a clinic now. The urgency and the "go now" signs have to be right, and only a vet can confirm that.',
+      'The drafts were written with AI help from veterinary guidelines (WSAVA, ESCCAP, ISFM, national bodies). Until a vet has checked an article, it says so on the page: "Draft written with AI help, awaiting vet review".',
+      'Italy, Germany, Austria and Switzerland differ in licensed products, emergency services and habits. A local vet catches what a guideline from elsewhere misses.',
+    ],
+    getH: 'What you get',
+    get: [
+      ['Named credit.', 'Every article you sign shows your name, your registration (Ordine, Tierärztekammer or equivalent) and the review date.', ['How reviews appear', '/editorial']],
+      ['Early access to the documentation tool', 'we are building for veterinary teams, before it opens to clinics.', ['About the tool', '/vets']],
+      ['Your choice of articles and pace.', 'Review one article or fifty, in your species and your language. Emergency articles come first in the list.'],
+    ],
+    howH: 'What reviewing involves',
+    how: [
+      'We send you a reviewer pack: a printable PDF with each article in full, line numbers, its sources and a short checklist (urgency, go-now signs, anything unsafe or missing, local practice, sources).',
+      `An article takes about ${avg} minutes on average, estimated from its length. Emergency articles first.`,
+      'You mark corrections on paper, in the PDF or in an email ("article EN-004, line 42"). We make them and send you the final text. Only when you confirm it do we sign the article in your name.',
+      'Before your first review you tell us about any ties to animal-health companies. A reviewer with a tie to a product does not review articles about that product class.',
+    ],
+    promiseH: 'Our promise: no change after you sign',
+    promise: 'When you sign, we record a fingerprint of everything a reader relies on: title, summary, urgency, sources and the full text. Every build of this site checks each signed article against its fingerprint and refuses to publish if a single character has changed. No later edit, by a person or by AI, can appear under your name. If a signed article needs a change, you see the exact change first, and it is published only after a vet has reviewed and signed it again.',
+    dataH: 'Your data',
+    data: 'We store your name, registration (checked against the public register), which version of which article you approved and when, your declaration of interests, and your email and our correspondence. Name, registration and review date are public on the articles you sign; nothing else is. You can withdraw at any time: we remove your name and the article goes back to "awaiting vet review".',
+    privacy: 'Privacy policy',
+    applyH: 'How to apply',
+    apply: 'Write to us with your name, registration, the languages you read and the animals you know best. We reply with the reviewer pack for your language.',
+    btn: 'Apply by email',
+    or: 'or write to',
+    subject: 'Reviewing articles for AI Veterinary',
+    body: 'Name and title:\nRegistration (Ordine / Kammer and number):\nCountry:\nLanguages I can review (EN / IT / DE):\nAnimals and topics I know best:\n',
+    links: [['Editorial policy', '/editorial'], ['About the project', '/about'], ['For veterinary teams', '/vets']],
+  },
+  it: {
+    eyebrow: 'Per i team veterinari', eyebrow2: 'Revisione',
+    h1: 'Riveda un articolo. Ci sarà il Suo nome.',
+    lead: `AI Veterinary pubblica articoli gratuiti e in parole semplici per chi ha animali, in italiano, inglese e tedesco. ${waiting.length} articoli in italiano, di cui ${emergency} sulle emergenze, sono bozze che aspettano un medico veterinario che li controlli e li firmi.`,
+    whyH: 'Perché abbiamo bisogno di Lei',
+    why: [
+      'I proprietari leggono queste pagine quando qualcosa non va, spesso di notte, per decidere se andare subito in clinica. L’urgenza e i segni per cui andare subito devono essere giusti, e solo un veterinario può confermarlo.',
+      'Le bozze sono state scritte con l’aiuto dell’IA a partire da linee guida veterinarie (WSAVA, ESCCAP, ISFM, enti nazionali). Finché un veterinario non ha controllato l’articolo, la pagina lo dice: "Bozza scritta con l’aiuto dell’IA, in attesa di revisione veterinaria".',
+      'Italia, Germania, Austria e Svizzera differiscono per farmaci autorizzati, servizi di pronto soccorso e abitudini. Un veterinario del posto vede ciò che una linea guida straniera non vede.',
+    ],
+    getH: 'Cosa riceve',
+    get: [
+      ['Il Suo nome sull’articolo.', 'Ogni articolo che firma riporta il Suo nome, l’iscrizione all’Ordine (o equivalente) e la data della revisione.', ['Come appaiono le revisioni', '/it/editorial']],
+      ['Accesso anticipato all’assistente per la documentazione', 'che stiamo sviluppando per i team veterinari, prima dell’apertura alle cliniche.', ['Lo strumento', '/it/vets']],
+      ['Sceglie Lei articoli e ritmo.', 'Uno o cinquanta, nella Sua lingua e per le specie che conosce. Gli articoli di emergenza sono in cima alla lista.'],
+    ],
+    howH: 'Cosa comporta la revisione',
+    how: [
+      'Le inviamo un pacchetto per la revisione: un PDF stampabile con ogni articolo per intero, i numeri di riga, le fonti e una breve checklist (urgenza, segni per andare subito, cosa è pericoloso o manca, pratica locale, fonti).',
+      `Un articolo richiede in media circa ${avg} minuti, stimati dalla lunghezza. Prima gli articoli di emergenza.`,
+      'Segna le correzioni sulla carta, nel PDF o in un’email ("articolo IT-004, riga 42"). Le apportiamo e Le inviamo il testo definitivo. Firmiamo l’articolo a Suo nome solo dopo la Sua conferma.',
+      'Prima della prima revisione ci comunica eventuali legami con aziende della salute animale. Chi ha un legame con un prodotto non rivede articoli su quella classe di prodotti.',
+    ],
+    promiseH: 'Il nostro impegno: nessuna modifica dopo la firma',
+    promise: 'Alla firma registriamo un’impronta digitale di tutto ciò su cui il lettore fa affidamento: titolo, sommario, urgenza, fonti e testo completo. Ogni compilazione del sito confronta ogni articolo firmato con la sua impronta e si rifiuta di pubblicare se anche un solo carattere è cambiato. Nessuna modifica successiva, di una persona o di un’IA, può comparire sotto il Suo nome. Se un articolo firmato deve cambiare, Lei vede prima la modifica esatta, e l’articolo viene pubblicato solo dopo una nuova revisione e firma di un veterinario.',
+    dataH: 'I Suoi dati',
+    data: 'Conserviamo nome, iscrizione all’Ordine (verificata nell’albo pubblico), quale versione di quale articolo ha approvato e quando, la dichiarazione di interessi, l’email e la nostra corrispondenza. Nome, iscrizione e data della revisione sono pubblici sugli articoli che firma; nient’altro. Può revocare in qualsiasi momento: rimuoviamo il nome e l’articolo torna "in attesa di revisione veterinaria".',
+    privacy: 'Informativa sulla privacy (in inglese)',
+    applyH: 'Come candidarsi',
+    apply: 'Ci scriva con nome, iscrizione all’Ordine, le lingue che legge e gli animali che conosce meglio. Le rispondiamo con il pacchetto per la revisione nella Sua lingua.',
+    btn: 'Candidati via email',
+    or: 'oppure scriva a',
+    subject: 'Revisione articoli per AI Veterinary',
+    body: 'Nome e titolo:\nIscrizione all’Ordine (provincia e numero):\nPaese:\nLingue in cui posso rivedere (IT / EN / DE):\nAnimali e argomenti che conosco meglio:\n',
+    links: [['Politica editoriale', '/it/editorial'], ['Il progetto', '/it/about'], ['Per i team veterinari', '/it/vets']],
+  },
+  de: {
+    eyebrow: 'Für Praxisteams', eyebrow2: 'Prüfen',
+    h1: 'Prüfen Sie einen Artikel. Ihr Name steht darauf.',
+    lead: `AI Veterinary veröffentlicht kostenlose, verständliche Artikel für Tierhalterinnen und Tierhalter auf Deutsch, Italienisch und Englisch. ${waiting.length} deutsche Artikel, ${emergency} davon zu Notfällen, sind Entwürfe, die darauf warten, dass eine praktizierende Tierärztin oder ein Tierarzt sie prüft und freigibt.`,
+    whyH: 'Warum wir Sie brauchen',
+    why: [
+      'Halter lesen diese Seiten, wenn etwas nicht stimmt, oft nachts, um zu entscheiden, ob sie sofort in die Klinik fahren. Dringlichkeit und Warnzeichen müssen stimmen, und das kann nur eine Tierärztin oder ein Tierarzt bestätigen.',
+      'Die Entwürfe wurden mit KI-Hilfe aus tierärztlichen Leitlinien verfasst (WSAVA, ESCCAP, ISFM, nationale Stellen). Solange niemand aus der Tiermedizin einen Artikel geprüft hat, steht das auf der Seite: „Mit KI-Hilfe verfasster Entwurf, tierärztliche Prüfung ausstehend".',
+      'Deutschland, Österreich, die Schweiz und Italien unterscheiden sich bei zugelassenen Mitteln, Notdiensten und Gewohnheiten. Wer vor Ort praktiziert, sieht, was eine Leitlinie von anderswo übersieht.',
+    ],
+    getH: 'Was Sie bekommen',
+    get: [
+      ['Namentliche Nennung.', 'Jeder Artikel, den Sie freigeben, zeigt Ihren Namen, Ihre Kammer (Tierärztekammer oder Entsprechendes) und das Prüfdatum.', ['So erscheinen Prüfungen', '/de/editorial']],
+      ['Frühen Zugang zum Dokumentationsassistenten,', 'den wir für Praxisteams entwickeln, bevor er für Praxen öffnet.', ['Zum Assistenten', '/de/vets']],
+      ['Sie wählen Artikel und Tempo.', 'Einen Artikel oder fünfzig, in Ihrer Sprache und zu den Tieren, die Sie kennen. Notfallartikel stehen oben auf der Liste.'],
+    ],
+    howH: 'Was die Prüfung umfasst',
+    how: [
+      'Wir senden Ihnen Prüfunterlagen: ein druckbares PDF mit jedem Artikel im vollen Wortlaut, Zeilennummern, den Quellen und einer kurzen Checkliste (Dringlichkeit, Warnzeichen, Gefährliches oder Fehlendes, örtliche Praxis, Quellen).',
+      `Ein Artikel dauert im Schnitt etwa ${avg} Minuten, geschätzt aus seiner Länge. Notfallartikel zuerst.`,
+      'Sie markieren Korrekturen auf Papier, im PDF oder in einer E-Mail („Artikel DE-004, Zeile 42"). Wir übernehmen sie und senden Ihnen den endgültigen Text. Erst nach Ihrer Bestätigung geben wir den Artikel in Ihrem Namen frei.',
+      'Vor der ersten Prüfung nennen Sie uns Verbindungen zu Unternehmen der Tiergesundheit. Wer mit einem Produkt verbunden ist, prüft keine Artikel über diese Produktklasse.',
+    ],
+    promiseH: 'Unser Versprechen: keine Änderung nach Ihrer Freigabe',
+    promise: 'Bei der Freigabe speichern wir einen Fingerabdruck von allem, worauf sich Leser verlassen: Titel, Zusammenfassung, Dringlichkeit, Quellen und vollständiger Text. Bei jedem Erstellen dieser Website wird jeder freigegebene Artikel mit seinem Fingerabdruck verglichen; hat sich auch nur ein Zeichen geändert, wird nicht veröffentlicht. Keine spätere Änderung, ob von einem Menschen oder einer KI, kann unter Ihrem Namen erscheinen. Muss ein freigegebener Artikel geändert werden, sehen Sie die genaue Änderung zuerst, und er erscheint erst wieder nach erneuter tierärztlicher Prüfung und Freigabe.',
+    dataH: 'Ihre Daten',
+    data: 'Wir speichern Ihren Namen, Ihre Kammer (im öffentlichen Verzeichnis geprüft), welche Fassung welches Artikels Sie wann freigegeben haben, Ihre Erklärung zu Interessenkonflikten, Ihre E-Mail-Adresse und unsere Korrespondenz. Name, Kammer und Prüfdatum sind auf den freigegebenen Artikeln öffentlich, sonst nichts. Sie können jederzeit widerrufen: Wir entfernen Ihren Namen, und der Artikel ist wieder „tierärztliche Prüfung ausstehend".',
+    privacy: 'Datenschutzerklärung (auf Englisch)',
+    applyH: 'So bewerben Sie sich',
+    apply: 'Schreiben Sie uns mit Ihrem Namen, Ihrer Kammer, den Sprachen, die Sie lesen, und den Tieren, die Sie am besten kennen. Wir antworten mit den Prüfunterlagen in Ihrer Sprache.',
+    btn: 'Per E-Mail bewerben',
+    or: 'oder schreiben Sie an',
+    subject: 'Artikel prüfen für AI Veterinary',
+    body: 'Name und Titel:\nKammer (Tierärztekammer oder Entsprechendes) und ggf. Nummer:\nLand:\nSprachen, in denen ich prüfen kann (DE / EN / IT):\nTiere und Themen, die ich am besten kenne:\n',
+    links: [['Redaktionelle Grundsätze', '/de/editorial'], ['Über das Projekt', '/de/about'], ['Für Praxisteams', '/de/vets']],
+  },
+}[lang];
+const mailto = `mailto:${CONTACT}?subject=${encodeURIComponent(T.subject)}&body=${encodeURIComponent(T.body)}`;
+---
+<article class="wrap narrow hero prose">
+  <p class="eyebrow"><a href={`${p}/vets`}>{T.eyebrow}</a> · {T.eyebrow2}</p>
+  <h1>{T.h1}</h1>
+  <p class="lead">{T.lead}</p>
+  <p><a class="btn" href="#apply">{T.btn}</a></p>
+
+  <h2>{T.whyH}</h2>
+  {T.why.map((x) => <p>{x}</p>)}
+
+  <h2>{T.getH}</h2>
+  <ul class="paw-list">
+    {T.get.map(([b, text, link]) => <li><strong>{b as string}</strong> {text as string}{link && <> <a href={(link as string[])[1]}>{(link as string[])[0]}</a></>}</li>)}
+  </ul>
+
+  <h2>{T.howH}</h2>
+  <ol>
+    {T.how.map((x) => <li>{x}</li>)}
+  </ol>
+
+  <h2>{T.promiseH}</h2>
+  <p>{T.promise}</p>
+
+  <h2>{T.dataH}</h2>
+  <p>{T.data} <a href="/privacy" hreflang={lang === "en" ? undefined : "en"}>{T.privacy}</a>.</p>
+
+  <h2 id="apply">{T.applyH}</h2>
+  <p>{T.apply}</p>
+  <p><a class="btn" href={mailto}>{T.btn}</a></p>
+  <p>{T.or} <a href={`mailto:${CONTACT}`}>{CONTACT}</a>.</p>
+
+  <p>{T.links.map(([label, href], i) => <>{i > 0 && ' · '}<a href={href}>{label}</a></>)}</p>
+</article>

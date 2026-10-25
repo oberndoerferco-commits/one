@@ -91,3 +91,14 @@ node scripts/review.mjs sign src/content/animals/it/cane-febbre.md --by "Dott.ss
 ```
 
 This sets `draft: false`, the reviewer, the review date, the next review date (one year later) and a hash of the title, summary, sources and text. Every build runs `node scripts/review.mjs check` first and fails if a reviewed article changed after sign-off, so no later edit (human or AI) can appear under a vet's name. To change a reviewed article, edit it and have it reviewed and signed again.
+
+Helpers (read-only, they never change an article):
+
+```
+node scripts/review.mjs queue [--lang it]        # unreviewed articles, emergency first, with word counts and time estimates; also re-reviews that are due
+node scripts/review.mjs diff <file>              # what changed in a signed article since signing (signed text found in git history)
+npm run review:pack                              # reviewer pack per language: ../reviewer-pack/reviewer-pack-<lang>.html (+ .pdf via Playwright/Chromium)
+npm run test:review                              # node:test tests for scripts/review.mjs
+```
+
+The reviewer pack has a cover letter (what the site is, what signing means, time needed, how to send corrections, GDPR), a reviewer details form, and every article waiting for review with its urgency, go-now section, numbered full text, sources, checklist and sign-off box. Each article shows the first 12 characters of its review hash: before signing, check that `contentHash` of the file still starts with the same characters, so the signature covers the exact text the vet read. Fill in the placeholders in the cover letter (founder name, company name and address, retention period) in `scripts/reviewer-pack.mjs`. Vets apply through /vets/review.
