@@ -42,4 +42,12 @@ export const TRANSLATION_GROUPS: { en?: string; it?: string; de?: string }[] = [
   { en: 'horse-laminitis', it: 'laminite-cavallo', de: 'hufrehe-pferd' }, // horse-laminitis
   { en: 'horse-vital-signs', it: 'parametri-vitali-cavallo', de: 'vitalwerte-pferd' }, // horse-vital-signs
   { en: 'horse-coughing', it: 'cavallo-tosse', de: 'pferd-hustet' }, // horse-coughing
+  { en: 'guinea-pig-not-eating', it: 'cavia-non-mangia', de: 'meerschweinchen-frisst-nicht' }, // guinea-pig-not-eating
+  { en: 'guinea-pig-sneezing', it: 'cavia-starnutisce', de: 'meerschweinchen-niest' }, // guinea-pig-sneezing
+  { en: 'guinea-pig-vitamin-c', it: 'cavia-vitamina-c', de: 'meerschweinchen-vitamin-c' }, // guinea-pig-vitamin-c
+  { en: 'guinea-pig-hair-loss-mites', it: 'cavia-perde-pelo', de: 'meerschweinchen-milben' }, // guinea-pig-hair-loss
+  { en: 'budgie-fluffed-up', it: 'cocorita-gonfia-dorme', de: 'wellensittich-aufgeplustert' }, // bird-fluffed-up
+  { en: 'budgie-egg-bound', it: 'cocorita-uovo-incastrato', de: 'wellensittich-legenot' }, // bird-egg-binding
+  { en: 'budgie-diarrhoea', it: 'cocorita-diarrea', de: 'wellensittich-durchfall' }, // bird-droppings
+  { en: 'bird-feather-plucking', it: 'pappagallo-si-strappa-le-piume', de: 'papagei-rupft-sich' }, // bird-feather-plucking
 ];
