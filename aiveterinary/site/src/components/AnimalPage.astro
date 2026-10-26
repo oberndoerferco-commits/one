@@ -3,12 +3,15 @@
  * /animals/<key> for an animal: a species health hub (profile in src/data/species.ts plus its articles)
  * and/or a lexicon entry (src/content/lexicon), merged on one page when the key is both, so an animal
  * never has two URLs. Every section shows only when it has content, except Health topics on a lexicon
- * entry, which says so when there are none. Go-now signs stay at the top, above the fact sheet.
+ * entry, which says so when there are none. Go-now signs stay at the top, above the fact sheet, except on a
+ * breed page: there the breed's own "breed-health" facts come first, in a highlighted box, and the parent
+ * animal's general go-now signs follow the fact sheet.
  * Structured data for lexicon entries comes from src/lib/seo.ts (Base.astro).
  */
 import { render } from 'astro:content';
 import { ANIMALS, nArticles, type Lang } from '../lib/animals-i18n';
 import AnimalIcon from './AnimalIcon.astro';
+import GoNowBox from './GoNowBox.astro';
 import type { IconKind } from '../lib/animal-icons';
 import { PROFILES, GUIDE, type Cited, type Item } from '../data/species';
 import { FIELDS, FIELD_LABEL, LEX } from '../lib/lexicon';
@@ -41,11 +44,16 @@ const name = d?.name ?? profile!.name[lang];
 const icon: IconKind = d ? iconOf(filter, d.group, d.species) : (filter as IconKind);
 const tint = d ? tintOf(filter, d.group, d.species) : filter;
 const rows = [...(d?.facts ?? [])].sort((a, b) => FIELDS.indexOf(a.field) - FIELDS.indexOf(b.field));
+// On a breed page the breed-health rows move out of the table into their own box at the top.
+const breedHealth = parent ? rows.filter((f) => f.field === 'breed-health') : [];
+const sheetRows = breedHealth.length ? rows.filter((f) => f.field !== 'breed-health') : rows;
 const Content = entry ? (await render(entry)).Content : null;
 const others = (await liveSpecies(lang)).filter((k) => k !== filter);
 const href = (slug: string) => `${t.base}/${slug}`;
 const titleOf = (slug: string) => bySlug.get(slug)!.data.title;
 const fmt = (x: Date) => x.toLocaleDateString(t.locale, { day: 'numeric', month: 'long', year: 'numeric' });
+const goItems = goNow.map((c) => ({ text: c.text, sources: c.sources, href: href(c.slug), title: titleOf(c.slug) }));
+const goBox = { items: goItems, source: G.source, read: G.read, moreHref: G.emergencyHref, moreLabel: G.emergencyLink };
 const topicsLead = topics.length === 1 ? G.topicsLeadOne : G.topicsLead.replace('{n}', String(topics.length));
 ---
 <div class="ap-page" data-pagefind-body={d ? '' : undefined} data-pagefind-meta={d?.species ? `species:${d.species}` : undefined}>
@@ -77,20 +85,18 @@ const topicsLead = topics.length === 1 ? G.topicsLeadOne : G.topicsLead.replace(
   </div>
 </section>
 
-{goNow.length > 0 && (
-  <section class="wrap ap-sec" aria-labelledby="ap-go-h" data-pagefind-ignore>
-    <div class="ap-go">
-      <h2 id="ap-go-h" class="ap-go-h"><svg width="26" height="26" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 5l12 21H4z M16 13v6 M16 23v.5" /></svg>{G.goNowH}</h2>
-      <p class="ap-go-lead">{G.goNowLead}</p>
-      <ul class="ap-go-list">
-        {goNow.map((c) => (
-          <li>
-            <p class="ap-text">{c.text}</p>
-            <p class="ap-src">{G.source}: {c.sources.join(', ')} · <a href={href(c.slug)}>{G.read}: {titleOf(c.slug)}</a></p>
-          </li>
+{!parent && goItems.length > 0 && <GoNowBox {...goBox} heading={G.goNowH} lead={G.goNowLead} />}
+
+{breedHealth.length > 0 && (
+  <section class="wrap ap-sec" aria-labelledby="ap-bh-h">
+    <div class="ap-bh">
+      <h2 id="ap-bh-h" class="ap-bh-h"><svg width="26" height="26" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 27s-11-6.6-11-14.2A6 6 0 0 1 16 9.4a6 6 0 0 1 11 3.4C27 20.4 16 27 16 27z M9 16h4l2-3 3 6 2-3h3" /></svg>{L.breedHealthH}</h2>
+      <p class="ap-bh-lead">{L.breedHealthLead}</p>
+      <ul class="ap-bh-list">
+        {breedHealth.map((f) => (
+          <li>{f.value}{'\u00a0'}<sup class="ap-ref"><a href={`#ap-src-${f.ref}`}><span class="sr-only">{L.source} </span>{f.ref}</a></sup></li>
         ))}
       </ul>
-      <p class="ap-go-more"><a class="ap-go-btn" href={G.emergencyHref}>{G.emergencyLink} →</a></p>
     </div>
   </section>
 )}
@@ -101,7 +107,7 @@ const topicsLead = topics.length === 1 ? G.topicsLeadOne : G.topicsLead.replace(
     <table class="ap-sheet">
       <caption class="sr-only">{L.factSheet}: {name}</caption>
       <tbody>
-        {rows.map((f) => (
+        {sheetRows.map((f) => (
           <tr>
             <th scope="row">{FIELD_LABEL[lang][f.field]}</th>
             <td>{f.value}{'\u00a0'}<sup class="ap-ref"><a href={`#ap-src-${f.ref}`}><span class="sr-only">{L.source} </span>{f.ref}</a></sup></td>
@@ -111,6 +117,8 @@ const topicsLead = topics.length === 1 ? G.topicsLeadOne : G.topicsLead.replace(
     </table>
   </section>
 )}
+
+{parent && goItems.length > 0 && <GoNowBox {...goBox} heading={L.generalGoNow(d?.species, parent.data.name)} lead={L.generalGoNowLead} />}
 
 {breeds.length > 0 && (
   <section class="wrap ap-sec" aria-labelledby="ap-breeds-h" data-pagefind-ignore>
@@ -227,17 +235,14 @@ const topicsLead = topics.length === 1 ? G.topicsLeadOne : G.topicsLead.replace(
   .ap-status a:hover { color: var(--accent); }
   .ap-st-draft strong { color: color-mix(in srgb, var(--warn) 75%, var(--ink)); font-weight: 700; }
 
-  .ap-go { border: 2px solid var(--danger); background: var(--danger-soft); border-radius: 20px; padding: 22px 24px; }
-  .ap-go-h { display: flex; align-items: center; gap: 10px; margin: 0 0 6px; color: var(--danger); }
-  .ap-go-lead { margin: 0 0 12px; font-weight: 600; }
-  .ap-go-list { margin: 0; padding: 0; list-style: none; }
-  .ap-go-list li { padding: 12px 0 4px; border-top: 1px solid color-mix(in srgb, var(--danger) 30%, transparent); }
-  .ap-go-list .ap-text { font-weight: 600; }
-  .ap-go-list .ap-src, .ap-go-list .ap-src a { color: var(--ink-2); }
-  .ap-go-list .ap-src a { color: var(--danger); }
-  .ap-go-more { margin: 10px 0 0; }
-  .ap-go-btn { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 999px; background: var(--danger); color: var(--surface); font-weight: 700; text-decoration: none; }
-  .ap-go-btn:hover { text-decoration: underline; }
+  .ap-bh { max-width: 760px; box-sizing: border-box; border: 2px solid color-mix(in srgb, var(--warn) 70%, var(--ink)); background: var(--warn-soft); border-radius: 20px; padding: 22px 24px; }
+  .ap-bh-h { display: flex; align-items: center; gap: 10px; margin: 0 0 6px; color: var(--ink); }
+  .ap-bh-h svg { flex: none; color: color-mix(in srgb, var(--warn) 75%, var(--ink)); }
+  .ap-bh-lead { margin: 0 0 8px; color: var(--ink-2); }
+  .ap-bh-list { margin: 0; padding: 0; list-style: none; }
+  .ap-bh-list li { padding: 11px 0 11px 22px; position: relative; border-top: 1px solid color-mix(in srgb, var(--warn) 35%, transparent); font-weight: 600; overflow-wrap: break-word; }
+  .ap-bh-list li::before { content: ''; position: absolute; left: 4px; top: 1.15em; width: 8px; height: 8px; border-radius: 50%; background: color-mix(in srgb, var(--warn) 75%, var(--ink)); }
+  .ap-bh-list .ap-ref a { font-weight: 700; }
 
   .ap-sheet { width: 100%; max-width: 760px; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
   .ap-sheet th, .ap-sheet td { text-align: left; vertical-align: top; padding: 12px 16px; border-top: 1px solid var(--line); overflow-wrap: break-word; hyphens: auto; }
@@ -291,7 +296,7 @@ const topicsLead = topics.length === 1 ? G.topicsLeadOne : G.topicsLead.replace(
   .ap-other a:hover { border-color: var(--accent); color: var(--accent); }
   .ap-other-c { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--tint, var(--accent-soft)); }
   @media (max-width: 480px) {
-    .ap-go { padding: 18px 16px; } .ap-booklet { padding: 20px 16px; } .ap-fact { padding: 16px 16px 8px; }
+    .ap-bh { padding: 18px 16px; } .ap-booklet { padding: 20px 16px; } .ap-fact { padding: 16px 16px 8px; }
     .ap-sheet th, .ap-sheet td { padding: 10px 12px; } .ap-sheet th { width: 40%; font-size: .95rem; }
   }
 </style>

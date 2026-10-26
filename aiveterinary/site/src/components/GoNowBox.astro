@@ -1,0 +1,48 @@
+---
+/**
+ * The red "go now" box on an animal page: signs that mean a vet visit straight away, each with its
+ * sources and the article it comes from. AnimalPage shows it at the top of an animal's page, and on a
+ * breed page below the fact sheet under a "general emergency signs" heading, after the breed's own
+ * health box.
+ */
+interface Item { text: string; sources: string[]; href: string; title: string }
+interface Props {
+  items: Item[]; heading: string; lead: string;
+  source: string; read: string; moreHref: string; moreLabel: string;
+}
+const { items, heading, lead, source, read, moreHref, moreLabel } = Astro.props;
+---
+<section class="wrap ap-sec" aria-labelledby="ap-go-h" data-pagefind-ignore>
+  <div class="ap-go">
+    <h2 id="ap-go-h" class="ap-go-h"><svg width="26" height="26" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 5l12 21H4z M16 13v6 M16 23v.5" /></svg>{heading}</h2>
+    <p class="ap-go-lead">{lead}</p>
+    <ul class="ap-go-list">
+      {items.map((c) => (
+        <li>
+          <p class="ap-text">{c.text}</p>
+          <p class="ap-src">{source}: {c.sources.join(', ')} · <a href={c.href}>{read}: {c.title}</a></p>
+        </li>
+      ))}
+    </ul>
+    <p class="ap-go-more"><a class="ap-go-btn" href={moreHref}>{moreLabel} →</a></p>
+  </div>
+</section>
+
+<style>
+  .ap-sec { margin-top: 40px; }
+  .ap-text { margin: 0 0 8px; overflow-wrap: anywhere; }
+  .ap-src { margin: 0; font-size: .88rem; color: var(--ink-3); overflow-wrap: anywhere; }
+  .ap-src a { display: inline-flex; align-items: center; min-height: 44px; color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  .ap-go { border: 2px solid var(--danger); background: var(--danger-soft); border-radius: 20px; padding: 22px 24px; }
+  .ap-go-h { display: flex; align-items: center; gap: 10px; margin: 0 0 6px; color: var(--danger); }
+  .ap-go-lead { margin: 0 0 12px; font-weight: 600; }
+  .ap-go-list { margin: 0; padding: 0; list-style: none; }
+  .ap-go-list li { padding: 12px 0 4px; border-top: 1px solid color-mix(in srgb, var(--danger) 30%, transparent); }
+  .ap-go-list .ap-text { font-weight: 600; }
+  .ap-go-list .ap-src, .ap-go-list .ap-src a { color: var(--ink-2); }
+  .ap-go-list .ap-src a { color: var(--danger); }
+  .ap-go-more { margin: 10px 0 0; }
+  .ap-go-btn { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 999px; background: var(--danger); color: var(--surface); font-weight: 700; text-decoration: none; }
+  .ap-go-btn:hover { text-decoration: underline; }
+  @media (max-width: 480px) { .ap-go { padding: 18px 16px; } }
+</style>

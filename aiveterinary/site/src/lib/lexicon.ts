@@ -42,6 +42,10 @@ export const LEX = {
     breeds: 'Breeds', breedsLead: (n: number) => `${n === 1 ? '1 breed' : `${n} breeds`} with their own fact sheet: lifespan, size, coat and the health problems the breed is known for.`,
     breedsOf: (parent: string, name: string) => ({ dog: 'Dog breeds', cat: 'Cat breeds' } as Record<string, string>)[parent] ?? `${name}: breeds`,
     nBreeds: (n: number) => (n === 1 ? '1 breed' : `${n} breeds`), breadcrumb: 'Breadcrumb',
+    breedHealthH: 'Known health problems in this breed',
+    breedHealthLead: 'What studies and breed bodies report for the breed as a whole. Not every animal is affected; the numbers link to the sources.',
+    generalGoNow: (species: string | undefined, name: string) => ({ dog: 'General emergency signs for dogs', cat: 'General emergency signs for cats' } as Record<string, string>)[species ?? ''] ?? `General emergency signs: ${name}`,
+    generalGoNowLead: 'These apply to every breed. Go to a vet now, and call ahead, if you see any of them.',
   },
   it: {
     factSheet: 'Scheda', sources: 'Fonti', source: 'Fonte', sci: 'Nome scientifico',
@@ -52,6 +56,10 @@ export const LEX = {
     breeds: 'Razze', breedsLead: (n: number) => `${n === 1 ? '1 razza' : `${n} razze`} con la propria scheda: durata della vita, taglia, mantello e i problemi di salute noti della razza.`,
     breedsOf: (parent: string, name: string) => ({ dog: 'Razze di cani', cat: 'Razze di gatti' } as Record<string, string>)[parent] ?? `${name}: razze`,
     nBreeds: (n: number) => (n === 1 ? '1 razza' : `${n} razze`), breadcrumb: 'Percorso',
+    breedHealthH: 'Problemi di salute noti nella razza',
+    breedHealthLead: "Quello che studi ed enti di razza riportano per la razza nel suo insieme. Non tutti gli animali ne sono colpiti; i numeri rimandano alle fonti.",
+    generalGoNow: (species: string | undefined, name: string) => ({ dog: 'Segni di emergenza generali nel cane', cat: 'Segni di emergenza generali nel gatto' } as Record<string, string>)[species ?? ''] ?? `Segni di emergenza generali: ${name}`,
+    generalGoNowLead: 'Valgono per tutte le razze. Vai subito dal veterinario, telefonando prima, se vedi uno di questi segni.',
   },
   de: {
     factSheet: 'Steckbrief', sources: 'Quellen', source: 'Quelle', sci: 'Wissenschaftlicher Name',
@@ -62,6 +70,10 @@ export const LEX = {
     breeds: 'Rassen', breedsLead: (n: number) => `${n === 1 ? '1 Rasse' : `${n} Rassen`} mit eigenem Steckbrief: Lebenserwartung, Größe, Fell und die bekannten Gesundheitsprobleme der Rasse.`,
     breedsOf: (parent: string, name: string) => ({ dog: 'Hunderassen', cat: 'Katzenrassen' } as Record<string, string>)[parent] ?? `${name}: Rassen`,
     nBreeds: (n: number) => (n === 1 ? '1 Rasse' : `${n} Rassen`), breadcrumb: 'Brotkrümelnavigation',
+    breedHealthH: 'Bekannte Gesundheitsprobleme der Rasse',
+    breedHealthLead: 'Was Studien und Zuchtverbände für die Rasse insgesamt berichten. Nicht jedes Tier ist betroffen; die Zahlen verweisen auf die Quellen.',
+    generalGoNow: (species: string | undefined, name: string) => ({ dog: 'Allgemeine Notfallzeichen bei Hunden', cat: 'Allgemeine Notfallzeichen bei Katzen' } as Record<string, string>)[species ?? ''] ?? `Allgemeine Notfallzeichen: ${name}`,
+    generalGoNowLead: 'Sie gelten für jede Rasse. Fahren Sie sofort in die Praxis und rufen Sie vorher an, wenn Sie eines dieser Zeichen sehen.',
   },
 } as const;
 
