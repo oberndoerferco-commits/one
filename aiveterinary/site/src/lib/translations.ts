@@ -72,4 +72,8 @@ export const TRANSLATION_GROUPS: { en?: string; it?: string; de?: string }[] = [
   { en: 'cat-fever', it: 'gatto-febbre', de: 'katze-warme-ohren-fieber' }, // cat-fever
   { en: 'dog-constipation', it: 'cane-stitico', de: 'hund-verstopfung' }, // dog-constipation
   { en: 'dog-eats-grass-or-poo', it: 'cane-mangia-erba-o-cacca', de: 'warum-frisst-mein-hund-gras' }, // dog-grass-poo
+  { en: 'pyometra-dogs-cats', it: 'piometra-cane-gatto', de: 'pyometra-hund-katze' }, // pyometra
+  { en: 'dog-slipped-disc-ivdd', it: 'ernia-del-disco-cane', de: 'bandscheibenvorfall-hund' }, // ivdd
+  { en: 'rabbit-myxomatosis-rhd', it: 'mixomatosi-mev-coniglio', de: 'myxomatose-chinaseuche-kaninchen' }, // rabbit-myxo-rhd
+  { en: 'cat-flutd', it: 'flutd-gatto', de: 'flutd-katze' }, // flutd
 ];
