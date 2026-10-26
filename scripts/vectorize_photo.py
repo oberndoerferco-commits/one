@@ -36,33 +36,39 @@ from PIL import Image
 from scipy import ndimage as ndi
 
 
-def crisp(im, box, zoom, speckle, corner):
+def crisp(im, box, zoom, bias):
     """That box as two flat colours: the lighter subject over what is behind.
 
-    Split by brightness rather than by any named colour, so it holds for
-    gold on grey or anything else set against its ground. The split is made
-    on the upscaled picture, which is what lets an edge fall between two
-    pixels instead of on one -- at this size a letter's stem is four pixels
-    across and half a pixel of it is visible.
+    The split is made along the line between the two colours the box is
+    actually made of, found by a two-means pass in RGB, rather than on
+    brightness alone -- gold lettering against grey separates on hue as much
+    as on tone, and a brightness cut either keeps the cast shadow or eats
+    the serifs. The cut is taken on the upscaled picture, which is what lets
+    an edge fall between two pixels instead of on one: at this size a
+    letter's stem is four pixels across.
     """
     a = np.asarray(im.crop(box), float)
-    lum = a.mean(-1)
-    lo, hi = lum.min(), lum.max()
-    t = (lo + hi) / 2                      # two means, run to convergence
-    for _ in range(40):
-        d = lum <= t
-        if not d.any() or d.all():
+    X = a.reshape(-1, 3)
+    c0 = X[X.mean(1).argmin()].copy()
+    c1 = X[X.mean(1).argmax()].copy()
+    for _ in range(60):
+        near1 = ((X - c1) ** 2).sum(1) < ((X - c0) ** 2).sum(1)
+        if not near1.any() or near1.all():
             break
-        nt = (lum[d].mean() + lum[~d].mean()) / 2
-        if abs(nt - t) < 1e-3:
+        n0, n1 = X[~near1].mean(0), X[near1].mean(0)
+        done = np.abs(n0 - c0).max() < 1e-3 and np.abs(n1 - c1).max() < 1e-3
+        c0, c1 = n0, n1
+        if done:
             break
-        t = nt
-    m = ndi.zoom(lum, zoom, order=3) > t
-    m = ndi.binary_opening(ndi.binary_closing(m, np.ones((3, 3))), np.ones((3, 3)))
+    axis = c1 - c0
+    length = float(np.linalg.norm(axis))
+    if length < 1e-6:
+        return None, None
+    p = ((a - c0) @ (axis / length)) / length      # 0 at the ground, 1 at the subject
+    m = ndi.gaussian_filter(ndi.zoom(p, zoom, order=3), 1.0) > bias
     if not m.any():
         return None, None
-    fill = tuple(int(v) for v in np.median(a[lum > t], 0))
-    return m, fill
+    return m, tuple(int(v) for v in np.round(c1))
 
 
 def render(svg, w, h):
@@ -87,7 +93,12 @@ def main():
     ap.add_argument('--crisp', default='',
                     help='x0,y0,x1,y1 -- re-trace this box as flat two-tone art '
                          'and lay it over the trace; for lettering and signage')
-    ap.add_argument('--crisp-zoom', type=int, default=6)
+    ap.add_argument('--crisp-zoom', type=int, default=8)
+    ap.add_argument('--crisp-bias', type=float, default=0.5,
+                    help='0 keeps everything, 1 keeps only the subject core')
+    ap.add_argument('--crisp-out', action='store_true',
+                    help='also write the crisp region on its own, trimmed to its '
+                         'ink, in its own colour and in black')
     a = ap.parse_args()
 
     os.makedirs(a.out_dir, exist_ok=True)
@@ -115,7 +126,7 @@ def main():
 
     if a.crisp:
         box = tuple(float(v) for v in a.crisp.split(','))
-        m, fill = crisp(im, box, a.crisp_zoom, a.filter_speckle, a.corner)
+        m, fill = crisp(im, box, a.crisp_zoom, a.crisp_bias)
         if m is None:
             print('crisp: nothing to separate in that box', file=sys.stderr)
         else:
@@ -125,14 +136,35 @@ def main():
             vtracer.convert_image_to_svg_py(
                 mp, lp, colormode='binary', mode='spline', filter_speckle=8,
                 corner_threshold=70, length_threshold=4.0, splice_threshold=45)
-            txt = open(lp, encoding='utf-8').read().replace(
-                'fill="#000000"', 'fill="#%02x%02x%02x"' % fill)
-            open(lp, 'w', encoding='utf-8').write(txt)
-            out[0].show_pdf_page(pymupdf.Rect(*box),
-                                 pymupdf.open('pdf', pymupdf.open(lp).convert_to_pdf()), 0)
+            raw = open(lp, encoding='utf-8').read()
+            def coloured(rgb):
+                t = raw.replace('fill="#000000"', 'fill="#%02x%02x%02x"' % rgb)
+                open(lp, 'w', encoding='utf-8').write(t)
+                return pymupdf.open('pdf', pymupdf.open(lp).convert_to_pdf())
+            one = coloured(fill)
+            out[0].show_pdf_page(pymupdf.Rect(*box), one, 0)
+            print(f'crisp: {raw.count(chr(60) + "path")} shapes in '
+                  '#%02x%02x%02x' % fill, file=sys.stderr)
+            if a.crisp_out:
+                ys, xs = np.nonzero(m)
+                h, w = m.shape
+                px = (xs.min(), ys.min(), xs.max() + 1, ys.max() + 1)
+                r = one[0].rect                      # the traced page, in its own units
+                clip = pymupdf.Rect(px[0] * r.width / w, px[1] * r.height / h,
+                                    px[2] * r.width / w, px[3] * r.height / h)
+                pw = (px[2] - px[0]) * (box[2] - box[0]) / w
+                ph = (px[3] - px[1]) * (box[3] - box[1]) / h
+                for tag, rgb in (('', fill), ('-black', (0, 0, 0))):
+                    piece = pymupdf.open()
+                    pg = piece.new_page(width=pw, height=ph)
+                    pg.show_pdf_page(pymupdf.Rect(0, 0, pw, ph),
+                                     one if rgb == fill else coloured(rgb), 0, clip=clip)
+                    f = os.path.join(a.out_dir, f'{stem}-crisp{tag}.pdf')
+                    piece.save(f, garbage=4, deflate=True)
+                    with open(f[:-4] + '.svg', 'w', encoding='utf-8') as fh:
+                        fh.write(piece[0].get_svg_image())
+                    print(f'  {f}  {pw:.1f} x {ph:.1f} pt', file=sys.stderr)
             os.remove(mp); os.remove(lp)
-            print(f'crisp: {txt.count(chr(60) + "path")} shapes in '
-                  f'#%02x%02x%02x' % fill, file=sys.stderr)
 
     pdf = os.path.join(a.out_dir, f'{stem}.pdf')
     out.save(pdf, garbage=4, deflate=True)
