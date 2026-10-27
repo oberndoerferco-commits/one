@@ -75,6 +75,82 @@ def two_means(a):
     return c0, c1
 
 
+def period(field, lo=0.55, hi=1.05):
+    """The vertical repeat, to a hundredth of a pixel.
+
+    Scored by resampling every later repeat back onto the first and taking
+    the mean square difference, so a period that is half a pixel out is
+    penalised by the blur it would cause, not just by whole-row mismatch.
+    """
+    H, W = field.shape
+    xs = np.arange(W)
+
+    def err(q):
+        n = int(np.floor((H - 1) / q))
+        if n < 2:
+            return 1e9
+        ref = ndi.map_coordinates(field, np.meshgrid(np.arange(q), xs, indexing='ij'),
+                                  order=3, mode='nearest')
+        tot = 0.0
+        for k in range(1, n):
+            g = ndi.map_coordinates(
+                field, np.meshgrid(np.arange(q) + k * q, xs, indexing='ij'),
+                order=3, mode='nearest')
+            tot += float(((g - ref) ** 2).mean())
+        return tot / (n - 1)
+
+    rows = np.nonzero((field > 0.45).any(1))[0]
+    if len(rows) < 2:
+        return None
+    span = rows.max() - rows.min() + 1
+    grid = np.arange(span * lo / 2, span * hi / 2, 0.1)
+    if not len(grid):
+        return None
+    q = float(grid[int(np.argmin([err(x) for x in grid]))])
+    for step in (0.01,):
+        fine = np.arange(q - 0.1, q + 0.1, step)
+        q = float(fine[int(np.argmin([err(x) for x in fine]))])
+    return q
+
+
+def tile(a, n):
+    """One repeat of the pattern, laid end to end n times.
+
+    Every repeat of a cast ornament differs a little -- in the mould, in
+    the light, in the photograph -- so a border cut from the picture carries
+    that variation and a long one shows it. Taking one repeat and laying it
+    out instead makes every unit identical and the length free.
+
+    The cut is made where the fewest pixels cross it, which on a vine is a
+    line through the stem alone. The seam is then one crossing rather than
+    a line through several leaves at once.
+    """
+    c0, c1 = two_means(a)
+    axis = c1 - c0
+    p = ((a - c0) @ (axis / np.linalg.norm(axis))) / np.linalg.norm(axis)
+    q = period(p)
+    if q is None:
+        return a, None
+    H, W, _ = a.shape
+    ink = (p > 0.45)
+    rows = ink.sum(1)
+    on = np.nonzero(rows)[0]
+    # look for the cut in the repeat nearest the middle, away from both edges
+    start = int((on.min() + on.max()) / 2 - q / 2)
+    start = max(on.min(), min(start, int(H - q - 1)))
+    window = rows[start:start + int(q)]
+    cut = start + int(np.argmin(window))
+    if cut + q > H:
+        cut = int(H - q - 1)
+    ys = np.arange(q)
+    out = []
+    for k in range(n):
+        g = np.meshgrid(ys + cut, np.arange(W), indexing='ij')
+        out.append(np.dstack([ndi.map_coordinates(a[..., i], g, order=3, mode='nearest')
+                              for i in range(3)]))
+    return np.clip(np.vstack(out), 0, 255), (q, cut, int(window.min()))
+
+
 def flow(mask, radius, iters=2):
     """Curvature flow: blur the indicator, cut it again at a half.
 
@@ -180,6 +256,8 @@ def main():
                     help='openings smaller than this are lighting, and get filled')
     ap.add_argument('--min-blob', type=float, default=400)
     ap.add_argument('--invert', action='store_true', help='also write white on black')
+    ap.add_argument('--repeat', type=int, default=0,
+                    help='find the pattern\'s repeat and lay it out this many times')
     ap.add_argument('--detail', choices=('none', 'line', 'relief'), default='none',
                     help="none: the solid shape. line: contour plus interior "
                          "grooves, for print. relief: solid with the lit faces "
@@ -203,6 +281,12 @@ def main():
     stem = a.name or os.path.splitext(os.path.basename(a.src))[0]
     im = Image.open(a.src).convert('RGB')
     arr = np.asarray(im, float)
+    if a.repeat:
+        arr, info = tile(arr, a.repeat)
+        if info is None:
+            sys.exit('no repeat found in this image')
+        print(f'repeat {info[0]:.2f} px, cut at row {info[1]} where {info[2]} pixels '
+              f'cross, laid out {a.repeat} times', file=sys.stderr)
     m, c0, c1 = silhouette(arr, a.zoom, a.bias, a.close, a.min_hole, a.min_blob)
     if not m.any():
         sys.exit('nothing separated from the ground')
