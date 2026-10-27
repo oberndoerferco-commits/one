@@ -16,14 +16,27 @@ and arrives as a speck inside the shape. Specks are filled and notches
 closed; the real openings -- the scroll curls, the gaps between stem and
 leaf -- are orders of magnitude larger and are kept.
 
-Keeping the modelling was tried and is not worth having: at this size the
-beading on the leaves breaks into mottle rather than into engraved lines,
-and the shape reads better solid.
+The modelling can be kept two ways, and a plain threshold is neither of
+them -- the beading on the leaves is at the resolution limit and a
+threshold returns it as mottle. What works is to ask what kind of thing
+each mark is:
+
+  line    the shape's own contour, plus the dark grooves inside it found
+          as ridges rather than as dark pixels, so that a groove running
+          between two leaves is kept and a dark speck is not. Reads as an
+          engraving; print it, do not emboss it, since the lines go finer
+          than a die will hold.
+
+  relief  solid, with the lit faces knocked out and each knockout pulled
+          back from its edge so a black web is left between them. Keeps
+          the masses an emboss needs and still says where one leaf ends
+          and the next begins.
 """
 import argparse, os, sys
 import numpy as np, pymupdf, vtracer
 from PIL import Image
 from scipy import ndimage as ndi
+from skimage.filters import sato
 
 
 def disc(r):
@@ -69,6 +82,32 @@ def silhouette(a, zoom, bias, close_r, min_hole, min_blob):
     return m, c0, c1
 
 
+def lines(lum, sil, zoom, keep, open_r, edge_r, min_run):
+    """Contour plus the grooves inside, taken as ridges, not as dark pixels."""
+    big = ndi.gaussian_filter(ndi.zoom(lum, zoom, order=3), 1.5)
+    r = sato(255 - big, sigmas=range(2, 9, 2), black_ridges=False)
+    g = sil & (r > np.percentile(r[sil], keep))
+    g = ndi.binary_opening(ndi.binary_closing(g, disc(2)), disc(open_r))
+    art = (sil & ~ndi.binary_erosion(sil, disc(edge_r))) | g
+    L, n = ndi.label(art)
+    if n:
+        sz = ndi.sum(art, L, range(1, n + 1))
+        art = np.isin(L, [i + 1 for i in range(n) if sz[i] >= min_run])
+    return art
+
+
+def relief(lum, sil, zoom, keep, back_r, min_face):
+    """Solid, with the lit faces knocked out and held back from the edges."""
+    big = ndi.gaussian_filter(ndi.zoom(lum, zoom, order=3), 1.5)
+    lit = sil & (big > np.percentile(big[sil], keep))
+    lit = ndi.binary_erosion(ndi.binary_opening(lit, disc(2)), disc(back_r))
+    L, n = ndi.label(lit)
+    if n:
+        sz = ndi.sum(lit, L, range(1, n + 1))
+        lit = np.isin(L, [i + 1 for i in range(n) if sz[i] >= min_face])
+    return sil & ~lit
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('src')
@@ -84,6 +123,17 @@ def main():
                     help='openings smaller than this are lighting, and get filled')
     ap.add_argument('--min-blob', type=float, default=400)
     ap.add_argument('--invert', action='store_true', help='also write white on black')
+    ap.add_argument('--detail', choices=('none', 'line', 'relief'), default='none',
+                    help="none: the solid shape. line: contour plus interior "
+                         "grooves, for print. relief: solid with the lit faces "
+                         "knocked out, for an emboss that still shows its leaves")
+    ap.add_argument('--keep', type=float, default=None,
+                    help='percentile kept as groove (line) or as lit face (relief); '
+                         'defaults to 70 and 60')
+    ap.add_argument('--edge', type=int, default=3, help='contour weight, zoomed px')
+    ap.add_argument('--open', dest='open_r', type=int, default=3)
+    ap.add_argument('--back', type=int, default=5, help='how far a knockout is held '
+                                                        'back from its edge')
     a = ap.parse_args()
 
     os.makedirs(a.out_dir, exist_ok=True)
@@ -93,6 +143,13 @@ def main():
     m, c0, c1 = silhouette(arr, a.zoom, a.bias, a.close, a.min_hole, a.min_blob)
     if not m.any():
         sys.exit('nothing separated from the ground')
+    lum = arr.mean(-1)
+    if a.detail == 'line':
+        m = lines(lum, m, a.zoom, 70 if a.keep is None else a.keep,
+                  a.open_r, a.edge, a.min_blob)
+    elif a.detail == 'relief':
+        m = relief(lum, m, a.zoom, 60 if a.keep is None else a.keep,
+                   a.back, max(a.min_blob * 3, 1200))
 
     ys, xs = np.nonzero(m)
     m = m[ys.min():ys.max() + 1, xs.min():xs.max() + 1]
