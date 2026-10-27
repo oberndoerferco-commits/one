@@ -31,12 +31,26 @@ each mark is:
           back from its edge so a black web is left between them. Keeps
           the masses an emboss needs and still says where one leaf ends
           and the next begins.
+
+A lit face has to be judged against its own neighbourhood, not against the
+whole piece. The light on this ornament falls off down the border, so a
+single brightness cut puts every knockout in the top third and leaves the
+bottom a slab -- detail that stops halfway down reads as a mistake, not as
+modelling. Measuring each pixel against a local average of the shape around
+it spreads the knockouts over the full length.
+
+An emboss die has a smallest feature it can hold, so the shapes are built
+to a width rather than trimmed to one afterwards: the web between knockouts
+is set by how far each is pulled back from its facet, knockouts narrower
+than the limit are opened away, and what is left is measured and reported
+at the printed size so the size can be chosen to suit the die.
 """
 import argparse, os, sys
 import numpy as np, pymupdf, vtracer
 from PIL import Image
 from scipy import ndimage as ndi
 from skimage.filters import sato
+from skimage.morphology import skeletonize
 
 
 def disc(r):
@@ -61,25 +75,38 @@ def two_means(a):
     return c0, c1
 
 
+def flow(mask, radius, iters=2):
+    """Curvature flow: blur the indicator, cut it again at a half.
+
+    Tracing a threshold straight off the pixels gives a contour that wobbles
+    at the scale of one source pixel, which on a border this small is the
+    scale of a leaf's edge. Two passes of this take the wobble out without
+    moving the edge, because the cut stays at a half.
+    """
+    m = mask.astype(float)
+    for _ in range(iters):
+        m = (ndi.gaussian_filter(m, radius) > 0.5).astype(float)
+    return m > 0.5
+
+
 def silhouette(a, zoom, bias, close_r, min_hole, min_blob):
     c0, c1 = two_means(a)
     axis = c1 - c0
     length = float(np.linalg.norm(axis))
     p = ((a - c0) @ (axis / length)) / length
-    f = ndi.gaussian_filter(ndi.zoom(p, zoom, order=3), 1.2)
-    m = f > bias
-    if close_r:
-        m = ndi.binary_closing(m, disc(close_r))
+    m = ndi.gaussian_filter(ndi.zoom(p, zoom, order=3), 0.15 * zoom) > bias
+    m = ndi.binary_closing(m, disc(max(1, int(round(close_r * zoom / 8)))))
     hole = ndi.binary_fill_holes(m) & ~m
     L, n = ndi.label(hole)
     if n:
         sz = ndi.sum(hole, L, range(1, n + 1))
-        m = m | np.isin(L, [i + 1 for i in range(n) if sz[i] < min_hole])
+        lim = min_hole * (zoom / 8.0) ** 2
+        m = m | np.isin(L, [i + 1 for i in range(n) if sz[i] < lim])
     L, n = ndi.label(m)
     if n:
         sz = ndi.sum(m, L, range(1, n + 1))
-        m = np.isin(L, [i + 1 for i in range(n) if sz[i] >= min_blob])
-    return m, c0, c1
+        m = np.isin(L, [i + 1 for i in range(n) if sz[i] >= min_blob * (zoom / 8.0) ** 2])
+    return flow(m, 0.35 * zoom, 2), c0, c1
 
 
 def lines(lum, sil, zoom, keep, open_r, edge_r, min_run):
@@ -96,16 +123,46 @@ def lines(lum, sil, zoom, keep, open_r, edge_r, min_run):
     return art
 
 
-def relief(lum, sil, zoom, keep, back_r, min_face):
+def relief(lum, sil, zoom, keep, web, min_face, min_width, smooth_r):
     """Solid, with the lit faces knocked out and held back from the edges."""
-    big = ndi.gaussian_filter(ndi.zoom(lum, zoom, order=3), 1.5)
-    lit = sil & (big > np.percentile(big[sil], keep))
-    lit = ndi.binary_erosion(ndi.binary_opening(lit, disc(2)), disc(back_r))
-    L, n = ndi.label(lit)
+    big = ndi.gaussian_filter(ndi.zoom(lum, zoom, order=3), 2.0)
+    # how bright is each pixel for its own neighbourhood, not for the piece
+    w = sil.astype(float)
+    span = 4.0 * zoom
+    den = ndi.gaussian_filter(w, span)
+    local = np.where(den > 1e-6, ndi.gaussian_filter(big * w, span)
+                     / np.maximum(den, 1e-6), big)
+    lit = sil & ((big - local) > np.percentile((big - local)[sil], keep))
+
+    r = max(1, int(round(web * zoom)))
+    lit = ndi.binary_opening(lit, disc(max(1, int(0.3 * zoom))))
+    lit = flow(lit, smooth_r * zoom, 2)
+    ko = ndi.binary_erosion(lit, disc(r)) & ndi.binary_erosion(sil, disc(r))
+    ko = flow(ko, smooth_r * zoom, 1)
+    k = max(1, int(round(min_width * zoom / 2)))
+    ko = ndi.binary_opening(ko, disc(k))              # nothing too narrow to hold
+    L, n = ndi.label(ko)
     if n:
-        sz = ndi.sum(lit, L, range(1, n + 1))
-        lit = np.isin(L, [i + 1 for i in range(n) if sz[i] >= min_face])
-    return sil & ~lit
+        sz = ndi.sum(ko, L, range(1, n + 1))
+        ko = np.isin(L, [i + 1 for i in range(n) if sz[i] >= min_face * zoom * zoom])
+    return sil & ~ko
+
+
+def narrowest(mask, zoom, q=2.0):
+    """How wide the thinnest part of `mask` is, in source pixels.
+
+    Measured along the medial axis. Taking the distance transform over the
+    whole shape instead answers a different question: every corner runs to
+    a point, so the thinnest pixel of any shape is zero and the number says
+    nothing about whether a die can hold it.
+    """
+    if not mask.any():
+        return 0.0
+    d = ndi.distance_transform_edt(mask)
+    spine = skeletonize(mask)
+    if not spine.any():
+        return 0.0
+    return float(np.percentile(d[spine], q)) * 2 / zoom
 
 
 def main():
@@ -115,7 +172,7 @@ def main():
     ap.add_argument('--name', default=None)
     ap.add_argument('--width-mm', type=float, default=None,
                     help='printed width; without it the page keeps the source size')
-    ap.add_argument('--zoom', type=int, default=8)
+    ap.add_argument('--zoom', type=int, default=12)
     ap.add_argument('--bias', type=float, default=0.45,
                     help='0 is the ground, 1 the subject; where to put the edge')
     ap.add_argument('--close', type=int, default=4, help='closes notches, in zoomed px')
@@ -132,8 +189,14 @@ def main():
                          'defaults to 70 and 60')
     ap.add_argument('--edge', type=int, default=3, help='contour weight, zoomed px')
     ap.add_argument('--open', dest='open_r', type=int, default=3)
-    ap.add_argument('--back', type=int, default=5, help='how far a knockout is held '
-                                                        'back from its edge')
+    ap.add_argument('--web', type=float, default=0.55,
+                    help='relief: black left between knockouts, in source pixels')
+    ap.add_argument('--min-face', type=float, default=18.0,
+                    help='relief: smallest knockout kept, in source pixels squared')
+    ap.add_argument('--min-width', type=float, default=0.5,
+                    help='relief: narrowest knockout kept, in source pixels')
+    ap.add_argument('--smooth', type=float, default=0.25,
+                    help='curvature flow radius, in source pixels')
     a = ap.parse_args()
 
     os.makedirs(a.out_dir, exist_ok=True)
@@ -148,8 +211,9 @@ def main():
         m = lines(lum, m, a.zoom, 70 if a.keep is None else a.keep,
                   a.open_r, a.edge, a.min_blob)
     elif a.detail == 'relief':
-        m = relief(lum, m, a.zoom, 60 if a.keep is None else a.keep,
-                   a.back, max(a.min_blob * 3, 1200))
+        sil = m
+        m = relief(lum, sil, a.zoom, 50 if a.keep is None else a.keep,
+                   a.web, a.min_face, a.min_width, a.smooth)
 
     ys, xs = np.nonzero(m)
     m = m[ys.min():ys.max() + 1, xs.min():xs.max() + 1]
@@ -183,7 +247,14 @@ def main():
         made.append(f)
     open(svg, encoding='utf-8')          # the plain black svg stays as traced
 
+    scale = (w / m.shape[1]) * a.zoom * 25.4 / 72      # mm per source pixel
+    thin_ink = narrowest(m, a.zoom) * scale
+    gaps = (~m) & ndi.binary_fill_holes(m)
+    thin_gap = narrowest(gaps, a.zoom) * scale if gaps.any() else float('nan')
     print(f'{stem}: source {im.width}x{im.height}, ink {100*m.mean():.1f}% of its box\n'
+          f'  at {w*25.4/72:.1f} mm wide: thinnest ink {thin_ink:.2f} mm, '
+          f'thinnest knockout {thin_gap:.2f} mm\n'
+          f'  holds 0.30 mm down to {0.30/min(thin_ink, thin_gap)*w*25.4/72:.0f} mm wide\n'
           f'  ground #{"%02x%02x%02x" % tuple(int(v) for v in c0)}  '
           f'subject #{"%02x%02x%02x" % tuple(int(v) for v in c1)}\n'
           f'  {open(svg, encoding="utf-8").read().count("<path")} paths, '
