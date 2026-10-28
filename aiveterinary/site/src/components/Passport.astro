@@ -855,7 +855,7 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
     .pp-list th { text-align: left; font-size: .8rem; color: var(--ink-3); text-transform: uppercase; letter-spacing: .05em; padding: 6px 6px 6px 0; }
     .pp-list td { padding: 4px 6px 4px 0; vertical-align: top; }
     .pp-list td:last-child { width: 36px; }
-    .pp-list .pp-rm { background: none; border: 0; color: var(--ink-3); cursor: pointer; font-size: 1.1rem; padding: 8px 4px; }
+    .pp-list .pp-rm { background: none; border: 0; color: var(--ink-3); cursor: var(--cursor-click); font-size: 1.1rem; padding: 8px 4px; }
     .pp-list .pp-rm:hover { color: var(--danger); }
     .pp-hint { color: var(--ink-3); font-size: .9rem; margin: -4px 0 8px; }
     .pp-status { color: var(--ink-3); font-size: .9rem; min-height: 1.4em; }
@@ -885,8 +885,8 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
     .dc-q legend { font-weight: 650; padding: 0; margin-bottom: 6px; }
     .dc-opts { display: grid; grid-template-columns: repeat(var(--n, 4), minmax(0, 1fr)); gap: 6px; }
     @media (max-width: 359px) { .dc-opts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-    .dc-opt { position: relative; display: flex; align-items: center; justify-content: center; gap: 4px; min-height: 44px; padding: 6px 8px; border: 1.5px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink); font-weight: 600; font-size: .9rem; line-height: 1.2; text-align: center; cursor: pointer; hyphens: auto; overflow-wrap: break-word; min-width: 0; }
-    .dc-opt input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+    .dc-opt { position: relative; display: flex; align-items: center; justify-content: center; gap: 4px; min-height: 44px; padding: 6px 8px; border: 1.5px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink); font-weight: 600; font-size: .9rem; line-height: 1.2; text-align: center; cursor: var(--cursor-click); hyphens: auto; overflow-wrap: break-word; min-width: 0; }
+    .dc-opt input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: var(--cursor-click); }
     .dc-opt:hover { border-color: var(--accent); }
     .dc-opt:has(input:checked) { background: var(--accent-soft); border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
     .dc-opt:has(input:checked) span::before { content: "✓ "; }
@@ -920,7 +920,7 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
     .dc-actions { margin-top: 10px; }
     .dc-actions .btn, .dc-remind-row .btn { min-height: 44px; }
     .dc-remind { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 10px; }
-    .dc-remind summary { cursor: pointer; font-weight: 600; min-height: 44px; display: flex; align-items: center; }
+    .dc-remind summary { cursor: var(--cursor-click); font-weight: 600; min-height: 44px; display: flex; align-items: center; }
     .dc-remind-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-size: .9rem; font-weight: 600; color: var(--ink-2); }
     @media print { .dc-card { display: none !important; } }
     /* print */

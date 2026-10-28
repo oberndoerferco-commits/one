@@ -177,7 +177,7 @@ const all = [...T.signsNow.map((s) => sign(s, 'now')), ...T.signsToday.map((s) =
   .ec-group legend { font-family: var(--font-display); font-weight: 600; font-size: 1.25rem; padding: 0 6px; }
   .ec-now { border-left: 6px solid var(--danger); }
   .ec-today { border-left: 6px solid var(--warn); }
-  .ec-sign { display: flex; gap: 12px; align-items: flex-start; padding: 10px 2px; border-bottom: 1px solid var(--line); cursor: pointer; }
+  .ec-sign { display: flex; gap: 12px; align-items: flex-start; padding: 10px 2px; border-bottom: 1px solid var(--line); cursor: var(--cursor-click); }
   .ec-sign:last-child { border-bottom: 0; }
   .ec-sign input { width: 22px; height: 22px; margin-top: 2px; flex: none; accent-color: var(--accent); }
   .ec-result { padding: 22px 24px; border-radius: 20px; margin-bottom: 28px; scroll-margin-top: 20px; }

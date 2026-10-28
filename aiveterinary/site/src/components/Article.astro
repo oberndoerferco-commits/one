@@ -279,7 +279,7 @@ const briefIc = '<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="tr
 
   /* Phone table of contents */
   .av-toc-m { margin: 8px 0 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; }
-  .av-toc-m summary { cursor: pointer; min-height: 48px; display: flex; align-items: center; padding: 0 18px; font-weight: 700; list-style: none; }
+  .av-toc-m summary { cursor: var(--cursor-click); min-height: 48px; display: flex; align-items: center; padding: 0 18px; font-weight: 700; list-style: none; }
   .av-toc-m summary::-webkit-details-marker { display: none; }
   .av-toc-m summary::after { content: ""; margin-left: auto; width: 9px; height: 9px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg); transition: transform .15s; }
   .av-toc-m[open] summary::after { transform: rotate(-135deg); }

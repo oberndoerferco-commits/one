@@ -245,7 +245,7 @@ const json = (x: unknown) => JSON.stringify(x).replace(/</g, '\\u003c');
   .fc-animals { border: 0; margin: 0; padding: 0; min-width: 0; }
   .fc-animals legend { font-weight: 700; padding: 0; margin-bottom: 8px; }
   .fc-animal-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
-  .fc-animal { position: relative; display: flex; align-items: center; gap: 10px; min-height: 56px; padding: 6px 12px 6px 8px; border: 1.5px solid var(--line); border-radius: 14px; background: var(--surface); cursor: pointer; }
+  .fc-animal { position: relative; display: flex; align-items: center; gap: 10px; min-height: 56px; padding: 6px 12px 6px 8px; border: 1.5px solid var(--line); border-radius: 14px; background: var(--surface); cursor: var(--cursor-click); }
   .fc-animal input { position: absolute; opacity: 0; width: 1px; height: 1px; }
   .fc-animal-ic { flex: none; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--tint, var(--accent-soft)); }
   .fc-animal-t { display: flex; flex-direction: column; font-weight: 600; line-height: 1.2; }
@@ -265,7 +265,7 @@ const json = (x: unknown) => JSON.stringify(x).replace(/</g, '\\u003c');
   .fc-pick { margin: 0 0 24px; }
   .fc-pick p { margin: 0 0 8px; font-weight: 600; }
   .fc-pick-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
-  .fc-pick-btn { min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1.5px solid var(--accent); background: var(--surface); color: var(--accent); font: inherit; font-weight: 600; cursor: pointer; }
+  .fc-pick-btn { min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1.5px solid var(--accent); background: var(--surface); color: var(--accent); font: inherit; font-weight: 600; cursor: var(--cursor-click); }
   .fc-pick-btn:hover { background: var(--accent-soft); }
   .fc-nf { font-weight: 600; }
   .fc-browse { padding-bottom: 40px; }
