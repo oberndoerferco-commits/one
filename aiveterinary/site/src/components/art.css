@@ -1,0 +1,28 @@
+/*
+ * Sketch tokens shared by every drawing (docs/32-illustration-style.md).
+ * Line and accent swap for dark mode; coat fills reuse the --hs-* / --ic-* tokens from styles.css,
+ * which already have dark values. Eyes stay dark in both themes because they sit on a coat fill.
+ */
+:root {
+  --sk-line: var(--art-ink);
+  --sk-eye: #12304a;
+  --sk-hi: #fff7ec;
+  --sk-accent: #d86c50;
+  --sk-paper: var(--hs-blob);
+  --sk-shadow: rgba(18, 48, 74, .1);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --sk-line: #eadfd0; --sk-accent: #f28a70; --sk-shadow: rgba(0, 0, 0, .28); }
+}
+:root[data-theme="dark"] { --sk-line: #eadfd0; --sk-accent: #f28a70; --sk-shadow: rgba(0, 0, 0, .28); }
+
+/* Detail strokes (fur, scutes, feathers) are lighter than the contour and drop out at chip size. */
+.sk .d { stroke-width: calc(var(--sw, 2) * .62); }
+.sk-xs .d { display: none; }
+/* Off-register coat wash, eyes, eye highlight, ground shadow. */
+.sk .w { transform: translate(.6px, .8px); stroke: none; }
+.sk .e { fill: var(--sk-eye); stroke: none; }
+.sk .h { fill: var(--sk-hi); stroke: none; }
+.sk .sk-g { stroke: var(--sk-shadow); stroke-width: 2.6; }
+/* Inside a scene the scene draws one shared ground line. */
+.sk-in .sk-g { display: none; }

@@ -1,4 +1,7 @@
 /**
+ * Face icons, now used only by the share images (src/lib/og.ts): satori cannot resolve the CSS classes
+ * the site's sketch drawings (src/components/animal-art.ts) rely on. Also the source of IconKind.
+ *
  * Shared SVG shape strings for the animal faces (48×48 grid, stroke 2.2). Fills use theme tokens.
  * Drawing rules for every face: dark ink outline, two tones per animal, eyes 2.4×2.9 with a highlight,
  * soft blush cheeks, small nose and mouth. Fills are drawn first and the outline on top, so coat

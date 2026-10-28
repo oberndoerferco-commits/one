@@ -1,67 +1,27 @@
 ---
 /**
- * Hero illustration: a dog and a cat sitting together on a soft blob.
- * Built from round primitives (docs/13-design-research.md §3): one ink
- * outline weight, eyes ~20 % of head width set low and wide, pupils with a
- * highlight, blush, flat ground shadow. The dog wags and both blink now and
- * then; motion stops under prefers-reduced-motion.
+ * Hero illustration: the sketch dog and cat sitting face to face on a paper-coloured blob, a small
+ * heart between them. Built from the same drawings as the animal icons (docs/32-illustration-style.md),
+ * still, with no animation.
  */
+import './art.css';
+import { place } from './animal-art';
 interface Props { class?: string }
 const { class: cls = '' } = Astro.props;
-const eye = (x: number, y: number, r: number) =>
-  `<g class="hs-eye"><circle cx="${x}" cy="${y}" r="${r}" fill="#fff"/><circle cx="${x + r * 0.12}" cy="${y + r * 0.12}" r="${r * 0.72}" fill="var(--art-ink)" stroke="none"/><circle cx="${x - r * 0.22}" cy="${y - r * 0.25}" r="${r * 0.26}" fill="#fff" stroke="none"/></g>`;
-const sparkle = (x: number, y: number, s: number) =>
-  `<path d="M${x} ${y - s}C${x + s * 0.18} ${y - s * 0.18} ${x + s * 0.18} ${y - s * 0.18} ${x + s} ${y}C${x + s * 0.18} ${y + s * 0.18} ${x + s * 0.18} ${y + s * 0.18} ${x} ${y + s}C${x - s * 0.18} ${y + s * 0.18} ${x - s * 0.18} ${y + s * 0.18} ${x - s} ${y}C${x - s * 0.18} ${y - s * 0.18} ${x - s * 0.18} ${y - s * 0.18} ${x} ${y - s}Z" fill="var(--warm)" stroke="none"/>`;
+const SW = 3.2;
 const scene = `
-<path d="M88 238C70 150 140 70 246 66c104-4 196 52 200 150 4 92-60 140-120 146H130C96 356 98 290 88 238Z" fill="var(--hs-blob)" stroke="none"/>
-<circle cx="404" cy="96" r="24" fill="var(--ic-sun)" stroke="none"/>
-${sparkle(120, 92, 11)}${sparkle(452, 168, 8)}${sparkle(96, 300, 7)}
-<ellipse cx="292" cy="352" rx="178" ry="11" fill="var(--art-ink)" opacity=".08" stroke="none"/>
-
-<!-- dog -->
-<g class="hs-tail"><path d="M276 330c38 6 62-14 58-52" stroke="var(--art-ink)" stroke-width="20"/><path d="M276 330c38 6 62-14 58-52" stroke="var(--hs-dog)" stroke-width="14"/></g>
-<path d="M178 206c-26 34-36 94-28 144h140c8-50-2-110-28-144z" fill="var(--hs-dog)"/>
-<path d="M220 222c-24 0-36 34-30 74 4 24 16 36 30 36s26-12 30-36c6-40-6-74-30-74z" fill="var(--hs-cream)" stroke="none"/>
-<rect x="182" y="286" width="28" height="66" rx="14" fill="var(--hs-dog)"/>
-<rect x="230" y="286" width="28" height="66" rx="14" fill="var(--hs-dog)"/>
-<path d="M188 340h16M236 340h16" stroke-width="2.4"/>
-<circle cx="220" cy="156" r="64" fill="var(--hs-dog)"/>
-<path d="M168 112c-34 0-48 50-30 92 8 16 26 12 32-6 8-26 10-58-2-86z" fill="var(--hs-dog-2)"/>
-<path d="M272 112c34 0 48 50 30 92-8 16-26 12-32-6-8-26-10-58 2-86z" fill="var(--hs-dog-2)"/>
-<ellipse cx="220" cy="186" rx="30" ry="22" fill="var(--hs-cream)"/>
-<ellipse cx="220" cy="175" rx="10" ry="7" fill="var(--art-ink)" stroke="none"/>
-<path d="M220 182v6M208 190c6 7 18 7 24 0"/>
-${eye(192, 152, 12.5)}${eye(248, 152, 12.5)}
-<ellipse cx="180" cy="180" rx="10" ry="5.5" fill="var(--ic-blush)" stroke="none"/>
-<ellipse cx="260" cy="180" rx="10" ry="5.5" fill="var(--ic-blush)" stroke="none"/>
-
-<!-- cat -->
-<path d="M424 344c40 4 52-40 30-62" stroke="var(--art-ink)" stroke-width="18"/>
-<path d="M424 344c40 4 52-40 30-62" stroke="var(--hs-cat)" stroke-width="12"/>
-<path d="M348 248c-22 30-26 66-20 102h104c6-36 2-72-20-102z" fill="var(--hs-cat)"/>
-<path d="M346 196l-6-50c0-6 6-8 10-4l32 30z" fill="var(--hs-cat)"/>
-<path d="M410 196l6-50c0-6-6-8-10-4l-32 30z" fill="var(--hs-cat)"/>
-<path d="M348 176l-2-18 14 12z M408 176l2-18-14 12z" fill="var(--ic-ear)" stroke="none"/>
-<circle cx="378" cy="214" r="46" fill="var(--hs-cat)"/>
-<rect x="352" y="300" width="22" height="52" rx="11" fill="var(--hs-cat)"/>
-<rect x="382" y="300" width="22" height="52" rx="11" fill="var(--hs-cat)"/>
-${eye(358, 214, 9.5)}${eye(398, 214, 9.5)}
-<path d="M374 229h8l-4 4z" fill="var(--coral)" stroke-width="1.6"/>
-<path d="M370 238c3 4 8 4 8-2 0 6 5 6 8 2"/>
-<path d="M334 226l-16-3M334 234l-16 3M422 226l16-3M422 234l16 3" stroke-width="1.8"/>
-<ellipse cx="346" cy="232" rx="7" ry="4" fill="var(--ic-blush)" stroke="none"/>
-<ellipse cx="410" cy="232" rx="7" ry="4" fill="var(--ic-blush)" stroke="none"/>
+<path d="M30 196C20 104 104 34 222 34c114 0 200 62 200 160 0 86-62 126-130 126H112C58 320 36 262 30 196z" fill="var(--sk-paper)" stroke="none"/>
+<path d="M44 320h366" stroke="var(--sk-shadow)" stroke-width="7"/>
+${place('dog', 8, 52, 5.9, SW)}
+${place('cat', 444, 115, -4.5, SW)}
+<path d="M262 86c-11-8-15-15-11-20 3-4 9-3 11 1 2-4 8-5 11-1 4 5 0 12-11 20z" fill="var(--sk-accent)" stroke-width="2.4"/>
+<circle cx="384" cy="70" r="4" fill="var(--hs-dog-2)" stroke="none"/><circle cx="60" cy="110" r="3" fill="var(--hs-dog-2)" stroke="none"/>
 `;
 ---
-<svg class={`hero-scene ${cls}`} width="540" height="420" viewBox="60 50 420 330" fill="none" stroke="var(--art-ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="A dog and a cat sitting together">
+<svg class={`hero-scene sk ${cls}`} width="540" height="417" viewBox="0 0 440 340" fill="none" stroke="var(--sk-line)" stroke-width={SW} stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="A dog and a cat sitting together">
   <Fragment set:html={scene} />
 </svg>
 
 <style is:global>
   .hero-scene { max-width: 100%; height: auto; }
-  .hs-tail { transform-box: view-box; transform-origin: 276px 330px; animation: hs-wag 2.4s ease-in-out infinite; }
-  .hs-eye { transform-box: fill-box; transform-origin: center; animation: hs-blink 6s infinite; }
-  @keyframes hs-wag { 0%, 60%, 100% { transform: rotate(0); } 70% { transform: rotate(-12deg); } 80% { transform: rotate(6deg); } 90% { transform: rotate(-8deg); } }
-  @keyframes hs-blink { 0%, 94%, 100% { transform: scaleY(1); } 96% { transform: scaleY(.1); } }
-  @media (prefers-reduced-motion: reduce) { .hs-tail, .hs-eye { animation: none; } }
 </style>

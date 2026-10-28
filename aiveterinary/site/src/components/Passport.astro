@@ -986,7 +986,7 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
 
   <script>
     import { parseScan } from 'aiveterinary-app/src/scan.ts';
-    import { ICONS } from '../lib/animal-icons';
+    import { ICONS, strokeFor } from './animal-art';
     import { evaluateRules, daysBefore } from '../data/daily-rules';
     // Digital pet passport. Local-first: all data lives in localStorage under one key.
     // Shape: { version: 1, animals: [ { id, name, ..., vaccinations: [], treatments: [], medications: [], conditions: [], visits: [], checks: [], notes, photo } ], current }
@@ -1143,7 +1143,7 @@ const PROF = { en: { y: 'years', y1: 'year', m: 'months', chip: 'Chip', next: 'N
     const ICON_OF: Record<string, string> = { Dog: 'dog', Cat: 'cat', Ferret: 'ferret', Rabbit: 'rabbit', 'Guinea pig': 'guinea-pig', Hamster: 'guinea-pig', Horse: 'horse', Bird: 'bird', Reptile: 'reptile' };
     function renderProfile(a: Animal) {
       const av = $('#pp-avatar');
-      av.innerHTML = a.photo ? `<img src="${a.photo}" alt="">` : `<svg viewBox="0 0 48 48" width="64" height="64" fill="none" stroke="var(--art-ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[ICON_OF[a.species] ?? 'paw']}</svg>`;
+      av.innerHTML = a.photo ? `<img src="${a.photo}" alt="">` : `<svg class="ai-icon sk" style="--sw:${strokeFor(64)}" viewBox="0 0 48 48" width="64" height="64" fill="none" stroke="var(--sk-line)" stroke-width="${strokeFor(64)}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[ICON_OF[a.species] ?? 'paw']}</svg>`;
       av.className = `pp-avatar pet-${ICON_OF[a.species] ?? 'general'}`;
       $('#pp-prof-name').textContent = a.name || PR.unnamed;
       let age = '';
