@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Il Barboncino (Barbone) esiste in quattro taglie FCI, dal Toy al Grande, e vive in mediana 14,0 anni in un grande studio britannico. Il pelo non cade e va curato ogni giorno; sono noti morbo di Addison e malattie ereditarie degli occhi."
 facts:
-  - { field: lifespan, value: "Mediana di 14,0 anni in uno studio britannico del 2024 su 8.826 Barboncini (tutte le taglie insieme), più dei meticci (12,0)", ref: 5 }
+  - { field: lifespan, value: "Mediana di 14,0 anni in uno studio britannico del 2024 su 6.427 Barboncini (tutte le taglie insieme), più dei meticci (12,0)", ref: 5 }
   - { field: lifespan, value: "Il Royal Kennel Club indica oltre 12 anni per Standard, Miniature e Toy", ref: 1 }
   - { field: size, value: "Standard FCI: Grande oltre 45 fino a 60 cm, Medio oltre 35 fino a 45 cm, Nano oltre 28 fino a 35 cm, Toy oltre 24 fino a 28 cm (ideale 25 cm)", ref: 4 }
   - { field: coat, value: "Pelo riccio (fine, lanoso, crespo ed elastico, a riccioli regolari) o cordato (cordoni di almeno 20 cm); colori unici e, nello standard attuale del 2024, anche pezzati (standard FCI)", ref: 4 }
@@ -34,7 +34,7 @@ lang: it
 
 ## Quanto vive un Barboncino?
 
-Più della maggior parte dei cani. Uno studio britannico del 2024 su 8.826 Barboncini ha trovato una durata mediana della vita di 14,0 anni, contro 12,0 anni dei meticci (McMillan et al.); lo studio non distingueva le taglie. Il Royal Kennel Club indica oltre 12 anni per ciascuna delle varietà Standard, Miniature e Toy, e la PDSA 12-14 anni.
+Più della maggior parte dei cani. Uno studio britannico del 2024 su 6.427 Barboncini ha trovato una durata mediana della vita di 14,0 anni, contro 12,0 anni dei meticci (McMillan et al.); lo studio non distingueva le taglie. Il Royal Kennel Club indica oltre 12 anni per ciascuna delle varietà Standard, Miniature e Toy, e la PDSA 12-14 anni.
 
 ## Quanto diventa grande un Barboncino?
 

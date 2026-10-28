@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "The Bichon Frisé is a small white companion dog of about 5 kg with a curly coat that needs daily grooming. A large UK study finds a median lifespan of 12.5 years; eye testing is the key check before breeding."
 facts:
-  - { field: lifespan, value: "Median 12.5 years in a 2024 UK study of 8,802 Bichons Frisés, longer than crossbred dogs (12.0)", ref: 3 }
+  - { field: lifespan, value: "Median 12.5 years in a 2024 UK study of 5,902 Bichons Frisés, longer than crossbred dogs (12.0)", ref: 3 }
   - { field: lifespan, value: "The Royal Kennel Club gives a lifespan of over 12 years", ref: 1 }
   - { field: size, value: "FCI standard: height at the withers 25–29 cm (males may be 1 cm taller, females 2 cm smaller)", ref: 2 }
   - { field: weight, value: "FCI standard: about 5 kg, in proportion to size", ref: 2 }
@@ -30,7 +30,7 @@ lang: en
 
 ## How long do Bichons Frisés live?
 
-Longer than the average dog. A 2024 UK study of 8,802 Bichons Frisés found a median lifespan of 12.5 years, against 12.0 years for crossbred dogs (McMillan et al.). The Royal Kennel Club and the PDSA give the breed's lifespan as over 12 years.
+Longer than the average dog. A 2024 UK study of 5,902 Bichons Frisés found a median lifespan of 12.5 years, against 12.0 years for crossbred dogs (McMillan et al.). The Royal Kennel Club and the PDSA give the breed's lifespan as over 12 years.
 
 ## How big does a Bichon Frisé get?
 

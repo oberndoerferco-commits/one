@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Il Bichon à poil frisé è un piccolo cane da compagnia bianco di circa 5 kg con pelo riccio da curare ogni giorno. Un grande studio britannico trova una mediana di vita di 12,5 anni; l'esame degli occhi è il controllo chiave."
 facts:
-  - { field: lifespan, value: "Mediana di 12,5 anni in uno studio britannico del 2024 su 8.802 Bichon, più dei meticci (12,0)", ref: 3 }
+  - { field: lifespan, value: "Mediana di 12,5 anni in uno studio britannico del 2024 su 5.902 Bichon, più dei meticci (12,0)", ref: 3 }
   - { field: lifespan, value: "Il Royal Kennel Club indica una durata della vita di oltre 12 anni", ref: 1 }
   - { field: size, value: "Standard FCI: altezza al garrese 25-29 cm (tolleranza di 1 cm in più per i maschi, 2 cm in meno per le femmine)", ref: 2 }
   - { field: weight, value: "Standard FCI: circa 5 kg, in proporzione alla taglia", ref: 2 }
@@ -31,7 +31,7 @@ lang: it
 
 ## Quanto vive un Bichon à poil frisé?
 
-Più del cane medio. Uno studio britannico del 2024 su 8.802 Bichon ha trovato una durata mediana della vita di 12,5 anni, contro 12,0 anni dei meticci (McMillan et al.). Il Royal Kennel Club e la PDSA indicano oltre 12 anni.
+Più del cane medio. Uno studio britannico del 2024 su 5.902 Bichon ha trovato una durata mediana della vita di 12,5 anni, contro 12,0 anni dei meticci (McMillan et al.). Il Royal Kennel Club e la PDSA indicano oltre 12 anni.
 
 ## Quanto diventa grande un Bichon?
 

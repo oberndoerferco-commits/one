@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Border Collies live a median 13.1 years in a large UK study. They are a working sheepdog that needs more than 2 hours of exercise a day; epilepsy and inherited eye diseases are known, and DNA tests exist for several."
 facts:
-  - { field: lifespan, value: "Median 13.1 years in a 2024 UK study of 20,886 Border Collies, longer than crossbred dogs (12.0)", ref: 3 }
+  - { field: lifespan, value: "Median 13.1 years in a 2024 UK study of 12,917 Border Collies, longer than crossbred dogs (12.0)", ref: 3 }
   - { field: lifespan, value: "UK vet records (VetCompass): life expectancy at birth 12.10 years, third highest of 18 breeds", ref: 4 }
   - { field: size, value: "Ideal height at the withers: males 53 cm, females slightly less (FCI standard)", ref: 2 }
   - { field: coat, value: "Two varieties, moderately long or smooth; dense topcoat with a soft, dense undercoat that resists weather (FCI standard)", ref: 2 }
@@ -32,7 +32,7 @@ lang: en
 
 ## How long do Border Collies live?
 
-Longer than most dogs. A 2024 UK study of 20,886 Border Collies found a median lifespan of 13.1 years, against 12.0 years for crossbred dogs (McMillan et al.). VetCompass life tables, built from UK vet records, put a Border Collie's life expectancy at birth at 12.10 years, the third highest of the 18 breeds studied after the Jack Russell Terrier and the Yorkshire Terrier (Teng et al.). The Royal Kennel Club gives the breed's lifespan as over 12 years.
+Longer than most dogs. A 2024 UK study of 12,917 Border Collies found a median lifespan of 13.1 years, against 12.0 years for crossbred dogs (McMillan et al.). VetCompass life tables, built from UK vet records, put a Border Collie's life expectancy at birth at 12.10 years, the third highest of the 18 breeds studied after the Jack Russell Terrier and the Yorkshire Terrier (Teng et al.). The Royal Kennel Club gives the breed's lifespan as over 12 years.
 
 ## How big does a Border Collie get?
 

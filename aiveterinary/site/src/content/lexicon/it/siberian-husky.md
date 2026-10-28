@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Il Siberian Husky è un cane da slitta che ha bisogno di oltre 2 ore di movimento al giorno e di un giardino ben recintato. Un grande studio britannico trova una mediana di vita di 11,9 anni; prima della riproduzione conta l'esame degli occhi con gonioscopia."
 facts:
-  - { field: lifespan, value: "Mediana di 11,9 anni in uno studio britannico del 2024 su 6.400 Siberian Husky, di poco ma in modo statisticamente significativo più breve dei meticci (12,0)", ref: 3 }
+  - { field: lifespan, value: "Mediana di 11,9 anni in uno studio britannico del 2024 su 4.453 Siberian Husky, di poco ma in modo statisticamente significativo più breve dei meticci (12,0)", ref: 3 }
   - { field: lifespan, value: "Cartelle veterinarie britanniche (VetCompass): aspettativa di vita alla nascita 9,53 anni, da un piccolo campione di 154 Husky; probabilità di morire prima dell'età adulta più alta dei cani in generale", ref: 4 }
   - { field: size, value: "Standard FCI: altezza al garrese 53,5-60 cm nei maschi, 50,5-56 cm nelle femmine", ref: 2 }
   - { field: weight, value: "Standard FCI: maschi 20,5-28 kg, femmine 15,5-23 kg, in proporzione all'altezza", ref: 2 }
@@ -32,7 +32,7 @@ lang: it
 
 ## Quanto vive un Siberian Husky?
 
-Più o meno quanto il cane medio, o poco meno. Uno studio britannico del 2024 su 6.400 Siberian Husky ha trovato una durata mediana della vita di 11,9 anni, contro 12,0 anni dei meticci; la differenza è piccola ma statisticamente significativa (McMillan et al.). Le tavole di sopravvivenza VetCompass indicano un'aspettativa di vita alla nascita più bassa, 9,53 anni, su soli 154 Husky, e l'Husky era tra le razze con una probabilità di morire prima dell'età adulta molto più alta dei cani in generale (Teng et al.). Il Royal Kennel Club indica oltre 10 anni.
+Più o meno quanto il cane medio, o poco meno. Uno studio britannico del 2024 su 4.453 Siberian Husky ha trovato una durata mediana della vita di 11,9 anni, contro 12,0 anni dei meticci; la differenza è piccola ma statisticamente significativa (McMillan et al.). Le tavole di sopravvivenza VetCompass indicano un'aspettativa di vita alla nascita più bassa, 9,53 anni, su soli 154 Husky, e l'Husky era tra le razze con una probabilità di morire prima dell'età adulta molto più alta dei cani in generale (Teng et al.). Il Royal Kennel Club indica oltre 10 anni.
 
 ## Quanto diventa grande un Siberian Husky?
 

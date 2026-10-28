@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Chihuahuas werden in einer großen britischen Studie im Median 11,8 Jahre alt. Die kleinste Rasse der Welt neigt zu Zahnerkrankungen, bleibenden Milchzähnen, Übergewicht und Herzklappenerkrankung."
 facts:
-  - { field: lifespan, value: "Median 11,8 Jahre in einer britischen Studie von 2024 mit 14.636 Chihuahuas", ref: 4 }
+  - { field: lifespan, value: "Median 11,8 Jahre in einer britischen Studie von 2024 mit 10.788 Chihuahuas", ref: 4 }
   - { field: lifespan, value: "Britische Praxisdaten (VetCompass): Lebenserwartung bei Geburt 7,91 Jahre, mit sehr großer Streuung: viele sterben jung, andere werden über 15", ref: 5 }
   - { field: size, value: "Der kleinste Rassehund: kompakter Körper, apfelförmiger Schädel; bewertet wird nur das Gewicht, nicht die Größe (FCI-Standard)", ref: 2 }
   - { field: weight, value: "FCI-Standard: 1–3 kg, ideal 1,5–2,5 kg; Hunde unter 1 kg oder über 3 kg werden disqualifiziert", ref: 2 }
@@ -35,7 +35,7 @@ lang: de
 
 ## Wie alt wird ein Chihuahua?
 
-Die Zahlen gehen weit auseinander. Eine britische Studie von 2024 mit 14.636 Chihuahuas fand eine mediane Lebensdauer von 11,8 Jahren, etwas weniger als die 12,0 Jahre von Mischlingen (McMillan et al.). Der Royal Kennel Club nennt eine Lebenserwartung von über 12 Jahren.
+Die Zahlen gehen weit auseinander. Eine britische Studie von 2024 mit 10.788 Chihuahuas fand eine mediane Lebensdauer von 11,8 Jahren, etwas weniger als die 12,0 Jahre von Mischlingen (McMillan et al.). Der Royal Kennel Club nennt eine Lebenserwartung von über 12 Jahren.
 
 Britische Praxisdaten zeigen niedrigere Werte. In einer VetCompass-Studie über Chihuahuas im Jahr 2016 lag das mediane Sterbealter bei 8,2 Jahren; Hündinnen lebten länger als Rüden (10,2 gegenüber 6,9 Jahren) (O'Neill et al., 2020). Die VetCompass-Sterbetafeln geben eine Lebenserwartung bei Geburt von 7,91 Jahren an, doch bei Chihuahuas blieb die Lebenserwartung auch am längsten über 1,5 Jahren, bis zum Alter von 15–16 Jahren. Die Autoren deuten das als sehr große Streuung: Viele Chihuahuas sterben jung, viele werden alt (Teng et al.). Als die Daten erhoben wurden, war die britische Population jung und wuchs schnell, was die Werte drücken kann.
 

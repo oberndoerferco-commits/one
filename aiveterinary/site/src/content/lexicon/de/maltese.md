@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Der Malteser ist ein winziger weißer Begleithund von 3–4 kg mit langem, seidigem Fell, das täglich gepflegt werden muss. Eine britische Studie findet im Median 13,1 Jahre; die Rasse neigt zu einem angeborenen Herzfehler (PDA)."
 facts:
-  - { field: lifespan, value: "Median 13,1 Jahre in einer britischen Studie von 2024 mit 2.687 Maltesern, statistisch nicht verschieden von Mischlingen (12,0)", ref: 3 }
+  - { field: lifespan, value: "Median 13,1 Jahre in einer britischen Studie von 2024 mit 2.021 Maltesern, statistisch nicht verschieden von Mischlingen (12,0)", ref: 3 }
   - { field: lifespan, value: "Der Royal Kennel Club nennt eine Lebensdauer von über 12 Jahren", ref: 1 }
   - { field: size, value: "FCI-Standard: Widerristhöhe 21–25 cm bei Rüden, 20–23 cm bei Hündinnen", ref: 2 }
   - { field: weight, value: "FCI-Standard: 3–4 kg", ref: 2 }
@@ -31,7 +31,7 @@ lang: de
 
 ## Wie alt wird ein Malteser?
 
-Oft recht alt. Eine britische Studie von 2024 mit 2.687 Maltesern fand eine mediane Lebensdauer von 13,1 Jahren, statistisch nicht verschieden von Mischlingen (12,0 Jahre) (McMillan et al.). Der Royal Kennel Club und die PDSA nennen über 12 Jahre.
+Oft recht alt. Eine britische Studie von 2024 mit 2.021 Maltesern fand eine mediane Lebensdauer von 13,1 Jahren, statistisch nicht verschieden von Mischlingen (12,0 Jahre) (McMillan et al.). Der Royal Kennel Club und die PDSA nennen über 12 Jahre.
 
 ## Wie groß wird ein Malteser?
 

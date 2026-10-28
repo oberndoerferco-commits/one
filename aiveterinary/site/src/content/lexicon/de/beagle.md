@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Der Beagle ist ein Laufhund mit einer medianen Lebensdauer von 12,5 Jahren in einer großen britischen Studie. In britischen Praxisdaten sind Übergewicht und Zahnerkrankungen am häufigsten; die Rasse neigt zur Schilddrüsenunterfunktion."
 facts:
-  - { field: lifespan, value: "Median 12,5 Jahre in einer britischen Studie von 2024 mit 6.230 Beagles, statistisch nicht verschieden von Mischlingen (12,0)", ref: 3 }
+  - { field: lifespan, value: "Median 12,5 Jahre in einer britischen Studie von 2024 mit 4.678 Beagles, statistisch nicht verschieden von Mischlingen (12,0)", ref: 3 }
   - { field: lifespan, value: "Britische Praxisdaten (VetCompass): Lebenserwartung bei Geburt 9,85 Jahre, aus einer kleinen Stichprobe von 172 Beagles", ref: 4 }
   - { field: lifespan, value: "VetCompass 2025: medianes Sterbealter 11,28 Jahre bei 322 Todesfällen; Tumoren waren die häufigste Todesursache (19,26 %)", ref: 5 }
   - { field: size, value: "FCI-Standard: wünschenswerte Widerristhöhe 33–40 cm", ref: 2 }
@@ -33,7 +33,7 @@ lang: de
 
 ## Wie alt wird ein Beagle?
 
-Etwa so alt wie der Durchschnittshund. Eine britische Studie von 2024 mit 6.230 Beagles fand eine mediane Lebensdauer von 12,5 Jahren, statistisch nicht verschieden von Mischlingen (12,0 Jahre) (McMillan et al.). Eine VetCompass-Studie von 2025 mit britischen Praxisdaten fand ein medianes Sterbealter von 11,28 Jahren bei 322 Todesfällen; Hündinnen lebten fast ein Jahr länger als Rüden (O'Neill et al.). Die VetCompass-Sterbetafeln geben eine niedrigere Lebenserwartung bei Geburt von 9,85 Jahren an, die aber auf nur 172 Beagles beruht (Teng et al.). Der Royal Kennel Club nennt über 12 Jahre.
+Etwa so alt wie der Durchschnittshund. Eine britische Studie von 2024 mit 4.678 Beagles fand eine mediane Lebensdauer von 12,5 Jahren, statistisch nicht verschieden von Mischlingen (12,0 Jahre) (McMillan et al.). Eine VetCompass-Studie von 2025 mit britischen Praxisdaten fand ein medianes Sterbealter von 11,28 Jahren bei 322 Todesfällen; Hündinnen lebten fast ein Jahr länger als Rüden (O'Neill et al.). Die VetCompass-Sterbetafeln geben eine niedrigere Lebenserwartung bei Geburt von 9,85 Jahren an, die aber auf nur 172 Beagles beruht (Teng et al.). Der Royal Kennel Club nennt über 12 Jahre.
 
 ## Wie groß wird ein Beagle?
 

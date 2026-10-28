@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Il Beagle è un segugio con una mediana di vita di 12,5 anni in un grande studio britannico. Nelle cartelle veterinarie britanniche obesità e malattie dentali sono i problemi più comuni; la razza è predisposta all'ipotiroidismo."
 facts:
-  - { field: lifespan, value: "Mediana di 12,5 anni in uno studio britannico del 2024 su 6.230 Beagle, senza differenze statistiche rispetto ai meticci (12,0)", ref: 3 }
+  - { field: lifespan, value: "Mediana di 12,5 anni in uno studio britannico del 2024 su 4.678 Beagle, senza differenze statistiche rispetto ai meticci (12,0)", ref: 3 }
   - { field: lifespan, value: "Cartelle veterinarie britanniche (VetCompass): aspettativa di vita alla nascita 9,85 anni, da un piccolo campione di 172 Beagle", ref: 4 }
   - { field: lifespan, value: "VetCompass 2025: età mediana alla morte 11,28 anni su 322 decessi; i tumori erano la causa di morte più comune (19,26%)", ref: 5 }
   - { field: size, value: "Standard FCI: altezza al garrese desiderabile 33-40 cm", ref: 2 }
@@ -34,7 +34,7 @@ lang: it
 
 ## Quanto vive un Beagle?
 
-Più o meno quanto il cane medio. Uno studio britannico del 2024 su 6.230 Beagle ha trovato una durata mediana della vita di 12,5 anni, senza differenze statistiche rispetto ai meticci (12,0 anni) (McMillan et al.). Uno studio VetCompass del 2025 sulle cartelle veterinarie britanniche ha trovato un'età mediana alla morte di 11,28 anni su 322 decessi, con le femmine che vivevano quasi un anno più dei maschi (O'Neill et al.). Le tavole di sopravvivenza VetCompass indicano un'aspettativa di vita alla nascita più bassa, 9,85 anni, ma il dato si basa su soli 172 Beagle (Teng et al.). Il Royal Kennel Club indica oltre 12 anni.
+Più o meno quanto il cane medio. Uno studio britannico del 2024 su 4.678 Beagle ha trovato una durata mediana della vita di 12,5 anni, senza differenze statistiche rispetto ai meticci (12,0 anni) (McMillan et al.). Uno studio VetCompass del 2025 sulle cartelle veterinarie britanniche ha trovato un'età mediana alla morte di 11,28 anni su 322 decessi, con le femmine che vivevano quasi un anno più dei maschi (O'Neill et al.). Le tavole di sopravvivenza VetCompass indicano un'aspettativa di vita alla nascita più bassa, 9,85 anni, ma il dato si basa su soli 172 Beagle (Teng et al.). Il Royal Kennel Club indica oltre 12 anni.
 
 ## Quanto diventa grande un Beagle?
 

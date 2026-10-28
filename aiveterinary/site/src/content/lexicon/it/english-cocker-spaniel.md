@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Il Cocker Spaniel Inglese vive in mediana 13,3 anni in un grande studio britannico. Le cartelle veterinarie mostrano probabilità molto più alte di secrezioni auricolari e occhio secco; esistono test del DNA per diverse malattie ereditarie."
 facts:
-  - { field: lifespan, value: "Mediana di 13,3 anni in uno studio britannico del 2024 su 33.887 Cocker Spaniel Inglesi, più dei meticci (12,0)", ref: 3 }
+  - { field: lifespan, value: "Mediana di 13,3 anni in uno studio britannico del 2024 su 26.303 Cocker Spaniel Inglesi, più dei meticci (12,0)", ref: 3 }
   - { field: lifespan, value: "Cartelle veterinarie britanniche (VetCompass): aspettativa di vita alla nascita 11,31 anni per 1.073 Cocker Spaniel", ref: 4 }
   - { field: size, value: "Standard FCI: altezza circa 39-41 cm nei maschi, 38-39 cm nelle femmine", ref: 2 }
   - { field: weight, value: "Standard FCI: circa 13-14,5 kg", ref: 2 }
@@ -34,7 +34,7 @@ lang: it
 
 ## Quanto vive un Cocker Spaniel Inglese?
 
-Più della maggior parte dei cani. Uno studio britannico del 2024 su 33.887 Cocker Spaniel Inglesi ha trovato una durata mediana della vita di 13,3 anni, contro 12,0 anni dei meticci (McMillan et al.). Le tavole di sopravvivenza VetCompass, costruite dalle cartelle cliniche dei veterinari britannici, indicano per 1.073 Cocker Spaniel un'aspettativa di vita alla nascita di 11,31 anni, vicina agli 11,23 anni dei cani in generale (Teng et al.). Il Royal Kennel Club indica oltre 10 anni.
+Più della maggior parte dei cani. Uno studio britannico del 2024 su 26.303 Cocker Spaniel Inglesi ha trovato una durata mediana della vita di 13,3 anni, contro 12,0 anni dei meticci (McMillan et al.). Le tavole di sopravvivenza VetCompass, costruite dalle cartelle cliniche dei veterinari britannici, indicano per 1.073 Cocker Spaniel un'aspettativa di vita alla nascita di 11,31 anni, vicina agli 11,23 anni dei cani in generale (Teng et al.). Il Royal Kennel Club indica oltre 10 anni.
 
 ## Quanto diventa grande un Cocker?
 

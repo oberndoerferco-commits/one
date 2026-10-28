@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Il Chihuahua vive in mediana 11,8 anni in un grande studio britannico. La razza più piccola del mondo è predisposta a malattia dentale, denti da latte ritenuti, sovrappeso e malattia delle valvole cardiache."
 facts:
-  - { field: lifespan, value: "Mediana di 11,8 anni in uno studio britannico del 2024 su 14.636 Chihuahua", ref: 4 }
+  - { field: lifespan, value: "Mediana di 11,8 anni in uno studio britannico del 2024 su 10.788 Chihuahua", ref: 4 }
   - { field: lifespan, value: "Cartelle veterinarie britanniche (VetCompass): aspettativa di vita alla nascita 7,91 anni, con una variabilità molto ampia: molti muoiono giovani, altri superano i 15 anni", ref: 5 }
   - { field: size, value: "Il cane di razza più piccolo: corpo compatto, cranio a forma di mela; si giudica solo il peso, non l'altezza (standard FCI)", ref: 2 }
   - { field: weight, value: "Standard FCI: 1-3 kg, ideale 1,5-2,5 kg; i soggetti sotto 1 kg o sopra 3 kg sono squalificati", ref: 2 }
@@ -36,7 +36,7 @@ lang: it
 
 ## Quanto vive un Chihuahua?
 
-I dati variano molto. Uno studio britannico del 2024 su 14.636 Chihuahua ha trovato una durata mediana della vita di 11,8 anni, poco meno dei 12,0 anni dei meticci (McMillan et al.). Il Royal Kennel Club indica una durata della vita di oltre 12 anni.
+I dati variano molto. Uno studio britannico del 2024 su 10.788 Chihuahua ha trovato una durata mediana della vita di 11,8 anni, poco meno dei 12,0 anni dei meticci (McMillan et al.). Il Royal Kennel Club indica una durata della vita di oltre 12 anni.
 
 Le cartelle cliniche dei veterinari britannici danno valori più bassi. In uno studio VetCompass sui Chihuahua nel 2016 l'età mediana alla morte era di 8,2 anni; le femmine vivevano più dei maschi (10,2 contro 6,9 anni) (O'Neill et al., 2020). Le tavole di sopravvivenza VetCompass indicano un'aspettativa di vita alla nascita di 7,91 anni, ma i Chihuahua erano anche la razza in cui l'aspettativa di vita restava sopra 1,5 anni più a lungo, fino a 15-16 anni di età. Gli autori lo leggono come una variabilità molto ampia: molti Chihuahua muoiono giovani e molti arrivano a un'età avanzata (Teng et al.). Quando sono stati raccolti questi dati la popolazione britannica era giovane e in rapida crescita, il che può abbassare i valori.
 

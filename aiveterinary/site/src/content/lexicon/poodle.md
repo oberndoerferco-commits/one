@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Poodles come in four FCI sizes, from Toy to Standard, and live a median 14.0 years in a large UK study. The coat does not shed and needs daily grooming; Addison's disease and inherited eye disease are known."
 facts:
-  - { field: lifespan, value: "Median 14.0 years in a 2024 UK study of 8,826 Poodles (all sizes together), longer than crossbred dogs (12.0)", ref: 5 }
+  - { field: lifespan, value: "Median 14.0 years in a 2024 UK study of 6,427 Poodles (all sizes together), longer than crossbred dogs (12.0)", ref: 5 }
   - { field: lifespan, value: "The Royal Kennel Club gives a lifespan of over 12 years for the Standard, Miniature and Toy", ref: 1 }
   - { field: size, value: "FCI standard: Standard over 45 to 60 cm, Medium over 35 to 45 cm, Miniature over 28 to 35 cm, Toy over 24 to 28 cm (ideal 25 cm)", ref: 4 }
   - { field: coat, value: "Curly coat (fine, woolly, frizzy and elastic, even curls) or corded coat (cords at least 20 cm); solid colours and, in the current 2024 standard, also parti-colours (FCI standard)", ref: 4 }
@@ -34,7 +34,7 @@ lang: en
 
 ## How long do Poodles live?
 
-Longer than most dogs. A 2024 UK study of 8,826 Poodles found a median lifespan of 14.0 years, against 12.0 years for crossbred dogs (McMillan et al.); that study did not separate the sizes. The Royal Kennel Club gives over 12 years for each of the Standard, Miniature and Toy, and the PDSA gives 12 to 14 years.
+Longer than most dogs. A 2024 UK study of 6,427 Poodles found a median lifespan of 14.0 years, against 12.0 years for crossbred dogs (McMillan et al.); that study did not separate the sizes. The Royal Kennel Club gives over 12 years for each of the Standard, Miniature and Toy, and the PDSA gives 12 to 14 years.
 
 ## How big does a Poodle get?
 

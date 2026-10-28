@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Il Maltese è un piccolissimo cane da compagnia bianco di 3-4 kg con pelo lungo e setoso da curare ogni giorno. Uno studio britannico trova una mediana di vita di 13,1 anni; la razza è predisposta a un difetto cardiaco congenito (PDA)."
 facts:
-  - { field: lifespan, value: "Mediana di 13,1 anni in uno studio britannico del 2024 su 2.687 Maltesi, senza differenze statistiche rispetto ai meticci (12,0)", ref: 3 }
+  - { field: lifespan, value: "Mediana di 13,1 anni in uno studio britannico del 2024 su 2.021 Maltesi, senza differenze statistiche rispetto ai meticci (12,0)", ref: 3 }
   - { field: lifespan, value: "Il Royal Kennel Club indica una durata della vita di oltre 12 anni", ref: 1 }
   - { field: size, value: "Standard FCI: altezza al garrese 21-25 cm nei maschi, 20-23 cm nelle femmine", ref: 2 }
   - { field: weight, value: "Standard FCI: 3-4 kg", ref: 2 }
@@ -32,7 +32,7 @@ lang: it
 
 ## Quanto vive un Maltese?
 
-Spesso a lungo. Uno studio britannico del 2024 su 2.687 Maltesi ha trovato una durata mediana della vita di 13,1 anni, senza differenze statistiche rispetto ai meticci (12,0 anni) (McMillan et al.). Il Royal Kennel Club e la PDSA indicano oltre 12 anni.
+Spesso a lungo. Uno studio britannico del 2024 su 2.021 Maltesi ha trovato una durata mediana della vita di 13,1 anni, senza differenze statistiche rispetto ai meticci (12,0 anni) (McMillan et al.). Il Royal Kennel Club e la PDSA indicano oltre 12 anni.
 
 ## Quanto diventa grande un Maltese?
 

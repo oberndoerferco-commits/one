@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Border Collies werden in einer großen britischen Studie im Median 13,1 Jahre alt. Der Arbeitshütehund braucht über 2 Stunden Bewegung am Tag; Epilepsie und erbliche Augenkrankheiten sind bekannt, für mehrere gibt es Gentests."
 facts:
-  - { field: lifespan, value: "Median 13,1 Jahre in einer britischen Studie von 2024 mit 20.886 Border Collies, länger als Mischlinge (12,0)", ref: 3 }
+  - { field: lifespan, value: "Median 13,1 Jahre in einer britischen Studie von 2024 mit 12.917 Border Collies, länger als Mischlinge (12,0)", ref: 3 }
   - { field: lifespan, value: "Britische Praxisdaten (VetCompass): Lebenserwartung bei Geburt 12,10 Jahre, die dritthöchste von 18 Rassen", ref: 4 }
   - { field: size, value: "Ideale Widerristhöhe: Rüden 53 cm, Hündinnen etwas weniger (FCI-Standard)", ref: 2 }
   - { field: coat, value: "Zwei Varietäten, mäßig lang oder kurz; dichtes Deckhaar mit weicher, dichter Unterwolle, die vor Witterung schützt (FCI-Standard)", ref: 2 }
@@ -32,7 +32,7 @@ lang: de
 
 ## Wie alt wird ein Border Collie?
 
-Älter als die meisten Hunde. Eine britische Studie von 2024 mit 20.886 Border Collies fand eine mediane Lebensdauer von 13,1 Jahren, gegenüber 12,0 Jahren bei Mischlingen (McMillan et al.). Die VetCompass-Sterbetafeln aus britischen Praxisdaten geben eine Lebenserwartung bei Geburt von 12,10 Jahren an, die dritthöchste der 18 untersuchten Rassen nach Jack Russell Terrier und Yorkshire Terrier (Teng et al.). Der Royal Kennel Club nennt über 12 Jahre.
+Älter als die meisten Hunde. Eine britische Studie von 2024 mit 12.917 Border Collies fand eine mediane Lebensdauer von 13,1 Jahren, gegenüber 12,0 Jahren bei Mischlingen (McMillan et al.). Die VetCompass-Sterbetafeln aus britischen Praxisdaten geben eine Lebenserwartung bei Geburt von 12,10 Jahren an, die dritthöchste der 18 untersuchten Rassen nach Jack Russell Terrier und Yorkshire Terrier (Teng et al.). Der Royal Kennel Club nennt über 12 Jahre.
 
 ## Wie groß wird ein Border Collie?
 

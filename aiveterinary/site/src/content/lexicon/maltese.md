@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "The Maltese is a tiny white companion dog of 3–4 kg with a long, silky coat that needs daily grooming. A UK study finds a median lifespan of 13.1 years; the breed is prone to a heart defect present from birth (PDA)."
 facts:
-  - { field: lifespan, value: "Median 13.1 years in a 2024 UK study of 2,687 Maltese, not statistically different from crossbred dogs (12.0)", ref: 3 }
+  - { field: lifespan, value: "Median 13.1 years in a 2024 UK study of 2,021 Maltese, not statistically different from crossbred dogs (12.0)", ref: 3 }
   - { field: lifespan, value: "The Royal Kennel Club gives a lifespan of over 12 years", ref: 1 }
   - { field: size, value: "FCI standard: height at the withers 21–25 cm in males, 20–23 cm in females", ref: 2 }
   - { field: weight, value: "FCI standard: 3–4 kg", ref: 2 }
@@ -31,7 +31,7 @@ lang: en
 
 ## How long do Maltese live?
 
-Often a long time. A 2024 UK study of 2,687 Maltese found a median lifespan of 13.1 years; this did not differ statistically from crossbred dogs (12.0 years) (McMillan et al.). The Royal Kennel Club and the PDSA give the breed's lifespan as over 12 years.
+Often a long time. A 2024 UK study of 2,021 Maltese found a median lifespan of 13.1 years; this did not differ statistically from crossbred dogs (12.0 years) (McMillan et al.). The Royal Kennel Club and the PDSA give the breed's lifespan as over 12 years.
 
 ## How big does a Maltese get?
 

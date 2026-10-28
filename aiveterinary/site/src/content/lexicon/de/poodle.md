@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Pudel gibt es in vier FCI-Größen, vom Toy bis zum Großpudel; in einer großen britischen Studie leben sie im Median 14,0 Jahre. Das Fell haart nicht und braucht tägliche Pflege; Morbus Addison und erbliche Augenleiden sind bekannt."
 facts:
-  - { field: lifespan, value: "Median 14,0 Jahre in einer britischen Studie von 2024 mit 8.826 Pudeln (alle Größen zusammen), länger als bei Mischlingen (12,0)", ref: 5 }
+  - { field: lifespan, value: "Median 14,0 Jahre in einer britischen Studie von 2024 mit 6.427 Pudeln (alle Größen zusammen), länger als bei Mischlingen (12,0)", ref: 5 }
   - { field: lifespan, value: "Der Royal Kennel Club nennt über 12 Jahre für Standard, Miniature und Toy", ref: 1 }
   - { field: size, value: "FCI-Standard: Großpudel über 45 bis 60 cm, Kleinpudel über 35 bis 45 cm, Zwergpudel über 28 bis 35 cm, Toypudel über 24 bis 28 cm (ideal 25 cm)", ref: 4 }
   - { field: coat, value: "Kraushaar (fein, wollig, stark gekräuselt und elastisch, gleichmäßige Locken) oder Schnürenhaar (Schnüre mindestens 20 cm); einfarbig und im aktuellen Standard von 2024 auch mehrfarbig (FCI-Standard)", ref: 4 }
@@ -34,7 +34,7 @@ lang: de
 
 ## Wie alt wird ein Pudel?
 
-Älter als die meisten Hunde. Eine britische Studie von 2024 mit 8.826 Pudeln fand eine mediane Lebensdauer von 14,0 Jahren, gegenüber 12,0 Jahren bei Mischlingen (McMillan et al.); die Größen wurden dabei nicht getrennt. Der Royal Kennel Club nennt für Standard, Miniature und Toy jeweils über 12 Jahre, die PDSA 12 bis 14 Jahre.
+Älter als die meisten Hunde. Eine britische Studie von 2024 mit 6.427 Pudeln fand eine mediane Lebensdauer von 14,0 Jahren, gegenüber 12,0 Jahren bei Mischlingen (McMillan et al.); die Größen wurden dabei nicht getrennt. Der Royal Kennel Club nennt für Standard, Miniature und Toy jeweils über 12 Jahre, die PDSA 12 bis 14 Jahre.
 
 ## Wie groß wird ein Pudel?
 

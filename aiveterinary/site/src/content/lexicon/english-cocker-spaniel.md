@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "English Cocker Spaniels live a median 13.3 years in a large UK study. UK vet records show much higher odds of ear discharge and dry eye than other dogs; DNA tests exist for several inherited diseases."
 facts:
-  - { field: lifespan, value: "Median 13.3 years in a 2024 UK study of 33,887 English Cocker Spaniels, longer than crossbred dogs (12.0)", ref: 3 }
+  - { field: lifespan, value: "Median 13.3 years in a 2024 UK study of 26,303 English Cocker Spaniels, longer than crossbred dogs (12.0)", ref: 3 }
   - { field: lifespan, value: "UK vet records (VetCompass): life expectancy at birth 11.31 years for 1,073 Cocker Spaniels", ref: 4 }
   - { field: size, value: "FCI standard: height about 39–41 cm in males, 38–39 cm in females", ref: 2 }
   - { field: weight, value: "FCI standard: about 13–14.5 kg", ref: 2 }
@@ -33,7 +33,7 @@ lang: en
 
 ## How long do English Cocker Spaniels live?
 
-Longer than most dogs. A 2024 UK study of 33,887 English Cocker Spaniels found a median lifespan of 13.3 years, against 12.0 years for crossbred dogs (McMillan et al.). VetCompass life tables, built from UK vet records, gave 1,073 Cocker Spaniels a life expectancy at birth of 11.31 years, close to the 11.23 years for dogs overall (Teng et al.). The Royal Kennel Club gives the breed's lifespan as over 10 years.
+Longer than most dogs. A 2024 UK study of 26,303 English Cocker Spaniels found a median lifespan of 13.3 years, against 12.0 years for crossbred dogs (McMillan et al.). VetCompass life tables, built from UK vet records, gave 1,073 Cocker Spaniels a life expectancy at birth of 11.31 years, close to the 11.23 years for dogs overall (Teng et al.). The Royal Kennel Club gives the breed's lifespan as over 10 years.
 
 ## How big does a Cocker Spaniel get?
 

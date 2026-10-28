@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Chihuahuas live a median 11.8 years in a large UK study. The world's smallest breed is prone to dental disease, retained puppy teeth, overweight and heart valve disease; eyes are tested before breeding."
 facts:
-  - { field: lifespan, value: "Median 11.8 years in a 2024 UK study of 14,636 Chihuahuas", ref: 4 }
+  - { field: lifespan, value: "Median 11.8 years in a 2024 UK study of 10,788 Chihuahuas", ref: 4 }
   - { field: lifespan, value: "UK vet records (VetCompass): life expectancy at birth 7.91 years, with a very wide spread: many die young, while others live past 15", ref: 5 }
   - { field: size, value: "The smallest pedigree dog: compact body, apple-shaped skull; only weight is judged, not height (FCI standard)", ref: 2 }
   - { field: weight, value: "FCI standard: 1–3 kg, ideal 1.5–2.5 kg; dogs under 1 kg or over 3 kg are disqualified", ref: 2 }
@@ -35,7 +35,7 @@ lang: en
 
 ## How long do Chihuahuas live?
 
-The figures vary a lot. A 2024 UK study of 14,636 Chihuahuas found a median lifespan of 11.8 years, a little shorter than the 12.0 years of crossbred dogs (McMillan et al.). The Royal Kennel Club gives the breed's lifespan as over 12 years.
+The figures vary a lot. A 2024 UK study of 10,788 Chihuahuas found a median lifespan of 11.8 years, a little shorter than the 12.0 years of crossbred dogs (McMillan et al.). The Royal Kennel Club gives the breed's lifespan as over 12 years.
 
 UK vet records give lower numbers. In a VetCompass study of Chihuahuas in 2016, the median age at death was 8.2 years; females lived longer than males (10.2 against 6.9 years) (O'Neill et al., 2020). VetCompass life tables put a Chihuahua's life expectancy at birth at 7.91 years, yet Chihuahuas were also the breed whose life expectancy stayed above 1.5 years the longest, until the age of 15–16. The authors read this as a very wide spread of lifespans: many Chihuahuas die young, and many live to an old age (Teng et al.). The UK population was young and growing fast when these records were collected, which can pull the figures down.
 

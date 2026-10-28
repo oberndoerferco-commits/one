@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Der Australian Shepherd ist ein in Amerika gezüchteter Hütehund, der mehr als 2 Stunden Bewegung am Tag braucht. Gentests gibt es für Collie-Eye-Anomalie, erbliche Katarakt, PRA und die MDR1-Medikamentenempfindlichkeit."
 facts:
-  - { field: lifespan, value: "Median 13,7 Jahre in einer britischen Studie von 2024, aber aus einer kleinen Stichprobe von 286 Hunden mit nur 62 Todesfällen", ref: 3 }
+  - { field: lifespan, value: "Median 13,7 Jahre in einer britischen Studie von 2024, aber aus einer kleinen Stichprobe von 224 Hunden mit nur 62 Todesfällen", ref: 3 }
   - { field: lifespan, value: "Der Royal Kennel Club nennt eine Lebensdauer von über 10 Jahren", ref: 1 }
   - { field: size, value: "FCI-Standard: bevorzugte Widerristhöhe 51–58 cm bei Rüden, 46–53 cm bei Hündinnen", ref: 2 }
   - { field: weight, value: "Durchschnittsgewicht 18–29 kg (PDSA)", ref: 4 }
@@ -30,7 +30,7 @@ lang: de
 
 ## Wie alt wird ein Australian Shepherd?
 
-Gute britische Daten gibt es kaum. Eine britische Studie von 2024 fand eine mediane Lebensdauer von 13,7 Jahren, länger als bei Mischlingen (12,0 Jahre), sie beruhte aber auf nur 286 Australian Shepherds, von denen 62 gestorben waren; der Wert ist daher unsicher (95-%-Bereich 12,8 bis 14,6 Jahre) (McMillan et al.). Der Royal Kennel Club nennt über 10 Jahre.
+Gute britische Daten gibt es kaum. Eine britische Studie von 2024 fand eine mediane Lebensdauer von 13,7 Jahren, länger als bei Mischlingen (12,0 Jahre), sie beruhte aber auf nur 224 Australian Shepherds, von denen 62 gestorben waren; der Wert ist daher unsicher (95-%-Bereich 12,8 bis 14,6 Jahre) (McMillan et al.). Der Royal Kennel Club nennt über 10 Jahre.
 
 ## Wie groß wird ein Australian Shepherd?
 

@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Il Bovaro del Bernese vive in mediana 10,1 anni in un grande studio britannico, meno dei meticci. La displasia del gomito è molto comune nella razza; la valutazione di anche e gomiti prima della riproduzione è il test chiave."
 facts:
-  - { field: lifespan, value: "Mediana di 10,1 anni in uno studio britannico del 2024 su 1.565 Bovari del Bernese, meno dei meticci (12,0)", ref: 3 }
+  - { field: lifespan, value: "Mediana di 10,1 anni in uno studio britannico del 2024 su 1.116 Bovari del Bernese, meno dei meticci (12,0)", ref: 3 }
   - { field: lifespan, value: "Il Royal Kennel Club indica una durata della vita inferiore a 10 anni", ref: 1 }
   - { field: size, value: "Standard FCI: altezza al garrese 64-70 cm nei maschi (ideale 66-68), 58-66 cm nelle femmine (ideale 60-63)", ref: 2 }
   - { field: weight, value: "Peso medio 48-63 kg nei maschi e 42-53 kg nelle femmine (PDSA)", ref: 5 }
@@ -32,7 +32,7 @@ lang: it
 
 ## Quanto vive un Bovaro del Bernese?
 
-Meno della maggior parte dei cani. Uno studio britannico del 2024 su 1.565 Bovari del Bernese ha trovato una durata mediana della vita di 10,1 anni, contro 12,0 anni dei meticci (McMillan et al.). Il Royal Kennel Club indica una durata inferiore a 10 anni, la PDSA fino a 10 anni.
+Meno della maggior parte dei cani. Uno studio britannico del 2024 su 1.116 Bovari del Bernese ha trovato una durata mediana della vita di 10,1 anni, contro 12,0 anni dei meticci (McMillan et al.). Il Royal Kennel Club indica una durata inferiore a 10 anni, la PDSA fino a 10 anni.
 
 ## Quanto diventa grande un Bovaro del Bernese?
 

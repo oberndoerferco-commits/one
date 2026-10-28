@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Der Bichon Frisé ist ein kleiner weißer Begleithund von etwa 5 kg mit lockigem Fell, das täglich gepflegt werden muss. Eine große britische Studie findet im Median 12,5 Jahre; die Augenuntersuchung ist der wichtigste Test vor der Zucht."
 facts:
-  - { field: lifespan, value: "Median 12,5 Jahre in einer britischen Studie von 2024 mit 8.802 Bichons Frisés, länger als bei Mischlingen (12,0)", ref: 3 }
+  - { field: lifespan, value: "Median 12,5 Jahre in einer britischen Studie von 2024 mit 5.902 Bichons Frisés, länger als bei Mischlingen (12,0)", ref: 3 }
   - { field: lifespan, value: "Der Royal Kennel Club nennt eine Lebensdauer von über 12 Jahren", ref: 1 }
   - { field: size, value: "FCI-Standard: Widerristhöhe 25–29 cm (Rüden dürfen 1 cm größer, Hündinnen 2 cm kleiner sein)", ref: 2 }
   - { field: weight, value: "FCI-Standard: etwa 5 kg, im Verhältnis zur Größe", ref: 2 }
@@ -30,7 +30,7 @@ lang: de
 
 ## Wie alt wird ein Bichon Frisé?
 
-Älter als der Durchschnittshund. Eine britische Studie von 2024 mit 8.802 Bichons Frisés fand eine mediane Lebensdauer von 12,5 Jahren, gegenüber 12,0 Jahren bei Mischlingen (McMillan et al.). Der Royal Kennel Club und die PDSA nennen über 12 Jahre.
+Älter als der Durchschnittshund. Eine britische Studie von 2024 mit 5.902 Bichons Frisés fand eine mediane Lebensdauer von 12,5 Jahren, gegenüber 12,0 Jahren bei Mischlingen (McMillan et al.). Der Royal Kennel Club und die PDSA nennen über 12 Jahre.
 
 ## Wie groß wird ein Bichon Frisé?
 

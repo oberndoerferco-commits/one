@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Il Cavalier vive in mediana 11,8 anni in un grande studio britannico. La malattia della valvola mitrale è molto comune e precoce nella razza, e la siringomielia, una dolorosa malattia del midollo spinale, si vede alla risonanza in molti cani."
 facts:
-  - { field: lifespan, value: "Mediana di 11,8 anni in uno studio britannico del 2024 su 20.661 Cavalier, poco meno dei meticci (12,0)", ref: 3 }
+  - { field: lifespan, value: "Mediana di 11,8 anni in uno studio britannico del 2024 su 13.782 Cavalier, poco meno dei meticci (12,0)", ref: 3 }
   - { field: lifespan, value: "Cartelle veterinarie britanniche (VetCompass): aspettativa di vita alla nascita 10,45 anni", ref: 4 }
   - { field: weight, value: "Standard FCI: 5,4-8 kg; si preferisce un cane piccolo ed equilibrato entro questi valori", ref: 2 }
   - { field: coat, value: "Pelo lungo e setoso con molte frange, mai tolettato; Blenheim, rubino, nero focato o tricolore (standard FCI)", ref: 2 }
@@ -35,7 +35,7 @@ lang: it
 
 ## Quanto vive un Cavalier?
 
-Da circa 10 a 12 anni, a seconda dello studio. Uno studio britannico del 2024 su 20.661 Cavalier King Charles Spaniel ha trovato una durata mediana della vita di 11,8 anni, poco meno dei 12,0 anni dei meticci (McMillan et al.). Le tavole di sopravvivenza VetCompass, costruite dalle cartelle cliniche dei veterinari britannici, indicano un'aspettativa di vita alla nascita di 10,45 anni (Teng et al.). Il Royal Kennel Club indica una durata della vita di oltre 12 anni.
+Da circa 10 a 12 anni, a seconda dello studio. Uno studio britannico del 2024 su 13.782 Cavalier King Charles Spaniel ha trovato una durata mediana della vita di 11,8 anni, poco meno dei 12,0 anni dei meticci (McMillan et al.). Le tavole di sopravvivenza VetCompass, costruite dalle cartelle cliniche dei veterinari britannici, indicano un'aspettativa di vita alla nascita di 10,45 anni (Teng et al.). Il Royal Kennel Club indica una durata della vita di oltre 12 anni.
 
 ## Quanto diventa grande un Cavalier?
 

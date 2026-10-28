@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Yorkshire Terriers are long-lived: a median 13.3 years in a large UK study. Dental disease is their most common problem; slipping kneecaps, a collapsing windpipe and liver shunts are known in the breed."
 facts:
-  - { field: lifespan, value: "Median 13.3 years in a 2024 UK study of 24,088 Yorkshire Terriers, among the longer-lived breeds", ref: 4 }
+  - { field: lifespan, value: "Median 13.3 years in a 2024 UK study of 14,579 Yorkshire Terriers, among the longer-lived breeds", ref: 4 }
   - { field: lifespan, value: "UK vet records (VetCompass, 2016): median age at death 13.56 years; brain and kidney disorders were the most common causes", ref: 3 }
   - { field: weight, value: "FCI standard: up to 3.2 kg, in a very compact, neat dog", ref: 2 }
   - { field: coat, value: "Long, perfectly straight, glossy, fine and silky coat; dark steel blue with rich golden tan (FCI standard)", ref: 2 }
@@ -35,7 +35,7 @@ lang: en
 
 ## How long do Yorkshire Terriers live?
 
-Longer than most dogs. A 2024 UK study of 24,088 Yorkshire Terriers found a median lifespan of 13.3 years, against 12.0 years for crossbred dogs (McMillan et al.). In a VetCompass study of UK vet records from 2016, the median age at death was 13.56 years, and the most common causes of death were brain disorders (9.8%) and kidney disorders (8.7%) (O'Neill et al., 2025). VetCompass life tables put a Yorkshire Terrier's life expectancy at birth at 12.54 years, the second highest of 18 breeds (Teng et al.). The authors of the 2025 study see the breed's long life as a sign of robust overall health.
+Longer than most dogs. A 2024 UK study of 14,579 Yorkshire Terriers found a median lifespan of 13.3 years, against 12.0 years for crossbred dogs (McMillan et al.). In a VetCompass study of UK vet records from 2016, the median age at death was 13.56 years, and the most common causes of death were brain disorders (9.8%) and kidney disorders (8.7%) (O'Neill et al., 2025). VetCompass life tables put a Yorkshire Terrier's life expectancy at birth at 12.54 years, the second highest of 18 breeds (Teng et al.). The authors of the 2025 study see the breed's long life as a sign of robust overall health.
 
 ## How big does a Yorkshire Terrier get?
 

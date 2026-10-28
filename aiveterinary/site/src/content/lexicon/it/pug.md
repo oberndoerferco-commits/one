@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Il Carlino ha il muso molto schiacciato: nelle cartelle veterinarie britanniche ha probabilità molto più alte degli altri cani di problemi respiratori (BOAS), narici strette e ulcere della cornea. Mediana di vita: 11,6 anni."
 facts:
-  - { field: lifespan, value: "Mediana di 11,6 anni in uno studio britannico del 2024 su 12.808 Carlini, meno dei meticci (12,0)", ref: 3 }
+  - { field: lifespan, value: "Mediana di 11,6 anni in uno studio britannico del 2024 su 10.026 Carlini, meno dei meticci (12,0)", ref: 3 }
   - { field: lifespan, value: "Cartelle veterinarie britanniche (VetCompass): aspettativa di vita alla nascita 7,65 anni, tra le più basse di 18 razze", ref: 4 }
   - { field: weight, value: "Standard FCI: ideale 6,3-8,1 kg; lo standard definisce inaccettabile l'obesità", ref: 2 }
   - { field: coat, value: "Pelo fine, liscio, morbido, corto e lucido, argento, albicocca, fulvo o nero (standard FCI)", ref: 2 }
@@ -42,7 +42,7 @@ lang: it
 
 ## Quanto vive un Carlino?
 
-Meno del cane medio. Uno studio britannico del 2024 su 12.808 Carlini ha trovato una durata mediana della vita di 11,6 anni, contro 12,0 anni dei meticci (McMillan et al.). Le tavole di sopravvivenza VetCompass, costruite dalle cartelle cliniche dei veterinari britannici, indicano per il Carlino un'aspettativa di vita alla nascita di 7,65 anni, tra le più basse delle 18 razze studiate, e il Carlino era una delle razze con una probabilità di morire prima dell'età adulta molto più alta dei cani in generale (Teng et al.). Il Royal Kennel Club indica una durata della vita di oltre 10 anni.
+Meno del cane medio. Uno studio britannico del 2024 su 10.026 Carlini ha trovato una durata mediana della vita di 11,6 anni, contro 12,0 anni dei meticci (McMillan et al.). Le tavole di sopravvivenza VetCompass, costruite dalle cartelle cliniche dei veterinari britannici, indicano per il Carlino un'aspettativa di vita alla nascita di 7,65 anni, tra le più basse delle 18 razze studiate, e il Carlino era una delle razze con una probabilità di morire prima dell'età adulta molto più alta dei cani in generale (Teng et al.). Il Royal Kennel Club indica una durata della vita di oltre 10 anni.
 
 ## Quanto diventa grande un Carlino?
 

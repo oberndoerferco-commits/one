@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Il Boxer vive in mediana 11,3 anni in un grande studio britannico, meno dei meticci. Ha bisogno di oltre 2 ore di movimento al giorno; sono noti epulidi gengivali, ulcere della cornea e malattie cardiache ereditarie."
 facts:
-  - { field: lifespan, value: "Mediana di 11,3 anni in uno studio britannico del 2024 su 17.219 Boxer, meno dei meticci (12,0)", ref: 3 }
+  - { field: lifespan, value: "Mediana di 11,3 anni in uno studio britannico del 2024 su 11.294 Boxer, meno dei meticci (12,0)", ref: 3 }
   - { field: lifespan, value: "Cartelle veterinarie britanniche (VetCompass): aspettativa di vita alla nascita 10,04 anni, su 836 Boxer", ref: 4 }
   - { field: lifespan, value: "VetCompass 2023: longevità mediana 10,46 anni su 346 decessi, senza differenze tra i sessi né tra Boxer bianchi e non bianchi", ref: 5 }
   - { field: size, value: "Standard FCI: altezza al garrese 57-63 cm nei maschi, 53-59 cm nelle femmine", ref: 2 }
@@ -35,7 +35,7 @@ lang: it
 
 ## Quanto vive un Boxer?
 
-Un po' meno del cane medio. Uno studio britannico del 2024 su 17.219 Boxer ha trovato una durata mediana della vita di 11,3 anni, contro 12,0 anni dei meticci (McMillan et al.). Nelle cartelle veterinarie britanniche (VetCompass) l'età mediana alla morte di 346 Boxer era 10,46 anni (O'Neill et al., 2023), e le tavole di sopravvivenza VetCompass indicano un'aspettativa di vita alla nascita di 10,04 anni (Teng et al.). Gli autori dello studio del 2023 la ritengono in linea con altre razze di taglia simile. Il Royal Kennel Club indica oltre 10 anni.
+Un po' meno del cane medio. Uno studio britannico del 2024 su 11.294 Boxer ha trovato una durata mediana della vita di 11,3 anni, contro 12,0 anni dei meticci (McMillan et al.). Nelle cartelle veterinarie britanniche (VetCompass) l'età mediana alla morte di 346 Boxer era 10,46 anni (O'Neill et al., 2023), e le tavole di sopravvivenza VetCompass indicano un'aspettativa di vita alla nascita di 10,04 anni (Teng et al.). Gli autori dello studio del 2023 la ritengono in linea con altre razze di taglia simile. Il Royal Kennel Club indica oltre 10 anni.
 
 ## Quanto diventa grande un Boxer?
 

@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Australian Shepherds are an American-bred herding dog that needs more than 2 hours of exercise a day. DNA tests exist for collie eye anomaly, hereditary cataract, PRA and MDR1 drug sensitivity."
 facts:
-  - { field: lifespan, value: "Median 13.7 years in a 2024 UK study, but from a small sample of 286 dogs with only 62 deaths", ref: 3 }
+  - { field: lifespan, value: "Median 13.7 years in a 2024 UK study, but from a small sample of 224 dogs with only 62 deaths", ref: 3 }
   - { field: lifespan, value: "The Royal Kennel Club gives a lifespan of over 10 years", ref: 1 }
   - { field: size, value: "FCI standard: preferred height at the withers 51–58 cm in males, 46–53 cm in females", ref: 2 }
   - { field: weight, value: "Average weight 18–29 kg (PDSA)", ref: 4 }
@@ -30,7 +30,7 @@ lang: en
 
 ## How long do Australian Shepherds live?
 
-There is little good UK data. A 2024 UK study found a median lifespan of 13.7 years, longer than crossbred dogs (12.0 years), but it was based on only 286 Australian Shepherds, of which 62 had died, so the figure is uncertain (95% range 12.8 to 14.6 years) (McMillan et al.). The Royal Kennel Club gives the breed's lifespan as over 10 years.
+There is little good UK data. A 2024 UK study found a median lifespan of 13.7 years, longer than crossbred dogs (12.0 years), but it was based on only 224 Australian Shepherds, of which 62 had died, so the figure is uncertain (95% range 12.8 to 14.6 years) (McMillan et al.). The Royal Kennel Club gives the breed's lifespan as over 10 years.
 
 ## How big does an Australian Shepherd get?
 

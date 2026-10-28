@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Lo Shih Tzu vive in mediana 12,8 anni in un grande studio britannico. Il muso corto porta problemi respiratori e oculari; nelle cartelle veterinarie britanniche i più comuni erano malattie dentali, ghiandole anali e orecchie."
 facts:
-  - { field: lifespan, value: "Mediana di 12,8 anni in uno studio britannico del 2024 su 17.901 Shih Tzu, più dei meticci (12,0)", ref: 3 }
+  - { field: lifespan, value: "Mediana di 12,8 anni in uno studio britannico del 2024 su 12.007 Shih Tzu, più dei meticci (12,0)", ref: 3 }
   - { field: lifespan, value: "Cartelle veterinarie britanniche (VetCompass): aspettativa di vita alla nascita 11,05 anni per 638 Shih Tzu, vicina ai cani in generale (11,23)", ref: 4 }
   - { field: lifespan, value: "VetCompass 2024: età mediana alla morte 12,7 anni, su soli 89 decessi", ref: 5 }
   - { field: size, value: "Standard FCI: altezza al garrese non oltre 27 cm", ref: 2 }
@@ -37,7 +37,7 @@ lang: it
 
 ## Quanto vive uno Shih Tzu?
 
-Più del cane medio. Uno studio britannico del 2024 su 17.901 Shih Tzu ha trovato una durata mediana della vita di 12,8 anni, contro 12,0 anni dei meticci (McMillan et al.). Uno studio VetCompass sulle cartelle veterinarie britanniche ha trovato un'età mediana alla morte di 12,7 anni, ma su soli 89 decessi (Dale et al., 2024). Le tavole di sopravvivenza VetCompass indicano per 638 Shih Tzu un'aspettativa di vita alla nascita di 11,05 anni, vicina agli 11,23 anni dei cani in generale (Teng et al.). Il Royal Kennel Club indica oltre 10 anni.
+Più del cane medio. Uno studio britannico del 2024 su 12.007 Shih Tzu ha trovato una durata mediana della vita di 12,8 anni, contro 12,0 anni dei meticci (McMillan et al.). Uno studio VetCompass sulle cartelle veterinarie britanniche ha trovato un'età mediana alla morte di 12,7 anni, ma su soli 89 decessi (Dale et al., 2024). Le tavole di sopravvivenza VetCompass indicano per 638 Shih Tzu un'aspettativa di vita alla nascita di 11,05 anni, vicina agli 11,23 anni dei cani in generale (Teng et al.). Il Royal Kennel Club indica oltre 10 anni.
 
 ## Quanto diventa grande uno Shih Tzu?
 

@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Der Siberian Husky ist ein Schlittenhund, der mehr als 2 Stunden Bewegung am Tag und einen sehr sicheren Garten braucht. Eine große britische Studie findet im Median 11,9 Jahre; vor der Zucht zählt die Augenuntersuchung mit Gonioskopie."
 facts:
-  - { field: lifespan, value: "Median 11,9 Jahre in einer britischen Studie von 2024 mit 6.400 Siberian Huskys, knapp, aber statistisch signifikant kürzer als bei Mischlingen (12,0)", ref: 3 }
+  - { field: lifespan, value: "Median 11,9 Jahre in einer britischen Studie von 2024 mit 4.453 Siberian Huskys, knapp, aber statistisch signifikant kürzer als bei Mischlingen (12,0)", ref: 3 }
   - { field: lifespan, value: "Britische Praxisdaten (VetCompass): Lebenserwartung bei Geburt 9,53 Jahre, aus einer kleinen Stichprobe von 154 Huskys; höhere Wahrscheinlichkeit, vor dem Erwachsenenalter zu sterben, als bei Hunden insgesamt", ref: 4 }
   - { field: size, value: "FCI-Standard: Widerristhöhe 53,5–60 cm bei Rüden, 50,5–56 cm bei Hündinnen", ref: 2 }
   - { field: weight, value: "FCI-Standard: Rüden 20,5–28 kg, Hündinnen 15,5–23 kg, im Verhältnis zur Größe", ref: 2 }
@@ -31,7 +31,7 @@ lang: de
 
 ## Wie alt wird ein Siberian Husky?
 
-Etwa so alt wie der Durchschnittshund oder etwas weniger. Eine britische Studie von 2024 mit 6.400 Siberian Huskys fand eine mediane Lebensdauer von 11,9 Jahren, gegenüber 12,0 Jahren bei Mischlingen; der Unterschied ist klein, aber statistisch signifikant (McMillan et al.). Die VetCompass-Sterbetafeln geben eine niedrigere Lebenserwartung bei Geburt von 9,53 Jahren an, aus nur 154 Huskys, und der Husky gehörte zu den Rassen mit einer viel höheren Wahrscheinlichkeit, vor dem Erwachsenenalter zu sterben, als Hunde insgesamt (Teng et al.). Der Royal Kennel Club nennt über 10 Jahre.
+Etwa so alt wie der Durchschnittshund oder etwas weniger. Eine britische Studie von 2024 mit 4.453 Siberian Huskys fand eine mediane Lebensdauer von 11,9 Jahren, gegenüber 12,0 Jahren bei Mischlingen; der Unterschied ist klein, aber statistisch signifikant (McMillan et al.). Die VetCompass-Sterbetafeln geben eine niedrigere Lebenserwartung bei Geburt von 9,53 Jahren an, aus nur 154 Huskys, und der Husky gehörte zu den Rassen mit einer viel höheren Wahrscheinlichkeit, vor dem Erwachsenenalter zu sterben, als Hunde insgesamt (Teng et al.). Der Royal Kennel Club nennt über 10 Jahre.
 
 ## Wie groß wird ein Siberian Husky?
 

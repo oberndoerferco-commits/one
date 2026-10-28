@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Yorkshire Terrier werden alt: im Median 13,3 Jahre in einer großen britischen Studie. Zahnerkrankung ist ihr häufigstes Problem; Kniescheibenluxation, Trachealkollaps und Lebershunts sind in der Rasse bekannt."
 facts:
-  - { field: lifespan, value: "Median 13,3 Jahre in einer britischen Studie von 2024 mit 24.088 Yorkshire Terriern, unter den langlebigeren Rassen", ref: 4 }
+  - { field: lifespan, value: "Median 13,3 Jahre in einer britischen Studie von 2024 mit 14.579 Yorkshire Terriern, unter den langlebigeren Rassen", ref: 4 }
   - { field: lifespan, value: "Britische Praxisdaten (VetCompass, 2016): medianes Sterbealter 13,56 Jahre; häufigste Ursachen waren Gehirn- und Nierenerkrankungen", ref: 3 }
   - { field: weight, value: "FCI-Standard: bis 3,2 kg, bei einem sehr kompakten, adretten Hund", ref: 2 }
   - { field: coat, value: "Langes, vollkommen glattes, glänzendes, feines und seidiges Fell; dunkles Stahlblau mit sattem Goldbraun (FCI-Standard)", ref: 2 }
@@ -35,7 +35,7 @@ lang: de
 
 ## Wie alt wird ein Yorkshire Terrier?
 
-Älter als die meisten Hunde. Eine britische Studie von 2024 mit 24.088 Yorkshire Terriern fand eine mediane Lebensdauer von 13,3 Jahren, gegenüber 12,0 Jahren bei Mischlingen (McMillan et al.). In einer VetCompass-Studie britischer Praxisdaten von 2016 lag das mediane Sterbealter bei 13,56 Jahren, und die häufigsten Todesursachen waren Gehirnerkrankungen (9,8 %) und Nierenerkrankungen (8,7 %) (O'Neill et al., 2025). Die VetCompass-Sterbetafeln geben eine Lebenserwartung bei Geburt von 12,54 Jahren an, die zweithöchste von 18 Rassen (Teng et al.). Die Autoren der Studie von 2025 sehen in der Langlebigkeit der Rasse ein Zeichen insgesamt robuster Gesundheit.
+Älter als die meisten Hunde. Eine britische Studie von 2024 mit 14.579 Yorkshire Terriern fand eine mediane Lebensdauer von 13,3 Jahren, gegenüber 12,0 Jahren bei Mischlingen (McMillan et al.). In einer VetCompass-Studie britischer Praxisdaten von 2016 lag das mediane Sterbealter bei 13,56 Jahren, und die häufigsten Todesursachen waren Gehirnerkrankungen (9,8 %) und Nierenerkrankungen (8,7 %) (O'Neill et al., 2025). Die VetCompass-Sterbetafeln geben eine Lebenserwartung bei Geburt von 12,54 Jahren an, die zweithöchste von 18 Rassen (Teng et al.). Die Autoren der Studie von 2025 sehen in der Langlebigkeit der Rasse ein Zeichen insgesamt robuster Gesundheit.
 
 ## Wie groß wird ein Yorkshire Terrier?
 

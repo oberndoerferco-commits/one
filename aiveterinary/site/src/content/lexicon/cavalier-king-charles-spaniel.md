@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Cavaliers live a median 11.8 years in a large UK study. Mitral valve heart disease is very common and starts early in the breed, and syringomyelia, a painful spinal cord disease, is found on MRI in many dogs."
 facts:
-  - { field: lifespan, value: "Median 11.8 years in a 2024 UK study of 20,661 Cavaliers, slightly shorter than crossbred dogs (12.0)", ref: 3 }
+  - { field: lifespan, value: "Median 11.8 years in a 2024 UK study of 13,782 Cavaliers, slightly shorter than crossbred dogs (12.0)", ref: 3 }
   - { field: lifespan, value: "UK vet records (VetCompass): life expectancy at birth 10.45 years", ref: 4 }
   - { field: weight, value: "FCI standard: 5.4–8 kg; a small, well-balanced dog within this range is preferred", ref: 2 }
   - { field: coat, value: "Long, silky coat with plenty of feathering, never trimmed; Blenheim, ruby, black and tan or tricolour (FCI standard)", ref: 2 }
@@ -34,7 +34,7 @@ lang: en
 
 ## How long do Cavaliers live?
 
-About 10 to 12 years, depending on the study. A 2024 UK study of 20,661 Cavalier King Charles Spaniels found a median lifespan of 11.8 years, slightly shorter than the 12.0 years of crossbred dogs (McMillan et al.). VetCompass life tables, built from UK vet records, put a Cavalier's life expectancy at birth at 10.45 years (Teng et al.). The Royal Kennel Club gives the breed's lifespan as over 12 years.
+About 10 to 12 years, depending on the study. A 2024 UK study of 13,782 Cavalier King Charles Spaniels found a median lifespan of 11.8 years, slightly shorter than the 12.0 years of crossbred dogs (McMillan et al.). VetCompass life tables, built from UK vet records, put a Cavalier's life expectancy at birth at 10.45 years (Teng et al.). The Royal Kennel Club gives the breed's lifespan as over 12 years.
 
 ## How big does a Cavalier get?
 

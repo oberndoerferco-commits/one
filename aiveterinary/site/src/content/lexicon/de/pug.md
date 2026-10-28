@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Möpse sind extrem kurzköpfig: In britischen Praxisdaten haben sie eine viel höhere Chance für Atemnot (BOAS), enge Nasenlöcher und Hornhautgeschwüre als andere Hunde. Eine große britische Studie findet im Median 11,6 Jahre."
 facts:
-  - { field: lifespan, value: "Median 11,6 Jahre in einer britischen Studie von 2024 mit 12.808 Möpsen, kürzer als bei Mischlingen (12,0)", ref: 3 }
+  - { field: lifespan, value: "Median 11,6 Jahre in einer britischen Studie von 2024 mit 10.026 Möpsen, kürzer als bei Mischlingen (12,0)", ref: 3 }
   - { field: lifespan, value: "Britische Praxisdaten (VetCompass): Lebenserwartung bei Geburt 7,65 Jahre, unter den kürzesten von 18 Rassen", ref: 4 }
   - { field: weight, value: "FCI-Standard: ideal 6,3–8,1 kg; der Standard nennt Fettleibigkeit inakzeptabel", ref: 2 }
   - { field: coat, value: "Feines, glattes, weiches, kurzes und glänzendes Fell in Silber, Apricot, Falb oder Schwarz (FCI-Standard)", ref: 2 }
@@ -41,7 +41,7 @@ lang: de
 
 ## Wie alt wird ein Mops?
 
-Weniger alt als der Durchschnittshund. Eine britische Studie von 2024 mit 12.808 Möpsen fand eine mediane Lebensdauer von 11,6 Jahren, gegenüber 12,0 Jahren bei Mischlingen (McMillan et al.). Die VetCompass-Sterbetafeln aus britischen Praxisdaten geben Möpsen eine Lebenserwartung bei Geburt von 7,65 Jahren, unter den kürzesten der 18 untersuchten Rassen, und der Mops gehörte zu den Rassen mit einer viel höheren Wahrscheinlichkeit, vor dem Erwachsenenalter zu sterben, als Hunde insgesamt (Teng et al.). Der Royal Kennel Club nennt über 10 Jahre.
+Weniger alt als der Durchschnittshund. Eine britische Studie von 2024 mit 10.026 Möpsen fand eine mediane Lebensdauer von 11,6 Jahren, gegenüber 12,0 Jahren bei Mischlingen (McMillan et al.). Die VetCompass-Sterbetafeln aus britischen Praxisdaten geben Möpsen eine Lebenserwartung bei Geburt von 7,65 Jahren, unter den kürzesten der 18 untersuchten Rassen, und der Mops gehörte zu den Rassen mit einer viel höheren Wahrscheinlichkeit, vor dem Erwachsenenalter zu sterben, als Hunde insgesamt (Teng et al.). Der Royal Kennel Club nennt über 10 Jahre.
 
 ## Wie groß wird ein Mops?
 

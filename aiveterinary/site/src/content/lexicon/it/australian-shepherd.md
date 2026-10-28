@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Il Pastore australiano (Australian Shepherd) è un cane da pastore selezionato in America che ha bisogno di oltre 2 ore di movimento al giorno. Esistono test del DNA per anomalia dell'occhio del collie, cataratta ereditaria, PRA e MDR1."
 facts:
-  - { field: lifespan, value: "Mediana di 13,7 anni in uno studio britannico del 2024, ma da un piccolo campione di 286 cani con soli 62 decessi", ref: 3 }
+  - { field: lifespan, value: "Mediana di 13,7 anni in uno studio britannico del 2024, ma da un piccolo campione di 224 cani con soli 62 decessi", ref: 3 }
   - { field: lifespan, value: "Il Royal Kennel Club indica una durata della vita di oltre 10 anni", ref: 1 }
   - { field: size, value: "Standard FCI: altezza al garrese preferita 51-58 cm nei maschi, 46-53 cm nelle femmine", ref: 2 }
   - { field: weight, value: "Peso medio 18-29 kg (PDSA)", ref: 4 }
@@ -31,7 +31,7 @@ lang: it
 
 ## Quanto vive un Pastore australiano?
 
-Ci sono pochi dati britannici affidabili. Uno studio britannico del 2024 ha trovato una durata mediana della vita di 13,7 anni, più dei meticci (12,0 anni), ma si basava su soli 286 Pastori australiani, di cui 62 morti, quindi il dato è incerto (intervallo al 95% tra 12,8 e 14,6 anni) (McMillan et al.). Il Royal Kennel Club indica oltre 10 anni.
+Ci sono pochi dati britannici affidabili. Uno studio britannico del 2024 ha trovato una durata mediana della vita di 13,7 anni, più dei meticci (12,0 anni), ma si basava su soli 224 Pastori australiani, di cui 62 morti, quindi il dato è incerto (intervallo al 95% tra 12,8 e 14,6 anni) (McMillan et al.). Il Royal Kennel Club indica oltre 10 anni.
 
 ## Quanto diventa grande un Pastore australiano?
 

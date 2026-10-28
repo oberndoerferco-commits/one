@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Lo Yorkshire Terrier vive a lungo: in mediana 13,3 anni in un grande studio britannico. La malattia dentale è il problema più comune; nella razza sono noti lussazione della rotula, collasso tracheale e shunt epatici."
 facts:
-  - { field: lifespan, value: "Mediana di 13,3 anni in uno studio britannico del 2024 su 24.088 Yorkshire Terrier, tra le razze più longeve", ref: 4 }
+  - { field: lifespan, value: "Mediana di 13,3 anni in uno studio britannico del 2024 su 14.579 Yorkshire Terrier, tra le razze più longeve", ref: 4 }
   - { field: lifespan, value: "Cartelle veterinarie britanniche (VetCompass, 2016): età mediana alla morte 13,56 anni; le cause più comuni erano malattie del cervello e dei reni", ref: 3 }
   - { field: weight, value: "Standard FCI: fino a 3,2 kg, in un cane molto compatto e ordinato", ref: 2 }
   - { field: coat, value: "Pelo lungo, perfettamente diritto, lucido, fine e setoso; blu acciaio scuro con focature color oro intenso (standard FCI)", ref: 2 }
@@ -36,7 +36,7 @@ lang: it
 
 ## Quanto vive uno Yorkshire Terrier?
 
-Più della maggior parte dei cani. Uno studio britannico del 2024 su 24.088 Yorkshire Terrier ha trovato una durata mediana della vita di 13,3 anni, contro 12,0 anni dei meticci (McMillan et al.). In uno studio VetCompass sulle cartelle veterinarie britanniche del 2016 l'età mediana alla morte era di 13,56 anni, e le cause di morte più comuni erano malattie del cervello (9,8%) e dei reni (8,7%) (O'Neill et al., 2025). Le tavole di sopravvivenza VetCompass indicano un'aspettativa di vita alla nascita di 12,54 anni, la seconda più alta di 18 razze (Teng et al.). Gli autori dello studio del 2025 vedono nella lunga vita della razza un segno di buona salute generale.
+Più della maggior parte dei cani. Uno studio britannico del 2024 su 14.579 Yorkshire Terrier ha trovato una durata mediana della vita di 13,3 anni, contro 12,0 anni dei meticci (McMillan et al.). In uno studio VetCompass sulle cartelle veterinarie britanniche del 2016 l'età mediana alla morte era di 13,56 anni, e le cause di morte più comuni erano malattie del cervello (9,8%) e dei reni (8,7%) (O'Neill et al., 2025). Le tavole di sopravvivenza VetCompass indicano un'aspettativa di vita alla nascita di 12,54 anni, la seconda più alta di 18 razze (Teng et al.). Gli autori dello studio del 2025 vedono nella lunga vita della razza un segno di buona salute generale.
 
 ## Quanto diventa grande uno Yorkshire Terrier?
 

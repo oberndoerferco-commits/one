@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Englische Cocker Spaniels leben in einer großen britischen Studie im Median 13,3 Jahre. Britische Praxisdaten zeigen eine viel höhere Chance für Ohrenausfluss und trockenes Auge; für mehrere Erbkrankheiten gibt es Gentests."
 facts:
-  - { field: lifespan, value: "Median 13,3 Jahre in einer britischen Studie von 2024 mit 33.887 Englischen Cocker Spaniels, länger als bei Mischlingen (12,0)", ref: 3 }
+  - { field: lifespan, value: "Median 13,3 Jahre in einer britischen Studie von 2024 mit 26.303 Englischen Cocker Spaniels, länger als bei Mischlingen (12,0)", ref: 3 }
   - { field: lifespan, value: "Britische Praxisdaten (VetCompass): Lebenserwartung bei Geburt 11,31 Jahre bei 1.073 Cocker Spaniels", ref: 4 }
   - { field: size, value: "FCI-Standard: Höhe etwa 39–41 cm bei Rüden, 38–39 cm bei Hündinnen", ref: 2 }
   - { field: weight, value: "FCI-Standard: etwa 13–14,5 kg", ref: 2 }
@@ -33,7 +33,7 @@ lang: de
 
 ## Wie alt wird ein Englischer Cocker Spaniel?
 
-Älter als die meisten Hunde. Eine britische Studie von 2024 mit 33.887 Englischen Cocker Spaniels fand eine mediane Lebensdauer von 13,3 Jahren, gegenüber 12,0 Jahren bei Mischlingen (McMillan et al.). Die VetCompass-Sterbetafeln aus britischen Praxisdaten geben 1.073 Cocker Spaniels eine Lebenserwartung bei Geburt von 11,31 Jahren, nahe an den 11,23 Jahren für Hunde insgesamt (Teng et al.). Der Royal Kennel Club nennt über 10 Jahre.
+Älter als die meisten Hunde. Eine britische Studie von 2024 mit 26.303 Englischen Cocker Spaniels fand eine mediane Lebensdauer von 13,3 Jahren, gegenüber 12,0 Jahren bei Mischlingen (McMillan et al.). Die VetCompass-Sterbetafeln aus britischen Praxisdaten geben 1.073 Cocker Spaniels eine Lebenserwartung bei Geburt von 11,31 Jahren, nahe an den 11,23 Jahren für Hunde insgesamt (Teng et al.). Der Royal Kennel Club nennt über 10 Jahre.
 
 ## Wie groß wird ein Cocker Spaniel?
 

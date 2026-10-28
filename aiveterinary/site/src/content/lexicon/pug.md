@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Pugs are severely flat-faced: UK vet records show far higher odds of breathing problems (BOAS), narrowed nostrils and eye ulcers than in other dogs. A large UK study finds a median lifespan of 11.6 years."
 facts:
-  - { field: lifespan, value: "Median 11.6 years in a 2024 UK study of 12,808 Pugs, shorter than crossbred dogs (12.0)", ref: 3 }
+  - { field: lifespan, value: "Median 11.6 years in a 2024 UK study of 10,026 Pugs, shorter than crossbred dogs (12.0)", ref: 3 }
   - { field: lifespan, value: "UK vet records (VetCompass): life expectancy at birth 7.65 years, among the shortest of 18 breeds", ref: 4 }
   - { field: weight, value: "FCI standard: ideal 6.3–8.1 kg; the standard calls obesity unacceptable", ref: 2 }
   - { field: coat, value: "Fine, smooth, soft, short and glossy coat in silver, apricot, fawn or black (FCI standard)", ref: 2 }
@@ -41,7 +41,7 @@ lang: en
 
 ## How long do Pugs live?
 
-Shorter than the average dog. A 2024 UK study of 12,808 Pugs found a median lifespan of 11.6 years, against 12.0 years for crossbred dogs (McMillan et al.). VetCompass life tables, built from UK vet records, gave Pugs a life expectancy at birth of 7.65 years, among the shortest of the 18 breeds studied, and Pugs were one of the breeds with a much higher chance of dying before adulthood than dogs overall (Teng et al.). The Royal Kennel Club gives the breed's lifespan as over 10 years.
+Shorter than the average dog. A 2024 UK study of 10,026 Pugs found a median lifespan of 11.6 years, against 12.0 years for crossbred dogs (McMillan et al.). VetCompass life tables, built from UK vet records, gave Pugs a life expectancy at birth of 7.65 years, among the shortest of the 18 breeds studied, and Pugs were one of the breeds with a much higher chance of dying before adulthood than dogs overall (Teng et al.). The Royal Kennel Club gives the breed's lifespan as over 10 years.
 
 ## How big does a Pug get?
 

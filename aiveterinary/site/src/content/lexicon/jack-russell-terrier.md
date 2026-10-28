@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Jack Russell Terriers are among the longest-lived dogs in UK studies, with a median of 13.3 years. DNA tests exist for an inherited eye disease (lens luxation) and two forms of inherited ataxia."
 facts:
-  - { field: lifespan, value: "Median 13.3 years in a 2024 UK study of 32,663 Jack Russell Terriers, longer than crossbred dogs (12.0)", ref: 3 }
+  - { field: lifespan, value: "Median 13.3 years in a 2024 UK study of 19,166 Jack Russell Terriers, longer than crossbred dogs (12.0)", ref: 3 }
   - { field: lifespan, value: "UK vet records (VetCompass): life expectancy at birth 12.72 years for 1,620 dogs, the highest of 18 breeds", ref: 4 }
   - { field: size, value: "FCI standard: ideal height at the withers 25–30 cm", ref: 2 }
   - { field: weight, value: "FCI standard: about 1 kg for every 5 cm of height, so about 5 kg at 25 cm and 6 kg at 30 cm", ref: 2 }
@@ -31,7 +31,7 @@ lang: en
 
 ## How long do Jack Russell Terriers live?
 
-Longer than most dogs. A 2024 UK study of 32,663 Jack Russell Terriers found a median lifespan of 13.3 years, against 12.0 years for crossbred dogs (McMillan et al.). In VetCompass life tables, built from UK vet records, the Jack Russell had the highest life expectancy at birth of the 18 breeds studied, 12.72 years, and its life table ran to 19 years of age (Teng et al.). The Royal Kennel Club gives the breed's lifespan as over 10 years.
+Longer than most dogs. A 2024 UK study of 19,166 Jack Russell Terriers found a median lifespan of 13.3 years, against 12.0 years for crossbred dogs (McMillan et al.). In VetCompass life tables, built from UK vet records, the Jack Russell had the highest life expectancy at birth of the 18 breeds studied, 12.72 years, and its life table ran to 19 years of age (Teng et al.). The Royal Kennel Club gives the breed's lifespan as over 10 years.
 
 ## How big does a Jack Russell get?
 

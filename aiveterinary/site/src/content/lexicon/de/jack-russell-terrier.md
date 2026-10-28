@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Jack Russell Terrier gehören in britischen Studien zu den langlebigsten Hunden, mit einem Median von 13,3 Jahren. Gentests gibt es für eine erbliche Augenkrankheit (Linsenluxation) und zwei Formen erblicher Ataxie."
 facts:
-  - { field: lifespan, value: "Median 13,3 Jahre in einer britischen Studie von 2024 mit 32.663 Jack Russell Terriern, länger als bei Mischlingen (12,0)", ref: 3 }
+  - { field: lifespan, value: "Median 13,3 Jahre in einer britischen Studie von 2024 mit 19.166 Jack Russell Terriern, länger als bei Mischlingen (12,0)", ref: 3 }
   - { field: lifespan, value: "Britische Praxisdaten (VetCompass): Lebenserwartung bei Geburt 12,72 Jahre bei 1.620 Hunden, die höchste von 18 Rassen", ref: 4 }
   - { field: size, value: "FCI-Standard: ideale Widerristhöhe 25–30 cm", ref: 2 }
   - { field: weight, value: "FCI-Standard: etwa 1 kg je 5 cm Höhe, also etwa 5 kg bei 25 cm und 6 kg bei 30 cm", ref: 2 }
@@ -31,7 +31,7 @@ lang: de
 
 ## Wie alt wird ein Jack Russell Terrier?
 
-Älter als die meisten Hunde. Eine britische Studie von 2024 mit 32.663 Jack Russell Terriern fand eine mediane Lebensdauer von 13,3 Jahren, gegenüber 12,0 Jahren bei Mischlingen (McMillan et al.). In den VetCompass-Sterbetafeln aus britischen Praxisdaten hatte der Jack Russell die höchste Lebenserwartung bei Geburt der 18 untersuchten Rassen, 12,72 Jahre, und seine Tafel reichte bis zum Alter von 19 Jahren (Teng et al.). Der Royal Kennel Club nennt über 10 Jahre.
+Älter als die meisten Hunde. Eine britische Studie von 2024 mit 19.166 Jack Russell Terriern fand eine mediane Lebensdauer von 13,3 Jahren, gegenüber 12,0 Jahren bei Mischlingen (McMillan et al.). In den VetCompass-Sterbetafeln aus britischen Praxisdaten hatte der Jack Russell die höchste Lebenserwartung bei Geburt der 18 untersuchten Rassen, 12,72 Jahre, und seine Tafel reichte bis zum Alter von 19 Jahren (Teng et al.). Der Royal Kennel Club nennt über 10 Jahre.
 
 ## Wie groß wird ein Jack Russell?
 

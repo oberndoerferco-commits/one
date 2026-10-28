@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Berner Sennenhunde leben in einer großen britischen Studie im Median 10,1 Jahre, kürzer als Mischlinge. Ellbogendysplasie ist in der Rasse sehr häufig; Hüft- und Ellbogenröntgen vor der Zucht ist der wichtigste Test."
 facts:
-  - { field: lifespan, value: "Median 10,1 Jahre in einer britischen Studie von 2024 mit 1.565 Berner Sennenhunden, kürzer als bei Mischlingen (12,0)", ref: 3 }
+  - { field: lifespan, value: "Median 10,1 Jahre in einer britischen Studie von 2024 mit 1.116 Berner Sennenhunden, kürzer als bei Mischlingen (12,0)", ref: 3 }
   - { field: lifespan, value: "Der Royal Kennel Club nennt eine Lebensdauer von unter 10 Jahren", ref: 1 }
   - { field: size, value: "FCI-Standard: Widerristhöhe 64–70 cm bei Rüden (ideal 66–68), 58–66 cm bei Hündinnen (ideal 60–63)", ref: 2 }
   - { field: weight, value: "Durchschnittsgewicht 48–63 kg bei Rüden und 42–53 kg bei Hündinnen (PDSA)", ref: 5 }
@@ -31,7 +31,7 @@ lang: de
 
 ## Wie alt wird ein Berner Sennenhund?
 
-Weniger alt als die meisten Hunde. Eine britische Studie von 2024 mit 1.565 Berner Sennenhunden fand eine mediane Lebensdauer von 10,1 Jahren, gegenüber 12,0 Jahren bei Mischlingen (McMillan et al.). Der Royal Kennel Club nennt unter 10 Jahre, die PDSA bis zu 10 Jahre.
+Weniger alt als die meisten Hunde. Eine britische Studie von 2024 mit 1.116 Berner Sennenhunden fand eine mediane Lebensdauer von 10,1 Jahren, gegenüber 12,0 Jahren bei Mischlingen (McMillan et al.). Der Royal Kennel Club nennt unter 10 Jahre, die PDSA bis zu 10 Jahre.
 
 ## Wie groß wird ein Berner Sennenhund?
 

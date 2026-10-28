@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Il Jack Russell Terrier è tra i cani più longevi negli studi britannici, con una mediana di 13,3 anni. Esistono test del DNA per una malattia ereditaria dell'occhio (lussazione del cristallino) e due forme di atassia ereditaria."
 facts:
-  - { field: lifespan, value: "Mediana di 13,3 anni in uno studio britannico del 2024 su 32.663 Jack Russell Terrier, più dei meticci (12,0)", ref: 3 }
+  - { field: lifespan, value: "Mediana di 13,3 anni in uno studio britannico del 2024 su 19.166 Jack Russell Terrier, più dei meticci (12,0)", ref: 3 }
   - { field: lifespan, value: "Cartelle veterinarie britanniche (VetCompass): aspettativa di vita alla nascita 12,72 anni su 1.620 cani, la più alta di 18 razze", ref: 4 }
   - { field: size, value: "Standard FCI: altezza ideale al garrese 25-30 cm", ref: 2 }
   - { field: weight, value: "Standard FCI: circa 1 kg ogni 5 cm di altezza, quindi circa 5 kg a 25 cm e 6 kg a 30 cm", ref: 2 }
@@ -32,7 +32,7 @@ lang: it
 
 ## Quanto vive un Jack Russell Terrier?
 
-Più della maggior parte dei cani. Uno studio britannico del 2024 su 32.663 Jack Russell Terrier ha trovato una durata mediana della vita di 13,3 anni, contro 12,0 anni dei meticci (McMillan et al.). Nelle tavole di sopravvivenza VetCompass, costruite dalle cartelle cliniche dei veterinari britannici, il Jack Russell aveva l'aspettativa di vita alla nascita più alta delle 18 razze studiate, 12,72 anni, e la sua tavola arrivava a 19 anni di età (Teng et al.). Il Royal Kennel Club indica oltre 10 anni.
+Più della maggior parte dei cani. Uno studio britannico del 2024 su 19.166 Jack Russell Terrier ha trovato una durata mediana della vita di 13,3 anni, contro 12,0 anni dei meticci (McMillan et al.). Nelle tavole di sopravvivenza VetCompass, costruite dalle cartelle cliniche dei veterinari britannici, il Jack Russell aveva l'aspettativa di vita alla nascita più alta delle 18 razze studiate, 12,72 anni, e la sua tavola arrivava a 19 anni di età (Teng et al.). Il Royal Kennel Club indica oltre 10 anni.
 
 ## Quanto diventa grande un Jack Russell?
 

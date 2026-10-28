@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Rottweiler leben vergleichsweise kurz: im Median 10,6 Jahre in einer großen britischen Studie und 9,0 Jahre in britischen Praxisdaten. Krebs, vor allem Knochenkrebs, ist eine häufige Todesursache; Hüft- und Ellbogenröntgen zählen."
 facts:
-  - { field: lifespan, value: "Median 10,6 Jahre in einer britischen Studie von 2024 mit 9.717 Rottweilern, kürzer als bei Mischlingen (12,0)", ref: 3 }
+  - { field: lifespan, value: "Median 10,6 Jahre in einer britischen Studie von 2024 mit 6.275 Rottweilern, kürzer als bei Mischlingen (12,0)", ref: 3 }
   - { field: lifespan, value: "Britische Praxisdaten (VetCompass, 2017): mediane Lebensdauer 9,0 Jahre bei 415 Todesfällen; Hündinnen 9,5 Jahre, Rüden 8,7 Jahre", ref: 4 }
   - { field: size, value: "FCI-Standard: Widerristhöhe 61–68 cm bei Rüden (65–66 cm richtig), 56–63 cm bei Hündinnen (60–61 cm richtig)", ref: 2 }
   - { field: weight, value: "FCI-Standard: Rüden 50 kg, Hündinnen etwa 42 kg", ref: 2 }
@@ -32,7 +32,7 @@ lang: de
 
 ## Wie alt wird ein Rottweiler?
 
-Weniger alt als die meisten Hunde. Eine britische Studie von 2024 mit 9.717 Rottweilern fand eine mediane Lebensdauer von 10,6 Jahren, gegenüber 12,0 Jahren bei Mischlingen (McMillan et al.). Eine frühere VetCompass-Studie mit britischen Praxisdaten fand einen Median von 9,0 Jahren bei 415 Todesfällen; Hündinnen lebten länger als Rüden (9,5 gegenüber 8,7 Jahren) (O'Neill et al., 2017). Der Royal Kennel Club nennt unter 10 Jahre.
+Weniger alt als die meisten Hunde. Eine britische Studie von 2024 mit 6.275 Rottweilern fand eine mediane Lebensdauer von 10,6 Jahren, gegenüber 12,0 Jahren bei Mischlingen (McMillan et al.). Eine frühere VetCompass-Studie mit britischen Praxisdaten fand einen Median von 9,0 Jahren bei 415 Todesfällen; Hündinnen lebten länger als Rüden (9,5 gegenüber 8,7 Jahren) (O'Neill et al., 2017). Der Royal Kennel Club nennt unter 10 Jahre.
 
 ## Wie groß wird ein Rottweiler?
 

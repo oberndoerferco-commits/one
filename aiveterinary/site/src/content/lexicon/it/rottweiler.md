@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Il Rottweiler vive relativamente poco: mediana di 10,6 anni in un grande studio britannico e 9,0 anni nelle cartelle veterinarie. I tumori, soprattutto delle ossa, sono una causa di morte comune; prima della riproduzione contano anca e gomito."
 facts:
-  - { field: lifespan, value: "Mediana di 10,6 anni in uno studio britannico del 2024 su 9.717 Rottweiler, meno dei meticci (12,0)", ref: 3 }
+  - { field: lifespan, value: "Mediana di 10,6 anni in uno studio britannico del 2024 su 6.275 Rottweiler, meno dei meticci (12,0)", ref: 3 }
   - { field: lifespan, value: "Cartelle veterinarie britanniche (VetCompass, 2017): longevità mediana 9,0 anni su 415 decessi; femmine 9,5 anni, maschi 8,7 anni", ref: 4 }
   - { field: size, value: "Standard FCI: altezza al garrese 61-68 cm nei maschi (65-66 cm corretta), 56-63 cm nelle femmine (60-61 cm corretta)", ref: 2 }
   - { field: weight, value: "Standard FCI: maschi 50 kg, femmine circa 42 kg", ref: 2 }
@@ -33,7 +33,7 @@ lang: it
 
 ## Quanto vive un Rottweiler?
 
-Meno della maggior parte dei cani. Uno studio britannico del 2024 su 9.717 Rottweiler ha trovato una durata mediana della vita di 10,6 anni, contro 12,0 anni dei meticci (McMillan et al.). Uno studio VetCompass precedente sulle cartelle veterinarie britanniche ha trovato una mediana di 9,0 anni su 415 decessi, con le femmine più longeve dei maschi (9,5 contro 8,7 anni) (O'Neill et al., 2017). Il Royal Kennel Club indica meno di 10 anni.
+Meno della maggior parte dei cani. Uno studio britannico del 2024 su 6.275 Rottweiler ha trovato una durata mediana della vita di 10,6 anni, contro 12,0 anni dei meticci (McMillan et al.). Uno studio VetCompass precedente sulle cartelle veterinarie britanniche ha trovato una mediana di 9,0 anni su 415 decessi, con le femmine più longeve dei maschi (9,5 contro 8,7 anni) (O'Neill et al., 2017). Il Royal Kennel Club indica meno di 10 anni.
 
 ## Quanto diventa grande un Rottweiler?
 

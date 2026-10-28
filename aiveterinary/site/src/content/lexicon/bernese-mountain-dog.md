@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Bernese Mountain Dogs live a median 10.1 years in a large UK study, shorter than crossbred dogs. Elbow dysplasia is very common in the breed; hip and elbow scoring before breeding is the key test."
 facts:
-  - { field: lifespan, value: "Median 10.1 years in a 2024 UK study of 1,565 Bernese Mountain Dogs, shorter than crossbred dogs (12.0)", ref: 3 }
+  - { field: lifespan, value: "Median 10.1 years in a 2024 UK study of 1,116 Bernese Mountain Dogs, shorter than crossbred dogs (12.0)", ref: 3 }
   - { field: lifespan, value: "The Royal Kennel Club gives a lifespan of under 10 years", ref: 1 }
   - { field: size, value: "FCI standard: height at the withers 64–70 cm in males (ideal 66–68), 58–66 cm in females (ideal 60–63)", ref: 2 }
   - { field: weight, value: "Average weight 48–63 kg in males and 42–53 kg in females (PDSA)", ref: 5 }
@@ -31,7 +31,7 @@ lang: en
 
 ## How long do Bernese Mountain Dogs live?
 
-Shorter than most dogs. A 2024 UK study of 1,565 Bernese Mountain Dogs found a median lifespan of 10.1 years, against 12.0 years for crossbred dogs (McMillan et al.). The Royal Kennel Club gives the breed's lifespan as under 10 years, and the PDSA as up to 10 years.
+Shorter than most dogs. A 2024 UK study of 1,116 Bernese Mountain Dogs found a median lifespan of 10.1 years, against 12.0 years for crossbred dogs (McMillan et al.). The Royal Kennel Club gives the breed's lifespan as under 10 years, and the PDSA as up to 10 years.
 
 ## How big does a Bernese Mountain Dog get?
 

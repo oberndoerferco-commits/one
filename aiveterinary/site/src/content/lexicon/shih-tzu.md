@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Shih Tzus live a median 12.8 years in a large UK study. Their short face brings breathing and eye problems; in UK vet records dental disease, anal sac problems and ear disorders were the most common."
 facts:
-  - { field: lifespan, value: "Median 12.8 years in a 2024 UK study of 17,901 Shih Tzus, longer than crossbred dogs (12.0)", ref: 3 }
+  - { field: lifespan, value: "Median 12.8 years in a 2024 UK study of 12,007 Shih Tzus, longer than crossbred dogs (12.0)", ref: 3 }
   - { field: lifespan, value: "UK vet records (VetCompass): life expectancy at birth 11.05 years for 638 Shih Tzus, close to dogs overall (11.23)", ref: 4 }
   - { field: lifespan, value: "VetCompass 2024: median age at death 12.7 years, from only 89 deaths", ref: 5 }
   - { field: size, value: "FCI standard: height at the withers not more than 27 cm", ref: 2 }
@@ -36,7 +36,7 @@ lang: en
 
 ## How long do Shih Tzus live?
 
-Longer than the average dog. A 2024 UK study of 17,901 Shih Tzus found a median lifespan of 12.8 years, against 12.0 years for crossbred dogs (McMillan et al.). A VetCompass study of UK vet records found a median age at death of 12.7 years, but from only 89 deaths (Dale et al., 2024). VetCompass life tables gave a life expectancy at birth of 11.05 years for 638 Shih Tzus, close to the 11.23 years for dogs overall (Teng et al.). The Royal Kennel Club gives the breed's lifespan as over 10 years.
+Longer than the average dog. A 2024 UK study of 12,007 Shih Tzus found a median lifespan of 12.8 years, against 12.0 years for crossbred dogs (McMillan et al.). A VetCompass study of UK vet records found a median age at death of 12.7 years, but from only 89 deaths (Dale et al., 2024). VetCompass life tables gave a life expectancy at birth of 11.05 years for 638 Shih Tzus, close to the 11.23 years for dogs overall (Teng et al.). The Royal Kennel Club gives the breed's lifespan as over 10 years.
 
 ## How big does a Shih Tzu get?
 

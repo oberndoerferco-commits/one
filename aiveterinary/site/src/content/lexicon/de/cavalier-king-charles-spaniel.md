@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Cavaliers werden in einer großen britischen Studie im Median 11,8 Jahre alt. Die Mitralklappenerkrankung des Herzens ist sehr häufig und beginnt früh; Syringomyelie, eine schmerzhafte Rückenmarkskrankheit, zeigt sich im MRT bei vielen Hunden."
 facts:
-  - { field: lifespan, value: "Median 11,8 Jahre in einer britischen Studie von 2024 mit 20.661 Cavaliers, etwas kürzer als bei Mischlingen (12,0)", ref: 3 }
+  - { field: lifespan, value: "Median 11,8 Jahre in einer britischen Studie von 2024 mit 13.782 Cavaliers, etwas kürzer als bei Mischlingen (12,0)", ref: 3 }
   - { field: lifespan, value: "Britische Praxisdaten (VetCompass): Lebenserwartung bei Geburt 10,45 Jahre", ref: 4 }
   - { field: weight, value: "FCI-Standard: 5,4–8 kg; ein kleiner, ausgewogener Hund in diesem Bereich wird bevorzugt", ref: 2 }
   - { field: coat, value: "Langes, seidiges Fell mit viel Befederung, nie getrimmt; Blenheim, Ruby, Black and Tan oder Tricolour (FCI-Standard)", ref: 2 }
@@ -34,7 +34,7 @@ lang: de
 
 ## Wie alt wird ein Cavalier?
 
-Etwa 10 bis 12 Jahre, je nach Studie. Eine britische Studie von 2024 mit 20.661 Cavalier King Charles Spaniels fand eine mediane Lebensdauer von 11,8 Jahren, etwas kürzer als die 12,0 Jahre von Mischlingen (McMillan et al.). Die VetCompass-Sterbetafeln aus britischen Praxisdaten geben eine Lebenserwartung bei Geburt von 10,45 Jahren an (Teng et al.). Der Royal Kennel Club nennt über 12 Jahre.
+Etwa 10 bis 12 Jahre, je nach Studie. Eine britische Studie von 2024 mit 13.782 Cavalier King Charles Spaniels fand eine mediane Lebensdauer von 11,8 Jahren, etwas kürzer als die 12,0 Jahre von Mischlingen (McMillan et al.). Die VetCompass-Sterbetafeln aus britischen Praxisdaten geben eine Lebenserwartung bei Geburt von 10,45 Jahren an (Teng et al.). Der Royal Kennel Club nennt über 12 Jahre.
 
 ## Wie groß wird ein Cavalier?
 

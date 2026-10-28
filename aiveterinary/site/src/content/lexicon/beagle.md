@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Beagles are a scenthound with a median lifespan of 12.5 years in a large UK study. In UK vet records, obesity and dental disease are the most common problems, and the breed is prone to an underactive thyroid."
 facts:
-  - { field: lifespan, value: "Median 12.5 years in a 2024 UK study of 6,230 Beagles, not statistically different from crossbred dogs (12.0)", ref: 3 }
+  - { field: lifespan, value: "Median 12.5 years in a 2024 UK study of 4,678 Beagles, not statistically different from crossbred dogs (12.0)", ref: 3 }
   - { field: lifespan, value: "UK vet records (VetCompass): life expectancy at birth 9.85 years, from a small sample of 172 Beagles", ref: 4 }
   - { field: lifespan, value: "VetCompass 2025: median age at death 11.28 years across 322 deaths; neoplasia was the most common cause of death (19.26%)", ref: 5 }
   - { field: size, value: "FCI standard: desirable height at the withers 33–40 cm", ref: 2 }
@@ -33,7 +33,7 @@ lang: en
 
 ## How long do Beagles live?
 
-About as long as the average dog. A 2024 UK study of 6,230 Beagles found a median lifespan of 12.5 years, which did not differ statistically from crossbred dogs (12.0 years) (McMillan et al.). A 2025 VetCompass study of UK vet records found a median age at death of 11.28 years across 322 deaths, with females living almost a year longer than males (O'Neill et al.). VetCompass life tables gave a lower life expectancy at birth of 9.85 years, but that figure rests on only 172 Beagles (Teng et al.). The Royal Kennel Club gives the breed's lifespan as over 12 years.
+About as long as the average dog. A 2024 UK study of 4,678 Beagles found a median lifespan of 12.5 years, which did not differ statistically from crossbred dogs (12.0 years) (McMillan et al.). A 2025 VetCompass study of UK vet records found a median age at death of 11.28 years across 322 deaths, with females living almost a year longer than males (O'Neill et al.). VetCompass life tables gave a lower life expectancy at birth of 9.85 years, but that figure rests on only 172 Beagles (Teng et al.). The Royal Kennel Club gives the breed's lifespan as over 12 years.
 
 ## How big does a Beagle get?
 

@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Boxers live a median 11.3 years in a large UK study, shorter than crossbred dogs. They need more than 2 hours of exercise a day; gum growths, eye ulcers and inherited heart disease are known problems."
 facts:
-  - { field: lifespan, value: "Median 11.3 years in a 2024 UK study of 17,219 Boxers, shorter than crossbred dogs (12.0)", ref: 3 }
+  - { field: lifespan, value: "Median 11.3 years in a 2024 UK study of 11,294 Boxers, shorter than crossbred dogs (12.0)", ref: 3 }
   - { field: lifespan, value: "UK vet records (VetCompass): life expectancy at birth 10.04 years, from 836 Boxers", ref: 4 }
   - { field: lifespan, value: "VetCompass 2023: median longevity 10.46 years across 346 deaths, with no difference between the sexes or between white and non-white Boxers", ref: 5 }
   - { field: size, value: "FCI standard: height at the withers 57–63 cm in males, 53–59 cm in females", ref: 2 }
@@ -34,7 +34,7 @@ lang: en
 
 ## How long do Boxers live?
 
-A little shorter than the average dog. A 2024 UK study of 17,219 Boxers found a median lifespan of 11.3 years, against 12.0 years for crossbred dogs (McMillan et al.). In UK vet records (VetCompass), the median age at death of 346 Boxers was 10.46 years (O'Neill et al., 2023), and VetCompass life tables gave a life expectancy at birth of 10.04 years (Teng et al.). The authors of the 2023 study say this is in line with other breeds of a similar size. The Royal Kennel Club gives the breed's lifespan as over 10 years.
+A little shorter than the average dog. A 2024 UK study of 11,294 Boxers found a median lifespan of 11.3 years, against 12.0 years for crossbred dogs (McMillan et al.). In UK vet records (VetCompass), the median age at death of 346 Boxers was 10.46 years (O'Neill et al., 2023), and VetCompass life tables gave a life expectancy at birth of 10.04 years (Teng et al.). The authors of the 2023 study say this is in line with other breeds of a similar size. The Royal Kennel Club gives the breed's lifespan as over 10 years.
 
 ## How big does a Boxer get?
 

@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Siberian Huskies are a sled dog that needs more than 2 hours of exercise a day and a very secure garden. A large UK study finds a median lifespan of 11.9 years; eye testing with gonioscopy matters before breeding."
 facts:
-  - { field: lifespan, value: "Median 11.9 years in a 2024 UK study of 6,400 Siberian Huskies, a slightly but statistically shorter lifespan than crossbred dogs (12.0)", ref: 3 }
+  - { field: lifespan, value: "Median 11.9 years in a 2024 UK study of 4,453 Siberian Huskies, a slightly but statistically shorter lifespan than crossbred dogs (12.0)", ref: 3 }
   - { field: lifespan, value: "UK vet records (VetCompass): life expectancy at birth 9.53 years, from a small sample of 154 Huskies; a higher chance of dying before adulthood than dogs overall", ref: 4 }
   - { field: size, value: "FCI standard: height at the withers 53.5–60 cm in males, 50.5–56 cm in females", ref: 2 }
   - { field: weight, value: "FCI standard: males 20.5–28 kg, females 15.5–23 kg, in proportion to height", ref: 2 }
@@ -31,7 +31,7 @@ lang: en
 
 ## How long do Siberian Huskies live?
 
-About as long as the average dog, or slightly less. A 2024 UK study of 6,400 Siberian Huskies found a median lifespan of 11.9 years, against 12.0 years for crossbred dogs; the difference is small but statistically significant (McMillan et al.). VetCompass life tables gave a lower life expectancy at birth of 9.53 years, from only 154 Huskies, and Huskies were among the breeds with a much higher chance of dying before adulthood than dogs overall (Teng et al.). The Royal Kennel Club gives the breed's lifespan as over 10 years.
+About as long as the average dog, or slightly less. A 2024 UK study of 4,453 Siberian Huskies found a median lifespan of 11.9 years, against 12.0 years for crossbred dogs; the difference is small but statistically significant (McMillan et al.). VetCompass life tables gave a lower life expectancy at birth of 9.53 years, from only 154 Huskies, and Huskies were among the breeds with a much higher chance of dying before adulthood than dogs overall (Teng et al.). The Royal Kennel Club gives the breed's lifespan as over 10 years.
 
 ## How big does a Siberian Husky get?
 

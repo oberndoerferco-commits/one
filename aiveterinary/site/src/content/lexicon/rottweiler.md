@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Rottweilers are relatively short-lived: a median 10.6 years in a large UK study and 9.0 years in UK vet records. Cancer, especially bone cancer, is a common cause of death; hip and elbow scoring matter before breeding."
 facts:
-  - { field: lifespan, value: "Median 10.6 years in a 2024 UK study of 9,717 Rottweilers, shorter than crossbred dogs (12.0)", ref: 3 }
+  - { field: lifespan, value: "Median 10.6 years in a 2024 UK study of 6,275 Rottweilers, shorter than crossbred dogs (12.0)", ref: 3 }
   - { field: lifespan, value: "UK vet records (VetCompass, 2017): median longevity 9.0 years across 415 deaths; females 9.5 years, males 8.7 years", ref: 4 }
   - { field: size, value: "FCI standard: height at the withers 61–68 cm in males (65–66 cm correct), 56–63 cm in females (60–61 cm correct)", ref: 2 }
   - { field: weight, value: "FCI standard: males 50 kg, females about 42 kg", ref: 2 }
@@ -32,7 +32,7 @@ lang: en
 
 ## How long do Rottweilers live?
 
-Shorter than most dogs. A 2024 UK study of 9,717 Rottweilers found a median lifespan of 10.6 years, against 12.0 years for crossbred dogs (McMillan et al.). An earlier VetCompass study of UK vet records found a median of 9.0 years across 415 deaths, with females living longer than males (9.5 against 8.7 years) (O'Neill et al., 2017). The Royal Kennel Club gives the breed's lifespan as under 10 years.
+Shorter than most dogs. A 2024 UK study of 6,275 Rottweilers found a median lifespan of 10.6 years, against 12.0 years for crossbred dogs (McMillan et al.). An earlier VetCompass study of UK vet records found a median of 9.0 years across 415 deaths, with females living longer than males (9.5 against 8.7 years) (O'Neill et al., 2017). The Royal Kennel Club gives the breed's lifespan as under 10 years.
 
 ## How big does a Rottweiler get?
 

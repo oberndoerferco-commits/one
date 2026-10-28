@@ -6,7 +6,7 @@ species: dog
 parent: dog
 description: "Il Border Collie vive in mediana 13,1 anni in un grande studio britannico. È un cane da pastore da lavoro che ha bisogno di oltre 2 ore di movimento al giorno; sono note epilessia e malattie ereditarie degli occhi."
 facts:
-  - { field: lifespan, value: "Mediana di 13,1 anni in uno studio britannico del 2024 su 20.886 Border Collie, più dei meticci (12,0)", ref: 3 }
+  - { field: lifespan, value: "Mediana di 13,1 anni in uno studio britannico del 2024 su 12.917 Border Collie, più dei meticci (12,0)", ref: 3 }
   - { field: lifespan, value: "Cartelle veterinarie britanniche (VetCompass): aspettativa di vita alla nascita 12,10 anni, la terza più alta di 18 razze", ref: 4 }
   - { field: size, value: "Altezza ideale al garrese: maschi 53 cm, femmine un po' meno (standard FCI)", ref: 2 }
   - { field: coat, value: "Due varietà, pelo moderatamente lungo o corto; pelo di copertura fitto e sottopelo morbido e denso che resiste alle intemperie (standard FCI)", ref: 2 }
@@ -33,7 +33,7 @@ lang: it
 
 ## Quanto vive un Border Collie?
 
-Più della maggior parte dei cani. Uno studio britannico del 2024 su 20.886 Border Collie ha trovato una durata mediana della vita di 13,1 anni, contro 12,0 anni dei meticci (McMillan et al.). Le tavole di sopravvivenza VetCompass, costruite dalle cartelle cliniche dei veterinari britannici, indicano un'aspettativa di vita alla nascita di 12,10 anni, la terza più alta delle 18 razze studiate dopo Jack Russell Terrier e Yorkshire Terrier (Teng et al.). Il Royal Kennel Club indica una durata della vita di oltre 12 anni.
+Più della maggior parte dei cani. Uno studio britannico del 2024 su 12.917 Border Collie ha trovato una durata mediana della vita di 13,1 anni, contro 12,0 anni dei meticci (McMillan et al.). Le tavole di sopravvivenza VetCompass, costruite dalle cartelle cliniche dei veterinari britannici, indicano un'aspettativa di vita alla nascita di 12,10 anni, la terza più alta delle 18 razze studiate dopo Jack Russell Terrier e Yorkshire Terrier (Teng et al.). Il Royal Kennel Club indica una durata della vita di oltre 12 anni.
 
 ## Quanto diventa grande un Border Collie?
 
