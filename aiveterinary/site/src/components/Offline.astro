@@ -1,0 +1,84 @@
+---
+/**
+ * Shown by the service worker (public/sw.js) when there is no connection and the page asked for was never
+ * opened on this device. Stored at install, with the booklet and the emergency check, so all three work offline.
+ */
+interface Props { lang: 'en' | 'it' | 'de' }
+const { lang } = Astro.props;
+const T = {
+  en: {
+    h1: 'You are offline',
+    lead: 'There is no internet connection, and this page has not been saved on this device yet. These work without a connection:',
+    booklet: ['/passport', 'My health booklet', 'Everything you entered is stored on this device and can be viewed and edited offline.'],
+    urgent: ['/emergency', 'Is it urgent?', 'The checklist that tells you whether to go to a vet now, today, or watch at home.'],
+    call: 'In an emergency, do not wait for the connection: call your vet or the nearest emergency clinic directly.',
+    saved: 'Pages you opened before',
+    retry: 'Try again',
+  },
+  it: {
+    h1: 'Sei offline',
+    lead: 'Non c’è connessione a internet e questa pagina non è ancora salvata su questo dispositivo. Queste funzionano anche senza connessione:',
+    booklet: ['/it/passport', 'Il mio libretto sanitario', 'Tutto quello che hai inserito è salvato su questo dispositivo e si può consultare e modificare offline.'],
+    urgent: ['/it/emergency', 'È urgente?', 'La lista che ti dice se andare dal veterinario subito, oggi, oppure osservare a casa.'],
+    call: 'In caso di emergenza non aspettare la connessione: chiama direttamente il tuo veterinario o la clinica di pronto soccorso più vicina.',
+    saved: 'Pagine che hai già aperto',
+    retry: 'Riprova',
+  },
+  de: {
+    h1: 'Sie sind offline',
+    lead: 'Es besteht keine Internetverbindung, und diese Seite ist auf diesem Gerät noch nicht gespeichert. Diese Seiten funktionieren auch ohne Verbindung:',
+    booklet: ['/de/passport', 'Mein Heimtierpass', 'Alles, was Sie eingetragen haben, ist auf diesem Gerät gespeichert und lässt sich offline ansehen und bearbeiten.'],
+    urgent: ['/de/emergency', 'Ist es dringend?', 'Die Checkliste, ob Sie sofort oder heute zur Tierarztpraxis sollten oder zu Hause beobachten können.'],
+    call: 'Im Notfall nicht auf die Verbindung warten: Rufen Sie direkt Ihre Tierarztpraxis oder die nächste Tierklinik an.',
+    saved: 'Seiten, die Sie schon geöffnet haben',
+    retry: 'Erneut versuchen',
+  },
+}[lang];
+---
+<section class="wrap narrow off">
+  <h1>{T.h1}</h1>
+  <p class="lead">{T.lead}</p>
+  <ul class="off-list">
+    {[T.booklet, T.urgent].map(([href, label, desc]) => (
+      <li><a class="off-card" href={href}><strong>{label}</strong><span>{desc}</span></a></li>
+    ))}
+  </ul>
+  <p class="off-call" role="note"><strong>{T.call}</strong></p>
+  <div id="off-saved" hidden>
+    <h2>{T.saved}</h2>
+    <ul class="off-saved-list"></ul>
+  </div>
+  <p><button class="btn secondary" type="button" id="off-retry">{T.retry}</button></p>
+</section>
+<script is:inline define:vars={{ lang }}>
+  // Retry the address that failed, and list the pages in this language that the service worker saved
+  // on earlier visits (read from this browser's own cache; nothing leaves the device).
+  (function () {
+    document.getElementById('off-retry').addEventListener('click', function () { location.reload(); });
+    if (!('caches' in window)) return;
+    var mine = function (p) { var l = (/^\/(it|de)(\/|$)/.exec(p) || [])[1] || 'en'; return l === lang && !/\/(offline|passport|emergency)$/.test(p); };
+    caches.open('aiv-pages').then(function (c) { return c.keys().then(function (keys) {
+      var reqs = keys.filter(function (r) { var u = new URL(r.url); return u.origin === location.origin && mine(u.pathname); }).reverse().slice(0, 30);
+      return Promise.all(reqs.map(function (r) { return c.match(r).then(function (res) { return res ? res.text() : ''; }).then(function (html) {
+        var m = /<title>([^<]*)<\/title>/.exec(html); var d = document.createElement('textarea'); d.innerHTML = m ? m[1] : '';
+        return { href: new URL(r.url).pathname, title: d.value.replace(/ · AI Veterinary$/, '') || new URL(r.url).pathname };
+      }); }));
+    }); }).then(function (list) {
+      if (!list || !list.length) return;
+      var ul = document.querySelector('.off-saved-list');
+      list.forEach(function (x) { var li = document.createElement('li'), a = document.createElement('a'); a.href = x.href; a.textContent = x.title; li.appendChild(a); ul.appendChild(li); });
+      document.getElementById('off-saved').hidden = false;
+    }).catch(function () {});
+  })();
+</script>
+<style>
+  .off { padding-top: 40px; padding-bottom: 56px; }
+  .off-list { list-style: none; padding: 0; margin: 20px 0; display: grid; gap: 12px; }
+  .off-card { display: flex; flex-direction: column; gap: 4px; padding: 16px 18px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--ink); text-decoration: none; }
+  .off-card strong { color: var(--accent); font-size: 1.1rem; }
+  .off-card span { color: var(--ink-2); }
+  .off-card:hover { border-color: var(--accent); }
+  .off-call { margin: 22px 0; padding: 14px 18px; border-radius: 14px; background: var(--danger-soft); color: var(--ink); }
+  .off-saved-list { padding-left: 1.2em; }
+  .off-saved-list a { display: inline-block; padding: 8px 0; overflow-wrap: anywhere; }
+</style>

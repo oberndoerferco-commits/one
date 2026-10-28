@@ -1,0 +1,154 @@
+{
+  "id": "155-gen-other-cat-household-de",
+  "language": "de",
+  "synthetic": true,
+  "header": {
+    "name": "Kira",
+    "species": "cat",
+    "breed": "European Shorthair",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 3,
+      "unit": "year"
+    }
+  },
+  "notes": "niest seit 3 Tagen, klarer Nasenausfluss\nfrisst normal\nandere Katze im Haushalt (Moritz) hustet seit letzter Woche, heute nicht untersucht\nMoritz 5,1 kg, laut Besitzerin letzten Monat geimpft\nT 38,6\nKGW 3,8 kg\nseröser Nasenausfluss beidseits\nLunge frei\nV. a. Katzenschnupfen\nInhalation, Nase sauber halten\nWV, wenn sie nicht frisst",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": "V. a. Katzenschnupfen",
+    "temperature": 38.6,
+    "statuses": {},
+    "must_not_contain": [
+      "moritz",
+      "hust",
+      "5.1",
+      "geimpft"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "niest seit 3 Tagen, klarer Nasenausfluss",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          40
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "Appetit",
+        "value": "frisst normal",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            41,
+            54
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.6,
+          "unit": "C",
+          "source_spans": [
+            [
+              192,
+              198
+            ]
+          ]
+        },
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": {
+          "value": 3.8,
+          "unit": "kg",
+          "source_spans": [
+            [
+              199,
+              209
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "Nase",
+          "text": "seröser Nasenausfluss beidseits",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              210,
+              241
+            ]
+          ]
+        },
+        {
+          "system": "Atmung",
+          "text": "Lunge frei",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              242,
+              252
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": "V. a. Katzenschnupfen",
+      "differentials": [],
+      "source_spans": [
+        [
+          253,
+          274
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "WV, wenn sie nicht frisst",
+        "interval": null,
+        "source_spans": [
+          [
+            306,
+            331
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "Inhalation, Nase sauber halten",
+          "source_spans": [
+            [
+              275,
+              305
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

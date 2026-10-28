@@ -1,0 +1,103 @@
+{
+  "id": "216-seeded-invented-diagnosis-de",
+  "language": "de",
+  "synthetic": true,
+  "notes_comment": "Seeded error: the record's assessment is Cushing's disease, which only the owner's question mentions; the vet wrote no diagnosis. source_required must block it.",
+  "header": {
+    "name": "Flocke",
+    "species": "dog",
+    "breed": "Bichon Frisé",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 10,
+      "unit": "year"
+    }
+  },
+  "notes": "trinkt und uriniert seit 3 Monaten viel\nHängebauch, hechelt in Ruhe\nBlut entnommen\nBesitzerin fragt, ob es Cushing sein könnte; Ergebnisse abwarten\nAnruf mit Ergebnissen",
+  "expect": {
+    "must_flag": [
+      "source_required"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "trinkt und uriniert seit 3 Monaten viel",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          39
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "Allgemein",
+          "text": "Hängebauch, hechelt in Ruhe",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              40,
+              67
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "Blutuntersuchung",
+        "status": "performed",
+        "result": null,
+        "source_spans": [
+          [
+            68,
+            82
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": "Morbus Cushing",
+      "differentials": [],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "Anruf mit Ergebnissen",
+        "interval": null,
+        "source_spans": [
+          [
+            148,
+            169
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

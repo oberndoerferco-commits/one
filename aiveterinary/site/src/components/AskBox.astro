@@ -1,0 +1,309 @@
+---
+/**
+ * Home page question box. A question is matched against the articles with Pagefind (current
+ * language index) and the answer card shows only existing article data (title, urgency verdict,
+ * description, link). Nothing is generated.
+ * With PUBLIC_ASK_AI=true (build time), `aiAnswer()` below also asks /api/ask (functions/api/ask.ts)
+ * for an AI answer written only from our articles, and shows it labelled as AI (EU AI Act art. 50).
+ * Any error, a 503 (no API key) or a "not covered" reply falls back silently to the Pagefind card.
+ * See docs/31-ai-answer.md.
+ */
+import { ANIMALS, type Lang } from '../lib/animals-i18n';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const a = ANIMALS[lang];
+const pre = lang === 'en' ? '' : `/${lang}`;
+const askAI = import.meta.env.PUBLIC_ASK_AI === 'true';
+const T = ({
+  en: {
+    label: 'Your question', ph: 'My dog ate a chocolate bar an hour ago and…', ask: 'Ask', chipsH: 'Start with a topic', chipHint: 'Starts a question in the box above.',
+    chips: [['Emergency', 'Is it an emergency if my pet '], ['Symptoms', 'My pet has had '], ['Poisoning & food', 'My dog ate '], ['Care', 'How often should I '], ['Travel', 'What does my pet need to travel to ']],
+    privacy: 'We don’t store your question: the search runs in your browser.',
+    // LAWYER: wording of the AI privacy line (see README, "Ask box AI answer").
+    privacyAI: 'Your question is sent to our AI provider to write the answer. We don’t store it.',
+    aiLabel: 'AI answer based on our articles', aiHow: 'Written by AI from the articles listed above. It can make mistakes: the articles and your vet come first.', sources: 'From our articles',
+    youAsked: 'You asked', best: 'Best match from our articles', read: 'Read the full article', also: 'Also related',
+    note: 'Not a diagnosis. In an emergency, call a vet first.', how: 'Found by search in our articles. Nothing here is generated.',
+    noneH: 'We don’t cover this yet', noneP: 'None of our articles matches your question. If you are worried, call your vet: they would rather hear from you early.', noneEmerg: 'Check if it is an emergency',
+    searching: 'Searching our articles…', empty: 'Type a question first.', noU: 'The article explains when to see a vet.',
+    found: 'Answer ready:', notFound: 'No matching article found.',
+    v: { emergency: 'Go now', today: 'See a vet today', 'this-week': 'Book a visit this week', routine: 'Watch and ask at the next visit' },
+  },
+  it: {
+    label: 'La tua domanda', ph: 'Il mio cane ha mangiato una tavoletta di cioccolato un’ora fa e…', ask: 'Chiedi', chipsH: 'Parti da un argomento', chipHint: 'Inizia una domanda nella casella qui sopra.',
+    chips: [['Emergenza', 'È un’emergenza se il mio animale '], ['Sintomi', 'Il mio animale ha da ieri '], ['Avvelenamenti e cibo', 'Il mio cane ha mangiato '], ['Cura', 'Ogni quanto devo '], ['Viaggi', 'Cosa serve al mio animale per viaggiare in ']],
+    privacy: 'Non salviamo la tua domanda: la ricerca avviene nel tuo browser.',
+    privacyAI: 'La tua domanda viene inviata al nostro fornitore di IA per scrivere la risposta. Noi non la salviamo.',
+    aiLabel: 'Risposta dell’IA basata sui nostri articoli', aiHow: 'Scritta dall’IA a partire dagli articoli elencati sopra. Può sbagliare: contano prima gli articoli e il tuo veterinario.', sources: 'Dai nostri articoli',
+    youAsked: 'Hai chiesto', best: 'L’articolo più vicino alla tua domanda', read: 'Leggi l’articolo completo', also: 'Anche correlati',
+    note: 'Non è una diagnosi. In caso di emergenza, chiama prima il veterinario.', how: 'Trovato con la ricerca nei nostri articoli. Niente qui è generato.',
+    noneH: 'Non ne parliamo ancora', noneP: 'Nessuno dei nostri articoli corrisponde alla tua domanda. Se sei preoccupato, chiama il veterinario: preferisce sentirti presto.', noneEmerg: 'Controlla se è un’emergenza',
+    searching: 'Cerco nei nostri articoli…', empty: 'Scrivi prima una domanda.', noU: 'L’articolo spiega quando andare dal veterinario.',
+    found: 'Risposta pronta:', notFound: 'Nessun articolo corrispondente.',
+    v: { emergency: 'Vai subito', today: 'Dal veterinario oggi', 'this-week': 'Prenota una visita questa settimana', routine: 'Osserva e chiedi alla prossima visita' },
+  },
+  de: {
+    label: 'Ihre Frage', ph: 'Mein Hund hat vor einer Stunde eine Tafel Schokolade gefressen und…', ask: 'Fragen', chipsH: 'Mit einem Thema beginnen', chipHint: 'Beginnt eine Frage im Feld oben.',
+    chips: [['Notfall', 'Ist es ein Notfall, wenn mein Tier '], ['Symptome', 'Mein Tier hat seit gestern '], ['Vergiftung & Futter', 'Mein Hund hat Folgendes gefressen: '], ['Pflege', 'Wie oft sollte ich '], ['Reisen', 'Was braucht mein Tier für eine Reise nach ']],
+    privacy: 'Wir speichern Ihre Frage nicht: Die Suche läuft in Ihrem Browser.',
+    privacyAI: 'Ihre Frage wird an unseren KI-Anbieter gesendet, um die Antwort zu erstellen. Wir speichern sie nicht.',
+    aiLabel: 'KI-Antwort auf Grundlage unserer Artikel', aiHow: 'Von KI aus den oben genannten Artikeln verfasst. Sie kann Fehler machen: Maßgeblich sind die Artikel und Ihre Tierarztpraxis.', sources: 'Aus unseren Artikeln',
+    youAsked: 'Ihre Frage', best: 'Passendster Artikel', read: 'Ganzen Artikel lesen', also: 'Auch passend',
+    note: 'Keine Diagnose. Im Notfall zuerst die Tierarztpraxis anrufen.', how: 'Per Suche in unseren Artikeln gefunden. Nichts davon ist generiert.',
+    noneH: 'Dazu haben wir noch nichts', noneP: 'Keiner unserer Artikel passt zu Ihrer Frage. Wenn Sie besorgt sind, rufen Sie Ihre Praxis an: Dort hört man lieber früh von Ihnen.', noneEmerg: 'Prüfen, ob es ein Notfall ist',
+    searching: 'Suche in unseren Artikeln…', empty: 'Bitte zuerst eine Frage eingeben.', noU: 'Der Artikel erklärt, wann Sie in die Praxis sollten.',
+    found: 'Antwort bereit:', notFound: 'Kein passender Artikel gefunden.',
+    v: { emergency: 'Sofort in die Praxis', today: 'Heute in die Praxis', 'this-week': 'Diese Woche einen Termin', routine: 'Beobachten, beim nächsten Besuch fragen' },
+  },
+} as const)[lang];
+const cfg = { ...T, lang, uLine: a.urgency, draft: a.draft, emergency: `${pre}/emergency`, index: `${pre}/ask-index.json`, base: a.base, ai: askAI };
+---
+<div class="ask" data-ask>
+  <form class="ask-form" novalidate>
+    <label class="sr-only" for="ask-q">{T.label}</label>
+    <div class="ask-box">
+      <textarea id="ask-q" name="q" rows="3" maxlength="400" placeholder={T.ph} aria-describedby="ask-err ask-privacy" autocomplete="off"></textarea>
+      <button class="ask-btn" type="submit" aria-label={T.ask} title={T.ask}>
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 19V5M5.5 11.5L12 5l6.5 6.5"/></svg>
+      </button>
+    </div>
+    <p class="ask-err" id="ask-err" aria-live="polite"></p>
+  </form>
+  <p class="sr-only" id="ask-chips-h">{T.chipsH}</p>
+  <p class="sr-only" id="ask-chip-hint">{T.chipHint}</p>
+  <ul class="ask-chips" aria-labelledby="ask-chips-h">
+    {T.chips.map(([label, start]) => <li><button type="button" class="ask-chip" data-start={start} aria-describedby="ask-chip-hint">{label}</button></li>)}
+  </ul>
+  <p class="ask-privacy" id="ask-privacy"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>{askAI ? T.privacyAI : T.privacy}</p>
+  <p class="sr-only" role="status" id="ask-status"></p>
+  <div class="ask-out" id="ask-out"></div>
+</div>
+<script type="application/json" id="ask-cfg" set:html={JSON.stringify(cfg)} />
+
+<script>
+  type Entry = { t: string; d: string; u: string | null; s: string; c: string; draft: boolean; x?: string[] };
+  type Match = { url: string; e: Entry };
+  const root = document.querySelector<HTMLElement>('[data-ask]');
+  const cfgEl = document.getElementById('ask-cfg');
+  if (root && cfgEl) {
+    const C = JSON.parse(cfgEl.textContent || '{}');
+    const form = root.querySelector('form') as HTMLFormElement;
+    const ta = root.querySelector('#ask-q') as HTMLTextAreaElement;
+    const out = root.querySelector('#ask-out') as HTMLElement;
+    const status = root.querySelector('#ask-status') as HTMLElement;
+    const err = root.querySelector('#ask-err') as HTMLElement;
+    const btn = form.querySelector('button[type=submit]') as HTMLButtonElement;
+
+    const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!));
+    const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ß/g, 'ss');
+    const words = (s: string) => norm(s).split(/[^a-z0-9]+/).filter(Boolean);
+
+    // Species words: a question naming an animal only matches that animal's (or all-animal) articles.
+    const SPECIES: Record<string, string[]> = {
+      dog: ['dog', 'dogs', 'puppy', 'puppies', 'cane', 'cani', 'cucciolo', 'cagna', 'hund', 'hunde', 'hundin', 'welpe', 'welpen'],
+      cat: ['cat', 'cats', 'kitten', 'kittens', 'gatto', 'gatta', 'gatti', 'gattino', 'katze', 'katzen', 'kater'],
+      rabbit: ['rabbit', 'rabbits', 'bunny', 'bunnies', 'coniglio', 'conigli', 'coniglietto', 'kaninchen'],
+      'guinea-pig': ['guinea', 'cavy', 'cavies', 'cavia', 'cavie', 'porcellino', 'porcellini', 'meerschweinchen'],
+      ferret: ['ferret', 'ferrets', 'furetto', 'furetti', 'frettchen'],
+      horse: ['horse', 'horses', 'pony', 'ponies', 'cavallo', 'cavalli', 'pferd', 'pferde'],
+      bird: ['bird', 'birds', 'parrot', 'budgie', 'canary', 'uccello', 'pappagallo', 'canarino', 'vogel', 'papagei', 'wellensittich'],
+      reptile: ['reptile', 'reptiles', 'snake', 'snakes', 'turtle', 'turtles', 'tortoise', 'tortoises', 'lizard', 'lizards', 'gecko', 'geckos', 'iguana', 'rettile', 'rettili', 'serpente', 'serpenti', 'tartaruga', 'tartarughe', 'lucertola', 'geco', 'reptil', 'reptilien', 'schlange', 'schlangen', 'schildkrote', 'schildkroten', 'eidechse', 'eidechsen', 'leguan'],
+      // Animals we have no articles for: a question about only these finds nothing rather than another animal's article.
+      none: ['fish', 'goldfish', 'frog', 'hamster', 'hamsters', 'pesce', 'pesci', 'pesciolino', 'rana', 'criceto', 'criceti', 'fisch', 'goldfisch', 'frosch'],
+    };
+    const STOP = new Set(('a an the my our your his her its is are was were be been it this that what which who how why when where do does did can could should would will i me we you he she they to of in on at for with from and or not no but if so very just about since has have had there here any some than then too also please help ' +
+      'il lo la le gli i un una uno mio mia miei mie tuo tua suo sua di da del della dei delle al alla ai in con su per tra fra e o ma non che chi come cosa perche quando dove sono ha ho hai abbiamo e stato si mi ti ci vi ne piu molto anche se gia ' +
+      'der die das den dem des ein eine einen einem einer mein meine meinen meinem meiner dein sein ihr ist sind war hat habe haben wird kann soll was wie warum wann wo wer und oder aber nicht kein keine mit von zu zum zur bei fur auf in im an am aus nach seit sehr auch schon ich du er sie es wir mir mich').split(/\s+/));
+    const speciesOf = (ws: string[]) => { const s = new Set<string>(); for (const w of ws) for (const [k, list] of Object.entries(SPECIES)) if (list.includes(w)) s.add(k); return s; };
+    const allSpecies = new Set(Object.values(SPECIES).flat());
+    const same = (q: string, d: string) => (q.length >= 5 && d.length >= 5 ? q.slice(0, 5) === d.slice(0, 5) : q.length >= 4 ? d.startsWith(q) || (q.startsWith(d) && d.length >= 4) : q === d);
+
+    let index: Record<string, Entry> | null = null;
+    const loadIndex = async () => index ??= await (await fetch(C.index)).json();
+    let pf: any = null;
+    const loadPagefind = async () => {
+      if (pf) return pf;
+      const url = '/pagefind/pagefind.js';
+      pf = await import(/* @vite-ignore */ url);
+      await pf.init?.();
+      return pf;
+    };
+    const pathOf = (u: string) => u.replace(/\.html$/, '').replace(/\/index$/, '').replace(/[?#].*$/, '');
+
+    async function findMatches(q: string): Promise<Match[]> {
+      const idx = await loadIndex();
+      const ws = words(q);
+      const sp = speciesOf(ws);
+      const sig = ws.filter((w) => w.length >= 3 && !STOP.has(w) && !allSpecies.has(w));
+      if (sp.size === 1 && sp.has('none')) return [];
+      const allowed = (e: Entry) => !sp.size || sp.has(e.s) || !!e.x?.some((s) => sp.has(s)) || (e.s === 'general' && !sp.has('none'));
+      // Relevance gate: a significant (non-species) word of the question must appear in the title or description.
+      // Title words count double, so "cat not eating" beats an article that only mentions it.
+      const hits = (text: string) => { const dw = words(text); return sig.filter((w) => dw.some((d) => same(w, d))).length; };
+      const overlap = (e: Entry) => 2 * hits(e.t) + hits(e.d);
+      const order: string[] = [];
+      try {
+        const p = await loadPagefind();
+        let r = await p.search(q);
+        if (!r?.results?.length && sig.length) r = await p.search(sig.join(' '));
+        const res: any[] = r?.results?.slice(0, 12) ?? [];
+        if (res.length < 3) for (const w of [...sig, ...ws.filter((x) => allSpecies.has(x))]) { const x = await p.search(w); res.push(...(x?.results?.slice(0, 6) ?? [])); }
+        const data = await Promise.all(res.map((x) => x.data()));
+        for (const d of data) { const u = pathOf(d.url); if (!order.includes(u)) order.push(u); }
+      } catch { /* Pagefind unavailable (dev server): fall back to the title/description match below. */ }
+      const cands = (order.length ? order : Object.keys(idx)).filter((u) => idx[u]).map((u, i) => ({ url: u, e: idx[u], o: overlap(idx[u]), i }));
+      const ok = cands.filter((c) => c.o > 0 && allowed(c.e)).sort((x, y) => y.o - x.o || x.i - y.i);
+      if (!ok.length) return [];
+      // Top up the "also related" list with other search hits for the same animal.
+      if (order.length) for (const c of cands) { if (ok.length >= 3) break; if (!ok.includes(c) && allowed(c.e) && (c.e.s === ok[0].e.s || c.e.s === 'general')) ok.push(c); }
+      return ok.slice(0, 3).map(({ url, e }) => ({ url, e }));
+    }
+
+    /**
+     * AI answer (only when built with PUBLIC_ASK_AI=true). POSTs the question to /api/ask, which answers
+     * only from our articles (functions/api/ask.ts). Returns null on any error, a 503 (no API key yet),
+     * a timeout or a "not covered" reply, and the caller then shows the Pagefind card as before.
+     */
+    type AI = { verdict: string; answer: string; citations: string[]; covered: boolean };
+    let aiOff = !C.ai;
+    async function aiAnswer(question: string, lang: string): Promise<AI | null> {
+      if (aiOff) return null;
+      try {
+        const res = await fetch('/api/ask', {
+          method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ question, lang }), signal: AbortSignal.timeout(45000),
+        });
+        if (res.status === 503) { const d = await res.json().catch(() => null); if (d?.disabled) aiOff = true; return null; }
+        if (!res.ok) return null;
+        const d = await res.json();
+        if (!d || d.covered !== true || typeof d.answer !== 'string' || typeof d.verdict !== 'string' || !Array.isArray(d.citations)) return null;
+        return d as AI;
+      } catch { return null; }
+    }
+
+    const verdict = (u: string | null, long = true) => u
+      ? `<p class="ask-v ask-v-${esc(u)}"><span class="ask-vl">${esc(C.v[u] ?? u)}</span>${long ? ` <span class="ask-vs">${esc(C.uLine[u] ?? '')}</span>` : ''}</p>`
+      : (long ? `<p class="ask-v ask-v-none"><span class="ask-vs">${esc(C.noU)}</span></p>` : '');
+    const note = `<p class="ans-note">${esc(C.note)}</p>`;
+    const how = `<p class="ans-how">${esc(C.how)}</p>`;
+
+    function render(q: string, m: Match[]) {
+      const asked = `<p class="ans-q"><span>${esc(C.youAsked)}:</span> “${esc(q)}”</p>`;
+      if (!m.length) {
+        out.innerHTML = `<div class="ans ans-none">${asked}<h2 class="ans-h" tabindex="-1">${esc(C.noneH)}</h2><p class="ans-d">${esc(C.noneP)}</p><a class="btn ans-read ans-emerg" href="${esc(C.emergency)}">${esc(C.noneEmerg)} →</a>${note}</div>`;
+        status.textContent = `${C.notFound} ${C.noneH}.`;
+      } else {
+        const [b, ...rest] = m;
+        out.innerHTML = `<div class="ans">${asked}<p class="ans-k">${esc(C.best)}</p><h2 class="ans-h" tabindex="-1">${esc(b.e.t)}</h2>${verdict(b.e.u)}<p class="ans-d">${esc(b.e.d)}</p>`
+          + (b.e.draft ? `<p class="ans-draft">${esc(C.draft)}</p>` : '')
+          + `<a class="btn ans-read" href="${esc(b.url)}">${esc(C.read)} →</a>`
+          + (rest.length ? `<h3 class="ans-also">${esc(C.also)}</h3><ul class="ans-more">${rest.map((r) => `<li><a href="${esc(r.url)}">${esc(r.e.t)}</a>${verdict(r.e.u, false)}</li>`).join('')}</ul>` : '')
+          + `${note}${how}</div>`;
+        status.textContent = `${C.found} ${b.e.t}.${b.e.u ? ` ${C.v[b.e.u]}.` : ''}`;
+      }
+      out.querySelector<HTMLElement>('.ans-h')?.focus();
+    }
+
+    const el = (tag: string, cls?: string, text?: string) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+    /** The AI card, built with textContent only (never innerHTML). False if no citation is one of our articles. */
+    function renderAI(q: string, r: AI): boolean {
+      const idx = index ?? {};
+      const cites = r.citations.map((slug) => `${C.base}/${slug}`).filter((u, i, a) => idx[u] && a.indexOf(u) === i);
+      if (!cites.length) return false;
+      const card = el('div', 'ans ans-ai');
+      const asked = el('p', 'ans-q'); asked.append(el('span', '', `${C.youAsked}:`), ` “${q}”`); card.append(asked);
+      const h = el('h2', 'ans-h ans-ai-h', C.aiLabel); h.tabIndex = -1; card.append(h);
+      const u = r.verdict in C.v ? r.verdict : null;
+      if (u) { const v = el('p', `ask-v ask-v-${u}`); v.append(el('span', 'ask-vl', C.v[u]), ' ', el('span', 'ask-vs', C.uLine[u] ?? '')); card.append(v); }
+      for (const para of r.answer.split(/\n\s*\n/)) if (para.trim()) card.append(el('p', 'ans-d', para.trim()));
+      if (cites.some((c) => idx[c].draft)) card.append(el('p', 'ans-draft', C.draft));
+      card.append(el('h3', 'ans-also', C.sources));
+      const ul = el('ul', 'ans-more');
+      for (const c of cites) {
+        const li = el('li'); const a = el('a', '', idx[c].t) as HTMLAnchorElement; a.href = c; li.append(a);
+        const cu = idx[c].u; if (cu) { const v = el('p', `ask-v ask-v-${cu}`); v.append(el('span', 'ask-vl', C.v[cu] ?? cu)); li.append(v); }
+        ul.append(li);
+      }
+      card.append(ul, el('p', 'ans-note', C.note), el('p', 'ans-how', C.aiHow));
+      out.replaceChildren(card);
+      status.textContent = `${C.aiLabel}.${u ? ` ${C.v[u]}.` : ''}`;
+      h.focus();
+      return true;
+    }
+
+    async function ask(q: string) {
+      q = q.trim();
+      if (!q) { err.textContent = C.empty; ta.setAttribute('aria-invalid', 'true'); ta.focus(); return; }
+      err.textContent = ''; ta.removeAttribute('aria-invalid');
+      btn.disabled = true; out.setAttribute('aria-busy', 'true'); status.textContent = C.searching;
+      try {
+        const [m, ai] = await Promise.all([findMatches(q), aiAnswer(q, C.lang)]);
+        if (!(ai && renderAI(q, ai))) render(q, m);
+      } finally { btn.disabled = false; out.removeAttribute('aria-busy'); }
+    }
+
+    form.addEventListener('submit', (e) => { e.preventDefault(); ask(ta.value); });
+    ta.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); form.requestSubmit(); } });
+    // Topic chips start a question in the box; the owner finishes it in their own words.
+    root.querySelectorAll<HTMLButtonElement>('.ask-chip').forEach((c) => c.addEventListener('click', () => {
+      ta.value = c.dataset.start || ''; ta.focus(); ta.setSelectionRange(ta.value.length, ta.value.length);
+    }));
+    // Warm up the index and Pagefind on first interaction so the first answer is quick.
+    ta.addEventListener('focus', () => { loadIndex().catch(() => {}); loadPagefind().catch(() => {}); }, { once: true });
+  }
+</script>
+
+<style>
+  .ask { width: 100%; max-width: 730px; margin: 0 auto; text-align: left; }
+  .ask-box { position: relative; background: var(--surface); border: 1.5px solid var(--line); border-radius: 16px; padding: 14px 72px 14px 18px; box-shadow: 0 2px 6px rgba(18, 48, 74, .05), 0 18px 44px rgba(18, 48, 74, .10); }
+  .ask-box:focus-within { border-color: var(--accent); outline: 3px solid var(--accent); outline-offset: 2px; }
+  .ask-box textarea { display: block; width: 100%; margin: 0; border: 0; background: transparent; color: var(--ink); font: inherit; font-size: 1.12rem; line-height: 1.5; padding: 4px 0; resize: none; min-height: 84px; }
+  .ask-box textarea:focus-visible { outline: none; }
+  .ask-box textarea::placeholder { color: var(--ink-3); opacity: 1; }
+  .ask-box:has(textarea[aria-invalid="true"]) { border-color: var(--danger); }
+  .ask-btn { position: absolute; right: 12px; bottom: 12px; width: 48px; height: 48px; border-radius: 12px; border: 0; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; cursor: var(--cursor-click); transition: filter .12s ease, transform .12s ease; }
+  .ask-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+  .ask-btn:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+  .ask-btn:disabled { opacity: .7; cursor: progress; }
+  .ask-err { margin: 8px 0 0; color: var(--danger); font-weight: 600; font-size: .95rem; text-align: center; }
+  .ask-err:empty { margin: 0; }
+  .ask-chips { list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+  .ask-chip { min-height: 44px; padding: 8px 18px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); font: inherit; font-size: .95rem; font-weight: 600; cursor: var(--cursor-click); }
+  .ask-chip:hover { border-color: var(--accent); background: var(--accent-soft); }
+  .ask-chip:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .ask-privacy { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 16px 0 0; color: var(--ink-2); font-size: .9rem; text-align: center; }
+  .ask-privacy svg { flex: none; }
+  .ask-out:not(:empty) { margin-top: 28px; }
+  .ask-out[aria-busy="true"] { opacity: .6; }
+
+  .ask-out :global(.ans) { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px 24px 18px; box-shadow: 0 1px 0 var(--line), 0 14px 36px rgba(18, 48, 74, .08); }
+  .ask-out :global(.ans-k) { margin: 0 0 6px; text-transform: uppercase; letter-spacing: .08em; font-size: .75rem; font-weight: 700; color: var(--ink-2); }
+  .ask-out :global(.ans-q) { margin: 0 0 12px; color: var(--ink-2); font-size: .95rem; overflow-wrap: anywhere; }
+  .ask-out :global(.ans-q span) { font-weight: 700; }
+  .ask-out :global(.ans-h) { font-family: var(--font-display); font-weight: 600; font-size: 1.5rem; line-height: 1.2; margin: 0 0 12px; overflow-wrap: anywhere; }
+  .ask-out :global(.ans-h:focus) { outline: none; }
+  .ask-out :global(.ans-h:focus-visible) { outline: 3px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+  .ask-out :global(.ans-d) { margin: 0 0 14px; color: var(--ink); }
+  .ask-out :global(.ans-draft) { margin: -6px 0 14px; font-size: .85rem; color: var(--ink-2); }
+  .ask-out :global(.ans-read) { min-height: 44px; display: inline-flex; align-items: center; }
+  .ask-out :global(.ans-also) { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-2); margin: 20px 0 6px; font-family: var(--font); }
+  .ask-out :global(.ans-more) { list-style: none; margin: 0; padding: 0; display: grid; }
+  .ask-out :global(.ans-more li) { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; padding: 4px 0; border-top: 1px solid var(--line); }
+  .ask-out :global(.ans-more a) { font-weight: 600; min-height: 44px; display: inline-flex; align-items: center; flex: 1 1 14em; }
+  .ask-out :global(.ans-more .ask-v) { margin: 0; }
+  .ask-out :global(.ans-note) { margin: 16px 0 0; padding-top: 12px; border-top: 1px solid var(--line); font-size: .95rem; font-weight: 700; color: var(--ink); }
+  .ask-out :global(.ans-how) { margin: 4px 0 0; font-size: .85rem; color: var(--ink-2); }
+  .ask-out :global(.ans-ai-h) { font-size: 1.15rem; font-family: var(--font); font-weight: 700; }
+  .ask-out :global(.ans-ai .ans-d) { white-space: pre-line; overflow-wrap: anywhere; }
+
+  /* Urgency verdict, same colour families as the article "When to see a vet" notice. */
+  :global(.ask-v) { margin: 0 0 14px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 10px; }
+  :global(.ask-vl) { display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: .8rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; border: 1.5px solid var(--v, var(--accent)); background: var(--vs, var(--accent-soft)); color: var(--vc, var(--v, var(--accent))); max-width: 100%; }
+  :global(.ask-vs) { color: var(--ink-2); font-size: .95rem; flex: 1 1 16em; }
+  :global(.ask-v-emergency) { --v: var(--danger); --vs: var(--danger-soft); }
+  :global(.ask-v-today) { --v: var(--warn); --vs: var(--warn-soft); --vc: color-mix(in srgb, var(--warn) 80%, var(--ink)); }
+  :global(.ask-v-this-week) { --v: var(--accent); --vs: var(--accent-soft); }
+  :global(.ask-v-routine) { --v: var(--ok); --vs: var(--ok-soft); }
+
+  @media (max-width: 480px) { .ask-box { padding: 12px 64px 12px 14px; } .ask-chip { padding: 8px 14px; } .ask-out :global(.ans) { padding: 18px 16px 14px; } }
+</style>

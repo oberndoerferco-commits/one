@@ -1,0 +1,15 @@
+---
+import Base from '../../layouts/Base.astro';
+import AnimalsFilter from '../../components/AnimalsFilter.astro';
+import AnimalPage from '../../components/AnimalPage.astro';
+import { animalPaths, animalPage } from '../../lib/animal-data';
+// /animals/<key>: species and topics (src/lib/animals-i18n.ts) plus every lexicon entry in this language.
+export function getStaticPaths() {
+  return animalPaths('en');
+}
+const { filter } = Astro.params;
+const page = await animalPage('en', filter!);
+---
+<Base title={page.title} description={page.description}>
+  {page.kind === 'animal' ? <AnimalPage lang="en" filter={filter!} /> : <AnimalsFilter lang="en" filter={filter!} />}
+</Base>

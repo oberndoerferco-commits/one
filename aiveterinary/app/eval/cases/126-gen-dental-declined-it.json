@@ -1,0 +1,123 @@
+{
+  "id": "126-gen-dental-declined-it",
+  "language": "it",
+  "synthetic": true,
+  "header": {
+    "name": "Briciola",
+    "species": "dog",
+    "breed": "Yorkshire Terrier",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 9,
+      "unit": "year"
+    }
+  },
+  "notes": "alito cattivo\ntartaro abbondante, gengivite, 108 mobile\nmalattia parodontale\ndetartrasi in anestesia consigliata\nil proprietario per ora rifiuta l'anestesia\nspazzolare i denti ogni giorno",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": "malattia parodontale",
+    "statuses": {
+      "treatments[0]": "recommended",
+      "treatments[1]": "declined"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "alito cattivo",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          13
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "denti",
+          "text": "tartaro abbondante, gengivite, 108 mobile",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              14,
+              55
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": "malattia parodontale",
+      "differentials": [],
+      "source_spans": [
+        [
+          56,
+          76
+        ]
+      ]
+    },
+    "treatments": [
+      {
+        "type": "procedure",
+        "text": "detartrasi in anestesia consigliata",
+        "status": "recommended",
+        "source_spans": [
+          [
+            77,
+            112
+          ]
+        ]
+      },
+      {
+        "type": "procedure",
+        "text": "il proprietario per ora rifiuta l'anestesia",
+        "status": "declined",
+        "source_spans": [
+          [
+            113,
+            156
+          ]
+        ]
+      }
+    ],
+    "medications": [],
+    "plan": {
+      "follow_up": null,
+      "instructions": [
+        {
+          "text": "spazzolare i denti ogni giorno",
+          "source_spans": [
+            [
+              157,
+              187
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

@@ -1,0 +1,79 @@
+// Articles that answer the same question in different languages under different slugs.
+// Same-slug translations are linked automatically; these groups were matched by topic and scope
+// (the two cost pairs are each country's own prices for the same question).
+export const TRANSLATION_GROUPS: { en?: string; it?: string; de?: string }[] = [
+  { en: 'antibiotics-for-pets', it: 'antibiotici-animali', de: 'antibiotika-haustiere' }, // antibiotics
+  { en: 'cat-kidney-disease', it: 'gatto-insufficienza-renale', de: 'katze-niereninsuffizienz' }, // cat-kidney-disease
+  { en: 'cat-toxic-foods-plants', it: 'alimenti-piante-tossiche-gatto', de: 'giftige-lebensmittel-pflanzen-katze' }, // cat-toxic-foods-plants
+  { en: 'diabetes-dogs-cats', it: 'diabete-cane-gatto', de: 'diabetes-hund-katze' }, // diabetes-dogs-cats
+  { en: 'dog-ate-grapes', it: 'cane-ha-mangiato-uva', de: 'hund-hat-weintrauben-gefressen' }, // dog-grapes
+  { en: 'dog-ate-rat-poison', it: 'cane-ha-mangiato-veleno-per-topi', de: 'hund-hat-rattengift-gefressen' }, // dog-rat-poison
+  { en: 'dog-bloody-diarrhoea', it: 'cane-diarrea-con-sangue', de: 'hund-durchfall-mit-blut' }, // dog-bloody-diarrhoea
+  { en: 'dog-fever', it: 'cane-febbre', de: 'hund-fieber' }, // dog-fever
+  { en: 'dog-tick-removal', it: 'zecca-cane-come-toglierla', de: 'hund-zecke-entfernen' }, // dog-tick-removal
+  { en: 'dog-toxic-foods', it: 'alimenti-tossici-cane', de: 'giftige-lebensmittel-hund' }, // dog-toxic-foods
+  { en: 'nsaid-painkillers-dogs-cats', it: 'antinfiammatori-cane-gatto', de: 'schmerzmittel-nsaid-hund-katze' }, // nsaid-painkillers
+  { en: 'puppy-kitten-first-year', it: 'primo-anno-cucciolo-gattino', de: 'erstes-jahr-welpe-kitten' }, // puppy-kitten-first-year
+  { en: 'rabbit-guinea-pig-toxic-plants', it: 'piante-tossiche-coniglio-cavia', de: 'giftige-pflanzen-kaninchen-meerschweinchen' }, // rabbit-guinea-pig-toxic-plants
+  { en: 'senior-dog-cat-checklist', it: 'cane-gatto-anziano-checklist', de: 'hund-katze-senior-checkliste' }, // senior-pet-checklist
+  { en: 'dog-ate-chocolate', it: 'cane-ha-mangiato-cioccolato', de: 'hund-schokolade-gefressen' }, // dog-chocolate
+  { en: 'dog-vomiting-yellow-foam', it: 'cane-vomita-giallo', de: 'hund-erbricht-gelb' }, // dog-vomiting-yellow
+  { en: 'dog-drinking-a-lot', it: 'cane-beve-tanto', de: 'hund-trinkt-viel' }, // dog-drinking-a-lot
+  { en: 'dog-itching', it: 'cane-si-gratta-sempre', de: 'hund-juckt-sich' }, // dog-itching
+  { en: 'dog-trembling', it: 'cane-trema', de: 'hund-zittert' }, // dog-trembling
+  { en: 'dog-cough-gagging', it: 'cane-tosse-qualcosa-in-gola', de: 'hund-hustet-und-wuergt' }, // dog-cough-gagging
+  { en: 'rabbit-overgrown-teeth', it: 'coniglio-denti-lunghi', de: 'kaninchen-zaehne' }, // rabbit-overgrown-teeth
+  { en: 'rabbit-diarrhoea', it: 'coniglio-diarrea', de: 'kaninchen-durchfall' }, // rabbit-diarrhoea
+  { en: 'cat-sneezing', it: 'gatto-starnutisce', de: 'katze-niest' }, // cat-sneezing
+  { en: 'cat-constipation', it: 'gatto-stitico', de: 'katze-verstopfung' }, // cat-constipation
+  { en: 'cat-cystitis-stress', it: 'gatto-cistite-stress', de: 'katze-blasenentzuendung' }, // cat-stress-cystitis
+  { en: 'thyroid-dogs-cats', it: 'tiroide-cane-gatto', de: 'schilddruese-hund-katze' }, // thyroid-dogs-cats
+  { it: 'quanto-costa-visita-veterinaria', de: 'tierarzt-kosten-got-2026' }, // vet-visit-costs
+  { it: 'sterilizzazione-cane-costo', de: 'kastration-hund-kosten-2026' }, // dog-neutering-cost
+  { en: 'cat-hair-loss-patches', it: 'gatto-perde-pelo-a-ciuffi', de: 'katze-verliert-fell' }, // cat-hair-loss
+  { en: 'dog-separation-anxiety', it: 'ansia-da-separazione-cane', de: 'hund-trennungsangst' }, // dog-separation-anxiety
+  { en: 'dog-ate-chicken-bones', it: 'cane-ha-mangiato-ossa-di-pollo', de: 'hund-hat-huehnerknochen-gefressen' }, // dog-chicken-bones
+  { en: 'dog-bee-wasp-sting', it: 'cane-punto-da-ape', de: 'hund-bienenstich-wespenstich' }, // dog-sting
+  { en: 'cat-diarrhoea', it: 'gatto-diarrea', de: 'katze-durchfall' }, // cat-diarrhoea
+  { en: 'dog-in-heat', it: 'cagna-in-calore', de: 'huendin-laeufig' }, // dog-in-heat
+  { en: 'dog-ear-infection', it: 'cane-otite', de: 'hund-ohrenentzuendung' }, // dog-ear-infection
+  { en: 'cat-not-eating', it: 'cat-not-eating', de: 'katze-frisst-nicht' }, // cat-not-eating
+  { en: 'horse-colic', it: 'colica-cavallo', de: 'kolik-pferd' }, // horse-colic
+  { en: 'horse-laminitis', it: 'laminite-cavallo', de: 'hufrehe-pferd' }, // horse-laminitis
+  { en: 'horse-vital-signs', it: 'parametri-vitali-cavallo', de: 'vitalwerte-pferd' }, // horse-vital-signs
+  { en: 'horse-coughing', it: 'cavallo-tosse', de: 'pferd-hustet' }, // horse-coughing
+  { en: 'guinea-pig-not-eating', it: 'cavia-non-mangia', de: 'meerschweinchen-frisst-nicht' }, // guinea-pig-not-eating
+  { en: 'guinea-pig-sneezing', it: 'cavia-starnutisce', de: 'meerschweinchen-niest' }, // guinea-pig-sneezing
+  { en: 'guinea-pig-vitamin-c', it: 'cavia-vitamina-c', de: 'meerschweinchen-vitamin-c' }, // guinea-pig-vitamin-c
+  { en: 'guinea-pig-hair-loss-mites', it: 'cavia-perde-pelo', de: 'meerschweinchen-milben' }, // guinea-pig-hair-loss
+  { en: 'budgie-fluffed-up', it: 'cocorita-gonfia-dorme', de: 'wellensittich-aufgeplustert' }, // bird-fluffed-up
+  { en: 'budgie-egg-bound', it: 'cocorita-uovo-incastrato', de: 'wellensittich-legenot' }, // bird-egg-binding
+  { en: 'budgie-diarrhoea', it: 'cocorita-diarrea', de: 'wellensittich-durchfall' }, // bird-droppings
+  { en: 'bird-feather-plucking', it: 'pappagallo-si-strappa-le-piume', de: 'papagei-rupft-sich' }, // bird-feather-plucking
+  { en: 'ferret-weak-wobbly-collapsed', it: 'insulinoma-furetto-sintomi', de: 'frettchen-insulinom-symptome' }, // ferret-insulinoma
+  { en: 'ferret-not-eating-vomiting', it: 'furetto-non-mangia-vomita', de: 'frettchen-frisst-nicht-erbricht' }, // ferret-not-eating
+  { en: 'ferret-hair-loss-adrenal-disease', it: 'furetto-perde-pelo', de: 'frettchen-haarausfall-nebenniere' }, // ferret-adrenal
+  { en: 'female-ferret-in-heat', it: 'furetto-femmina-in-calore', de: 'frettchen-faehe-ranz' }, // ferret-in-heat
+  { en: 'tortoise-hibernation', it: 'tartaruga-di-terra-letargo', de: 'schildkroete-winterstarre' }, // tortoise-hibernation
+  { en: 'reptile-not-eating', it: 'rettile-non-mangia', de: 'reptil-frisst-nicht' }, // reptile-not-eating
+  { en: 'reptile-metabolic-bone-disease', it: 'malattia-ossea-metabolica-rettili', de: 'rachitis-reptilien' }, // reptile-mbd
+  { en: 'reptile-stuck-shed', it: 'problemi-muta-rettili', de: 'haeutungsprobleme-reptilien' }, // reptile-stuck-shed
+  { en: 'dog-swallowed-object', it: 'cane-ha-ingerito-corpo-estraneo', de: 'hund-hat-plastik-socke-gefressen' }, // dog-foreign-body
+  { en: 'cat-swallowed-string', it: 'gatto-ha-ingerito-filo', de: 'katze-hat-faden-gefressen' }, // cat-string
+  { en: 'cat-peeing-outside-litter-box', it: 'gatto-pipi-fuori-lettiera', de: 'katze-pinkelt-ins-bett' }, // cat-house-soiling
+  { en: 'rabbit-vaccinations', it: 'vaccino-coniglio', de: 'kaninchen-impfen-rhd-myxomatose' }, // rabbit-vaccinations
+  { en: 'cat-eye-problems', it: 'gatto-occhio-chiuso-lacrima', de: 'katze-auge-traenend-rot' }, // cat-eyes
+  { en: 'dog-panting', it: 'cane-respira-male', de: 'hund-hechelt-staendig' }, // dog-panting
+  { en: 'dog-cat-fleas-what-to-do', it: 'cane-gatto-pulci-cosa-fare', de: 'hund-katze-floehe-was-tun' }, // fleas
+  { en: 'dog-ate-xylitol', it: 'cane-ha-mangiato-xilitolo', de: 'hund-hat-xylit-gefressen' }, // xylitol
+  { en: 'rabbit-sneezing-snuffles', it: 'coniglio-starnutisce', de: 'kaninchen-schnupfen' }, // rabbit-snuffles
+  { en: 'rabbit-head-tilt', it: 'coniglio-testa-storta', de: 'kaninchen-kopf-schief' }, // rabbit-head-tilt
+  { en: 'rabbit-flystrike', it: 'miasi-coniglio', de: 'kaninchen-fliegenmaden' }, // rabbit-flystrike
+  { en: 'cat-fever', it: 'gatto-febbre', de: 'katze-warme-ohren-fieber' }, // cat-fever
+  { en: 'dog-constipation', it: 'cane-stitico', de: 'hund-verstopfung' }, // dog-constipation
+  { en: 'dog-eats-grass-or-poo', it: 'cane-mangia-erba-o-cacca', de: 'warum-frisst-mein-hund-gras' }, // dog-grass-poo
+  { en: 'pyometra-dogs-cats', it: 'piometra-cane-gatto', de: 'pyometra-hund-katze' }, // pyometra
+  { en: 'dog-slipped-disc-ivdd', it: 'ernia-del-disco-cane', de: 'bandscheibenvorfall-hund' }, // ivdd
+  { en: 'rabbit-myxomatosis-rhd', it: 'mixomatosi-mev-coniglio', de: 'myxomatose-chinaseuche-kaninchen' }, // rabbit-myxo-rhd
+  { en: 'cat-flutd', it: 'flutd-gatto', de: 'flutd-katze' }, // flutd
+];

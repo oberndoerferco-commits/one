@@ -1,0 +1,162 @@
+{
+  "id": "457-gen-puppy-vaccine-littermate-en",
+  "language": "en",
+  "synthetic": true,
+  "header": {
+    "name": "Nova",
+    "species": "dog",
+    "breed": "Golden Retriever",
+    "sex": "female",
+    "neuter_status": "intact",
+    "age": {
+      "value": 9,
+      "unit": "week"
+    }
+  },
+  "notes": "first vaccination, bought from breeder 1 week ago\nbreeder says a littermate died of parvo last week\neating puppy food well\nwt 5.2 kg\nT 38.8\nbright, no abnormalities found\nDHPPi vaccine s.c., batch QZ4417\nkeep away from unvaccinated dogs until 2 weeks after the last vaccination\nsecond vaccination in 3 weeks",
+  "expect": {
+    "missing_includes": [
+      "assessment"
+    ],
+    "drugs": [
+      "DHPPi vaccine"
+    ],
+    "assessment_text": null,
+    "temperature": 38.8,
+    "statuses": {
+      "medications[0]": "performed"
+    },
+    "must_not_contain": [
+      "parvo",
+      "].batch"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "first vaccination, bought from breeder 1 week ago",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          49
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "diet",
+        "value": "eating puppy food well",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            100,
+            122
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.8,
+          "unit": "C",
+          "source_spans": [
+            [
+              133,
+              139
+            ]
+          ]
+        },
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": {
+          "value": 5.2,
+          "unit": "kg",
+          "source_spans": [
+            [
+              123,
+              132
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "general",
+          "text": "bright, no abnormalities found",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              140,
+              170
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": null,
+      "differentials": [],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "DHPPi vaccine",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": "s.c.",
+        "frequency": null,
+        "duration": null,
+        "status": "performed",
+        "source_spans": [
+          [
+            171,
+            203
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "second vaccination in 3 weeks",
+        "interval": {
+          "value": 3,
+          "unit": "week"
+        },
+        "source_spans": [
+          [
+            278,
+            307
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "keep away from unvaccinated dogs until 2 weeks after the last vaccination",
+          "source_spans": [
+            [
+              204,
+              277
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

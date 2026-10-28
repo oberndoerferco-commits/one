@@ -1,0 +1,18 @@
+---
+/**
+ * Animal drawing for cards, lists and page headers (docs/32-illustration-style.md). The ink weight
+ * follows the rendered size so a 20px chip and a 150px header look drawn with the same pen;
+ * detail strokes drop out at 30px and below. `kind` takes any article species, a lexicon group
+ * icon (fish, hen) or the paw.
+ */
+import './art.css';
+import { ICONS, strokeFor } from './animal-art';
+import type { IconKind } from '../lib/animal-icons';
+interface Props { kind: IconKind; size?: number; class?: string; title?: string }
+const { kind, size = 40, class: cls = '', title } = Astro.props;
+const sw = strokeFor(size);
+---
+<svg class={`ai-icon sk${size <= 30 ? ' sk-xs' : ''} ${cls}`} style={`--sw:${sw}`} width={size} height={size} viewBox="0 0 48 48" fill="none" stroke="var(--sk-line)" stroke-width={sw} stroke-linecap="round" stroke-linejoin="round" aria-hidden={title ? undefined : 'true'} role={title ? 'img' : undefined}>
+  {title && <title>{title}</title>}
+  <Fragment set:html={ICONS[kind] ?? ICONS.paw} />
+</svg>

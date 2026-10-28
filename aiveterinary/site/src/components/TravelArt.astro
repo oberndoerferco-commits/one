@@ -1,0 +1,32 @@
+---
+/**
+ * Travel illustration: the sketch cat sitting on a suitcase with a sticker and a luggage label,
+ * a paper plane looping overhead. Same pen and palette as the animal drawings
+ * (docs/32-illustration-style.md). Decorative.
+ */
+import './art.css';
+import { place } from './animal-art';
+interface Props { size?: number }
+const { size = 300 } = Astro.props;
+const SW = 2.8;
+const W = 'transform="translate(2 2.6)" stroke="none"';
+const caseBox = 'x="62" y="128" width="176" height="98" rx="16"';
+const art = `
+<path d="M28 148C22 86 74 40 150 40c74 0 128 46 124 110-4 60-52 88-110 88H84c-36 0-52-40-56-90z" fill="var(--sk-paper)" stroke="none"/>
+<path d="M56 240h188" stroke="var(--sk-shadow)" stroke-width="6"/>
+<path d="M122 128v-11c0-6 4-9 9-9h38c5 0 9 3 9 9v11" stroke-width="4"/>
+<rect ${caseBox} fill="var(--sk-accent)" ${W}/><rect ${caseBox}/>
+<path d="M96 130v94M204 130v94" stroke-width="2.2"/>
+<circle cx="146" cy="184" r="14" fill="var(--ic-sun)" stroke-width="2.2"/>
+<path d="M146 191c-5-3-8-6-6-9 1.6-2 4-1.6 6 .6 2-2.2 4.4-2.6 6-.6 2 3-1 6-6 9z" fill="var(--sk-accent)" stroke="none"/>
+<rect x="166" y="190" width="28" height="18" rx="4" fill="var(--hs-cream)" stroke-width="2.2"/>
+<path d="M172 197h14M172 202h9" stroke="var(--sk-eye)" stroke-width="1.6"/>
+<circle cx="84" cy="230" r="5" fill="var(--sk-paper)" stroke-width="2.2"/><circle cx="216" cy="230" r="5" fill="var(--sk-paper)" stroke-width="2.2"/>
+${place('cat', 80, -1.5, 2.9, SW)}
+<path d="M222 70c12-12 26-17 40-13" stroke-dasharray="5 9" stroke-width="2.2"/>
+<path d="M266 44l22 4-19 11 1-7z" fill="var(--hs-cream)" stroke-width="2.2"/><path d="M270 52l18-4" stroke-width="1.6"/>
+`;
+---
+<svg class="travel-art sk" width={size} height={Math.round(size * 0.84)} viewBox="0 0 300 252" fill="none" stroke="var(--sk-line)" stroke-width={SW} stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <Fragment set:html={art} />
+</svg>

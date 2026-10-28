@@ -1,0 +1,279 @@
+---
+/**
+ * Health A–Z (/health, /it/health, /de/health): the symptoms and conditions our articles cover, as a lexicon.
+ * Letter bar, a search over names and synonyms in all three languages, filter chips by animal and urgency,
+ * and one entry per term with a stable anchor (#vomiting, #vomito, #erbrechen). Each entry: name, synonyms,
+ * one or two sentences from src/data/health-terms.ts (checked against the articles by
+ * scripts/check-health-terms.mjs), the animals and the linked articles with their verdict. Animals and verdicts
+ * come from the articles' frontmatter. Without JavaScript everything is listed and the letter bar still works.
+ * Look and CSS patterns follow the Animals A–Z (AnimalsIndex.astro).
+ */
+import AnimalIcon from './AnimalIcon.astro';
+import { ANIMALS as A18N } from '../lib/animals-i18n';
+import { letterOf } from '../lib/lexicon';
+import { articlesIn, collator, keyOf } from '../lib/animal-data';
+import { ANIMALS, URGENCIES, UI, anchorOf, fold, healthPath, searchWords, termsIn, type Animal, type Lang, type Urgency } from '../data/health-terms';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const u = UI[lang];
+const t = A18N[lang];
+// The verdict labels articles show at the top (Article.astro), so a pill here reads the same as on the article.
+const VERDICT: Record<Lang, Record<Urgency, string>> = {
+  en: { emergency: 'Go now', today: 'See a vet today', 'this-week': 'Book a visit this week', routine: 'Watch and ask at the next visit' },
+  it: { emergency: 'Vai subito', today: 'Dal veterinario oggi', 'this-week': 'Prenota una visita questa settimana', routine: 'Osserva e chiedi alla prossima visita' },
+  de: { emergency: 'Sofort in die Praxis', today: 'Heute in die Praxis', 'this-week': 'Diese Woche einen Termin', routine: 'Beobachten, beim nächsten Besuch fragen' },
+};
+const CHIP: Record<Lang, Record<Urgency, string>> = {
+  en: { emergency: 'Go now', today: 'Today', 'this-week': 'This week', routine: 'Routine' },
+  it: { emergency: 'Subito', today: 'Oggi', 'this-week': 'Questa settimana', routine: 'Di routine' },
+  de: { emergency: 'Sofort', today: 'Heute', 'this-week': 'Diese Woche', routine: 'Routine' },
+};
+const mark: Record<Urgency, string> = { emergency: '!', today: '!', 'this-week': '·', routine: 'i' };
+const RANK: Record<Urgency, number> = { emergency: 0, today: 1, 'this-week': 2, routine: 3 };
+
+const bySlug = new Map((await articlesIn(lang)).map((e) => [keyOf(e), e]));
+const c = collator(lang);
+const isAnimal = (k: string): k is Animal => (ANIMALS as readonly string[]).includes(k);
+const entries = termsIn(lang).map((term) => {
+  const x = term[lang]!;
+  const arts = x.slugs.map((s) => bySlug.get(s)).filter((e): e is NonNullable<typeof e> => !!e).map((e) => {
+    const own = [e.data.species, ...(e.data.animals ?? [])].filter(isAnimal);
+    return { e, href: `${t.base}/${keyOf(e)}`, urgency: e.data.urgency as Urgency | undefined, animals: own.length ? own : term.species ?? [] };
+  }).sort((a, b) => RANK[a.urgency ?? 'routine'] - RANK[b.urgency ?? 'routine']);
+  const animals = ANIMALS.filter((k) => term.species?.includes(k) || arts.some((a) => a.animals.includes(k)));
+  const urgencies = URGENCIES.filter((v) => arts.some((a) => a.urgency === v));
+  // animal:urgency pairs, so "rabbit + go now" only matches when a rabbit article says go now.
+  const pairs = [...new Set(arts.flatMap((a) => (a.urgency ? (a.animals.length ? a.animals : animals).map((k) => `${k}:${a.urgency}`) : [])))];
+  return { term, x, id: anchorOf(term, lang), letter: letterOf(x.name), arts, animals, urgencies, pairs,
+    names: [...new Set(searchWords(term).map(fold))].join(' | ') };
+}).sort((a, b) => c.compare(a.x.name, b.x.name));
+
+const LETTERS = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ', '#'];
+const sections = LETTERS.map((l) => ({ l, id: `az-${l === '#' ? 'other' : l.toLowerCase()}`, items: entries.filter((e) => e.letter === l) }));
+const bar = sections.filter((s) => s.l !== '#' || s.items.length).map((s) => ({ ...s, href: s.items.length ? '#' + s.id : '' }));
+const animalChips = ANIMALS.filter((k) => entries.some((e) => e.animals.includes(k)));
+const urgChips = URGENCIES.filter((v) => entries.some((e) => e.urgencies.includes(v)));
+const nAnimal = (k: Animal) => entries.filter((e) => e.animals.includes(k)).length;
+const nUrg = (v: Urgency) => entries.filter((e) => e.urgencies.includes(v)).length;
+
+// Structured data: the page and its term set, with each term's name and short description, nothing else.
+// DefinedTermSet/DefinedTerm are plain schema.org types (Google shows no rich result for them).
+const pageUrl = new URL(healthPath(lang), Astro.site).href;
+const ld = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'WebPage', '@id': pageUrl, url: pageUrl, name: u.title, description: u.desc, inLanguage: lang, isPartOf: { '@id': 'https://aiveterinary.org/#website' }, mainEntity: { '@id': `${pageUrl}#terms` } },
+    { '@type': 'DefinedTermSet', '@id': `${pageUrl}#terms`, name: u.h1, url: pageUrl, inLanguage: lang,
+      hasDefinedTerm: entries.map((e) => ({ '@type': 'DefinedTerm', '@id': `${pageUrl}#${e.id}`, url: `${pageUrl}#${e.id}`, name: e.x.name, description: e.x.text, inDefinedTermSet: { '@id': `${pageUrl}#terms` } })) },
+  ],
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(ld).replace(/</g, '\\u003c')} />
+<section class="wrap ht-hero">
+  <p class="eyebrow"><a href={u.guideHref}>{u.guide}</a></p>
+  <h1>{u.h1}</h1>
+  <p class="lead">{u.lead}</p>
+  <p class="ht-meta"><span>{u.count(entries.length)}</span> · <a class="ht-emerg" href={u.emergencyHref}>{u.emergency} →</a></p>
+</section>
+
+<section class="wrap ht" id="ht" data-shown={u.shown(-1, entries.length).replace('-1', '{n}')} aria-label={u.h1}>
+  <div class="ht-tools" id="ht-tools" hidden>
+    <div class="ht-find">
+      <label for="ht-q">{u.find}</label>
+      <input id="ht-q" type="search" autocomplete="off" spellcheck="false" placeholder={u.findPh} aria-describedby="ht-status" />
+    </div>
+    <div class="ht-filters">
+      <div class="ht-chips" role="group" aria-label={u.animal} data-group="animal">
+        <span class="ht-chips-l" aria-hidden="true">{u.animal}</span>
+        <button type="button" class="ht-chip" data-v="all" aria-pressed="true">{u.all}</button>
+        {animalChips.map((k) => (
+          <button type="button" class={`ht-chip tint-${k}`} data-v={k} aria-pressed="false"><span class="ht-chip-ic" aria-hidden="true"><AnimalIcon kind={k} size={22} /></span>{t.species[k]} <span class="ht-n">{nAnimal(k)}</span></button>
+        ))}
+      </div>
+      <div class="ht-chips" role="group" aria-label={u.urgency} data-group="urg">
+        <span class="ht-chips-l" aria-hidden="true">{u.urgency}</span>
+        <button type="button" class="ht-chip" data-v="all" aria-pressed="true">{u.all}</button>
+        {urgChips.map((v) => (
+          <button type="button" class={`ht-chip ht-u-${v}`} data-v={v} aria-pressed="false"><span class="ht-dot" aria-hidden="true"></span>{CHIP[lang][v]} <span class="ht-n">{nUrg(v)}</span></button>
+        ))}
+      </div>
+    </div>
+  </div>
+  <p id="ht-status" class="sr-only" role="status" aria-live="polite"></p>
+
+  <nav class="ht-letters" id="ht-letters" aria-label={u.letters}>
+    <ul>
+      {bar.map((s) => (s.href ? <li data-letter={s.id}><a href={s.href}>{s.l}</a></li> : <li aria-hidden="true"><span>{s.l}</span></li>))}
+    </ul>
+  </nav>
+
+  <div class="ht-none" id="ht-none" hidden>
+    <p id="ht-none-t" data-q={u.none} data-f={u.noneFilter}></p>
+    <p><button type="button" class="btn secondary" id="ht-reset">{u.reset}</button> <a class="btn secondary" id="ht-search-all" href={u.searchHref}>{u.searchAll} →</a></p>
+  </div>
+
+  <div class="ht-blocks">
+    {sections.filter((s) => s.items.length).map((s) => (
+      <div class="ht-block" id={s.id}>
+        <h2 class="ht-block-h">{s.l}</h2>
+        {s.items.map((e) => (
+          <article class="ht-entry" id={e.id} data-names={e.names} data-animals={e.animals.join(' ')} data-urg={e.urgencies.join(' ')} data-pairs={e.pairs.join(' ')} aria-labelledby={`${e.id}-h`}>
+            <h3 class="ht-name" id={`${e.id}-h`}><a href={`#${e.id}`}>{e.x.name}</a> <span class="ht-kind">{e.term.kind === 'symptom' ? u.symptom : u.condition}</span></h3>
+            {e.x.synonyms.length > 0 && <p class="ht-syn"><span>{u.also}:</span> {e.x.synonyms.join(', ')}</p>}
+            <p class="ht-text">{e.x.text}</p>
+            {e.animals.length > 0 && (
+              <ul class="ht-animals" aria-label={u.applies}>
+                {e.animals.map((k) => <li class={`tint-${k}`}><span class="ht-a-ic" aria-hidden="true"><AnimalIcon kind={k} size={20} /></span>{t.species[k]}</li>)}
+              </ul>
+            )}
+            <ul class="ht-links">
+              {e.arts.map((a) => (
+                <li>
+                  <a href={a.href}>{a.e.data.title}</a>
+                  {a.urgency && <span class={`ht-pill ht-u-${a.urgency}`}><span class="ht-pill-m" aria-hidden="true">{mark[a.urgency]}</span>{VERDICT[lang][a.urgency]}</span>}
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    ))}
+  </div>
+  <p class="ht-note">{u.note}</p>
+</section>
+
+<style>
+  .ht-hero { padding-top: 40px; }
+  .ht-hero .eyebrow a { display: inline-flex; align-items: center; min-height: 44px; color: var(--ink-3); }
+  .ht-hero h1 { margin-top: 0; }
+  .ht-hero .lead { font-size: 1.15rem; color: var(--ink-2); max-width: 40em; }
+  .ht-meta { color: var(--ink-3); font-weight: 600; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
+  .ht-emerg { display: inline-flex; align-items: center; min-height: 44px; color: var(--danger); font-weight: 700; }
+  .ht { margin-top: 8px; }
+  .ht-tools { display: grid; gap: 14px; margin-bottom: 14px; }
+  /* Search box: the Animals A–Z "Find an animal" input. */
+  .ht-find { max-width: 460px; display: flex; flex-direction: column; gap: 6px; }
+  .ht-find label { font-weight: 700; }
+  .ht-find input { min-height: 48px; padding: 10px 16px; border: 1.5px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink); font: inherit; width: 100%; box-sizing: border-box; }
+  .ht-find input::placeholder { color: var(--ink-3); opacity: 1; }
+  .ht-find input:focus { border-color: var(--accent); }
+  .ht-filters { display: grid; gap: 8px; }
+  .ht-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+  .ht-chips-l { font-size: .82rem; font-weight: 700; color: var(--ink-3); text-transform: uppercase; letter-spacing: .06em; min-width: 6.5em; }
+  .ht-chip { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 14px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); font: inherit; font-weight: 650; cursor: var(--cursor-click); }
+  .ht-chip:hover { border-color: var(--accent); }
+  .ht-chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .ht-chip-ic { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--tint, var(--accent-soft)); }
+  .ht-n { font-weight: 600; opacity: .8; font-size: .88em; }
+  .ht-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--v); flex: none; }
+  .ht-chip[aria-pressed="true"] .ht-dot { box-shadow: 0 0 0 2px var(--accent-ink); }
+  .ht-u-emergency { --v: var(--danger); --v-soft: var(--danger-soft); }
+  .ht-u-today { --v: var(--warn); --v-soft: var(--warn-soft); }
+  .ht-u-this-week { --v: var(--accent); --v-soft: var(--accent-soft); }
+  .ht-u-routine { --v: var(--ok); --v-soft: var(--ok-soft); }
+  /* Letter bar and letter headings: the Animals A–Z .lx-letters / .lx-block-h (scoped there, so repeated here). */
+  .ht-letters ul { list-style: none; margin: 0 0 6px; padding: 0; display: flex; flex-wrap: wrap; gap: 4px; }
+  .ht-letters a, .ht-letters span { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 40px; border-radius: 10px; font-weight: 700; }
+  .ht-letters a { color: var(--accent); background: var(--surface); border: 1px solid var(--line); text-decoration: none; }
+  .ht-letters a:hover { border-color: var(--accent); text-decoration: underline; }
+  .ht-letters span { color: var(--ink-3); opacity: .55; }
+  .ht-block-h { margin: 0 0 2px; font-family: var(--font-display); font-size: 1.6rem; font-weight: 600; border-bottom: 1px solid var(--line); padding-bottom: 4px; break-after: avoid; }
+  .ht-letters { position: sticky; top: 0; z-index: 2; background: var(--bg); padding: 6px 0 2px; }
+  .ht-letters li[hidden], .ht-tools[hidden], .ht-none[hidden], .ht-block[hidden], .ht-entry[hidden] { display: none; }
+  .ht-none { margin: 16px 0; color: var(--ink-2); }
+  .ht-none .btn { min-height: 44px; display: inline-flex; align-items: center; }
+  /* Letter blocks flow down then across, like a dictionary column (the Animals A–Z .lx-blocks). */
+  .ht-blocks { columns: 2 380px; column-gap: 40px; margin-top: 14px; }
+  .ht-block { padding-bottom: 8px; scroll-margin-top: 84px; }
+  .ht-entry { break-inside: avoid; padding: 12px 0 14px; border-bottom: 1px solid var(--line); scroll-margin-top: 84px; }
+  .ht-entry:last-child { border-bottom: 0; }
+  .ht-entry:target { background: var(--accent-soft); border-radius: 14px; padding-left: 12px; padding-right: 12px; }
+  .ht-name { margin: 0 0 4px; font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; line-height: 1.2; }
+  .ht-name a { color: var(--ink); text-decoration: none; overflow-wrap: anywhere; }
+  .ht-name a:hover { color: var(--accent); text-decoration: underline; }
+  .ht-kind { font-family: var(--font); font-size: .74rem; font-weight: 700; color: var(--ink-3); text-transform: uppercase; letter-spacing: .06em; vertical-align: middle; }
+  .ht-syn { margin: 0 0 6px; color: var(--ink-3); font-size: .9rem; }
+  .ht-syn span { font-weight: 700; }
+  .ht-text { margin: 0 0 8px; color: var(--ink); }
+  .ht-animals { list-style: none; margin: 0 0 8px; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .ht-animals li { display: inline-flex; align-items: center; gap: 5px; padding: 2px 10px 2px 3px; border-radius: 999px; background: var(--tint, var(--accent-soft)); font-size: .85rem; font-weight: 600; color: var(--ink); }
+  .ht-a-ic { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--surface); }
+  .ht-links { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+  .ht-links li { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 8px; }
+  .ht-links a { display: inline-flex; align-items: center; min-height: 44px; color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
+  .ht-pill { display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px 2px 3px; border-radius: 999px; background: var(--v-soft); border: 1px solid var(--v); color: var(--ink); font-size: .8rem; font-weight: 700; white-space: nowrap; }
+  .ht-pill-m { width: 18px; height: 18px; border-radius: 50%; display: grid; place-items: center; background: var(--v); color: var(--surface); font-weight: 900; font-size: .75rem; line-height: 1; }
+  .ht-note { margin-top: 20px; color: var(--ink-3); font-size: .92rem; }
+  @media (max-width: 560px) {
+    .ht-chips-l { flex-basis: 100%; }
+    .ht-pill { white-space: normal; }
+    .ht-letters a, .ht-letters span { width: 34px; }
+    .ht-letters { position: static; }
+  }
+  @media print { .ht-tools, .ht-letters { display: none !important; } .ht-blocks { columns: 1; } }
+</style>
+
+<script>
+  // Search (names and synonyms in all three languages) and the animal / urgency chips. Without JS all entries show.
+  const root = document.getElementById('ht');
+  const tools = document.getElementById('ht-tools');
+  const input = document.getElementById('ht-q') as HTMLInputElement | null;
+  const status = document.getElementById('ht-status');
+  const none = document.getElementById('ht-none');
+  const noneT = document.getElementById('ht-none-t');
+  const searchAll = document.getElementById('ht-search-all') as HTMLAnchorElement | null;
+  if (root && tools && input && status && none && noneT && searchAll) {
+    tools.hidden = false;
+    const entries = [...root.querySelectorAll<HTMLElement>('.ht-entry')];
+    const blocks = [...root.querySelectorAll<HTMLElement>('.ht-block')];
+    const letters = [...root.querySelectorAll<HTMLElement>('#ht-letters li[data-letter]')];
+    const fold = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ß/g, 'ss').replace(/[’`]/g, "'").replace(/\s+/g, ' ').trim();
+    const state: Record<string, string> = { animal: 'all', urg: 'all' };
+    const base = searchAll.getAttribute('href') ?? '';
+    const fmt = (n: number) => (root.dataset.shown ?? '').replace('{n}', String(n));
+    let timer: number | undefined;
+    const run = () => {
+      const raw = input.value.trim();
+      const q = fold(raw);
+      const { animal, urg } = state;
+      let n = 0;
+      for (const el of entries) {
+        const ok = (!q || (el.dataset.names ?? '').includes(q))
+          && (animal === 'all' || (el.dataset.animals ?? '').split(' ').includes(animal))
+          && (urg === 'all' || (el.dataset.urg ?? '').split(' ').includes(urg))
+          && (animal === 'all' || urg === 'all' || (el.dataset.pairs ?? '').split(' ').includes(`${animal}:${urg}`));
+        el.hidden = !ok;
+        if (ok) n++;
+      }
+      for (const b of blocks) b.hidden = !b.querySelector('.ht-entry:not([hidden])');
+      for (const l of letters) l.hidden = !!document.getElementById(l.dataset.letter!)?.hidden;
+      none.hidden = n > 0;
+      noneT.textContent = n ? '' : q ? (noneT.dataset.q ?? '').replace('{q}', raw) : noneT.dataset.f ?? '';
+      searchAll.href = q ? `${base}?q=${encodeURIComponent(raw)}` : base;
+      const filtered = !!q || animal !== 'all' || urg !== 'all';
+      clearTimeout(timer);
+      timer = window.setTimeout(() => { status.textContent = filtered ? (n ? fmt(n) : noneT.textContent ?? '') : ''; }, 400);
+    };
+    for (const g of root.querySelectorAll<HTMLElement>('.ht-chips[data-group]')) {
+      const btns = [...g.querySelectorAll<HTMLButtonElement>('button[data-v]')];
+      btns.forEach((b) => b.addEventListener('click', () => {
+        state[g.dataset.group!] = b.dataset.v!;
+        btns.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+        run();
+      }));
+    }
+    input.addEventListener('input', run);
+    document.getElementById('ht-reset')?.addEventListener('click', () => {
+      input.value = '';
+      for (const g of root.querySelectorAll<HTMLElement>('.ht-chips[data-group]')) {
+        state[g.dataset.group!] = 'all';
+        g.querySelectorAll<HTMLButtonElement>('button[data-v]').forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.v === 'all')));
+      }
+      run();
+      input.focus();
+    });
+    // ?q= prefills the search (shareable "health?q=kotzen").
+    const pre = new URLSearchParams(location.search).get('q');
+    if (pre) { input.value = pre; run(); }
+  }
+</script>

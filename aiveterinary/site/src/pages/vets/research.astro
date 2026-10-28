@@ -1,0 +1,30 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base title="Research" description="What we learned studying AI documentation tools for veterinary practice.">
+  <article class="wrap narrow hero prose">
+    <p class="eyebrow"><a href="/vets">For veterinary teams</a></p>
+    <h1>What we learned from thirty AI note-taking tools</h1>
+    <p class="lead">Before building anything, we studied what exists: the products, their promises, and what vets say after using them. A summary. The full write-up will be published here.</p>
+
+    <h2>The promises</h2>
+    <p>"Two hours back every day." "99.8 % accurate." "Notes done before the next appointment." Almost every product says something like this. Almost none says how it was measured. One widely quoted accuracy figure turns out to mean how rarely vets edit the note, which is not the same as whether the note is right. A 2026 academic audit of veterinary AI products found that the great majority disclose no quality metric at all.</p>
+
+    <h2>What vets report</h2>
+    <ul>
+      <li>Drug names and vaccines appearing in notes that were never given.</li>
+      <li>A male dog recorded as pregnant, because the owner was.</li>
+      <li>One patient's details ending up in another patient's record.</li>
+      <li>The owner's words written down as the vet's clinical finding.</li>
+      <li>Recordings that failed to upload, taking the whole consultation with them.</li>
+      <li>"1.5 to 2 hours after every shift" checking notes for errors.</li>
+    </ul>
+    <p>Independent studies from human medicine point the same way: the time actually saved is modest, missing information is the most common error, and invented content is the most dangerous. Around one note in seven is signed without any edit.</p>
+
+    <h2>What nobody offers</h2>
+    <p>Every tool we found is built around audio recording. Typed input, where it exists, is a side feature. None of them publicly offers, together: a guarantee that nothing appears in the record the vet didn't provide, a visible source for every sentence, missing-information flags before signing, or one approved record from which every other document is generated. In Italy we found no dedicated veterinary documentation tool at all.</p>
+    <p>That gap is what AI Veterinary is built to fill. <a href="/vets">The twelve commitments</a> are the concrete version of it.</p>
+
+    <p><em>Sources: public vendor pages, help centres, app-store and Trustpilot reviews, VIN News, regulator guidance (AAVSB, RCVS), and peer-reviewed studies in JAMA, NEJM AI, JMIR and npj Digital Medicine. Full references will be published with the complete report.</em></p>
+  </article>
+</Base>

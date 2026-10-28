@@ -1,0 +1,27 @@
+---
+/**
+ * Hero illustration: the sketch dog and cat sitting face to face on a paper-coloured blob, a small
+ * heart between them. Built from the same drawings as the animal icons (docs/32-illustration-style.md),
+ * still, with no animation.
+ */
+import './art.css';
+import { place } from './animal-art';
+interface Props { class?: string }
+const { class: cls = '' } = Astro.props;
+const SW = 3.2;
+const scene = `
+<path d="M30 196C20 104 104 34 222 34c114 0 200 62 200 160 0 86-62 126-130 126H112C58 320 36 262 30 196z" fill="var(--sk-paper)" stroke="none"/>
+<path d="M44 320h366" stroke="var(--sk-shadow)" stroke-width="7"/>
+${place('dog', 8, 52, 5.9, SW)}
+${place('cat', 444, 115, -4.5, SW)}
+<path d="M262 86c-11-8-15-15-11-20 3-4 9-3 11 1 2-4 8-5 11-1 4 5 0 12-11 20z" fill="var(--sk-accent)" stroke-width="2.4"/>
+<circle cx="384" cy="70" r="4" fill="var(--hs-dog-2)" stroke="none"/><circle cx="60" cy="110" r="3" fill="var(--hs-dog-2)" stroke="none"/>
+`;
+---
+<svg class={`hero-scene sk ${cls}`} width="540" height="417" viewBox="0 0 440 340" fill="none" stroke="var(--sk-line)" stroke-width={SW} stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="A dog and a cat sitting together">
+  <Fragment set:html={scene} />
+</svg>
+
+<style is:global>
+  .hero-scene { max-width: 100%; height: auto; }
+</style>

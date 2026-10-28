@@ -1,0 +1,13 @@
+{
+  "name": "aiveterinary-pims-helper",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Browser extension prototype: pastes an approved AI Veterinary record into PIMS fields after a patient check.",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "../app/node_modules/.bin/vitest run --root .",
+    "test:e2e": "node build.mjs && node --test test/e2e.mjs",
+    "typecheck": "../app/node_modules/.bin/tsc -p ."
+  }
+}

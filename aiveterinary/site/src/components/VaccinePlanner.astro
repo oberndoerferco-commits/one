@@ -1,0 +1,157 @@
+---
+/**
+ * Puppy and kitten vaccine planner. Dates come from app/src/vaccine-plan.ts (WSAVA 2024 tables
+ * and the EU rabies travel rule); this page only labels them. Saved dates go into the booklet as
+ * "planned", never as vaccinations given.
+ */
+interface Props { lang: 'en' | 'it' | 'de' }
+const { lang } = Astro.props;
+const T = {
+  en: {
+    title: 'Puppy and kitten vaccine planner', lead: 'Enter the date of birth to see when the first-year vaccinations usually fall, following the WSAVA 2024 guidelines. Use it to plan visits and questions. Your vet decides which vaccines your animal needs, the products and the exact dates.',
+    species: 'Animal', dog: 'Puppy', cat: 'Kitten', dob: 'Date of birth', first: 'First core vaccination, if already given or booked (optional)',
+    lepto: 'My vet recommends vaccination against leptospirosis', risk: 'My cat goes outdoors or meets other cats',
+    go: 'Show the plan', save: 'Save as planned dates in the health booklet', saved: 'Saved as planned dates for', noAnimal: 'Start a health booklet first, then come back to save these dates.', booklet: '/passport', bookletLabel: 'Open the health booklet',
+    badDate: 'Check the dates: the date of birth must be a real date between 1990 and 2100, and the first vaccination cannot be before the birth.', saveFail: 'Could not save: browser storage is full or blocked.',
+    th: ['Date', 'What to discuss', 'Age'], weeks: 'weeks', months: 'months', years: 'years',
+    k: {
+      coreDog: 'Core vaccination {n}: distemper, hepatitis (adenovirus), parvovirus', coreCat: 'Core vaccination {n}: panleukopenia and cat flu (herpesvirus, calicivirus)',
+      core6m: 'Core booster at about 6 months', core3y: 'Core booster at about 3 years of age, then no more often than every 3 years', coreYearly: 'Core booster, up to yearly for cats at higher risk (and 1–2 weeks before a cattery stay)',
+      lepto: 'Leptospirosis {n} (the second dose 2–4 weeks after the first)', leptoYearly: 'Leptospirosis booster, yearly',
+      felvTest: 'FeLV test, before the first FeLV vaccination', felv: 'FeLV vaccination {n} (the second dose 3–4 weeks after the first)', felv1y: 'FeLV booster 1 year after the second dose; then yearly while the risk continues',
+      rabies: 'Earliest rabies vaccination for travel in the EU (12 weeks old). Whether it is required at home depends on national law', rabiesValid: 'Earliest travel date if the first rabies vaccination is given on the day above (21-day wait)',
+      before6w: 'Earlier than 6 weeks, the youngest age in the WSAVA table. Ask your vet.',
+    },
+    notes: ['WSAVA allows 3–4 weeks between doses; this plan uses 4. In high-risk situations vets may vaccinate every 2–3 weeks and continue to 20 weeks.', 'Many vaccines are licensed for yearly boosters. Your vet follows the product leaflet and national law; ask which schedule your animal is on.', 'A planned date is not a vaccination. Only the vet records a vaccination in the passport.'],
+    source: 'Sources: WSAVA, Core and non-core vaccines for pet dogs and for pet cats (non-shelter), 2024 guidelines, tables published June 2025; European Commission, non-commercial movement of pets within the EU. Both read on 18 October 2026.',
+  },
+  it: {
+    title: 'Calendario vaccini per cuccioli e gattini', lead: 'Inserisci la data di nascita per vedere quando cadono di solito le vaccinazioni del primo anno, secondo le linee guida WSAVA 2024. Usalo per organizzare visite e domande. È il veterinario a decidere di quali vaccini ha bisogno il tuo animale, quali prodotti usare e in che date.',
+    species: 'Animale', dog: 'Cucciolo', cat: 'Gattino', dob: 'Data di nascita', first: 'Prima vaccinazione di base, se già fatta o prenotata (facoltativo)',
+    lepto: 'Il mio veterinario consiglia il vaccino contro la leptospirosi', risk: 'Il mio gatto esce o incontra altri gatti',
+    go: 'Mostra il calendario', save: 'Salva come date in programma nel libretto sanitario', saved: 'Salvate come date in programma per', noAnimal: 'Prima crea un libretto sanitario, poi torna qui per salvare queste date.', booklet: '/it/passport', bookletLabel: 'Apri il libretto sanitario',
+    badDate: 'Controlla le date: la data di nascita deve essere una data valida tra il 1990 e il 2100, e la prima vaccinazione non può essere precedente alla nascita.', saveFail: 'Impossibile salvare: la memoria del browser è piena o bloccata.',
+    th: ['Data', 'Di cosa parlare', 'Età'], weeks: 'settimane', months: 'mesi', years: 'anni',
+    k: {
+      coreDog: 'Vaccinazione di base {n}: cimurro, epatite (adenovirus), parvovirosi', coreCat: 'Vaccinazione di base {n}: panleucopenia e raffreddore felino (herpesvirus, calicivirus)',
+      core6m: 'Richiamo di base a circa 6 mesi', core3y: 'Richiamo di base a circa 3 anni di età, poi non più spesso di ogni 3 anni', coreYearly: 'Richiamo di base, fino a una volta l’anno per i gatti più a rischio (e 1–2 settimane prima di una pensione per gatti)',
+      lepto: 'Leptospirosi {n} (la seconda dose 2–4 settimane dopo la prima)', leptoYearly: 'Richiamo leptospirosi, ogni anno',
+      felvTest: 'Test FeLV, prima del primo vaccino FeLV', felv: 'Vaccino FeLV {n} (la seconda dose 3–4 settimane dopo la prima)', felv1y: 'Richiamo FeLV 1 anno dopo la seconda dose; poi ogni anno finché il rischio continua',
+      rabies: 'Prima data possibile per l’antirabbica ai fini dei viaggi nell’UE (12 settimane di età). Se in Italia è obbligatoria dipende dalla legge nazionale e regionale', rabiesValid: 'Prima data di viaggio se la prima antirabbica viene fatta nel giorno sopra (attesa di 21 giorni)',
+      before6w: 'Prima delle 6 settimane, l’età minima nella tabella WSAVA. Chiedi al veterinario.',
+    },
+    notes: ['La WSAVA prevede 3–4 settimane tra le dosi; questo calendario usa 4. In situazioni ad alto rischio il veterinario può vaccinare ogni 2–3 settimane e continuare fino a 20 settimane.', 'Molti vaccini sono autorizzati per richiami annuali. Il veterinario segue il foglietto illustrativo e la legge; chiedi quale schema segue il tuo animale.', 'Una data in programma non è una vaccinazione. Solo il veterinario registra un vaccino nel passaporto.'],
+    source: 'Fonti: WSAVA, vaccini essenziali e non essenziali per cani e per gatti di proprietà (non di rifugio), linee guida 2024, tabelle pubblicate a giugno 2025; Commissione europea, movimenti non commerciali di animali da compagnia nell’UE. Entrambe consultate il 18 ottobre 2026.',
+  },
+  de: {
+    title: 'Impfplaner für Welpen und Kitten', lead: 'Geben Sie das Geburtsdatum ein und sehen Sie, wann die Impfungen im ersten Lebensjahr nach den WSAVA-Leitlinien 2024 üblicherweise anstehen. Nutzen Sie den Plan für Termine und Fragen. Welche Impfungen Ihr Tier braucht, welche Impfstoffe und an welchen Tagen, entscheidet Ihre Tierärztin oder Ihr Tierarzt.',
+    species: 'Tier', dog: 'Welpe', cat: 'Kitten', dob: 'Geburtsdatum', first: 'Erste Grundimpfung, falls schon erfolgt oder geplant (freiwillig)',
+    lepto: 'Meine Praxis empfiehlt die Impfung gegen Leptospirose', risk: 'Meine Katze ist Freigänger oder hat Kontakt zu anderen Katzen',
+    go: 'Plan anzeigen', save: 'Als geplante Termine im Gesundheitspass speichern', saved: 'Als geplante Termine gespeichert für', noAnimal: 'Legen Sie zuerst einen Gesundheitspass an und speichern Sie die Termine danach.', booklet: '/de/passport', bookletLabel: 'Gesundheitspass öffnen',
+    badDate: 'Bitte die Daten prüfen: Das Geburtsdatum muss ein gültiges Datum zwischen 1990 und 2100 sein, und die erste Impfung kann nicht vor der Geburt liegen.', saveFail: 'Speichern nicht möglich: Browserspeicher voll oder blockiert.',
+    th: ['Datum', 'Was Sie besprechen', 'Alter'], weeks: 'Wochen', months: 'Monate', years: 'Jahre',
+    k: {
+      coreDog: 'Grundimpfung {n}: Staupe, Hepatitis (Adenovirus), Parvovirose', coreCat: 'Grundimpfung {n}: Katzenseuche und Katzenschnupfen (Herpesvirus, Calicivirus)',
+      core6m: 'Wiederholungsimpfung mit etwa 6 Monaten', core3y: 'Wiederholungsimpfung mit etwa 3 Jahren, danach nicht öfter als alle 3 Jahre', coreYearly: 'Wiederholungsimpfung, bei Katzen mit höherem Risiko bis zu jährlich (und 1–2 Wochen vor einer Katzenpension)',
+      lepto: 'Leptospirose {n} (zweite Impfung 2–4 Wochen nach der ersten)', leptoYearly: 'Leptospirose-Auffrischung, jährlich',
+      felvTest: 'FeLV-Test vor der ersten FeLV-Impfung', felv: 'FeLV-Impfung {n} (zweite Impfung 3–4 Wochen nach der ersten)', felv1y: 'FeLV-Auffrischung 1 Jahr nach der zweiten Impfung; danach jährlich, solange das Risiko besteht',
+      rabies: 'Frühester Termin für die Tollwutimpfung für Reisen in der EU (12 Wochen alt). Ob sie im Inland Pflicht ist, regelt das nationale Recht', rabiesValid: 'Frühester Reisetag, wenn die erste Tollwutimpfung am Tag oben erfolgt (21 Tage Wartezeit)',
+      before6w: 'Früher als 6 Wochen, das jüngste Alter in der WSAVA-Tabelle. Fragen Sie Ihre Praxis.',
+    },
+    notes: ['Die WSAVA lässt 3–4 Wochen zwischen den Impfungen zu; dieser Plan rechnet mit 4. Bei hohem Risiko impfen Praxen auch alle 2–3 Wochen und bis zur 20. Woche.', 'Viele Impfstoffe sind für jährliche Auffrischungen zugelassen. Die Praxis richtet sich nach der Packungsbeilage und dem Recht; fragen Sie, nach welchem Schema Ihr Tier geimpft wird.', 'Ein geplanter Termin ist keine Impfung. Nur die Tierärztin oder der Tierarzt trägt eine Impfung in den Ausweis ein.'],
+    source: 'Quellen: WSAVA, Core- und Non-Core-Impfstoffe für Hunde und für Katzen in Privathaltung (ohne Tierheim), Leitlinien 2024, Tabellen veröffentlicht im Juni 2025; Europäische Kommission, Verbringen von Heimtieren innerhalb der EU. Beide gelesen am 18. Oktober 2026.',
+  },
+}[lang];
+const locale = { en: 'en-GB', it: 'it-IT', de: 'de-DE' }[lang];
+---
+<section class="wrap narrow hero"><h1>{T.title}</h1><p class="lead">{T.lead}</p></section>
+<section class="wrap narrow">
+  <form id="vp-form" class="vp-form">
+    <fieldset class="vp-species"><legend>{T.species}</legend>
+      <label><input type="radio" name="sp" value="dog" checked /> {T.dog}</label>
+      <label><input type="radio" name="sp" value="cat" /> {T.cat}</label>
+    </fieldset>
+    <label>{T.dob}<input name="dob" type="date" min="1990-01-01" max="2100-12-31" required /></label>
+    <label>{T.first}<input name="first" type="date" min="1990-01-01" max="2100-12-31" /></label>
+    <label class="vp-check" data-for="dog"><input type="checkbox" name="lepto" /> {T.lepto}</label>
+    <label class="vp-check" data-for="cat" hidden><input type="checkbox" name="risk" /> {T.risk}</label>
+    <div class="vp-go"><button class="btn" type="submit">{T.go}</button><p id="vp-err" class="vp-err" aria-live="polite"></p></div>
+  </form>
+  <div id="vp-out" hidden>
+    <table class="vp-table" id="vp-table" tabindex="-1"><caption class="sr-only">{T.title}</caption><thead><tr>{T.th.map((h) => <th scope="col">{h}</th>)}</tr></thead><tbody id="vp-rows"></tbody></table>
+    <ul class="vp-notes">{T.notes.map((n) => <li>{n}</li>)}</ul>
+    <p><button class="btn secondary" type="button" id="vp-save">{T.save}</button></p>
+    <p id="vp-status" class="pp-hint" aria-live="polite"></p>
+  </div>
+  <p class="pp-hint">{T.source} <a href="https://wsava.org/global-guidelines/vaccination-guidelines/" rel="noopener">wsava.org</a> · <a href="https://food.ec.europa.eu/animals/movement-pets/eu-legislation/non-commercial-movement-within-eu_en" rel="noopener">food.ec.europa.eu</a></p>
+</section>
+<script type="application/json" id="vp-i18n" set:html={JSON.stringify({ k: T.k, weeks: T.weeks, months: T.months, years: T.years, saved: T.saved, noAnimal: T.noAnimal, booklet: T.booklet, bookletLabel: T.bookletLabel, badDate: T.badDate, saveFail: T.saveFail, locale })} />
+<script>
+  import { planVaccines, type PlanItem } from 'aiveterinary-app/src/vaccine-plan.ts';
+  const J = JSON.parse(document.getElementById('vp-i18n')!.textContent!);
+  const KEY = 'aiveterinary.passport.v1';
+  const form = document.getElementById('vp-form') as HTMLFormElement;
+  const val = (n: string) => (form.elements.namedItem(n) as HTMLInputElement);
+  const species = () => (form.querySelector('input[name=sp]:checked') as HTMLInputElement).value as 'dog' | 'cat';
+  const syncChecks = () => form.querySelectorAll<HTMLElement>('.vp-check').forEach((el) => (el.hidden = el.dataset.for !== species()));
+  form.querySelectorAll('input[name=sp]').forEach((r) => r.addEventListener('change', syncChecks));
+  const readStore = () => { try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch { return null; } };
+  // Prefill from the booklet's current animal when it is a dog or cat with a date of birth.
+  const st = readStore(); const cur = st?.animals?.find((a: any) => a.id === st.current);
+  if (cur && /^(dog|cat)$/i.test(cur.species ?? '')) { (form.querySelector(`input[name=sp][value=${cur.species.toLowerCase()}]`) as HTMLInputElement).checked = true; if (cur.dob) val('dob').value = cur.dob; syncChecks(); }
+  let items: { label: string; date: string }[] = [];
+  const age = (dob: string, d: string) => {
+    const days = Math.round((Date.parse(d) - Date.parse(dob)) / 86400000);
+    return days < 26 * 7 + 1 ? `${Math.round(days / 7)} ${J.weeks}` : days < 730 ? `${Math.round(days / 30.44)} ${J.months}` : `${Math.round(days / 365.25)} ${J.years}`;
+  };
+  const label = (it: PlanItem, sp: string) => {
+    const key = it.key === 'core' ? (sp === 'dog' ? 'coreDog' : 'coreCat') : it.key;
+    return (J.k[key] as string).replace('{n}', String(it.dose ?? ''));
+  };
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const sp = species(), dob = val('dob').value; if (!dob) return;
+    const first = val('first').value || null;
+    const err = document.getElementById('vp-err')!;
+    // A date field accepts years up to 275760 and a first dose before the birth; both used to fail silently
+    // (planVaccines throws on a five-digit year) or print a plan with negative ages.
+    const bad = () => { err.textContent = J.badDate; (document.getElementById('vp-out') as HTMLElement).hidden = true; items = []; };
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(dob) || dob < '1990-01-01' || dob > '2100-12-31' || (first && (!/^\d{4}-\d{2}-\d{2}$/.test(first) || first < dob))) return bad();
+    let plan: PlanItem[];
+    try { plan = planVaccines({ species: sp, dob, firstDose: first, lepto: val('lepto').checked, higherRisk: val('risk').checked }); } catch { return bad(); }
+    err.textContent = '';
+    const fmt = (d: string) => new Date(`${d}T00:00:00`).toLocaleDateString(J.locale, { day: 'numeric', month: 'short', year: 'numeric' });
+    const esc = (s: string) => s.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]!));
+    items = plan.filter((p) => p.key !== 'rabiesValid').map((p) => ({ label: label(p, sp), date: p.date }));
+    document.getElementById('vp-rows')!.innerHTML = plan.map((p) => `<tr class="${p.optional ? 'vp-opt' : ''}"><td>${fmt(p.date)}</td><td>${esc(label(p, sp))}${p.warn ? `<br><strong class="vp-warn">${esc(J.k[p.warn])}</strong>` : ''}</td><td>${age(dob, p.date)}</td></tr>`).join('');
+    (document.getElementById('vp-out') as HTMLElement).hidden = false;
+    document.getElementById('vp-table')!.focus(); // screen readers announce the plan table; keyboard continues from it
+    document.getElementById('vp-status')!.textContent = '';
+  });
+  document.getElementById('vp-save')!.addEventListener('click', () => {
+    const s = readStore(); const a = s?.animals?.find((x: any) => x.id === s.current);
+    const out = document.getElementById('vp-status')!;
+    if (!a) { out.innerHTML = `${J.noAnimal} <a href="${J.booklet}">${J.bookletLabel}</a>`; return; }
+    // Replaces earlier planner dates for this animal; nothing else in the booklet is touched.
+    a.plans = items.map((i) => ({ ...i, source: 'planner' }));
+    try { localStorage.setItem(KEY, JSON.stringify(s)); out.innerHTML = `${J.saved} ${(a.name || '').replace(/</g, '&lt;')}. <a href="${J.booklet}#pp-upcoming">${J.bookletLabel}</a>`; } catch { out.textContent = J.saveFail; }
+  });
+</script>
+<style is:global>
+  .vp-form { display: grid; gap: 14px; padding: 18px 20px; border-radius: 20px; background: var(--surface); box-shadow: 0 1px 0 var(--line); margin-bottom: 20px; }
+  .vp-form > label { display: grid; gap: 6px; font-weight: 600; }
+  .vp-form input[type=date] { font: inherit; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); color: var(--ink); max-width: 100%; }
+  .vp-species { border: 0; padding: 0; margin: 0; display: flex; gap: 18px; flex-wrap: wrap; }
+  .vp-species legend { font-weight: 600; margin-bottom: 6px; }
+  .vp-form .vp-check { display: flex; gap: 8px; align-items: center; font-weight: 400; }
+  .vp-form .btn { justify-self: start; }
+  .vp-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+  .vp-table th, .vp-table td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .vp-table td:first-child { white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .vp-table tr.vp-opt td { color: var(--ink-2); }
+  .vp-warn, .vp-err { color: var(--danger); }
+  .vp-err { margin: 10px 0 0; font-weight: 600; }
+  .vp-err:empty { margin: 0; }
+  .vp-notes { color: var(--ink-2); }
+  @media (max-width: 520px) { .vp-table td:first-child { white-space: normal; } .vp-table th:last-child, .vp-table td:last-child { display: none; } }
+</style>

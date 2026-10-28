@@ -1,0 +1,95 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { readFileSync, existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+const resultsDir = fileURLToPath(new URL('../../../../../app/eval/results/', import.meta.url));
+const read = (name: string) => (existsSync(resultsDir + name) ? JSON.parse(readFileSync(resultsDir + name, 'utf8')) : null);
+const fixture = read('fixture.json');
+const model = read('claude.json');
+const pct = (x: number | null) => (x == null ? 'k. A.' : Math.round(x * 100) + ' %');
+const ci = (m: any) => (!m || m.rate == null ? 'k. A.' : (`${(100 * m.rate).toFixed(1)} % (95-%-KI ${(100 * m.lo).toFixed(1)}–${(100 * m.hi).toFixed(1)} %, ${m.k} von ${m.n})`).replace(/(\d)\.(\d)/g, '$1,$2'));
+const fmt = (iso: string) => new Date(iso).toLocaleDateString('de-DE', { day: 'numeric', month: 'long', year: 'numeric' });
+const runs = [{ label: 'Validatoren auf vorbereiteten Datensätzen', note: 'Belegt die Prüfungen selbst: ein Datensatz mit erfundenem Medikament, erfundener Dosis oder Diagnose muss blockiert werden. Offline, ohne Modell.', r: fixture }, ...(model ? [{ label: 'Modellausgabe auf denselben Fällen', note: 'Das Modell strukturiert die Rohnotizen; dieselben Prüfungen laufen anschließend über seine Ausgabe.', r: model }] : [])];
+---
+<Base title="Qualität" description="Wie der Dokumentationsassistent von AI Veterinary getestet wird, mit den aktuellen Zahlen. Veröffentlicht mit jedem Release." lang="de">
+  <article class="wrap narrow hero prose">
+    <p class="eyebrow"><a href="/de/vets">Für Praxisteams</a></p>
+    <h1>Qualität, mit Zahlen</h1>
+    <p class="lead">Jedes Werkzeug in diesem Markt beansprucht Genauigkeit; fast keines sagt, wie sie gemessen wird. Diese Seite ist unsere Antwort: das Testset, die Regeln und die aktuellen Ergebnisse, mit jedem Release aus dem tatsächlichen Testlauf neu erzeugt.</p>
+
+    <h2>Was wir messen</h2>
+    <table>
+      <tr><th>Messgröße</th><th>Bedeutung</th><th>Release-Regel</th></tr>
+      <tr><td>Blockierende Befunde</td><td>Alles im Datensatz, was nicht in den Notizen der Tierärztin oder des Tierarztes steht: ein Medikament, eine Dosis, eine Zahl, eine Diagnose oder ein Eintrag ohne Quelle</td><td><strong>0</strong> auf der Modellausgabe, sonst kein Release</td></tr>
+      <tr><td>Medikamenten-Abweichungen</td><td>Ein Medikamentenname im Datensatz, den die Tierärztin oder der Tierarzt nicht geschrieben hat</td><td><strong>0</strong></td></tr>
+      <tr><td>Einträge ohne Quelle</td><td>Fakten ohne gültigen Verweis auf die Notizen</td><td><strong>0</strong></td></tr>
+      <tr><td>Recall fehlender Informationen</td><td>Von den Lücken, die eine Tierärztin oder ein Tierarzt markiert haben möchte (Medikament ohne Dosis, Untersuchung ohne Ergebnis…), wie viele wir markieren</td><td>≥ 95 %</td></tr>
+      <tr><td>Muss-fehlschlagen-Fall</td><td>Ein absichtlich falscher Datensatz (erfundenes Medikament, erfundene Dosis und Diagnose), den die Prüfungen blockieren müssen</td><td>Immer blockiert</td></tr>
+      <tr><td>Fälle mit eingebautem Fehler</td><td>Datensätze, die wir mit genau einem Fehler geschrieben haben (ein Status entgegen dem eigenen Text, ein Vitalwert, den die Notizen zweimal mit verschiedenen Werten nennen, ein Befund aus einer Zeile über ein anderes Tier), den die passende Prüfung markieren muss</td><td>Immer markiert</td></tr>
+    </table>
+    <p>Regeln können nur strenger werden: ein Release darf eine Untergrenze anheben, nie senken.</p>
+    <h2>Wie die Raten definiert sind</h2>
+    <p>Jede Rate steht mit einem 95-%-Konfidenzintervall (Wilson), weil eine nackte Prozentzahl bei wenigen Dutzend Fällen mehr behauptet, als bekannt ist. Die Definitionen stehen in <code>app/src/metrics.ts</code>, sodass jede und jeder sie aus den veröffentlichten Ergebnissen nachrechnen kann.</p>
+    <ul>
+      <li><strong>Quellenzuordnung</strong>: Fakten im Datensatz, die auf Text in Ihren Notizen verweisen und keinen blockierenden Befund ausgelöst haben, bezogen auf alle Fakten. Ein Fakt ist ein Vorstellungsgrund, ein Anamnesepunkt, ein Vitalwert, ein Untersuchungsbefund, ein Test, eine Beurteilung, eine Differenzialdiagnose, eine Behandlung, ein Medikament, eine Wiedervorstellung oder eine Anweisung.</li>
+      <li><strong>Nicht belegte Inhalte</strong>: Fakten mit einem blockierenden Befund (ein Medikament, eine Dosis oder eine Zahl, die Sie nicht geschrieben haben, oder eine Quelle außerhalb der Notizen), bezogen auf alle Fakten.</li>
+      <li><strong>Fälle mit blockierendem Befund</strong>: Fälle, in denen Sie vor der Freigabe mindestens einmal gestoppt würden.</li>
+      <li><strong>Erkennung fehlender Angaben</strong>: Lücken, deren Markierung der Fall erwartet (Medikament ohne Dosis, Test ohne Ergebnis, Impfstoff ohne Charge), und die markiert wurden.</li>
+      <li><strong>Präzision der Markierungen</strong>: markierte fehlende Angaben, die der Fall tatsächlich erwartet, bezogen auf alle Markierungen. Eine falsche Markierung kostet einen Klick und lässt die echten leichter übersehen.</li>
+      <li><strong>Erkennung eingebauter Fehler</strong>: in den Fällen mit eingebautem Fehler die Fehler, die die passende Prüfung markiert hat, bezogen auf alle eingebauten Fehler. Diese Fälle haben wir mit dem Fehler darin geschrieben; sie zeigen, dass die Prüfungen anschlagen, nicht, wie oft ein Modell solche Fehler macht.</li>
+    </ul>
+    <p>Der absichtlich falsche Muss-fehlschlagen-Fall und die Fälle mit eingebautem Fehler zählen nicht zu den übrigen Raten und Zählungen; sie belegen nur, dass die Prüfungen greifen.</p>
+
+    <h2>Aktuelle Ergebnisse</h2>
+    {runs.map(({ label, note, r }) => (
+      <div class="card" style="margin:16px 0">
+        <h3 style="margin-top:0">{label}</h3>
+        <p class="pp-hint">{note}</p>
+        <table>
+          <tr><th>Lauf</th><td>{fmt(r.run_at)} · Prompt <code>{r.prompt}</code> · Sprachen {r.languages.join(', ').toUpperCase()}</td></tr>
+          <tr><th>Fälle</th><td>{r.cases} ({r.failed} fehlgeschlagen)</td></tr>
+          {r.metrics && <>
+            <tr><th>Quellenzuordnung</th><td>{ci(r.metrics.attribution)}</td></tr>
+            <tr><th>Nicht belegte Inhalte</th><td>{ci(r.metrics.unsupported_content)}</td></tr>
+            <tr><th>Fälle mit blockierendem Befund</th><td>{ci(r.metrics.cases_with_blocking_finding)}</td></tr>
+            <tr><th>Erkennung fehlender Angaben</th><td>{ci(r.metrics.missing_field_detection)}</td></tr>
+            {r.metrics.missing_flag_precision && <tr><th>Präzision der Markierungen</th><td>{ci(r.metrics.missing_flag_precision)}</td></tr>}
+            {r.metrics.seeded_error_detection && <tr><th>Erkennung eingebauter Fehler</th><td>{ci(r.metrics.seeded_error_detection)}</td></tr>}
+          </>}
+          <tr><th>Blockierende Befunde</th><td>{r.blocking}{r.extractor === 'fixture' ? ' (alle aus dem Muss-fehlschlagen-Fall, wie beabsichtigt)' : ''}</td></tr>
+          <tr><th>Medikamenten-Abweichungen</th><td>{r.drug_mismatch}</td></tr>
+          <tr><th>Einträge ohne Quelle</th><td>{r.unsourced}{r.extractor === 'fixture' ? ' (der Muss-fehlschlagen-Fall)' : ''}</td></tr>
+          <tr><th>Recall fehlender Informationen</th><td>{pct(r.missing_recall)}</td></tr>
+          <tr><th>Je Fall</th><td><details><summary>{r.per_case.filter((c: any) => c.pass).length} / {r.per_case.length} bestanden</summary>{r.per_case.map((c: any) => `${c.pass ? '✓' : '✗'} ${c.id}`).join(' · ')}</details></td></tr>
+        </table>
+      </div>
+    ))}
+    <p class="notice">Auf vorbereiteten Datensätzen ist jede Rate konstruktionsbedingt perfekt: Diese Datensätze sind die Musterlösung. Die Zeile zeigt, dass Prüfungen und Zählung funktionieren, nicht wie gut das Modell ist. Das misst erst der Modelllauf unten.</p>
+    {!model && <p class="notice warn">Modellläufe sind noch nicht veröffentlicht. Das Testset umfasst {fixture.cases} synthetische, intern geschriebene Fälle (Englisch, Deutsch, Italienisch, mit Kürzeln, Tippfehlern, Widersprüchen, einem zweiten Tier in den Notizen, Pferden, Kaninchen, Frettchen und Vögeln; Zeile für Zeile erzeugt mit <code>app/src/cli/gen-cases.ts</code>, einschließlich Fällen mit eingebautem Fehler), und der Modelllauf wartet auf einen Entwicklungsschlüssel. Bevor eine Praxis das Produkt nutzt, wächst das Set auf mindestens 300 Fälle in Englisch, Deutsch und Italienisch, geschrieben mit praktizierenden Tierärztinnen und Tierärzten, und ein externes tierärztliches Gremium prüft eine Stichprobe der Ausgabe. Diese Ergebnisse erscheinen dann hier.</p>}
+
+    <h2>Ein Test, den Ihre Praxis wiederholen kann: 20 Fälle mit Stoppuhr</h2>
+    <p>Zahlen eines Anbieters, auch unsere, ersetzen nicht den Versuch mit den eigenen Notizen. Dieses Protokoll dauert etwa zwei Stunden, und keine Daten verlassen die Praxis.</p>
+    <ol>
+      <li>Wählen Sie 20 aktuelle Konsultationen, Routine und Kompliziertes gemischt. Kopieren Sie die Notizen so, wie sie geschrieben wurden, und entfernen Sie Name und Kontaktdaten der Besitzer.</li>
+      <li>Erfassen Sie jeden Fall so, wie Sie es sonst tun, und stoppen Sie die Zeit vom ersten Tastendruck bis zum fertigen Eintrag.</li>
+      <li>An einem anderen Tag fügen Sie dieselben Notizen in den Arbeitsbereich ein, klären jede Markierung und geben frei. Stoppen Sie auch das, vom Einfügen bis zur Freigabe.</li>
+      <li>Zählen Sie für jeden freigegebenen Datensatz: Fakten, die nicht in den Notizen stehen (sollten 0 sein), fehlende Fakten aus den Notizen, falsche Markierungen und nötige Änderungen.</li>
+      <li>Berichten Sie die mediane Zeit pro Fall für beide Wege, die vier Zählungen und alles, was Sie nicht unterschreiben würden. Schicken Sie es uns gern; Praxisergebnisse veröffentlichen wir nur mit Erlaubnis, namentlich oder anonym nach Ihrer Wahl.</li>
+    </ol>
+
+    <h2>Bekannte Lücken, ehrlich</h2>
+    <ul>
+      <li>Das Testset ist synthetisch und intern geschrieben. Echte Notizen sind unordentlicher, und die geplanten 300 Fälle, geschrieben mit praktizierenden Tierärztinnen und Tierärzten, gibt es noch nicht.</li>
+      <li>Zahlenprüfungen sind absichtlich streng: eine Dosis, die als „5mg“ geschrieben und als „5 mg“ erfasst wird, besteht; „fünf“ in Worten zählt in den Notizen aber nicht als Zahl, also muss der Datensatz „fünf“ beibehalten. Uns ist ein Fehlalarm lieber als eine stille Erfindung.</li>
+      <li>Der Abgleich von Medikamentennamen toleriert Tippfehler per Präfix; ungewöhnliche Handelsnamen brauchen unter Umständen Ihre Korrektur, die dann als menschliche Bearbeitung protokolliert wird.</li>
+      <li>Manche Fehler sehen die automatischen Prüfungen noch nicht, deshalb fängt sie Ihr Lesen ab: ein Widerspruch in den Notizen, der stillschweigend in eine Richtung aufgelöst wird, und eine Angabe zu einem anderen Tier, das in den Notizen vorkommt. Zwei verschiedene Werte für denselben Vitalparameter (Temperatur, Herzfrequenz, Atemfrequenz, Gewicht, KFZ) werden jetzt markiert, wenn der Datensatz einen übernimmt und den anderen nicht erwähnt; Werte, die als früher, zu Hause gemessen oder zu einem anderen Tier gehörend gekennzeichnet sind, bleiben unberührt. Eine Angabe aus einer Zeile oder einem Satz, der ausdrücklich ein anderes Tier nennt („anderer Hund“, „Nachbarbox“, „nicht unser Patient“), wird jetzt markiert; eine Angabe zu einem anderen Tier auf einer Zeile, die das nicht sagt, und andere Widersprüche fängt weiterhin nur Ihr Lesen ab. Ein falscher Status wird jetzt geprüft, wenn der Text des Eintrags ihn eindeutig nennt: abgelehnt als durchgeführt wird blockiert, geplant als durchgeführt und eine Halterangabe als tierärztlicher Befund werden markiert. Einen Status, den der Text nicht nennt, oder eine Zeile, die mehrere mischt, fängt weiterhin nur Ihr Lesen ab. Das Testset enthält Fälle für jeden dieser Fehler, damit wir Fortschritte messen können.</li>
+      <li>Eine unabhängige Bewertung hat noch nicht stattgefunden.</li>
+    </ul>
+    <p>Die Testumgebung, die Regeln und die Fälle liegen im Projekt-Repository, damit ein Prüfer sie erneut ausführen kann.</p>
+  </article>
+</Base>
+<style>
+  /* Phones: a table wider than the screen scrolls inside itself. The page has overflow-x: clip, so without this
+     the right-hand columns were cut off and unreachable at 320–390 px (German and Italian above all). */
+  @media (max-width: 760px) { table { display: block; max-width: 100%; overflow-x: auto; } }
+</style>

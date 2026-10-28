@@ -1,0 +1,132 @@
+{
+  "id": "111-gen-cat-vaccine-it",
+  "language": "it",
+  "synthetic": true,
+  "header": {
+    "name": "Romeo",
+    "species": "cat",
+    "breed": "European Shorthair",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 2,
+      "unit": "year"
+    }
+  },
+  "notes": "vaccinazione annuale, nessun problema\nvigile, buona condizione corporea\nFC 180\nvaccino trivalente RCP s.c. fianco destro eseguito\nprossimo vaccino tra 1 anno",
+  "expect": {
+    "missing_includes": [
+      "assessment",
+      "medications[0].batch"
+    ],
+    "drugs": [
+      "vaccino trivalente RCP"
+    ],
+    "assessment_text": null,
+    "statuses": {
+      "medications[0]": "performed"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "vaccinazione annuale, nessun problema",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          37
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": {
+          "value": 180,
+          "unit": "/min",
+          "source_spans": [
+            [
+              72,
+              78
+            ]
+          ]
+        },
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "generale",
+          "text": "vigile, buona condizione corporea",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              38,
+              71
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": null,
+      "differentials": [],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "vaccino trivalente RCP",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": "s.c.",
+        "frequency": null,
+        "duration": null,
+        "status": "performed",
+        "source_spans": [
+          [
+            79,
+            129
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "prossimo vaccino tra 1 anno",
+        "interval": {
+          "value": 1,
+          "unit": "year"
+        },
+        "source_spans": [
+          [
+            130,
+            157
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [
+      {
+        "field": "medications[0].batch",
+        "reason": "lotto non presente nelle note"
+      }
+    ],
+    "uncertain": []
+  }
+}

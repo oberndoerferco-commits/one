@@ -1,0 +1,22 @@
+/* Verdict badges for the food lexicon (FoodCheck tool and the A–Z pages). Colours come from the site's
+   urgency tokens, so dark mode follows them; every badge also has an icon, so colour is never the only cue. */
+.fv { --v: var(--ink-3); display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px 4px 6px; border-radius: 999px; background: var(--v); color: var(--surface); font-weight: 700; font-size: .92rem; line-height: 1.25; }
+.fv-icon { flex: none; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; background: var(--surface); color: var(--v); }
+.fv-icon svg { width: 14px; height: 14px; }
+.fv-toxic { --v: var(--danger); }
+.fv-avoid { --v: var(--warn); }
+.fv-treat { --v: var(--accent); }
+.fv-ok { --v: var(--ok); }
+.fv-none { --v: var(--ink-3); }
+.fv-lg { font-size: 1.25rem; padding: 8px 20px 8px 8px; gap: 12px; }
+.fv-lg .fv-icon { width: 34px; height: 34px; }
+.fv-lg .fv-icon svg { width: 20px; height: 20px; }
+.fv-src { list-style: none; margin: 4px 0 0; padding: 0; font-size: .92rem; }
+.fv-src li { display: flex; align-items: center; min-height: 44px; padding: 2px 0; line-height: 1.35; }
+.fv-src li + li { border-top: 1px solid var(--line); }
+.fv-src small { color: var(--ink-2); margin-left: 6px; }
+.fv-draft { color: var(--ink-2); font-size: .88rem; }
+.fv-draft strong { color: color-mix(in srgb, var(--warn) 75%, var(--ink)); }
+.fv-ate { border-left: 4px solid var(--danger); background: var(--danger-soft); padding: 10px 14px; border-radius: 6px; margin: 10px 0; }
+.fv-ate p { margin: 0; }
+.fv-ate a { display: inline-flex; align-items: center; min-height: 44px; margin-right: 16px; font-weight: 600; color: var(--ink); }

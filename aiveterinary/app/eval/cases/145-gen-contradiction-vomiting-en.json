@@ -1,0 +1,177 @@
+{
+  "id": "145-gen-contradiction-vomiting-en",
+  "language": "en",
+  "synthetic": true,
+  "header": {
+    "name": "Nina",
+    "species": "cat",
+    "breed": "European Shorthair",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 7,
+      "unit": "year"
+    }
+  },
+  "notes": "eating poorly for 2 days\nno vomiting per owner\nT 38.9\nwt 4.2 kg\nmild gingivitis\nabdomen soft, not painful\nat the end owner says she vomited once this morning\nbloods next visit if still eating poorly\nrecheck in a few days",
+  "expect": {
+    "missing_includes": [
+      "assessment"
+    ],
+    "drugs": [],
+    "assessment_text": null,
+    "temperature": 38.9,
+    "statuses": {
+      "diagnostics[0]": "planned"
+    },
+    "uncertain_min": 1
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "eating poorly for 2 days",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          24
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "vomiting",
+        "value": "no vomiting per owner",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            25,
+            46
+          ]
+        ]
+      },
+      {
+        "finding": "vomiting",
+        "value": "at the end owner says she vomited once this morning",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            106,
+            157
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.9,
+          "unit": "C",
+          "source_spans": [
+            [
+              47,
+              53
+            ]
+          ]
+        },
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": {
+          "value": 4.2,
+          "unit": "kg",
+          "source_spans": [
+            [
+              54,
+              63
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "oral",
+          "text": "mild gingivitis",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              64,
+              79
+            ]
+          ]
+        },
+        {
+          "system": "abdomen",
+          "text": "abdomen soft, not painful",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              80,
+              105
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "blood test",
+        "status": "planned",
+        "result": null,
+        "source_spans": [
+          [
+            158,
+            198
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": null,
+      "differentials": [],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "recheck in a few days",
+        "interval": null,
+        "source_spans": [
+          [
+            199,
+            220
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": [
+      {
+        "field": "history",
+        "original_text": "no vomiting per owner / at the end owner says she vomited once this morning",
+        "reason": "owner first denied vomiting, later reported one episode this morning; not resolved in the notes",
+        "source_spans": [
+          [
+            25,
+            46
+          ],
+          [
+            106,
+            157
+          ]
+        ]
+      }
+    ]
+  }
+}

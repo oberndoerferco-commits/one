@@ -1,0 +1,194 @@
+{
+  "id": "444-gen-horse-hoof-abscess-dose-it",
+  "language": "it",
+  "synthetic": true,
+  "header": {
+    "name": "Fulmine",
+    "species": "horse",
+    "breed": "Sella italiano",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 14,
+      "unit": "year"
+    }
+  },
+  "notes": "zoppia acuta AS da ieri\nT 37,9\nFC 48\nzoppia AS 4/5, polso digitale aumentato AS\npinza da zoccolo positiva in punta mediale AS\nascesso subsolare AS\nsuola pareggiata, ascesso drenato\nimpacco e scarpetta applicati\ncirca 540 kg (nastro)\nfenilbutazone 2 g per os due volte al giorno per 3 giorni, consegnato\ncambiare l'impacco ogni giorno, riposo in box\ncontrollo tra 3 giorni",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [
+      "fenilbutazone"
+    ],
+    "assessment_text": "ascesso subsolare AS",
+    "temperature": 37.9,
+    "statuses": {
+      "treatments[0]": "performed",
+      "treatments[1]": "performed",
+      "medications[0]": "dispensed"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "zoppia acuta AS da ieri",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          23
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 37.9,
+          "unit": "C",
+          "source_spans": [
+            [
+              24,
+              30
+            ]
+          ]
+        },
+        "heart_rate": {
+          "value": 48,
+          "unit": "/min",
+          "source_spans": [
+            [
+              31,
+              36
+            ]
+          ]
+        },
+        "respiratory_rate": null,
+        "weight": {
+          "value": 540,
+          "unit": "kg",
+          "source_spans": [
+            [
+              211,
+              232
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "apparato locomotore",
+          "text": "zoppia AS 4/5, polso digitale aumentato AS",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              37,
+              79
+            ]
+          ]
+        },
+        {
+          "system": "zoccolo",
+          "text": "pinza da zoccolo positiva in punta mediale AS",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              80,
+              125
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": "ascesso subsolare AS",
+      "differentials": [],
+      "source_spans": [
+        [
+          126,
+          146
+        ]
+      ]
+    },
+    "treatments": [
+      {
+        "type": "procedure",
+        "text": "suola pareggiata, ascesso drenato",
+        "status": "performed",
+        "source_spans": [
+          [
+            147,
+            180
+          ]
+        ]
+      },
+      {
+        "type": "other",
+        "text": "impacco e scarpetta applicati",
+        "status": "performed",
+        "source_spans": [
+          [
+            181,
+            210
+          ]
+        ]
+      }
+    ],
+    "medications": [
+      {
+        "drug": "fenilbutazone",
+        "class_as_written": null,
+        "dose": 2,
+        "dose_unit": "g",
+        "route": "per os",
+        "frequency": "due volte al giorno",
+        "duration": "3 giorni",
+        "status": "dispensed",
+        "source_spans": [
+          [
+            233,
+            302
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "controllo tra 3 giorni",
+        "interval": {
+          "value": 3,
+          "unit": "day"
+        },
+        "source_spans": [
+          [
+            349,
+            371
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "cambiare l'impacco ogni giorno, riposo in box",
+          "source_spans": [
+            [
+              303,
+              348
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

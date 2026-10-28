@@ -1,0 +1,183 @@
+{
+  "id": "163-gen-typos-drug-finding-en",
+  "language": "en",
+  "synthetic": true,
+  "header": {
+    "name": "Duke",
+    "species": "dog",
+    "breed": "Labrador",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 10,
+      "unit": "year"
+    }
+  },
+  "notes": "stiff getting up in the mornings\nstill keen on walks\nwt 31.5 kg\nreduced ROM both elbows, mild crepitis L elbow\nosteoarthritus elbows suspected\nrads elbows recommended\nMetcam po prescribed\nweight control, short regular walks\nrecheck 4 weeks",
+  "expect": {
+    "missing_includes": [
+      "medications[0].dose",
+      "medications[0].frequency"
+    ],
+    "drugs": [
+      "Metcam"
+    ],
+    "assessment_text": "osteoarthritus elbows suspected",
+    "statuses": {
+      "treatments[0]": "recommended",
+      "medications[0]": "prescribed",
+      "diagnostics[0]": "recommended"
+    },
+    "uncertain_min": 1
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "stiff getting up in the mornings",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          32
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "activity",
+        "value": "still keen on walks",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            33,
+            52
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": {
+          "value": 31.5,
+          "unit": "kg",
+          "source_spans": [
+            [
+              53,
+              63
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "musculoskeletal",
+          "text": "reduced ROM both elbows, mild crepitis L elbow",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              64,
+              110
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "radiographs elbows",
+        "status": "recommended",
+        "result": null,
+        "source_spans": [
+          [
+            143,
+            166
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": "osteoarthritus elbows suspected",
+      "differentials": [],
+      "source_spans": [
+        [
+          111,
+          142
+        ]
+      ]
+    },
+    "treatments": [
+      {
+        "type": "advice",
+        "text": "weight control, short regular walks",
+        "status": "recommended",
+        "source_spans": [
+          [
+            188,
+            223
+          ]
+        ]
+      }
+    ],
+    "medications": [
+      {
+        "drug": "Metcam",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": "po",
+        "frequency": null,
+        "duration": null,
+        "status": "prescribed",
+        "source_spans": [
+          [
+            167,
+            187
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "recheck 4 weeks",
+        "interval": {
+          "value": 4,
+          "unit": "week"
+        },
+        "source_spans": [
+          [
+            224,
+            239
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": [
+      {
+        "field": "medications[0].drug",
+        "original_text": "Metcam",
+        "reason": "drug name kept as written, possibly misspelled; not corrected",
+        "source_spans": [
+          [
+            167,
+            173
+          ]
+        ]
+      }
+    ]
+  }
+}

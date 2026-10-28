@@ -1,0 +1,108 @@
+{
+  "id": "205-seeded-vital-contradiction-it",
+  "language": "it",
+  "synthetic": true,
+  "notes_comment": "Seeded error: the notes give two weights (4.2 kg and 5.1 kg); the record keeps 4.2 kg and says nothing about the other. notes_contradiction must flag it.",
+  "header": {
+    "name": "Nuvola",
+    "species": "cat",
+    "breed": "European Shorthair",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 8,
+      "unit": "year"
+    }
+  },
+  "notes": "abbattuta da ieri\npeso 4,2 kg\ntranquilla, lievemente disidratata\npeso 5,1 kg\nabbattimento, causa non chiara\ncontrollo tra 2 giorni",
+  "expect": {
+    "must_flag": [
+      "notes_contradiction"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "abbattuta da ieri",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          17
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": {
+          "value": 4.2,
+          "unit": "kg",
+          "source_spans": [
+            [
+              18,
+              29
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "generale",
+          "text": "tranquilla, lievemente disidratata",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              30,
+              64
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": "abbattimento, causa non chiara",
+      "differentials": [],
+      "source_spans": [
+        [
+          77,
+          107
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "controllo tra 2 giorni",
+        "interval": {
+          "value": 2,
+          "unit": "day"
+        },
+        "source_spans": [
+          [
+            108,
+            130
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

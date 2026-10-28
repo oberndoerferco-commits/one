@@ -1,0 +1,101 @@
+{
+  "id": "118-gen-suture-removal-en",
+  "language": "en",
+  "synthetic": true,
+  "header": {
+    "name": "Nala",
+    "species": "dog",
+    "breed": "Mixed breed",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 1,
+      "unit": "year"
+    }
+  },
+  "notes": "suture removal after spay 10 days ago\nincision healed, no swelling\nsutures removed\nuneventful healing",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": "uneventful healing",
+    "statuses": {
+      "treatments[0]": "performed"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "suture removal after spay 10 days ago",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          37
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "wound",
+          "text": "incision healed, no swelling",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              38,
+              66
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": "uneventful healing",
+      "differentials": [],
+      "source_spans": [
+        [
+          83,
+          101
+        ]
+      ]
+    },
+    "treatments": [
+      {
+        "type": "procedure",
+        "text": "sutures removed",
+        "status": "performed",
+        "source_spans": [
+          [
+            67,
+            82
+          ]
+        ]
+      }
+    ],
+    "medications": [],
+    "plan": {
+      "follow_up": null,
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

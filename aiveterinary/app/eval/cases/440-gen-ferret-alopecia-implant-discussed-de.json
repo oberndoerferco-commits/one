@@ -1,0 +1,159 @@
+{
+  "id": "440-gen-ferret-alopecia-implant-discussed-de",
+  "language": "de",
+  "synthetic": true,
+  "header": {
+    "name": "Paule",
+    "species": "ferret",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 5,
+      "unit": "year"
+    }
+  },
+  "notes": "Haarausfall an Schwanz und Flanken seit 2 Monaten\nlaut Besitzerin in letzter Zeit aggressiver\nKGW 1,25 kg\nsymmetrische Alopezie Schwanzansatz und Flanken, Haut dünn\nProstata nicht tastbar\nNebennierenerkrankung\nUS Abdomen nächste Woche geplant\nSuprelorin-Implantat besprochen, Besitzerin entscheidet noch\nWV nach dem US",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": null,
+    "statuses": {
+      "treatments[0]": "recommended",
+      "diagnostics[0]": "planned"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "Haarausfall an Schwanz und Flanken seit 2 Monaten",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          49
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "Verhalten",
+        "value": "laut Besitzerin in letzter Zeit aggressiver",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            50,
+            93
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": {
+          "value": 1.25,
+          "unit": "kg",
+          "source_spans": [
+            [
+              94,
+              105
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "Haut",
+          "text": "symmetrische Alopezie Schwanzansatz und Flanken, Haut dünn",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              106,
+              164
+            ]
+          ]
+        },
+        {
+          "system": "Urogenital",
+          "text": "Prostata nicht tastbar",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              165,
+              187
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "Ultraschall Abdomen",
+        "status": "planned",
+        "result": null,
+        "source_spans": [
+          [
+            210,
+            242
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": null,
+      "differentials": [
+        {
+          "text": "Nebennierenerkrankung",
+          "source_spans": [
+            [
+              188,
+              209
+            ]
+          ]
+        }
+      ],
+      "source_spans": []
+    },
+    "treatments": [
+      {
+        "type": "advice",
+        "text": "Suprelorin-Implantat besprochen, Besitzerin entscheidet noch",
+        "status": "recommended",
+        "source_spans": [
+          [
+            243,
+            303
+          ]
+        ]
+      }
+    ],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "WV nach dem US",
+        "interval": null,
+        "source_spans": [
+          [
+            304,
+            318
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

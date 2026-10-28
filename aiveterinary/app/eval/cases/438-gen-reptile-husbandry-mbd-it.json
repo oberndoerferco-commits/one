@@ -1,0 +1,176 @@
+{
+  "id": "438-gen-reptile-husbandry-mbd-it",
+  "language": "it",
+  "synthetic": true,
+  "header": {
+    "name": "Iggy",
+    "species": "reptile",
+    "breed": "Bearded dragon",
+    "sex": "male",
+    "age": {
+      "value": 3,
+      "unit": "year"
+    }
+  },
+  "notes": "non mangia da 3 settimane, abbattuto\nlampada UVB di circa 2 anni, nessuna integrazione di calcio\npunto caldo 30 °C secondo il proprietario\npeso 380 g\nmandibola morbida, lievi tremori delle dita\nbase della coda sottile\nsospetta MBD\nrx proposte, il proprietario per ora rifiuta\nsostituire la lampada UVB, spolverare gli insetti con calcio\ncontrollo tra 2 settimane",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": null,
+    "statuses": {
+      "treatments[0]": "recommended",
+      "diagnostics[0]": "declined"
+    },
+    "must_not_contain": [
+      "metabol"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "non mangia da 3 settimane, abbattuto",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          36
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "gestione",
+        "value": "lampada UVB di circa 2 anni, nessuna integrazione di calcio",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            37,
+            96
+          ]
+        ]
+      },
+      {
+        "finding": "basking",
+        "value": "punto caldo 30 °C secondo il proprietario",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            97,
+            138
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": {
+          "value": 380,
+          "unit": "g",
+          "source_spans": [
+            [
+              139,
+              149
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "apparato locomotore",
+          "text": "mandibola morbida, lievi tremori delle dita",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              150,
+              193
+            ]
+          ]
+        },
+        {
+          "system": "generale",
+          "text": "base della coda sottile",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              194,
+              217
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "radiografie",
+        "status": "declined",
+        "result": null,
+        "source_spans": [
+          [
+            231,
+            275
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": null,
+      "differentials": [
+        {
+          "text": "sospetta MBD",
+          "source_spans": [
+            [
+              218,
+              230
+            ]
+          ]
+        }
+      ],
+      "source_spans": []
+    },
+    "treatments": [
+      {
+        "type": "advice",
+        "text": "sostituire la lampada UVB, spolverare gli insetti con calcio",
+        "status": "recommended",
+        "source_spans": [
+          [
+            276,
+            336
+          ]
+        ]
+      }
+    ],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "controllo tra 2 settimane",
+        "interval": {
+          "value": 2,
+          "unit": "week"
+        },
+        "source_spans": [
+          [
+            337,
+            362
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

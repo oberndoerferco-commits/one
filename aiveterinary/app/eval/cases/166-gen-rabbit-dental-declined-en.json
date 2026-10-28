@@ -1,0 +1,196 @@
+{
+  "id": "166-gen-rabbit-dental-declined-en",
+  "language": "en",
+  "synthetic": true,
+  "header": {
+    "name": "Mocca",
+    "species": "rabbit",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 4,
+      "unit": "year"
+    }
+  },
+  "notes": "drooling and dropping food for 1 week\nmostly pellets, little hay\nwt 1.85 kg\nT 38.7\nHR 220\nRR 48\nincisors overgrown, wet chin\nincisors trimmed\nskull rads offered, O declined\noral exam under sedation planned\ndental disease\nhay ad lib, reduce pellets\nrecheck in 2 weeks",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": "dental disease",
+    "temperature": 38.7,
+    "statuses": {
+      "treatments[0]": "performed",
+      "diagnostics[0]": "declined",
+      "diagnostics[1]": "planned"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "drooling and dropping food for 1 week",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          37
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "diet",
+        "value": "mostly pellets, little hay",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            38,
+            64
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.7,
+          "unit": "C",
+          "source_spans": [
+            [
+              76,
+              82
+            ]
+          ]
+        },
+        "heart_rate": {
+          "value": 220,
+          "unit": "/min",
+          "source_spans": [
+            [
+              83,
+              89
+            ]
+          ]
+        },
+        "respiratory_rate": {
+          "value": 48,
+          "unit": "/min",
+          "source_spans": [
+            [
+              90,
+              95
+            ]
+          ]
+        },
+        "weight": {
+          "value": 1.85,
+          "unit": "kg",
+          "source_spans": [
+            [
+              65,
+              75
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "oral",
+          "text": "incisors overgrown, wet chin",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              96,
+              124
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "skull radiographs",
+        "status": "declined",
+        "result": null,
+        "source_spans": [
+          [
+            142,
+            172
+          ]
+        ]
+      },
+      {
+        "test": "oral exam under sedation",
+        "status": "planned",
+        "result": null,
+        "source_spans": [
+          [
+            173,
+            205
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": "dental disease",
+      "differentials": [],
+      "source_spans": [
+        [
+          206,
+          220
+        ]
+      ]
+    },
+    "treatments": [
+      {
+        "type": "procedure",
+        "text": "incisors trimmed",
+        "status": "performed",
+        "source_spans": [
+          [
+            125,
+            141
+          ]
+        ]
+      }
+    ],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "recheck in 2 weeks",
+        "interval": {
+          "value": 2,
+          "unit": "week"
+        },
+        "source_spans": [
+          [
+            248,
+            266
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "hay ad lib, reduce pellets",
+          "source_spans": [
+            [
+              221,
+              247
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

@@ -1,0 +1,302 @@
+---
+/**
+ * /animals/<key> for an animal: a species health hub (profile in src/data/species.ts plus its articles)
+ * and/or a lexicon entry (src/content/lexicon), merged on one page when the key is both, so an animal
+ * never has two URLs. Every section shows only when it has content, except Health topics on a lexicon
+ * entry, which says so when there are none. Go-now signs stay at the top, above the fact sheet, except on a
+ * breed page: there the breed's own "breed-health" facts come first, in a highlighted box, and the parent
+ * animal's general go-now signs follow the fact sheet.
+ * Structured data for lexicon entries comes from src/lib/seo.ts (Base.astro).
+ */
+import { render } from 'astro:content';
+import { ANIMALS, nArticles, type Lang } from '../lib/animals-i18n';
+import AnimalIcon from './AnimalIcon.astro';
+import GoNowBox from './GoNowBox.astro';
+import type { IconKind } from '../lib/animal-icons';
+import { PROFILES, GUIDE, type Cited, type Item } from '../data/species';
+import { FIELDS, FIELD_LABEL, LEX } from '../lib/lexicon';
+import { animalPage, articlesIn, breedsOf, iconOf, tintOf, liveSpecies, keyOf } from '../lib/animal-data';
+interface Props { lang: Lang; filter: string }
+const { lang, filter } = Astro.props;
+const t = ANIMALS[lang];
+const G = GUIDE[lang];
+const L = LEX[lang];
+const { entry, parent, species, topics } = await animalPage(lang, filter);
+const d = entry?.data;
+// A breed (entry with `parent`) gets a breadcrumb to its animal; an animal with breeds lists them.
+const breeds = d && !parent ? await breedsOf(lang, filter) : [];
+const profile = species ? PROFILES[species] : undefined;
+// Go-now signs: the page's own species, or the species a lexicon entry belongs to (e.g. a budgie: birds).
+const goProfile = profile ?? (d?.species ? PROFILES[d.species] : undefined);
+const bySlug = new Map((await articlesIn(lang)).map((e) => [keyOf(e), e]));
+const pick = (items: Item[]) => items.map((i) => i[lang]).filter((c): c is Cited => !!c);
+const goNow = goProfile ? pick(goProfile.goNow) : [];
+const facts = profile ? pick(profile.facts) : [];
+const care = profile ? pick(profile.care) : [];
+// Build-time assertions: every cited article exists, every fact points at one of the entry's sources.
+for (const c of [...goNow, ...facts, ...care]) {
+  if (!bySlug.has(c.slug)) throw new Error(`Animal page ${filter} (${lang}): cited article "${c.slug}" does not exist`);
+}
+for (const f of d?.facts ?? []) {
+  if (f.ref > d!.references.length) throw new Error(`Lexicon ${filter} (${lang}): fact "${f.field}" cites source ${f.ref}, but the entry has ${d!.references.length}`);
+}
+const name = d?.name ?? profile!.name[lang];
+const icon: IconKind = d ? iconOf(filter, d.group, d.species) : (filter as IconKind);
+const tint = d ? tintOf(filter, d.group, d.species) : filter;
+const rows = [...(d?.facts ?? [])].sort((a, b) => FIELDS.indexOf(a.field) - FIELDS.indexOf(b.field));
+// On a breed page the breed-health rows move out of the table into their own box at the top.
+const breedHealth = parent ? rows.filter((f) => f.field === 'breed-health') : [];
+const sheetRows = breedHealth.length ? rows.filter((f) => f.field !== 'breed-health') : rows;
+const Content = entry ? (await render(entry)).Content : null;
+const others = (await liveSpecies(lang)).filter((k) => k !== filter);
+const href = (slug: string) => `${t.base}/${slug}`;
+const titleOf = (slug: string) => bySlug.get(slug)!.data.title;
+const fmt = (x: Date) => x.toLocaleDateString(t.locale, { day: 'numeric', month: 'long', year: 'numeric' });
+const goItems = goNow.map((c) => ({ text: c.text, sources: c.sources, href: href(c.slug), title: titleOf(c.slug) }));
+const goBox = { items: goItems, source: G.source, read: G.read, moreHref: G.emergencyHref, moreLabel: G.emergencyLink };
+const topicsLead = topics.length === 1 ? G.topicsLeadOne : G.topicsLead.replace('{n}', String(topics.length));
+---
+<div class="ap-page" data-pagefind-body={d ? '' : undefined} data-pagefind-meta={d?.species ? `species:${d.species}` : undefined}>
+<section class={`filter-hero tint-${tint}`}>
+  <div class="wrap filter-hero-in">
+    <div>
+      {parent ? (
+        <nav class="eyebrow ap-crumbs" aria-label={L.breadcrumb}>
+          <ol>
+            <li><a href={t.base}>{G.guide}</a></li>
+            <li><a href={`${t.base}/${keyOf(parent)}`}>{parent.data.name}</a></li>
+            <li><span aria-current="page">{name}</span></li>
+          </ol>
+        </nav>
+      ) : <p class="eyebrow"><a href={t.base}>{G.guide}</a></p>}
+      <h1>{name}</h1>
+      {d?.scientific && <p class="ap-sci"><span class="sr-only">{L.sci}: </span><i lang="la">{d.scientific}</i></p>}
+      <p class="lead">{d?.description ?? profile!.intro[lang]}</p>
+      {d && (
+        <p class="ap-status">
+          {d.draft && <><span class="ap-st-draft"><strong>{L.draft}</strong> · {L.draftNot}</span><span aria-hidden="true"> · </span></>}
+          <a href="#ap-sources">{L.nSources(d.references.length)}</a>
+          <span aria-hidden="true"> · </span><span>{L.updated} {fmt(d.updated)}</span>
+        </p>
+      )}
+      {topics.length > 0 && <p class="filter-count">{nArticles(lang, topics.length)}</p>}
+    </div>
+    <div class="filter-art" aria-hidden="true"><AnimalIcon kind={icon} size={150} /></div>
+  </div>
+</section>
+
+{!parent && goItems.length > 0 && <GoNowBox {...goBox} heading={G.goNowH} lead={G.goNowLead} />}
+
+{breedHealth.length > 0 && (
+  <section class="wrap ap-sec" aria-labelledby="ap-bh-h">
+    <div class="ap-bh">
+      <h2 id="ap-bh-h" class="ap-bh-h"><svg width="26" height="26" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 27s-11-6.6-11-14.2A6 6 0 0 1 16 9.4a6 6 0 0 1 11 3.4C27 20.4 16 27 16 27z M9 16h4l2-3 3 6 2-3h3" /></svg>{L.breedHealthH}</h2>
+      <p class="ap-bh-lead">{L.breedHealthLead}</p>
+      <ul class="ap-bh-list">
+        {breedHealth.map((f) => (
+          <li>{f.value}{'\u00a0'}<sup class="ap-ref"><a href={`#ap-src-${f.ref}`}><span class="sr-only">{L.source} </span>{f.ref}</a></sup></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}
+
+{d && (
+  <section class="wrap ap-sec" aria-labelledby="ap-sheet-h">
+    <h2 id="ap-sheet-h" class="section-h">{L.factSheet}</h2>
+    <table class="ap-sheet">
+      <caption class="sr-only">{L.factSheet}: {name}</caption>
+      <tbody>
+        {sheetRows.map((f) => (
+          <tr>
+            <th scope="row">{FIELD_LABEL[lang][f.field]}</th>
+            <td>{f.value}{'\u00a0'}<sup class="ap-ref"><a href={`#ap-src-${f.ref}`}><span class="sr-only">{L.source} </span>{f.ref}</a></sup></td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </section>
+)}
+
+{parent && goItems.length > 0 && <GoNowBox {...goBox} heading={L.generalGoNow(d?.species, parent.data.name)} lead={L.generalGoNowLead} />}
+
+{breeds.length > 0 && (
+  <section class="wrap ap-sec" aria-labelledby="ap-breeds-h" data-pagefind-ignore>
+    <h2 id="ap-breeds-h" class="section-h">{L.breeds}</h2>
+    <p class="ap-muted">{L.breedsLead(breeds.length)}</p>
+    <ul class="ap-breeds">
+      {breeds.map((b) => (
+        <li><a href={href(keyOf(b))}>
+          <span class="ap-breed-t">{b.data.name}</span>
+          <span class="ap-topic-d">{b.data.description}</span>
+        </a></li>
+      ))}
+    </ul>
+  </section>
+)}
+
+{facts.length > 0 && (
+  <section class="wrap ap-sec" aria-labelledby="ap-facts-h" data-pagefind-ignore>
+    <h2 id="ap-facts-h" class="section-h">{G.factsH}</h2>
+    <ul class="ap-facts">
+      {facts.map((c) => (
+        <li class="ap-fact">
+          <p class="ap-text">{c.text}</p>
+          <p class="ap-src">{G.source}: {c.sources.join(', ')}<br /><a href={href(c.slug)}>{G.read}: {titleOf(c.slug)}</a></p>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}
+
+{Content && <section class="wrap ap-sec"><div class="prose ap-prose"><Content /></div></section>}
+
+{(topics.length > 0 || d) && (
+  <section class="wrap ap-sec" aria-labelledby="ap-topics-h" data-pagefind-ignore>
+    <h2 id="ap-topics-h" class="section-h">{G.topicsH}</h2>
+    {topics.length > 0 ? (
+      <>
+        <p class="ap-muted">{topicsLead}</p>
+        <ul class="ap-topics">
+          {topics.map((e) => {
+            const u = e.data.urgency ?? 'routine';
+            return (
+              <li><a href={href(keyOf(e))}>
+                <span class={`ap-u ap-u-${u}`}>{G.urgency[u]}</span>
+                <span class="ap-topic-t">{e.data.title}</span>
+                <span class="ap-topic-d">{e.data.description}</span>
+              </a></li>
+            );
+          })}
+        </ul>
+      </>
+    ) : <p class="ap-muted">{G.topicsNone}</p>}
+  </section>
+)}
+
+{care.length > 0 && (
+  <section class="wrap ap-sec" aria-labelledby="ap-care-h" data-pagefind-ignore>
+    <h2 id="ap-care-h" class="section-h">{G.careH}</h2>
+    <ul class="ap-care">
+      {care.map((c) => (
+        <li>
+          <p class="ap-text">{c.text}</p>
+          <p class="ap-src">{G.source}: {c.sources.join(', ')} · <a href={href(c.slug)}>{G.read}: {titleOf(c.slug)}</a></p>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}
+
+{d && (
+  <section class="wrap ap-sec" aria-labelledby="ap-sources-h">
+    <div class="article-refs ap-refs" id="ap-sources" tabindex="-1">
+      <h2 id="ap-sources-h">{L.sources}</h2>
+      <ol>{d.references.map((r, i) => <li id={`ap-src-${i + 1}`}><a href={r.url} rel="noopener">{r.title}</a></li>)}</ol>
+    </div>
+  </section>
+)}
+
+<section class="wrap ap-sec" data-pagefind-ignore>
+  <div class="ap-booklet">
+    <div>
+      <h2 class="ap-booklet-h">{G.bookletH}</h2>
+      <p>{G.bookletP}</p>
+    </div>
+    <a class="btn lg" href={G.booklet}>{G.bookletCta}</a>
+  </div>
+</section>
+
+<section class="wrap ap-sec" aria-labelledby="ap-other-h" data-pagefind-ignore>
+  <h2 id="ap-other-h" class="section-h">{G.otherH}</h2>
+  <ul class="ap-other">
+    {others.map((k) => <li><a class={`tint-${k}`} href={href(k)}><span class="ap-other-c" aria-hidden="true"><AnimalIcon kind={k} size={40} /></span>{PROFILES[k].name[lang]}</a></li>)}
+    <li><a href={t.base}><span class="ap-other-c" aria-hidden="true"><AnimalIcon kind="paw" size={40} /></span>{G.guide}</a></li>
+  </ul>
+</section>
+</div>
+
+<style>
+  .ap-sec { margin-top: 40px; }
+  .eyebrow a { display: inline-flex; align-items: center; min-height: 44px; }
+  .ap-crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; }
+  .ap-crumbs li { display: inline-flex; align-items: center; min-height: 44px; }
+  .ap-crumbs li + li::before { content: '›'; margin: 0 8px; color: var(--ink-3); }
+  .ap-crumbs [aria-current] { color: var(--ink-2); }
+  .ap-sec .section-h { margin-bottom: 14px; }
+  .ap-text { margin: 0 0 8px; overflow-wrap: anywhere; }
+  .ap-src { margin: 0; font-size: .88rem; color: var(--ink-3); overflow-wrap: anywhere; }
+  .ap-src a { display: inline-flex; align-items: center; min-height: 44px; color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  .ap-muted { color: var(--ink-2); margin: -4px 0 14px; }
+
+  .ap-sci { margin: -2px 0 12px; font-size: 1.1rem; color: var(--ink-2); }
+  .ap-status { margin: 0 0 10px; font-size: .92rem; color: var(--ink-2); }
+  .ap-status a { color: var(--ink-2); text-underline-offset: 3px; display: inline-block; padding: 4px 0; }
+  .ap-status a:hover { color: var(--accent); }
+  .ap-st-draft strong { color: color-mix(in srgb, var(--warn) 75%, var(--ink)); font-weight: 700; }
+
+  .ap-bh { max-width: 760px; box-sizing: border-box; border: 2px solid color-mix(in srgb, var(--warn) 70%, var(--ink)); background: var(--warn-soft); border-radius: 20px; padding: 22px 24px; }
+  .ap-bh-h { display: flex; align-items: center; gap: 10px; margin: 0 0 6px; color: var(--ink); }
+  .ap-bh-h svg { flex: none; color: color-mix(in srgb, var(--warn) 75%, var(--ink)); }
+  .ap-bh-lead { margin: 0 0 8px; color: var(--ink-2); }
+  .ap-bh-list { margin: 0; padding: 0; list-style: none; }
+  .ap-bh-list li { padding: 11px 0 11px 22px; position: relative; border-top: 1px solid color-mix(in srgb, var(--warn) 35%, transparent); font-weight: 600; overflow-wrap: break-word; }
+  .ap-bh-list li::before { content: ''; position: absolute; left: 4px; top: 1.15em; width: 8px; height: 8px; border-radius: 50%; background: color-mix(in srgb, var(--warn) 75%, var(--ink)); }
+  .ap-bh-list .ap-ref a { font-weight: 700; }
+
+  .ap-sheet { width: 100%; max-width: 760px; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+  .ap-sheet th, .ap-sheet td { text-align: left; vertical-align: top; padding: 12px 16px; border-top: 1px solid var(--line); overflow-wrap: break-word; hyphens: auto; }
+  .ap-sheet tr:first-child th, .ap-sheet tr:first-child td { border-top: 0; }
+  .ap-sheet th { width: 34%; font-weight: 700; color: var(--ink-2); background: color-mix(in srgb, var(--accent-soft) 55%, var(--surface)); }
+  /* Inline (not inline-flex) so the no-break space keeps the number on the line of the value's last word;
+     the padding still gives a 24px target. */
+  .ap-ref { line-height: 0; }
+  .ap-ref a { display: inline; padding: 5px 10px; margin: 0 -6px; font-size: .8rem; font-weight: 700; color: var(--accent); text-decoration: none; border-radius: 6px; }
+  .ap-ref a:hover { text-decoration: underline; }
+
+  .ap-prose { max-width: 720px; }
+  .ap-refs { max-width: 760px; margin-top: 0; }
+  .ap-refs li { line-height: 1.5; padding: 3px 0; }
+  .ap-refs li:target { background: var(--warn-soft); border-radius: 6px; }
+  #ap-sources, .ap-refs li { scroll-margin-top: 84px; }
+  #ap-sources:focus { outline: none; }
+
+  .ap-facts { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 14px; }
+  .ap-fact { display: flex; flex-direction: column; justify-content: space-between; padding: 18px 20px 10px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--accent); min-width: 0; }
+  .ap-fact .ap-text { font-size: 1.02rem; }
+
+  .ap-topics { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 0 28px; }
+  .ap-topics a { display: flex; flex-direction: column; gap: 4px; padding: 14px 4px; min-height: 44px; border-bottom: 1px solid var(--line); text-decoration: none; color: var(--ink); }
+  .ap-topics a:hover .ap-topic-t { color: var(--accent); text-decoration: underline; }
+  .ap-topic-t { font-weight: 700; overflow-wrap: anywhere; }
+  .ap-topic-d { color: var(--ink-3); font-size: .9rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .ap-u { align-self: flex-start; padding: 2px 10px; border-radius: 999px; font-size: .78rem; font-weight: 700; border: 1px solid currentColor; }
+  .ap-u-emergency { background: var(--danger); color: var(--surface); border-color: var(--danger); }
+  .ap-u-today { color: var(--danger); background: var(--danger-soft); }
+  .ap-u-this-week { color: color-mix(in srgb, var(--warn) 80%, var(--ink)); background: var(--warn-soft); }
+  .ap-u-routine { color: var(--ok); background: var(--ok-soft); }
+
+  .ap-breeds { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 12px; }
+  .ap-breeds a { display: flex; flex-direction: column; gap: 4px; height: 100%; box-sizing: border-box; padding: 14px 18px; min-height: 44px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); text-decoration: none; color: var(--ink); }
+  .ap-breeds a:hover { border-color: var(--accent); }
+  .ap-breeds a:hover .ap-breed-t { color: var(--accent); text-decoration: underline; }
+  .ap-breed-t { font-weight: 700; font-size: 1.05rem; overflow-wrap: anywhere; }
+
+  .ap-care { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+  .ap-care .ap-src { color: var(--ink-2); }
+  .ap-care li { padding: 14px 18px 4px 18px; border-left: 4px solid var(--ok); background: var(--ok-soft); border-radius: 8px; }
+
+  .ap-booklet { display: flex; align-items: center; justify-content: space-between; gap: 18px 28px; flex-wrap: wrap; padding: 24px; border-radius: 20px; background: var(--accent-soft); }
+  .ap-booklet-h { margin: 0 0 6px; font-size: clamp(1.3rem, 2.6vw, 1.7rem); }
+  .ap-booklet p { margin: 0; color: var(--ink-2); max-width: 34em; }
+  .ap-booklet .btn { min-height: 44px; box-sizing: border-box; }
+
+  .ap-other { list-style: none; margin: 0 0 24px; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+  .ap-other a { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 6px 16px 6px 6px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-weight: 600; text-decoration: none; }
+  .ap-other a:hover { border-color: var(--accent); color: var(--accent); }
+  .ap-other-c { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--tint, var(--accent-soft)); }
+  @media (max-width: 480px) {
+    .ap-bh { padding: 18px 16px; } .ap-booklet { padding: 20px 16px; } .ap-fact { padding: 16px 16px 8px; }
+    .ap-sheet th, .ap-sheet td { padding: 10px 12px; } .ap-sheet th { width: 40%; font-size: .95rem; }
+  }
+</style>

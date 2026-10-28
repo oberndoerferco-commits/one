@@ -1,0 +1,183 @@
+{
+  "id": "148-gen-owner-vs-vet-lameness-en",
+  "language": "en",
+  "synthetic": true,
+  "header": {
+    "name": "Finn",
+    "species": "dog",
+    "breed": "Australian Shepherd",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 3,
+      "unit": "year"
+    }
+  },
+  "notes": "owner reports limping LF on and off for 1 week\nowner thinks he is not in pain\nlimping worse after ball games\nno lameness seen at walk or trot\nmild discomfort on flexion L carpus\nno swelling, no heat\nsoft tissue injury L carpus\nrads L carpus offered, O declined for now\nno ball games for now\nowner to film the dog when limping\nrecheck next week",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": null,
+    "statuses": {
+      "treatments[0]": "recommended",
+      "diagnostics[0]": "declined"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "owner reports limping LF on and off for 1 week",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          46
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "pain",
+        "value": "owner thinks he is not in pain",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            47,
+            77
+          ]
+        ]
+      },
+      {
+        "finding": "activity",
+        "value": "limping worse after ball games",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            78,
+            108
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "musculoskeletal",
+          "text": "no lameness seen at walk or trot",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              109,
+              141
+            ]
+          ]
+        },
+        {
+          "system": "musculoskeletal",
+          "text": "mild discomfort on flexion L carpus",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              142,
+              177
+            ]
+          ]
+        },
+        {
+          "system": "musculoskeletal",
+          "text": "no swelling, no heat",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              178,
+              198
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "radiographs left carpus",
+        "status": "declined",
+        "result": null,
+        "source_spans": [
+          [
+            227,
+            268
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": null,
+      "differentials": [
+        {
+          "text": "soft tissue injury L carpus",
+          "source_spans": [
+            [
+              199,
+              226
+            ]
+          ]
+        }
+      ],
+      "source_spans": []
+    },
+    "treatments": [
+      {
+        "type": "advice",
+        "text": "no ball games for now",
+        "status": "recommended",
+        "source_spans": [
+          [
+            269,
+            290
+          ]
+        ]
+      }
+    ],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "recheck next week",
+        "interval": null,
+        "source_spans": [
+          [
+            326,
+            343
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "owner to film the dog when limping",
+          "source_spans": [
+            [
+              291,
+              325
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

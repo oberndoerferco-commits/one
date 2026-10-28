@@ -1,0 +1,98 @@
+---
+import Base from '../../layouts/Base.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import NotesToRecord from '../../components/NotesToRecord.astro';
+---
+<Base title="Für Praxisteams" description="Ein KI-Dokumentationsassistent für die Tastatur: grobe Notizen tippen, den fertigen Befund freigeben, daraus Halteranweisungen und Überweisungsschreiben erzeugen." lang="de">
+  <section class="wrap hero hero-split vets-hero">
+    <div>
+    <p class="eyebrow">Dokumentationsassistent · in Entwicklung</p>
+    <h1>Sie untersuchen. Wir schreiben.<br />Sie geben frei.</h1>
+    <p class="lead">Tippen Sie nach der Konsultation ein paar grobe Zeilen. Sie erhalten einen strukturierten, professionellen Befund zur Prüfung. Nichts auf der Seite, was Sie nicht geschrieben haben. Dann erstellen Sie aus demselben freigegebenen Befund die Halteranweisungen, das Überweisungsschreiben und eine Übersetzung, ohne etwas zweimal zu tippen.</p>
+    <p><a class="btn" href="#waitlist">Auf die Early-Access-Liste</a> <a class="btn secondary" href="/de/vets/workspace" style="margin-left:8px">Vorschau ausprobieren</a></p>
+    <ul class="chips"><li>DSGVO-konform</li><li>Server in der EU</li><li>Kein KI-Training mit Ihren Daten</li><li>Keine Aufzeichnung, kein Mikrofon</li></ul>
+    </div>
+    <div class="vets-hero-art"><NotesToRecord lang="de" /></div>
+  </section>
+
+  <section class="wrap">
+    <h2>So sieht es aus</h2>
+    <div class="mock" aria-label="Beispiel: Notizen links, erzeugter Bericht rechts">
+      <div>
+        <div class="h">Ihre Notizen</div>
+<pre>Luna, Labrador, w, 6 J
+Erbrechen 3x seit gestern
+kein Durchfall
+Appetit reduziert, trinkt ok
+T 39,1
+Abdomen weich, leicht schmerzhaft
+Blut + US gemacht
+Infusion + Antiemetikum
+Kontrolle 48h</pre>
+      </div>
+      <div>
+        <div class="h">Untersuchungsbericht · Entwurf</div>
+        <div class="sec">Vorstellungsgrund</div>
+        <div>Erbrechen 3x seit gestern.</div>
+        <div class="sec">Anamnese</div>
+        <div>Laut Besitzer: kein Durchfall; Appetit reduziert; trinkt ok.</div>
+        <div class="sec">Klinische Untersuchung</div>
+        <div>Temperatur 39,1 °C. Abdomen: weich, leicht schmerzhaft.</div>
+        <div class="sec">Diagnostik</div>
+        <div>Blut, US (gemacht). <span class="flag">▲ Fehlt: Befunde</span></div>
+        <div class="sec">Therapie</div>
+        <div>Infusion, Antiemetikum. <span class="flag">▲ Fehlt: Wirkstoff, Dosis, Applikation</span></div>
+        <div class="sec">Weiteres Vorgehen</div>
+        <div>Kontrolle 48h.</div>
+      </div>
+    </div>
+    <p>Ihre Worte, nur geordnet: Nichts wird in etwas umformuliert, das Sie nicht gesagt haben. Die Markierungen sind der Kern. Der Assistent füllt Lücken nicht mit plausiblem Text. Er zeigt Ihnen, was fehlt; Sie ergänzen es oder markieren es als „nicht erfasst“, und geben mit einem Tastendruck frei.</p>
+  </section>
+
+  <section class="wrap">
+    <h2>Was die Praxis in Deutschland zusätzlich braucht</h2>
+    <p>Für Deutschland prüft der Assistent beim Freigeben einige Angaben, die nicht im Fließtext stehen, sondern an der Abgabe und an der Rechnung hängen.</p>
+    <p><b>Abgabe-Nachweis nach TÄHAV.</b> Seit dem 1. Januar 2025 gilt die neu gefasste Tierärztliche-Hausapothekenverordnung. Nach § 15 Abs. 1 TÄHAV sind über Erwerb und Abgabe verschreibungspflichtiger Tierarzneimittel die Nachweise nach Art. 103 Abs. 3 der Verordnung (EU) 2019/6 zu führen: Datum, Bezeichnung des Arzneimittels mit Darreichungsform und Stärke, Chargenbezeichnung, abgegebene Menge und Zulassungsnummer. Bei der Abgabe für Tiere, die nicht der Lebensmittelgewinnung dienen, ist zudem unverzüglich eine tierärztliche Verschreibung nach Art. 105 Abs. 5 zu fertigen (§ 15 Abs. 3), die unter anderem Dosierungsschema, Menge sowie Name und Kontaktdaten des Halters enthält. Genau diese Felder markiert der Assistent, wenn sie fehlen: Arzneimittel, Zulassungsnummer, Chargenbezeichnung, Menge, Dosierung, Art und Dauer der Anwendung, Halter.</p>
+    <p><b>Antibiotika.</b> Bei Hund und Katze verlangt § 13 Abs. 3 TÄHAV ein Antibiogramm bei Umwidmung sowie bei Cephalosporinen der 3./4. Generation, Fluorchinolonen und Colistin; wird keines erstellt, ist nach § 13 Abs. 4 ein Nachweis mit den Gründen zu führen. Der Assistent gibt ein Antibiotikum nicht ohne Begründung frei und fragt in diesen Fällen nach dem Antibiogramm oder dem Grund, warum es entfällt. Die bis 2024 geltende Fassung regelte das in § 12c.</p>
+    <p><b>GOT-Positionen auf der Rechnung.</b> Nach § 7 Abs. 4 GOT muss die Rechnung mindestens Datum, Tierart, Diagnose oder Grund der Konsultation und jede berechnete Leistung mit der laufenden Nummer aus dem Gebührenverzeichnis enthalten; der Satz liegt nach § 2 GOT zwischen dem Ein- und Dreifachen. Ein Befund, in dem jede Untersuchung und Behandlung als eigener Eintrag steht, lässt sich leichter in Nr. und Faktor übertragen als ein Absatz Fließtext.</p>
+    <p><b>Aufbewahrung.</b> Verschreibungen und Nachweise nach TÄHAV sind geordnet, auch elektronisch, zu führen (§ 16 TÄHAV); die Frist ergibt sich aus Art. 103 Abs. 5 der Verordnung (EU) 2019/6: fünf Jahre. Für die übrige Behandlungsdokumentation sehen die Berufsordnungen der Landeskammern in der Regel fünf Jahre vor, etwa § 3 der Berufsordnung der Tierärztekammer Berlin. Prüfen Sie die Frist Ihrer Kammer.</p>
+    <p><b>AVV und DSGVO.</b> Mit dem Pilot erhalten Sie eine Vorlage für den Auftragsverarbeitungsvertrag nach Art. 28 DSGVO.</p>
+    <p class="pp-hint">Quellen: <a href="https://www.gesetze-im-internet.de/t_hav_2025/">TÄHAV (gesetze-im-internet.de)</a>, §§ 13, 15, 16 · <a href="https://www.gesetze-im-internet.de/got_2022/">GOT (gesetze-im-internet.de)</a>, §§ 2, 7 · Verordnung (EU) 2019/6, Art. 103 und 105 · Berufsordnung der Tierärztekammer Berlin, § 3. Stand Oktober 2026; keine Rechtsberatung.</p>
+  </section>
+
+  <section class="wrap">
+    <h2>Wozu wir uns verpflichten</h2>
+    <p>Wir haben mehr als dreißig KI-Werkzeuge für Notizen untersucht und was Tierärzte über sie sagen. Das sind die Antworten.</p>
+    <ol class="commit">
+      <li><b>Nichts auf der Seite, was Sie nicht geschrieben haben.</b> Kein Wirkstoff, keine Dosis, kein Applikationsweg, keine Zahl und keine Diagnose erscheint, wenn sie nicht in Ihren Notizen steht.</li>
+      <li><b>Jeder Satz zeigt seine Quelle.</b> Klicken Sie auf eine Zeile im Bericht und sehen Sie die Notiz, aus der sie stammt.</li>
+      <li><b>Fehlende Informationen werden markiert, nie erfunden.</b> Bevor Sie unterschreiben, sehen Sie, was nicht da ist.</li>
+      <li><b>Die Worte des Halters bleiben die Worte des Halters.</b> „Halter berichtet…“ wird nie zu Ihrem Befund umgeschrieben.</li>
+      <li><b>Patientendaten sind gesperrt.</b> Tierart, Geschlecht und Kastrationsstatus kommen aus der Patientenakte, nie aus dem Fließtext.</li>
+      <li><b>Ein freigegebener Befund, jedes Dokument.</b> Halterinformation mit Gabeplan, Überweisungsschreiben, Verschreibung, Impfeintrag, Einwilligung und Kostenvoranschlag entstehen nur aus dem, was Sie unterschrieben haben. <a href="/de/vets/workspace">Wechseln Sie das Dokument in der Vorschau.</a></li>
+      <li><b>Ihre Änderungen gehen nie verloren.</b> Beim Neuerzeugen eines Abschnitts sehen Sie die Unterschiede, und Ihr Text bleibt erhalten.</li>
+      <li><b>Keine Aufzeichnung.</b> Keine Einwilligung einzuholen, nichts zu speichern, kein Problem mit bellenden Hunden. Es funktioniert mit der Tastatur.</li>
+      <li><b>Deutsch, Italienisch und Englisch als Muttersprachen.</b> Halterdokumente in der Sprache des Halters, mit exakt übernommenen Medikamentenangaben.</li>
+      <li><b>Ihre Daten bleiben in der EU und werden nie zum Trainieren von KI verwendet.</b> In jedem Tarif. <a href="/de/vets/data">Unterauftragsverarbeiter, Aufbewahrung und Ihre Rechte, öffentlich.</a></li>
+      <li><b>Monatlich kündbar.</b> Klare Preise pro Tierärztin oder Tierarzt; TFA und Empfang sind kostenlos.</li>
+      <li><b>Eine öffentliche Qualitätsseite.</b> Wir veröffentlichen, wie der Assistent getestet wird, an echten Dokumenttypen, mit Zahlen.</li>
+    </ol>
+  </section>
+
+  <section class="wrap">
+    <h2>Läuft neben Ihrer Praxissoftware</h2>
+    <p>Es läuft im Browser neben dem System, das Ihre Praxis verwendet. Nach der Freigabe kopieren Sie den Befund Feld für Feld (S, O, A, P) in Ihre Praxissoftware, laden ihn als JSON mit den Freigabedaten herunter, exportieren ein PDF auf Ihrem Briefpapier oder drucken. Direkte Integrationen folgen nur über offizielle Anbieterprogramme, nie über Umwege.</p>
+  </section>
+
+  <section class="wrap narrow">
+    <h2>Artikel für Tierhalter prüfen</h2>
+    <p>Unsere Artikel für Tierhalter bleiben Entwürfe, bis eine praktizierende Tierärztin oder ein Tierarzt sie prüft und freigibt. Auf jedem freigegebenen Artikel stehen Ihr Name und Ihre Kammer, und nach der Freigabe ändert sich nichts ohne neue Prüfung. <a href="/de/vets/review">So funktioniert die Prüfung →</a></p>
+  </section>
+
+  <section class="wrap narrow" id="waitlist" style="margin-top:56px">
+    <h2>Early Access</h2>
+    <p>Wir suchen eine kleine Zahl von Praxen in Deutschland, Österreich, der Schweiz und Italien, mit denen wir testen können. Wenn Sie Ihre Notizen selbst tippen und möchten, dass die Dokumentation weniger von Ihrem Abend beansprucht, hinterlassen Sie Ihre E-Mail-Adresse und wählen Sie „Tierärztin / Tierarzt oder Praxisteam“.</p>
+    <Newsletter compact lang="de" />
+    <p style="margin-top:16px"><a href="/de/vets/research">Unsere Recherche zu bestehenden Werkzeugen lesen →</a></p>
+  </section>
+</Base>

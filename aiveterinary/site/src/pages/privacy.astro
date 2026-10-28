@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+const updated = '13 October 2026';
+// Shown only when the AI answer is switched on (PUBLIC_ASK_AI=true). LAWYER: to be reviewed (README, "Ask box AI answer").
+const askAI = import.meta.env.PUBLIC_ASK_AI === 'true';
+---
+<Base title="Privacy" description="How AI Veterinary handles your data: this website, the newsletter, and pet-passport accounts.">
+  <article class="wrap narrow hero prose">
+    <h1>Privacy</h1>
+    <p class="notice warn">Draft, version {updated}. Before accounts open to the public the controller's name and address below will be completed and this text reviewed by a lawyer.</p>
+
+    <h2>Who is responsible</h2>
+    <p>The data controller is <strong>[Company name], [address], [country]</strong>. Contact: <a href="mailto:privacy@aiveterinary.org">privacy@aiveterinary.org</a>.</p>
+
+    <h2>This website</h2>
+    <p>The pages are static and set no cookies. There is no advertising and no tracking. If we measure visits, we use a cookie-free service that stores only aggregate numbers (page, country, browser type), never who you are.</p>
+
+    <h2>Animal information</h2>
+    <p>Reading articles is anonymous. We do not ask for or store anything about you or your animals when you read.</p>
+
+    {askAI && <>
+      <h2>Questions in the question box</h2>
+      <p>Without an account, the question box on the home page first searches our articles in your browser. It also sends your question and the page language to our server, which passes the question, with passages from our articles, to our AI provider [Anthropic, PBC] to write a short answer from those articles. The answer is labelled as written by AI.</p>
+      <p>We do not log or store your question or the answer. [Provider's processing, retention period and transfer safeguards, from the data-processing agreement.] Please do not type names, addresses or other personal details into the box.</p>
+    </>}
+
+    <h2>Digital pet passport without an account</h2>
+    <p>Everything you enter stays in your browser on your device. It is never sent to us. Backups are files you download yourself.</p>
+    <p>To work offline and as an installed app, your browser also keeps a copy of the site’s own pages and files. That copy contains no booklet data, and nothing from it is sent to us.</p>
+
+    <h2>Pet-passport accounts</h2>
+    <p>If you create an account, we store:</p>
+    <ul>
+      <li>your email address, to log you in with a link and to contact you about your account;</li>
+      <li>the content of your passports: the animal's details, microchip, vaccinations, treatments, medications, conditions, visits, notes and photo, plus any owner or vet contact details you choose to enter;</li>
+      <li>when the account was created, when data was last changed and when you last logged in.</li>
+    </ul>
+    <p><strong>Why:</strong> to provide the service you asked for (Art. 6(1)(b) GDPR). <strong>Where:</strong> in a database in the European Union (Frankfurt, Germany) run by our processor Supabase, Inc. under a data-processing agreement. <strong>How long:</strong> as long as your account exists. When you delete your account, your data is deleted immediately and disappears from the provider's backups within 30 days. Accounts unused for three years are deleted after a warning email.</p>
+    <p><strong>Security:</strong> there are no passwords to steal; you log in with a link sent to your email. Connections are encrypted. The database only lets you see your own rows. Photos are reduced in size on your device before upload. We do not look at your passports; support works with the export you send us.</p>
+    <p><strong>Reminders:</strong> if you switch on vaccination reminders we email you before a date expires. You can switch them off at any time.</p>
+    <p><strong>Minimum age:</strong> 16.</p>
+
+    <h2>Newsletter</h2>
+    <p>If you subscribe we store your email address and whether you are an owner or a veterinary professional, with our newsletter provider [provider name], only to send the newsletter. Every email has an unsubscribe link; unsubscribing deletes your address.</p>
+
+    <h2>Who else sees data</h2>
+    <p>Our processors: Supabase (database and login, EU), Cloudflare (hosting, email), [newsletter provider]{askAI && ', [Anthropic, PBC] (AI answers in the question box)'}. They act only on our instructions. We do not sell data, do not use it for advertising and do not use it to train AI.</p>
+
+    <h2>Your rights</h2>
+    <ul>
+      <li><strong>See and take your data:</strong> the Export button in your account gives you everything as a file.</li>
+      <li><strong>Correct it:</strong> edit it in your passport.</li>
+      <li><strong>Delete it:</strong> the Delete account button, immediately.</li>
+      <li><strong>Object or restrict:</strong> write to us.</li>
+      <li><strong>Complain:</strong> to your national data-protection authority (in Italy the Garante per la protezione dei dati personali; in Germany the authority of your Land).</li>
+    </ul>
+
+    <h2>Changes</h2>
+    <p>We will post changes here with the date. For important changes to accounts we email you first.</p>
+  </article>
+</Base>

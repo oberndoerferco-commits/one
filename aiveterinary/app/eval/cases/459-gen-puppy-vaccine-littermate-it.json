@@ -1,0 +1,162 @@
+{
+  "id": "459-gen-puppy-vaccine-littermate-it",
+  "language": "it",
+  "synthetic": true,
+  "header": {
+    "name": "Stellina",
+    "species": "dog",
+    "breed": "Golden Retriever",
+    "sex": "female",
+    "neuter_status": "intact",
+    "age": {
+      "value": 9,
+      "unit": "week"
+    }
+  },
+  "notes": "prima vaccinazione, presa dall'allevatore 1 settimana fa\nl'allevatore dice che un fratello di cucciolata è morto di parvovirosi la settimana scorsa\nmangia bene il cibo per cuccioli\npeso 5,2 kg\nT 38,8\nvivace, nessuna anomalia\nvaccino DHPPi s.c., lotto QZ4417\ntenere lontano da cani non vaccinati fino a 2 settimane dopo l'ultimo vaccino\nsecondo vaccino tra 3 settimane",
+  "expect": {
+    "missing_includes": [
+      "assessment"
+    ],
+    "drugs": [
+      "vaccino DHPPi"
+    ],
+    "assessment_text": null,
+    "temperature": 38.8,
+    "statuses": {
+      "medications[0]": "performed"
+    },
+    "must_not_contain": [
+      "parvo",
+      "].batch"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "prima vaccinazione, presa dall'allevatore 1 settimana fa",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          56
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "alimentazione",
+        "value": "mangia bene il cibo per cuccioli",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            148,
+            180
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.8,
+          "unit": "C",
+          "source_spans": [
+            [
+              193,
+              199
+            ]
+          ]
+        },
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": {
+          "value": 5.2,
+          "unit": "kg",
+          "source_spans": [
+            [
+              181,
+              192
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "generale",
+          "text": "vivace, nessuna anomalia",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              200,
+              224
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": null,
+      "differentials": [],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "vaccino DHPPi",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": "s.c.",
+        "frequency": null,
+        "duration": null,
+        "status": "performed",
+        "source_spans": [
+          [
+            225,
+            257
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "secondo vaccino tra 3 settimane",
+        "interval": {
+          "value": 3,
+          "unit": "week"
+        },
+        "source_spans": [
+          [
+            336,
+            367
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "tenere lontano da cani non vaccinati fino a 2 settimane dopo l'ultimo vaccino",
+          "source_spans": [
+            [
+              258,
+              335
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

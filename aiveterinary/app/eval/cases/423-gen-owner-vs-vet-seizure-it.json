@@ -1,0 +1,185 @@
+{
+  "id": "423-gen-owner-vs-vet-seizure-it",
+  "language": "it",
+  "synthetic": true,
+  "header": {
+    "name": "Ercole",
+    "species": "dog",
+    "breed": "Border Terrier",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 6,
+      "unit": "year"
+    }
+  },
+  "notes": "il proprietario riferisce una crisi a casa stamattina, circa 2 min, tremori e movimenti di pedalamento\ntornato normale dopo circa 30 min secondo il proprietario\nsecondo il proprietario è la prima volta\nnessun accesso noto a sostanze tossiche\nT 38,5\nFC 96\nesame neurologico nella norma, sensorio normale\nvigile, nessuna lesione visibile\nprelievo con glicemia eseguito\nil proprietario filma eventuali nuovi episodi e annota l'ora\ntelefonata con i risultati degli esami",
+  "expect": {
+    "missing_includes": [
+      "assessment",
+      "diagnostics[0].result"
+    ],
+    "drugs": [],
+    "assessment_text": null,
+    "temperature": 38.5,
+    "statuses": {
+      "diagnostics[0]": "performed"
+    },
+    "must_not_contain": [
+      "epiless"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "il proprietario riferisce una crisi a casa stamattina, circa 2 min, tremori e movimenti di pedalamento",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          102
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "recupero",
+        "value": "tornato normale dopo circa 30 min secondo il proprietario",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            103,
+            160
+          ]
+        ]
+      },
+      {
+        "finding": "episodi precedenti",
+        "value": "secondo il proprietario è la prima volta",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            161,
+            201
+          ]
+        ]
+      },
+      {
+        "finding": "tossici",
+        "value": "nessun accesso noto a sostanze tossiche",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            202,
+            241
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.5,
+          "unit": "C",
+          "source_spans": [
+            [
+              242,
+              248
+            ]
+          ]
+        },
+        "heart_rate": {
+          "value": 96,
+          "unit": "/min",
+          "source_spans": [
+            [
+              249,
+              254
+            ]
+          ]
+        },
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "neurologico",
+          "text": "esame neurologico nella norma, sensorio normale",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              255,
+              302
+            ]
+          ]
+        },
+        {
+          "system": "generale",
+          "text": "vigile, nessuna lesione visibile",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              303,
+              335
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "esami del sangue con glicemia",
+        "status": "performed",
+        "result": null,
+        "source_spans": [
+          [
+            336,
+            366
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": null,
+      "differentials": [],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "telefonata con i risultati degli esami",
+        "interval": null,
+        "source_spans": [
+          [
+            428,
+            466
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "il proprietario filma eventuali nuovi episodi e annota l'ora",
+          "source_spans": [
+            [
+              367,
+              427
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

@@ -1,0 +1,279 @@
+---
+/**
+ * "Can my pet eat that?" — type a food, pick the animal, get the verdict of a named source.
+ * All data comes from src/data/foods.ts (checked by scripts/check-foods.mjs). A food is only called OK
+ * when a source says so; a food or species we have no source for gets the grey "ask your vet" answer.
+ * Search words from all three languages work on every page ("Wassermelone" finds watermelon on the English page).
+ */
+import AnimalIcon from './AnimalIcon.astro';
+import './food-verdict.css';
+import { FOODS, SPECIES, UI, anchorOf, azPath, fold, iconSvg, foodsFor, type Lang, type Species } from '../data/foods';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const u = UI[lang];
+const T = {
+  en: {
+    title: 'Can my pet eat that?',
+    lead: 'Type a food and pick your animal. You see what a named veterinary or animal-welfare source says, with the link. We only call a food OK when a source says so; if we have no source, we say so.',
+    label: 'Food', ph: 'e.g. banana, watermelon, cheese', animal: 'Your animal', check: 'Check',
+    notFound: (q: string) => `“${q}” is not in our food lexicon.`, pick: 'Did you mean:', covered: 'Our sources cover this food for:',
+    seeAz: (s: string) => `${s}: all foods A–Z`, browse: 'Browse the A–Z by animal', browseLead: 'Every food we have a source for, with its verdict and the source.',
+    foods: (n: number) => `${n} foods`, status: (food: string, sp: string, v: string) => `${food}, ${sp}: ${v}.`, noscript: 'The search needs JavaScript. You can still browse every food in the A–Z lists below.',
+  },
+  it: {
+    title: 'Il mio animale può mangiarlo?',
+    lead: 'Scrivi un alimento e scegli il tuo animale. Vedi cosa dice una fonte veterinaria o di tutela animale citata, con il link. Diciamo che un alimento va bene solo se lo dice una fonte; se non abbiamo una fonte, lo diciamo.',
+    label: 'Alimento', ph: 'es. banana, anguria, formaggio', animal: 'Il tuo animale', check: 'Controlla',
+    notFound: (q: string) => `“${q}” non è nel nostro lessico degli alimenti.`, pick: 'Forse cercavi:', covered: 'Le nostre fonti trattano questo alimento per:',
+    seeAz: (s: string) => `${s}: tutti gli alimenti dalla A alla Z`, browse: 'Sfoglia dalla A alla Z per animale', browseLead: 'Tutti gli alimenti per cui abbiamo una fonte, con verdetto e fonte.',
+    foods: (n: number) => `${n} alimenti`, status: (food: string, sp: string, v: string) => `${food}, ${sp}: ${v}.`, noscript: 'La ricerca richiede JavaScript. Puoi comunque sfogliare tutti gli alimenti negli elenchi dalla A alla Z qui sotto.',
+  },
+  de: {
+    title: 'Darf mein Tier das fressen?',
+    lead: 'Lebensmittel eingeben und Tier wählen. Sie sehen, was eine genannte tierärztliche oder Tierschutz-Quelle sagt, mit Link. Wir nennen ein Lebensmittel nur dann geeignet, wenn eine Quelle das sagt; haben wir keine Quelle, sagen wir das.',
+    label: 'Lebensmittel', ph: 'z. B. Banane, Wassermelone, Käse', animal: 'Ihr Tier', check: 'Prüfen',
+    notFound: (q: string) => `„${q}“ steht nicht in unserem Lebensmittel-Lexikon.`, pick: 'Meinten Sie:', covered: 'Unsere Quellen behandeln dieses Lebensmittel für:',
+    seeAz: (s: string) => `${s}: alle Lebensmittel von A bis Z`, browse: 'Von A bis Z nach Tier', browseLead: 'Alle Lebensmittel, für die wir eine Quelle haben, mit Einschätzung und Quelle.',
+    foods: (n: number) => `${n} Lebensmittel`, status: (food: string, sp: string, v: string) => `${food}, ${sp}: ${v}.`, noscript: 'Die Suche braucht JavaScript. Alle Lebensmittel finden Sie auch in den Listen von A bis Z unten.',
+  },
+}[lang];
+
+// Client data: names in this language, search words from all languages, this language's notes.
+const data = FOODS.map((f) => ({
+  k: f.key, n: f.name[lang], a: anchorOf(f, lang), c: f.tool === 'chocolate' ? 1 : 0,
+  w: [...new Set([f.key.replace(/-/g, ' '), ...Object.values(f.name), ...Object.values(f.aliases).flat()].map(fold))],
+  v: Object.fromEntries(Object.entries(f.verdicts).map(([s, v]) => [s, [v!.v, v!.note[lang], v!.refs]])),
+  r: f.references.map((r) => [r.title, r.url, r.lang && r.lang !== lang ? (u.langNote as any)[r.lang] ?? '' : '', r.maker ? 1 : 0]),
+}));
+const strings = {
+  verdict: u.verdict, none: u.none, species: u.species, sources: u.sources, maker: u.maker, ate: u.ate, ateMore: u.ateMore,
+  emergency: u.emergency, emergencyHref: u.emergencyHref, choc: u.choc, chocHref: u.chocHref, pick: T.pick, covered: T.covered,
+  az: Object.fromEntries(SPECIES.map((s) => [s, azPath(lang, s)])), azTitle: u.azTitle,
+  icons: { toxic: iconSvg('toxic'), avoid: iconSvg('avoid'), treat: iconSvg('treat'), ok: iconSvg('ok'), none: iconSvg('none') },
+};
+const notFoundTpl = T.notFound('%s');
+const statusTpl = T.status('%f', '%s', '%v');
+const counts = Object.fromEntries(SPECIES.map((s) => [s, foodsFor(s, lang).length]));
+const pageUrl = new URL(Astro.url.pathname.replace(/\.html$/, ''), Astro.site).href;
+const ld = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'WebPage', '@id': pageUrl, url: pageUrl, name: T.title, description: T.lead, inLanguage: lang, isPartOf: { '@id': 'https://aiveterinary.org/#website' }, hasPart: { '@id': `${pageUrl}#az` } },
+    { '@type': 'ItemList', '@id': `${pageUrl}#az`, name: T.browse, numberOfItems: SPECIES.length,
+      itemListElement: SPECIES.map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: u.azTitle[s], url: new URL(azPath(lang, s), Astro.site).href })) },
+  ],
+};
+const json = (x: unknown) => JSON.stringify(x).replace(/</g, '\\u003c');
+---
+<script type="application/ld+json" set:html={json(ld)} />
+<section class="wrap narrow hero fc-hero">
+  <h1>{T.title}</h1>
+  <p class="lead">{T.lead}</p>
+  <p class="fv-draft"><strong>{u.draft}</strong> · {u.draftNot}</p>
+</section>
+<section class="wrap narrow fc-tool" aria-label={T.title}>
+  <form class="fc-form" id="fc-form" role="search" hidden>
+    <div class="fc-field">
+      <label for="fc-q">{T.label}</label>
+      <div class="fc-row">
+        <input id="fc-q" type="search" list="fc-names" autocomplete="off" spellcheck="false" placeholder={T.ph} />
+        <button type="submit" class="btn">{T.check}</button>
+      </div>
+      <datalist id="fc-names">{[...FOODS].sort((a, b) => a.name[lang].localeCompare(b.name[lang], lang)).map((f) => <option value={f.name[lang]} />)}</datalist>
+    </div>
+    <fieldset class="fc-animals">
+      <legend>{T.animal}</legend>
+      <div class="fc-animal-list">
+        {SPECIES.map((s, i) => (
+          <label class={`fc-animal tint-${s}`}>
+            <input type="radio" name="fc-sp" value={s} checked={i === 0} />
+            <span class="fc-animal-ic" aria-hidden="true"><AnimalIcon kind={s} size={30} /></span>
+            <span class="fc-animal-t">{u.species[s]}{u.speciesHint[s] && <small>{u.speciesHint[s]}</small>}</span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+  </form>
+  <noscript><p class="notice">{T.noscript}</p></noscript>
+  <p id="fc-status" class="sr-only" role="status" aria-live="polite"></p>
+  <div id="fc-out" class="fc-out"></div>
+</section>
+<section class="wrap narrow fc-browse" aria-labelledby="fc-browse-h">
+  <h2 id="fc-browse-h">{T.browse}</h2>
+  <p>{T.browseLead}</p>
+  <ul class="fc-az">
+    {SPECIES.map((s) => (
+      <li><a class={`fc-az-card tint-${s}`} href={azPath(lang, s)}>
+        <span class="fc-az-ic" aria-hidden="true"><AnimalIcon kind={s} size={40} /></span>
+        <span class="fc-az-t">{u.azTitle[s]}<small>{T.foods(counts[s])}</small></span>
+      </a></li>
+    ))}
+  </ul>
+  <p class="pp-hint">{u.accessed} {u.scope}</p>
+</section>
+<script type="application/json" id="fc-data" set:html={json({ foods: data, s: strings, notFound: notFoundTpl, status: statusTpl })} />
+<script>
+  type Row = { k: string; n: string; a: string; c: number; w: string[]; v: Record<string, [string, string, number[]]>; r: [string, string, string, number][] };
+  const D = JSON.parse(document.getElementById('fc-data')!.textContent!) as { foods: Row[]; s: any; notFound: string; status: string };
+  const S = D.s;
+  const form = document.getElementById('fc-form') as HTMLFormElement;
+  const q = document.getElementById('fc-q') as HTMLInputElement;
+  const out = document.getElementById('fc-out')!;
+  const status = document.getElementById('fc-status')!;
+  form.hidden = false;
+  const fold = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ß/g, 'ss').replace(/[’`]/g, "'").replace(/\s+/g, ' ').trim();
+  const species = () => (form.querySelector('input[name="fc-sp"]:checked') as HTMLInputElement).value;
+  const el = (tag: string, cls?: string, text?: string) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+  const badge = (v: string, label: string) => { const b = el('p', `fv fv-lg fv-${v}`); const i = el('span', 'fv-icon'); i.innerHTML = S.icons[v]; b.append(i, el('span', '', label)); return b; };
+
+  // Exact word first; then words that start with what was typed, or a typed word that is a listed word plus up to
+  // two letters ("bananen" → "banane"); never a match inside another word.
+  const find = (raw: string): Row[] => {
+    const v = fold(raw); if (!v) return [];
+    const exact = D.foods.filter((f) => f.w.includes(v));
+    if (exact.length) return exact;
+    const toks = v.split(/[^\p{L}\p{N}']+/u).filter(Boolean);
+    const hits = D.foods.filter((f) => f.w.some((w) => (v.length >= 2 && w.startsWith(v)) || toks.some((t) => t.length >= 3 && w.length >= 3 && t.startsWith(w) && t.length - w.length <= 2)));
+    return hits.sort((a, b) => Number(!fold(a.n).startsWith(v)) - Number(!fold(b.n).startsWith(v)) || a.n.localeCompare(b.n));
+  };
+
+  let say: ReturnType<typeof setTimeout> | undefined;
+  const announce = (text: string) => { clearTimeout(say); say = setTimeout(() => { status.textContent = text; }, 400); };
+
+  const show = (f: Row) => {
+    const sp = species();
+    const v = f.v[sp];
+    out.replaceChildren();
+    const card = el('article', `fc-card fc-${v ? v[0] : 'none'}`);
+    const h = el('h2', 'fc-card-h'); h.append(el('span', '', f.n), el('span', 'fc-card-sp', S.species[sp]));
+    card.append(h);
+    if (!v) {
+      card.append(badge('none', S.none));
+      const others = Object.keys(f.v);
+      const p = el('p', 'fc-covered', S.covered + ' ');
+      others.forEach((s, i) => { const a = el('a', '', S.species[s]) as HTMLAnchorElement; a.href = `${S.az[s]}#${f.a}`; p.append(a); if (i < others.length - 1) p.append(', '); });
+      card.append(p);
+      announce(D.status.replace('%f', f.n).replace('%s', S.species[sp]).replace('%v', S.none));
+    } else {
+      const [verdict, note, refs] = v;
+      card.append(badge(verdict, S.verdict[verdict]), el('p', 'fc-note', note));
+      if (verdict === 'toxic') {
+        const box = el('div', 'fv-ate'); const p = el('p');
+        p.append(el('strong', '', S.ate), ' ' + S.ateMore + ' ');
+        const a = el('a', '', S.emergency) as HTMLAnchorElement; a.href = S.emergencyHref; p.append(a);
+        if (f.c && sp === 'dog') { const c = el('a', '', S.choc) as HTMLAnchorElement; c.href = S.chocHref; p.append(c); }
+        box.append(p); card.append(box);
+      }
+      card.append(el('h3', 'fc-src-h', S.sources));
+      const ul = el('ul', 'fv-src');
+      for (const i of refs) {
+        const [title, url, ln, maker] = f.r[i];
+        const li = el('li'); const a = el('a', '', title) as HTMLAnchorElement; a.href = url; a.rel = 'noopener'; li.append(a);
+        const extra = [ln, maker ? S.maker : ''].filter(Boolean).join(', ');
+        if (extra) li.append(el('small', '', `(${extra})`));
+        ul.append(li);
+      }
+      card.append(ul);
+      const more = el('p', 'fc-more'); const a = el('a', '', `${S.azTitle[sp]} →`) as HTMLAnchorElement; a.href = `${S.az[sp]}#${f.a}`; more.append(a); card.append(more);
+      announce(D.status.replace('%f', f.n).replace('%s', S.species[sp]).replace('%v', S.verdict[verdict]));
+    }
+    out.append(card);
+  };
+
+  const suggest = (rows: Row[]) => {
+    out.replaceChildren();
+    const box = el('div', 'fc-pick'); box.append(el('p', '', S.pick));
+    const ul = el('ul', 'fc-pick-list');
+    for (const f of rows.slice(0, 8)) {
+      const b = el('button', 'fc-pick-btn', f.n) as HTMLButtonElement; b.type = 'button';
+      b.addEventListener('click', () => { q.value = f.n; run(true); q.focus(); });
+      const li = el('li'); li.append(b); ul.append(li);
+    }
+    box.append(ul); out.append(box);
+    announce(`${S.pick} ${rows.slice(0, 8).map((f) => f.n).join(', ')}`);
+  };
+
+  const notFound = (raw: string) => {
+    out.replaceChildren();
+    const card = el('article', 'fc-card fc-none');
+    card.append(el('p', 'fc-nf', D.notFound.replace('%s', raw.trim())), badge('none', S.none));
+    out.append(card);
+    announce(`${D.notFound.replace('%s', raw.trim())} ${S.none}`);
+  };
+
+  const sync = () => {
+    const p = new URLSearchParams(location.search);
+    if (q.value.trim()) p.set('q', q.value.trim()); else p.delete('q');
+    p.set('a', species());
+    history.replaceState(null, '', `${location.pathname}?${p}`);
+  };
+
+  // typing shows a result as soon as one food matches; Enter (or the button) also settles several matches or none
+  const run = (final: boolean) => {
+    const raw = q.value; const rows = find(raw);
+    if (!fold(raw)) { out.replaceChildren(); status.textContent = ''; sync(); return; }
+    if (rows.length === 1 || (final && rows.length > 1 && fold(rows[0].n) === fold(raw))) show(rows[0]);
+    else if (rows.length > 1) suggest(rows);
+    else if (final) notFound(raw);
+    else out.replaceChildren();
+    sync();
+  };
+  let typing: ReturnType<typeof setTimeout> | undefined;
+  q.addEventListener('input', () => { clearTimeout(typing); typing = setTimeout(() => run(false), 250); });
+  form.addEventListener('submit', (e) => { e.preventDefault(); clearTimeout(typing); run(true); });
+  form.addEventListener('change', (e) => {
+    if ((e.target as HTMLInputElement).name !== 'fc-sp') return;
+    try { localStorage.setItem('aiveterinary.canEatAnimal', species()); } catch {}
+    if (fold(q.value)) run(true); else sync();
+  });
+
+  const p = new URLSearchParams(location.search);
+  let a = p.get('a');
+  if (!a) { try { a = localStorage.getItem('aiveterinary.canEatAnimal'); } catch {} }
+  const radio = a && form.querySelector<HTMLInputElement>(`input[name="fc-sp"][value="${CSS.escape(a)}"]`);
+  if (radio) radio.checked = true;
+  const pq = p.get('q'); if (pq) { q.value = pq; run(true); }
+</script>
+<style is:global>
+  .fc-hero { padding-bottom: 8px; }
+  .fc-form { display: grid; gap: 18px; margin: 8px 0 18px; }
+  .fc-form > * { min-width: 0; }
+  .fc-field label { display: block; font-weight: 700; margin-bottom: 6px; }
+  .fc-row { display: flex; gap: 8px; }
+  .fc-row input { flex: 1; width: 100%; min-width: 0; min-height: 48px; font: inherit; padding: 10px 14px; border: 1.5px solid var(--ink-3); border-radius: 14px; background: var(--surface); color: var(--ink); }
+  .fc-row .btn { min-height: 48px; flex: none; }
+  .fc-animals { border: 0; margin: 0; padding: 0; min-width: 0; }
+  .fc-animals legend { font-weight: 700; padding: 0; margin-bottom: 8px; }
+  .fc-animal-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+  .fc-animal { position: relative; display: flex; align-items: center; gap: 10px; min-height: 56px; padding: 6px 12px 6px 8px; border: 1.5px solid var(--line); border-radius: 14px; background: var(--surface); cursor: var(--cursor-click); }
+  .fc-animal input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+  .fc-animal-ic { flex: none; width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--tint, var(--accent-soft)); }
+  .fc-animal-t { display: flex; flex-direction: column; font-weight: 600; line-height: 1.2; }
+  .fc-animal-t small { font-weight: 500; color: var(--ink-2); font-size: .8rem; }
+  .fc-animal:has(input:checked) { border-color: var(--accent); box-shadow: inset 0 0 0 1.5px var(--accent); background: var(--accent-soft); }
+  .fc-animal:has(input:focus-visible) { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .fc-out:empty { display: none; }
+  .fc-card { margin: 4px 0 24px; padding: 18px 20px; border-radius: 20px; background: var(--surface); border: 1px solid var(--line); border-top: 6px solid var(--ink-3); }
+  .fc-toxic { border-top-color: var(--danger); } .fc-avoid { border-top-color: var(--warn); } .fc-treat { border-top-color: var(--accent); } .fc-ok { border-top-color: var(--ok); }
+  .fc-card-h { font-size: clamp(1.5rem, 4vw, 2rem); margin: 0 0 12px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+  .fc-card-sp { font-family: var(--font); font-size: 1rem; font-weight: 600; color: var(--ink-2); }
+  .fc-card .fv { margin: 0 0 12px; }
+  .fc-note { font-size: 1.05rem; }
+  .fc-src-h { font-size: 1rem; margin: 16px 0 2px; }
+  .fc-more a, .fc-covered a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; }
+  .fc-more { margin: 8px 0 0; }
+  .fc-pick { margin: 0 0 24px; }
+  .fc-pick p { margin: 0 0 8px; font-weight: 600; }
+  .fc-pick-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .fc-pick-btn { min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1.5px solid var(--accent); background: var(--surface); color: var(--accent); font: inherit; font-weight: 600; cursor: var(--cursor-click); }
+  .fc-pick-btn:hover { background: var(--accent-soft); }
+  .fc-nf { font-weight: 600; }
+  .fc-browse { padding-bottom: 40px; }
+  .fc-browse h2 { margin-top: 1.2em; }
+  .fc-az { list-style: none; padding: 0; margin: 0 0 16px; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 10px; }
+  .fc-az-card { display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 10px 14px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); color: var(--ink); text-decoration: none; font-weight: 600; line-height: 1.3; }
+  .fc-az-card:hover { border-color: var(--accent); }
+  .fc-az-ic { flex: none; width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; background: var(--tint, var(--accent-soft)); }
+  .fc-az-t { display: flex; flex-direction: column; }
+  .fc-az-t small { color: var(--ink-2); font-weight: 500; }
+</style>

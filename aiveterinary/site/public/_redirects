@@ -1,0 +1,6 @@
+# Cloudflare Pages redirects (https://developers.cloudflare.com/pages/configuration/redirects/).
+# The site uses URLs without a trailing slash (astro.config.mjs: trailingSlash 'never', build.format
+# 'file'). The language homes are files (it.html, de.html) next to folders of the same name with no
+# index.html, so "/it/" and "/de/" would otherwise answer 404. Send them to the canonical URL.
+/it/ /it 301
+/de/ /de 301

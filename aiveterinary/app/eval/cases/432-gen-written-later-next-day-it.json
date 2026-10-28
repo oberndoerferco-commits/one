@@ -1,0 +1,155 @@
+{
+  "id": "432-gen-written-later-next-day-it",
+  "language": "it",
+  "synthetic": true,
+  "header": {
+    "name": "Nebbia",
+    "species": "cat",
+    "breed": "European Shorthair",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 4,
+      "unit": "year"
+    }
+  },
+  "notes": "note della visita di ieri sera, scritte stamattina\nieri: non mangia da 2 giorni, si nasconde\nT 39,6\nabbattuta, si nasconde nel trasportino\nulcera sulla lingua\nsospetta rinotracheite\nbuprenorfina OTM somministrata ieri sera\nstamattina la proprietaria chiama: ha mangiato un po' durante la notte\ncontrollo domani, cioè giovedì",
+  "expect": {
+    "missing_includes": [
+      "medications[0].dose"
+    ],
+    "drugs": [
+      "buprenorfina"
+    ],
+    "assessment_text": "sospetta rinotracheite",
+    "temperature": 39.6,
+    "statuses": {
+      "medications[0]": "performed"
+    },
+    "must_not_contain": [
+      "calici"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "ieri: non mangia da 2 giorni, si nasconde",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          51,
+          92
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "aggiornamento",
+        "value": "stamattina la proprietaria chiama: ha mangiato un po' durante la notte",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            223,
+            293
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 39.6,
+          "unit": "C",
+          "source_spans": [
+            [
+              93,
+              99
+            ]
+          ]
+        },
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "generale",
+          "text": "abbattuta, si nasconde nel trasportino",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              100,
+              138
+            ]
+          ]
+        },
+        {
+          "system": "cavo orale",
+          "text": "ulcera sulla lingua",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              139,
+              158
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": "sospetta rinotracheite",
+      "differentials": [],
+      "source_spans": [
+        [
+          159,
+          181
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "buprenorfina",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": "OTM",
+        "frequency": null,
+        "duration": null,
+        "status": "performed",
+        "source_spans": [
+          [
+            182,
+            222
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "controllo domani, cioè giovedì",
+        "interval": null,
+        "source_spans": [
+          [
+            294,
+            324
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

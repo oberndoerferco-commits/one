@@ -1,0 +1,248 @@
+{
+  "id": "304-multi-two-guinea-pigs-weights-de",
+  "language": "de",
+  "synthetic": true,
+  "multi_pet": true,
+  "notes": "Krümel: frisst seit gestern kein Heu\nKrümel: KGW 950 g\nKrümel: Schneidezähne zu lang, speichelt\nKrümel: Schneidezähne gekürzt\nFlöckchen: Routinekontrolle, laut Besitzerin keine Probleme\nFlöckchen: KGW 1100 g\nFlöckchen: Krallen gekürzt\nbeide: mehr Heu, täglich frisches Vitamin-C-reiches Gemüse\nWV Krümel in 1 Woche",
+  "assignment": {
+    "0": "kruemel",
+    "1": "kruemel",
+    "2": "kruemel",
+    "3": "kruemel",
+    "4": "floeckchen",
+    "5": "floeckchen",
+    "6": "floeckchen",
+    "7": "shared",
+    "8": "kruemel"
+  },
+  "patients": [
+    {
+      "id": "kruemel",
+      "header": {
+        "name": "Krümel",
+        "species": "other",
+        "breed": "Guinea pig",
+        "sex": "female",
+        "neuter_status": "intact",
+        "age": {
+          "value": 3,
+          "unit": "year"
+        }
+      },
+      "expect": {
+        "missing_includes": [
+          "assessment"
+        ],
+        "drugs": [],
+        "assessment_text": null,
+        "statuses": {
+          "treatments[0]": "performed"
+        }
+      },
+      "fixture_record": {
+        "schema_version": "0.2",
+        "patient": {
+          "name": null,
+          "species": null,
+          "breed": null,
+          "sex": null,
+          "neuter_status": null,
+          "age": null,
+          "weight": null
+        },
+        "presenting_complaint": {
+          "text": "frisst seit gestern kein Heu",
+          "source_role": "owner_reported",
+          "source_spans": [
+            [
+              8,
+              36
+            ]
+          ]
+        },
+        "history": [],
+        "examination": {
+          "vitals": {
+            "temperature": null,
+            "heart_rate": null,
+            "respiratory_rate": null,
+            "weight": {
+              "value": 950,
+              "unit": "g",
+              "source_spans": [
+                [
+                  45,
+                  54
+                ]
+              ]
+            },
+            "crt_seconds": null
+          },
+          "findings": [
+            {
+              "system": "Maulhöhle",
+              "text": "Schneidezähne zu lang, speichelt",
+              "source_role": "vet_observed",
+              "source_spans": [
+                [
+                  63,
+                  95
+                ]
+              ]
+            }
+          ]
+        },
+        "diagnostics": [],
+        "assessment": {
+          "text": null,
+          "differentials": [],
+          "source_spans": []
+        },
+        "treatments": [
+          {
+            "type": "procedure",
+            "text": "Schneidezähne gekürzt",
+            "status": "performed",
+            "source_spans": [
+              [
+                104,
+                125
+              ]
+            ]
+          }
+        ],
+        "medications": [],
+        "plan": {
+          "follow_up": {
+            "text": "WV Krümel in 1 Woche",
+            "interval": {
+              "value": 1,
+              "unit": "week"
+            },
+            "source_spans": [
+              [
+                294,
+                314
+              ]
+            ]
+          },
+          "instructions": [
+            {
+              "text": "mehr Heu, täglich frisches Vitamin-C-reiches Gemüse",
+              "source_spans": [
+                [
+                  242,
+                  293
+                ]
+              ]
+            }
+          ]
+        },
+        "missing": [],
+        "uncertain": []
+      }
+    },
+    {
+      "id": "floeckchen",
+      "header": {
+        "name": "Flöckchen",
+        "species": "other",
+        "breed": "Guinea pig",
+        "sex": "female",
+        "neuter_status": "intact",
+        "age": {
+          "value": 2,
+          "unit": "year"
+        }
+      },
+      "expect": {
+        "missing_includes": [
+          "assessment"
+        ],
+        "drugs": [],
+        "assessment_text": null,
+        "statuses": {
+          "treatments[0]": "performed"
+        }
+      },
+      "fixture_record": {
+        "schema_version": "0.2",
+        "patient": {
+          "name": null,
+          "species": null,
+          "breed": null,
+          "sex": null,
+          "neuter_status": null,
+          "age": null,
+          "weight": null
+        },
+        "presenting_complaint": {
+          "text": "Routinekontrolle, laut Besitzerin keine Probleme",
+          "source_role": "owner_reported",
+          "source_spans": [
+            [
+              137,
+              185
+            ]
+          ]
+        },
+        "history": [],
+        "examination": {
+          "vitals": {
+            "temperature": null,
+            "heart_rate": null,
+            "respiratory_rate": null,
+            "weight": {
+              "value": 1100,
+              "unit": "g",
+              "source_spans": [
+                [
+                  197,
+                  207
+                ]
+              ]
+            },
+            "crt_seconds": null
+          },
+          "findings": []
+        },
+        "diagnostics": [],
+        "assessment": {
+          "text": null,
+          "differentials": [],
+          "source_spans": []
+        },
+        "treatments": [
+          {
+            "type": "procedure",
+            "text": "Krallen gekürzt",
+            "status": "performed",
+            "source_spans": [
+              [
+                219,
+                234
+              ]
+            ]
+          }
+        ],
+        "medications": [],
+        "plan": {
+          "follow_up": null,
+          "instructions": [
+            {
+              "text": "mehr Heu, täglich frisches Vitamin-C-reiches Gemüse",
+              "source_spans": [
+                [
+                  242,
+                  293
+                ]
+              ]
+            }
+          ]
+        },
+        "missing": [],
+        "uncertain": []
+      }
+    }
+  ]
+}

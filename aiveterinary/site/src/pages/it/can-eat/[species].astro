@@ -1,0 +1,18 @@
+---
+import Base from '../../../layouts/Base.astro';
+import FoodAZ from '../../../components/FoodAZ.astro';
+import { SPECIES, UI, foodsFor, type Species } from '../../../data/foods';
+export function getStaticPaths() {
+  return SPECIES.map((species) => ({ params: { species } }));
+}
+const species = Astro.params.species as Species;
+const n = foodsFor(species, 'it').length;
+const desc = {
+  en: `${n} foods from A to Z with what a named vet or animal-welfare source says about each: toxic, avoid, OK in small amounts or part of the diet, with links.`,
+  it: `${n} alimenti dalla A alla Z con ciò che dice una fonte veterinaria o di tutela animale: tossico, da evitare, sì in piccole quantità o nella dieta, con i link.`,
+  de: `${n} Lebensmittel von A bis Z mit dem, was eine genannte tierärztliche oder Tierschutz-Quelle sagt: giftig, besser nicht, in kleinen Mengen OK oder normales Futter.`,
+}['it'];
+---
+<Base title={UI['it'].azTitle[species]} description={desc} lang="it">
+  <FoodAZ lang="it" species={species} />
+</Base>

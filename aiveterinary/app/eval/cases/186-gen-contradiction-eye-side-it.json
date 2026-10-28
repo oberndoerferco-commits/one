@@ -1,0 +1,160 @@
+{
+  "id": "186-gen-contradiction-eye-side-it",
+  "language": "it",
+  "synthetic": true,
+  "header": {
+    "name": "Otto",
+    "species": "dog",
+    "breed": "Shih Tzu",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 7,
+      "unit": "year"
+    }
+  },
+  "notes": "tiene chiuso l'occhio sinistro da ieri\nocchio dx: blefarospasmo, epifora\naltro occhio nella norma\nfluo neg\nsospetta congiuntivite\nVidisic gel oftalmico consegnato, oculare, 3 volte al giorno\ncontrollo tra qualche giorno se non migliora",
+  "expect": {
+    "missing_includes": [
+      "medications[0].dose"
+    ],
+    "drugs": [
+      "Vidisic"
+    ],
+    "assessment_text": "sospetta congiuntivite",
+    "statuses": {
+      "medications[0]": "dispensed",
+      "diagnostics[0]": "performed"
+    },
+    "uncertain_min": 1
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "tiene chiuso l'occhio sinistro da ieri",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          38
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "occhi",
+          "text": "occhio dx: blefarospasmo, epifora",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              39,
+              72
+            ]
+          ]
+        },
+        {
+          "system": "occhi",
+          "text": "altro occhio nella norma",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              73,
+              97
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "test alla fluoresceina",
+        "status": "performed",
+        "result": "neg",
+        "source_spans": [
+          [
+            98,
+            106
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": "sospetta congiuntivite",
+      "differentials": [],
+      "source_spans": [
+        [
+          107,
+          129
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "Vidisic",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": "oculare",
+        "frequency": "3 volte al giorno",
+        "duration": null,
+        "status": "dispensed",
+        "source_spans": [
+          [
+            130,
+            190
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "controllo tra qualche giorno se non migliora",
+        "interval": null,
+        "source_spans": [
+          [
+            191,
+            235
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": [
+      {
+        "field": "examination.findings[0]",
+        "original_text": "tiene chiuso l'occhio sinistro da ieri / occhio dx: blefarospasmo, epifora",
+        "reason": "il motivo della visita indica l'occhio sinistro, l'esame l'occhio destro; lato non chiarito nelle note",
+        "source_spans": [
+          [
+            0,
+            38
+          ],
+          [
+            39,
+            72
+          ]
+        ]
+      }
+    ]
+  }
+}

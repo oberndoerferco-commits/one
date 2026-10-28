@@ -1,0 +1,174 @@
+{
+  "id": "406-gen-typos-dictation-gastro-en",
+  "language": "en",
+  "synthetic": true,
+  "header": {
+    "name": "Rusty",
+    "species": "dog",
+    "breed": "Springer Spaniel",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 3,
+      "unit": "year"
+    }
+  },
+  "notes": "vommiting since this mornig, 4 times\ngot into the bin last nite per owner\nT 38.9\nmild pain on abdominal palpitation, no masses\nmarapitant SC given\nstarve 12 hrs then bland diet\nrecheck tomoro if not better",
+  "expect": {
+    "missing_includes": [
+      "assessment",
+      "medications[0].dose"
+    ],
+    "drugs": [
+      "marapitant"
+    ],
+    "assessment_text": null,
+    "temperature": 38.9,
+    "statuses": {
+      "medications[0]": "performed"
+    },
+    "uncertain_min": 2,
+    "must_not_contain": [
+      "maropitant"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "vommiting since this mornig, 4 times",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          36
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "diet",
+        "value": "got into the bin last nite per owner",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            37,
+            73
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.9,
+          "unit": "C",
+          "source_spans": [
+            [
+              74,
+              80
+            ]
+          ]
+        },
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "abdomen",
+          "text": "mild pain on abdominal palpitation, no masses",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              81,
+              126
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": null,
+      "differentials": [],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "marapitant",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": "SC",
+        "frequency": null,
+        "duration": null,
+        "status": "performed",
+        "source_spans": [
+          [
+            127,
+            146
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "recheck tomoro if not better",
+        "interval": null,
+        "source_spans": [
+          [
+            177,
+            205
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "starve 12 hrs then bland diet",
+          "source_spans": [
+            [
+              147,
+              176
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": [
+      {
+        "field": "examination.findings[0]",
+        "original_text": "palpitation",
+        "reason": "\"palpitation\" kept as written, probably palpation; not corrected",
+        "source_spans": [
+          [
+            104,
+            115
+          ]
+        ]
+      },
+      {
+        "field": "medications[0].drug",
+        "original_text": "marapitant",
+        "reason": "drug name kept as written, possibly misspelled; not corrected",
+        "source_spans": [
+          [
+            127,
+            137
+          ]
+        ]
+      }
+    ]
+  }
+}

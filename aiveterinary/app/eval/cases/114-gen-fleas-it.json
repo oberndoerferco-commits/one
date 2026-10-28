@@ -1,0 +1,132 @@
+{
+  "id": "114-gen-fleas-it",
+  "language": "it",
+  "synthetic": true,
+  "header": {
+    "name": "Pippo",
+    "species": "dog",
+    "breed": "Jack Russell",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 6,
+      "unit": "year"
+    }
+  },
+  "notes": "prurito da 2 settimane, peggio alla base della coda\npapule e alopecia alla base della coda, feci di pulce al pettine\nsospetta dermatite allergica da pulci\nantiparassitario spot-on consegnato, uso topico, mensile\ntrattare tutti gli animali di casa e lavare le cucce\ncontrollo tra 4 settimane",
+  "expect": {
+    "missing_includes": [
+      "medications[0].dose"
+    ],
+    "drugs": [
+      "antiparassitario spot-on"
+    ],
+    "assessment_text": "sospetta dermatite allergica da pulci",
+    "statuses": {
+      "medications[0]": "dispensed"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "prurito da 2 settimane, peggio alla base della coda",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          51
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "cute",
+          "text": "papule e alopecia alla base della coda, feci di pulce al pettine",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              52,
+              116
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": "sospetta dermatite allergica da pulci",
+      "differentials": [],
+      "source_spans": [
+        [
+          117,
+          154
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "antiparassitario spot-on",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": "topica",
+        "frequency": "mensile",
+        "duration": null,
+        "status": "dispensed",
+        "source_spans": [
+          [
+            155,
+            211
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "controllo tra 4 settimane",
+        "interval": {
+          "value": 4,
+          "unit": "week"
+        },
+        "source_spans": [
+          [
+            265,
+            290
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "trattare tutti gli animali di casa e lavare le cucce",
+          "source_spans": [
+            [
+              212,
+              264
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

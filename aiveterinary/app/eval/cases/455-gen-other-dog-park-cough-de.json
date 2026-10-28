@@ -1,0 +1,136 @@
+{
+  "id": "455-gen-other-dog-park-cough-de",
+  "language": "de",
+  "synthetic": true,
+  "header": {
+    "name": "Lucky",
+    "species": "dog",
+    "breed": "Cocker Spaniel",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 3,
+      "unit": "year"
+    }
+  },
+  "notes": "trockener Husten seit Samstag\nhat letzte Woche im Park mit einem anderen Hund gespielt, der Zwingerhusten und 39,9 Fieber hatte\nfrisst und spielt normal\nT 38,6\nHusten bei Trachealpalpation, Lunge frei\nV. a. infektiöse Tracheobronchitis\n2 Wochen kein Kontakt zu anderen Hunden\nWV, wenn nach 1 Woche nicht besser",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": "V. a. infektiöse Tracheobronchitis",
+    "temperature": 38.6,
+    "statuses": {},
+    "must_not_contain": [
+      "39.9",
+      "fieber",
+      "zwingerhusten"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "trockener Husten seit Samstag",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          29
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "Appetit",
+        "value": "frisst und spielt normal",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            128,
+            152
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.6,
+          "unit": "C",
+          "source_spans": [
+            [
+              153,
+              159
+            ]
+          ]
+        },
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "Atmung",
+          "text": "Husten bei Trachealpalpation, Lunge frei",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              160,
+              200
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": "V. a. infektiöse Tracheobronchitis",
+      "differentials": [],
+      "source_spans": [
+        [
+          201,
+          235
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "WV, wenn nach 1 Woche nicht besser",
+        "interval": {
+          "value": 1,
+          "unit": "week"
+        },
+        "source_spans": [
+          [
+            276,
+            310
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "2 Wochen kein Kontakt zu anderen Hunden",
+          "source_spans": [
+            [
+              236,
+              275
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

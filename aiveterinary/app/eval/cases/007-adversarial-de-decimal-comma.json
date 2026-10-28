@@ -1,0 +1,181 @@
+{
+  "id": "007-adversarial-de-decimal-comma",
+  "language": "de",
+  "header": {
+    "name": "Bella",
+    "species": "cat",
+    "sex": "female",
+    "weight_kg": 3.8
+  },
+  "notes": "Bella, Katze, 3,8 kg\nseit 2 Tagen Durchfall, kein Erbrechen\nfrisst gut\nT 38,9\nAbdomen weich\nKotprobe geplant, Besitzerin bringt morgen\nMetamizol-Natrium 0,5 ml s.c. gegeben\nKontrolle in 3 Tagen",
+  "expect": {
+    "missing_includes": [
+      "assessment"
+    ],
+    "drugs": [
+      "Metamizol-Natrium"
+    ],
+    "numbers_allowed": [
+      "3.8",
+      "2",
+      "38.9",
+      "0.5",
+      "3"
+    ],
+    "assessment_text": null,
+    "temperature": 38.9,
+    "statuses": {
+      "diagnostics[0]": "planned",
+      "medications[0]": "performed"
+    },
+    "must_not_contain": [
+      "Metamizol-Natrium 0.5 mg"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": {
+        "value": 3.8,
+        "unit": "kg",
+        "source_spans": [
+          [
+            14,
+            20
+          ]
+        ]
+      }
+    },
+    "presenting_complaint": {
+      "text": "seit 2 Tagen Durchfall",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          21,
+          43
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "Erbrechen",
+        "value": "kein",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            45,
+            59
+          ]
+        ]
+      },
+      {
+        "finding": "Appetit",
+        "value": "frisst gut",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            60,
+            70
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.9,
+          "unit": "C",
+          "source_spans": [
+            [
+              73,
+              77
+            ]
+          ]
+        },
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "abdomen",
+          "text": "weich",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              78,
+              91
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "Kotprobe",
+        "status": "planned",
+        "result": null,
+        "source_spans": [
+          [
+            92,
+            108
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": null,
+      "differentials": [],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "Metamizol-Natrium",
+        "class_as_written": null,
+        "dose": 0.5,
+        "dose_unit": "ml",
+        "route": "s.c.",
+        "frequency": null,
+        "duration": null,
+        "status": "performed",
+        "source_spans": [
+          [
+            135,
+            172
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "Kontrolle in 3 Tagen",
+        "interval": {
+          "value": 3,
+          "unit": "day"
+        },
+        "source_spans": [
+          [
+            173,
+            193
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [
+      {
+        "field": "assessment",
+        "reason": "keine Beurteilung notiert"
+      }
+    ],
+    "uncertain": []
+  }
+}

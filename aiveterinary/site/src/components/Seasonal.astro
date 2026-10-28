@@ -1,0 +1,235 @@
+---
+/**
+ * Seasonal alerts (src/data/seasonal.ts), in two forms:
+ *   variant="strip"  the "This month" strip on the home page
+ *   variant="page"   the /seasonal page: every month, the current month first
+ *
+ * The build does not know the visitor's month: the HTML lists every alert (the no-JS fallback) and a
+ * small inline script right after the markup picks the month from the visitor's own date and the
+ * country (default from the page language, remembered in localStorage) before the list is painted.
+ */
+import { getCollection } from 'astro:content';
+import { SEASONAL, SEASONAL_CHECKED, COUNTRIES, COUNTRY_OF_LANG, type Lang, type SeasonalAlert, type Country } from '../data/seasonal';
+import { ANIMALS, slugOf } from '../lib/animals-i18n';
+interface Props { lang: Lang; variant: 'strip' | 'page' }
+const { lang, variant } = Astro.props;
+const a = ANIMALS[lang];
+const pre = lang === 'en' ? '' : `/${lang}`;
+
+const MONTHS = {
+  en: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+  it: ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'],
+  de: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+}[lang];
+const SHORT = {
+  en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  it: ['gen', 'feb', 'mar', 'apr', 'mag', 'giu', 'lug', 'ago', 'set', 'ott', 'nov', 'dic'],
+  de: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+}[lang];
+const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+const T = {
+  en: {
+    h1: 'Seasonal alerts', lead: 'Short warnings that change with the month and the country, each from a named veterinary or public source. They are reminders, not a diagnosis: if you are worried about your animal, call your vet.',
+    stripH: 'Seasonal alerts', thisMonth: 'This month', stripSub: 'Short, sourced warnings for this time of year.', all: 'All seasonal alerts →',
+    country: 'Country', countries: { it: 'Italy', 'de-at-ch': 'Germany, Austria, Switzerland', all: 'Europe, general' } as Record<Country, string>,
+    short: { it: 'Italy', 'de-at-ch': 'DE · AT · CH', all: '' } as Record<Country, string>,
+    level: { danger: 'Danger', caution: 'Caution' }, sources: 'Sources', article: 'Our article:', when: 'When',
+    status: '{n} alerts for {month}, {country}.', one: '1 alert for {month}, {country}.',
+    fallback: 'All alerts, by month from January to December.', checked: 'Sources read on 25 October 2026. Timing can differ by region and from year to year.',
+    tools: { '/chocolate': 'Dog ate chocolate? Check the amount' } as Record<string, string>,
+  },
+  it: {
+    h1: 'Allerte stagionali', lead: 'Brevi avvisi che cambiano con il mese e il Paese, ognuno da una fonte veterinaria o pubblica citata. Sono promemoria, non diagnosi: se sei preoccupato per il tuo animale, chiama il veterinario.',
+    stripH: 'Allerte stagionali', thisMonth: 'Questo mese', stripSub: 'Brevi avvisi con fonte, per questo periodo dell’anno.', all: 'Tutte le allerte stagionali →',
+    country: 'Paese', countries: { it: 'Italia', 'de-at-ch': 'Germania, Austria, Svizzera', all: 'Europa, in generale' } as Record<Country, string>,
+    short: { it: 'Italia', 'de-at-ch': 'DE · AT · CH', all: '' } as Record<Country, string>,
+    level: { danger: 'Pericolo', caution: 'Attenzione' }, sources: 'Fonti', article: 'Il nostro articolo:', when: 'Quando',
+    status: '{n} allerte per {month}, {country}.', one: '1 allerta per {month}, {country}.',
+    fallback: 'Tutte le allerte, mese per mese da gennaio a dicembre.', checked: 'Fonti consultate il 25 ottobre 2026. I periodi possono variare da regione a regione e da un anno all’altro.',
+    tools: { '/chocolate': 'Il cane ha mangiato cioccolato?' } as Record<string, string>,
+  },
+  de: {
+    h1: 'Saisonale Warnungen', lead: 'Kurze Warnungen, die sich mit Monat und Land ändern, jede aus einer genannten tierärztlichen oder behördlichen Quelle. Sie sind Erinnerungen, keine Diagnose: Wenn Sie sich Sorgen um Ihr Tier machen, rufen Sie Ihre Praxis an.',
+    stripH: 'Saisonale Warnungen', thisMonth: 'Diesen Monat', stripSub: 'Kurze Warnungen mit Quelle für diese Jahreszeit.', all: 'Alle saisonalen Warnungen →',
+    country: 'Land', countries: { it: 'Italien', 'de-at-ch': 'Deutschland, Österreich, Schweiz', all: 'Europa allgemein' } as Record<Country, string>,
+    short: { it: 'Italien', 'de-at-ch': 'DE · AT · CH', all: '' } as Record<Country, string>,
+    level: { danger: 'Gefahr', caution: 'Vorsicht' }, sources: 'Quellen', article: 'Unser Artikel:', when: 'Wann',
+    status: '{n} Warnungen für {month}, {country}.', one: '1 Warnung für {month}, {country}.',
+    fallback: 'Alle Warnungen, nach Monat von Januar bis Dezember.', checked: 'Quellen gelesen am 25. Oktober 2026. Zeiträume können je nach Region und Jahr abweichen.',
+    tools: { '/chocolate': 'Hund hat Schokolade gefressen?' } as Record<string, string>,
+  },
+}[lang];
+if (SEASONAL_CHECKED !== '2026-10-25') throw new Error('Seasonal.astro: update the "checked" sentence to SEASONAL_CHECKED');
+
+// "Jun–Aug", "Oct–Mar", "Mar–Apr, Dec": contiguous runs, joined across the year end.
+const when = (months: number[]) => {
+  const s = [...months].sort((x, y) => x - y);
+  const runs: number[][] = [];
+  for (const m of s) { const r = runs[runs.length - 1]; if (r && m === r[r.length - 1] + 1) r.push(m); else runs.push([m]); }
+  if (runs.length > 1 && runs[0][0] === 1 && runs[runs.length - 1].at(-1) === 12) runs[0] = [...(runs.pop() as number[]), ...runs[0]];
+  runs.sort((x, y) => x[0] - y[0]);
+  return runs.map((r) => (r.length === 1 ? SHORT[r[0] - 1] : `${SHORT[r[0] - 1]}–${SHORT[r[r.length - 1] - 1]}`)).join(', ');
+};
+const articles = new Map((await getCollection('animals')).filter((e) => e.data.lang === lang).map((e) => [slugOf(e.id), e.data.title]));
+const card = (x: SeasonalAlert) => ({
+  x,
+  when: when(x.months),
+  region: x.countries.includes('all') ? '' : x.countries.map((c) => T.short[c]).join(', '),
+  article: x.article?.[lang] ? { href: `${a.base}/${x.article[lang]}`, title: articles.get(x.article[lang] as string) ?? x.title[lang] } : null,
+  tool: x.tool ? { href: `${pre}${x.tool}`, label: T.tools[x.tool] ?? x.tool } : null,
+});
+const all = SEASONAL.map(card);
+const byMonth = MONTHS.map((name, i) => ({ m: i + 1, name, items: all.filter((c) => c.x.months.includes(i + 1)) }));
+const id = variant === 'strip' ? 'seas-strip' : 'seas-page';
+const cfg = {
+  id, variant, months: MONTHS.map(cap), thisMonth: T.thisMonth, status: T.status, one: T.one,
+  countries: T.countries, def: COUNTRY_OF_LANG[lang],
+};
+---
+{variant === 'page' && (
+  <section class="wrap narrow hero"><h1>{T.h1}</h1><p class="lead">{T.lead}</p></section>
+)}
+<section class:list={['wrap', variant === 'strip' ? 'section seas-strip' : 'narrow seas-page']} id={id} aria-labelledby={variant === 'strip' ? `${id}-h` : undefined}>
+  {variant === 'strip' ? (
+    <div class="section-row">
+      <h2 class="section-h" id={`${id}-h`} data-s-title>{T.stripH}</h2>
+      <a class="more" href={`${pre}/seasonal`}>{T.all}</a>
+    </div>
+  ) : null}
+  {variant === 'strip' && <p class="seas-sub">{T.stripSub}</p>}
+  <fieldset class="seas-c" data-s-countries hidden>
+    <legend>{T.country}</legend>
+    <div class="seas-c-opts">
+      {COUNTRIES.map((c) => (
+        <label><input type="radio" name={`${id}-country`} value={c} checked={c === COUNTRY_OF_LANG[lang]} /><span>{T.countries[c]}</span></label>
+      ))}
+    </div>
+  </fieldset>
+  <p class="sr-only" role="status" aria-live="polite" data-s-status></p>
+  {variant === 'page' && <p class="seas-fallback" data-s-fallback>{T.fallback}</p>}
+
+  {variant === 'strip' ? (
+    <ul class="sa-list" data-s-list>
+      {all.map(({ x, when: w, region, article, tool }) => (
+        <li class={`sa sa-${x.level}`} data-id={x.id} data-m={` ${x.months.join(' ')} `} data-c={x.countries.join(' ')} data-x={(x.except ?? []).join(' ')}>
+          <p class="sa-top"><span class="sa-lv">{T.level[x.level]}</span><span class="sa-when"><span class="sr-only">{T.when}: </span>{w}</span>{region && <span class="sa-region">{region}</span>}</p>
+          <h3 class="sa-t">{x.title[lang]}</h3>
+          <p class="sa-x">{x.text[lang]}</p>
+          {(article || tool) && <p class="sa-links">{article && <a href={article.href}>{T.article} {article.title}</a>}{tool && <a href={tool.href}>{tool.label}</a>}</p>}
+          <details class="sa-src"><summary>{T.sources} ({x.references.length})<span class="sr-only">: {x.title[lang]}</span></summary><ul>{x.references.map((r) => <li><a href={r.url} rel="noopener">{r.title}</a></li>)}</ul></details>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <div class="seas-months" data-s-months>
+      {byMonth.map((mo) => (
+        <section class="seas-month" data-month={mo.m} aria-labelledby={`seas-m-${mo.m}`} id={`m-${mo.m}`}>
+          <h2 id={`seas-m-${mo.m}`}><span data-s-now hidden>{T.thisMonth}: </span>{cap(mo.name)}</h2>
+          <ul class="sa-list">
+            {mo.items.map(({ x, when: w, region, article, tool }) => (
+              <li class={`sa sa-${x.level}`} data-id={x.id} data-c={x.countries.join(' ')} data-x={(x.except ?? []).join(' ')}>
+                <p class="sa-top"><span class="sa-lv">{T.level[x.level]}</span><span class="sa-when"><span class="sr-only">{T.when}: </span>{w}</span>{region && <span class="sa-region">{region}</span>}</p>
+                <h3 class="sa-t">{x.title[lang]}</h3>
+                <p class="sa-x">{x.text[lang]}</p>
+                {(article || tool) && <p class="sa-links">{article && <a href={article.href}>{T.article} {article.title}</a>}{tool && <a href={tool.href}>{tool.label}</a>}</p>}
+                <details class="sa-src"><summary>{T.sources} ({x.references.length})<span class="sr-only">: {x.title[lang]}</span></summary><ul>{x.references.map((r) => <li><a href={r.url} rel="noopener">{r.title}</a></li>)}</ul></details>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
+  )}
+  {variant === 'page' && <p class="seas-checked">{T.checked}</p>}
+</section>
+
+<script is:inline define:vars={{ cfg }}>
+  // Runs right after the markup, before it is painted: the visitor's month and country, no layout shift.
+  (function () {
+    var root = document.getElementById(cfg.id); if (!root) return;
+    var KEY = 'aiveterinary.seasonalCountry';
+    var month = new Date().getMonth() + 1;
+    var country = cfg.def;
+    try { var saved = localStorage.getItem(KEY); if (saved && cfg.countries[saved]) country = saved; } catch (e) {}
+    var shows = function (li, c) {
+      var cs = (li.getAttribute('data-c') || '').split(' '), ex = (li.getAttribute('data-x') || '').split(' ');
+      return cs.indexOf(c) >= 0 || (cs.indexOf('all') >= 0 && ex.indexOf(c) < 0);
+    };
+    var status = root.querySelector('[data-s-status]');
+    var apply = function (announce) {
+      var n = 0;
+      if (cfg.variant === 'strip') {
+        root.querySelectorAll('[data-s-list] > li').forEach(function (li) {
+          var on = (li.getAttribute('data-m') || '').indexOf(' ' + month + ' ') >= 0 && shows(li, country);
+          li.hidden = !on; if (on) n++;
+        });
+      } else {
+        root.querySelectorAll('.seas-month').forEach(function (sec) {
+          var k = 0;
+          sec.querySelectorAll('li.sa').forEach(function (li) { var on = shows(li, country); li.hidden = !on; if (on) k++; });
+          sec.hidden = k === 0;
+          if (Number(sec.getAttribute('data-month')) === month) n = k;
+        });
+      }
+      if (announce && status) status.textContent = (n === 1 ? cfg.one : cfg.status).replace('{n}', n).replace('{month}', cfg.months[month - 1]).replace('{country}', cfg.countries[country]);
+    };
+    if (cfg.variant === 'strip') {
+      var h = root.querySelector('[data-s-title]'); if (h) h.textContent = cfg.thisMonth + ': ' + cfg.months[month - 1];
+    } else {
+      var box = root.querySelector('[data-s-months]');
+      for (var i = 0; i < 12; i++) {
+        var sec = box.querySelector('[data-month="' + (((month - 1 + i) % 12) + 1) + '"]');
+        if (sec) box.appendChild(sec);
+      }
+      var now = box.querySelector('[data-month="' + month + '"] [data-s-now]'); if (now) now.hidden = false;
+      var fb = root.querySelector('[data-s-fallback]'); if (fb) fb.hidden = true;
+    }
+    var fs = root.querySelector('[data-s-countries]');
+    fs.querySelectorAll('input').forEach(function (inp) {
+      inp.checked = inp.value === country;
+      inp.addEventListener('change', function () {
+        if (!inp.checked) return;
+        country = inp.value;
+        try { localStorage.setItem(KEY, country); } catch (e) {}
+        apply(true);
+      });
+    });
+    fs.hidden = false;
+    apply(false);
+  })();
+</script>
+
+<style is:global>
+  .seas-sub { color: var(--ink-2); margin: -6px 0 14px; max-width: 43.9em; }
+  .seas-c { border: 0; margin: 0 0 18px; padding: 0; min-width: 0; }
+  .seas-c legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
+  .seas-c-opts { display: flex; flex-wrap: wrap; gap: 8px; }
+  .seas-c label { position: relative; display: inline-flex; align-items: center; min-height: 44px; padding: 8px 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-weight: 600; font-size: .95rem; cursor: var(--cursor-click); max-width: 100%; }
+  .seas-c input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: var(--cursor-click); }
+  .seas-c label:has(input:checked) { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .seas-c label:has(input:focus-visible) { outline: 3px solid var(--accent); outline-offset: 2px; }
+  .sa-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 14px; }
+  .seas-page .sa-list { grid-template-columns: minmax(0, 1fr); }
+  .sa { display: flex; flex-direction: column; gap: 8px; min-width: 0; padding: 16px 18px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); border-left: 6px solid var(--warn); overflow-wrap: anywhere; }
+  .sa-danger { border-left-color: var(--danger); }
+  .sa-top { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin: 0; font-size: .85rem; }
+  .sa-lv { font-weight: 700; letter-spacing: .04em; text-transform: uppercase; padding: 2px 10px; border-radius: 999px; background: var(--warn-soft); color: var(--warn); }
+  .sa-danger .sa-lv { background: var(--danger-soft); color: var(--danger); }
+  .sa-when, .sa-region { color: var(--ink-2); font-weight: 600; }
+  .sa-region { padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+  .sa-t { margin: 0; font-size: 1.12rem; line-height: 1.3; }
+  .sa-x { margin: 0; color: var(--ink-2); }
+  .sa-links { display: flex; flex-direction: column; gap: 2px; margin: 0; }
+  .sa-links a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; }
+  .sa-src { margin-top: auto; }
+  .sa-src summary { display: flex; align-items: center; min-height: 44px; cursor: var(--cursor-click); font-weight: 600; color: var(--ink-2); }
+  .sa-src ul { margin: 0 0 4px; padding-left: 1.1em; font-size: .9rem; }
+  .sa-src li { margin: 4px 0; }
+  .sa-src li a { display: inline-block; padding: 10px 0; }
+  .seas-month { margin-top: 28px; }
+  .seas-month h2 { margin: 0 0 12px; }
+  .seas-month:first-child { margin-top: 8px; }
+  .seas-fallback, .seas-checked { color: var(--ink-2); }
+  .seas-checked { margin-top: 28px; font-size: .92rem; }
+  .sa[hidden], .seas-month[hidden] { display: none; }
+</style>

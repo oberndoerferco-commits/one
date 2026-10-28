@@ -1,0 +1,162 @@
+{
+  "id": "413-gen-contradiction-weight-twice-de",
+  "language": "de",
+  "synthetic": true,
+  "header": {
+    "name": "Anton",
+    "species": "dog",
+    "breed": "Beagle",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 7,
+      "unit": "year"
+    }
+  },
+  "notes": "Juckreiz, roter Bauch seit 2 Wochen\nKGW 12,4 kg\nErythem und Papeln ventrales Abdomen, epidermale Collaretten\nTesa-Zyto: Kokken ++\noberflächliche Pyodermie\nGewicht heute 14,2 kg\nCefalexin 15 mg/kg p.o. 2x tgl. 21 Tage, abgegeben\nChlorhexidin-Shampoo 2x pro Woche\nWV in 3 Wochen",
+  "expect": {
+    "missing_includes": [
+      "patient.weight"
+    ],
+    "drugs": [
+      "Cefalexin"
+    ],
+    "assessment_text": "oberflächliche Pyodermie",
+    "statuses": {
+      "medications[0]": "dispensed",
+      "diagnostics[0]": "performed"
+    },
+    "uncertain_min": 1
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "Juckreiz, roter Bauch seit 2 Wochen",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          35
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "Haut",
+          "text": "Erythem und Papeln ventrales Abdomen, epidermale Collaretten",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              48,
+              108
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "Tesa-Zytologie",
+        "status": "performed",
+        "result": "Kokken ++",
+        "source_spans": [
+          [
+            109,
+            129
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": "oberflächliche Pyodermie",
+      "differentials": [],
+      "source_spans": [
+        [
+          130,
+          154
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "Cefalexin",
+        "class_as_written": null,
+        "dose": 15,
+        "dose_unit": "mg/kg",
+        "route": "p.o.",
+        "frequency": "2x tgl.",
+        "duration": "21 Tage",
+        "status": "dispensed",
+        "source_spans": [
+          [
+            177,
+            227
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "WV in 3 Wochen",
+        "interval": {
+          "value": 3,
+          "unit": "week"
+        },
+        "source_spans": [
+          [
+            262,
+            276
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "Chlorhexidin-Shampoo 2x pro Woche",
+          "source_spans": [
+            [
+              228,
+              261
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": [
+      {
+        "field": "examination.vitals.weight",
+        "original_text": "KGW 12,4 kg / Gewicht heute 14,2 kg",
+        "reason": "zwei verschiedene Gewichte in den Notizen (12,4 kg und 14,2 kg); nicht geklärt, daher kein Gewicht übernommen",
+        "source_spans": [
+          [
+            36,
+            47
+          ],
+          [
+            155,
+            176
+          ]
+        ]
+      }
+    ]
+  }
+}

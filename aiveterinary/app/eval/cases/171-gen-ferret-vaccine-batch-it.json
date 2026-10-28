@@ -1,0 +1,159 @@
+{
+  "id": "171-gen-ferret-vaccine-batch-it",
+  "language": "it",
+  "synthetic": true,
+  "header": {
+    "name": "Birillo",
+    "species": "ferret",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 2,
+      "unit": "year"
+    }
+  },
+  "notes": "controllo annuale e vaccino cimurro\nvivace, mantello in buone condizioni\npeso 1,1 kg\nT 38,9\npalpazione addominale nella norma\nvaccino cimurro s.c., lotto KX2291\nrestare 30 min in sala d'attesa dopo il vaccino\nprossimo vaccino tra 1 anno",
+  "expect": {
+    "missing_includes": [
+      "assessment"
+    ],
+    "drugs": [
+      "vaccino cimurro"
+    ],
+    "assessment_text": null,
+    "temperature": 38.9,
+    "statuses": {
+      "medications[0]": "performed"
+    },
+    "must_not_contain": [
+      "].batch"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "controllo annuale e vaccino cimurro",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          35
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.9,
+          "unit": "C",
+          "source_spans": [
+            [
+              85,
+              91
+            ]
+          ]
+        },
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": {
+          "value": 1.1,
+          "unit": "kg",
+          "source_spans": [
+            [
+              73,
+              84
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "generale",
+          "text": "vivace, mantello in buone condizioni",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              36,
+              72
+            ]
+          ]
+        },
+        {
+          "system": "addome",
+          "text": "palpazione addominale nella norma",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              92,
+              125
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": null,
+      "differentials": [],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "vaccino cimurro",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": "s.c.",
+        "frequency": null,
+        "duration": null,
+        "status": "performed",
+        "source_spans": [
+          [
+            126,
+            160
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "prossimo vaccino tra 1 anno",
+        "interval": {
+          "value": 1,
+          "unit": "year"
+        },
+        "source_spans": [
+          [
+            209,
+            236
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "restare 30 min in sala d'attesa dopo il vaccino",
+          "source_spans": [
+            [
+              161,
+              208
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

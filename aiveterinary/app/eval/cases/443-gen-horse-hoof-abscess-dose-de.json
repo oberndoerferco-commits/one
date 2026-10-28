@@ -1,0 +1,194 @@
+{
+  "id": "443-gen-horse-hoof-abscess-dose-de",
+  "language": "de",
+  "synthetic": true,
+  "header": {
+    "name": "Jupiter",
+    "species": "horse",
+    "breed": "Warmblut",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 14,
+      "unit": "year"
+    }
+  },
+  "notes": "seit gestern akut lahm VL\nT 37,9\nHF 48\nLahmheit VL 4/5, Pulsation Zehenarterie VL verstärkt\nHufzange VL medial an der Zehe positiv\nHufabszess VL\nSohle ausgeschnitten, Abszess eröffnet\nBreiumschlag und Hufschuh angelegt\nca. 540 kg (Maßband)\nPhenylbutazon 2 g p.o. 2x tgl. 3 Tage abgegeben\nBreiumschlag täglich wechseln, Boxenruhe\nWV in 3 Tagen",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [
+      "Phenylbutazon"
+    ],
+    "assessment_text": "Hufabszess VL",
+    "temperature": 37.9,
+    "statuses": {
+      "treatments[0]": "performed",
+      "treatments[1]": "performed",
+      "medications[0]": "dispensed"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "seit gestern akut lahm VL",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          25
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 37.9,
+          "unit": "C",
+          "source_spans": [
+            [
+              26,
+              32
+            ]
+          ]
+        },
+        "heart_rate": {
+          "value": 48,
+          "unit": "/min",
+          "source_spans": [
+            [
+              33,
+              38
+            ]
+          ]
+        },
+        "respiratory_rate": null,
+        "weight": {
+          "value": 540,
+          "unit": "kg",
+          "source_spans": [
+            [
+              219,
+              239
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "Bewegungsapparat",
+          "text": "Lahmheit VL 4/5, Pulsation Zehenarterie VL verstärkt",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              39,
+              91
+            ]
+          ]
+        },
+        {
+          "system": "Huf",
+          "text": "Hufzange VL medial an der Zehe positiv",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              92,
+              130
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": "Hufabszess VL",
+      "differentials": [],
+      "source_spans": [
+        [
+          131,
+          144
+        ]
+      ]
+    },
+    "treatments": [
+      {
+        "type": "procedure",
+        "text": "Sohle ausgeschnitten, Abszess eröffnet",
+        "status": "performed",
+        "source_spans": [
+          [
+            145,
+            183
+          ]
+        ]
+      },
+      {
+        "type": "other",
+        "text": "Breiumschlag und Hufschuh angelegt",
+        "status": "performed",
+        "source_spans": [
+          [
+            184,
+            218
+          ]
+        ]
+      }
+    ],
+    "medications": [
+      {
+        "drug": "Phenylbutazon",
+        "class_as_written": null,
+        "dose": 2,
+        "dose_unit": "g",
+        "route": "p.o.",
+        "frequency": "2x tgl.",
+        "duration": "3 Tage",
+        "status": "dispensed",
+        "source_spans": [
+          [
+            240,
+            287
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "WV in 3 Tagen",
+        "interval": {
+          "value": 3,
+          "unit": "day"
+        },
+        "source_spans": [
+          [
+            329,
+            342
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "Breiumschlag täglich wechseln, Boxenruhe",
+          "source_spans": [
+            [
+              288,
+              328
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

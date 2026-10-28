@@ -1,0 +1,194 @@
+{
+  "id": "442-gen-horse-hoof-abscess-dose-en",
+  "language": "en",
+  "synthetic": true,
+  "header": {
+    "name": "Comet",
+    "species": "horse",
+    "breed": "Warmblood",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 14,
+      "unit": "year"
+    }
+  },
+  "notes": "acutely lame LF since yesterday\nT 37.9\nHR 48\nLF lameness 4/5, increased digital pulse LF\nhoof testers positive medial toe LF\nsubsolar abscess LF\nsole pared, abscess drained\npoultice and hoof boot applied\napprox 540 kg (tape)\nphenylbutazone 2 g PO BID 3 days dispensed\nchange poultice daily, box rest\nrecheck in 3 days",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [
+      "phenylbutazone"
+    ],
+    "assessment_text": "subsolar abscess LF",
+    "temperature": 37.9,
+    "statuses": {
+      "treatments[0]": "performed",
+      "treatments[1]": "performed",
+      "medications[0]": "dispensed"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "acutely lame LF since yesterday",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          31
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 37.9,
+          "unit": "C",
+          "source_spans": [
+            [
+              32,
+              38
+            ]
+          ]
+        },
+        "heart_rate": {
+          "value": 48,
+          "unit": "/min",
+          "source_spans": [
+            [
+              39,
+              44
+            ]
+          ]
+        },
+        "respiratory_rate": null,
+        "weight": {
+          "value": 540,
+          "unit": "kg",
+          "source_spans": [
+            [
+              204,
+              224
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "musculoskeletal",
+          "text": "LF lameness 4/5, increased digital pulse LF",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              45,
+              88
+            ]
+          ]
+        },
+        {
+          "system": "hoof",
+          "text": "hoof testers positive medial toe LF",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              89,
+              124
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": "subsolar abscess LF",
+      "differentials": [],
+      "source_spans": [
+        [
+          125,
+          144
+        ]
+      ]
+    },
+    "treatments": [
+      {
+        "type": "procedure",
+        "text": "sole pared, abscess drained",
+        "status": "performed",
+        "source_spans": [
+          [
+            145,
+            172
+          ]
+        ]
+      },
+      {
+        "type": "other",
+        "text": "poultice and hoof boot applied",
+        "status": "performed",
+        "source_spans": [
+          [
+            173,
+            203
+          ]
+        ]
+      }
+    ],
+    "medications": [
+      {
+        "drug": "phenylbutazone",
+        "class_as_written": null,
+        "dose": 2,
+        "dose_unit": "g",
+        "route": "PO",
+        "frequency": "BID",
+        "duration": "3 days",
+        "status": "dispensed",
+        "source_spans": [
+          [
+            225,
+            267
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "recheck in 3 days",
+        "interval": {
+          "value": 3,
+          "unit": "day"
+        },
+        "source_spans": [
+          [
+            300,
+            317
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "change poultice daily, box rest",
+          "source_spans": [
+            [
+              268,
+              299
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

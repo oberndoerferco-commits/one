@@ -1,0 +1,143 @@
+{
+  "id": "402-gen-shorthand-otitis-q12h-it",
+  "language": "it",
+  "synthetic": true,
+  "header": {
+    "name": "Bobby",
+    "species": "dog",
+    "breed": "Pastore tedesco",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 5,
+      "unit": "year"
+    }
+  },
+  "notes": "scuote la testa da 3 giorni, si gratta l'orecchio dx\nEOG nella norma\ncondotto dx eritematoso, cerume ++, sx nella norma\ncitologia dx: cocchi +++, bastoncelli neg\notite esterna dx\nOtomax 4 gtt orecchio dx ogni 12 ore per 7 giorni, consegnato\ncontrollo tra 10-14 giorni",
+  "expect": {
+    "missing_includes": [
+      "patient.weight"
+    ],
+    "drugs": [
+      "Otomax"
+    ],
+    "assessment_text": "otite esterna dx",
+    "statuses": {
+      "medications[0]": "dispensed",
+      "diagnostics[0]": "performed"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "scuote la testa da 3 giorni, si gratta l'orecchio dx",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          52
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "generale",
+          "text": "EOG nella norma",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              53,
+              68
+            ]
+          ]
+        },
+        {
+          "system": "orecchie",
+          "text": "condotto dx eritematoso, cerume ++, sx nella norma",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              69,
+              119
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "citologia auricolare dx",
+        "status": "performed",
+        "result": "cocchi +++, bastoncelli neg",
+        "source_spans": [
+          [
+            120,
+            161
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": "otite esterna dx",
+      "differentials": [],
+      "source_spans": [
+        [
+          162,
+          178
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "Otomax",
+        "class_as_written": null,
+        "dose": 4,
+        "dose_unit": "gtt",
+        "route": "orecchio dx",
+        "frequency": "ogni 12 ore",
+        "duration": "7 giorni",
+        "status": "dispensed",
+        "source_spans": [
+          [
+            179,
+            240
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "controllo tra 10-14 giorni",
+        "interval": null,
+        "source_spans": [
+          [
+            241,
+            267
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "id": "426-gen-owner-vs-vet-weight-thirst-it",
+  "language": "it",
+  "synthetic": true,
+  "header": {
+    "name": "Fiocca",
+    "species": "cat",
+    "breed": "European Shorthair",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 11,
+      "unit": "year"
+    }
+  },
+  "notes": "la proprietaria pensa che beva molto di più\nsecondo la proprietaria 4 kg sulla bilancia di casa\nmangia normalmente secondo la proprietaria\npeso 4,6 kg\nidratazione normale, BCS 6/9\nnessun nodulo tiroideo palpabile\nPS urine 1,045\nesami del sangue programmati la settimana prossima, a digiuno\ncontrollo con esami la settimana prossima",
+  "expect": {
+    "missing_includes": [
+      "assessment"
+    ],
+    "drugs": [],
+    "assessment_text": null,
+    "statuses": {
+      "diagnostics[0]": "performed",
+      "diagnostics[1]": "planned"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "la proprietaria pensa che beva molto di più",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          43
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "peso",
+        "value": "secondo la proprietaria 4 kg sulla bilancia di casa",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            44,
+            95
+          ]
+        ]
+      },
+      {
+        "finding": "appetito",
+        "value": "mangia normalmente secondo la proprietaria",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            96,
+            138
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": {
+          "value": 4.6,
+          "unit": "kg",
+          "source_spans": [
+            [
+              139,
+              150
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "generale",
+          "text": "idratazione normale, BCS 6/9",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              151,
+              179
+            ]
+          ]
+        },
+        {
+          "system": "collo",
+          "text": "nessun nodulo tiroideo palpabile",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              180,
+              212
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "peso specifico urinario",
+        "status": "performed",
+        "result": "1,045",
+        "source_spans": [
+          [
+            213,
+            227
+          ]
+        ]
+      },
+      {
+        "test": "esami del sangue",
+        "status": "planned",
+        "result": null,
+        "source_spans": [
+          [
+            228,
+            289
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": null,
+      "differentials": [],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "controllo con esami la settimana prossima",
+        "interval": null,
+        "source_spans": [
+          [
+            290,
+            331
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "id": "142-gen-shorthand-gastro-en",
+  "language": "en",
+  "synthetic": true,
+  "header": {
+    "name": "Ozzy",
+    "species": "dog",
+    "breed": "Cocker Spaniel",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 4,
+      "unit": "year"
+    }
+  },
+  "notes": "V+ x2 since yesterday, D-\ninappetent since yesterday\nBAR, MM pk, CRT<2\nT 38.8\nHR 100\nRR 24\nabd soft, NAD on palp\nsusp. acute gastritis\nCerenia given\nbland diet, small meals\nrecheck if V persists",
+  "expect": {
+    "missing_includes": [
+      "medications[0].dose",
+      "medications[0].route"
+    ],
+    "drugs": [
+      "Cerenia"
+    ],
+    "assessment_text": "susp. acute gastritis",
+    "temperature": 38.8,
+    "statuses": {
+      "medications[0]": "performed"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "V+ x2 since yesterday, D-",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          25
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "appetite",
+        "value": "inappetent since yesterday",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            26,
+            52
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.8,
+          "unit": "C",
+          "source_spans": [
+            [
+              71,
+              77
+            ]
+          ]
+        },
+        "heart_rate": {
+          "value": 100,
+          "unit": "/min",
+          "source_spans": [
+            [
+              78,
+              84
+            ]
+          ]
+        },
+        "respiratory_rate": {
+          "value": 24,
+          "unit": "/min",
+          "source_spans": [
+            [
+              85,
+              90
+            ]
+          ]
+        },
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "general",
+          "text": "BAR, MM pk, CRT<2",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              53,
+              70
+            ]
+          ]
+        },
+        {
+          "system": "abdomen",
+          "text": "abd soft, NAD on palp",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              91,
+              112
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": "susp. acute gastritis",
+      "differentials": [],
+      "source_spans": [
+        [
+          113,
+          134
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "Cerenia",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": null,
+        "frequency": null,
+        "duration": null,
+        "status": "performed",
+        "source_spans": [
+          [
+            135,
+            148
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "recheck if V persists",
+        "interval": null,
+        "source_spans": [
+          [
+            173,
+            194
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "bland diet, small meals",
+          "source_spans": [
+            [
+              149,
+              172
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

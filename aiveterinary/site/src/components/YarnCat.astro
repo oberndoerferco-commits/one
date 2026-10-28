@@ -1,0 +1,33 @@
+---
+/**
+ * Loading indicator: the sketch cat watching a ball of yarn roll back and forth. SVG + CSS;
+ * the ball stops under prefers-reduced-motion and the text label carries the status.
+ */
+import './art.css';
+import { place } from './animal-art';
+interface Props { label?: string; size?: number; class?: string }
+const { label = 'Loading…', size = 128, class: cls = '' } = Astro.props;
+const SW = 2.2;
+const scene = `
+<path d="M8 87.4h112" stroke="var(--sk-shadow)" stroke-width="3"/>
+${place('cat', 4, 10, 1.7, SW)}
+<path class="yc-strand" d="M90 84c-6 2.4-13 2.6-19 1.2" stroke-width="1.6"/>
+<g class="yc-ball"><circle cx="98" cy="78" r="9" fill="var(--sk-accent)"/><path class="d" d="M91 74c4-3 10-4 15-2M90.4 79c5-3.6 12-4.4 16.6-2.4M92.6 84c4-2.4 9-3 12.4-2"/></g>
+`;
+---
+<div class={`yarn-cat ${cls}`} role="status" aria-live="polite">
+  <svg class="sk" style={`--sw:${SW}`} width={size} height={size * 0.75} viewBox="0 0 128 96" fill="none" stroke="var(--sk-line)" stroke-width={SW} stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <Fragment set:html={scene} />
+  </svg>
+  <span class="yc-label">{label}</span>
+</div>
+
+<style is:global>
+  .yarn-cat { display: inline-flex; flex-direction: column; align-items: center; gap: 6px; }
+  .yc-label { font-size: .9rem; color: var(--ink-3); }
+  .yc-ball { transform-box: fill-box; transform-origin: center; animation: yc-roll 1.8s ease-in-out infinite; }
+  .yc-strand { stroke-dasharray: 26; animation: yc-strand 1.8s ease-in-out infinite; }
+  @keyframes yc-roll { 0%, 100% { transform: translateX(0) rotate(0deg); } 50% { transform: translateX(-8px) rotate(-60deg); } }
+  @keyframes yc-strand { 0%, 100% { stroke-dashoffset: 0; } 50% { stroke-dashoffset: 6; } }
+  @media (prefers-reduced-motion: reduce) { .yc-ball, .yc-strand { animation: none; } }
+</style>

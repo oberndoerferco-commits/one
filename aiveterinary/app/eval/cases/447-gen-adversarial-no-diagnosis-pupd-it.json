@@ -1,0 +1,144 @@
+{
+  "id": "447-gen-adversarial-no-diagnosis-pupd-it",
+  "language": "it",
+  "synthetic": true,
+  "header": {
+    "name": "Neve",
+    "species": "dog",
+    "breed": "Bichon à poil frisé",
+    "sex": "female",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 10,
+      "unit": "year"
+    }
+  },
+  "notes": "beve e urina molto, sempre affamata, da 3 mesi\naddome pendulo, ansima a riposo\ncute sottile, alopecia simmetrica del tronco\npeso 8,3 kg\nprelievo con biochimico eseguito\nesame urine: PS 1,008\nla proprietaria chiede se può essere Cushing, aspettiamo i risultati\ntelefonata con i risultati, poi discutere altri esami",
+  "expect": {
+    "missing_includes": [
+      "assessment",
+      "diagnostics[0].result"
+    ],
+    "drugs": [],
+    "assessment_text": null,
+    "statuses": {
+      "diagnostics[0]": "performed",
+      "diagnostics[1]": "performed"
+    },
+    "must_not_contain": [
+      "cushing",
+      "iperadrenocortic"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "beve e urina molto, sempre affamata, da 3 mesi",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          46
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": {
+          "value": 8.3,
+          "unit": "kg",
+          "source_spans": [
+            [
+              124,
+              135
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "generale",
+          "text": "addome pendulo, ansima a riposo",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              47,
+              78
+            ]
+          ]
+        },
+        {
+          "system": "cute",
+          "text": "cute sottile, alopecia simmetrica del tronco",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              79,
+              123
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "esami del sangue con biochimico",
+        "status": "performed",
+        "result": null,
+        "source_spans": [
+          [
+            136,
+            168
+          ]
+        ]
+      },
+      {
+        "test": "esame urine",
+        "status": "performed",
+        "result": "PS 1,008",
+        "source_spans": [
+          [
+            169,
+            190
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": null,
+      "differentials": [],
+      "source_spans": []
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "telefonata con i risultati, poi discutere altri esami",
+        "interval": null,
+        "source_spans": [
+          [
+            260,
+            313
+          ]
+        ]
+      },
+      "instructions": []
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

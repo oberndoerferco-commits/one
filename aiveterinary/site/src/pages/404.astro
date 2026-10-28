@@ -1,0 +1,35 @@
+---
+// Served by the host for any unknown URL, with status 404. Cloudflare Pages needs this file: without a
+// top-level 404.html it treats the site as a single-page app and answers every unknown URL with the
+// home page and status 200 (soft 404s). One page for all three languages, since the URL may be anything.
+import Base from '../layouts/Base.astro';
+const T = [
+  { lang: 'en', h: 'Page not found', p: 'This address does not exist (any more). The article may have moved: search the animal guide or start from the home page.', links: [['/animals', 'Animal guide and search'], ['/animals/symptoms', 'Symptoms'], ['/emergency', 'Is it an emergency?'], ['/', 'Home page']] },
+  { lang: 'it', h: 'Pagina non trovata', p: 'Questo indirizzo non esiste (più). L’articolo potrebbe essere stato spostato: cerca nella guida agli animali o riparti dalla pagina iniziale.', links: [['/it/animals', 'Guida agli animali e ricerca'], ['/it/animals/symptoms', 'Sintomi'], ['/it/emergency', 'È un’emergenza?'], ['/it', 'Pagina iniziale']] },
+  { lang: 'de', h: 'Seite nicht gefunden', p: 'Diese Adresse gibt es nicht (mehr). Der Artikel ist vielleicht umgezogen: Suchen Sie im Tierratgeber oder beginnen Sie auf der Startseite.', links: [['/de/animals', 'Tierratgeber und Suche'], ['/de/animals/symptoms', 'Symptome'], ['/de/emergency', 'Ist es ein Notfall?'], ['/de', 'Startseite']] },
+];
+---
+<Base title="Page not found · Pagina non trovata · Seite nicht gefunden" description="This page does not exist. Questa pagina non esiste. Diese Seite gibt es nicht." noindex>
+  <section class="wrap nf">
+    <p class="nf-code" aria-hidden="true">404</p>
+    {T.map((x, i) => (
+      <div class="nf-block" lang={x.lang}>
+        {i === 0 ? <h1>{x.h}</h1> : <h2>{x.h}</h2>}
+        <p>{x.p}</p>
+        <ul>{x.links.map(([href, label]) => <li><a href={href}>{label}</a></li>)}</ul>
+      </div>
+    ))}
+    <p class="nf-urgent"><strong>Emergency? · Emergenza? · Notfall?</strong> Contact a veterinary clinic now. · Contatta subito una clinica veterinaria. · Wenden Sie sich sofort an eine Tierklinik.</p>
+  </section>
+</Base>
+<style>
+  .nf { padding: 40px 16px 56px; max-width: 720px; }
+  .nf-code { font-family: var(--font-display); font-size: 3.2rem; font-weight: 600; color: var(--accent); margin: 0 0 4px; line-height: 1; }
+  .nf-block { padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .nf-block h1, .nf-block h2 { font-size: 1.6rem; margin: 0 0 8px; }
+  .nf-block p { margin: 0 0 10px; color: var(--ink-2); }
+  .nf-block ul { margin: 0; padding-left: 1.2em; }
+  .nf-block li { margin: 0; }
+  .nf-block a { display: inline-block; padding: 10px 0; }
+  .nf-urgent { margin: 22px 0 0; padding: 14px 18px; border-radius: 14px; background: var(--danger-soft); }
+</style>

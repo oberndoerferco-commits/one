@@ -1,0 +1,163 @@
+{
+  "id": "433-gen-guinea-pig-mites-en",
+  "language": "en",
+  "synthetic": true,
+  "header": {
+    "name": "Peanut",
+    "species": "other",
+    "breed": "Guinea pig",
+    "sex": "female",
+    "neuter_status": "intact",
+    "age": {
+      "value": 2,
+      "unit": "year"
+    }
+  },
+  "notes": "scratching and hair loss for 2 weeks\nwt 980 g\nalopecia and crusts dorsum, intense pruritus on handling\nskin scrape: mites +\nmite infestation\nivermectin spot-on dispensed, topical, repeat in 10 days\ntreat both guinea pigs, clean the cage\nvitamin C rich vegetables daily\nrecheck in 10 days",
+  "expect": {
+    "missing_includes": [
+      "medications[0].dose"
+    ],
+    "drugs": [
+      "ivermectin spot-on"
+    ],
+    "assessment_text": "mite infestation",
+    "statuses": {
+      "medications[0]": "dispensed",
+      "diagnostics[0]": "performed"
+    }
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "scratching and hair loss for 2 weeks",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          36
+        ]
+      ]
+    },
+    "history": [],
+    "examination": {
+      "vitals": {
+        "temperature": null,
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": {
+          "value": 980,
+          "unit": "g",
+          "source_spans": [
+            [
+              37,
+              45
+            ]
+          ]
+        },
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "skin",
+          "text": "alopecia and crusts dorsum, intense pruritus on handling",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              46,
+              102
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [
+      {
+        "test": "skin scrape",
+        "status": "performed",
+        "result": "mites +",
+        "source_spans": [
+          [
+            103,
+            123
+          ]
+        ]
+      }
+    ],
+    "assessment": {
+      "text": "mite infestation",
+      "differentials": [],
+      "source_spans": [
+        [
+          124,
+          140
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [
+      {
+        "drug": "ivermectin spot-on",
+        "class_as_written": null,
+        "dose": null,
+        "dose_unit": null,
+        "route": "topical",
+        "frequency": "repeat in 10 days",
+        "duration": null,
+        "status": "dispensed",
+        "source_spans": [
+          [
+            141,
+            197
+          ]
+        ]
+      }
+    ],
+    "plan": {
+      "follow_up": {
+        "text": "recheck in 10 days",
+        "interval": {
+          "value": 10,
+          "unit": "day"
+        },
+        "source_spans": [
+          [
+            269,
+            287
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "treat both guinea pigs, clean the cage",
+          "source_spans": [
+            [
+              198,
+              236
+            ]
+          ]
+        },
+        {
+          "text": "vitamin C rich vegetables daily",
+          "source_spans": [
+            [
+              237,
+              268
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "id": "454-gen-other-dog-park-cough-en",
+  "language": "en",
+  "synthetic": true,
+  "header": {
+    "name": "Rufus",
+    "species": "dog",
+    "breed": "Cocker Spaniel",
+    "sex": "male",
+    "neuter_status": "neutered",
+    "age": {
+      "value": 3,
+      "unit": "year"
+    }
+  },
+  "notes": "dry cough since Saturday\nplayed with another dog at the park last week that had kennel cough and a fever of 39.9\neating and playing normally\nT 38.6\ncough on tracheal palpation, lungs clear\ninfectious tracheobronchitis suspected\nno contact with other dogs for 2 weeks\nrecheck if not better in 1 week",
+  "expect": {
+    "missing_includes": [],
+    "drugs": [],
+    "assessment_text": "infectious tracheobronchitis suspected",
+    "temperature": 38.6,
+    "statuses": {},
+    "must_not_contain": [
+      "39.9",
+      "fever",
+      "kennel cough"
+    ]
+  },
+  "fixture_record": {
+    "schema_version": "0.2",
+    "patient": {
+      "name": null,
+      "species": null,
+      "breed": null,
+      "sex": null,
+      "neuter_status": null,
+      "age": null,
+      "weight": null
+    },
+    "presenting_complaint": {
+      "text": "dry cough since Saturday",
+      "source_role": "owner_reported",
+      "source_spans": [
+        [
+          0,
+          24
+        ]
+      ]
+    },
+    "history": [
+      {
+        "finding": "appetite",
+        "value": "eating and playing normally",
+        "source_role": "owner_reported",
+        "source_spans": [
+          [
+            113,
+            140
+          ]
+        ]
+      }
+    ],
+    "examination": {
+      "vitals": {
+        "temperature": {
+          "value": 38.6,
+          "unit": "C",
+          "source_spans": [
+            [
+              141,
+              147
+            ]
+          ]
+        },
+        "heart_rate": null,
+        "respiratory_rate": null,
+        "weight": null,
+        "crt_seconds": null
+      },
+      "findings": [
+        {
+          "system": "respiratory",
+          "text": "cough on tracheal palpation, lungs clear",
+          "source_role": "vet_observed",
+          "source_spans": [
+            [
+              148,
+              188
+            ]
+          ]
+        }
+      ]
+    },
+    "diagnostics": [],
+    "assessment": {
+      "text": "infectious tracheobronchitis suspected",
+      "differentials": [],
+      "source_spans": [
+        [
+          189,
+          227
+        ]
+      ]
+    },
+    "treatments": [],
+    "medications": [],
+    "plan": {
+      "follow_up": {
+        "text": "recheck if not better in 1 week",
+        "interval": {
+          "value": 1,
+          "unit": "week"
+        },
+        "source_spans": [
+          [
+            267,
+            298
+          ]
+        ]
+      },
+      "instructions": [
+        {
+          "text": "no contact with other dogs for 2 weeks",
+          "source_spans": [
+            [
+              228,
+              266
+            ]
+          ]
+        }
+      ]
+    },
+    "missing": [],
+    "uncertain": []
+  }
+}
