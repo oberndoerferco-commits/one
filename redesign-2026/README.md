@@ -353,3 +353,9 @@ Owner's terms: DHL Standard free; DHL Express free from €300; below €300 Exp
   - snippets/obm-notify-me.liquid: "Notify me" wording drops "again" for coming-soon pieces.
   - templates/index.json: "Coming soon" product row (3 columns) between the two squares and Explore. Copy in docs/2026-11-01-index-coming-soon.json.
 - To release a piece: set the price, restore stock, remove the `coming-soon` tag, then publish to the other channels.
+
+## 1 November: currency shown with the country
+
+- Currency follows the country (Shopify Markets; Italy, Germany and the EU market are EUR, US is USD, UK is GBP). No separate currency picker is possible without changing the shipping country.
+- sections/obm-footer.liquid and sections/obm-mobile-menu-2026.liquid: the current value reads "Italy · EUR €" and each option "United States — USD $". In the draft theme 210134794565 (with Coming soon); checksums verified.
+- Owner sees USD in Italy: our test connection (US address) is served USD at the root, so the store goes by the visitor's address. Likely a saved US country or a VPN / iCloud Private Relay; picking Italy in the footer fixes it.

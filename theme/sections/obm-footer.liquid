@@ -67,15 +67,16 @@
     {%- if localization.available_countries.size > 1 -%}
       {%- form 'localization', id: 'ObmFooterCountry', class: 'obm-footer__country' -%}
         <label for="ObmCountry">Shipping to:</label>
+        {%- comment -%} Currency follows the country (Shopify Markets), so each country names its currency (owner, 1 November). {%- endcomment -%}
         <select id="ObmCountry" name="country_code" onchange="this.form.submit()">
           {%- for country in localization.available_countries -%}
-            <option value="{{ country.iso_code }}"{% if country.iso_code == localization.country.iso_code %} selected{% endif %}>{{ country.name }}</option>
+            <option value="{{ country.iso_code }}"{% if country.iso_code == localization.country.iso_code %} selected{% endif %}>{{ country.name }} — {{ country.currency.iso_code }} {{ country.currency.symbol }}</option>
           {%- endfor -%}
         </select>
         <input type="hidden" name="return_to" value="{{ request.path }}">
       {%- endform -%}
     {%- else -%}
-      <span class="obm-footer__country">Shipping to: {{ localization.country.name }}</span>
+      <span class="obm-footer__country">Shipping to: {{ localization.country.name }} · {{ localization.country.currency.iso_code }} {{ localization.country.currency.symbol }}</span>
     {%- endif -%}
     {%- if section.settings.instagram != blank -%}
       <a class="obm-footer__social" href="{{ section.settings.instagram }}" aria-label="Instagram" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/></svg></a>
@@ -126,7 +127,7 @@
   @media screen and (min-width: 750px) { .obm-footer__bottom { padding: 40px 40px 36px; } }
   .obm-footer__country { display: flex; align-items: center; gap: 6px; min-width: 0; max-width: 100%; font-size: 14px; }
   .obm-footer__country label { white-space: nowrap; }
-  .obm-footer__country select { min-width: 0; max-width: min(220px, 60vw); text-overflow: ellipsis; border: 0; border-bottom: 1px solid #fff; background: transparent; font: inherit; font-size: 14px; color: #fff; padding: 2px 0; border-radius: 0; -webkit-appearance: none; appearance: none; cursor: pointer; }
+  .obm-footer__country select { min-width: 0; max-width: min(280px, 64vw); text-overflow: ellipsis; border: 0; border-bottom: 1px solid #fff; background: transparent; font: inherit; font-size: 14px; color: #fff; padding: 2px 0; border-radius: 0; -webkit-appearance: none; appearance: none; cursor: pointer; }
   .obm-footer__social { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; }
   .obm-footer__copy { width: 100%; margin: 0; font-size: 12px; color: rgba(255, 255, 255, 0.75); }
   .obm-footer__country select option { color: #1c1714; background: #fff; }

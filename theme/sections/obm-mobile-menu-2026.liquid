@@ -46,17 +46,17 @@
         {%- form 'localization', class: 'obm-menu__country' -%}
           <label for="ObmMenuCountry">{{ section.settings.ship_label }}</label>
           <span class="obm-menu__select">
-            <span class="obm-menu__value">{{ localization.country.name }}</span>
+            <span class="obm-menu__value">{{ localization.country.name }} · {{ localization.country.currency.iso_code }} {{ localization.country.currency.symbol }}</span>
             <select id="ObmMenuCountry" name="country_code" onchange="this.form.submit()">
               {%- for country in localization.available_countries -%}
-                <option value="{{ country.iso_code }}"{% if country.iso_code == localization.country.iso_code %} selected{% endif %}>{{ country.name }}</option>
+                <option value="{{ country.iso_code }}"{% if country.iso_code == localization.country.iso_code %} selected{% endif %}>{{ country.name }} — {{ country.currency.iso_code }} {{ country.currency.symbol }}</option>
               {%- endfor -%}
             </select>
           </span>
           <input type="hidden" name="return_to" value="{{ request.path }}">
         {%- endform -%}
       {%- else -%}
-        <span class="obm-menu__country">{{ section.settings.ship_label }} <span class="obm-menu__value">{{ localization.country.name }}</span></span>
+        <span class="obm-menu__country">{{ section.settings.ship_label }} <span class="obm-menu__value">{{ localization.country.name }} · {{ localization.country.currency.iso_code }} {{ localization.country.currency.symbol }}</span></span>
       {%- endif -%}
     </li>
   </ul>
