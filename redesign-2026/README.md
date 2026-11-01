@@ -359,3 +359,11 @@ Owner's terms: DHL Standard free; DHL Express free from €300; below €300 Exp
 - Currency follows the country (Shopify Markets; Italy, Germany and the EU market are EUR, US is USD, UK is GBP). No separate currency picker is possible without changing the shipping country.
 - sections/obm-footer.liquid and sections/obm-mobile-menu-2026.liquid: the current value reads "Italy · EUR €" and each option "United States — USD $". In the draft theme 210134794565 (with Coming soon); checksums verified.
 - Owner sees USD in Italy: our test connection (US address) is served USD at the root, so the store goes by the visitor's address. Likely a saved US country or a VPN / iCloud Private Relay; picking Italy in the footer fixes it.
+
+## 1 November: Half-Zip OM in charcoal and navy
+
+- Owner's photos (1280x1920, front and back, plain) squared onto the site ground at 2400px with the black half-zip's framing: scripts/tee-photos/halfzip-new-colours.py.
+- Backs: the white O M and OBERNDÖRFER MILANO artwork lifted from the black back photo and printed in the same place (owner: "put also the logo in the back").
+- Navy matched to the Wide-Leg Joggers OM (owner): Lab shift of the fabric only (zip left alone); fabric median now L42 a131 b116 (OpenCV Lab), same as the joggers.
+- New colour swatches: Charcoal #343434 (814056243525), Navy #24283A (handle om-navy, 814056276293). The old "navy" entry #282099 is untouched.
+- 8 variants (Charcoal, Navy × S–XL), €150, not tracked, continue selling, like Black. Variant image = back photo, like Black and White. Description and SEO name the four colours. Checked live on /products/half-zip-om.
