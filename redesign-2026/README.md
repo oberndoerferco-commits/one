@@ -367,3 +367,11 @@ Owner's terms: DHL Standard free; DHL Express free from €300; below €300 Exp
 - Navy matched to the Wide-Leg Joggers OM (owner): Lab shift of the fabric only (zip left alone); fabric median now L42 a131 b116 (OpenCV Lab), same as the joggers.
 - New colour swatches: Charcoal #343434 (814056243525), Navy #24283A (handle om-navy, 814056276293). The old "navy" entry #282099 is untouched.
 - 8 variants (Charcoal, Navy × S–XL), €150, not tracked, continue selling, like Black. Variant image = back photo, like Black and White. Description and SEO name the four colours. Checked live on /products/half-zip-om.
+
+## 1 November: white hoodies replaced by navy
+
+- Owner: "replace the white hoodies with a navy blue hoodie". Hoodie OM (16175785378117) and Hoodie with Logo (16175785541957); the draft Hoodie OBERNDÖRFER MILANO was left alone.
+- Photos: the black hoodie photos (washed black, white prints) recoloured to the Wide-Leg Joggers OM navy, fabric only; prints, woven label and cord tips untouched. scripts/tee-photos/hoodie-navy.py. Fabric median L42 a132 b116 (OpenCV Lab), same as the joggers and the navy half-zip.
+- The White option value was relinked to the Navy swatch (om-navy #24283A), so the variants keep their ids and settings (tracked, continue selling, S–XXL as before). Variant image = navy back.
+- The white photos were detached from both products (still in Files: obm-hoodie-om-white-*-v3, obm-hoodie-lattice-white-*-v3).
+- Descriptions and the Hoodie OM SEO description say grey, black or navy. Checked live (Hoodie with Logo page; Hoodie OM via /products/initials-hoodie.js).
