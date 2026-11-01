@@ -6,7 +6,8 @@
   {% unless product == blank %}
     {%- comment -%} Price-on-request pieces (sofas, wall art) are held back from sale on purpose:
     no "Notify me" / sold-out badge on their cards (owner, 18 October). {%- endcomment -%}
-    {%- unless product.tags contains 'price-on-request' -%}
+    {%- comment -%} Coming-soon pieces (owner, 1 November) say so in the price line, so no badge either. {%- endcomment -%}
+    {%- unless product.tags contains 'price-on-request' or product.tags contains 'coming-soon' -%}
     {%- if product.available == false or product.compare_at_price > product.price -%}
       <div
         class="product-badges product-badges--{{ settings.badge_position }}"

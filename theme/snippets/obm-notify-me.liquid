@@ -32,6 +32,22 @@
       assign t_send = 'Send'
       assign t_thanks = 'Thank you. We will write to you as soon as this piece is available again.'
   endcase
+
+  # Coming soon (owner, 1 November): pieces tagged "coming-soon" are not out of stock but not yet
+  # released, so the wording drops "again".
+  if product.tags contains 'coming-soon'
+    case request.locale.iso_code
+      when 'de'
+        assign t_intro = 'Hinterlassen Sie Ihre E-Mail-Adresse. Wir schreiben Ihnen, sobald dieses Stück erhältlich ist.'
+        assign t_thanks = 'Vielen Dank. Wir schreiben Ihnen, sobald dieses Stück erhältlich ist.'
+      when 'it'
+        assign t_intro = 'Lasci il suo indirizzo email. Le scriveremo non appena questo pezzo sarà disponibile.'
+        assign t_thanks = 'Grazie. Le scriveremo non appena questo pezzo sarà disponibile.'
+      else
+        assign t_intro = 'Leave your email address and we will write to you as soon as this piece is available.'
+        assign t_thanks = 'Thank you. We will write to you as soon as this piece is available.'
+    endcase
+  endif
 -%}
 {%- if any_soldout -%}
   {%- form 'contact', id: 'ObmNotify', class: 'obm-notify__form' -%}

@@ -338,3 +338,18 @@ Owner's terms: DHL Standard free; DHL Express free from €300; below €300 Exp
 - Ready to Wear sorted as outfits (manual order): Check Jacket, Jacket Progetto Campione; Hoodie with Logo + Joggers with Logo (the lattice set); Hoodie OM + Joggers OM + Half-Zip OM (the OM set); Twill Pants; T-shirts (with Logo, OM, Star patch, Logo Magenta, Logo Ochre); caps. Drafts at the end.
 - Jogger titles name the cut (owner): Wide-Leg Joggers OM, Regular-Fit Joggers with Logo; descriptions, SEO and alt texts to match; handles unchanged (/products/joggers-om, /products/joggers-with-logo).
 - Twill Pants (owner, 1 November): Steel, Taupe and Sage removed (15 variants deleted, no stock or orders; their 6 photos detached from the product, still in Files). Navy and Slate remain; description and SEO say navy or slate.
+
+## 1 November: coming soon (bracelets and jewelry pouch)
+
+- Photos came from the "Photo selection for website" session (pouch, 10 Oct) and the bracelet shoot (18 Oct); they were already on three draft products.
+- Products: Jewelry Pouch — TRAXNYC × Oberndörfer (16243282542917, 6 colours), White Onyx Bracelet (16277446459717), Silver Link Bracelet (16277446525253).
+  - Tagged `coming-soon`, set ACTIVE, published to the Online Store only (no Google/Meta/TikTok feeds: the prices are still €0 placeholders).
+  - Stock set from 1 to 0 on every variant (pouch: 1 per colour; each bracelet: 1) so nothing can be bought at €0. Restore it when the price is set.
+  - SEO descriptions added.
+- Collection "Coming soon" (/collections/coming-soon, 709678006597): automatic, every product tagged `coming-soon`. Remove the tag to release a piece.
+- Draft theme "REDESIGN 2026 - coming soon (draft)" (210134794565), duplicated from MAIN 209300128069:
+  - blocks/price.liquid: tag `coming-soon` shows "Coming soon / Demnächst / Prossimamente" instead of the price.
+  - blocks/_product-card-gallery.liquid: no sold-out badge on coming-soon cards.
+  - snippets/obm-notify-me.liquid: "Notify me" wording drops "again" for coming-soon pieces.
+  - templates/index.json: "Coming soon" product row (3 columns) between the two squares and Explore. Copy in docs/2026-11-01-index-coming-soon.json.
+- To release a piece: set the price, restore stock, remove the `coming-soon` tag, then publish to the other channels.
