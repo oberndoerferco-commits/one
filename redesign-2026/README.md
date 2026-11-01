@@ -380,3 +380,9 @@ Owner's terms: DHL Standard free; DHL Express free from €300; below €300 Exp
 
 - Silver Link and White Onyx bracelets: white background toned to the site ground (233,232,227) with a per-channel curve (white lands on the ground, shadows follow, silver barely moves): scripts/tee-photos/bracelet-ground.py. Protecting the onyx bead centres left white patches, so the whole frame is toned evenly.
 - New files *-v2.jpg on both products (same order and alt texts); the white-background originals were detached and stay in Files. Checked live via /products/<handle>.js.
+
+## 1 November: Coming soon row removed (for now)
+
+- Owner: "remove coming soon section for now". templates/index.json in draft 210134794565 is back to the three live sections (hero, two squares, Explore); checksum verified. The row's JSON stays in docs/2026-11-01-index-coming-soon.json to put back later.
+- Draft renamed "REDESIGN 2026 - currency in country picker (draft)". It still carries the coming-soon price/badge/notify-me handling (harmless without tagged products on the homepage) and the currency labels.
+- The three coming-soon products and /collections/coming-soon are unchanged (Online Store only, stock 0).

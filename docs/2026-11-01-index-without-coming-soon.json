@@ -1,0 +1,144 @@
+{
+  "sections": {
+    "hero_film": {
+      "type": "obm-panels",
+      "blocks": {
+        "panel_1": {
+          "type": "panel",
+          "settings": {
+            "image": "shopify://shop_images/IMG_3258_2.jpg",
+            "image_mobile": "shopify://shop_images/obm-2026-mirror-sun-phone.jpg",
+            "video_url": "",
+            "video_url_mobile": "",
+            "focal_x": 50,
+            "focal_y": 80,
+            "tone": "light",
+            "eyebrow": "Designed to fill up the empty spaces of your house and wardrobe",
+            "label": "Discover more",
+            "link": "shopify://collections/bags",
+            "label_2": "",
+            "link_2": ""
+          }
+        }
+      },
+      "block_order": [
+        "panel_1"
+      ],
+      "settings": {
+        "columns_desktop": "1",
+        "height_mode": "screen",
+        "offset_desktop": 0,
+        "offset_mobile": 0,
+        "height_desktop": 820,
+        "height_mobile": 640,
+        "shape_mobile": "fixed",
+        "show_on": "all",
+        "gap_top": 0
+      }
+    },
+    "two_squares": {
+      "type": "obm-panels",
+      "blocks": {
+        "panel_1": {
+          "type": "panel",
+          "settings": {
+            "image": "shopify://shop_images/obm-2026-sac-worn.jpg",
+            "video_url": "",
+            "video_url_mobile": "",
+            "focal_x": 50,
+            "focal_y": 30,
+            "tone": "light",
+            "eyebrow": "NEW IN",
+            "label": "Discover",
+            "link": "shopify://collections/new-in",
+            "label_2": "",
+            "link_2": ""
+          }
+        },
+        "panel_2": {
+          "type": "panel",
+          "settings": {
+            "image": "shopify://shop_images/obm-coll-home.jpg",
+            "video_url": "",
+            "video_url_mobile": "",
+            "focal_x": 50,
+            "focal_y": 75,
+            "tone": "light",
+            "eyebrow": "Home accessories",
+            "label": "Discover",
+            "link": "shopify://collections/home-accessories",
+            "label_2": "",
+            "link_2": ""
+          }
+        }
+      },
+      "block_order": [
+        "panel_1",
+        "panel_2"
+      ],
+      "settings": {
+        "columns_desktop": "2",
+        "height_mode": "fixed",
+        "offset_desktop": 0,
+        "offset_mobile": 0,
+        "height_desktop": 720,
+        "height_mobile": 500,
+        "shape_mobile": "square",
+        "show_on": "all",
+        "gap_top": 16
+      }
+    },
+    "services": {
+      "type": "obm-services",
+      "blocks": {
+        "service_2": {
+          "type": "service",
+          "settings": {
+            "image": "shopify://shop_images/obm-2026-atelier-zebra.jpg",
+            "label": "The Atelier",
+            "link": "shopify://pages/the-atelier"
+          }
+        },
+        "service_1": {
+          "type": "service",
+          "settings": {
+            "image": "shopify://shop_images/obm-2026-brass-stamp-studio.jpg",
+            "label": "Personalisation",
+            "link": "shopify://pages/personalization"
+          }
+        },
+        "service_3": {
+          "type": "service",
+          "settings": {
+            "image": "shopify://shop_images/oberndoerfer-bespoke-stacked-cases.jpg",
+            "label": "Leather care",
+            "link": "shopify://pages/leather-care-guide"
+          }
+        },
+        "service_4": {
+          "type": "service",
+          "settings": {
+            "image": "shopify://shop_images/oberndoerfer-cle-atelier-bench.jpg",
+            "label": "Work with us",
+            "link": "shopify://pages/work-with-us"
+          }
+        }
+      },
+      "block_order": [
+        "service_2",
+        "service_1",
+        "service_3",
+        "service_4"
+      ],
+      "settings": {
+        "heading": "Explore",
+        "desktop_count": "4"
+      }
+    }
+  },
+  "order": [
+    "hero_film",
+    "two_squares",
+    "services"
+  ]
+}
