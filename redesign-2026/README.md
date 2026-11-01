@@ -375,3 +375,8 @@ Owner's terms: DHL Standard free; DHL Express free from €300; below €300 Exp
 - The White option value was relinked to the Navy swatch (om-navy #24283A), so the variants keep their ids and settings (tracked, continue selling, S–XXL as before). Variant image = navy back.
 - The white photos were detached from both products (still in Files: obm-hoodie-om-white-*-v3, obm-hoodie-lattice-white-*-v3).
 - Descriptions and the Hoodie OM SEO description say grey, black or navy. Checked live (Hoodie with Logo page; Hoodie OM via /products/initials-hoodie.js).
+
+## 1 November: bracelet photos on the site ground
+
+- Silver Link and White Onyx bracelets: white background toned to the site ground (233,232,227) with a per-channel curve (white lands on the ground, shadows follow, silver barely moves): scripts/tee-photos/bracelet-ground.py. Protecting the onyx bead centres left white patches, so the whole frame is toned evenly.
+- New files *-v2.jpg on both products (same order and alt texts); the white-background originals were detached and stay in Files. Checked live via /products/<handle>.js.
