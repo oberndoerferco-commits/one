@@ -509,6 +509,8 @@ def sheet_art_net(doc, c):
           f'overall {span_x:g} x {c.net_h:g} · SCALE 1:1 · all dimensions mm')
     legend = [('cut', CUT), ('fold', FOLDC), ('blind deboss, cap, stud', TOOL),
               ('hot foil', GOLD), ('where the lap closes', LAPL)]
+    # the catch is a fitting, not artwork: it is dimensioned on the
+    # production sheets and deliberately left off this one
     lx = mx * MM
     for lab, col in legend:
         pg.draw_line(pymupdf.Point(lx, 25 * MM), pymupdf.Point(lx + 7 * MM, 25 * MM),
@@ -554,12 +556,6 @@ def sheet_art_net(doc, c):
                    fontname='Helvetica', fontsize=6.2, color=GOLD)
     dim_v(pg, word.y0, medal.y1, word.x0 - 9 * MM,
           f'{c.mark_h + c.gap + c.medal:g} overall', anchor='left', col=GOLD)
-
-    # --- the catch, in the lap's free edge --------------------------------
-    magnets(pg, P(0, 2.0)[0], P(0, 2.0)[1], c.L, k, c)
-    pg.insert_text(pymupdf.Point(*P(c.L / 2 + c.magnet / 2 + 5, 3.2)),
-                   f'magnetic catch, pair at {c.magnet:g} centres',
-                   fontname='Helvetica', fontsize=6.2, color=CUT)
 
     # --- panel names ------------------------------------------------------
     labels = {
