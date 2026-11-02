@@ -13,8 +13,7 @@ ONE PIECE, one column 170 wide, five rows, top to bottom:
 
 285 over the five rows. The top is 70 and the bottom 65 because the lid
 overhangs the front by the thickness of the front wall and the lap. Each
-end wall is 65 (matching row 4) by 55 (the wall height), with a 15 glue
-tab beyond it.
+end wall is 65 (matching row 4) by 55 (the wall height). No glue tab.
 
 HOW IT OPENS
 
@@ -409,10 +408,12 @@ def sheet_net(doc, c, s):
 
     # --- the two end walls, hung off the bottom row -----------------------
     for ex, which, tx in ((-c.H, RIGHT2, -c.H - c.end_tab), (c.L, LEFT2, c.L + c.H)):
-        pg.draw_rect(pymupdf.Rect(*P(tx, yb), *P(tx + c.end_tab, yb + c.Wb)),
-                     color=CUT, fill=(0.92, 0.92, 0.94), width=0.6, dashes='[2 2] 0')
-        pg.insert_text(pymupdf.Point(*P(tx + 2, yb + c.Wb / 2)), 'tab',
-                       fontname='Helvetica', fontsize=5.5, color=GREY)
+        if c.end_tab > 0:
+            pg.draw_rect(pymupdf.Rect(*P(tx, yb), *P(tx + c.end_tab, yb + c.Wb)),
+                         color=CUT, fill=(0.92, 0.92, 0.94), width=0.6,
+                         dashes='[2 2] 0')
+            pg.insert_text(pymupdf.Point(*P(tx + 2, yb + c.Wb / 2)), 'tab',
+                           fontname='Helvetica', fontsize=5.5, color=GREY)
         face(pg, *P(ex, yb), c.H, c.Wb, c, k, which=ALL4, border=True)
         pg.insert_text(pymupdf.Point(*P(ex + 3, yb + 9)), 'END WALL',
                        fontname='Helvetica-Bold', fontsize=6.5, color=(1, 1, 1))
@@ -459,8 +460,9 @@ def sheet_net(doc, c, s):
         line(pg, P(0, acc), P(c.L, acc), 1.1, FOLDC, '[3 2] 0')
     for xx in (0.0, c.L):
         line(pg, P(xx, yb), P(xx, yb + c.Wb), 1.1, FOLDC, '[3 2] 0')
-    for xx in (-c.H, c.L + c.H):
-        line(pg, P(xx, yb), P(xx, yb + c.Wb), 0.8, FOLDC, '[2 2] 0')
+    if c.end_tab > 0:
+        for xx in (-c.H, c.L + c.H):
+            line(pg, P(xx, yb), P(xx, yb + c.Wb), 0.8, FOLDC, '[2 2] 0')
 
     dim_h(pg, P(0, 0)[0], P(c.L, 0)[0], P(0, 0)[1] - 11 * MM, f'{c.L:g}')
     xd = P(-c.H - c.end_tab, 0)[0] - 12 * MM
@@ -473,7 +475,8 @@ def sheet_net(doc, c, s):
 
     note(pg, 30 * MM, P(0, c.net_h)[1] + 32 * MM, [
         'One piece. Lap down over the front, top over from the back, back '
-        'and front up off the bottom, end walls up off the bottom row.',
+        'and front up off the bottom, end walls up off the bottom row. '
+        'The end walls butt the back and the front; no glue tab.',
         'Every corner cap sits on a fold, because it wraps a real edge — '
         'eight corners, both ends of each of the four long folds.',
         'The lap has no cap on its free edge and the front wall none on its '
@@ -528,10 +531,11 @@ def sheet_art_net(doc, c):
 
     # --- end walls and their glue tabs ------------------------------------
     for ex, tx in ((-c.H, -c.H - c.end_tab), (c.L, c.L + c.H)):
-        pg.insert_text(pymupdf.Point(*P(tx + 2.5, yb + c.Wb / 2)), 'glue tab',
-                       fontname='Helvetica', fontsize=5.5, color=GREY)
+        if c.end_tab > 0:
+            pg.insert_text(pymupdf.Point(*P(tx + 2.5, yb + c.Wb / 2)), 'glue tab',
+                           fontname='Helvetica', fontsize=5.5, color=GREY)
         face(pg, *P(ex, yb), c.H, c.Wb, c, k, which=ALL4, border=True, fill=None)
-        pg.insert_text(pymupdf.Point(*P(ex + 3, yb + c.Wb / 2 + 2)), 'END WALL',
+        pg.insert_text(pymupdf.Point(*P(ex + 11, yb + c.Wb / 2 + 2)), 'END WALL',
                        fontname='Helvetica-Bold', fontsize=6.5, color=(0.25, 0.25, 0.25))
 
     # --- the five rows ----------------------------------------------------
@@ -550,7 +554,6 @@ def sheet_art_net(doc, c):
                    fontname='Helvetica', fontsize=6.2, color=GOLD)
     dim_v(pg, word.y0, medal.y1, word.x0 - 9 * MM,
           f'{c.mark_h + c.gap + c.medal:g} overall', anchor='left', col=GOLD)
-    dim_h(pg, word.x0, word.x1, word.y0 - 5 * MM, f'{c.mark_w:g}', col=GOLD)
 
     # --- the catch, in the lap's free edge --------------------------------
     magnets(pg, P(0, 2.0)[0], P(0, 2.0)[1], c.L, k, c)
@@ -591,8 +594,9 @@ def sheet_art_net(doc, c):
         line(pg, P(0, acc), P(c.L, acc), 1.0, FOLDC, '[3 2] 0')
     for xx in (0.0, c.L):
         line(pg, P(xx, yb), P(xx, yb + c.Wb), 1.0, FOLDC, '[3 2] 0')
-    for xx in (-c.H, c.L + c.H):
-        line(pg, P(xx, yb), P(xx, yb + c.Wb), 0.7, FOLDC, '[2 2] 0')
+    if c.end_tab > 0:
+        for xx in (-c.H, c.L + c.H):
+            line(pg, P(xx, yb), P(xx, yb + c.Wb), 0.7, FOLDC, '[2 2] 0')
 
     # --- dimensions -------------------------------------------------------
     dim_h(pg, P(0, 0)[0], P(c.L, 0)[0], P(0, 0)[1] - 8 * MM, f'{c.L:g}')
@@ -624,7 +628,8 @@ def main():
     ap.add_argument('--Wb', type=float, default=65.0, help='net row 4, the bottom')
     ap.add_argument('--H', type=float, default=55.0, help='net rows 3 and 5')
     ap.add_argument('--lap', type=float, default=40.0, help='net row 1')
-    ap.add_argument('--end-tab', type=float, default=15.0)
+    ap.add_argument('--end-tab', type=float, default=0.0,
+                help='glue tab beyond each end wall; 0 for none')
     ap.add_argument('--board', type=float, default=2.0)
     ap.add_argument('--wrap', type=float, default=15.0)
     ap.add_argument('--border', type=float, default=7.0, help='deboss inset')
