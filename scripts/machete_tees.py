@@ -668,26 +668,75 @@ def d27_xray(M):
     return compose(body, alpha)
 
 
-# ---- the three that need the client's Progetto Campione poem -----------
-POEM = None          # set to the poem text to render designs 28-30
+# ---- the Progetto Campione palm, lifted off the jacket's back print ----
+
+def stamp(name, cx, cy, span, flip=False, size=(W, H)):
+    """One brand mark dropped on a canvas-sized mask."""
+    m = motif(name)
+    if flip:
+        m = m.transpose(Image.FLIP_LEFT_RIGHT)
+    k = span / float(m.size[0])
+    m = m.resize((max(1, int(m.size[0] * k)), max(1, int(m.size[1] * k))), Image.LANCZOS)
+    canvas = Image.new('L', size, 0)
+    canvas.paste(m, (int(cx - m.size[0] / 2), int(cy - m.size[1] / 2)), m)
+    return arr(canvas)
 
 
-def _poem_lines():
-    if not POEM:
-        return None
-    return [l.strip() for l in POEM.strip().splitlines() if l.strip()]
+def d28_campione(M):
+    """The jacket's own composition: two palms flanking, star lattice behind."""
+    blade, handle, allm = parts(M)
+    palms = np.maximum(stamp('palm', W * 0.17, H * 0.60, W * 0.30),
+                       stamp('palm', W * 0.83, H * 0.60, W * 0.30, flip=True))
+    lat = pat_mono(150)
+    latl = np.clip((np.abs(np.gradient(lat)[0]) + np.abs(np.gradient(lat)[1])) * 5, 0, 1)
+    latl = np.clip(soft(latl, 1.2) * 1.8, 0, 1)
+    pm = pat_mono()
+    kn = np.where(blade > 0.5, 1.0 - pm * 0.85, 0.0) + handle
+    mark = np.clip(palms + latl * 0.30 + kn * 0.95 + arr(down(M['key'])), 0, 1)
+    body = np.ones((H, W, 3), np.float32) * (np.array([240, 235, 222], np.float32) / 255)
+    return compose(body, mark)
 
 
-def d28_poem_column(M):
-    raise NotImplementedError('needs POEM')
+def d29_grove(M):
+    """A grove of them, the machete cut out of it."""
+    blade, handle, allm = parts(M)
+    grove = np.zeros((H, W), np.float32)
+    rng = np.random.default_rng(291)
+    for r in range(5):
+        for c in range(4):
+            x = (c + 0.5 + (0.5 if r % 2 else 0.0)) * W / 4.0
+            y = (r + 0.52) * H / 5.0
+            sp = W * (0.22 + 0.06 * rng.random())
+            grove = np.maximum(grove, stamp('palm', x, y, sp, flip=bool((r + c) % 2)))
+    body = np.ones((H, W, 3), np.float32) * (np.array([214, 206, 188], np.float32) / 255)
+    knock = soft(allm, 1.5)
+    alpha = np.clip(grove * (1 - knock) + arr(down(M['key'])), 0, 1)
+    return compose(body, alpha)
 
 
-def d29_poem_blade(M):
-    raise NotImplementedError('needs POEM')
-
-
-def d30_poem_ring(M):
-    raise NotImplementedError('needs POEM')
+def d30_sunset(M):
+    """Palms and the blade against a struck sun, the lattice on the sky."""
+    blade, handle, allm = parts(M)
+    yy, xx = np.mgrid[0:H, 0:W].astype(np.float32)
+    t = np.clip(yy / H, 0, 1)
+    sky = (np.array([250, 196, 64], np.float32) / 255 * (1 - t)[..., None] +
+           np.array([206, 36, 92], np.float32) / 255 * t[..., None])
+    r = np.sqrt(((xx - W * 0.5) / (W * 0.40)) ** 2 + ((yy - H * 0.42) / (W * 0.40)) ** 2)
+    sun = (r < 1.0).astype(np.float32)
+    bars = ((yy % 150) < 46).astype(np.float32) * (yy > H * 0.42)
+    sun = np.clip(sun - bars, 0, 1)
+    body = np.where(sun[..., None] > 0.5,
+                    np.clip(sky * 1.25 + 0.18, 0, 1), sky * 0.80)
+    palms = np.maximum(stamp('palm', W * 0.19, H * 0.72, W * 0.34),
+                       stamp('palm', W * 0.81, H * 0.72, W * 0.34, flip=True))
+    ink = np.array([26, 14, 30], np.float32) / 255
+    body = body * (1 - palms[..., None]) + ink * palms[..., None]
+    pm = pat_mono()
+    kn = np.where(blade > 0.5, 1.0 - pm * 0.8, 0.0) + handle
+    kn = np.clip(kn + arr(down(M['key'])), 0, 1)
+    body = body * (1 - kn[..., None]) + ink * kn[..., None]
+    halo = np.clip(soft(np.maximum(np.maximum(palms, kn), sun), 10), 0, 1)
+    return compose(body, np.clip(np.maximum(np.maximum(palms, kn), sun * 0.98), 0, 1))
 
 
 # name, label, renderer, (angle, crossed, margin)
@@ -719,6 +768,9 @@ DESIGNS = [
     ('25-gold', 'Gold foil', d25_gold, (-61, False, 0.07)),
     ('26-repeat', 'Repeat', d26_repeat, (-61, False, 0.07)),
     ('27-xray', 'X-ray', d27_xray, (-61, False, 0.08)),
+    ('28-campione', 'Campione', d28_campione, (-90, False, 0.16)),
+    ('29-grove', 'Palm grove', d29_grove, (-66, False, 0.10)),
+    ('30-sunset', 'Sunset palms', d30_sunset, (-90, False, 0.18)),
 ]
 
 
