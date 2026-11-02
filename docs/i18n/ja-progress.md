@@ -13,8 +13,13 @@ calf leather カーフレザー; full-grain フルグレインレザー; Alcanta
 ## Done
 - [x] Ready to Wear collection + its 19 products (title, type, body, SEO title/description)
 - [x] Menus: all 63 links
+- [x] Theme content of the live theme 210134794565: header and footer groups; templates index, product, product.ready-to-wear,
+      product.sunglasses, cart, 404, password, list-collections, collection.oberndoerfer-traxnyc, page.about-us, art-of-living,
+      atelier, bespoke, contact, custom-limited-editions, faq, leather-care, materials-craftsmanship, the-art-of-packaging,
+      where-to-find-us, work-with-us
+- [x] Restored 9 SEO descriptions wiped by title-only seo updates (lesson: always send seo.title and seo.description together)
 ## To do
-- [ ] Theme content (homepage, header, footer, product page blocks, theme locale overrides)
+- [ ] Liquid strings hard-coded per locale in obm snippets (price on request, notify me, coming soon...): add 'ja' branches in a draft theme
 - [ ] Other 22 collections
 - [ ] 16 pages
 - [ ] Other ~122 active products
