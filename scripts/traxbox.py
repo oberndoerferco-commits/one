@@ -498,19 +498,20 @@ def sheet_art_net(doc, c):
     foil, each on its own colour, every one of them at full size.
     """
     k = MM
-    mx, top = 26.0, 42.0                       # margins, mm
-    span_x = c.L + 2 * (c.H + c.end_tab)       # 310
+    mx, top = 20.0, 36.0                       # margins, mm
+    span_x = c.L + 2 * (c.H + c.end_tab)
     pw = (span_x + 2 * mx) * MM
-    ph = (c.net_h + top + mx + 16.0) * MM
+    ph = (c.net_h + top + mx) * MM
     pg = doc.new_page(width=pw, height=ph)
 
     title(pg, mx * MM, 15 * MM, 'TRAXNYC trunk box — artwork, opened out',
-          f'one piece · {c.L:g} x {c.net_h:g} over five rows · '
-          f'overall {span_x:g} x {c.net_h:g} · SCALE 1:1 · all dimensions mm')
+          'one piece · SCALE 1:1 — print at 100%, do not fit to page · '
+          'sizes and tolerances on the production sheets')
     legend = [('cut', CUT), ('fold', FOLDC), ('blind deboss, cap, stud', TOOL),
               ('hot foil', GOLD), ('where the lap closes', LAPL)]
-    # the catch is a fitting, not artwork: it is dimensioned on the
-    # production sheets and deliberately left off this one
+    # Nothing on this sheet is dimensioned. It is a 1:1 print and tooling
+    # file: the geometry IS the specification. Sizes, the catch and the
+    # tolerances live on the production sheets.
     lx = mx * MM
     for lab, col in legend:
         pg.draw_line(pymupdf.Point(lx, 25 * MM), pymupdf.Point(lx + 7 * MM, 25 * MM),
@@ -549,21 +550,19 @@ def sheet_art_net(doc, c):
     mcx, mcy = P(c.L / 2, ys['top'] + c.Wt / 2)
     medal, word = mark(pg, mcx, mcy, c, k, solid=False)
     pg.insert_text(pymupdf.Point(word.x1 + 4 * MM, word.y1 - 1 * MM),
-                   f'1  wordmark {c.mark_w:g} x {c.mark_h:g} — client artwork',
-                   fontname='Helvetica', fontsize=6.2, color=GOLD)
+                   '1  wordmark — client artwork', fontname='Helvetica',
+                   fontsize=6.2, color=GOLD)
     pg.insert_text(pymupdf.Point(medal.x1 + 4 * MM, medal.y1 - 1 * MM),
-                   f'2  medallion {c.medal:g} — client artwork',
-                   fontname='Helvetica', fontsize=6.2, color=GOLD)
-    dim_v(pg, word.y0, medal.y1, word.x0 - 9 * MM,
-          f'{c.mark_h + c.gap + c.medal:g} overall', anchor='left', col=GOLD)
+                   '2  medallion — client artwork', fontname='Helvetica',
+                   fontsize=6.2, color=GOLD)
 
     # --- panel names ------------------------------------------------------
     labels = {
-        'lap': f'LAP  {c.L:g} x {c.lap:g}   free edge above, no cap and no frame there',
-        'top': f'LID TOP  {c.L:g} x {c.Wt:g}   foil here; the fold below is the FRONT edge',
-        'back': f'BACK  {c.L:g} x {c.H:g}',
-        'bottom': f'BOTTOM  {c.L:g} x {c.Wb:g}',
-        'front': f'FRONT WALL  {c.L:g} x {c.H:g}   free edge below, frame open there',
+        'lap': 'LAP   free edge above — no cap and no frame there',
+        'top': 'LID TOP   foil here; the fold below is the FRONT edge',
+        'back': 'BACK',
+        'bottom': 'BOTTOM',
+        'front': 'FRONT WALL   free edge below — frame open there',
     }
     for h, n in c.rows:
         pg.insert_text(pymupdf.Point(*P(c.R + 5, ys[n] + 11)), labels[n],
@@ -573,8 +572,8 @@ def sheet_art_net(doc, c):
     # --- where the lap closes on the front wall ---------------------------
     yr = ys['front'] + c.lap
     line(pg, P(0, yr), P(c.L, yr), 0.9, LAPL, '[4 2.5] 0')
-    pg.insert_text(pymupdf.Point(*P(c.L - 94, yr - 3)),
-                   f'the lap closes to here — {c.reveal:g} of the front wall shows below it',
+    pg.insert_text(pymupdf.Point(*P(c.L - 76, yr - 3)),
+                   'the lap closes to here — the front wall shows below it',
                    fontname='Helvetica', fontsize=6.2, color=LAPL)
 
     # --- cut silhouette and folds -----------------------------------------
@@ -594,23 +593,9 @@ def sheet_art_net(doc, c):
         for xx in (-c.H, c.L + c.H):
             line(pg, P(xx, yb), P(xx, yb + c.Wb), 0.7, FOLDC, '[2 2] 0')
 
-    # --- dimensions -------------------------------------------------------
-    dim_h(pg, P(0, 0)[0], P(c.L, 0)[0], P(0, 0)[1] - 8 * MM, f'{c.L:g}')
-    xd = P(-c.H - c.end_tab, 0)[0] - 9 * MM
-    for h, n in c.rows:
-        dim_v(pg, P(0, ys[n])[1], P(0, ys[n] + h)[1], xd, f'{h:g}', anchor='left')
-    ye = P(0, yb + c.Wb)[1] + 8 * MM
-    dim_h(pg, P(-c.H, yb)[0], P(0, yb)[0], ye, f'{c.H:g}')
-    dim_h(pg, P(c.L, yb)[0], P(c.L + c.H, yb)[0], ye, f'{c.H:g}')
+    # No dimensions here by design — see the production sheets.
 
 
-    note(pg, mx * MM, P(0, c.net_h)[1] + 11 * MM, [
-        f'Blind deboss {c.b:g} in from each panel edge, 0.7 wide. A run stops '
-        f'{c.run:.1f} from a corner that has a cap, and does not go round it.',
-        f'Corner caps R{c.R:g}, one at each end of all four long folds — eight in '
-        f'all. Domed stud {c.stud:g} dia, centre {c.stud_in:g} in from both edges.',
-        f'Allow {c.wrap:g} turn-in on every raw edge, not drawn. Board {c.board:g}.',
-    ], lead=4.0 * MM)
     return pg
 
 
