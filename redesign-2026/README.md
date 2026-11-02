@@ -386,3 +386,10 @@ Owner's terms: DHL Standard free; DHL Express free from €300; below €300 Exp
 - Owner: "remove coming soon section for now". templates/index.json in draft 210134794565 is back to the three live sections (hero, two squares, Explore); checksum verified. The row's JSON stays in docs/2026-11-01-index-coming-soon.json to put back later.
 - Draft renamed "REDESIGN 2026 - currency in country picker (draft)". It still carries the coming-soon price/badge/notify-me handling (harmless without tagged products on the homepage) and the currency labels.
 - The three coming-soon products and /collections/coming-soon are unchanged (Online Store only, stock 0).
+
+## 2 November: Beanie OM (new)
+
+- Owner: the three beanies on Canva "tshirt design" page 19, €80, 100% cotton.
+- Photos: page 19 exported at 6000px; each colour panel holds the OM front above the plain back. Cut, scaled to the caps' framing (about 71% of 2400px) and set on the site ground: scripts/tee-photos/canva-beanies.py.
+- Product 16329926574405, /products/beanie-om: Black (white OM), Light Blue (black OM, new swatch #798490, metaobject 816075964741), Grey (existing Grey swatch). One size (no size option), €80, not tracked, continue selling, category Hats > Beanies, template ready-to-wear, four channels.
+- New In (first, newest) and Ready to Wear (after the T-shirts, before the caps). Checked live: €80 on /en-de, three colours available, 6 photos.
