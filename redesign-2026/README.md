@@ -393,3 +393,9 @@ Owner's terms: DHL Standard free; DHL Express free from €300; below €300 Exp
 - Photos: page 19 exported at 6000px; each colour panel holds the OM front above the plain back. Cut, scaled to the caps' framing (about 71% of 2400px) and set on the site ground: scripts/tee-photos/canva-beanies.py.
 - Product 16329926574405, /products/beanie-om: Black (white OM), Light Blue (black OM, new swatch #798490, metaobject 816075964741), Grey (existing Grey swatch). One size (no size option), €80, not tracked, continue selling, category Hats > Beanies, template ready-to-wear, four channels.
 - New In (first, newest) and Ready to Wear (after the T-shirts, before the caps). Checked live: €80 on /en-de, three colours available, 6 photos.
+
+## 2 November: Beanie OM, embroidered look
+
+- Owner: make the OM look embroidered, then "more realistic". scripts/tee-photos/beanie-embroider.py (v2): print lifted and the knit filled in; satin stitch whose threads run across each stroke and turn with it (structure tensor + line integral convolution), domed relief lit from the top left, uneven stitched edge, thin seam and soft shadow in the knit, grain to match the photo. White thread on black, near-black thread on light blue and grey.
+- The three front photos replaced by *-front-embroidered.jpg (same positions, variant images updated); the printed fronts were detached and stay in Files. Description and SEO say "embroidered". Checked live via /products/beanie-om.js.
+- Examples: docs/examples/beanie-embroidery-example.jpg (first try), docs/examples/beanie-embroidery-realistic.jpg (final).
