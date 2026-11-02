@@ -505,13 +505,13 @@ def sheet_art_net(doc, c):
     pg = doc.new_page(width=pw, height=ph)
 
     title(pg, mx * MM, 15 * MM, 'TRAXNYC trunk box — artwork, opened out',
-          'one piece · SCALE 1:1 — print at 100%, do not fit to page · '
-          'sizes and tolerances on the production sheets')
+          'one piece · sizes and tolerances on the production sheets')
     legend = [('cut', CUT), ('fold', FOLDC), ('blind deboss, cap, stud', TOOL),
               ('hot foil', GOLD), ('where the lap closes', LAPL)]
-    # Nothing on this sheet is dimensioned. It is a 1:1 print and tooling
-    # file: the geometry IS the specification. Sizes, the catch and the
-    # tolerances live on the production sheets.
+    # Nothing on this sheet is dimensioned, not even the scale. It is a
+    # print and tooling file drawn at full size: the geometry IS the
+    # specification. Sizes, the catch and the tolerances live on the
+    # production sheets.
     lx = mx * MM
     for lab, col in legend:
         pg.draw_line(pymupdf.Point(lx, 25 * MM), pymupdf.Point(lx + 7 * MM, 25 * MM),
@@ -550,10 +550,10 @@ def sheet_art_net(doc, c):
     mcx, mcy = P(c.L / 2, ys['top'] + c.Wt / 2)
     medal, word = mark(pg, mcx, mcy, c, k, solid=False)
     pg.insert_text(pymupdf.Point(word.x1 + 4 * MM, word.y1 - 1 * MM),
-                   '1  wordmark — client artwork', fontname='Helvetica',
+                   '1  wordmark - logo', fontname='Helvetica',
                    fontsize=6.2, color=GOLD)
     pg.insert_text(pymupdf.Point(medal.x1 + 4 * MM, medal.y1 - 1 * MM),
-                   '2  medallion — client artwork', fontname='Helvetica',
+                   '2  medallion - logo', fontname='Helvetica',
                    fontsize=6.2, color=GOLD)
 
     # --- panel names ------------------------------------------------------
