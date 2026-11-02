@@ -164,16 +164,29 @@ def face(pg, x, y, fw, fh, c, k, which=ALL4, border=True, fill=LEATHER,
 
 
 def mark(pg, cx, cy, c, k, col=GOLD, solid=True):
-    """Foil: the medallion over the wordmark, as placeholder blocks."""
+    """Foil on the lid top, as placeholder blocks.
+
+    Read off the sample: coming in from the FRONT edge it is the wordmark
+    first and the medallion behind it, nearer the back. On a drawing whose
+    top edge is the front of the box that puts the wordmark uppermost.
+    """
     mh, mw = c.medal * k, c.mark_w * k
-    tot = mh + c.gap * k + c.mark_h * k
+    tot = c.mark_h * k + c.gap * k + mh
     top = cy - tot / 2
-    a = pymupdf.Rect(cx - mh / 2, top, cx + mh / 2, top + mh)
-    b = pymupdf.Rect(cx - mw / 2, top + mh + c.gap * k, cx + mw / 2, top + tot)
-    for r in (a, b):
+    b = pymupdf.Rect(cx - mw / 2, top, cx + mw / 2, top + c.mark_h * k)
+    a = pymupdf.Rect(cx - mh / 2, top + c.mark_h * k + c.gap * k,
+                     cx + mh / 2, top + tot)
+    for r in (b, a):
         pg.draw_rect(r, color=col, fill=col if solid else None, width=0.7,
                      dashes=None if solid else '[2.5 2] 0')
     return a, b
+
+
+def _front_edge(pg, x, y, w, col=LAPL):
+    """Mark which edge of a plan view faces the front of the box."""
+    line(pg, (x, y - 1.4 * MM), (x + w, y - 1.4 * MM), 1.1, col)
+    pg.insert_text(pymupdf.Point(x + w / 2 - 9 * MM, y - 3.2 * MM), 'FRONT EDGE',
+                   fontname='Helvetica-Bold', fontsize=6, color=col)
 
 
 def magnets(pg, x, y, w, k, c, col=CUT):
@@ -224,10 +237,12 @@ def sheet_ga(doc, c, s):
     # --- plan: the lid top with the foil ----------------------------------
     y3 = y0 + c.H * k + 30 * MM
     pg.insert_text(pymupdf.Point(x0, y3 - 4 * MM),
-                   f'lid top {c.L:g} x {c.Wt:g} — foil and four caps',
+                   f'lid top {c.L:g} x {c.Wt:g} — foil and four caps, '
+                   'front edge uppermost',
                    fontname='Helvetica', fontsize=7, color=GREY)
     face(pg, x0, y3, c.L, c.Wt, c, k, which=ALL4, border=True)
     mark(pg, x0 + c.L * k / 2, y3 + c.Wt * k / 2, c, k)
+    _front_edge(pg, x0, y3, c.L * k)
     dim_h(pg, x0, x0 + c.L * k, y3 + c.Wt * k + 11 * MM, f'{c.L:g}')
     dim_v(pg, y3, y3 + c.Wt * k, x0 - 12 * MM, f'{c.Wt:g}', anchor='left')
 
@@ -271,6 +286,7 @@ def sheet_parts(doc, c, s):
         face(pg, x0, y, fw, fh, c, k, which=which, border=True)
         if lab.endswith('LID TOP'):
             mark(pg, x0 + fw * k / 2, y + fh * k / 2, c, k)
+            _front_edge(pg, x0, y, fw * k)
         if lab.endswith('LAP'):
             magnets(pg, x0, y + fh * k + 1.6 * MM, fw, k, c)
             pg.insert_text(pymupdf.Point(x0 + fw * k + 4 * MM, y + fh * k + 2.5 * MM),
@@ -376,7 +392,8 @@ def sheet_net(doc, c, s):
 
     labels = {
         'lap': f'LAP  {c.L:g} x {c.lap:g}  —  catch in the free edge, no cap there',
-        'top': f'LID TOP  {c.L:g} x {c.Wt:g}  —  foil here',
+        'top': f'LID TOP  {c.L:g} x {c.Wt:g}  —  foil here; '
+               'the fold to the lap is the FRONT edge',
         'back': f'BACK  {c.L:g} x {c.H:g}',
         'bottom': f'BOTTOM  {c.L:g} x {c.Wb:g}',
         'front': f'FRONT  {c.L:g} x {c.H:g}  —  drops forward',
@@ -434,9 +451,9 @@ def sheet_net(doc, c, s):
 def sheet_art(doc, c, fw, fh, label, which=ALL4, border=True, foil=False,
               catch=False, extra=None):
     """One panel, 1:1, as the stamping file."""
-    pg = doc.new_page(width=(fw + 40) * MM, height=(fh + 50) * MM)
+    pg = doc.new_page(width=(fw + 40) * MM, height=(fh + 52) * MM)
     k = MM
-    x0, y0 = 20 * MM, 34 * MM
+    x0, y0 = 20 * MM, 36 * MM
     pg.insert_text(pymupdf.Point(x0, 14 * MM), f'TRAXNYC box — {label}',
                    fontname='Helvetica-Bold', fontsize=9)
     bits = [f'{fw:g} x {fh:g} mm', '1:1', 'blind deboss in grey']
@@ -457,12 +474,13 @@ def sheet_art(doc, c, fw, fh, label, which=ALL4, border=True, foil=False,
         studs(pg, x0, y0, fw * k, fh * k, c.stud_in * k, c.stud * k, which, TOOL)
     if foil:
         a, b = mark(pg, x0 + fw * k / 2, y0 + fh * k / 2, c, k, solid=False)
-        pg.insert_text(pymupdf.Point(a.x0, a.y0 - 2 * MM),
-                       f'medallion {c.medal:g} — client artwork',
+        pg.insert_text(pymupdf.Point(b.x0, b.y0 - 2 * MM),
+                       f'1  wordmark {c.mark_w:g} x {c.mark_h:g} — client artwork',
                        fontname='Helvetica', fontsize=6, color=GOLD)
-        pg.insert_text(pymupdf.Point(b.x0, b.y1 + 4 * MM),
-                       f'wordmark {c.mark_w:g} x {c.mark_h:g} — client artwork',
+        pg.insert_text(pymupdf.Point(a.x0, a.y1 + 4 * MM),
+                       f'2  medallion {c.medal:g} — client artwork',
                        fontname='Helvetica', fontsize=6, color=GOLD)
+        _front_edge(pg, x0, y0, fw * k)
     if catch:
         magnets(pg, x0, y0 + 1.6 * MM, fw, k, c)
     return pg
