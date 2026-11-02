@@ -17,6 +17,11 @@ lifts, its front face dropping forward, held shut by a magnetic catch. So
 the only line on the outside is where the band ends -- it runs across the
 front and returns along both ends, and the back has none because that is
 the hinge.
+
+The cap radius is tied to that band. At R20 a cap reaches exactly 20 along
+each edge, so on the front and the ends the lower caps finish on the band
+line instead of straddling it, and nothing on the outside crosses the
+opening. The cap radius is therefore not free: it is the band height.
 """
 import argparse, math, os, sys
 import pymupdf
@@ -29,6 +34,7 @@ TOOL = (0.42, 0.40, 0.39)
 GOLD = (0.76, 0.60, 0.29)
 CUT = (0.90, 0.10, 0.45)
 HID = (0.20, 0.45, 0.85)
+FOLDC = (0.10, 0.35, 0.80)
 
 # face corners as (at the far x?, at the far y?, x sign, y sign)
 CORNERS = [(0, 0, 1, 1), (1, 0, -1, 1), (1, 1, -1, -1), (0, 1, 1, -1)]
@@ -329,6 +335,90 @@ def sheet_art(doc, c, fw, fh, label, foil=False, band=False):
     return pg
 
 
+def sheet_flat(doc, c):
+    """Every face at 1:1, laid out as the box unwraps, so nothing is guessed."""
+    k = MM
+    L, W, H = c.L, c.W, c.H
+    dev_w, dev_h = H + L + H, H + W + H + W
+    pg = doc.new_page(width=(dev_w + 86) * MM, height=(dev_h + 76) * MM)
+    title(pg, 20 * MM, 18 * MM, 'TRAXNYC box \u00b7 artwork \u00b7 flat',
+          'every face at full size, laid out as the box unwraps.  '
+          'magenta cuts, blue folds, grey is tooling, gold is foil')
+    ox, oy = 40 * MM, 46 * MM
+
+    def P(mx, my):
+        return ox + mx * k, oy + my * k
+
+    panels = [
+        ('back',   H,     0,     L, H, False, None),
+        ('end',    0,     H,     H, W, False, 'x'),
+        ('top',    H,     H,     L, W, True,  None),
+        ('end',    H + L, H,     H, W, False, 'X'),
+        ('front',  H,     H + W, L, H, False, 'y'),
+        ('bottom', H,     H + W + H, L, W, False, None),
+    ]
+    for name, mx, my, fw, fh, foil, bandside in panels:
+        x, y = P(mx, my)
+        face(pg, x, y, fw, fh, c, k, fill=None, tool=(0.45, 0.45, 0.45), width=0.7)
+        if bandside == 'x':                       # left end: band at the outer edge
+            bx = x + c.band * k
+            line(pg, (bx, y), (bx, y + fh * k), 0.5, HID, '[4 2] 0')
+        elif bandside == 'X':                     # right end
+            bx = x + (fw - c.band) * k
+            line(pg, (bx, y), (bx, y + fh * k), 0.5, HID, '[4 2] 0')
+        elif bandside == 'y':                     # front: band at the bottom
+            by = y + (fh - c.band) * k
+            line(pg, (x, by), (x + fw * k, by), 0.5, HID, '[4 2] 0')
+            mxc = x + fw * k / 2
+            pg.draw_rect(pymupdf.Rect(mxc - c.magnet * k / 2, y + 10 * k,
+                                      mxc + c.magnet * k / 2, y + 13 * k),
+                         color=HID, fill=None, width=0.5, dashes='[2 1.6] 0')
+        if foil:
+            a, b = mark(pg, x + fw * k / 2, y + fh * k / 2, c, k, solid=False)
+        pg.insert_text(pymupdf.Point(x + 2.5 * MM, y + 5 * MM), name,
+                       fontname='Helvetica-Bold', fontsize=7, color=(0.45, 0.45, 0.45))
+
+    # the trim is the outside of the development only; everything inside folds
+    sil = [(H, 0), (H + L, 0), (H + L, H), (H + L + H, H), (H + L + H, H + W),
+           (H + L, H + W), (H + L, H + W + H + W), (H, H + W + H + W),
+           (H, H + W), (0, H + W), (0, H), (H, H), (H, 0)]
+    pg.draw_polyline([pymupdf.Point(*P(mx, my)) for mx, my in sil],
+                     color=CUT, width=0.8)
+
+    # fold lines where panels meet
+    for p0, p1 in ((P(H, H), P(H + L, H)), (P(H, H + W), P(H + L, H + W)),
+                   (P(H, H), P(H, H + W)), (P(H + L, H), P(H + L, H + W)),
+                   (P(H, H + W + H), P(H + L, H + W + H))):
+        line(pg, p0, p1, 0.8, FOLDC, '[5 2.5] 0')
+
+    # overall development
+    x0, y0 = P(0, 0)
+    xe, ye = P(dev_w, dev_h)
+    witness(pg, (x0, ye), (x0, ye + 15 * MM))
+    witness(pg, (xe, ye), (xe, ye + 15 * MM))
+    dim_h(pg, x0, xe, ye + 10 * MM, f'{dev_w:g} across the development')
+    witness(pg, (x0, y0), (x0 - 15 * MM, y0))
+    witness(pg, (x0, ye), (x0 - 15 * MM, ye))
+    dim_v(pg, y0, ye, x0 - 10 * MM, f'{dev_h:g} down')
+
+    note(pg, x0, ye + 22 * MM, [
+        'magenta = trim.  blue dashed heavy = fold.  blue dashed fine = the band line and '
+        'the magnet, neither of them printed.',
+        f'grey = blind deboss and cap, the same on every face: line {c.b:g} in from the '
+        f'edge, each run stopping {c.run:.1f} from the corner',
+        f'where the R{c.R:g} cap meets it, stud \u00f8{c.stud:g} at {c.stud_in:g}, '
+        f'{c.stud_in:g}.  nothing grey is printed or foiled.',
+        f'gold = foil, top panel only.  the medallion and the wordmark are your files; '
+        'the dashed boxes are where they sit.',
+        f'the caps are R{c.R:g} so that on the front and the ends they finish exactly on '
+        f'the band line {c.band:g} up, and nothing crosses the opening.',
+        'the ends are drawn lying on their sides, as they fall when the box is unwrapped; '
+        'their band line runs vertically, at the outer edge.',
+        'add bleed to the outside of the development to suit the wrapping method.',
+    ])
+    return pg
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('out_dir')
@@ -340,7 +430,7 @@ def main():
     ap.add_argument('--board', type=float, default=2.0)
     ap.add_argument('--wrap', type=float, default=0.8)
     ap.add_argument('--border', type=float, default=7.0)
-    ap.add_argument('--cap', type=float, default=22.0)
+    ap.add_argument('--cap', type=float, default=20.0)
     ap.add_argument('--stud', type=float, default=3.5)
     ap.add_argument('--stud-in', type=float, default=9.0)
     ap.add_argument('--magnet', type=float, default=40.0)
@@ -363,13 +453,14 @@ def main():
     spec.save(f1, garbage=4, deflate=True)
 
     art = pymupdf.open()
+    sheet_flat(art, c)
     sheet_art(art, c, c.L, c.W, 'top · tooling + gold foil', foil=True)
     sheet_art(art, c, c.L, c.H, 'front · tooling', band=True)
     sheet_art(art, c, c.W, c.H, 'end · tooling', band=True)
     f2 = os.path.join(a.out_dir, 'traxnyc-box-artwork.pdf')
     art.save(f2, garbage=4, deflate=True)
 
-    print(f'{f1}  3 sheets\n{f2}  3 faces at 1:1\n'
+    print(f'{f1}  3 sheets\n{f2}  flat development + 3 faces, all 1:1\n'
           f'  {c.L:g} x {c.W:g} x {c.H:g}, band {c.band:g} + shell {c.flap:g}\n'
           f'  cap R{c.R:g}, line {c.b:g} in, runs stop {c.run:.1f} from each corner\n'
           f'  magnetic catch {c.magnet:g} long, centred on the front', file=sys.stderr)
