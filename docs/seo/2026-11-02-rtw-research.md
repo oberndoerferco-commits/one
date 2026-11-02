@@ -37,3 +37,9 @@ are relative signals: "letters typed" = how few letters before Google suggests t
   tuta larghi, Felpa con cappuccio, Cuffia ricamata).
 - A "Tracksuit / Sets" collection (Hoodie OM + Wide-Leg Joggers OM in navy, Hoodie with Logo + Joggers with Logo).
 - "Italian streetwear brands" list articles and marketplaces (e.g. Edropit) for the brand-list searches.
+
+## Fix
+- Titles ending "| Oberndörfer" got the theme's " – Oberndörfer Milano" added (brand twice in Google). Now ending
+  "| Oberndörfer Milano": Wide-Leg Sweatpants, and the caps Leopard/Black logo, Leopard/Pink logo, Black/Pink logo
+  (were "Leopard Cotton Cap, Black Leather Patch | Oberndörfer", "Leopard Washed Cotton Cap, Leather Patch | Oberndörfer",
+  "Black Washed Cotton Cap, Pink Leather Patch | Oberndörfer").
