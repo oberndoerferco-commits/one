@@ -43,3 +43,22 @@ are relative signals: "letters typed" = how few letters before Google suggests t
   "| Oberndörfer Milano": Wide-Leg Sweatpants, and the caps Leopard/Black logo, Leopard/Pink logo, Black/Pink logo
   (were "Leopard Cotton Cap, Black Leather Patch | Oberndörfer", "Leopard Washed Cotton Cap, Leather Patch | Oberndörfer",
   "Black Washed Cotton Cap, Pink Leather Patch | Oberndörfer").
+
+## Heavyweight tees (owner: "add Heavyweight to tees")
+- The five T-shirts (240 g combed cotton): descriptions start "A heavyweight cotton T-shirt"; SEO titles start
+  "Heavyweight"; SEO descriptions "Heavyweight 240g combed cotton T-shirt ...".
+
+## Search Console (Windsor fixed, last 3 months, product pages)
+- Ready to wear barely seen yet: 19 query rows, 56 impressions, almost all Germany ("cap mit lederpatch" 28, pos 12).
+- All product pages by impressions: Germany 1144, United States 689, Italy 518, United Kingdom 423.
+- Asia together about 80 impressions, many of them Google Lens / image questions ("what are these products",
+  "이거 얼마짜리야", "ราคา", "價格").
+
+## German and Italian SEO (translations registered, live on /de and /it)
+- Collection: "Italienische Streetwear, Made in Italy" / "Streetwear italiano, Made in Italy".
+- Half-Zip: "Half-Zip Pullover aus Baumwolle, Troyer" / "Felpa mezza zip in cotone".
+- Wide-Leg Joggers: "Jogginghose mit weitem Bein, bestickt" / "Pantaloni tuta larghi ricamati".
+- Hoodies: "Hoodie mit OM in Frakturschrift", "Hoodie mit Sternen-Print" / "Felpa con cappuccio OM in gotico",
+  "Felpa con cappuccio con stelle".
+- Tees: "Schweres T-Shirt ..." / "T-shirt pesante ...". Beanie: "Bestickte Beanie Mütze OM" / "Cuffia ricamata OM".
+- Also the grey joggers, both jackets and the twill pants; meta descriptions where the English one exists.
