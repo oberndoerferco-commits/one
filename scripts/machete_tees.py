@@ -563,6 +563,133 @@ def d20_tartan(M):
     return compose(ink_key(body, M, (0.06, 0.05, 0.06)), allm)
 
 
+# --------------------------------------------------- the second ten
+
+def d21_duotone(M):
+    """Two inks, straight gradient, the pattern holding the midtones."""
+    blade, handle, allm = parts(M)
+    t = np.linspace(0, 1, H, dtype=np.float32)[:, None, None]
+    c1 = np.array([250, 86, 32], np.float32) / 255
+    c2 = np.array([22, 24, 70], np.float32) / 255
+    body = c1 * (1 - t) + c2 * t
+    pm = pat_mono()
+    body = np.where((pm > 0.5)[..., None], np.clip(body * 1.6 + 0.10, 0, 1), body * 0.72)
+    body = np.where(handle[..., None] > 0.5, np.clip(body * 0.30, 0, 1), body)
+    return compose(ink_key(body, M, (0.05, 0.05, 0.10)), allm)
+
+
+def d22_leopard(M):
+    blade, handle, allm = parts(M)
+    n = fbm((H, W), 6, 221)
+    rosette = ((n > 0.52) & (n < 0.66)).astype(np.float32)
+    rosette = np.maximum(rosette, ((n > 0.74) & (n < 0.80)).astype(np.float32) * 0.8)
+    tan = np.array([206, 150, 60], np.float32) / 255
+    body = np.ones((H, W, 3), np.float32) * tan
+    body = body * (1 - rosette[..., None]) + np.array([.12, .09, .06], np.float32) * rosette[..., None]
+    pm = pat_mono()
+    body = np.where((pm > 0.5)[..., None], np.clip(body * 1.25 + 0.08, 0, 1), body * 0.80)
+    body = np.where(handle[..., None] > 0.5, np.clip(body * 0.22, 0, 1), body)
+    return compose(ink_key(body, M, (0.06, 0.05, 0.04)), allm)
+
+
+def d23_marble(M):
+    blade, handle, allm = parts(M)
+    yy, xx = np.mgrid[0:H, 0:W].astype(np.float32)
+    swirl = np.sin(xx / 150.0 + fbm((H, W), 5, 231) * 11) * 0.5 + 0.5
+    vein = np.abs(swirl - 0.5)
+    vein = np.clip(1 - vein * 7, 0, 1)
+    body = np.ones((H, W, 3), np.float32) * (np.array([238, 236, 230], np.float32) / 255)
+    body = body * (1 - vein[..., None]) + np.array([.12, .14, .22], np.float32) * vein[..., None]
+    pm = pat_mono()
+    body = np.where((pm > 0.5)[..., None], np.clip(body * 1.1, 0, 1), body * 0.68)
+    body = np.where(handle[..., None] > 0.5, np.clip(body * 0.20, 0, 1), body)
+    return compose(ink_key(body, M, (0.05, 0.06, 0.09)), allm)
+
+
+def d24_jacquard(M):
+    """Read as woven cloth: a warp and weft crossing under the motif."""
+    blade, handle, allm = parts(M)
+    yy, xx = np.mgrid[0:H, 0:W].astype(np.float32)
+    a = math.radians(45)
+    u = xx * math.cos(a) + yy * math.sin(a)
+    v = -xx * math.sin(a) + yy * math.cos(a)
+    warp = (np.sin(u * 2 * math.pi / 9) * 0.5 + 0.5)
+    weft = (np.sin(v * 2 * math.pi / 9) * 0.5 + 0.5)
+    over = (np.floor(u / 9) + np.floor(v / 9)) % 2
+    weave = np.where(over > 0.5, warp, weft)
+    pm = pat_mono()
+    base = np.where(pm > 0.5, 0.82, 0.30)
+    th = np.clip(base * (0.70 + 0.52 * weave), 0, 1)
+    body = np.dstack([th * 1.00, th * 0.99, th * 0.95])
+    body = np.where(handle[..., None] > 0.5, np.clip(body * 0.20, 0, 1), body)
+    return compose(ink_key(body, M, (0.05, 0.05, 0.06)), allm)
+
+
+def d25_gold(M):
+    """Foil on black, the way the trunks are stamped."""
+    blade, handle, allm = parts(M)
+    yy, xx = np.mgrid[0:H, 0:W].astype(np.float32)
+    a = math.radians(29)
+    u = (xx * math.cos(a) + yy * math.sin(a)) / 700.0
+    sheen = 0.55 + 0.45 * np.sin(u * 6.283 + fbm((H, W), 4, 251) * 3.0)
+    gold = np.dstack([0.52 + 0.46 * sheen, 0.36 + 0.42 * sheen, 0.10 + 0.22 * sheen])
+    pm = pat_mono()
+    mark = np.where(blade > 0.5, pm, 0.0)
+    k = arr(down(M['key']))
+    body = np.clip(gold, 0, 1)
+    alpha = np.clip(np.maximum(mark * blade, k), 0, 1)
+    return compose(body, alpha)
+
+
+def d26_repeat(M):
+    """The knife as a border print: a column of them, small and ranked."""
+    blade, handle, allm = parts(M)
+    tile = np.asarray(d01_checker(M).convert('RGBA'), np.float32) / 255
+    out = np.zeros((H, W, 4), np.float32)
+    small = Image.fromarray((tile * 255).astype(np.uint8), 'RGBA')
+    sw, sh = int(W * 0.46), int(H * 0.46)
+    small = small.resize((sw, sh), Image.LANCZOS)
+    canvas = Image.new('RGBA', (W, H), (0, 0, 0, 0))
+    for r in range(3):
+        for c in range(3):
+            x = int(c * (W - sw) / 2) + (40 if r % 2 else -40)
+            y = int(r * (H - sh) / 2)
+            canvas.alpha_composite(small, (max(0, min(W - sw, x)), y))
+    return canvas
+
+
+def d27_xray(M):
+    blade, handle, allm = parts(M)
+    pm = pat_mono()
+    body = np.ones((H, W, 3), np.float32) * (np.array([150, 232, 214], np.float32) / 255)
+    core = np.clip(soft(allm, 18) * 1.4, 0, 1)
+    alpha = np.clip(core * 0.42 + np.where(blade > 0.5, 1 - pm, 0) * 0.55
+                    + arr(down(M['key'])), 0, 1)
+    return compose(body, alpha)
+
+
+# ---- the three that need the client's Progetto Campione poem -----------
+POEM = None          # set to the poem text to render designs 28-30
+
+
+def _poem_lines():
+    if not POEM:
+        return None
+    return [l.strip() for l in POEM.strip().splitlines() if l.strip()]
+
+
+def d28_poem_column(M):
+    raise NotImplementedError('needs POEM')
+
+
+def d29_poem_blade(M):
+    raise NotImplementedError('needs POEM')
+
+
+def d30_poem_ring(M):
+    raise NotImplementedError('needs POEM')
+
+
 # name, label, renderer, (angle, crossed, margin)
 DESIGNS = [
     ('01-checker', 'Checker', d01_checker, (-61, False, 0.07)),
@@ -585,6 +712,13 @@ DESIGNS = [
     ('18-holo', 'Holographic', d18_holo, (-61, False, 0.07)),
     ('19-stencil', 'Stencil', d19_stencil, (-61, False, 0.07)),
     ('20-tartan', 'Tartan', d20_tartan, (-61, False, 0.07)),
+    ('21-duotone', 'Duotone', d21_duotone, (-61, False, 0.07)),
+    ('22-leopard', 'Leopard', d22_leopard, (-61, False, 0.07)),
+    ('23-marble', 'Marble', d23_marble, (-90, False, 0.05)),
+    ('24-jacquard', 'Jacquard', d24_jacquard, (-61, False, 0.06)),
+    ('25-gold', 'Gold foil', d25_gold, (-61, False, 0.07)),
+    ('26-repeat', 'Repeat', d26_repeat, (-61, False, 0.07)),
+    ('27-xray', 'X-ray', d27_xray, (-61, False, 0.08)),
 ]
 
 
