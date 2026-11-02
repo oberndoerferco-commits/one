@@ -335,86 +335,107 @@ def sheet_art(doc, c, fw, fh, label, foil=False, band=False):
     return pg
 
 
-def sheet_flat(doc, c):
-    """Every face at 1:1, laid out as the box unwraps, so nothing is guessed."""
+def sheet_flat(doc, c, rows, end_w, ends_on, foil_on):
+    """Every panel at 1:1 in one strip, as the client's sketch lays it out.
+
+    A single column the length of the box with the panels stacked down it,
+    and the two ends hung off one of them. Each panel carries its own caps,
+    so at every fold two quarter rounds meet and read as the full round that
+    the corner actually is -- which is what the sketch shows and what a
+    wrapped box does.
+    """
     k = MM
-    L, W, H = c.L, c.W, c.H
-    dev_w, dev_h = H + L + H, H + W + H + W
-    pg = doc.new_page(width=(dev_w + 86) * MM, height=(dev_h + 76) * MM)
+    L = c.L
+    total = sum(h for h, _ in rows)
+    ends_i = [n for _, n in rows].index(ends_on)
+    y_of = [sum(h for h, _ in rows[:i]) for i in range(len(rows) + 1)]
+    dev_w = end_w + L + end_w
+    pg = doc.new_page(width=(dev_w + 92) * MM, height=(total + 76) * MM)
     title(pg, 20 * MM, 18 * MM, 'TRAXNYC box \u00b7 artwork \u00b7 flat',
-          'every face at full size, laid out as the box unwraps.  '
+          'every panel at full size, laid out as the box unwraps.  '
           'magenta cuts, blue folds, grey is tooling, gold is foil')
-    ox, oy = 40 * MM, 46 * MM
+    ox, oy = (end_w + 34) * MM, 46 * MM
 
     def P(mx, my):
         return ox + mx * k, oy + my * k
 
-    panels = [
-        ('back',   H,     0,     L, H, False, None),
-        ('end',    0,     H,     H, W, False, 'x'),
-        ('top',    H,     H,     L, W, True,  None),
-        ('end',    H + L, H,     H, W, False, 'X'),
-        ('front',  H,     H + W, L, H, False, 'y'),
-        ('bottom', H,     H + W + H, L, W, False, None),
-    ]
-    for name, mx, my, fw, fh, foil, bandside in panels:
-        x, y = P(mx, my)
-        face(pg, x, y, fw, fh, c, k, fill=None, tool=(0.45, 0.45, 0.45), width=0.7)
-        if bandside == 'x':                       # left end: band at the outer edge
-            bx = x + c.band * k
-            line(pg, (bx, y), (bx, y + fh * k), 0.5, HID, '[4 2] 0')
-        elif bandside == 'X':                     # right end
-            bx = x + (fw - c.band) * k
-            line(pg, (bx, y), (bx, y + fh * k), 0.5, HID, '[4 2] 0')
-        elif bandside == 'y':                     # front: band at the bottom
-            by = y + (fh - c.band) * k
-            line(pg, (x, by), (x + fw * k, by), 0.5, HID, '[4 2] 0')
-            mxc = x + fw * k / 2
-            pg.draw_rect(pymupdf.Rect(mxc - c.magnet * k / 2, y + 10 * k,
-                                      mxc + c.magnet * k / 2, y + 13 * k),
-                         color=HID, fill=None, width=0.5, dashes='[2 1.6] 0')
-        if foil:
-            a, b = mark(pg, x + fw * k / 2, y + fh * k / 2, c, k, solid=False)
-        pg.insert_text(pymupdf.Point(x + 2.5 * MM, y + 5 * MM), name,
-                       fontname='Helvetica-Bold', fontsize=7, color=(0.45, 0.45, 0.45))
+    for i, (h, name) in enumerate(rows):
+        x, y = P(0, y_of[i])
+        face(pg, x, y, L, h, c, k, fill=None, tool=(0.45, 0.45, 0.45), width=0.7)
+        pg.insert_text(pymupdf.Point(x + 3 * MM, y + 5.5 * MM), name,
+                       fontname='Helvetica-Bold', fontsize=7.5, color=(0.45, 0.45, 0.45))
+        pg.insert_text(pymupdf.Point(x + L * k - 16 * MM, y + 5.5 * MM), f'{h:g}',
+                       fontname='Helvetica', fontsize=7, color=(0.55, 0.55, 0.55))
+        if name == foil_on:
+            mark(pg, x + L * k / 2, y + h * k / 2, c, k, solid=False)
+            pg.insert_text(pymupdf.Point(x + L * k / 2 + c.medal * k / 2 + 3 * MM,
+                                         y + h * k / 2 - 2 * MM),
+                           'medallion and TRAXNYC \u2014 your files, centred here',
+                           fontname='Helvetica', fontsize=6.5, color=GOLD)
 
-    # the trim is the outside of the development only; everything inside folds
-    sil = [(H, 0), (H + L, 0), (H + L, H), (H + L + H, H), (H + L + H, H + W),
-           (H + L, H + W), (H + L, H + W + H + W), (H, H + W + H + W),
-           (H, H + W), (0, H + W), (0, H), (H, H), (H, 0)]
-    pg.draw_polyline([pymupdf.Point(*P(mx, my)) for mx, my in sil],
-                     color=CUT, width=0.8)
+    eh = rows[ends_i][0]
+    for side in (0, 1):
+        ex = -end_w if side == 0 else L
+        x, y = P(ex, y_of[ends_i])
+        face(pg, x, y, end_w, eh, c, k, fill=None, tool=(0.45, 0.45, 0.45), width=0.7)
+        pg.insert_text(pymupdf.Point(x + 3 * MM, y + 5.5 * MM), 'end',
+                       fontname='Helvetica-Bold', fontsize=7.5, color=(0.45, 0.45, 0.45))
 
-    # fold lines where panels meet
-    for p0, p1 in ((P(H, H), P(H + L, H)), (P(H, H + W), P(H + L, H + W)),
-                   (P(H, H), P(H, H + W)), (P(H + L, H), P(H + L, H + W)),
-                   (P(H, H + W + H), P(H + L, H + W + H))):
-        line(pg, p0, p1, 0.8, FOLDC, '[5 2.5] 0')
+    # trim: the outside of the whole development
+    sil = [(0, 0), (L, 0), (L, y_of[ends_i]), (L + end_w, y_of[ends_i]),
+           (L + end_w, y_of[ends_i + 1]), (L, y_of[ends_i + 1]), (L, total),
+           (0, total), (0, y_of[ends_i + 1]), (-end_w, y_of[ends_i + 1]),
+           (-end_w, y_of[ends_i]), (0, y_of[ends_i]), (0, 0)]
+    pg.draw_polyline([pymupdf.Point(*P(mx, my)) for mx, my in sil], color=CUT, width=0.9)
 
-    # overall development
-    x0, y0 = P(0, 0)
-    xe, ye = P(dev_w, dev_h)
-    witness(pg, (x0, ye), (x0, ye + 15 * MM))
-    witness(pg, (xe, ye), (xe, ye + 15 * MM))
-    dim_h(pg, x0, xe, ye + 10 * MM, f'{dev_w:g} across the development')
-    witness(pg, (x0, y0), (x0 - 15 * MM, y0))
-    witness(pg, (x0, ye), (x0 - 15 * MM, ye))
-    dim_v(pg, y0, ye, x0 - 10 * MM, f'{dev_h:g} down')
+    for i in range(1, len(rows)):
+        p0, p1 = P(0, y_of[i]), P(L, y_of[i])
+        line(pg, p0, p1, 0.9, FOLDC, '[5 2.5] 0')
+    for ex in (0, L):
+        line(pg, P(ex, y_of[ends_i]), P(ex, y_of[ends_i + 1]), 0.9, FOLDC, '[5 2.5] 0')
 
-    note(pg, x0, ye + 22 * MM, [
-        'magenta = trim.  blue dashed heavy = fold.  blue dashed fine = the band line and '
-        'the magnet, neither of them printed.',
-        f'grey = blind deboss and cap, the same on every face: line {c.b:g} in from the '
-        f'edge, each run stopping {c.run:.1f} from the corner',
-        f'where the R{c.R:g} cap meets it, stud \u00f8{c.stud:g} at {c.stud_in:g}, '
-        f'{c.stud_in:g}.  nothing grey is printed or foiled.',
-        f'gold = foil, top panel only.  the medallion and the wordmark are your files; '
-        'the dashed boxes are where they sit.',
-        f'the caps are R{c.R:g} so that on the front and the ends they finish exactly on '
-        f'the band line {c.band:g} up, and nothing crosses the opening.',
-        'the ends are drawn lying on their sides, as they fall when the box is unwrapped; '
-        'their band line runs vertically, at the outer edge.',
-        'add bleed to the outside of the development to suit the wrapping method.',
+    # the magnet sits on the flap, at its free edge
+    fi = [n for _, n in rows].index('flap')
+    fy = y_of[fi] if fi == 0 else y_of[fi + 1]
+    mx0, _ = P(L / 2 - c.magnet / 2, 0)
+    mx1, _ = P(L / 2 + c.magnet / 2, 0)
+    my = oy + (fy + (10 if fi == 0 else -13)) * k
+    pg.draw_rect(pymupdf.Rect(mx0, my, mx1, my + 3 * k), color=HID, fill=None,
+                 width=0.5, dashes='[2 1.6] 0')
+    pg.insert_text(pymupdf.Point(mx1 + 2 * MM, my + 2.4 * k),
+                   f'magnetic catch {c.magnet:g}, not printed',
+                   fontname='Helvetica', fontsize=6.5, color=HID)
+
+    # dimensions down the right
+    dx = P(L + end_w, 0)[0] + 16 * MM
+    for i, (h, _) in enumerate(rows):
+        y0, y1 = P(0, y_of[i])[1], P(0, y_of[i + 1])[1]
+        witness(pg, (P(L, y_of[i])[0], y0), (dx + 3 * MM, y0))
+        dim_v(pg, y0, y1, dx, f'{h:g}')
+    witness(pg, (P(L, total)[0], P(0, total)[1]), (dx + 3 * MM, P(0, total)[1]))
+    xa, ya = P(0, total)
+    witness(pg, (xa, ya), (xa, ya + 16 * MM))
+    witness(pg, (P(L, total)[0], ya), (P(L, total)[0], ya + 16 * MM))
+    dim_h(pg, xa, P(L, total)[0], ya + 11 * MM, f'{L:g}')
+    ex0 = P(-end_w, y_of[ends_i + 1])[0]
+    witness(pg, (ex0, P(0, y_of[ends_i + 1])[1]),
+            (ex0, P(0, y_of[ends_i + 1])[1] + 10 * MM))
+    dim_h(pg, ex0, xa, P(0, y_of[ends_i + 1])[1] + 7 * MM, f'{end_w:g}', anchor='center')
+
+    note(pg, ex0, ya + 22 * MM, [
+        'magenta = trim, the outside of the development only.  heavy blue dashed = fold.',
+        'fine blue dashed = the magnetic catch, not printed.',
+        f'grey = blind deboss and cap, the same on every panel: line {c.b:g} in from the '
+        f'edge, each run stopping {c.run:.1f} from the corner where the R{c.R:g} cap meets '
+        'it, stud ' f'\u00f8{c.stud:g} at {c.stud_in:g}, {c.stud_in:g}.',
+        'at every fold two caps meet and read as the one full round the corner really is. '
+        'nothing grey is printed or foiled.',
+        f'gold = foil on the {foil_on} panel only; the dashed boxes are where your '
+        'medallion and wordmark sit.',
+        f'panel heights as given: ' + ', '.join(f'{n} {h:g}' for h, n in rows) +
+        f'; ends {end_w:g} wide off the {ends_on}.',
+        'check the panel names against the way you fold it -- the heights are yours, '
+        'the names are my reading of them.',
     ])
     return pg
 
@@ -439,6 +460,11 @@ def main():
     ap.add_argument('--mark-h', type=float, default=8.0)
     ap.add_argument('--gap', type=float, default=4.0)
     ap.add_argument('--scale', type=float, default=0.5)
+    ap.add_argument('--rows', default='40:flap,70:top,55:back,65:bottom,55:front',
+                    help='panel heights down the development, as height:name')
+    ap.add_argument('--end-w', type=float, default=55.0)
+    ap.add_argument('--ends-on', default='bottom')
+    ap.add_argument('--foil-on', default='top')
     a = ap.parse_args()
 
     os.makedirs(a.out_dir, exist_ok=True)
@@ -452,8 +478,12 @@ def main():
     f1 = os.path.join(a.out_dir, 'traxnyc-box-production.pdf')
     spec.save(f1, garbage=4, deflate=True)
 
+    rows = []
+    for part in a.rows.split(','):
+        hv, nm = part.split(':')
+        rows.append((float(hv), nm))
     art = pymupdf.open()
-    sheet_flat(art, c)
+    sheet_flat(art, c, rows, a.end_w, a.ends_on, a.foil_on)
     sheet_art(art, c, c.L, c.W, 'top · tooling + gold foil', foil=True)
     sheet_art(art, c, c.L, c.H, 'front · tooling', band=True)
     sheet_art(art, c, c.W, c.H, 'end · tooling', band=True)
