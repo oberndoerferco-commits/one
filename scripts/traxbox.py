@@ -510,8 +510,9 @@ def sheet_net(doc, c, s, preview=False):
         face(pg, *P(ex, yb), c.H, c.Wb, c, k, which=ALL4, border=True)
         pg.insert_text(pymupdf.Point(*P(ex + 3, yb + 9)), 'END WALL',
                        fontname='Helvetica-Bold', fontsize=6.5, color=(1, 1, 1))
-        pg.insert_text(pymupdf.Point(*P(ex + 3, yb + 15)), f'{c.H:g} x {c.Wb:g}',
-                       fontname='Helvetica', fontsize=5.5, color=(1, 1, 1))
+        if not preview:
+            pg.insert_text(pymupdf.Point(*P(ex + 3, yb + 15)), f'{c.H:g} x {c.Wb:g}',
+                           fontname='Helvetica', fontsize=5.5, color=(1, 1, 1))
 
     # --- the five rows ----------------------------------------------------
     for h, n in c.rows:
@@ -521,14 +522,18 @@ def sheet_net(doc, c, s, preview=False):
     mark(pg, mc[0], mc[1], c, k, rotate=180, gold=True)
     magnets(pg, P(0, 1.6)[0], P(0, 1.6)[1], c.L, k, c)
 
-    labels = {
-        'lap': f'LAP  {c.L:g} x {c.lap:g}  —  catch in the free edge, no cap there',
-        'top': f'LID TOP  {c.L:g} x {c.Wt:g}  —  foil here; '
-               'the fold to the lap is the FRONT edge',
-        'back': f'BACK  {c.L:g} x {c.H:g}',
-        'bottom': f'BOTTOM  {c.L:g} x {c.Wb:g}',
-        'front': f'FRONT  {c.L:g} x {c.H:g}  —  drops forward',
-    }
+    if preview:
+        labels = {'lap': 'LAP', 'top': 'LID TOP', 'back': 'BACK',
+                  'bottom': 'BOTTOM', 'front': 'FRONT WALL'}
+    else:
+        labels = {
+            'lap': f'LAP  {c.L:g} x {c.lap:g}  —  catch in the free edge, no cap there',
+            'top': f'LID TOP  {c.L:g} x {c.Wt:g}  —  foil here; '
+                   'the fold to the lap is the FRONT edge',
+            'back': f'BACK  {c.L:g} x {c.H:g}',
+            'bottom': f'BOTTOM  {c.L:g} x {c.Wb:g}',
+            'front': f'FRONT  {c.L:g} x {c.H:g}  —  drops forward',
+        }
     for h, n in c.rows:
         pg.insert_text(pymupdf.Point(*P(4, ys[n] + 9)), labels[n],
                        fontname='Helvetica-Bold', fontsize=7, color=(1, 1, 1))
@@ -537,7 +542,8 @@ def sheet_net(doc, c, s, preview=False):
     yr = ys['front'] + c.lap
     line(pg, P(0, yr), P(c.L, yr), 0.9, LAPL, '[4 2.5] 0')
     pg.insert_text(pymupdf.Point(*P(c.L - 76, yr - 2.5)),
-                   f'the lap closes to here — {c.reveal:g} of the front shows below it',
+                   'the lap closes to here'
+                   + ('' if preview else f' — {c.reveal:g} of the front shows below it'),
                    fontname='Helvetica', fontsize=5.8, color=LAPL)
 
     # --- silhouette, folds, dimensions ------------------------------------
@@ -557,15 +563,20 @@ def sheet_net(doc, c, s, preview=False):
         for xx in (-c.H, c.L + c.H):
             line(pg, P(xx, yb), P(xx, yb + c.Wb), 0.8, FOLDC, '[2 2] 0')
 
-    dim_h(pg, P(0, 0)[0], P(c.L, 0)[0], P(0, 0)[1] - 11 * MM, f'{c.L:g}')
-    xd = P(-c.H - c.end_tab, 0)[0] - 12 * MM
-    for h, n in c.rows:
-        dim_v(pg, P(0, ys[n])[1], P(0, ys[n] + h)[1], xd, f'{h:g}  {n}', anchor='left')
-    dim_v(pg, P(0, 0)[1], P(0, c.net_h)[1], xd - 30 * MM, f'{c.net_h:g}', anchor='left')
-    ye = P(0, yb + c.Wb)[1] + 10 * MM
-    dim_h(pg, P(-c.H, yb)[0], P(0, yb)[0], ye, f'{c.H:g}')
-    dim_h(pg, P(c.L, yb)[0], P(c.L + c.H, yb)[0], ye, f'{c.H:g}')
+    if not preview:
+        dim_h(pg, P(0, 0)[0], P(c.L, 0)[0], P(0, 0)[1] - 11 * MM, f'{c.L:g}')
+        xd = P(-c.H - c.end_tab, 0)[0] - 12 * MM
+        for h, n in c.rows:
+            dim_v(pg, P(0, ys[n])[1], P(0, ys[n] + h)[1], xd, f'{h:g}  {n}',
+                  anchor='left')
+        dim_v(pg, P(0, 0)[1], P(0, c.net_h)[1], xd - 30 * MM, f'{c.net_h:g}',
+              anchor='left')
+        ye = P(0, yb + c.Wb)[1] + 10 * MM
+        dim_h(pg, P(-c.H, yb)[0], P(0, yb)[0], ye, f'{c.H:g}')
+        dim_h(pg, P(c.L, yb)[0], P(c.L + c.H, yb)[0], ye, f'{c.H:g}')
 
+    if preview:
+        return pg
     note(pg, 30 * MM, P(0, c.net_h)[1] + 32 * MM, [
         'One piece. Lap down over the front, top over from the back, back '
         'and front up off the bottom, end walls up off the bottom row. '
@@ -717,9 +728,9 @@ def main():
     ap.add_argument('--stud', type=float, default=3.5)
     ap.add_argument('--stud-in', type=float, default=9.0)
     ap.add_argument('--magnet', type=float, default=40.0)
-    ap.add_argument('--medal', type=float, default=42.0)
-    ap.add_argument('--mark-w', type=float, default=62.0)
-    ap.add_argument('--mark-h', type=float, default=9.1)
+    ap.add_argument('--medal', type=float, default=36.0)
+    ap.add_argument('--mark-w', type=float, default=53.0)
+    ap.add_argument('--mark-h', type=float, default=7.8)
     ap.add_argument('--gap', type=float, default=3.0)
     a = ap.parse_args()
 
