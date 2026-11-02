@@ -413,9 +413,11 @@ def d11_sketch(M):
     ol = np.maximum(np.roll(np.roll(ks, 6, 0), 4, 1), np.roll(np.roll(ks, -5, 0), -7, 1))
     mark = np.clip(lines * 0.85 + np.maximum(ks, ol * 0.75), 0, 1)
     mark = mark * (0.55 + 0.45 * fbm((H, W), 8, 113))
-    body = np.ones((H, W, 3), np.float32) * (np.array([30, 38, 72], np.float32) / 255)
-    return compose(np.clip(body * (0.55 + 0.45 * mark[..., None]), 0, 1),
-                   np.clip(mark * 1.5, 0, 1))
+    # pale ballpoint, so it reads as pencil on a dark shirt rather than
+    # vanishing into it
+    body = np.ones((H, W, 3), np.float32) * (np.array([206, 218, 242], np.float32) / 255)
+    return compose(np.clip(body * (0.70 + 0.30 * mark[..., None]), 0, 1),
+                   np.clip(mark * 2.1, 0, 1))
 
 
 def d12_metal(M):
