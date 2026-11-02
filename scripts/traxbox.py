@@ -45,6 +45,14 @@ import pymupdf
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from draft import MM, GREY, line, dim_h, dim_v, witness, note, title  # noqa: E402
 
+# The client's own lockup, exported from Canva. Both marks are vector; the
+# ink bands were measured off the page at 300 dpi.
+LOGO_PDF = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                        '..', 'assets', 'traxnyc-box', 'traxnyc-lockup.pdf')
+MEDAL_CLIP = (113.3, 56.6, 482.2, 425.5)     # the quatrefoil, square
+WORD_CLIP = (112.1, 454.8, 482.9, 509.3)     # TRAXNYC
+# "MADE IN ITALY" sits below both and is deliberately not used.
+
 LEATHER = (0.13, 0.12, 0.12)
 TOOL = (0.42, 0.40, 0.39)
 GOLD = (0.76, 0.60, 0.29)
@@ -62,13 +70,14 @@ RIGHT2 = (TR, BR)
 
 class Box:
     def __init__(self, L, Wt, Wb, H, lap, end_tab, board, wrap, b, R, stud,
-                 stud_in, magnet, medal, mark_w, mark_h, gap):
+                 stud_in, magnet, medal, mark_w, mark_h, gap, line=1.2):
         self.L, self.Wt, self.Wb, self.H = L, Wt, Wb, H
         self.lap, self.end_tab = lap, end_tab
         self.board, self.wrap = board, wrap
         self.b, self.R, self.stud, self.stud_in = b, R, stud, stud_in
         self.magnet = magnet
         self.medal, self.mark_w, self.mark_h, self.gap = medal, mark_w, mark_h, gap
+        self.line = line                     # debossed line width, mm
 
     @property
     def reveal(self):
@@ -122,7 +131,7 @@ def _corner(w, h, key):
     return cx, cy, (1 if key[1] == 'l' else -1), (1 if key[0] == 't' else -1)
 
 
-def deboss(pg, x, y, w, h, b, R, which=ALL4, col=TOOL, width=0.7, open_edges=()):
+def deboss(pg, x, y, w, h, b, R, which=ALL4, col=TOOL, width=None, open_edges=()):
     """The debossed frame.
 
     A run stops short only at a corner that has a cap. An edge named in
@@ -160,7 +169,7 @@ def deboss(pg, x, y, w, h, b, R, which=ALL4, col=TOOL, width=0.7, open_edges=())
         line(pg, (x + p0[0], y + p0[1]), (x + p1[0], y + p1[1]), width, col)
 
 
-def caps(pg, x, y, w, h, R, which=ALL4, col=TOOL, width=0.7):
+def caps(pg, x, y, w, h, R, which=ALL4, col=TOOL, width=None):
     """Quarter-round cap arcs, clipped to a face shallower than R."""
     for key in which:
         cx, cy, sx, sy = _corner(w, h, key)
@@ -171,7 +180,7 @@ def caps(pg, x, y, w, h, R, which=ALL4, col=TOOL, width=0.7):
                              color=col, width=width)
 
 
-def studs(pg, x, y, w, h, inset, dia, which=ALL4, col=TOOL, width=0.6):
+def studs(pg, x, y, w, h, inset, dia, which=ALL4, col=TOOL, width=None):
     for key in which:
         cx, cy, sx, sy = _corner(w, h, key)
         pg.draw_circle(pymupdf.Point(x + cx + sx * inset, y + cy + sy * inset),
@@ -179,8 +188,15 @@ def studs(pg, x, y, w, h, inset, dia, which=ALL4, col=TOOL, width=0.6):
 
 
 def face(pg, x, y, fw, fh, c, k, which=ALL4, border=True, fill=LEATHER,
-         tool=TOOL, width=0.7, open_edges=()):
-    """One decorated exterior panel, fw x fh mm, top-left at (x, y)."""
+         tool=TOOL, width=None, open_edges=()):
+    """One decorated exterior panel, fw x fh mm, top-left at (x, y).
+
+    `width` is in POINTS. Left unset it becomes the box's real debossed line
+    width at this drawing's scale, so a 1:1 sheet carries the true weight and
+    a reduced sheet thins in proportion.
+    """
+    if width is None:
+        width = c.line * k
     if fill:
         pg.draw_rect(pymupdf.Rect(x, y, x + fw * k, y + fh * k), color=None, fill=fill)
     if border:
@@ -188,32 +204,103 @@ def face(pg, x, y, fw, fh, c, k, which=ALL4, border=True, fill=LEATHER,
                open_edges)
     if which:
         caps(pg, x, y, fw * k, fh * k, c.R * k, which, tool, width)
-        studs(pg, x, y, fw * k, fh * k, c.stud_in * k, c.stud * k, which, tool)
+        studs(pg, x, y, fw * k, fh * k, c.stud_in * k, c.stud * k, which, tool,
+              max(0.4, width * 0.8))
 
 
-def mark(pg, cx, cy, c, k, col=GOLD, solid=True):
-    """Foil on the lid top, as placeholder blocks.
+_LOGO_DOC = None
 
-    Read off the sample: coming in from the FRONT edge it is the wordmark
-    first and the medallion behind it, nearer the back. On a drawing whose
-    top edge is the front of the box that puts the wordmark uppermost.
+
+def _logo():
+    """The client's lockup, opened once. None if the file is missing."""
+    global _LOGO_DOC
+    if _LOGO_DOC is None:
+        try:
+            _LOGO_DOC = pymupdf.open(LOGO_PDF)
+        except Exception:
+            _LOGO_DOC = False
+    return _LOGO_DOC or None
+
+
+_GOLD_CACHE = {}
+
+
+def _gold_png(clip, rotate, col=GOLD, dpi=600):
+    """The lockup's ink as a gold RGBA image, its paper transparent.
+
+    The client's file is black on white. Placed straight onto a drawing of
+    black leatherette the white page would show as a box, so for those sheets
+    the ink is turned into an alpha channel and tinted foil gold.
     """
-    mh, mw = c.medal * k, c.mark_w * k
-    tot = c.mark_h * k + c.gap * k + mh
+    key = (clip, rotate, col, dpi)
+    if key in _GOLD_CACHE:
+        return _GOLD_CACHE[key]
+    src = _logo()
+    if src is None:
+        return None
+    m = pymupdf.Matrix(dpi / 72.0, dpi / 72.0)
+    if rotate % 360:
+        m = m * pymupdf.Matrix(rotate % 360)
+    pm = src[0].get_pixmap(matrix=m, clip=pymupdf.Rect(*clip), colorspace=pymupdf.csGRAY)
+    g = bytearray(pm.samples)
+    w, h = pm.width, pm.height
+    out = bytearray(w * h * 4)
+    r8, g8, b8 = (int(round(v * 255)) for v in col)
+    for i in range(w * h):
+        a = 255 - g[i]                       # ink opaque, paper clear
+        j = i * 4
+        out[j] = r8; out[j + 1] = g8; out[j + 2] = b8; out[j + 3] = a
+    png = pymupdf.Pixmap(pymupdf.csRGB, w, h, bytes(out), True).tobytes('png')
+    _GOLD_CACHE[key] = png
+    return png
+
+
+def _place(pg, rect, clip, rotate, gold=False):
+    src = _logo()
+    if src is None:
+        pg.draw_rect(rect, color=GOLD, fill=None, width=0.7, dashes='[2.5 2] 0')
+        return False
+    if gold:
+        png = _gold_png(clip, rotate)
+        if png:
+            pg.insert_image(rect, stream=png, keep_proportion=True)
+            return True
+    pg.show_pdf_page(rect, src, 0, clip=pymupdf.Rect(*clip), rotate=rotate)
+    return True
+
+
+def mark(pg, cx, cy, c, k, rotate=0, gold=False):
+    """Place the client's foil lockup centred on (cx, cy).
+
+    Measured off the sample: the medallion sits toward the BACK of the lid
+    and the wordmark toward the FRONT, so in a view whose front edge is at
+    the bottom the medallion is uppermost. Pass rotate=180 for a drawing
+    whose front edge is at the top -- the net -- where the whole lockup
+    turns with it and the wordmark lands uppermost on the page.
+
+    Returns (medallion rect, wordmark rect) in page points.
+    """
+    mw = c.medal * k
+    ww = c.mark_w * k
+    wh = ww * (WORD_CLIP[3] - WORD_CLIP[1]) / (WORD_CLIP[2] - WORD_CLIP[0])
+    tot = mw + c.gap * k + wh
     top = cy - tot / 2
-    b = pymupdf.Rect(cx - mw / 2, top, cx + mw / 2, top + c.mark_h * k)
-    a = pymupdf.Rect(cx - mh / 2, top + c.mark_h * k + c.gap * k,
-                     cx + mh / 2, top + tot)
-    for r in (b, a):
-        pg.draw_rect(r, color=col, fill=col if solid else None, width=0.7,
-                     dashes=None if solid else '[2.5 2] 0')
-    return a, b
+    if rotate % 360 == 180:
+        word = pymupdf.Rect(cx - ww / 2, top, cx + ww / 2, top + wh)
+        medal = pymupdf.Rect(cx - mw / 2, top + wh + c.gap * k, cx + mw / 2, top + tot)
+    else:
+        medal = pymupdf.Rect(cx - mw / 2, top, cx + mw / 2, top + mw)
+        word = pymupdf.Rect(cx - ww / 2, top + mw + c.gap * k, cx + ww / 2, top + tot)
+    _place(pg, medal, MEDAL_CLIP, rotate, gold)
+    _place(pg, word, WORD_CLIP, rotate, gold)
+    return medal, word
 
 
-def _front_edge(pg, x, y, w, col=LAPL):
+def _front_edge(pg, x, y, w, col=LAPL, side='right'):
     """Mark which edge of a plan view faces the front of the box."""
-    line(pg, (x, y - 1.4 * MM), (x + w, y - 1.4 * MM), 1.1, col)
-    pg.insert_text(pymupdf.Point(x + w - 18 * MM, y - 3.2 * MM), 'FRONT EDGE',
+    line(pg, (x, y - 1.4 * MM), (x + w, y - 1.4 * MM), 1.4, col)
+    tx = x + w - 18 * MM if side == 'right' else x + 2 * MM
+    pg.insert_text(pymupdf.Point(tx, y + 1.4 * MM), 'FRONT EDGE',
                    fontname='Helvetica-Bold', fontsize=6, color=col)
 
 
@@ -268,11 +355,11 @@ def sheet_ga(doc, c, s):
     y3 = y0 + c.H * k + 30 * MM
     pg.insert_text(pymupdf.Point(x0, y3 - 4 * MM),
                    f'lid top {c.L:g} x {c.Wt:g} — foil and four caps, '
-                   'front edge uppermost',
+                   'front edge at the bottom',
                    fontname='Helvetica', fontsize=7, color=GREY)
     face(pg, x0, y3, c.L, c.Wt, c, k, which=ALL4, border=True)
-    mark(pg, x0 + c.L * k / 2, y3 + c.Wt * k / 2, c, k)
-    _front_edge(pg, x0, y3, c.L * k)
+    mark(pg, x0 + c.L * k / 2, y3 + c.Wt * k / 2, c, k, gold=True)
+    _front_edge(pg, x0, y3 + c.Wt * k + 3.2 * MM, c.L * k)
     dim_h(pg, x0, x0 + c.L * k, y3 + c.Wt * k + 11 * MM, f'{c.L:g}')
     dim_v(pg, y3, y3 + c.Wt * k, x0 - 12 * MM, f'{c.Wt:g}', anchor='left')
 
@@ -316,8 +403,8 @@ def sheet_parts(doc, c, s):
                        fontname='Helvetica-Bold', fontsize=7.2, color=(0, 0, 0))
         face(pg, x0, y, fw, fh, c, k, which=which, border=True, open_edges=opens)
         if lab.endswith('LID TOP'):
-            mark(pg, x0 + fw * k / 2, y + fh * k / 2, c, k)
-            _front_edge(pg, x0, y, fw * k)
+            mark(pg, x0 + fw * k / 2, y + fh * k / 2, c, k, gold=True)
+            _front_edge(pg, x0, y + fh * k + 3.2 * MM, fw * k)
         if lab.endswith('LAP'):
             magnets(pg, x0, y + fh * k + 1.6 * MM, fw, k, c)
             pg.insert_text(pymupdf.Point(x0 + fw * k + 4 * MM, y + fh * k + 2.5 * MM),
@@ -368,7 +455,7 @@ def sheet_detail(doc, c):
     note(pg, 40 * MM, y0 + fh * k + 22 * MM, [
         'Cap: a quarter-round struck from the corner, worked in the wrap.',
         f'Radius {c.R:g}. Domed stud {c.stud:g} dia, centre {c.stud_in:g} in from both edges.',
-        f'Debossed line {c.b:g} in from the edge, 0.7 wide, blind — no colour.',
+        f'Debossed line {c.b:g} in from the edge, {c.line:g} wide, blind — no colour.',
         f'The straight run ends at sqrt({c.R:g}^2 - {c.b:g}^2) = {r:.1f} from the corner,',
         'where the arc crosses it. The two marks meet; neither crosses.',
         '',
@@ -385,14 +472,20 @@ def sheet_detail(doc, c):
     return pg
 
 
-def sheet_net(doc, c, s):
+def sheet_net(doc, c, s, preview=False):
     """The client's net, dimensioned and decorated. One piece."""
     k = s * MM
     pg = doc.new_page(width=1191, height=842)        # A3 landscape
-    title(pg, 30 * MM, 24 * MM,
-          'TRAXNYC trunk box — the net, printing and tooling',
-          f'{c.L:g} wide x {c.net_h:g} over five rows · scale 1:{1 / s:.1f} · '
-          'magenta = cut · blue dashed = fold · grey = blind deboss · gold = foil')
+    if preview:
+        title(pg, 30 * MM, 24 * MM,
+              'TRAXNYC trunk box — how the finished piece reads',
+              'the same artwork on black leatherette, gold foil and blind '
+              'deboss · visual reference, not the production file')
+    else:
+        title(pg, 30 * MM, 24 * MM,
+              'TRAXNYC trunk box — the net, printing and tooling',
+              f'{c.L:g} wide x {c.net_h:g} over five rows · scale 1:{1 / s:.1f} · '
+              'magenta = cut · blue dashed = fold · grey = blind deboss · gold = foil')
 
     ox = 62 * MM + (c.H + c.end_tab) * k
     oy = 56 * MM
@@ -425,7 +518,7 @@ def sheet_net(doc, c, s):
         face(pg, *P(0, ys[n]), c.L, h, c, k, which=CAPS_OF[n], border=True,
              open_edges=OPEN_OF.get(n, ()))
     mc = P(c.L / 2, ys['top'] + c.Wt / 2)
-    mark(pg, mc[0], mc[1], c, k)
+    mark(pg, mc[0], mc[1], c, k, rotate=180, gold=True)
     magnets(pg, P(0, 1.6)[0], P(0, 1.6)[1], c.L, k, c)
 
     labels = {
@@ -484,7 +577,7 @@ def sheet_net(doc, c, s):
         'closes there either: the side lines run straight out to the free edge, '
         'so the shut box shows one frame down the whole front.',
         f'Allow {c.wrap:g} turn-in on every raw edge, not drawn. Board {c.board:g}.',
-        f'Blind deboss {c.b:g} in from each panel edge, 0.7 wide, each run '
+        f'Blind deboss {c.b:g} in from each panel edge, {c.line:g} wide, each run '
         f'stopping {c.run:.1f} from the corner where the cap arc meets it.',
     ], lead=4.6 * MM)
     return pg
@@ -548,18 +641,20 @@ def sheet_art_net(doc, c):
 
     # --- foil, on the lid top, wordmark toward the lap --------------------
     mcx, mcy = P(c.L / 2, ys['top'] + c.Wt / 2)
-    medal, word = mark(pg, mcx, mcy, c, k, solid=False)
+    medal, word = mark(pg, mcx, mcy, c, k, rotate=180)
     pg.insert_text(pymupdf.Point(word.x1 + 4 * MM, word.y1 - 1 * MM),
                    '1  wordmark - logo', fontname='Helvetica',
                    fontsize=6.2, color=GOLD)
     pg.insert_text(pymupdf.Point(medal.x1 + 4 * MM, medal.y1 - 1 * MM),
                    '2  medallion - logo', fontname='Helvetica',
                    fontsize=6.2, color=GOLD)
+    for r in (word, medal):
+        pg.draw_rect(r, color=GOLD, fill=None, width=0.5, dashes='[2 2] 0')
 
     # --- panel names ------------------------------------------------------
     labels = {
-        'lap': 'LAP   free edge above — no cap and no frame there',
-        'top': 'LID TOP   foil here; the fold below is the FRONT edge',
+        'lap': 'LAP   free edge above — no cap, no frame there',
+        'top': 'LID TOP',
         'back': 'BACK',
         'bottom': 'BOTTOM',
         'front': 'FRONT WALL   free edge below — frame open there',
@@ -568,6 +663,8 @@ def sheet_art_net(doc, c):
         pg.insert_text(pymupdf.Point(*P(c.R + 5, ys[n] + 11)), labels[n],
                        fontname='Helvetica-Bold', fontsize=6.8,
                        color=(0.25, 0.25, 0.25))
+
+    _front_edge(pg, *P(0, ys['top'] + 3.0), c.L * k, side='left')
 
     # --- where the lap closes on the front wall ---------------------------
     yr = ys['front'] + c.lap
@@ -613,19 +710,22 @@ def main():
                 help='glue tab beyond each end wall; 0 for none')
     ap.add_argument('--board', type=float, default=2.0)
     ap.add_argument('--wrap', type=float, default=15.0)
-    ap.add_argument('--border', type=float, default=7.0, help='deboss inset')
+    ap.add_argument('--border', type=float, default=6.0, help='deboss inset')
+    ap.add_argument('--line', type=float, default=1.2,
+                    help='debossed line width, mm')
     ap.add_argument('--cap', type=float, default=20.0, help='cap reach')
     ap.add_argument('--stud', type=float, default=3.5)
     ap.add_argument('--stud-in', type=float, default=9.0)
     ap.add_argument('--magnet', type=float, default=40.0)
-    ap.add_argument('--medal', type=float, default=26.0)
-    ap.add_argument('--mark-w', type=float, default=52.0)
-    ap.add_argument('--mark-h', type=float, default=8.0)
-    ap.add_argument('--gap', type=float, default=4.0)
+    ap.add_argument('--medal', type=float, default=42.0)
+    ap.add_argument('--mark-w', type=float, default=62.0)
+    ap.add_argument('--mark-h', type=float, default=9.1)
+    ap.add_argument('--gap', type=float, default=3.0)
     a = ap.parse_args()
 
     c = Box(a.L, a.Wt, a.Wb, a.H, a.lap, a.end_tab, a.board, a.wrap, a.border,
-            a.cap, a.stud, a.stud_in, a.magnet, a.medal, a.mark_w, a.mark_h, a.gap)
+            a.cap, a.stud, a.stud_in, a.magnet, a.medal, a.mark_w, a.mark_h,
+            a.gap, a.line)
     if c.reveal <= 0:
         sys.exit(f'lap {c.lap} is not shorter than the front wall {c.H}')
 
@@ -641,6 +741,7 @@ def main():
 
     art = pymupdf.open()
     sheet_art_net(art, c)
+    sheet_net(art, c, 2.0 / 3.0, preview=True)
     p2 = os.path.join(a.out, 'traxnyc-box-artwork.pdf')
     art.save(p2)
 
