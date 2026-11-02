@@ -1,0 +1,887 @@
+<title>TRAXNYC Trunk Box</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Archivo:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: a full-width studio viewport with a control rail beneath it, then a
+   spec column. Palette taken off the sample itself - leatherette black, foil
+   gold, suede lining - on a cool workshop grey. */
+:root{
+  --bg:#edeae4;
+  --surface:#fffefb;
+  --ink:#1a1b1d;
+  --ink-soft:#5e5c57;
+  --ink-faint:#908c84;
+  --rule:#d8d3c8;
+  --gold:#8a6520;
+  --gold-bright:#c89a4a;
+  --studio-a:#cfccc5;
+  --studio-b:#a8a49c;
+  --lap:#2f6f8f;
+  --lid:#8a5a2b;
+  --plinth:#4a7a4a;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#131415;
+    --surface:#1c1d1f;
+    --ink:#eceae4;
+    --ink-soft:#a5a29a;
+    --ink-faint:#74716a;
+    --rule:#333436;
+    --gold:#d7b377;
+    --gold-bright:#e8cb98;
+    --studio-a:#2a2b2d;
+    --studio-b:#17181a;
+    --lap:#6fb6d8;
+    --lid:#d59a5e;
+    --plinth:#7fc07f;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#131415;
+  --surface:#1c1d1f;
+  --ink:#eceae4;
+  --ink-soft:#a5a29a;
+  --ink-faint:#74716a;
+  --rule:#333436;
+  --gold:#d7b377;
+  --gold-bright:#e8cb98;
+  --studio-a:#2a2b2d;
+  --studio-b:#17181a;
+  --lap:#6fb6d8;
+  --lid:#d59a5e;
+  --plinth:#7fc07f;
+  color-scheme:dark;
+}
+
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Archivo,"Helvetica Neue",Arial,sans-serif;
+  font-size:15px;
+  line-height:1.55;
+  -webkit-text-size-adjust:100%;
+}
+.wrap{
+  max-width:1120px;
+  margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:28px 56px;
+}
+
+/* ---- masthead ---- */
+.mast{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 22px;margin-bottom:18px}
+.mast h1{
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-weight:600;
+  font-size:clamp(28px,5.4vw,42px);
+  letter-spacing:.01em;
+  line-height:1.05;
+  margin:0;
+  text-wrap:balance;
+}
+.mast .sizes{
+  font-variant-numeric:tabular-nums;
+  font-size:13px;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  padding-bottom:4px;
+}
+.lede{
+  max-width:60ch;
+  color:var(--ink-soft);
+  margin:0 0 22px;
+  font-size:15px;
+}
+
+/* ---- viewport ---- */
+.stage{
+  position:relative;
+  border:1px solid var(--rule);
+  border-radius:3px;
+  overflow:hidden;
+  background:linear-gradient(170deg,var(--studio-a),var(--studio-b));
+  aspect-ratio:16/10;
+  max-width:100%;
+  touch-action:none;
+  cursor:grab;
+}
+.stage.dragging{cursor:grabbing}
+.stage canvas{display:block;width:100%;height:100%}
+.labels{position:absolute;inset:0;pointer-events:none}
+.tag{
+  position:absolute;
+  transform:translate(-50%,-50%);
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  padding:3px 7px;
+  border-radius:2px;
+  background:var(--surface);
+  border:1px solid var(--rule);
+  box-shadow:0 1px 4px rgba(0,0,0,.18);
+  opacity:0;
+  transition:opacity .18s;
+}
+.tag.on{opacity:1}
+.tag b{font-weight:700;font-variant-numeric:tabular-nums}
+.tag.t-lap{color:var(--lap)}
+.tag.t-lid{color:var(--lid)}
+.tag.t-plinth{color:var(--plinth)}
+.hint{
+  position:absolute;
+  left:12px;bottom:10px;
+  font-size:11px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  background:var(--surface);
+  border:1px solid var(--rule);
+  padding:3px 8px;
+  border-radius:2px;
+  opacity:.85;
+}
+
+/* ---- controls ---- */
+.rail{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:14px;
+  margin-top:14px;
+  padding:12px 14px;
+  background:var(--surface);
+  border:1px solid var(--rule);
+  border-radius:3px;
+}
+@media (max-width:640px){.rail{grid-template-columns:1fr;gap:12px}}
+button{
+  font:inherit;
+  font-weight:600;
+  font-size:13px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--surface);
+  background:var(--ink);
+  border:1px solid var(--ink);
+  border-radius:2px;
+  padding:9px 16px;
+  cursor:pointer;
+  white-space:nowrap;
+}
+button:hover{opacity:.86}
+button.ghost{background:transparent;color:var(--ink-soft);border-color:var(--rule)}
+button.ghost[aria-pressed="true"]{color:var(--surface);background:var(--ink);border-color:var(--ink)}
+:is(button,input,[tabindex]):focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.scrub{display:flex;align-items:center;gap:10px;min-width:0}
+.scrub label{
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);white-space:nowrap;
+}
+input[type=range]{flex:1;min-width:0;accent-color:var(--gold);height:22px}
+.views{display:flex;gap:6px;flex-wrap:wrap}
+.views button{padding:8px 11px;font-size:11px}
+
+.toggles{
+  display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:12px;
+}
+.toggles label{
+  display:flex;align-items:center;gap:7px;
+  font-size:13px;color:var(--ink-soft);cursor:pointer;
+}
+.toggles input{accent-color:var(--gold);width:16px;height:16px}
+
+/* ---- spec ---- */
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(252px,1fr));gap:26px 34px;margin-top:38px}
+.cols > *{min-width:0}
+h2{
+  font-family:Archivo,sans-serif;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--ink-faint);
+  margin:0 0 10px;
+  padding-bottom:7px;
+  border-bottom:1px solid var(--rule);
+}
+dl.spec{margin:0;font-variant-numeric:tabular-nums}
+dl.spec div{display:flex;justify-content:space-between;gap:14px;padding:6px 0;border-bottom:1px dotted var(--rule)}
+dl.spec dt{color:var(--ink-soft);font-size:14px}
+dl.spec dd{margin:0;font-weight:600;font-size:14px;white-space:nowrap}
+ol.steps{margin:0;padding-left:1.15em;color:var(--ink-soft);font-size:14px}
+ol.steps li{margin-bottom:9px}
+ol.steps strong{color:var(--ink);font-weight:600}
+.swatch{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:baseline}
+p.note{font-size:13px;color:var(--ink-faint);margin:14px 0 0;max-width:62ch}
+.q{
+  margin-top:34px;padding:16px 18px;border:1px solid var(--gold);border-left-width:3px;border-radius:2px;
+  background:color-mix(in srgb,var(--gold) 7%,transparent);
+}
+.q h2{border:0;padding:0;margin-bottom:8px;color:var(--gold)}
+.q ul{margin:0;padding-left:1.15em;font-size:14px;color:var(--ink-soft)}
+.q li{margin-bottom:6px}
+.q b{color:var(--ink)}
+.fallback{padding:40px 16px;text-align:center;color:var(--ink-soft);font-size:14px}
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <h1>TRAXNYC Trunk Box</h1>
+    <div class="sizes">170 &times; 70 &times; 60&nbsp;mm closed</div>
+  </header>
+  <p class="lede">Drag to turn it. Pull the slider, or press Open, to drop the lap and lift the lid. This is my reading of your sample &mdash; tell me what is wrong and I will change the sheets to match.</p>
+
+  <div class="stage" id="stage">
+    <div class="labels" id="labels"></div>
+    <div class="hint">drag to turn &middot; scroll to zoom</div>
+  </div>
+
+  <div class="rail">
+    <button id="play">Open</button>
+    <div class="scrub">
+      <label for="open">Closed</label>
+      <input type="range" id="open" min="0" max="100" value="0" step="0.5" aria-label="How far the box is open">
+      <label for="open">Open</label>
+    </div>
+    <div class="views">
+      <button class="ghost" data-view="three">3/4</button>
+      <button class="ghost" data-view="front">Front</button>
+      <button class="ghost" data-view="end">End</button>
+      <button class="ghost" data-view="top">Top</button>
+    </div>
+  </div>
+
+  <div class="toggles">
+    <label><input type="checkbox" id="parts"> Colour the three parts</label>
+    <label><input type="checkbox" id="hidelap"> Take the lap away</label>
+    <label><input type="checkbox" id="tags" checked> Labels</label>
+  </div>
+
+  <div class="cols">
+    <section>
+      <h2>Closed dimensions</h2>
+      <dl class="spec">
+        <div><dt>Length</dt><dd>170 mm</dd></div>
+        <div><dt>Width</dt><dd>70 mm</dd></div>
+        <div><dt>Height</dt><dd>60 mm</dd></div>
+        <div><dt>Lap (front)</dt><dd>40 mm</dd></div>
+        <div><dt>Plinth (base band)</dt><dd>15 mm</dd></div>
+        <div><dt>Top roll</dt><dd>5 mm</dd></div>
+        <div><dt>Shell over plinth</dt><dd>1 mm each side</dd></div>
+      </dl>
+      <p class="note">40 + 15 + 5 = 60. Your 4&nbsp;cm arrow starts below the rolled top edge; the 5&nbsp;mm roll is the part the tape misses.</p>
+    </section>
+
+    <section>
+      <h2>How I think it opens</h2>
+      <ol class="steps">
+        <li><strong><span class="swatch" style="background:var(--plinth)"></span>Plinth</strong> &mdash; the bottom 15 mm band. Fixed. It never moves, and it carries the four bottom corner caps.</li>
+        <li><strong><span class="swatch" style="background:var(--lap)"></span>Lap</strong> &mdash; the 40 mm front panel, hinged along the top of the plinth. It drops forward. The magnetic clasp is in its top edge. <b>No corner caps on it.</b></li>
+        <li><strong><span class="swatch" style="background:var(--lid)"></span>Lid</strong> &mdash; the top plus a 40 mm skirt on the back and both ends, hinged at the back. It carries the four top corner caps and the foil.</li>
+      </ol>
+      <p class="note">Tick &ldquo;take the lap away&rdquo; to see what sits behind it: the plinth&rsquo;s top line and the lid&rsquo;s front edge, with the corner caps stopping short on either side. Nothing on the lap itself.</p>
+    </section>
+
+    <section>
+      <h2>Exterior decoration</h2>
+      <dl class="spec">
+        <div><dt>Deboss line, inset</dt><dd>7 mm</dd></div>
+        <div><dt>Line weight</dt><dd>0.7 mm</dd></div>
+        <div><dt>Corner cap reach</dt><dd>20 mm</dd></div>
+        <div><dt>Stud centre, in from edges</dt><dd>9 &times; 9 mm</dd></div>
+        <div><dt>Stud diameter</dt><dd>3.5 mm</dd></div>
+        <div><dt>Magnet pair</dt><dd>40 mm apart</dd></div>
+        <div><dt>Foil medallion</dt><dd>26 mm</dd></div>
+        <div><dt>Foil wordmark</dt><dd>52 &times; 8 mm</dd></div>
+      </dl>
+      <p class="note">The medallion and wordmark here are stand-ins so the proportion reads. Send me your own artwork and it goes into the print file at these sizes.</p>
+    </section>
+  </div>
+
+  <div class="q">
+    <h2>What I still need from you</h2>
+    <ul>
+      <li>Is the <b>lap really 40 mm</b> on the sample, measured on the flat, not counting the rolled top edge?</li>
+      <li>Does the <b>end panel split the same way</b> &mdash; 40 mm with the lid, 15 mm with the plinth &mdash; or do the ends run unbroken?</li>
+      <li>Is the <b>magnet in the lap&rsquo;s top edge</b> catching the lid, or in the lap&rsquo;s face catching the plinth?</li>
+      <li>The <b>7 mm line inset</b> and the <b>9 &times; 9 mm stud</b> are read off your photo. Give me one measured figure and I will set them exactly.</li>
+    </ul>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  var stage = document.getElementById('stage');
+  if (typeof THREE === 'undefined') {
+    stage.innerHTML = '<div class="fallback">The 3D viewer could not load. The dimensions below still apply.</div>';
+    return;
+  }
+
+  /* ---------------------------------------------------------------- model
+     All numbers are millimetres of the real box, used directly as scene
+     units. Origin: centre of the footprint, y = 0 at the table.           */
+  var L = 170, W = 70, H = 60;      // closed
+  var PLINTH = 15;                  // fixed base band
+  var LAP    = 40;                  // drop-front panel
+  var ROLL   = 5;                   // rolled top edge, H - LAP - PLINTH
+  var STEP   = 1;                   // shell stands this far proud of the plinth
+  var BOARD  = 3;                   // wrapped board thickness
+  var INSET  = 7;                   // deboss line, in from the panel edge
+  var LW     = 0.7;                 // deboss line weight
+  var REACH  = 20;                  // corner cap reach along each edge
+  var STUD   = 3.5, STUD_IN = 9;
+
+  var LEATHER = '#16171a';
+  var SUEDE   = '#9d9382';
+
+  /* ------------------------------------------------------------ textures */
+  var PX = 7;                       // canvas pixels per millimetre
+  function cv(wmm, hmm){
+    var c = document.createElement('canvas');
+    c.width  = Math.max(2, Math.round(wmm * PX));
+    c.height = Math.max(2, Math.round(hmm * PX));
+    return c;
+  }
+  function grain(g, w, h, seed){
+    // leatherette: a mottled pebble, then fine scratches
+    var s = seed || 1;
+    function rnd(){ s = (s * 16807) % 2147483647; return s / 2147483647; }
+    g.save();
+    g.globalAlpha = 0.5;
+    for (var i = 0; i < Math.round(w * h / 420); i++){
+      var x = rnd() * w, y = rnd() * h, r = 2 + rnd() * 7;
+      var v = 22 + Math.round(rnd() * 20);
+      g.fillStyle = 'rgb(' + v + ',' + (v + 1) + ',' + (v + 3) + ')';
+      g.beginPath(); g.ellipse(x, y, r, r * (0.6 + rnd() * 0.7), rnd() * 3.14, 0, 6.2832); g.fill();
+    }
+    g.globalAlpha = 0.16;
+    g.lineWidth = 1;
+    for (var j = 0; j < Math.round(w * h / 2600); j++){
+      var x0 = rnd() * w, y0 = rnd() * h, a = rnd() * 6.2832, len = 6 + rnd() * 26;
+      g.strokeStyle = rnd() > 0.5 ? '#3a3d42' : '#000';
+      g.beginPath(); g.moveTo(x0, y0);
+      g.lineTo(x0 + Math.cos(a) * len, y0 + Math.sin(a) * len); g.stroke();
+    }
+    g.restore();
+  }
+  // A groove: dark channel with a lit lip on the up-light side (top-left).
+  function groove(g, pts, closed){
+    g.lineJoin = 'round'; g.lineCap = 'round';
+    g.save();
+    g.translate(-PX * 0.22, -PX * 0.22);
+    g.strokeStyle = 'rgba(96,100,108,.55)';
+    g.lineWidth = Math.max(1, LW * PX);
+    path(g, pts, closed); g.stroke();
+    g.restore();
+    g.strokeStyle = 'rgba(0,0,0,.92)';
+    g.lineWidth = Math.max(1.2, LW * PX * 1.15);
+    path(g, pts, closed); g.stroke();
+  }
+  function path(g, pts, closed){
+    g.beginPath();
+    g.moveTo(pts[0][0], pts[0][1]);
+    for (var i = 1; i < pts.length; i++) g.lineTo(pts[i][0], pts[i][1]);
+    if (closed) g.closePath();
+  }
+
+  // Corner cap: a quarter disc struck from the corner, bevelled, with a stud.
+  // `corner` is one of 'tl','tr','bl','br' in panel coordinates.
+  function capPiece(g, w, h, corner, reach){
+    var R = reach * PX;
+    var cx = (corner[1] === 'l') ? 0 : w;
+    var cy = (corner[0] === 't') ? 0 : h;
+    var a0 = 0;
+    if (corner === 'tl') a0 = 0;            // sweep 0 -> 90
+    if (corner === 'tr') a0 = Math.PI / 2;
+    if (corner === 'br') a0 = Math.PI;
+    if (corner === 'bl') a0 = -Math.PI / 2;
+    g.save();
+    g.beginPath();
+    g.moveTo(cx, cy);
+    g.arc(cx, cy, R, a0, a0 + Math.PI / 2);
+    g.closePath();
+    g.clip();
+    // the cap sits slightly proud: a touch lighter, with its own grain
+    g.fillStyle = '#1d1f23';
+    g.fillRect(0, 0, w, h);
+    grain(g, w, h, 97 + corner.charCodeAt(0) + corner.charCodeAt(1));
+    g.restore();
+    // bevelled edge of the cap
+    g.save();
+    g.strokeStyle = 'rgba(0,0,0,.85)';
+    g.lineWidth = Math.max(1.4, 0.9 * PX);
+    g.beginPath(); g.arc(cx, cy, R, a0, a0 + Math.PI / 2); g.stroke();
+    g.strokeStyle = 'rgba(118,122,130,.5)';
+    g.lineWidth = Math.max(1, 0.5 * PX);
+    g.beginPath(); g.arc(cx, cy, R - 0.8 * PX, a0, a0 + Math.PI / 2); g.stroke();
+    g.restore();
+    // stud
+    var sx = cx + (corner[1] === 'l' ? STUD_IN * PX : -STUD_IN * PX);
+    var sy = cy + (corner[0] === 't' ? STUD_IN * PX : -STUD_IN * PX);
+    var sr = STUD * PX / 2;
+    var gr = g.createRadialGradient(sx - sr * 0.4, sy - sr * 0.45, sr * 0.1, sx, sy, sr);
+    gr.addColorStop(0, '#53565c'); gr.addColorStop(0.55, '#2a2c30'); gr.addColorStop(1, '#0c0d0f');
+    g.fillStyle = gr;
+    g.beginPath(); g.arc(sx, sy, sr, 0, 6.2832); g.fill();
+    g.strokeStyle = 'rgba(0,0,0,.9)'; g.lineWidth = Math.max(1, 0.35 * PX);
+    g.beginPath(); g.arc(sx, sy, sr, 0, 6.2832); g.stroke();
+  }
+
+  // One decorated exterior panel.
+  //   caps: array of 'tl','tr','bl','br'
+  //   border: draw the inset deboss line (clipped out of the cap quarters)
+  function panel(wmm, hmm, opt){
+    opt = opt || {};
+    var c = cv(wmm, hmm), g = c.getContext('2d');
+    var w = c.width, h = c.height;
+    g.fillStyle = LEATHER; g.fillRect(0, 0, w, h);
+    grain(g, w, h, opt.seed || 7);
+
+    if (opt.border){
+      var b = INSET * PX;
+      var run = Math.sqrt(Math.max(0, (REACH * PX) * (REACH * PX) - b * b));
+      var caps = opt.caps || [];
+      function has(k){ return caps.indexOf(k) >= 0; }
+      // each straight run stops where the cap's arc crosses it
+      var segs = [];
+      segs.push([[has('tl') ? run : b, b], [has('tr') ? w - run : w - b, b]]);
+      segs.push([[w - b, has('tr') ? run : b], [w - b, has('br') ? h - run : h - b]]);
+      segs.push([[has('bl') ? run : b, h - b], [has('br') ? w - run : w - b, h - b]]);
+      segs.push([[b, has('tl') ? run : b], [b, has('bl') ? h - run : h - b]]);
+      segs.forEach(function(s){
+        var dx = s[1][0] - s[0][0], dy = s[1][1] - s[0][1];
+        if (dx + dy > 2) groove(g, s, false);
+      });
+    }
+    (opt.caps || []).forEach(function(k){ capPiece(g, w, h, k, REACH); });
+
+    // a seam line where the lid skirt meets the plinth, drawn on the plinth
+    if (opt.seamTop) groove(g, [[0, 1], [w, 1]], false);
+
+    if (opt.foil) opt.foil(g, w, h);
+
+    var t = new THREE.CanvasTexture(c);
+    t.anisotropy = 8;
+    if (THREE.sRGBEncoding) t.encoding = THREE.sRGBEncoding;
+    t.needsUpdate = true;
+    return t;
+  }
+
+  function plainTex(wmm, hmm, colour){
+    var c = cv(Math.min(wmm, 60), Math.min(hmm, 60)), g = c.getContext('2d');
+    g.fillStyle = colour; g.fillRect(0, 0, c.width, c.height);
+    if (colour === SUEDE){
+      g.globalAlpha = 0.22;
+      for (var i = 0; i < 2600; i++){
+        var v = 150 + Math.round(Math.random() * 80);
+        g.fillStyle = 'rgb(' + v + ',' + (v - 7) + ',' + (v - 20) + ')';
+        g.fillRect(Math.random() * c.width, Math.random() * c.height, 2, 2);
+      }
+    }
+    var t = new THREE.CanvasTexture(c);
+    if (THREE.sRGBEncoding) t.encoding = THREE.sRGBEncoding;
+    return t;
+  }
+
+  /* ---- the foil: a stand-in medallion and wordmark, drawn to size ------- */
+  function foilTop(g, w, h){
+    var gold = '#c79a4e', goldLo = '#8d6a2c';
+    var cx = w / 2;
+    // medallion, 26 mm, sitting above the wordmark
+    var R = 13 * PX, cy = h / 2 - 11 * PX;
+    g.save();
+    g.translate(cx, cy);
+    g.lineWidth = Math.max(1.4, 0.55 * PX);
+    g.lineJoin = 'round';
+    var lg = g.createLinearGradient(-R, -R, R, R);
+    lg.addColorStop(0, '#e2c084'); lg.addColorStop(0.5, gold); lg.addColorStop(1, goldLo);
+    g.strokeStyle = lg;
+    // eight-lobed cusped frame
+    g.beginPath();
+    for (var i = 0; i <= 96; i++){
+      var a = i / 96 * 6.2832;
+      var r = R * (0.80 + 0.20 * Math.abs(Math.cos(4 * a)));
+      var x = Math.cos(a - Math.PI / 2) * r, y = Math.sin(a - Math.PI / 2) * r;
+      if (i === 0) g.moveTo(x, y); else g.lineTo(x, y);
+    }
+    g.closePath(); g.stroke();
+    // inner quatrefoil
+    g.beginPath();
+    for (var j = 0; j <= 96; j++){
+      var b = j / 96 * 6.2832;
+      var r2 = R * (0.50 + 0.14 * Math.abs(Math.cos(2 * b)));
+      var x2 = Math.cos(b - Math.PI / 2) * r2, y2 = Math.sin(b - Math.PI / 2) * r2;
+      if (j === 0) g.moveTo(x2, y2); else g.lineTo(x2, y2);
+    }
+    g.closePath(); g.stroke();
+    // a struck centre
+    g.beginPath(); g.ellipse(0, 1 * PX, R * 0.17, R * 0.24, 0, 0, 6.2832); g.stroke();
+    g.beginPath(); g.moveTo(0, -R * 0.16); g.lineTo(0, R * 0.16); g.stroke();
+    g.restore();
+    // wordmark, 52 x 8 mm
+    g.save();
+    g.fillStyle = gold;
+    var size = 8 * PX;
+    g.font = '600 ' + size + 'px "Cormorant Garamond", Georgia, serif';
+    g.textAlign = 'center'; g.textBaseline = 'middle';
+    var word = 'TRAXNYC', target = 52 * PX, tracking = 0;
+    var base = g.measureText(word).width;
+    tracking = (target - base) / (word.length - 1);
+    var total = base + tracking * (word.length - 1);
+    var x0 = cx - total / 2;
+    for (var k = 0; k < word.length; k++){
+      var ch = word[k], wch = g.measureText(ch).width;
+      g.fillText(ch, x0 + wch / 2, h / 2 + 12 * PX);
+      x0 += wch + tracking;
+    }
+    g.restore();
+  }
+
+  /* --------------------------------------------------------------- scene */
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(28, 16 / 10, 10, 3000);
+  var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  if (THREE.sRGBEncoding) renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  stage.insertBefore(renderer.domElement, stage.firstChild);
+
+  scene.add(new THREE.HemisphereLight(0xdfe3ea, 0x2a2622, 0.72));
+  var key = new THREE.DirectionalLight(0xfff6e8, 1.25);
+  key.position.set(-220, 330, 260);
+  key.castShadow = true;
+  key.shadow.mapSize.set(1024, 1024);
+  var d = 230;
+  key.shadow.camera.left = -d; key.shadow.camera.right = d;
+  key.shadow.camera.top = d; key.shadow.camera.bottom = -d;
+  key.shadow.camera.near = 40; key.shadow.camera.far = 900;
+  scene.add(key);
+  var fill = new THREE.DirectionalLight(0xcfd8e8, 0.45);
+  fill.position.set(280, 160, -180);
+  scene.add(fill);
+  var rim = new THREE.DirectionalLight(0xffffff, 0.3);
+  rim.position.set(60, 120, -340);
+  scene.add(rim);
+
+  var ground = new THREE.Mesh(
+    new THREE.PlaneGeometry(1600, 1600),
+    new THREE.ShadowMaterial({ opacity: 0.22 })
+  );
+  ground.rotation.x = -Math.PI / 2;
+  ground.position.y = -0.4;
+  ground.receiveShadow = true;
+  scene.add(ground);
+
+  /* ---- materials ---- */
+  function leatherMat(tex){
+    return new THREE.MeshStandardMaterial({ map: tex, roughness: 0.62, metalness: 0.03 });
+  }
+  var coreMat  = new THREE.MeshStandardMaterial({ color: 0x15161a, roughness: 0.7, metalness: 0.02 });
+  var suedeMat = new THREE.MeshStandardMaterial({ map: plainTex(40, 40, SUEDE), roughness: 0.96, metalness: 0 });
+
+  function box(w, h, dp, x, y, z, mat){
+    var m = new THREE.Mesh(new THREE.BoxGeometry(w, h, dp), mat || coreMat);
+    m.position.set(x, y, z);
+    m.castShadow = true; m.receiveShadow = true;
+    return m;
+  }
+  // a decorated plane facing outward along `axis` ('+y','-y','+z','-z','+x','-x')
+  function face(tex, wmm, hmm, x, y, z, axis){
+    var m = new THREE.Mesh(new THREE.PlaneGeometry(wmm, hmm), leatherMat(tex));
+    m.position.set(x, y, z);
+    if (axis === '+y') m.rotation.x = -Math.PI / 2;
+    if (axis === '-y') m.rotation.x = Math.PI / 2;
+    if (axis === '-z') m.rotation.y = Math.PI;
+    if (axis === '+x') m.rotation.y = Math.PI / 2;
+    if (axis === '-x') m.rotation.y = -Math.PI / 2;
+    m.castShadow = false; m.receiveShadow = true;
+    return m;
+  }
+
+  var HL = L / 2, HW = W / 2;          // 85, 35  - outer shell half sizes
+  var PL = HL - STEP, PW = HW - STEP;  // 84, 34  - plinth half sizes
+  var SKIRT = LAP;                     // 40 - lid skirt depth on back and ends
+
+  /* ---- the plinth: fixed bottom band ---------------------------------- */
+  var plinth = new THREE.Group();
+  plinth.add(box(PL * 2, PLINTH, PW * 2, 0, PLINTH / 2, 0));
+  plinth.add(face(panel(PL * 2, PLINTH, { caps: ['bl', 'br'], border: false, seamTop: true, seed: 11 }),
+                  PL * 2, PLINTH, 0, PLINTH / 2, PW + 0.1, '+z'));
+  plinth.add(face(panel(PL * 2, PLINTH, { caps: ['bl', 'br'], border: false, seamTop: true, seed: 12 }),
+                  PL * 2, PLINTH, 0, PLINTH / 2, -PW - 0.1, '-z'));
+  plinth.add(face(panel(PW * 2, PLINTH, { caps: ['bl', 'br'], border: false, seamTop: true, seed: 13 }),
+                  PW * 2, PLINTH, PL + 0.1, PLINTH / 2, 0, '+x'));
+  plinth.add(face(panel(PW * 2, PLINTH, { caps: ['bl', 'br'], border: false, seamTop: true, seed: 14 }),
+                  PW * 2, PLINTH, -PL - 0.1, PLINTH / 2, 0, '-x'));
+  plinth.add(face(panel(PL * 2, PW * 2, { caps: ['tl', 'tr', 'bl', 'br'], border: true, seed: 15 }),
+                  PL * 2, PW * 2, 0, -0.1, 0, '-y'));
+  scene.add(plinth);
+
+  /* ---- the base liner, inset so the lid skirt wraps over it ------------ */
+  var liner = new THREE.Group();
+  var LI = 2;                                   // liner inset from the shell
+  var IX = HL - BOARD - LI, IZ = HW - BOARD - LI;   // 80, 30
+  var WALL = H - ROLL - PLINTH;                    // 40
+  var leatherTex = panel(60, 60, { seed: 61 });
+  var wallMat = leatherMat(leatherTex);
+  liner.add(box(IX * 2, 2, IZ * 2, 0, PLINTH + 1, 0, wallMat));          // floor core
+  liner.add(box(IX * 2, WALL, 2, 0, PLINTH + WALL / 2, -IZ + 1, wallMat));  // back
+  liner.add(box(2, WALL, IZ * 2, IX - 1, PLINTH + WALL / 2, 0, wallMat));   // right end
+  liner.add(box(2, WALL, IZ * 2, -IX + 1, PLINTH + WALL / 2, 0, wallMat));  // left end
+  // suede facings, inboard of each wall
+  function suedePlane(w, h, x, y, z, axis){
+    var m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), suedeMat);
+    m.position.set(x, y, z);
+    if (axis === '+y') m.rotation.x = -Math.PI / 2;
+    if (axis === '+z') m.rotation.y = 0;
+    if (axis === '-z') m.rotation.y = Math.PI;
+    if (axis === '+x') m.rotation.y = Math.PI / 2;
+    if (axis === '-x') m.rotation.y = -Math.PI / 2;
+    m.receiveShadow = true;
+    return m;
+  }
+  liner.add(suedePlane((IX - 1) * 2, (IZ - 1) * 2, 0, PLINTH + 2.1, 0, '+y'));
+  liner.add(suedePlane((IX - 1) * 2, WALL, 0, PLINTH + WALL / 2, -IZ + 2.1, '+z'));
+  liner.add(suedePlane((IZ - 1) * 2, WALL, IX - 2.1, PLINTH + WALL / 2, 0, '-x'));
+  liner.add(suedePlane((IZ - 1) * 2, WALL, -IX + 2.1, PLINTH + WALL / 2, 0, '+x'));
+  scene.add(liner);
+
+  /* ---- the lap: 40 mm drop front, hinged at the plinth's top line ------ */
+  var lapPivot = new THREE.Group();
+  lapPivot.position.set(0, PLINTH, HW - BOARD);
+  var lapCore = box(L, LAP, BOARD, 0, LAP / 2, BOARD / 2);
+  lapPivot.add(lapCore);
+  var lapFaceTex = panel(L, LAP, { caps: [], border: true, seed: 21 });
+  var lapOuter = face(lapFaceTex, L, LAP, 0, LAP / 2, BOARD + 0.1, '+z');
+  lapPivot.add(lapOuter);
+  var lapInner = new THREE.Mesh(new THREE.PlaneGeometry(L - 2 * BOARD, LAP - BOARD), suedeMat);
+  lapInner.position.set(0, LAP / 2, -0.1);
+  lapInner.rotation.y = Math.PI;
+  lapPivot.add(lapInner);
+  // the magnet pair, sunk in the lap's top edge
+  var magMat = new THREE.MeshStandardMaterial({ color: 0xb9bcc2, roughness: 0.4, metalness: 0.85 });
+  [-20, 20].forEach(function(mx){
+    var mg = new THREE.Mesh(new THREE.CylinderGeometry(4, 4, 1.2, 24), magMat);
+    mg.position.set(mx, LAP - 0.5, BOARD / 2);
+    lapPivot.add(mg);
+  });
+  scene.add(lapPivot);
+
+  /* ---- the lid: top + 40 mm skirt on back and ends, hinged at the back - */
+  var lidPivot = new THREE.Group();
+  lidPivot.position.set(0, H - ROLL / 2, -HW);
+  function lidLocal(x, y, z){ return [x - 0, y - (H - ROLL / 2), z + HW]; }
+  var p;
+  p = lidLocal(0, H - ROLL / 2, 0);            lidPivot.add(box(L, ROLL, W, p[0], p[1], p[2]));
+  p = lidLocal(0, PLINTH + SKIRT / 2, -HW + BOARD / 2);
+  lidPivot.add(box(L, SKIRT, BOARD, p[0], p[1], p[2]));
+  p = lidLocal(HL - BOARD / 2, PLINTH + SKIRT / 2, 0);
+  lidPivot.add(box(BOARD, SKIRT, W, p[0], p[1], p[2]));
+  p = lidLocal(-HL + BOARD / 2, PLINTH + SKIRT / 2, 0);
+  lidPivot.add(box(BOARD, SKIRT, W, p[0], p[1], p[2]));
+
+  p = lidLocal(0, H + 0.1, 0);
+  var lidTopFace = face(panel(L, W, { caps: ['tl', 'tr', 'bl', 'br'], border: true, foil: foilTop, seed: 31 }),
+                        L, W, p[0], p[1], p[2], '+y');
+  lidPivot.add(lidTopFace);
+  p = lidLocal(0, PLINTH + SKIRT / 2, -HW - 0.1);
+  lidPivot.add(face(panel(L, SKIRT, { caps: ['tl', 'tr'], border: true, seed: 32 }),
+                    L, SKIRT, p[0], p[1], p[2], '-z'));
+  p = lidLocal(HL + 0.1, PLINTH + SKIRT / 2, 0);
+  lidPivot.add(face(panel(W, SKIRT, { caps: ['tl', 'tr'], border: true, seed: 33 }),
+                    W, SKIRT, p[0], p[1], p[2], '+x'));
+  p = lidLocal(-HL - 0.1, PLINTH + SKIRT / 2, 0);
+  lidPivot.add(face(panel(W, SKIRT, { caps: ['tl', 'tr'], border: true, seed: 34 }),
+                    W, SKIRT, p[0], p[1], p[2], '-x'));
+  // lid lining
+  p = lidLocal(0, H - ROLL - 0.2, 0);
+  var lidLine = new THREE.Mesh(new THREE.PlaneGeometry(L - 2 * BOARD, W - 2 * BOARD), suedeMat);
+  lidLine.position.set(p[0], p[1], p[2]);
+  lidLine.rotation.x = Math.PI / 2;
+  lidPivot.add(lidLine);
+  scene.add(lidPivot);
+
+  /* ---- part colouring ---- */
+  var groups = { lap: lapPivot, lid: lidPivot, plinth: plinth };
+  var tintMat = {
+    lap:    new THREE.MeshStandardMaterial({ color: 0x2f6f8f, roughness: 0.6 }),
+    lid:    new THREE.MeshStandardMaterial({ color: 0x8a5a2b, roughness: 0.6 }),
+    plinth: new THREE.MeshStandardMaterial({ color: 0x3f6f3f, roughness: 0.6 })
+  };
+  var original = [];
+  Object.keys(groups).forEach(function(k){
+    groups[k].traverse(function(o){
+      if (o.isMesh && o.material !== suedeMat) original.push({ o: o, m: o.material, k: k });
+    });
+  });
+  function setTint(on){
+    original.forEach(function(r){ r.o.material = on ? tintMat[r.k] : r.m; });
+  }
+
+  /* ----------------------------------------------------------- animation */
+  var t = 0;                 // 0 closed .. 1 open
+  var target = 0, playing = false;
+  var LAP_MAX = 100 * Math.PI / 180;
+  var LID_MAX = -100 * Math.PI / 180;
+  function ease(x){ return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2; }
+  function seg(x, a, b){ return Math.max(0, Math.min(1, (x - a) / (b - a))); }
+  function apply(){
+    lapPivot.rotation.x = ease(seg(t, 0, 0.52)) * LAP_MAX;
+    lidPivot.rotation.x = ease(seg(t, 0.3, 1)) * LID_MAX;
+  }
+
+  /* --------------------------------------------------------------- orbit */
+  var az = -0.62, pol = 1.03, dist = 470;
+  var look = new THREE.Vector3(0, 26, 0);
+  function placeCamera(){
+    pol = Math.max(0.12, Math.min(1.52, pol));
+    dist = Math.max(220, Math.min(900, dist));
+    camera.position.set(
+      look.x + dist * Math.sin(pol) * Math.sin(az),
+      look.y + dist * Math.cos(pol),
+      look.z + dist * Math.sin(pol) * Math.cos(az)
+    );
+    camera.lookAt(look);
+  }
+  var drag = null;
+  stage.addEventListener('pointerdown', function(e){
+    drag = { x: e.clientX, y: e.clientY };
+    stage.classList.add('dragging');
+    stage.setPointerCapture(e.pointerId);
+  });
+  stage.addEventListener('pointermove', function(e){
+    if (!drag) return;
+    az  -= (e.clientX - drag.x) * 0.0062;
+    pol -= (e.clientY - drag.y) * 0.0052;
+    drag.x = e.clientX; drag.y = e.clientY;
+    placeCamera();
+  });
+  function endDrag(){ drag = null; stage.classList.remove('dragging'); }
+  stage.addEventListener('pointerup', endDrag);
+  stage.addEventListener('pointercancel', endDrag);
+  stage.addEventListener('wheel', function(e){
+    e.preventDefault();
+    dist *= (1 + Math.sign(e.deltaY) * 0.08);
+    placeCamera();
+  }, { passive: false });
+
+  var VIEWS = {
+    three: { az: -0.62, pol: 1.03, dist: 470 },
+    front: { az: 0,     pol: 1.40, dist: 430 },
+    end:   { az: -1.57, pol: 1.38, dist: 330 },
+    top:   { az: -0.02, pol: 0.16, dist: 430 }
+  };
+  document.querySelectorAll('[data-view]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var v = VIEWS[b.dataset.view];
+      az = v.az; pol = v.pol; dist = v.dist;
+      placeCamera();
+      document.querySelectorAll('[data-view]').forEach(function(o){ o.setAttribute('aria-pressed', o === b); });
+    });
+  });
+  document.querySelector('[data-view="three"]').setAttribute('aria-pressed', 'true');
+
+  /* --------------------------------------------------------------- tags  */
+  var labelHost = document.getElementById('labels');
+  var TAGS = [
+    { cls: 't-lid',    html: 'Lid <b>&mdash; hinged at the back</b>', group: lidPivot, local: new THREE.Vector3(-4, -20, 74) },
+    { cls: 't-lap',    html: 'Lap <b>40 mm</b> &middot; magnetic clasp', group: lapPivot, local: new THREE.Vector3(46, LAP * 0.55, BOARD + 2) },
+    { cls: 't-plinth', html: 'Plinth <b>15 mm</b> &middot; fixed', group: plinth, local: new THREE.Vector3(-50, PLINTH * 0.5, PW + 3) }
+  ];
+  TAGS.forEach(function(tg){
+    tg.el = document.createElement('div');
+    tg.el.className = 'tag ' + tg.cls;
+    tg.el.innerHTML = tg.html;
+    labelHost.appendChild(tg.el);
+  });
+  var hideLap = false;
+  var v3 = new THREE.Vector3();
+  function placeTags(){
+    var show = document.getElementById('tags').checked;
+    var r = renderer.domElement.getBoundingClientRect();
+    TAGS.forEach(function(tg){
+      if (!show || (tg.group === lapPivot && hideLap)){ tg.el.classList.remove('on'); return; }
+      v3.copy(tg.local);
+      tg.group.updateMatrixWorld();
+      v3.applyMatrix4(tg.group.matrixWorld).project(camera);
+      if (v3.z > 1){ tg.el.classList.remove('on'); return; }
+      tg.el.style.left = ((v3.x * 0.5 + 0.5) * r.width) + 'px';
+      tg.el.style.top  = ((-v3.y * 0.5 + 0.5) * r.height) + 'px';
+      tg.el.classList.add('on');
+    });
+  }
+
+  /* ----------------------------------------------------------- controls  */
+  var slider = document.getElementById('open');
+  var playBtn = document.getElementById('play');
+
+  slider.addEventListener('input', function(){
+    playing = false;
+    t = target = slider.value / 100;
+    playBtn.textContent = t > 0.5 ? 'Close' : 'Open';
+  });
+  playBtn.addEventListener('click', function(){
+    target = target > 0.5 ? 0 : 1;
+    playing = true;
+    playBtn.textContent = target > 0.5 ? 'Close' : 'Open';
+  });
+  document.getElementById('parts').addEventListener('change', function(){ setTint(this.checked); });
+  document.getElementById('hidelap').addEventListener('change', function(){
+    hideLap = this.checked;
+    lapPivot.visible = !hideLap;
+  });
+  document.getElementById('tags').addEventListener('change', placeTags);
+
+  /* -------------------------------------------------------------- resize */
+  function resize(){
+    var r = stage.getBoundingClientRect();
+    if (r.width < 2) return;
+    renderer.setSize(r.width, r.height, false);
+    camera.aspect = r.width / r.height;
+    camera.updateProjectionMatrix();
+  }
+  window.addEventListener('resize', resize);
+
+  /* ---------------------------------------------------------------- loop */
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function frame(){
+    if (playing){
+      var step = 0.016;
+      if (Math.abs(target - t) < step){ t = target; playing = false; }
+      else t += Math.sign(target - t) * step;
+      slider.value = Math.round(t * 1000) / 10;
+    }
+    apply();
+    renderer.render(scene, camera);
+    placeTags();
+    requestAnimationFrame(frame);
+  }
+
+  function boot(){
+    var t2 = panel(L, W, { caps: ['tl', 'tr', 'bl', 'br'], border: true, foil: foilTop, seed: 31 });
+    lidTopFace.material.map = t2;
+    lidTopFace.material.needsUpdate = true;
+    resize();
+    placeCamera();
+    apply();
+    frame();
+    if (!reduce){
+      setTimeout(function(){ target = 1; playing = true; playBtn.textContent = 'Close'; }, 700);
+    }
+  }
+
+  // wait for the display face so the wordmark draws in the right typeface
+  if (document.fonts && document.fonts.load){
+    document.fonts.load('600 40px "Cormorant Garamond"').then(boot).catch(boot);
+  } else boot();
+})();
+</script>
