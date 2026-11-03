@@ -115,7 +115,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Every piece is handmade in Italy by artisans in and around Milan, from Italian leather sourced from Italian tanneries.</p>",
+                    "text": "<p>Leather goods, trunks and furniture are handmade in Italy by artisans in and around Milan, from Italian leather. For ready-to-wear, each product page states where the piece is made.</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -195,7 +195,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Shipping is complimentary on every order, worldwide, with DHL Express. There is no minimum order.</p>",
+                    "text": "<p>DHL Standard is free on every order, worldwide. DHL Express is free from €300; below €300 it is €5 for small pieces and €20 for larger pieces within the EU, and €50 or €65 outside the EU. For furniture we arrange the delivery with you after the order.</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
@@ -540,11 +540,93 @@
               "block_order": [
                 "text_faq11"
               ]
+            },
+            "accordion_row_faq00": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_row",
+              "settings": {
+                "heading": "Who is Oberndörfer Milano?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_faq00": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>An Italian house of leather goods, trunks and furniture, handmade in our ateliers around Milan, with a ready-to-wear line alongside.</p>",
+                    "width": "100%",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "custom",
+                    "font": "var(--font-body--family)",
+                    "font_size": "0.875rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_faq00"
+              ]
+            },
+            "accordion_row_faq12": {
+              "type": "_accordion-row",
+              "name": "t:names.accordion_row",
+              "settings": {
+                "heading": "What do pieces cost?",
+                "open_by_default": false,
+                "icon": "none",
+                "width": 20
+              },
+              "blocks": {
+                "text_faq12": {
+                  "type": "text",
+                  "name": "t:names.text",
+                  "settings": {
+                    "text": "<p>Ready-to-wear from €80 to €390. Leather goods from €129 for a tray to €17,190 for the SAC in Himalaya alligator. Trunk tables from €34,250. Sofas are priced on request.</p>",
+                    "width": "100%",
+                    "max_width": "none",
+                    "alignment": "left",
+                    "type_preset": "custom",
+                    "font": "var(--font-body--family)",
+                    "font_size": "0.875rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": [
+                "text_faq12"
+              ]
             }
           },
           "block_order": [
+            "accordion_row_faq00",
             "accordion_row_faq01",
             "accordion_row_faq02",
+            "accordion_row_faq12",
             "accordion_row_faq03",
             "accordion_row_faq04",
             "accordion_row_faq05",

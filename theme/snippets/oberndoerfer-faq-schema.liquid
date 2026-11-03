@@ -1,13 +1,17 @@
 {% comment %}
-  Oberndoerfer Milano - FAQPage structured data for /pages/faq (updated 2 October 2026).
+  Oberndoerfer Milano - FAQPage structured data for /pages/faq (updated 3 November 2026).
   The questions and answers are the page's own accordion rows, word for word. Edit the page and update this snippet to match.
   Rendered from snippets/meta-tags.liquid. Nothing here is visible on the page.
 {% endcomment %}
 {%- liquid
+  assign q0 = "Who is Oberndörfer Milano?"
+  assign a0 = "An Italian house of leather goods, trunks and furniture, handmade in our ateliers around Milan, with a ready-to-wear line alongside."
   assign q1 = "Where are Oberndörfer Milano pieces made?"
-  assign a1 = "Every piece is handmade in Italy by artisans in and around Milan, from Italian leather sourced from Italian tanneries."
+  assign a1 = "Leather goods, trunks and furniture are handmade in Italy by artisans in and around Milan, from Italian leather. For ready-to-wear, each product page states where the piece is made."
   assign q2 = "What materials do you use?"
   assign a2 = "Italian leathers selected for durability and for how they age, including calf, nubuck and exotic leathers on selected pieces. Watch and jewellery boxes are built on a wood core and lined in microfiber or Alcantara."
+  assign q12 = "What do pieces cost?"
+  assign a12 = "Ready-to-wear from €80 to €390. Leather goods from €129 for a tray to €17,190 for the SAC in Himalaya alligator. Trunk tables from €34,250. Sofas are priced on request."
   assign q3 = "How much does shipping cost?"
   assign a3 = "DHL Standard is free on every order, worldwide. DHL Express is free from €300; below €300 it is €5 for small pieces and €20 for larger pieces within the EU, and €50 or €65 outside the EU. For furniture we arrange the delivery with you after the order."
   assign q4 = "How long does delivery take?"
@@ -29,8 +33,10 @@
 -%}
 <script type="application/ld+json">
   {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+    {"@type": "Question", "name": {{ q0 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ a0 | json }}}},
     {"@type": "Question", "name": {{ q1 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ a1 | json }}}},
     {"@type": "Question", "name": {{ q2 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ a2 | json }}}},
+    {"@type": "Question", "name": {{ q12 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ a12 | json }}}},
     {"@type": "Question", "name": {{ q3 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ a3 | json }}}},
     {"@type": "Question", "name": {{ q4 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ a4 | json }}}},
     {"@type": "Question", "name": {{ q5 | json }}, "acceptedAnswer": {"@type": "Answer", "text": {{ a5 | json }}}},
