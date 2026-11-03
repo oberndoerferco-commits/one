@@ -20,8 +20,8 @@ calf leather カーフレザー; full-grain フルグレインレザー; Alcanta
 - [x] Restored 9 SEO descriptions wiped by title-only seo updates (lesson: always send seo.title and seo.description together)
 ## To do
 - [ ] Liquid strings hard-coded per locale in obm snippets (price on request, notify me, coming soon...): add 'ja' branches in a draft theme
-- [ ] Other 22 collections
-- [ ] 16 pages
+- [x] All 23 collections (titles, descriptions, SEO)
+- [x] 16 pages (titles, bodies, SEO). Privacy Policy: title only, legal body stays English
 - [ ] Other ~122 active products
 - [ ] Colour swatch labels (shopify--color-pattern metaobjects), option names
 - [ ] Shop policies, blog/journal
