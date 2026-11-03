@@ -22,7 +22,7 @@ calf leather カーフレザー; full-grain フルグレインレザー; Alcanta
 - [ ] Liquid strings hard-coded per locale in obm snippets (price on request, notify me, coming soon...): add 'ja' branches in a draft theme
 - [x] All 23 collections (titles, descriptions, SEO)
 - [x] 16 pages (titles, bodies, SEO). Privacy Policy: title only, legal body stays English
-- [ ] Other ~122 active products
+- [~] Other active products: done 3-place (6), 8-place (10), Leather Watch Box (9), trays (9) = 53/141 incl. RTW
 - [ ] Colour swatch labels (shopify--color-pattern metaobjects), option names
 - [ ] Shop policies, blog/journal
 - [ ] Publish ja + add to web presence 45987168581; check /ja pages
