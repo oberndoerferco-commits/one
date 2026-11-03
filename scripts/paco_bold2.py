@@ -33,7 +33,15 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from paco_bold import subpaths, assemble, write, MM
 from paco_unround import unround
 
-MITRE = dict(join_style=2, mitre_limit=6.0)
+MITRE = dict(join_style=2, mitre_limit=4.0)
+
+# Outlines carry noise far below anything you could see: the C's right edge
+# doubles back on itself by 0.0013 mm at its widest point. Offsetting turns
+# such a vertex into a spike, 0.036 mm on that one, which is small but reads
+# as a notch cut out of a smooth edge. Douglas-Peucker at 8 microns removes
+# the noise and leaves every real curve and corner untouched; at 15 it starts
+# to facet the C's terminal.
+DENOISE = 0.008
 
 
 def classify(rings):
@@ -60,8 +68,8 @@ def build(src, grow, drop, scale, stem_w, out):
     if bar is None:
         raise SystemExit('bar not found')
 
-    L = assemble(letters)
-    B = Polygon(bar).buffer(0)
+    L = assemble(letters).simplify(DENOISE, preserve_topology=True)
+    B = Polygon(bar).buffer(0).simplify(DENOISE, preserve_topology=True)
     if scale != 1.0:
         L = affinity.scale(L, scale, scale, origin=(0, 0))
         B = affinity.scale(B, scale, scale, origin=(0, 0))
