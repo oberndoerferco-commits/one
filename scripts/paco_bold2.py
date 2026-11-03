@@ -15,8 +15,13 @@ reads as a blob. The gap cannot reach 1 mm at 50 mm by any amount of
 bolding, because it starts under 1 mm. Either the bar moves down, or the
 logo runs bigger. --drop does the first, --scale the second.
 
-    python3 scripts/paco_bold2.py --grow 0.40 --drop 0.95
-    python3 scripts/paco_bold2.py --grow 0.40 --scale 1.8 --drop 0
+    python3 scripts/paco_bold2.py --grow 0.270 --scale 1.8 --out ...   (1.00 mm)
+    python3 scripts/paco_bold2.py --grow 0.150            --out ...   (0.57 mm)
+
+--drop exists only to record that lowering the bar does not work. It buys
+back the O-to-bar gap and leaves every other gap exactly as short, so a
+file built with it fails somewhere else: at --grow 0.40 --drop 0.95 the
+O-to-bar gap reads 1.03 mm and the C-to-O gap reads 0.74 mm. Default 0.
 """
 import argparse, sys, os
 import numpy as np, pymupdf
@@ -96,7 +101,7 @@ if __name__ == '__main__':
     a.add_argument('--src', default='assets/paco/paco-50mm-joined.pdf')
     a.add_argument('--out', required=True)
     a.add_argument('--grow', type=float, default=0.40)
-    a.add_argument('--drop', type=float, default=0.95)
+    a.add_argument('--drop', type=float, default=0.0)
     a.add_argument('--scale', type=float, default=1.0)
     a.add_argument('--stem-w', type=float, default=1.10)
     o = a.parse_args()
