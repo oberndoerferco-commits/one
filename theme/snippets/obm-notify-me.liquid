@@ -25,6 +25,12 @@
       assign t_email = 'Indirizzo email'
       assign t_send = 'Invia'
       assign t_thanks = 'Grazie. Le scriveremo non appena questo pezzo sarà di nuovo disponibile.'
+    when 'ja'
+      assign t_notify = '入荷のお知らせを受け取る'
+      assign t_intro = 'メールアドレスをご入力ください。この商品が再入荷しましたら、すぐにご連絡いたします。'
+      assign t_email = 'メールアドレス'
+      assign t_send = '送信'
+      assign t_thanks = 'ありがとうございます。この商品が再入荷しましたら、すぐにご連絡いたします。'
     else
       assign t_notify = 'Notify me'
       assign t_intro = 'Leave your email address and we will write to you as soon as this piece is available again.'
@@ -43,6 +49,9 @@
       when 'it'
         assign t_intro = 'Lasci il suo indirizzo email. Le scriveremo non appena questo pezzo sarà disponibile.'
         assign t_thanks = 'Grazie. Le scriveremo non appena questo pezzo sarà disponibile.'
+      when 'ja'
+        assign t_intro = 'メールアドレスをご入力ください。この商品の発売時にご連絡いたします。'
+        assign t_thanks = 'ありがとうございます。この商品の発売時にご連絡いたします。'
       else
         assign t_intro = 'Leave your email address and we will write to you as soon as this piece is available.'
         assign t_thanks = 'Thank you. We will write to you as soon as this piece is available.'

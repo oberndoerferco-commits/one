@@ -56,9 +56,9 @@
   {%- comment -%} Pieces tagged price-on-request (the sofas, owner 16 October) show no price. {%- endcomment -%}
   {%- if product_resource.tags contains 'coming-soon' -%}
     {%- comment -%} Not yet released (owner, 1 November): no price, just "Coming soon". {%- endcomment -%}
-    <span class="obm-por">{%- case request.locale.iso_code -%}{%- when 'de' -%}Demnächst{%- when 'it' -%}Prossimamente{%- else -%}Coming soon{%- endcase -%}</span>
+    <span class="obm-por">{%- case request.locale.iso_code -%}{%- when 'de' -%}Demnächst{%- when 'it' -%}Prossimamente{%- when 'ja' -%}近日発売{%- else -%}Coming soon{%- endcase -%}</span>
   {%- elsif product_resource.tags contains 'price-on-request' -%}
-    <span class="obm-por">{%- case request.locale.iso_code -%}{%- when 'de' -%}Preis auf Anfrage{%- when 'it' -%}Prezzo su richiesta{%- else -%}Price on request{%- endcase -%}</span>
+    <span class="obm-por">{%- case request.locale.iso_code -%}{%- when 'de' -%}Preis auf Anfrage{%- when 'it' -%}Prezzo su richiesta{%- when 'ja' -%}価格はお問い合わせください{%- else -%}Price on request{%- endcase -%}</span>
   {%- else -%}
   {% render 'price',
     show_unit_price: true,

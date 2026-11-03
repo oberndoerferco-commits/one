@@ -30,9 +30,9 @@
               {%- if block.settings.address != blank -%}<div class="obm-loc__address">{{ block.settings.address }}</div>{%- endif -%}
               {%- if block.settings.note != blank -%}<div class="obm-loc__note">{{ block.settings.note }}</div>{%- endif -%}
               <p class="obm-loc__links">
-                <a href="https://www.google.com/maps/search/?api=1&query={{ q }}" target="_blank" rel="noopener">Directions</a>
+                <a href="https://www.google.com/maps/search/?api=1&query={{ q }}" target="_blank" rel="noopener">{%- case request.locale.iso_code -%}{%- when 'de' -%}Route{%- when 'it' -%}Indicazioni{%- when 'ja' -%}ルート{%- else -%}Directions{%- endcase -%}</a>
                 {%- if block.settings.link != blank -%}<a href="{{ block.settings.link }}">{{ block.settings.link_label | default: 'Discover' }}</a>{%- endif -%}
-                {%- if block.settings.email != blank -%}<a href="mailto:{{ block.settings.email }}?subject={{ block.settings.name | prepend: 'Visit: ' | url_escape }}">Write to us</a>{%- endif -%}
+                {%- if block.settings.email != blank -%}<a href="mailto:{{ block.settings.email }}?subject={{ block.settings.name | prepend: 'Visit: ' | url_escape }}">{%- case request.locale.iso_code -%}{%- when 'de' -%}Schreiben Sie uns{%- when 'it' -%}Scriveteci{%- when 'ja' -%}お問い合わせ{%- else -%}Write to us{%- endcase -%}</a>{%- endif -%}
               </p>
               {%- if block.settings.show_map -%}
                 <div class="obm-loc__map">

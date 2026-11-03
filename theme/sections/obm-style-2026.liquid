@@ -23,6 +23,10 @@
     --font-heading--weight: 700;
     --font-heading--style: normal;
   }
+  {%- if request.locale.iso_code == 'ja' -%}
+  @media screen and (min-width: 990px) { .header__row--top .search-action .svg-wrapper::before { content: '検索'; } }
+  .header__row--top .header-actions__cart-icon .svg-wrapper::before { content: 'カート'; }
+  {%- endif -%}
 </style>
 {%- comment -%}
   Price upon request (owner, 7 October: "put all of the sofas price upon request"). Products tagged

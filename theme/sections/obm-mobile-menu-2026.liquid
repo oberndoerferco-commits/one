@@ -95,14 +95,14 @@
     function addDesktop() {
       var row = document.querySelector('.header__row--top .header__columns');
       if (row && !row.querySelector('.obm-desk-menu')) {
-        var b = document.createElement('button'); b.type = 'button'; b.className = 'obm-desk-menu'; b.textContent = {{ 'Menu' | json }};
+        var b = document.createElement('button'); b.type = 'button'; b.className = 'obm-desk-menu'; b.textContent = {% if request.locale.iso_code == 'ja' %}{{ 'メニュー' | json }}{% else %}{{ 'Menu' | json }}{% endif %};
         b.setAttribute('aria-haspopup', 'dialog'); b.addEventListener('click', function () { open(b); });
         row.insertBefore(b, row.firstChild);
       }
       var acts = document.querySelector('.header__row--top header-actions');
       if (acts && !acts.querySelector('.obm-desk-login')) {
         var a = document.createElement('a'); a.className = 'obm-desk-login'; a.href = {{ routes.account_url | json }};
-        a.textContent = {% if customer %}{{ 'Account' | json }}{% else %}{{ 'Login' | json }}{% endif %};
+        a.textContent = {% if request.locale.iso_code == 'ja' %}{% if customer %}{{ 'アカウント' | json }}{% else %}{{ 'ログイン' | json }}{% endif %}{% else %}{% if customer %}{{ 'Account' | json }}{% else %}{{ 'Login' | json }}{% endif %}{% endif %};
         acts.insertBefore(a, acts.firstChild);
       }
       // Drawer header (touch screens): the theme puts Search beside the logo; keep it with Login and Cart.

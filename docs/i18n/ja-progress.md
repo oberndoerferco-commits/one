@@ -8,21 +8,25 @@ Digest = sha256 of the source text (verified), so it can be computed locally.
 Glossary: hoodie パーカー; sweatpants スウェットパンツ; half-zip ハーフジップ スウェット; heavyweight ヘビーウェイト;
 beanie ビーニー; made in Italy イタリア製; blackletter ブラックレター; house (maison) メゾン; Ready to Wear ウェア;
 small leather goods レザー小物; trunk トランク; bespoke ビスポーク; home accessories ホームアクセサリー;
-calf leather カーフレザー; full-grain フルグレインレザー; Alcantara アルカンターラ; Where to find us 店舗・取扱店.
+calf leather カーフレザー; full-grain フルグレインレザー; Alcantara アルカンターラ; Where to find us 店舗・取扱店;
+watch box 時計ケース; tray レザートレイ; pouf レザープーフ; Furniture 家具; crochet クロシェ; nubuck ヌバック; Togo calf トゴ・カーフ;
+wallet ウォレット; briefcase ブリーフケース; backpack バックパック; jewellery box ジュエリーボックス; Price on request 価格はお問い合わせください.
 
-## Done
-- [x] Ready to Wear collection + its 19 products (title, type, body, SEO title/description)
-- [x] Menus: all 63 links
-- [x] Theme content of the live theme 210134794565: header and footer groups; templates index, product, product.ready-to-wear,
-      product.sunglasses, cart, 404, password, list-collections, collection.oberndoerfer-traxnyc, page.about-us, art-of-living,
-      atelier, bespoke, contact, custom-limited-editions, faq, leather-care, materials-craftsmanship, the-art-of-packaging,
-      where-to-find-us, work-with-us
+## Done (3 November: Japanese is live at www.oberndoerferco.com/ja/)
+- [x] All 141 active products (title, type, body, SEO title/description)
+- [x] All 23 collections, 16 pages (Privacy Policy: title only), all 63 menu links
+- [x] Theme content of the live theme: header/footer groups and all JSON templates
+- [x] Option names (カラー / サイズ), unlinked option values, all 47 colour swatch labels (shopify--color-pattern metaobjects)
+- [x] Shop policies: refund, shipping, contact. Terms, privacy and imprint stay in the legal source language
+- [x] Store SEO title/description (homepage)
+- [x] Blog "Made in Italy" + titles of the 7 published articles (article bodies still English)
+- [x] ja published and added to web presence 45987168581 (root domain, /ja/). Not added to the Germany/Italy presences
+- [x] Draft theme 210335760709 "REDESIGN 2026 - Japanese (draft)" (copy of live 210134794565) with 'ja' branches in:
+      blocks/price.liquid, snippets/price.liquid, sections/obm-story.liquid, snippets/obm-notify-me.liquid,
+      snippets/obm-personalise.liquid, snippets/obm-price-request.liquid, header labels (obm-style-2026 / obm-mobile-menu-2026:
+      メニュー 検索 ログイン カート), plus DE/IT/JA labels in obm-locations ("Directions", "Write to us") and obm-work-with-us form.
+      Checksums verified. The owner publishes it; until then the live /ja/ header shows MENU/SEARCH/LOGIN/CART in English.
 - [x] Restored 9 SEO descriptions wiped by title-only seo updates (lesson: always send seo.title and seo.description together)
-## To do
-- [ ] Liquid strings hard-coded per locale in obm snippets (price on request, notify me, coming soon...): add 'ja' branches in a draft theme
-- [x] All 23 collections (titles, descriptions, SEO)
-- [x] 16 pages (titles, bodies, SEO). Privacy Policy: title only, legal body stays English
-- [~] Other active products: done 3-place (6), 8-place (10), Leather Watch Box (9), trays (9) = 53/141 incl. RTW
-- [ ] Colour swatch labels (shopify--color-pattern metaobjects), option names
-- [ ] Shop policies, blog/journal
-- [ ] Publish ja + add to web presence 45987168581; check /ja pages
+
+## Optional later
+- [ ] Bodies of the 7 published blog articles

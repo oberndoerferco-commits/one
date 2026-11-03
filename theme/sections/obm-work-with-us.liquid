@@ -49,21 +49,21 @@
         {%- if form.errors -%}<div class="obm-wwu__note obm-wwu__note--error" role="alert">{{ form.errors | default_errors }}</div>{%- endif -%}
         <input type="hidden" name="contact[Source]" value="{{ section.settings.source | default: 'Work with us' | escape }}">
         <label class="obm-wwu__field">
-          <span>Interested in</span>
+          <span>{%- case request.locale.iso_code -%}{%- when 'de' -%}Interesse an{%- when 'it' -%}Interessato a{%- when 'ja' -%}ご関心のある分野{%- else -%}Interested in{%- endcase -%}</span>
           <select name="contact[Interested in]" required>
             {%- assign kinds = section.settings.kinds | split: ',' -%}
             {%- for k in kinds -%}<option>{{ k | strip }}</option>{%- endfor -%}
           </select>
         </label>
         <div class="obm-wwu__row">
-          <label class="obm-wwu__field"><span>Name</span><input type="text" name="contact[name]" autocomplete="name" required></label>
+          <label class="obm-wwu__field"><span>{%- case request.locale.iso_code -%}{%- when 'de' -%}Name{%- when 'it' -%}Nome{%- when 'ja' -%}お名前{%- else -%}Name{%- endcase -%}</span><input type="text" name="contact[name]" autocomplete="name" required></label>
           {%- if section.settings.show_company -%}
-          <label class="obm-wwu__field"><span>Company</span><input type="text" name="contact[Company]" autocomplete="organization"></label>
+          <label class="obm-wwu__field"><span>{%- case request.locale.iso_code -%}{%- when 'de' -%}Unternehmen{%- when 'it' -%}Azienda{%- when 'ja' -%}会社名{%- else -%}Company{%- endcase -%}</span><input type="text" name="contact[Company]" autocomplete="organization"></label>
           {%- endif -%}
         </div>
         <div class="obm-wwu__row">
-          <label class="obm-wwu__field"><span>E-mail</span><input type="email" name="contact[email]" autocomplete="email" required></label>
-          <label class="obm-wwu__field"><span>Country</span><input type="text" name="contact[Country]" autocomplete="country-name"></label>
+          <label class="obm-wwu__field"><span>{%- case request.locale.iso_code -%}{%- when 'de' -%}E-Mail{%- when 'it' -%}E-mail{%- when 'ja' -%}メールアドレス{%- else -%}E-mail{%- endcase -%}</span><input type="email" name="contact[email]" autocomplete="email" required></label>
+          <label class="obm-wwu__field"><span>{%- case request.locale.iso_code -%}{%- when 'de' -%}Land{%- when 'it' -%}Paese{%- when 'ja' -%}国{%- else -%}Country{%- endcase -%}</span><input type="text" name="contact[Country]" autocomplete="country-name"></label>
         </div>
         <label class="obm-wwu__field"><span>{{ section.settings.message_label | default: 'Tell us about the project' }}</span><textarea name="contact[body]" rows="6" required></textarea></label>
         <button type="submit" class="obm-wwu__button">{{ section.settings.button_label }}</button>

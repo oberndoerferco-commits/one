@@ -2,22 +2,45 @@
   Price on request (owner, 16 October): for pieces tagged "price-on-request" (the sofas) the price
   block shows "Price on request" (blocks/price.liquid) and, here, the buy buttons give way to a
   button that writes to the atelier about the piece. Rendered from a custom-liquid block in product.json.
+  18 October: Wall Art (product type "Wall Art"): own note (unique piece, not made to measure); the generic
+  "Prefer a different leather… made to order" line and the "Made to order and personalisation" accordion row
+  are hidden. Details row text comes from the product metafields custom.materials_craft / custom.dimensions.
 {%- endcomment -%}
 {%- if product.tags contains 'price-on-request' -%}
   {%- liquid
+    assign is_art = false
+    if product.type == 'Wall Art'
+      assign is_art = true
+    endif
     case request.locale.iso_code
       when 'de'
         assign t_btn = 'Preis anfragen'
         assign t_subject = 'Preisanfrage: '
         assign t_note = 'Jedes Stück wird auf Maß gefertigt. Wir senden Ihnen Preis und Lieferzeit.'
+        if is_art
+          assign t_note = 'Ein Unikat. Wir senden Ihnen Preis und Verfügbarkeit.'
+        endif
       when 'it'
         assign t_btn = 'Richiedi il prezzo'
         assign t_subject = 'Richiesta di prezzo: '
         assign t_note = 'Ogni pezzo è realizzato su misura. Le invieremo prezzo e tempi di consegna.'
+        if is_art
+          assign t_note = 'Pezzo unico. Le invieremo prezzo e disponibilità.'
+        endif
+      when 'ja'
+        assign t_btn = '価格を問い合わせる'
+        assign t_subject = '価格のお問い合わせ: '
+        assign t_note = 'すべてオーダーメイドで製作します。価格と納期をご案内いたします。'
+        if is_art
+          assign t_note = '一点ものです。価格と在庫状況をご案内いたします。'
+        endif
       else
         assign t_btn = 'Request the price'
         assign t_subject = 'Price request: '
         assign t_note = 'Each piece is made to measure. We will send you the price and lead time.'
+        if is_art
+          assign t_note = 'A unique piece. We will send you the price and availability.'
+        endif
     endcase
     assign subject = t_subject | append: product.title | url_encode | replace: '+', '%20'
     assign body = shop.url | append: product.url | url_encode | replace: '+', '%20'
@@ -31,5 +54,9 @@
     .obm-request { margin: 4px 0 20px; }
     .obm-request__btn { display: flex; width: 100%; justify-content: center; text-align: center; }
     .obm-request__note { margin: 12px 0 0; font-size: 0.8125rem; opacity: 0.75; }
+    {%- if is_art %}
+    div:has(> p > a[href^="/pages/contact?piece="]), p:has(> a[href^="/pages/contact?piece="]) { display: none !important; }
+    accordion-custom:has(a[href="/pages/personalization"]) { display: none !important; }
+    {%- endif %}
   </style>
 {%- endif -%}
