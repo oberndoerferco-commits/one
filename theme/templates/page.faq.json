@@ -235,7 +235,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Pieces in stock are delivered within 7 days. You receive DHL tracking as soon as your order ships.</p>",
+                    "text": "<p>Pieces in stock arrive in 7–14 days with DHL Standard and in 2–5 days with DHL Express. You receive DHL tracking as soon as your order ships.</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
