@@ -1,7 +1,7 @@
 {%- comment -%}
   Personalisation (owner, 13 October): an option above the buy buttons on pieces tagged
   "personalisable" (a tag, not the product type, because types are translated in DE/IT).
-  Ticking it shows initials and a stamping colour. On "Add to cart" the hidden "Personalisation"
+  Ticking it shows initials and the stamping choices (gold, silver or black foil, or hot stamping without foil; owner, 4 November). On "Add to cart" the hidden "Personalisation"
   product (handle personalisation, 60 EUR, no shipping) is added first, with the initials, colour
   and piece as line properties, then the theme adds the piece itself; the initials also travel
   with the piece through the form attribute. Rendered from a custom-liquid block in product.json.
@@ -15,29 +15,29 @@
     when 'de'
       assign t_add = 'Personalisierung hinzufügen'
       assign t_initials = 'Initialen'
-      assign t_colour = 'Farbe der Prägung'
-      assign t_colours = 'Schwarz,Gold,Silber,Blindprägung'
+      assign t_colour = 'Prägung'
+      assign t_colours = 'Goldfolie,Silberfolie,Schwarze Folie,Heißprägung ohne Folie'
       assign t_note = 'Von Hand mit unseren Messingwerkzeugen geprägt.'
       assign t_missing = 'Bitte geben Sie die Initialen ein.'
     when 'it'
       assign t_add = 'Aggiungi personalizzazione'
       assign t_initials = 'Iniziali'
-      assign t_colour = 'Colore della stampa'
-      assign t_colours = 'Nero,Oro,Argento,A secco'
+      assign t_colour = 'Stampa'
+      assign t_colours = 'Lamina oro,Lamina argento,Lamina nera,A caldo senza lamina'
       assign t_note = 'Stampate a mano con i nostri strumenti in ottone.'
       assign t_missing = 'Inserisca le iniziali.'
     when 'ja'
       assign t_add = 'パーソナライズを追加'
       assign t_initials = 'イニシャル'
-      assign t_colour = '刻印の色'
-      assign t_colours = 'ブラック,ゴールド,シルバー,素押し'
+      assign t_colour = '刻印'
+      assign t_colours = 'ゴールド箔,シルバー箔,ブラック箔,箔なし(素押し)'
       assign t_note = '真鍮の道具を使い、手作業で刻印します。'
       assign t_missing = 'イニシャルを入力してください。'
     else
       assign t_add = 'Add personalisation'
       assign t_initials = 'Initials'
-      assign t_colour = 'Stamping colour'
-      assign t_colours = 'Black,Gold,Silver,Blind'
+      assign t_colour = 'Stamping'
+      assign t_colours = 'Gold foil,Silver foil,Black foil,Hot stamping without foil'
       assign t_note = 'Stamped by hand with our brass tools.'
       assign t_missing = 'Please enter the initials.'
   endcase
@@ -52,10 +52,12 @@
     <div class="obm-pers__fields" hidden>
       <label class="obm-pers__label" for="ObmPersInitials">{{ t_initials }}</label>
       <input class="obm-pers__input" id="ObmPersInitials" type="text" maxlength="5" autocomplete="off" autocapitalize="characters" spellcheck="false" data-obm-pers-initials disabled form="{{ form_id }}" name="properties[Initials]">
-      <label class="obm-pers__label" for="ObmPersColour">{{ t_colour }}</label>
-      <select class="obm-pers__input" id="ObmPersColour" data-obm-pers-colour disabled form="{{ form_id }}" name="properties[Stamping colour]">
-        {%- for c in colours -%}<option value="{{ c | escape }}">{{ c }}</option>{%- endfor -%}
-      </select>
+      <fieldset class="obm-pers__choices" data-obm-pers-colour disabled>
+        <legend class="obm-pers__label">{{ t_colour }}</legend>
+        {%- for c in colours -%}
+          <label class="obm-pers__choice"><input type="radio" form="{{ form_id }}" name="properties[Stamping colour]" value="{{ c | escape }}"{% if forloop.first %} checked{% endif %}><span>{{ c }}</span></label>
+        {%- endfor -%}
+      </fieldset>
       <p class="obm-pers__note">{{ t_note }}</p>
       <p class="obm-pers__error" data-obm-pers-error role="alert" hidden></p>
     </div>
@@ -71,6 +73,10 @@
     .obm-pers__input { width: 100%; border: 0; border-bottom: 1px solid var(--color-foreground); border-radius: 0; background: transparent; padding: 8px 0; font: inherit; font-size: 0.9375rem; color: var(--color-foreground); }
     .obm-pers__input[data-obm-pers-initials] { text-transform: uppercase; letter-spacing: 0.2em; }
     .obm-pers__input:focus { outline: none; border-bottom-width: 2px; }
+    .obm-pers__choices { border: 0; margin: 6px 0 0; padding: 0; display: grid; gap: 8px; }
+    .obm-pers__choices legend { padding: 0; margin-bottom: 4px; }
+    .obm-pers__choice { display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 0.9375rem; }
+    .obm-pers__choice input { width: 16px; height: 16px; margin: 0; accent-color: var(--color-primary-button-background, #000); }
     .obm-pers__note { margin: 6px 0 0; font-size: 0.75rem; opacity: 0.7; }
     .obm-pers__error { margin: 4px 0 0; font-size: 0.8125rem; color: #a3261c; }
   </style>
@@ -126,7 +132,7 @@
         fetch((window.Shopify && Shopify.routes ? Shopify.routes.root : '/') + 'cart/add.js', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({ items: [{ id: Number(x.box.dataset.variant), quantity: qty, properties: { For: x.box.dataset.title, Initials: value.toUpperCase(), 'Stamping colour': x.colour.value } }] })
+          body: JSON.stringify({ items: [{ id: Number(x.box.dataset.variant), quantity: qty, properties: { For: x.box.dataset.title, Initials: value.toUpperCase(), 'Stamping colour': (x.colour.querySelector('input:checked') || {}).value || '' } }] })
         }).catch(function () {}).then(function () {
           // Let the theme add the piece itself and open the cart as usual.
           passing = true;
