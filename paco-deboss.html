@@ -1,4 +1,4 @@
-<title>PA &amp; CO Deboss</title>
+<title>PA &amp; CO Solid</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <style>
@@ -62,25 +62,25 @@ input[type=range]{flex:1 1 auto;min-width:0;accent-color:var(--amber);height:22p
 <p class="hint">drag to orbit &nbsp;·&nbsp; scroll to zoom</p>
 
 <section class="block">
-  <h1>PA &amp; CO — deboss</h1>
+  <h1>PA &amp; CO — solid</h1>
   <dl class="rows">
     <dt>Width</dt><dd>50.00 mm</dd>
     <dt>Height</dt><dd>34.83 mm</dd>
     <dt>Min. stroke</dt><dd>1.05 mm</dd>
     <dt>Finish</dt><dd>satin silver</dd>
-    <dt>Depth</dt><dd><span id="depthOut">0.30</span> mm</dd>
+    <dt>Thickness</dt><dd><span id="depthOut">1.50</span> mm</dd>
   </dl>
   <div class="ctl">
     <div class="row">
-      <label for="depth">Depth</label>
-      <input id="depth" type="range" min="0.10" max="0.80" step="0.05" value="0.30">
-      <output id="depthVal" for="depth">0.30</output>
+      <label for="depth">Thickness</label>
+      <input id="depth" type="range" min="0.60" max="4.00" step="0.10" value="1.50">
+      <output id="depthVal" for="depth">1.50</output>
     </div>
     <div class="row">
-      <label for="relief">Relief</label>
+      <label for="relief">Edge</label>
       <div class="seg" id="relief">
-        <button type="button" data-mode="deboss" aria-pressed="true">Debossed</button>
-        <button type="button" data-mode="emboss" aria-pressed="false">Embossed</button>
+        <button type="button" data-mode="bevel" aria-pressed="true">Bevelled</button>
+        <button type="button" data-mode="square" aria-pressed="false">Square</button>
       </div>
     </div>
     <div class="row">
@@ -101,7 +101,6 @@ const LOGO = {"w":50.0,"h":34.834,"s":[{"o":[[0.413,31.247],[0.217,31.325],[0.02
 (function(){
   const stage = document.getElementById('stage');
   const W = LOGO.w, H = LOGO.h;
-  const PLATE_W = W + 15, PLATE_H = H + 13, PLATE_T = 4.5;
 
   const renderer = new THREE.WebGLRenderer({antialias:true, alpha:false});
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
@@ -169,38 +168,30 @@ const LOGO = {"w":50.0,"h":34.834,"s":[{"o":[[0.413,31.247],[0.217,31.325],[0.02
     (holes||[]).forEach(h => s.holes.push(new THREE.Path(h.map(P))));
     return s;
   }
-  function rect(w,h){
-    const s = new THREE.Shape();
-    s.moveTo(-w/2,-h/2); s.lineTo(w/2,-h/2); s.lineTo(w/2,h/2); s.lineTo(-w/2,h/2);
-    s.closePath(); return s;
-  }
-
   const group = new THREE.Group(); scene.add(group);
   let built = [];
   function clear(){ built.forEach(m => { m.geometry.dispose(); group.remove(m); }); built = []; }
-  function add(shape, depth, z){
-    const g = new THREE.ExtrudeGeometry(shape, {depth: depth, bevelEnabled: false, curveSegments: 4});
-    const m = new THREE.Mesh(g, satinSilver);
-    m.position.z = z; group.add(m); built.push(m); return m;
-  }
-
-  function build(mode, d){
+  /* The six pieces are the logo itself: P, A, ampersand, C, the O with its
+     bar, and the diamond. Nothing is added underneath them. */
+  function build(mode, t){
     clear();
-    if (mode === 'deboss'){
-      // recess floor, then the surface with the logo cut out, then the counters
-      add(rect(PLATE_W, PLATE_H), PLATE_T - d, -PLATE_T);
-      const top = rect(PLATE_W, PLATE_H);
-      LOGO.s.forEach(sh => top.holes.push(new THREE.Path(sh.o.map(P))));
-      add(top, d, -d);
-      LOGO.s.forEach(sh => sh.h.forEach(h => add(shapeOf(h, []), d, -d)));
-    } else {
-      add(rect(PLATE_W, PLATE_H), PLATE_T, -PLATE_T);
-      LOGO.s.forEach(sh => add(shapeOf(sh.o, sh.h), d, 0));
-    }
+    const bevel = mode === 'bevel';
+    // the thinnest stroke is 1.05 mm, so the chamfer stays well inside it
+    const b = bevel ? Math.min(0.10, t * 0.18) : 0;
+    const opts = {
+      depth: t - 2 * b, curveSegments: 4,
+      bevelEnabled: bevel, bevelThickness: b, bevelSize: b, bevelSegments: 2
+    };
+    LOGO.s.forEach(sh => {
+      const g = new THREE.ExtrudeGeometry(shapeOf(sh.o, sh.h), opts);
+      const m = new THREE.Mesh(g, satinSilver);
+      m.position.z = -t / 2 + b;
+      group.add(m); built.push(m);
+    });
   }
 
   // --- orbit (hand-rolled: r128's OrbitControls is not on the allowed CDN)
-  let az = -0.42, el = 0.86, dist = 108, spin = true;
+  let az = -0.38, el = 0.70, dist = 96, spin = true;
   let drag = null;
   const el2 = renderer.domElement;
   el2.addEventListener('pointerdown', e => { drag = {x:e.clientX, y:e.clientY}; el2.setPointerCapture(e.pointerId); });
@@ -232,13 +223,13 @@ const LOGO = {"w":50.0,"h":34.834,"s":[{"o":[[0.413,31.247],[0.217,31.325],[0.02
     const ce = Math.cos(el), se = Math.sin(el);
     camera.position.set(Math.sin(az)*dist*ce, -Math.cos(az)*dist*ce, se*dist);
     camera.up.set(0,0,1);
-    camera.lookAt(-4.5,-2.5,-1.5);
+    camera.lookAt(-4.0,-1.5,0);
     renderer.render(scene, camera);
     requestAnimationFrame(frame);
   }
 
   // --- controls
-  let mode = 'deboss', depth = 0.30;
+  let mode = 'bevel', depth = 1.50;
   const depthIn = document.getElementById('depth');
   const depthVal = document.getElementById('depthVal');
   const depthOut = document.getElementById('depthOut');
@@ -261,7 +252,7 @@ const LOGO = {"w":50.0,"h":34.834,"s":[{"o":[[0.413,31.247],[0.217,31.325],[0.02
     [...e.currentTarget.children].forEach(x => x.setAttribute('aria-pressed', String(x === b)));
   });
 
-  setDepth(0.30);
+  setDepth(1.50);
   requestAnimationFrame(frame);
 })();
 </script>
