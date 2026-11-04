@@ -52,19 +52,19 @@ input[type=range]{flex:1 1 auto;min-width:0;accent-color:var(--amber);height:22p
     <dt>Height</dt><dd>34.83 mm</dd>
     <dt>Min. stroke</dt><dd>1.05 mm</dd>
     <dt>Finish</dt><dd>satin silver</dd>
-    <dt>Base</dt><dd><span id="baseOut">0.60</span> mm</dd>
-    <dt>Dome</dt><dd><span id="domeOut">1.25</span> mm</dd>
+    <dt>Base</dt><dd><span id="baseOut">0.30</span> mm</dd>
+    <dt>Dome</dt><dd><span id="domeOut">1.50</span> mm</dd>
   </dl>
   <div class="ctl">
     <div class="row">
       <label for="base">Base</label>
-      <input id="base" type="range" min="0.20" max="3.00" step="0.10" value="0.60">
-      <output id="baseVal" for="base">0.60</output>
+      <input id="base" type="range" min="0.20" max="3.00" step="0.10" value="0.30">
+      <output id="baseVal" for="base">0.30</output>
     </div>
     <div class="row">
       <label for="dome">Dome</label>
-      <input id="dome" type="range" min="0.40" max="1.80" step="0.05" value="1.25">
-      <output id="domeVal" for="dome">1.25</output>
+      <input id="dome" type="range" min="0.40" max="2.40" step="0.05" value="1.50">
+      <output id="domeVal" for="dome">1.50</output>
     </div>
     <div class="row">
       <label for="spin">Motion</label>
@@ -269,7 +269,7 @@ input[type=range]{flex:1 1 auto;min-width:0;accent-color:var(--amber);height:22p
     requestAnimationFrame(frame);
   }
 
-  let base = DOME.base, dome = R;
+  let base = 0.30, dome = 1.50;   // as drawn and as exported to STL
   const baseIn=document.getElementById('base'), baseVal=document.getElementById('baseVal'),
         baseOut=document.getElementById('baseOut'), domeIn=document.getElementById('dome'),
         domeVal=document.getElementById('domeVal'), domeOut=document.getElementById('domeOut');

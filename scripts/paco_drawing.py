@@ -13,7 +13,7 @@ stroke width and the section says what happens at the centre line.
 """
 import argparse, math, os, sys
 import numpy as np, pymupdf
-from shapely.geometry import LineString, Polygon
+from shapely.geometry import LineString, Point, Polygon
 from shapely.prepared import prep
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -38,6 +38,41 @@ def elevation(levels, axis, lo, hi, n=440):
                 h = z
         out.append(h)
     return xs, np.array(out)
+
+
+def section_profile(levels, y_cut, lo, hi, n=1100):
+    """Material height along the cutting plane: what a section actually shows.
+
+    elevation() projects the whole part onto an axis, which is a view, not a
+    section. Here each station is tested against the plane itself, so the
+    result is the strokes the plane passes through and nothing else.
+    """
+    pre = [(z, prep(g)) for z, g in levels]
+    xs = np.linspace(lo, hi, n)
+    hs, on = [], []
+    for x in xs:
+        pt = Point(x, y_cut)
+        h, inside = 0.0, False
+        for z, g in pre:
+            if g.contains(pt):
+                h, inside = z, True
+        hs.append(h); on.append(inside)
+    return xs, np.array(hs), np.array(on)
+
+
+def runs(xs, on):
+    out, i, n = [], 0, len(on)
+    while i < n:
+        if on[i]:
+            j = i
+            while j + 1 < n and on[j+1]:
+                j += 1
+            if j > i:
+                out.append((i, j))
+            i = j + 1
+        else:
+            i += 1
+    return out
 
 
 def crown(width, inset, height):
@@ -153,35 +188,39 @@ def build(src, inset, height, base, iso_png, out):
     s.line(px+pw/2, py-5, px+pw/2, py+ph+5, (0, 0, 0), THIN, CHAIN)
     s.dim_h(px, px+pw, py+ph+10, f'{W:.2f}', ext=py+ph, below=True)
     s.dim_v(py, py+ph, px-17, f'{H:.2f}', ext=px)
-    # cutting plane A-A
-    sy = py + ph*0.755
+    # cutting plane A-A, through the letters
+    Y_CUT = -9.5
+    sy = py + (H/2 - Y_CUT)*SC
     s.line(px-9, sy, px+pw+9, sy, (0, 0, 0), THICK, CHAIN)
     s.arrow(px-9, sy+4.5, 0, -1, 2.2); s.line(px-9, sy, px-9, sy+4.5, w=THICK)
     s.arrow(px+pw+9, sy+4.5, 0, -1, 2.2); s.line(px+pw+9, sy, px+pw+9, sy+4.5, w=THICK)
     s.text(px-11.5, sy+8, 'A', 3.2, font='hebo')
     s.text(px+pw+7.5, sy+8, 'A', 3.2, font='hebo')
 
-    # ============ VIEW B : FRONT ELEVATION, true 2:1
-    ex, ey = px, py+ph+26
-    s.text(ex, ey-5.5, 'VIEW B    FRONT ELEVATION', 3.1, font='hebo')
-    s.text(ex+58, ey-5.5, 'SCALE 2:1', 2.3, (.35, .35, .35))
-    xs, hs = elevation(levels, 'x', -W/2, W/2)
-    y0 = ey + total*SC
-    s.poly([(ex + (x+W/2)*SC, y0 - (base+h)*SC) for x, h in zip(xs, hs)], w=MED)
-    s.line(ex, y0, ex+pw, y0, w=MED)
-    s.dim_v(y0-total*SC, y0, ex+pw+9, f'{total:.2f}', ext=ex+pw, left=False)
-
-    # ============ VIEW C : SIDE ELEVATION, true 2:1
-    vx, vy = px, ey+22
-    s.text(vx, vy-5.5, 'VIEW C    SIDE ELEVATION', 3.1, font='hebo')
-    s.text(vx+56, vy-5.5, 'SCALE 2:1', 2.3, (.35, .35, .35))
-    ys_, hs2 = elevation(levels, 'y', -H/2, H/2)
-    y1 = vy + total*SC
-    s.poly([(vx + (yv+H/2)*SC, y1 - (base+h)*SC) for yv, h in zip(ys_, hs2)], w=MED)
-    s.line(vx, y1, vx+H*SC, y1, w=MED)
+    # ============ SECTION A-A : the real thing, across the whole part
+    ax0, ay0 = px, py + ph + 30
+    s.text(ax0, ay0 - 6, 'SECTION A-A', 3.1, font='hebo')
+    s.text(ax0 + 30, ay0 - 6, 'SCALE 2:1', 2.3, (.35, .35, .35))
+    s.text(ax0 + 56, ay0 - 6,
+           'the strokes the plane passes through, cut at y = -9.50',
+           2.3, (.35, .35, .35))
+    xs, hs, on = section_profile(levels, Y_CUT, -W/2, W/2)
+    base_line = ay0 + 14
+    for i, j in runs(xs, on):
+        seg = [(ax0 + (xs[k] + W/2)*SC, base_line - (base + hs[k])*SC)
+               for k in range(i, j + 1)]
+        ring = ([(seg[0][0], base_line)] + seg + [(seg[-1][0], base_line)])
+        s.hatch(Polygon(ring), step=0.9, ang=45)
+        s.poly(ring, w=THICK, close=True)
+    s.line(ax0, base_line, ax0 + pw, base_line, w=THIN, dash=DASH)
+    s.dim_v(base_line - total*SC, base_line, ax0 + pw + 9, f'{total:.2f}',
+            ext=ax0 + pw, left=False)
+    s.text(ax0, base_line + 7,
+           'Crown varies with the width of the stroke the plane meets. See DETAIL C.',
+           2.3, (.3, .3, .3))
 
     # ============ BODY SCHEDULE
-    bx, by = px, vy+20
+    bx, by = px, base_line + 22
     s.text(bx, by-4.5, 'BODY SCHEDULE', 3.1, font='hebo')
     s.text(bx+36, by-4.5, 'six separate solids, not joined', 2.3, (.35, .35, .35))
     cols = [(0, 'ITEM'), (13, 'BODY'), (44, 'WIDTH'), (66, 'HEIGHT'), (90, 'COUNTERS')]
@@ -207,48 +246,44 @@ def build(src, inset, height, base, iso_png, out):
     s.pg.insert_image(pymupdf.Rect(s.P(ix, iy), s.P(ix+iw, iy+ih)), filename=iso_png)
     s.text(ix+iw/2, iy+ih+6, 'ISOMETRIC VIEW', 3.1, font='hebo', align=1)
 
-    # ============ SECTION A-A, 20:1, hatched
+    # ============ DETAIL C : stroke profiles at the two extremes
     SS = 20.0
     cx, cy = 158, iy+ih+26
-    s.text(cx, cy, 'SECTION A-A', 3.1, font='hebo')
-    s.text(cx+30, cy, 'SCALE 20:1', 2.3, (.35, .35, .35))
-    s.text(cx, cy+4.5, 'cut through the thinnest stroke, 1.05 mm wide',
+    s.text(cx, cy, 'DETAIL C', 3.1, font='hebo')
+    s.text(cx+22, cy, 'STROKE PROFILES', 2.6, (.35, .35, .35))
+    s.text(cx+56, cy, 'SCALE 20:1', 2.3, (.35, .35, .35))
+    s.text(cx, cy+4.5, 'the thinnest and the thickest stroke in the artwork',
            2.3, (.35, .35, .35))
-    wmin = 1.05
-    half = wmin/2*SS
-    bz = base*SS
-    ch = crown(wmin, inset, height)
-    base_y = cy + 62
-    mid = cx + 36
-    prof = []
-    for i in range(61):
-        d = (wmin/2)*i/60
-        z = height*math.sqrt(max(0.0, 1-(1-d/inset)**2))
-        prof.append((d, z))
-    ring = ([(mid-half, base_y), (mid-half, base_y-bz)]
-            + [(mid-half+d*SS, base_y-bz-z*SS) for d, z in prof]
-            + [(mid+half-d*SS, base_y-bz-z*SS) for d, z in reversed(prof)]
-            + [(mid+half, base_y-bz), (mid+half, base_y)])
-    s.hatch(Polygon(ring), step=1.5, ang=45)
-    s.poly(ring, w=THICK, close=True)
-    s.line(mid-half, base_y-bz, mid+half, base_y-bz, (0, 0, 0), THIN, DASH)
-    s.line(mid, base_y+4, mid, base_y-bz-ch*SS-5, (0, 0, 0), THIN, CHAIN)
-    s.dim_h(mid-half, mid+half, base_y+11, f'{wmin:.2f}', ext=base_y, below=True)
-    s.dim_v(base_y-bz, base_y, mid+half+10, f'{base:.2f}', ext=mid+half, left=False)
-    s.dim_v(base_y-bz-ch*SS, base_y-bz, mid+half+26, f'{ch:.2f}', ext=mid+half, left=False)
-    s.text(mid+half+28, base_y-bz-ch*SS-3.5, 'CROWN ON A 1.05 STROKE', 2.2, (.35, .35, .35))
-    # detail bubble B
-    bcx, bcy = mid-half+2.5, base_y-bz-4.0
-    s.circle(bcx, bcy, 8.0, (0, 0, 0), THIN, DASH)
-    s.line(bcx-5.7, bcy-5.7, bcx-16, bcy-16, w=THIN)
-    s.circle(bcx-19.4, bcy-19.4, 3.4, (0, 0, 0), MED)
-    s.text(bcx-19.4, bcy-18.4, 'B', 3.0, font='hebo', align=1)
-    s.text(cx, base_y+20,
-           'A stroke narrower than 2.50 mm runs out of width before the dome', 2.3, (.3, .3, .3))
-    s.text(cx, base_y+24,
-           'reaches full height, so the two faces meet in a ridge on the centre', 2.3, (.3, .3, .3))
-    s.text(cx, base_y+28,
-           'line. This is correct and must not be flattened or blended.', 2.3, (.3, .3, .3))
+    base_y = cy + 66
+    for n_, (wid, lab) in enumerate([(1.05, 'THINNEST  1.05'), (2.37, 'THICKEST  2.37')]):
+        mid = cx + 20 + n_*62
+        half = wid/2*SS
+        bz = base*SS
+        ch = crown(wid, inset, height)
+        prof = []
+        for i in range(61):
+            d = (wid/2)*i/60
+            z = height*math.sqrt(max(0.0, 1-(1-min(d, inset)/inset)**2))
+            prof.append((d, z))
+        ring = ([(mid-half, base_y), (mid-half, base_y-bz)]
+                + [(mid-half+d*SS, base_y-bz-z*SS) for d, z in prof]
+                + [(mid+half-d*SS, base_y-bz-z*SS) for d, z in reversed(prof)]
+                + [(mid+half, base_y-bz), (mid+half, base_y)])
+        s.hatch(Polygon(ring), step=1.4, ang=45)
+        s.poly(ring, w=THICK, close=True)
+        s.line(mid-half, base_y-bz, mid+half, base_y-bz, (0, 0, 0), THIN, DASH)
+        s.line(mid, base_y+4, mid, base_y-bz-ch*SS-5, (0, 0, 0), THIN, CHAIN)
+        s.dim_h(mid-half, mid+half, base_y+11, f'{wid:.2f}', ext=base_y, below=True)
+        s.dim_v(base_y-bz-ch*SS, base_y, mid+half+9, f'{bz/SS+ch:.2f}',
+                ext=mid+half, left=False)
+        s.text(mid, base_y+17, lab, 2.4, font='hebo', align=1)
+    s.dim_v(base_y-base*SS, base_y, cx+4, f'{base:.2f}', ext=cx+20-1.05/2*SS)
+    s.text(cx, base_y+26,
+           'The dome is struck from the edge of the stroke, so a narrow stroke', 2.3, (.3, .3, .3))
+    s.text(cx, base_y+30,
+           'runs out of width before full height and the two faces meet in a', 2.3, (.3, .3, .3))
+    s.text(cx, base_y+34,
+           'ridge. That ridge is correct and must not be flattened or blended.', 2.3, (.3, .3, .3))
 
     # ============ DETAIL B : the dome profile
     dx0, dy0 = 292, 30
@@ -268,8 +303,11 @@ def build(src, inset, height, base, iso_png, out):
     s.text(gx+inset*PS/2, gy+15, 'INSET TO FULL HEIGHT', 2.2, (.35, .35, .35), align=1)
     s.dim_v(gy-height*PS, gy, gx+inset*PS+11, f'{height:.2f}', ext=gx+inset*PS, left=False)
     s.text(gx-2, gy+4.5, 'EDGE OF STROKE', 2.2, (.35, .35, .35))
-    s.text(dx0, gy+22, 'z = 1.80 x sqrt( 1 - (1 - d / 1.25)^2 )', 2.6)
-    s.text(dx0, gy+26.5, 'for d <= 1.25 mm;  z = 1.80 beyond.  d is measured', 2.3, (.3, .3, .3))
+    s.text(dx0, gy+22,
+           f'z = {height:.2f} x sqrt( 1 - (1 - d / {inset:.2f})^2 )', 2.6)
+    s.text(dx0, gy+26.5,
+           f'for d <= {inset:.2f} mm;  z = {height:.2f} beyond.  d is measured',
+           2.3, (.3, .3, .3))
     s.text(dx0, gy+30.5, 'in plan from the edge of the stroke.', 2.3, (.3, .3, .3))
 
     # ============ CROWN TABLE
@@ -298,7 +336,7 @@ def build(src, inset, height, base, iso_png, out):
         'minimum and is already at the limit.',
         'Top surface domed per DETAIL B. Underside flat, no draft.',
         'Finish satin silver, uniform. No polished or mirror areas.',
-        'Geometry of record is the STL: paco-logo-dome1.80-base0.30.stl',
+        'Geometry of record is the STL: paco-logo-dome1.50-base0.30.stl',
         'General tolerance +/-0.05. Crown height +/-0.10.',
     ]):
         s.text(tx, ny, str(i+1), 2.3, font='hebo')
