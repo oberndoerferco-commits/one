@@ -1,0 +1,267 @@
+<title>PA &amp; CO Deboss</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: full-bleed viewport for the part, with an engineering title block docked bottom-left. */
+:root{
+  --ink:#0b0d10;          /* chamber */
+  --ink-2:#14181d;        /* panel */
+  --line:#2a3139;         /* rules */
+  --silver:#dfe4ea;       /* primary text, matches the finish */
+  --silver-dim:#8b949e;   /* labels */
+  --amber:#c8963e;        /* the one accent: active controls */
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--ink);color:var(--silver);font-family:var(--sans);overflow:hidden}
+#stage{position:fixed;inset:0}
+canvas{display:block;width:100%;height:100%;touch-action:none}
+
+.block{
+  position:fixed;
+  left:max(16px,env(safe-area-inset-left,0px));
+  bottom:calc(16px + env(safe-area-inset-bottom,0px));
+  z-index:3;
+  width:min(330px,calc(100vw - max(32px,env(safe-area-inset-left,0px) + env(safe-area-inset-right,0px))));
+  background:color-mix(in srgb,var(--ink-2) 86%,transparent);
+  border:1px solid var(--line);
+  backdrop-filter:blur(10px);
+}
+.block h1{
+  margin:0;padding:10px 14px;border-bottom:1px solid var(--line);
+  font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+}
+.rows{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;padding:12px 14px;
+  font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums}
+.rows dt{color:var(--silver-dim)}
+.rows dd{margin:0;text-align:right}
+.ctl{display:flex;flex-direction:column;gap:10px;padding:12px 14px;border-top:1px solid var(--line)}
+.row{display:flex;align-items:center;gap:12px;min-width:0}
+.row label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--silver-dim);flex:0 0 76px}
+.row output{font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums;flex:0 0 52px;text-align:right}
+input[type=range]{flex:1 1 auto;min-width:0;accent-color:var(--amber);height:22px}
+.seg{display:flex;border:1px solid var(--line);flex:1 1 auto;min-width:0}
+.seg button{
+  flex:1 1 0;min-width:0;padding:7px 4px;background:transparent;border:0;cursor:pointer;
+  color:var(--silver-dim);font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--amber);color:#1a1206;font-weight:600}
+.seg button:focus-visible,input:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.hint{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));
+  left:max(16px,env(safe-area-inset-left,0px));z-index:3;
+  font-family:var(--mono);font-size:11px;color:var(--silver-dim);letter-spacing:.04em}
+@media (max-width:560px){ .block{width:calc(100vw - 32px)} .rows{font-size:11px} }
+@media (prefers-reduced-motion:reduce){ :root{--spin:0} }
+</style>
+
+<div id="stage"></div>
+<p class="hint">drag to orbit &nbsp;·&nbsp; scroll to zoom</p>
+
+<section class="block">
+  <h1>PA &amp; CO — deboss</h1>
+  <dl class="rows">
+    <dt>Width</dt><dd>50.00 mm</dd>
+    <dt>Height</dt><dd>34.83 mm</dd>
+    <dt>Min. stroke</dt><dd>1.05 mm</dd>
+    <dt>Finish</dt><dd>satin silver</dd>
+    <dt>Depth</dt><dd><span id="depthOut">0.30</span> mm</dd>
+  </dl>
+  <div class="ctl">
+    <div class="row">
+      <label for="depth">Depth</label>
+      <input id="depth" type="range" min="0.10" max="0.80" step="0.05" value="0.30">
+      <output id="depthVal" for="depth">0.30</output>
+    </div>
+    <div class="row">
+      <label for="relief">Relief</label>
+      <div class="seg" id="relief">
+        <button type="button" data-mode="deboss" aria-pressed="true">Debossed</button>
+        <button type="button" data-mode="emboss" aria-pressed="false">Embossed</button>
+      </div>
+    </div>
+    <div class="row">
+      <label for="spin">Motion</label>
+      <div class="seg" id="spin">
+        <button type="button" data-spin="1" aria-pressed="true">Turning</button>
+        <button type="button" data-spin="0" aria-pressed="false">Still</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const LOGO = {"w":50.0,"h":34.834,"s":[{"o":[[0.413,31.247],[0.217,31.325],[0.022,31.541],[0.021,31.863],[0.175,32.084],[0.358,32.185],[0.532,32.231],[0.852,32.253],[4.356,32.253],[4.591,32.221],[4.836,32.056],[4.933,31.825],[4.933,31.589],[4.812,31.37],[4.621,31.254],[4.461,31.222],[3.872,31.196],[3.581,31.16],[3.566,30.948],[3.565,27.287],[3.596,27.291],[4.118,27.329],[4.571,27.328],[5.034,27.289],[5.47,27.212],[5.88,27.094],[6.261,26.934],[6.634,26.717],[6.853,26.56],[7.053,26.391],[7.313,26.123],[7.534,25.827],[7.71,25.505],[7.84,25.162],[7.923,24.799],[7.96,24.424],[7.961,24.17],[7.944,23.935],[7.909,23.708],[7.855,23.483],[7.745,23.177],[7.644,22.974],[7.525,22.783],[7.32,22.525],[7.074,22.289],[6.729,22.042],[6.361,21.857],[5.947,21.714],[5.492,21.61],[5.117,21.556],[4.719,21.521],[4.297,21.506],[0.74,21.506],[0.448,21.539],[0.272,21.603],[0.088,21.752],[0.0,22.019],[0.079,22.302],[0.276,22.47],[0.476,22.531],[1.155,22.55],[1.255,22.566],[1.259,22.574],[1.278,22.66],[1.283,22.755],[1.278,31.178],[1.259,31.184],[1.124,31.203],[0.632,31.22],[0.413,31.247]],"h":[[[4.917,22.713],[5.113,22.847],[5.213,22.946],[5.306,23.068],[5.385,23.206],[5.488,23.476],[5.535,23.672],[5.581,24.037],[5.589,24.301],[5.575,24.634],[5.55,24.829],[5.514,25.009],[5.468,25.167],[5.375,25.389],[5.306,25.508],[5.226,25.618],[5.139,25.711],[4.977,25.843],[4.802,25.947],[4.612,26.034],[4.408,26.107],[4.189,26.164],[3.955,26.206],[3.706,26.231],[3.565,26.235],[3.566,22.742],[3.579,22.608],[3.703,22.571],[4.013,22.541],[4.317,22.55],[4.511,22.576],[4.782,22.652],[4.917,22.713]]]},{"o":[[12.955,31.145],[12.28,31.168],[12.047,31.212],[11.843,31.311],[11.645,31.584],[11.685,31.966],[11.93,32.191],[12.184,32.26],[12.385,32.268],[14.491,32.196],[16.689,32.268],[16.92,32.243],[17.195,32.095],[17.308,31.788],[17.27,31.562],[17.122,31.372],[16.939,31.281],[16.769,31.24],[16.164,31.199],[15.914,31.155],[15.903,31.15],[15.868,31.11],[15.846,31.074],[15.79,30.947],[12.771,23.148],[12.198,21.625],[12.056,21.394],[11.769,21.298],[11.505,21.382],[11.358,21.541],[11.284,21.694],[11.205,22.003],[11.12,22.198],[11.064,22.387],[9.884,25.527],[7.86,30.989],[7.838,31.028],[7.79,31.092],[7.778,31.102],[7.746,31.123],[7.648,31.158],[7.542,31.179],[7.068,31.215],[6.839,31.251],[6.668,31.312],[6.479,31.454],[6.383,31.718],[6.455,32.024],[6.717,32.231],[7.006,32.272],[7.469,32.207],[7.671,32.197],[9.028,32.255],[9.76,32.268],[10.055,32.244],[10.225,32.192],[10.4,32.08],[10.55,31.834],[10.491,31.474],[10.274,31.297],[10.04,31.22],[9.192,31.155],[9.334,30.686],[9.647,29.814],[9.942,29.049],[12.606,29.049],[13.18,30.749],[13.256,30.946],[13.308,31.109],[12.955,31.145]],"h":[[[10.322,27.928],[11.007,26.031],[11.275,25.336],[11.637,26.33],[12.246,27.928],[10.322,27.928]]]},{"o":[[24.57,17.568],[24.652,17.636],[24.747,17.678],[24.898,17.688],[24.998,17.661],[25.126,17.569],[36.054,5.634],[36.105,5.559],[36.134,5.476],[36.14,5.389],[36.122,5.303],[36.054,5.189],[31.29,0.0],[18.356,0.0],[13.642,5.139],[13.591,5.213],[13.563,5.295],[13.557,5.381],[13.574,5.467],[13.641,5.58],[24.57,17.568]],"h":[[[20.861,5.962],[28.858,5.962],[24.86,15.98],[20.861,5.962]],[[29.955,5.962],[34.372,5.962],[26.541,14.516],[29.955,5.962]],[[19.764,5.962],[23.189,14.542],[15.368,5.962],[19.764,5.962]],[[29.265,4.944],[25.357,4.944],[25.357,1.019],[30.832,1.019],[29.265,4.944]],[[18.888,1.019],[24.339,1.019],[24.339,4.944],[20.455,4.944],[18.888,1.019]],[[19.358,4.944],[15.204,4.944],[18.098,1.788],[19.358,4.944]],[[30.362,4.944],[31.599,1.843],[34.446,4.944],[30.362,4.944]]]},{"o":[[19.19,28.867],[19.13,29.131],[19.086,29.525],[19.091,29.886],[19.133,30.211],[19.213,30.522],[19.33,30.817],[19.484,31.093],[19.675,31.348],[19.901,31.584],[20.228,31.844],[20.503,32.01],[20.883,32.18],[21.198,32.278],[21.63,32.362],[22.092,32.397],[22.615,32.382],[23.126,32.31],[23.5,32.213],[23.961,32.035],[24.392,31.795],[24.67,31.585],[24.739,31.707],[25.014,32.259],[25.731,32.202],[26.073,32.191],[27.548,32.239],[27.732,32.237],[28.0,32.164],[28.203,31.895],[28.201,31.609],[28.071,31.375],[27.831,31.243],[27.658,31.209],[27.128,31.171],[26.871,31.134],[26.669,31.08],[26.596,31.04],[26.536,30.985],[26.408,30.82],[26.301,30.644],[26.087,30.246],[25.98,30.07],[26.102,29.866],[26.273,29.538],[26.428,29.202],[26.568,28.858],[26.692,28.505],[26.801,28.143],[26.895,27.772],[26.991,27.303],[26.998,27.277],[27.012,27.274],[27.953,27.203],[28.166,27.072],[28.277,26.849],[28.274,26.59],[28.116,26.367],[27.821,26.241],[27.23,26.229],[25.129,26.229],[24.894,26.255],[24.621,26.42],[24.527,26.729],[24.62,27.006],[24.812,27.156],[24.99,27.215],[25.214,27.24],[25.803,27.253],[25.802,27.382],[25.774,27.653],[25.721,27.935],[25.643,28.226],[25.539,28.526],[25.408,28.835],[25.294,29.064],[25.122,28.825],[24.536,28.069],[23.984,27.402],[23.466,26.801],[23.507,26.782],[23.751,26.642],[23.972,26.495],[24.172,26.337],[24.351,26.169],[24.509,25.988],[24.646,25.792],[24.796,25.493],[24.867,25.269],[24.909,25.043],[24.923,24.815],[24.913,24.605],[24.867,24.322],[24.807,24.124],[24.691,23.869],[24.584,23.7],[24.462,23.546],[24.32,23.402],[24.098,23.223],[23.857,23.078],[23.672,22.993],[23.312,22.878],[23.014,22.825],[22.801,22.805],[22.486,22.801],[22.266,22.815],[21.878,22.883],[21.675,22.943],[21.405,23.054],[21.146,23.203],[20.845,23.443],[20.641,23.663],[20.47,23.906],[20.303,24.248],[20.216,24.536],[20.165,24.835],[20.15,25.215],[20.167,25.441],[20.204,25.651],[20.268,25.854],[20.38,26.076],[20.527,26.28],[20.722,26.515],[20.992,26.807],[20.879,26.87],[20.611,27.04],[20.254,27.306],[20.033,27.504],[19.752,27.806],[19.583,28.031],[19.383,28.369],[19.274,28.616],[19.19,28.867]],"h":[[[23.412,31.069],[23.268,31.115],[23.029,31.165],[22.786,31.188],[22.552,31.183],[22.423,31.166],[22.221,31.114],[22.109,31.07],[21.927,30.971],[21.823,30.897],[21.655,30.746],[21.556,30.637],[21.417,30.449],[21.343,30.328],[21.243,30.121],[21.166,29.904],[21.11,29.669],[21.076,29.418],[21.064,29.15],[21.078,28.861],[21.105,28.67],[21.147,28.492],[21.202,28.329],[21.269,28.184],[21.382,27.999],[21.488,27.863],[21.617,27.721],[21.727,27.617],[22.234,28.195],[22.89,28.978],[23.442,29.68],[23.955,30.395],[24.116,30.651],[23.997,30.748],[23.778,30.895],[23.64,30.971],[23.412,31.069]],[[21.776,24.493],[21.794,24.348],[21.812,24.279],[21.862,24.161],[21.894,24.11],[22.014,23.974],[22.104,23.905],[22.206,23.853],[22.316,23.82],[22.506,23.801],[22.613,23.811],[22.705,23.839],[22.789,23.885],[22.873,23.956],[22.956,24.057],[23.055,24.23],[23.11,24.372],[23.152,24.54],[23.178,24.729],[23.187,24.937],[23.171,25.193],[23.146,25.337],[23.109,25.472],[23.063,25.589],[22.964,25.764],[22.891,25.858],[22.802,25.951],[22.734,26.007],[22.554,25.851],[22.243,25.527],[22.01,25.218],[21.93,25.082],[21.866,24.949],[21.82,24.823],[21.791,24.704],[21.776,24.591],[21.776,24.493]]]},{"o":[[33.783,21.498],[33.221,21.615],[32.813,21.743],[32.424,21.903],[32.05,22.099],[31.589,22.406],[31.258,22.681],[30.854,23.089],[30.499,23.537],[30.265,23.9],[30.063,24.283],[29.845,24.815],[29.681,25.38],[29.573,25.975],[29.519,26.599],[29.519,27.234],[29.574,27.839],[29.685,28.419],[29.852,28.973],[30.076,29.5],[30.354,29.994],[30.604,30.352],[30.978,30.793],[31.399,31.197],[31.742,31.47],[32.213,31.776],[32.471,31.914],[32.858,32.088],[33.263,32.231],[33.68,32.341],[33.974,32.398],[34.415,32.455],[34.873,32.481],[35.288,32.476],[35.669,32.443],[36.038,32.382],[36.396,32.292],[36.741,32.172],[37.072,32.024],[37.39,31.847],[37.572,31.724],[37.609,31.787],[37.755,32.087],[37.844,32.214],[37.975,32.331],[38.182,32.417],[38.521,32.379],[38.745,32.11],[38.783,31.855],[38.775,31.335],[38.725,30.771],[38.723,30.553],[38.742,29.817],[38.814,28.72],[38.798,28.539],[38.677,28.269],[38.374,28.103],[38.019,28.15],[37.807,28.384],[37.718,28.614],[37.607,29.111],[37.515,29.429],[37.372,29.817],[37.238,30.111],[37.134,30.306],[36.984,30.528],[36.811,30.724],[36.612,30.9],[36.386,31.055],[36.133,31.187],[35.944,31.263],[35.671,31.341],[35.387,31.388],[35.087,31.404],[34.77,31.389],[34.471,31.346],[34.191,31.274],[33.929,31.175],[33.679,31.045],[33.529,30.949],[33.303,30.77],[33.092,30.563],[32.894,30.325],[32.713,30.061],[32.607,29.878],[32.459,29.576],[32.331,29.251],[32.223,28.903],[32.135,28.53],[32.067,28.132],[32.021,27.71],[31.996,27.262],[31.992,26.784],[32.002,26.468],[32.054,25.854],[32.118,25.428],[32.172,25.165],[32.313,24.654],[32.442,24.305],[32.537,24.094],[32.764,23.682],[32.956,23.407],[33.093,23.238],[33.219,23.101],[33.392,22.946],[33.649,22.776],[33.933,22.649],[34.252,22.562],[34.609,22.517],[35.032,22.518],[35.237,22.537],[35.432,22.569],[35.714,22.642],[35.878,22.702],[36.032,22.774],[36.253,22.908],[36.45,23.068],[36.626,23.254],[36.818,23.522],[36.959,23.804],[37.091,24.17],[37.185,24.517],[37.307,25.12],[37.363,25.294],[37.524,25.518],[37.746,25.623],[37.947,25.631],[38.152,25.572],[38.364,25.393],[38.431,25.076],[38.446,24.018],[38.47,23.422],[38.526,22.771],[38.636,22.143],[38.605,21.9],[38.44,21.691],[38.217,21.606],[37.971,21.61],[37.747,21.759],[37.604,21.939],[37.45,22.201],[37.426,22.192],[36.814,21.878],[36.358,21.681],[36.01,21.567],[35.65,21.494],[35.065,21.441],[34.376,21.44],[33.783,21.498]],"h":[]},{"o":[[48.82,23.377],[48.443,22.943],[48.125,22.636],[47.681,22.285],[47.205,21.991],[46.704,21.76],[46.303,21.624],[45.761,21.502],[45.331,21.45],[44.89,21.433],[44.285,21.462],[43.839,21.522],[43.278,21.654],[42.744,21.845],[42.241,22.095],[41.879,22.325],[41.433,22.676],[41.02,23.085],[40.657,23.533],[40.416,23.898],[40.152,24.402],[39.987,24.81],[39.82,25.369],[39.731,25.816],[39.662,26.428],[39.648,27.062],[39.689,27.663],[39.783,28.242],[39.932,28.797],[40.135,29.325],[40.326,29.71],[40.623,30.191],[40.975,30.647],[41.382,31.076],[41.717,31.371],[42.07,31.632],[42.558,31.923],[42.952,32.106],[43.489,32.29],[43.917,32.389],[44.074,32.41],[44.074,33.53],[41.53,33.53],[41.53,34.834],[48.118,34.834],[48.118,33.53],[45.378,33.53],[45.378,32.46],[45.524,32.453],[46.071,32.361],[46.475,32.251],[46.978,32.053],[47.349,31.86],[47.806,31.558],[48.139,31.286],[48.55,30.881],[48.922,30.43],[49.239,29.953],[49.444,29.571],[49.663,29.049],[49.795,28.632],[49.917,28.066],[49.974,27.619],[50.0,27.161],[49.987,26.549],[49.923,25.958],[49.807,25.39],[49.639,24.847],[49.418,24.33],[49.145,23.839],[48.82,23.377]],"h":[[[47.019,29.972],[46.883,30.254],[46.67,30.603],[46.493,30.824],[46.371,30.947],[46.239,31.057],[46.1,31.153],[45.953,31.236],[45.797,31.304],[45.632,31.36],[45.456,31.402],[45.269,31.431],[45.074,31.445],[44.754,31.44],[44.448,31.402],[44.263,31.36],[44.083,31.305],[43.912,31.235],[43.749,31.153],[43.594,31.056],[43.445,30.945],[43.302,30.819],[43.165,30.678],[43.038,30.525],[42.805,30.177],[42.617,29.81],[42.457,29.397],[42.328,28.939],[42.229,28.436],[42.163,27.888],[42.127,27.136],[42.137,26.448],[42.186,25.79],[42.273,25.189],[42.397,24.647],[42.557,24.163],[42.754,23.73],[42.861,23.543],[42.978,23.364],[43.104,23.199],[43.234,23.051],[43.403,22.893],[43.514,22.811],[43.714,22.694],[43.847,22.634],[44.084,22.556],[44.244,22.519],[44.522,22.481],[44.711,22.47],[45.018,22.475],[45.202,22.495],[45.374,22.526],[45.627,22.6],[45.775,22.661],[45.918,22.736],[46.05,22.82],[46.244,22.978],[46.423,23.167],[46.542,23.32],[46.733,23.609],[46.845,23.806],[47.004,24.134],[47.094,24.356],[47.255,24.852],[47.351,25.248],[47.402,25.521],[47.479,26.114],[47.518,26.746],[47.514,27.531],[47.475,28.095],[47.383,28.752],[47.275,29.233],[47.212,29.452],[47.1,29.775],[47.019,29.972]]]}]};
+</script>
+<script>
+(function(){
+  const stage = document.getElementById('stage');
+  const W = LOGO.w, H = LOGO.h;
+  const PLATE_W = W + 15, PLATE_H = H + 13, PLATE_T = 4.5;
+
+  const renderer = new THREE.WebGLRenderer({antialias:true, alpha:false});
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 0.92;
+  stage.appendChild(renderer.domElement);
+
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x0b0d10);
+  const camera = new THREE.PerspectiveCamera(32, 1, 1, 2000);
+
+  /* Studio environment: a dark room with three softboxes, so satin metal
+     shows soft banded highlights instead of a mirror image. */
+  function studioEnv(){
+    const c = document.createElement('canvas');
+    c.width = 1024; c.height = 512;
+    const g = c.getContext('2d');
+    const bg = g.createLinearGradient(0,0,0,512);
+    bg.addColorStop(0.00,'#11141a');
+    bg.addColorStop(0.34,'#6a7482');
+    bg.addColorStop(0.46,'#9fb0c2');
+    bg.addColorStop(0.54,'#1b1f26');
+    bg.addColorStop(1.00,'#050608');
+    g.fillStyle = bg; g.fillRect(0,0,1024,512);
+    // hard-edged strips: satin metal reads as banded streaks, not a blur
+    g.fillStyle = 'rgba(255,255,255,0.80)'; g.fillRect(90, 96, 430, 54);
+    g.fillStyle = 'rgba(255,255,255,0.45)'; g.fillRect(620, 150, 300, 30);
+    g.fillStyle = 'rgba(0,0,0,0.55)';       g.fillRect(0, 196, 1024, 26);
+    function box(cx,cy,w,h,a){
+      const r = g.createRadialGradient(cx,cy,0,cx,cy,Math.max(w,h)/2);
+      r.addColorStop(0,'rgba(255,255,255,'+a+')');
+      r.addColorStop(1,'rgba(255,255,255,0)');
+      g.save(); g.translate(cx,cy); g.scale(1, h/w); g.translate(-cx,-cy);
+      g.fillStyle = r; g.beginPath(); g.arc(cx,cy,w/2,0,Math.PI*2); g.fill(); g.restore();
+    }
+    box(250,120,520,190,0.9);
+    box(770,140,330,130,0.55);
+    box(520,330,700,110,0.18);
+    const t = new THREE.CanvasTexture(c);
+    t.mapping = THREE.EquirectangularReflectionMapping;
+    const pm = new THREE.PMREMGenerator(renderer);
+    pm.compileEquirectangularShader();
+    const rt = pm.fromEquirectangular(t);
+    t.dispose(); pm.dispose();
+    return rt.texture;
+  }
+  scene.environment = studioEnv();
+
+  const key = new THREE.DirectionalLight(0xffffff, 0.9);
+  key.position.set(-40, 55, 70); scene.add(key);
+  const fill = new THREE.DirectionalLight(0xbfd0e6, 0.5);
+  fill.position.set(60, -20, 40); scene.add(fill);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.08));
+
+  const satinSilver = new THREE.MeshStandardMaterial({
+    color: 0xdcdfe4, metalness: 1.0, roughness: 0.30,
+    envMapIntensity: 1.45
+  });
+
+  /* PDF space has y running down; flip it and centre the artwork. */
+  const P = (p) => new THREE.Vector2(p[0] - W/2, (H/2) - p[1]);
+  function shapeOf(outer, holes){
+    const s = new THREE.Shape(outer.map(P));
+    (holes||[]).forEach(h => s.holes.push(new THREE.Path(h.map(P))));
+    return s;
+  }
+  function rect(w,h){
+    const s = new THREE.Shape();
+    s.moveTo(-w/2,-h/2); s.lineTo(w/2,-h/2); s.lineTo(w/2,h/2); s.lineTo(-w/2,h/2);
+    s.closePath(); return s;
+  }
+
+  const group = new THREE.Group(); scene.add(group);
+  let built = [];
+  function clear(){ built.forEach(m => { m.geometry.dispose(); group.remove(m); }); built = []; }
+  function add(shape, depth, z){
+    const g = new THREE.ExtrudeGeometry(shape, {depth: depth, bevelEnabled: false, curveSegments: 4});
+    const m = new THREE.Mesh(g, satinSilver);
+    m.position.z = z; group.add(m); built.push(m); return m;
+  }
+
+  function build(mode, d){
+    clear();
+    if (mode === 'deboss'){
+      // recess floor, then the surface with the logo cut out, then the counters
+      add(rect(PLATE_W, PLATE_H), PLATE_T - d, -PLATE_T);
+      const top = rect(PLATE_W, PLATE_H);
+      LOGO.s.forEach(sh => top.holes.push(new THREE.Path(sh.o.map(P))));
+      add(top, d, -d);
+      LOGO.s.forEach(sh => sh.h.forEach(h => add(shapeOf(h, []), d, -d)));
+    } else {
+      add(rect(PLATE_W, PLATE_H), PLATE_T, -PLATE_T);
+      LOGO.s.forEach(sh => add(shapeOf(sh.o, sh.h), d, 0));
+    }
+  }
+
+  // --- orbit (hand-rolled: r128's OrbitControls is not on the allowed CDN)
+  let az = -0.42, el = 0.86, dist = 108, spin = true;
+  let drag = null;
+  const el2 = renderer.domElement;
+  el2.addEventListener('pointerdown', e => { drag = {x:e.clientX, y:e.clientY}; el2.setPointerCapture(e.pointerId); });
+  el2.addEventListener('pointermove', e => {
+    if (!drag) return;
+    az -= (e.clientX - drag.x) * 0.006;
+    el = Math.max(0.12, Math.min(1.50, el - (e.clientY - drag.y) * 0.005));
+    drag = {x:e.clientX, y:e.clientY};
+  });
+  const stop = e => { drag = null; };
+  el2.addEventListener('pointerup', stop); el2.addEventListener('pointercancel', stop);
+  el2.addEventListener('wheel', e => {
+    e.preventDefault();
+    dist = Math.max(62, Math.min(260, dist + e.deltaY * 0.12));
+  }, {passive:false});
+
+  function resize(){
+    const w = stage.clientWidth, h = stage.clientHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h; camera.updateProjectionMatrix();
+  }
+  addEventListener('resize', resize); resize();
+
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let t0 = performance.now();
+  function frame(t){
+    const dt = Math.min(0.05, (t - t0) / 1000); t0 = t;
+    if (spin && !drag && !reduce) az += dt * 0.19;
+    const ce = Math.cos(el), se = Math.sin(el);
+    camera.position.set(Math.sin(az)*dist*ce, -Math.cos(az)*dist*ce, se*dist);
+    camera.up.set(0,0,1);
+    camera.lookAt(-4.5,-2.5,-1.5);
+    renderer.render(scene, camera);
+    requestAnimationFrame(frame);
+  }
+
+  // --- controls
+  let mode = 'deboss', depth = 0.30;
+  const depthIn = document.getElementById('depth');
+  const depthVal = document.getElementById('depthVal');
+  const depthOut = document.getElementById('depthOut');
+  function setDepth(v){
+    depth = v;
+    const s = v.toFixed(2);
+    depthVal.value = s; depthOut.textContent = s;
+    build(mode, depth);
+  }
+  depthIn.addEventListener('input', () => setDepth(parseFloat(depthIn.value)));
+  document.getElementById('relief').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    mode = b.dataset.mode;
+    [...e.currentTarget.children].forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    build(mode, depth);
+  });
+  document.getElementById('spin').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    spin = b.dataset.spin === '1';
+    [...e.currentTarget.children].forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+  });
+
+  setDepth(0.30);
+  requestAnimationFrame(frame);
+})();
+</script>
