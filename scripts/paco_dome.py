@@ -68,12 +68,20 @@ if __name__ == '__main__':
     a.add_argument('--radius', type=float, default=1.25)
     a.add_argument('--steps', type=int, default=16)
     a.add_argument('--base', type=float, default=0.60)
+    a.add_argument('--height', type=float,
+                   help='stretch the dome to this height; the inset still '
+                        'reaches --radius, which is what the viewer\'s slider '
+                        'does, so the profile turns elliptical rather than '
+                        'biting further into the strokes')
     a.add_argument('--json')
     a.add_argument('--stl')
     o = a.parse_args()
 
     g, W, H = artwork(o.src)
     rs = rings(g, o.radius, o.steps)
+    if o.height:
+        k = o.height / o.radius
+        rs = [(z * k, poly) for z, poly in rs]
     print(f'{len(rs)} levels, dome {rs[-1][0]:.3f} mm tall over a {o.base:.2f} mm base')
 
     if o.json:
