@@ -17,28 +17,24 @@
       assign t_initials = 'Initialen'
       assign t_colour = 'Prägung'
       assign t_colours = 'Goldfolie,Silberfolie,Schwarze Folie,Heißprägung ohne Folie'
-      assign t_note = 'Von Hand mit unseren Messingwerkzeugen geprägt.'
       assign t_missing = 'Bitte geben Sie die Initialen ein.'
     when 'it'
       assign t_add = 'Aggiungi personalizzazione'
       assign t_initials = 'Iniziali'
       assign t_colour = 'Stampa'
       assign t_colours = 'Lamina oro,Lamina argento,Lamina nera,A caldo senza lamina'
-      assign t_note = 'Stampate a mano con i nostri strumenti in ottone.'
       assign t_missing = 'Inserisca le iniziali.'
     when 'ja'
       assign t_add = 'パーソナライズを追加'
       assign t_initials = 'イニシャル'
       assign t_colour = '刻印'
       assign t_colours = 'ゴールド箔,シルバー箔,ブラック箔,箔なし(素押し)'
-      assign t_note = '真鍮の道具を使い、手作業で刻印します。'
       assign t_missing = 'イニシャルを入力してください。'
     else
       assign t_add = 'Add personalisation'
       assign t_initials = 'Initials'
       assign t_colour = 'Stamping'
       assign t_colours = 'Gold foil,Silver foil,Black foil,Hot stamping without foil'
-      assign t_note = 'Stamped by hand with our brass tools.'
       assign t_missing = 'Please enter the initials.'
   endcase
   assign colours = t_colours | split: ','
@@ -58,7 +54,6 @@
           <label class="obm-pers__choice"><input type="radio" form="{{ form_id }}" name="properties[Stamping colour]" value="{{ c | escape }}"{% if forloop.first %} checked{% endif %}><span>{{ c }}</span></label>
         {%- endfor -%}
       </fieldset>
-      <p class="obm-pers__note">{{ t_note }}</p>
       <p class="obm-pers__error" data-obm-pers-error role="alert" hidden></p>
     </div>
   </div>
@@ -69,6 +64,7 @@
     .obm-pers__toggle input { width: 16px; height: 16px; margin: 0; accent-color: var(--color-primary-button-background, #000); }
     .obm-pers__price { opacity: 0.7; }
     .obm-pers__fields { margin-top: 14px; display: grid; gap: 6px; }
+    .obm-pers__fields[hidden] { display: none; }
     .obm-pers__label { font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.75; margin-top: 6px; }
     .obm-pers__input { width: 100%; border: 0; border-bottom: 1px solid var(--color-foreground); border-radius: 0; background: transparent; padding: 8px 0; font: inherit; font-size: 0.9375rem; color: var(--color-foreground); }
     .obm-pers__input[data-obm-pers-initials] { text-transform: uppercase; letter-spacing: 0.2em; }
@@ -77,7 +73,6 @@
     .obm-pers__choices legend { padding: 0; margin-bottom: 4px; }
     .obm-pers__choice { display: flex; align-items: center; gap: 10px; cursor: pointer; font-size: 0.9375rem; }
     .obm-pers__choice input { width: 16px; height: 16px; margin: 0; accent-color: var(--color-primary-button-background, #000); }
-    .obm-pers__note { margin: 6px 0 0; font-size: 0.75rem; opacity: 0.7; }
     .obm-pers__error { margin: 4px 0 0; font-size: 0.8125rem; color: #a3261c; }
   </style>
 
