@@ -10,7 +10,7 @@ STL consumers assume.
     python3 scripts/paco_stl.py --thickness 1.5 --out assets/paco/paco-logo.stl
     python3 scripts/paco_stl.py --plate --depth 0.30 --out .../paco-deboss.stl
 """
-import argparse, sys, os
+import argparse, math, sys, os
 import numpy as np, pymupdf, trimesh
 from shapely.geometry import Polygon, box
 from shapely.ops import unary_union
@@ -30,11 +30,50 @@ def logo(src):
     return g, W, H
 
 
-def build(src, depth, margin, thickness, emboss, plate_on=True):
+def rolled(poly, thickness, roll, steps):
+    """Extrude with the edge rolled over, as a stack of inset slices.
+
+    A flat extrusion plus a chamfer reads as a cut-off edge. Rolling it
+    means the inset follows a circle: at height z into the roll the polygon
+    is pulled in by r - sqrt(r^2 - (r - z)^2), which is the same profile
+    the viewer draws, so the printed part matches what was approved.
+    """
+    if roll <= 0.001:
+        return trimesh.creation.extrude_polygon(poly, thickness)
+    roll = min(roll, thickness / 2 - 1e-3)
+    zs, insets = [], []
+    for i in range(steps + 1):                      # bottom roll, rising
+        z = roll * i / steps
+        zs.append(z); insets.append(roll - math.sqrt(max(0.0, roll*roll - (roll - z)**2)))
+    zs.append(thickness - roll); insets.append(0.0)  # straight waist
+    for i in range(1, steps + 1):                    # top roll, falling
+        z = thickness - roll + roll * i / steps
+        d = roll - math.sqrt(max(0.0, roll*roll - (roll - (thickness - z))**2))
+        zs.append(z); insets.append(d)
+    rings = []
+    for z, d in zip(zs, insets):
+        q = poly if d <= 0 else poly.buffer(-d, join_style=2, mitre_limit=4)
+        if q.is_empty:
+            q = poly.buffer(-d * 0.98, join_style=2, mitre_limit=4)
+        rings.append((z, q))
+    slabs = []
+    for (z0, q0), (z1, q1) in zip(rings[:-1], rings[1:]):
+        if z1 - z0 < 1e-6:
+            continue
+        use = q0 if q0.area >= q1.area else q1      # the wider of the pair
+        for piece in (use.geoms if hasattr(use, 'geoms') else [use]):
+            m = trimesh.creation.extrude_polygon(piece, z1 - z0)
+            m.apply_translation([0, 0, z0])
+            slabs.append(m)
+    return trimesh.boolean.union(slabs, engine='manifold') if len(slabs) > 1 else slabs[0]
+
+
+def build(src, depth, margin, thickness, emboss, plate_on=True, roll=0.0, steps=6):
     L, W, H = logo(src)
     if not plate_on:
-        # the six pieces of the logo, standing on their own
-        parts = [trimesh.creation.extrude_polygon(g, thickness) for g in L.geoms]
+        parts = []
+        for g in L.geoms:
+            parts.append(rolled(g, thickness, roll, steps))
         mesh = trimesh.util.concatenate(parts)
         mesh.merge_vertices()
         return mesh, W, H, thickness
@@ -77,8 +116,12 @@ if __name__ == '__main__':
     a.add_argument('--emboss', action='store_true')
     a.add_argument('--plate', action='store_true',
                    help='sink the logo into a slab instead of standing alone')
+    a.add_argument('--roll', type=float, default=0.0,
+                   help='radius of the rolled-over edge, mm')
+    a.add_argument('--steps', type=int, default=6)
     o = a.parse_args()
-    m, W, H, T = build(o.src, o.depth, o.margin, o.thickness, o.emboss, o.plate)
+    m, W, H, T = build(o.src, o.depth, o.margin, o.thickness, o.emboss, o.plate,
+                       o.roll, o.steps)
     m.export(o.out)
     e = m.extents
     print(f'{o.out}: {len(m.faces)} triangles, {len(m.vertices)} vertices')
