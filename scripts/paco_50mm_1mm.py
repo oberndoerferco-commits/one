@@ -42,19 +42,26 @@ def split(page):
     return letters, bar
 
 
-def build(src, grow, dx, dy, target_w, out):
+def build(src, grow, dx, dy, target_w, out, grow_diamond=0.012):
+    """grow_diamond is separate: the diamond is drawn at 1.01 mm already and
+    needs only enough to survive the final scaling, not the 0.75 mm the
+    letters need. Growing everything by the same amount took it to 1.78 mm,
+    which is why it came back looking heavy."""
     d = pymupdf.open(src); pg = d[0]
     letters, bar = split(pg)
     L = assemble(letters).simplify(DENOISE, preserve_topology=True)
     B = Polygon(bar).buffer(0).simplify(DENOISE, preserve_topology=True)
 
     parts = sorted(L.geoms, key=lambda s: s.bounds[0])
-    O = parts[-1]                              # right-most shape is the O
-    rest = unary_union(parts[:-1])
+    diamond = max(parts, key=lambda s: s.area if s.bounds[3] < 20 else -1)
+    letters = [s for s in parts if s is not diamond]
+    O = letters[-1]                            # right-most letter is the O
+    rest = unary_union(letters[:-1])
 
     Ob = affinity.translate(O.buffer(grow, **MITRE), dx, 0)
     Bb = affinity.translate(B.buffer(grow, **MITRE), dx, dy)
-    Rb = rest.buffer(grow, **MITRE)
+    Rb = unary_union([rest.buffer(grow, **MITRE),
+                      diamond.buffer(grow_diamond, **MITRE)])
 
     ox0, oy0, ox1, oy1 = Ob.bounds
     low = [c for c in Ob.exterior.coords if c[1] > oy1 - 0.02]
@@ -84,5 +91,6 @@ if __name__ == '__main__':
     a.add_argument('--dx', type=float, default=0.25)
     a.add_argument('--dy', type=float, default=0.95)
     a.add_argument('--width', type=float, default=50.0)
+    a.add_argument('--grow-diamond', type=float, default=0.012)
     o = a.parse_args()
-    build(o.src, o.grow, o.dx, o.dy, o.width, o.out)
+    build(o.src, o.grow, o.dx, o.dy, o.width, o.out, o.grow_diamond)
