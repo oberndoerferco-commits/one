@@ -69,6 +69,8 @@ input[type=range]{flex:1 1 auto;min-width:0;accent-color:var(--amber);height:22p
     <dt>Min. stroke</dt><dd>1.05 mm</dd>
     <dt>Finish</dt><dd>satin silver</dd>
     <dt>Thickness</dt><dd><span id="depthOut">1.50</span> mm</dd>
+    <dt>Bevel</dt><dd><span id="bevOut">0.25</span> mm</dd>
+    <dt>Flat top</dt><dd><span id="flatOut">0.55</span> mm</dd>
   </dl>
   <div class="ctl">
     <div class="row">
@@ -77,11 +79,9 @@ input[type=range]{flex:1 1 auto;min-width:0;accent-color:var(--amber);height:22p
       <output id="depthVal" for="depth">1.50</output>
     </div>
     <div class="row">
-      <label for="relief">Edge</label>
-      <div class="seg" id="relief">
-        <button type="button" data-mode="bevel" aria-pressed="true">Bevelled</button>
-        <button type="button" data-mode="square" aria-pressed="false">Square</button>
-      </div>
+      <label for="bevel">Bevel</label>
+      <input id="bevel" type="range" min="0" max="0.40" step="0.01" value="0.25">
+      <output id="bevelVal" for="bevel">0.25</output>
     </div>
     <div class="row">
       <label for="spin">Motion</label>
@@ -173,14 +173,19 @@ const LOGO = {"w":50.0,"h":34.834,"s":[{"o":[[0.413,31.247],[0.217,31.325],[0.02
   function clear(){ built.forEach(m => { m.geometry.dispose(); group.remove(m); }); built = []; }
   /* The six pieces are the logo itself: P, A, ampersand, C, the O with its
      bar, and the diamond. Nothing is added underneath them. */
-  function build(mode, t){
+  const MIN_STROKE = 1.05;
+  /* A chamfer eats MIN_STROKE - 2b off the flat top, so it cannot reach half
+     the thinnest stroke without meeting itself and turning the hairlines into
+     knife edges. It also cannot exceed half the thickness. */
+  function clampBevel(b, t){
+    return Math.max(0, Math.min(b, t * 0.40, MIN_STROKE / 2 - 0.12));
+  }
+  function build(bv, t){
     clear();
-    const bevel = mode === 'bevel';
-    // the thinnest stroke is 1.05 mm, so the chamfer stays well inside it
-    const b = bevel ? Math.min(0.10, t * 0.18) : 0;
+    const b = clampBevel(bv, t);
     const opts = {
       depth: t - 2 * b, curveSegments: 4,
-      bevelEnabled: bevel, bevelThickness: b, bevelSize: b, bevelSegments: 2
+      bevelEnabled: b > 0.001, bevelThickness: b, bevelSize: b, bevelSegments: 3
     };
     LOGO.s.forEach(sh => {
       const g = new THREE.ExtrudeGeometry(shapeOf(sh.o, sh.h), opts);
@@ -229,23 +234,24 @@ const LOGO = {"w":50.0,"h":34.834,"s":[{"o":[[0.413,31.247],[0.217,31.325],[0.02
   }
 
   // --- controls
-  let mode = 'bevel', depth = 1.50;
+  let bevelMM = 0.25, depth = 1.50;
   const depthIn = document.getElementById('depth');
   const depthVal = document.getElementById('depthVal');
   const depthOut = document.getElementById('depthOut');
-  function setDepth(v){
-    depth = v;
-    const s = v.toFixed(2);
-    depthVal.value = s; depthOut.textContent = s;
-    build(mode, depth);
+  const bevIn = document.getElementById('bevel');
+  const bevVal = document.getElementById('bevelVal');
+  const bevOut = document.getElementById('bevOut');
+  const flatOut = document.getElementById('flatOut');
+  function refresh(){
+    const b = clampBevel(bevelMM, depth);
+    depthVal.value = depth.toFixed(2); depthOut.textContent = depth.toFixed(2);
+    bevVal.value = b.toFixed(2); bevOut.textContent = b.toFixed(2);
+    flatOut.textContent = (MIN_STROKE - 2 * b).toFixed(2);
+    build(bevelMM, depth);
   }
+  function setDepth(v){ depth = v; refresh(); }
   depthIn.addEventListener('input', () => setDepth(parseFloat(depthIn.value)));
-  document.getElementById('relief').addEventListener('click', e => {
-    const b = e.target.closest('button'); if (!b) return;
-    mode = b.dataset.mode;
-    [...e.currentTarget.children].forEach(x => x.setAttribute('aria-pressed', String(x === b)));
-    build(mode, depth);
-  });
+  bevIn.addEventListener('input', () => { bevelMM = parseFloat(bevIn.value); refresh(); });
   document.getElementById('spin').addEventListener('click', e => {
     const b = e.target.closest('button'); if (!b) return;
     spin = b.dataset.spin === '1';
