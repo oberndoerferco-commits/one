@@ -51,7 +51,10 @@ LOGO_PDF = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                         '..', 'assets', 'traxnyc-box', 'traxnyc-lockup.pdf')
 # The foil mark is off. Its geometry stays here because it was measured off
 # the sample and is the only record of where it sat, but nothing draws it.
+# In its place the lid carries a reserved square, so the tooler knows a
+# mark is coming and where it lands without being shown one yet.
 SHOW_LOGO = False
+SHOW_LOGO_BOX = True
 
 # Where each net sits on its own sheet, in mm. Named because the fused
 # sheet has to line the two nets up and must not guess at these.
@@ -78,14 +81,21 @@ RIGHT2 = (TR, BR)
 
 class Box:
     def __init__(self, L, Wt, Wb, H, lap, end_tab, board, wrap, b, R, stud,
-                 stud_in, magnet, medal, mark_w, mark_h, gap, line=1.2):
+                 stud_in, magnet, medal, mark_w, mark_h, gap, logo=46.0,
+                 line=1.2):
         self.L, self.Wt, self.Wb, self.H = L, Wt, Wb, H
         self.lap, self.end_tab = lap, end_tab
         self.board, self.wrap = board, wrap
         self.b, self.R, self.stud, self.stud_in = b, R, stud, stud_in
         self.magnet = magnet
         self.medal, self.mark_w, self.mark_h, self.gap = medal, mark_w, mark_h, gap
+        self.logo = logo                     # the square held for the mark
         self.line = line                     # debossed line width, mm
+
+    @property
+    def field(self):
+        """The clear height inside the lid's debossed frame."""
+        return self.Wt - 2 * (self.b + self.line / 2)
 
     @property
     def reveal(self):
@@ -304,6 +314,34 @@ def mark(pg, cx, cy, c, k, rotate=0, gold=False):
     return medal, word
 
 
+def logo_box(pg, cx, cy, c, k, col=GOLD, label=True):
+    """The area held for the mark, centred on (cx, cy).
+
+    A square, not the footprint of the old lockup, which was 53 wide over
+    46.8 high and so had no square that both contained it and cleared the
+    debossed frame. The size is set to clear that frame instead, and the
+    frame is what the tooler can see on the same sheet, so the one number
+    on the square can be checked against the drawing rather than taken on
+    trust.
+    """
+    h = c.logo * k / 2
+    r = pymupdf.Rect(cx - h, cy - h, cx + h, cy + h)
+    pg.draw_rect(r, color=col, fill=None, width=0.7, dashes='[3 2] 0')
+    for sx, sy in ((-1, 0), (1, 0), (0, -1), (0, 1)):   # centre marks
+        pg.draw_line(pymupdf.Point(cx + sx * h, cy + sy * h),
+                     pymupdf.Point(cx + sx * (h - 3 * MM), cy + sy * (h - 3 * MM)),
+                     color=col, width=0.5)
+    if label:
+        # Beside the square, not above or below it. The lid leaves only
+        # 6 mm between the square and the debossed frame either way, and
+        # a line of 5.8 pt type does not fit in it; there is 60 mm to
+        # spare on each side.
+        pg.insert_text(pymupdf.Point(r.x1 + 3 * MM, cy + 1 * MM),
+                       f'LOGO AREA {c.logo:g} x {c.logo:g} — artwork to follow',
+                       fontname='Helvetica-Bold', fontsize=5.8, color=col)
+    return r
+
+
 def _front_edge(pg, x, y, w, col=LAPL, side='right'):
     """Mark which edge of a plan view faces the front of the box."""
     line(pg, (x, y - 1.4 * MM), (x + w, y - 1.4 * MM), 1.4, col)
@@ -320,10 +358,11 @@ def magnets(pg, x, y, w, k, c, col=CUT):
 
 
 def legend(pg, x, y, size=6.6):
-    """The colour key. Gold only appears while there is a foil mark."""
+    """The colour key. Gold is the mark: the lockup, or the area held for it."""
+    gold = ([('hot foil', GOLD)] if SHOW_LOGO else
+            [('logo area, nothing to print yet', GOLD)] if SHOW_LOGO_BOX else [])
     items = ([('cut', CUT), ('fold', FOLDC), ('blind deboss, cap, stud', TOOL)]
-             + ([('hot foil', GOLD)] if SHOW_LOGO else [])
-             + [('where the lap closes', LAPL)])
+             + gold + [('where the lap closes', LAPL)])
     for lab, col in items:
         pg.draw_line(pymupdf.Point(x, y), pymupdf.Point(x + 7 * MM, y),
                      color=col, width=1.4)
@@ -381,6 +420,8 @@ def sheet_ga(doc, c, s):
     face(pg, x0, y3, c.L, c.Wt, c, k, which=ALL4, border=True)
     if SHOW_LOGO:
         mark(pg, x0 + c.L * k / 2, y3 + c.Wt * k / 2, c, k, gold=True)
+    elif SHOW_LOGO_BOX:
+        logo_box(pg, x0 + c.L * k / 2, y3 + c.Wt * k / 2, c, k, label=False)
     _front_edge(pg, x0, y3 + c.Wt * k + 3.2 * MM, c.L * k)
     dim_h(pg, x0, x0 + c.L * k, y3 + c.Wt * k + 11 * MM, f'{c.L:g}')
     dim_v(pg, y3, y3 + c.Wt * k, x0 - 12 * MM, f'{c.Wt:g}', anchor='left')
@@ -396,7 +437,12 @@ def sheet_ga(doc, c, s):
         '',
         f'The lid overhangs the front by {c.Wt - c.Wb:g} — a {c.Wt:g} top over a {c.Wb:g}',
         'bottom — which is the front wall plus the lap.',
-    ], bold_first=True)
+    ] + ([
+        '',
+        f'Logo area: the dashed square, {c.logo:g} x {c.logo:g}, held centred on',
+        f'the lid top with {(c.field - c.logo) / 2:.1f} clear of the debossed frame.',
+        'Nothing to print there yet — artwork to follow.',
+    ] if SHOW_LOGO_BOX else []), bold_first=True)
     return pg
 
 
@@ -415,7 +461,10 @@ def sheet_parts(doc, c, s):
          'The frame does not close at the bottom: the side lines run straight out.'),
         ('2 · LID TOP', c.L, c.Wt, ALL4, (),
          f'{c.L:g} x {c.Wt:g}, hinged on the top/back fold. Swings back, and the lap '
-         'folds back with it.' + (' Carries the foil.' if SHOW_LOGO else '')),
+         'folds back with it.'
+         + (' Carries the foil.' if SHOW_LOGO else
+            f' Carries the mark: {c.logo:g} x {c.logo:g} held centred.'
+            if SHOW_LOGO_BOX else '')),
         ('3 · FRONT WALL', c.L, c.H, BOT2, ('t',),
          f'{c.L:g} x {c.H:g}, hinged on the bottom\'s front edge. Drops forward once '
          'the lap is clear. Open at the top, so its side lines carry on from the lap\'s.'),
@@ -427,6 +476,8 @@ def sheet_parts(doc, c, s):
         if lab.endswith('LID TOP'):
             if SHOW_LOGO:
                 mark(pg, x0 + fw * k / 2, y + fh * k / 2, c, k, gold=True)
+            elif SHOW_LOGO_BOX:
+                logo_box(pg, x0 + fw * k / 2, y + fh * k / 2, c, k, label=False)
             _front_edge(pg, x0, y + fh * k + 3.2 * MM, fw * k)
         if lab.endswith('LAP'):
             magnets(pg, x0, y + fh * k + 1.6 * MM, fw, k, c)
@@ -509,7 +560,8 @@ def sheet_net(doc, c, s, preview=False):
               'Trunk box — the net, printing and tooling',
               f'{c.L:g} wide x {c.net_h:g} over five rows · scale 1:{1 / s:.1f} · '
               'magenta = cut · blue dashed = fold · grey = blind deboss'
-              + (' · gold = foil' if SHOW_LOGO else ''))
+              + (' · gold = foil' if SHOW_LOGO else
+                 ' · gold = logo area' if SHOW_LOGO_BOX else ''))
 
     ox = NET_OX * MM + (c.H + c.end_tab) * k
     oy = NET_OY * MM
@@ -542,9 +594,11 @@ def sheet_net(doc, c, s, preview=False):
     for h, n in c.rows:
         face(pg, *P(0, ys[n]), c.L, h, c, k, which=CAPS_OF[n], border=True,
              open_edges=OPEN_OF.get(n, ()))
+    mc = P(c.L / 2, ys['top'] + c.Wt / 2)
     if SHOW_LOGO:
-        mc = P(c.L / 2, ys['top'] + c.Wt / 2)
         mark(pg, mc[0], mc[1], c, k, rotate=180, gold=True)
+    elif SHOW_LOGO_BOX:
+        logo_box(pg, mc[0], mc[1], c, k, label=not preview)
     magnets(pg, P(0, 1.6)[0], P(0, 1.6)[1], c.L, k, c)
 
     if preview:
@@ -602,7 +656,7 @@ def sheet_net(doc, c, s, preview=False):
 
     if preview:
         return pg
-    note(pg, 30 * MM, P(0, c.net_h)[1] + 32 * MM, [
+    note(pg, 30 * MM, P(0, c.net_h)[1] + 20 * MM, [
         'One piece. Lap down over the front, top over from the back, back '
         'and front up off the bottom, end walls up off the bottom row. '
         'The end walls butt the back and the front; no glue tab.',
@@ -615,7 +669,10 @@ def sheet_net(doc, c, s, preview=False):
         f'Allow {c.wrap:g} turn-in on every raw edge, not drawn. Board {c.board:g}.',
         f'Blind deboss {c.b:g} in from each panel edge, {c.line:g} wide, each run '
         f'stopping {c.run:.1f} from the corner where the cap arc meets it.',
-    ], lead=4.6 * MM)
+    ] + ([f'Logo area: {c.logo:g} x {c.logo:g} held centred on the lid top, '
+          f'{(c.field - c.logo) / 2:.1f} clear of the debossed frame above and '
+          'below. Nothing to print there yet - artwork to follow.']
+         if SHOW_LOGO_BOX else []), lead=4.6 * MM)
     return pg
 
 
@@ -667,9 +724,9 @@ def sheet_art_net(doc, c):
         face(pg, *P(0, ys[n]), c.L, h, c, k, which=CAPS_OF[n], border=True,
              fill=None, open_edges=OPEN_OF.get(n, ()))
 
-    # --- foil, on the lid top, wordmark toward the lap --------------------
+    # --- the mark on the lid top, or the area held for it -----------------
+    mcx, mcy = P(c.L / 2, ys['top'] + c.Wt / 2)
     if SHOW_LOGO:
-        mcx, mcy = P(c.L / 2, ys['top'] + c.Wt / 2)
         medal, word = mark(pg, mcx, mcy, c, k, rotate=180)
         pg.insert_text(pymupdf.Point(word.x1 + 4 * MM, word.y1 - 1 * MM),
                        '1  wordmark - logo', fontname='Helvetica',
@@ -679,6 +736,8 @@ def sheet_art_net(doc, c):
                        fontsize=6.2, color=GOLD)
         for r in (word, medal):
             pg.draw_rect(r, color=GOLD, fill=None, width=0.5, dashes='[2 2] 0')
+    elif SHOW_LOGO_BOX:
+        logo_box(pg, mcx, mcy, c, k)
 
     # --- panel names ------------------------------------------------------
     labels = {
@@ -810,13 +869,18 @@ def main():
     ap.add_argument('--mark-w', type=float, default=53.0)
     ap.add_argument('--mark-h', type=float, default=7.8)
     ap.add_argument('--gap', type=float, default=3.0)
+    ap.add_argument('--logo-box', type=float, default=46.0,
+                    help='the square held on the lid for the mark, mm')
     a = ap.parse_args()
 
     c = Box(a.L, a.Wt, a.Wb, a.H, a.lap, a.end_tab, a.board, a.wrap, a.border,
             a.cap, a.stud, a.stud_in, a.magnet, a.medal, a.mark_w, a.mark_h,
-            a.gap, a.line)
+            a.gap, a.logo_box, a.line)
     if c.reveal <= 0:
         sys.exit(f'lap {c.lap} is not shorter than the front wall {c.H}')
+    if SHOW_LOGO_BOX and c.logo > c.field:
+        sys.exit(f'logo box {c.logo} will not fit the {c.field:.1f} clear '
+                 f'inside the lid frame')
 
     os.makedirs(a.out, exist_ok=True)
 
@@ -839,6 +903,9 @@ def main():
           ' / '.join(f'{h:g} {n}' for h, n in c.rows))
     print(f'lap {c.lap:g} over a {c.H:g} front leaves {c.reveal:g} showing; '
           f'cap run {c.run:.2f}')
+    if SHOW_LOGO_BOX:
+        print(f'logo area {c.logo:g} x {c.logo:g} on a {c.field:.1f} clear field '
+              f'- {(c.field - c.logo) / 2:.1f} above and below it')
 
 
 if __name__ == '__main__':
