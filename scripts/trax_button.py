@@ -151,6 +151,31 @@ def solids(blank, relief, rim, crown, relief_h, roll, edge=2.5, steps=3):
     return out, rmax
 
 
+def rings_json(blank, relief, insets, tol=0.02):
+    """Blank and relief outlines for the browser viewer.
+
+    The viewer rebuilds the solid itself so every dimension can be moved
+    live, but it cannot offset a polygon - so the relief is exported once
+    at each inset the roll might ask for, and the page picks the nearest.
+    Simplified at 20 microns, which is a tenth of the smallest roll and
+    invisible on a 50 mm part.
+    """
+    def rings(g):
+        out = []
+        for s in pieces(g.simplify(tol, preserve_topology=True)):
+            out.append({'o': [[round(x, 3), round(y, 3)] for x, y in s.exterior.coords],
+                        'h': [[[round(x, 3), round(y, 3)] for x, y in r.coords]
+                              for r in s.interiors]})
+        return out
+    rel = []
+    for d in insets:
+        g = relief if d <= 0 else relief.buffer(-d, join_style=1, quad_segs=12)
+        if g.is_empty:
+            break
+        rel.append({'d': round(d, 3), 'p': rings(g)})
+    return {'blank': rings(blank), 'relief': rel}
+
+
 def post_spots(n, radius):
     """Where the posts go, in plan."""
     angles = ([45, 225] if n == 2 else [45, 135, 225, 315] if n == 4 else
@@ -217,6 +242,7 @@ if __name__ == '__main__':
     a.add_argument('--post-r', type=float, default=14.0)
     a.add_argument('--chamfer', type=float, default=0.4)
     a.add_argument('--stl')
+    a.add_argument('--json', help='outlines for the browser viewer')
     o = a.parse_args()
 
     blank, rel, rep = prepare(o.src, o.width, o.cutter, o.fill)
@@ -235,6 +261,12 @@ if __name__ == '__main__':
           f'{o.rim + _cap_height(o.post_r, rmax, o.crown):.2f} mm of metal over it')
     if clear < o.post_dia / 2 + 1.0:
         sys.exit(f'posts at r {o.post_r} leave only {clear:.2f} mm to the edge')
+
+    if o.json:
+        d = rings_json(blank, rel, [i * 0.05 for i in range(9)])
+        json.dump(d, open(o.json, 'w'), separators=(',', ':'))
+        print(f'  {o.json}: {os.path.getsize(o.json) / 1024:.0f} KB, '
+              f'{len(d["relief"])} relief insets')
 
     if o.stl:
         mesh = build(shells + post_meshes(spots, o.post_dia, o.post_len,

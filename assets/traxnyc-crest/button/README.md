@@ -11,11 +11,13 @@ flat back.
 | `trax-crest-button.stl` | The part, in millimetres. One closed body |
 | `trax-crest-button.pdf` | A3 production sheet: face, back, section A-A |
 | `trax-crest-face.pdf` | The face artwork at 1:1, relief solid, blank grey |
+| `crest-button-bench.html` | Live viewer: move any dimension, read the weight, copy the command |
 
 Rebuild with:
 
 ```sh
 python3 scripts/trax_button.py  --stl assets/traxnyc-crest/button/trax-crest-button.stl
+python3 scripts/trax_button.py  --json <outlines>     # what the viewer is built on
 python3 scripts/trax_drawing.py --out assets/traxnyc-crest/button/trax-crest-button.pdf
 python3 scripts/trax_crest.py   --pdf assets/traxnyc-crest/button/trax-crest-face.pdf
 ```
