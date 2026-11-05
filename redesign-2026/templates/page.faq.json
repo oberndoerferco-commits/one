@@ -195,7 +195,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>Shipping is free on every order from €300, worldwide, with DHL Standard or DHL Express. Below €300, the cost depends on the pieces in your order and is shown at checkout. For furniture we arrange the delivery with you after the order.</p>",
+                    "text": "<p>Shipping is free on every order from €300, worldwide. Below €300, the cost depends on the pieces in your order and is shown at checkout. For furniture we arrange the delivery with you after the order.</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
