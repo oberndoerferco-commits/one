@@ -6,7 +6,7 @@ Regions of Delivery
 We ship worldwide - including the USA, Canada, Europe, Asia, and other international destinations - with DHL.
 
 Shipping Costs
-DHL Standard is free on all orders, worldwide. DHL Express is free on orders of €300 or more. On orders below €300, DHL Express costs €5 for small pieces and €20 for larger pieces within the European Union, and €50 for small pieces and €65 for larger pieces outside the European Union. The applicable price is shown at checkout before payment. For furniture and very large pieces, delivery is arranged with the customer after the order.
+Shipping is free on every order from €300, worldwide, with DHL Standard or DHL Express. Below €300, the cost depends on the pieces in your order and is shown at checkout. Furniture is delivered by arrangement after your order.
 
 Personalisation
 Personalisation with initials costs €60 per piece and is added on the product page before checkout.

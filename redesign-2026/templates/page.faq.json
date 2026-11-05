@@ -195,7 +195,7 @@
                   "type": "text",
                   "name": "t:names.text",
                   "settings": {
-                    "text": "<p>DHL Standard is free on every order, worldwide. DHL Express is free from €300; below €300 it is €5 for small pieces and €20 for larger pieces within the EU, and €50 or €65 outside the EU. For furniture we arrange the delivery with you after the order.</p>",
+                    "text": "<p>Shipping is free on every order from €300, worldwide, with DHL Standard or DHL Express. Below €300, the cost depends on the pieces in your order and is shown at checkout. For furniture we arrange the delivery with you after the order.</p>",
                     "width": "100%",
                     "max_width": "none",
                     "alignment": "left",
