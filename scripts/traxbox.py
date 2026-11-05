@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Exterior drawings and stamping artwork for the TRAXNYC trunk box.
+"""Exterior drawings and stamping artwork for the trunk box.
 
 Built from the client's own paper net, not inferred from photographs.
 
@@ -49,6 +49,14 @@ from draft import MM, GREY, line, dim_h, dim_v, witness, note, title  # noqa: E4
 # ink bands were measured off the page at 300 dpi.
 LOGO_PDF = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                         '..', 'assets', 'traxnyc-box', 'traxnyc-lockup.pdf')
+# The foil mark is off. Its geometry stays here because it was measured off
+# the sample and is the only record of where it sat, but nothing draws it.
+SHOW_LOGO = False
+
+# Where each net sits on its own sheet, in mm. Named because the fused
+# sheet has to line the two nets up and must not guess at these.
+ART_MX, ART_TOP = 20.0, 36.0       # artwork sheet: margin, top margin
+NET_OX, NET_OY = 62.0, 56.0        # A3 net sheet: origin of the net column
 MEDAL_CLIP = (113.3, 56.6, 482.2, 425.5)     # the quatrefoil, square
 WORD_CLIP = (112.1, 454.8, 482.9, 509.3)     # TRAXNYC
 # "MADE IN ITALY" sits below both and is deliberately not used.
@@ -311,6 +319,19 @@ def magnets(pg, x, y, w, k, c, col=CUT):
                        2.0 * MM, color=col, fill=None, width=0.6)
 
 
+def legend(pg, x, y, size=6.6):
+    """The colour key. Gold only appears while there is a foil mark."""
+    items = ([('cut', CUT), ('fold', FOLDC), ('blind deboss, cap, stud', TOOL)]
+             + ([('hot foil', GOLD)] if SHOW_LOGO else [])
+             + [('where the lap closes', LAPL)])
+    for lab, col in items:
+        pg.draw_line(pymupdf.Point(x, y), pymupdf.Point(x + 7 * MM, y),
+                     color=col, width=1.4)
+        pg.insert_text(pymupdf.Point(x + 8.5 * MM, y + 0.8 * MM), lab,
+                       fontname='Helvetica', fontsize=size, color=(0.2, 0.2, 0.2))
+        x += 8.5 * MM + pymupdf.get_text_length(lab, 'Helvetica', size) + 11 * MM
+
+
 # ------------------------------------------------------------------ sheets
 
 def _page(doc, land=True):
@@ -321,7 +342,7 @@ def sheet_ga(doc, c, s):
     """General arrangement: the three faces a buyer sees, shut."""
     k = s * MM
     pg = _page(doc)
-    title(pg, 24 * MM, 20 * MM, 'TRAXNYC trunk box — general arrangement',
+    title(pg, 24 * MM, 20 * MM, 'Trunk box — general arrangement',
           f'shut {c.L:g} x {c.Wt:g} x {c.H:g} mm · scale 1:{1 / s:g} · '
           'exterior only · all dimensions mm')
 
@@ -354,11 +375,12 @@ def sheet_ga(doc, c, s):
     # --- plan: the lid top with the foil ----------------------------------
     y3 = y0 + c.H * k + 30 * MM
     pg.insert_text(pymupdf.Point(x0, y3 - 4 * MM),
-                   f'lid top {c.L:g} x {c.Wt:g} — foil and four caps, '
+                   f'lid top {c.L:g} x {c.Wt:g} — four caps, '
                    'front edge at the bottom',
                    fontname='Helvetica', fontsize=7, color=GREY)
     face(pg, x0, y3, c.L, c.Wt, c, k, which=ALL4, border=True)
-    mark(pg, x0 + c.L * k / 2, y3 + c.Wt * k / 2, c, k, gold=True)
+    if SHOW_LOGO:
+        mark(pg, x0 + c.L * k / 2, y3 + c.Wt * k / 2, c, k, gold=True)
     _front_edge(pg, x0, y3 + c.Wt * k + 3.2 * MM, c.L * k)
     dim_h(pg, x0, x0 + c.L * k, y3 + c.Wt * k + 11 * MM, f'{c.L:g}')
     dim_v(pg, y3, y3 + c.Wt * k, x0 - 12 * MM, f'{c.Wt:g}', anchor='left')
@@ -382,7 +404,7 @@ def sheet_parts(doc, c, s):
     """The parts drawn apart, so the split is unmistakable."""
     k = s * MM
     pg = _page(doc)
-    title(pg, 24 * MM, 20 * MM, 'TRAXNYC trunk box — how it opens',
+    title(pg, 24 * MM, 20 * MM, 'Trunk box — how it opens',
           f'the parts drawn apart · scale 1:{1 / s:g}')
 
     x0, y = 34 * MM, 54 * MM
@@ -393,7 +415,7 @@ def sheet_parts(doc, c, s):
          'The frame does not close at the bottom: the side lines run straight out.'),
         ('2 · LID TOP', c.L, c.Wt, ALL4, (),
          f'{c.L:g} x {c.Wt:g}, hinged on the top/back fold. Swings back, and the lap '
-         'folds back with it. Carries the foil.'),
+         'folds back with it.' + (' Carries the foil.' if SHOW_LOGO else '')),
         ('3 · FRONT WALL', c.L, c.H, BOT2, ('t',),
          f'{c.L:g} x {c.H:g}, hinged on the bottom\'s front edge. Drops forward once '
          'the lap is clear. Open at the top, so its side lines carry on from the lap\'s.'),
@@ -403,7 +425,8 @@ def sheet_parts(doc, c, s):
                        fontname='Helvetica-Bold', fontsize=7.2, color=(0, 0, 0))
         face(pg, x0, y, fw, fh, c, k, which=which, border=True, open_edges=opens)
         if lab.endswith('LID TOP'):
-            mark(pg, x0 + fw * k / 2, y + fh * k / 2, c, k, gold=True)
+            if SHOW_LOGO:
+                mark(pg, x0 + fw * k / 2, y + fh * k / 2, c, k, gold=True)
             _front_edge(pg, x0, y + fh * k + 3.2 * MM, fw * k)
         if lab.endswith('LAP'):
             magnets(pg, x0, y + fh * k + 1.6 * MM, fw, k, c)
@@ -478,17 +501,18 @@ def sheet_net(doc, c, s, preview=False):
     pg = doc.new_page(width=1191, height=842)        # A3 landscape
     if preview:
         title(pg, 30 * MM, 24 * MM,
-              'TRAXNYC trunk box — how the finished piece reads',
-              'the same artwork on black leatherette, gold foil and blind '
-              'deboss · visual reference, not the production file')
+              'Trunk box — how the finished piece reads',
+              'the same artwork on black leatherette, blind deboss · '
+              'visual reference, not the production file')
     else:
         title(pg, 30 * MM, 24 * MM,
-              'TRAXNYC trunk box — the net, printing and tooling',
+              'Trunk box — the net, printing and tooling',
               f'{c.L:g} wide x {c.net_h:g} over five rows · scale 1:{1 / s:.1f} · '
-              'magenta = cut · blue dashed = fold · grey = blind deboss · gold = foil')
+              'magenta = cut · blue dashed = fold · grey = blind deboss'
+              + (' · gold = foil' if SHOW_LOGO else ''))
 
-    ox = 62 * MM + (c.H + c.end_tab) * k
-    oy = 56 * MM
+    ox = NET_OX * MM + (c.H + c.end_tab) * k
+    oy = NET_OY * MM
 
     def P(mx, my):
         return (ox + mx * k, oy + my * k)
@@ -518,8 +542,9 @@ def sheet_net(doc, c, s, preview=False):
     for h, n in c.rows:
         face(pg, *P(0, ys[n]), c.L, h, c, k, which=CAPS_OF[n], border=True,
              open_edges=OPEN_OF.get(n, ()))
-    mc = P(c.L / 2, ys['top'] + c.Wt / 2)
-    mark(pg, mc[0], mc[1], c, k, rotate=180, gold=True)
+    if SHOW_LOGO:
+        mc = P(c.L / 2, ys['top'] + c.Wt / 2)
+        mark(pg, mc[0], mc[1], c, k, rotate=180, gold=True)
     magnets(pg, P(0, 1.6)[0], P(0, 1.6)[1], c.L, k, c)
 
     if preview:
@@ -528,7 +553,7 @@ def sheet_net(doc, c, s, preview=False):
     else:
         labels = {
             'lap': f'LAP  {c.L:g} x {c.lap:g}  —  catch in the free edge, no cap there',
-            'top': f'LID TOP  {c.L:g} x {c.Wt:g}  —  foil here; '
+            'top': f'LID TOP  {c.L:g} x {c.Wt:g}  —  '
                    'the fold to the lap is the FRONT edge',
             'back': f'BACK  {c.L:g} x {c.H:g}',
             'bottom': f'BOTTOM  {c.L:g} x {c.Wb:g}',
@@ -602,27 +627,19 @@ def sheet_art_net(doc, c):
     foil, each on its own colour, every one of them at full size.
     """
     k = MM
-    mx, top = 20.0, 36.0                       # margins, mm
+    mx, top = ART_MX, ART_TOP                 # margins, mm
     span_x = c.L + 2 * (c.H + c.end_tab)
     pw = (span_x + 2 * mx) * MM
     ph = (c.net_h + top + mx) * MM
     pg = doc.new_page(width=pw, height=ph)
 
-    title(pg, mx * MM, 15 * MM, 'TRAXNYC trunk box — artwork, opened out',
+    title(pg, mx * MM, 15 * MM, 'Trunk box — artwork, opened out',
           'one piece · sizes and tolerances on the production sheets')
-    legend = [('cut', CUT), ('fold', FOLDC), ('blind deboss, cap, stud', TOOL),
-              ('hot foil', GOLD), ('where the lap closes', LAPL)]
     # Nothing on this sheet is dimensioned, not even the scale. It is a
     # print and tooling file drawn at full size: the geometry IS the
     # specification. Sizes, the catch and the tolerances live on the
     # production sheets.
-    lx = mx * MM
-    for lab, col in legend:
-        pg.draw_line(pymupdf.Point(lx, 25 * MM), pymupdf.Point(lx + 7 * MM, 25 * MM),
-                     color=col, width=1.4)
-        pg.insert_text(pymupdf.Point(lx + 8.5 * MM, 25.8 * MM), lab,
-                       fontname='Helvetica', fontsize=6.6, color=(0.2, 0.2, 0.2))
-        lx += 8.5 * MM + pymupdf.get_text_length(lab, 'Helvetica', 6.6) + 11 * MM
+    legend(pg, mx * MM, 25 * MM)
 
     ox = (mx + c.H + c.end_tab) * MM
     oy = top * MM
@@ -651,16 +668,17 @@ def sheet_art_net(doc, c):
              fill=None, open_edges=OPEN_OF.get(n, ()))
 
     # --- foil, on the lid top, wordmark toward the lap --------------------
-    mcx, mcy = P(c.L / 2, ys['top'] + c.Wt / 2)
-    medal, word = mark(pg, mcx, mcy, c, k, rotate=180)
-    pg.insert_text(pymupdf.Point(word.x1 + 4 * MM, word.y1 - 1 * MM),
-                   '1  wordmark - logo', fontname='Helvetica',
-                   fontsize=6.2, color=GOLD)
-    pg.insert_text(pymupdf.Point(medal.x1 + 4 * MM, medal.y1 - 1 * MM),
-                   '2  medallion - logo', fontname='Helvetica',
-                   fontsize=6.2, color=GOLD)
-    for r in (word, medal):
-        pg.draw_rect(r, color=GOLD, fill=None, width=0.5, dashes='[2 2] 0')
+    if SHOW_LOGO:
+        mcx, mcy = P(c.L / 2, ys['top'] + c.Wt / 2)
+        medal, word = mark(pg, mcx, mcy, c, k, rotate=180)
+        pg.insert_text(pymupdf.Point(word.x1 + 4 * MM, word.y1 - 1 * MM),
+                       '1  wordmark - logo', fontname='Helvetica',
+                       fontsize=6.2, color=GOLD)
+        pg.insert_text(pymupdf.Point(medal.x1 + 4 * MM, medal.y1 - 1 * MM),
+                       '2  medallion - logo', fontname='Helvetica',
+                       fontsize=6.2, color=GOLD)
+        for r in (word, medal):
+            pg.draw_rect(r, color=GOLD, fill=None, width=0.5, dashes='[2 2] 0')
 
     # --- panel names ------------------------------------------------------
     labels = {
@@ -676,6 +694,11 @@ def sheet_art_net(doc, c):
                        color=(0.25, 0.25, 0.25))
 
     _front_edge(pg, *P(0, ys['top'] + 3.0), c.L * k, side='left')
+
+    # The catch, on the lap's free edge. Here too, not only on the finish
+    # reference beside it, so the two halves of the sheet agree; the
+    # production sheet is where it is dimensioned.
+    magnets(pg, *P(0, 1.6), c.L, k, c)
 
     # --- where the lap closes on the front wall ---------------------------
     yr = ys['front'] + c.lap
@@ -708,6 +731,61 @@ def sheet_art_net(doc, c):
 
 
 # -------------------------------------------------------------------- main
+
+def _net_clip(ox, oy, k, c, pad=(4.0, 5.0, 4.0, 4.0)):
+    """The net's own bounding box on a sheet, with a margin in net mm.
+
+    Anchored to the net rather than to whatever happens to be drawn. That
+    is what lets the fused sheet line the two halves up: a content box
+    would follow the magnet circles on one sheet and the frame on the
+    other, and the rows would sit at two different heights.
+    pad is left, top, right, bottom.
+    """
+    l, t, r, b = pad
+    return pymupdf.Rect(ox - (c.H + c.end_tab + l) * k, oy - t * k,
+                        ox + (c.L + c.H + c.end_tab + r) * k,
+                        oy + (c.net_h + b) * k)
+
+
+def sheet_fused(doc, c):
+    """Line work and the leatherette reading, side by side at full size.
+
+    They were two sheets at two scales, which made them awkward to
+    compare. Both go down here at 1:1 — the preview is laid out at 2:3,
+    so it is placed at 1.5x — which puts the same panel at the same
+    height in both halves, to the millimetre.
+    """
+    tmp = pymupdf.open()
+    sheet_art_net(tmp, c)
+    s = 2.0 / 3.0
+    sheet_net(tmp, c, s, preview=True)
+    r1 = _net_clip((ART_MX + c.H + c.end_tab) * MM, ART_TOP * MM, MM, c)
+    r2 = _net_clip(NET_OX * MM + (c.H + c.end_tab) * s * MM, NET_OY * MM,
+                   s * MM, c)
+
+    mx, top, gap, bot = 20 * MM, 44 * MM, 26 * MM, 20 * MM
+    w, h = r1.width, r1.height                 # r2 scales to the same size
+    pw = mx * 2 + w * 2 + gap
+    ph = top + h + bot
+
+    pg = doc.new_page(width=pw, height=ph)
+    title(pg, mx, 16 * MM, 'Trunk box · artwork and finish, opened out',
+          'one piece, drawn at full size · left: cut, fold and tooling · '
+          'right: how it reads on black leatherette')
+    legend(pg, mx, 28 * MM)
+
+    x2 = mx + w + gap
+    pg.show_pdf_page(pymupdf.Rect(mx, top, mx + w, top + h), tmp, 0, clip=r1)
+    pg.show_pdf_page(pymupdf.Rect(x2, top, x2 + w, top + h), tmp, 1, clip=r2)
+
+    for x, lab in ((mx, 'CUT, FOLD AND TOOLING'),
+                   (x2, 'FINISH REFERENCE')):
+        pg.insert_text(pymupdf.Point(x, top - 6 * MM), lab,
+                       fontname='Helvetica-Bold', fontsize=8,
+                       color=(0.25, 0.25, 0.25))
+    tmp.close()
+    return pg
+
 
 def main():
     ap = argparse.ArgumentParser()
@@ -747,13 +825,12 @@ def main():
     sheet_parts(prod, c, 0.5)
     sheet_detail(prod, c)
     sheet_net(prod, c, 2.0 / 3.0)
-    p1 = os.path.join(a.out, 'traxnyc-box-production.pdf')
+    p1 = os.path.join(a.out, 'box-production.pdf')
     prod.save(p1)
 
     art = pymupdf.open()
-    sheet_art_net(art, c)
-    sheet_net(art, c, 2.0 / 3.0, preview=True)
-    p2 = os.path.join(a.out, 'traxnyc-box-artwork.pdf')
+    sheet_fused(art, c)
+    p2 = os.path.join(a.out, 'box-artwork.pdf')
     art.save(p2)
 
     print(f'{p1}  {prod.page_count} sheets')
