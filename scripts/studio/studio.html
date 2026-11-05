@@ -1,0 +1,226 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>html,body{margin:0;background:#888}canvas{display:block}</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head><body><div id="v"></div><script>
+const W = 1800, H = 1350;
+
+/* ---------- the mesh ------------------------------------------------ */
+function loadBlob(buf){
+  const dv = new DataView(buf);
+  const nv = dv.getUint32(0, true), nf = dv.getUint32(4, true);
+  let o = 8;
+  const pos = new Float32Array(buf, o, nv*3); o += nv*3*4;
+  const nrm16 = new Int16Array(buf, o, nv*3);  o += nv*3*2;
+  const idx = new Uint32Array(buf, o, nf*3);
+  const nrm = new Float32Array(nv*3);
+  for (let i=0;i<nv*3;i++) nrm[i] = nrm16[i]/32767;
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.BufferAttribute(pos,3));
+  g.setAttribute('normal',   new THREE.BufferAttribute(nrm,3));
+  g.setIndex(new THREE.BufferAttribute(idx,1));
+  // planar UVs from the top: the piece is a height field, so a projection
+  // down the z axis gives the brush a straight run across the whole part
+  g.computeBoundingBox();
+  const b = g.boundingBox, sx = b.max.x-b.min.x, sy = b.max.y-b.min.y;
+  const uv = new Float32Array(nv*2);
+  for (let i=0;i<nv;i++){
+    uv[i*2]   = (pos[i*3]   - b.min.x)/sx;
+    uv[i*2+1] = (pos[i*3+1] - b.min.y)/sy;
+  }
+  g.setAttribute('uv', new THREE.BufferAttribute(uv,2));
+  return g;
+}
+
+/* ---------- brushed finish ------------------------------------------ */
+/* Satin is not just a roughness number. The look comes from grooves that
+   all run one way: the highlight stretches across the brush and stays
+   tight along it. Two maps do that - roughness varying lane by lane, and
+   a normal map whose slope is almost entirely across the lanes. */
+function brushedMaps(size, lanes, rough0, rough1){
+  const val = new Float32Array(size);
+  for (let y=0;y<size;y++){
+    const t = y/size*lanes;
+    const i = Math.floor(t), f = t-i;
+    const h = s => { const x = Math.sin(s*127.1)*43758.5453; return x-Math.floor(x); };
+    const a = h(i), b = h(i+1);
+    val[y] = a + (b-a)*(f*f*(3-2*f));                 // smooth lane noise
+  }
+  const rc = document.createElement('canvas'); rc.width = rc.height = size;
+  const nc = document.createElement('canvas'); nc.width = nc.height = size;
+  const rg = rc.getContext('2d'), ng = nc.getContext('2d');
+  const ri = rg.createImageData(size,size), ni = ng.createImageData(size,size);
+  const at = y => val[(y+size)%size];
+  for (let y=0;y<size;y++){
+    for (let x=0;x<size;x++){
+      // a slow drift along the brush so the lanes are not dead straight
+      const drift = 0.5+0.5*Math.sin(x/size*6.283*2 + y*0.07);
+      const v = at(y)*0.86 + drift*0.14;
+      const k = (y*size+x)*4;
+      const r = Math.round(255*(rough0 + (rough1-rough0)*v));
+      ri.data[k]=ri.data[k+1]=ri.data[k+2]=r; ri.data[k+3]=255;
+      const dy = (at(y+1)-at(y-1))*0.5;                 // slope across lanes
+      const dx = 0.06*Math.cos(x/size*6.283*2 + y*0.07);
+      ni.data[k]   = Math.round(255*(0.5 - dx*0.5));
+      ni.data[k+1] = Math.round(255*(0.5 - dy*0.5));
+      ni.data[k+2] = 255; ni.data[k+3] = 255;
+    }
+  }
+  rg.putImageData(ri,0,0); ng.putImageData(ni,0,0);
+  const mk = c => { const t = new THREE.CanvasTexture(c);
+    t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 16; return t; };
+  return {rough: mk(rc), norm: mk(nc)};
+}
+
+/* ---------- studio --------------------------------------------------- */
+function skyTexture(dark){
+  /* The sky was a ShaderMaterial first. PMREMGenerator renders the
+     environment scene itself, and whatever it does to a custom shader on
+     the way into the cube target comes back as a map that drives every
+     lit surface to black - the metal, the ground, the lot. A gradient
+     painted on a canvas and put on a plain basic material gives the same
+     sky and survives the trip. */
+  const c = document.createElement('canvas'); c.width = 8; c.height = 512;
+  const g = c.getContext('2d');
+  const grd = g.createLinearGradient(0,0,0,512);
+  /* A near-black room was the first try for the second set-up and it made
+     a black part. Silver has no colour of its own - it is the room,
+     reflected - so the alternative is mid grey, not dark: a tone the metal
+     can sit against and still read as silver. */
+  if (dark){ grd.addColorStop(0,'#aab2ba'); grd.addColorStop(0.40,'#767e86');
+             grd.addColorStop(0.58,'#4e545b'); grd.addColorStop(1,'#343940'); }
+  else     { grd.addColorStop(0,'#cdd4da'); grd.addColorStop(0.38,'#949ca3');
+             grd.addColorStop(0.56,'#5f666d'); grd.addColorStop(1,'#3b4046'); }
+  g.fillStyle = grd; g.fillRect(0,0,8,512);
+  const t = new THREE.CanvasTexture(c);
+  t.mapping = THREE.UVMapping; t.encoding = THREE.sRGBEncoding;
+  return t;
+}
+
+function envScene(dark){
+  const s = new THREE.Scene();
+  s.add(new THREE.Mesh(new THREE.SphereGeometry(60, 48, 32),
+    new THREE.MeshBasicMaterial({map: skyTexture(dark), side: THREE.BackSide})));
+  /* Softboxes, not point lights: satin metal shows what is around it, and
+     a long strip read across the brush is what makes the streak. */
+  const box = (w,h,x,y,z,rx,ry,i) => {
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(w,h),
+      new THREE.MeshBasicMaterial({color:0xffffff}));
+    m.material.color.multiplyScalar(i);
+    m.position.set(x,y,z); m.rotation.set(rx,ry,0); s.add(m);
+  };
+  const k = dark ? 1.9 : 1.0;
+  box(28,15, -15, 28,  8, -Math.PI/2, 0, 7.5*k);   // key, overhead left
+  box(52, 4,  24, 14,-12,  0, -Math.PI/2.4, 6.0*k); // strip, across the brush
+  box(34,11, -20,  7, 26,  0,  0.5, 2.4*k);         // fill, front left
+  box(22, 7,   8, -9,-20,  0, 3.0, 1.1*k);          // kicker, behind
+  return s;
+}
+
+/* ---------- renderer -------------------------------------------------- */
+const ren = new THREE.WebGLRenderer({antialias:true, preserveDrawingBuffer:true});
+ren.setPixelRatio(1); ren.setSize(W,H,false);
+ren.outputEncoding = THREE.sRGBEncoding;
+ren.toneMapping = THREE.ACESFilmicToneMapping;
+ren.toneMappingExposure = 1.0;
+ren.shadowMap.enabled = true; ren.shadowMap.type = THREE.PCFSoftShadowMap;
+ren.physicallyCorrectLights = true;
+document.getElementById('v').appendChild(ren.domElement);
+
+const scene = new THREE.Scene();
+const cam = new THREE.PerspectiveCamera(32, W/H, 0.5, 4000);
+let part = null, ground = null, pmrem = null;
+
+const maps = brushedMaps(1024, 420, 0.11, 0.40);
+
+window.setup = function(opts){
+  const dark = !!opts.dark;
+  while (scene.children.length) scene.remove(scene.children[0]);
+  if (pmrem) pmrem.dispose();
+  pmrem = new THREE.PMREMGenerator(ren); pmrem.compileEquirectangularShader();
+  const env = pmrem.fromScene(envScene(dark), 0.04).texture;
+  scene.environment = env;
+  scene.background = null;
+  ren.setClearColor(dark ? 0x4a5057 : 0xdcdfe3, 1);
+  ren.toneMappingExposure = dark ? 1.18 : 1.0;  // the dark room needs a lift
+
+  const rep = opts.brush || 3.0;
+  maps.rough.repeat.set(rep, rep*26); maps.norm.repeat.set(rep, rep*26);
+  const mat = new THREE.MeshStandardMaterial({
+    color: 0xdfe4e8, metalness: 1.0, roughness: 0.24,
+    roughnessMap: maps.rough, normalMap: maps.norm,
+    // almost all of the slope is across the lanes: that is what stretches
+    // a highlight along the brush and keeps it tight across it
+    normalScale: new THREE.Vector2(0.95, 0.07),
+    envMapIntensity: 1.15});
+  part = new THREE.Mesh(window.GEO, mat);
+  part.castShadow = true; part.receiveShadow = true;
+  scene.add(part);
+
+  const sweep = document.createElement('canvas');
+  sweep.width = sweep.height = 512;
+  const sg = sweep.getContext('2d');
+  const rad = sg.createRadialGradient(256, 290, 20, 256, 290, 300);
+  if (dark){ rad.addColorStop(0,'#7d858d'); rad.addColorStop(0.5,'#575e65');
+             rad.addColorStop(1,'#33383e'); }
+  else     { rad.addColorStop(0,'#e7eaed'); rad.addColorStop(0.5,'#c6ccd2');
+             rad.addColorStop(1,'#99a0a7'); }
+  sg.fillStyle = rad; sg.fillRect(0,0,512,512);
+  const st = new THREE.CanvasTexture(sweep); st.encoding = THREE.sRGBEncoding;
+  const g = new THREE.Mesh(new THREE.PlaneGeometry(260,260),
+    new THREE.MeshStandardMaterial({map: st, metalness: 0.0, roughness: 0.55}));
+  g.receiveShadow = true; g.position.z = -0.002; scene.add(g);
+
+  const key = new THREE.DirectionalLight(0xffffff, dark?2.4:2.2);
+  key.position.set(-34, -26, 56); key.castShadow = true;
+  key.shadow.mapSize.set(2048,2048);
+  const d = 40;
+  Object.assign(key.shadow.camera, {left:-d, right:d, top:d, bottom:-d, near:1, far:220});
+  // an orthographic camera caches its projection: set the frustum and
+  // forget this call and the shadow map keeps the default 10 mm box,
+  // which on a 50 mm part means no contact shadow at all
+  key.shadow.camera.updateProjectionMatrix();
+  key.shadow.radius = 3; key.shadow.bias = -0.0015;
+  key.shadow.normalBias = 0.02;
+  scene.add(key);
+  const fill = new THREE.DirectionalLight(0xffffff, dark?0.8:0.9);
+  fill.position.set(40, 18, 30); scene.add(fill);
+  scene.add(new THREE.AmbientLight(0xffffff, dark?0.14:0.18));
+};
+
+window.shoot = function(v){
+  /* The direction and the lens are the picture; the distance is just
+     arithmetic. Hand-chosen distances cropped the O off the right edge
+     twice, so the camera is pushed back along its own axis until all
+     eight corners of the part's box project inside the frame. */
+  const at  = new THREE.Vector3(...(v.at || [0, 0, 0.9]));
+  const dir = new THREE.Vector3(...v.pos).sub(at).normalize();
+  const fill = v.fill || 0.86;
+  cam.fov = v.fov || 30; cam.updateProjectionMatrix();
+  const box = new THREE.Box3().setFromObject(part);
+  const corners = [];
+  for (const x of [box.min.x, box.max.x])
+    for (const y of [box.min.y, box.max.y])
+      for (const z of [box.min.z, box.max.z]) corners.push(new THREE.Vector3(x, y, z));
+  const place = d => {
+    cam.position.copy(at).addScaledVector(dir, d);
+    cam.up.set(0, 0, 1); cam.lookAt(at); cam.updateMatrixWorld();
+  };
+  const fits = d => {
+    place(d);
+    const m = new THREE.Matrix4().multiplyMatrices(cam.projectionMatrix,
+                                                   cam.matrixWorldInverse);
+    return corners.every(c => {
+      const q = c.clone().applyMatrix4(m);
+      return Math.abs(q.x) <= fill && Math.abs(q.y) <= fill && q.z < 1;
+    });
+  };
+  if (v.dist) { place(v.dist); }
+  else {
+    let lo = 8, hi = 900;
+    for (let i = 0; i < 44; i++) { const mid = (lo + hi) / 2; if (fits(mid)) hi = mid; else lo = mid; }
+    place(hi);
+  }
+  ren.render(scene, cam);
+};
+window.READY = false;
+</script></body></html>
