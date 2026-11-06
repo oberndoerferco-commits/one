@@ -68,6 +68,30 @@ def neutral_ink(C,target):
     if target=='dark':   # black ink on white
         v=np.full_like(g,18.); return np.dstack([v,v,v])
     return np.dstack([g,g,g])  # keep tone (e.g. grey outline)
+_TAG=None
+def place_tag(img):
+    """the brand's woven neck label, sewn into the back neck, lower edge tucked behind the front collar"""
+    global _TAG
+    if _TAG is None:
+        tg=cv2.imread(os.path.join(os.path.dirname(os.path.abspath(__file__)),'ref','tag.png'),cv2.IMREAD_UNCHANGED)
+        if tg.shape[2]==4: tg=tg[...,:3]
+        _TAG=tg[2:-2,2:-4].astype(np.float32)
+    W=42; H=int(round(W*_TAG.shape[0]/_TAG.shape[1])); cx=660; top=574
+    x0=cx-W//2; y0=top
+    lab=cv2.resize(_TAG,(W,H),interpolation=cv2.INTER_AREA)
+    lab=lab*np.linspace(1.0,0.93,H)[:,None,None]*0.985          # soft light fall-off down the label
+    yy,xx=np.mgrid[0:img.shape[0],0:img.shape[1]].astype(np.float32)
+    yedge=575+45*np.sqrt(np.clip(1-((xx-660)/150)**2,0,1))      # inner edge of the front collar rib
+    vis=np.clip((yedge-yy)/1.5,0,1)                              # front collar covers what is below its edge
+    # contact shadow of the label on the fabric
+    sh=np.zeros(img.shape[:2],np.float32); sh[y0+2:y0+H+2,x0+1:x0+W+1]=1; sh=cv2.GaussianBlur(sh,(0,0),1.6)*vis
+    img=img*(1-0.22*sh[...,None])
+    a=np.zeros(img.shape[:2],np.float32); a[y0:y0+H,x0:x0+W]=1; a=cv2.GaussianBlur(a,(0,0),0.5)*vis
+    full=img.copy(); full[y0:y0+H,x0:x0+W]=lab
+    # the collar rib casts a little shade onto the label right above its edge
+    rim=np.clip(1-(yedge-yy)/6,0,1)*a
+    full=full*(1-0.18*rim[...,None])
+    return img*(1-a[...,None])+full*a[...,None]
 def build(white_path,black_path,side,own_black=None):
     # only these black designs differ in style from the white ones (outline OM, filled stars)
     if own_black is None: own_black=any(k in black_path for k in ['om-black-back','star-black-back'])
@@ -112,10 +136,6 @@ def build(white_path,black_path,side,own_black=None):
             ink=np.clip(C+0.35*texL[...,None],0,255)       # fabric texture through the print, luminance only
             img=img*(1-A[...,None])+ink*A[...,None]
         if side=='front':
-            X0,Y0,X1,Y1=612,573,710,603
-            lb=make_label(X1-X0,Y1-Y0)
-            lb=cv2.resize(cv2.resize(lb,((X1-X0)*10,(Y1-Y0)*10)),(X1-X0,Y1-Y0),interpolation=cv2.INTER_AREA)
-            sh=np.zeros(img.shape[:2],np.float32); sh[Y0+2:Y1+2,X0+1:X1+1]=1; sh=cv2.GaussianBlur(sh,(0,0),1.5)
-            img=img*(1-0.25*sh[...,None]); img[Y0:Y1,X0:X1]=lb*np.linspace(0.96,1,Y1-Y0)[:,None,None]
+            img=place_tag(img)
         res[color]=np.clip(img,0,255).astype(np.uint8)
     return res

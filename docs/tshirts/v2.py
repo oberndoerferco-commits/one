@@ -12,11 +12,18 @@ def _nconv(img,wgt,sig):
         num=cv2.GaussianBlur(img*wgt,(0,0),sig); den=cv2.GaussianBlur(wgt,(0,0),sig)
     return num/np.maximum(den,1e-4)
 def recolor(side,color):
-    im=cv2.imread(REF[side]); f=im.astype(np.float32)
+    im=cv2.imread(REF[side])
+    if side=='front':   # remove the old woven label completely (it is replaced by ours later)
+        m=np.zeros(im.shape[:2],np.uint8); m[576:600,617:707]=1
+        im=cv2.inpaint(im,m,6,cv2.INPAINT_TELEA)
+        strip=im[577:584,593:617].copy()                      # the back-neck stitching right next to the old label
+        for x in range(617,707,24):
+            wdt=min(24,707-x); im[577:584,x:x+wdt]=strip[:,:wdt]   # continue it behind our label
+    f=im.astype(np.float32)
     Lab=tolab(im); L,A,B=Lab[...,0],Lab[...,1],Lab[...,2]
     C=np.sqrt(A**2+B**2)
     here=os.path.dirname(os.path.abspath(__file__))
-    soft=np.load(os.path.join(here,f'soft_{side}.npy'))      # precise GrabCut outline, smoothed along its length, anti-aliased
+    soft=np.load(os.path.join(here,f'soft2_{side}.npy'))      # precise GrabCut outline, smoothed along its length, anti-aliased
     fill=(soft>0.5).astype(np.uint8)
     inner=cv2.erode(fill,np.ones((7,7),np.uint8)).astype(np.float32)
     outer=(1-cv2.dilate(fill,np.ones((5,5),np.uint8))).astype(np.float32)
@@ -39,22 +46,39 @@ def recolor(side,color):
     Lm=np.median(L[inner>0]); dL=L-Lm
     Ld=cv2.bilateralFilter(L.astype(np.float32),7,2.0,5)          # remove JPEG grain, keep fabric structure
     dLs=cv2.GaussianBlur(Ld,(0,0),6)-Lm                            # folds
-    if color=='white': dL=0.55*dLs+0.45*(Ld-Lm-dLs)                # gentler folds + fine weave, no blotches
+    if color=='white':
+        dL=0.55*dLs+0.45*(Ld-Lm-dLs)                                # gentler folds + fine weave, no blotches
+        deep=cv2.erode(fill,np.ones((19,19),np.uint8)).astype(np.float32)
+        dLi=_nconv(dL,deep,4)                                       # fabric tone a little further inside
+        dist=cv2.distanceTransform(fill,cv2.DIST_L2,3)
+        zone=np.clip((10-dist)/10,0,1)                              # last ~10px before the edge
+        dL=np.where(zone>0,np.maximum(dL,dLi-2.0*(1-zone)-0.5),dL)
     if color=='white': T=np.clip(96.0+1.0*dL,60,99.5); ta,tb=-0.1,0.9
     else:              T=np.clip(14.0+0.85*dL,2,48);   ta,tb=0.2,-0.4
     shirt=tobgr(np.dstack([T,np.full_like(T,ta),np.full_like(T,tb)]))
     # at the edge the pixel is part wall: rebuild it as cov*new_shirt + (1-cov)*wall
-    SL=tolab(np.clip(S,0,255).astype(np.uint8))[...,0]
-    Tedge=(np.clip(96.0+1.0*(SL-Lm),60,99.5) if color=='white' else np.clip(14.0+0.85*(SL-Lm),2,48))
+    Tedge=_nconv(T,inner,1.5)                        # edge pixels take the tone of the fabric right next to them
     shirt_edge=tobgr(np.dstack([Tedge,np.full_like(Tedge,ta),np.full_like(Tedge,tb)]))
     out=np.where(inner[...,None]>0, shirt, f)
     eb=band[...,None]
-    mix=f+w[...,None]*(shirt_edge-S)               # swap only the shirt share of the pixel; wall/shadow share stays original
+    if color=='white':
+        mix=w[...,None]*shirt_edge+(1-w[...,None])*f
+    else:
+        mix=f+w[...,None]*(shirt_edge-S)           # swap only the shirt share of the pixel; wall/shadow share stays original
     # edge colour: white/black shirt on a neutral wall is neutral too -> no pink or cyan fringe
     ml=tolab(np.clip(mix,0,255).astype(np.uint8)); bl=tolab(np.clip(Bg,0,255).astype(np.uint8))
     ml[...,1]=(1-w)*bl[...,1]+w*ta; ml[...,2]=(1-w)*bl[...,2]+w*tb
     mix=tobgr(ml)
     out=np.where(eb, mix, out)
+    # final pass: no pink may survive in a ring just outside the shirt (soft/lit edges spill a few pixels)
+    ring=(cv2.dilate(fill,np.ones((31,31),np.uint8))>0)&(w<0.98)
+    far=(1-cv2.dilate(fill,np.ones((35,35),np.uint8))).astype(np.float32)
+    wab=_nconv(tolab(im)[...,1:],far,6)                       # the wall's own (neutral) tint nearby
+    ol=tolab(np.clip(out,0,255).astype(np.uint8))
+    Co=np.sqrt(ol[...,1]**2+ol[...,2]**2)
+    k=np.clip((Co-2.6)/1.5,0,1)*ring
+    ol[...,1]=ol[...,1]*(1-k)+wab[...,0]*k; ol[...,2]=ol[...,2]*(1-k)+wab[...,1]*k
+    out=np.where(ring[...,None],tobgr(ol),out)
     return out.astype(np.float32), w
 def shirt_bbox(w):
     m=(w>0.5).astype(np.uint8); cnts,_=cv2.findContours(m,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE)
