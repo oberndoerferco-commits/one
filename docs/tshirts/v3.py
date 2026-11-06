@@ -81,6 +81,8 @@ def build(white_path,black_path,side,own_black=None):
         texL=cv2.cvtColor(np.clip(img,0,255).astype(np.uint8),cv2.COLOR_BGR2GRAY).astype(np.float32)-cv2.cvtColor(np.uint8([[med]]),cv2.COLOR_BGR2GRAY)[0,0]
         for name,bw in clw.items():
             dst=to_ref_t(bw,tww,TR)
+            if side=='back' and name=='main':   # back prints sit centred on the back
+                cxm=(dst[0]+dst[2])/2; sh=int(round(TR[0]-cxm)); dst=(dst[0]+sh,dst[1],dst[2]+sh,dst[3])
             if color=='white' or coloured or name=='hem' or name not in clb or not own_black:
                 a,c,b,box=aw,cw,bw,bw
                 A,C=place_pm(a,c,b,dst,img.shape,(b[0]-4,b[1]-4,b[2]+5,b[3]+5))

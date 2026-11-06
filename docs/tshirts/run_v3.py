@@ -10,7 +10,7 @@ pairs={'om':('obm-tee-om-white-back-v4','obm-tee-om-black-back','obm-tee-om-whit
 for k,(wb,bb,wf,bf) in pairs.items():
     for side,(wp,bp) in [('back',(wb,bb)),('front',(wf,bf))]:
         r=build(f'orig/{wp}.jpg',f'orig/{bp}.jpg',side)
-        for c,n in [('white',wp),('black',bp)]: cv2.imwrite(f'v3out/{n}.jpg',r[c],[cv2.IMWRITE_JPEG_QUALITY,95])
+        for c,n in [('white',wp),('black',bp)]: cv2.imwrite(f'v3out/{n}.jpg',r[c],[cv2.IMWRITE_JPEG_QUALITY,97,cv2.IMWRITE_JPEG_SAMPLING_FACTOR,cv2.IMWRITE_JPEG_SAMPLING_FACTOR_444])
 from PIL import Image; import glob
 fs=sorted(glob.glob('v3out/*.jpg')); W,H=240,360
 s=Image.new('RGB',(W*10,H*2),'white')

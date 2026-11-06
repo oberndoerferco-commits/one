@@ -1,26 +1,56 @@
+import os
 import cv2,numpy as np,os,sys
 from extract import shirt_geom
 from compose import make_label
 REF={'front':'ref/u3870_8.jpg','back':'ref/u3870_9.jpg'}
 def tolab(i): return cv2.cvtColor(i.astype(np.float32)/255.,cv2.COLOR_BGR2Lab)
 def tobgr(L): return np.clip(cv2.cvtColor(L.astype(np.float32),cv2.COLOR_Lab2BGR)*255,0,255)
+def _nconv(img,wgt,sig):
+    if img.ndim==3:
+        num=cv2.GaussianBlur(img*wgt[...,None],(0,0),sig); den=cv2.GaussianBlur(wgt,(0,0),sig)[...,None]
+    else:
+        num=cv2.GaussianBlur(img*wgt,(0,0),sig); den=cv2.GaussianBlur(wgt,(0,0),sig)
+    return num/np.maximum(den,1e-4)
 def recolor(side,color):
-    im=cv2.imread(REF[side]); Lab=tolab(im); L,A,B=Lab[...,0],Lab[...,1],Lab[...,2]
+    im=cv2.imread(REF[side]); f=im.astype(np.float32)
+    Lab=tolab(im); L,A,B=Lab[...,0],Lab[...,1],Lab[...,2]
     C=np.sqrt(A**2+B**2)
-    w=np.clip((C-4.5)/(10.3-4.5),0,1)                    # per-pixel pink coverage at the outline (wall chroma ~2.6)
-    w=cv2.GaussianBlur(w,(0,0),0.6)
-    m=(cv2.GaussianBlur(C,(0,0),2)>6).astype(np.uint8)
-    cnts,_=cv2.findContours(m,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE)
-    fill=np.zeros_like(m); cv2.drawContours(fill,[max(cnts,key=cv2.contourArea)],-1,1,-1)
-    interior=cv2.GaussianBlur(cv2.erode(fill,np.ones((9,9),np.uint8)).astype(np.float32),(0,0),2)
-    w=np.maximum(w,interior)                               # inside the shirt: always full recolour (highlights too)
-    wc=np.maximum(np.clip((C-3.2)/2.5,0,1),w)              # remove pink tint even on faint edge pixels
-    Lm=np.median(L[w>0.95]); d=L-Lm
-    if color=='white': T=np.clip(96.0+1.0*d,60,99.5); ta,tb=-0.1,0.9
-    else:              T=np.clip(14.0+0.62*d,2,45);   ta,tb=0.2,-0.4
-    out=Lab.copy()
-    out[...,0]=L+w*(T-L); out[...,1]=A*(1-wc)+wc*ta; out[...,2]=B*(1-wc)+wc*tb
-    return tobgr(out), w
+    fill=np.load(os.path.join(os.path.dirname(os.path.abspath(__file__)),f'fill_{side}.npy'))   # precise GrabCut outline of the reference shirt
+    inner=cv2.erode(fill,np.ones((7,7),np.uint8)).astype(np.float32)
+    outer=(1-cv2.dilate(fill,np.ones((5,5),np.uint8))).astype(np.float32)
+    band=(inner==0)&(outer==0)
+    # local shirt colour and local wall colour, estimated right next to every edge pixel
+    S=_nconv(f,inner,3); Bg=_nconv(f,outer,3)
+    d=S-Bg; den=(d**2).sum(2)
+    cov=np.clip(((f-Bg)*d).sum(2)/np.maximum(den,1.0),0,1)
+    Cs=_nconv(C,inner,5)                               # how pink the shirt is right here (lit areas are paler)
+    wc=cv2.GaussianBlur(np.clip((C-2.8)/np.maximum(Cs-2.8,1.0),0,1),(0,0),1.6)   # colour is half-resolution in JPEG: smooth its steps
+    t=np.clip((den-40)/80,0,1)
+    cov=t*cov+(1-t)*wc                      # very low contrast (lit shoulder): fall back to colour
+    cov=np.clip((cov-0.04)/0.62,0,1)                 # edge pixels are mostly shirt: no light seam between shirt and shadow
+    if color=='black': cov=np.clip(cov/0.45,0,1)       # lit edge fabric is still fabric: no light band on black
+    fsoft=cv2.GaussianBlur(cv2.dilate(fill,np.ones((3,3),np.uint8)).astype(np.float32),(0,0),1.0)
+    cov=cov*fsoft                                      # never colour wall/shadow pixels outside the smooth outline
+    geo=cv2.GaussianBlur(fill.astype(np.float32),(0,0),0.9)   # anti-aliased edge straight from the precise outline
+    w=np.where(inner>0,1.0,np.where(band,geo,0.0)).astype(np.float32)
+    # target shirt colour
+    Lm=np.median(L[inner>0]); dL=L-Lm
+    if color=='white': T=np.clip(96.0+1.0*dL,60,99.5); ta,tb=-0.1,0.9
+    else:              T=np.clip(14.0+0.85*dL,2,48);   ta,tb=0.2,-0.4
+    shirt=tobgr(np.dstack([T,np.full_like(T,ta),np.full_like(T,tb)]))
+    # at the edge the pixel is part wall: rebuild it as cov*new_shirt + (1-cov)*wall
+    SL=tolab(np.clip(S,0,255).astype(np.uint8))[...,0]
+    Tedge=(np.clip(96.0+1.0*(SL-Lm),60,99.5) if color=='white' else np.clip(14.0+0.85*(SL-Lm),2,48))
+    shirt_edge=tobgr(np.dstack([Tedge,np.full_like(Tedge,ta),np.full_like(Tedge,tb)]))
+    out=np.where(inner[...,None]>0, shirt, f)
+    eb=band[...,None]
+    mix=f+w[...,None]*(shirt_edge-S)               # swap only the shirt share of the pixel; wall/shadow share stays original
+    # edge colour: white/black shirt on a neutral wall is neutral too -> no pink or cyan fringe
+    ml=tolab(np.clip(mix,0,255).astype(np.uint8)); bl=tolab(np.clip(Bg,0,255).astype(np.uint8))
+    ml[...,1]=(1-w)*bl[...,1]+w*ta; ml[...,2]=(1-w)*bl[...,2]+w*tb
+    mix=tobgr(ml)
+    out=np.where(eb, mix, out)
+    return out.astype(np.float32), w
 def shirt_bbox(w):
     m=(w>0.5).astype(np.uint8); cnts,_=cv2.findContours(m,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE)
     return cv2.boundingRect(max(cnts,key=cv2.contourArea))
@@ -94,7 +124,7 @@ def build(white_path, black_path, side, outdir):
             # black and white use the SAME position and size: the one the design has on the white shirt
             dst=to_ref_t(clw[name] if name in clw else b, tw_white if name in clw else tw_black, TR)
             m=np.zeros(a.shape,np.float32); m[b[1]-3:b[3]+4,b[0]-3:b[2]+4]=1
-            A,Cc=place(a*m,col,b,dst,img.shape)
+            A,Cc=place(a*m,col,b,dst,img.shape); res.setdefault('boxes_'+color,[]).append(dst)
             A=cv2.GaussianBlur(A,(0,0),0.4)*w
             med=np.median(img[w>0.98].reshape(-1,3),0)
             ink=np.clip(Cc+0.8*(img-med),0,255)
