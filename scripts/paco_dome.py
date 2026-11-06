@@ -216,44 +216,45 @@ def _height(poly, inset, height, base, soft=0.10, lo=0.15, hi=0.45, ppmm=80):
     return z
 
 
-def mesh_plan(poly, inset, height, base, target_deg=1.5, area0=0.01,
-              rounds=6, floor=1.5e-4, step=0.12):
-    """Triangulate the plan, sized by the error it actually makes.
+def mesh_plan(poly, inset, height, base, area0=0.004, rim=0.07,
+              rim_area=9e-4, rounds=4, step=0.12, **_):
+    """Triangulate the plan: quality everywhere, fine where the rim needs it.
 
     The first version seeded this by hand - contours packed along the rim,
     chains along the crease - to put triangles where the surface needed
     them. It put slivers there instead: sixteen per cent of the top faces
     came out with a minimum angle under ten degrees, and those faces
-    missed the true normal by 13 degrees at the median against 1.3 for
-    well shaped ones. The seeds were the defect. Handed the outline
-    alone, the same mesher returns a minimum angle of 30 degrees and no
-    slivers at all, instantly, at a quarter of the triangles.
+    missed the true surface normal by 13 degrees at the median against
+    1.3 for well shaped ones. The seeds were the whole defect. Handed the
+    outline alone, the same mesher returns a minimum angle of 30 degrees
+    and no slivers at all, instantly, at a quarter of the triangles.
 
-    So nothing is placed by hand. `triangle` is asked for a quality mesh,
-    no angle under 30 degrees, which is what keeps a normal honest, and
-    is then told where to make it finer. The test needs no guess about
-    curvature: over a triangle of size h a surface stands s = h^2 k / 8
-    off the chord while the chord's normal misses by h k / 2, so the
-    normal error is 4 s / h. Sample the height at the centroid, compare
-    with the plane through the corners, quarter anything over target.
+    The second version drove refinement from the error itself, which is
+    the right idea and unbounded in practice: the profile is tangent to
+    the side wall, so curvature at the rim has no limit and the loop
+    chased it to three million triangles for one letter and 2.7 GB for
+    the diamond. The rim cannot be met by refining; it can only be given
+    a resolution and left alone.
 
-    `floor` stops it at the rim, where the profile is tangent to the side
-    wall and the curvature is unbounded: no mesh can hold an angle there,
-    and chasing it once cost three million triangles for one letter.
+    So the two are separated. The rim is given a resolution and left
+    alone: within `rim` of the outline, down to `rim_area`, no argument.
+    Everywhere else the error does decide, because away from the wall
+    the curvature is bounded - and it has to, because rounding the crease
+    leaves a crest whose curvature is set by the blur, which a uniform
+    mesh reads as a ridge all over again. Both rules are capped, so the
+    build cannot run away.
     """
-    import triangle as tri
+    import shapely, triangle as tri
     pslg = _pslg(poly, step)
     z_of = _height(poly, inset, height, base)
     t = tri.triangulate(pslg, f'pq30a{area0}')
-    tol = math.radians(target_deg)
     extra = {'holes': pslg['holes']} if 'holes' in pslg else {}
     for _ in range(rounds):
         V, F = t['vertices'], t['triangles']
-        zv = z_of(V)
         T = V[F]
         a = np.abs(np.cross(T[:, 1] - T[:, 0], T[:, 2] - T[:, 0])) / 2.0
-        sag = np.abs(z_of(T.mean(axis=1)) - zv[F].mean(axis=1))
-        need = (4.0 * sag / np.sqrt(np.maximum(a, 1e-18)) > tol) & (a > floor)
+        d = shapely.distance(poly.boundary, shapely.points(T.mean(axis=1)))
+        need = (d < rim) & (a > rim_area)
         if not need.any():
             break
         t = tri.triangulate(dict(vertices=V, segments=pslg['segments'], **extra,
@@ -263,11 +264,47 @@ def mesh_plan(poly, inset, height, base, target_deg=1.5, area0=0.01,
     return t['vertices'], t['triangles'], z_of
 
 
-def solid(poly, inset, height, base, target_deg=1.5, step=0.12):
-    """One body: the plan meshed to a normal-error target, lifted, closed."""
-    v2, f, z_of = mesh_plan(poly, inset, height, base, target_deg, step=step)
+def relax(v2, f, z, rounds=12, lamb=0.52, mu=-0.54):
+    """Taubin-smooth the lifted surface, with the outline pinned.
+
+    The surface is right and the mesh is quality; what is left is the
+    high-frequency wobble any triangulation of a curved surface has, and
+    it is the wobble - not the shape - that the eye reads as texture.
+    Chasing it analytically cost three rebuilds and millions of
+    triangles. Smoothing removes it directly, which is what a CAD
+    package does and what should have been done first.
+
+    Taubin rather than plain Laplacian because it alternates a shrinking
+    pass with an expanding one, so the part keeps its volume instead of
+    deflating. Only z moves, and only on vertices off the outline: the
+    boundary ring stays exactly where the wall meets it, so the drawn
+    outline and the tangent into the side wall are untouched.
+    """
+    from scipy.sparse import coo_matrix
     n = len(v2)
-    VV = np.vstack([np.column_stack([v2, z_of(v2)]),
+    e = f[:, [0, 1, 1, 2, 2, 0]].reshape(-1, 2)
+    e = np.vstack([e, e[:, ::-1]])
+    L = coo_matrix((np.ones(len(e)), (e[:, 0], e[:, 1])), shape=(n, n)).tocsr()
+    deg = np.asarray(L.sum(axis=1)).ravel()
+    deg[deg == 0] = 1
+    key = np.sort(f[:, [0, 1, 1, 2, 2, 0]].reshape(-1, 2), axis=1)
+    _, idx, cnt = np.unique(key, axis=0, return_index=True, return_counts=True)
+    rim = np.unique(f[:, [0, 1, 1, 2, 2, 0]].reshape(-1, 2)[idx[cnt == 1]])
+    free = np.ones(n, bool)
+    free[rim] = False
+    z = z.copy()
+    for i in range(rounds):
+        k = lamb if i % 2 == 0 else mu
+        z[free] += k * ((L @ z) / deg - z)[free]
+    return z
+
+
+def solid(poly, inset, height, base, target_deg=None, step=0.12):
+    """One body: the plan meshed to a normal-error target, lifted, closed."""
+    v2, f, z_of = mesh_plan(poly, inset, height, base, step=step)
+    zt = relax(v2, f, z_of(v2))
+    n = len(v2)
+    VV = np.vstack([np.column_stack([v2, zt]),
                     np.column_stack([v2, np.zeros(n)])])
     de = f[:, [0, 1, 1, 2, 2, 0]].reshape(-1, 2)
     _, idx, cnt = np.unique(np.sort(de, axis=1), axis=0,
