@@ -336,10 +336,14 @@ def solid(poly, inset, height, base, area=0.010, step=0.12,
     return m
 
 
-def _task(a):
-    poly, inset, height, base, area, step, nrings, fine, ridge = a
-    m = solid(poly, inset, height, base, area, step, nrings, fine, ridge)
-    return np.asarray(m.vertices), np.asarray(m.faces)
+def _worker(src, dst):
+    """Build one body, in this interpreter, and write the mesh out."""
+    import shapely.wkb
+    poly = shapely.wkb.loads(open(src + '.wkb', 'rb').read())
+    a = json.load(open(src + '.json'))
+    m = solid(poly, a['inset'], a['height'], a['base'],
+              a['area'], a['step'], a['nrings'], a['fine'], a['ridge'])
+    np.savez(dst, v=np.asarray(m.vertices), f=np.asarray(m.faces))
 
 
 def build_smooth(g, inset, height, base, area=0.010, step=0.12,
@@ -352,21 +356,41 @@ def build_smooth(g, inset, height, base, area=0.010, step=0.12,
     carries state between calls. Run in sequence it returned a different
     triangle count for the same body depending on what had been
     triangulated before it, and segfaulted on the seventh. A result that
-    depends on call history is not a result, whatever it looks like, so
-    each body gets a fresh interpreter and the build is reproducible.
+    depends on call history is not a result, whatever it looks like.
+
+    A multiprocessing Pool was the tidy way to do that and it deadlocked
+    - four workers idle at zero CPU, nothing to show for seven minutes.
+    Plain subprocesses with the geometry on disk are duller and they
+    finish, which is the only property that matters here.
     """
-    import multiprocessing as mp
+    import subprocess, tempfile
     ps = list(g.geoms) if hasattr(g, 'geoms') else [g]
-    args = [(p, inset, height, base, area, step, nrings, fine, ridge)
-            for p in ps]
-    ctx = mp.get_context('spawn')
-    with ctx.Pool(processes=min(4, len(args)), maxtasksperchild=1) as pool:
-        got = pool.map(_task, args, chunksize=1)
-    return trimesh.util.concatenate(
-        [trimesh.Trimesh(vertices=v, faces=f, process=False) for v, f in got])
+    cfg = dict(inset=inset, height=height, base=base, area=area, step=step,
+               nrings=nrings, fine=fine, ridge=ridge)
+    me = os.path.abspath(__file__)
+    out = []
+    with tempfile.TemporaryDirectory() as tmp:
+        for i, poly in enumerate(ps):
+            src = os.path.join(tmp, f'b{i}')
+            dst = os.path.join(tmp, f'b{i}.npz')
+            open(src + '.wkb', 'wb').write(poly.wkb)
+            json.dump(cfg, open(src + '.json', 'w'))
+            r = subprocess.run([sys.executable, me, '--worker', src, dst],
+                               capture_output=True, text=True)
+            if r.returncode != 0 or not os.path.exists(dst):
+                raise SystemExit(f'body {i} failed ({r.returncode})\n'
+                                 + r.stderr[-2000:])
+            d = np.load(dst)
+            out.append(trimesh.Trimesh(vertices=d['v'], faces=d['f'],
+                                       process=False))
+            print(f'   body {i}: {len(d["f"])} triangles', flush=True)
+    return trimesh.util.concatenate(out)
 
 
 if __name__ == '__main__':
+    if len(sys.argv) == 4 and sys.argv[1] == '--worker':
+        _worker(sys.argv[2], sys.argv[3])
+        sys.exit(0)
     a = argparse.ArgumentParser()
     a.add_argument('--src', default='assets/paco/paco-50mm-min1mm-FINAL.pdf')
     a.add_argument('--radius', type=float, default=1.25)
