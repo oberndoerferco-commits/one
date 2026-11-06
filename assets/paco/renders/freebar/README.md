@@ -1,6 +1,6 @@
 # PA & CO — letters +0.12, diamond +0.50, bar freed, real dome
 
-`paco-50mm-freebar.pdf`, `paco-logo-SMOOTH-v2-dome1.20-base0.45.stl`,
+`paco-50mm-freebar.pdf`, `paco-logo-SMOOTH-v3-dome1.20-base0.45.stl`,
 `paco-engineering-sheet.pdf` (2 × A3).
 50.25 × 35.96 × 1.65 mm, **seven** pieces, 471.6 mm² in plan.
 
@@ -37,44 +37,73 @@ python3 scripts/paco_sheet.py --src paco-50mm-freebar.pdf \
         --iso paco-iso-freebar.png --height 1.20 --base 0.45
 ```
 
-## The dome was a staircase
+## The dome, three goes at it
 
-The top surface used to be built by stacking inset outlines — 17 level
-sets, extruded one on top of the next. That is a staircase, and the worst
-tread is the first, because the profile is **vertical** where it meets the
-edge of a stroke:
+**It was a staircase.** The top was built by stacking inset outlines —
+17 level sets extruded one on the next. The worst tread is the first,
+because the profile is vertical where it meets the edge of a stroke: a
+**0.42 mm wall** 0.08 mm in from every outline, on a 1.20 mm dome. More
+levels do not fix that cheaply; the error sits where the surface is
+steepest.
 
-| step | inset | crown | riser |
-| --- | --- | --- | --- |
-| 1 | 0.078 | 0.418 | **0.418** |
-| 2 | 0.156 | 0.581 | 0.163 |
-| 3 | 0.234 | 0.700 | 0.119 |
-| … | | | |
-| 16 | 1.250 | 1.200 | 0.002 |
+![before and after](paco-dome-before-after.png)
 
-A 0.42 mm wall 0.08 mm in from every outline, on a 1.20 mm dome. Adding
-levels does not fix it cheaply: the error sits exactly where the surface
-is steepest, so halving the tread halves nothing that matters.
+**Then it was a knife edge.** Meshing it properly made the dome smooth
+and exposed the real fault, which was in the design and not the mesh.
+One radius was being struck from the edge of every stroke, so a stroke
+narrower than 2 × 1.25 mm ran out of width before the profile had
+flattened and the two faces arrived at the centre still climbing at
+about 29°. The surface genuinely had an edge down the middle of every
+narrow stroke, and no mesh could remove it. A great deal of work —
+graded rims, traced medial axes, ridge constraints — went into
+representing that edge faithfully, which was the wrong problem.
 
-`paco_dome.py --smooth` meshes the plan once instead. The outline goes in
-as fixed segments — so no serif and no diamond tip is rounded off by a
-sampling grid — twelve inset contours seed the rim at equal steps of
-*height* rather than of inset, `triangle` fills the rest under a maximum
-area rule, and every vertex is lifted to the exact profile at its own
-distance from the outline. Outline vertices are at distance zero and stay
-where the side wall meets them, so nothing can crack, and the same
-triangulation laid flat is the underside.
+![smooth](paco-smooth-fix.png)
 
-Measured against the exact profile at every top face: **worst 0.050 mm,
-99th percentile 0.031, mean 0.0067** — against a crown tolerance of
-±0.10, where the first step of the staircase was four times outside it.
-287,964 triangles, seven bodies, all closed, checked by reading the
-exported file back rather than the object in memory.
+**Now each stroke is domed to its own width.** `halfwidth()` measures
+half the width of the stroke every point belongs to: the distance to the
+outline at the medial axis, carried out to the rest of the stroke by the
+EDT's nearest-skeleton indices, then blurred, because the raw field
+steps where one branch takes over and nothing about a stroke's width
+should step. `profile()` fits the same arc to that half width.
 
-Uniform subdivision was the obvious alternative and is the wrong tool. It
-quarters every triangle at once from a mesh whose triangles span the
-whole glyph, so a 0.10 mm edge cost 280,000 triangles **for one letter**
-— seventeen times what the surface needs — and still left the rim coarse.
+Where a stroke is wide enough to carry the full radius, nothing changed
+at all. Where it is not, it reaches the **identical crown** it reached
+before — every figure in the crown table still holds — but arrives at
+its own centre horizontal instead of at a corner. At the narrowest
+stroke in the artwork: crown 1.042 either way, slope at the centre
+0.614 before and zero now.
+
+Apart from the outline itself there is no edge anywhere on the part.
+
+## What the pictures were hiding
+
+Two things, both mine:
+
+The satin finish is a procedural brushed normal map. At the
+magnification of a detail shot it is blown up some two hundred times and
+reads as surface texture. `paco-finish-vs-mesh.png` is the same mesh
+with the maps on and off. Close-ups of geometry now get rendered without
+them.
+
+Before that, `smooth_normals.py` was rebuilding the shading off a height
+field, which is honest for a picture of a smooth part and was hiding a
+staircase. Every render here is lit off the mesh's own normals.
+
+## Two faults found while chasing it
+
+`triangle` is a C library that carries state between calls. Run in
+sequence it returned a different triangle count for the same body
+depending on what had been triangulated before it, and segfaulted on the
+seventh. Each body is now built in its own interpreter — by plain
+subprocess, because a multiprocessing Pool deadlocked at zero CPU with
+nothing to show.
+
+`medial_axis` thins in a randomised order unless handed a generator.
+Left to itself it returned a slightly different skeleton every run,
+which moved the measured stroke widths on the drawing as well as the
+mesh. All three scripts pass a fixed seed, and two consecutive builds
+come out byte for byte identical.
 
 ## Measured, not predicted
 
