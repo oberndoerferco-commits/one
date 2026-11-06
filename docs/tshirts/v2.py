@@ -62,19 +62,28 @@ def place(a,col,src_bbox,dst_bbox,shape):
     A=cv2.warpAffine(a,M,(shape[1],shape[0]),flags=cv2.INTER_AREA if s<1 else cv2.INTER_LINEAR)
     Cc=cv2.warpAffine(col,M,(shape[1],shape[0]),flags=cv2.INTER_AREA if s<1 else cv2.INTER_LINEAR)
     return A,Cc
+def torso_geom(fill_or_w, top=None, width=None):
+    m=(fill_or_w>0.5).astype(np.uint8); ys,xs=np.where(m>0); y=ys.min(); W=xs.max()-xs.min()
+    yy=int(y+0.62*W*1.08); xx=np.where(m[yy]>0)[0]; return (xx.min()+xx.max())/2, xx.max()-xx.min(), y
+def orig_torso(path):
+    im=cv2.imread(path); fill,_=shirt_geom(im); return torso_geom(fill)
+def to_ref_t(b,src,dst):
+    (tc,tw,ty),(TC,TW,TY)=src,dst; s=TW/tw
+    return tuple(int(v) for v in ((b[0]-tc)*s+TC,(b[1]-ty)*s+TY,(b[2]-tc)*s+TC,(b[3]-ty)*s+TY))
 def to_ref(b,g,G):
     x,y,w,h=g; X,Y,W,H=G; s=W/w
     return tuple(int(v) for v in ((b[0]-x)*s+X+0*(W/2-w*s/2),(b[1]-y)*s+Y,(b[2]-x)*s+X,(b[3]-y)*s+Y))
 def build(white_path, black_path, side, outdir):
     res={}
     aw,cw_,gw=extract(white_path); clw=clusters(aw,gw)
+    tw_white=orig_torso(white_path); tw_black=orig_torso(black_path)
     for color in ['white','black']:
-        img,w=recolor(side,color); G=shirt_bbox(w)
+        img,w=recolor(side,color); G=shirt_bbox(w); TR=torso_geom(w)
         if color=='white': a,col,g,cl=aw,cw_,gw,clw
         else: a,col,g=extract(black_path); cl=clusters(a,g)
         if color=='black' and 'hem' in clw:
             cl=dict(cl); cl.pop('hem',None)
-            b=clw['hem']; dst=to_ref(b,gw,G)
+            b=clw['hem']; dst=to_ref_t(b,tw_white,TR)
             m=np.zeros(aw.shape,np.float32); m[b[1]-3:b[3]+4,b[0]-3:b[2]+4]=1
             A,_=place(aw*m,cw_,b,dst,img.shape); A=cv2.GaussianBlur(A,(0,0),0.4)*w
             med=np.median(img[w>0.98].reshape(-1,3),0)
@@ -82,8 +91,7 @@ def build(white_path, black_path, side, outdir):
             img=img*(1-A[...,None])+ink*A[...,None]
         for name,b in cl.items():
             # destination = where this element sits on the WHITE shirt (mapped to the reference)
-            ref_b=clw.get(name,b); gg=gw if name in clw else g
-            dst=to_ref(ref_b,gg,G)
+            dst=to_ref_t(b, tw_white if color=='white' else tw_black, TR)   # same spot as on its own original photo
             m=np.zeros(a.shape,np.float32); m[b[1]-3:b[3]+4,b[0]-3:b[2]+4]=1
             A,Cc=place(a*m,col,b,dst,img.shape)
             A=cv2.GaussianBlur(A,(0,0),0.4)*w
