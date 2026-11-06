@@ -1,0 +1,11 @@
+# What the scripts in scripts/ import.
+numpy
+scipy
+shapely>=2.0
+pymupdf
+pillow
+trimesh
+manifold3d          # boolean union, for the level-set builds
+scikit-image        # medial axis, for stroke measurement
+mapbox-earcut
+triangle            # quality constrained Delaunay, for the smooth dome
