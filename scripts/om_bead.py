@@ -92,6 +92,38 @@ def spread(radius, n, cap_deg):
     return out
 
 
+def rings(radius):
+    """A composition in rings about the bore, not an even spread.
+
+    The reference is a medallion: one big mark at the middle, a band of
+    squares and outline crosses around it, and a ring of small circled
+    crosses at the edge. A ball has no middle, but it has an axis - the
+    bore - so the hierarchy maps onto latitude. The big marks take the
+    equator, the middle band takes the squares and the outlines, and the
+    small circled crosses ring the poles, which is where the reference
+    puts its smallest marks too.
+
+    Counts are chosen so the step along each ring is near the step
+    between rings; alternate rings are offset half a step so the marks
+    nest rather than line up in columns.
+    """
+    plan = [                       # latitude, count, kinds, size mm
+        (0.0,  8, ['om', 'n925'],  None),
+        (45.0, 6, ['sq', 'outl'],  None),
+        (75.0, 4, ['circ'],        1.70),
+    ]
+    byname = {q[0]: i for i, q in enumerate(PATTERN)}
+    out = []
+    for lat, n, kinds, mm in plan:
+        for sign in ((1, -1) if lat else (1,)):
+            off = 180.0 / n if sign < 0 else 0.0
+            for c in range(n):
+                k = byname[kinds[c % len(kinds)]]
+                out.append((-180.0 + 360.0 * c / n + off, sign * lat, k,
+                            mm if mm else PATTERN[k][4]))
+    return out
+
+
 def deal(places, weights, near=6):
     """Give each mark a kind, so that no two touching marks share one.
 
@@ -233,17 +265,21 @@ def framed(mask, border=0.055):
     return m
 
 
-def build(stamps, out, dia=8.0, bore=1.2, n=30, mark=1.0, height=0.10,
+def build(stamps, out, dia=8.0, bore=1.2, n=30, mark=1.0, ring=False,
+          height=0.10,
           inset=0.05, cap=76.0, sub=7, W=3600, Hh=1800, cut=False):
     # embossed, the marks stand proud and the ball under them is
     # smaller by that much; engraved, the ball is the full size and the
     # marks go into it. Either way the bead measures the 8 mm it is
     # called.
     r = dia / 2.0 if cut else (dia - 2 * height) / 2.0
-    pts = spread(r, n, cap)
-    kinds = deal(pts, [q[5] for q in PATTERN])
-    places = [(lo, la, k, PATTERN[k][4] * mark)
-              for (lo, la), k in zip(pts, kinds)]
+    if ring:
+        places = [(lo, la, k, mm * mark) for lo, la, k, mm in rings(r)]
+    else:
+        pts = spread(r, n, cap)
+        kinds = deal(pts, [q[5] for q in PATTERN])
+        places = [(lo, la, k, PATTERN[k][4] * mark)
+                  for (lo, la), k in zip(pts, kinds)]
     ink = paint(stamps, places, r, W, Hh)
     rel = relief(ink, r, W, Hh, height, inset)
     if cut:
@@ -276,7 +312,7 @@ def build(stamps, out, dia=8.0, bore=1.2, n=30, mark=1.0, height=0.10,
           f'{len(b)} bodies, closed: {all(x.is_watertight for x in b)}, '
           f'{os.path.getsize(out)/1e6:.1f} MB')
     print(f'   {len(places)} marks of {len(PATTERN)} kinds, '
-          f'{spacing(r, n):.2f} mm apart, '
+          f'{spacing(r, len(places)) if ring else spacing(r, n):.2f} mm apart, '
           f'{min(q[3] for q in places):.2f} to {max(q[3] for q in places):.2f} mm across, '
           f'relief {height:.2f} mm, bore {bore:.2f} mm')
     return m, ink, rel
@@ -289,6 +325,9 @@ if __name__ == '__main__':
     a.add_argument('--marks', type=int, default=30,
                    help='marks over the whole sphere before the caps are '
                         'dropped; fewer means bigger and further apart')
+    a.add_argument('--rings', action='store_true',
+                   help='a composition in rings about the bore, after the '
+                        'medallion reference, instead of an even spread')
     a.add_argument('--simple', action='store_true',
                    help='OM and the framed cross only - the page pattern '
                         'thinned for a ball this small')
@@ -310,4 +349,4 @@ if __name__ == '__main__':
         print(f'   {nm:5s} {st.shape[1]:4d} x {st.shape[0]:4d} px   '
               f'{mm:.2f} mm on the ball')
     build(stamps, o.out, dia=o.dia, bore=o.bore, n=o.marks, mark=o.mark,
-          height=o.relief, sub=o.sub, cut=o.cut)
+          ring=o.rings, height=o.relief, sub=o.sub, cut=o.cut)
