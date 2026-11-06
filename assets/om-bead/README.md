@@ -1,8 +1,11 @@
 # 8 mm monogram bead
 
-Three marks scattered over a ball, the way a monogram ball carries them:
-the **OM lockup**, the **cross in its circle**, and the **cross in its
-square**. The plain cross on its own is deliberately not used.
+The repeat from **page 101 of the tshirt design**, laid over a ball:
+**OM**, the **cross in a filled square**, **925**, the **cross in a
+circle**, and the **cross outline** — five marks in one cell, at the
+positions and proportions they sit at on the page.
+
+![options](renders/om-bead-pattern-options.png)
 
 ![mockup](renders/om-bead-mockup.png)
 
@@ -38,11 +41,21 @@ collision rather than a pattern.
 
 **A monogram ball is a lattice, not a scatter.** The first attempt
 placed the marks on a golden spiral, which gives an even *density* and
-reads as random. They now sit in rows: the step in latitude is an arc,
-pitch / radius, and along each row the count comes from that row's own
-circumference, so the spacing is even on the ball rather than even in
-longitude. Alternate rows are offset half a step and the three motifs
-run in a diagonal sequence. The poles are left clear for the bore.
+reads as random.
+
+**And the unit is the cell, not the mark.** The pattern is not five
+motifs taking turns; it is one block of five that repeats, and the block
+has to stay together or it stops reading as a pattern. So whole cells
+are placed: rows a cell-height apart, each row holding as many whole
+cells as its own circumference takes, and the five marks dropped in at
+the fractions they occupy on the page. The step in latitude is an arc,
+cell height over radius; the step in longitude is cell width over
+radius, divided by cos(latitude). The poles are left clear for the
+bore.
+
+The one liberty taken is `--mark`: the page proportions are thin for a
+ball this small, so the marks are scaled up inside their cell while the
+cell keeps the page's geometry.
 
 ## The profile is a laser mark, not a dome
 

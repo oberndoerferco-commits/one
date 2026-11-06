@@ -23,6 +23,23 @@ from scipy import ndimage
 MM = 72.0 / 25.4
 
 
+PAGE = 'assets/om-monogram/om-pattern-page.pdf'
+
+# One repeat of the pattern, read off the page it comes from. Positions
+# are fractions of the cell, sizes are the marks' real millimetres on
+# that page, and the cell is 89.0 x 84.7 mm there - so the whole block
+# scales to the ball by one number and keeps its proportions.
+CELL_MM = (89.0, 84.7)
+PATTERN = [
+    # name  crop box on the page            u       v      long side mm
+    ('om',   (0.1038, 0.0940, 0.2140, 0.2420),  0.000,  0.000, 26.7),
+    ('sq',   (0.2858, 0.1030, 0.3432, 0.1825),  0.531, -0.063, 14.5),
+    ('n925', (0.2532, 0.2667, 0.3432, 0.3379),  0.471,  0.329, 21.9),
+    ('circ', (0.1197, 0.3129, 0.1830, 0.4050), -0.014,  0.475, 15.5),
+    ('outl', (0.2443, 0.3910, 0.3106, 0.4806),  0.402,  0.663, 14.0),
+]
+
+
 def stamp_from_pdf(path, box=None, px=900, pad=6):
     """A mark as a binary stamp, trimmed to its own ink."""
     d = pymupdf.open(path)
@@ -47,42 +64,49 @@ def rotate(mask, deg):
                           reshape=True, mode='constant', cval=0.0) > 0.5
 
 
-def lattice(radius, pitch, cap_deg, nstamp):
-    """Rows round the ball, evenly spaced, staggered, motifs alternating.
+def tiles(radius, cw, cap_deg, mark=1.0):
+    """The repeat laid over the ball: whole cells, each with its five marks.
 
-    A monogram ball is a lattice, not a scatter. Marks sit in rows at a
-    constant spacing, each row offset half a step from the one above, and
-    the motifs run in a regular diagonal sequence. A golden spiral gives
-    an even density, which is a different thing and reads as random.
+    The pattern is not five motifs taking turns, it is one block of five
+    that repeats, and the block has to stay together or the thing stops
+    reading as a pattern. So the cells are placed, not the marks: rows a
+    cell-height apart, each row holding as many whole cells as its own
+    circumference takes, and the five marks dropped into each cell at the
+    fractions they sit at on the page.
 
-    Row spacing is an arc, so the step in latitude is pitch / radius.
-    Along a row the circumference shrinks with cos(latitude), so the
-    count is taken from that circumference and the spacing comes out
-    even on the ball rather than even in longitude.
+    Row spacing is an arc, so the step in latitude is the cell height
+    over the radius. Within a row the step in longitude is the cell width
+    over the radius, divided by cos(latitude), because a degree of
+    longitude is shorter the further from the equator it is.
     """
+    ch = cw * CELL_MM[1] / CELL_MM[0]
+    k = cw / CELL_MM[0]                       # page millimetres to ball
+    deg = 180.0 / (math.pi * radius)
     out = []
-    dlat = math.degrees(pitch / radius)
-    rows = int(math.floor(cap_deg / dlat))
+    rows = int(math.floor(cap_deg / (ch * deg)))
     for r in range(-rows, rows + 1):
-        lat = r * dlat
-        circ = 2 * math.pi * radius * math.cos(math.radians(lat))
-        n = max(1, int(round(circ / pitch)))
-        half = 180.0 / n if r % 2 else 0.0
+        lat0 = r * ch * deg
+        n = max(1, int(round(2 * math.pi * radius
+                             * math.cos(math.radians(lat0)) / cw)))
         for c in range(n):
-            lon = -180.0 + 360.0 * c / n + half
-            out.append((lon, lat, (r + c) % nstamp))
+            lon0 = -180.0 + 360.0 * c / n
+            for i, (_, _, u, v, long_mm) in enumerate(PATTERN):
+                lat = lat0 - v * ch * deg
+                cl = max(math.cos(math.radians(lat)), 0.30)
+                lon = lon0 + u * cw * deg / cl
+                out.append((((lon + 180.0) % 360.0) - 180.0, lat, i,
+                            long_mm * k * mark))
     return out
 
 
-def paint(stamps, places, size_mm, radius, W, Hh):
+def paint(stamps, places, radius, W, Hh):
     """Equirectangular ink map, stretched for latitude, wrapped in longitude."""
     ink = np.zeros((Hh, W), bool)
     deg_per_mm = 180.0 / (math.pi * radius)        # along a great circle
-    for lon, lat, which in places:
-        s, k = stamps[which]
+    for lon, lat, which, long_mm in places:
+        s = stamps[which]
         # size by the LONGER side, or a wide mark comes out three times
         # the width of the ball it is sitting on
-        long_mm = size_mm * k
         if s.shape[1] >= s.shape[0]:
             w_mm, h_mm = long_mm, long_mm * s.shape[0] / s.shape[1]
         else:
@@ -132,15 +156,15 @@ def framed(mask, border=0.055):
     return m
 
 
-def build(stamps, out, dia=8.0, bore=1.2, pitch=2.5, size=2.25, height=0.10,
+def build(stamps, out, dia=8.0, bore=1.2, cell=5.0, mark=1.3, height=0.10,
           inset=0.05, cap=76.0, sub=7, W=3600, Hh=1800, cut=False):
     # embossed, the marks stand proud and the ball under them is
     # smaller by that much; engraved, the ball is the full size and the
     # marks go into it. Either way the bead measures the 8 mm it is
     # called.
     r = dia / 2.0 if cut else (dia - 2 * height) / 2.0
-    places = lattice(r, pitch, cap, len(stamps))
-    ink = paint(stamps, places, size, r, W, Hh)
+    places = tiles(r, cell, cap, mark)
+    ink = paint(stamps, places, r, W, Hh)
     rel = relief(ink, r, W, Hh, height, inset)
     if cut:
         rel = -rel
@@ -171,9 +195,10 @@ def build(stamps, out, dia=8.0, bore=1.2, pitch=2.5, size=2.25, height=0.10,
           f'{back.extents[0]:.2f} x {back.extents[1]:.2f} x {back.extents[2]:.2f} mm, '
           f'{len(b)} bodies, closed: {all(x.is_watertight for x in b)}, '
           f'{os.path.getsize(out)/1e6:.1f} MB')
-    print(f'   {len(places)} marks on {len(set(p[1] for p in places))} rows, '
-          f'{size:.2f} mm each at {pitch:.2f} mm pitch, '
-          f'relief {height:.2f} mm, bore {bore:.2f} mm')
+    print(f'   {len(places)//len(PATTERN)} cells of {len(PATTERN)} = '
+          f'{len(places)} marks, cell {cell:.2f} x '
+          f'{cell*CELL_MM[1]/CELL_MM[0]:.2f} mm, '
+          f'marks x{mark:.2f}, relief {height:.2f} mm, bore {bore:.2f} mm')
     return m, ink, rel
 
 
@@ -181,8 +206,15 @@ if __name__ == '__main__':
     a = argparse.ArgumentParser()
     a.add_argument('--dia', type=float, default=8.0)
     a.add_argument('--bore', type=float, default=1.2)
-    a.add_argument('--pitch', type=float, default=2.5)
-    a.add_argument('--size', type=float, default=2.25)
+    a.add_argument('--cell', type=float, default=5.0,
+                   help='width of one repeat of the pattern, mm')
+    a.add_argument('--simple', action='store_true',
+                   help='two marks to the cell, OM and the framed cross, '
+                        'staggered - the page pattern thinned for a ball '
+                        'this small')
+    a.add_argument('--mark', type=float, default=1.3,
+                   help='scale the marks within the cell; the page '
+                        'proportions are thin for an 8 mm ball')
     a.add_argument('--relief', type=float, default=0.10)
     a.add_argument('--cut', action='store_true',
                    help='engrave the marks into the ball instead of '
@@ -191,14 +223,13 @@ if __name__ == '__main__':
     a.add_argument('--out', default='assets/om-bead/om-bead-8mm.stl')
     o = a.parse_args()
     os.makedirs(os.path.dirname(o.out), exist_ok=True)
-    T = 'assets/motif-tiles/motif-black-white.pdf'
-    stamps = [
-        (stamp_from_pdf('assets/om-monogram/om-blackletter.pdf'), 1.00),
-        (stamp_from_pdf(T, box=(0.02, 0.02, 0.50, 0.50)), 0.80),   # cross in a circle
-        (framed(stamp_from_pdf(T, box=(0.47, 0.52, 0.97, 0.97), pad=0)),
-         0.72),                                                    # cross in a square
-    ]
-    for i, (s, k) in enumerate(stamps):
-        print(f'   stamp {i}: {s.shape[1]} x {s.shape[0]} px, x{k:.2f}')
-    build(stamps, o.out, dia=o.dia, bore=o.bore, pitch=o.pitch, size=o.size,
+    if o.simple:
+        keep = {'om': (0.00, 0.00, 26.7), 'sq': (0.50, 0.50, 14.5)}
+        PATTERN[:] = [(n, b, *keep[n]) for n, b, _, _, _ in PATTERN
+                      if n in keep]
+    stamps = [stamp_from_pdf(PAGE, box=b, px=2200) for _, b, _, _, _ in PATTERN]
+    for (nm, _, u, v, mm), st in zip(PATTERN, stamps):
+        print(f'   {nm:5s} {st.shape[1]:4d} x {st.shape[0]:4d} px   '
+              f'cell ({u:+.3f},{v:+.3f})   {mm:.1f} mm on the page')
+    build(stamps, o.out, dia=o.dia, bore=o.bore, cell=o.cell, mark=o.mark,
           height=o.relief, sub=o.sub, cut=o.cut)
