@@ -25,19 +25,32 @@ MM = 72.0 / 25.4
 
 PAGE = 'assets/om-monogram/om-pattern-page.pdf'
 
-# One repeat of the pattern, read off the page it comes from. Positions
-# are fractions of the cell, sizes are the marks' real millimetres on
-# that page, and the cell is 89.0 x 84.7 mm there - so the whole block
-# scales to the ball by one number and keeps its proportions.
-CELL_MM = (89.0, 84.7)
+# The five marks, cropped off the page they come from, each with the size
+# it should be ON THE BALL. These are not the page's relative sizes: there
+# the little crosses are a third of the OM, which on an 8 mm ball puts
+# them under a millimetre and leaves gaps that read as bald. Sized to
+# look equal instead, so the space between any two marks is the same
+# wherever you look.
 PATTERN = [
-    # name  crop box on the page            u       v      long side mm
-    ('om',   (0.1038, 0.0940, 0.2140, 0.2420),  0.000,  0.000, 26.7),
-    ('sq',   (0.2858, 0.1030, 0.3432, 0.1825),  0.531, -0.063, 14.5),
-    ('n925', (0.2532, 0.2667, 0.3432, 0.3379),  0.471,  0.329, 21.9),
-    ('circ', (0.1197, 0.3129, 0.1830, 0.4050), -0.014,  0.475, 15.5),
-    ('outl', (0.2443, 0.3910, 0.3106, 0.4806),  0.402,  0.663, 14.0),
+    # name  crop box on the page                long side, mm on the ball
+    ('om',   (0.1038, 0.0940, 0.2140, 0.2420), 0, 0, 2.70),
+    ('sq',   (0.2858, 0.1030, 0.3432, 0.1825), 0, 0, 2.10),
+    ('n925', (0.2532, 0.2667, 0.3432, 0.3379), 0, 0, 2.50),
+    ('circ', (0.1197, 0.3129, 0.1830, 0.4050), 0, 0, 2.25),
+    ('outl', (0.2443, 0.3910, 0.3106, 0.4806), 0, 0, 2.25),
 ]
+
+# The order the marks are dealt out in. The OM takes every other place:
+# it is the mark, the rest are its accents, and at one in five it was so
+# rare that a whole face of the ball could show none of it.
+#
+# The LENGTH matters more than it looks. On a Fibonacci spiral the points
+# next to each other in space are not next to each other in index - they
+# are a Fibonacci number apart, 5 or 8 or 13 for a couple of dozen marks.
+# A sequence eight long therefore gave every spatial neighbour the SAME
+# mark, and the ball came out in bands of one kind. Nine shares no factor
+# with 5, 8 or 13, so neighbours differ.
+SEQ = [0, 1, 0, 2, 0, 3, 0, 4, 0]
 
 
 def stamp_from_pdf(path, box=None, px=900, pad=6):
@@ -64,39 +77,43 @@ def rotate(mask, deg):
                           reshape=True, mode='constant', cval=0.0) > 0.5
 
 
-def tiles(radius, cw, cap_deg, mark=1.0):
-    """The repeat laid over the ball: whole cells, each with its five marks.
+def spread(radius, n, cap_deg):
+    """Marks at one spacing everywhere on the ball, poles included.
 
-    The pattern is not five motifs taking turns, it is one block of five
-    that repeats, and the block has to stay together or the thing stops
-    reading as a pattern. So the cells are placed, not the marks: rows a
-    cell-height apart, each row holding as many whole cells as its own
-    circumference takes, and the five marks dropped into each cell at the
-    fractions they sit at on the page.
+    A ball cannot be tiled by a grid of rows. Rows a fixed arc apart hold
+    a whole number of marks, so every row's spacing is rounded to a
+    different value, and above the last row there is nothing at all - the
+    bald cap around the bore. Neither fault is fixable by choosing better
+    numbers; a sphere simply has no regular tiling of that kind.
 
-    Row spacing is an arc, so the step in latitude is the cell height
-    over the radius. Within a row the step in longitude is the cell width
-    over the radius, divided by cos(latitude), because a degree of
-    longitude is shorter the further from the equator it is.
+    A Fibonacci spiral does have one property that matters more than
+    looking like rows: every point is the same distance from its
+    neighbours, at the poles as much as the equator. That is what "the
+    spacing is always the same" means on a ball, and it leaves no gap to
+    be bald. The order comes from the marks instead - they cycle in a
+    fixed sequence and all stand upright - so the eye reads a pattern
+    rather than a scatter.
+
+    Points are generated over the whole sphere and then the caps are
+    dropped, rather than the spiral being squeezed into the band, so the
+    spacing of what remains is the spacing of the whole.
     """
-    ch = cw * CELL_MM[1] / CELL_MM[0]
-    k = cw / CELL_MM[0]                       # page millimetres to ball
-    deg = 180.0 / (math.pi * radius)
-    out = []
-    rows = int(math.floor(cap_deg / (ch * deg)))
-    for r in range(-rows, rows + 1):
-        lat0 = r * ch * deg
-        n = max(1, int(round(2 * math.pi * radius
-                             * math.cos(math.radians(lat0)) / cw)))
-        for c in range(n):
-            lon0 = -180.0 + 360.0 * c / n
-            for i, (_, _, u, v, long_mm) in enumerate(PATTERN):
-                lat = lat0 - v * ch * deg
-                cl = max(math.cos(math.radians(lat)), 0.30)
-                lon = lon0 + u * cw * deg / cl
-                out.append((((lon + 180.0) % 360.0) - 180.0, lat, i,
-                            long_mm * k * mark))
-    return out
+    ga = math.pi * (3 - math.sqrt(5))
+    lim = math.sin(math.radians(cap_deg))
+    pts = []
+    for i in range(n):
+        z = 1 - 2 * (i + 0.5) / n
+        if abs(z) > lim:
+            continue
+        pts.append((math.degrees((i * ga) % (2 * math.pi)) - 180,
+                    math.degrees(math.asin(z))))
+    return [(lon, lat, SEQ[k % len(SEQ)], PATTERN[SEQ[k % len(SEQ)]][4])
+            for k, (lon, lat) in enumerate(pts)]
+
+
+def spacing(radius, n):
+    """Centre-to-centre distance a Fibonacci set of n points gives."""
+    return math.sqrt(4 * math.pi * radius ** 2 / (n * math.sqrt(3) / 2))
 
 
 def paint(stamps, places, radius, W, Hh):
@@ -156,14 +173,14 @@ def framed(mask, border=0.055):
     return m
 
 
-def build(stamps, out, dia=8.0, bore=1.2, cell=5.0, mark=1.3, height=0.10,
+def build(stamps, out, dia=8.0, bore=1.2, n=30, mark=1.0, height=0.10,
           inset=0.05, cap=76.0, sub=7, W=3600, Hh=1800, cut=False):
     # embossed, the marks stand proud and the ball under them is
     # smaller by that much; engraved, the ball is the full size and the
     # marks go into it. Either way the bead measures the 8 mm it is
     # called.
     r = dia / 2.0 if cut else (dia - 2 * height) / 2.0
-    places = tiles(r, cell, cap, mark)
+    places = [(lo, la, i, mm * mark) for lo, la, i, mm in spread(r, n, cap)]
     ink = paint(stamps, places, r, W, Hh)
     rel = relief(ink, r, W, Hh, height, inset)
     if cut:
@@ -195,10 +212,10 @@ def build(stamps, out, dia=8.0, bore=1.2, cell=5.0, mark=1.3, height=0.10,
           f'{back.extents[0]:.2f} x {back.extents[1]:.2f} x {back.extents[2]:.2f} mm, '
           f'{len(b)} bodies, closed: {all(x.is_watertight for x in b)}, '
           f'{os.path.getsize(out)/1e6:.1f} MB')
-    print(f'   {len(places)//len(PATTERN)} cells of {len(PATTERN)} = '
-          f'{len(places)} marks, cell {cell:.2f} x '
-          f'{cell*CELL_MM[1]/CELL_MM[0]:.2f} mm, '
-          f'marks x{mark:.2f}, relief {height:.2f} mm, bore {bore:.2f} mm')
+    print(f'   {len(places)} marks of {len(PATTERN)} kinds, '
+          f'{spacing(r, n):.2f} mm apart, '
+          f'{min(q[3] for q in places):.2f} to {max(q[3] for q in places):.2f} mm across, '
+          f'relief {height:.2f} mm, bore {bore:.2f} mm')
     return m, ink, rel
 
 
@@ -206,15 +223,15 @@ if __name__ == '__main__':
     a = argparse.ArgumentParser()
     a.add_argument('--dia', type=float, default=8.0)
     a.add_argument('--bore', type=float, default=1.2)
-    a.add_argument('--cell', type=float, default=5.0,
-                   help='width of one repeat of the pattern, mm')
+    a.add_argument('--marks', type=int, default=30,
+                   help='marks over the whole sphere before the caps are '
+                        'dropped; fewer means bigger and further apart')
     a.add_argument('--simple', action='store_true',
-                   help='two marks to the cell, OM and the framed cross, '
-                        'staggered - the page pattern thinned for a ball '
-                        'this small')
-    a.add_argument('--mark', type=float, default=1.3,
-                   help='scale the marks within the cell; the page '
-                        'proportions are thin for an 8 mm ball')
+                   help='OM and the framed cross only - the page pattern '
+                        'thinned for a ball this small')
+
+    a.add_argument('--mark', type=float, default=1.0,
+                   help='scale every mark by this')
     a.add_argument('--relief', type=float, default=0.10)
     a.add_argument('--cut', action='store_true',
                    help='engrave the marks into the ball instead of '
@@ -224,12 +241,10 @@ if __name__ == '__main__':
     o = a.parse_args()
     os.makedirs(os.path.dirname(o.out), exist_ok=True)
     if o.simple:
-        keep = {'om': (0.00, 0.00, 26.7), 'sq': (0.50, 0.50, 14.5)}
-        PATTERN[:] = [(n, b, *keep[n]) for n, b, _, _, _ in PATTERN
-                      if n in keep]
+        PATTERN[:] = [q for q in PATTERN if q[0] in ('om', 'sq')]
     stamps = [stamp_from_pdf(PAGE, box=b, px=2200) for _, b, _, _, _ in PATTERN]
-    for (nm, _, u, v, mm), st in zip(PATTERN, stamps):
+    for (nm, _, _, _, mm), st in zip(PATTERN, stamps):
         print(f'   {nm:5s} {st.shape[1]:4d} x {st.shape[0]:4d} px   '
-              f'cell ({u:+.3f},{v:+.3f})   {mm:.1f} mm on the page')
-    build(stamps, o.out, dia=o.dia, bore=o.bore, cell=o.cell, mark=o.mark,
+              f'{mm:.2f} mm on the ball')
+    build(stamps, o.out, dia=o.dia, bore=o.bore, n=o.marks, mark=o.mark,
           height=o.relief, sub=o.sub, cut=o.cut)

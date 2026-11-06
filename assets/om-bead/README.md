@@ -1,27 +1,60 @@
 # 8 mm monogram bead
 
-The repeat from **page 101 of the tshirt design**, laid over a ball:
-**OM**, the **cross in a filled square**, **925**, the **cross in a
-circle**, and the **cross outline** — five marks in one cell, at the
-positions and proportions they sit at on the page.
+The five marks from **page 101 of the tshirt design** — **OM**, the
+**cross in a filled square**, **925**, the **cross in a circle** and the
+**cross outline** — laid over a ball at one spacing.
 
-![options](renders/om-bead-pattern-options.png)
-
-![mockup](renders/om-bead-mockup.png)
+![the bead](renders/om-bead-pattern-v2.png)
 
 | | |
 | --- | --- |
-| `om-bead-8mm-embossed.stl` | marks raised 0.10 mm; ball 7.80 mm, overall **8.00 mm** |
-| `om-bead-8mm-engraved.stl` | marks cut 0.10 mm in; ball **8.00 mm** |
+| `om-bead-8mm-pattern.stl` | marks raised 0.10 mm; ball 7.80 mm, overall **8.00 mm** |
+| `om-bead-8mm-pattern-engraved.stl` | marks cut 0.10 mm in; ball **8.00 mm** |
 
-Both: 1.20 mm bore through the poles, one closed body, ~325,000
-triangles. **32 marks on 5 rows at a 2.50 mm pitch**, longest side
-2.25 mm.
+24 marks, **3.0 mm apart everywhere**, 2.10 to 2.70 mm across, 1.20 mm
+bore through the poles, one closed body, ~325,000 triangles.
 
 ```sh
-python3 scripts/om_bead.py                      # embossed
-python3 scripts/om_bead.py --cut --out ...      # engraved
+python3 scripts/om_bead.py --marks 24              # embossed
+python3 scripts/om_bead.py --marks 24 --cut        # engraved
 ```
+
+## Three goes at the spacing, and what each one taught
+
+**A golden spiral.** Even density, which is not the same thing as even
+spacing to look at, and with no order to the marks it read as a scatter.
+
+**A grid of rows.** Rows a fixed arc apart hold a whole number of marks,
+so every row's spacing rounds to a different value — and above the last
+row there is nothing at all, which is the bald cap around the bore.
+Neither fault can be fixed by picking better numbers. A sphere has no
+regular tiling of that kind.
+
+**Back to the spiral, with the order in the marks instead.** A Fibonacci
+spiral does have the one property that matters here: every point is the
+same distance from its neighbours, at the poles as much as the equator.
+That is what "the spacing is always the same" means on a ball, and it
+leaves no gap to go bald. Points are generated over the whole sphere and
+then the caps dropped, so what remains keeps the spacing of the whole.
+
+The order comes from the marks: they cycle in a fixed sequence and all
+stand upright, so the eye reads a pattern rather than a scatter.
+
+## Two things that are not obvious
+
+**The sequence length matters more than it looks.** On a Fibonacci
+spiral, points that are neighbours *in space* are a Fibonacci number
+apart *in index* — 5 or 8 or 13 for a couple of dozen marks. A sequence
+eight long therefore handed every spatial neighbour the same mark and
+the ball came out in bands of one kind. Nine shares no factor with 5, 8
+or 13.
+
+**The marks are not at the page's relative sizes.** There the little
+crosses are a third of the OM, which on an 8 mm ball puts them under a
+millimetre and leaves gaps that read as bald. They are sized to look
+equal instead, so the space between any two marks is the same wherever
+you look. The OM takes every other place — it is the mark, the rest are
+its accents.
 
 ## Three things a ball makes you get right
 
