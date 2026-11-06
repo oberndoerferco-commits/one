@@ -1,8 +1,16 @@
 # PA & CO — letters +0.12, diamond +0.50, bar freed, real dome
 
-`paco-50mm-freebar.pdf`, `paco-logo-freebar-dome1.20-base0.45.stl`,
+`paco-50mm-freebar.pdf`, `paco-logo-SMOOTH-dome1.20-base0.45.stl`,
 `paco-engineering-sheet.pdf` (2 × A3).
 50.25 × 35.96 × 1.65 mm, **seven** pieces, 471.6 mm² in plan.
+
+![which file](paco-which-file.png)
+
+**The file name changed.** The stepped build and the meshed one were both
+written as `paco-logo-freebar-dome1.20-base0.45.stl`, which is how a
+superseded file goes on being opened. The real one is now
+`paco-logo-SMOOTH-...`; the two are a glance apart in any viewer, at
+51,844 triangles against 287,964.
 
 ![before and after](paco-dome-before-after.png)
 

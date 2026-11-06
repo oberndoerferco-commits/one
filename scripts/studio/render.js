@@ -8,6 +8,9 @@ const VIEWS = {
   rake:    {pos:[-16,-52,10],  at:[-2,-3,0.8],      fov:26, fill:0.90},
   detail:  {pos:[-7,-30,18],   at:[-1.6,-10.7,1.2], fov:20, dist:26},
   diamond: {pos:[8,-28,23],    at:[0,9.5,1.2],      fov:22, dist:30},
+  // low and close, across the strokes - the angle that shows a stepped
+  // top surface for what it is
+  raking:  {pos:[-3,-24,6.5],  at:[-0.6,-8.5,1.0],  fov:24, dist:22},
 };
 
 (async () => {
