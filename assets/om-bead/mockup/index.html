@@ -1,0 +1,1010 @@
+<title>OM Monogram Bead</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* layout: full-height bench — the bead on the left, a bench column of controls on the right, stacking to one column on a phone */
+:root{
+  --bg:#efeeea; --panel:#fbfaf7; --sunk:#f1efe9; --line:#dad7cd;
+  --ink:#1b2120; --mute:#6a7472; --accent:#1c6a61; --accent-ink:#ffffff;
+  --warn:#8e5118;
+  --scene-a:#e7e6e0; --scene-b:#bfc2bd;
+  --disp:"Bodoni Moda","Didot",Georgia,serif;
+  --ui:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --gut:max(16px,env(safe-area-inset-left,0px));
+  --gutr:max(16px,env(safe-area-inset-right,0px));
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#111414; --panel:#191d1c; --sunk:#141817; --line:#2b3231;
+    --ink:#e7e9e6; --mute:#8c9693; --accent:#5cb2a5; --accent-ink:#071413;
+    --warn:#d79a55;
+    --scene-a:#1d2221; --scene-b:#090b0b;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#111414; --panel:#191d1c; --sunk:#141817; --line:#2b3231;
+  --ink:#e7e9e6; --mute:#8c9693; --accent:#5cb2a5; --accent-ink:#071413;
+  --warn:#d79a55;
+  --scene-a:#1d2221; --scene-b:#090b0b;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--ui);font-size:14px;line-height:1.45;-webkit-font-smoothing:antialiased}
+.app{display:grid;height:100%;grid-template-columns:minmax(0,1fr) 356px;grid-template-rows:auto minmax(0,1fr) auto;background:var(--bg)}
+
+/* header */
+.bar{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px 28px;
+  padding-block:14px 12px;padding-left:var(--gut);padding-right:var(--gutr);
+  border-bottom:1px solid var(--line);background:var(--panel)}
+.eyebrow{display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);font-weight:600}
+h1{font-family:var(--disp);font-weight:400;font-size:clamp(22px,3.2vw,30px);line-height:1;margin:4px 0 0;letter-spacing:.01em;text-wrap:balance}
+.specs{display:flex;flex-wrap:wrap;gap:4px 22px;margin:0 0 2px auto}
+.specs div{min-width:0}
+.specs dt{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-weight:600}
+.specs dd{margin:1px 0 0;font-family:var(--mono);font-size:14px;font-variant-numeric:tabular-nums}
+
+/* stage */
+.stage{position:relative;min-width:0;min-height:0;overflow:hidden;background:var(--sunk)}
+#view{position:absolute;inset:0}
+#view canvas{display:block;width:100%;height:100%;touch-action:none;cursor:grab}
+#view canvas.moving{cursor:crosshair}
+.tools{position:absolute;top:0;left:0;right:0;display:flex;flex-wrap:wrap;gap:8px;
+  padding-block:12px;padding-left:var(--gut);padding-right:var(--gutr);pointer-events:none}
+.tools>*{pointer-events:auto}
+.hint{position:absolute;bottom:0;left:0;right:0;margin:0;padding-block:10px 12px;
+  padding-left:var(--gut);padding-right:var(--gutr);
+  font-size:12px;color:var(--mute);text-shadow:0 1px 0 var(--sunk)}
+.hint b{color:var(--ink);font-weight:600}
+.boot{position:absolute;inset:0;display:grid;place-content:center;gap:8px;text-align:center;color:var(--mute);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+
+/* panel */
+.panel{grid-column:2;min-height:0;overflow-y:auto;border-left:1px solid var(--line);background:var(--panel);
+  padding-block:4px 20px;padding-left:var(--gut);padding-right:var(--gutr)}
+section{border-bottom:1px solid var(--line);padding-block:14px}
+section:last-of-type{border-bottom:0}
+h2{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin:0 0 10px;font-weight:600}
+.row{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.row:last-child{margin-bottom:0}
+.row label{flex:1 1 auto;min-width:0;font-size:12.5px}
+.row .val{font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums;color:var(--mute);min-width:62px;text-align:right}
+input[type=range]{flex:0 0 132px;width:132px;accent-color:var(--accent);margin:0}
+.seg{display:flex;gap:0;border:1px solid var(--line);border-radius:3px;overflow:hidden;background:var(--sunk)}
+.seg button{flex:1 1 0;min-width:0;border:0;background:transparent;color:var(--ink);font:inherit;font-size:12px;
+  padding:7px 8px;cursor:pointer;border-right:1px solid var(--line)}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed=true]{background:var(--accent);color:var(--accent-ink);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--sunk);color:var(--ink);font:inherit;font-size:11.5px;
+  padding:5px 9px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.chip[aria-pressed=true]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
+button.btn{border:1px solid var(--line);background:var(--sunk);color:var(--ink);font:inherit;font-size:12px;
+  padding:7px 11px;border-radius:3px;cursor:pointer}
+button.btn:hover,.chip:hover{border-color:var(--accent)}
+button.btn[aria-pressed=true]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
+button.btn.wide{width:100%;text-align:left}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.ring{border:1px solid var(--line);border-radius:4px;padding:10px;margin-bottom:10px;background:var(--sunk)}
+.ring:last-child{margin-bottom:0}
+.ring h3{margin:0 0 8px;font-size:12px;font-weight:600;display:flex;justify-content:space-between;gap:8px}
+.ring h3 span{font-family:var(--mono);font-weight:400;color:var(--mute);font-size:11px}
+.note{font-size:11.5px;color:var(--mute);margin:10px 0 0}
+.sel-none{font-size:12px;color:var(--mute);margin:0}
+.pill{display:inline-block;font-family:var(--mono);font-size:11px;padding:2px 7px;border-radius:999px;
+  background:var(--sunk);border:1px solid var(--line);color:var(--mute)}
+.pill.warn{color:var(--warn);border-color:var(--warn)}
+
+/* footer */
+.foot{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:10px 24px;
+  padding-block:11px;padding-left:var(--gut);padding-right:var(--gutr);
+  border-top:1px solid var(--line);background:var(--panel);font-size:12px}
+.foot .read{display:flex;flex-wrap:wrap;gap:4px 20px;margin-right:auto}
+.foot .read span{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--mute)}
+.foot .read span b{color:var(--ink);font-weight:500}
+.cmd{display:none;width:100%;margin:6px 0 0;padding:10px;border:1px solid var(--line);border-radius:3px;
+  background:var(--sunk);font-family:var(--mono);font-size:11.5px;white-space:pre-wrap;word-break:break-word;color:var(--ink)}
+.cmd[data-open=true]{display:block}
+
+@media (max-width:900px){
+  html,body{height:auto}
+  .app{grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto auto auto;height:auto}
+  .stage{aspect-ratio:1/1;max-width:100%}
+  .panel{grid-column:1;border-left:0;border-top:1px solid var(--line);overflow:visible}
+  .specs{margin-left:0}
+  input[type=range]{flex:1 1 auto;width:auto}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+
+<div class="app">
+  <header class="bar">
+    <div>
+      <span class="eyebrow">PA &amp; CO · sterling silver 925</span>
+      <h1>Monogram Bead</h1>
+    </div>
+    <dl class="specs" id="specs"></dl>
+  </header>
+
+  <main class="stage">
+    <div id="view"><div class="boot" id="boot">Loading the marks…</div></div>
+    <div class="tools">
+      <div class="seg" style="flex:0 0 auto" role="group" aria-label="Pointer tool">
+        <button id="t-orbit" aria-pressed="true">Turn the bead</button>
+        <button id="t-move" aria-pressed="false">Move a mark</button>
+      </div>
+      <button class="btn" id="t-spin" aria-pressed="true">Auto-turn</button>
+      <button class="btn" id="t-home">Reset view</button>
+    </div>
+    <p class="hint" id="hint"></p>
+  </main>
+
+  <aside class="panel">
+    <section>
+      <h2>Pattern layout</h2>
+      <div class="seg" role="group" aria-label="Pattern layout">
+        <button id="m-rings" aria-pressed="true">Rings</button>
+        <button id="m-spread" aria-pressed="false">Even spread</button>
+      </div>
+      <div id="layout"></div>
+    </section>
+    <section id="sec-sel">
+      <h2>Selected mark</h2>
+      <div id="sel"></div>
+    </section>
+    <section>
+      <h2>The piece</h2>
+      <div id="piece"></div>
+    </section>
+  </aside>
+
+  <footer class="foot">
+    <div class="read" id="read"></div>
+    <button class="btn" id="b-cmd">Build command</button>
+    <button class="btn" id="b-json">Copy placement</button>
+    <div class="cmd" id="cmd"></div>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.149.0/three.min.js"></script>
+<script>
+(function(){
+'use strict';
+var D = Math.PI/180, R2D = 180/Math.PI;
+
+/* ---------- state ---------------------------------------------------- */
+var KINDS = [];            // from stamps.json, in PATTERN order
+var DRANGE = 0.4;
+var RINGNAME = ['Equator', 'Mid band', 'By the bore'];
+
+var S = {
+  mode:'rings', tool:'orbit', spin:true,
+  rings:[{lat:0,n:8,turn:0,kinds:[0,2],mm:null},
+         {lat:45,n:6,turn:0,kinds:[1,4],mm:null},
+         {lat:75,n:4,turn:0,kinds:[3],mm:1.70}],
+  spread:{n:30, cap:76},
+  dia:8.0, bore:1.2, relief:0.10, inset:0.05, scale:1.0, cut:false,
+  marks:[], sel:-1
+};
+
+/* ---------- maths shared with scripts/om_bead.py --------------------- */
+function unit(lon,lat){
+  var la=lat*D, lo=lon*D, c=Math.cos(la);
+  return [c*Math.cos(lo), c*Math.sin(lo), Math.sin(la)];
+}
+function ballRadius(){ return S.cut ? S.dia/2 : (S.dia - 2*S.relief)/2; }
+
+/* the ring plan, exactly as rings() builds it: every ring but the
+   equator is mirrored north and south, and the mirror is offset half a
+   step so the marks nest instead of lining up in columns. */
+function fromRings(){
+  var out=[];
+  for(var i=0;i<S.rings.length;i++){
+    var g=S.rings[i];
+    if(!g.kinds.length || !g.n) continue;
+    var signs = g.lat>0.001 ? [1,-1] : [1];
+    for(var s=0;s<signs.length;s++){
+      var off = signs[s]<0 ? 180/g.n : 0;
+      for(var c=0;c<g.n;c++){
+        var k=g.kinds[c%g.kinds.length];
+        out.push({lon:norm180(-180+360*c/g.n+off+g.turn), lat:signs[s]*g.lat,
+                  kind:k, mm:(g.mm||KINDS[k].mm), turn:0, ring:i});
+      }
+    }
+  }
+  return out;
+}
+/* the Fibonacci spiral — one spacing everywhere, caps dropped after */
+function fromSpread(){
+  var n=S.spread.n, ga=Math.PI*(3-Math.sqrt(5)), lim=Math.sin(S.spread.cap*D);
+  var pts=[];
+  for(var i=0;i<n;i++){
+    var z=1-2*(i+0.5)/n;
+    if(Math.abs(z)>lim) continue;
+    pts.push([norm180(((i*ga)%(2*Math.PI))*R2D-180), Math.asin(z)*R2D]);
+  }
+  var kinds=deal(pts);
+  return pts.map(function(p,i){
+    return {lon:p[0], lat:p[1], kind:kinds[i], mm:KINDS[kinds[i]].mm, turn:0, ring:-1};
+  });
+}
+/* colour the neighbour graph: no two touching marks share a kind, and
+   each takes the kind furthest behind its share */
+function deal(pts){
+  var n=pts.length, v=pts.map(function(p){return unit(p[0],p[1]);});
+  var w=KINDS.map(function(k){return k.share;}), tot=0, i, j;
+  for(i=0;i<w.length;i++) tot+=w[i];
+  for(i=0;i<w.length;i++) w[i]/=tot;
+  var kind=new Array(n).fill(-1), count=new Array(w.length).fill(0);
+  for(i=0;i<n;i++){
+    var d=[];
+    for(j=0;j<n;j++) if(j!==i) d.push([dot(v[i],v[j]), j]);
+    d.sort(function(a,b){return b[0]-a[0];});
+    var taken={};
+    for(j=0;j<Math.min(6,d.length);j++) if(kind[d[j][1]]>=0) taken[kind[d[j][1]]]=1;
+    var free=[];
+    for(j=0;j<w.length;j++) if(!taken[j]) free.push(j);
+    if(!free.length) for(j=0;j<w.length;j++) free.push(j);
+    var pick=free[0];
+    for(j=1;j<free.length;j++)
+      if(count[free[j]]/w[free[j]] < count[pick]/w[pick]) pick=free[j];
+    kind[i]=pick; count[pick]++;
+  }
+  return kind;
+}
+function dot(a,b){ return a[0]*b[0]+a[1]*b[1]+a[2]*b[2]; }
+function norm180(x){ x=((x+180)%360+360)%360-180; return x; }
+
+function replace(){
+  S.marks = S.mode==='rings' ? fromRings() : fromSpread();
+  S.sel = -1;
+}
+
+/* ---------- the relief --------------------------------------------- */
+/* Each mark gets its own frame on the ball - east and north at its own
+   centre - and every vertex near it is carried into that frame by an
+   azimuthal equidistant projection, the one that keeps distance from
+   the centre. That is what keeps a square square: its sides stay the
+   same length in millimetres of arc, which is what a square means on a
+   sphere. Stretching an equirectangular stamp by 1/cos(latitude)
+   instead bows a 2.4 mm mark into a trapezoid, because the mark spans
+   thirty-five degrees and cos(latitude) changes across it. */
+var MK=null, MKS=null, MKN=0;
+function frames(){
+  var n=S.marks.length, R=ballRadius();
+  MK=new Float64Array(n*14); MKS=new Int32Array(n); MKN=n;
+  for(var i=0;i<n;i++){
+    var m=S.marks[i], st=KINDS[m.kind].st;
+    var la=m.lat*D, lo=m.lon*D, o=i*14;
+    var c=unit(m.lon,m.lat);
+    var e=[-Math.sin(lo), Math.cos(lo), 0];
+    var nt=[c[1]*e[2]-c[2]*e[1], c[2]*e[0]-c[0]*e[2], c[0]*e[1]-c[1]*e[0]];
+    var mm=m.mm*S.scale, w, h;
+    if(st.w>=st.h){ w=mm; h=mm*st.h/st.w; } else { h=mm; w=mm*st.w/st.h; }
+    var rad=Math.hypot(w,h)/2/R;
+    MK[o]=c[0]; MK[o+1]=c[1]; MK[o+2]=c[2];
+    MK[o+3]=e[0]; MK[o+4]=e[1]; MK[o+5]=e[2];
+    MK[o+6]=nt[0]; MK[o+7]=nt[1]; MK[o+8]=nt[2];
+    MK[o+9]=Math.cos(Math.min(rad,Math.PI*0.49));
+    MK[o+10]=w; MK[o+11]=h;
+    MK[o+12]=Math.cos(m.turn*D); MK[o+13]=Math.sin(m.turn*D);
+    MKS[i]=m.kind;
+  }
+}
+/* The relief is baked into an equirectangular map rather than cut into
+   the mesh, and for one reason: a mark's wall is about five hundredths
+   of a millimetre wide, and no mesh a browser can rebuild while you
+   drag has vertices that fine. Displace the mesh and the edges come out
+   as a staircase of the lat/long grid. So the map carries the detail as
+   a normal map, which is per pixel and does not care how coarse the
+   triangles are, and the mesh carries only the silhouette. The relief
+   is a hundredth of the bead's radius, so that is a fair division of
+   labour. */
+function sample(o, px, py, pz, R){
+  var dt=px*MK[o]+py*MK[o+1]+pz*MK[o+2];
+  if(dt<MK[o+9]) return 0;
+  var ang=Math.acos(dt>1?1:dt);
+  var ue=px*MK[o+3]+py*MK[o+4]+pz*MK[o+5];
+  var un=px*MK[o+6]+py*MK[o+7]+pz*MK[o+8];
+  var nn=Math.hypot(ue,un); if(nn<1e-12) nn=1e-12;
+  var f=R*ang/nn, u=f*ue, v=f*un;
+  var ct=MK[o+12], stn=MK[o+13];
+  var u2=u*ct+v*stn, v2=-u*stn+v*ct;
+  var st=MKT[o/14|0];
+  var col=(u2/MK[o+10]+0.5)*st.w, row=(0.5-v2/MK[o+11])*st.h;
+  if(col<0||row<0||col>st.w-1.001||row>st.h-1.001) return 0;
+  var x0=col|0, y0=row|0, fx=col-x0, fy=row-y0, d=st.data, W=st.w;
+  var p0=d[y0*W+x0], p1=d[y0*W+x0+1], p2=d[(y0+1)*W+x0], p3=d[(y0+1)*W+x0+1];
+  var val=(p0+(p1-p0)*fx)*(1-fy)+(p2+(p3-p2)*fx)*fy;
+  var t=(val*DRANGE/255)/S.inset; if(t>1) t=1;
+  return t*t*(3-2*t);
+}
+var MKT=[];
+
+/* ---------- the maps ------------------------------------------------- */
+var MAPS={};
+function maps(W,Hh){
+  var m=MAPS[W];
+  if(!m){
+    m={W:W,H:Hh,h:new Float32Array(W*Hh),n:new Uint8Array(W*Hh*4),tex:null,
+       dW:W>>3, dH:Hh>>3, d:new Float32Array((W>>3)*(Hh>>3))};
+    for(var i=3;i<m.n.length;i+=4) m.n[i]=255;
+    MAPS[W]=m;
+  }
+  return m;
+}
+function bake(W,Hh){
+  var m=maps(W,Hh), R=ballRadius(), H=m.h, i, r, c;
+  H.fill(0);
+  MKT=S.marks.map(function(k){ return KINDS[k.kind].st; });
+  for(i=0;i<S.marks.length;i++){
+    var o=i*14, mk=S.marks[i];
+    var rad=Math.acos(Math.min(1,Math.max(-1,MK[o+9])));
+    var dlat=rad*R2D*1.12, la=mk.lat*D;
+    var dlon=dlat/Math.max(Math.cos(la),0.02);
+    var r0=Math.max(0,Math.floor((90-mk.lat-dlat)/180*Hh));
+    var r1=Math.min(Hh-1,Math.ceil((90-mk.lat+dlat)/180*Hh));
+    var c0=Math.floor((mk.lon+180-dlon)/360*W);
+    var c1=Math.ceil((mk.lon+180+dlon)/360*W);
+    if(c1-c0>W){ c0=0; c1=W-1; }
+    for(r=r0;r<=r1;r++){
+      var LA=(90-(r+0.5)/Hh*180)*D, cla=Math.cos(LA), sla=Math.sin(LA), row=r*W;
+      for(c=c0;c<=c1;c++){
+        var LO=((c+0.5)/W*360-180)*D;
+        var v=sample(o, cla*Math.cos(LO), cla*Math.sin(LO), sla, R);
+        if(v<=0) continue;
+        var k=row+((c%W)+W)%W;
+        if(v>H[k]) H[k]=v;
+      }
+    }
+  }
+  /* The mesh gets a blurred copy, not this one. A mark's wall is a
+     hundredth of the bead's radius and far thinner than a triangle, so
+     displacing by the sharp map only puts a staircase on the
+     silhouette. Blurred, the mesh carries the swell and the normal map
+     carries the edge. */
+  var dW=m.dW, dH=m.dH, Dm=m.d;
+  Dm.fill(0);
+  for(r=0;r<Hh;r++){
+    var dr=(r>>3)*dW, sr=r*W;
+    for(c=0;c<W;c++) Dm[dr+(c>>3)]+=H[sr+c];
+  }
+  for(i=0;i<Dm.length;i++) Dm[i]/=64;
+
+  /* the normal of the relief, texel by texel: the east step shortens
+     with the cosine of the latitude, which is the whole reason a mark
+     near the bore needs no different treatment from one at the
+     equator. */
+  var N=m.n, R2=R, amp=S.relief*(S.cut?-1:1);
+  var dsn=Math.PI*R2/Hh;
+  for(r=0;r<Hh;r++){
+    var lat=(90-(r+0.5)/Hh*180)*D;
+    var dse=2*Math.PI*R2*Math.max(Math.cos(lat),0.02)/W;
+    var rw=r*W, up=(r>0?r-1:r)*W, dn=(r<Hh-1?r+1:r)*W;
+    var sy=(r>0&&r<Hh-1)?2:1;
+    for(c=0;c<W;c++){
+      var k=rw+c, q=k*4;
+      var e1=H[rw+(c+1)%W], e0=H[rw+(c-1+W)%W];
+      var n1=H[dn+c], n0=H[up+c];
+      if(H[k]===0 && e1===0 && e0===0 && n1===0 && n0===0){
+        N[q]=128; N[q+1]=128; N[q+2]=255; continue;
+      }
+      var gx=-(e1-e0)*amp/(2*dse);
+      var gy=-(n1-n0)*amp/(sy*dsn);
+      var L=Math.sqrt(gx*gx+gy*gy+1);
+      N[q]=((gx/L)*0.5+0.5)*255;
+      N[q+1]=((gy/L)*0.5+0.5)*255;
+      N[q+2]=((1/L)*0.5+0.5)*255;
+    }
+  }
+  if(!m.tex){
+    m.tex=new THREE_.DataTexture(N,W,Hh,THREE_.RGBAFormat);
+    m.tex.wrapS=THREE_.RepeatWrapping;
+    m.tex.wrapT=THREE_.ClampToEdgeWrapping;
+    m.tex.minFilter=THREE_.LinearMipmapLinearFilter;
+    m.tex.magFilter=THREE_.LinearFilter;
+    m.tex.generateMipmaps=true;
+    m.tex.anisotropy=renderer.capabilities.getMaxAnisotropy();
+  }
+  m.tex.needsUpdate=true;
+  return m;
+}
+function heightAt(m,lon,lat){
+  var W=m.dW, Hh=m.dH, h=m.d;
+  var fc=((lon+180)/360*W)-0.5, fr=((90-lat)/180*Hh)-0.5;
+  var r0=Math.floor(fr), c0=Math.floor(fc), fy=fr-r0, fx=fc-c0;
+  var r1=r0+1;
+  if(r0<0) r0=0; if(r1<0) r1=0;
+  if(r0>Hh-1) r0=Hh-1; if(r1>Hh-1) r1=Hh-1;
+  var a=((c0%W)+W)%W, b=(((c0+1)%W)+W)%W;
+  var t=h[r0*W+a]+(h[r0*W+b]-h[r0*W+a])*fx;
+  var u=h[r1*W+a]+(h[r1*W+b]-h[r1*W+a])*fx;
+  return t+(u-t)*fy;
+}
+
+/* ---------- geometry ------------------------------------------------- */
+/* A band of a sphere plus a tube: the bore is a real hole, so the mesh
+   stops where the 1.2 mm bore meets the ball instead of closing over
+   it. */
+var GEO={};
+function shell(C,Rn){
+  var key=C+'x'+Rn, g=GEO[key];
+  if(g) return g;
+  var nv=(Rn+1)*(C+1);
+  var idx=new Uint32Array(C*Rn*6), p=0, i, j;
+  for(i=0;i<Rn;i++) for(j=0;j<C;j++){
+    var a=i*(C+1)+j, b=a+1, c=a+C+1, d=c+1;
+    idx[p++]=a; idx[p++]=c; idx[p++]=b;
+    idx[p++]=b; idx[p++]=c; idx[p++]=d;
+  }
+  g={C:C,R:Rn,nv:nv,idx:idx,geo:null,
+     dirs:new Float32Array(nv*3), uv:new Float32Array(nv*2),
+     pos:new Float32Array(nv*3), nrm:new Float32Array(nv*3)};
+  GEO[key]=g; return g;
+}
+function aim(g,th0){
+  var C=g.C, Rn=g.R, span=Math.PI-2*th0, i, j;
+  if(!g.cp){
+    g.cp=new Float64Array(C+1); g.sp=new Float64Array(C+1);
+    for(j=0;j<=C;j++){ var ph=-Math.PI+2*Math.PI*j/C;
+      g.cp[j]=Math.cos(ph); g.sp[j]=Math.sin(ph); }
+  }
+  for(i=0;i<=Rn;i++){
+    var th=th0+span*i/Rn, s=Math.sin(th), z=Math.cos(th), base=i*(C+1);
+    for(j=0;j<=C;j++){
+      var k=(base+j)*3;
+      g.dirs[k]=s*g.cp[j]; g.dirs[k+1]=s*g.sp[j]; g.dirs[k+2]=z;
+      g.uv[(base+j)*2]=j/C; g.uv[(base+j)*2+1]=th/Math.PI;
+    }
+  }
+}
+
+var THREE_=window.THREE, renderer, scene, camera, mesh, tube, mat, env;
+var cam={yaw:-60, pitch:18, dist:26};
+var MESH=shell(384,192), needHi=false, loAt=0;
+
+function surface(g,m){
+  var R=ballRadius(), sign=S.cut?-1:1, h=S.relief;
+  var th0=Math.asin(Math.min(0.995,(S.bore/2)/R));
+  aim(g,th0);
+  var d=g.dirs, pos=g.pos, nrm=g.nrm;
+  for(var i=0,n=g.nv;i<n;i++){
+    var k=i*3, x=d[k], y=d[k+1], z=d[k+2];
+    var lat=Math.asin(z>1?1:(z<-1?-1:z))*R2D, lon=Math.atan2(y,x)*R2D;
+    var rr=R+sign*h*heightAt(m,lon,lat);
+    pos[k]=x*rr; pos[k+1]=y*rr; pos[k+2]=z*rr;
+    nrm[k]=x; nrm[k+1]=y; nrm[k+2]=z;
+  }
+  if(!g.geo){
+    g.geo=new THREE_.BufferGeometry();
+    g.geo.setAttribute('position', new THREE_.BufferAttribute(pos,3));
+    g.geo.setAttribute('normal', new THREE_.BufferAttribute(nrm,3));
+    g.geo.setAttribute('uv', new THREE_.BufferAttribute(g.uv,2));
+    g.geo.setIndex(new THREE_.BufferAttribute(g.idx,1));
+  }
+  g.geo.attributes.position.needsUpdate=true;
+  g.geo.attributes.normal.needsUpdate=true;
+  g.geo.attributes.uv.needsUpdate=true;
+  g.geo.computeBoundingSphere();
+  return {geo:g.geo, th0:th0, R:R};
+}
+
+function rebuild(hi){
+  frames();
+  var m=bake(hi?2048:1024, hi?1024:512);
+  var out=surface(MESH,m);
+  mesh.geometry=out.geo;
+  mat.normalMap=m.tex;
+  mat.needsUpdate=true;
+  var R=out.R, zr=R*Math.cos(out.th0);
+  tube.scale.set(S.bore/2, 2*zr, S.bore/2);
+  tube.visible = S.bore > 0.01;
+  if(hi){ needHi=false; } else { needHi=true; loAt=performance.now(); }
+  stats();
+}
+
+/* ---------- scene ---------------------------------------------------- */
+function faceCanvas(kind){
+  var c=document.createElement('canvas'); c.width=c.height=256;
+  var x=c.getContext('2d');
+  var css=getComputedStyle(document.documentElement);
+  var a=css.getPropertyValue('--scene-a').trim()||'#e7e6e0';
+  var b=css.getPropertyValue('--scene-b').trim()||'#bfc2bd';
+  /* Polished silver shows you the room, not the lamps, so the room is
+     what is drawn: a dark box with two strip lights and a softbox
+     overhead. The contrast between them is the whole of the metal's
+     look - a bright even surround renders as flat white paint. */
+  x.fillStyle='#14100c'; x.fillRect(0,0,256,256);
+  if(kind==='top'){
+    var r=x.createRadialGradient(128,116,12,128,128,152);
+    r.addColorStop(0,'#ffffff'); r.addColorStop(0.45,'#f2efe8');
+    r.addColorStop(0.78,'#55504a'); r.addColorStop(1,'#1a1713');
+    x.fillStyle=r; x.fillRect(0,0,256,256);
+  } else if(kind==='bot'){
+    var g2=x.createRadialGradient(128,128,8,128,128,160);
+    g2.addColorStop(0,'#3a3832'); g2.addColorStop(1,'#0b0a08');
+    x.fillStyle=g2; x.fillRect(0,0,256,256);
+  } else {
+    var gd=x.createLinearGradient(0,0,0,256);
+    gd.addColorStop(0,'#cfccc4'); gd.addColorStop(0.22,'#4a4740');
+    gd.addColorStop(0.62,'#1b1814'); gd.addColorStop(1,'#090806');
+    x.fillStyle=gd; x.fillRect(0,0,256,256);
+    x.filter='blur(9px)';
+    x.fillStyle='#ffffff'; x.fillRect(34,22,26,172);
+    x.fillStyle='#aebabd'; x.fillRect(188,52,14,118);
+    x.filter='none';
+  }
+  return c;
+}
+function studio(){
+  var t=new THREE_.CubeTexture([faceCanvas('side'),faceCanvas('side'),
+    faceCanvas('side'),faceCanvas('side'),faceCanvas('top'),faceCanvas('bot')]);
+  t.encoding=THREE_.sRGBEncoding;
+  t.needsUpdate=true;
+  return t;
+}
+function backdrop(){
+  var c=document.createElement('canvas'); c.width=c.height=256;
+  var x=c.getContext('2d');
+  var css=getComputedStyle(document.documentElement);
+  var a=css.getPropertyValue('--scene-a').trim()||'#e7e6e0';
+  var b=css.getPropertyValue('--scene-b').trim()||'#bfc2bd';
+  var g=x.createRadialGradient(128,98,12,128,132,186);
+  g.addColorStop(0,a); g.addColorStop(0.55,a); g.addColorStop(1,b);
+  x.fillStyle=g; x.fillRect(0,0,256,256);
+  var tx=new THREE_.CanvasTexture(c); tx.encoding=THREE_.sRGBEncoding; return tx;
+}
+
+function setup(){
+  var host=document.getElementById('view');
+  renderer=new THREE_.WebGLRenderer({antialias:true});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+  renderer.outputEncoding=THREE_.sRGBEncoding;
+  renderer.toneMapping=THREE_.ACESFilmicToneMapping;
+  renderer.toneMappingExposure=1.5;
+  host.appendChild(renderer.domElement);
+  scene=new THREE_.Scene();
+  scene.background=backdrop();
+  camera=new THREE_.PerspectiveCamera(26,1,0.5,200);
+  camera.up.set(0,0,1);
+  env=studio();
+
+  mat=new THREE_.MeshStandardMaterial({color:0xdedcd6, metalness:1.0,
+    roughness:0.17, envMap:env, envMapIntensity:2.0,
+    normalScale:new THREE_.Vector2(1,1)});
+  mesh=new THREE_.Mesh(new THREE_.BufferGeometry(), mat);
+  scene.add(mesh);
+
+  var tmat=new THREE_.MeshStandardMaterial({color:0x8a8c88, metalness:0.9,
+    roughness:0.6, envMap:env, envMapIntensity:0.8, side:THREE_.BackSide});
+  tube=new THREE_.Mesh(new THREE_.CylinderGeometry(1,1,1,64,1,true), tmat);
+  tube.rotation.x=Math.PI/2;
+  scene.add(tube);
+
+  var key=new THREE_.DirectionalLight(0xffffff,1.6); key.position.set(-6,-9,8);
+  var fill=new THREE_.DirectionalLight(0xffffff,0.5); fill.position.set(7,4,-3);
+  var rim=new THREE_.DirectionalLight(0xffffff,0.9); rim.position.set(2,9,-6);
+  scene.add(key,fill,rim);
+
+  new ResizeObserver(fit).observe(host);
+  fit();
+  wire(host);
+}
+function fit(){
+  var host=document.getElementById('view');
+  var w=host.clientWidth||1, h=host.clientHeight||1;
+  renderer.setSize(w,h,false);
+  camera.aspect=w/h; camera.updateProjectionMatrix();
+}
+function place(){
+  var p=cam.pitch*D, y=cam.yaw*D, c=Math.cos(p);
+  camera.position.set(cam.dist*c*Math.cos(y), cam.dist*c*Math.sin(y), cam.dist*Math.sin(p));
+  camera.lookAt(0,0,0);
+}
+
+/* ---------- pointer -------------------------------------------------- */
+function rayDir(ev){
+  var r=renderer.domElement.getBoundingClientRect();
+  var x=((ev.clientX-r.left)/r.width)*2-1, y=-((ev.clientY-r.top)/r.height)*2+1;
+  var v=new THREE_.Vector3(x,y,0.5).unproject(camera).sub(camera.position).normalize();
+  return v;
+}
+/* where the ray meets the undisplaced ball, as a unit direction */
+function hitBall(ev){
+  var d=rayDir(ev), o=camera.position, R=ballRadius();
+  var b=2*(o.x*d.x+o.y*d.y+o.z*d.z), c=o.lengthSq()-R*R;
+  var disc=b*b-4*c;
+  if(disc<0) return null;
+  var t=(-b-Math.sqrt(disc))/2;
+  if(t<0) return null;
+  var p=new THREE_.Vector3(o.x+d.x*t, o.y+d.y*t, o.z+d.z*t).normalize();
+  return [p.x,p.y,p.z];
+}
+function pick(p){
+  var best=-1, bd=-2;
+  for(var i=0;i<S.marks.length;i++){
+    var o=i*14, dt=p[0]*MK[o]+p[1]*MK[o+1]+p[2]*MK[o+2];
+    if(dt<MK[o+9]) continue;
+    if(dt>bd){ bd=dt; best=i; }
+  }
+  return best;
+}
+function wire(host){
+  var cv=renderer.domElement, down=null, drag=false;
+  cv.addEventListener('pointerdown', function(ev){
+    cv.setPointerCapture(ev.pointerId);
+    var p=hitBall(ev);
+    down={x:ev.clientX, y:ev.clientY, yaw:cam.yaw, pitch:cam.pitch,
+          mark: (S.tool==='move' && p) ? pick(p) : -1};
+    drag=false;
+    if(down.mark>=0){ S.sel=down.mark; selPanel(); }
+  });
+  cv.addEventListener('pointermove', function(ev){
+    if(!down) return;
+    var dx=ev.clientX-down.x, dy=ev.clientY-down.y;
+    if(!drag && Math.hypot(dx,dy)<3) return;
+    drag=true;
+    if(down.mark>=0){
+      var p=hitBall(ev);
+      if(!p) return;
+      var m=S.marks[down.mark];
+      m.lat=Math.asin(Math.max(-1,Math.min(1,p[2])))*R2D;
+      m.lon=Math.atan2(p[1],p[0])*R2D;
+      if(S.mode!=='custom'){ S.mode='custom'; modePanel(); }
+      rebuild(false); selPanel();
+    } else {
+      cam.yaw=down.yaw-dx*0.4;
+      cam.pitch=Math.max(-89,Math.min(89,down.pitch+dy*0.3));
+      place();
+    }
+  });
+  cv.addEventListener('pointerup', function(ev){
+    if(down && !drag){
+      var p=hitBall(ev);
+      S.sel = p ? pick(p) : -1;
+      selPanel();
+    }
+    if(down && drag && down.mark>=0) rebuild(true);
+    down=null;
+  });
+  cv.addEventListener('wheel', function(ev){
+    ev.preventDefault();
+    cam.dist=Math.max(11,Math.min(60,cam.dist*(1+Math.sign(ev.deltaY)*0.08)));
+    place();
+  }, {passive:false});
+}
+
+/* ---------- controls ------------------------------------------------- */
+var uid=0;
+function el(tag,cls,txt){ var e=document.createElement(tag); if(cls) e.className=cls;
+  if(txt!=null) e.textContent=txt; return e; }
+function slider(host,label,min,max,step,get,set,fmt){
+  var row=el('div','row'), lb=el('label',null,label), r=el('input'), v=el('span','val');
+  r.type='range'; r.min=min; r.max=max; r.step=step;
+  var id='s'+(uid++)+'-'+label.replace(/\W+/g,'');
+  r.id=id; lb.setAttribute('for',id);
+  r.addEventListener('input', function(){ set(parseFloat(r.value)); v.textContent=fmt(get()); });
+  row.appendChild(lb); row.appendChild(r); row.appendChild(v);
+  host.appendChild(row);
+  r.value=get(); v.textContent=fmt(get());
+  return row;
+}
+function kindChips(host,isOn,toggle){
+  var box=el('div','chips');
+  KINDS.forEach(function(k,i){
+    var b=el('button','chip',k.label);
+    b.type='button';
+    b.setAttribute('aria-pressed', isOn(i)?'true':'false');
+    b.addEventListener('click', function(){ toggle(i); });
+    box.appendChild(b);
+  });
+  host.appendChild(box);
+  return box;
+}
+
+function modePanel(){
+  var host=document.getElementById('layout');
+  host.innerHTML='';
+  document.getElementById('m-rings').setAttribute('aria-pressed', S.mode==='rings');
+  document.getElementById('m-spread').setAttribute('aria-pressed', S.mode==='spread');
+
+  if(S.mode==='custom'){
+    var p=el('p','note','Marks moved by hand. The ring and spread settings are '
+      +'waiting below — pick either one to lay the pattern out again.');
+    host.appendChild(p);
+    var back=el('button','btn wide','Back to the ring plan');
+    back.type='button';
+    back.addEventListener('click', function(){ S.mode='rings'; replace(); rebuild(true); modePanel(); selPanel(); });
+    host.appendChild(back);
+    return;
+  }
+  if(S.mode==='rings'){
+    S.rings.forEach(function(g,i){
+      var box=el('div','ring');
+      var h=el('h3'); h.appendChild(el('span',null,RINGNAME[i]));
+      h.appendChild(el('span',null, (g.lat>0.001? 2*g.n : g.n)+' marks'));
+      box.appendChild(h);
+      slider(box,'Latitude',0,88,1,function(){return g.lat;},
+        function(v){g.lat=v; redo();}, function(v){return v.toFixed(0)+'°';});
+      slider(box,'Marks per ring',0,14,1,function(){return g.n;},
+        function(v){g.n=v; redo();}, function(v){return v.toFixed(0);});
+      slider(box,'Turn',-60,60,1,function(){return g.turn;},
+        function(v){g.turn=v; redo();}, function(v){return v.toFixed(0)+'°';});
+      slider(box,'Mark size',1.2,3.4,0.05,
+        function(){return g.mm||KINDS[g.kinds[0]||0].mm;},
+        function(v){g.mm=v; redo();}, function(v){return v.toFixed(2)+' mm';});
+      kindChips(box, function(k){return g.kinds.indexOf(k)>=0;}, function(k){
+        var at=g.kinds.indexOf(k);
+        if(at>=0){ if(g.kinds.length>1) g.kinds.splice(at,1); }
+        else g.kinds.push(k);
+        redo(); modePanel();
+      });
+      host.appendChild(box);
+    });
+    host.appendChild(el('p','note','The reference is a medallion, and a ball has no '
+      +'middle — but it has an axis, so the hierarchy runs by latitude. '
+      +'Every ring off the equator is mirrored north and south, offset half a '
+      +'step so the marks nest instead of lining up in columns.'));
+  } else {
+    slider(host,'Marks over the ball',12,60,1,function(){return S.spread.n;},
+      function(v){S.spread.n=v; redo();}, function(v){return v.toFixed(0);});
+    slider(host,'Clear of the bore',40,90,1,function(){return S.spread.cap;},
+      function(v){S.spread.cap=v; redo();}, function(v){return (90-v).toFixed(0)+'°';});
+    host.appendChild(el('p','note','A Fibonacci spiral, then the caps dropped. '
+      +'A sphere has no grid of rows that keeps one spacing — each row would '
+      +'round to a different step and the cap round the bore would stay bald. '
+      +'The spiral puts every mark the same distance from its neighbours, and '
+      +'the neighbour graph is coloured so no two touching marks match.'));
+  }
+}
+
+function selPanel(){
+  var host=document.getElementById('sel');
+  host.innerHTML='';
+  if(S.sel<0 || S.sel>=S.marks.length){
+    host.appendChild(el('p','sel-none','Tap a mark on the bead to select it. '
+      +'With “Move a mark” on, drag it anywhere on the ball.'));
+    paintSel();
+    return;
+  }
+  var m=S.marks[S.sel];
+  var head=el('div','row');
+  head.appendChild(el('label',null, KINDS[m.kind].label));
+  head.appendChild(el('span','pill', m.lat.toFixed(1)+'° / '+m.lon.toFixed(1)+'°'));
+  host.appendChild(head);
+  kindChips(host, function(k){return k===m.kind;}, function(k){
+    m.kind=k; m.mm=KINDS[k].mm; custom(); selPanel();
+  });
+  slider(host,'Size',1.0,4.0,0.05,function(){return m.mm;},
+    function(v){m.mm=v; custom();}, function(v){return v.toFixed(2)+' mm';});
+  slider(host,'Turn',-180,180,1,function(){return m.turn;},
+    function(v){m.turn=v; custom();}, function(v){return v.toFixed(0)+'°';});
+  slider(host,'Latitude',-88,88,0.5,function(){return m.lat;},
+    function(v){m.lat=v; custom();}, function(v){return v.toFixed(1)+'°';});
+  slider(host,'Longitude',-180,180,1,function(){return m.lon;},
+    function(v){m.lon=v; custom();}, function(v){return v.toFixed(0)+'°';});
+  var rm=el('button','btn','Remove this mark'); rm.type='button';
+  rm.addEventListener('click', function(){
+    S.marks.splice(S.sel,1); S.sel=-1; custom(); selPanel();
+  });
+  host.appendChild(rm);
+  paintSel();
+}
+/* the selected mark gets a thin ring of its own so you can see which
+   one you have hold of */
+var halo=null;
+function paintSel(){
+  if(!halo){
+    halo=new THREE_.Mesh(new THREE_.RingGeometry(0.92,1,64),
+      new THREE_.MeshBasicMaterial({color:0x00c3ad, side:THREE_.DoubleSide,
+        transparent:true, opacity:0.95}));
+    scene.add(halo);
+  }
+  if(S.sel<0 || S.sel>=S.marks.length){ halo.visible=false; return; }
+  var m=S.marks[S.sel], R=ballRadius();
+  var c=unit(m.lon,m.lat);
+  var rad=Math.hypot(MK[S.sel*14+10],MK[S.sel*14+11])/2*0.78;
+  var lift=R+(S.cut?0.02:S.relief+0.02);
+  halo.visible=true;
+  halo.scale.set(rad,rad,1);
+  halo.position.set(c[0]*lift,c[1]*lift,c[2]*lift);
+  halo.lookAt(c[0]*(lift+1),c[1]*(lift+1),c[2]*(lift+1));
+}
+
+function piecePanel(){
+  var host=document.getElementById('piece');
+  host.innerHTML='';
+  slider(host,'Bead diameter',5,12,0.1,function(){return S.dia;},
+    function(v){S.dia=v; redo();}, function(v){return v.toFixed(2)+' mm';});
+  slider(host,'Bore',0.6,2.5,0.05,function(){return S.bore;},
+    function(v){S.bore=v; redo();}, function(v){return v.toFixed(2)+' mm';});
+  slider(host,'Relief',0.03,0.30,0.005,function(){return S.relief;},
+    function(v){S.relief=v; redo();}, function(v){return v.toFixed(3)+' mm';});
+  slider(host,'Edge softness',0.01,0.20,0.005,function(){return S.inset;},
+    function(v){S.inset=v; redo();}, function(v){return v.toFixed(3)+' mm';});
+  slider(host,'All marks',0.6,1.5,0.01,function(){return S.scale;},
+    function(v){S.scale=v; redo();}, function(v){return '×'+v.toFixed(2);});
+  var seg=el('div','seg');
+  var a=el('button',null,'Embossed'), b=el('button',null,'Engraved');
+  a.type=b.type='button';
+  a.setAttribute('aria-pressed', !S.cut); b.setAttribute('aria-pressed', !!S.cut);
+  a.addEventListener('click', function(){ S.cut=false; redo(); piecePanel(); });
+  b.addEventListener('click', function(){ S.cut=true; redo(); piecePanel(); });
+  seg.appendChild(a); seg.appendChild(b);
+  host.appendChild(seg);
+  host.appendChild(el('p','note','Engraved, the ball is the full diameter and '
+    +'the marks go into it. Embossed, the marks stand proud and the ball '
+    +'beneath is smaller by the relief — either way the bead measures the '
+    +'size it is called.'));
+}
+
+function custom(){ if(S.mode!=='custom'){ S.mode='custom'; modePanel(); } redo(); }
+var pending=false;
+function redo(){
+  if(pending) return;
+  pending=true;
+  requestAnimationFrame(function(){ pending=false; rebuild(false); paintSel(); });
+}
+function replaceRedo(){ replace(); rebuild(true); selPanel(); }
+
+/* ---------- read-outs ------------------------------------------------ */
+function stats(){
+  var R=ballRadius(), n=S.marks.length, i, j;
+  var nn=[], touch=0;
+  for(i=0;i<n;i++){
+    var best=1e9, bj=-1;
+    for(j=0;j<n;j++){ if(i===j) continue;
+      var dt=Math.max(-1,Math.min(1,dot(unit(S.marks[i].lon,S.marks[i].lat),
+                                        unit(S.marks[j].lon,S.marks[j].lat))));
+      var d=Math.acos(dt)*R;
+      if(d<best){ best=d; bj=j; }
+    }
+    if(bj>=0){
+      nn.push(best);
+      if(best < 0.5*(S.marks[i].mm+S.marks[bj].mm)*S.scale) touch++;
+    }
+  }
+  var lo=nn.length?Math.min.apply(null,nn):0, hi=nn.length?Math.max.apply(null,nn):0;
+  var sizes=S.marks.map(function(m){return m.mm*S.scale;});
+  var read=document.getElementById('read');
+  read.innerHTML='';
+  function add(k,v,cls){
+    var s=el('span',cls); s.appendChild(document.createTextNode(k+' '));
+    var b=el('b',null,v); s.appendChild(b); read.appendChild(s);
+  }
+  add('marks', String(n));
+  add('centre to centre', nn.length? lo.toFixed(2)+'–'+hi.toFixed(2)+' mm' : '—');
+  add('mark', sizes.length? Math.min.apply(null,sizes).toFixed(2)+'–'
+      +Math.max.apply(null,sizes).toFixed(2)+' mm' : '—');
+  if(touch){
+    var w=el('span','pill warn', touch+(touch===1?' mark overlaps':' marks overlap'));
+    read.appendChild(w);
+  }
+  var sp=document.getElementById('specs');
+  sp.innerHTML='';
+  [['Outside Ø', S.dia.toFixed(2)+' mm'],
+   ['Bore', S.bore.toFixed(2)+' mm'],
+   [S.cut?'Depth':'Relief', S.relief.toFixed(2)+' mm'],
+   ['Marks', String(n)]].forEach(function(p){
+    var d=el('div'); d.appendChild(el('dt',null,p[0])); d.appendChild(el('dd',null,p[1]));
+    sp.appendChild(d);
+  });
+  var h=document.getElementById('hint');
+  h.innerHTML='';
+  h.appendChild(document.createTextNode(S.tool==='move'
+    ? 'Drag a mark to slide it over the ball. Drag the background to turn the bead.'
+    : 'Drag to turn the bead, scroll to zoom, tap a mark to select it.'));
+}
+
+function cmdText(){
+  var parts=['python3 scripts/om_bead.py'];
+  if(S.mode==='rings') parts.push('--rings');
+  else if(S.mode==='spread') parts.push('--marks '+S.spread.n);
+  parts.push('--dia '+S.dia.toFixed(2), '--bore '+S.bore.toFixed(2),
+             '--relief '+S.relief.toFixed(3), '--mark '+S.scale.toFixed(2));
+  if(S.cut) parts.push('--cut');
+  parts.push('--out assets/om-bead/om-bead-'+S.dia.toFixed(0)+'mm-'
+             +(S.cut?'engraved':'embossed')+'.stl');
+  var s=parts.join(' ');
+  if(S.mode==='custom')
+    s += '\n\n# Marks moved by hand — the flags above cannot describe them.\n'
+      +  '# Use “Copy placement” and paste the list in instead.';
+  return s;
+}
+function jsonText(){
+  return JSON.stringify({
+    dia:+S.dia.toFixed(3), bore:+S.bore.toFixed(3), relief:+S.relief.toFixed(4),
+    inset:+S.inset.toFixed(4), engraved:!!S.cut, layout:S.mode,
+    marks:S.marks.map(function(m){
+      return {kind:KINDS[m.kind].name, lon:+m.lon.toFixed(2), lat:+m.lat.toFixed(2),
+              mm:+(m.mm*S.scale).toFixed(3), turn:+m.turn.toFixed(1)};
+    })
+  }, null, 2);
+}
+function copyOut(text, btn, done){
+  var old=btn.textContent;
+  function ok(){ btn.textContent=done; setTimeout(function(){btn.textContent=old;},1600); }
+  try{
+    navigator.clipboard.writeText(text).then(ok, function(){ show(text); });
+  }catch(e){ show(text); }
+  function show(t){
+    var box=document.getElementById('cmd');
+    box.textContent=t; box.dataset.open='true';
+    btn.textContent='Shown below — select to copy';
+    setTimeout(function(){btn.textContent=old;},2400);
+  }
+}
+
+/* ---------- boot ----------------------------------------------------- */
+function unpack(s){
+  var bin=atob(s), a=new Uint8Array(bin.length);
+  for(var i=0;i<bin.length;i++) a[i]=bin.charCodeAt(i);
+  return a;
+}
+function run(doc){
+  DRANGE=doc.drange;
+  KINDS=doc.stamps.map(function(s){
+    return {name:s.name, label:doc.labels[s.name]||s.name, mm:s.mm, share:s.share,
+            st:{w:s.w, h:s.h, data:unpack(s.data)}};
+  });
+  document.getElementById('boot').remove();
+  setup();
+  replace();
+  rebuild(true);
+  modePanel(); selPanel(); piecePanel();
+  place();
+
+  document.getElementById('m-rings').addEventListener('click', function(){
+    S.mode='rings'; replaceRedo(); modePanel(); });
+  document.getElementById('m-spread').addEventListener('click', function(){
+    S.mode='spread'; replaceRedo(); modePanel(); });
+  var tO=document.getElementById('t-orbit'), tM=document.getElementById('t-move');
+  function tool(t){ S.tool=t;
+    tO.setAttribute('aria-pressed', t==='orbit'); tM.setAttribute('aria-pressed', t==='move');
+    renderer.domElement.classList.toggle('moving', t==='move'); stats(); }
+  tO.addEventListener('click', function(){tool('orbit');});
+  tM.addEventListener('click', function(){tool('move');});
+  var sp=document.getElementById('t-spin');
+  sp.addEventListener('click', function(){
+    S.spin=!S.spin; sp.setAttribute('aria-pressed', S.spin); });
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    S.spin=false; sp.setAttribute('aria-pressed','false');
+  }
+  document.getElementById('t-home').addEventListener('click', function(){
+    cam.yaw=-60; cam.pitch=18; cam.dist=26; place(); });
+  document.getElementById('b-cmd').addEventListener('click', function(){
+    copyOut(cmdText(), this, 'Command copied'); });
+  document.getElementById('b-json').addEventListener('click', function(){
+    copyOut(jsonText(), this, 'Placement copied'); });
+
+  var mq=window.matchMedia('(prefers-color-scheme: dark)');
+  function theme(){ scene.background=backdrop(); }
+  if(mq.addEventListener) mq.addEventListener('change', theme);
+  new MutationObserver(theme).observe(document.documentElement,
+    {attributes:true, attributeFilter:['data-theme']});
+
+  var last=0;
+  (function loop(t){
+    requestAnimationFrame(loop);
+    if(!last) last=t;
+    if(S.spin){ cam.yaw+=(t-last)*0.006; place(); }
+    last=t;
+    if(needHi && !pending && t-loAt>220){ rebuild(true); paintSel(); }
+    renderer.render(scene,camera);
+  })(0);
+}
+
+if(!window.THREE){
+  document.getElementById('boot').textContent='The 3D library did not load.';
+} else {
+  fetch('stamps.json').then(function(r){ return r.json(); }).then(run)
+    .catch(function(e){
+      var b=document.getElementById('boot');
+      if(b) b.textContent='The marks did not load: '+e;
+    });
+}
+})();
+</script>
