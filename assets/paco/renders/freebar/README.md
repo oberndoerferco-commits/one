@@ -1,6 +1,6 @@
 # PA & CO — letters +0.12, diamond +0.50, bar freed, real dome
 
-`paco-50mm-freebar.pdf`, `paco-logo-SMOOTH-dome1.20-base0.45.stl`,
+`paco-50mm-freebar.pdf`, `paco-logo-SMOOTH-v2-dome1.20-base0.45.stl`,
 `paco-engineering-sheet.pdf` (2 × A3).
 50.25 × 35.96 × 1.65 mm, **seven** pieces, 471.6 mm² in plan.
 
