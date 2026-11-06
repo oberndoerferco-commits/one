@@ -165,46 +165,81 @@ def _pslg(poly, step=0.12):
     return d
 
 
-def _height(poly, inset, height, base):
-    """base + profile at any point: distance exact, half width interpolated."""
+def _height(poly, inset, height, base, soft=0.10, lo=0.15, hi=0.45, ppmm=80):
+    """The dome, rounded where it would otherwise crease.
+
+    Any height that is a function of distance-to-edge alone creases along
+    the medial axis, because the distance field does: a stroke narrower
+    than twice the inset arrives at its own centre still climbing. The
+    previous answer was to fit the arc to each stroke's own half width.
+    That removed the crease and introduced a worse fault, because half
+    the local width is not a smooth quantity - it jumps wherever one
+    branch of the medial axis takes over from another, and a jump of half
+    a millimetre carried into the height gives surface normals sixty
+    degrees out. Refining the mesh cannot help with that: the error was
+    in the surface, not in the triangles, and it did not shrink when the
+    triangle count tripled.
+
+    So the crease is rounded instead of designed around. The dome is
+    rastered, blurred with a small kernel - mask-normalised, so the
+    outside cannot drag the inside down - and blended back over the exact
+    profile with a weight that is zero at the rim and one well inside.
+    The rim keeps the exact outline and its vertical tangent into the
+    wall; the crest, which is the only place a crease can form, is
+    entirely in the blurred part and comes out rounded over about
+    `soft`. In between, both terms are smooth and so is the weight: the
+    narrowest stroke here is 1.26 mm, so its crest sits at d = 0.63 and
+    the blend has finished by 0.45.
+    """
     import shapely
     from scipy import ndimage
-    hwf, (hx, hy), pp = halfwidth(poly, inset)
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from paco_weights import _mask
+    m, (ox, oy) = _mask(poly, ppmm)
+    din = ndimage.distance_transform_edt(m) / ppmm
+    zr = base + dome_z(din, inset, height)
+    k = soft * ppmm
+    num = ndimage.gaussian_filter(np.where(m, zr, 0.0), k, mode='nearest')
+    den = ndimage.gaussian_filter(m.astype(float), k, mode='nearest')
+    zb = num / np.maximum(den, 1e-9)
 
     def z(xy):
         xy = np.atleast_2d(np.asarray(xy, dtype=float))
         d = shapely.distance(poly.boundary, shapely.points(xy))
-        hw = ndimage.map_coordinates(
-            hwf, [(xy[:, 1] - hy) * pp, (xy[:, 0] - hx) * pp],
+        ze = base + dome_z(d, inset, height)
+        zs = ndimage.map_coordinates(
+            zb, [(xy[:, 1] - oy) * ppmm, (xy[:, 0] - ox) * ppmm],
             order=3, mode='nearest')
-        return base + profile(d, hw, inset, height)
+        t = np.clip((d - lo) / (hi - lo), 0.0, 1.0)
+        w = t * t * (3.0 - 2.0 * t)
+        return (1.0 - w) * ze + w * zs
     return z
 
 
-def mesh_plan(poly, inset, height, base, target_deg=1.5, area0=0.05,
-              rounds=9, floor=3e-5, step=0.12):
+def mesh_plan(poly, inset, height, base, target_deg=1.5, area0=0.01,
+              rounds=6, floor=1.5e-4, step=0.12):
     """Triangulate the plan, sized by the error it actually makes.
 
     The first version seeded this by hand - contours packed along the rim,
     chains along the crease - to put triangles where the surface needed
     them. It put slivers there instead: sixteen per cent of the top faces
     came out with a minimum angle under ten degrees, and those faces
-    missed the true surface normal by 13 degrees at the median against
-    1.3 for well shaped ones. The seeds were the defect. With none of
-    them the same mesher returns a minimum angle of 29 degrees and no
-    slivers at all.
+    missed the true normal by 13 degrees at the median against 1.3 for
+    well shaped ones. The seeds were the defect. Handed the outline
+    alone, the same mesher returns a minimum angle of 30 degrees and no
+    slivers at all, instantly, at a quarter of the triangles.
 
     So nothing is placed by hand. `triangle` is asked for a quality mesh,
     no angle under 30 degrees, which is what keeps a normal honest, and
-    is then told where to make it finer. The test is the error itself:
-    over a triangle of size h a surface of curvature k stands
-    s = h^2 k / 8 off the chord while the chord's normal misses by
-    h k / 2, so the normal error is 4 s / h whatever the curvature is.
-    Sample the exact height at the centroid, compare it with the plane
-    through the three corners, refine anything whose 4 s / h is over the
-    target. The rim gets fine triangles because it earns them, the middle
-    of a wide stroke stays coarse, and the grading follows the surface
-    instead of a guess about it.
+    is then told where to make it finer. The test needs no guess about
+    curvature: over a triangle of size h a surface stands s = h^2 k / 8
+    off the chord while the chord's normal misses by h k / 2, so the
+    normal error is 4 s / h. Sample the height at the centroid, compare
+    with the plane through the corners, quarter anything over target.
+
+    `floor` stops it at the rim, where the profile is tangent to the side
+    wall and the curvature is unbounded: no mesh can hold an angle there,
+    and chasing it once cost three million triangles for one letter.
     """
     import triangle as tri
     pslg = _pslg(poly, step)
@@ -225,8 +260,7 @@ def mesh_plan(poly, inset, height, base, target_deg=1.5, area0=0.05,
                                  triangles=F,
                                  triangle_max_area=np.where(need, a / 4.0, -1.0)),
                             'rpq30a')
-    V, F = t['vertices'], t['triangles']
-    return V, F, z_of
+    return t['vertices'], t['triangles'], z_of
 
 
 def solid(poly, inset, height, base, target_deg=1.5, step=0.12):
