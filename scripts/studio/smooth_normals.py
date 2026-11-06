@@ -83,6 +83,10 @@ def pack(m, normals, path):
         fh.write(np.array([len(v), len(f)], dtype='<u4').tobytes())
         fh.write(v.astype('<f4').tobytes())
         fh.write(nn.tobytes())
+        # 8 + 12nv + 6nv is only a multiple of 4 when nv is even, and a
+        # Uint32Array will not start anywhere else. One mesh in two is odd.
+        pad = (-(8 + v.size * 4 + nn.size * 2)) % 4
+        fh.write(b'\0' * pad)
         fh.write(f.tobytes())
     return len(v), len(f)
 

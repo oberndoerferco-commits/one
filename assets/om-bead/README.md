@@ -12,7 +12,8 @@ square**. The plain cross on its own is deliberately not used.
 | `om-bead-8mm-engraved.stl` | marks cut 0.10 mm in; ball **8.00 mm** |
 
 Both: 1.20 mm bore through the poles, one closed body, ~325,000
-triangles. 30 marks, longest side 2.60 mm.
+triangles. **32 marks on 5 rows at a 2.50 mm pitch**, longest side
+2.25 mm.
 
 ```sh
 python3 scripts/om_bead.py                      # embossed
@@ -35,10 +36,13 @@ wide as it is tall. Sized by height at 2 mm it came out 6.8 mm across —
 most of the way round an 8 mm ball — and the first attempt looked like a
 collision rather than a pattern.
 
-The marks are placed on a golden spiral, which only spreads evenly if z
-steps uniformly over the *whole* sphere: the band away from the poles is
-taken out of a full spiral rather than the spiral being squeezed into
-the band. The poles are left clear for the bore.
+**A monogram ball is a lattice, not a scatter.** The first attempt
+placed the marks on a golden spiral, which gives an even *density* and
+reads as random. They now sit in rows: the step in latitude is an arc,
+pitch / radius, and along each row the count comes from that row's own
+circumference, so the spacing is even on the ball rather than even in
+longitude. Alternate rows are offset half a step and the three motifs
+run in a diagonal sequence. The poles are left clear for the bore.
 
 ## The profile is a laser mark, not a dome
 

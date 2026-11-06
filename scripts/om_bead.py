@@ -47,35 +47,39 @@ def rotate(mask, deg):
                           reshape=True, mode='constant', cval=0.0) > 0.5
 
 
-def fibonacci(n, cap_deg):
-    """Points spread evenly over the ball, poles left clear for the hole.
+def lattice(radius, pitch, cap_deg, nstamp):
+    """Rows round the ball, evenly spaced, staggered, motifs alternating.
 
-    The golden spiral only spreads evenly if z steps uniformly over the
-    whole sphere, so the band is taken out of a full spiral rather than
-    the spiral being restricted to the band. A sphere's area between two
-    latitudes is proportional to the span in z, which is what makes that
-    work and what makes the count come out right.
+    A monogram ball is a lattice, not a scatter. Marks sit in rows at a
+    constant spacing, each row offset half a step from the one above, and
+    the motifs run in a regular diagonal sequence. A golden spiral gives
+    an even density, which is a different thing and reads as random.
+
+    Row spacing is an arc, so the step in latitude is pitch / radius.
+    Along a row the circumference shrinks with cos(latitude), so the
+    count is taken from that circumference and the spacing comes out
+    even on the ball rather than even in longitude.
     """
-    lim = math.sin(math.radians(cap_deg))
-    M = max(n, int(math.ceil(n / max(lim, 0.05))))
-    ga = math.pi * (3 - math.sqrt(5))
     out = []
-    for i in range(M):
-        z = 1 - 2 * (i + 0.5) / M
-        if abs(z) > lim:
-            continue
-        out.append((math.degrees((i * ga) % (2 * math.pi)) - 180,
-                    math.degrees(math.asin(z))))
+    dlat = math.degrees(pitch / radius)
+    rows = int(math.floor(cap_deg / dlat))
+    for r in range(-rows, rows + 1):
+        lat = r * dlat
+        circ = 2 * math.pi * radius * math.cos(math.radians(lat))
+        n = max(1, int(round(circ / pitch)))
+        half = 180.0 / n if r % 2 else 0.0
+        for c in range(n):
+            lon = -180.0 + 360.0 * c / n + half
+            out.append((lon, lat, (r + c) % nstamp))
     return out
 
 
-def paint(stamps, places, size_mm, radius, W, Hh, rng):
+def paint(stamps, places, size_mm, radius, W, Hh):
     """Equirectangular ink map, stretched for latitude, wrapped in longitude."""
     ink = np.zeros((Hh, W), bool)
     deg_per_mm = 180.0 / (math.pi * radius)        # along a great circle
-    for n, (lon, lat) in enumerate(places):
-        s, k = stamps[n % len(stamps)]
-        s = rotate(s, rng.uniform(-12, 12))   # upright, like a monogram
+    for lon, lat, which in places:
+        s, k = stamps[which]
         # size by the LONGER side, or a wide mark comes out three times
         # the width of the ball it is sitting on
         long_mm = size_mm * k
@@ -128,17 +132,15 @@ def framed(mask, border=0.055):
     return m
 
 
-def build(stamps, out, dia=8.0, bore=1.2, n=30, size=2.6, height=0.10,
-          inset=0.05, cap=74.0, sub=7, W=3600, Hh=1800, seed=7,
-          cut=False):
+def build(stamps, out, dia=8.0, bore=1.2, pitch=2.5, size=2.25, height=0.10,
+          inset=0.05, cap=76.0, sub=7, W=3600, Hh=1800, cut=False):
     # embossed, the marks stand proud and the ball under them is
     # smaller by that much; engraved, the ball is the full size and the
     # marks go into it. Either way the bead measures the 8 mm it is
     # called.
     r = dia / 2.0 if cut else (dia - 2 * height) / 2.0
-    rng = np.random.default_rng(seed)
-    places = fibonacci(n, cap)
-    ink = paint(stamps, places, size, r, W, Hh, rng)
+    places = lattice(r, pitch, cap, len(stamps))
+    ink = paint(stamps, places, size, r, W, Hh)
     rel = relief(ink, r, W, Hh, height, inset)
     if cut:
         rel = -rel
@@ -169,8 +171,9 @@ def build(stamps, out, dia=8.0, bore=1.2, n=30, size=2.6, height=0.10,
           f'{back.extents[0]:.2f} x {back.extents[1]:.2f} x {back.extents[2]:.2f} mm, '
           f'{len(b)} bodies, closed: {all(x.is_watertight for x in b)}, '
           f'{os.path.getsize(out)/1e6:.1f} MB')
-    print(f'   {len(places)} marks, {size:.2f} mm each, relief {height:.2f} mm, '
-          f'bore {bore:.2f} mm')
+    print(f'   {len(places)} marks on {len(set(p[1] for p in places))} rows, '
+          f'{size:.2f} mm each at {pitch:.2f} mm pitch, '
+          f'relief {height:.2f} mm, bore {bore:.2f} mm')
     return m, ink, rel
 
 
@@ -178,8 +181,8 @@ if __name__ == '__main__':
     a = argparse.ArgumentParser()
     a.add_argument('--dia', type=float, default=8.0)
     a.add_argument('--bore', type=float, default=1.2)
-    a.add_argument('--marks', type=int, default=30)
-    a.add_argument('--size', type=float, default=2.6)
+    a.add_argument('--pitch', type=float, default=2.5)
+    a.add_argument('--size', type=float, default=2.25)
     a.add_argument('--relief', type=float, default=0.10)
     a.add_argument('--cut', action='store_true',
                    help='engrave the marks into the ball instead of '
@@ -190,12 +193,12 @@ if __name__ == '__main__':
     os.makedirs(os.path.dirname(o.out), exist_ok=True)
     T = 'assets/motif-tiles/motif-black-white.pdf'
     stamps = [
-        (stamp_from_pdf('assets/om-mark/om-lockup-4mm.pdf'), 1.35),
+        (stamp_from_pdf('assets/om-monogram/om-blackletter.pdf'), 1.00),
         (stamp_from_pdf(T, box=(0.02, 0.02, 0.50, 0.50)), 0.80),   # cross in a circle
         (framed(stamp_from_pdf(T, box=(0.47, 0.52, 0.97, 0.97), pad=0)),
          0.72),                                                    # cross in a square
     ]
     for i, (s, k) in enumerate(stamps):
         print(f'   stamp {i}: {s.shape[1]} x {s.shape[0]} px, x{k:.2f}')
-    build(stamps, o.out, dia=o.dia, bore=o.bore, n=o.marks, size=o.size,
+    build(stamps, o.out, dia=o.dia, bore=o.bore, pitch=o.pitch, size=o.size,
           height=o.relief, sub=o.sub, cut=o.cut)

@@ -11,6 +11,9 @@ function loadBlob(buf){
   let o = 8;
   const pos = new Float32Array(buf, o, nv*3); o += nv*3*4;
   const nrm16 = new Int16Array(buf, o, nv*3);  o += nv*3*2;
+  // an odd vertex count leaves this on a 2-byte boundary and Uint32Array
+  // will not have it; the writer pads to match
+  o = (o + 3) & ~3;
   const idx = new Uint32Array(buf, o, nf*3);
   const nrm = new Float32Array(nv*3);
   for (let i=0;i<nv*3;i++) nrm[i] = nrm16[i]/32767;
