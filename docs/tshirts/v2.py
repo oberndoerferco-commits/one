@@ -91,7 +91,8 @@ def build(white_path, black_path, side, outdir):
             img=img*(1-A[...,None])+ink*A[...,None]
         for name,b in cl.items():
             # destination = where this element sits on the WHITE shirt (mapped to the reference)
-            dst=to_ref_t(b, tw_white if color=='white' else tw_black, TR)   # same spot as on its own original photo
+            # black and white use the SAME position and size: the one the design has on the white shirt
+            dst=to_ref_t(clw[name] if name in clw else b, tw_white if name in clw else tw_black, TR)
             m=np.zeros(a.shape,np.float32); m[b[1]-3:b[3]+4,b[0]-3:b[2]+4]=1
             A,Cc=place(a*m,col,b,dst,img.shape)
             A=cv2.GaussianBlur(A,(0,0),0.4)*w
