@@ -32,25 +32,13 @@ PAGE = 'assets/om-monogram/om-pattern-page.pdf'
 # look equal instead, so the space between any two marks is the same
 # wherever you look.
 PATTERN = [
-    # name  crop box on the page                long side, mm on the ball
-    ('om',   (0.1038, 0.0940, 0.2140, 0.2420), 0, 0, 2.70),
-    ('sq',   (0.2858, 0.1030, 0.3432, 0.1825), 0, 0, 2.10),
-    ('n925', (0.2532, 0.2667, 0.3432, 0.3379), 0, 0, 2.50),
-    ('circ', (0.1197, 0.3129, 0.1830, 0.4050), 0, 0, 2.25),
-    ('outl', (0.2443, 0.3910, 0.3106, 0.4806), 0, 0, 2.25),
+    # name  crop box on the page               _  _   mm on ball  share
+    ('om',   (0.1038, 0.0940, 0.2140, 0.2420), 0, 0, 2.70, 2.0),
+    ('sq',   (0.2858, 0.1030, 0.3432, 0.1825), 0, 0, 2.10, 1.0),
+    ('n925', (0.2532, 0.2667, 0.3432, 0.3379), 0, 0, 2.50, 1.1),
+    ('circ', (0.1197, 0.3129, 0.1830, 0.4050), 0, 0, 2.25, 1.0),
+    ('outl', (0.2443, 0.3910, 0.3106, 0.4806), 0, 0, 2.25, 1.0),
 ]
-
-# The order the marks are dealt out in. The OM takes every other place:
-# it is the mark, the rest are its accents, and at one in five it was so
-# rare that a whole face of the ball could show none of it.
-#
-# The LENGTH matters more than it looks. On a Fibonacci spiral the points
-# next to each other in space are not next to each other in index - they
-# are a Fibonacci number apart, 5 or 8 or 13 for a couple of dozen marks.
-# A sequence eight long therefore gave every spatial neighbour the SAME
-# mark, and the ball came out in bands of one kind. Nine shares no factor
-# with 5, 8 or 13, so neighbours differ.
-SEQ = [0, 1, 0, 2, 0, 3, 0, 4, 0]
 
 
 def stamp_from_pdf(path, box=None, px=900, pad=6):
@@ -86,29 +74,57 @@ def spread(radius, n, cap_deg):
     bald cap around the bore. Neither fault is fixable by choosing better
     numbers; a sphere simply has no regular tiling of that kind.
 
-    A Fibonacci spiral does have one property that matters more than
-    looking like rows: every point is the same distance from its
-    neighbours, at the poles as much as the equator. That is what "the
-    spacing is always the same" means on a ball, and it leaves no gap to
-    be bald. The order comes from the marks instead - they cycle in a
-    fixed sequence and all stand upright - so the eye reads a pattern
-    rather than a scatter.
-
-    Points are generated over the whole sphere and then the caps are
-    dropped, rather than the spiral being squeezed into the band, so the
-    spacing of what remains is the spacing of the whole.
+    A Fibonacci spiral does have the one property that matters: every
+    point is the same distance from its neighbours, at the poles as much
+    as the equator. Points are generated over the whole sphere and the
+    caps dropped afterwards, so the spacing of what remains is the
+    spacing of the whole.
     """
     ga = math.pi * (3 - math.sqrt(5))
     lim = math.sin(math.radians(cap_deg))
-    pts = []
+    out = []
     for i in range(n):
         z = 1 - 2 * (i + 0.5) / n
         if abs(z) > lim:
             continue
-        pts.append((math.degrees((i * ga) % (2 * math.pi)) - 180,
+        out.append((math.degrees((i * ga) % (2 * math.pi)) - 180,
                     math.degrees(math.asin(z))))
-    return [(lon, lat, SEQ[k % len(SEQ)], PATTERN[SEQ[k % len(SEQ)]][4])
-            for k, (lon, lat) in enumerate(pts)]
+    return out
+
+
+def deal(places, weights, near=6):
+    """Give each mark a kind, so that no two touching marks share one.
+
+    Dealing them out in a fixed cycle does not work, and the reason is
+    worth keeping. On a Fibonacci spiral the points next to each other in
+    SPACE are a Fibonacci number apart in INDEX - 5, 8 or 13 at this
+    count - so a cycle of any of those lengths hands every neighbour the
+    same kind, and one eight long put the OMs in bands. Nine broke the
+    bands but not the clumps, because a cycle knows nothing about where
+    its marks land.
+
+    So the neighbours are found and then coloured. Each mark takes the
+    kind that none of its neighbours has and that is furthest behind its
+    share, which spaces the OMs out by construction rather than by luck.
+    The weights set how often each kind wants to appear.
+    """
+    from scipy.spatial import cKDTree
+    pts = np.array([[math.cos(math.radians(la)) * math.cos(math.radians(lo)),
+                     math.cos(math.radians(la)) * math.sin(math.radians(lo)),
+                     math.sin(math.radians(la))] for lo, la in places])
+    k = min(near + 1, len(pts))
+    nb = cKDTree(pts).query(pts, k=k)[1]
+    w = np.asarray(weights, float)
+    w /= w.sum()
+    kind = [-1] * len(pts)
+    count = np.zeros(len(w))
+    for i in range(len(pts)):
+        taken = {kind[j] for j in nb[i][1:] if kind[j] >= 0}
+        free = [t for t in range(len(w)) if t not in taken] or list(range(len(w)))
+        pick = min(free, key=lambda t: count[t] / w[t])
+        kind[i] = pick
+        count[pick] += 1
+    return kind
 
 
 def spacing(radius, n):
@@ -117,28 +133,72 @@ def spacing(radius, n):
 
 
 def paint(stamps, places, radius, W, Hh):
-    """Equirectangular ink map, stretched for latitude, wrapped in longitude."""
+    """Ink map, each mark laid flat on the ball where it sits.
+
+    The obvious way is to stamp into the equirectangular map and stretch
+    by 1 / cos(latitude) to pay for the squeeze. That works for a mark so
+    small it sits at one latitude. These do not: a 2.4 mm mark on a 4 mm
+    ball spans about thirty-five degrees, and cos(latitude) changes a
+    long way across the mark itself. One factor taken at the centre
+    cannot straighten that, so the square frame round the cross came out
+    as a curved trapezoid - wider along its lower edge than its upper,
+    and bowed.
+
+    So the marks are not stamped into the map at all. Each one gets a
+    frame on the sphere - east and north at its own centre - and every
+    map pixel near it is carried into that frame by an azimuthal
+    equidistant projection, which is the one that keeps distance from the
+    centre. A square stays square because its sides stay the same length
+    in millimetres of arc, which is what a square means on a ball.
+    """
     ink = np.zeros((Hh, W), bool)
-    deg_per_mm = 180.0 / (math.pi * radius)        # along a great circle
     for lon, lat, which, long_mm in places:
         s = stamps[which]
-        # size by the LONGER side, or a wide mark comes out three times
-        # the width of the ball it is sitting on
         if s.shape[1] >= s.shape[0]:
             w_mm, h_mm = long_mm, long_mm * s.shape[0] / s.shape[1]
         else:
             h_mm, w_mm = long_mm, long_mm * s.shape[1] / s.shape[0]
-        h_deg = h_mm * deg_per_mm
-        w_deg = w_mm * deg_per_mm / max(math.cos(math.radians(lat)), 0.25)
-        ph = max(3, int(round(h_deg / 180.0 * Hh)))
-        pw = max(3, int(round(w_deg / 360.0 * W)))
-        z = np.array(ndimage.zoom(s.astype(float), (ph / s.shape[0], pw / s.shape[1]),
-                                  order=1) > 0.5)
-        r0 = int(round((90 - lat) / 180.0 * Hh)) - z.shape[0] // 2
-        c0 = int(round((lon + 180) / 360.0 * W)) - z.shape[1] // 2
-        rr = np.clip(np.arange(r0, r0 + z.shape[0]), 0, Hh - 1)
-        cc = np.arange(c0, c0 + z.shape[1]) % W          # wraps, so no seam
-        ink[np.ix_(rr, cc)] |= z
+        la, lo = math.radians(lat), math.radians(lon)
+        c = np.array([math.cos(la) * math.cos(lo),
+                      math.cos(la) * math.sin(lo), math.sin(la)])
+        e = np.array([-math.sin(lo), math.cos(lo), 0.0])
+        nth = np.cross(c, e)
+
+        # only the map rows and columns the mark can reach
+        rad = math.hypot(w_mm, h_mm) / 2.0 / radius            # radians of arc
+        dlat = math.degrees(rad) * 1.15
+        dlon = dlat / max(math.cos(la), 1e-3)
+        r0 = int((90 - lat - dlat) / 180.0 * Hh)
+        r1 = int((90 - lat + dlat) / 180.0 * Hh) + 2
+        c0 = int((lon + 180 - dlon) / 360.0 * W)
+        c1 = int((lon + 180 + dlon) / 360.0 * W) + 2
+        rr = np.clip(np.arange(r0, r1), 0, Hh - 1)
+        cc = np.arange(c0, c1)
+        if not len(rr) or not len(cc):
+            continue
+        LA = np.radians(90 - (rr + 0.5) / Hh * 180.0)[:, None]
+        LO = np.radians((cc + 0.5) / W * 360.0 - 180.0)[None, :]
+        px = np.cos(LA) * np.cos(LO)
+        py = np.cos(LA) * np.sin(LO)
+        pz = np.broadcast_to(np.sin(LA), px.shape)
+        dot = np.clip(px * c[0] + py * c[1] + pz * c[2], -1.0, 1.0)
+        # azimuthal equidistant: keep the arc distance from the centre
+        ang = np.arccos(dot)
+        ue = px * e[0] + py * e[1] + pz * e[2]
+        un = px * nth[0] + py * nth[1] + pz * nth[2]
+        norm = np.hypot(ue, un)
+        norm[norm < 1e-12] = 1e-12
+        u = radius * ang * ue / norm                       # mm, east
+        v = radius * ang * un / norm                       # mm, north
+        col = (u / w_mm + 0.5) * s.shape[1]
+        row = (0.5 - v / h_mm) * s.shape[0]
+        ok = (dot > 0) & (col >= 0) & (col < s.shape[1]) \
+            & (row >= 0) & (row < s.shape[0])
+        if not ok.any():
+            continue
+        hit = np.zeros(col.shape, bool)
+        hit[ok] = s[row[ok].astype(int), col[ok].astype(int)]
+        ink[np.ix_(rr, cc % W)] |= hit
     return ink
 
 
@@ -180,7 +240,10 @@ def build(stamps, out, dia=8.0, bore=1.2, n=30, mark=1.0, height=0.10,
     # marks go into it. Either way the bead measures the 8 mm it is
     # called.
     r = dia / 2.0 if cut else (dia - 2 * height) / 2.0
-    places = [(lo, la, i, mm * mark) for lo, la, i, mm in spread(r, n, cap)]
+    pts = spread(r, n, cap)
+    kinds = deal(pts, [q[5] for q in PATTERN])
+    places = [(lo, la, k, PATTERN[k][4] * mark)
+              for (lo, la), k in zip(pts, kinds)]
     ink = paint(stamps, places, r, W, Hh)
     rel = relief(ink, r, W, Hh, height, inset)
     if cut:
@@ -242,8 +305,8 @@ if __name__ == '__main__':
     os.makedirs(os.path.dirname(o.out), exist_ok=True)
     if o.simple:
         PATTERN[:] = [q for q in PATTERN if q[0] in ('om', 'sq')]
-    stamps = [stamp_from_pdf(PAGE, box=b, px=2200) for _, b, _, _, _ in PATTERN]
-    for (nm, _, _, _, mm), st in zip(PATTERN, stamps):
+    stamps = [stamp_from_pdf(PAGE, box=b, px=2200) for _, b, *_ in PATTERN]
+    for (nm, _, _, _, mm, _), st in zip(PATTERN, stamps):
         print(f'   {nm:5s} {st.shape[1]:4d} x {st.shape[0]:4d} px   '
               f'{mm:.2f} mm on the ball')
     build(stamps, o.out, dia=o.dia, bore=o.bore, n=o.marks, mark=o.mark,
