@@ -22,9 +22,9 @@ from shapely.geometry import LineString, Point, Polygon
 from shapely.ops import nearest_points
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from paco_dome import artwork, rings
+from paco_dome import artwork, halfwidth, profile
 from paco_drawing import (MM, THIN, MED, THICK, CHAIN, DASH, Sheet,
-                          section_profile, runs, crown, wrap)
+                          runs, wrap)
 from paco_weights import _mask, _ends
 from skimage.morphology import medial_axis
 
@@ -59,6 +59,33 @@ def strokes(poly, ppmm=60, skip=0.8):
     return float(d.min()), float(d.max())
 
 
+def surface(g, inset, height, base):
+    """Height of the finished part at any point, from the same function
+    the mesh is lifted by. The drawing cannot describe one profile while
+    the STL is built to another, so it does not get its own copy."""
+    import shapely
+    from scipy import ndimage
+    hwf, (hx, hy), pp = halfwidth(g, inset)
+
+    def h(xy):
+        xy = np.atleast_2d(xy)
+        inside = shapely.contains_xy(g, xy[:, 0], xy[:, 1])
+        d = shapely.distance(g.boundary, shapely.points(xy))
+        hw = ndimage.map_coordinates(
+            hwf, [(xy[:, 1] - hy) * pp, (xy[:, 0] - hx) * pp],
+            order=1, mode='nearest')
+        z = base + profile(d, hw, inset, height)
+        z[~inside] = 0.0
+        return z, inside
+    return h
+
+
+def crown_of(w, inset, height, base):
+    """What a stroke `w` wide reaches, base included."""
+    return base + float(profile(np.array([w / 2.0]), np.array([w / 2.0]),
+                                inset, height)[0])
+
+
 def measure(src, inset, height, base):
     g, W, H = artwork(src)                       # centred, y up
     ps = list(g.geoms) if hasattr(g, 'geoms') else [g]
@@ -78,7 +105,7 @@ def measure(src, inset, height, base):
         rows.append(dict(name=n, x=a - x0, y=b - y0, w=c - a, h=d - b,
                          counters=len(p.interiors), area=p.area,
                          thin=tmin, thick=tmax,
-                         crown=crown(tmax, inset, height) + base))
+                         crown=crown_of(tmax, inset, height, base)))
     gaps = []
     for (i, (ni, pi)), (j, (nj, pj)) in itertools.combinations(
             enumerate(items), 2):
@@ -92,9 +119,7 @@ def measure(src, inset, height, base):
 # ---------------------------------------------------------------- sheet one
 def sheet_one(s, src, g, W, H, rows, gaps, inset, height, base, iso, stl):
     total = base + height
-    rs = rings(g, inset, 30)
-    k = height / inset
-    levels = [(z * k, poly) for z, poly in rs]
+    H_of = surface(g, inset, height, base)
 
     s.rect(10, 10, 410, 287, w=0.7)
     s.rect(14, 14, 406, 283, w=0.25)
@@ -112,7 +137,7 @@ def sheet_one(s, src, g, W, H, rows, gaps, inset, height, base, iso, stl):
 
     # cut where the plane meets the most strokes: a section has to show
     # the part, and the widest row of the lockup is the one worth cutting
-    best, Y_CUT = -1, -9.5
+    best, Y_CUT = -1.0, -9.5
     for yc in np.arange(-H / 2 + 0.5, H / 2 - 0.5, 0.2):
         cut = g.intersection(LineString([(-W, yc), (W, yc)]))
         if cut.is_empty:
@@ -137,10 +162,11 @@ def sheet_one(s, src, g, W, H, rows, gaps, inset, height, base, iso, stl):
     s.text(ax0 + 56, ay0 - 6,
            f'the strokes the plane passes through, cut at y = {Y_CUT:+.2f}',
            2.3, (.35, .35, .35))
-    xs, hs, on = section_profile(levels, Y_CUT, -W / 2, W / 2)
+    xs = np.linspace(-W / 2, W / 2, 1400)
+    hs, on = H_of(np.column_stack([xs, np.full(len(xs), Y_CUT)]))
     base_line = ay0 + 14
     for i, j in runs(xs, on):
-        seg = [(ax0 + (xs[q] + W / 2) * SC, base_line - (base + hs[q]) * SC)
+        seg = [(ax0 + (xs[q] + W / 2) * SC, base_line - hs[q] * SC)
                for q in range(i, j + 1)]
         ring = [(seg[0][0], base_line)] + seg + [(seg[-1][0], base_line)]
         s.hatch(Polygon(ring), step=0.9, ang=45)
@@ -168,17 +194,18 @@ def sheet_one(s, src, g, W, H, rows, gaps, inset, height, base, iso, stl):
     s.text(cx + 56, cy, 'SCALE 20:1', 2.3, (.35, .35, .35))
     s.text(cx, cy + 4.5, 'the thinnest stroke in the artwork, and the width '
            'from which the dome is full height', 2.3, (.35, .35, .35))
+    s.text(cx, cy + 8.5, 'each stroke is domed to its own width, so both '
+           'close horizontal at the centre', 2.3, (.35, .35, .35))
     base_y = cy + 66
     for n_, (wid, lab) in enumerate([(thin, f'THINNEST  {thin:.2f}'),
                                      (2 * inset, f'FULL HEIGHT  {2*inset:.2f}')]):
         mid = cx + 20 + n_ * 62
         half = wid / 2 * SS
         bz = base * SS
-        ch = crown(wid, inset, height)
-        prof = [((wid / 2) * i / 60,
-                 height * math.sqrt(max(0.0, 1 - (1 - min((wid / 2) * i / 60,
-                                                          inset) / inset) ** 2)))
-                for i in range(61)]
+        ch = crown_of(wid, inset, height, base) - base
+        dd = np.linspace(0.0, wid / 2, 61)
+        zz = profile(dd, np.full(61, wid / 2), inset, height)
+        prof = list(zip(dd, zz))
         ring = ([(mid - half, base_y), (mid - half, base_y - bz)]
                 + [(mid - half + d * SS, base_y - bz - z * SS) for d, z in prof]
                 + [(mid + half - d * SS, base_y - bz - z * SS) for d, z in reversed(prof)]
@@ -193,37 +220,47 @@ def sheet_one(s, src, g, W, H, rows, gaps, inset, height, base, iso, stl):
         s.text(mid, base_y + 17, lab, 2.4, font='hebo', align=1)
     s.dim_v(base_y - base * SS, base_y, cx + 4, f'{base:.2f}', ext=cx + 20 - thin / 2 * SS)
     for i, t in enumerate([
-            'The dome is struck from the edge of the stroke, so a narrow stroke',
-            'runs out of width before full height and the two faces meet in a',
-            'ridge. That ridge is correct and must not be flattened or blended.']):
+            'The dome is fitted to the width of the stroke it is on, not struck',
+            'on one radius for the whole part. A narrow stroke reaches a lower',
+            'crown, but it still arrives at its own centre horizontal, so the',
+            'top surface is continuous everywhere. There is no ridge, and no',
+            'edge anywhere on the part except the outline itself.']):
         s.text(cx, base_y + 26 + i * 4, t, 2.3, (.3, .3, .3))
 
-    # DETAIL B : the dome profile
+    # DETAIL B : the dome profile, now one per stroke width
     dx0, dy0 = 292, 30
     s.text(dx0, dy0, 'DETAIL B', 3.1, font='hebo')
     s.text(dx0 + 22, dy0, 'DOME PROFILE', 2.6, (.35, .35, .35))
-    s.text(dx0, dy0 + 4.5, 'struck from the edge of every stroke', 2.3, (.35, .35, .35))
-    PS = 26.0
-    gx, gy = dx0 + 8, dy0 + 60
-    s.line(gx - 4, gy, gx + inset * PS + 10, gy, (0, 0, 0), THIN, CHAIN)
-    s.line(gx, gy + 5, gx, gy - height * PS - 6, (0, 0, 0), THIN, CHAIN)
-    s.poly([(gx + (inset * i / 80) * PS,
-             gy - height * math.sqrt(max(0.0, 1 - (1 - (i / 80)) ** 2)) * PS)
-            for i in range(81)], w=THICK)
-    s.line(gx, gy, gx, gy - height * PS, (0, 0, 0), THIN, DASH)
-    s.line(gx, gy - height * PS, gx + inset * PS, gy - height * PS, (0, 0, 0), THIN, DASH)
+    s.text(dx0, dy0 + 4.5, 'fitted to the width of the stroke it is on',
+           2.3, (.35, .35, .35))
+    PS = 21.0
+    gx, gy = dx0 + 8, dy0 + 54
+    s.line(gx - 4, gy, gx + inset * PS + 12, gy, (0, 0, 0), THIN, CHAIN)
+    s.line(gx, gy + 5, gx, gy - height * PS - 7, (0, 0, 0), THIN, CHAIN)
+    for m_, lab, wt in ((inset, f'm >= {inset:.2f}', THICK),
+                        (thin / 2, f'm = {thin/2:.2f}', MED)):
+        dd = np.linspace(0.0, m_, 90)
+        zz = profile(dd, np.full(90, m_), inset, height)
+        s.poly([(gx + x_ * PS, gy - z_ * PS) for x_, z_ in zip(dd, zz)], w=wt)
+        s.text(gx + m_ * PS + 1.5, gy - zz[-1] * PS - 1.0, lab, 2.2, (.35, .35, .35))
+    s.line(gx, gy - height * PS, gx + inset * PS, gy - height * PS,
+           (0, 0, 0), THIN, DASH)
     s.dim_h(gx, gx + inset * PS, gy + 11, f'{inset:.2f}', ext=gy, below=True)
-    s.text(gx + inset * PS / 2, gy + 15, 'INSET TO FULL HEIGHT', 2.2, (.35, .35, .35), align=1)
-    s.dim_v(gy - height * PS, gy, gx + inset * PS + 11, f'{height:.2f}',
+    s.text(gx + inset * PS / 2, gy + 15, 'HALF WIDTH m', 2.2, (.35, .35, .35), align=1)
+    s.dim_v(gy - height * PS, gy, gx + inset * PS + 13, f'{height:.2f}',
             ext=gx + inset * PS, left=False)
     s.text(gx - 2, gy + 4.5, 'EDGE OF STROKE', 2.2, (.35, .35, .35))
-    s.text(dx0, gy + 22, f'z = {height:.2f} x sqrt( 1 - (1 - d / {inset:.2f})^2 )', 2.6)
-    s.text(dx0, gy + 26.5,
-           f'for d <= {inset:.2f} mm;  z = {height:.2f} beyond.  d is measured',
-           2.3, (.3, .3, .3))
-    s.text(dx0, gy + 30.5, 'in plan from the edge of the stroke.', 2.3, (.3, .3, .3))
+    s.text(dx0, gy + 21, 'z = C x sqrt( 2t - t^2 ),   t = d / m', 2.6)
+    for i, t in enumerate([
+            f'C = {height:.2f} for m >= {inset:.2f}, otherwise '
+            f'C = {height:.2f} x sqrt( 2u - u^2 ), u = m / {inset:.2f}.',
+            'd is measured in plan from the edge of the stroke and m is half',
+            'the width of that stroke, so every stroke reaches its centre',
+            'with the surface horizontal. One radius for the whole part put',
+            'a ridge down the middle of every narrow stroke; this does not.']):
+        s.text(dx0, gy + 25.5 + i * 3.7, t, 2.3, (.3, .3, .3))
 
-    tx, ty = 292, gy + 44
+    tx, ty = 292, gy + 48
     s.text(tx, ty - 4.5, 'CROWN HEIGHT BY STROKE WIDTH', 3.1, font='hebo')
     s.rect(tx, ty, tx + 114, ty + 5.8, w=MED, fill=(.9, .9, .9))
     for dxx, t in ((2.5, 'STROKE WIDTH'), (42, 'CROWN'), (66, 'NOTE')):
@@ -235,30 +272,31 @@ def sheet_one(s, src, g, W, H, rows, gaps, inset, height, base, iso, stl):
     for w_, note in sorted(table):
         s.rect(tx, yy, tx + 114, yy + 5.4, w=THIN)
         s.text(tx + 2.5, yy + 3.8, f'{w_:.2f}', 2.3)
-        s.text(tx + 42, yy + 3.8, f'{base + crown(w_, inset, height):.2f}', 2.3)
+        s.text(tx + 42, yy + 3.8, f'{crown_of(w_, inset, height, base):.2f}', 2.3)
         s.text(tx + 66, yy + 3.8, note, 2.2, (.35, .35, .35))
         yy += 5.4
     s.text(tx, yy + 4, 'Crown figures include the '
            f'{base:.2f} mm base.', 2.2, (.35, .35, .35))
 
-    ny = yy + 13
-    s.text(tx, ny, 'NOTES', 3.1, font='hebo'); ny += 5.5
+    ny = yy + 8
+    s.text(tx, ny, 'NOTES', 3.1, font='hebo'); ny += 5.2
     tight = min(g_['d'] for g_ in gaps)
     for i, t in enumerate([
             'All dimensions in millimetres. Do not scale from this drawing.',
-            f'{len(rows)} separate bodies. They do not touch and must not be '
-            'joined. Positions and gaps are on sheet 2.',
-            f'Outline is fixed. No stroke may be thinned; {thin:.2f} mm is the '
-            'minimum and is already at the limit.',
+            f'{len(rows)} separate bodies. They do not touch and must not '
+            'be joined. Positions and gaps on sheet 2.',
+            f'Outline is fixed. No stroke may be thinned; {thin:.2f} mm is '
+            'the minimum and is already at the limit.',
             f'Tightest gap between bodies is {tight:.2f} mm. See sheet 2.',
-            'Top surface domed per DETAIL B. Underside flat, no draft.',
+            'Top surface domed per DETAIL B, fitted to each stroke width. '
+            'No ridges. Underside flat, no draft.',
             'Finish satin silver, uniform. No polished or mirror areas.',
             f'Geometry of record is the STL: {stl}',
             'General tolerance +/-0.05. Crown height +/-0.10.']):
         s.text(tx, ny, str(i + 1), 2.3, font='hebo')
-        for j, ln in enumerate(wrap(t, 54)):
-            s.text(tx + 4.5, ny + j * 3.8, ln, 2.3)
-        ny += 3.8 * len(wrap(t, 54)) + 1.4
+        for j, ln in enumerate(wrap(t, 56)):
+            s.text(tx + 4.5, ny + j * 3.6, ln, 2.3)
+        ny += 3.6 * len(wrap(t, 56)) + 1.1
     return total, thin, thick
 
 
