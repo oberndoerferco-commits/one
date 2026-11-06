@@ -26,3 +26,18 @@ if __name__=='__main__':
         im=cv2.imread(REF[side]); cnts,_=cv2.findContours(f,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE)
         o=im.copy(); cv2.drawContours(o,cnts,-1,(0,0,255),1)
         cv2.imwrite(f'fillchk_{side}.png',np.vstack([np.hstack([cv2.resize(o[650:1100,800:1150],None,fx=1.2,fy=1.2),cv2.resize(o[1050:1500,180:530],None,fx=1.2,fy=1.2)]),np.hstack([cv2.resize(o[480:780,180:530],None,fx=1.2,fy=1.2),cv2.resize(o[480:780,800:1150],None,fx=1.2,fy=1.2)])]))
+
+def smooth_soft(fill, sigma_pts=5, ss=4):
+    """smooth the outline along its length and render it anti-aliased (no wobble, no stair-steps)"""
+    cnts,_=cv2.findContours(fill,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE)
+    c=max(cnts,key=cv2.contourArea)[:,0,:].astype(np.float64)
+    n=len(c); r=int(sigma_pts*3); k=np.exp(-0.5*(np.arange(-r,r+1)/sigma_pts)**2); k/=k.sum()
+    ext=np.vstack([c[-r:],c,c[:r]])
+    sm=np.stack([np.convolve(ext[:,i],k,mode='valid') for i in range(2)],1)
+    big=np.zeros((fill.shape[0]*ss,fill.shape[1]*ss),np.uint8)
+    pts=np.round((sm+0.5)*ss-0.5).astype(np.int32)
+    cv2.fillPoly(big,[pts],255,lineType=cv2.LINE_AA)
+    return cv2.resize(big.astype(np.float32)/255.,(fill.shape[1],fill.shape[0]),interpolation=cv2.INTER_AREA)
+if __name__=='__main__':
+    for side in ['front','back']:
+        f=np.load(f'fill_{side}.npy'); s=smooth_soft(f); np.save(f'soft_{side}.npy',s.astype(np.float32))

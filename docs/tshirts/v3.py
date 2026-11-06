@@ -97,6 +97,17 @@ def build(white_path,black_path,side,own_black=None):
                 C=np.dstack([g,g,g*0.985])
                 A=np.clip((A-0.22)/0.56,0,1); A=A*A*(3-2*A)
             res.setdefault('boxes_'+color,[]).append(dst)
+            if color=='black' and 'om-black-back' in black_path and name=='main':
+                # original: letters filled deep black (darker than the shirt) with a thin light-grey outline
+                As,_=place_pm(aw,cw,bw,dst,img.shape,(bw[0]-4,bw[1]-4,bw[2]+5,bw[3]+5))
+                As=As*w
+                img=img*(1-As[...,None])+np.array([5,5,5],np.float32)*As[...,None]
+                # thin hairline just outside the letter edge, like the original
+                up=cv2.resize(As,None,fx=4,fy=4,interpolation=cv2.INTER_LINEAR)
+                ring=np.clip(cv2.dilate(up,np.ones((7,7),np.uint8))-up,0,1)
+                edge=np.clip(cv2.resize(ring,(As.shape[1],As.shape[0]),interpolation=cv2.INTER_AREA)*1.3,0,1)*w
+                img=img*(1-edge[...,None])+np.array([205,205,203],np.float32)*edge[...,None]
+                continue
             A=A*w
             ink=np.clip(C+0.35*texL[...,None],0,255)       # fabric texture through the print, luminance only
             img=img*(1-A[...,None])+ink*A[...,None]

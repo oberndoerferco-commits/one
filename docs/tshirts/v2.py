@@ -15,7 +15,9 @@ def recolor(side,color):
     im=cv2.imread(REF[side]); f=im.astype(np.float32)
     Lab=tolab(im); L,A,B=Lab[...,0],Lab[...,1],Lab[...,2]
     C=np.sqrt(A**2+B**2)
-    fill=np.load(os.path.join(os.path.dirname(os.path.abspath(__file__)),f'fill_{side}.npy'))   # precise GrabCut outline of the reference shirt
+    here=os.path.dirname(os.path.abspath(__file__))
+    soft=np.load(os.path.join(here,f'soft_{side}.npy'))      # precise GrabCut outline, smoothed along its length, anti-aliased
+    fill=(soft>0.5).astype(np.uint8)
     inner=cv2.erode(fill,np.ones((7,7),np.uint8)).astype(np.float32)
     outer=(1-cv2.dilate(fill,np.ones((5,5),np.uint8))).astype(np.float32)
     band=(inner==0)&(outer==0)
@@ -31,10 +33,13 @@ def recolor(side,color):
     if color=='black': cov=np.clip(cov/0.45,0,1)       # lit edge fabric is still fabric: no light band on black
     fsoft=cv2.GaussianBlur(cv2.dilate(fill,np.ones((3,3),np.uint8)).astype(np.float32),(0,0),1.0)
     cov=cov*fsoft                                      # never colour wall/shadow pixels outside the smooth outline
-    geo=cv2.GaussianBlur(fill.astype(np.float32),(0,0),0.9)   # anti-aliased edge straight from the precise outline
+    geo=soft
     w=np.where(inner>0,1.0,np.where(band,geo,0.0)).astype(np.float32)
     # target shirt colour
     Lm=np.median(L[inner>0]); dL=L-Lm
+    Ld=cv2.bilateralFilter(L.astype(np.float32),7,2.0,5)          # remove JPEG grain, keep fabric structure
+    dLs=cv2.GaussianBlur(Ld,(0,0),6)-Lm                            # folds
+    if color=='white': dL=0.55*dLs+0.45*(Ld-Lm-dLs)                # gentler folds + fine weave, no blotches
     if color=='white': T=np.clip(96.0+1.0*dL,60,99.5); ta,tb=-0.1,0.9
     else:              T=np.clip(14.0+0.85*dL,2,48);   ta,tb=0.2,-0.4
     shirt=tobgr(np.dstack([T,np.full_like(T,ta),np.full_like(T,tb)]))
