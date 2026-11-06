@@ -216,8 +216,8 @@ def _height(poly, inset, height, base, soft=0.10, lo=0.15, hi=0.45, ppmm=80):
     return z
 
 
-def mesh_plan(poly, inset, height, base, area0=0.004, rim=0.07,
-              rim_area=9e-4, rounds=4, step=0.12, **_):
+def mesh_plan(poly, inset, height, base, area0=0.004, rim=0.08,
+              rim_area=6e-4, rounds=5, step=0.12, **_):
     """Triangulate the plan: quality everywhere, fine where the rim needs it.
 
     The first version seeded this by hand - contours packed along the rim,
@@ -264,45 +264,10 @@ def mesh_plan(poly, inset, height, base, area0=0.004, rim=0.07,
     return t['vertices'], t['triangles'], z_of
 
 
-def relax(v2, f, z, rounds=12, lamb=0.52, mu=-0.54):
-    """Taubin-smooth the lifted surface, with the outline pinned.
-
-    The surface is right and the mesh is quality; what is left is the
-    high-frequency wobble any triangulation of a curved surface has, and
-    it is the wobble - not the shape - that the eye reads as texture.
-    Chasing it analytically cost three rebuilds and millions of
-    triangles. Smoothing removes it directly, which is what a CAD
-    package does and what should have been done first.
-
-    Taubin rather than plain Laplacian because it alternates a shrinking
-    pass with an expanding one, so the part keeps its volume instead of
-    deflating. Only z moves, and only on vertices off the outline: the
-    boundary ring stays exactly where the wall meets it, so the drawn
-    outline and the tangent into the side wall are untouched.
-    """
-    from scipy.sparse import coo_matrix
-    n = len(v2)
-    e = f[:, [0, 1, 1, 2, 2, 0]].reshape(-1, 2)
-    e = np.vstack([e, e[:, ::-1]])
-    L = coo_matrix((np.ones(len(e)), (e[:, 0], e[:, 1])), shape=(n, n)).tocsr()
-    deg = np.asarray(L.sum(axis=1)).ravel()
-    deg[deg == 0] = 1
-    key = np.sort(f[:, [0, 1, 1, 2, 2, 0]].reshape(-1, 2), axis=1)
-    _, idx, cnt = np.unique(key, axis=0, return_index=True, return_counts=True)
-    rim = np.unique(f[:, [0, 1, 1, 2, 2, 0]].reshape(-1, 2)[idx[cnt == 1]])
-    free = np.ones(n, bool)
-    free[rim] = False
-    z = z.copy()
-    for i in range(rounds):
-        k = lamb if i % 2 == 0 else mu
-        z[free] += k * ((L @ z) / deg - z)[free]
-    return z
-
-
-def solid(poly, inset, height, base, target_deg=None, step=0.12):
+def solid(poly, inset, height, base, step=0.12):
     """One body: the plan meshed to a normal-error target, lifted, closed."""
     v2, f, z_of = mesh_plan(poly, inset, height, base, step=step)
-    zt = relax(v2, f, z_of(v2))
+    zt = z_of(v2)
     n = len(v2)
     VV = np.vstack([np.column_stack([v2, zt]),
                     np.column_stack([v2, np.zeros(n)])])
@@ -326,12 +291,11 @@ def _worker(src, dst):
     import shapely.wkb
     poly = shapely.wkb.loads(open(src + '.wkb', 'rb').read())
     a = json.load(open(src + '.json'))
-    m = solid(poly, a['inset'], a['height'], a['base'],
-              a['target_deg'], a['step'])
+    m = solid(poly, a['inset'], a['height'], a['base'], a['step'])
     np.savez(dst, v=np.asarray(m.vertices), f=np.asarray(m.faces))
 
 
-def build_smooth(g, inset, height, base, target_deg=1.5, step=0.12):
+def build_smooth(g, inset, height, base, step=0.12):
     """The whole part, one body at a time, each in its own interpreter.
 
     The bodies are disjoint, so there is no boolean to do and none of the
@@ -349,8 +313,7 @@ def build_smooth(g, inset, height, base, target_deg=1.5, step=0.12):
     """
     import subprocess, tempfile
     ps = list(g.geoms) if hasattr(g, 'geoms') else [g]
-    cfg = dict(inset=inset, height=height, base=base,
-               target_deg=target_deg, step=step)
+    cfg = dict(inset=inset, height=height, base=base, step=step)
     me = os.path.abspath(__file__)
     out = []
     with tempfile.TemporaryDirectory() as tmp:
@@ -412,7 +375,7 @@ if __name__ == '__main__':
 
     if o.stl and o.smooth:
         mesh = build_smooth(g, o.radius, o.height or o.radius, o.base,
-                            target_deg=o.target, step=o.step)
+                            step=o.step)
         mesh.export(o.stl)
         back = trimesh.load(o.stl)            # report on the file, not the object
         b = back.split(only_watertight=False)

@@ -22,7 +22,7 @@ from shapely.geometry import LineString, Point, Polygon
 from shapely.ops import nearest_points
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from paco_dome import artwork, halfwidth, profile
+from paco_dome import artwork, _height
 from paco_drawing import (MM, THIN, MED, THICK, CHAIN, DASH, Sheet,
                           runs, wrap)
 from paco_weights import _mask, _ends
@@ -64,26 +64,31 @@ def surface(g, inset, height, base):
     the mesh is lifted by. The drawing cannot describe one profile while
     the STL is built to another, so it does not get its own copy."""
     import shapely
-    from scipy import ndimage
-    hwf, (hx, hy), pp = halfwidth(g, inset)
+    z_of = _height(g, inset, height, base)
 
     def h(xy):
         xy = np.atleast_2d(xy)
         inside = shapely.contains_xy(g, xy[:, 0], xy[:, 1])
-        d = shapely.distance(g.boundary, shapely.points(xy))
-        hw = ndimage.map_coordinates(
-            hwf, [(xy[:, 1] - hy) * pp, (xy[:, 0] - hx) * pp],
-            order=1, mode='nearest')
-        z = base + profile(d, hw, inset, height)
+        z = z_of(xy)
         z[~inside] = 0.0
         return z, inside
     return h
 
 
-def crown_of(w, inset, height, base):
-    """What a stroke `w` wide reaches, base included."""
-    return base + float(profile(np.array([w / 2.0]), np.array([w / 2.0]),
-                                inset, height)[0])
+def crown_of(w, inset, height, base, _cache={}):
+    """What a stroke `w` wide actually reaches, base included.
+
+    Measured off a straight bar of that width rather than computed, so
+    the table carries the crowns the rounding leaves rather than the
+    ones the unrounded profile would have given.
+    """
+    from shapely.geometry import box
+    k = round(w, 4)
+    if k not in _cache:
+        bar = box(-w / 2, -6.0, w / 2, 6.0)
+        _cache[k] = float(_height(bar, inset, height, base)(
+            np.array([[0.0, 0.0]]))[0])
+    return _cache[k]
 
 
 def measure(src, inset, height, base):
@@ -194,17 +199,20 @@ def sheet_one(s, src, g, W, H, rows, gaps, inset, height, base, iso, stl):
     s.text(cx + 56, cy, 'SCALE 20:1', 2.3, (.35, .35, .35))
     s.text(cx, cy + 4.5, 'the thinnest stroke in the artwork, and the width '
            'from which the dome is full height', 2.3, (.35, .35, .35))
-    s.text(cx, cy + 8.5, 'each stroke is domed to its own width, so both '
-           'close horizontal at the centre', 2.3, (.35, .35, .35))
+    s.text(cx, cy + 8.5, 'the crest is rounded, so both close horizontal '
+           'at the centre', 2.3, (.35, .35, .35))
     base_y = cy + 66
     for n_, (wid, lab) in enumerate([(thin, f'THINNEST  {thin:.2f}'),
                                      (2 * inset, f'FULL HEIGHT  {2*inset:.2f}')]):
         mid = cx + 20 + n_ * 62
         half = wid / 2 * SS
         bz = base * SS
-        ch = crown_of(wid, inset, height, base) - base
+        from shapely.geometry import box
+        bar = box(-wid / 2, -6.0, wid / 2, 6.0)
+        zb = _height(bar, inset, height, base)
         dd = np.linspace(0.0, wid / 2, 61)
-        zz = profile(dd, np.full(61, wid / 2), inset, height)
+        zz = zb(np.column_stack([wid / 2 - dd, np.zeros(61)])) - base
+        ch = float(zz[-1])
         prof = list(zip(dd, zz))
         ring = ([(mid - half, base_y), (mid - half, base_y - bz)]
                 + [(mid - half + d * SS, base_y - bz - z * SS) for d, z in prof]
@@ -220,44 +228,49 @@ def sheet_one(s, src, g, W, H, rows, gaps, inset, height, base, iso, stl):
         s.text(mid, base_y + 17, lab, 2.4, font='hebo', align=1)
     s.dim_v(base_y - base * SS, base_y, cx + 4, f'{base:.2f}', ext=cx + 20 - thin / 2 * SS)
     for i, t in enumerate([
-            'The dome is fitted to the width of the stroke it is on, not struck',
-            'on one radius for the whole part. A narrow stroke reaches a lower',
-            'crown, but it still arrives at its own centre horizontal, so the',
-            'top surface is continuous everywhere. There is no ridge, and no',
-            'edge anywhere on the part except the outline itself.']):
+            'The dome is struck from the edge of the stroke on one radius.',
+            'A stroke under 2.50 mm runs out of width before full height, so',
+            'the two faces would meet in a ridge; that crest is rounded over',
+            'about 0.10 mm. The top surface is continuous everywhere and',
+            'there is no edge on the part except the outline itself.']):
         s.text(cx, base_y + 26 + i * 4, t, 2.3, (.3, .3, .3))
 
     # DETAIL B : the dome profile, now one per stroke width
     dx0, dy0 = 292, 30
     s.text(dx0, dy0, 'DETAIL B', 3.1, font='hebo')
     s.text(dx0 + 22, dy0, 'DOME PROFILE', 2.6, (.35, .35, .35))
-    s.text(dx0, dy0 + 4.5, 'fitted to the width of the stroke it is on',
+    s.text(dx0, dy0 + 4.5, 'struck from the edge, crest rounded',
            2.3, (.35, .35, .35))
     PS = 21.0
     gx, gy = dx0 + 8, dy0 + 54
     s.line(gx - 4, gy, gx + inset * PS + 12, gy, (0, 0, 0), THIN, CHAIN)
     s.line(gx, gy + 5, gx, gy - height * PS - 7, (0, 0, 0), THIN, CHAIN)
-    for m_, lab, wt in ((inset, f'm >= {inset:.2f}', THICK),
-                        (thin / 2, f'm = {thin/2:.2f}', MED)):
-        dd = np.linspace(0.0, m_, 90)
-        zz = profile(dd, np.full(90, m_), inset, height)
+    from shapely.geometry import box as _box
+    for w_, lab, wt in ((2 * inset, f'stroke {2*inset:.2f}', THICK),
+                        (thin, f'stroke {thin:.2f}', MED)):
+        bar = _box(-w_ / 2, -6.0, w_ / 2, 6.0)
+        zb = _height(bar, inset, height, base)
+        dd = np.linspace(0.0, w_ / 2, 90)
+        zz = zb(np.column_stack([w_ / 2 - dd, np.zeros(90)])) - base
         s.poly([(gx + x_ * PS, gy - z_ * PS) for x_, z_ in zip(dd, zz)], w=wt)
-        s.text(gx + m_ * PS + 1.5, gy - zz[-1] * PS - 1.0, lab, 2.2, (.35, .35, .35))
+        s.text(gx + w_ / 2 * PS + 1.5, gy - zz[-1] * PS - 1.0, lab, 2.2,
+               (.35, .35, .35))
     s.line(gx, gy - height * PS, gx + inset * PS, gy - height * PS,
            (0, 0, 0), THIN, DASH)
     s.dim_h(gx, gx + inset * PS, gy + 11, f'{inset:.2f}', ext=gy, below=True)
-    s.text(gx + inset * PS / 2, gy + 15, 'HALF WIDTH m', 2.2, (.35, .35, .35), align=1)
+    s.text(gx + inset * PS / 2, gy + 15, 'INSET TO FULL HEIGHT', 2.2,
+           (.35, .35, .35), align=1)
     s.dim_v(gy - height * PS, gy, gx + inset * PS + 13, f'{height:.2f}',
             ext=gx + inset * PS, left=False)
     s.text(gx - 2, gy + 4.5, 'EDGE OF STROKE', 2.2, (.35, .35, .35))
-    s.text(dx0, gy + 21, 'z = C x sqrt( 2t - t^2 ),   t = d / m', 2.6)
+    s.text(dx0, gy + 21, f'z = {height:.2f} x sqrt( 2u - u^2 ),   u = d / {inset:.2f}', 2.5)
     for i, t in enumerate([
-            f'C = {height:.2f} for m >= {inset:.2f}, otherwise '
-            f'C = {height:.2f} x sqrt( 2u - u^2 ), u = m / {inset:.2f}.',
-            'd is measured in plan from the edge of the stroke and m is half',
-            'the width of that stroke, so every stroke reaches its centre',
-            'with the surface horizontal. One radius for the whole part put',
-            'a ridge down the middle of every narrow stroke; this does not.']):
+            f'for d <= {inset:.2f} mm, flat beyond. d is measured in plan from',
+            'the edge of the stroke. Where two faces of the dome would meet',
+            'in a ridge - any stroke under '
+            f'{2*inset:.2f} mm - the crest is rounded',
+            'over about 0.10 mm, so the top surface is continuous and there',
+            'is no edge anywhere on the part except the outline itself.']):
         s.text(dx0, gy + 25.5 + i * 3.7, t, 2.3, (.3, .3, .3))
 
     tx, ty = 292, gy + 48
@@ -288,8 +301,8 @@ def sheet_one(s, src, g, W, H, rows, gaps, inset, height, base, iso, stl):
             f'Outline is fixed. No stroke may be thinned; {thin:.2f} mm is '
             'the minimum and is already at the limit.',
             f'Tightest gap between bodies is {tight:.2f} mm. See sheet 2.',
-            'Top surface domed per DETAIL B, fitted to each stroke width. '
-            'No ridges. Underside flat, no draft.',
+            'Top surface domed per DETAIL B, crest rounded. No ridges. '
+            'Underside flat, no draft.',
             'Finish satin silver, uniform. No polished or mirror areas.',
             f'Geometry of record is the STL: {stl}',
             'General tolerance +/-0.05. Crown height +/-0.10.']):

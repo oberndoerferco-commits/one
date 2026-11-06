@@ -1,6 +1,6 @@
 # PA & CO — letters +0.12, diamond +0.50, bar freed, real dome
 
-`paco-50mm-freebar.pdf`, `paco-logo-SMOOTH-v3-dome1.20-base0.45.stl`,
+`paco-50mm-freebar.pdf`, `paco-logo-SMOOTH-v4-dome1.20-base0.45.stl`,
 `paco-engineering-sheet.pdf` (2 × A3).
 50.25 × 35.96 × 1.65 mm, **seven** pieces, 471.6 mm² in plan.
 
@@ -60,21 +60,36 @@ representing that edge faithfully, which was the wrong problem.
 
 ![smooth](paco-smooth-fix.png)
 
-**Now each stroke is domed to its own width.** `halfwidth()` measures
-half the width of the stroke every point belongs to: the distance to the
-outline at the medial axis, carried out to the rest of the stroke by the
-EDT's nearest-skeleton indices, then blurred, because the raw field
-steps where one branch takes over and nothing about a stroke's width
-should step. `profile()` fits the same arc to that half width.
+**Then each stroke was domed to its own width.** That removed the
+crease and introduced a worse fault. Half the local width is not a
+smooth quantity — it jumps wherever one branch of the medial axis takes
+over from another, and half a millimetre of jump carried into the height
+gives surface normals sixty degrees out. Tripling the triangle count
+moved it from 26 to 23 degrees: error that does not shrink under
+refinement is not in the mesh.
 
-Where a stroke is wide enough to carry the full radius, nothing changed
-at all. Where it is not, it reaches the **identical crown** it reached
-before — every figure in the crown table still holds — but arrives at
-its own centre horizontal instead of at a corner. At the narrowest
-stroke in the artwork: crown 1.042 either way, slope at the centre
-0.614 before and zero now.
+**Now the crease is rounded rather than designed around.** The plain
+profile is rastered, blurred with a small mask-normalised kernel, and
+blended back over the exact profile with a weight that is zero at the
+rim and one well inside. The rim keeps the drawn outline and its
+vertical tangent into the wall; the crest, the only place a crease can
+form, sits entirely in the blurred part. Slope at the crest, measured
+across three strokes: **0.003 to 0.010**, where it was 0.614.
 
-Apart from the outline itself there is no edge anywhere on the part.
+**And the mesh was the other half of it.** Sorting faces by shape said
+so plainly: triangles with a minimum angle under ten degrees miss the
+true normal by **13 degrees** at the median, against **1.3** for well
+shaped ones, and sixteen per cent of the top faces were such slivers.
+They were all mine — contours packed along the rim at 0.05 mm spacing
+inside bands 0.004 mm wide, chains along the crease. Every seed placed
+to control error made it worse. Handed the outline alone, the same
+mesher returns a minimum angle of 30 degrees and no slivers at all.
+
+Nothing is placed by hand now: a quality mesh over the whole plan, then
+the band within 0.08 mm of the outline taken finer, both bounded.
+Neighbouring faces beyond the rim now differ by **2.3 degrees at the
+median, 5.1 at p90, 11.8 at p99**. 793,848 triangles, seven closed
+bodies, read back from the exported file.
 
 ## What the pictures were hiding
 
