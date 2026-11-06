@@ -114,6 +114,66 @@ def _graded(poly, inset, height, rings_at, step, fine=0.05):
     return pts
 
 
+def halfwidth(poly, inset, ppmm=80, smooth=0.18):
+    """For every point, half the width of the stroke it belongs to.
+
+    This is the quantity the old profile was missing. The dome was struck
+    from the edge on a fixed radius, so a stroke narrower than twice that
+    radius ran out of width before the profile had flattened and the two
+    faces met at the centre still climbing - a knife edge down the middle
+    of every narrow stroke. No mesh can smooth that away, because the
+    surface really does have an edge there.
+
+    Half the local width is the distance to the outline at the medial
+    axis, carried out to the rest of the stroke: the nearest skeleton
+    point to any interior point is the one whose disc that point sits in.
+    scipy's EDT returns those indices for free. It is then blurred,
+    because the raw field steps where one branch of the skeleton takes
+    over from another, and nothing about a stroke's width should step.
+    """
+    from skimage.morphology import medial_axis
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from paco_weights import _mask
+    from scipy import ndimage
+    m, (ox, oy) = _mask(poly, ppmm)
+    sk, dist = medial_axis(m, return_distance=True, rng=RNG)
+    if not sk.any():
+        sk = m
+    _, idx = ndimage.distance_transform_edt(~sk, return_indices=True)
+    hw = dist[idx[0], idx[1]] / ppmm
+    k = max(1.0, smooth * ppmm)
+    hw = ndimage.gaussian_filter(hw, k, mode='nearest')
+    return hw, (ox, oy), ppmm
+
+
+def profile(d, hw, inset, height):
+    """Height of the dome, given distance to the edge and half the width.
+
+    Where a stroke is wide enough to carry the full radius the profile is
+    exactly what it always was - rolled over `inset` and flat after, which
+    already meets its plateau with zero slope.
+
+    Where it is not, the same arc is fitted to the stroke's own half
+    width instead. It reaches the identical crown the old profile reached
+    there, so every figure in the crown table still holds, but it arrives
+    at the centre horizontal rather than at a corner. Narrow ribs come
+    out slightly fuller through the middle, which is what a round-topped
+    rib looks like, and nowhere on the part is there an edge any more
+    except the outline itself.
+    """
+    d = np.asarray(d, dtype=float)
+    hw = np.maximum(np.asarray(hw, dtype=float), d)      # d/hw <= 1 always
+    g = lambda t: np.sqrt(np.clip(2 * t - t * t, 0.0, None))   # arc, flat at t=1
+    wide = hw >= inset
+    out = np.empty_like(d)
+    out[wide] = height * g(np.minimum(d[wide], inset) / inset)
+    nw = ~wide
+    if nw.any():
+        crown = height * g(hw[nw] / inset)               # the crown it had before
+        out[nw] = crown * g(d[nw] / np.maximum(hw[nw], 1e-9))
+    return out
+
+
 def _trace(keep):
     """Skeleton pixels -> ordered chains, so the ridge can be followed.
 
@@ -318,8 +378,12 @@ def solid(poly, inset, height, base, area=0.010, step=0.12,
     v2, f = t['vertices'], t['triangles']
     d = shapely.distance(poly.boundary, shapely.points(v2))
     d[:nfix] = 0.0                       # the outline is the outline
+    hwf, (hx, hy), pp = halfwidth(poly, inset)
+    from scipy import ndimage
+    hw = ndimage.map_coordinates(
+        hwf, [(v2[:, 1] - hy) * pp, (v2[:, 0] - hx) * pp], order=1, mode='nearest')
     n = len(v2)
-    VV = np.vstack([np.column_stack([v2, base + dome_z(d, inset, height)]),
+    VV = np.vstack([np.column_stack([v2, base + profile(d, hw, inset, height)]),
                     np.column_stack([v2, np.zeros(n)])])
     de = f[:, [0, 1, 1, 2, 2, 0]].reshape(-1, 2)
     _, idx, cnt = np.unique(np.sort(de, axis=1), axis=0,
