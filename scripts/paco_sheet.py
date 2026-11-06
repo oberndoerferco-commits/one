@@ -27,6 +27,12 @@ from paco_drawing import (MM, THIN, MED, THICK, CHAIN, DASH, Sheet,
                           section_profile, runs, crown, wrap)
 from paco_weights import _mask, _ends
 from skimage.morphology import medial_axis
+
+# medial_axis thins in a randomised order unless it is given a
+# generator. Left to itself it returns a slightly different
+# skeleton every run, which moved both the measured stroke widths
+# and the triangle count of the exported mesh.
+RNG = 20251106
 from scipy import ndimage
 
 
@@ -41,15 +47,14 @@ def strokes(poly, ppmm=60, skip=0.8):
     because it separates; a 97 x 97 structuring element does not finish.
     """
     m, _ = _mask(poly, ppmm)
-    sk, dist = medial_axis(m, return_distance=True)
+    sk, dist = medial_axis(m, return_distance=True, rng=RNG)
     e = _ends(sk)
     if e.any():
         k = int(skip * ppmm) * 2 + 1
         near = ndimage.maximum_filter(e, size=k)
         sk = sk & ~near
     if not sk.any():                      # a piece shorter than the skip
-        sk, _ = medial_axis(m, return_distance=True), None
-        sk = medial_axis(m)
+        sk = medial_axis(m, rng=RNG)
     d = dist[sk] / ppmm * 2
     return float(d.min()), float(d.max())
 

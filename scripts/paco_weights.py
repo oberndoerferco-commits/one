@@ -40,6 +40,12 @@ from paco_bold import MM, assemble, subpaths, write              # noqa: E402
 SRC = 'assets/paco/paco-50mm-min1mm-FINAL.pdf'
 MITRE = dict(join_style=2, mitre_limit=4.0)
 
+# medial_axis thins in a randomised order unless it is handed a
+# generator. Left to itself it returns a slightly different skeleton
+# every run, which moved both the measured stroke widths and the
+# triangle count of the exported mesh.
+RNG = 20251106
+
 
 def load(src):
     """(diamond, letters, page height) from the 50 mm artwork."""
@@ -95,7 +101,7 @@ def gauge(poly, ppmm=60, skip=0.8, white_cap=6.0):
     r = max(1, int(round(skip * ppmm)))
     out = []
     for i, mask in enumerate((m, ~m)):
-        sk, dist = medial_axis(mask, return_distance=True)
+        sk, dist = medial_axis(mask, return_distance=True, rng=RNG)
         near = ndimage.maximum_filter(_ends(sk).astype(np.uint8), size=2 * r + 1)
         keep = sk & (near == 0)
         if i == 1:

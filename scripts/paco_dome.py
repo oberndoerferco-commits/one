@@ -22,6 +22,13 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from paco_bold import subpaths, assemble, MM
 
 
+# medial_axis thins in a randomised order unless it is handed a
+# generator. Left to itself it returns a slightly different skeleton
+# every run, which moved both the measured stroke widths and the
+# triangle count of the exported mesh.
+RNG = 20251106
+
+
 def artwork(src):
     d = pymupdf.open(src); p = d[0]
     g = assemble([np.array(r) for r in subpaths(p)])
@@ -107,8 +114,160 @@ def _graded(poly, inset, height, rings_at, step, fine=0.05):
     return pts
 
 
+def _trace(keep):
+    """Skeleton pixels -> ordered chains, so the ridge can be followed.
+
+    A set of pixels is not a line. Taking them in raster order and
+    thinning on a grid gives points that jump from one side of the ridge
+    to the other, and a mesh seeded with those has a crease that zigzags
+    in plan even though every vertex is at the right height - which is
+    what the chewed look actually was.
+    """
+    pix = set(zip(*np.nonzero(keep)))
+    nb = {}
+    for (r, c) in pix:
+        n = [(r + dr, c + dc)
+             for dr in (-1, 0, 1) for dc in (-1, 0, 1)
+             if (dr or dc) and (r + dr, c + dc) in pix]
+        nb[(r, c)] = n
+    used, out = set(), []
+    def walk(start, first):
+        chain, prev, cur = [start], start, first
+        while True:
+            chain.append(cur)
+            used.add(frozenset((prev, cur)))
+            nxt = [q for q in nb[cur] if q != prev
+                   and frozenset((cur, q)) not in used]
+            if len(nb[cur]) != 2 or not nxt:
+                return chain
+            prev, cur = cur, nxt[0]
+    for p0 in pix:                       # from every end and junction
+        if len(nb[p0]) != 2:
+            for q in nb[p0]:
+                if frozenset((p0, q)) not in used:
+                    out.append(walk(p0, q))
+    for p0 in pix:                       # whatever is left is a loop
+        for q in nb[p0]:
+            if frozenset((p0, q)) not in used:
+                out.append(walk(p0, q))
+    return [c for c in out if len(c) > 2]
+
+
+def _on_ridge(pts, boundary, reach=0.03, n=7):
+    """Slide each point sideways onto the true crest of the distance field.
+
+    The skeleton is only accurate to its raster. The crease is where the
+    distance to the outline is locally greatest across the stroke, and
+    that is a quantity shapely will give exactly, so each point is
+    searched along its own normal and placed at the parabola through the
+    best three samples. The ridge stops being a staircase of pixels and
+    becomes a line.
+    """
+    import shapely
+    out = []
+    for k in range(len(pts)):
+        a = pts[max(0, k - 1)]
+        b = pts[min(len(pts) - 1, k + 1)]
+        tx, ty = b[0] - a[0], b[1] - a[1]
+        L = math.hypot(tx, ty)
+        if L < 1e-9:
+            continue
+        nx, ny = -ty / L, tx / L
+        ts = np.linspace(-reach, reach, n)
+        cand = np.column_stack([pts[k][0] + nx * ts, pts[k][1] + ny * ts])
+        d = shapely.distance(boundary, shapely.points(cand))
+        i = int(np.argmax(d))
+        if 0 < i < n - 1:                # refine on the parabola
+            y0, y1, y2 = d[i - 1], d[i], d[i + 1]
+            den = y0 - 2 * y1 + y2
+            sh = 0.5 * (y0 - y2) / den if abs(den) > 1e-12 else 0.0
+            t = ts[i] + max(-1.0, min(1.0, sh)) * (ts[1] - ts[0])
+        else:
+            t = ts[i]
+        out.append((pts[k][0] + nx * t, pts[k][1] + ny * t))
+    return out
+
+
+def _resample(chain, step):
+    out, acc = [chain[0]], 0.0
+    for a, b in zip(chain[:-1], chain[1:]):
+        L = math.hypot(b[0] - a[0], b[1] - a[1])
+        acc += L
+        if acc >= step:
+            out.append(b); acc = 0.0
+    if out[-1] != chain[-1]:
+        out.append(chain[-1])
+    return out
+
+
+def _ridge(poly, inset, ppmm=120, step=0.06, keep_off=0.02):
+    """Points along the crease down the middle of every narrow stroke.
+
+    Where a stroke is narrower than twice the inset, the two halves of
+    the dome run out of width and meet in a ridge. The ridge is a real
+    edge of the design - the drawing says so - but a mesh that merely
+    fills the stroke crosses it at whatever angle the triangulation
+    happens to take, and each crossing triangle cuts the apex by a
+    different amount. That is what makes the crease look chewed: not
+    height error in general, but height error that varies along a line
+    the eye is already following.
+
+    Seeding the triangulation along the ridge fixes it, because
+    consecutive points closer to each other than to anything else get
+    joined, so the mesh ends up with edges lying on the crease and
+    vertices at the exact apex height. The seeds have to be a line
+    though, not a cloud: traced into chains, slid onto the true crest,
+    smoothed, and only then resampled.
+
+    Only the part with less than `inset` of clearance is wanted - beyond
+    that the surface is flat at full height and there is no crease.
+    """
+    from skimage.morphology import medial_axis
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from paco_weights import _mask
+    import shapely
+    m, (ox, oy) = _mask(poly, ppmm)
+    sk, dist = medial_axis(m, return_distance=True, rng=RNG)
+    keep = sk & (dist / ppmm < inset)
+    if not keep.any():
+        return []
+    chains = []
+    for chain in _trace(keep):
+        w = [(ox + c / ppmm, oy + r / ppmm) for r, c in chain]
+        for _ in range(2):               # a little smoothing before the slide
+            w = ([w[0]]
+                 + [((a[0] + 2 * b[0] + c[0]) / 4, (a[1] + 2 * b[1] + c[1]) / 4)
+                    for a, b, c in zip(w[:-2], w[1:-1], w[2:])]
+                 + [w[-1]])
+        w = _on_ridge(_resample(w, step), poly.boundary)
+        if len(w) > 1:
+            chains.append(w)
+    if not chains:
+        return []
+    # return chains, not a cloud. Seeded as loose points the
+    # triangulation joined only 90 per cent of consecutive pairs - the
+    # other tenth is where the crease still looked chewed - so they go in
+    # as segments the mesh is required to contain. A chain is cut rather
+    # than bridged wherever a point has to be dropped for sitting too
+    # close to the outline, so no segment is ever invented across a gap.
+    out = []
+    for ch in chains:
+        d = shapely.distance(poly.boundary, shapely.points(np.array(ch)))
+        run = []
+        for q, dd in zip(ch, d):
+            if dd > keep_off:
+                run.append(q)
+            elif len(run) > 1:
+                out.append(run); run = []
+            else:
+                run = []
+        if len(run) > 1:
+            out.append(run)
+    return out
+
+
 def solid(poly, inset, height, base, area=0.010, step=0.12,
-          nrings=10, fine=0.05):
+          nrings=10, fine=0.05, ridge=0.06):
     """One body as a real dome, not a stack of level sets.
 
     Stacking inset outlines makes the top a staircase, and the worst
@@ -148,6 +307,10 @@ def solid(poly, inset, height, base, area=0.010, step=0.12,
         holes.append((q.x, q.y))
     nfix = len(V)
     V += _graded(poly, inset, height, rings_at, step, fine)
+    for ch in (_ridge(poly, inset, step=ridge) if ridge else []):
+        k = len(V)
+        V += ch
+        S += [(k + a, k + a + 1) for a in range(len(ch) - 1)]
     pslg = dict(vertices=np.array(V), segments=np.array(S))
     if holes:
         pslg['holes'] = np.array(holes)
@@ -173,14 +336,34 @@ def solid(poly, inset, height, base, area=0.010, step=0.12,
     return m
 
 
+def _task(a):
+    poly, inset, height, base, area, step, nrings, fine, ridge = a
+    m = solid(poly, inset, height, base, area, step, nrings, fine, ridge)
+    return np.asarray(m.vertices), np.asarray(m.faces)
+
+
 def build_smooth(g, inset, height, base, area=0.010, step=0.12,
-                 nrings=10, fine=0.05):
-    """The whole part. The bodies are disjoint, so no boolean is needed -
-    which also removes the degenerate seam triangles a union leaves."""
+                 nrings=10, fine=0.05, ridge=0.06):
+    """The whole part, one body at a time, each in its own interpreter.
+
+    The bodies are disjoint, so there is no boolean to do and none of the
+    degenerate seam triangles a union leaves. They are built in separate
+    processes for a less pleasant reason: `triangle` is a C library that
+    carries state between calls. Run in sequence it returned a different
+    triangle count for the same body depending on what had been
+    triangulated before it, and segfaulted on the seventh. A result that
+    depends on call history is not a result, whatever it looks like, so
+    each body gets a fresh interpreter and the build is reproducible.
+    """
+    import multiprocessing as mp
     ps = list(g.geoms) if hasattr(g, 'geoms') else [g]
+    args = [(p, inset, height, base, area, step, nrings, fine, ridge)
+            for p in ps]
+    ctx = mp.get_context('spawn')
+    with ctx.Pool(processes=min(4, len(args)), maxtasksperchild=1) as pool:
+        got = pool.map(_task, args, chunksize=1)
     return trimesh.util.concatenate(
-        [solid(p, inset, height, base, area, step, nrings, fine)
-         for p in ps])
+        [trimesh.Trimesh(vertices=v, faces=f, process=False) for v, f in got])
 
 
 if __name__ == '__main__':
@@ -206,6 +389,9 @@ if __name__ == '__main__':
                         'profile is steep')
     a.add_argument('--fine', type=float, default=0.05,
                    help='closest spacing along a rim contour, mm')
+    a.add_argument('--ridge', type=float, default=0.06,
+                   help='spacing of seeds along the crease down the middle '
+                        'of a narrow stroke; 0 to leave it unseeded')
     o = a.parse_args()
 
     g, W, H = artwork(o.src)
@@ -222,7 +408,8 @@ if __name__ == '__main__':
 
     if o.stl and o.smooth:
         mesh = build_smooth(g, o.radius, o.height or o.radius, o.base,
-                            area=o.area, nrings=o.rim, fine=o.fine)
+                            area=o.area, nrings=o.rim, fine=o.fine,
+                            ridge=o.ridge)
         mesh.export(o.stl)
         back = trimesh.load(o.stl)            # report on the file, not the object
         b = back.split(only_watertight=False)
