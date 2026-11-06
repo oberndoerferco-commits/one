@@ -135,7 +135,7 @@ footer code{font-family:var(--fm);font-size:12px}
     <div class="view" id="view"><span class="hint">drag to turn &middot; scroll to zoom</span></div>
     <div class="flat">
       <h2>Flat, at size</h2>
-      <canvas id="flat" width="1600" height="700"></canvas>
+      <canvas id="flat" width="1200" height="520"></canvas>
     </div>
     <div class="read">
       <div class="cmd">
@@ -352,7 +352,7 @@ ren.toneMapping = THREE.ACESFilmicToneMapping; ren.toneMappingExposure = 1.0;
 host.appendChild(ren.domElement);
 const scene = new THREE.Scene();
 const cam = new THREE.PerspectiveCamera(28, 16/10, 1, 3000);
-{
+function buildStudio(){
   const pm = new THREE.PMREMGenerator(ren); pm.compileEquirectangularShader();
   const es = new THREE.Scene();
   es.add(new THREE.Mesh(new THREE.SphereGeometry(60,48,32),
@@ -364,7 +364,8 @@ const cam = new THREE.PerspectiveCamera(28, 16/10, 1, 3000);
   box(34,11,-20,7,26,0,0.5,4.6); box(22,7,8,-9,-20,0,3.0,2.1);
   scene.environment = pm.fromScene(es, 0.04).texture;
 }
-const maps = brushed(1024, 420, 0.11, 0.40);
+const maps = brushed(512, 210, 0.11, 0.40);   // 1024 was a million-cell
+                                              // double loop before first paint
 const MAT = new THREE.MeshStandardMaterial({color:0xdfe4e8, metalness:1.0,
   roughness:0.24, roughnessMap:maps.rough, normalMap:maps.norm,
   normalScale:new THREE.Vector2(0.95,0.07), envMapIntensity:1.15,
@@ -497,5 +498,15 @@ document.getElementById('copy').addEventListener('click', async e=>{
          const s=getSelection(); s.removeAllRanges(); s.addRange(r);
          e.target.textContent='Select & copy'; }
 });
-resize(); render();
+/* Paint the page before building anything. The first version did the
+   environment map, two 1024 x 1024 texture loops, the mesh and a
+   1600 x 700 flat preview - about three million field lookups - all
+   synchronously on load, which on a phone is ten seconds of white
+   screen and reads as a page that will not open. */
+const note = document.createElement('span');
+note.className = 'hint'; note.style.cssText = 'left:auto;right:10px;bottom:9px';
+note.textContent = 'building\u2026'; host.appendChild(note);
+requestAnimationFrame(() => setTimeout(() => {
+  buildStudio(); resize(); render(); note.remove();
+}, 0));
 </script>
