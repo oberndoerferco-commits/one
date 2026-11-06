@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """An 8 mm bead carrying the marks as a monogram pattern.
 
+The bead is drilled from one side only. It sits on a post, so a tunnel
+through it would be a hole too many: the far pole is solid and carries
+pattern like the rest of the ball.
+
 The motifs are not drawn onto the sphere one by one. They are painted
 into an equirectangular map, the map is turned into a relief by the same
 rule the PA & CO part uses - height from distance to the edge of the
@@ -65,6 +69,27 @@ def rotate(mask, deg):
                           reshape=True, mode='constant', cval=0.0) > 0.5
 
 
+def blind_bore(r, bore, depth, sections=96):
+    """The cutter for a hole drilled from one side and stopping inside.
+
+    The bead sits on a post, so it needs one hole, not a tunnel: the far
+    pole stays closed and carries pattern like any other part of the
+    ball. Under the wall is a 118-degree point, the angle a twist drill
+    leaves, so the shape is one a workshop can produce rather than a
+    flat-bottomed slot only a mill could cut.
+
+    It is one revolved profile, not a cylinder unioned with a cone.
+    Those two meet on a shared plane, and the union leaves a sliver of
+    that plane behind - a forty-seven face disc of zero thickness, which
+    is enough to cost the finished bead its watertightness.
+    """
+    b = bore / 2.0
+    zb = r - depth
+    tip = b / math.tan(math.radians(59.0))
+    prof = np.array([[0.0, zb - tip], [b, zb], [b, r * 1.6], [0.0, r * 1.6]])
+    return trimesh.creation.revolve(prof, sections=sections)
+
+
 def spread(radius, n, cap_deg):
     """Marks at one spacing everywhere on the ball, poles included.
 
@@ -79,13 +104,17 @@ def spread(radius, n, cap_deg):
     as the equator. Points are generated over the whole sphere and the
     caps dropped afterwards, so the spacing of what remains is the
     spacing of the whole.
+
+    Only the drilled pole is kept clear. The other one is solid metal
+    now and takes a mark like anywhere else, so clearing it too would
+    put back the bald patch the spiral was chosen to avoid.
     """
     ga = math.pi * (3 - math.sqrt(5))
     lim = math.sin(math.radians(cap_deg))
     out = []
     for i in range(n):
         z = 1 - 2 * (i + 0.5) / n
-        if abs(z) > lim:
+        if z > lim:
             continue
         out.append((math.degrees((i * ga) % (2 * math.pi)) - 180,
                     math.degrees(math.asin(z))))
@@ -265,8 +294,8 @@ def framed(mask, border=0.055):
     return m
 
 
-def build(stamps, out, dia=8.0, bore=1.2, n=30, mark=1.0, ring=False,
-          height=0.10,
+def build(stamps, out, dia=8.0, bore=1.2, depth=4.0, n=30, mark=1.0,
+          ring=False, height=0.10,
           inset=0.05, cap=76.0, sub=7, W=3600, Hh=1800, cut=False):
     # embossed, the marks stand proud and the ball under them is
     # smaller by that much; engraved, the ball is the full size and the
@@ -297,10 +326,9 @@ def build(stamps, out, dia=8.0, bore=1.2, n=30, mark=1.0, ring=False,
     m = trimesh.Trimesh(vertices=v, faces=ball.faces.view(np.ndarray).copy(),
                         process=False)
     m.process(validate=True)
-    if bore:
-        cyl = trimesh.creation.cylinder(radius=bore / 2.0, height=dia * 2.0,
-                                        sections=96)
-        m = trimesh.boolean.difference([m, cyl], engine='manifold')
+    if bore and depth > 0:
+        m = trimesh.boolean.difference([m, blind_bore(r, bore, depth)],
+                                       engine='manifold')
     m.merge_vertices()
     m.process(validate=True)
     m.fix_normals()
@@ -314,14 +342,18 @@ def build(stamps, out, dia=8.0, bore=1.2, n=30, mark=1.0, ring=False,
     print(f'   {len(places)} marks of {len(PATTERN)} kinds, '
           f'{spacing(r, len(places)) if ring else spacing(r, n):.2f} mm apart, '
           f'{min(q[3] for q in places):.2f} to {max(q[3] for q in places):.2f} mm across, '
-          f'relief {height:.2f} mm, bore {bore:.2f} mm')
+          f'relief {height:.2f} mm, hole {bore:.2f} mm x {depth:.2f} mm deep')
     return m, ink, rel
 
 
 if __name__ == '__main__':
     a = argparse.ArgumentParser()
     a.add_argument('--dia', type=float, default=8.0)
-    a.add_argument('--bore', type=float, default=1.2)
+    a.add_argument('--bore', type=float, default=1.2,
+                   help='diameter of the hole the post sits in')
+    a.add_argument('--bore-depth', type=float, default=4.0,
+                   help='how far the hole goes in; it is blind, so the '
+                        'far side of the bead stays closed')
     a.add_argument('--marks', type=int, default=30,
                    help='marks over the whole sphere before the caps are '
                         'dropped; fewer means bigger and further apart')
@@ -348,5 +380,6 @@ if __name__ == '__main__':
     for (nm, _, _, _, mm, _), st in zip(PATTERN, stamps):
         print(f'   {nm:5s} {st.shape[1]:4d} x {st.shape[0]:4d} px   '
               f'{mm:.2f} mm on the ball')
-    build(stamps, o.out, dia=o.dia, bore=o.bore, n=o.marks, mark=o.mark,
+    build(stamps, o.out, dia=o.dia, bore=o.bore, depth=o.bore_depth,
+          n=o.marks, mark=o.mark,
           ring=o.rings, height=o.relief, sub=o.sub, cut=o.cut)

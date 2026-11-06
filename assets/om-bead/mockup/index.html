@@ -135,6 +135,7 @@ button.btn.wide{width:100%;text-align:left}
       <div class="seg" style="flex:0 0 auto" role="group" aria-label="Pointer tool">
         <button id="t-orbit" aria-pressed="true">Turn the bead</button>
         <button id="t-move" aria-pressed="false">Move a mark</button>
+        <button id="t-add" aria-pressed="false">Add a mark</button>
       </div>
       <button class="btn" id="t-spin" aria-pressed="true">Auto-turn</button>
       <button class="btn" id="t-home">Reset view</button>
@@ -186,8 +187,8 @@ var S = {
          {lat:45,n:6,turn:0,kinds:[1,4],mm:null},
          {lat:75,n:4,turn:0,kinds:[3],mm:1.70}],
   spread:{n:30, cap:76},
-  dia:8.0, bore:1.2, relief:0.10, inset:0.05, scale:1.0, cut:false,
-  marks:[], sel:-1
+  dia:8.0, bore:1.2, depth:4.0, relief:0.10, inset:0.05, scale:1.0, cut:false,
+  marks:[], sel:-1, add:0
 };
 
 /* ---------- maths shared with scripts/om_bead.py --------------------- */
@@ -223,7 +224,7 @@ function fromSpread(){
   var pts=[];
   for(var i=0;i<n;i++){
     var z=1-2*(i+0.5)/n;
-    if(Math.abs(z)>lim) continue;
+    if(z>lim) continue;        /* only the drilled pole is kept clear */
     pts.push([norm180(((i*ga)%(2*Math.PI))*R2D-180), Math.asin(z)*R2D]);
   }
   var kinds=deal(pts);
@@ -426,9 +427,10 @@ function heightAt(m,lon,lat){
 }
 
 /* ---------- geometry ------------------------------------------------- */
-/* A band of a sphere plus a tube: the bore is a real hole, so the mesh
-   stops where the 1.2 mm bore meets the ball instead of closing over
-   it. */
+/* A sphere open at one pole only. The bead sits on a post, so it is
+   drilled from one side and the far pole is solid metal that carries
+   pattern like the rest of the ball - the mesh stops at the rim where
+   the hole meets the surface and runs all the way to the bottom. */
 var GEO={};
 function shell(C,Rn){
   var key=C+'x'+Rn, g=GEO[key];
@@ -446,7 +448,7 @@ function shell(C,Rn){
   GEO[key]=g; return g;
 }
 function aim(g,th0){
-  var C=g.C, Rn=g.R, span=Math.PI-2*th0, i, j;
+  var C=g.C, Rn=g.R, span=Math.PI-th0, i, j;
   if(!g.cp){
     g.cp=new Float64Array(C+1); g.sp=new Float64Array(C+1);
     for(j=0;j<=C;j++){ var ph=-Math.PI+2*Math.PI*j/C;
@@ -462,7 +464,7 @@ function aim(g,th0){
   }
 }
 
-var THREE_=window.THREE, renderer, scene, camera, mesh, tube, mat, env;
+var THREE_=window.THREE, renderer, scene, camera, mesh, tube, pt, mat, env;
 var cam={yaw:-60, pitch:18, dist:26};
 var MESH=shell(384,192), needHi=false, loAt=0;
 
@@ -499,11 +501,26 @@ function rebuild(hi){
   mesh.geometry=out.geo;
   mat.normalMap=m.tex;
   mat.needsUpdate=true;
-  var R=out.R, zr=R*Math.cos(out.th0);
-  tube.scale.set(S.bore/2, 2*zr, S.bore/2);
-  tube.visible = S.bore > 0.01;
+  hole(out.R, out.th0);
   if(hi){ needHi=false; } else { needHi=true; loAt=performance.now(); }
   stats();
+}
+
+/* The hole is blind: a wall down to the depth asked for, then the
+   118-degree point a twist drill leaves. Both are drawn from the
+   inside, which is the only side of them anyone sees. */
+function hole(R, th0){
+  var zt=R*Math.cos(th0), zb=R-S.depth;
+  var tip=(S.bore/2)/Math.tan(59*D);
+  if(zb>zt-0.05) zb=zt-0.05;
+  if(zb-tip < -R+0.15){ tip=Math.max(0.01, zb+R-0.15); }
+  var on = S.bore>0.01 && S.depth>0.05;
+  tube.visible=pt.visible=on;
+  if(!on) return;
+  tube.scale.set(S.bore/2, zt-zb, S.bore/2);
+  tube.position.set(0,0,(zt+zb)/2);
+  pt.scale.set(S.bore/2, tip, S.bore/2);
+  pt.position.set(0,0,zb-tip/2);
 }
 
 /* ---------- scene ---------------------------------------------------- */
@@ -582,7 +599,9 @@ function setup(){
     roughness:0.6, envMap:env, envMapIntensity:0.8, side:THREE_.BackSide});
   tube=new THREE_.Mesh(new THREE_.CylinderGeometry(1,1,1,64,1,true), tmat);
   tube.rotation.x=Math.PI/2;
-  scene.add(tube);
+  pt=new THREE_.Mesh(new THREE_.CylinderGeometry(1,0,1,64,1,true), tmat);
+  pt.rotation.x=Math.PI/2;
+  scene.add(tube, pt);
 
   var key=new THREE_.DirectionalLight(0xffffff,1.6); key.position.set(-6,-9,8);
   var fill=new THREE_.DirectionalLight(0xffffff,0.5); fill.position.set(7,4,-3);
@@ -632,6 +651,15 @@ function pick(p){
   }
   return best;
 }
+function addAt(p){
+  var m={lon:Math.atan2(p[1],p[0])*R2D,
+         lat:Math.asin(Math.max(-1,Math.min(1,p[2])))*R2D,
+         kind:S.add, mm:KINDS[S.add].mm, turn:0, ring:-1};
+  S.marks.push(m);
+  S.sel=S.marks.length-1;
+  custom(); selPanel();
+}
+
 function wire(host){
   var cv=renderer.domElement, down=null, drag=false;
   cv.addEventListener('pointerdown', function(ev){
@@ -664,8 +692,8 @@ function wire(host){
   cv.addEventListener('pointerup', function(ev){
     if(down && !drag){
       var p=hitBall(ev);
-      S.sel = p ? pick(p) : -1;
-      selPanel();
+      if(S.tool==='add' && p){ addAt(p); }
+      else { S.sel = p ? pick(p) : -1; selPanel(); }
     }
     if(down && drag && down.mark>=0) rebuild(true);
     down=null;
@@ -751,13 +779,15 @@ function modePanel(){
   } else {
     slider(host,'Marks over the ball',12,60,1,function(){return S.spread.n;},
       function(v){S.spread.n=v; redo();}, function(v){return v.toFixed(0);});
-    slider(host,'Clear of the bore',40,90,1,function(){return S.spread.cap;},
+    slider(host,'Clear of the hole',40,90,1,function(){return S.spread.cap;},
       function(v){S.spread.cap=v; redo();}, function(v){return (90-v).toFixed(0)+'°';});
     host.appendChild(el('p','note','A Fibonacci spiral, then the caps dropped. '
       +'A sphere has no grid of rows that keeps one spacing — each row would '
       +'round to a different step and the cap round the bore would stay bald. '
       +'The spiral puts every mark the same distance from its neighbours, and '
-      +'the neighbour graph is coloured so no two touching marks match.'));
+      +'the neighbour graph is coloured so no two touching marks match. Only '
+      +'the drilled pole is kept clear — the closed one is solid metal and '
+      +'takes a mark like anywhere else.'));
   }
 }
 
@@ -765,8 +795,12 @@ function selPanel(){
   var host=document.getElementById('sel');
   host.innerHTML='';
   if(S.sel<0 || S.sel>=S.marks.length){
-    host.appendChild(el('p','sel-none','Tap a mark on the bead to select it. '
-      +'With “Move a mark” on, drag it anywhere on the ball.'));
+    host.appendChild(el('p','sel-none','Tap a mark on the bead to select it, '
+      +'then move it, resize it, turn it or take it off. With “Add a '
+      +'mark” on, tapping bare metal drops a new one:'));
+    kindChips(host, function(k){return k===S.add;}, function(k){
+      S.add=k; selPanel();
+    });
     paintSel();
     return;
   }
@@ -786,11 +820,19 @@ function selPanel(){
     function(v){m.lat=v; custom();}, function(v){return v.toFixed(1)+'°';});
   slider(host,'Longitude',-180,180,1,function(){return m.lon;},
     function(v){m.lon=v; custom();}, function(v){return v.toFixed(0)+'°';});
-  var rm=el('button','btn','Remove this mark'); rm.type='button';
+  var acts=el('div','chips');
+  var cp=el('button','btn','Duplicate'); cp.type='button';
+  cp.addEventListener('click', function(){
+    var c={lon:norm180(m.lon+18), lat:m.lat, kind:m.kind, mm:m.mm,
+           turn:m.turn, ring:-1};
+    S.marks.push(c); S.sel=S.marks.length-1; custom(); selPanel();
+  });
+  var rm=el('button','btn','Remove'); rm.type='button';
   rm.addEventListener('click', function(){
     S.marks.splice(S.sel,1); S.sel=-1; custom(); selPanel();
   });
-  host.appendChild(rm);
+  acts.appendChild(cp); acts.appendChild(rm);
+  host.appendChild(acts);
   paintSel();
 }
 /* the selected mark gets a thin ring of its own so you can see which
@@ -819,8 +861,10 @@ function piecePanel(){
   host.innerHTML='';
   slider(host,'Bead diameter',5,12,0.1,function(){return S.dia;},
     function(v){S.dia=v; redo();}, function(v){return v.toFixed(2)+' mm';});
-  slider(host,'Bore',0.6,2.5,0.05,function(){return S.bore;},
+  slider(host,'Hole Ø',0.6,2.5,0.05,function(){return S.bore;},
     function(v){S.bore=v; redo();}, function(v){return v.toFixed(2)+' mm';});
+  slider(host,'Hole depth',1.0,7.0,0.1,function(){return S.depth;},
+    function(v){S.depth=v; redo();}, function(v){return v.toFixed(1)+' mm';});
   slider(host,'Relief',0.03,0.30,0.005,function(){return S.relief;},
     function(v){S.relief=v; redo();}, function(v){return v.toFixed(3)+' mm';});
   slider(host,'Edge softness',0.01,0.20,0.005,function(){return S.inset;},
@@ -886,17 +930,18 @@ function stats(){
   var sp=document.getElementById('specs');
   sp.innerHTML='';
   [['Outside Ø', S.dia.toFixed(2)+' mm'],
-   ['Bore', S.bore.toFixed(2)+' mm'],
-   [S.cut?'Depth':'Relief', S.relief.toFixed(2)+' mm'],
+   ['Hole', S.bore.toFixed(2)+' × '+S.depth.toFixed(1)+' mm'],
+   [S.cut?'Mark depth':'Relief', S.relief.toFixed(2)+' mm'],
    ['Marks', String(n)]].forEach(function(p){
     var d=el('div'); d.appendChild(el('dt',null,p[0])); d.appendChild(el('dd',null,p[1]));
     sp.appendChild(d);
   });
   var h=document.getElementById('hint');
   h.innerHTML='';
-  h.appendChild(document.createTextNode(S.tool==='move'
-    ? 'Drag a mark to slide it over the ball. Drag the background to turn the bead.'
-    : 'Drag to turn the bead, scroll to zoom, tap a mark to select it.'));
+  h.appendChild(document.createTextNode(
+    S.tool==='move' ? 'Drag a mark to slide it over the ball. Drag the background to turn the bead.' :
+    S.tool==='add'  ? 'Tap the bead to drop a mark where you tapped. Drag to turn it.' :
+    'Drag to turn the bead, scroll to zoom, tap a mark to select it.'));
 }
 
 function cmdText(){
@@ -904,6 +949,7 @@ function cmdText(){
   if(S.mode==='rings') parts.push('--rings');
   else if(S.mode==='spread') parts.push('--marks '+S.spread.n);
   parts.push('--dia '+S.dia.toFixed(2), '--bore '+S.bore.toFixed(2),
+             '--bore-depth '+S.depth.toFixed(2),
              '--relief '+S.relief.toFixed(3), '--mark '+S.scale.toFixed(2));
   if(S.cut) parts.push('--cut');
   parts.push('--out assets/om-bead/om-bead-'+S.dia.toFixed(0)+'mm-'
@@ -916,7 +962,8 @@ function cmdText(){
 }
 function jsonText(){
   return JSON.stringify({
-    dia:+S.dia.toFixed(3), bore:+S.bore.toFixed(3), relief:+S.relief.toFixed(4),
+    dia:+S.dia.toFixed(3), bore:+S.bore.toFixed(3), bore_depth:+S.depth.toFixed(2),
+    relief:+S.relief.toFixed(4),
     inset:+S.inset.toFixed(4), engraved:!!S.cut, layout:S.mode,
     marks:S.marks.map(function(m){
       return {kind:KINDS[m.kind].name, lon:+m.lon.toFixed(2), lat:+m.lat.toFixed(2),
@@ -961,12 +1008,16 @@ function run(doc){
     S.mode='rings'; replaceRedo(); modePanel(); });
   document.getElementById('m-spread').addEventListener('click', function(){
     S.mode='spread'; replaceRedo(); modePanel(); });
-  var tO=document.getElementById('t-orbit'), tM=document.getElementById('t-move');
+  var tO=document.getElementById('t-orbit'), tM=document.getElementById('t-move'),
+      tA=document.getElementById('t-add');
   function tool(t){ S.tool=t;
-    tO.setAttribute('aria-pressed', t==='orbit'); tM.setAttribute('aria-pressed', t==='move');
-    renderer.domElement.classList.toggle('moving', t==='move'); stats(); }
+    tO.setAttribute('aria-pressed', t==='orbit');
+    tM.setAttribute('aria-pressed', t==='move');
+    tA.setAttribute('aria-pressed', t==='add');
+    renderer.domElement.classList.toggle('moving', t!=='orbit'); stats(); }
   tO.addEventListener('click', function(){tool('orbit');});
   tM.addEventListener('click', function(){tool('move');});
+  tA.addEventListener('click', function(){tool('add');});
   var sp=document.getElementById('t-spin');
   sp.addEventListener('click', function(){
     S.spin=!S.spin; sp.setAttribute('aria-pressed', S.spin); });

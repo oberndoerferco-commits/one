@@ -1,94 +1,94 @@
 # 8 mm monogram bead
 
-The five marks from **page 101 of the tshirt design** — **OM**, the
-**cross in a filled square**, **925**, the **cross in a circle** and the
-**cross outline** — laid over a ball at one spacing.
+Five marks from **page 101 of the tshirt design** — **OM**, the **cross
+in a filled square**, **925**, the **cross in a circle** and the **cross
+outline** — laid over a ball.
 
-![the bead](renders/om-bead-pattern-v2.png)
+**[Turn it, and move the marks about →](https://claude.ai/artifact/1uiDqcXzDRe82fEYbc4pwq)**
+The viewer runs the same placement maths as `scripts/om_bead.py` and
+reports the spacing as you change it.
+
+## The files
 
 | | |
 | --- | --- |
-| `om-bead-8mm-pattern.stl` | marks raised 0.10 mm; ball 7.80 mm, overall **8.00 mm** |
-| `om-bead-8mm-pattern-engraved.stl` | marks cut 0.10 mm in; ball **8.00 mm** |
+| `om-bead-8mm-pattern.stl` | even spread, marks raised 0.10 mm; ball 7.80 mm, overall **8.00 mm** |
+| `om-bead-8mm-pattern-engraved.stl` | even spread, marks cut 0.10 mm in; ball **8.00 mm** |
+| `om-bead-8mm-rings.stl` | the medallion composition in rings, embossed |
+| `om-bead-8mm-rings-engraved.stl` | the same, engraved |
 
-24 marks, **3.0 mm apart everywhere**, 2.10 to 2.70 mm across, 1.20 mm
-bore through the poles, one closed body, ~325,000 triangles.
+Each is one closed body of about 326,600 triangles.
 
 ```sh
-python3 scripts/om_bead.py --marks 24              # embossed
-python3 scripts/om_bead.py --marks 24 --cut        # engraved
+python3 scripts/om_bead.py                  # even spread, embossed
+python3 scripts/om_bead.py --cut            # even spread, engraved
+python3 scripts/om_bead.py --rings          # the medallion
 ```
 
-## Three goes at the spacing, and what each one taught
+## The hole is blind
 
-**A golden spiral.** Even density, which is not the same thing as even
-spacing to look at, and with no order to the marks it read as a scatter.
+The bead sits on a post, so it is drilled **from one side only**: a
+1.20 mm hole 4.00 mm deep, with the 118-degree point a twist drill
+leaves under it. The far pole is solid metal and carries pattern like
+any other part of the ball.
 
-**A grid of rows.** Rows a fixed arc apart hold a whole number of marks,
-so every row's spacing rounds to a different value — and above the last
-row there is nothing at all, which is the bald cap around the bore.
-Neither fault can be fixed by picking better numbers. A sphere has no
-regular tiling of that kind.
+That is also why the spiral clears only the drilled pole. Clearing both
+would put back the bald patch the spiral was chosen to avoid.
 
-**Back to the spiral, with the order in the marks instead.** A Fibonacci
-spiral does have the one property that matters here: every point is the
-same distance from its neighbours, at the poles as much as the equator.
-That is what "the spacing is always the same" means on a ball, and it
-leaves no gap to go bald. Points are generated over the whole sphere and
-then the caps dropped, so what remains keeps the spacing of the whole.
+The cutter is **one revolved profile**, not a cylinder unioned with a
+cone. Those two meet on a shared plane and the union leaves a sliver of
+it behind — a 47-face disc of zero thickness, which was enough to cost
+the engraved beads their watertightness.
 
-The order comes from the marks: they cycle in a fixed sequence and all
-stand upright, so the eye reads a pattern rather than a scatter.
+## Spacing: what the two layouts actually measure
 
-## Two things that are not obvious
+**Even spread** (`om-bead-8mm-pattern.stl`): 30 marks generated over the
+whole sphere, the drilled cap dropped, **2.71 mm apart**.
 
-**The sequence length matters more than it looks.** On a Fibonacci
-spiral, points that are neighbours *in space* are a Fibonacci number
-apart *in index* — 5 or 8 or 13 for a couple of dozen marks. A sequence
-eight long therefore handed every spatial neighbour the same mark and
-the ball came out in bands of one kind. Nine shares no factor with 5, 8
-or 13.
+**Rings** (`om-bead-8mm-rings.stl`): 28 marks, centre to centre
+**1.44 to 3.06 mm**, and eight of them overlapping. The composition
+reads from the poles, which is what the medallion reference wanted, but
+it is not evenly spaced and the numbers say so.
+
+A sphere has **no grid of rows that keeps one spacing**. Rows a fixed
+arc apart hold a whole number of marks, so every row's spacing rounds to
+a different value. A Fibonacci spiral does have the property that
+matters: every point the same distance from its neighbours, poles
+included.
+
+**Order has to come from the marks, not from a cycle over the index.**
+On that spiral, points that are neighbours *in space* are a Fibonacci
+number apart *in index* — 5, 8 or 13 at this count — so a repeating
+sequence of any of those lengths hands every neighbour the same kind.
+Eight put the OMs in bands; nine broke the bands but not the clumps.
+What works is colouring the neighbour graph: each mark takes the kind
+none of its neighbours has and that is furthest behind its share.
+
+## Why the square stayed square
+
+The obvious way is to stamp into an equirectangular map and stretch by
+1 / cos(latitude). That works for a mark small enough to sit at one
+latitude. These do not: a 2.4 mm mark on a 4 mm ball spans about
+thirty-five degrees, and cos(latitude) changes a long way across the
+mark itself. One factor taken at the centre cannot straighten it, and
+the square frame came out as a bowed trapezoid.
+
+So each mark gets a frame on the sphere — east and north at its own
+centre — and the map is carried into that frame by an **azimuthal
+equidistant** projection, the one that keeps distance from the centre.
+A square stays square because its sides stay the same length in
+millimetres of arc, which is what a square means on a ball.
+
+## Two more things a ball makes you get right
+
+**Scale by the longer side.** The OM lockup is much wider than it is
+tall. Sized by height at 2 mm it came out 6.8 mm across — most of the
+way round an 8 mm ball.
 
 **The marks are not at the page's relative sizes.** There the little
 crosses are a third of the OM, which on an 8 mm ball puts them under a
 millimetre and leaves gaps that read as bald. They are sized to look
-equal instead, so the space between any two marks is the same wherever
-you look. The OM takes every other place — it is the mark, the rest are
-its accents.
-
-## Three things a ball makes you get right
-
-**A map is not the ball.** The marks are painted into an
-equirectangular map and the ball is displaced through it, so a mark near
-the pole covers far more longitude than the same mark at the equator.
-Each is stretched by 1 / cos(latitude) as it is painted; without that
-they come out pinched top and bottom.
-
-**The map wraps.** A mark crossing the date line has to be painted on
-both sides of it. Modular indexing costs nothing and removes the seam.
-
-**Scale by the longer side.** The OM lockup is three and a half times as
-wide as it is tall. Sized by height at 2 mm it came out 6.8 mm across —
-most of the way round an 8 mm ball — and the first attempt looked like a
-collision rather than a pattern.
-
-**A monogram ball is a lattice, not a scatter.** The first attempt
-placed the marks on a golden spiral, which gives an even *density* and
-reads as random.
-
-**And the unit is the cell, not the mark.** The pattern is not five
-motifs taking turns; it is one block of five that repeats, and the block
-has to stay together or it stops reading as a pattern. So whole cells
-are placed: rows a cell-height apart, each row holding as many whole
-cells as its own circumference takes, and the five marks dropped in at
-the fractions they occupy on the page. The step in latitude is an arc,
-cell height over radius; the step in longitude is cell width over
-radius, divided by cos(latitude). The poles are left clear for the
-bore.
-
-The one liberty taken is `--mark`: the page proportions are thin for a
-ball this small, so the marks are scaled up inside their cell while the
-cell keeps the page's geometry.
+equal instead.
 
 ## The profile is a laser mark, not a dome
 
@@ -98,6 +98,14 @@ domed profile used on the flat PA & CO part is wrong here; at 2.6 mm a
 dome reads as a blister rather than a mark.
 
 The square element arrives on the tile in reverse, as a filled square
-with the cross knocked out of it. Used as supplied the square is the
-mark and the cross is the gap, so it is inverted and the square drawn
-back round it as a rule — which is what it is on the tile.
+with the cross knocked out of it, and it is used exactly as supplied —
+a raised square panel with the cross sunk into it, which is how the
+reference bracelet carries it too.
+
+## Still open
+
+The **minimum feature size** the supplier can hold. At 0.10 mm relief
+the thin strokes of the OM and the cross outline are the parts at risk.
+
+`renders/` holds stills of the earlier version, which was drilled all
+the way through.
