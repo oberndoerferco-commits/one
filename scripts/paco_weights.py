@@ -30,6 +30,7 @@ import numpy as np
 import pymupdf
 from scipy import ndimage
 from shapely import affinity
+from shapely.geometry import Polygon
 from shapely.ops import unary_union
 from skimage.morphology import medial_axis
 
@@ -153,8 +154,72 @@ def place(diamond, letters, scale, grow, gap):
     return affinity.translate(d, dx, dy)
 
 
-def build(src, letter_grow, scale, grow, gap=None):
+def _bowl(c, i, j, n=9):
+    """The O's bottom, drawn back in after the stem is cut out.
+
+    Joining the two stem roots with a straight chord would leave a 1.30 mm
+    flat across the lowest point of a 10 mm bowl. The flat is only 0.03 mm
+    shallower than the curve, so nothing would ever measure it, but the
+    outline is the drawing and the drawing should be round. A quadratic
+    through three bowl vertices either side gives the curvature; it is
+    then corrected linearly so it meets the two roots exactly, which keeps
+    the join continuous instead of trading a flat for a kink.
+    """
+    pts = [c[(i - k) % len(c)] for k in (3, 2, 1)] + [c[(j + k) % len(c)]
+                                                      for k in (0, 1, 2)]
+    q = np.polyfit([x for x, _ in pts], [y for _, y in pts], 2)
+    (xa, ya), (xb, yb) = c[i], c[j]
+    # the fit need not pass through the roots; take only its sag from its
+    # own chord and lay that on the real one
+    f = lambda x: np.polyval(q, x)
+    lin = lambda x, x0, y0, x1, y1: y0 + (y1 - y0) * (x - x0) / (x1 - x0)
+    out = []
+    for k in range(1, n + 1):
+        x = xa + (xb - xa) * k / (n + 1)
+        sag = f(x) - lin(x, xa, f(xa), xb, f(xb))
+        out.append((x, lin(x, xa, ya, xb, yb) + sag))
+    return out
+
+
+def detach_bar(letters):
+    """Free the bar under the O by cutting out the stem that ties them.
+
+    The O, the stem and the bar arrive as a single ring. The stem is a
+    plain rectangle, so the cut is exact rather than approximate: its two
+    sides are the highest-reaching vertical edges in the glyph, and the
+    run of the ring between them is the stem and the bar together. Drop
+    that run and close the bowl, and what was removed, closed on itself,
+    is the bar.
+    """
+    ps = list(letters.geoms) if hasattr(letters, 'geoms') else [letters]
+    k = max(range(len(ps)), key=lambda i: ps[i].bounds[3])      # reaches lowest
+    c = list(ps[k].exterior.coords)[:-1]
+    m = len(c)
+    # vertical edges in the lower half, by how high they reach
+    mid = (ps[k].bounds[1] + ps[k].bounds[3]) / 2
+    v = [e for e in range(m)
+         if abs(c[e][0] - c[(e + 1) % m][0]) < 1e-6
+         and abs(c[e][1] - c[(e + 1) % m][1]) > 0.5
+         and min(c[e][1], c[(e + 1) % m][1]) > mid]
+    if len(v) < 2:
+        raise SystemExit('no stem found under the O')
+    v.sort(key=lambda e: min(c[e][1], c[(e + 1) % m][1]))
+    i, j = sorted(v[:2])                       # stem left root, stem right edge
+    j = (j + 1) % m                            # ... its upper end: the other root
+    run = [c[(i + 1 + t) % m] for t in range((j - i - 1) % m)]
+    O = Polygon(c[:i + 1] + _bowl(c, i, j) + c[j:],
+                [r.coords for r in ps[k].interiors])
+    bar = Polygon(run)
+    if not (O.is_valid and bar.is_valid):
+        raise SystemExit('the cut did not close')
+    out = [p for t, p in enumerate(ps) if t != k] + [O, bar]
+    return unary_union(out), O, bar
+
+
+def build(src, letter_grow, scale, grow, gap=None, free_bar=False):
     diamond, letters, _ = load(src)
+    if free_bar:
+        letters = detach_bar(letters)[0]
     if gap is None:
         gap = letters.bounds[1] - diamond.bounds[3]
     L = letters.buffer(letter_grow, **MITRE) if letter_grow else letters
@@ -179,9 +244,11 @@ def sdf(poly, ppmm, margin=6.0):
     return (dout - din).astype(np.float32), (ox, oy), m.shape
 
 
-def export(src, path, ppmm=12.0):
+def export(src, path, ppmm=12.0, free_bar=False):
     """Both fields plus the numbers the viewer reads off them."""
     diamond, letters, _ = load(src)
+    if free_bar:
+        letters = detach_bar(letters)[0]
     ls, lw = gauge(letters)
     ds, dw = gauge(diamond)
     nf, sf = facets(diamond)
@@ -227,6 +294,9 @@ if __name__ == '__main__':
                    help='solve for the scale and grow that reach this stroke '
                         'while holding --target-white')
     a.add_argument('--target-white', type=float, default=1.0)
+    a.add_argument('--free-bar', action='store_true',
+                   help="cut the stem under the O so the bar "
+                        "stands on its own")
     a.add_argument('--out')
     a.add_argument('--data', help='fields for the browser mockup')
     o = a.parse_args()
@@ -248,7 +318,7 @@ if __name__ == '__main__':
               f'grow {o.diamond_grow:.3f}')
 
     art, (w, h), L, D = build(o.src, o.letter_grow, o.diamond_scale,
-                              o.diamond_grow, o.gap)
+                              o.diamond_grow, o.gap, o.free_bar)
     ls2, lw2 = gauge(L)
     ds2, dw2 = gauge(D)
     nf2, sf2 = facets(D)
@@ -262,7 +332,7 @@ if __name__ == '__main__':
     print(f'           {"OK  " if worst >= 0.97 else "under"} smallest '
           f'feature anywhere {worst:.2f} mm')
     if o.data:
-        head, size = export(o.src, o.data)
+        head, size = export(o.src, o.data, free_bar=o.free_bar)
         print(f'  {o.data}: {size/1024:.0f} KB, ' +
               ', '.join(f'{m["name"]} {m["w"]}x{m["h"]}' for m in head['fields']))
     if o.out:

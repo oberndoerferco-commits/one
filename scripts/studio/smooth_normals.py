@@ -92,12 +92,13 @@ if __name__ == '__main__':
         sys.exit(__doc__.strip().splitlines()[2].strip())
     src = sys.argv[1]
     out = sys.argv[2] if len(sys.argv) > 2 else 'logo.bin'
+    base = float(sys.argv[3]) if len(sys.argv) > 3 else BASE
     m = trimesh.load(src)
     m.merge_vertices()
     print(f'{len(m.faces)} faces, {len(m.vertices)} vertices, '
           f'{m.extents[0]:.2f} x {m.extents[1]:.2f} x {m.extents[2]:.2f} mm')
-    n, ndome, grid = smooth_normals(m)
-    print(f'  height field {grid[1]} x {grid[0]} at {0.12} mm; '
+    n, ndome, grid = smooth_normals(m, base=base)
+    print(f'  base {base:.2f} mm; height field {grid[1]} x {grid[0]} at 0.12 mm; '
           f'{ndome} dome vertices re-normalled')
     nv, nf = pack(m, n, out)
     print(f'{out}: {nv} verts, {nf} faces, {os.path.getsize(out)/1e6:.2f} MB')
