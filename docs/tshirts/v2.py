@@ -23,7 +23,7 @@ def recolor(side,color):
     Lab=tolab(im); L,A,B=Lab[...,0],Lab[...,1],Lab[...,2]
     C=np.sqrt(A**2+B**2)
     here=os.path.dirname(os.path.abspath(__file__))
-    soft=np.load(os.path.join(here,f'soft2_{side}.npy'))      # precise GrabCut outline, smoothed along its length, anti-aliased
+    soft=np.load(os.path.join(here,f'soft3_{side}.npy'))      # precise GrabCut outline, smoothed along its length, anti-aliased
     fill=(soft>0.5).astype(np.uint8)
     inner=cv2.erode(fill,np.ones((7,7),np.uint8)).astype(np.float32)
     outer=(1-cv2.dilate(fill,np.ones((5,5),np.uint8))).astype(np.float32)
@@ -60,16 +60,23 @@ def recolor(side,color):
     Tedge=_nconv(T,inner,1.5)                        # edge pixels take the tone of the fabric right next to them
     shirt_edge=tobgr(np.dstack([Tedge,np.full_like(Tedge,ta),np.full_like(Tedge,tb)]))
     out=np.where(inner[...,None]>0, shirt, f)
-    eb=band[...,None]
-    if color=='white':
-        mix=w[...,None]*shirt_edge+(1-w[...,None])*f
-    else:
-        mix=f+w[...,None]*(shirt_edge-S)           # swap only the shirt share of the pixel; wall/shadow share stays original
-    # edge colour: white/black shirt on a neutral wall is neutral too -> no pink or cyan fringe
-    ml=tolab(np.clip(mix,0,255).astype(np.uint8)); bl=tolab(np.clip(Bg,0,255).astype(np.uint8))
-    ml[...,1]=(1-w)*bl[...,1]+w*ta; ml[...,2]=(1-w)*bl[...,2]+w*tb
-    mix=tobgr(ml)
-    out=np.where(eb, mix, out)
+    # edge band: nothing of the pink photo's soft/lit fringe survives.
+    # wall/shadow right next to the shirt is rebuilt from the clean wall a few pixels further out,
+    # then the new fabric is laid over it with an anti-aliased edge from the precise outline.
+    far=(1-cv2.dilate(fill,np.ones((13,13),np.uint8))).astype(np.float32)
+    Bw=_nconv(f,far,2.5)
+    grain=f-cv2.GaussianBlur(f,(0,0),1.5)                      # the wall's photographic grain, taken only from plain wall
+    farfar=(1-cv2.dilate(fill,np.ones((23,23),np.uint8))).astype(np.float32)
+    gsrc=np.zeros_like(grain); have=np.zeros(fill.shape,bool)
+    for dy,dx in [(0,16),(0,-16),(16,0),(-16,0),(16,16),(-16,-16),(16,-16),(-16,16)]:
+        ok=(np.roll(np.roll(farfar,dy,0),dx,1)>0)&(~have)
+        gsrc[ok]=np.roll(np.roll(grain,dy,0),dx,1)[ok]; have|=ok
+    ring_out=(cv2.dilate(fill,np.ones((13,13),np.uint8))>0)&(fill==0)
+    Bw=Bw+np.where(ring_out[...,None],gsrc*0.9,0)
+    band2=(cv2.dilate(fill,np.ones((13,13),np.uint8))>0)&(inner==0)
+    edgecol=soft[...,None]*shirt_edge+(1-soft[...,None])*Bw
+    out=np.where(band2[...,None],edgecol,out)
+    w=np.where(inner>0,1.0,np.where(band2,soft,0.0)).astype(np.float32)
     # final pass: no pink may survive in a ring just outside the shirt (soft/lit edges spill a few pixels)
     ring=(cv2.dilate(fill,np.ones((31,31),np.uint8))>0)&(w<0.98)
     far=(1-cv2.dilate(fill,np.ones((35,35),np.uint8))).astype(np.float32)
