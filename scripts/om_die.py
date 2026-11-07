@@ -111,7 +111,11 @@ def fatten(geom, minimum, ppmm=60):
     thin = sk & (dist < r) & far
     if not thin.any():
         return geom, 0
-    grown = m | ndimage.binary_dilation(thin, disc(r))
+    # dilation by a disc of radius r, done as a distance transform. The
+    # structuring element would be 2r+1 square - at a 4 mm minimum and
+    # 60 px/mm that is 241 x 241 over a 19 megapixel image, which runs
+    # the machine out of memory. The distance transform is linear.
+    grown = m | (ndimage.distance_transform_edt(~thin) <= r)
     g = to_poly(grown, ppmm, tol=max(0.6, 0.012*ppmm))
     return affinity.translate(g, origin[0], origin[1]), int(thin.sum())
 
@@ -171,22 +175,27 @@ def write_dxf(layers, out):
     pathlib.Path(out).write_text('\n'.join(e) + '\n')
 
 
-def die_sheet(top, under, o, stats, out, got=None, gap=None):
+def die_sheet(top, under, o, stats, out, got=None, gap=None,
+              nu=1, clear=0.0):
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     from paco_drawing import Sheet, THIN, MED, THICK, CHAIN, DASH
     s = Sheet()
     s.rect(10, 10, 410, 287, w=0.7)
     s.rect(14, 14, 406, 283, w=0.25)
     ux0, uy0, ux1, uy1 = under.bounds
-    SC = 1.6
+    # the view has to fit between the left margin and the key block, so the
+    # scale follows the part rather than the other way round
     ox, oy = 44, 40
+    SC = min(1.6, 206.0/(ux1-ux0), 196.0/(uy1-uy0))
+    SC = round(SC, 2)
+    sc_txt = f'{SC:g}:1' if SC >= 1 else f'1:{1/SC:.2f}'
     def draw(geom, col, w):
         for g in (geom.geoms if hasattr(geom, 'geoms') else [geom]):
             for ring in [g.exterior]+list(g.interiors):
                 s.poly([(ox+(x-ux0)*SC, oy+(y-uy0)*SC) for x, y in ring.coords],
                        col=col, w=w, close=True)
     s.text(ox, oy-7, 'CUTTING DIE', 3.4, font='hebo')
-    s.text(ox+34, oy-7, f'SCALE {SC:g}:1', 2.3, (.35, .35, .35))
+    s.text(ox+34, oy-7, f'SCALE {sc_txt}', 2.3, (.35, .35, .35))
     draw(under, (0, .45, .9), THICK)
     draw(top, (.85, 0, .3), THICK)
     W, H = (ux1-ux0)*SC, (uy1-uy0)*SC
@@ -200,7 +209,8 @@ def die_sheet(top, under, o, stats, out, got=None, gap=None):
     s.text(kx, ky-7, 'LAYERS', 3.4, font='hebo')
     for i, (lab, col, note) in enumerate([
             ('TOP', (.85, 0, .3), 'the mark itself, two pieces'),
-            ('UNDER', (0, .45, .9), f'backing, +{o.offset:.1f} mm all round, one piece')]):
+            ('UNDER', (0, .45, .9), f'backing, +{o.offset:.1f} mm all round, '
+             + ('one per letter' if o.separate else 'one piece'))]):
         s.line(kx, ky+i*9, kx+10, ky+i*9, col=col, w=THICK)
         s.text(kx+14, ky+i*9+1, lab, 2.8, font='hebo')
         s.text(kx+36, ky+i*9+1, note, 2.4, (.3, .3, .3))
@@ -215,8 +225,10 @@ def die_sheet(top, under, o, stats, out, got=None, gap=None):
         'All dimensions in millimetres. Cut lines are the finished edge.',
         f'TOP cuts as two pieces, the O and the M. They are {gap:.2f} mm '
         'apart and must not be joined.',
-        'UNDER is one piece. The two lobes merge because the offset is more '
-        'than half that gap.',
+        (f'UNDER is {nu} pieces, one per letter, {clear:.2f} mm apart. They '
+         'must not be joined either.') if o.separate else
+        ('UNDER is one piece. The two lobes merge because the offset is more '
+         'than half that gap.'),
         f'Smallest feature on TOP is {got:.2f} mm. Nothing may be scaled '
         'down without checking it again: the figure scales with the mark.',
         f'Notches narrower than {o.min:.2f} mm have been closed so a rule '
@@ -240,7 +252,7 @@ def die_sheet(top, under, o, stats, out, got=None, gap=None):
     cell(TX0+3, TY0+23.5, 'UNITS', 'mm')
     cell(TX0+3, TY0+30.5, 'TOP', f'{tx1-tx0:.2f} x {ty1-ty0:.2f}')
     cell(TX0+99, TY0+10.5, 'DWG NO.', 'OM-DIE-01')
-    cell(TX0+99, TY0+17.5, 'SCALE', f'{SC:g}:1')
+    cell(TX0+99, TY0+17.5, 'SCALE', sc_txt)
     cell(TX0+99, TY0+24.5, 'UNDER', f'{ux1-ux0:.2f} x {uy1-uy0:.2f}')
     cell(TX0+99, TY0+31.5, 'SHEET', '1 OF 1')
     s.doc.save(out)
@@ -249,34 +261,69 @@ def die_sheet(top, under, o, stats, out, got=None, gap=None):
 if __name__ == '__main__':
     a = argparse.ArgumentParser()
     a.add_argument('--src', default='/root/.claude/uploads/9a731093-06fb-50bc-9d28-75940e80fb3f/13c79434-tshirt_design-22.pdf')
-    a.add_argument('--width', type=float, default=108.0, help='overall width, mm')
+    a.add_argument('--width', type=float, default=108.0,
+                   help='width of the letters, mm')
+    a.add_argument('--overall', type=float, default=None,
+                   help='width of the FINISHED patch instead: the letters are '
+                        'sized so that they plus the backing come to this')
+    a.add_argument('--fatten', action='store_true',
+                   help='thicken the thin parts until they reach --min, '
+                        'instead of sizing the mark up until they do')
+    a.add_argument('--separate', action='store_true',
+                   help='keep the backing as one piece per letter; never let '
+                        'the O and the M join')
     a.add_argument('--min', type=float, default=2.0, help='smallest feature a die can hold')
     a.add_argument('--offset', type=float, default=4.5, help='backing layer, mm bigger all round')
     a.add_argument('--outdir', default='assets/om-die')
     o = a.parse_args()
     os.makedirs(o.outdir, exist_ok=True)
 
-    g = to_poly(trace(o.src))
-    x0, y0, x1, y1 = g.bounds
-    k = o.width/(x1-x0)
-    g = affinity.scale(g, k, k, origin=(x0, y0))
-    g = affinity.translate(g, -x0*k, -y0*k)
-    raw_min, _, _, _ = thinnest(g, 40)
-    print(f'as supplied, scaled to {o.width:.0f} mm wide: thinnest {raw_min:.2f} mm, '
-          f'{len(list(g.geoms))} pieces')
+    want = (o.overall - 2*o.offset) if o.overall else o.width
+    if o.overall:
+        print(f'finished patch {o.overall:.1f} mm wide, backing {o.offset:.1f} mm '
+              f'all round, so the letters get {want:.2f} mm')
+
+    def fit(q, w):
+        b = q.bounds
+        k = w/(b[2]-b[0])
+        q = affinity.scale(q, k, k, origin=(b[0], b[1]))
+        b = q.bounds
+        return affinity.translate(q, -b[0], -b[1])
 
     r = o.min/2
-    # closing only: it fills notches a rule cannot be bent into, and takes
-    # nothing off the letterforms
-    top = g.buffer(r, join_style=1, quad_segs=16).buffer(-r, join_style=1, quad_segs=16)
-    # a counter the die cannot cut is not a counter
-    cleaned = []
-    for p_ in (top.geoms if hasattr(top, 'geoms') else [top]):
-        keep = [h for h in p_.interiors
-                if Polygon(h).buffer(-o.min/2).area > 0]
-        cleaned.append(Polygon(p_.exterior.coords, [h.coords for h in keep]))
-    top = unary_union(cleaned)
+
+    def close(q):
+        # closing fills notches a rule cannot be bent into and takes nothing
+        # off the letterforms; a counter the die cannot cut is not a counter
+        t = q.buffer(r, join_style=1, quad_segs=16).buffer(-r, join_style=1,
+                                                           quad_segs=16)
+        return unary_union([
+            Polygon(p_.exterior.coords,
+                    [h.coords for h in p_.interiors
+                     if Polygon(h).buffer(-r).area > 0])
+            for p_ in (t.geoms if hasattr(t, 'geoms') else [t])])
+
+    g = fit(to_poly(trace(o.src)), want)
+    raw_min, _, _, _ = thinnest(g, 40)
+    print(f'as supplied, scaled to {want:.2f} mm wide: thinnest {raw_min:.2f} mm, '
+          f'{len(list(g.geoms))} pieces')
+
+    top = close(g)
     got, _, _, _ = thinnest(top, 40)
+    if o.fatten:
+        # Thicken only what is under the minimum, along the medial axis. A
+        # uniform swell reaches the same figure but costs far more: at 80 mm
+        # it closed the gap between the O and the M from 6.50 to 3.88 and
+        # took the counters from ten down to two. The letterform survives
+        # being thickened where it is thin; it does not survive being
+        # thickened everywhere.
+        for i in range(5):
+            if got >= o.min - 0.02:
+                break
+            top, npx = fatten(top, o.min, ppmm=40)
+            top = close(fit(top, want))
+            got, _, _, _ = thinnest(top, 40)
+            print(f'   fattened round {i+1}: thinnest {got:.2f} mm')
     gap = gap_between(top)
     print(f'after closing at {o.min:.2f}: thinnest {got:.2f} mm, '
           f'{len(list(top.geoms)) if hasattr(top,"geoms") else 1} pieces, '
@@ -287,13 +334,39 @@ if __name__ == '__main__':
         print(f'   NOTE: under the {o.min:.2f} minimum. This mark holds it at '
               f'{need:.0f} mm wide.')
 
-    under = top.buffer(o.offset, join_style=1, quad_segs=24)
-    under = unary_union([Polygon(p_.exterior.coords)
-                         for p_ in (under.geoms if hasattr(under, 'geoms') else [under])])
-    nu = len(list(under.geoms)) if hasattr(under, 'geoms') else 1
-    print(f'backing at +{o.offset:.1f} mm: {nu} piece(s)'
-          + ('  (the O and M merge into one)' if nu == 1
-             else f'  (they merge from +{gap/2:.2f} mm)'))
+    pieces = list(top.geoms) if hasattr(top, 'geoms') else [top]
+    if o.separate:
+        # one backing per letter, kept apart on purpose. Offsetting the two
+        # together and unioning would weld them the moment the offset passed
+        # half the gap, which is exactly what must not happen here.
+        outs = [Polygon(
+                    (q.exterior.coords if not hasattr(q, 'geoms') else
+                     max(q.geoms, key=lambda z: z.area).exterior.coords))
+                for q in (p_.buffer(o.offset, join_style=1, quad_segs=24)
+                          for p_ in pieces)]
+        clear = min((outs[i].distance(outs[j])
+                     for i in range(len(outs)) for j in range(i+1, len(outs))),
+                    default=0.0)
+        hit = any(outs[i].intersects(outs[j])
+                  for i in range(len(outs)) for j in range(i+1, len(outs)))
+        under = unary_union(outs) if not hit else None
+        nu = len(outs)
+        print(f'backing at +{o.offset:.1f} mm, one per letter: {nu} piece(s), '
+              + (f'{clear:.2f} mm between them' if not hit else
+                 'THEY OVERLAP - the offset is more than half the gap'))
+        if hit:
+            raise SystemExit(f'offset {o.offset:.2f} mm overlaps; the gap is '
+                             f'{gap:.2f} mm, so keep it under {gap/2:.2f} mm')
+        under = unary_union(outs)
+    else:
+        under = top.buffer(o.offset, join_style=1, quad_segs=24)
+        under = unary_union([Polygon(p_.exterior.coords)
+                             for p_ in (under.geoms if hasattr(under, 'geoms') else [under])])
+        nu = len(list(under.geoms)) if hasattr(under, 'geoms') else 1
+        clear = gap_between(under)
+        print(f'backing at +{o.offset:.1f} mm: {nu} piece(s)'
+              + ('  (the O and M merge into one)' if nu == 1
+                 else f'  (they merge from +{gap/2:.2f} mm)'))
 
     W, H = write_vec([('UNDER', under, (0, 0.45, 0.9)), ('TOP', top, (0.85, 0, 0.3))],
                      os.path.join(o.outdir, 'om-die-both.pdf'))
@@ -310,7 +383,8 @@ if __name__ == '__main__':
         ('Border all round', f'{o.offset:.2f} mm'),
         ('Smallest feature', f'{got:.2f} mm'),
         ('Gap, O to M', f'{gap:.2f} mm'),
-        ('Pieces', f'top 2, backing {nu}'),
-    ], os.path.join(o.outdir, 'om-die-drawing.pdf'), got, gap)
+        ('Backing to backing', f'{clear:.2f} mm'),
+        ('Pieces', f'top {len(pieces)}, backing {nu}'),
+    ], os.path.join(o.outdir, 'om-die-drawing.pdf'), got, gap, nu, clear)
     print(f'wrote {o.outdir}/: top.pdf under.pdf both.pdf both.svg both.dxf drawing.pdf '
           f'({W:.1f} x {H:.1f} mm)')
