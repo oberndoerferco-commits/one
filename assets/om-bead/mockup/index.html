@@ -88,6 +88,14 @@ button.btn:hover,.chip:hover{border-color:var(--accent)}
 button.btn[aria-pressed=true]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
 button.btn.wide{width:100%;text-align:left}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.picks{display:flex;flex-direction:column;gap:4px;max-height:270px;overflow-y:auto;
+  border:1px solid var(--line);border-radius:4px;padding:4px;background:var(--sunk)}
+.pick{display:block;width:100%;text-align:left;border:0;background:transparent;
+  color:var(--ink);font:inherit;padding:6px 8px;border-radius:3px;cursor:pointer}
+.pick:hover{background:var(--panel)}
+.pick[aria-pressed=true]{background:var(--accent);color:var(--accent-ink)}
+.pick b{display:block;font-size:12.5px;font-weight:600}
+.pick span{display:block;font-size:11px;opacity:.72;line-height:1.3}
 .ring{border:1px solid var(--line);border-radius:4px;padding:10px;margin-bottom:10px;background:var(--sunk)}
 .ring:last-child{margin-bottom:0}
 .ring h3{margin:0 0 8px;font-size:12px;font-weight:600;display:flex;justify-content:space-between;gap:8px}
@@ -146,11 +154,8 @@ button.btn.wide{width:100%;text-align:left}
 
   <aside class="panel">
     <section>
-      <h2>Pattern layout</h2>
-      <div class="seg" role="group" aria-label="Pattern layout">
-        <button id="m-rings" aria-pressed="true">Rings</button>
-        <button id="m-spread" aria-pressed="false">Even spread</button>
-      </div>
+      <h2>Design</h2>
+      <div id="designs" class="picks"></div>
       <div id="layout"></div>
     </section>
     <section>
@@ -183,16 +188,14 @@ var D = Math.PI/180, R2D = 180/Math.PI;
 
 /* ---------- state ---------------------------------------------------- */
 var KINDS = [];            // from stamps.json, in PATTERN order
+var LAYOUTS = [];          // the designs, straight from scripts/om_bead.py
 var DRANGE = 0.4;
-var RINGNAME = ['Equator', 'Mid band', 'By the bore'];
 
 var S = {
-  mode:'rings', tool:'orbit', spin:true,
-  rings:[{lat:0,n:8,turn:0,kinds:[0,2],scale:1.00},
-         {lat:45,n:6,turn:0,kinds:[1,4],scale:1.00},
-         {lat:75,n:4,turn:0,kinds:[3],scale:0.72}],
+  mode:'design', tool:'orbit', spin:true,
+  design:0, rings:[], fill:null,
   size:[],                       /* mm per logo, filled from stamps.json */
-  spread:{n:30, cap:76},
+  cap:76, clear:0.60,
   dia:8.0, bore:1.2, depth:4.0, relief:0.10, inset:0.05, scale:1.0, cut:false,
   marks:[], sel:-1, add:0
 };
@@ -204,45 +207,84 @@ function unit(lon,lat){
 }
 function ballRadius(){ return S.cut ? S.dia/2 : (S.dia - 2*S.relief)/2; }
 
-/* the ring plan, exactly as rings() builds it: every ring but the
-   equator is mirrored north and south, and the mirror is offset half a
-   step so the marks nest instead of lining up in columns. */
-function fromRings(){
+/* ---------- the designs --------------------------------------------
+   A design is rings plus, where it has one, a fill. A ring is a
+   latitude, a count, the motifs that take turns along it, a size as a
+   multiple of the motif's own, a turn, and whether it is mirrored into
+   the other hemisphere. A fill drops a Fibonacci set over what is left
+   and keeps the points far enough from everything already placed -
+   which is what "the rest filled with crosses" has to mean on a ball,
+   because there is no leftover grid to drop them into. This is the same
+   arithmetic as layout() in scripts/om_bead.py, so what you turn here
+   and what the STL carries are the same bead. */
+function kindIndex(name){
+  for(var i=0;i<KINDS.length;i++) if(KINDS[i].name===name) return i;
+  return 0;
+}
+function applyDesign(i){
+  var d=LAYOUTS[i];
+  S.design=i; S.mode='design';
+  S.rings=(d.rings||[]).map(function(r){
+    return {lat:+r.lat||0, n:r.n|0, kinds:r.kinds.map(kindIndex),
+            scale:(r.scale==null?1:+r.scale), turn:+r.turn||0,
+            mirror:(r.mirror===false?false:true)};
+  });
+  S.fill = d.fill ? {kinds:d.fill.kinds.map(kindIndex), n:d.fill.n|0,
+                     scale:(d.fill.scale==null?1:+d.fill.scale),
+                     weights:d.fill.weights||null} : null;
+}
+function ringPlaces(g,i){
   var out=[];
-  for(var i=0;i<S.rings.length;i++){
-    var g=S.rings[i];
-    if(!g.kinds.length || !g.n) continue;
-    var signs = g.lat>0.001 ? [1,-1] : [1];
-    for(var s=0;s<signs.length;s++){
-      var off = signs[s]<0 ? 180/g.n : 0;
-      for(var c=0;c<g.n;c++){
-        var k=g.kinds[c%g.kinds.length];
-        out.push({lon:norm180(-180+360*c/g.n+off+g.turn), lat:signs[s]*g.lat,
-                  kind:k, mm:S.size[k]*g.scale, turn:0, ring:i});
-      }
+  if(!g.kinds.length || !g.n) return out;
+  var signs = (g.mirror && Math.abs(g.lat)>1e-6) ? [1,-1] : [1];
+  for(var si=0;si<signs.length;si++){
+    var off = signs[si]<0 ? 180/g.n : 0;
+    for(var c=0;c<g.n;c++){
+      var k=g.kinds[c%g.kinds.length];
+      out.push({lon:norm180(-180+360*c/g.n+off+g.turn), lat:signs[si]*g.lat,
+                kind:k, mm:S.size[k]*g.scale, sc:g.scale, turn:0, ring:i});
     }
   }
   return out;
 }
-/* the Fibonacci spiral — one spacing everywhere, caps dropped after */
-function fromSpread(){
-  var n=S.spread.n, ga=Math.PI*(3-Math.sqrt(5)), lim=Math.sin(S.spread.cap*D);
-  var pts=[];
+function fibonacci(n, cap){
+  var ga=Math.PI*(3-Math.sqrt(5)), lim=Math.sin(cap*D), pts=[];
   for(var i=0;i<n;i++){
     var z=1-2*(i+0.5)/n;
     if(z>lim) continue;        /* only the drilled pole is kept clear */
     pts.push([norm180(((i*ga)%(2*Math.PI))*R2D-180), Math.asin(z)*R2D]);
   }
-  var kinds=deal(pts);
-  return pts.map(function(p,i){
-    return {lon:p[0], lat:p[1], kind:kinds[i], mm:S.size[kinds[i]], turn:0, ring:-1};
-  });
+  return pts;
+}
+function fillPlaces(spec, placed){
+  if(!spec || !spec.n || !spec.kinds.length) return [];
+  var R=ballRadius(), pts=fibonacci(spec.n, S.cap);
+  if(!pts.length) return [];
+  var w = spec.weights || spec.kinds.map(function(k){ return KINDS[k].share; });
+  var order = deal(pts, w);
+  var out=[], kept=placed.slice();
+  for(var i=0;i<pts.length;i++){
+    var k=spec.kinds[order[i]%spec.kinds.length];
+    var mm=S.size[k]*spec.scale, c=unit(pts[i][0],pts[i][1]), ok=true;
+    for(var j=0;j<kept.length;j++){
+      var q=kept[j];
+      var dt=Math.max(-1,Math.min(1,dot(c,unit(q.lon,q.lat))));
+      if(Math.acos(dt)*R < S.clear*(mm+q.mm)/2 + 0.10){ ok=false; break; }
+    }
+    if(ok){
+      out.push({lon:pts[i][0], lat:pts[i][1], kind:k, mm:mm,
+                sc:spec.scale, turn:0, ring:-1});
+      kept.push(out[out.length-1]);
+    }
+  }
+  return out;
 }
 /* colour the neighbour graph: no two touching marks share a kind, and
    each takes the kind furthest behind its share */
-function deal(pts){
+function deal(pts, w){
   var n=pts.length, v=pts.map(function(p){return unit(p[0],p[1]);});
-  var w=KINDS.map(function(k){return k.share;}), tot=0, i, j;
+  var i, j, tot=0;
+  w = w.slice();
   for(i=0;i<w.length;i++) tot+=w[i];
   for(i=0;i<w.length;i++) w[i]/=tot;
   var kind=new Array(n).fill(-1), count=new Array(w.length).fill(0);
@@ -266,8 +308,10 @@ function dot(a,b){ return a[0]*b[0]+a[1]*b[1]+a[2]*b[2]; }
 function norm180(x){ x=((x+180)%360+360)%360-180; return x; }
 
 function replace(){
-  S.marks = S.mode==='rings' ? fromRings() : fromSpread();
-  S.sel = -1;
+  var out=[];
+  S.rings.forEach(function(g,i){ out=out.concat(ringPlaces(g,i)); });
+  if(S.fill) out=out.concat(fillPlaces(S.fill, out));
+  S.marks=out; S.sel=-1;
 }
 
 /* ---------- the relief --------------------------------------------- */
@@ -667,7 +711,7 @@ function setSpin(on){
 function addAt(p){
   var m={lon:Math.atan2(p[1],p[0])*R2D,
          lat:Math.asin(Math.max(-1,Math.min(1,p[2])))*R2D,
-         kind:S.add, mm:S.size[S.add], turn:0, ring:-1};
+         kind:S.add, mm:S.size[S.add], sc:1, turn:0, ring:-1};
   S.marks.push(m);
   S.sel=S.marks.length-1;
   custom(); selPanel();
@@ -695,7 +739,7 @@ function wire(host){
       var m=S.marks[down.mark];
       m.lat=Math.asin(Math.max(-1,Math.min(1,p[2])))*R2D;
       m.lon=Math.atan2(p[1],p[0])*R2D;
-      if(S.mode!=='custom'){ S.mode='custom'; modePanel(); }
+      if(S.mode!=='custom'){ S.mode='custom'; designList(); modePanel(); }
       rebuild(false); selPanel();
     } else {
       cam.yaw=down.yaw-dx*0.4;
@@ -750,61 +794,123 @@ function kindChips(host,isOn,toggle){
   return box;
 }
 
+function designList(){
+  var host=document.getElementById('designs');
+  host.innerHTML='';
+  LAYOUTS.forEach(function(d,i){
+    var b=el('button','pick'); b.type='button';
+    b.setAttribute('aria-pressed', S.mode==='design' && i===S.design);
+    b.appendChild(el('b',null,d.name));
+    b.appendChild(el('span',null,d.note||''));
+    b.addEventListener('click', function(){
+      applyDesign(i); replace(); rebuild(true);
+      designList(); modePanel(); selPanel();
+    });
+    host.appendChild(b);
+  });
+}
+
 function modePanel(){
   var host=document.getElementById('layout');
   host.innerHTML='';
-  document.getElementById('m-rings').setAttribute('aria-pressed', S.mode==='rings');
-  document.getElementById('m-spread').setAttribute('aria-pressed', S.mode==='spread');
 
   if(S.mode==='custom'){
-    var p=el('p','note','Marks moved by hand. The ring and spread settings are '
-      +'waiting below — pick either one to lay the pattern out again.');
-    host.appendChild(p);
-    var back=el('button','btn wide','Back to the ring plan');
+    host.appendChild(el('p','note','Marks moved by hand. Pick a design above '
+      +'to lay the pattern out again — it will replace what is on the ball.'));
+    var back=el('button','btn wide','Back to '+LAYOUTS[S.design].name);
     back.type='button';
-    back.addEventListener('click', function(){ S.mode='rings'; replace(); rebuild(true); modePanel(); selPanel(); });
+    back.addEventListener('click', function(){
+      applyDesign(S.design); replace(); rebuild(true);
+      designList(); modePanel(); selPanel();
+    });
     host.appendChild(back);
     return;
   }
-  if(S.mode==='rings'){
-    S.rings.forEach(function(g,i){
-      var box=el('div','ring');
-      var h=el('h3'); h.appendChild(el('span',null,RINGNAME[i]));
-      h.appendChild(el('span',null, (g.lat>0.001? 2*g.n : g.n)+' marks'));
-      box.appendChild(h);
-      slider(box,'Latitude',0,88,1,function(){return g.lat;},
-        function(v){g.lat=v; redo();}, function(v){return v.toFixed(0)+'°';});
-      slider(box,'Marks per ring',0,14,1,function(){return g.n;},
-        function(v){g.n=v; redo();}, function(v){return v.toFixed(0);});
-      slider(box,'Turn',-60,60,1,function(){return g.turn;},
-        function(v){g.turn=v; redo();}, function(v){return v.toFixed(0)+'°';});
-      slider(box,'Size on this ring',0.5,1.6,0.02,function(){return g.scale;},
-        function(v){g.scale=v; redo();}, function(v){return '\u00d7'+v.toFixed(2);});
-      kindChips(box, function(k){return g.kinds.indexOf(k)>=0;}, function(k){
-        var at=g.kinds.indexOf(k);
-        if(at>=0){ if(g.kinds.length>1) g.kinds.splice(at,1); }
-        else g.kinds.push(k);
-        redo(); modePanel();
-      });
-      host.appendChild(box);
+
+  S.rings.forEach(function(g,i){
+    var box=el('div','ring');
+    var h=el('h3');
+    h.appendChild(el('span',null,'Ring '+(i+1)));
+    h.appendChild(el('span',null,
+      ((g.mirror && Math.abs(g.lat)>0.001) ? 2*g.n : g.n)+' marks'));
+    box.appendChild(h);
+    slider(box,'Latitude',-88,88,1,function(){return g.lat;},
+      function(v){g.lat=v; redo();}, function(v){return v.toFixed(0)+'\u00b0';});
+    slider(box,'Marks per ring',0,14,1,function(){return g.n;},
+      function(v){g.n=v; redo();}, function(v){return v.toFixed(0);});
+    slider(box,'Turn',-90,90,1,function(){return g.turn;},
+      function(v){g.turn=v; redo();}, function(v){return v.toFixed(0)+'\u00b0';});
+    slider(box,'Size on this ring',0.4,1.8,0.02,function(){return g.scale;},
+      function(v){g.scale=v; redo();}, function(v){return '\u00d7'+v.toFixed(2);});
+    var mir=el('button','btn','Mirrored north and south');
+    mir.type='button';
+    mir.setAttribute('aria-pressed', !!g.mirror);
+    mir.addEventListener('click', function(){
+      g.mirror=!g.mirror; redo(); modePanel(); });
+    box.appendChild(mir);
+    kindChips(box, function(k){return g.kinds.indexOf(k)>=0;}, function(k){
+      var at=g.kinds.indexOf(k);
+      if(at>=0){ if(g.kinds.length>1) g.kinds.splice(at,1); }
+      else g.kinds.push(k);
+      redo(); modePanel();
     });
-    host.appendChild(el('p','note','The reference is a medallion, and a ball has no '
-      +'middle — but it has an axis, so the hierarchy runs by latitude. '
-      +'Every ring off the equator is mirrored north and south, offset half a '
-      +'step so the marks nest instead of lining up in columns.'));
-  } else {
-    slider(host,'Marks over the ball',12,60,1,function(){return S.spread.n;},
-      function(v){S.spread.n=v; redo();}, function(v){return v.toFixed(0);});
-    slider(host,'Clear of the hole',40,90,1,function(){return S.spread.cap;},
-      function(v){S.spread.cap=v; redo();}, function(v){return (90-v).toFixed(0)+'°';});
-    host.appendChild(el('p','note','A Fibonacci spiral, then the caps dropped. '
-      +'A sphere has no grid of rows that keeps one spacing — each row would '
-      +'round to a different step and the cap round the bore would stay bald. '
-      +'The spiral puts every mark the same distance from its neighbours, and '
-      +'the neighbour graph is coloured so no two touching marks match. Only '
-      +'the drilled pole is kept clear — the closed one is solid metal and '
-      +'takes a mark like anywhere else.'));
+    host.appendChild(box);
+  });
+
+  var add=el('button','btn wide','Add a ring'); add.type='button';
+  add.addEventListener('click', function(){
+    S.rings.push({lat:30, n:4, kinds:[kindIndex('cross')], scale:0.8,
+                  turn:0, mirror:true});
+    redo(); modePanel();
+  });
+  host.appendChild(add);
+  if(S.rings.length){
+    var rm=el('button','btn wide','Drop the last ring'); rm.type='button';
+    rm.addEventListener('click', function(){ S.rings.pop(); redo(); modePanel(); });
+    host.appendChild(rm);
   }
+
+  var box2=el('div','ring');
+  var h2=el('h3');
+  h2.appendChild(el('span',null,'Fill'));
+  h2.appendChild(el('span',null, S.fill
+    ? S.marks.filter(function(m){return m.ring<0;}).length+' marks' : 'none'));
+  box2.appendChild(h2);
+  if(S.fill){
+    slider(box2,'Marks offered',0,120,2,function(){return S.fill.n;},
+      function(v){S.fill.n=v; redo();}, function(v){return v.toFixed(0);});
+    slider(box2,'Size',0.4,1.4,0.02,function(){return S.fill.scale;},
+      function(v){S.fill.scale=v; redo();}, function(v){return '\u00d7'+v.toFixed(2);});
+    slider(box2,'Spacing wanted',0.3,1.2,0.02,function(){return S.clear;},
+      function(v){S.clear=v; redo();}, function(v){return '\u00d7'+v.toFixed(2);});
+    slider(box2,'Clear of the hole',40,90,1,function(){return S.cap;},
+      function(v){S.cap=v; redo();}, function(v){return (90-v).toFixed(0)+'\u00b0';});
+    kindChips(box2, function(k){return S.fill.kinds.indexOf(k)>=0;}, function(k){
+      var at=S.fill.kinds.indexOf(k);
+      if(at>=0){ if(S.fill.kinds.length>1) S.fill.kinds.splice(at,1); }
+      else S.fill.kinds.push(k);
+      S.fill.weights=null;
+      redo(); modePanel();
+    });
+    var off=el('button','btn','Take the fill off'); off.type='button';
+    off.addEventListener('click', function(){ S.fill=null; redo(); modePanel(); });
+    box2.appendChild(off);
+  } else {
+    var on=el('button','btn wide','Fill the gaps with small crosses');
+    on.type='button';
+    on.addEventListener('click', function(){
+      S.fill={kinds:[kindIndex('cross')], n:50, scale:0.8, weights:null};
+      redo(); modePanel();
+    });
+    box2.appendChild(on);
+  }
+  host.appendChild(box2);
+
+  host.appendChild(el('p','note','Rings set the composition; the fill takes '
+    +'whatever is left. There is no leftover grid on a sphere, so the fill is '
+    +'a Fibonacci spiral thinned against the rings \u2014 every candidate that '
+    +'would crowd a mark already placed is dropped, which is why raising '
+    +'\u201cmarks offered\u201d stops adding any.'));
 }
 
 function selPanel(){
@@ -826,7 +932,7 @@ function selPanel(){
   head.appendChild(el('span','pill', m.lat.toFixed(1)+'° / '+m.lon.toFixed(1)+'°'));
   host.appendChild(head);
   kindChips(host, function(k){return k===m.kind;}, function(k){
-    m.kind=k; m.mm=S.size[k]*(m.ring>=0?S.rings[m.ring].scale:1); custom(); selPanel();
+    m.kind=k; m.mm=S.size[k]*(m.sc||1); custom(); selPanel();
   });
   slider(host,'Size',1.0,4.0,0.05,function(){return m.mm;},
     function(v){m.mm=v; custom();}, function(v){return v.toFixed(2)+' mm';});
@@ -840,7 +946,7 @@ function selPanel(){
   var cp=el('button','btn','Duplicate'); cp.type='button';
   cp.addEventListener('click', function(){
     var c={lon:norm180(m.lon+18), lat:m.lat, kind:m.kind, mm:m.mm,
-           turn:m.turn, ring:-1};
+           sc:m.sc||1, turn:m.turn, ring:-1};
     S.marks.push(c); S.sel=S.marks.length-1; custom(); selPanel();
   });
   var rm=el('button','btn','Remove'); rm.type='button';
@@ -879,17 +985,14 @@ function sizePanel(){
     slider(host, k.label, 1.0, 4.5, 0.05, function(){ return S.size[i]; },
       function(v){
         S.size[i]=v;
-        S.marks.forEach(function(m){
-          if(m.kind===i) m.mm = v*(m.ring>=0 ? S.rings[m.ring].scale : 1);
-        });
+        S.marks.forEach(function(m){ if(m.kind===i) m.mm = v*(m.sc||1); });
         redo();
       }, function(v){ return v.toFixed(2)+' mm'; });
   });
   var rs=el('button','btn','Back to the drawn sizes'); rs.type='button';
   rs.addEventListener('click', function(){
     S.size=KINDS.map(function(k){return k.mm;});
-    S.marks.forEach(function(m){
-      m.mm = S.size[m.kind]*(m.ring>=0 ? S.rings[m.ring].scale : 1); });
+    S.marks.forEach(function(m){ m.mm = S.size[m.kind]*(m.sc||1); });
     redo(); sizePanel(); selPanel();
   });
   host.appendChild(rs);
@@ -928,7 +1031,10 @@ function piecePanel(){
     +'size it is called.'));
 }
 
-function custom(){ if(S.mode!=='custom'){ S.mode='custom'; modePanel(); } redo(); }
+function custom(){
+  if(S.mode!=='custom'){ S.mode='custom'; designList(); modePanel(); }
+  redo();
+}
 var pending=false;
 function redo(){
   if(pending) return;
@@ -990,8 +1096,7 @@ function stats(){
 
 function cmdText(){
   var parts=['python3 scripts/om_bead.py'];
-  if(S.mode==='rings') parts.push('--rings');
-  else if(S.mode==='spread') parts.push('--marks '+S.spread.n);
+  parts.push('--layout "'+LAYOUTS[S.design].name+'"');
   parts.push('--dia '+S.dia.toFixed(2), '--bore '+S.bore.toFixed(2),
              '--bore-depth '+S.depth.toFixed(2),
              '--relief '+S.relief.toFixed(3), '--mark '+S.scale.toFixed(2));
@@ -1009,7 +1114,9 @@ function jsonText(){
     dia:+S.dia.toFixed(3), bore:+S.bore.toFixed(3), bore_depth:+S.depth.toFixed(2),
     relief:+S.relief.toFixed(4),
     logo_mm:KINDS.reduce(function(o,k,i){ o[k.name]=+S.size[i].toFixed(2); return o; }, {}),
-    inset:+S.inset.toFixed(4), engraved:!!S.cut, layout:S.mode,
+    inset:+S.inset.toFixed(4), engraved:!!S.cut,
+    design:(S.mode==='custom' ? LAYOUTS[S.design].name+' (edited by hand)'
+                              : LAYOUTS[S.design].name),
     marks:S.marks.map(function(m){
       return {kind:KINDS[m.kind].name, lon:+m.lon.toFixed(2), lat:+m.lat.toFixed(2),
               mm:+(m.mm*S.scale).toFixed(3), turn:+m.turn.toFixed(1)};
@@ -1043,17 +1150,15 @@ function run(doc){
             st:{w:s.w, h:s.h, data:unpack(s.data)}};
   });
   S.size=KINDS.map(function(k){ return k.mm; });
+  LAYOUTS=doc.layouts||[];
+  applyDesign(0);
   document.getElementById('boot').remove();
   setup();
   replace();
   rebuild(true);
-  modePanel(); sizePanel(); selPanel(); piecePanel();
+  designList(); modePanel(); sizePanel(); selPanel(); piecePanel();
   place();
 
-  document.getElementById('m-rings').addEventListener('click', function(){
-    S.mode='rings'; replaceRedo(); modePanel(); });
-  document.getElementById('m-spread').addEventListener('click', function(){
-    S.mode='spread'; replaceRedo(); modePanel(); });
   var TOOLS={orbit:'t-orbit', move:'t-move', add:'t-add', del:'t-del'};
   function tool(t){ S.tool=t;
     for(var k in TOOLS)
@@ -1089,6 +1194,24 @@ function run(doc){
   if(mq.addEventListener) mq.addEventListener('change', theme);
   new MutationObserver(theme).observe(document.documentElement,
     {attributes:true, attributeFilter:['data-theme']});
+
+  /* a small hook so the contact sheet can be rendered from the same page
+     that draws the bead, rather than from a second renderer that would
+     drift away from it */
+  window.bead = {
+    count: function(){ return LAYOUTS.length; },
+    name:  function(i){ return LAYOUTS[i].name; },
+    note:  function(i){ return LAYOUTS[i].note || ''; },
+    marks: function(){ return S.marks.length; },
+    show:  function(i){
+      applyDesign(i); replace(); rebuild(true);
+      designList(); modePanel(); selPanel();
+    },
+    view:  function(yaw, pitch, dist){
+      cam.yaw=yaw; cam.pitch=pitch; cam.dist=dist; place();
+    },
+    still: function(){ setSpin(false); }
+  };
 
   var last=0;
   (function loop(t){

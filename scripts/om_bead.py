@@ -42,7 +42,10 @@ PATTERN = [
     ('n925', (0.2532, 0.2667, 0.3432, 0.3379), 0, 0, 2.50, 1.1),
     ('circ', (0.1197, 0.3129, 0.1830, 0.4050), 0, 0, 2.60, 1.0),
     ('outl', (0.2443, 0.3910, 0.3106, 0.4806), 0, 0, 2.25, 1.0),
+    ('cross', (0.1197, 0.3129, 0.1830, 0.4050), 0, 0, 1.60, 1.0),
 ]
+
+BYNAME = {q[0]: i for i, q in enumerate(PATTERN)}
 
 
 def stamp_from_pdf(path, box=None, px=900, pad=6):
@@ -121,36 +124,211 @@ def spread(radius, n, cap_deg):
     return out
 
 
-def rings(radius):
-    """A composition in rings about the bore, not an even spread.
+LAYOUTS = [
+    # Each design is rings plus, where it says so, a fill. A ring is a
+    # latitude, a count, the motifs that take turns along it, a size as a
+    # multiple of the motif's own, a turn, and whether it is mirrored into
+    # the other hemisphere. A fill drops a Fibonacci set over whatever is
+    # left and keeps only the points far enough from everything already
+    # placed, which is what "the rest filled with crosses" has to mean on
+    # a sphere: there is no leftover grid to drop them into.
+    dict(name='Four Crowns', note='four big OM round the middle, 925 below, '
+         'small crosses filling the rest',
+         rings=[dict(lat=0, n=4, kinds=['om'], scale=1.20),
+                dict(lat=-54, n=4, kinds=['n925'], scale=0.74, turn=45,
+                     mirror=False)],
+         fill=dict(kinds=['cross', 'outl'], n=54, scale=0.80)),
 
-    The reference is a medallion: one big mark at the middle, a band of
-    squares and outline crosses around it, and a ring of small circled
-    crosses at the edge. A ball has no middle, but it has an axis - the
-    bore - so the hierarchy maps onto latitude. The big marks take the
-    equator, the middle band takes the squares and the outlines, and the
-    small circled crosses ring the poles, which is where the reference
-    puts its smallest marks too.
+    dict(name='Four Crowns, Crowned', note='the same, with 925 above as well '
+         'as below',
+         rings=[dict(lat=0, n=4, kinds=['om'], scale=1.20),
+                dict(lat=54, n=4, kinds=['n925'], scale=0.74, turn=45)],
+         fill=dict(kinds=['cross'], n=46, scale=0.80)),
 
-    Counts are chosen so the step along each ring is near the step
-    between rings; alternate rings are offset half a step so the marks
-    nest rather than line up in columns.
-    """
-    plan = [                       # latitude, count, kinds, size scale
-        (0.0,  8, ['om', 'n925'],  1.00),
-        (45.0, 6, ['sq', 'outl'],  1.00),
-        (75.0, 4, ['circ'],        0.72),
-    ]
-    byname = {q[0]: i for i, q in enumerate(PATTERN)}
+    dict(name='Three Crowns', note='three OM, larger, with crosses between',
+         rings=[dict(lat=0, n=3, kinds=['om'], scale=1.34),
+                dict(lat=-56, n=3, kinds=['n925'], scale=0.76, turn=60,
+                     mirror=False)],
+         fill=dict(kinds=['cross', 'outl'], n=50, scale=0.80)),
+
+    dict(name='Six Crowns', note='six smaller OM, a tighter band',
+         rings=[dict(lat=0, n=6, kinds=['om'], scale=0.92),
+                dict(lat=-56, n=4, kinds=['n925'], scale=0.70, turn=45,
+                     mirror=False)],
+         fill=dict(kinds=['cross'], n=54, scale=0.74)),
+
+    dict(name='Quatrefoil', note='four OM and four circled crosses, '
+         'alternating up the ball',
+         rings=[dict(lat=0, n=4, kinds=['om'], scale=1.16),
+                dict(lat=50, n=4, kinds=['circ'], scale=0.80, turn=45)],
+         fill=dict(kinds=['cross'], n=44, scale=0.72)),
+
+    dict(name='Signet', note='one OM as large as the ball will take, the rest '
+         'a close cross pattern',
+         rings=[dict(lat=0, n=1, kinds=['om'], scale=1.65)],
+         fill=dict(kinds=['cross', 'outl', 'sq'], n=58, scale=0.78)),
+
+    dict(name='Bandeau', note='a 925 band round the middle, OM above and below',
+         rings=[dict(lat=0, n=5, kinds=['n925'], scale=0.96),
+                dict(lat=52, n=3, kinds=['om'], scale=0.88, turn=36)],
+         fill=dict(kinds=['cross'], n=44, scale=0.70)),
+
+    dict(name='Double Band', note='two 925 rings with the OM between them',
+         rings=[dict(lat=0, n=4, kinds=['om'], scale=1.10),
+                dict(lat=42, n=5, kinds=['n925'], scale=0.64, turn=36),
+                dict(lat=72, n=4, kinds=['cross'], scale=0.80, turn=45)]),
+
+    dict(name='Coronet', note='crosses ringing the hole, OM at the middle, '
+         '925 at the foot',
+         rings=[dict(lat=0, n=4, kinds=['om'], scale=1.18),
+                dict(lat=70, n=6, kinds=['outl'], scale=0.74, turn=30,
+                     mirror=False),
+                dict(lat=-50, n=4, kinds=['n925'], scale=0.72, turn=45,
+                     mirror=False)],
+         fill=dict(kinds=['cross'], n=46, scale=0.72)),
+
+    dict(name='Chequer', note='OM and the squared cross taking turns in two '
+         'offset rings',
+         rings=[dict(lat=0, n=6, kinds=['om', 'sq'], scale=0.98),
+                dict(lat=48, n=5, kinds=['sq', 'cross'], scale=0.88, turn=36)],
+         fill=dict(kinds=['cross'], n=40, scale=0.68)),
+
+    dict(name='Pave', note='as many small crosses as the ball holds, four OM '
+         'over them',
+         rings=[dict(lat=0, n=4, kinds=['om'], scale=1.08)],
+         fill=dict(kinds=['cross'], n=90, scale=0.64)),
+
+    dict(name='Rosette', note='a cross at each pole, OM and 925 round the '
+         'middle',
+         rings=[dict(lat=0, n=4, kinds=['om', 'n925'], scale=1.05),
+                dict(lat=78, n=1, kinds=['circ'], scale=0.86)],
+         fill=dict(kinds=['outl', 'cross'], n=46, scale=0.74)),
+
+    dict(name='Fleur', note='the circled cross leads, OM held small',
+         rings=[dict(lat=0, n=5, kinds=['circ'], scale=1.00),
+                dict(lat=50, n=4, kinds=['om'], scale=0.76, turn=36)],
+         fill=dict(kinds=['cross'], n=44, scale=0.68)),
+
+    dict(name='Four Crowns, Bare', note='four OM and 925, nothing else on it',
+         rings=[dict(lat=0, n=4, kinds=['om'], scale=1.28),
+                dict(lat=-56, n=4, kinds=['n925'], scale=0.80, turn=45,
+                     mirror=False)]),
+
+    dict(name='Minimal', note='four OM alone, polished ball between them',
+         rings=[dict(lat=0, n=4, kinds=['om'], scale=1.34)]),
+
+    dict(name='Crosshatch', note='crosses only, 925 at the foot',
+         rings=[dict(lat=-64, n=3, kinds=['n925'], scale=0.76, turn=60,
+                     mirror=False)],
+         fill=dict(kinds=['cross', 'outl', 'circ'], n=66, scale=0.78)),
+
+    dict(name='Columns', note='the motifs line up in meridians instead of '
+         'nesting',
+         rings=[dict(lat=0, n=4, kinds=['om'], scale=1.10),
+                dict(lat=40, n=4, kinds=['n925'], scale=0.64, turn=0),
+                dict(lat=68, n=4, kinds=['cross'], scale=0.82, turn=0)]),
+
+    dict(name='Medallion', note='the first composition: a hierarchy running '
+         'by latitude',
+         rings=[dict(lat=0, n=8, kinds=['om', 'n925'], scale=1.00),
+                dict(lat=45, n=6, kinds=['sq', 'outl'], scale=1.00),
+                dict(lat=75, n=4, kinds=['circ'], scale=0.72)]),
+
+    dict(name='Even Spread', note='one spacing everywhere, the motifs dealt '
+         'so no two touching marks match',
+         rings=[], fill=dict(kinds=['om', 'sq', 'n925', 'circ', 'outl'],
+                             n=30, scale=1.00,
+                             weights=[2.0, 1.0, 1.1, 1.0, 1.0])),
+
+    dict(name='Even Spread, Fine', note='the same, smaller and denser',
+         rings=[], fill=dict(kinds=['om', 'n925', 'cross', 'outl'],
+                             n=52, scale=0.78,
+                             weights=[1.6, 1.0, 1.6, 1.0])),
+]
+
+LAYOUT_BY_NAME = {d['name']: d for d in LAYOUTS}
+
+
+def ring_places(ring):
+    """One ring of marks: latitude, count, motifs, size, turn, mirror."""
+    lat = float(ring.get('lat', 0.0))
+    n = int(ring.get('n', 0))
+    if not n or not ring.get('kinds'):
+        return []
+    sc = float(ring.get('scale', 1.0))
+    turn = float(ring.get('turn', 0.0))
+    mirror = ring.get('mirror', True) and abs(lat) > 1e-6
     out = []
-    for lat, n, kinds, sc in plan:
-        for sign in ((1, -1) if lat else (1,)):
-            off = 180.0 / n if sign < 0 else 0.0
-            for c in range(n):
-                k = byname[kinds[c % len(kinds)]]
-                out.append((-180.0 + 360.0 * c / n + off, sign * lat, k,
-                            PATTERN[k][4] * sc))
+    for sign in ((1, -1) if mirror else (1,)):
+        off = 180.0 / n if sign < 0 else 0.0
+        for c in range(n):
+            k = BYNAME[ring['kinds'][c % len(ring['kinds'])]]
+            out.append(((-180.0 + 360.0 * c / n + off + turn + 180) % 360 - 180,
+                        sign * lat, k, PATTERN[k][4] * sc))
     return out
+
+
+def fill_places(spec, placed, radius, cap_deg=76.0, clearance=0.60):
+    """Drop a Fibonacci set over what is left and keep what fits.
+
+    "The rest filled with crosses" has no grid to fall back on: a sphere
+    admits no tiling of rows that keeps one spacing. So the filler is the
+    spiral again - every point the same distance from its neighbours -
+    generated over the whole ball and then thinned against what the rings
+    have already taken. A point survives if the gap between its edge and
+    the edge of every mark already placed is positive; `clearance` says
+    how much of each mark's half-width counts as its edge.
+    """
+    n = int(spec.get('n', 0))
+    if not n or not spec.get('kinds'):
+        return []
+    sc = float(spec.get('scale', 1.0))
+    kinds = [BYNAME[k] for k in spec['kinds']]
+    pts = spread(radius, n, cap_deg)
+    if not pts:
+        return []
+    weights = spec.get('weights') or [PATTERN[k][5] for k in kinds]
+    order = deal(pts, weights)
+    out = []
+    kept = list(placed)
+    for (lo, la), oi in zip(pts, order):
+        k = kinds[oi % len(kinds)]
+        mm = PATTERN[k][4] * sc
+        c = _unit(lo, la)
+        ok = True
+        for plo, pla, pk, pmm in kept:
+            d = math.acos(max(-1.0, min(1.0, _dot(c, _unit(plo, pla))))) * radius
+            if d < clearance * (mm + pmm) / 2.0 + 0.10:
+                ok = False
+                break
+        if ok:
+            out.append((lo, la, k, mm))
+            kept.append(out[-1])
+    return out
+
+
+def _unit(lon, lat):
+    la, lo = math.radians(lat), math.radians(lon)
+    c = math.cos(la)
+    return (c * math.cos(lo), c * math.sin(lo), math.sin(la))
+
+
+def _dot(a, b):
+    return a[0]*b[0] + a[1]*b[1] + a[2]*b[2]
+
+
+def layout(name, radius, cap_deg=76.0):
+    """Every mark a named design puts on the ball."""
+    d = LAYOUT_BY_NAME.get(name)
+    if d is None:
+        raise SystemExit(f'no design called {name!r}; '
+                         f'try one of: {", ".join(x["name"] for x in LAYOUTS)}')
+    places = []
+    for ring in d.get('rings') or []:
+        places.extend(ring_places(ring))
+    if d.get('fill'):
+        places.extend(fill_places(d['fill'], places, radius, cap_deg))
+    return places
 
 
 def deal(places, weights, near=6):
@@ -324,20 +502,15 @@ def framed(mask, border=0.055):
 
 
 def build(stamps, out, dia=8.0, bore=1.2, depth=4.0, n=30, mark=1.0,
-          ring=False, height=0.10,
+          design=None, height=0.10,
           inset=0.05, cap=76.0, sub=7, W=3600, Hh=1800, cut=False):
     # embossed, the marks stand proud and the ball under them is
     # smaller by that much; engraved, the ball is the full size and the
     # marks go into it. Either way the bead measures the 8 mm it is
     # called.
     r = dia / 2.0 if cut else (dia - 2 * height) / 2.0
-    if ring:
-        places = [(lo, la, k, mm * mark) for lo, la, k, mm in rings(r)]
-    else:
-        pts = spread(r, n, cap)
-        kinds = deal(pts, [q[5] for q in PATTERN])
-        places = [(lo, la, k, PATTERN[k][4] * mark)
-                  for (lo, la), k in zip(pts, kinds)]
+    places = [(lo, la, k, mm * mark)
+              for lo, la, k, mm in layout(design, r, cap)]
     ink = paint(stamps, places, r, W, Hh)
     rel = relief(ink, r, W, Hh, height, inset)
     if cut:
@@ -368,8 +541,9 @@ def build(stamps, out, dia=8.0, bore=1.2, depth=4.0, n=30, mark=1.0,
           f'{back.extents[0]:.2f} x {back.extents[1]:.2f} x {back.extents[2]:.2f} mm, '
           f'{len(b)} bodies, closed: {all(x.is_watertight for x in b)}, '
           f'{os.path.getsize(out)/1e6:.1f} MB')
-    print(f'   {len(places)} marks of {len(PATTERN)} kinds, '
-          f'{spacing(r, len(places)) if ring else spacing(r, n):.2f} mm apart, '
+    used = sorted({PATTERN[k][0] for _, _, k, _ in places})
+    print(f'   {design}: {len(places)} marks, {len(used)} motifs ({", ".join(used)}), '
+          f'{spacing(r, len(places)):.2f} mm apart on average, '
           f'{min(q[3] for q in places):.2f} to {max(q[3] for q in places):.2f} mm across, '
           f'relief {height:.2f} mm, hole {bore:.2f} mm x {depth:.2f} mm deep')
     return m, ink, rel
@@ -386,9 +560,10 @@ if __name__ == '__main__':
     a.add_argument('--marks', type=int, default=30,
                    help='marks over the whole sphere before the caps are '
                         'dropped; fewer means bigger and further apart')
-    a.add_argument('--rings', action='store_true',
-                   help='a composition in rings about the bore, after the '
-                        'medallion reference, instead of an even spread')
+    a.add_argument('--layout', default='Four Crowns',
+                   help='which design to build; --list names them all')
+    a.add_argument('--list', action='store_true',
+                   help='print the designs and stop')
     a.add_argument('--simple', action='store_true',
                    help='OM and the framed cross only - the page pattern '
                         'thinned for a ball this small')
@@ -402,6 +577,10 @@ if __name__ == '__main__':
     a.add_argument('--sub', type=int, default=7)
     a.add_argument('--out', default='assets/om-bead/om-bead-8mm.stl')
     o = a.parse_args()
+    if o.list:
+        for d in LAYOUTS:
+            print(f'{d["name"]:22s} {d["note"]}')
+        raise SystemExit(0)
     os.makedirs(os.path.dirname(o.out), exist_ok=True)
     if o.simple:
         PATTERN[:] = [q for q in PATTERN if q[0] in ('om', 'sq')]
@@ -413,4 +592,4 @@ if __name__ == '__main__':
               f'{mm:.2f} mm on the ball')
     build(stamps, o.out, dia=o.dia, bore=o.bore, depth=o.bore_depth,
           n=o.marks, mark=o.mark,
-          ring=o.rings, height=o.relief, sub=o.sub, cut=o.cut)
+          design=o.layout, height=o.relief, sub=o.sub, cut=o.cut)

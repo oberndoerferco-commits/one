@@ -16,7 +16,7 @@ import numpy as np
 from scipy import ndimage
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from om_bead import PAGE, PATTERN, stamp_from_pdf, ringed, rings
+from om_bead import PAGE, PATTERN, stamp_from_pdf, ringed, LAYOUTS
 
 OUT = 'assets/om-bead/mockup/stamps.json'
 MAXDIM = 176          # px on the long side of a stamp
@@ -58,16 +58,15 @@ def main():
     doc = {
         'drange': DRANGE,
         'stamps': stamps,
-        'rings': [{'lon': lo, 'lat': la, 'kind': k, 'mm': mm}
-                  for lo, la, k, mm in rings(3.95)],
+        'layouts': LAYOUTS,
         'labels': {'om': 'OM monogram', 'sq': 'Cross in a square',
                    'n925': 'Cross and 925', 'circ': 'Cross in a circle',
-                   'outl': 'Outlined cross'},
+                   'outl': 'Outlined cross', 'cross': 'Small cross'},
     }
     with open(OUT, 'w') as fh:
         json.dump(doc, fh, separators=(',', ':'))
     print(f'{OUT}: {os.path.getsize(OUT)/1024:.0f} KB, '
-          f'{len(doc["rings"])} marks in the ring plan')
+          f'{len(doc["layouts"])} designs')
 
 
 if __name__ == '__main__':
