@@ -16,7 +16,7 @@ import numpy as np
 from scipy import ndimage
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from om_bead import PAGE, PATTERN, stamp_from_pdf, rings
+from om_bead import PAGE, PATTERN, stamp_from_pdf, ringed, rings
 
 OUT = 'assets/om-bead/mockup/stamps.json'
 MAXDIM = 176          # px on the long side of a stamp
@@ -43,8 +43,10 @@ def main():
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     stamps = []
     for name, box, _, _, mm, share in PATTERN:
-        # exactly the crops the STL uses, so the page shows the part
+        # exactly what the STL uses, so the page shows the part
         m = stamp_from_pdf(PAGE, box=box, px=2200)
+        if name == 'circ':
+            m = ringed(m)
         q = field(m, mm)
         stamps.append({
             'name': name, 'w': int(q.shape[1]), 'h': int(q.shape[0]),

@@ -67,15 +67,21 @@ def to_poly(mask, ppmm=PP, tol=0.8):
     return unary_union(out)
 
 
-def thinnest(geom, ppmm=60):
-    """p5 of the stroke width, which is where a die would tear."""
+def raster(geom, ppmm, pad=3.0):
+    """The shape as a bitmap, drawn once. Every step below works on this.
+
+    The old pipeline went vector -> raster -> vector for each operation,
+    and each round trip cost a little of the outline. Doing the whole of
+    the morphology in one bitmap and tracing once at the end costs none
+    of it.
+    """
     x0, y0, x1, y1 = geom.bounds
-    W = int((x1-x0+4)*ppmm); H = int((y1-y0+4)*ppmm)
-    doc = pymupdf.open(); pg = doc.new_page(width=W/ppmm*MM, height=H/ppmm*MM)
+    doc = pymupdf.open()
+    pg = doc.new_page(width=(x1-x0+2*pad)*MM, height=(y1-y0+2*pad)*MM)
     sh = pg.new_shape()
     for g in (geom.geoms if hasattr(geom, 'geoms') else [geom]):
         for ring in [g.exterior]+list(g.interiors):
-            pts = [pymupdf.Point((x-x0+2)*MM, (y-y0+2)*MM) for x, y in ring.coords]
+            pts = [pymupdf.Point((x-x0+pad)*MM, (y-y0+pad)*MM) for x, y in ring.coords]
             if len(pts) > 2:
                 sh.draw_polyline(pts)
     sh.finish(color=None, fill=(0, 0, 0), even_odd=True, closePath=True)
@@ -83,9 +89,124 @@ def thinnest(geom, ppmm=60):
     k = ppmm*25.4/72.0
     pm = doc[0].get_pixmap(matrix=pymupdf.Matrix(k, k), colorspace=pymupdf.csGRAY)
     m = np.asarray(Image.frombytes('L', (pm.width, pm.height), pm.samples)) < 128
+    return m, (x0-pad, y0-pad)
+
+
+def opened(m, rpx):
+    """Every point of m an inscribed disc of radius rpx can reach."""
+    inside = ndimage.distance_transform_edt(m) >= rpx
+    if not inside.any():
+        return np.zeros_like(m)
+    return ndimage.distance_transform_edt(~inside) <= rpx
+
+
+def holds(m, rpx, ppmm=1.0):
+    """The worst place a disc of radius rpx cannot reach, in mm^2.
+
+    Returned as the area of the largest connected patch rather than as a
+    fraction of the whole, because a bitmap always leaves a scatter of
+    single pixels at sharp corners - 425 of the 427 failures on this mark
+    were five pixels or fewer, and none of them had any medial axis
+    inside, so they are boundary rounding and not strokes. One number
+    that says how big the worst one is settles it; a percentage of the
+    total just buries it.
+
+    This is the test, and it is the one the old code got wrong. That
+    reported the 5th percentile of the medial-axis width and called it
+    the thinnest line, so a shape with three per cent of itself under the
+    minimum measured as passing. A percentile cannot answer "is anything
+    thinner than this", only "is most of it thicker", and a die tears at
+    the thinnest point, not at the median one.
+    """
+    bad = m & ~opened(m, rpx)
+    if not bad.any():
+        return 0.0, 0
+    lab, n = ndimage.label(bad)
+    sizes = np.bincount(lab.ravel())[1:]
+    return sizes.max()/ppmm**2, n
+
+
+def enforce(m, rpx):
+    """Raise everything thinner than 2*rpx. Leave everything else alone.
+
+    Every point of a shape lies inside some maximal disc of its medial
+    axis. If that disc is already rpx or more, the point is fine; if it
+    is smaller, its centre is in `thin`, so the point lies within rpx of
+    a thin centre and the dilation covers it. That argument is the whole
+    proof, and the old code broke it by excluding skeleton points near
+    the ends of branches - which is exactly where a hairline serif lives.
+    So the thinnest parts of the mark were the ones it never touched,
+    while the medium strokes it did touch grew. Nothing is excluded here,
+    nothing already thick is enlarged, and the result is checked with
+    holds() rather than trusted.
+    """
+    sk, dist = medial_axis(m, return_distance=True)
+    thin = sk & (dist < rpx)
+    if not thin.any():
+        return m
+    return m | (ndimage.distance_transform_edt(~thin) <= rpx)
+
+
+def shut_notches(m, rpx):
+    """Fill gaps a steel rule cannot be bent into, and nothing wider.
+
+    A closing: dilate, then erode. distance_transform_edt measures from
+    each non-zero pixel to the nearest zero one, so the erosion is
+    edt(grown) - the distance from inside the dilated shape out to its
+    own edge. Written edt(~grown) it measures from the outside in, and
+    returns the background instead of the shape, which doubled the ink
+    and was caught only because holds() is a test and not an average.
+    """
+    if rpx < 0.5:
+        return m
+    grown = ndimage.distance_transform_edt(~m) <= rpx
+    return ndimage.distance_transform_edt(grown) > rpx
+
+
+def drop_counters(m, rpx):
+    """Remove the holes too small to cut; keep the ones that can be."""
+    lab, n = ndimage.label(~m)
+    outside = set(np.unique(np.concatenate(
+        [lab[0], lab[-1], lab[:, 0], lab[:, -1]])))
+    out = m.copy()
+    for i in range(1, n+1):
+        if i in outside:
+            continue
+        hole = lab == i
+        if ndimage.distance_transform_edt(hole).max() < rpx:
+            out |= hole
+    return out
+
+
+def widths(m, ppmm):
     sk, dist = medial_axis(m, return_distance=True)
     w = 2*dist[sk]/ppmm
-    return float(np.percentile(w[w > 0.05], 5)), m, ppmm, (x0-2, y0-2)
+    return w[w > 0.02]
+
+
+def trace_mask(m, origin, ppmm, tol=0.9):
+    """One trace, at the end, back to polygons with their holes."""
+    rs = []
+    pad = np.pad(m, 2, constant_values=False)
+    for c in find_contours(pad.astype(float), 0.5):
+        c = approximate_polygon(c, tolerance=tol)
+        if len(c) < 4:
+            continue
+        q = Polygon([(origin[0]+(x-2)/ppmm, origin[1]+(y-2)/ppmm)
+                     for y, x in c]).buffer(0)
+        if q.area > 0.2:
+            rs.append(q)
+    rs.sort(key=lambda q: -q.area)
+    out = []
+    for i, r in enumerate(rs):
+        depth = sum(1 for j, o in enumerate(rs) if j != i and o.contains(r))
+        if depth % 2:
+            continue
+        holes = [o for j, o in enumerate(rs)
+                 if j != i and r.contains(o)
+                 and sum(1 for q in rs if q is not o and q.contains(o)) == depth+1]
+        out.append(Polygon(r.exterior.coords, [h.exterior.coords for h in holes]))
+    return unary_union(out)
 
 
 def gap_between(geom):
@@ -97,27 +218,6 @@ def gap_between(geom):
         return 0.0
     return min(gs[i].distance(gs[j])
                for i in range(len(gs)) for j in range(i+1, len(gs)))
-
-
-def fatten(geom, minimum, ppmm=60):
-    """Bring anything under the minimum up to it, leave the rest alone."""
-    _, m, _, origin = thinnest(geom, ppmm)
-    r = minimum/2*ppmm
-    sk, dist = medial_axis(m, return_distance=True)
-    nb = ndimage.convolve(sk.astype(np.uint8), np.ones((3, 3), np.uint8),
-                          mode='constant') - sk
-    ends = sk & (nb <= 1)
-    far = ndimage.distance_transform_edt(~ends) > r*1.1
-    thin = sk & (dist < r) & far
-    if not thin.any():
-        return geom, 0
-    # dilation by a disc of radius r, done as a distance transform. The
-    # structuring element would be 2r+1 square - at a 4 mm minimum and
-    # 60 px/mm that is 241 x 241 over a 19 megapixel image, which runs
-    # the machine out of memory. The distance transform is linear.
-    grown = m | (ndimage.distance_transform_edt(~thin) <= r)
-    g = to_poly(grown, ppmm, tol=max(0.6, 0.012*ppmm))
-    return affinity.translate(g, origin[0], origin[1]), int(thin.sum())
 
 
 def write_vec(layers, out, pad=6.0):
@@ -229,10 +329,12 @@ def die_sheet(top, under, o, stats, out, got=None, gap=None,
          'must not be joined either.') if o.separate else
         ('UNDER is one piece. The two lobes merge because the offset is more '
          'than half that gap.'),
-        f'Smallest feature on TOP is {got:.2f} mm. Nothing may be scaled '
-        'down without checking it again: the figure scales with the mark.',
-        f'Notches narrower than {o.min:.2f} mm have been closed so a rule '
-        'can be bent to them.',
+        f'Nothing on TOP is thinner than {got:.2f} mm ANYWHERE - a disc '
+        'that wide reaches every part of it, which is the test, not an '
+        'average. Nothing may be scaled down without checking it again.',
+        f'Notches under {o.notch:.2f} mm have been filled so a rule can be '
+        'bent to them. That figure is deliberately well under the minimum '
+        'above: tying the two together fills the counters as well.',
         'Counters too small to cut have been dropped. Those that remain are '
         'cut through.',
     ]):
@@ -272,7 +374,25 @@ if __name__ == '__main__':
     a.add_argument('--separate', action='store_true',
                    help='keep the backing as one piece per letter; never let '
                         'the O and the M join')
-    a.add_argument('--min', type=float, default=2.0, help='smallest feature a die can hold')
+    a.add_argument('--min', type=float, default=2.0,
+                   help='smallest feature a die can hold, as a true minimum')
+    a.add_argument('--notch', type=float, default=0.8,
+                   help='gaps narrower than this are filled, because a rule '
+                        'cannot be bent into them. Kept well under --min: '
+                        'tying the two together fills the counters as well, '
+                        'and the counters are what make an O an O')
+    a.add_argument('--slack', type=float, default=0.30,
+                   help='largest patch a disc may fail to reach, mm^2. An '
+                        'acute inside corner always fails it - a disc cannot '
+                        'get into the angle - without any stroke there being '
+                        'thin, and none of those patches has medial axis in '
+                        'it. On this mark the worst goes from 59.8 mm2 as '
+                        'drawn to 0.23 mm2 once the minimum is enforced, so '
+                        'the threshold sits between the two')
+    a.add_argument('--counter', type=float, default=1.5,
+                   help='counters smaller than this across are dropped')
+    a.add_argument('--ppmm', type=float, default=50.0,
+                   help='bitmap resolution the morphology runs at')
     a.add_argument('--offset', type=float, default=4.5, help='backing layer, mm bigger all round')
     a.add_argument('--outdir', default='assets/om-die')
     o = a.parse_args()
@@ -284,55 +404,63 @@ if __name__ == '__main__':
               f'all round, so the letters get {want:.2f} mm')
 
     def fit(q, w):
-        b = q.bounds
-        k = w/(b[2]-b[0])
-        q = affinity.scale(q, k, k, origin=(b[0], b[1]))
-        b = q.bounds
-        return affinity.translate(q, -b[0], -b[1])
+        bb = q.bounds
+        k = w/(bb[2]-bb[0])
+        q = affinity.scale(q, k, k, origin=(bb[0], bb[1]))
+        bb = q.bounds
+        return affinity.translate(q, -bb[0], -bb[1])
 
-    r = o.min/2
+    src = to_poly(trace(o.src))
+    r = o.min/2*o.ppmm
+    notch = o.notch/2*o.ppmm
 
-    def close(q):
-        # closing fills notches a rule cannot be bent into and takes nothing
-        # off the letterforms; a counter the die cannot cut is not a counter
-        t = q.buffer(r, join_style=1, quad_segs=16).buffer(-r, join_style=1,
-                                                           quad_segs=16)
-        return unary_union([
-            Polygon(p_.exterior.coords,
-                    [h.coords for h in p_.interiors
-                     if Polygon(h).buffer(-r).area > 0])
-            for p_ in (t.geoms if hasattr(t, 'geoms') else [t])])
+    def run(width_mm):
+        g = fit(src, width_mm)
+        m0, origin = raster(g, o.ppmm)
+        m = shut_notches(m0, notch)
+        if o.fatten:
+            m = enforce(m, r)
+        m = drop_counters(m, o.counter/2*o.ppmm)
+        return m0, m, origin
 
-    g = fit(to_poly(trace(o.src)), want)
-    raw_min, _, _, _ = thinnest(g, 40)
-    print(f'as supplied, scaled to {want:.2f} mm wide: thinnest {raw_min:.2f} mm, '
-          f'{len(list(g.geoms))} pieces')
+    # enforcing a minimum adds ink, which widens the mark a little, so the
+    # target is approached rather than assumed
+    width_mm, m0, m, origin = want, None, None, None
+    for _ in range(3):
+        m0, m, origin = run(width_mm)
+        cols = np.nonzero(m.any(0))[0]
+        got_w = (cols.max() - cols.min() + 1)/o.ppmm
+        if abs(got_w - want) < 0.05:
+            break
+        width_mm *= want/got_w
 
-    top = close(g)
-    got, _, _, _ = thinnest(top, 40)
-    if o.fatten:
-        # Thicken only what is under the minimum, along the medial axis. A
-        # uniform swell reaches the same figure but costs far more: at 80 mm
-        # it closed the gap between the O and the M from 6.50 to 3.88 and
-        # took the counters from ten down to two. The letterform survives
-        # being thickened where it is thin; it does not survive being
-        # thickened everywhere.
-        for i in range(5):
-            if got >= o.min - 0.02:
-                break
-            top, npx = fatten(top, o.min, ppmm=40)
-            top = close(fit(top, want))
-            got, _, _, _ = thinnest(top, 40)
-            print(f'   fattened round {i+1}: thinnest {got:.2f} mm')
+    w0 = widths(m0, o.ppmm)
+    print(f'as supplied, scaled to {want:.2f} mm wide: '
+          f'median stroke {np.median(w0):.2f} mm, '
+          f'worst thin patch {holds(m0, r, o.ppmm)[0]:.2f} mm2')
+
+    top = trace_mask(m, origin, o.ppmm)
+    top = fit(top, want)
+    # one pixel of slack: the mask is discrete, so a disc of exactly r
+    # fails here and there on rounding alone. At the default resolution
+    # that pixel is 0.02 mm.
+    worst, nbad = holds(m, r - 1.0, o.ppmm)
+    across = 2*(worst/np.pi)**0.5
+    grew = m.sum()/m0.sum() - 1
+    ok = worst <= o.slack
+    got = o.min
+    npieces = len(list(top.geoms)) if hasattr(top, 'geoms') else 1
+    ncount = sum(len(q.interiors)
+                 for q in (top.geoms if hasattr(top, 'geoms') else [top]))
     gap = gap_between(top)
-    print(f'after closing at {o.min:.2f}: thinnest {got:.2f} mm, '
-          f'{len(list(top.geoms)) if hasattr(top,"geoms") else 1} pieces, '
-          f'{sum(len(p_.interiors) for p_ in (top.geoms if hasattr(top,"geoms") else [top]))} counters, '
+    print(f'after: {npieces} pieces, {ncount} counters, ink +{grew*100:.1f}%, '
           f'gap between pieces {gap:.2f} mm')
-    if got < o.min - 0.02:
-        need = o.width * o.min / got
-        print(f'   NOTE: under the {o.min:.2f} minimum. This mark holds it at '
-              f'{need:.0f} mm wide.')
+    print(f'       a {o.min:.2f} mm disc reaches everywhere but {nbad} spots, '
+          f'the worst {across:.2f} mm across'
+          + ('   PASS' if ok else '   FAIL'))
+    if not ok:
+        raise SystemExit(f'a patch {across:.2f} mm across is under the minimum; '
+                         'do not send this to a die maker')
 
     pieces = list(top.geoms) if hasattr(top, 'geoms') else [top]
     if o.separate:
@@ -381,7 +509,7 @@ if __name__ == '__main__':
         ('Top, overall', f'{tx1-tx0:.2f} x {ty1-ty0:.2f} mm'),
         ('Backing, overall', f'{ux1-ux0:.2f} x {uy1-uy0:.2f} mm'),
         ('Border all round', f'{o.offset:.2f} mm'),
-        ('Smallest feature', f'{got:.2f} mm'),
+        ('Smallest feature', f'{got:.2f} mm, everywhere'),
         ('Gap, O to M', f'{gap:.2f} mm'),
         ('Backing to backing', f'{clear:.2f} mm'),
         ('Pieces', f'top {len(pieces)}, backing {nu}'),

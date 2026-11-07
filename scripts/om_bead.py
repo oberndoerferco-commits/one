@@ -40,7 +40,7 @@ PATTERN = [
     ('om',   (0.1038, 0.0940, 0.2140, 0.2420), 0, 0, 2.70, 2.0),
     ('sq',   (0.2858, 0.1030, 0.3432, 0.1825), 0, 0, 2.10, 1.0),
     ('n925', (0.2532, 0.2667, 0.3432, 0.3379), 0, 0, 2.50, 1.1),
-    ('circ', (0.1197, 0.3129, 0.1830, 0.4050), 0, 0, 2.25, 1.0),
+    ('circ', (0.1197, 0.3129, 0.1830, 0.4050), 0, 0, 2.60, 1.0),
     ('outl', (0.2443, 0.3910, 0.3106, 0.4806), 0, 0, 2.25, 1.0),
 ]
 
@@ -136,20 +136,20 @@ def rings(radius):
     between rings; alternate rings are offset half a step so the marks
     nest rather than line up in columns.
     """
-    plan = [                       # latitude, count, kinds, size mm
-        (0.0,  8, ['om', 'n925'],  None),
-        (45.0, 6, ['sq', 'outl'],  None),
-        (75.0, 4, ['circ'],        1.70),
+    plan = [                       # latitude, count, kinds, size scale
+        (0.0,  8, ['om', 'n925'],  1.00),
+        (45.0, 6, ['sq', 'outl'],  1.00),
+        (75.0, 4, ['circ'],        0.72),
     ]
     byname = {q[0]: i for i, q in enumerate(PATTERN)}
     out = []
-    for lat, n, kinds, mm in plan:
+    for lat, n, kinds, sc in plan:
         for sign in ((1, -1) if lat else (1,)):
             off = 180.0 / n if sign < 0 else 0.0
             for c in range(n):
                 k = byname[kinds[c % len(kinds)]]
                 out.append((-180.0 + 360.0 * c / n + off, sign * lat, k,
-                            mm if mm else PATTERN[k][4]))
+                            PATTERN[k][4] * sc))
     return out
 
 
@@ -278,6 +278,35 @@ def relief(ink, radius, W, Hh, height, inset):
     return height * (t * t * (3.0 - 2.0 * t))
 
 
+def ringed(mask, ratio=1.25, weight=0.075, pad=8):
+    """The cross inside its ring, with the ring drawn rather than traced.
+
+    On the page that ring is a hairline in light grey. The 128 threshold
+    drops it, which is why the bead has been going out carrying the bare
+    cross twice over and no circled one at all - the crop was right, the
+    threshold took the circle off it. Raising the threshold gets it back
+    at 116 px instead of 93, so the radius is measurable: 1.25 times the
+    cross.
+
+    Capturing it would not help though. Scaled to a 2.25 mm mark on an
+    8 mm ball that hairline comes to about three hundredths of a
+    millimetre, far under anything that can be cut or cast. So the
+    radius is kept and the weight is redrawn at something that reads.
+    """
+    h, w = mask.shape
+    R = int(round(max(h, w) / 2.0 * ratio))
+    n = 2 * (R + pad) + 1
+    out = np.zeros((n, n), bool)
+    cy = cx = n // 2
+    y0, x0 = cy - h // 2, cx - w // 2
+    out[y0:y0 + h, x0:x0 + w] |= mask
+    yy, xx = np.mgrid[:n, :n]
+    d = np.hypot(yy - cy, xx - cx)
+    t = max(2.0, weight * 2 * R)
+    out |= (d <= R) & (d >= R - t)
+    return out
+
+
 def framed(mask, border=0.055):
     """A mark the right way round, inside its own square.
 
@@ -376,7 +405,9 @@ if __name__ == '__main__':
     os.makedirs(os.path.dirname(o.out), exist_ok=True)
     if o.simple:
         PATTERN[:] = [q for q in PATTERN if q[0] in ('om', 'sq')]
-    stamps = [stamp_from_pdf(PAGE, box=b, px=2200) for _, b, *_ in PATTERN]
+    stamps = [ringed(stamp_from_pdf(PAGE, box=b, px=2200)) if nm == 'circ'
+              else stamp_from_pdf(PAGE, box=b, px=2200)
+              for nm, b, *_ in PATTERN]
     for (nm, _, _, _, mm, _), st in zip(PATTERN, stamps):
         print(f'   {nm:5s} {st.shape[1]:4d} x {st.shape[0]:4d} px   '
               f'{mm:.2f} mm on the ball')

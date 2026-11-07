@@ -153,6 +153,10 @@ button.btn.wide{width:100%;text-align:left}
       </div>
       <div id="layout"></div>
     </section>
+    <section>
+      <h2>Logo sizes</h2>
+      <div id="sizes"></div>
+    </section>
     <section id="sec-sel">
       <h2>Selected mark</h2>
       <div id="sel"></div>
@@ -184,9 +188,10 @@ var RINGNAME = ['Equator', 'Mid band', 'By the bore'];
 
 var S = {
   mode:'rings', tool:'orbit', spin:true,
-  rings:[{lat:0,n:8,turn:0,kinds:[0,2],mm:null},
-         {lat:45,n:6,turn:0,kinds:[1,4],mm:null},
-         {lat:75,n:4,turn:0,kinds:[3],mm:1.70}],
+  rings:[{lat:0,n:8,turn:0,kinds:[0,2],scale:1.00},
+         {lat:45,n:6,turn:0,kinds:[1,4],scale:1.00},
+         {lat:75,n:4,turn:0,kinds:[3],scale:0.72}],
+  size:[],                       /* mm per logo, filled from stamps.json */
   spread:{n:30, cap:76},
   dia:8.0, bore:1.2, depth:4.0, relief:0.10, inset:0.05, scale:1.0, cut:false,
   marks:[], sel:-1, add:0
@@ -213,7 +218,7 @@ function fromRings(){
       for(var c=0;c<g.n;c++){
         var k=g.kinds[c%g.kinds.length];
         out.push({lon:norm180(-180+360*c/g.n+off+g.turn), lat:signs[s]*g.lat,
-                  kind:k, mm:(g.mm||KINDS[k].mm), turn:0, ring:i});
+                  kind:k, mm:S.size[k]*g.scale, turn:0, ring:i});
       }
     }
   }
@@ -230,7 +235,7 @@ function fromSpread(){
   }
   var kinds=deal(pts);
   return pts.map(function(p,i){
-    return {lon:p[0], lat:p[1], kind:kinds[i], mm:KINDS[kinds[i]].mm, turn:0, ring:-1};
+    return {lon:p[0], lat:p[1], kind:kinds[i], mm:S.size[kinds[i]], turn:0, ring:-1};
   });
 }
 /* colour the neighbour graph: no two touching marks share a kind, and
@@ -662,7 +667,7 @@ function setSpin(on){
 function addAt(p){
   var m={lon:Math.atan2(p[1],p[0])*R2D,
          lat:Math.asin(Math.max(-1,Math.min(1,p[2])))*R2D,
-         kind:S.add, mm:KINDS[S.add].mm, turn:0, ring:-1};
+         kind:S.add, mm:S.size[S.add], turn:0, ring:-1};
   S.marks.push(m);
   S.sel=S.marks.length-1;
   custom(); selPanel();
@@ -773,9 +778,8 @@ function modePanel(){
         function(v){g.n=v; redo();}, function(v){return v.toFixed(0);});
       slider(box,'Turn',-60,60,1,function(){return g.turn;},
         function(v){g.turn=v; redo();}, function(v){return v.toFixed(0)+'°';});
-      slider(box,'Mark size',1.2,3.4,0.05,
-        function(){return g.mm||KINDS[g.kinds[0]||0].mm;},
-        function(v){g.mm=v; redo();}, function(v){return v.toFixed(2)+' mm';});
+      slider(box,'Size on this ring',0.5,1.6,0.02,function(){return g.scale;},
+        function(v){g.scale=v; redo();}, function(v){return '\u00d7'+v.toFixed(2);});
       kindChips(box, function(k){return g.kinds.indexOf(k)>=0;}, function(k){
         var at=g.kinds.indexOf(k);
         if(at>=0){ if(g.kinds.length>1) g.kinds.splice(at,1); }
@@ -822,7 +826,7 @@ function selPanel(){
   head.appendChild(el('span','pill', m.lat.toFixed(1)+'° / '+m.lon.toFixed(1)+'°'));
   host.appendChild(head);
   kindChips(host, function(k){return k===m.kind;}, function(k){
-    m.kind=k; m.mm=KINDS[k].mm; custom(); selPanel();
+    m.kind=k; m.mm=S.size[k]*(m.ring>=0?S.rings[m.ring].scale:1); custom(); selPanel();
   });
   slider(host,'Size',1.0,4.0,0.05,function(){return m.mm;},
     function(v){m.mm=v; custom();}, function(v){return v.toFixed(2)+' mm';});
@@ -868,6 +872,33 @@ function paintSel(){
   halo.lookAt(c[0]*(lift+1),c[1]*(lift+1),c[2]*(lift+1));
 }
 
+function sizePanel(){
+  var host=document.getElementById('sizes');
+  host.innerHTML='';
+  KINDS.forEach(function(k,i){
+    slider(host, k.label, 1.0, 4.5, 0.05, function(){ return S.size[i]; },
+      function(v){
+        S.size[i]=v;
+        S.marks.forEach(function(m){
+          if(m.kind===i) m.mm = v*(m.ring>=0 ? S.rings[m.ring].scale : 1);
+        });
+        redo();
+      }, function(v){ return v.toFixed(2)+' mm'; });
+  });
+  var rs=el('button','btn','Back to the drawn sizes'); rs.type='button';
+  rs.addEventListener('click', function(){
+    S.size=KINDS.map(function(k){return k.mm;});
+    S.marks.forEach(function(m){
+      m.mm = S.size[m.kind]*(m.ring>=0 ? S.rings[m.ring].scale : 1); });
+    redo(); sizePanel(); selPanel();
+  });
+  host.appendChild(rs);
+  host.appendChild(el('p','note','Each logo keeps its own size, so the pattern '
+    +'reads as five marks of one family rather than one artwork scaled five '
+    +'ways. The ring sliders above multiply these; the slider on a selected '
+    +'mark overrides them for that one mark alone.'));
+}
+
 function piecePanel(){
   var host=document.getElementById('piece');
   host.innerHTML='';
@@ -881,7 +912,7 @@ function piecePanel(){
     function(v){S.relief=v; redo();}, function(v){return v.toFixed(3)+' mm';});
   slider(host,'Edge softness',0.01,0.20,0.005,function(){return S.inset;},
     function(v){S.inset=v; redo();}, function(v){return v.toFixed(3)+' mm';});
-  slider(host,'All marks',0.6,1.5,0.01,function(){return S.scale;},
+  slider(host,'All logos at once',0.6,1.5,0.01,function(){return S.scale;},
     function(v){S.scale=v; redo();}, function(v){return '×'+v.toFixed(2);});
   var seg=el('div','seg');
   var a=el('button',null,'Embossed'), b=el('button',null,'Engraved');
@@ -977,6 +1008,7 @@ function jsonText(){
   return JSON.stringify({
     dia:+S.dia.toFixed(3), bore:+S.bore.toFixed(3), bore_depth:+S.depth.toFixed(2),
     relief:+S.relief.toFixed(4),
+    logo_mm:KINDS.reduce(function(o,k,i){ o[k.name]=+S.size[i].toFixed(2); return o; }, {}),
     inset:+S.inset.toFixed(4), engraved:!!S.cut, layout:S.mode,
     marks:S.marks.map(function(m){
       return {kind:KINDS[m.kind].name, lon:+m.lon.toFixed(2), lat:+m.lat.toFixed(2),
@@ -1010,11 +1042,12 @@ function run(doc){
     return {name:s.name, label:doc.labels[s.name]||s.name, mm:s.mm, share:s.share,
             st:{w:s.w, h:s.h, data:unpack(s.data)}};
   });
+  S.size=KINDS.map(function(k){ return k.mm; });
   document.getElementById('boot').remove();
   setup();
   replace();
   rebuild(true);
-  modePanel(); selPanel(); piecePanel();
+  modePanel(); sizePanel(); selPanel(); piecePanel();
   place();
 
   document.getElementById('m-rings').addEventListener('click', function(){
