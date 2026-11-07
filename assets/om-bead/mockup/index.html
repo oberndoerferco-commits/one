@@ -136,8 +136,9 @@ button.btn.wide{width:100%;text-align:left}
         <button id="t-orbit" aria-pressed="true">Turn the bead</button>
         <button id="t-move" aria-pressed="false">Move a mark</button>
         <button id="t-add" aria-pressed="false">Add a mark</button>
+        <button id="t-del" aria-pressed="false">Remove a mark</button>
       </div>
-      <button class="btn" id="t-spin" aria-pressed="true">Auto-turn</button>
+      <button class="btn" id="t-spin" aria-pressed="true">Turning: on</button>
       <button class="btn" id="t-home">Reset view</button>
     </div>
     <p class="hint" id="hint"></p>
@@ -651,6 +652,13 @@ function pick(p){
   }
   return best;
 }
+function setSpin(on){
+  S.spin=!!on;
+  var b=document.getElementById('t-spin');
+  b.setAttribute('aria-pressed', S.spin);
+  b.textContent = S.spin ? 'Turning: on' : 'Turning: off';
+}
+
 function addAt(p){
   var m={lon:Math.atan2(p[1],p[0])*R2D,
          lat:Math.asin(Math.max(-1,Math.min(1,p[2])))*R2D,
@@ -664,6 +672,7 @@ function wire(host){
   var cv=renderer.domElement, down=null, drag=false;
   cv.addEventListener('pointerdown', function(ev){
     cv.setPointerCapture(ev.pointerId);
+    if(S.spin) setSpin(false);        /* take hold of it and it holds still */
     var p=hitBall(ev);
     down={x:ev.clientX, y:ev.clientY, yaw:cam.yaw, pitch:cam.pitch,
           mark: (S.tool==='move' && p) ? pick(p) : -1};
@@ -692,8 +701,11 @@ function wire(host){
   cv.addEventListener('pointerup', function(ev){
     if(down && !drag){
       var p=hitBall(ev);
+      var k = p ? pick(p) : -1;
       if(S.tool==='add' && p){ addAt(p); }
-      else { S.sel = p ? pick(p) : -1; selPanel(); }
+      else if(S.tool==='del' && k>=0){
+        S.marks.splice(k,1); S.sel=-1; custom(); selPanel();
+      } else { S.sel=k; selPanel(); }
     }
     if(down && drag && down.mark>=0) rebuild(true);
     down=null;
@@ -941,7 +953,8 @@ function stats(){
   h.appendChild(document.createTextNode(
     S.tool==='move' ? 'Drag a mark to slide it over the ball. Drag the background to turn the bead.' :
     S.tool==='add'  ? 'Tap the bead to drop a mark where you tapped. Drag to turn it.' :
-    'Drag to turn the bead, scroll to zoom, tap a mark to select it.'));
+    S.tool==='del'  ? 'Tap a mark to take it off. Drag to turn the bead.' :
+    'Drag to turn the bead, scroll to zoom, tap a mark to select it. Delete takes it off.'));
 }
 
 function cmdText(){
@@ -1008,28 +1021,35 @@ function run(doc){
     S.mode='rings'; replaceRedo(); modePanel(); });
   document.getElementById('m-spread').addEventListener('click', function(){
     S.mode='spread'; replaceRedo(); modePanel(); });
-  var tO=document.getElementById('t-orbit'), tM=document.getElementById('t-move'),
-      tA=document.getElementById('t-add');
+  var TOOLS={orbit:'t-orbit', move:'t-move', add:'t-add', del:'t-del'};
   function tool(t){ S.tool=t;
-    tO.setAttribute('aria-pressed', t==='orbit');
-    tM.setAttribute('aria-pressed', t==='move');
-    tA.setAttribute('aria-pressed', t==='add');
-    renderer.domElement.classList.toggle('moving', t!=='orbit'); stats(); }
-  tO.addEventListener('click', function(){tool('orbit');});
-  tM.addEventListener('click', function(){tool('move');});
-  tA.addEventListener('click', function(){tool('add');});
-  var sp=document.getElementById('t-spin');
-  sp.addEventListener('click', function(){
-    S.spin=!S.spin; sp.setAttribute('aria-pressed', S.spin); });
-  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    S.spin=false; sp.setAttribute('aria-pressed','false');
+    for(var k in TOOLS)
+      document.getElementById(TOOLS[k]).setAttribute('aria-pressed', k===t);
+    renderer.domElement.classList.toggle('moving', t!=='orbit');
+    stats();
   }
+  Object.keys(TOOLS).forEach(function(k){
+    document.getElementById(TOOLS[k]).addEventListener('click', function(){ tool(k); });
+  });
+  document.getElementById('t-spin').addEventListener('click', function(){
+    setSpin(!S.spin); });
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+    setSpin(false);
   document.getElementById('t-home').addEventListener('click', function(){
     cam.yaw=-60; cam.pitch=18; cam.dist=26; place(); });
   document.getElementById('b-cmd').addEventListener('click', function(){
     copyOut(cmdText(), this, 'Command copied'); });
   document.getElementById('b-json').addEventListener('click', function(){
     copyOut(jsonText(), this, 'Placement copied'); });
+
+  window.addEventListener('keydown', function(ev){
+    if(ev.key!=='Delete' && ev.key!=='Backspace') return;
+    var t=ev.target.tagName;
+    if(t==='INPUT'||t==='TEXTAREA'||t==='SELECT') return;
+    if(S.sel<0 || S.sel>=S.marks.length) return;
+    ev.preventDefault();
+    S.marks.splice(S.sel,1); S.sel=-1; custom(); selPanel();
+  });
 
   var mq=window.matchMedia('(prefers-color-scheme: dark)');
   function theme(){ scene.background=backdrop(); }
