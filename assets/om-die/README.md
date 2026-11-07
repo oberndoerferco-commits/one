@@ -15,63 +15,83 @@ joins the O to the M on either layer.
 
 | | |
 | --- | --- |
-| Finished patch | **80.00 × 66.32 mm** |
-| Letters | 76.00 × 62.32 mm |
-| Backing | +2.00 mm all round |
-| Smallest feature | **2.52 mm** |
-| Gap, O to M | 6.18 mm |
-| Backing to backing | 2.18 mm |
+| Finished patch | **80.00 × 67.46 mm** |
+| Letters | 76.00 mm wide |
+| Backing | +2.00 mm all round, one per letter |
+| Thinnest line | **2.00 mm, held everywhere** |
+| Ink added to get there | +6.2% |
+| Counters | 9 |
+| Gap, O to M | 6.09 mm |
+| Backing to backing | 2.09 mm |
 
 ```sh
-python3 scripts/om_die.py --overall 80 --min 2.5 --offset 2.0 --fatten --separate
+python3 scripts/om_die.py --overall 80 --min 2.0 --notch 0.8 \
+        --offset 2.0 --fatten --separate
 ```
 
-## Why 2.52 mm and not 4 mm
+`../om-die-4mm/` is the same mark at a 4.00 mm minimum, which needs a
+140 mm patch.
+
+## What "thinnest line" has to mean
 
 ![what each minimum costs](how-thick-it-goes.png)
 
-A 4 mm minimum on an 80 mm patch is not a die problem, it is a
-letterform problem. The blackletter's counters — the white shapes that
-make an O an O — are themselves under 4 mm at that size, so closing the
-outline at 4 mm swallows them. The mark comes out as two blobs with
-holes in them.
+An earlier version of this die went out with the thin parts untouched at
+0.03 mm and everything else 40% thicker. Two faults, and the second is
+why the first shipped.
 
-The limit is **relative, not absolute**: this mark holds a minimum of
-about 3% of its own width. Past that the M fills in first.
+**The fattening skipped the thin parts on purpose.** It excluded
+medial-axis points near the end of a branch — which is exactly where a
+hairline serif lives. So it raised the medium strokes it could reach and
+left the hairlines alone.
 
-| Finished patch | Minimum it holds | Counters left |
-| --- | --- | --- |
-| 80 mm | 2.0 mm | 12 |
-| 80 mm | **2.5 mm** | 12 |
-| 80 mm | 3.0 mm | 10, M filling in |
-| 80 mm | 4.0 mm | letters gone |
-| 140 mm | **4.0 mm** | 11 |
+**The figure it reported was the 5th percentile of the stroke width.** A
+percentile can say most of a shape is thicker than X. It cannot say
+nothing is thinner. Three per cent of the mark sat under the minimum and
+it measured as a pass.
 
-`../om-die-4mm/` holds the 4 mm minimum at the size it needs: a 140 mm
-patch, letters 136 mm, backings 7.05 mm apart.
+The test now is: **does a disc of the minimum width reach every part of
+the shape.** Not an average, a test — and it paid for itself at once by
+catching a closing, newly written, that eroded the background instead of
+the shape and doubled the ink.
+
+What it still flags is acute inside corners, where a disc cannot get
+into the angle although nothing there is thin. On this mark 425 of 427
+such patches were five pixels or fewer and none had any medial axis
+inside them. So what gets reported is the size of the worst patch, which
+falls from **59.8 mm² as drawn to 0.23 mm² enforced** — and `--slack`
+sits between the two.
 
 ## How the thickening works
 
-Only what is under the minimum is thickened, along the medial axis. A
-uniform swell reaches the same figure and costs far more: at 80 mm it
-closed the gap between the O and the M from 6.50 mm to 3.88 mm and took
-the counters from ten down to two. The letterform survives being
-thickened where it is thin. It does not survive being thickened
-everywhere.
+The shape, unioned with a disc of radius r centred on every medial-axis
+point whose own disc is smaller than r.
 
-Before that, the outline is closed at the minimum, which fills notches a
-steel rule cannot be bent into and takes nothing off the letterforms.
-Counters too small to cut are dropped; those that remain are cut
-through.
+Every point of a shape lies inside some maximal disc of its medial axis.
+If that disc is already r or bigger the point is fine; if it is smaller,
+its centre is in the thin set, so the point lies within r of a thin
+centre and the dilation covers it. That is the whole proof, and
+excluding anything from the thin set breaks it.
 
-## Two things worth keeping
+Nothing already thick is enlarged — at 80 mm the thickest stroke does
+not move while the ink grows 6.2%. Compare the alternatives: a uniform
+swell reaches the same minimum but closes the gap between the O and the
+M from 6.50 to 3.88 mm and takes the counters from ten to two; an
+opening, which drops what is too thin instead of raising it, breaks the
+O into separate arcs.
+
+## Two more things worth keeping
+
+**Notches and strokes are different constraints.** `--notch` fills gaps
+a steel rule cannot be bent into; `--min` sets the thinnest ink. Tying
+them together — which the first version did — fills the counters as
+well, and the counters are what make an O an O.
+
+**One bitmap, traced once.** The old pipeline went vector → raster →
+vector for each operation and lost a little of the outline each time.
+All the morphology runs on a single bitmap now.
 
 **The backings are offset per letter and never unioned.** Offsetting the
-pair together welds them the moment the offset passes half the gap —
-which at 80 mm is 3.09 mm, inside the range anyone would reach for. The
+pair together welds them the moment the offset passes half the gap,
+which at 80 mm is 3.04 mm — inside the range anyone would reach for. The
 script refuses an offset that would overlap and says what the limit is.
-
-**Dilation is a distance transform, not a structuring element.** At a
-4 mm minimum and 60 px/mm the disc is 241 × 241 over a 19-megapixel
-image, which runs the machine out of memory. The distance transform is
-linear.

@@ -4,6 +4,14 @@ Five marks from **page 101 of the tshirt design** — **OM**, the **cross
 in a filled square**, **925**, the **cross in a circle** and the **cross
 outline** — laid over a ball.
 
+The circled one was missing for a while, and the crop was not the
+reason. Its ring is a light-grey hairline on the page, so the 128
+threshold dropped it and the bead carried the plain cross twice over.
+Capturing it would not have helped either: scaled to a 2.6 mm mark on an
+8 mm ball that hairline comes to about three hundredths of a
+millimetre, far under anything castable. So the radius the page gives it
+is kept and the weight is redrawn at something that reads.
+
 **[Turn it, and move the marks about →](https://claude.ai/artifact/1uiDqcXzDRe82fEYbc4pwq)**
 The viewer runs the same placement maths as `scripts/om_bead.py` and
 reports the spacing as you change it.
