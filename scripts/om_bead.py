@@ -165,6 +165,27 @@ def despeckle(mask, long_mm, floor=0.004, pad=6):
     return np.pad(m[ys.min():ys.max() + 1, xs.min():xs.max() + 1], pad)
 
 
+def fatten(mask, each_side, long_mm):
+    """Grow a mark's stroke by a fixed width on every side.
+
+    The outlined cross is a drawn outline, and at 1.89 mm on an 8 mm
+    ball that outline is 28 microns wide: a scratch, not an engraving.
+    Scale does not fix it - the mark would have to be 10 mm across to
+    carry a 0.15 mm line - so the line itself has to grow. A distance
+    transform does it evenly, inside corners and out, which a pen would
+    not: every point within `each_side` of the ink becomes ink.
+
+    The footprint barely moves, because an outline grown outwards is
+    still inside its own bounding box except at the extremes: 0.03 mm
+    takes the mark's reach from 0.934 to 0.943 mm, so the lattice does
+    not have to be solved again.
+    """
+    if each_side <= 0:
+        return mask
+    r = each_side / (long_mm / max(mask.shape))
+    return ndimage.distance_transform_edt(~mask) <= r
+
+
 def rotate(mask, deg):
     return ndimage.rotate(mask.astype(float), deg, order=1,
                           reshape=True, mode='constant', cval=0.0) > 0.5
@@ -338,7 +359,7 @@ def on_ball(z, dia, was=7.0):
     return {k: v * dia / was for k, v in z.items()}
 
 
-def _eights_split(p_axis, p_diag, z=BIG, diag='cross'):
+def _eights_split(p_axis, p_diag, z=BIG, diag='cross', line='outl'):
     """Columns as drawn, but the two rings at their own latitudes.
 
     `diag` is what the eight marks on the 45 degree diagonals carry.
@@ -353,9 +374,9 @@ def _eights_split(p_axis, p_diag, z=BIG, diag='cross'):
     """
     return [
         dict(lat=0, n=4, kinds=['om'], scale=z['om'], turn=0),
-        dict(lat=0, n=4, kinds=['outl'], scale=z['outl'], turn=45),
+        dict(lat=0, n=4, kinds=[line], scale=z[line], turn=45),
         dict(lat=p_axis, n=2, kinds=['circ'], scale=z['circ'], turn=0, nest=False),
-        dict(lat=p_axis, n=2, kinds=['outl'], scale=z['outl'], turn=90, nest=False),
+        dict(lat=p_axis, n=2, kinds=[line], scale=z[line], turn=90, nest=False),
         dict(lat=p_diag, n=4, kinds=[diag], scale=z[diag], turn=45,
              nest=False),
         dict(lat=-90, n=1, kinds=['n925'], scale=z['n925'], mirror=False),
@@ -368,6 +389,13 @@ LAYOUTS = [
          'circled cross raised out of its field; an 8 mm ball',
          ball=dict(dia=8.0, cut=True),
          rings=_eights_split(45.0, 45.0, z=on_ball(BIG, 8.0))),
+
+    dict(name='Monogram Eights, OM 3.51, No Outline', note='the outlined '
+         'cross replaced by the bare one, smaller; its line is 28 microns '
+         'wide and will not survive a casting',
+         ball=dict(dia=8.0, cut=True),
+         rings=_eights_split(45.0, 45.0, z=dict(on_ball(BIG, 8.0),
+                                                outl=1.55/1.60), line='cross')),
 
     dict(name='Monogram Eights, OM 3.51, Squared', note='the same with the '
          'squared cross back on the diagonals',
@@ -759,15 +787,16 @@ def relief(depth, radius, W, Hh, height, inset):
 # wire. The squared cross is the same inversion and looks right because
 # its corners leave real pockets of ground.
 #
-# 1.35, with the mark at 1.65 mm, stands the cross 1.15 mm across in a
-# field 0.23 mm wide - 67 per cent of the cut at full depth against the
-# squared cross's 63, so the ground still reads as ground. The position
-# itself is capped by the OM at the equator: 1.66 mm is as wide as the
-# whole mark goes, and below about 1.30 the field is back to the 0.18
-# that made it look like crumpled wire in the first place. 1.24 mm of
-# standing cross is the ceiling, and it costs the field to get there.
+# 1.28, with the mark at 1.89 mm on an 8 mm ball, stands the cross
+# 1.38 mm across in a field 0.23 mm wide - 68 per cent of the cut at
+# full depth against the squared cross's 63, so the ground still reads
+# as ground. The mark itself is capped by the OM at the equator, which
+# gives it 1.89 mm whatever the ratio; past that only the ratio moves,
+# and it trades straight across: 1.20 would stand the cross 1.47 mm but
+# puts the field back to 0.18, which is where it was when it looked
+# like crumpled wire.
 RING_RATIO = 1.25
-FIELD_RATIO = 1.35
+FIELD_RATIO = 1.28
 
 
 def ringed(mask, ratio=RING_RATIO, weight=0.075, pad=8, invert=False):
@@ -927,6 +956,9 @@ if __name__ == '__main__':
                         'default the ground inside its circle is cut instead '
                         'and the cross is left standing at the surface')
     a.set_defaults(solid_circle=True)
+    a.add_argument('--fatten-outline', type=float, default=0.0, metavar='MM',
+                   help="grow the outlined cross's line by this much on "
+                        "every side, in mm of the mark at its nominal size")
     a.add_argument('--sub', type=int, default=7)
     a.add_argument('--out', default='assets/om-bead/om-bead-8mm.stl')
     o = a.parse_args()
@@ -947,6 +979,8 @@ if __name__ == '__main__':
     stamps = []
     for nm, b, _, _, mm, _ in PATTERN:
         m = despeckle(stamp_from_pdf(PAGE, box=b, px=o.stamp_px), mm)
+        if nm == 'outl' and o.fatten_outline:
+            m = fatten(m, o.fatten_outline, mm)
         if nm == 'circ':
             m = ringed(m, ratio=FIELD_RATIO if o.solid_circle else RING_RATIO,
                        invert=o.solid_circle)
