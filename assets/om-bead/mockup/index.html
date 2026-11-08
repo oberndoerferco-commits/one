@@ -759,7 +759,7 @@ function addPicker(){
   /* short names here: six full labels wrap into three rows over the bead
      at phone width */
   var SHORT={om:'OM', sq:'Square', n925:'925', circ:'Circle',
-             outl:'Outline', cross:'Small'};
+             outl:'Outline', cross:'Small', om2:'OM small'};
   KINDS.forEach(function(k,i){
     var b=el('button','chip',SHORT[k.name]||k.label);
     b.setAttribute('aria-label', k.label);

@@ -17,7 +17,7 @@ from scipy import ndimage
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from om_bead import (PAGE, PATTERN, stamp_from_pdf, ringed, ink_radius,
-                     LAYOUTS)
+                     LAYOUTS, FIELD_RATIO, despeckle)
 
 OUT = 'assets/om-bead/mockup/stamps.json'
 MAXDIM = 320          # px on the long side of a stamp
@@ -48,11 +48,11 @@ def main():
         # traced finer than it is stored: the distance field is then
         # block-averaged down, which is a sub-pixel measurement of the
         # edge rather than a resampling of a staircase
-        m = stamp_from_pdf(PAGE, box=box, px=8800)
+        m = despeckle(stamp_from_pdf(PAGE, box=box, px=8800), mm)
         if name == 'circ':
             # the ground inside the circle is cut and the cross left
             # standing, which is what the STL carries
-            m = ringed(m, invert=True)
+            m = ringed(m, ratio=FIELD_RATIO, invert=True)
         q = field(m, mm)
         stamps.append({
             'name': name, 'w': int(q.shape[1]), 'h': int(q.shape[0]),
@@ -71,7 +71,8 @@ def main():
         'layouts': LAYOUTS,
         'labels': {'om': 'OM monogram', 'sq': 'Cross in a square',
                    'n925': 'Cross and 925', 'circ': 'Cross in a circle',
-                   'outl': 'Outlined cross', 'cross': 'Small cross'},
+                   'outl': 'Outlined cross', 'cross': 'Small cross',
+                   'om2': 'OM monogram, small'},
     }
     with open(OUT, 'w') as fh:
         json.dump(doc, fh, separators=(',', ':'))

@@ -43,6 +43,10 @@ PATTERN = [
     ('circ', (0.1197, 0.3129, 0.1830, 0.4050), 0, 0, 2.60, 1.0),
     ('outl', (0.2443, 0.3910, 0.3106, 0.4806), 0, 0, 2.25, 1.0),
     ('cross', (0.1197, 0.3129, 0.1830, 0.4050), 0, 0, 1.60, 1.0),
+    # The monogram a second time, at a size that fits between the big
+    # ones. Same artwork, its own entry, because a kind carries one size
+    # across the whole ball and the four on the equator are 3.07 mm.
+    ('om2',  (0.1038, 0.0940, 0.2140, 0.2420), 0, 0, 1.65, 1.0),
 ]
 
 BYNAME = {q[0]: i for i, q in enumerate(PATTERN)}
@@ -125,6 +129,40 @@ def gaps(places, radius, radii):
             out.append((d - ri - rj, i, j, d))
     out.sort(key=lambda t: t[0])
     return out
+
+
+def despeckle(mask, long_mm, floor=0.004, pad=6):
+    """Drop parts of a mark too small to be anything but trace noise.
+
+    The circled cross is cropped from a page that draws its ring as a
+    light grey hairline. At 2200 px the 128 threshold took the whole
+    ring off, which is why the circle had to be redrawn. At 8800 px it
+    takes about a third of it: 139 separate crumbs, four to seventy-five
+    pixels each, strung round the crop like a dotted line. Inverted they
+    punch that dotted line into the floor of the engraving as pimples a
+    few hundredths of a millimetre across - visible at ten times life
+    size, and nothing a caster could reproduce.
+
+    `floor` is in square millimetres, so the rule is about the part and
+    not about the resolution it happened to be traced at. 0.004 mm2 is
+    a speck 0.06 mm across. It clears every crumb by a factor of four
+    and leaves the smallest real piece - the dot at the centre of the
+    squared cross, 0.0066 mm2 - by about the same.
+    """
+    lab, n = ndimage.label(mask)
+    if n < 2:
+        return mask
+    h, w = mask.shape
+    per_px = (long_mm / max(h, w)) ** 2
+    keep = np.bincount(lab.ravel())[1:] * per_px >= floor
+    m = keep[lab - 1] & mask
+    # trim again: the crumbs sat round the outside, so while they were
+    # there the stamp's box was the hairline's and not the mark's, and
+    # every size quoted for the mark was the box's size instead.
+    ys, xs = np.nonzero(m)
+    if not len(ys):
+        return mask
+    return np.pad(m[ys.min():ys.max() + 1, xs.min():xs.max() + 1], pad)
 
 
 def rotate(mask, deg):
@@ -234,7 +272,16 @@ EIGHTS_LAT = 36.05
 EIGHTS_WIDE = 44.50
 
 
-def _eights(lat, om, outl=0.840, sq=0.738, circ=0.635, n925=1.003):
+def _eights(lat, om, outl=0.840, sq=0.738, circ=0.635, n925=1.003,
+            crosses=1.0):
+    """`crosses` scales everything but the OM.
+
+    These were sized against a 2200 px trace, which rounds the tips off
+    the crosses and so under-reports how far their ink reaches. At 8800
+    the four designs below all ran into themselves, by 0.011 to 0.045
+    mm. The OM is the headline of each, so the crosses give way.
+    """
+    outl *= crosses; sq *= crosses; circ *= crosses; n925 *= crosses
     return [
         dict(lat=0, n=4, kinds=['om'], scale=om, turn=0),
         dict(lat=0, n=4, kinds=['outl'], scale=outl, turn=45),
@@ -253,7 +300,9 @@ def _eights(lat, om, outl=0.840, sq=0.738, circ=0.635, n925=1.003):
 EIGHTS_OFFSET_LAT = 31.55
 
 
-def _eights_offset(lat, om, outl=0.840, sq=0.738, circ=0.635, n925=1.003):
+def _eights_offset(lat, om, outl=0.840, sq=0.738, circ=0.635, n925=1.003,
+                   crosses=1.0):
+    outl *= crosses; sq *= crosses; circ *= crosses; n925 *= crosses
     return [
         dict(lat=0, n=4, kinds=['om'], scale=om, turn=0),
         dict(lat=0, n=4, kinds=['outl'], scale=outl, turn=45),
@@ -272,27 +321,40 @@ def _eights_offset(lat, om, outl=0.840, sq=0.738, circ=0.635, n925=1.003):
 # OM has to be pushed out, while the squared cross over the small
 # equatorial cross can come in.
 BIG = dict(om=3.07/2.70, outl=1.65/2.25, sq=1.40/2.10,
-           circ=1.45/2.60, n925=2.65/2.50)
-BIG_OM = dict(BIG, om=3.32/2.70, outl=1.35/2.25)
+           circ=1.60/2.60, n925=2.65/2.50, om2=1.65/1.65)
+BIG_OM = dict(BIG, om=3.32/2.70, outl=1.35/2.25, circ=1.40/2.60)
 
 
-def _eights_split(p_axis, p_diag, z=BIG):
-    """Columns as drawn, but the two rings at their own latitudes."""
+def _eights_split(p_axis, p_diag, z=BIG, diag='om2'):
+    """Columns as drawn, but the two rings at their own latitudes.
+
+    `diag` is what the eight marks on the 45 degree diagonals carry.
+    The squared cross was there first; the monogram is what sits there
+    now, at 1.65 mm - as large as those positions hold without the
+    closest pair on the ball getting any tighter than it already is.
+    """
     return [
         dict(lat=0, n=4, kinds=['om'], scale=z['om'], turn=0),
         dict(lat=0, n=4, kinds=['outl'], scale=z['outl'], turn=45),
         dict(lat=p_axis, n=2, kinds=['circ'], scale=z['circ'], turn=0, nest=False),
         dict(lat=p_axis, n=2, kinds=['outl'], scale=z['outl'], turn=90, nest=False),
-        dict(lat=p_diag, n=4, kinds=['sq'], scale=z['sq'], turn=45, nest=False),
+        dict(lat=p_diag, n=4, kinds=[diag], scale=z[diag], turn=45,
+             nest=False),
         dict(lat=-90, n=1, kinds=['n925'], scale=z['n925'], mirror=False),
     ]
 
 
 LAYOUTS = [
-    dict(name='Monogram Eights, OM 3.07', note='the OM as large as a 7 mm ball '
-         'holds with the crosses at the size you set; one ring at 45 degrees',
+    dict(name='Monogram Eights, OM 3.07', note='four big OM round the middle '
+         'and eight more at 1.65 mm on the diagonals, outlined crosses '
+         'between them, the circled cross raised out of its field',
          ball=dict(dia=7.0, cut=True),
          rings=_eights_split(45.0, 45.0)),
+
+    dict(name='Monogram Eights, OM 3.07, Squared', note='the same with the '
+         'squared cross back on the diagonals instead of the small OM',
+         ball=dict(dia=7.0, cut=True),
+         rings=_eights_split(45.0, 45.0, diag='sq')),
 
     dict(name='Monogram Eights, OM 3.32', note='the OM kept at 3.32 mm by '
          'taking the four equatorial crosses down to 1.35 mm instead',
@@ -303,28 +365,28 @@ LAYOUTS = [
          'rings at their own latitudes, 54 over the OM and 36 over the small '
          'cross, which evens the steps',
          ball=dict(dia=7.0, cut=True),
-         rings=_eights_split(54.0, 36.0)),
+         rings=_eights_split(54.0, 36.0, z=dict(BIG, n925=2.40/2.50))),
 
     dict(name='Monogram Eights, Offset', note='the rings turned half a step, '
          'the way the LV ball staggers its rows: nothing sits directly under '
          'anything, and every step is 2.33 mm',
          ball=dict(dia=7.0, cut=True),
-         rings=_eights_offset(EIGHTS_OFFSET_LAT, om=0.803)),
+         rings=_eights_offset(EIGHTS_OFFSET_LAT, om=0.803, crosses=0.860)),
 
     dict(name='Monogram Eights', note='three rings of eight in columns, every '
          'step the same: 2.20 mm on a 7 mm ball, nothing touching',
          ball=dict(dia=7.0, cut=True),
-         rings=_eights(EIGHTS_LAT, om=0.807)),
+         rings=_eights(EIGHTS_LAT, om=0.807, crosses=0.857)),
 
     dict(name='Monogram Eights, Big OM', note='the rings pushed out to make '
          'room for a 3.10 mm OM; the steps are no longer equal',
          ball=dict(dia=7.0, cut=True),
-         rings=_eights(EIGHTS_WIDE, om=1.148)),
+         rings=_eights(EIGHTS_WIDE, om=1.148, crosses=0.823)),
 
     dict(name='Monogram Eights, Full Size', note='the OM at 3.54 mm with every '
          'step equal, which a 7 mm ball cannot hold - this one wants 9.5 mm',
          ball=dict(dia=9.5, cut=True),
-         rings=_eights(EIGHTS_LAT, om=1.311)),
+         rings=_eights(EIGHTS_LAT, om=1.311, crosses=0.832)),
 
 
     dict(name='Monogram Grid', note='the reference: four OM round the middle, '
@@ -664,7 +726,22 @@ def relief(depth, radius, W, Hh, height, inset):
     return height * (t * t * (3.0 - 2.0 * t))
 
 
-def ringed(mask, ratio=1.25, weight=0.075, pad=8, invert=False):
+# The circle round the cross, drawn two ways. As a LINE the ring is the
+# mark, and 1.25 times the cross is right: the cross fills its circle
+# the way it does on the page. INVERTED the field is the mark - the
+# ground inside the circle is what the cutter takes out - and 1.25
+# pinches that field to 0.13 mm where the cross's four tips reach for
+# the rim. The lip eases over 0.05 mm on each side, so a 0.16 mm
+# channel is very nearly a V-groove; magnified, it read as crumpled
+# wire. The squared cross is the same inversion and looks right because
+# its corners leave real pockets of ground. 1.55 gives the circle the
+# same: a field 0.29 mm wide all the way round - nearly twice what it
+# was - with the cross standing 0.97 mm across in the middle of it.
+RING_RATIO = 1.25
+FIELD_RATIO = 1.55
+
+
+def ringed(mask, ratio=RING_RATIO, weight=0.075, pad=8, invert=False):
     """The cross inside its ring, with the ring drawn rather than traced.
 
     On the page that ring is a hairline in light grey. The 128 threshold
@@ -838,10 +915,13 @@ if __name__ == '__main__':
           + ('engraved' if o.cut else 'embossed'))
     if o.simple:
         PATTERN[:] = [q for q in PATTERN if q[0] in ('om', 'sq')]
-    stamps = [ringed(stamp_from_pdf(PAGE, box=b, px=o.stamp_px),
-                     invert=o.solid_circle) if nm == 'circ'
-              else stamp_from_pdf(PAGE, box=b, px=o.stamp_px)
-              for nm, b, *_ in PATTERN]
+    stamps = []
+    for nm, b, _, _, mm, _ in PATTERN:
+        m = despeckle(stamp_from_pdf(PAGE, box=b, px=o.stamp_px), mm)
+        if nm == 'circ':
+            m = ringed(m, ratio=FIELD_RATIO if o.solid_circle else RING_RATIO,
+                       invert=o.solid_circle)
+        stamps.append(m)
     radii = [ink_radius(st, q[4]) for st, q in zip(stamps, PATTERN)]
     fields = [edge_distance(st, q[4]) for st, q in zip(stamps, PATTERN)]
     for (nm, _, _, _, mm, _), st, fd in zip(PATTERN, stamps, fields):

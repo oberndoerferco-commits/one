@@ -11,12 +11,17 @@ const DIA = process.argv[6] || '7';
 const CUT = process.argv[7] || '1';
 
 // yaw, pitch, zoom, name
+// yaw and pitch are longitude and latitude, so a mark's own coordinates
+// aim the camera straight at it: the circled cross sits at lon 0 lat 45,
+// the small OM at lon 45 lat 45, the big one on the equator.
 const VIEWS = [
   [-38, 14, 1.00, 'hero'],
   [0, 4, 1.00, 'front'],
   [-38, 62, 1.00, 'top'],
-  [-38, 14, 2.30, 'macro'],
   [-120, -22, 1.30, 'under'],
+  [-38, 14, 2.30, 'macro'],
+  [0, 45, 2.70, 'circle'],
+  [45, 45, 2.90, 'smallom'],
 ];
 
 (async () => {
