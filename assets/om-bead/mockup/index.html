@@ -227,7 +227,8 @@ function applyDesign(i){
   S.rings=(d.rings||[]).map(function(r){
     return {lat:+r.lat||0, n:r.n|0, kinds:r.kinds.map(kindIndex),
             scale:(r.scale==null?1:+r.scale), turn:+r.turn||0,
-            mirror:(r.mirror===false?false:true)};
+            mirror:(r.mirror===false?false:true),
+            nest:(r.nest===false?false:true)};
   });
   S.fill = d.fill ? {kinds:d.fill.kinds.map(kindIndex), n:d.fill.n|0,
                      scale:(d.fill.scale==null?1:+d.fill.scale),
@@ -238,7 +239,10 @@ function ringPlaces(g,i){
   if(!g.kinds.length || !g.n) return out;
   var signs = (g.mirror && Math.abs(g.lat)>1e-6) ? [1,-1] : [1];
   for(var si=0;si<signs.length;si++){
-    var off = signs[si]<0 ? 180/g.n : 0;
+    /* nesting offsets the southern copy by half a step, which suits a
+       medallion and ruins a lattice: the cube's corners share a
+       longitude north and south. */
+    var off = (signs[si]<0 && g.nest!==false) ? 180/g.n : 0;
     for(var c=0;c<g.n;c++){
       var k=g.kinds[c%g.kinds.length];
       out.push({lon:norm180(-180+360*c/g.n+off+g.turn), lat:signs[si]*g.lat,
@@ -842,12 +846,22 @@ function modePanel(){
       function(v){g.turn=v; redo();}, function(v){return v.toFixed(0)+'\u00b0';});
     slider(box,'Size on this ring',0.4,1.8,0.02,function(){return g.scale;},
       function(v){g.scale=v; redo();}, function(v){return '\u00d7'+v.toFixed(2);});
-    var mir=el('button','btn','Mirrored north and south');
+    var acts=el('div','chips');
+    var mir=el('button','btn','Mirrored');
     mir.type='button';
     mir.setAttribute('aria-pressed', !!g.mirror);
     mir.addEventListener('click', function(){
       g.mirror=!g.mirror; redo(); modePanel(); });
-    box.appendChild(mir);
+    acts.appendChild(mir);
+    if(g.mirror){
+      var nst=el('button','btn','Offset by half a step');
+      nst.type='button';
+      nst.setAttribute('aria-pressed', g.nest!==false);
+      nst.addEventListener('click', function(){
+        g.nest = (g.nest===false); redo(); modePanel(); });
+      acts.appendChild(nst);
+    }
+    box.appendChild(acts);
     kindChips(box, function(k){return g.kinds.indexOf(k)>=0;}, function(k){
       var at=g.kinds.indexOf(k);
       if(at>=0){ if(g.kinds.length>1) g.kinds.splice(at,1); }
@@ -860,7 +874,7 @@ function modePanel(){
   var add=el('button','btn wide','Add a ring'); add.type='button';
   add.addEventListener('click', function(){
     S.rings.push({lat:30, n:4, kinds:[kindIndex('cross')], scale:0.8,
-                  turn:0, mirror:true});
+                  turn:0, mirror:true, nest:false});
     redo(); modePanel();
   });
   host.appendChild(add);
@@ -1044,24 +1058,29 @@ function redo(){
 function replaceRedo(){ replace(); rebuild(true); selPanel(); }
 
 /* ---------- read-outs ------------------------------------------------ */
-function stats(){
-  var R=ballRadius(), n=S.marks.length, i, j;
-  var nn=[], touch=0;
-  for(i=0;i<n;i++){
-    var best=1e9, bj=-1;
-    for(j=0;j<n;j++){ if(i===j) continue;
-      var dt=Math.max(-1,Math.min(1,dot(unit(S.marks[i].lon,S.marks[i].lat),
-                                        unit(S.marks[j].lon,S.marks[j].lat))));
-      var d=Math.acos(dt)*R;
-      if(d<best){ best=d; bj=j; }
-    }
-    if(bj>=0){
-      nn.push(best);
-      if(best < 0.5*(S.marks[i].mm+S.marks[bj].mm)*S.scale) touch++;
-    }
+/* How far the ink of a mark reaches from its own centre, at the size it
+   is drawn here. The bounding box would be far more pessimistic - a
+   cross fills a square with empty corners - and on a ball 24.5 mm round
+   that difference decides whether a pattern fits. */
+function reach(m){ var k=KINDS[m.kind]; return k.ink*(m.mm*S.scale)/k.mm; }
+
+/* The tightest pair, edge to edge. Negative means they run into each
+   other, which is the one thing the pattern may not do. */
+function tightest(){
+  var R=ballRadius(), n=S.marks.length, best=null, i, j;
+  for(i=0;i<n;i++) for(j=i+1;j<n;j++){
+    var a=S.marks[i], b=S.marks[j];
+    var dt=Math.max(-1,Math.min(1,dot(unit(a.lon,a.lat),unit(b.lon,b.lat))));
+    var d=Math.acos(dt)*R, g=d-reach(a)-reach(b);
+    if(!best || g<best.gap) best={gap:g, d:d, a:a, b:b};
   }
-  var lo=nn.length?Math.min.apply(null,nn):0, hi=nn.length?Math.max.apply(null,nn):0;
+  return best;
+}
+
+function stats(){
+  var n=S.marks.length;
   var sizes=S.marks.map(function(m){return m.mm*S.scale;});
+  var t=tightest();
   var read=document.getElementById('read');
   read.innerHTML='';
   function add(k,v,cls){
@@ -1069,12 +1088,18 @@ function stats(){
     var b=el('b',null,v); s.appendChild(b); read.appendChild(s);
   }
   add('marks', String(n));
-  add('centre to centre', nn.length? lo.toFixed(2)+'–'+hi.toFixed(2)+' mm' : '—');
-  add('mark', sizes.length? Math.min.apply(null,sizes).toFixed(2)+'–'
-      +Math.max.apply(null,sizes).toFixed(2)+' mm' : '—');
-  if(touch){
-    var w=el('span','pill warn', touch+(touch===1?' mark overlaps':' marks overlap'));
-    read.appendChild(w);
+  add('OM', sizes.length && S.marks.some(function(m){return KINDS[m.kind].name==='om';})
+      ? Math.max.apply(null, S.marks.filter(function(m){
+          return KINDS[m.kind].name==='om'; }).map(function(m){
+          return m.mm*S.scale; })).toFixed(2)+' mm' : '\u2014');
+  add('mark', sizes.length? Math.min.apply(null,sizes).toFixed(2)+'\u2013'
+      +Math.max.apply(null,sizes).toFixed(2)+' mm' : '\u2014');
+  if(t){
+    add('closest pair', KINDS[t.a.kind].label+' to '+KINDS[t.b.kind].label);
+    var pill=el('span', t.gap<0?'pill warn':'pill',
+      (t.gap<0 ? 'overlapping by '+(-t.gap).toFixed(2)
+               : t.gap.toFixed(2)+' mm clear')+' edge to edge');
+    read.appendChild(pill);
   }
   var sp=document.getElementById('specs');
   sp.innerHTML='';
@@ -1147,6 +1172,7 @@ function run(doc){
   DRANGE=doc.drange;
   KINDS=doc.stamps.map(function(s){
     return {name:s.name, label:doc.labels[s.name]||s.name, mm:s.mm, share:s.share,
+            ink:(s.ink||Math.hypot(s.w,s.h)/Math.max(s.w,s.h)*s.mm/2),
             st:{w:s.w, h:s.h, data:unpack(s.data)}};
   });
   S.size=KINDS.map(function(k){ return k.mm; });

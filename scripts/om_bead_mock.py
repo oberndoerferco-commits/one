@@ -16,7 +16,8 @@ import numpy as np
 from scipy import ndimage
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from om_bead import PAGE, PATTERN, stamp_from_pdf, ringed, LAYOUTS
+from om_bead import (PAGE, PATTERN, stamp_from_pdf, ringed, ink_radius,
+                     LAYOUTS)
 
 OUT = 'assets/om-bead/mockup/stamps.json'
 MAXDIM = 176          # px on the long side of a stamp
@@ -51,6 +52,10 @@ def main():
         stamps.append({
             'name': name, 'w': int(q.shape[1]), 'h': int(q.shape[0]),
             'mm': mm, 'share': share,
+            # how far the ink reaches from the middle, at that size. Two
+            # marks clash when this, added across the pair, exceeds the
+            # arc between their centres.
+            'ink': round(ink_radius(m, mm), 4),
             'data': base64.b64encode(q.tobytes()).decode('ascii'),
         })
         print(f'   {name:5s} {q.shape[1]:3d} x {q.shape[0]:3d} px   '

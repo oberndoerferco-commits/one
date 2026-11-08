@@ -67,6 +67,46 @@ def stamp_from_pdf(path, box=None, px=900, pad=6):
     return np.pad(m, pad)
 
 
+def ink_radius(mask, long_mm):
+    """How far the ink reaches from the middle of a mark, in mm.
+
+    Two marks clash when this distance, added across the pair, is more
+    than the arc between their centres. The bounding box would answer
+    the same question far more pessimistically: a cross fills a square
+    with empty corners, so its box half-diagonal is 1.59 mm where its
+    ink only reaches 1.00. On a ball 24.5 mm round, that difference is
+    the difference between a pattern that fits and one that does not.
+    """
+    h, w = mask.shape
+    if w >= h:
+        wmm, hmm = long_mm, long_mm * h / w
+    else:
+        hmm, wmm = long_mm, long_mm * w / h
+    ys, xs = np.nonzero(mask)
+    dx = (xs - (w - 1) / 2.0) * (wmm / w)
+    dy = (ys - (h - 1) / 2.0) * (hmm / h)
+    return float(np.hypot(dx, dy).max())
+
+
+def gaps(places, radius, radii):
+    """Edge-to-edge clearance of every pair, closest first.
+
+    Negative means the two marks run into each other. This is the check
+    the pattern has to pass: "the logos can't overlap" is not a matter of
+    taste, it is one number per pair and the smallest of them decides.
+    """
+    out = []
+    v = [_unit(lo, la) for lo, la, _, _ in places]
+    for i in range(len(places)):
+        for j in range(i + 1, len(places)):
+            d = math.acos(max(-1.0, min(1.0, _dot(v[i], v[j])))) * radius
+            ri = radii[places[i][2]] * places[i][3] / PATTERN[places[i][2]][4]
+            rj = radii[places[j][2]] * places[j][3] / PATTERN[places[j][2]][4]
+            out.append((d - ri - rj, i, j, d))
+    out.sort(key=lambda t: t[0])
+    return out
+
+
 def rotate(mask, deg):
     return ndimage.rotate(mask.astype(float), deg, order=1,
                           reshape=True, mode='constant', cval=0.0) > 0.5
@@ -124,133 +164,119 @@ def spread(radius, n, cap_deg):
     return out
 
 
+# The cube and its 26 directions, written as rings. That is all the
+# reference is: a mark at the middle of a face, four more on the
+# cardinals around it, four on the diagonals. On a sphere those are the
+# cube's face centres, its edge midpoints at 45 degrees, and its corners
+# at 35.26 - which is why the pattern closes up on itself with nothing
+# left over and nothing touching. The hole takes the top face.
+FACE, EDGE_EQ, EDGE_MID, CORNER = 0.0, 0.0, 45.0, 35.26439
+GRID = dict(
+    om=lambda sc: dict(lat=FACE, n=4, kinds=['om'], scale=sc, turn=0),
+    card_eq=lambda k, sc: dict(lat=EDGE_EQ, n=4, kinds=[k], scale=sc, turn=45),
+    card_up=lambda k, sc: dict(lat=EDGE_MID, n=4, kinds=[k], scale=sc, turn=0,
+                               nest=False),
+    diag=lambda k, sc: dict(lat=CORNER, n=4, kinds=[k], scale=sc, turn=45,
+                            nest=False),
+    foot=lambda k, sc: dict(lat=-90, n=1, kinds=[k], scale=sc, mirror=False),
+)
+
+
+def _grid(cardinal='outl', diagonal='sq', om=1.20, cross=0.90, foot='n925',
+          foot_scale=0.85, extra=None):
+    r = [GRID['om'](om),
+         GRID['card_eq'](cardinal, cross),
+         GRID['card_up'](cardinal, cross),
+         GRID['diag'](diagonal, cross)]
+    if foot:
+        r.append(GRID['foot'](foot, foot_scale))
+    if extra:
+        r.extend(extra)
+    return r
+
+
 LAYOUTS = [
-    # Each design is rings plus, where it says so, a fill. A ring is a
-    # latitude, a count, the motifs that take turns along it, a size as a
-    # multiple of the motif's own, a turn, and whether it is mirrored into
-    # the other hemisphere. A fill drops a Fibonacci set over whatever is
-    # left and keeps only the points far enough from everything already
-    # placed, which is what "the rest filled with crosses" has to mean on
-    # a sphere: there is no leftover grid to drop them into.
-    dict(name='Four Crowns', note='four big OM round the middle, 925 below, '
-         'small crosses filling the rest',
-         rings=[dict(lat=0, n=4, kinds=['om'], scale=1.20),
-                dict(lat=-54, n=4, kinds=['n925'], scale=0.74, turn=45,
-                     mirror=False)],
-         fill=dict(kinds=['cross', 'outl'], n=54, scale=0.80)),
-
-    dict(name='Four Crowns, Crowned', note='the same, with 925 above as well '
-         'as below',
-         rings=[dict(lat=0, n=4, kinds=['om'], scale=1.20),
-                dict(lat=54, n=4, kinds=['n925'], scale=0.74, turn=45)],
-         fill=dict(kinds=['cross'], n=46, scale=0.80)),
-
-    dict(name='Three Crowns', note='three OM, larger, with crosses between',
-         rings=[dict(lat=0, n=3, kinds=['om'], scale=1.34),
-                dict(lat=-56, n=3, kinds=['n925'], scale=0.76, turn=60,
-                     mirror=False)],
-         fill=dict(kinds=['cross', 'outl'], n=50, scale=0.80)),
-
-    dict(name='Six Crowns', note='six smaller OM, a tighter band',
-         rings=[dict(lat=0, n=6, kinds=['om'], scale=0.92),
-                dict(lat=-56, n=4, kinds=['n925'], scale=0.70, turn=45,
-                     mirror=False)],
-         fill=dict(kinds=['cross'], n=54, scale=0.74)),
-
-    dict(name='Quatrefoil', note='four OM and four circled crosses, '
-         'alternating up the ball',
-         rings=[dict(lat=0, n=4, kinds=['om'], scale=1.16),
-                dict(lat=50, n=4, kinds=['circ'], scale=0.80, turn=45)],
-         fill=dict(kinds=['cross'], n=44, scale=0.72)),
-
-    dict(name='Signet', note='one OM as large as the ball will take, the rest '
-         'a close cross pattern',
-         rings=[dict(lat=0, n=1, kinds=['om'], scale=1.65)],
-         fill=dict(kinds=['cross', 'outl', 'sq'], n=58, scale=0.78)),
-
-    dict(name='Bandeau', note='a 925 band round the middle, OM above and below',
-         rings=[dict(lat=0, n=5, kinds=['n925'], scale=0.96),
-                dict(lat=52, n=3, kinds=['om'], scale=0.88, turn=36)],
-         fill=dict(kinds=['cross'], n=44, scale=0.70)),
-
-    dict(name='Double Band', note='two 925 rings with the OM between them',
-         rings=[dict(lat=0, n=4, kinds=['om'], scale=1.10),
-                dict(lat=42, n=5, kinds=['n925'], scale=0.64, turn=36),
-                dict(lat=72, n=4, kinds=['cross'], scale=0.80, turn=45)]),
-
-    dict(name='Coronet', note='crosses ringing the hole, OM at the middle, '
+    dict(name='Monogram Grid', note='the reference: four OM round the middle, '
+         'outlined crosses on the cardinals, squared crosses on the diagonals, '
          '925 at the foot',
-         rings=[dict(lat=0, n=4, kinds=['om'], scale=1.18),
-                dict(lat=70, n=6, kinds=['outl'], scale=0.74, turn=30,
-                     mirror=False),
-                dict(lat=-50, n=4, kinds=['n925'], scale=0.72, turn=45,
-                     mirror=False)],
-         fill=dict(kinds=['cross'], n=46, scale=0.72)),
+         rings=_grid()),
 
-    dict(name='Chequer', note='OM and the squared cross taking turns in two '
-         'offset rings',
-         rings=[dict(lat=0, n=6, kinds=['om', 'sq'], scale=0.98),
-                dict(lat=48, n=5, kinds=['sq', 'cross'], scale=0.88, turn=36)],
-         fill=dict(kinds=['cross'], n=40, scale=0.68)),
+    dict(name='Monogram Grid, Swapped', note='the same lattice with the two '
+         'crosses the other way round',
+         rings=_grid(cardinal='sq', diagonal='outl', cross=0.84)),
 
-    dict(name='Pave', note='as many small crosses as the ball holds, four OM '
-         'over them',
-         rings=[dict(lat=0, n=4, kinds=['om'], scale=1.08)],
-         fill=dict(kinds=['cross'], n=90, scale=0.64)),
+    dict(name='Monogram Grid, Circled', note='circled crosses on the diagonals',
+         rings=_grid(diagonal='circ', cross=0.86)),
 
-    dict(name='Rosette', note='a cross at each pole, OM and 925 round the '
-         'middle',
-         rings=[dict(lat=0, n=4, kinds=['om', 'n925'], scale=1.05),
-                dict(lat=78, n=1, kinds=['circ'], scale=0.86)],
-         fill=dict(kinds=['outl', 'cross'], n=46, scale=0.74)),
+    dict(name='Monogram Grid, Three Crosses', note='outlined on the cardinals, '
+         'squared above and below, circled round the middle',
+         rings=[GRID['om'](1.20),
+                GRID['card_eq']('circ', 0.86),
+                GRID['card_up']('outl', 0.90),
+                GRID['diag']('sq', 0.90),
+                GRID['foot']('n925', 0.85)]),
 
-    dict(name='Fleur', note='the circled cross leads, OM held small',
-         rings=[dict(lat=0, n=5, kinds=['circ'], scale=1.00),
-                dict(lat=50, n=4, kinds=['om'], scale=0.76, turn=36)],
-         fill=dict(kinds=['cross'], n=44, scale=0.68)),
+    dict(name='Monogram Grid, Plain', note='every cross the small solid one, '
+         'so the OM carries the whole pattern',
+         rings=_grid(cardinal='cross', diagonal='cross', cross=1.05)),
 
-    dict(name='Four Crowns, Bare', note='four OM and 925, nothing else on it',
-         rings=[dict(lat=0, n=4, kinds=['om'], scale=1.28),
-                dict(lat=-56, n=4, kinds=['n925'], scale=0.80, turn=45,
-                     mirror=False)]),
+    dict(name='Monogram Grid, Big OM', note='the OM as large as the lattice '
+         'will take, crosses eased back',
+         rings=_grid(om=1.32, cross=0.84)),
 
-    dict(name='Minimal', note='four OM alone, polished ball between them',
-         rings=[dict(lat=0, n=4, kinds=['om'], scale=1.34)]),
+    dict(name='Monogram Grid, Quiet OM', note='a smaller OM, the crosses '
+         'given their full drawn size',
+         rings=_grid(om=0.96, cross=0.96)),
 
-    dict(name='Crosshatch', note='crosses only, 925 at the foot',
-         rings=[dict(lat=-64, n=3, kinds=['n925'], scale=0.76, turn=60,
-                     mirror=False)],
-         fill=dict(kinds=['cross', 'outl', 'circ'], n=66, scale=0.78)),
+    dict(name='Monogram Grid, Crowned', note='a ring of small crosses between '
+         'the pattern and the hole, top and bottom',
+         rings=_grid(extra=[dict(lat=70, n=4, kinds=['cross'], scale=0.90,
+                                 turn=45, mirror=False)])),
 
-    dict(name='Columns', note='the motifs line up in meridians instead of '
-         'nesting',
-         rings=[dict(lat=0, n=4, kinds=['om'], scale=1.10),
-                dict(lat=40, n=4, kinds=['n925'], scale=0.64, turn=0),
-                dict(lat=68, n=4, kinds=['cross'], scale=0.82, turn=0)]),
+    dict(name='Monogram Grid, Two OM', note='OM on two opposite faces only, '
+         'circled crosses on the other two',
+         rings=[dict(lat=0, n=2, kinds=['om'], scale=1.30, turn=0),
+                dict(lat=0, n=2, kinds=['circ'], scale=0.90, turn=90),
+                GRID['card_eq']('outl', 0.90),
+                GRID['card_up']('outl', 0.90),
+                GRID['diag']('sq', 0.90),
+                GRID['foot']('n925', 0.85)]),
 
-    dict(name='Medallion', note='the first composition: a hierarchy running '
-         'by latitude',
-         rings=[dict(lat=0, n=8, kinds=['om', 'n925'], scale=1.00),
-                dict(lat=45, n=6, kinds=['sq', 'outl'], scale=1.00),
-                dict(lat=75, n=4, kinds=['circ'], scale=0.72)]),
+    dict(name='Monogram Grid, 925 Band', note='925 four times round the '
+         'middle instead of once at the foot',
+         rings=[GRID['om'](1.20),
+                GRID['card_eq']('n925', 0.80),
+                GRID['card_up']('outl', 0.90),
+                GRID['diag']('sq', 0.90),
+                GRID['foot']('cross', 1.00)]),
 
-    dict(name='Even Spread', note='one spacing everywhere, the motifs dealt '
-         'so no two touching marks match',
-         rings=[], fill=dict(kinds=['om', 'sq', 'n925', 'circ', 'outl'],
-                             n=30, scale=1.00,
-                             weights=[2.0, 1.0, 1.1, 1.0, 1.0])),
+    dict(name='Monogram Grid, Bare', note='four OM and 925, polished ball '
+         'between them',
+         rings=[GRID['om'](1.32), GRID['foot']('n925', 0.90)]),
 
-    dict(name='Even Spread, Fine', note='the same, smaller and denser',
-         rings=[], fill=dict(kinds=['om', 'n925', 'cross', 'outl'],
-                             n=52, scale=0.78,
-                             weights=[1.6, 1.0, 1.6, 1.0])),
+    dict(name='Monogram Grid, Six OM', note='OM on every face the hole leaves '
+         'free, 925 moved into the pattern',
+         rings=[GRID['om'](1.16),
+                GRID['foot']('om', 1.16),
+                GRID['card_eq']('n925', 0.78),
+                GRID['card_up']('outl', 0.88),
+                GRID['diag']('sq', 0.88)]),
 ]
 
 LAYOUT_BY_NAME = {d['name']: d for d in LAYOUTS}
 
 
 def ring_places(ring):
-    """One ring of marks: latitude, count, motifs, size, turn, mirror."""
+    """One ring of marks: latitude, count, motifs, size, turn, mirror, nest.
+
+    `nest` offsets the southern copy by half a step so the marks sit
+    between their northern counterparts rather than below them. That is
+    right for a medallion and wrong for a lattice: the cube's corners
+    share a longitude north and south, and nesting them moved each
+    southern corner directly under an OM, 2.40 mm away instead of 3.73,
+    which put every design in the library through the middle of its own
+    monogram.
+    """
     lat = float(ring.get('lat', 0.0))
     n = int(ring.get('n', 0))
     if not n or not ring.get('kinds'):
@@ -258,9 +284,10 @@ def ring_places(ring):
     sc = float(ring.get('scale', 1.0))
     turn = float(ring.get('turn', 0.0))
     mirror = ring.get('mirror', True) and abs(lat) > 1e-6
+    nest = ring.get('nest', True)
     out = []
     for sign in ((1, -1) if mirror else (1,)):
-        off = 180.0 / n if sign < 0 else 0.0
+        off = 180.0 / n if (sign < 0 and nest) else 0.0
         for c in range(n):
             k = BYNAME[ring['kinds'][c % len(ring['kinds'])]]
             out.append(((-180.0 + 360.0 * c / n + off + turn + 180) % 360 - 180,
@@ -502,7 +529,7 @@ def framed(mask, border=0.055):
 
 
 def build(stamps, out, dia=8.0, bore=1.2, depth=4.0, n=30, mark=1.0,
-          design=None, height=0.10,
+          design=None, height=0.10, radii=None,
           inset=0.05, cap=76.0, sub=7, W=3600, Hh=1800, cut=False):
     # embossed, the marks stand proud and the ball under them is
     # smaller by that much; engraved, the ball is the full size and the
@@ -511,6 +538,22 @@ def build(stamps, out, dia=8.0, bore=1.2, depth=4.0, n=30, mark=1.0,
     r = dia / 2.0 if cut else (dia - 2 * height) / 2.0
     places = [(lo, la, k, mm * mark)
               for lo, la, k, mm in layout(design, r, cap)]
+
+    # nothing may run into anything else. One number per pair, and the
+    # smallest decides; it is printed either way so the figure is on the
+    # record rather than taken on trust.
+    if radii:
+        g = gaps(places, r, radii)
+        if g:
+            worst, i, j, d = g[0]
+            a, b = PATTERN[places[i][2]][0], PATTERN[places[j][2]][0]
+            print(f'   tightest pair {a} to {b}: centres {d:.2f} mm apart, '
+                  f'edge to edge {worst:+.2f} mm'
+                  + ('   OVERLAP' if worst < 0 else '   clear'))
+            if worst < 0:
+                bad = sum(1 for t in g if t[0] < 0)
+                raise SystemExit(f'{bad} pair(s) overlap; this is not the '
+                                 'pattern that was asked for')
     ink = paint(stamps, places, r, W, Hh)
     rel = relief(ink, r, W, Hh, height, inset)
     if cut:
@@ -587,9 +630,10 @@ if __name__ == '__main__':
     stamps = [ringed(stamp_from_pdf(PAGE, box=b, px=2200)) if nm == 'circ'
               else stamp_from_pdf(PAGE, box=b, px=2200)
               for nm, b, *_ in PATTERN]
+    radii = [ink_radius(st, q[4]) for st, q in zip(stamps, PATTERN)]
     for (nm, _, _, _, mm, _), st in zip(PATTERN, stamps):
         print(f'   {nm:5s} {st.shape[1]:4d} x {st.shape[0]:4d} px   '
               f'{mm:.2f} mm on the ball')
     build(stamps, o.out, dia=o.dia, bore=o.bore, depth=o.bore_depth,
-          n=o.marks, mark=o.mark,
+          n=o.marks, mark=o.mark, radii=radii,
           design=o.layout, height=o.relief, sub=o.sub, cut=o.cut)
