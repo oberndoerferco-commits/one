@@ -67,6 +67,26 @@ def stamp_from_pdf(path, box=None, px=900, pad=6):
     return np.pad(m, pad)
 
 
+def edge_distance(mask, long_mm):
+    """Distance from the edge of the ink, inwards, in millimetres.
+
+    Measured once per stamp, in the stamp's own square pixels, where it
+    is isotropic and means what it says. The old code measured it on the
+    equirectangular map instead and converted pixels to millimetres with
+    the north-south pixel size alone - but an east-west pixel shrinks
+    with the cosine of the latitude, so a lip asked to be 0.05 mm came
+    out 0.035 mm east-west at 45 degrees and 0.029 at 54, while staying
+    0.05 north-south. Every mark off the equator was cut with a sharper
+    edge on its sides than on its top, and the further out the worse.
+    """
+    h, w = mask.shape
+    if w >= h:
+        wmm = long_mm
+    else:
+        wmm = long_mm * w / h
+    return ndimage.distance_transform_edt(mask) * (wmm / w)
+
+
 def ink_radius(mask, long_mm):
     """How far the ink reaches from the middle of a mark, in mm.
 
@@ -251,8 +271,9 @@ def _eights_offset(lat, om, outl=0.840, sq=0.738, circ=0.635, n925=1.003):
 # that clears, and the rings then want splitting: whatever stands over an
 # OM has to be pushed out, while the squared cross over the small
 # equatorial cross can come in.
-BIG = dict(om=3.32/2.70, outl=1.65/2.25, sq=1.40/2.10,
+BIG = dict(om=3.07/2.70, outl=1.65/2.25, sq=1.40/2.10,
            circ=1.45/2.60, n925=2.65/2.50)
+BIG_OM = dict(BIG, om=3.32/2.70, outl=1.35/2.25)
 
 
 def _eights_split(p_axis, p_diag, z=BIG):
@@ -268,11 +289,15 @@ def _eights_split(p_axis, p_diag, z=BIG):
 
 
 LAYOUTS = [
-    dict(name='Monogram Eights, OM 3.32', note='the OM at 3.32 mm, the most a '
-         '7 mm ball holds with nothing touching; one ring at 45 degrees, '
-         'as drawn',
+    dict(name='Monogram Eights, OM 3.07', note='the OM as large as a 7 mm ball '
+         'holds with the crosses at the size you set; one ring at 45 degrees',
          ball=dict(dia=7.0, cut=True),
          rings=_eights_split(45.0, 45.0)),
+
+    dict(name='Monogram Eights, OM 3.32', note='the OM kept at 3.32 mm by '
+         'taking the four equatorial crosses down to 1.35 mm instead',
+         ball=dict(dia=7.0, cut=True),
+         rings=_eights_split(45.0, 45.0, z=BIG_OM)),
 
     dict(name='Monogram Eights, OM 3.32 Split', note='the same OM with the two '
          'rings at their own latitudes, 54 over the OM and 36 over the small '
@@ -531,8 +556,15 @@ def spacing(radius, n):
     return math.sqrt(4 * math.pi * radius ** 2 / (n * math.sqrt(3) / 2))
 
 
-def paint(stamps, places, radius, W, Hh):
-    """Ink map, each mark laid flat on the ball where it sits.
+def paint(fields, places, radius, W, Hh, bases):
+    """Depth map in millimetres, each mark laid flat on the ball.
+
+    What is carried is not whether a pixel is inked but how far inside
+    the ink it lies, read from the stamp's own distance field and
+    scaled by the size the mark is drawn at. The projection below is
+    distance-preserving, so that figure is in true millimetres of arc
+    wherever the mark sits, which is what the old equirectangular
+    distance transform could not say.
 
     The obvious way is to stamp into the equirectangular map and stretch
     by 1 / cos(latitude) to pay for the squeeze. That works for a mark so
@@ -550,9 +582,10 @@ def paint(stamps, places, radius, W, Hh):
     centre. A square stays square because its sides stay the same length
     in millimetres of arc, which is what a square means on a ball.
     """
-    ink = np.zeros((Hh, W), bool)
+    depth = np.zeros((Hh, W), np.float32)
     for lon, lat, which, long_mm in places:
-        s = stamps[which]
+        s = fields[which]
+        grow = long_mm / bases[which]      # the field was measured at base size
         if s.shape[1] >= s.shape[0]:
             w_mm, h_mm = long_mm, long_mm * s.shape[0] / s.shape[1]
         else:
@@ -602,13 +635,23 @@ def paint(stamps, places, radius, W, Hh):
             & (row >= 0) & (row < s.shape[0])
         if not ok.any():
             continue
-        hit = np.zeros(col.shape, bool)
-        hit[ok] = s[row[ok].astype(int), col[ok].astype(int)]
-        ink[np.ix_(rr, cc % W)] |= hit
-    return ink
+        # bilinear, so the profile does not inherit the stamp's pixel grid
+        val = np.zeros(col.shape, np.float32)
+        if ok.any():
+            cf = col[ok]; rf = row[ok]
+            c0 = np.floor(cf).astype(int); r0 = np.floor(rf).astype(int)
+            c1 = np.minimum(c0 + 1, s.shape[1] - 1)
+            r1 = np.minimum(r0 + 1, s.shape[0] - 1)
+            fx = (cf - c0).astype(np.float32); fy = (rf - r0).astype(np.float32)
+            v = ((s[r0, c0] * (1 - fx) + s[r0, c1] * fx) * (1 - fy)
+                 + (s[r1, c0] * (1 - fx) + s[r1, c1] * fx) * fy)
+            val[ok] = v * grow
+        block = depth[np.ix_(rr, cc % W)]
+        depth[np.ix_(rr, cc % W)] = np.maximum(block, val)
+    return depth
 
 
-def relief(ink, radius, W, Hh, height, inset):
+def relief(depth, radius, W, Hh, height, inset):
     """Depth or height from distance to the edge of the mark.
 
     A laser mark is not a dome. It goes to its full depth within a few
@@ -617,13 +660,11 @@ def relief(ink, radius, W, Hh, height, inset):
     an arc over half the stroke - flat floor, crisp wall, a slightly
     eased lip so it does not read as a stamped-out hole.
     """
-    mm_per_px_lat = math.pi * radius / Hh
-    d = ndimage.distance_transform_edt(ink) * mm_per_px_lat
-    t = np.clip(d / max(inset, 1e-9), 0.0, 1.0)
+    t = np.clip(depth / max(inset, 1e-9), 0.0, 1.0)
     return height * (t * t * (3.0 - 2.0 * t))
 
 
-def ringed(mask, ratio=1.25, weight=0.075, pad=8):
+def ringed(mask, ratio=1.25, weight=0.075, pad=8, invert=False):
     """The cross inside its ring, with the ring drawn rather than traced.
 
     On the page that ring is a hairline in light grey. The 128 threshold
@@ -647,6 +688,10 @@ def ringed(mask, ratio=1.25, weight=0.075, pad=8):
     out[y0:y0 + h, x0:x0 + w] |= mask
     yy, xx = np.mgrid[:n, :n]
     d = np.hypot(yy - cy, xx - cx)
+    if invert:
+        # the ground inside the circle is what gets cut, and the cross is
+        # left standing at the surface of the ball
+        return (d <= R) & ~out
     t = max(2.0, weight * 2 * R)
     out |= (d <= R) & (d >= R - t)
     return out
@@ -694,7 +739,8 @@ def build(stamps, out, dia=8.0, bore=1.2, depth=4.0, n=30, mark=1.0,
                 bad = sum(1 for t in g if t[0] < 0)
                 raise SystemExit(f'{bad} pair(s) overlap; this is not the '
                                  'pattern that was asked for')
-    ink = paint(stamps, places, r, W, Hh)
+    bases = [q[4] for q in PATTERN]
+    ink = paint(stamps, places, r, W, Hh, bases)
     rel = relief(ink, r, W, Hh, height, inset)
     if cut:
         rel = -rel
@@ -759,6 +805,22 @@ if __name__ == '__main__':
     a.add_argument('--cut', action='store_true',
                    help='engrave the marks into the ball instead of '
                         'raising them off it')
+    a.add_argument('--stamp-px', type=int, default=8800,
+                   help='resolution the motif page is rendered at. The '
+                        'outlines are traced from this, so it sets how fine '
+                        'the engraved wall can be: at the old 2200 the '
+                        'outlined cross was 117 px across, a step of 14 '
+                        'microns against a 50 micron lip, and the steps '
+                        'showed on the wall. It also sets how much ink the '
+                        'clearance check can see: a coarse trace drops the '
+                        'sharp tips of the crosses and reports the marks '
+                        'smaller than they are, so the gaps read better than '
+                        'they were. The figure settles by about 8800.')
+    a.add_argument('--open-circle', dest='solid_circle', action='store_false',
+                   help='cut the circled cross itself, the old way round. By '
+                        'default the ground inside its circle is cut instead '
+                        'and the cross is left standing at the surface')
+    a.set_defaults(solid_circle=True)
     a.add_argument('--sub', type=int, default=7)
     a.add_argument('--out', default='assets/om-bead/om-bead-8mm.stl')
     o = a.parse_args()
@@ -776,13 +838,16 @@ if __name__ == '__main__':
           + ('engraved' if o.cut else 'embossed'))
     if o.simple:
         PATTERN[:] = [q for q in PATTERN if q[0] in ('om', 'sq')]
-    stamps = [ringed(stamp_from_pdf(PAGE, box=b, px=2200)) if nm == 'circ'
-              else stamp_from_pdf(PAGE, box=b, px=2200)
+    stamps = [ringed(stamp_from_pdf(PAGE, box=b, px=o.stamp_px),
+                     invert=o.solid_circle) if nm == 'circ'
+              else stamp_from_pdf(PAGE, box=b, px=o.stamp_px)
               for nm, b, *_ in PATTERN]
     radii = [ink_radius(st, q[4]) for st, q in zip(stamps, PATTERN)]
-    for (nm, _, _, _, mm, _), st in zip(PATTERN, stamps):
-        print(f'   {nm:5s} {st.shape[1]:4d} x {st.shape[0]:4d} px   '
-              f'{mm:.2f} mm on the ball')
-    build(stamps, o.out, dia=o.dia, bore=o.bore, depth=o.bore_depth,
+    fields = [edge_distance(st, q[4]) for st, q in zip(stamps, PATTERN)]
+    for (nm, _, _, _, mm, _), st, fd in zip(PATTERN, stamps, fields):
+        print(f'   {nm:5s} {st.shape[1]:5d} x {st.shape[0]:5d} px   '
+              f'{mm:.2f} mm, {mm/st.shape[1]*1000:5.1f} um a pixel   '
+              f'deepest {fd.max():.3f} mm in')
+    build(fields, o.out, dia=o.dia, bore=o.bore, depth=o.bore_depth,
           n=o.marks, mark=o.mark, radii=radii,
           design=o.layout, height=o.relief, sub=o.sub, cut=o.cut)

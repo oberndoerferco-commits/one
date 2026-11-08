@@ -1,0 +1,196 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>bead render</title>
+<style>html,body{margin:0;height:100%;background:#000;overflow:hidden}canvas{display:block}</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.149.0/three.min.js"></script>
+<script>
+/* A photographic render of the bead as it was actually built: the STL is
+   loaded and shown, not re-derived from the placement, so what appears
+   here is the file a caster would receive.
+
+   Three things do the work. Normals are welded with an angle threshold,
+   so the ball is smooth while the engraved walls and the bore rim stay
+   crisp - welding everything rounds the engraving away, welding nothing
+   facets the ball. The environment is prefiltered through PMREM, which
+   is what makes polished metal look like metal rather than like grey
+   plastic: a mirror samples the whole room, and an unfiltered cube map
+   gives it hard edges to reflect. And the recesses are darkened, because
+   that is what happens to silver - the floor of an engraving never meets
+   the polishing wheel, so it holds its oxide while the surface stays
+   bright. */
+
+const P = new URLSearchParams(location.search);
+const FILE = P.get('stl') || 'bead.stl';
+const DIA = parseFloat(P.get('dia') || '7');
+const ENGRAVED = P.get('cut') !== '0';
+const YAW = parseFloat(P.get('yaw') || '-38');
+const PITCH = parseFloat(P.get('pitch') || '14');
+const ZOOM = parseFloat(P.get('zoom') || '1');
+const PATINA = parseFloat(P.get('patina') || '0.72');
+
+window.ready = false;
+
+function parseSTL(buf) {
+  const dv = new DataView(buf);
+  const n = dv.getUint32(80, true);
+  const pos = new Float32Array(n * 9);
+  let o = 84;
+  for (let i = 0; i < n; i++) {
+    o += 12;
+    for (let j = 0; j < 9; j++) { pos[i * 9 + j] = dv.getFloat32(o, true); o += 4; }
+    o += 2;
+  }
+  return pos;
+}
+
+/* Weld by position, then average each vertex's face normals only over the
+   faces that agree with it to within `deg`. Below that angle the vertex
+   keeps separate normals per smoothing group, which is what holds an
+   engraved edge. */
+function smoothNormals(pos, deg) {
+  const n = pos.length / 9, key = new Map(), owner = new Int32Array(n * 3);
+  const Q = 1e4;
+  for (let i = 0; i < n * 3; i++) {
+    const k = (Math.round(pos[i * 3] * Q)) + ',' +
+              (Math.round(pos[i * 3 + 1] * Q)) + ',' +
+              (Math.round(pos[i * 3 + 2] * Q));
+    let v = key.get(k);
+    if (v === undefined) { v = key.size; key.set(k, v); }
+    owner[i] = v;
+  }
+  const fn = new Float32Array(n * 3);
+  for (let f = 0; f < n; f++) {
+    const a = f * 9;
+    const ux = pos[a + 3] - pos[a], uy = pos[a + 4] - pos[a + 1], uz = pos[a + 5] - pos[a + 2];
+    const vx = pos[a + 6] - pos[a], vy = pos[a + 7] - pos[a + 1], vz = pos[a + 8] - pos[a + 2];
+    let x = uy * vz - uz * vy, y = uz * vx - ux * vz, z = ux * vy - uy * vx;
+    const L = Math.hypot(x, y, z) || 1;
+    fn[f * 3] = x / L; fn[f * 3 + 1] = y / L; fn[f * 3 + 2] = z / L;
+  }
+  const faces = new Map();
+  for (let i = 0; i < n * 3; i++) {
+    const v = owner[i];
+    let l = faces.get(v); if (!l) { l = []; faces.set(v, l); }
+    l.push(i / 3 | 0);
+  }
+  const cos = Math.cos(deg * Math.PI / 180);
+  const nrm = new Float32Array(n * 9);
+  for (let i = 0; i < n * 3; i++) {
+    const f = i / 3 | 0, l = faces.get(owner[i]);
+    let x = 0, y = 0, z = 0;
+    for (let t = 0; t < l.length; t++) {
+      const g = l[t];
+      if (fn[f * 3] * fn[g * 3] + fn[f * 3 + 1] * fn[g * 3 + 1] + fn[f * 3 + 2] * fn[g * 3 + 2] < cos) continue;
+      x += fn[g * 3]; y += fn[g * 3 + 1]; z += fn[g * 3 + 2];
+    }
+    const L = Math.hypot(x, y, z) || 1;
+    nrm[i * 3] = x / L; nrm[i * 3 + 1] = y / L; nrm[i * 3 + 2] = z / L;
+  }
+  return nrm;
+}
+
+/* the room the metal reflects: a dark box with a softbox overhead and two
+   strip lights, drawn big and soft so the highlights have shape */
+function roomFace(kind) {
+  const c = document.createElement('canvas'); c.width = c.height = 512;
+  const x = c.getContext('2d');
+  x.fillStyle = '#0a0a0c'; x.fillRect(0, 0, 512, 512);
+  if (kind === 'top') {
+    const g = x.createRadialGradient(256, 232, 20, 256, 256, 300);
+    g.addColorStop(0, '#ffffff'); g.addColorStop(0.38, '#fbfaf7');
+    g.addColorStop(0.68, '#6d6a66'); g.addColorStop(1, '#17171a');
+    x.fillStyle = g; x.fillRect(0, 0, 512, 512);
+  } else if (kind === 'bot') {
+    const g = x.createRadialGradient(256, 256, 10, 256, 256, 330);
+    g.addColorStop(0, '#4a4844'); g.addColorStop(1, '#09090b');
+    x.fillStyle = g; x.fillRect(0, 0, 512, 512);
+  } else {
+    const g = x.createLinearGradient(0, 0, 0, 512);
+    g.addColorStop(0, '#d7d4cd'); g.addColorStop(0.20, '#56534d');
+    g.addColorStop(0.58, '#1d1c1f'); g.addColorStop(1, '#09090b');
+    x.fillStyle = g; x.fillRect(0, 0, 512, 512);
+    x.filter = 'blur(16px)';
+    x.fillStyle = '#ffffff'; x.fillRect(58, 40, 52, 360);
+    x.fillStyle = '#c3cdd2'; x.fillRect(372, 96, 30, 250);
+    x.filter = 'none';
+  }
+  return c;
+}
+
+async function main() {
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+  renderer.setPixelRatio(1);
+  renderer.setSize(window.innerWidth, window.innerHeight, false);
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.25;
+  document.body.appendChild(renderer.domElement);
+
+  const scene = new THREE.Scene();
+  const bg = document.createElement('canvas'); bg.width = bg.height = 512;
+  {
+    const x = bg.getContext('2d');
+    const g = x.createRadialGradient(256, 210, 20, 256, 290, 420);
+    g.addColorStop(0, '#2b2d31'); g.addColorStop(0.5, '#17181b'); g.addColorStop(1, '#0a0a0c');
+    x.fillStyle = g; x.fillRect(0, 0, 512, 512);
+  }
+  const bgt = new THREE.CanvasTexture(bg); bgt.encoding = THREE.sRGBEncoding;
+  scene.background = bgt;
+
+  const cube = new THREE.CubeTexture([roomFace('side'), roomFace('side'),
+    roomFace('side'), roomFace('side'), roomFace('top'), roomFace('bot')]);
+  cube.encoding = THREE.sRGBEncoding; cube.needsUpdate = true;
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  pmrem.compileCubemapShader();
+  const env = pmrem.fromCubemap(cube).texture;
+
+  const buf = await (await fetch(FILE)).arrayBuffer();
+  const pos = parseSTL(buf);
+  const nrm = smoothNormals(pos, 46);
+
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  geo.setAttribute('normal', new THREE.BufferAttribute(nrm, 3));
+
+  /* darken what sits below the polished surface: an engraving's floor
+     never meets the wheel, so it keeps its oxide */
+  const R0 = DIA / 2 - (ENGRAVED ? 0 : 0.10);
+  const col = new Float32Array(pos.length);
+  for (let i = 0; i < pos.length / 3; i++) {
+    const r = Math.hypot(pos[i * 3], pos[i * 3 + 1], pos[i * 3 + 2]);
+    let t = (R0 - r) / 0.085;
+    t = Math.max(0, Math.min(1, t));
+    const k = 1 - PATINA * t * t * (3 - 2 * t);
+    col[i * 3] = k; col[i * 3 + 1] = k * 0.985; col[i * 3 + 2] = k * 0.96;
+  }
+  geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
+  geo.computeBoundingSphere();
+
+  const mat = new THREE.MeshPhysicalMaterial({
+    color: 0xe6e4df, metalness: 1.0, roughness: 0.165,
+    envMap: env, envMapIntensity: 1.25, vertexColors: true,
+  });
+  const mesh = new THREE.Mesh(geo, mat);
+  scene.add(mesh);
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.06));
+  const key = new THREE.DirectionalLight(0xffffff, 1.5); key.position.set(-5, 9, 7);
+  const fill = new THREE.DirectionalLight(0xfff3e4, 0.35); fill.position.set(7, -2, 4);
+  const rim = new THREE.DirectionalLight(0xdce8ff, 0.8); rim.position.set(1, -7, -6);
+  scene.add(key, fill, rim);
+
+  const cam = new THREE.PerspectiveCamera(22, window.innerWidth / window.innerHeight, 0.1, 500);
+  const d = (DIA * 3.1) / ZOOM;
+  const y = YAW * Math.PI / 180, p = PITCH * Math.PI / 180;
+  cam.position.set(d * Math.cos(p) * Math.cos(y), d * Math.cos(p) * Math.sin(y), d * Math.sin(p));
+  cam.up.set(0, 0, 1);
+  cam.lookAt(0, 0, 0);
+
+  renderer.render(scene, cam);
+  window.ready = true;
+}
+function go(){ main().catch(e => { window.ready = 'error: ' + e.message; }); }
+if (document.readyState === 'loading')
+  document.addEventListener('DOMContentLoaded', go);
+else go();
+</script>

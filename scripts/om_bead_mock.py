@@ -20,7 +20,7 @@ from om_bead import (PAGE, PATTERN, stamp_from_pdf, ringed, ink_radius,
                      LAYOUTS)
 
 OUT = 'assets/om-bead/mockup/stamps.json'
-MAXDIM = 176          # px on the long side of a stamp
+MAXDIM = 320          # px on the long side of a stamp
 DRANGE = 0.40         # mm of distance the byte covers
 
 
@@ -45,9 +45,14 @@ def main():
     stamps = []
     for name, box, _, _, mm, share in PATTERN:
         # exactly what the STL uses, so the page shows the part
-        m = stamp_from_pdf(PAGE, box=box, px=2200)
+        # traced finer than it is stored: the distance field is then
+        # block-averaged down, which is a sub-pixel measurement of the
+        # edge rather than a resampling of a staircase
+        m = stamp_from_pdf(PAGE, box=box, px=8800)
         if name == 'circ':
-            m = ringed(m)
+            # the ground inside the circle is cut and the cross left
+            # standing, which is what the STL carries
+            m = ringed(m, invert=True)
         q = field(m, mm)
         stamps.append({
             'name': name, 'w': int(q.shape[1]), 'h': int(q.shape[0]),
