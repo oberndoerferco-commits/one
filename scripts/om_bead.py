@@ -243,7 +243,43 @@ def _eights_offset(lat, om, outl=0.840, sq=0.738, circ=0.635, n925=1.003):
     ]
 
 
+# The second hand edit: the same three bands, but with the OM taken up to
+# 3.65 mm and the crosses cut back to make room. At that size it does not
+# fit - seventeen pairs ran into each other, the worst by 0.45 mm -
+# because an OM of 3.65 mm reaches 2.08 mm from its own centre and the
+# equator only gives it 2.75 mm to the next mark. 3.32 mm is the largest
+# that clears, and the rings then want splitting: whatever stands over an
+# OM has to be pushed out, while the squared cross over the small
+# equatorial cross can come in.
+BIG = dict(om=3.32/2.70, outl=1.65/2.25, sq=1.40/2.10,
+           circ=1.45/2.60, n925=2.65/2.50)
+
+
+def _eights_split(p_axis, p_diag, z=BIG):
+    """Columns as drawn, but the two rings at their own latitudes."""
+    return [
+        dict(lat=0, n=4, kinds=['om'], scale=z['om'], turn=0),
+        dict(lat=0, n=4, kinds=['outl'], scale=z['outl'], turn=45),
+        dict(lat=p_axis, n=2, kinds=['circ'], scale=z['circ'], turn=0, nest=False),
+        dict(lat=p_axis, n=2, kinds=['outl'], scale=z['outl'], turn=90, nest=False),
+        dict(lat=p_diag, n=4, kinds=['sq'], scale=z['sq'], turn=45, nest=False),
+        dict(lat=-90, n=1, kinds=['n925'], scale=z['n925'], mirror=False),
+    ]
+
+
 LAYOUTS = [
+    dict(name='Monogram Eights, OM 3.32', note='the OM at 3.32 mm, the most a '
+         '7 mm ball holds with nothing touching; one ring at 45 degrees, '
+         'as drawn',
+         ball=dict(dia=7.0, cut=True),
+         rings=_eights_split(45.0, 45.0)),
+
+    dict(name='Monogram Eights, OM 3.32 Split', note='the same OM with the two '
+         'rings at their own latitudes, 54 over the OM and 36 over the small '
+         'cross, which evens the steps',
+         ball=dict(dia=7.0, cut=True),
+         rings=_eights_split(54.0, 36.0)),
+
     dict(name='Monogram Eights, Offset', note='the rings turned half a step, '
          'the way the LV ball staggers its rows: nothing sits directly under '
          'anything, and every step is 2.33 mm',
