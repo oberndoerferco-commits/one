@@ -197,7 +197,48 @@ def _grid(cardinal='outl', diagonal='sq', om=1.20, cross=0.90, foot='n925',
     return r
 
 
+# Three rings of eight, in columns, after the hand-edited placement. The
+# equator alternates OM and the outlined cross; each ring carries the
+# circled cross on the meridians of the OM, the outlined cross on the
+# meridians between the OMs, and the squared cross on the four diagonals;
+# 925 sits at the foot.
+#
+# EIGHTS_LAT is not a choice of taste. With eight to a ring the step
+# along a ring and the step from the equator up to it are equal at one
+# latitude only, 36.05 degrees, and that is the whole of "the same
+# distance to each other" for this arrangement. Pushing the rings out
+# towards 45 makes room for a larger OM and takes the ring step down
+# with it: at 44.5 the steps run 1.93 / 2.72 / 2.75 mm instead of one
+# figure.
+EIGHTS_LAT = 36.05
+EIGHTS_WIDE = 44.50
+
+
+def _eights(lat, om, outl=0.840, sq=0.738, circ=0.635, n925=1.003):
+    return [
+        dict(lat=0, n=4, kinds=['om'], scale=om, turn=0),
+        dict(lat=0, n=4, kinds=['outl'], scale=outl, turn=45),
+        dict(lat=lat, n=2, kinds=['circ'], scale=circ, turn=0, nest=False),
+        dict(lat=lat, n=2, kinds=['outl'], scale=outl, turn=90, nest=False),
+        dict(lat=lat, n=4, kinds=['sq'], scale=sq, turn=45, nest=False),
+        dict(lat=-90, n=1, kinds=['n925'], scale=n925, mirror=False),
+    ]
+
+
 LAYOUTS = [
+    dict(name='Monogram Eights', note='three rings of eight in columns, every '
+         'step the same: 2.20 mm on a 7 mm ball, nothing touching',
+         rings=_eights(EIGHTS_LAT, om=0.807)),
+
+    dict(name='Monogram Eights, Big OM', note='the rings pushed out to make '
+         'room for a 3.10 mm OM; the steps are no longer equal',
+         rings=_eights(EIGHTS_WIDE, om=1.148)),
+
+    dict(name='Monogram Eights, Full Size', note='the OM at 3.54 mm with every '
+         'step equal, which a 7 mm ball cannot hold - this one wants 9.5 mm',
+         rings=_eights(EIGHTS_LAT, om=1.311)),
+
+
     dict(name='Monogram Grid', note='the reference: four OM round the middle, '
          'outlined crosses on the cardinals, squared and circled crosses '
          'alternating on the diagonals, 925 at the foot',

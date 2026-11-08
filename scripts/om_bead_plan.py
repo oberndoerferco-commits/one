@@ -85,6 +85,8 @@ def main():
     a.add_argument('--layout', default='Monogram Grid')
     a.add_argument('--dia', type=float, default=8.0)
     a.add_argument('--relief', type=float, default=0.10)
+    a.add_argument('--cut', action='store_true',
+                   help='engraved: the ball is the full diameter')
     a.add_argument('--out', default='assets/om-bead/renders/om-bead-plan.png')
     a.add_argument('--all', action='store_true',
                    help='one plan per design, as a sheet')
@@ -93,7 +95,7 @@ def main():
     stamps = [ringed(stamp_from_pdf(PAGE, box=b, px=2200)) if nm == 'circ'
               else stamp_from_pdf(PAGE, box=b, px=2200) for nm, b, *_ in PATTERN]
     radii = [ink_radius(st, q[4]) for st, q in zip(stamps, PATTERN)]
-    r = (o.dia - 2*o.relief) / 2.0
+    r = o.dia/2.0 if o.cut else (o.dia - 2*o.relief) / 2.0
     os.makedirs(os.path.dirname(o.out), exist_ok=True)
 
     names = [d['name'] for d in LAYOUTS] if o.all else [o.layout]
