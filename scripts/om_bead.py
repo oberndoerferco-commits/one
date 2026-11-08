@@ -384,23 +384,33 @@ def _eights_split(p_axis, p_diag, z=BIG, diag='cross', line='outl'):
 
 
 LAYOUTS = [
-    dict(name='Monogram Eights, OM 3.51', note='four big OM round the middle, '
+    # The sizes as set by hand, with the OM at the largest an 8 mm ball
+    # holds: 4.15 was asked for and overlaps by 0.24 mm, because the
+    # outlined cross beside it and the circled cross above it are both
+    # 45 degrees away and 3.14 mm is all there is. 3.50 clears by
+    # +0.12 mm. The bare crosses come down to 1.55 as drawn.
+    dict(name='Monogram Eights, OM 3.50', note='four big OM round the middle, '
          'bare crosses on the diagonals, outlined crosses between them, the '
          'circled cross raised out of its field; an 8 mm ball',
          ball=dict(dia=8.0, cut=True),
-         rings=_eights_split(45.0, 45.0, z=on_ball(BIG, 8.0))),
+         rings=_eights_split(45.0, 45.0, z=dict(on_ball(BIG, 8.0),
+                                                om=3.50/2.70,
+                                                cross=1.55/1.60))),
 
-    dict(name='Monogram Eights, OM 3.51, No Outline', note='the outlined '
+    dict(name='Monogram Eights, OM 3.50, No Outline', note='the outlined '
          'cross replaced by the bare one, smaller; its line is 28 microns '
          'wide and will not survive a casting',
          ball=dict(dia=8.0, cut=True),
          rings=_eights_split(45.0, 45.0, z=dict(on_ball(BIG, 8.0),
-                                                outl=1.55/1.60), line='cross')),
+                                                om=3.50/2.70,
+                                                cross=1.55/1.60),
+                             line='cross')),
 
-    dict(name='Monogram Eights, OM 3.51, Squared', note='the same with the '
+    dict(name='Monogram Eights, OM 3.50, Squared', note='the same with the '
          'squared cross back on the diagonals',
          ball=dict(dia=8.0, cut=True),
-         rings=_eights_split(45.0, 45.0, z=on_ball(BIG, 8.0), diag='sq')),
+         rings=_eights_split(45.0, 45.0, z=dict(on_ball(BIG, 8.0),
+                                                om=3.50/2.70), diag='sq')),
 
     dict(name='Monogram Eights, OM 3.07', note='the same drawing on a 7 mm '
          'ball, where it was first solved',
