@@ -326,6 +326,18 @@ BIG = dict(om=3.07/2.70, outl=1.65/2.25, sq=1.40/2.10,
 BIG_OM = dict(BIG, om=3.32/2.70, outl=1.35/2.25, circ=1.40/2.60)
 
 
+def on_ball(z, dia, was=7.0):
+    """The same design on a bigger ball.
+
+    Every size in BIG was solved against a 7 mm ball. Arc distances and
+    mark sizes both scale with the diameter, so scaling the marks by
+    dia/7 keeps the drawing identical and multiplies every clearance by
+    the same factor: the tightest pair goes from +0.12 mm to +0.14 on
+    an 8 mm ball rather than needing to be solved again.
+    """
+    return {k: v * dia / was for k, v in z.items()}
+
+
 def _eights_split(p_axis, p_diag, z=BIG, diag='cross'):
     """Columns as drawn, but the two rings at their own latitudes.
 
@@ -351,16 +363,21 @@ def _eights_split(p_axis, p_diag, z=BIG, diag='cross'):
 
 
 LAYOUTS = [
-    dict(name='Monogram Eights, OM 3.07', note='four big OM round the middle, '
+    dict(name='Monogram Eights, OM 3.51', note='four big OM round the middle, '
          'bare crosses on the diagonals, outlined crosses between them, the '
-         'circled cross raised out of its field',
+         'circled cross raised out of its field; an 8 mm ball',
+         ball=dict(dia=8.0, cut=True),
+         rings=_eights_split(45.0, 45.0, z=on_ball(BIG, 8.0))),
+
+    dict(name='Monogram Eights, OM 3.51, Squared', note='the same with the '
+         'squared cross back on the diagonals',
+         ball=dict(dia=8.0, cut=True),
+         rings=_eights_split(45.0, 45.0, z=on_ball(BIG, 8.0), diag='sq')),
+
+    dict(name='Monogram Eights, OM 3.07', note='the same drawing on a 7 mm '
+         'ball, where it was first solved',
          ball=dict(dia=7.0, cut=True),
          rings=_eights_split(45.0, 45.0)),
-
-    dict(name='Monogram Eights, OM 3.07, Squared', note='the same with the '
-         'squared cross back on the diagonals instead of the small OM',
-         ball=dict(dia=7.0, cut=True),
-         rings=_eights_split(45.0, 45.0, diag='sq')),
 
     dict(name='Monogram Eights, OM 3.32', note='the OM kept at 3.32 mm by '
          'taking the four equatorial crosses down to 1.35 mm instead',
