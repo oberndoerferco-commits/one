@@ -176,8 +176,10 @@ GRID = dict(
     card_eq=lambda k, sc: dict(lat=EDGE_EQ, n=4, kinds=[k], scale=sc, turn=45),
     card_up=lambda k, sc: dict(lat=EDGE_MID, n=4, kinds=[k], scale=sc, turn=0,
                                nest=False),
-    diag=lambda k, sc: dict(lat=CORNER, n=4, kinds=[k], scale=sc, turn=45,
-                            nest=False),
+    diag=lambda k, sc: dict(lat=CORNER, n=4,
+                            kinds=(k if isinstance(k, list) else [k]),
+                            scale=sc, turn=45, nest=False,
+                            kindflip=isinstance(k, list)),
     foot=lambda k, sc: dict(lat=-90, n=1, kinds=[k], scale=sc, mirror=False),
 )
 
@@ -197,8 +199,12 @@ def _grid(cardinal='outl', diagonal='sq', om=1.20, cross=0.90, foot='n925',
 
 LAYOUTS = [
     dict(name='Monogram Grid', note='the reference: four OM round the middle, '
-         'outlined crosses on the cardinals, squared crosses on the diagonals, '
-         '925 at the foot',
+         'outlined crosses on the cardinals, squared and circled crosses '
+         'alternating on the diagonals, 925 at the foot',
+         rings=_grid(diagonal=['sq', 'circ'])),
+
+    dict(name='Monogram Grid, Four Motifs', note='the same without the circled '
+         'cross: squared on every diagonal',
          rings=_grid()),
 
     dict(name='Monogram Grid, Swapped', note='the same lattice with the two '
@@ -285,11 +291,21 @@ def ring_places(ring):
     turn = float(ring.get('turn', 0.0))
     mirror = ring.get('mirror', True) and abs(lat) > 1e-6
     nest = ring.get('nest', True)
+    # `kindflip` starts the southern copy on the next motif. On the cube's
+    # eight corners that splits them into the two tetrahedra - alternating
+    # round the northern four and alternating the other way round the
+    # southern four is exactly the even and odd sign products - so each
+    # face looks out on two of one motif and two of the other, diagonally
+    # opposite. It is the only way to get a fifth motif onto this lattice:
+    # the four cardinals and the four marks on the silhouette are the same
+    # orbit of edge midpoints, so they cannot differ from one another.
+    flip = 1 if ring.get('kindflip') else 0
     out = []
     for sign in ((1, -1) if mirror else (1,)):
         off = 180.0 / n if (sign < 0 and nest) else 0.0
+        base = flip if sign < 0 else 0
         for c in range(n):
-            k = BYNAME[ring['kinds'][c % len(ring['kinds'])]]
+            k = BYNAME[ring['kinds'][(c + base) % len(ring['kinds'])]]
             out.append(((-180.0 + 360.0 * c / n + off + turn + 180) % 360 - 180,
                         sign * lat, k, PATTERN[k][4] * sc))
     return out

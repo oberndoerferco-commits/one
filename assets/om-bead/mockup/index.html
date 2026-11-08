@@ -228,7 +228,8 @@ function applyDesign(i){
     return {lat:+r.lat||0, n:r.n|0, kinds:r.kinds.map(kindIndex),
             scale:(r.scale==null?1:+r.scale), turn:+r.turn||0,
             mirror:(r.mirror===false?false:true),
-            nest:(r.nest===false?false:true)};
+            nest:(r.nest===false?false:true),
+            kindflip:!!r.kindflip};
   });
   S.fill = d.fill ? {kinds:d.fill.kinds.map(kindIndex), n:d.fill.n|0,
                      scale:(d.fill.scale==null?1:+d.fill.scale),
@@ -243,8 +244,15 @@ function ringPlaces(g,i){
        medallion and ruins a lattice: the cube's corners share a
        longitude north and south. */
     var off = (signs[si]<0 && g.nest!==false) ? 180/g.n : 0;
+    /* kindflip starts the southern copy on the next motif, which on the
+       cube's eight corners splits them into its two tetrahedra: each face
+       then looks out on two of one cross and two of the other, diagonally
+       opposite. It is the only way a fifth motif fits, because the four
+       cardinals and the four marks on the silhouette are the same orbit
+       of edge midpoints and cannot differ. */
+    var base = (signs[si]<0 && g.kindflip) ? 1 : 0;
     for(var c=0;c<g.n;c++){
-      var k=g.kinds[c%g.kinds.length];
+      var k=g.kinds[(c+base)%g.kinds.length];
       out.push({lon:norm180(-180+360*c/g.n+off+g.turn), lat:signs[si]*g.lat,
                 kind:k, mm:S.size[k]*g.scale, sc:g.scale, turn:0, ring:i});
     }
@@ -860,6 +868,14 @@ function modePanel(){
       nst.addEventListener('click', function(){
         g.nest = (g.nest===false); redo(); modePanel(); });
       acts.appendChild(nst);
+      if(g.kinds.length>1){
+        var kf=el('button','btn','Alternate the motifs south');
+        kf.type='button';
+        kf.setAttribute('aria-pressed', !!g.kindflip);
+        kf.addEventListener('click', function(){
+          g.kindflip=!g.kindflip; redo(); modePanel(); });
+        acts.appendChild(kf);
+      }
     }
     box.appendChild(acts);
     kindChips(box, function(k){return g.kinds.indexOf(k)>=0;}, function(k){
