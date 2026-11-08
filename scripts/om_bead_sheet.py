@@ -49,11 +49,12 @@ def wrap(dr, text, f, width):
     return out
 
 
-TITLE = ('OM Monogram Bead \u2014 twenty designs' if VIEW == 'a'
-         else 'OM Monogram Bead \u2014 the same twenty, looking down the hole')
-SUB = ('8 mm, sterling silver 925. Each one turns in the viewer; the first is '
-       'the brief: four OM round the middle, 925 at the foot, crosses filling '
-       'the rest.' if VIEW == 'a' else
+WORD = {1:'one',2:'two',3:'three',4:'four',5:'five',6:'six',7:'seven',
+        8:'eight',9:'nine',10:'ten',11:'eleven',12:'twelve'}.get(len(rows), str(len(rows)))
+TITLE = (f'OM Monogram Bead \u2014 {WORD} designs' if VIEW == 'a'
+         else f'OM Monogram Bead \u2014 the same {WORD}, looking down the hole')
+SUB = ('8 mm, sterling silver 925. All on one lattice, so no two marks touch; '
+       'the first is the reference drawing.' if VIEW == 'a' else
        'The polished middle throws a highlight that hides whatever sits there, '
        'so this angle is the one to judge the pattern by.')
 

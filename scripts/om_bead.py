@@ -438,6 +438,13 @@ def paint(stamps, places, radius, W, Hh):
         r1 = int((90 - lat + dlat) / 180.0 * Hh) + 2
         c0 = int((lon + 180 - dlon) / 360.0 * W)
         c1 = int((lon + 180 + dlon) / 360.0 * W) + 2
+        # A mark at a pole spans every longitude there is, and dividing by
+        # cos(latitude) says so: at lat -90 the clamp of 1e-3 turns a 35
+        # degree box into 35,000, and the column array it asks for runs the
+        # machine out of memory before anything is painted. One map width
+        # is the most any mark can need.
+        if c1 - c0 > W:
+            c0, c1 = 0, W
         rr = np.clip(np.arange(r0, r1), 0, Hh - 1)
         cc = np.arange(c0, c1)
         if not len(rr) or not len(cc):
