@@ -6,8 +6,11 @@ from v2h import recolor, torso_geom, orig_torso, to_ref_t, clusters
 def layer(path):
     """clean design layer from an original 2400px photo: alpha + decontaminated colour (no halos)"""
     im=cv2.imread(path); fill,(x,y,w,h)=shirt_geom(im)
-    inner=cv2.erode(fill,np.ones((61,61),np.uint8))
-    sc=np.median(im[inner>0].reshape(-1,3),0); dark=sc.mean()<128
+    # white shirt on a near-white wall: the detected outline can run along the artwork, so use its convex hull
+    cnts,_=cv2.findContours(fill,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE)
+    hull=np.zeros_like(fill); cv2.drawContours(hull,[cv2.convexHull(max(cnts,key=cv2.contourArea))],-1,1,-1)
+    inner=cv2.erode(hull,np.ones((61,61),np.uint8))
+    sc=np.median(im[cv2.erode(fill,np.ones((61,61),np.uint8))>0].reshape(-1,3),0); dark=sc.mean()<128
     lab=cv2.cvtColor(im,cv2.COLOR_BGR2Lab).astype(np.float32); slab=cv2.cvtColor(np.uint8([[sc]]),cv2.COLOR_BGR2Lab)[0,0].astype(np.float32)
     d=np.sqrt(((lab-slab)**2).sum(2))          # perceptual distance: only used to find the artwork
     t0,t1=(22,60) if dark else (14,45)
@@ -21,6 +24,14 @@ def layer(path):
         if cy<y+0.11*w and abs(cx+cw/2-(x+w/2))<0.15*w: continue
         if max(cw,ch)>150 and min(cw,ch)<22: continue
         keep[labs==i]=1
+    # any artwork piece touching the design (e.g. star tips separated by a 1px gap) belongs to it
+    for _ in range(3):
+        near=cv2.dilate(keep,np.ones((41,41),np.uint8))
+        for i in range(1,n):
+            cx,cy,cw,ch,area=st[i]
+            if area<5 or keep[labs==i].any(): continue
+            if cy<y+0.11*w and abs(cx+cw/2-(x+w/2))<0.15*w: continue
+            if near[cy:cy+ch,cx:cx+cw].any() and (near[labs==i]>0).any(): keep[labs==i]=1
     keep=cv2.dilate(keep,np.ones((7,7),np.uint8))
     # inside the artwork: keep every pixel exactly as it is (multicolour boundaries untouched)
     m=(mask>0.5)&(keep>0)
@@ -113,7 +124,7 @@ def build(white_path,black_path,side,own_black=None):
                 if color=='black':   # artwork lifted from a light shirt: tighten its soft edge so it can't glow on black
                     A=np.clip((A-0.12)/0.76,0,1)
                 if color=='black' and not coloured: C=neutral_ink(C,'light')
-                elif not coloured: C=neutral_ink(C,'dark')
+                elif not coloured: C=neutral_ink(C,'keep')   # on white keep the artwork's own tones (grey outlines stay grey)
             else:  # black has its own artwork style (outline OM, filled stars): own shape, white-shirt position
                 b=clb[name]
                 A,C=place_pm(ab,cb,b,dst,img.shape,(b[0]-4,b[1]-4,b[2]+5,b[3]+5))
