@@ -17,7 +17,7 @@ from scipy import ndimage
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from om_bead import (PAGE, PATTERN, stamp_from_pdf, ringed, ink_radius,
-                     LAYOUTS, FIELD_RATIO, despeckle)
+                     LAYOUTS, FIELD_RATIO, despeckle, fatten, OUTLINE_WEIGHT)
 
 OUT = 'assets/om-bead/mockup/stamps.json'
 MAXDIM = 320          # px on the long side of a stamp
@@ -49,6 +49,9 @@ def main():
         # block-averaged down, which is a sub-pixel measurement of the
         # edge rather than a resampling of a staircase
         m = despeckle(stamp_from_pdf(PAGE, box=box, px=8800), mm)
+        if name == 'outl':
+            # the same heavier line the STL carries
+            m = fatten(m, OUTLINE_WEIGHT, mm)
         if name == 'circ':
             # the ground inside the circle is cut and the cross left
             # standing, which is what the STL carries

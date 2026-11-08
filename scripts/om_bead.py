@@ -798,6 +798,13 @@ def relief(depth, radius, W, Hh, height, inset):
 RING_RATIO = 1.25
 FIELD_RATIO = 1.28
 
+# How much heavier the outlined cross's line is drawn, in mm of the stamp
+# at its nominal 2.25. At 1.89 mm on the ball that is 0.030 mm a side and
+# takes the line from 28 microns to 63 - the most the drawing takes. Past
+# about 0.04 the notches between the arms fill in and it stops being the
+# mark: see fatten().
+OUTLINE_WEIGHT = 0.036
+
 
 def ringed(mask, ratio=RING_RATIO, weight=0.075, pad=8, invert=False):
     """The cross inside its ring, with the ring drawn rather than traced.
@@ -850,7 +857,7 @@ def framed(mask, border=0.055):
 
 def build(stamps, out, dia=8.0, bore=1.2, depth=4.0, n=30, mark=1.0,
           design=None, height=0.10, radii=None,
-          inset=0.05, cap=76.0, sub=7, W=3600, Hh=1800, cut=False):
+          inset=0.025, cap=76.0, sub=7, W=7200, Hh=3600, cut=False):
     # embossed, the marks stand proud and the ball under them is
     # smaller by that much; engraved, the ball is the full size and the
     # marks go into it. Either way the bead measures the 8 mm it is
@@ -879,7 +886,12 @@ def build(stamps, out, dia=8.0, bore=1.2, depth=4.0, n=30, mark=1.0,
     rel = relief(ink, r, W, Hh, height, inset)
     if cut:
         rel = -rel
-    rel = ndimage.gaussian_filter(rel, 1.2, mode='wrap')     # kill the pixel step
+    # Only enough to take the staircase off the map's own pixels. The map
+    # is 7200 wide now, so a pixel is 3.5 microns at the equator and half
+    # a pixel of blur is under 2 - well inside the mesh's own 19 micron
+    # triangle, which is what actually limits the edge. The old 1.2 at
+    # 3600 was blurring 8 microns of a 50 micron wall.
+    rel = ndimage.gaussian_filter(rel, 0.6, mode='wrap')
     ball = trimesh.creation.icosphere(subdivisions=sub, radius=r)
     v = ball.vertices.view(np.ndarray).copy()
     n_ = np.linalg.norm(v, axis=1)
@@ -937,6 +949,9 @@ if __name__ == '__main__':
     a.add_argument('--mark', type=float, default=1.0,
                    help='scale every mark by this')
     a.add_argument('--relief', type=float, default=0.10)
+    a.add_argument('--inset', type=float, default=0.025,
+                   help='how far in from the edge the cut reaches full '
+                        'depth; smaller is a steeper wall')
     a.add_argument('--cut', action='store_true',
                    help='engrave the marks into the ball instead of '
                         'raising them off it')
@@ -956,7 +971,8 @@ if __name__ == '__main__':
                         'default the ground inside its circle is cut instead '
                         'and the cross is left standing at the surface')
     a.set_defaults(solid_circle=True)
-    a.add_argument('--fatten-outline', type=float, default=0.0, metavar='MM',
+    a.add_argument('--fatten-outline', type=float, default=OUTLINE_WEIGHT,
+                   metavar='MM',
                    help="grow the outlined cross's line by this much on "
                         "every side, in mm of the mark at its nominal size")
     a.add_argument('--sub', type=int, default=7)
@@ -979,7 +995,7 @@ if __name__ == '__main__':
     stamps = []
     for nm, b, _, _, mm, _ in PATTERN:
         m = despeckle(stamp_from_pdf(PAGE, box=b, px=o.stamp_px), mm)
-        if nm == 'outl' and o.fatten_outline:
+        if nm == 'outl':
             m = fatten(m, o.fatten_outline, mm)
         if nm == 'circ':
             m = ringed(m, ratio=FIELD_RATIO if o.solid_circle else RING_RATIO,
@@ -992,5 +1008,5 @@ if __name__ == '__main__':
               f'{mm:.2f} mm, {mm/st.shape[1]*1000:5.1f} um a pixel   '
               f'deepest {fd.max():.3f} mm in')
     build(fields, o.out, dia=o.dia, bore=o.bore, depth=o.bore_depth,
-          n=o.marks, mark=o.mark, radii=radii,
+          n=o.marks, mark=o.mark, radii=radii, inset=o.inset,
           design=o.layout, height=o.relief, sub=o.sub, cut=o.cut)
