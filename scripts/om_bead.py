@@ -321,17 +321,23 @@ def _eights_offset(lat, om, outl=0.840, sq=0.738, circ=0.635, n925=1.003,
 # OM has to be pushed out, while the squared cross over the small
 # equatorial cross can come in.
 BIG = dict(om=3.07/2.70, outl=1.65/2.25, sq=1.40/2.10,
-           circ=1.60/2.60, n925=2.65/2.50, om2=1.65/1.65)
+           circ=1.60/2.60, n925=2.65/2.50, om2=1.65/1.65,
+           cross=1.80/1.60)
 BIG_OM = dict(BIG, om=3.32/2.70, outl=1.35/2.25, circ=1.40/2.60)
 
 
-def _eights_split(p_axis, p_diag, z=BIG, diag='om2'):
+def _eights_split(p_axis, p_diag, z=BIG, diag='cross'):
     """Columns as drawn, but the two rings at their own latitudes.
 
     `diag` is what the eight marks on the 45 degree diagonals carry.
-    The squared cross was there first; the monogram is what sits there
-    now, at 1.65 mm - as large as those positions hold without the
-    closest pair on the ball getting any tighter than it already is.
+    The squared cross was there first - a square of cut ground with the
+    cross standing in it. The bare cross is what sits there now, cut
+    into the ball with no square round it, at 1.80 mm: bigger than the
+    1.40 mm plate it replaces, because without the square to fill the
+    position the mark has to carry it alone, and sized to read at the
+    same weight as the outlined cross beside it (0.87 mm of reach
+    against 0.80). Those positions would hold 2.06 mm before anything
+    on the ball got tighter than it already is.
     """
     return [
         dict(lat=0, n=4, kinds=['om'], scale=z['om'], turn=0),
@@ -345,9 +351,9 @@ def _eights_split(p_axis, p_diag, z=BIG, diag='om2'):
 
 
 LAYOUTS = [
-    dict(name='Monogram Eights, OM 3.07', note='four big OM round the middle '
-         'and eight more at 1.65 mm on the diagonals, outlined crosses '
-         'between them, the circled cross raised out of its field',
+    dict(name='Monogram Eights, OM 3.07', note='four big OM round the middle, '
+         'bare crosses on the diagonals, outlined crosses between them, the '
+         'circled cross raised out of its field',
          ball=dict(dia=7.0, cut=True),
          rings=_eights_split(45.0, 45.0)),
 

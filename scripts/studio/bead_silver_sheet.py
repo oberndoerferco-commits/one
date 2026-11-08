@@ -22,13 +22,13 @@ TILES = [
     ('under', 'From beneath'),
     ('macro', 'Ten times life size'),
     ('circle', 'The circled cross, standing in its field'),
-    ('smallom', 'The monogram on a diagonal'),
+    ('smallom', 'A cross on a diagonal'),
 ]
 
 TITLE = 'OM Monogram Bead — 7 mm, sterling silver 925, engraved'
 SUB = ('Rendered from the STL itself, not from the layout. Four big OM round '
-       'the middle, eight more at 1.65 mm on the diagonals, the circled cross '
-       'left standing while the ground round it is cut away.')
+       'the middle, bare crosses on the diagonals, the circled cross left '
+       'standing while the ground round it is cut away.')
 
 
 def font(sz, bold=False):
