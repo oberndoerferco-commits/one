@@ -25,10 +25,10 @@ TILES = [
     ('smallom', 'A cross on a diagonal'),
 ]
 
-TITLE = 'OM Monogram Bead — 7 mm, sterling silver 925, engraved'
-SUB = ('Rendered from the STL itself, not from the layout. Four big OM round '
-       'the middle, bare crosses on the diagonals, the circled cross left '
-       'standing while the ground round it is cut away.')
+TITLE = 'OM Monogram Bead — {dia} mm, sterling silver 925, engraved'
+SUB = ('Rendered from the STL itself, not from the layout. Four big OM at '
+       '{om} mm round the middle, bare crosses on the diagonals, the '
+       'circled cross left standing while the ground round it is cut away.')
 
 
 def font(sz, bold=False):
@@ -58,6 +58,8 @@ def fit(path, w, h):
 
 def main():
     src, tag, out = sys.argv[1], sys.argv[2], sys.argv[3]
+    dia = sys.argv[4] if len(sys.argv) > 4 else '8'
+    om = sys.argv[5] if len(sys.argv) > 5 else '3.51'
     pad, gap, cap = 18, 14, 24
     col = 240                                   # a small tile
     right = 2 * col + gap
@@ -70,8 +72,8 @@ def main():
 
     sheet = Image.new('RGB', (W, H), BG)
     d = ImageDraw.Draw(sheet)
-    d.text((pad, 16), TITLE, INK, font=font(23, True))
-    d.text((pad, 50), SUB, DIM, font=font(12))
+    d.text((pad, 16), TITLE.format(dia=dia), INK, font=font(23, True))
+    d.text((pad, 50), SUB.format(om=om), DIM, font=font(12))
 
     sheet.paste(fit(f'{src}/{tag}-hero.png', hero, body), (pad, head))
     d.text((pad, head + body + 6), 'The piece', INK, font=font(13, True))
