@@ -225,7 +225,30 @@ def _eights(lat, om, outl=0.840, sq=0.738, circ=0.635, n925=1.003):
     ]
 
 
+# Offsetting the rings by half a step is what the Louis Vuitton ball
+# does, and it is not only a matter of looks: with the rings turned 22.5
+# degrees nothing sits directly under anything, the equal-step latitude
+# moves from 36.05 to 31.55, and every step grows from 2.20 to 2.33 mm on
+# a 7 mm ball. Staggering buys room.
+EIGHTS_OFFSET_LAT = 31.55
+
+
+def _eights_offset(lat, om, outl=0.840, sq=0.738, circ=0.635, n925=1.003):
+    return [
+        dict(lat=0, n=4, kinds=['om'], scale=om, turn=0),
+        dict(lat=0, n=4, kinds=['outl'], scale=outl, turn=45),
+        dict(lat=lat, n=4, kinds=['circ'], scale=circ, turn=22.5, nest=False),
+        dict(lat=lat, n=4, kinds=['sq'], scale=sq, turn=67.5, nest=False),
+        dict(lat=-90, n=1, kinds=['n925'], scale=n925, mirror=False),
+    ]
+
+
 LAYOUTS = [
+    dict(name='Monogram Eights, Offset', note='the rings turned half a step, '
+         'the way the LV ball staggers its rows: nothing sits directly under '
+         'anything, and every step is 2.33 mm',
+         rings=_eights_offset(EIGHTS_OFFSET_LAT, om=0.803)),
+
     dict(name='Monogram Eights', note='three rings of eight in columns, every '
          'step the same: 2.20 mm on a 7 mm ball, nothing touching',
          rings=_eights(EIGHTS_LAT, om=0.807)),
