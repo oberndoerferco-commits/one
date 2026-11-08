@@ -79,6 +79,10 @@ input[type=range]{flex:0 0 132px;width:132px;accent-color:var(--accent);margin:0
 .seg button:last-child{border-right:0}
 .seg button[aria-pressed=true]{background:var(--accent);color:var(--accent-ink);font-weight:600}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
+#addpick{flex:1 0 100%;align-items:center;gap:6px;margin-top:4px}
+#addpick .addlab{font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--mute);font-weight:600;align-self:center}
+#addpick .chip{background:var(--panel)}
 .chip{border:1px solid var(--line);background:var(--sunk);color:var(--ink);font:inherit;font-size:11.5px;
   padding:5px 9px;border-radius:999px;cursor:pointer;white-space:nowrap}
 .chip[aria-pressed=true]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:600}
@@ -148,6 +152,7 @@ button.btn.wide{width:100%;text-align:left}
       </div>
       <button class="btn" id="t-spin" aria-pressed="true">Turning: on</button>
       <button class="btn" id="t-home">Reset view</button>
+      <div class="chips" id="addpick" hidden></div>
     </div>
     <p class="hint" id="hint"></p>
   </main>
@@ -720,6 +725,32 @@ function setSpin(on){
   b.textContent = S.spin ? 'Turning: on' : 'Turning: off';
 }
 
+/* What "Add a mark" will place. It used to live in the Selected mark
+   panel and render only when nothing was selected - but adding a mark
+   selects it, so the picker vanished on the first add and every one
+   after that placed whatever was already chosen. It belongs next to the
+   tool it belongs to. */
+function addPicker(){
+  var host=document.getElementById('addpick');
+  host.innerHTML='';
+  host.hidden = (S.tool!=='add');
+  if(host.hidden) return;
+  host.appendChild(el('span','addlab','Place'));
+  /* short names here: six full labels wrap into three rows over the bead
+     at phone width */
+  var SHORT={om:'OM', sq:'Square', n925:'925', circ:'Circle',
+             outl:'Outline', cross:'Small'};
+  KINDS.forEach(function(k,i){
+    var b=el('button','chip',SHORT[k.name]||k.label);
+    b.setAttribute('aria-label', k.label);
+    b.type='button';
+    b.setAttribute('aria-pressed', i===S.add ? 'true' : 'false');
+    b.title = 'Press ' + (i+1);
+    b.addEventListener('click', function(){ S.add=i; addPicker(); stats(); });
+    host.appendChild(b);
+  });
+}
+
 function addAt(p){
   var m={lon:Math.atan2(p[1],p[0])*R2D,
          lat:Math.asin(Math.max(-1,Math.min(1,p[2])))*R2D,
@@ -948,11 +979,9 @@ function selPanel(){
   host.innerHTML='';
   if(S.sel<0 || S.sel>=S.marks.length){
     host.appendChild(el('p','sel-none','Tap a mark on the bead to select it, '
-      +'then move it, resize it, turn it or take it off. With “Add a '
-      +'mark” on, tapping bare metal drops a new one:'));
-    kindChips(host, function(k){return k===S.add;}, function(k){
-      S.add=k; selPanel();
-    });
+      +'then move it, resize it, turn it or take it off. To put a new one '
+      +'on, turn on “Add a mark” and choose which motif above the '
+      +'bead.'));
     paintSel();
     return;
   }
@@ -1130,7 +1159,8 @@ function stats(){
   h.innerHTML='';
   h.appendChild(document.createTextNode(
     S.tool==='move' ? 'Drag a mark to slide it over the ball. Drag the background to turn the bead.' :
-    S.tool==='add'  ? 'Tap the bead to drop a mark where you tapped. Drag to turn it.' :
+    S.tool==='add'  ? ('Tap the bead to place a '+KINDS[S.add].label
+                       +'. Pick another above, or press 1\u2013'+KINDS.length+'.') :
     S.tool==='del'  ? 'Tap a mark to take it off. Drag to turn the bead.' :
     'Drag to turn the bead, scroll to zoom, tap a mark to select it. Delete takes it off.'));
 }
@@ -1206,6 +1236,7 @@ function run(doc){
     for(var k in TOOLS)
       document.getElementById(TOOLS[k]).setAttribute('aria-pressed', k===t);
     renderer.domElement.classList.toggle('moving', t!=='orbit');
+    addPicker();
     stats();
   }
   Object.keys(TOOLS).forEach(function(k){
@@ -1223,6 +1254,18 @@ function run(doc){
     copyOut(jsonText(), this, 'Placement copied'); });
 
   window.addEventListener('keydown', function(ev){
+    var t0=ev.target.tagName;
+    if(t0==='INPUT'||t0==='TEXTAREA'||t0==='SELECT') return;
+    var num=parseInt(ev.key,10);
+    if(num>=1 && num<=KINDS.length){
+      S.add=num-1;
+      if(S.tool!=='add') tool('add'); else addPicker();
+      if(S.sel>=0 && S.sel<S.marks.length){
+        var m=S.marks[S.sel];
+        m.kind=S.add; m.mm=S.size[S.add]*(m.sc||1); custom(); selPanel();
+      }
+      return;
+    }
     if(ev.key!=='Delete' && ev.key!=='Backspace') return;
     var t=ev.target.tagName;
     if(t==='INPUT'||t==='TEXTAREA'||t==='SELECT') return;
