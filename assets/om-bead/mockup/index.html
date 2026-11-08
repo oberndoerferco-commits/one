@@ -780,6 +780,26 @@ function addAt(p){
   custom(); selPanel();
 }
 
+/* Rotate v by the same turn that carries a to b. Dragging a mark used to
+   set its centre to whatever the ray hit, which threw away the offset
+   between the mark's middle and the spot you actually took hold of - so
+   the mark snapped under the finger the instant it started to move. The
+   grab is a rotation now, and it is applied to the centre, so the mark
+   goes where the finger goes and nowhere else. */
+function turnBy(a, b, v){
+  var ax=[a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]];
+  var sn=Math.hypot(ax[0],ax[1],ax[2]);
+  var cs=Math.max(-1,Math.min(1,dot(a,b)));
+  if(sn<1e-9) return [v[0],v[1],v[2]];
+  ax=[ax[0]/sn, ax[1]/sn, ax[2]/sn];
+  var th=Math.atan2(sn,cs), ct=Math.cos(th), st=Math.sin(th);
+  var kv=[ax[1]*v[2]-ax[2]*v[1], ax[2]*v[0]-ax[0]*v[2], ax[0]*v[1]-ax[1]*v[0]];
+  var kd=dot(ax,v), w=1-ct;
+  return [v[0]*ct+kv[0]*st+ax[0]*kd*w,
+          v[1]*ct+kv[1]*st+ax[1]*kd*w,
+          v[2]*ct+kv[2]*st+ax[2]*kd*w];
+}
+
 function wire(host){
   var cv=renderer.domElement, down=null, drag=false;
   cv.addEventListener('pointerdown', function(ev){
@@ -789,7 +809,12 @@ function wire(host){
     down={x:ev.clientX, y:ev.clientY, yaw:cam.yaw, pitch:cam.pitch,
           mark: (S.tool==='move' && p) ? pick(p) : -1};
     drag=false;
-    if(down.mark>=0){ S.sel=down.mark; selPanel(); }
+    if(down.mark>=0){
+      var mk=S.marks[down.mark];
+      down.grab=p;                       /* where the ball was taken hold of */
+      down.at=unit(mk.lon, mk.lat);      /* where the mark's middle was */
+      S.sel=down.mark; selPanel();
+    }
   });
   cv.addEventListener('pointermove', function(ev){
     if(!down) return;
@@ -800,9 +825,14 @@ function wire(host){
       var p=hitBall(ev);
       if(!p) return;
       var m=S.marks[down.mark];
-      m.lat=Math.asin(Math.max(-1,Math.min(1,p[2])))*R2D;
-      m.lon=Math.atan2(p[1],p[0])*R2D;
-      if(S.mode!=='custom'){ S.mode='custom'; designList(); modePanel(); }
+      var c=turnBy(down.grab, p, down.at);
+      var L=Math.hypot(c[0],c[1],c[2])||1;
+      m.lat=Math.asin(Math.max(-1,Math.min(1,c[2]/L)))*R2D;
+      m.lon=Math.atan2(c[1],c[0])*R2D;
+      /* the panel is not rebuilt mid-drag: that resets its scroll and
+         throws the page about under the finger. It is caught up on
+         release. */
+      S.mode='custom';
       rebuild(false); selPanel();
     } else {
       cam.yaw=down.yaw-dx*0.4;
@@ -819,7 +849,10 @@ function wire(host){
         S.marks.splice(k,1); S.sel=-1; custom(); selPanel();
       } else { S.sel=k; selPanel(); }
     }
-    if(down && drag && down.mark>=0) rebuild(true);
+    if(down && drag && down.mark>=0){
+      rebuild(true);
+      designList(); modePanel(); selPanel();
+    }
     down=null;
   });
   cv.addEventListener('wheel', function(ev){
@@ -1003,11 +1036,15 @@ function selPanel(){
      every slider nudge, which calls this too */
   if(S.sel !== lastSel){
     lastSel = S.sel;
-    if(S.sel >= 0){
-      var sec=document.getElementById('sec-sel');
-      if(sec && sec.scrollIntoView)
-        try{ sec.scrollIntoView({block:'nearest', behavior:'smooth'}); }
-        catch(e){ sec.scrollIntoView(); }
+    /* Only ever move the panel's own scrollbar. scrollIntoView walks up
+       to the page and scrolls that too, which on a narrow layout drags
+       the bead off the screen the moment a mark is tapped. */
+    var sec=document.getElementById('sec-sel');
+    var pan=document.querySelector('.panel');
+    if(S.sel>=0 && sec && pan && pan.scrollHeight > pan.clientHeight+2){
+      var top=sec.offsetTop - pan.offsetTop;
+      if(top < pan.scrollTop || top > pan.scrollTop + pan.clientHeight - 80)
+        pan.scrollTop = Math.max(0, top - 8);
     }
   }
   if(S.sel<0 || S.sel>=S.marks.length){
