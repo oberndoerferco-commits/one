@@ -247,39 +247,48 @@ LAYOUTS = [
     dict(name='Monogram Eights, Offset', note='the rings turned half a step, '
          'the way the LV ball staggers its rows: nothing sits directly under '
          'anything, and every step is 2.33 mm',
+         ball=dict(dia=7.0, cut=True),
          rings=_eights_offset(EIGHTS_OFFSET_LAT, om=0.803)),
 
     dict(name='Monogram Eights', note='three rings of eight in columns, every '
          'step the same: 2.20 mm on a 7 mm ball, nothing touching',
+         ball=dict(dia=7.0, cut=True),
          rings=_eights(EIGHTS_LAT, om=0.807)),
 
     dict(name='Monogram Eights, Big OM', note='the rings pushed out to make '
          'room for a 3.10 mm OM; the steps are no longer equal',
+         ball=dict(dia=7.0, cut=True),
          rings=_eights(EIGHTS_WIDE, om=1.148)),
 
     dict(name='Monogram Eights, Full Size', note='the OM at 3.54 mm with every '
          'step equal, which a 7 mm ball cannot hold - this one wants 9.5 mm',
+         ball=dict(dia=9.5, cut=True),
          rings=_eights(EIGHTS_LAT, om=1.311)),
 
 
     dict(name='Monogram Grid', note='the reference: four OM round the middle, '
          'outlined crosses on the cardinals, squared and circled crosses '
          'alternating on the diagonals, 925 at the foot',
+         ball=dict(dia=8.0, cut=False),
          rings=_grid(diagonal=['sq', 'circ'])),
 
     dict(name='Monogram Grid, Four Motifs', note='the same without the circled '
          'cross: squared on every diagonal',
+         ball=dict(dia=8.0, cut=False),
          rings=_grid()),
 
     dict(name='Monogram Grid, Swapped', note='the same lattice with the two '
          'crosses the other way round',
+         ball=dict(dia=8.0, cut=False),
          rings=_grid(cardinal='sq', diagonal='outl', cross=0.84)),
 
     dict(name='Monogram Grid, Circled', note='circled crosses on the diagonals',
+         ball=dict(dia=8.0, cut=False),
          rings=_grid(diagonal='circ', cross=0.86)),
 
     dict(name='Monogram Grid, Three Crosses', note='outlined on the cardinals, '
          'squared above and below, circled round the middle',
+         ball=dict(dia=8.0, cut=False),
          rings=[GRID['om'](1.20),
                 GRID['card_eq']('circ', 0.86),
                 GRID['card_up']('outl', 0.90),
@@ -288,23 +297,28 @@ LAYOUTS = [
 
     dict(name='Monogram Grid, Plain', note='every cross the small solid one, '
          'so the OM carries the whole pattern',
+         ball=dict(dia=8.0, cut=False),
          rings=_grid(cardinal='cross', diagonal='cross', cross=1.05)),
 
     dict(name='Monogram Grid, Big OM', note='the OM as large as the lattice '
          'will take, crosses eased back',
+         ball=dict(dia=8.0, cut=False),
          rings=_grid(om=1.32, cross=0.84)),
 
     dict(name='Monogram Grid, Quiet OM', note='a smaller OM, the crosses '
          'given their full drawn size',
+         ball=dict(dia=8.0, cut=False),
          rings=_grid(om=0.96, cross=0.96)),
 
     dict(name='Monogram Grid, Crowned', note='a ring of small crosses between '
          'the pattern and the hole, top and bottom',
+         ball=dict(dia=8.0, cut=False),
          rings=_grid(extra=[dict(lat=70, n=4, kinds=['cross'], scale=0.90,
                                  turn=45, mirror=False)])),
 
     dict(name='Monogram Grid, Two OM', note='OM on two opposite faces only, '
          'circled crosses on the other two',
+         ball=dict(dia=8.0, cut=False),
          rings=[dict(lat=0, n=2, kinds=['om'], scale=1.30, turn=0),
                 dict(lat=0, n=2, kinds=['circ'], scale=0.90, turn=90),
                 GRID['card_eq']('outl', 0.90),
@@ -314,6 +328,7 @@ LAYOUTS = [
 
     dict(name='Monogram Grid, 925 Band', note='925 four times round the '
          'middle instead of once at the foot',
+         ball=dict(dia=8.0, cut=False),
          rings=[GRID['om'](1.20),
                 GRID['card_eq']('n925', 0.80),
                 GRID['card_up']('outl', 0.90),
@@ -322,10 +337,12 @@ LAYOUTS = [
 
     dict(name='Monogram Grid, Bare', note='four OM and 925, polished ball '
          'between them',
+         ball=dict(dia=8.0, cut=False),
          rings=[GRID['om'](1.32), GRID['foot']('n925', 0.90)]),
 
     dict(name='Monogram Grid, Six OM', note='OM on every face the hole leaves '
          'free, 925 moved into the pattern',
+         ball=dict(dia=8.0, cut=False),
          rings=[GRID['om'](1.16),
                 GRID['foot']('om', 1.16),
                 GRID['card_eq']('n925', 0.78),
@@ -681,7 +698,9 @@ def build(stamps, out, dia=8.0, bore=1.2, depth=4.0, n=30, mark=1.0,
 
 if __name__ == '__main__':
     a = argparse.ArgumentParser()
-    a.add_argument('--dia', type=float, default=8.0)
+    a.add_argument('--dia', type=float, default=None,
+                   help='ball diameter; defaults to the one the chosen '
+                        'design was worked out for')
     a.add_argument('--bore', type=float, default=1.2,
                    help='diameter of the hole the post sits in')
     a.add_argument('--bore-depth', type=float, default=4.0,
@@ -712,6 +731,13 @@ if __name__ == '__main__':
             print(f'{d["name"]:22s} {d["note"]}')
         raise SystemExit(0)
     os.makedirs(os.path.dirname(o.out), exist_ok=True)
+    _ball = (LAYOUT_BY_NAME.get(o.layout) or {}).get('ball') or {}
+    if o.dia is None:
+        o.dia = _ball.get('dia', 8.0)
+    if not o.cut and _ball.get('cut'):
+        o.cut = True
+    print(f'{o.layout}: {o.dia:.2f} mm ball, '
+          + ('engraved' if o.cut else 'embossed'))
     if o.simple:
         PATTERN[:] = [q for q in PATTERN if q[0] in ('om', 'sq')]
     stamps = [ringed(stamp_from_pdf(PAGE, box=b, px=2200)) if nm == 'circ'

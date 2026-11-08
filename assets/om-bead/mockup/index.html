@@ -105,6 +105,10 @@ button.btn.wide{width:100%;text-align:left}
 .ring h3{margin:0 0 8px;font-size:12px;font-weight:600;display:flex;justify-content:space-between;gap:8px}
 .ring h3 span{font-family:var(--mono);font-weight:400;color:var(--mute);font-size:11px}
 .note{font-size:11.5px;color:var(--mute);margin:10px 0 0}
+.warnmsg{color:var(--warn)}
+#io textarea{width:100%;box-sizing:border-box;resize:vertical;margin-bottom:8px;
+  border:1px solid var(--line);border-radius:3px;background:var(--sunk);
+  color:var(--ink);font-family:var(--mono);font-size:11px;padding:7px}
 .sel-none{font-size:12px;color:var(--mute);margin:0}
 .pill{display:inline-block;font-family:var(--mono);font-size:11px;padding:2px 7px;border-radius:999px;
   background:var(--sunk);border:1px solid var(--line);color:var(--mute)}
@@ -175,6 +179,10 @@ button.btn.wide{width:100%;text-align:left}
       <h2>The piece</h2>
       <div id="piece"></div>
     </section>
+    <section>
+      <h2>Placement</h2>
+      <div id="io"></div>
+    </section>
   </aside>
 
   <footer class="foot">
@@ -229,6 +237,18 @@ function kindIndex(name){
 function applyDesign(i){
   var d=LAYOUTS[i];
   S.design=i; S.mode='design';
+  /* a design carries the ball it was worked out for. Monogram Eights is
+     even-stepped at 7 mm and nowhere else, so opening it on an 8 mm ball
+     would quietly break the one thing it is for. */
+  if(d.ball){
+    if(d.ball.dia) S.dia=+d.ball.dia;
+    S.cut = !!d.ball.cut;
+    S.scale = 1;
+  }
+  /* back to the drawn sizes, because the design's own scales are applied
+     on top of them. Without this, loading a design after the sliders have
+     been moved would scale an already-scaled size. */
+  if(KINDS.length) S.size = KINDS.map(function(k){ return k.mm; });
   S.rings=(d.rings||[]).map(function(r){
     return {lat:+r.lat||0, n:r.n|0, kinds:r.kinds.map(kindIndex),
             scale:(r.scale==null?1:+r.scale), turn:+r.turn||0,
@@ -974,9 +994,22 @@ function modePanel(){
     +'\u201cmarks offered\u201d stops adding any.'));
 }
 
+var lastSel = -2;
 function selPanel(){
   var host=document.getElementById('sel');
   host.innerHTML='';
+  /* bring the controls into view when a different mark is picked, so the
+     size and position sliders are where the eye already is - but not on
+     every slider nudge, which calls this too */
+  if(S.sel !== lastSel){
+    lastSel = S.sel;
+    if(S.sel >= 0){
+      var sec=document.getElementById('sec-sel');
+      if(sec && sec.scrollIntoView)
+        try{ sec.scrollIntoView({block:'nearest', behavior:'smooth'}); }
+        catch(e){ sec.scrollIntoView(); }
+    }
+  }
   if(S.sel<0 || S.sel>=S.marks.length){
     host.appendChild(el('p','sel-none','Tap a mark on the bead to select it, '
       +'then move it, resize it, turn it or take it off. To put a new one '
@@ -1040,25 +1073,95 @@ function paintSel(){
 function sizePanel(){
   var host=document.getElementById('sizes');
   host.innerHTML='';
+  /* what the slider says is the size the mark is on the ball. It used to
+     set a base that the design's ring scale then multiplied, so asking for
+     3.20 mm gave a 2.58 mm mark. */
   KINDS.forEach(function(k,i){
-    slider(host, k.label, 1.0, 4.5, 0.05, function(){ return S.size[i]; },
+    var on = S.marks.filter(function(m){ return m.kind===i; });
+    if(!on.length) return;
+    slider(host, k.label, 0.8, 4.5, 0.05,
+      function(){
+        var ms=S.marks.filter(function(m){ return m.kind===i; });
+        return ms.length ? ms[0].mm : S.size[i];
+      },
       function(v){
         S.size[i]=v;
-        S.marks.forEach(function(m){ if(m.kind===i) m.mm = v*(m.sc||1); });
+        S.marks.forEach(function(m){ if(m.kind===i){ m.mm=v; m.sc=1; } });
         redo();
       }, function(v){ return v.toFixed(2)+' mm'; });
   });
-  var rs=el('button','btn','Back to the drawn sizes'); rs.type='button';
+  var rs=el('button','btn','Back to this design\u2019s sizes'); rs.type='button';
   rs.addEventListener('click', function(){
-    S.size=KINDS.map(function(k){return k.mm;});
-    S.marks.forEach(function(m){ m.mm = S.size[m.kind]*(m.sc||1); });
-    redo(); sizePanel(); selPanel();
+    applyDesign(S.design); replace(); rebuild(true);
+    designList(); modePanel(); sizePanel(); selPanel();
   });
   host.appendChild(rs);
-  host.appendChild(el('p','note','Each logo keeps its own size, so the pattern '
-    +'reads as five marks of one family rather than one artwork scaled five '
-    +'ways. The ring sliders above multiply these; the slider on a selected '
-    +'mark overrides them for that one mark alone.'));
+  host.appendChild(el('p','note','These are the sizes on the ball, in '
+    +'millimetres. Moving one sets every mark of that logo; the slider on a '
+    +'selected mark changes that one alone.'));
+}
+
+/* Read back what "Copy placement" writes out. The loop was open: you
+   could take the placement away and edit it, but not bring it back. */
+function loadPlacement(text){
+  var d = JSON.parse(text);
+  if(!d || !Array.isArray(d.marks) || !d.marks.length)
+    throw new Error('no marks in that');
+  if(d.dia) S.dia = +d.dia;
+  if(d.bore) S.bore = +d.bore;
+  if(d.bore_depth) S.depth = +d.bore_depth;
+  if(d.relief) S.relief = +d.relief;
+  if(d.inset) S.inset = +d.inset;
+  S.cut = !!d.engraved;
+  S.scale = 1;
+  if(d.logo_mm) KINDS.forEach(function(k,i){
+    if(d.logo_mm[k.name]) S.size[i] = +d.logo_mm[k.name];
+  });
+  S.marks = d.marks.map(function(m){
+    var k = kindIndex(m.kind);
+    var mm = +m.mm || S.size[k];
+    return {lon:norm180(+m.lon||0), lat:+m.lat||0, kind:k, mm:mm,
+            sc:(S.size[k] ? mm/S.size[k] : 1), turn:+m.turn||0, ring:-1};
+  });
+  S.mode='custom'; S.sel=-1;
+}
+
+function ioPanel(msg, bad){
+  var host=document.getElementById('io');
+  host.innerHTML='';
+  var ta=el('textarea'); ta.id='io-text'; ta.rows=4;
+  ta.placeholder='Paste a placement here \u2014 the text that \u201cCopy '
+    +'placement\u201d puts on the clipboard.';
+  host.appendChild(ta);
+  var row=el('div','chips');
+  var load=el('button','btn','Load it'); load.type='button';
+  load.addEventListener('click', function(){
+    var t=document.getElementById('io-text').value.trim();
+    if(!t){ ioPanel('Nothing pasted yet.', true); return; }
+    try{
+      loadPlacement(t);
+      rebuild(true); designList(); modePanel(); sizePanel(); selPanel();
+      piecePanel();
+      ioPanel(S.marks.length+' marks loaded, ball '+S.dia.toFixed(2)+' mm '
+              +(S.cut?'engraved':'embossed')+'.', false);
+    }catch(e){
+      ioPanel('That did not read as a placement: '+e.message, true);
+    }
+  });
+  row.appendChild(load);
+  var copy=el('button','btn','Copy this one'); copy.type='button';
+  copy.addEventListener('click', function(){
+    copyOut(jsonText(), this, 'Copied');
+  });
+  row.appendChild(copy);
+  host.appendChild(row);
+  if(msg){
+    var n=el('p', bad?'note warnmsg':'note', msg);
+    host.appendChild(n);
+  }
+  host.appendChild(el('p','note','Every mark keeps its own size and place, so '
+    +'what you take away you can bring back \u2014 edit the numbers in a text '
+    +'editor and paste them in again.'));
 }
 
 function piecePanel(){
@@ -1223,12 +1326,15 @@ function run(doc){
   });
   S.size=KINDS.map(function(k){ return k.mm; });
   LAYOUTS=doc.layouts||[];
-  applyDesign(0);
+  var start=0;
+  for(var q=0;q<LAYOUTS.length;q++)
+    if(LAYOUTS[q].name==='Monogram Eights') start=q;
+  applyDesign(start);
   document.getElementById('boot').remove();
   setup();
   replace();
   rebuild(true);
-  designList(); modePanel(); sizePanel(); selPanel(); piecePanel();
+  designList(); modePanel(); sizePanel(); selPanel(); piecePanel(); ioPanel();
   place();
 
   var TOOLS={orbit:'t-orbit', move:'t-move', add:'t-add', del:'t-del'};
