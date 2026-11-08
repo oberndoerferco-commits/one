@@ -321,7 +321,7 @@ def _eights_offset(lat, om, outl=0.840, sq=0.738, circ=0.635, n925=1.003,
 # OM has to be pushed out, while the squared cross over the small
 # equatorial cross can come in.
 BIG = dict(om=3.07/2.70, outl=1.65/2.25, sq=1.40/2.10,
-           circ=1.60/2.60, n925=2.65/2.50, om2=1.65/1.65,
+           circ=1.65/2.60, n925=2.65/2.50, om2=1.65/1.65,
            cross=1.80/1.60)
 BIG_OM = dict(BIG, om=3.32/2.70, outl=1.35/2.25, circ=1.40/2.60)
 
@@ -740,11 +740,17 @@ def relief(depth, radius, W, Hh, height, inset):
 # the rim. The lip eases over 0.05 mm on each side, so a 0.16 mm
 # channel is very nearly a V-groove; magnified, it read as crumpled
 # wire. The squared cross is the same inversion and looks right because
-# its corners leave real pockets of ground. 1.55 gives the circle the
-# same: a field 0.29 mm wide all the way round - nearly twice what it
-# was - with the cross standing 0.97 mm across in the middle of it.
+# its corners leave real pockets of ground.
+#
+# 1.35, with the mark at 1.65 mm, stands the cross 1.15 mm across in a
+# field 0.23 mm wide - 67 per cent of the cut at full depth against the
+# squared cross's 63, so the ground still reads as ground. The position
+# itself is capped by the OM at the equator: 1.66 mm is as wide as the
+# whole mark goes, and below about 1.30 the field is back to the 0.18
+# that made it look like crumpled wire in the first place. 1.24 mm of
+# standing cross is the ceiling, and it costs the field to get there.
 RING_RATIO = 1.25
-FIELD_RATIO = 1.55
+FIELD_RATIO = 1.35
 
 
 def ringed(mask, ratio=RING_RATIO, weight=0.075, pad=8, invert=False):
