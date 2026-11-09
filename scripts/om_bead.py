@@ -865,9 +865,104 @@ def framed(mask, border=0.055):
     return m
 
 
+def edge_len(v, faces):
+    """Median triangle edge among the smallest tenth - the walls."""
+    e = np.linalg.norm(v[faces[:, [0, 1, 2]]] - v[faces[:, [1, 2, 0]]], axis=2)
+    return np.median(np.sort(e.ravel())[:max(1, e.size // 10)])
+
+
+def sample_relief(v, rel, W, Hh):
+    """The displacement map read at a set of points on the ball."""
+    n_ = np.linalg.norm(v, axis=1)
+    lat = np.degrees(np.arcsin(np.clip(v[:, 2] / n_, -1, 1)))
+    lon = np.degrees(np.arctan2(v[:, 1], v[:, 0]))
+    return ndimage.map_coordinates(
+        rel, [(90 - lat) / 180.0 * Hh, (lon + 180) / 360.0 * W],
+        order=1, mode='wrap')
+
+
+def on_a_wall(v, faces, rel, W, Hh, tol=1e-4):
+    """Which faces straddle an edge of the engraving.
+
+    Seven samples: the three corners, the three edge midpoints and the
+    middle. A face whose seven readings all agree is flat - either the
+    surface of the ball or the floor of a cut - and subdividing it buys
+    nothing. The midpoints matter: a stroke finer than one triangle can
+    pass clean between three corners that all read zero.
+    """
+    a, b, c = v[faces[:, 0]], v[faces[:, 1]], v[faces[:, 2]]
+    pts = [a, b, c, (a + b) / 2, (b + c) / 2, (c + a) / 2, (a + b + c) / 3]
+    d = np.stack([sample_relief(p, rel, W, Hh) for p in pts], axis=1)
+    return (d.max(1) - d.min(1)) > tol
+
+
+def refine(v, faces, red, radius):
+    """Subdivide the marked faces without opening a crack.
+
+    Splitting a triangle into four puts a new vertex at the middle of
+    each of its edges. The neighbour across one of those edges knows
+    nothing about it, so its edge stays a single straight segment while
+    this side now bends through a point that has been lifted onto the
+    sphere - a T-junction, and the mesh is no longer closed.
+
+    Red-green refinement is the usual answer and it is what this does.
+    Every edge of a marked face is split; any face that ends up with two
+    or three split edges is marked too and split into four; a face left
+    with exactly one is cut into two along it, which costs nothing and
+    keeps the seam shut. Both sides of every edge use the same midpoint
+    vertex, so there is nothing to crack.
+    """
+    nv = len(v)
+    red = red.copy()
+    ids = (np.minimum(faces[:, [0, 1, 2]], faces[:, [1, 2, 0]]).astype(np.int64)
+           * nv
+           + np.maximum(faces[:, [0, 1, 2]], faces[:, [1, 2, 0]]))
+    split = np.unique(ids[red])
+    while True:
+        k = np.isin(ids, split).sum(1)
+        more = (k >= 2) & ~red
+        if not more.any():
+            break
+        red |= more
+        split = np.union1d(split, ids[more].ravel())
+    inset = np.isin(ids, split)
+    k = inset.sum(1)
+
+    # one new vertex per split edge, lifted back onto the sphere
+    ea, eb = split // nv, split % nv
+    mid = (v[ea] + v[eb]) / 2.0
+    mid *= (radius / np.linalg.norm(mid, axis=1))[:, None]
+    v2 = np.vstack([v, mid])
+    pos = np.searchsorted(split, ids)
+    pos = np.where(inset, nv + pos, -1)              # (F,3) new vertex or -1
+
+    out = [faces[k == 0]]
+    f3 = faces[k == 3]
+    m3 = pos[k == 3]
+    if len(f3):
+        out.append(np.column_stack([f3[:, 0], m3[:, 0], m3[:, 2]]))
+        out.append(np.column_stack([m3[:, 0], f3[:, 1], m3[:, 1]]))
+        out.append(np.column_stack([m3[:, 2], m3[:, 1], f3[:, 2]]))
+        out.append(np.column_stack([m3[:, 0], m3[:, 1], m3[:, 2]]))
+    one = k == 1
+    if one.any():
+        f1, m1 = faces[one], pos[one]
+        which = np.argmax(m1 >= 0, axis=1)
+        for e in (0, 1, 2):
+            sel = which == e
+            if not sel.any():
+                continue
+            g, mm = f1[sel], m1[sel, e]
+            p, q, t = g[:, e], g[:, (e + 1) % 3], g[:, (e + 2) % 3]
+            out.append(np.column_stack([p, mm, t]))
+            out.append(np.column_stack([mm, q, t]))
+    return v2, np.vstack(out)
+
+
 def build(stamps, out, dia=8.0, bore=1.2, depth=4.0, n=30, mark=1.0,
           design=None, height=0.10, radii=None,
-          inset=0.025, cap=76.0, sub=7, W=7200, Hh=3600, cut=False):
+          inset=0.025, cap=76.0, sub=7, walls=0, W=7200, Hh=3600,
+          cut=False):
     # embossed, the marks stand proud and the ball under them is
     # smaller by that much; engraved, the ball is the full size and the
     # marks go into it. Either way the bead measures the 8 mm it is
@@ -904,15 +999,23 @@ def build(stamps, out, dia=8.0, bore=1.2, depth=4.0, n=30, mark=1.0,
     rel = ndimage.gaussian_filter(rel, 0.6, mode='wrap')
     ball = trimesh.creation.icosphere(subdivisions=sub, radius=r)
     v = ball.vertices.view(np.ndarray).copy()
-    n_ = np.linalg.norm(v, axis=1)
-    lat = np.degrees(np.arcsin(np.clip(v[:, 2] / n_, -1, 1)))
-    lon = np.degrees(np.arctan2(v[:, 1], v[:, 0]))
-    rr = (90 - lat) / 180.0 * Hh
-    cc = (lon + 180) / 360.0 * W
-    dr = ndimage.map_coordinates(rel, [rr, cc], order=1, mode='wrap')
-    v *= ((r + dr) / n_)[:, None]
-    m = trimesh.Trimesh(vertices=v, faces=ball.faces.view(np.ndarray).copy(),
-                        process=False)
+    f = ball.faces.view(np.ndarray).copy()
+    # Triangles only where they earn their keep. A uniform mesh fine
+    # enough for the walls carries that fineness over the whole ball,
+    # where nothing happens; this puts it on the 9 per cent of faces
+    # that sit on an edge, and finds them again after each pass, so the
+    # band being refined stays one triangle wide instead of growing
+    # fourfold.
+    for _ in range(walls):
+        red = on_a_wall(v, f, rel, W, Hh)
+        if not red.any():
+            break
+        v, f = refine(v, f, red, r)
+        print(f'   refined {red.sum()} faces on a wall: '
+              f'{len(f)} triangles, {edge_len(v, f)*1000:.1f} um on a wall')
+    v = v * ((r + sample_relief(v, rel, W, Hh)) /
+             np.linalg.norm(v, axis=1))[:, None]
+    m = trimesh.Trimesh(vertices=v, faces=f, process=False)
     m.process(validate=True)
     if bore and depth > 0:
         m = trimesh.boolean.difference([m, blind_bore(r, bore, depth)],
@@ -986,6 +1089,10 @@ if __name__ == '__main__':
                    help="grow the outlined cross's line by this much on "
                         "every side, in mm of the mark at its nominal size")
     a.add_argument('--sub', type=int, default=7)
+    a.add_argument('--walls', type=int, default=0, metavar='N',
+                   help='subdivide the triangles that sit on an engraving '
+                        'wall, N times over, leaving the rest of the ball '
+                        'alone')
     a.add_argument('--out', default='assets/om-bead/om-bead-8mm.stl')
     o = a.parse_args()
     if o.list:
@@ -1019,4 +1126,5 @@ if __name__ == '__main__':
               f'deepest {fd.max():.3f} mm in')
     build(fields, o.out, dia=o.dia, bore=o.bore, depth=o.bore_depth,
           n=o.marks, mark=o.mark, radii=radii, inset=o.inset,
-          design=o.layout, height=o.relief, sub=o.sub, cut=o.cut)
+          design=o.layout, height=o.relief, sub=o.sub, walls=o.walls,
+          cut=o.cut)
