@@ -118,6 +118,8 @@ var S = {
                      // the shadow still there, the shading not.
   pitch: 0.26,       // mm, centre to centre of the ruled hatching
   hatch: 0.10,       // mm, weight of one hatch line
+  optical: true,     // space the letters by the paper they leave,
+                     // not by the steps the artwork happens to have
   frame: true,       // the plate itself. Off keeps the arch and the
                      // banner's place, and drops the surround.
   banner: true,      // the swallowtail under the plate
@@ -187,7 +189,15 @@ function layout(){
   var L = DOC.letters, n = L.length;
   var step = [];
   for (var i = 0; i < n - 1; i++){
-    var d = (L[i+1].angle - L[i].angle) * Math.PI / 180 * DOC.arc.r_base;
+    /* Two ways to decide where the next letter goes. The artwork's own
+       step, which is where it was drawn - 18% apart end to end, and the
+       paper those steps leave between letters 50% uneven, which is the
+       number the eye is actually reading. Or the optical fit measured
+       off the letters' profiles, which is the same word length with
+       that figure at nil. */
+    var d = S.optical && DOC.fit
+      ? DOC.fit[i]
+      : (L[i+1].angle - L[i].angle) * Math.PI / 180 * DOC.arc.r_base;
     step.push(d * mm + S.track);
   }
   var at = [0];
@@ -868,6 +878,7 @@ function panel(){
   var chips = h('div', 'chips');
   c.appendChild(chips);
   [['Engraved','engraved'], ['The drawing\u2019s own lines','detail'],
+   ['Optical spacing','optical'],
    ['Frame','frame'], ['Banner','banner'], ['Hatching','hatching'],
    ['Leave the lit side blank','inlay'],
    ['Black and white','bw'],

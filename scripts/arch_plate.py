@@ -252,6 +252,87 @@ def fill_chips(mask, min_area):
     return mask | small[lab]
 
 
+def profile(mask, cx, cy, th, r_base, cap, rows=200):
+    """The letter's left and right silhouette, row by row, upright.
+
+    Spacing is judged on these, not on the letters' boxes: what the eye
+    reads between two letters is the area of paper between their
+    PROFILES, and an R followed by an F leaves a very different hole
+    from an R followed by an O at the same box separation.
+    """
+    ys, xs = np.nonzero(mask)
+    zx = xs - cx
+    zy = cy - ys
+    c, s_ = np.cos(th), np.sin(th)
+    lx = zx * c - zy * s_
+    ly = zx * s_ + zy * c
+    y = r_base - ly                       # svg sense: baseline 0, cap -cap
+    k = np.floor((y + cap) / cap * (rows - 1)).astype(int)
+    ok = (k >= 0) & (k < rows)
+    k, lx = k[ok], lx[ok]
+    left = np.full(rows, np.nan)
+    right = np.full(rows, np.nan)
+    order = np.argsort(k)
+    k, lx = k[order], lx[order]
+    bounds = np.searchsorted(k, np.arange(rows + 1))
+    for r in range(rows):
+        a, b = bounds[r], bounds[r + 1]
+        if b > a:
+            left[r] = lx[a:b].min()
+            right[r] = lx[a:b].max()
+    return left, right
+
+
+def optical_steps(profs, steps, cap, limit=0.5, rows=200):
+    """Separations that leave the same amount of paper between every pair.
+
+    The source's own spacing runs 109 to 131 px centre to centre - 20
+    per cent uneven - because it was drawn by hand, and re-striking it
+    on a new arch carries every one of those gaps along unexamined.
+
+    For a pair at separation s the gap is the area between the left
+    letter's right profile and the right letter's left one, each row
+    clamped to `limit` cap heights so that a deep void (under an F's
+    arm, say) counts for something without counting for everything.
+    That area rises with s, so bisection finds the s that hits a target,
+    and a second bisection picks the target that keeps the word the
+    length it already is. Nothing here is judged by eye.
+    """
+    dy = cap / (rows - 1)
+    cl = limit * cap
+
+    def gap(i, s):
+        r = profs[i][1]
+        l = profs[i + 1][0]
+        ok = ~np.isnan(r) & ~np.isnan(l)
+        if not ok.any():
+            return 0.0
+        w = np.clip((l[ok] + s) - r[ok], 0.0, cl)
+        return float(w.sum() * dy)
+
+    def solve(i, target):
+        lo, hi = 0.0, 6.0 * cap
+        for _ in range(60):
+            mid = (lo + hi) / 2
+            if gap(i, mid) < target:
+                lo = mid
+            else:
+                hi = mid
+        return (lo + hi) / 2
+
+    want = float(np.sum(steps))
+    lo, hi = 1e-6, cl * cap * 4
+    for _ in range(60):
+        t = (lo + hi) / 2
+        tot = sum(solve(i, t) for i in range(len(steps)))
+        if tot < want:
+            lo = t
+        else:
+            hi = t
+    t = (lo + hi) / 2
+    return [solve(i, t) for i in range(len(steps))], t
+
+
 def fill_nicks(mask, rad, min_area):
     """Close the highlight cuts that break the letter's outer edge.
 
@@ -448,7 +529,14 @@ def trace_mask(mask, to_local, pad=4, smooth=0.6):
     return svg
 
 
-SERIF = '/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf'
+# The plate's letters are a Victorian slab - blunt rectangular serifs,
+# heavy, high contrast between stem and serif. Liberation Serif, which
+# this used first, is a Times clone: a Transitional, two centuries and
+# a different skeleton away, and much lighter in colour. Against the
+# plate it read as a caption someone added later. DejaVu Serif Bold is
+# a slab with the same blunt serif, so the ribbon belongs to the same
+# drawing.
+SERIF = '/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf'
 
 
 def set_text(words, font_path=SERIF):
@@ -516,6 +604,8 @@ def main():
     ap.add_argument('--banner', default='MADE IN ITALY',
                     help='the line of type for the banner under the plate; '
                          'empty for none')
+    ap.add_argument('--banner-font', default=SERIF, dest='banner_font',
+                    help='the face the ribbon is set in')
     ap.add_argument('--ink', type=float, default=INK)
     ap.add_argument('--hilight', type=float, default=HILIGHT)
     ap.add_argument('--deshadow', default='0,0', metavar='DX,DY',
@@ -529,6 +619,11 @@ def main():
                          'in source pixels. It is also how far a concave '
                          "corner of the letterform is rounded, so it is "
                          'the knob for how soft the letters read')
+    ap.add_argument('--gaplimit', type=float, default=0.5, metavar='F',
+                    help='how deep a void between two letters still '
+                         'counts towards the gap, in cap heights. It '
+                         'stops the hollow under an F\'s arm swamping '
+                         'the pair it belongs to')
     ap.add_argument('--nicks', type=float, default=0.004, metavar='MM2',
                     help='cuts bitten into the side of a stroke bigger '
                          'than this are closed up; below it they are the '
@@ -644,9 +739,10 @@ def main():
     sdx, sdy = (int(round(float(v) * U)) for v in o.deshadow.split(','))
     px_mm2 = (cap / 10.74) ** 2                  # working pixels per mm2
     chip_px = o.chips * px_mm2
-    letters = []
+    letters, profs, angles = [], [], []
     for ch, (_, d) in zip(o.text, bodies):
         th, to_local = unroll(d['mask'], centre, r_base)
+        angles.append(th)
         clean = fill_chips(d['mask'], chip_px)
         if o.nicks > 0:
             clean = clean | fill_nicks(clean, int(round(o.round_px * U)),
@@ -676,6 +772,7 @@ def main():
         ys, xs = np.nonzero(body)
         edge = [to_local((x, y)) for x, y in
                 ((xs.min(), ys.mean()), (xs.max() + 1, ys.mean()))]
+        profs.append(profile(body, centre[0], centre[1], th, r_base, cap))
         letters.append(dict(ch=ch, angle=float(np.degrees(th)),
                             left=min(e[0] for e in edge),
                             right=max(e[0] for e in edge),
@@ -686,11 +783,40 @@ def main():
               f'dropped), '
               f'{shade.sum() / max(body.sum(), 1):.0%} hatched')
 
+    # how the artwork spaces them, centre to centre along the baseline
+    steps = [(angles[i + 1] - angles[i]) * r_base
+             for i in range(len(angles) - 1)]
+    fit, target = optical_steps(profs, steps, cap, limit=o.gaplimit)
+
+    def spread(v):
+        v = np.asarray(v, float)
+        return (v.max() - v.min()) / v.mean()
+
+    def gaps(st):
+        dy = cap / 199.0
+        out = []
+        for i, ss in enumerate(st):
+            r, l = profs[i][1], profs[i + 1][0]
+            ok = ~np.isnan(r) & ~np.isnan(l)
+            w = np.clip((l[ok] + ss) - r[ok], 0.0, o.gaplimit * cap)
+            out.append(float(w.sum() * dy))
+        return out
+
+    g0, g1 = gaps(steps), gaps(fit)
+    print(f'   spacing: the artwork\'s steps run {min(steps):.0f} to '
+          f'{max(steps):.0f} px, {spread(steps):.0%} apart, and the paper '
+          f'they leave between letters {min(g0) / cap**2:.3f} to '
+          f'{max(g0) / cap**2:.3f} cap^2 - {spread(g0):.0%} uneven')
+    print(f'   optical: steps {min(fit):.0f} to {max(fit):.0f} px for the '
+          f'same word length, paper {min(g1) / cap**2:.3f} to '
+          f'{max(g1) / cap**2:.3f} - {spread(g1):.1%} uneven')
+
     doc = dict(
         source=os.path.basename(o.image),
+        fit=[float(v) for v in fit],
         px=dict(w=int(gray.shape[1]), h=int(gray.shape[0])),
         shadow=dict(dx=sdx, dy=sdy),
-        banner=set_text(o.banner) if o.banner else None,
+        banner=set_text(o.banner, o.banner_font) if o.banner else None,
         arc=dict(cx=centre[0], cy=centre[1], r_top=ct[2], r_bot=rb_mean,
                  r_bot_wander=rb_dev, r_base=r_base, cap=cap,
                  x0=int(x0), x1=int(x1),
