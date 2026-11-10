@@ -115,6 +115,18 @@ var S = {
   edge: 0,           // mm, the line where the hatching stops
   pitch: 0.26,       // mm, centre to centre of the ruled hatching
   hatch: 0.10,       // mm, weight of one hatch line
+  banner: true,      // the swallowtail under the plate
+  bgap: -1.10,       // mm, from the plate's lower keyline to the banner.
+                     // Negative tucks the band up BEHIND the plate, which
+                     // is what joins the two: the plate's own keyline is
+                     // then the line they share and the ribbon comes out
+                     // from under it rather than hanging below it.
+  bdepth: 5.80,      // mm, depth below that keyline - what is on show,
+                     // whatever the overlap above it
+  bwidth: 46.0,      // mm, its length along the arc
+  bnotch: 2.60,      // mm, how far the swallowtail is cut in
+  bcap: 2.90,        // mm, cap height of the banner's type
+  btrack: 0.55,      // mm, between its letters
   shadow: 0,         // mm, how far a cast shadow drops. The drawing's own
                      // is welded into the silhouette and cannot be taken
                      // off it cleanly, so this adds a second one.
@@ -388,6 +400,98 @@ function clearance(lay, r){
   return { mm: worst, ch: who };
 }
 
+/* The swallowtail under the plate. Its two edges are arcs about the same
+   centre as everything else, so it sits concentric with the plate rather
+   than merely near it, and each end is cut with a V - the classic banner
+   finish, and the thing that stops a band under a plate reading as an
+   afterthought.
+
+   It is JOINED to the plate, not set below it. The band runs up past the
+   plate's lower keyline and is drawn before the plate, so the plate's
+   own paper covers the overlap and its keyline carries straight across:
+   one outline, a ribbon coming out from under the plate. Two bands with
+   a gap between them would be two drawings on one sheet.
+
+   Because the top of the band is hidden, its depth is measured from the
+   plate's keyline down rather than from its own top edge - otherwise
+   deepening the overlap would eat the part that shows. The V is cut to
+   the middle of what shows, which puts the two wing tips the same
+   distance above and below it.
+
+   The type is set along it, each letter turned to its own radius the way
+   the name is. It arrives as outlines rather than as a font: a drawing
+   that names a typeface renders differently on a machine without it, and
+   a plate going to a maker is the wrong place to discover that. */
+function bannerPath(lay, r){
+  var R = lay.R;
+  if (R === Infinity){
+    var y0 = r.yBot + S.bgap;        // where the band starts
+    var yv = r.yBot, y1 = r.yBot + S.bdepth;
+    var ym = (yv + y1) / 2;          // middle of the VISIBLE band
+    var hw = S.bwidth / 2;
+    return { d: 'M' + [-hw, y0] + 'L' + [hw, y0] + 'L' + [hw - S.bnotch, ym] +
+                'L' + [hw, y1] + 'L' + [-hw, y1] + 'L' + [-hw + S.bnotch, ym] +
+                'Z',
+             base: ym + S.bcap / 2, mid: ym, straight: true };
+  }
+  var rt = r.rb - S.bgap;            // bgap < 0 lifts it behind the plate
+  var rv = r.rb, rb = r.rb - S.bdepth, rm = (rv + rb) / 2;
+  var w = (S.bwidth / 2) / rm, dn = S.bnotch / rm;
+  var P = function(rr, t){ return [rr * Math.sin(t), R - rr * Math.cos(t)]; };
+  var big = 0;
+  return {
+    d: 'M' + P(rt, -w) +
+       'A' + rt + ' ' + rt + ' 0 ' + big + ' 1 ' + P(rt, w) +
+       'L' + P(rm, w - dn) + 'L' + P(rb, w) +
+       'A' + rb + ' ' + rb + ' 0 ' + big + ' 0 ' + P(rb, -w) +
+       'L' + P(rm, -w + dn) + 'Z',
+    base: rm - S.bcap / 2, mid: rm, straight: false
+  };
+}
+
+function drawBanner(g, lay, r, cInk, cPlate, cKey){
+  if (!S.banner || !DOC.banner) return;
+  var B = DOC.banner, bp = bannerPath(lay, r), R = lay.R;
+  var plate = el('path');
+  plate.setAttribute('d', bp.d);
+  plate.setAttribute('fill', cPlate);
+  plate.setAttribute('stroke', cKey || cInk);
+  plate.setAttribute('stroke-width', S.key);
+  plate.setAttribute('stroke-linejoin', 'round');
+  g.appendChild(plate);
+
+  var s = S.bcap / B.cap;                       // font units -> mm
+  var adv = [], total = 0;
+  B.glyphs.forEach(function(gl, i){
+    var a = gl.adv * s + (i < B.glyphs.length - 1
+      ? (B.kern[i] || 0) * s + S.btrack : 0);
+    adv.push(a); total += a;
+  });
+  var type = el('g');
+  type.setAttribute('fill', cInk);
+  g.appendChild(type);
+  var at = -total / 2;
+  B.glyphs.forEach(function(gl, i){
+    if (gl.d){
+      var cx = at + gl.adv * s / 2, t, tr;
+      if (R === Infinity){
+        tr = 'translate(' + cx + ' ' + bp.base + ')';
+      } else {
+        t = cx / bp.base;
+        tr = 'translate(' + (bp.base * Math.sin(t)) + ' ' +
+             (R - bp.base * Math.cos(t)) + ') rotate(' + (t * 180 / Math.PI) + ')';
+      }
+      var pth = el('path');
+      pth.setAttribute('d', gl.d);
+      // font units are y-up and centred on the glyph's own origin
+      pth.setAttribute('transform', tr + ' scale(' + s + ' ' + (-s) + ') ' +
+                       'translate(' + (-gl.adv / 2) + ' 0)');
+      type.appendChild(pth);
+    }
+    at += adv[i];
+  });
+}
+
 /* --- drawing --------------------------------------------------------- */
 
 function draw(){
@@ -421,6 +525,9 @@ function draw(){
   var cInk = S.bw ? '#000000' : '#2b2825';
 
   var fp = framePath(lay, r);
+  // before the plate: the plate's paper hides the overlap and its
+  // keyline is then the line the two shapes share
+  drawBanner(g, lay, r, cInk, cPlate, cKey);
   var plate = el('path');
   plate.setAttribute('d', fp);
   plate.setAttribute('fill', cPlate);
@@ -583,8 +690,8 @@ function draw(){
     }
   });
 
-  // fit the view to the plate with a little air
-  var bb = plate.getBBox();
+  // fit the view to everything drawn, with a little air
+  var bb = svg.getBBox();
   var pad = Math.max(bb.width, bb.height) * 0.06 + S.key;
   svg.setAttribute('viewBox', [bb.x - pad, bb.y - pad,
                                bb.width + 2*pad, bb.height + 2*pad].join(' '));
@@ -634,8 +741,9 @@ function panel(){
   p.innerHTML = '';
   var grid = h('div', 'grid');
   p.appendChild(grid);
-  var a = h('div'), b = h('div'), c = h('div');
+  var a = h('div'), b = h('div'), c = h('div'), d = h('div');
   grid.appendChild(a); grid.appendChild(b); grid.appendChild(c);
+  grid.appendChild(d);
   var mm = function(v){ return v.toFixed(2) + ' mm'; };
 
   sync = [];
@@ -672,9 +780,23 @@ function panel(){
     function(){ return S.round; }, function(v){ S.round = v; },
     function(v){ return Math.round(v*100) + '%'; }));
 
+  sync.push(slider(d, 'Banner overlap', -4, 4, 0.05,
+    function(){ return -S.bgap; }, function(v){ S.bgap = -v; }, mm));
+  sync.push(slider(d, 'Banner depth', 2, 14, 0.05,
+    function(){ return S.bdepth; }, function(v){ S.bdepth = v; }, mm));
+  sync.push(slider(d, 'Banner width', 16, 110, 0.5,
+    function(){ return S.bwidth; }, function(v){ S.bwidth = v; }, mm));
+  sync.push(slider(d, 'Swallowtail', 0, 8, 0.05,
+    function(){ return S.bnotch; }, function(v){ S.bnotch = v; }, mm));
+  sync.push(slider(d, 'Banner cap height', 1.2, 7, 0.02,
+    function(){ return S.bcap; }, function(v){ S.bcap = v; }, mm));
+  sync.push(slider(d, 'Banner letter spacing', -0.3, 2.5, 0.01,
+    function(){ return S.btrack; }, function(v){ S.btrack = v; }, mm));
+
   var chips = h('div', 'chips');
   c.appendChild(chips);
   [['Engraved','engraved'], ['The drawing\u2019s own lines','detail'],
+   ['Banner','banner'],
    ['Leave the lit side blank','inlay'],
    ['Black and white','bw'],
    ['Source underneath','ghost'],

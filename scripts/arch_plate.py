@@ -323,6 +323,52 @@ def trace_mask(mask, to_local, pad=4, smooth=0.6):
     return svg
 
 
+SERIF = '/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf'
+
+
+def set_text(words, font_path=SERIF):
+    """A line of type as outlines, so nothing downstream needs the font.
+
+    A drawing that names a font is a drawing that renders differently on
+    a machine that does not have it, and a plate going to a maker is the
+    wrong place to find that out. Outlines travel.
+
+    Font units throughout - y up, as the font has it - with the em and
+    the cap height carried alongside so the viewer can scale by whichever
+    it wants. The viewer flips y.
+    """
+    from fontTools.ttLib import TTFont
+    from fontTools.pens.svgPathPen import SVGPathPen
+    f = TTFont(font_path)
+    gs = f.getGlyphSet()
+    cmap = f.getBestCmap()
+    upem = f['head'].unitsPerEm
+    cap = getattr(f['OS/2'], 'sCapHeight', 0) or int(0.7 * upem)
+    kern = {}
+    if 'kern' in f:
+        for tbl in f['kern'].kernTables:
+            kern.update(tbl.kernTable)
+    out = []
+    for ch in words:
+        if ch == ' ':
+            out.append(dict(ch=' ', adv=gs[cmap[ord(' ')]].width, d=''))
+            continue
+        name = cmap[ord(ch)]
+        pen = SVGPathPen(gs)
+        gs[name].draw(pen)
+        out.append(dict(ch=ch, adv=gs[name].width, d=pen.getCommands()))
+    pairs = []
+    for a, b in zip(words, words[1:]):
+        if a == ' ' or b == ' ':
+            pairs.append(0)
+            continue
+        k = kern.get((cmap[ord(a)], cmap[ord(b)]), 0)
+        pairs.append(k)
+    return dict(text=words, upem=upem, cap=cap,
+                font=f['name'].getDebugName(4) or 'serif',
+                glyphs=out, kern=pairs)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('image')
@@ -336,6 +382,9 @@ def main():
                          'It recovers no detail, but every mask boundary '
                          'is then quantised on a finer grid, and that '
                          'quantisation is what the ragged edges are')
+    ap.add_argument('--banner', default='MADE IN ITALY',
+                    help='the line of type for the banner under the plate; '
+                         'empty for none')
     ap.add_argument('--ink', type=float, default=INK)
     ap.add_argument('--hilight', type=float, default=HILIGHT)
     ap.add_argument('--deshadow', default='11,18', metavar='DX,DY',
@@ -484,6 +533,7 @@ def main():
         source=os.path.basename(o.image),
         px=dict(w=int(gray.shape[1]), h=int(gray.shape[0])),
         shadow=dict(dx=sdx, dy=sdy),
+        banner=set_text(o.banner) if o.banner else None,
         arc=dict(cx=centre[0], cy=centre[1], r_top=ct[2], r_bot=rb_mean,
                  r_bot_wander=rb_dev, r_base=r_base, cap=cap,
                  x0=int(x0), x1=int(x1),

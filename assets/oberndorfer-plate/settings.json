@@ -11,5 +11,12 @@
   "ghost": false,
   "reuse": false,
   "bw": true,
-  "shadow": 0
+  "shadow": 0,
+  "banner": true,
+  "bgap": -1.1,
+  "bdepth": 5.8,
+  "bwidth": 46.0,
+  "bnotch": 2.6,
+  "bcap": 2.9,
+  "btrack": 0.55
 }
