@@ -252,6 +252,73 @@ def fill_chips(mask, min_area):
     return mask | small[lab]
 
 
+def fill_nicks(mask, rad, min_area):
+    """Close the highlight cuts that break the letter's outer edge.
+
+    Some of the engraved highlights run out through the side of a
+    stroke, so they are not holes at all - they are slits bitten into
+    the silhouette, and no hole-filling finds them. Closing does: it
+    fills a concavity narrower than the disc and leaves a convex one
+    alone, so serifs survive it.
+
+    On its own, though, closing is blunt. It fills every sharp concave
+    corner in the drawing too, which is every place a serif meets a
+    stem: at r=5 it adds 3.5% to a letter and there is no radius at
+    which that stops growing. But the two are not the same size. Across
+    the eleven letters it makes 667 patches, and their areas run 0.005
+    mm2 at the median - the corners - against 0.1 to 1.6 for the slits.
+    Keep the patches above min_area and 603 of the 667 go away, with
+    16.6 of the 19.3 mm2 kept. The letter's corners stay sharp.
+    """
+    st = np.hypot(*np.ogrid[-rad:rad + 1, -rad:rad + 1]) <= rad
+    new = ndimage.binary_closing(mask, st) & ~mask
+    lab, k = ndimage.label(new)
+    if not k:
+        return np.zeros_like(mask)
+    area = ndimage.sum(new, lab, range(1, k + 1))
+    big = np.zeros(k + 1, bool)
+    big[1:] = area >= min_area
+    fill = big[lab]
+
+    # A nick is a dead-end slit, so the closing swallows the whole of
+    # it and no paper is left behind. A gap that merely has a narrow
+    # MOUTH is a different animal: the closing caps the mouth and the
+    # wide part behind it becomes an enclosed counter that the letter
+    # never had. The E's arm gaps are exactly that - the cast shadow
+    # welded to its right side pinches each one to a slit - and capping
+    # them gave the E two counters and turned it into something else.
+
+    # So the rule, and it needs no threshold: sealing a nick must not
+    # create a counter. Fill, look for holes that were not there
+    # before, and drop whichever patches made them.
+    # And the other way a fill can change the letter rather than repair
+    # it: bridging. The umlaut's two dots sit close enough that the
+    # closing joins them into a bowtie, and no hole appears to give it
+    # away - a bridge makes a neck, not a counter. So a patch that
+    # touches two separate marks is a bridge and is dropped.
+    mlab, _ = ndimage.label(mask)
+    for i, sl in enumerate(ndimage.find_objects(lab), start=1):
+        if sl is None or not big[i]:
+            continue
+        pad = tuple(slice(max(0, a.start - 2), a.stop + 2) for a in sl)
+        patch = ndimage.binary_dilation(lab[pad] == i, np.ones((3, 3)))
+        touched = np.unique(mlab[pad][patch & (mlab[pad] > 0)])
+        if len(touched) > 1:
+            big[i] = False
+    fill = big[lab]
+
+    grown = mask | fill
+    before = ndimage.binary_fill_holes(mask) & ~mask
+    after = ndimage.binary_fill_holes(grown) & ~grown
+    made = after & ~ndimage.binary_dilation(before, np.ones((3, 3)))
+    if made.any():
+        touch = ndimage.binary_dilation(made, np.ones((3, 3))) & fill
+        guilty = np.unique(lab[touch])
+        big[guilty[guilty > 0]] = False
+        fill = big[lab]
+    return fill
+
+
 def deshadow(mask, dx, dy):
     """The letter without the cast shadow fused to its lower right.
 
@@ -448,6 +515,11 @@ def main():
                          'in SOURCE pixels - scaled to the working grid '
                          'here, so the number means the same whatever '
                          '--upsample is; 0,0 leaves it welded on')
+    ap.add_argument('--nicks', type=float, default=0.08, metavar='MM2',
+                    help='cuts bitten into the side of a stroke bigger '
+                         'than this are closed up; below it they are the '
+                         "letterform's own corners and are left alone. 0 "
+                         'leaves every cut as drawn')
     ap.add_argument('--chips', type=float, default=1.00, metavar='MM2',
                     help='holes in a letter smaller than this are the '
                          "drawing's engraved highlights, not counters, "
@@ -556,11 +628,14 @@ def main():
           f'{tops - ct[2]:.1f} px')
 
     sdx, sdy = (int(round(float(v) * U)) for v in o.deshadow.split(','))
-    chip_px = o.chips * (cap / 10.74) ** 2       # mm2 -> working pixels
+    px_mm2 = (cap / 10.74) ** 2                  # working pixels per mm2
+    chip_px = o.chips * px_mm2
     letters = []
     for ch, (_, d) in zip(o.text, bodies):
         th, to_local = unroll(d['mask'], centre, r_base)
         clean = fill_chips(d['mask'], chip_px)
+        if o.nicks > 0:
+            clean = clean | fill_nicks(clean, 5 * U, o.nicks * px_mm2)
         chips = clean & ~d['mask']
         body = deshadow(clean, sdx, sdy)
         if body.sum() < 0.3 * d['mask'].sum():
