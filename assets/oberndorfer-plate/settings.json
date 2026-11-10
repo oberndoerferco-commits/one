@@ -19,5 +19,6 @@
   "bcap": 2.9,
   "btrack": 0.55,
   "bpoint": 4.2,
-  "bcurve": 0.55
+  "bcurve": 0.55,
+  "bround": 1.6
 }
