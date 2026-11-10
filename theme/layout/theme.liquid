@@ -17,9 +17,25 @@
     {%- render 'view-transition-opt-in' -%}
 
     {%- render 'meta-tags' -%}
+    {%- if template.name == 'product' and product.featured_media != blank -%}
+      {%- comment -%}
+        Product pages: the main photo sits far down a large document, so the browser found it late
+        (Lighthouse, 10 Nov 2026: 3.6 s of load delay on mobile). This hint starts it at once. The srcset
+        and sizes match the gallery's first image (snippets/product-media.liquid defaults and the gallery
+        sizes), so the browser reuses this download (it must come after the viewport meta tag in meta-tags,
+        or phones size it for a desktop-width page) instead of fetching a second copy.
+      {%- endcomment -%}
+      {%- liquid
+        assign lcp_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media
+        assign lcp_image = lcp_media.preview_image
+      -%}
+      {%- if lcp_image != blank -%}
+        <link rel="preload" as="image" fetchpriority="high" href="{{ lcp_image | image_url: width: 1200 }}" imagesrcset="{{ lcp_image | image_url: width: 240 }} 240w, {{ lcp_image | image_url: width: 352 }} 352w, {{ lcp_image | image_url: width: 640 }} 640w, {{ lcp_image | image_url: width: 832 }} 832w, {{ lcp_image | image_url: width: 1200 }} 1200w, {{ lcp_image | image_url: width: 1600 }} 1600w, {{ lcp_image | image_url: width: 1920 }} 1920w, {{ lcp_image | image_url: width: 2560 }} 2560w, {{ lcp_image | image_url: width: 3840 }} 3840w" imagesizes="(min-width: 750px) calc(100vw - 25rem - 24px), 100vw">
+      {%- endif -%}
+    {%- endif -%}
+
     {%- render 'stylesheets' -%}
     {%- render 'card-hover-effect-styles' -%}
-    {%- render 'fonts' -%}
     {%- render 'scripts' -%}
     {%- render 'theme-styles-variables' -%}
     {%- render 'color-palette' -%}
@@ -133,20 +149,6 @@
           const hasImmediateSection = headerSection.nextElementSibling?.classList.contains('shopify-section');
           if (!hasImmediateSection) {
             document.body.style.setProperty('--transparent-header-offset-boolean', '1');
-          }
-        })();
-
-        /**
-         * Sets the initial menu style (inline menu vs. drawer) on the header component.
-         * Mimics setHeaderMenuStyle() in utilities.js
-         */
-        (function setHeaderMenuStyle() {
-          const headerComponent = document.querySelector('#header-component');
-          if (headerComponent) {
-            const isTouchDevice = 'ontouchstart' in window && navigator.maxTouchPoints > 0;
-            const overflowList = headerComponent.querySelector('overflow-list');
-            const hasReachedMinimum = overflowList && overflowList.hasAttribute('minimum-reached');
-            headerComponent.dataset.menuStyle = isTouchDevice || hasReachedMinimum ? 'drawer' : 'menu';
           }
         })();
       </script>

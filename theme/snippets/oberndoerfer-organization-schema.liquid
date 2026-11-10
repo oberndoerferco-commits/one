@@ -2,6 +2,8 @@
   Oberndoerfer Milano - additive Organization entity (2026-09-03; description from the admin's shop description since 11 September so the writing stays the owner's). Rendered from
   snippets/meta-tags.liquid on every page. Social profiles come from the theme's
   social settings so they stay in one place.
+  hasMerchantReturnPolicy (10 Nov 2026): the store's own refund policy - 14 days from delivery, by
+  mail after contacting us. Fees and refund type are left out because the policy does not state them.
 {% endcomment %}
 {%- liquid
   assign same_as = ''
@@ -44,7 +46,15 @@
   "location": [
     { "@type": "Place", "name": "Miramare The Palace, Sanremo", "address": { "@type": "PostalAddress", "streetAddress": "Corso Matuzia 9", "postalCode": "18038", "addressLocality": "Sanremo", "addressRegion": "IM", "addressCountry": "IT" } },
     { "@type": "Place", "name": "Trax NYC, New York", "address": { "@type": "PostalAddress", "streetAddress": "64 W 47th St F-1", "postalCode": "10036", "addressLocality": "New York", "addressRegion": "NY", "addressCountry": "US" } }
-  ]{% if same_as_list.size > 0 %},
+  ],
+  "hasMerchantReturnPolicy": {
+    "@type": "MerchantReturnPolicy",
+    "applicableCountry": ["AT","BE","BG","HR","CY","CZ","DK","EE","FI","FR","DE","GR","HU","IE","IT","LV","LT","LU","MT","NL","PL","PT","RO","SK","SI","ES","SE","GB","CH","NO","US","CA","JP","AU","AE","SG","HK"],
+    "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+    "merchantReturnDays": 14,
+    "returnMethod": "https://schema.org/ReturnByMail"{% if shop.refund_policy.url != blank %},
+    "merchantReturnLink": {{ request.origin | append: shop.refund_policy.url | json }}{% endif %}
+  }{% if same_as_list.size > 0 %},
   "sameAs": {{ same_as_list | json }}{% endif %}
 }
 </script>

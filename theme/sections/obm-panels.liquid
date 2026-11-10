@@ -21,7 +21,9 @@
           {%- assign has_video = true -%}
           {%- assign poster = block.settings.image | image_url: width: 1920, format: 'pjpg' -%}
           {%- assign poster_m = block.settings.image_mobile | default: block.settings.image | image_url: width: 1400, format: 'pjpg' -%}
-          <video class="obm-panel__video" muted autoplay loop playsinline preload="metadata" poster="{{ poster }}" data-src-desktop="{{ vdesk }}" data-src-mobile="{{ vmob }}" data-poster-mobile="{{ poster_m }}" aria-label="{{ block.settings.image.alt | default: block.settings.eyebrow | escape }}"></video>
+          {%- comment -%} The poster is set by the script below for the right screen size, so phones no longer download the desktop poster first and then the phone one (10 Nov 2026). Without JavaScript the noscript picture stands in. {%- endcomment -%}
+          <video class="obm-panel__video" muted autoplay loop playsinline preload="metadata" data-poster-desktop="{{ poster }}" data-src-desktop="{{ vdesk }}" data-src-mobile="{{ vmob }}" data-poster-mobile="{{ poster_m }}" aria-label="{{ block.settings.image.alt | default: block.settings.eyebrow | escape }}"></video>
+          <noscript><img class="obm-panel__video" src="{{ poster }}" alt="{{ block.settings.image.alt | default: block.settings.eyebrow | escape }}" style="object-position: {{ block.settings.focal_x }}% {{ block.settings.focal_y }}%;"></noscript>
         {%- elsif block.settings.image != blank -%}
           {%- assign mobile = block.settings.image_mobile | default: block.settings.image -%}
           <picture>
@@ -59,7 +61,7 @@
     var mobile = window.matchMedia('(max-width: 749px)').matches;
     var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     vids.forEach(function (v) {
-      if (mobile && v.dataset.posterMobile) v.poster = v.dataset.posterMobile;
+      v.poster = (mobile && v.dataset.posterMobile) ? v.dataset.posterMobile : (v.dataset.posterDesktop || '');
       if (still) return;
       v.src = mobile ? v.dataset.srcMobile : v.dataset.srcDesktop;
       var p = v.play(); if (p && p.catch) p.catch(function () {});

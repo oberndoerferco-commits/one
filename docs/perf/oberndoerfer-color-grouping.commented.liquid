@@ -1,0 +1,661 @@
+{% comment %}
+  Oberndoerfer Milano - PRODUCT CARD COLOR SWATCHES (P0.3)
+  -------------------------------------------------------------------
+  Adds a swatch row under every card in a same-model, different-color
+  group, so shoppers can jump straight to another color's product page.
+  Every card stays visible and keeps its own price/title - this does
+  NOT collapse the grid down to one card per model (an earlier version
+  of this snippet did that; the founder asked to see every color card
+  again, just with swatches added).
+
+  DISPLAY LAYER ONLY. No product, variant, price, inventory or handle is
+  touched. Deleting this snippet just removes the swatch row - the grid
+  underneath is completely unaffected either way.
+
+  WHY THIS IS NEEDED
+  These products have NO color variant - verified via the Admin API, every
+  one reports options: [{name: "Title", values: ["Default Title"]}]. The
+  color exists only in the product title, so there is no native swatch UI
+  to hang this off of - it has to be built from the title string.
+
+  MATCHING RULE - and the two traps in it
+  A title is grouped only when it is exactly "<base> - <color>" AND <base>
+  is on the allowlist below. Two reasons the allowlist is not optional:
+
+  1. THE WATCH BOXES. The 2026-08 rename standardised ~25 watch boxes to
+     "[Model] - [Variant]", e.g. "8-Place Watchbox - Black Stud". Those
+     variants are NOT colors and those products are NOT the same model. A
+     generic " - " rule would group them wrongly.
+  2. "SAC" vs "SAC ALLIGATOR". Base matching is EXACT, never a prefix.
+     "SAC - Black" has base "SAC"; "SAC Alligator - Black" has base
+     "SAC Alligator". A prefix match would swallow the alligator range into
+     the calf one - different leather, very different price.
+
+  Titles using " in " rather than " - " are correctly left alone, which is
+  what keeps "The Mirror Handbag in Ostrich" out of the Mirror Handbag group.
+
+  TWO NAMING PATTERNS, TWO MATCHERS
+  Some families write color-first with no separator ("Brown Leather Pouf")
+  instead of "<base> - <color>". OB_SUFFIX_GROUPS handles those via an exact
+  trailing-words match instead of the hyphen split - same "no
+  prefix/substring matching" discipline as OB_GROUPS, just anchored to the
+  end of the string instead of a hyphen.
+
+  TO ADD A GROUP: add its exact base title to OB_GROUPS (hyphen pattern) or
+  OB_SUFFIX_GROUPS (color-first pattern) below.
+
+  KNOWN EXCEPTIONS:
+    - 8-Place Watch Box: titles mostly mix real colors (Green, Red, Grey...)
+      with one hardware variant pair (Black Stud vs Black Classic - stud vs
+      classic closure, not a color). Founder's call: exclude "Black Stud"
+      by exact title via OB_EXCLUDE_TITLES (stays singular, no swatch).
+    - Crocodile Wallet: only "- Grey" is ACTIVE; the others are DRAFT.
+      Drafts are absent from /products.json too, so the 2+ guard keeps this
+      inert until they go live, at which point it turns on by itself.
+    - Table Trunk: "Table Trunk" (bare, no color) can't join "Table Trunk -
+      Black" because the bare title doesn't match the hyphen split. Inert
+      today; fixing the bare title to include its color would turn this on.
+
+  Same PDP-side swatch group lists live in snippets/oberndoerfer-pdp-color-swatches.liquid
+  - keep all four lists (2 files x 2 matchers) in sync when adding a group.
+
+  10 Sept, later: the row keeps 6px under it so no ring is cut at the card edge; two-tone
+  names show a split dot; a bare base title ("Table Trunk") joins its family with the colour
+  read from its handle.
+
+  COLOUR DOTS (2026-09-10, owner: "show color instead of mini product images"):
+  each dot is now the colour named in the title (OB_COLOURS table, with
+  dark/light modifiers), and the average colour of the photograph when the
+  name is not in the table. The photograph is only used as a last resort.
+
+  RE-RENDERING: Shopify re-renders these grids on collection filtering and
+  paging, and this theme morphs DOM after load, so this runs again on a
+  debounced MutationObserver and is fully idempotent - it rebuilds from
+  scratch each pass and removes its own previous output first.
+
+  SWATCH ROW DISPLAY CAP (2026-08-15, Miu Miu reference pass): show at most
+  4 color dots per card, then a small "+N" for the rest, rather than every
+  color's dot in a row.
+
+  SWATCH ROW SPACING (2026-08-16): this row sits inside the same beige text
+  panel as title/price (see snippets/product-card-styles.liquid v5). The gap
+  is padding-block-start on THIS element rather than margin, so the gap stays
+  filled with the row's own beige background and no seam opens between two
+  independently-backgrounded elements. !important because a plain declaration
+  lost to a theme-base shorthand rule in the homepage product-list context.
+
+  PAGE-WIDE GROUPING (2026-08-21): cards used to be bucketed per GRID
+  CONTAINER. Invisible on a collection page (one grid), fatal on the
+  homepage, which runs two product-list rows that split every family, so no
+  family reached the 2-member threshold and the homepage had no swatches at
+  all. Buckets are now keyed on base title across the whole page.
+
+  COMPLETE FAMILIES (2026-08-22): page-wide grouping fixed the homepage but
+  left it inconsistent - Leather Watch Box and SAC had dots because two of
+  their colors happened to be in the rows, while The Mirror Handbag showed
+  none despite existing in five. Founder's call: every grouped card should
+  show its WHOLE color range, wherever it appears.
+
+  The family index is therefore built from /products.json (verified on this
+  storefront: 129 products, images included, drafts correctly absent) rather
+  than from whatever cards happen to share the page. Consequences worth
+  knowing:
+    - It is fetched ONCE PER SESSION and cached in sessionStorage, reduced to
+      {title, handle, img} first so the stored payload is small even though
+      the response is not.
+    - It is fetched on idle, AFTER a first synchronous DOM-based pass, so
+      this never delays anything and never renders less than the old version
+      did. The DOM pass is also the fallback if the fetch fails.
+    - On the first page of a session the dots can arrive a beat late, so any
+      card whose title parses into a group gets a reserved-height placeholder
+      row immediately - that is what ob-swatches--pending is for. Every later
+      page in the session reads the cache synchronously and never shifts.
+    - Colors are sorted alphabetically so the row is stable between pages
+      rather than following catalog order.
+{% endcomment %}
+{% style %}
+  .ob-swatches {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 7px;
+    margin-block-start: 0;
+    padding-block-start: 14px !important;
+    padding-block-end: 6px !important;
+    padding-inline: 2px;
+    min-height: 22px;
+  }
+  .ob-swatch {
+    display: block;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    background-color: #F0EBE3;
+    box-shadow: inset 0 0 0 1px rgba(24, 18, 12, 0.18);
+    outline-offset: 2px;
+    transition: box-shadow 0.18s ease;
+  }
+  .ob-swatch:hover,
+  .ob-swatch:focus-visible {
+    box-shadow: inset 0 0 0 1px rgba(24, 18, 12, 0.5);
+  }
+  .ob-swatch[aria-current='true'] {
+    box-shadow:
+      inset 0 0 0 1px rgba(24, 18, 12, 0.18),
+      0 0 0 1px #18120C;
+  }
+  .ob-swatch-count {
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    color: rgba(24, 18, 12, 0.55);
+    margin-inline-start: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ob-swatch { transition: none; }
+  }
+{% endstyle %}
+
+<script>
+  (function () {
+    /* Exact base titles only. See the snippet comment for why this is an
+       allowlist and not a generic " - " rule. */
+    var OB_GROUPS = [
+      'BAG MODEL 017', 'SAC', 'SAC Alligator', 'The Mirror Handbag',
+      'Briefcase', '3-Place Watch Box', '8-Place Watch Box', 'Leather Watch Box',
+      'Watch & Jewelry Box', 'Nabuk Leather Jewelry Box', 'Crochet Handbag',
+      'Mini Crochet Handbag', 'Leather Sofa', 'Crocodile Wallet', 'Table Trunk', 'Table Trunk with Fringes'
+    ];
+
+    var OB_EXCLUDE_TITLES = ['8-Place Watch Box - Black Stud'];
+
+    var OB_SUFFIX_GROUPS = ['Leather Coaster Set', 'Leather Pouf', 'Leather Tray'];
+
+    /* "<base> <colour>" with no hyphen, where the colour is the print, not the cloth (owner,
+       18 October: the Magenta and Ochre logo T-shirts swap between each other; each also comes
+       in white and black as its own option). The colour must be one known colour word, so the
+       plain "T-Shirt with Logo" (the star lattice) stays out. Labelled "Print" on the product page. */
+    var OB_PREFIX_GROUPS = ['T-Shirt with Logo'];
+
+    /* ONE CARD PER FAMILY, for the alligator SAC only (4 Oct). The 3 Oct version collapsed
+       every colour family on collection pages; the owner: "you see no other color of any
+       product anymore, i just wanted the sac and model 017 ... take back all of the color
+       options of the products, also the model 017 and sac, just show one model of the
+       alligator sac". So every family shows all its colour cards again, and only the bases
+       listed here keep their first card and hide the rest (the dots on the surviving card
+       still link to each colour's page). Collection pages only; Ready to Wear and the home
+       rows are never touched. */
+    var OB_COLLAPSE_BASES = ['sac alligator'];
+    /* 4 Oct, the owner: "remove color swatches from collection pages and just show them in
+       the product pages". Cards on collection pages get no dot row; the home rows keep
+       theirs; the product page has its own row (oberndoerfer-pdp-color-swatches). */
+    var OB_CARD_SWATCHES = {% if request.page_type == 'collection' %}false{% else %}true{% endif %};
+    var OB_ONE_PER_MODEL = {% if request.page_type == 'collection' and request.path contains 'ready-to-wear' %}false{% elsif request.page_type == 'collection' %}true{% else %}false{% endif %};
+    var SWATCH_VISIBLE_CAP = 4;
+    var CATALOG_KEY = 'obm-catalog-v1';
+
+    var busy = false;
+    var familyIndex = null;   // Map base -> [{color, href, img}] once loaded
+    var catalogTried = false;
+
+    /* ---- colour of a dot ---- */
+
+    var OB_COLOURS = [
+      ['black', '#1a1715'], ['nero', '#1a1715'], ['white', '#f5f4f1'], ['bianco', '#f5f4f1'],
+      ['ivory', '#f1ebdd'], ['cream', '#efe6d3'], ['off-white', '#efe9dc'], ['ecru', '#e9dfc9'],
+      ['beige', '#d6c4a6'], ['sand', '#d3bf9d'], ['nude', '#d8b8a4'], ['blush', '#e2b8b0'],
+      ['taupe', '#8d7c6a'], ['tan', '#c39b6a'], ['camel', '#bd9463'], ['caramel', '#b57a3c'],
+      ['cognac', '#9a5a2c'], ['brown', '#6a4a30'], ['marrone', '#6a4a30'], ['chocolate', '#452a1b'],
+      ['espresso', '#3c2418'], ['mocha', '#5b4132'], ['bordeaux', '#6a1f2b'], ['burgundy', '#6a1f2b'],
+      ['wine', '#6a1f2b'], ['red', '#9c1f1f'], ['rosso', '#9c1f1f'], ['orange', '#d3722a'],
+      ['coral', '#e07a6a'], ['pink', '#e3a4bd'], ['rosa', '#e3a4bd'], ['fuchsia', '#c8348a'],
+      ['lavender', '#b7a6d2'], ['lilac', '#c3b0da'], ['purple', '#5f3a86'], ['violet', '#5f3a86'],
+      ['navy', '#1d2a48'], ['cobalt', '#1f47a8'], ['royal', '#2b4fb5'], ['blue', '#2e4b84'],
+      ['blu', '#2e4b84'], ['sky', '#a6c6e5'], ['petrol', '#25596a'], ['teal', '#2c7c86'],
+      ['turquoise', '#3fb2b0'], ['mint', '#a7d3c1'], ['sage', '#9aab8f'], ['olive', '#6d6b3d'],
+      ['green', '#2f5c3b'], ['verde', '#2f5c3b'], ['forest', '#22412d'], ['emerald', '#1f7a4d'],
+      ['khaki', '#8c8354'], ['yellow', '#e4c23a'], ['mustard', '#c99a2e'], ['gold', '#c5a04a'],
+      ['silver', '#bdbdbd'], ['grey', '#8b8b8b'], ['gray', '#8b8b8b'], ['charcoal', '#3c3c3c'],
+      ['anthracite', '#3c3c3c'], ['graphite', '#4a4a4a'], ['leopard', '#b9975b'],
+      ['natural', '#d9cbb3'], ['honey', '#c98f3b'], ['rust', '#a8492a'], ['terracotta', '#b7593a'],
+      ['denim', '#4a6491'], ['jeans', '#4a6491'], ['multicolor', '#b9975b'], ['multicolour', '#b9975b'],
+      ['magenta', '#c4005f'], ['ochre', '#e6a85c']
+    ];
+
+    /* every colour word in the name, in order, with its dark/light modifier applied */
+    function namedColours(name) {
+      var words = String(name || '').toLowerCase().replace(/[^a-z\u00e0-\u00ff\/ -]/g, ' ').split(/[\s\/]+/);
+      var found = [];
+      for (var i = 0; i < words.length; i++) {
+        for (var c = 0; c < OB_COLOURS.length; c++) {
+          if (words[i] === OB_COLOURS[c][0]) {
+            var hex = OB_COLOURS[c][1];
+            if (words[i - 1] === 'dark' || words[i - 1] === 'deep') hex = shade(hex, -0.35);
+            else if (words[i - 1] === 'light' || words[i - 1] === 'pale' || words[i - 1] === 'pastel') hex = shade(hex, 0.55);
+            if (found.indexOf(hex) === -1) found.push(hex);
+            break;
+          }
+        }
+      }
+      return found;
+    }
+
+    function namedColour(name) {
+      var f = namedColours(name);
+      return f.length ? f[0] : null;
+    }
+
+    function shade(hex, amount) {
+      var n = parseInt(hex.slice(1), 16), r = n >> 16, g = (n >> 8) & 255, b = n & 255;
+      function mix(v) { return Math.round(amount < 0 ? v * (1 + amount) : v + (255 - v) * amount); }
+      return 'rgb(' + mix(r) + ',' + mix(g) + ',' + mix(b) + ')';
+    }
+
+    var averageCache = {};
+
+    function averageColour(src, cb) {
+      if (!src) { cb(null); return; }
+      if (averageCache[src]) { cb(averageCache[src]); return; }
+      var img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = function () {
+        try {
+          var cv = document.createElement('canvas'), cx = cv.getContext('2d');
+          cv.width = 24; cv.height = 24;
+          cx.drawImage(img, 0, 0, 24, 24);
+          var d = cx.getImageData(0, 0, 24, 24).data, r = 0, g = 0, b = 0, n = 0;
+          for (var i = 0; i < d.length; i += 4) {
+            // skip the pale studio ground so the dot is the object, not the backdrop
+            if (d[i] > 225 && d[i + 1] > 225 && d[i + 2] > 225) continue;
+            r += d[i]; g += d[i + 1]; b += d[i + 2]; n++;
+          }
+          if (!n) { cb(null); return; }
+          var out = 'rgb(' + Math.round(r / n) + ',' + Math.round(g / n) + ',' + Math.round(b / n) + ')';
+          averageCache[src] = out;
+          cb(out);
+        } catch (e) { cb(null); }
+      };
+      img.onerror = function () { cb(null); };
+      // a small rendition is enough for an average and keeps the request light
+      img.src = src.replace(/(\.[a-z]+)(\?|$)/i, '_120x120$1$2');
+    }
+
+    function paintSwatch(el, colourName, imgSrc) {
+      var found = namedColours(colourName);
+      if (found.length > 1) {
+        // a two-tone piece ("Black and Yellow", "White/Blue") shows both halves
+        el.style.backgroundColor = found[0];
+        el.style.backgroundImage = 'linear-gradient(135deg, ' + found[0] + ' 0 50%, ' + found[1] + ' 50% 100%)';
+        return;
+      }
+      if (found.length === 1) { el.style.backgroundColor = found[0]; return; }
+      averageColour(imgSrc, function (avg) {
+        if (avg) { el.style.backgroundColor = avg; }
+        else if (imgSrc) { el.style.backgroundImage = 'url("' + imgSrc + '")'; }
+      });
+    }
+
+    function titleOf(card) {
+      var raw = card.getAttribute('view-event-payload');
+      if (raw) {
+        try {
+          var t = JSON.parse(raw);
+          if (t && t.product && t.product.title) return t.product.title;
+        } catch (e) { /* fall through */ }
+      }
+      var link = card.querySelector('a.product-card__link[aria-label]');
+      return link ? link.getAttribute('aria-label') : null;
+    }
+
+    function imageOf(card) {
+      var img = card.querySelector('img');
+      if (!img) return null;
+      return img.currentSrc || img.getAttribute('src') || null;
+    }
+
+    function hrefOf(card) {
+      var link = card.querySelector('a[href*="/products/"]');
+      return link ? link.getAttribute('href').split('?')[0] : null;
+    }
+
+    /* Compare by handle, not by full path - a card's href may carry a locale
+       or market prefix that the catalog's /products/<handle> form does not. */
+    function handleOf(href) {
+      if (!href) return null;
+      var parts = href.split('?')[0].split('/');
+      return parts[parts.length - 1] || null;
+    }
+
+    /* "Table Trunk" alone, next to "Table Trunk - Black": the bare title is the family's
+       first colour. Its colour is read from the handle (orange-tabel-trunk), or failing that
+       from the photograph, and it is labelled with that colour word. */
+    function colourWordFromHandle(handle) {
+      if (!handle) return null;
+      var parts = String(handle).toLowerCase().split('-');
+      for (var i = 0; i < parts.length; i++) {
+        for (var c = 0; c < OB_COLOURS.length; c++) {
+          if (parts[i] === OB_COLOURS[c][0]) return parts[i].charAt(0).toUpperCase() + parts[i].slice(1);
+        }
+      }
+      return null;
+    }
+
+    function splitBare(title, handle) {
+      for (var g = 0; g < OB_GROUPS.length; g++) {
+        if (OB_GROUPS[g].toLowerCase() === title.trim().toLowerCase()) {
+          return {base: OB_GROUPS[g], color: colourWordFromHandle(handle) || 'Original'};
+        }
+      }
+      return null;
+    }
+
+    function splitByHyphen(title) {
+      for (var e = 0; e < OB_EXCLUDE_TITLES.length; e++) {
+        if (OB_EXCLUDE_TITLES[e].toLowerCase() === title.toLowerCase()) return null;
+      }
+      var i = title.indexOf(' - ');
+      if (i === -1) return null;
+      var base = title.slice(0, i).trim();
+      var color = title.slice(i + 3).trim();
+      if (!base || !color) return null;
+      for (var g = 0; g < OB_GROUPS.length; g++) {
+        if (OB_GROUPS[g].toLowerCase() === base.toLowerCase()) return {base: base, color: color};
+      }
+      return null;
+    }
+
+    function splitBySuffix(title) {
+      for (var s = 0; s < OB_SUFFIX_GROUPS.length; s++) {
+        var suffix = OB_SUFFIX_GROUPS[s];
+        var marker = ' ' + suffix;
+        if (title.length <= marker.length) continue;
+        var tail = title.slice(title.length - marker.length);
+        if (tail.toLowerCase() !== marker.toLowerCase()) continue;
+        var color = title.slice(0, title.length - marker.length).trim();
+        if (!color) continue;
+        return {base: suffix, color: color};
+      }
+      return null;
+    }
+
+    function splitByPrefix(title) {
+      for (var g = 0; g < OB_PREFIX_GROUPS.length; g++) {
+        var base = OB_PREFIX_GROUPS[g];
+        if (title.toLowerCase().indexOf(base.toLowerCase() + ' ') !== 0) continue;
+        var color = title.slice(base.length).trim();
+        if (color.indexOf(' ') !== -1 || !namedColour(color)) continue;
+        return {base: base, color: color, label: 'Print'};
+      }
+      return null;
+    }
+
+    function split(title, handle) {
+      return splitByHyphen(title) || splitBySuffix(title) || splitByPrefix(title) || splitBare(title, handle);
+    }
+
+    /* ---- catalog: the whole color range, not just what's on this page ---- */
+
+    function indexFrom(list) {
+      var m = new Map();
+      list.forEach(function (p) {
+        var parsed = split(p.title, p.handle);
+        if (!parsed) return;
+        var key = parsed.base.toLowerCase();
+        if (!m.has(key)) m.set(key, []);
+        m.get(key).push({color: parsed.color, href: '/products/' + p.handle, img: p.img});
+      });
+      m.forEach(function (arr) {
+        arr.sort(function (a, b) { return a.color.localeCompare(b.color); });
+      });
+      return m;
+    }
+
+    function loadCatalog() {
+      if (catalogTried) return;
+      catalogTried = true;
+
+      try {
+        var cached = sessionStorage.getItem(CATALOG_KEY);
+        if (cached) {
+          familyIndex = indexFrom(JSON.parse(cached));
+          run(true);
+          flushFamilyWaiters();
+          return;
+        }
+      } catch (e) { /* unreadable cache: just fetch */ }
+
+      var all = [];
+      function page(n) {
+        fetch('/products.json?limit=250&page=' + n, {credentials: 'same-origin'})
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (j) {
+            var got = (j && j.products) || [];
+            for (var i = 0; i < got.length; i++) {
+              all.push({
+                title: got[i].title,
+                handle: got[i].handle,
+                img: (got[i].images && got[i].images[0] && got[i].images[0].src) || null
+              });
+            }
+            // keep paging while a full page comes back; the cap is a guard
+            // against ever looping on an endpoint that misbehaves
+            if (got.length === 250 && n < 8) { page(n + 1); return; }
+            done();
+          })
+          .catch(done);
+      }
+      function done() {
+        if (!all.length) { run(); flushFamilyWaiters(); return; }   // fetch failed: DOM pass stands
+        try { sessionStorage.setItem(CATALOG_KEY, JSON.stringify(all)); } catch (e) {}
+        familyIndex = indexFrom(all);
+        run(true);
+        flushFamilyWaiters();
+      }
+      page(1);
+    }
+
+    /* ---- shared with the product page (3 Oct) ----
+       snippets/oberndoerfer-pdp-color-swatches.liquid draws the same dots under a product's
+       title. It asks here for the family so the two never disagree. */
+    var familyWaiters = [];
+    function family(base, cb) {
+      var key = String(base || '').toLowerCase();
+      if (familyIndex) { cb(familyIndex.get(key) || []); return; }
+      familyWaiters.push(function () { cb((familyIndex && familyIndex.get(key)) || []); });
+      loadCatalog();
+    }
+    function flushFamilyWaiters() {
+      var w = familyWaiters; familyWaiters = [];
+      w.forEach(function (fn) { try { fn(); } catch (e) {} });
+    }
+    window.obColours = { split: split, paint: paintSwatch, family: family };
+
+    /* ---- render ---- */
+
+    /* 23 Sept 2026 (the owner: "sometimes it doesn't react to the first or second touch").
+       Measured on the live home page: 2,160 swatch rows added in five seconds, forever. Every
+       pass removed all rows and appended new ones; those removals and appends are mutations on
+       the card, not inside .ob-swatches, so the observer's own-output check never matched and
+       each pass scheduled the next, eight times a second. The main thread was busy repainting
+       rows under the shopper's finger, and taps were lost. Now: the observer ignores mutations
+       whose only added or removed nodes are our rows, a pass only runs when a card lacks its
+       mark (new card, or one the theme re-rendered), and the catalog arrival forces one full
+       pass. Every card is marked data-ob-swatched after a pass. */
+    function needsRun() {
+      var cards = document.querySelectorAll('product-card');
+      for (var i = 0; i < cards.length; i++) {
+        var c = cards[i], mark = c.getAttribute('data-ob-swatched');
+        if (!mark) return true;
+        if (mark === 'row' && !c.querySelector('.ob-swatches')) return true;
+      }
+      return false;
+    }
+
+    function run(force) {
+      if (busy) return;
+      if (!force && !needsRun()) return;
+      busy = true;
+      try {
+        var cards = document.querySelectorAll('product-card');
+        if (!cards.length) return;
+
+        document.querySelectorAll('.ob-swatches').forEach(function (n) { n.remove(); });
+        cards.forEach(function (c) { c.setAttribute('data-ob-swatched', 'none'); });
+        document.querySelectorAll('[data-ob-hidden-colour]').forEach(function (n) {
+          n.removeAttribute('data-ob-hidden-colour'); n.style.display = '';
+        });
+
+        var byBase = new Map();
+        var anyGroupable = false;
+        cards.forEach(function (card) {
+          var title = titleOf(card);
+          if (!title) return;
+          var parsed = split(title, handleOf(hrefOf(card)));
+          if (!parsed) return;
+          anyGroupable = true;
+          var key = parsed.base.toLowerCase();
+          if (!byBase.has(key)) byBase.set(key, []);
+          byBase.get(key).push({card: card, color: parsed.color,
+                                href: hrefOf(card), img: imageOf(card)});
+        });
+
+        byBase.forEach(function (members, key) {
+          // The full range when the catalog is loaded; otherwise whatever is
+          // on this page, de-duplicated by product so a model appearing in
+          // two rows contributes one dot and cannot group with itself.
+          var palette;
+          if (familyIndex && familyIndex.has(key)) {
+            palette = familyIndex.get(key);
+          } else {
+            palette = [];
+            var seen = {};
+            members.forEach(function (m) {
+              if (!m.href || seen[m.href]) return;
+              seen[m.href] = true;
+              palette.push(m);
+            });
+          }
+
+          if (OB_ONE_PER_MODEL && members.length > 1 && OB_COLLAPSE_BASES.indexOf(key) !== -1) {
+            var keep = {};
+            members = members.filter(function (m) {
+              var h = handleOf(m.href);
+              if (!keep.first) { keep.first = h; return true; }
+              if (h === keep.first) return true; // same product twice on a page stays as is
+              var item = m.card.closest('.product-grid__item') || m.card;
+              item.setAttribute('data-ob-hidden-colour', '');
+              item.style.display = 'none';
+              m.card.setAttribute('data-ob-swatched', 'hidden');
+              return false;
+            });
+          }
+
+          if (palette.length < 2) {
+            // Nothing to show. If the catalog is still in flight this card
+            // might still gain a row, so hold its height until we know.
+            if (!familyIndex && OB_CARD_SWATCHES) {
+              members.forEach(function (self) {
+                var hold = document.createElement('div');
+                hold.className = 'ob-swatches ob-swatches--pending';
+                hold.setAttribute('aria-hidden', 'true');
+                (self.card.querySelector('.product-card__content') || self.card).appendChild(hold);
+                self.card.setAttribute('data-ob-swatched', 'row');
+              });
+            }
+            return;
+          }
+
+          if (!OB_CARD_SWATCHES) return;
+
+          members.forEach(function (self) {
+            var row = document.createElement('div');
+            row.className = 'ob-swatches';
+            row.setAttribute('role', 'group');
+            row.setAttribute('aria-label', 'Available colors');
+
+            var selfHandle = handleOf(self.href);
+            var selfEntry = null;
+            for (var i = 0; i < palette.length; i++) {
+              if (handleOf(palette[i].href) === selfHandle) { selfEntry = palette[i]; break; }
+            }
+
+            // Always keep THIS card's own color visible and marked current,
+            // even if it would fall past the cap, so a shopper never loses
+            // track of which color they are looking at.
+            var visible = palette.slice(0, SWATCH_VISIBLE_CAP);
+            if (selfEntry && visible.indexOf(selfEntry) === -1) {
+              visible = visible.slice(0, Math.max(SWATCH_VISIBLE_CAP - 1, 0)).concat([selfEntry]);
+            }
+
+            visible.forEach(function (m) {
+              if (!m.href) return;
+              var a = document.createElement('a');
+              a.className = 'ob-swatch';
+              a.setAttribute('href', m.href);
+              a.setAttribute('title', m.color);
+              a.setAttribute('aria-label', m.color);
+              if (selfEntry && m === selfEntry) a.setAttribute('aria-current', 'true');
+              // the dot shows the colour itself (owner, 10 Sept: "show color instead of
+              // mini product images"): a named colour from the title, or the average
+              // colour of the photograph when the name is not in the table
+              var src = (selfEntry && m === selfEntry && self.img) ? self.img : m.img;
+              paintSwatch(a, m.color, src);
+              row.appendChild(a);
+            });
+
+            var remaining = palette.length - visible.length;
+            if (remaining > 0) {
+              var count = document.createElement('span');
+              count.className = 'ob-swatch-count';
+              count.textContent = '+' + remaining;
+              row.appendChild(count);
+            }
+
+            (self.card.querySelector('.product-card__content') || self.card).appendChild(row);
+            self.card.setAttribute('data-ob-swatched', 'row');
+          });
+        });
+
+        // Only go to the network if this page actually has something to
+        // complete, and only when the browser is otherwise idle.
+        if (anyGroupable && !familyIndex && !catalogTried) {
+          if (window.requestIdleCallback) requestIdleCallback(loadCatalog, {timeout: 2000});
+          else setTimeout(loadCatalog, 400);
+        }
+      } finally {
+        busy = false;
+      }
+    }
+
+    function debounced() {
+      clearTimeout(debounced._t);
+      debounced._t = setTimeout(function () { run(false); }, 120);
+    }
+
+    if (document.readyState !== 'loading') run();
+    else document.addEventListener('DOMContentLoaded', run);
+    document.addEventListener('shopify:section:load', debounced);
+
+    function onlyOurs(list) {
+      for (var i = 0; i < list.length; i++) {
+        var n = list[i];
+        if (n.nodeType !== 1 || !n.classList || !n.classList.contains('ob-swatches')) return false;
+      }
+      return true;
+    }
+    var mo = new MutationObserver(function (records) {
+      for (var i = 0; i < records.length; i++) {
+        var r = records[i], t = r.target;
+        if (t && t.closest && t.closest('.ob-swatches')) continue; // inside our own output
+        if (onlyOurs(r.addedNodes) && onlyOurs(r.removedNodes)) continue; // our own rows coming and going
+        return debounced();
+      }
+    });
+    // This snippet is rendered in <head>, so document.body does not exist yet when it runs.
+    // Without the observer, cards that arrive after load (the "You may also like" row on
+    // product pages is fetched after the page) never got their dots (15 Sept 2026).
+    function observe() { if (document.body) mo.observe(document.body, {childList: true, subtree: true}); }
+    if (document.body) observe(); else document.addEventListener('DOMContentLoaded', observe);
+  })();
+</script>
