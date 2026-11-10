@@ -296,12 +296,20 @@ def fill_nicks(mask, rad, min_area):
     # closing joins them into a bowtie, and no hole appears to give it
     # away - a bridge makes a neck, not a counter. So a patch that
     # touches two separate marks is a bridge and is dropped.
+    # The reach has to be the closing's own radius, not one pixel. A
+    # patch that grows a spur from the umlaut's dot TOWARDS the O
+    # without quite landing on it touches one mark, passes a one-pixel
+    # test, and then the traced outlines overlap anyway because each
+    # carries its own edge. Asking the question at the radius the fill
+    # was made with is asking it at the scale it happens on.
     mlab, _ = ndimage.label(mask)
+    reach = np.hypot(*np.ogrid[-rad:rad + 1, -rad:rad + 1]) <= rad
     for i, sl in enumerate(ndimage.find_objects(lab), start=1):
         if sl is None or not big[i]:
             continue
-        pad = tuple(slice(max(0, a.start - 2), a.stop + 2) for a in sl)
-        patch = ndimage.binary_dilation(lab[pad] == i, np.ones((3, 3)))
+        pad = tuple(slice(max(0, a.start - rad - 1), a.stop + rad + 1)
+                    for a in sl)
+        patch = ndimage.binary_dilation(lab[pad] == i, reach)
         touched = np.unique(mlab[pad][patch & (mlab[pad] > 0)])
         if len(touched) > 1:
             big[i] = False
@@ -515,7 +523,13 @@ def main():
                          'in SOURCE pixels - scaled to the working grid '
                          'here, so the number means the same whatever '
                          '--upsample is; 0,0 leaves it welded on')
-    ap.add_argument('--nicks', type=float, default=0.08, metavar='MM2',
+    ap.add_argument('--round', type=float, default=7.0, metavar='PX',
+                    dest='round_px',
+                    help='radius of the disc the nicks are closed with, '
+                         'in source pixels. It is also how far a concave '
+                         "corner of the letterform is rounded, so it is "
+                         'the knob for how soft the letters read')
+    ap.add_argument('--nicks', type=float, default=0.004, metavar='MM2',
                     help='cuts bitten into the side of a stroke bigger '
                          'than this are closed up; below it they are the '
                          "letterform's own corners and are left alone. 0 "
@@ -635,7 +649,8 @@ def main():
         th, to_local = unroll(d['mask'], centre, r_base)
         clean = fill_chips(d['mask'], chip_px)
         if o.nicks > 0:
-            clean = clean | fill_nicks(clean, 5 * U, o.nicks * px_mm2)
+            clean = clean | fill_nicks(clean, int(round(o.round_px * U)),
+                                       o.nicks * px_mm2)
         chips = clean & ~d['mask']
         body = deshadow(clean, sdx, sdy)
         if body.sum() < 0.3 * d['mask'].sum():
