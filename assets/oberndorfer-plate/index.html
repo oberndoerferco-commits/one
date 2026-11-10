@@ -389,7 +389,7 @@ function panel(){
   acts.appendChild(rst);
   var exp = h('button', 'go', 'Download SVG');
   exp.type = 'button';
-  exp.addEventListener('click', saveSVG);
+  exp.addEventListener('click', function(){ saveSVG(exp); });
   acts.appendChild(exp);
   var cp = h('button', null, 'Copy settings');
   cp.type = 'button';
@@ -415,24 +415,51 @@ function panel(){
     + '1.4 per cent out of true; this one is concentric.'));
 }
 
-function saveSVG(){
-  var L = G.last, pad = 2;
-  var vb = [ -L.w/2 - pad, 0, 0, 0 ];
+/* The artifact viewer never hands a page download permission on its own,
+   so a plain <a download> does nothing there. The downloads capability is
+   the mediated way: it asks the viewer and saves. Opened as a file from
+   the repository there is no capability at all, and the anchor works -
+   hence both, with the capability first. */
+var DL = null, DL_TRIED = false;
+if (window.claude && typeof claude.use === 'function')
+  claude.use('downloads').then(function(d){ DL = d; DL_TRIED = true; })
+    .catch(function(){ DL_TRIED = true; });
+
+function buildSVG(){
+  var pad = 2;
   var clone = G.svg.cloneNode(true);
   var im = clone.querySelector('image');
   if (im) im.parentNode.removeChild(im);
-  clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
   var bb = G.svg.getBBox();
+  clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
   clone.setAttribute('width', (bb.width + 2*pad).toFixed(3) + 'mm');
   clone.setAttribute('height', (bb.height + 2*pad).toFixed(3) + 'mm');
   clone.setAttribute('viewBox', [bb.x - pad, bb.y - pad,
-    bb.width + 2*pad, bb.height + 2*pad].join(' '));
-  var txt = '<?xml version="1.0" encoding="UTF-8"?>\n' + clone.outerHTML;
+    bb.width + 2*pad, bb.height + 2*pad].map(function(v){
+      return (+v).toFixed(3); }).join(' '));
+  return '<?xml version="1.0" encoding="UTF-8"?>\n' + clone.outerHTML + '\n';
+}
+
+function saveSVG(btn){
+  var txt = buildSVG(), name = 'oberndorfer-nameplate.svg';
+  var say = function(t){
+    btn.textContent = t;
+    setTimeout(function(){ btn.textContent = 'Download SVG'; }, 1800);
+  };
+  if (DL){
+    DL.save({ filename: name, data: txt })
+      .then(function(){ say('Saved'); })
+      .catch(function(e){
+        say(e && e.code === 'declined' ? 'Download SVG' : 'Not available');
+      });
+    return;
+  }
   var a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob([txt], {type: 'image/svg+xml'}));
-  a.download = 'oberndorfer-nameplate.svg';
+  a.download = name;
   a.click();
   setTimeout(function(){ URL.revokeObjectURL(a.href); }, 2000);
+  say('Saved');
 }
 
 /* --- boot ------------------------------------------------------------ */
