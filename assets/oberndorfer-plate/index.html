@@ -99,7 +99,12 @@ var S = {
   bw: false,         // pure black and white, for the drawing itself
   engraved: true,    // outline, hatching, highlight and shadow
   outline: 0.22,     // mm, the keyline round each letter
-  halo: 0.10,        // mm, paper left between that line and the hatching
+  halo: 0.24,        // mm, paper between the keyline and the inline. It
+                     // has to clear half the keyline's own weight or the
+                     // keyline paints over the gap and the two lines
+                     // read as one thick one.
+  inline: 0.08,      // mm, the second line, just inside the halo
+  edge: 0.07,        // mm, the line where the hatching stops
   pitch: 0.26,       // mm, centre to centre of the ruled hatching
   hatch: 0.10,       // mm, weight of one hatch line
   shadow: 0,         // mm, how far a cast shadow drops. The drawing's own
@@ -489,6 +494,28 @@ function draw(){
     hatch.setAttribute('stroke-width', S.hatch * u);
     inside.appendChild(hatch);
 
+    /* The line where the hatching stops. In the reference the boundary
+       between ruled and blank is drawn, not just implied, and it is most
+       of what reads as detail: without it the hatching fades into the
+       paper and the lower half of every letter goes to mush. */
+    if (S.edge > 0 && S.inlay && p.src.inlay.length){
+      var ed = el('path');
+      ed.setAttribute('d', ruled);
+      ed.setAttribute('fill', 'none');
+      ed.setAttribute('fill-rule', 'evenodd');
+      ed.setAttribute('stroke', cInk);
+      ed.setAttribute('stroke-width', S.edge * u);
+      ed.setAttribute('stroke-linejoin', 'round');
+      inside.appendChild(ed);
+    }
+
+    /* Round the letter, three lines and not one: the keyline on the
+       boundary, a band of paper just inside it, and a second finer line
+       inside that. SVG cannot offset a path, but it can stack strokes -
+       a black one 2(halo+inline) wide, then a paper one 2*halo wide over
+       it, both clipped to the letter, leave exactly the band between
+       halo and halo+inline standing. That doubled contour is what makes
+       an engraved letter look cut rather than filled. */
     if (S.halo > 0){
       var hc = el('clipPath');
       hc.setAttribute('id', 'body' + i);
@@ -498,6 +525,14 @@ function draw(){
       defs.appendChild(hc);
       var hg = el('g');
       hg.setAttribute('clip-path', 'url(#body' + i + ')');
+      if (S.inline > 0){
+        var inl = el('path');
+        inl.setAttribute('d', body);
+        inl.setAttribute('fill', 'none');
+        inl.setAttribute('stroke', cInk);
+        inl.setAttribute('stroke-width', 2 * (S.halo + S.inline) * u);
+        hg.appendChild(inl);
+      }
       var ha = el('path');
       ha.setAttribute('d', body);
       ha.setAttribute('fill', 'none');
@@ -589,6 +624,12 @@ function panel(){
     function(){ return S.key; }, function(v){ S.key = v; }, mm));
   sync.push(slider(c, 'Keyline round the letters', 0.05, 0.6, 0.01,
     function(){ return S.outline; }, function(v){ S.outline = v; }, mm));
+  sync.push(slider(c, 'Inline', 0, 0.3, 0.01,
+    function(){ return S.inline; }, function(v){ S.inline = v; }, mm));
+  sync.push(slider(c, 'Paper between them', 0.02, 0.6, 0.01,
+    function(){ return S.halo; }, function(v){ S.halo = v; }, mm));
+  sync.push(slider(c, 'Line where the hatching stops', 0, 0.3, 0.01,
+    function(){ return S.edge; }, function(v){ S.edge = v; }, mm));
   sync.push(slider(c, 'Hatching pitch', 0.12, 0.8, 0.01,
     function(){ return S.pitch; }, function(v){ S.pitch = v; }, mm));
   sync.push(slider(c, 'Hatching weight', 0.04, 0.3, 0.01,

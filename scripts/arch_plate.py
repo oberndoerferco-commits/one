@@ -179,9 +179,11 @@ def hatched(gray, body, thresh=9.0):
     # freckled with islands either way. Anything under a fiftieth of a
     # square millimetre is such a freckle and not a decision the engraver
     # made: it reads as dirt at any size.
-    keep = max(60, int(0.02 / (10.74 / 154.9) ** 2))
+    keep = max(60, int(0.05 / (10.74 / 154.9) ** 2))
     m = morphology.remove_small_objects(m, keep)
     m = morphology.remove_small_holes(m, keep)
+    m = ndimage.binary_closing(m, np.ones((7, 7)))
+    m = ndimage.binary_opening(m, np.ones((5, 5)))
     return m & body
 
 
@@ -260,8 +262,16 @@ def glyph(gray, comp, to_local, level, pad=4):
     return svg
 
 
-def trace_mask(mask, to_local, pad=4):
-    """Trace a mask that has no greyscale edge of its own to measure."""
+def trace_mask(mask, to_local, pad=4, smooth=0.6):
+    """Trace a mask that has no greyscale edge of its own to measure.
+
+    `smooth` blurs the mask before the contour is taken, which rounds its
+    boundary. For the ruled region that matters: the line where the
+    hatching stops is drawn in the reference, and drawing a boundary
+    measured off a soft edge makes every wobble in it louder rather than
+    quieter. Two pixels of blur is about a seventh of a millimetre on the
+    plate - enough to lose the wobble, not enough to lose a corner.
+    """
     ys, xs = np.nonzero(mask)
     y0, y1 = max(0, ys.min() - pad), mask.shape[0]
     x0, x1 = max(0, xs.min() - pad), mask.shape[1]
@@ -269,7 +279,7 @@ def trace_mask(mask, to_local, pad=4):
     x1 = min(x1, xs.max() + 1 + pad)
     win = np.ones((y1 - y0, x1 - x0), np.float32)
     win[mask[y0:y1, x0:x1]] = 0.0
-    cons = trace(ndimage.gaussian_filter(win, 0.6), level=0.5, sigma=0.0,
+    cons = trace(ndimage.gaussian_filter(win, smooth), level=0.5, sigma=0.0,
                  line_tol=0.5, curve_tol=0.4)
     svg, _, _ = emit(cons, lambda p: to_local((p[0] + x0, p[1] + y0)))
     return svg
@@ -394,7 +404,8 @@ def main():
                              f'{body.sum() / d["mask"].sum():.0%} of it')
         solid = glyph(gray, body, to_local, o.ink / 255.0)
         shade = hatched(gray, body)
-        inlay = trace_mask(shade, to_local) if shade.sum() > 200 else []
+        inlay = trace_mask(shade, to_local, smooth=2.0) \
+            if shade.sum() > 200 else []
         ys, xs = np.nonzero(body)
         edge = [to_local((x, y)) for x, y in
                 ((xs.min(), ys.mean()), (xs.max() + 1, ys.mean()))]
