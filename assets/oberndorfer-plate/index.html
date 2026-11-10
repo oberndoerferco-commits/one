@@ -243,30 +243,38 @@ function endCaps(lay, r){
   var out = [];
   [[a0, -1], [a1, +1]].forEach(function(pair){
     var te = R === Infinity ? pair[0] : pair[0] / R, sgn = pair[1];
-    var P, rad, tan;
     if (R === Infinity){
-      P = function(h){ return [pair[0], h]; };
-      rad = [0, -1]; tan = [sgn, 0];
-    } else {
-      P = function(rr){ return [rr * Math.sin(te), R - rr * Math.cos(te)]; };
-      rad = [Math.sin(te), -Math.cos(te)];
-      tan = [sgn * Math.cos(te), sgn * Math.sin(te)];
+      var ct = [pair[0] - sgn * f, r.yTop + f];
+      var cb = [pair[0] - sgn * f, r.yBot - f];
+      out.push({ f: f, sgn: sgn, ct: ct, cb: cb,
+                 A: [ct[0], r.yTop], B: [ct[0] + sgn * f, ct[1]],
+                 C: [cb[0] + sgn * f, cb[1]], D: [cb[0], r.yBot] });
+      return;
     }
-    var top = R === Infinity ? P(0) : P(r.rt - f);
-    var bot = R === Infinity ? P(0) : P(r.rb + f);
-    if (R === Infinity){
-      top = [pair[0] - sgn * f, r.yTop + f];
-      bot = [pair[0] - sgn * f, r.yBot - f];
-    } else {
-      top = [top[0] - tan[0] * f, top[1] - tan[1] * f];
-      bot = [bot[0] - tan[0] * f, bot[1] - tan[1] * f];
-    }
+    /* A fillet of radius f tangent to the arc of radius rt from inside
+       has its centre at radius rt - f; tangent to the radial line at
+       angle te means its centre stands f away from that line, which puts
+       it at angle te - asin(f / (rt - f)), NOT at te offset by an arc
+       length of f. Both tangency points then follow from the CENTRE's
+       own angle: radially for the arc, and the foot of the perpendicular
+       for the flat.
+
+       Taking the radial direction at te instead - which is what this did
+       first - puts it 3.9 degrees out at the sizes here, and the frame
+       came out of the PDF with a visible kink where each end met the
+       bottom keyline. */
+    var P = function(rr, t){ return [rr * Math.sin(t), R - rr * Math.cos(t)]; };
+    var rT = r.rt - f, rB = r.rb + f;
+    var dT = f > 0 ? Math.asin(Math.min(1, f / rT)) : 0;
+    var dB = f > 0 ? Math.asin(Math.min(1, f / rB)) : 0;
+    var tT = te - sgn * dT, tB = te - sgn * dB;
     out.push({
-      f: f, sgn: sgn, ct: top, cb: bot,
-      A: [top[0] + rad[0] * f, top[1] + rad[1] * f],   // meets the top arc
-      B: [top[0] + tan[0] * f, top[1] + tan[1] * f],   // starts the flat
-      C: [bot[0] + tan[0] * f, bot[1] + tan[1] * f],   // ends the flat
-      D: [bot[0] - rad[0] * f, bot[1] - rad[1] * f]    // meets the bottom arc
+      f: f, sgn: sgn,
+      ct: P(rT, tT), cb: P(rB, tB),
+      A: P(r.rt, tT),                      // meets the top arc
+      B: P(rT * Math.cos(dT), te),         // starts the flat
+      C: P(rB * Math.cos(dB), te),         // ends the flat
+      D: P(r.rb, tB)                       // meets the bottom arc
     });
   });
   return out;
