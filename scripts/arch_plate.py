@@ -187,6 +187,27 @@ def hatched(gray, body, thresh=9.0):
     return m & body
 
 
+def linework(gray, region, thresh=125.0, bar=4):
+    """The drawn lines, with the ruling taken out from under them.
+
+    Everything so far has been built from a filled silhouette, and a
+    silhouette cannot hold what makes this drawing what it is: the
+    keyline and the finer line inside it, the barbs and curls where the
+    strokes meet, the cast shadow. All of that is line work, and all of
+    it was being thrown away.
+
+    It comes back with one observation. The ruling is horizontal
+    hairlines one or two pixels tall; nothing else in the drawing is that
+    thin in that direction. So an opening with a vertical bar deletes the
+    ruling and leaves every drawn line standing - at a cut of 125 it
+    takes 8.99 per cent of the picture down to 7.29, and what remains is
+    the drawing minus its shading, which is exactly the layer that was
+    missing.
+    """
+    dark = (gray < thresh) & region
+    return ndimage.binary_opening(dark, np.ones((bar, 1)))
+
+
 def deshadow(mask, dx, dy):
     """The letter without the cast shadow fused to its lower right.
 
@@ -403,6 +424,15 @@ def main():
             raise SystemExit(f'de-shadowing {ch} left only '
                              f'{body.sum() / d["mask"].sum():.0%} of it')
         solid = glyph(gray, body, to_local, o.ink / 255.0)
+        # reach out far enough to catch the letter's cast shadow, but
+        # not into the frame: the umlaut's left dot touches the top
+        # keyline, so a plain dilation brings a slice of the frame back
+        # with it and hangs a bar over the O.
+        near = ndimage.binary_dilation(d['mask'], np.ones((5, 5)),
+                                       iterations=6) & ~band
+        lines = linework(gray, near)
+        detail = trace_mask(lines, to_local, smooth=0.45) \
+            if lines.sum() > 200 else []
         shade = hatched(gray, body)
         inlay = trace_mask(shade, to_local, smooth=2.0) \
             if shade.sum() > 200 else []
@@ -412,11 +442,11 @@ def main():
         letters.append(dict(ch=ch, angle=float(np.degrees(th)),
                             left=min(e[0] for e in edge),
                             right=max(e[0] for e in edge),
-                            paths=solid, inlay=inlay))
+                            paths=solid, inlay=inlay, detail=detail))
         print(f'   {ch}  turned {np.degrees(th):+6.2f} deg   '
               f'{len(solid):2d} contours, {len(inlay):2d} ruled, '
-              f'body {body.sum() / d["mask"].sum():.0%} of the silhouette, '
-              f'{shade.sum() / max(body.sum(), 1):.0%} of it hatched')
+              f'{len(detail):3d} of line work, '
+              f'{shade.sum() / max(body.sum(), 1):.0%} hatched')
 
     doc = dict(
         source=os.path.basename(o.image),

@@ -98,13 +98,21 @@ var S = {
   round: 1.0,        // 0 square ends, 1 fully rounded
   bw: false,         // pure black and white, for the drawing itself
   engraved: true,    // outline, hatching, highlight and shadow
-  outline: 0.22,     // mm, the keyline round each letter
-  halo: 0.24,        // mm, paper between the keyline and the inline. It
+  detail: true,      // the drawing's own lines rather than a synthetic
+                     // keyline: flourishes, inline, cast shadow and all
+  outline: 0.17,     // mm, a keyline on the letter's own boundary. The
+                     // drawn line work carries the flourishes, the inner
+                     // line and the shadow, but not this: where a stroke
+                     // meets its own highlight the drawn edge is lighter
+                     // than the cut that lifts the line work out, so the
+                     // lit side comes back without a boundary and the
+                     // ruling runs into the paper.
+  halo: 0,           // mm, paper between that keyline and its inline. It
                      // has to clear half the keyline's own weight or the
                      // keyline paints over the gap and the two lines
                      // read as one thick one.
-  inline: 0.08,      // mm, the second line, just inside the halo
-  edge: 0.07,        // mm, the line where the hatching stops
+  inline: 0,         // mm, the second line, just inside the halo
+  edge: 0,           // mm, the line where the hatching stops
   pitch: 0.26,       // mm, centre to centre of the ruled hatching
   hatch: 0.10,       // mm, weight of one hatch line
   shadow: 0,         // mm, how far a cast shadow drops. The drawing's own
@@ -542,13 +550,29 @@ function draw(){
       g.appendChild(hg);
     }
 
-    var line = el('path');
-    line.setAttribute('d', body);
-    line.setAttribute('fill', 'none');
-    line.setAttribute('stroke', cInk);
-    line.setAttribute('stroke-width', S.outline * u);
-    line.setAttribute('stroke-linejoin', 'round');
-    g.appendChild(line);
+    /* The drawing's own lines, on top of the ruling: the keyline, the
+       finer line inside it, the barbs and curls where the strokes meet,
+       the cast shadow. These are traced from the picture - a cut at 125
+       with the ruling opened out from under it - so they are the shapes
+       that were drawn, not shapes inferred from a silhouette. Thirty to
+       sixty-five contours a letter against seven to nineteen for the
+       outline alone, and that difference is the detail. */
+    if (S.detail && p.src.detail && p.src.detail.length){
+      var dl = el('path');
+      dl.setAttribute('d', p.src.detail.join(' '));
+      dl.setAttribute('fill', cInk);
+      dl.setAttribute('fill-rule', 'evenodd');
+      g.appendChild(dl);
+    }
+    if (S.outline > 0){
+      var line = el('path');
+      line.setAttribute('d', body);
+      line.setAttribute('fill', 'none');
+      line.setAttribute('stroke', cInk);
+      line.setAttribute('stroke-width', S.outline * u);
+      line.setAttribute('stroke-linejoin', 'round');
+      g.appendChild(line);
+    }
   });
 
   // fit the view to the plate with a little air
@@ -642,7 +666,8 @@ function panel(){
 
   var chips = h('div', 'chips');
   c.appendChild(chips);
-  [['Engraved','engraved'], ['Leave the lit side blank','inlay'],
+  [['Engraved','engraved'], ['The drawing\u2019s own lines','detail'],
+   ['Leave the lit side blank','inlay'],
    ['Black and white','bw'],
    ['Source underneath','ghost'],
    ['One drawing per letter','reuse']].forEach(function(t){
