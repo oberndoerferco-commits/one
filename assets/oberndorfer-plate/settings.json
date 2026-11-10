@@ -14,9 +14,10 @@
   "shadow": 0,
   "banner": true,
   "bgap": -1.1,
-  "bdepth": 5.8,
-  "bwidth": 46.0,
-  "bnotch": 2.6,
+  "bdepth": 6.4,
+  "bwidth": 45.0,
   "bcap": 2.9,
-  "btrack": 0.55
+  "btrack": 0.55,
+  "bpoint": 4.2,
+  "bcurve": 0.55
 }

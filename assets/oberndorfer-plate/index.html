@@ -121,10 +121,13 @@ var S = {
                      // is what joins the two: the plate's own keyline is
                      // then the line they share and the ribbon comes out
                      // from under it rather than hanging below it.
-  bdepth: 5.80,      // mm, depth below that keyline - what is on show,
-                     // whatever the overlap above it
+  bdepth: 6.40,      // mm, depth of the shoulders below that keyline -
+                     // what is on show, whatever the overlap above it
   bwidth: 46.0,      // mm, its length along the arc
-  bnotch: 2.60,      // mm, how far the swallowtail is cut in
+  bpoint: 4.20,      // mm, how much further the centre drops - the
+                     // point the two bottom sweeps meet at
+  bcurve: 0.55,      // how much the bottom edge sweeps on its way there,
+                     // 0 being a plain straight V
   bcap: 2.90,        // mm, cap height of the banner's type
   btrack: 0.55,      // mm, between its letters
   shadow: 0,         // mm, how far a cast shadow drops. The drawing's own
@@ -400,11 +403,10 @@ function clearance(lay, r){
   return { mm: worst, ch: who };
 }
 
-/* The swallowtail under the plate. Its two edges are arcs about the same
+/* The pendant under the plate. Its two edges are arcs about the same
    centre as everything else, so it sits concentric with the plate rather
-   than merely near it, and each end is cut with a V - the classic banner
-   finish, and the thing that stops a band under a plate reading as an
-   afterthought.
+   than merely near it, and its bottom comes to a point in the middle -
+   a tag hanging off the plate rather than a second band beside it.
 
    It is JOINED to the plate, not set below it. The band runs up past the
    plate's lower keyline and is drawn before the plate, so the plate's
@@ -414,9 +416,9 @@ function clearance(lay, r){
 
    Because the top of the band is hidden, its depth is measured from the
    plate's keyline down rather than from its own top edge - otherwise
-   deepening the overlap would eat the part that shows. The V is cut to
-   the middle of what shows, which puts the two wing tips the same
-   distance above and below it.
+   deepening the overlap would eat the part that shows. The type sits in
+   the band between the keyline and the shoulders; the point hangs below
+   it and carries no type, which is what gives it somewhere to go.
 
    The type is set along it, each letter turned to its own radius the way
    the name is. It arrives as outlines rather than as a font: a drawing
@@ -424,27 +426,48 @@ function clearance(lay, r){
    a plate going to a maker is the wrong place to discover that. */
 function bannerPath(lay, r){
   var R = lay.R;
+  var dS = S.bdepth, dA = S.bdepth + S.bpoint;   // shoulder, apex
+  var k = Math.max(0, Math.min(1, S.bcurve));
+
   if (R === Infinity){
-    var y0 = r.yBot + S.bgap;        // where the band starts
-    var yv = r.yBot, y1 = r.yBot + S.bdepth;
-    var ym = (yv + y1) / 2;          // middle of the VISIBLE band
-    var hw = S.bwidth / 2;
-    return { d: 'M' + [-hw, y0] + 'L' + [hw, y0] + 'L' + [hw - S.bnotch, ym] +
-                'L' + [hw, y1] + 'L' + [-hw, y1] + 'L' + [-hw + S.bnotch, ym] +
-                'Z',
+    var y0 = r.yBot + S.bgap, yS = r.yBot + dS, yA = r.yBot + dA;
+    var hw = S.bwidth / 2, ym = (r.yBot + yS) / 2;
+    var sweep = function(sgn){
+      return 'C' + [sgn * hw * (1 - 0.55 * k), yS] + ' ' +
+                   [sgn * hw * 0.18 * k, yS + (yA - yS) * (1 - 0.55 * k)] +
+             ' ' + [0, yA];
+    };
+    return { d: 'M' + [-hw, y0] + 'L' + [hw, y0] + 'L' + [hw, yS] +
+                sweep(+1) + sweep(-1).replace('M', '') +
+                'L' + [-hw, yS] + 'Z',
              base: ym + S.bcap / 2, mid: ym, straight: true };
   }
-  var rt = r.rb - S.bgap;            // bgap < 0 lifts it behind the plate
-  var rv = r.rb, rb = r.rb - S.bdepth, rm = (rv + rb) / 2;
-  var w = (S.bwidth / 2) / rm, dn = S.bnotch / rm;
+
   var P = function(rr, t){ return [rr * Math.sin(t), R - rr * Math.cos(t)]; };
-  var big = 0;
+  var rT = r.rb - S.bgap;                  // behind the plate when bgap < 0
+  var rS = r.rb - dS, rA = r.rb - dA;
+  var rm = (r.rb + rS) / 2;                // middle of the band on show
+  var w = (S.bwidth / 2) / rm;
+
+  /* Each half of the bottom is one cubic from a shoulder to the point.
+     It leaves the shoulder at constant radius, so it runs along the
+     band rather than turning a corner there, and comes into the point
+     steeply, so the two halves meet as a point and not as a curve with
+     a crease. The control points are struck in the plate's own polar
+     frame and then converted, which is what keeps the sweep concentric
+     with everything else. */
+  var sweep = function(sgn){
+    var c1 = P(rS, sgn * w * (1 - 0.55 * k));
+    var c2 = P(rA + (rS - rA) * (1 - 0.55 * k), sgn * w * 0.18 * k);
+    return 'C' + c1 + ' ' + c2 + ' ' + P(rA, 0);
+  };
+
   return {
-    d: 'M' + P(rt, -w) +
-       'A' + rt + ' ' + rt + ' 0 ' + big + ' 1 ' + P(rt, w) +
-       'L' + P(rm, w - dn) + 'L' + P(rb, w) +
-       'A' + rb + ' ' + rb + ' 0 ' + big + ' 0 ' + P(rb, -w) +
-       'L' + P(rm, -w + dn) + 'Z',
+    d: 'M' + P(rT, -w) +
+       'A' + rT + ' ' + rT + ' 0 0 1 ' + P(rT, w) +
+       'L' + P(rS, w) + sweep(+1) +
+       'C' + P(rA + (rS - rA) * (1 - 0.55 * k), -w * 0.18 * k) + ' ' +
+             P(rS, -w * (1 - 0.55 * k)) + ' ' + P(rS, -w) + 'Z',
     base: rm - S.bcap / 2, mid: rm, straight: false
   };
 }
@@ -786,8 +809,11 @@ function panel(){
     function(){ return S.bdepth; }, function(v){ S.bdepth = v; }, mm));
   sync.push(slider(d, 'Banner width', 16, 110, 0.5,
     function(){ return S.bwidth; }, function(v){ S.bwidth = v; }, mm));
-  sync.push(slider(d, 'Swallowtail', 0, 8, 0.05,
-    function(){ return S.bnotch; }, function(v){ S.bnotch = v; }, mm));
+  sync.push(slider(d, 'Point below', 0, 14, 0.05,
+    function(){ return S.bpoint; }, function(v){ S.bpoint = v; }, mm));
+  sync.push(slider(d, 'Sweep into the point', 0, 1, 0.01,
+    function(){ return S.bcurve; }, function(v){ S.bcurve = v; },
+    function(v){ return Math.round(v*100) + '%'; }));
   sync.push(slider(d, 'Banner cap height', 1.2, 7, 0.02,
     function(){ return S.bcap; }, function(v){ S.bcap = v; }, mm));
   sync.push(slider(d, 'Banner letter spacing', -0.3, 2.5, 0.01,
