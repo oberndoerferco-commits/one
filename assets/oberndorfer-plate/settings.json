@@ -7,7 +7,7 @@
   "endgap": 9.2,
   "key": 0.69,
   "round": 1,
-  "inlay": true,
+  "inlay": false,
   "ghost": false,
   "reuse": false,
   "bw": true,
@@ -20,5 +20,11 @@
   "btrack": 0.55,
   "bpoint": 4.2,
   "bcurve": 0.55,
-  "bround": 1.6
+  "bround": 1.6,
+  "engraved": false,
+  "detail": false,
+  "outline": 0,
+  "halo": 0,
+  "inline": 0,
+  "edge": 0
 }

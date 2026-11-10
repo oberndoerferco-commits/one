@@ -225,6 +225,33 @@ def linework(gray, region, own=None, thresh=125.0, bar=4, U=1):
     return keep[lab]
 
 
+def fill_chips(mask, min_area):
+    """Close the engraved highlights, keeping the counters.
+
+    The drawing cuts a highlight into the lit side of every stroke, and
+    those cuts are lighter than the ink threshold, so in the silhouette
+    they are holes - the letter comes out chipped. With the engraving
+    drawn over the top it never showed; as plain letterforms it is all
+    you see.
+
+    A hole is a counter or a chip and nothing else, and measured on this
+    drawing the two do not overlap: every counter is 1.41 mm2 or more
+    (the O's is 15.9), every chip 0.45 or less. So sort the holes by
+    area and fill the small ones. The first guess at the threshold was
+    2 mm2, which would have swallowed the 1.41 and 1.50 counters - the
+    gap is wide but it is not where it looks.
+    """
+    solid = ndimage.binary_fill_holes(mask)
+    holes = solid & ~mask
+    lab, k = ndimage.label(holes)
+    if not k:
+        return mask
+    area = ndimage.sum(holes, lab, range(1, k + 1))
+    small = np.zeros(k + 1, bool)
+    small[1:] = area < min_area
+    return mask | small[lab]
+
+
 def deshadow(mask, dx, dy):
     """The letter without the cast shadow fused to its lower right.
 
@@ -298,14 +325,24 @@ def unroll(comp, centre, r_base):
 TRACE = dict(sigma=0.45, line=0.60, curve=0.45)
 
 
-def glyph(gray, comp, to_local, level, pad=4):
-    """Trace one letter, already placed in its upright frame."""
+def glyph(gray, comp, to_local, level, pad=4, fill=None):
+    """Trace one letter, already placed in its upright frame.
+
+    `fill` is forced to ink before the contour is taken. The trace
+    follows the GREYSCALE through the mask, not the mask, which is the
+    whole point of it - the edge lands sub-pixel instead of on the
+    nearest whole one. It also means closing a hole in the mask does
+    nothing on its own: the pale pixels are still pale and the contour
+    still goes round them. The hole has to be filled in the picture.
+    """
     ys, xs = np.nonzero(comp)
     y0, y1 = max(0, ys.min() - pad), min(gray.shape[0], ys.max() + 1 + pad)
     x0, x1 = max(0, xs.min() - pad), min(gray.shape[1], xs.max() + 1 + pad)
     win = np.ones((y1 - y0, x1 - x0), np.float32)
     sub = comp[y0:y1, x0:x1]
     win[sub] = gray[y0:y1, x0:x1][sub] / 255.0
+    if fill is not None:
+        win[fill[y0:y1, x0:x1]] = 0.0
     cons = trace(np.minimum(win, 1.0), level=level, sigma=TRACE['sigma'],
                  line_tol=TRACE['line'], curve_tol=TRACE['curve'])
     shift = lambda p: to_local((p[0] + x0, p[1] + y0))
@@ -406,10 +443,15 @@ def main():
                          'empty for none')
     ap.add_argument('--ink', type=float, default=INK)
     ap.add_argument('--hilight', type=float, default=HILIGHT)
-    ap.add_argument('--deshadow', default='11,18', metavar='DX,DY',
+    ap.add_argument('--deshadow', default='0,0', metavar='DX,DY',
                     help='how far the cast shadow is pushed down and right '
-                         'in source pixels, to be taken back off the '
-                         'silhouette; 0,0 leaves it welded on')
+                         'in SOURCE pixels - scaled to the working grid '
+                         'here, so the number means the same whatever '
+                         '--upsample is; 0,0 leaves it welded on')
+    ap.add_argument('--chips', type=float, default=1.00, metavar='MM2',
+                    help='holes in a letter smaller than this are the '
+                         "drawing's engraved highlights, not counters, "
+                         'and are closed up')
     o = ap.parse_args()
 
     im = Image.open(o.image).convert('RGB')
@@ -513,15 +555,18 @@ def main():
           f'feet; the umlaut overruns the top keyline by '
           f'{tops - ct[2]:.1f} px')
 
-    sdx, sdy = (int(v) for v in o.deshadow.split(','))
+    sdx, sdy = (int(round(float(v) * U)) for v in o.deshadow.split(','))
+    chip_px = o.chips * (cap / 10.74) ** 2       # mm2 -> working pixels
     letters = []
     for ch, (_, d) in zip(o.text, bodies):
         th, to_local = unroll(d['mask'], centre, r_base)
-        body = deshadow(d['mask'], sdx, sdy)
+        clean = fill_chips(d['mask'], chip_px)
+        chips = clean & ~d['mask']
+        body = deshadow(clean, sdx, sdy)
         if body.sum() < 0.3 * d['mask'].sum():
             raise SystemExit(f'de-shadowing {ch} left only '
                              f'{body.sum() / d["mask"].sum():.0%} of it')
-        solid = glyph(gray, body, to_local, o.ink / 255.0)
+        solid = glyph(gray, body, to_local, o.ink / 255.0, fill=chips)
         # reach out far enough to catch the letter's cast shadow, but
         # not into the frame: the umlaut's left dot touches the top
         # keyline, so a plain dilation brings a slice of the frame back
