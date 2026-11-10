@@ -38,6 +38,7 @@ import sys
 import numpy as np
 from PIL import Image
 from scipy import ndimage
+from skimage import morphology
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from vectorize_lineart import trace, emit            # noqa: E402
@@ -156,6 +157,69 @@ def components(mask, band, dots):
     return out
 
 
+def hatched(gray, body, thresh=9.0):
+    """Which part of a letter the engraver ruled, and which he left blank.
+
+    The one measurement in this picture that is not ambiguous. The
+    hatching is a stripe pattern in y; removing the local mean over a
+    five pixel column leaves the stripes and nothing else, and the energy
+    in that residual reads 11.3 inside the letters against 0.3 on the
+    plate. It says nothing about inside against outside - which is why it
+    could not find the cast shadow - but it says exactly where the ruling
+    is, and that is what the hatch has to be clipped to or the modelling
+    is lost and every stroke reads flat.
+    """
+    hp = gray - ndimage.uniform_filter(gray, size=(5, 1))
+    energy = ndimage.uniform_filter(np.abs(hp), size=(9, 9))
+    m = body & (energy > thresh)
+    m = ndimage.binary_closing(m, np.ones((5, 5)))
+    m = ndimage.binary_opening(m, np.ones((3, 3)))
+    # The boundary between ruled and blank is soft in the picture, where
+    # the hatching thins out rather than stopping, so the mask comes back
+    # freckled with islands either way. Anything under a fiftieth of a
+    # square millimetre is such a freckle and not a decision the engraver
+    # made: it reads as dirt at any size.
+    keep = max(60, int(0.02 / (10.74 / 154.9) ** 2))
+    m = morphology.remove_small_objects(m, keep)
+    m = morphology.remove_small_holes(m, keep)
+    return m & body
+
+
+def deshadow(mask, dx, dy):
+    """The letter without the cast shadow fused to its lower right.
+
+    The drawing shades every letter with a solid shadow pushed down and
+    right, and at any ink cut that keeps the hatching the shadow comes
+    with it - so the silhouette traced from this picture is the letter
+    and its shadow welded into one blob, which is why it reads a size too
+    heavy and cannot be given a shadow of its own.
+
+    If the silhouette is the letter unioned with a copy of itself pushed
+    by d, then intersecting it with itself pushed BACK by d leaves the
+    letter: every point of the shadow that is not also letter loses its
+    partner. It only works on the filled mask - the counters have to be
+    closed first and punched back after, or the O's inside overlaps the
+    shadow's and tears holes through the stroke, which is what four
+    earlier attempts at this got wrong.
+
+    Five other routes were tried and none held: local roughness (the
+    shadow is smooth and so is the lit side), a tight ink cut and a fill
+    (the shadow is inside the letter's own dark edge, so the fill takes
+    it too), the stripe energy alone (it marks hatched against smooth,
+    not inside against outside), the tone of the smooth regions (a flat
+    continuum from 60 to 210 with no second mode), and estimating d by
+    pushing the hatched region onto the smooth ink (it saturated at the
+    edge of the search).
+    """
+    solid = ndimage.binary_fill_holes(mask)
+    counters = solid & ~mask
+    if not (dx or dy):
+        return mask
+    back = np.roll(np.roll(solid, -dy, 0), -dx, 1)
+    body = ndimage.binary_opening(solid & back, np.ones((3, 3)))
+    return body & ~np.roll(np.roll(counters, -dy, 0), -dx, 1)
+
+
 def unroll(comp, centre, r_base):
     """Rotate one letter back off the arch.
 
@@ -196,6 +260,21 @@ def glyph(gray, comp, to_local, level, pad=4):
     return svg
 
 
+def trace_mask(mask, to_local, pad=4):
+    """Trace a mask that has no greyscale edge of its own to measure."""
+    ys, xs = np.nonzero(mask)
+    y0, y1 = max(0, ys.min() - pad), mask.shape[0]
+    x0, x1 = max(0, xs.min() - pad), mask.shape[1]
+    y1 = min(y1, ys.max() + 1 + pad)
+    x1 = min(x1, xs.max() + 1 + pad)
+    win = np.ones((y1 - y0, x1 - x0), np.float32)
+    win[mask[y0:y1, x0:x1]] = 0.0
+    cons = trace(ndimage.gaussian_filter(win, 0.6), level=0.5, sigma=0.0,
+                 line_tol=0.5, curve_tol=0.4)
+    svg, _, _ = emit(cons, lambda p: to_local((p[0] + x0, p[1] + y0)))
+    return svg
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('image')
@@ -206,6 +285,10 @@ def main():
                     help='which letter carries the dots (0-based)')
     ap.add_argument('--ink', type=float, default=INK)
     ap.add_argument('--hilight', type=float, default=HILIGHT)
+    ap.add_argument('--deshadow', default='11,18', metavar='DX,DY',
+                    help='how far the cast shadow is pushed down and right '
+                         'in source pixels, to be taken back off the '
+                         'silhouette; 0,0 leaves it welded on')
     o = ap.parse_args()
 
     rgb = np.asarray(Image.open(o.image).convert('RGB')).astype(np.float32)
@@ -301,16 +384,18 @@ def main():
           f'feet; the umlaut overruns the top keyline by '
           f'{tops - ct[2]:.1f} px')
 
+    sdx, sdy = (int(v) for v in o.deshadow.split(','))
     letters = []
     for ch, (_, d) in zip(o.text, bodies):
         th, to_local = unroll(d['mask'], centre, r_base)
-        solid = glyph(gray, d['mask'], to_local, o.ink / 255.0)
-        inner = ndimage.binary_opening(
-            ndimage.binary_fill_holes(d['mask']) & (gray > o.hilight),
-            np.ones((2, 2)))
-        inlay = glyph(255.0 - gray, inner, to_local,
-                      1.0 - o.hilight / 255.0) if inner.sum() > 40 else []
-        ys, xs = np.nonzero(d['mask'])
+        body = deshadow(d['mask'], sdx, sdy)
+        if body.sum() < 0.3 * d['mask'].sum():
+            raise SystemExit(f'de-shadowing {ch} left only '
+                             f'{body.sum() / d["mask"].sum():.0%} of it')
+        solid = glyph(gray, body, to_local, o.ink / 255.0)
+        shade = hatched(gray, body)
+        inlay = trace_mask(shade, to_local) if shade.sum() > 200 else []
+        ys, xs = np.nonzero(body)
         edge = [to_local((x, y)) for x, y in
                 ((xs.min(), ys.mean()), (xs.max() + 1, ys.mean()))]
         letters.append(dict(ch=ch, angle=float(np.degrees(th)),
@@ -318,11 +403,14 @@ def main():
                             right=max(e[0] for e in edge),
                             paths=solid, inlay=inlay))
         print(f'   {ch}  turned {np.degrees(th):+6.2f} deg   '
-              f'{len(solid):2d} contours, {len(inlay):2d} of inlay')
+              f'{len(solid):2d} contours, {len(inlay):2d} ruled, '
+              f'body {body.sum() / d["mask"].sum():.0%} of the silhouette, '
+              f'{shade.sum() / max(body.sum(), 1):.0%} of it hatched')
 
     doc = dict(
         source=os.path.basename(o.image),
         px=dict(w=int(gray.shape[1]), h=int(gray.shape[0])),
+        shadow=dict(dx=sdx, dy=sdy),
         arc=dict(cx=centre[0], cy=centre[1], r_top=ct[2], r_bot=rb_mean,
                  r_bot_wander=rb_dev, r_base=r_base, cap=cap,
                  x0=int(x0), x1=int(x1),

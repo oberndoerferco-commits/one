@@ -97,7 +97,15 @@ var S = {
   key: 0.69,         // mm, keyline weight
   round: 1.0,        // 0 square ends, 1 fully rounded
   bw: false,         // pure black and white, for the drawing itself
-  inlay: true,       // draw the engraved highlights
+  engraved: true,    // outline, hatching, highlight and shadow
+  outline: 0.22,     // mm, the keyline round each letter
+  halo: 0.10,        // mm, paper left between that line and the hatching
+  pitch: 0.26,       // mm, centre to centre of the ruled hatching
+  hatch: 0.10,       // mm, weight of one hatch line
+  shadow: 0,         // mm, how far a cast shadow drops. The drawing's own
+                     // is welded into the silhouette and cannot be taken
+                     // off it cleanly, so this adds a second one.
+  inlay: true,       // leave the lit side of each stroke blank
   ghost: false,      // the source picture underneath
   reuse: false       // one drawing per repeated letter
 };
@@ -300,7 +308,7 @@ function radii(lay, rr){
    end is nearer - that last one a plain distance to the circle the cap is
    struck on, which is what makes the ends honest. */
 function clearance(lay, r){
-  var paths = G.svg.querySelectorAll('g[data-ink] path');
+  var paths = G.svg.querySelectorAll('g[data-ink] path[data-ch]');
   var R = lay.R, key = S.key / 2, caps = endCaps(lay, r), f = caps[0].f;
   var worst = Infinity, who = null;
   var ang = function(p){
@@ -341,9 +349,12 @@ function clearance(lay, r){
     // The element's OWN transform, not getCTM: that one goes all the way
     // to the viewport and carries the viewBox with it, so the answer
     // would come out in screen pixels and change with the window.
-    var cons = el.transform.baseVal.consolidate();
-    if (!len || !cons) continue;
-    var m = cons.matrix;
+    // the transform now lives on the letter's group, not on the path, so
+    // the walk has to compose the path's own with its parent's
+    var own = el.transform.baseVal.consolidate();
+    var par = el.parentNode.transform.baseVal.consolidate();
+    if (!len || !par) continue;
+    var m = own ? par.matrix.multiply(own.matrix) : par.matrix;
     // lengths are in the glyph's own units - source pixels - so a third
     // of a millimetre is a third divided by the scale
     var step = Math.max(0.33 / lay.mm, len / 3000);
@@ -402,25 +413,107 @@ function draw(){
   letters.setAttribute('fill', cInk);
   letters.setAttribute('fill-rule', 'evenodd');
   g.appendChild(letters);
-  var inlay = el('g');
-  inlay.setAttribute('fill', cPlate);
-  inlay.setAttribute('fill-rule', 'evenodd');
-  g.appendChild(inlay);
 
-  lay.place.forEach(function(p){
+  /* Each letter the way the reference builds one: a cast shadow behind
+     it, paper inside it, ruled hatching over the paper, the lit side
+     left blank, and a fine keyline round the whole thing with a paper
+     halo just inside. The hatching is drawn, not traced - at a 2 to 4
+     pixel pitch in the source it is below what the file holds, so it is
+     ruled at whatever pitch is asked for and comes out even, which the
+     original is not.
+
+     Lengths inside a letter are in the glyph's own units, so every width
+     given in millimetres is divided by the scale on the way in. */
+  var defs = el('defs');
+  svg.insertBefore(defs, svg.firstChild);
+  var u = 1 / lay.mm;                               // mm -> glyph units
+
+  lay.place.forEach(function(p, i){
     var t = 'translate(' + p.x + ' ' + p.y + ') rotate(' + p.deg +
             ') scale(' + lay.mm + ')';
-    var a = el('path');
-    a.setAttribute('d', p.src.paths.join(' '));
-    a.setAttribute('transform', t);
-    a.setAttribute('data-ch', p.ch);
-    letters.appendChild(a);
-    if (S.inlay && p.src.inlay.length){
-      var b = el('path');
-      b.setAttribute('d', p.src.inlay.join(' '));
-      b.setAttribute('transform', t);
-      inlay.appendChild(b);
+    var body = p.src.paths.join(' ');
+    var g = el('g');
+    g.setAttribute('transform', t);
+    letters.appendChild(g);
+
+    if (!S.engraved){
+      var solid = el('path');
+      solid.setAttribute('d', body);
+      solid.setAttribute('fill', cInk);
+      solid.setAttribute('data-ch', p.ch);
+      g.appendChild(solid);
+      return;
     }
+
+    if (S.shadow > 0){
+      var sh = el('path');
+      sh.setAttribute('d', body);
+      sh.setAttribute('fill', cInk);
+      sh.setAttribute('transform', 'translate(' + (S.shadow * 0.55 * u) +
+                      ' ' + (S.shadow * u) + ')');
+      g.appendChild(sh);
+    }
+
+    var paper = el('path');
+    paper.setAttribute('d', body);
+    paper.setAttribute('fill', cPlate);
+    paper.setAttribute('data-ch', p.ch);
+    g.appendChild(paper);
+
+    /* The hatch is clipped to the region the engraver actually ruled -
+       which plate.json carries, measured by stripe energy - and not to
+       the whole letter. Clip it to the letter and every stroke reads
+       flat: the blank lit side is what makes it look modelled. */
+    var ruled = (S.inlay && p.src.inlay.length) ? p.src.inlay.join(' ') : body;
+    var cid = 'ruled' + i;
+    var cp = el('clipPath');
+    cp.setAttribute('id', cid);
+    var cpp = el('path');
+    cpp.setAttribute('d', ruled);
+    cpp.setAttribute('clip-rule', 'evenodd');
+    cp.appendChild(cpp);
+    defs.appendChild(cp);
+
+    var inside = el('g');
+    inside.setAttribute('clip-path', 'url(#' + cid + ')');
+    g.appendChild(inside);
+
+    var b = bounds(p.src), pitch = Math.max(S.pitch * u, 0.6);
+    var d = [];
+    for (var y = Math.floor(b.y0 / pitch) * pitch; y <= b.y1; y += pitch)
+      d.push('M' + (b.x0 - 2) + ' ' + y.toFixed(2) + 'H' + (b.x1 + 2));
+    var hatch = el('path');
+    hatch.setAttribute('d', d.join(''));
+    hatch.setAttribute('fill', 'none');
+    hatch.setAttribute('stroke', cInk);
+    hatch.setAttribute('stroke-width', S.hatch * u);
+    inside.appendChild(hatch);
+
+    if (S.halo > 0){
+      var hc = el('clipPath');
+      hc.setAttribute('id', 'body' + i);
+      var hcp = el('path');
+      hcp.setAttribute('d', body);
+      hc.appendChild(hcp);
+      defs.appendChild(hc);
+      var hg = el('g');
+      hg.setAttribute('clip-path', 'url(#body' + i + ')');
+      var ha = el('path');
+      ha.setAttribute('d', body);
+      ha.setAttribute('fill', 'none');
+      ha.setAttribute('stroke', cPlate);
+      ha.setAttribute('stroke-width', 2 * S.halo * u);
+      hg.appendChild(ha);
+      g.appendChild(hg);
+    }
+
+    var line = el('path');
+    line.setAttribute('d', body);
+    line.setAttribute('fill', 'none');
+    line.setAttribute('stroke', cInk);
+    line.setAttribute('stroke-width', S.outline * u);
+    line.setAttribute('stroke-linejoin', 'round');
+    g.appendChild(line);
   });
 
   // fit the view to the plate with a little air
@@ -494,13 +587,22 @@ function panel(){
     function(){ return S.endgap; }, function(v){ S.endgap = v; }, mm));
   sync.push(slider(b, 'Keyline', 0.15, 2.5, 0.01,
     function(){ return S.key; }, function(v){ S.key = v; }, mm));
+  sync.push(slider(c, 'Keyline round the letters', 0.05, 0.6, 0.01,
+    function(){ return S.outline; }, function(v){ S.outline = v; }, mm));
+  sync.push(slider(c, 'Hatching pitch', 0.12, 0.8, 0.01,
+    function(){ return S.pitch; }, function(v){ S.pitch = v; }, mm));
+  sync.push(slider(c, 'Hatching weight', 0.04, 0.3, 0.01,
+    function(){ return S.hatch; }, function(v){ S.hatch = v; }, mm));
+  sync.push(slider(c, 'Cast shadow', 0, 3, 0.05,
+    function(){ return S.shadow; }, function(v){ S.shadow = v; }, mm));
   sync.push(slider(b, 'End rounding', 0, 1, 0.01,
     function(){ return S.round; }, function(v){ S.round = v; },
     function(v){ return Math.round(v*100) + '%'; }));
 
   var chips = h('div', 'chips');
   c.appendChild(chips);
-  [['Engraved inlay','inlay'], ['Black and white','bw'],
+  [['Engraved','engraved'], ['Leave the lit side blank','inlay'],
+   ['Black and white','bw'],
    ['Source underneath','ghost'],
    ['One drawing per letter','reuse']].forEach(function(t){
     var btn = h('button', null, t[0]);
