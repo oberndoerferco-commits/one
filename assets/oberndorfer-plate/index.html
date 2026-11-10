@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Oberndörfer Nameplate</title>
+<style>
+  :root{
+    --bg:#111113; --panel:#18181b; --line:#2a2a2f; --ink:#ececee;
+    --mute:#8d8d96; --hot:#c9a227; --plate:#f4f1e8; --key:#121214;
+    --gutl:max(16px,env(safe-area-inset-left,0px));
+    --gutr:max(16px,env(safe-area-inset-right,0px));
+  }
+  @media (prefers-color-scheme: light){
+    :root:not([data-theme="dark"]){
+      --bg:#f2f1ee; --panel:#ffffff; --line:#dedcd6; --ink:#1b1b1d;
+      --mute:#6c6c74; --plate:#f7f5ee; --key:#17171a;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#111113; --panel:#18181b; --line:#2a2a2f; --ink:#ececee;
+    --mute:#8d8d96; --plate:#f4f1e8; --key:#121214;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);
+    font:14px/1.5 ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif;
+    -webkit-text-size-adjust:100%}
+  body{display:flex;flex-direction:column;overflow:hidden}
+  header{padding:10px var(--gutr) 8px var(--gutl);border-bottom:1px solid var(--line);
+    display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+  h1{margin:0;font-size:14px;letter-spacing:.14em;text-transform:uppercase;font-weight:650}
+  .sub{color:var(--mute);font-size:12px}
+  main{flex:1;min-height:0;display:flex;flex-direction:column}
+  #stage{flex:1;min-height:0;position:relative;overflow:hidden;
+    background:repeating-conic-gradient(var(--bg) 0% 25%, color-mix(in srgb,var(--bg) 92%, #808080) 0% 50%) 50%/22px 22px}
+  #stage svg{position:absolute;inset:0;width:100%;height:100%}
+  .panel{border-top:1px solid var(--line);background:var(--panel);
+    max-height:48vh;overflow-y:auto;overscroll-behavior:contain;
+    padding:10px var(--gutr) calc(10px + env(safe-area-inset-bottom,0px)) var(--gutl)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:4px 22px}
+  .row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px;
+    padding:3px 0;border-bottom:1px solid color-mix(in srgb,var(--line) 55%,transparent)}
+  .row label{color:var(--mute);font-size:12px}
+  .row b{font-variant-numeric:tabular-nums;font-weight:600;font-size:12px;min-width:76px;text-align:right}
+  input[type=range]{grid-column:1/-1;width:100%;accent-color:var(--hot);margin:0}
+  .chips{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 2px}
+  button{font:inherit;font-size:12px;color:var(--ink);background:transparent;
+    border:1px solid var(--line);border-radius:999px;padding:5px 11px;cursor:pointer}
+  button[aria-pressed=true]{border-color:var(--hot);color:var(--hot)}
+  button.go{border-color:var(--hot);color:var(--hot)}
+  .note{color:var(--mute);font-size:11.5px;margin:8px 0 0;max-width:62ch}
+  .boot{position:absolute;inset:0;display:grid;place-content:center;color:var(--mute);
+    font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<header>
+  <h1>Oberndörfer nameplate</h1>
+  <span class="sub" id="dims">—</span>
+</header>
+<main>
+  <div id="stage"><div class="boot" id="boot">Tracing…</div></div>
+  <div class="panel" id="panel"></div>
+</main>
+
+<script>
+/* The plate, taken apart and put back together.
+
+   The artwork was one flat picture: eleven letters already turned onto
+   one arch inside one frame. arch_plate.py fitted the circle the whole
+   thing was struck about, turned every letter back by its own angle, and
+   wrote what was left - upright outlines, and the arc distance from each
+   letter to the next.
+
+   So the arch is a parameter again. Everything here is drawn from those
+   outlines: the letters are placed along a circle of whatever radius the
+   rise asks for, each one turned by its own angle on it, and the frame is
+   two arcs struck about the same centre with rounded ends. Nothing is
+   stretched or re-traced - the letterforms are the ones in the picture,
+   to a third of a pixel.
+
+   Units are millimetres throughout. The source has no scale of its own,
+   so cap height sets it: at 10.7 mm the plate comes out the size the
+   drawing implies if its frame were 100 mm across. */
+
+var DOC = null, G = {};
+var S = {
+  cap: 10.74,        // mm, cap height of the letters
+  rise: 6.67,        // mm, how far the baseline bows over the word
+  track: 0,          // mm, added between every pair of letters
+  mtop: 0.80,        // mm, highest ink to the inside of the top keyline
+  mbot: 2.47,        // mm, lowest ink to the inside of the bottom keyline
+  endgap: 5.09,      // mm, extra arc at each end of the plate
+  key: 0.69,         // mm, keyline weight
+  round: 1.0,        // 0 square ends, 1 fully rounded
+  inlay: true,       // draw the engraved highlights
+  ghost: false,      // the source picture underneath
+  reuse: false       // one drawing per repeated letter
+};
+var D0 = JSON.parse(JSON.stringify(S));
+
+function el(t, c, txt){
+  var e = document.createElementNS('http://www.w3.org/2000/svg', t);
+  if (c) e.setAttribute('class', c);
+  if (txt != null) e.textContent = txt;
+  return e;
+}
+function h(t, c, txt){
+  var e = document.createElement(t);
+  if (c) e.className = c;
+  if (txt != null) e.textContent = txt;
+  return e;
+}
+
+/* --- geometry -------------------------------------------------------- */
+
+/* A chord of arc length s bows by `rise`. Radius from the two of them has
+   no closed form, so it is bisected: rise/R = 1 - cos(s/2R) falls
+   monotonically in R, which is all bisection needs. A straight line is
+   rise 0, and there R is infinite - handled as its own case rather than
+   as a very large number, because a 10^9 mm radius makes the arc commands
+   in the exported SVG useless. */
+function radiusFor(arcLen, rise){
+  if (rise <= 1e-6) return Infinity;
+  var lo = arcLen / 2 / Math.PI, hi = 1e7;
+  for (var i = 0; i < 90; i++){
+    var m = (lo + hi) / 2, a = arcLen / (2 * m);
+    if (a > Math.PI) { lo = m; continue; }
+    if (m * (1 - Math.cos(a)) > rise) lo = m; else hi = m;
+  }
+  return (lo + hi) / 2;
+}
+
+/* Where each letter sits: its arc distance from the middle of the word,
+   and the angle that distance comes to on the current radius. The step
+   from one letter to the next is the one measured in the picture, so at
+   tracking zero the spacing is the artwork's own - uneven, 109 to 131
+   source pixels, which is part of why it reads as drawn by hand. */
+function layout(){
+  var mm = S.cap / DOC.arc.cap;              // mm per source pixel
+  var L = DOC.letters, n = L.length;
+  var step = [];
+  for (var i = 0; i < n - 1; i++){
+    var d = (L[i+1].angle - L[i].angle) * Math.PI / 180 * DOC.arc.r_base;
+    step.push(d * mm + S.track);
+  }
+  var at = [0];
+  for (i = 0; i < step.length; i++) at.push(at[i] + step[i]);
+  var span = at[n-1];
+  for (i = 0; i < n; i++) at[i] -= span / 2;
+
+  var R = radiusFor(span, S.rise);
+  var out = [];
+  for (i = 0; i < n; i++){
+    var src = S.reuse ? L[firstOf(L[i].ch)] : L[i];
+    var a = R === Infinity ? 0 : at[i] / R;             // radians
+    out.push({
+      ch: L[i].ch, src: src, deg: a * 180 / Math.PI,
+      x: R === Infinity ? at[i] : R * Math.sin(a),
+      y: R === Infinity ? 0     : R * (1 - Math.cos(a))
+    });
+  }
+  return { R: R, span: span, mm: mm, at: at, place: out };
+}
+var FIRST = {};
+function firstOf(ch){
+  if (FIRST[ch] == null)
+    for (var i = 0; i < DOC.letters.length; i++)
+      if (DOC.letters[i].ch === ch) { FIRST[ch] = i; break; }
+  return FIRST[ch];
+}
+
+/* How far the ink reaches above the baseline and below it, in mm. The
+   round letters overshoot both ways, and the umlaut reaches furthest of
+   all, so the frame has to be told by the letters rather than by the cap
+   height. */
+function reach(lay){
+  var up = 0, dn = 0;
+  for (var i = 0; i < lay.place.length; i++){
+    var b = bounds(lay.place[i].src);
+    up = Math.max(up, -b.y0); dn = Math.max(dn, b.y1);
+  }
+  return { up: up * lay.mm, dn: dn * lay.mm };
+}
+var BOX = new WeakMap();
+function bounds(g){
+  if (BOX.has(g)) return BOX.get(g);
+  var xs = [], ys = [];
+  g.paths.forEach(function(d){
+    var m = d.match(/-?\d+(\.\d+)?/g) || [];
+    for (var i = 0; i + 1 < m.length; i += 2){ xs.push(+m[i]); ys.push(+m[i+1]); }
+  });
+  var b = { x0: Math.min.apply(null, xs), x1: Math.max.apply(null, xs),
+            y0: Math.min.apply(null, ys), y1: Math.max.apply(null, ys) };
+  BOX.set(g, b); return b;
+}
+
+/* The frame: two arcs about the same centre as the letters, closed with a
+   round end at each side. The source is not quite like this - its two
+   keylines were struck about centres 71 px apart, so the real plate is
+   257 px deep in the middle and 263 at the ends. Concentric is a 2 per
+   cent change and makes the thing describable in one radius and one
+   depth, which is what a maker needs. */
+function framePath(lay, r){
+  var a0 = lay.at[0] - S.endgap, a1 = lay.at[lay.at.length-1] + S.endgap;
+  var rt = r.rt, rb = r.rb, cap = (rt - rb) / 2 * S.round;
+  if (lay.R === Infinity){
+    var y0 = -r.up - S.mtop - S.key / 2, y1 = r.dn + S.mbot + S.key / 2;
+    return 'M' + (a0 + cap) + ' ' + y0 +
+           'L' + (a1 - cap) + ' ' + y0 +
+           (cap > 0 ? 'A' + cap + ' ' + cap + ' 0 0 1 ' + (a1 - cap) + ' ' + y1
+                    : 'L' + (a1 - cap) + ' ' + y1) +
+           'L' + (a0 + cap) + ' ' + y1 +
+           (cap > 0 ? 'A' + cap + ' ' + cap + ' 0 0 1 ' + (a0 + cap) + ' ' + y0 : 'Z') + 'Z';
+  }
+  var R = lay.R;
+  // shrink the end angles by the cap so the round end fits inside them
+  var t0 = a0 / R + cap / rt, t1 = a1 / R - cap / rt;
+  var P = function(rad, t){ return [rad * Math.sin(t), R - rad * Math.cos(t)]; };
+  var A = P(rt, t0), B = P(rt, t1), C = P(rb, t1), E = P(rb, t0);
+  var big = Math.abs(t1 - t0) > Math.PI ? 1 : 0;
+  return 'M' + A + 'A' + rt + ' ' + rt + ' 0 ' + big + ' 1 ' + B +
+         'A' + cap + ' ' + cap + ' 0 0 1 ' + C +
+         'A' + rb + ' ' + rb + ' 0 ' + big + ' 0 ' + E +
+         'A' + cap + ' ' + cap + ' 0 0 1 ' + A + 'Z';
+}
+
+/* The margins are the clear gap from the ink to the INSIDE of the
+   keyline, because that is the gap a person sees and a maker measures.
+   The path is stroked on its centre line, so half the keyline weight has
+   to be added back on each side. */
+function radii(lay, rr){
+  var R = lay.R;
+  if (R === Infinity) return { rt: 0, rb: 0, up: rr.up, dn: rr.dn };
+  return { rt: R + rr.up + S.mtop + S.key / 2,
+           rb: R - rr.dn - S.mbot - S.key / 2,
+           up: rr.up, dn: rr.dn };
+}
+
+/* --- drawing --------------------------------------------------------- */
+
+function draw(){
+  var lay = layout(), rr = reach(lay), r = radii(lay, rr);
+  var svg = G.svg;
+  while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+  var g = el('g');
+  svg.appendChild(g);
+
+  if (S.ghost){
+    var im = el('image');
+    im.setAttributeNS('http://www.w3.org/1999/xlink', 'href', 'source.jpg');
+    var mm = lay.mm;
+    im.setAttribute('width', DOC.px.w * mm);
+    im.setAttribute('height', DOC.px.h * mm);
+    // put the source's own baseline apex on this drawing's origin
+    im.setAttribute('x', -DOC.arc.cx * mm);
+    im.setAttribute('y', -(DOC.arc.cy - DOC.arc.r_base) * mm);
+    im.setAttribute('opacity', '0.38');
+    g.appendChild(im);
+  }
+
+  var fp = framePath(lay, r);
+  var plate = el('path');
+  plate.setAttribute('d', fp);
+  plate.setAttribute('fill', getCSS('--plate'));
+  plate.setAttribute('stroke', getCSS('--key'));
+  plate.setAttribute('stroke-width', S.key);
+  plate.setAttribute('stroke-linejoin', 'round');
+  g.appendChild(plate);
+
+  var letters = el('g');
+  letters.setAttribute('fill', '#2b2825');
+  letters.setAttribute('fill-rule', 'evenodd');
+  g.appendChild(letters);
+  var inlay = el('g');
+  inlay.setAttribute('fill', getCSS('--plate'));
+  inlay.setAttribute('fill-rule', 'evenodd');
+  g.appendChild(inlay);
+
+  lay.place.forEach(function(p){
+    var t = 'translate(' + p.x + ' ' + p.y + ') rotate(' + p.deg +
+            ') scale(' + lay.mm + ')';
+    var a = el('path');
+    a.setAttribute('d', p.src.paths.join(' '));
+    a.setAttribute('transform', t);
+    letters.appendChild(a);
+    if (S.inlay && p.src.inlay.length){
+      var b = el('path');
+      b.setAttribute('d', p.src.inlay.join(' '));
+      b.setAttribute('transform', t);
+      inlay.appendChild(b);
+    }
+  });
+
+  // fit the view to the plate with a little air
+  var bb = plate.getBBox();
+  var pad = Math.max(bb.width, bb.height) * 0.06 + S.key;
+  svg.setAttribute('viewBox', [bb.x - pad, bb.y - pad,
+                               bb.width + 2*pad, bb.height + 2*pad].join(' '));
+  G.last = { w: bb.width, h: bb.height, lay: lay, r: r, frame: fp };
+  readout();
+}
+function getCSS(v){
+  return getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+}
+
+function readout(){
+  var L = G.last, lay = L.lay;
+  var txt = L.w.toFixed(1) + ' × ' + L.h.toFixed(1) + ' mm';
+  if (lay.R !== Infinity) txt += '  ·  arch radius ' + lay.R.toFixed(0) + ' mm';
+  else txt += '  ·  straight';
+  txt += '  ·  letters ' + lay.span.toFixed(1) + ' mm along the baseline';
+  document.getElementById('dims').textContent = txt;
+}
+
+/* --- controls -------------------------------------------------------- */
+
+function slider(host, name, lo, hi, stepv, get, set, fmt){
+  var row = h('div', 'row');
+  row.appendChild(h('label', null, name));
+  var b = h('b', null, fmt(get()));
+  row.appendChild(b);
+  var inp = document.createElement('input');
+  inp.type = 'range'; inp.min = lo; inp.max = hi; inp.step = stepv;
+  inp.value = get();
+  inp.addEventListener('input', function(){
+    set(+inp.value); b.textContent = fmt(get()); draw();
+  });
+  row.appendChild(inp);
+  host.appendChild(row);
+  return function(){ inp.value = get(); b.textContent = fmt(get()); };
+}
+
+var sync = [];
+function panel(){
+  var p = document.getElementById('panel');
+  p.innerHTML = '';
+  var grid = h('div', 'grid');
+  p.appendChild(grid);
+  var a = h('div'), b = h('div'), c = h('div');
+  grid.appendChild(a); grid.appendChild(b); grid.appendChild(c);
+  var mm = function(v){ return v.toFixed(2) + ' mm'; };
+
+  sync = [];
+  sync.push(slider(a, 'Arch rise', 0, 24, 0.05,
+    function(){ return S.rise; }, function(v){ S.rise = v; }, mm));
+  sync.push(slider(a, 'Letter spacing', -2.5, 8, 0.05,
+    function(){ return S.track; }, function(v){ S.track = v; }, mm));
+  sync.push(slider(a, 'Cap height', 4, 24, 0.02,
+    function(){ return S.cap; }, function(v){ S.cap = v; }, mm));
+
+  sync.push(slider(b, 'Margin above', 0, 10, 0.02,
+    function(){ return S.mtop; }, function(v){ S.mtop = v; }, mm));
+  sync.push(slider(b, 'Margin below', 0, 10, 0.02,
+    function(){ return S.mbot; }, function(v){ S.mbot = v; }, mm));
+  sync.push(slider(b, 'Frame ends', 0, 22, 0.1,
+    function(){ return S.endgap; }, function(v){ S.endgap = v; }, mm));
+  sync.push(slider(b, 'Keyline', 0.15, 2.5, 0.01,
+    function(){ return S.key; }, function(v){ S.key = v; }, mm));
+  sync.push(slider(b, 'End rounding', 0, 1, 0.01,
+    function(){ return S.round; }, function(v){ S.round = v; },
+    function(v){ return Math.round(v*100) + '%'; }));
+
+  var chips = h('div', 'chips');
+  c.appendChild(chips);
+  [['Engraved inlay','inlay'], ['Source underneath','ghost'],
+   ['One drawing per letter','reuse']].forEach(function(t){
+    var btn = h('button', null, t[0]);
+    btn.type = 'button';
+    btn.setAttribute('aria-pressed', S[t[1]] ? 'true' : 'false');
+    btn.addEventListener('click', function(){
+      S[t[1]] = !S[t[1]];
+      btn.setAttribute('aria-pressed', S[t[1]] ? 'true' : 'false');
+      if (t[1] === 'reuse') FIRST = {};
+      draw();
+    });
+    chips.appendChild(btn);
+  });
+  var acts = h('div', 'chips');
+  c.appendChild(acts);
+  var rst = h('button', null, 'As drawn');
+  rst.type = 'button';
+  rst.addEventListener('click', function(){
+    S = JSON.parse(JSON.stringify(D0));
+    sync.forEach(function(f){ f(); });
+    panel(); draw();
+  });
+  acts.appendChild(rst);
+  var exp = h('button', 'go', 'Download SVG');
+  exp.type = 'button';
+  exp.addEventListener('click', saveSVG);
+  acts.appendChild(exp);
+  var cp = h('button', null, 'Copy settings');
+  cp.type = 'button';
+  cp.addEventListener('click', function(){
+    navigator.clipboard.writeText(JSON.stringify(S, null, 2));
+    cp.textContent = 'Copied'; setTimeout(function(){ cp.textContent = 'Copy settings'; }, 1200);
+  });
+  acts.appendChild(cp);
+
+  c.appendChild(h('p', 'note',
+    'Arch rise is how far the baseline bows over the word, so 0 is a '
+    + 'straight line. Letter spacing adds to the gaps the artwork already '
+    + 'has, which are uneven by up to 20 per cent. The frame follows the '
+    + 'letters: margin is the gap from the ink to the keyline, ends is the '
+    + 'extra arc past the first and last letter.'));
+  c.appendChild(h('p', 'note',
+    'Margins are the clear gap from the ink to the inside of the keyline. '
+    + 'In the drawing the umlaut has 0.04 mm above it — it touches, and '
+    + 'in the picture the left dot is joined to the frame by a six pixel '
+    + 'neck. It opens to 0.80 mm here, which is the one liberty taken with '
+    + 'the geometry; wind it back down to see the original. The two '
+    + 'keylines were struck about centres 71 px apart, so the real plate is '
+    + '1.4 per cent out of true; this one is concentric.'));
+}
+
+function saveSVG(){
+  var L = G.last, pad = 2;
+  var vb = [ -L.w/2 - pad, 0, 0, 0 ];
+  var clone = G.svg.cloneNode(true);
+  var im = clone.querySelector('image');
+  if (im) im.parentNode.removeChild(im);
+  clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  var bb = G.svg.getBBox();
+  clone.setAttribute('width', (bb.width + 2*pad).toFixed(3) + 'mm');
+  clone.setAttribute('height', (bb.height + 2*pad).toFixed(3) + 'mm');
+  clone.setAttribute('viewBox', [bb.x - pad, bb.y - pad,
+    bb.width + 2*pad, bb.height + 2*pad].join(' '));
+  var txt = '<?xml version="1.0" encoding="UTF-8"?>\n' + clone.outerHTML;
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([txt], {type: 'image/svg+xml'}));
+  a.download = 'oberndorfer-nameplate.svg';
+  a.click();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); }, 2000);
+}
+
+/* --- boot ------------------------------------------------------------ */
+
+function boot(){
+  var svg = el('svg');
+  svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  G.svg = svg;
+  fetch('plate.json').then(function(r){ return r.json(); }).then(function(d){
+    DOC = d;
+    var st = document.getElementById('stage');
+    st.innerHTML = '';
+    st.appendChild(svg);
+    panel();
+    draw();
+    window.ready = true;
+  }).catch(function(e){
+    document.getElementById('boot').textContent = 'could not load: ' + e.message;
+    window.ready = 'error: ' + e.message;
+  });
+}
+window.ready = false;
+if (document.readyState === 'loading')
+  document.addEventListener('DOMContentLoaded', boot);
+else boot();
+</script>
+</body>
+</html>
