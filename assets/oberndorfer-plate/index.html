@@ -113,8 +113,13 @@ var S = {
                      // read as one thick one.
   inline: 0,         // mm, the second line, just inside the halo
   edge: 0,           // mm, the line where the hatching stops
+  hatching: true,    // the ruled shading itself. Off leaves an outlined
+                     // letter with a paper centre - the drawn lines and
+                     // the shadow still there, the shading not.
   pitch: 0.26,       // mm, centre to centre of the ruled hatching
   hatch: 0.10,       // mm, weight of one hatch line
+  frame: true,       // the plate itself. Off keeps the arch and the
+                     // banner's place, and drops the surround.
   banner: true,      // the swallowtail under the plate
   bgap: -1.10,       // mm, from the plate's lower keyline to the banner.
                      // Negative tucks the band up BEHIND the plate, which
@@ -302,12 +307,22 @@ function framePath(lay, r){
     return 'A' + rr + ' ' + rr + ' 0 0 ' + sweep + ' ' + p;
   };
   if (lay.R === Infinity){
-    return 'M' + L.B + 'L' + Rg.B +
-           (f > 0 ? arc(f, Rg.A, 1) : '') +
-           'L' + Rg.D +     // top of the right flat down... straight band
-           (f > 0 ? arc(f, Rg.C, 1) : '') +
-           'L' + L.C + (f > 0 ? arc(f, L.D, 1) : '') +
-           'L' + L.A + (f > 0 ? arc(f, L.B, 1) : '') + 'Z';
+    /* Top edge, right fillet, right end, right fillet, bottom edge,
+       left fillet, left end, left fillet. It has to start at A, the
+       tangency on the TOP EDGE, not at B, the tangency on the end: B
+       stands a fillet's radius below the top, so starting there drew
+       the top edge through the middle of the plate and turned each end
+       into a bowtie. With round at 0 the two points coincide and the
+       wrong order works by accident, which is why only a stadium end
+       ever showed it. */
+    return 'M' + L.A + 'L' + Rg.A +
+           (f > 0 ? arc(f, Rg.B, 1) : '') +
+           'L' + Rg.C +
+           (f > 0 ? arc(f, Rg.D, 1) : '') +
+           'L' + L.D +
+           (f > 0 ? arc(f, L.C, 1) : '') +
+           'L' + L.B +
+           (f > 0 ? arc(f, L.A, 1) : '') + 'Z';
   }
   return 'M' + L.A +
          arc(r.rt, Rg.A, 1) +
@@ -586,7 +601,7 @@ function draw(){
   plate.setAttribute('stroke', cKey);
   plate.setAttribute('stroke-width', S.key);
   plate.setAttribute('stroke-linejoin', 'round');
-  g.appendChild(plate);
+  if (S.frame) g.appendChild(plate);
 
   var letters = el('g');
   letters.setAttribute('data-ink', '1');
@@ -656,7 +671,7 @@ function draw(){
 
     var inside = el('g');
     inside.setAttribute('clip-path', 'url(#' + cid + ')');
-    g.appendChild(inside);
+    if (S.hatching) g.appendChild(inside);
 
     var b = bounds(p.src), pitch = Math.max(S.pitch * u, 0.6);
     var d = [];
@@ -853,7 +868,7 @@ function panel(){
   var chips = h('div', 'chips');
   c.appendChild(chips);
   [['Engraved','engraved'], ['The drawing\u2019s own lines','detail'],
-   ['Banner','banner'],
+   ['Frame','frame'], ['Banner','banner'], ['Hatching','hatching'],
    ['Leave the lit side blank','inlay'],
    ['Black and white','bw'],
    ['Source underneath','ghost'],
