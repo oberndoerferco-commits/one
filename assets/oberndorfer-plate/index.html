@@ -88,13 +88,15 @@ var S = {
   cap: 10.74,        // mm, cap height of the letters
   rise: 4.80,        // mm, how far the baseline bows over the word
   track: 1.10,       // mm, added between every pair of letters
-  mtop: 0.80,        // mm, highest ink to the inside of the top keyline
-  mbot: 2.47,        // mm, lowest ink to the inside of the bottom keyline
-  endgap: 7.60,      // mm, arc past the first and last letter's centre.
+  mtop: 1.40,        // mm, highest ink to the inside of the top keyline
+  mbot: 3.00,        // mm, lowest ink to the inside of the bottom keyline
+  endgap: 9.20,      // mm, arc past the first and last letter's centre.
                      // 5.09 was the drawing's own and the last R crosses
-                     // the keyline there; 6.69 is where it first clears.
+                     // the keyline there; 6.69 is where it first clears,
+                     // and these three together leave 1.43 mm all round.
   key: 0.69,         // mm, keyline weight
   round: 1.0,        // 0 square ends, 1 fully rounded
+  bw: false,         // pure black and white, for the drawing itself
   inlay: true,       // draw the engraved highlights
   ghost: false,      // the source picture underneath
   reuse: false       // one drawing per repeated letter
@@ -377,22 +379,31 @@ function draw(){
     g.appendChild(im);
   }
 
+  /* Two colours and no more. On screen they are the plate's cream and a
+     near-black, which is what the artwork looks like; as a drawing they
+     are #fff and #000, because a drawing that will be cut, etched or
+     printed has an inside and an outside and nothing in between, and a
+     near-black is a colour someone has to decide about later. */
+  var cPlate = S.bw ? '#ffffff' : getCSS('--plate');
+  var cKey = S.bw ? '#000000' : getCSS('--key');
+  var cInk = S.bw ? '#000000' : '#2b2825';
+
   var fp = framePath(lay, r);
   var plate = el('path');
   plate.setAttribute('d', fp);
-  plate.setAttribute('fill', getCSS('--plate'));
-  plate.setAttribute('stroke', getCSS('--key'));
+  plate.setAttribute('fill', cPlate);
+  plate.setAttribute('stroke', cKey);
   plate.setAttribute('stroke-width', S.key);
   plate.setAttribute('stroke-linejoin', 'round');
   g.appendChild(plate);
 
   var letters = el('g');
   letters.setAttribute('data-ink', '1');
-  letters.setAttribute('fill', '#2b2825');
+  letters.setAttribute('fill', cInk);
   letters.setAttribute('fill-rule', 'evenodd');
   g.appendChild(letters);
   var inlay = el('g');
-  inlay.setAttribute('fill', getCSS('--plate'));
+  inlay.setAttribute('fill', cPlate);
   inlay.setAttribute('fill-rule', 'evenodd');
   g.appendChild(inlay);
 
@@ -489,7 +500,8 @@ function panel(){
 
   var chips = h('div', 'chips');
   c.appendChild(chips);
-  [['Engraved inlay','inlay'], ['Source underneath','ghost'],
+  [['Engraved inlay','inlay'], ['Black and white','bw'],
+   ['Source underneath','ghost'],
    ['One drawing per letter','reuse']].forEach(function(t){
     var btn = h('button', null, t[0]);
     btn.type = 'button';
