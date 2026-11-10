@@ -285,6 +285,19 @@ def unroll(comp, centre, r_base):
     return th, to_local
 
 
+# How finely a boundary is followed, in SOURCE pixels - scaled to the
+# working grid in main(). The numbers are not a taste: the JPEG's own
+# edge wobbles 0.19 px at the median, 0.60 at p90 and 1.58 at p99, which
+# at this cap height is 0.013, 0.041 and 0.110 mm. Fitting to 0.010 mm,
+# as this did first, is four to ten times tighter than the thing being
+# measured, so every bit of ringing round a letter was traced as if it
+# were drawn. Zoomed in, that is exactly what an imprecise line looks
+# like. Blur to just under the noise floor and fit to it, and the ripple
+# is absorbed instead - the fitter is built to do that, it was simply
+# never told what the floor was.
+TRACE = dict(sigma=0.45, line=0.60, curve=0.45)
+
+
 def glyph(gray, comp, to_local, level, pad=4):
     """Trace one letter, already placed in its upright frame."""
     ys, xs = np.nonzero(comp)
@@ -293,8 +306,8 @@ def glyph(gray, comp, to_local, level, pad=4):
     win = np.ones((y1 - y0, x1 - x0), np.float32)
     sub = comp[y0:y1, x0:x1]
     win[sub] = gray[y0:y1, x0:x1][sub] / 255.0
-    cons = trace(np.minimum(win, 1.0), level=level, sigma=0.4,
-                 line_tol=0.45, curve_tol=0.3)
+    cons = trace(np.minimum(win, 1.0), level=level, sigma=TRACE['sigma'],
+                 line_tol=TRACE['line'], curve_tol=TRACE['curve'])
     shift = lambda p: to_local((p[0] + x0, p[1] + y0))
     svg, _, _ = emit(cons, shift)
     return svg
@@ -318,7 +331,7 @@ def trace_mask(mask, to_local, pad=4, smooth=0.6):
     win = np.ones((y1 - y0, x1 - x0), np.float32)
     win[mask[y0:y1, x0:x1]] = 0.0
     cons = trace(ndimage.gaussian_filter(win, smooth), level=0.5, sigma=0.0,
-                 line_tol=0.5, curve_tol=0.4)
+                 line_tol=TRACE['line'] * 1.1, curve_tol=TRACE['curve'] * 1.3)
     svg, _, _ = emit(cons, lambda p: to_local((p[0] + x0, p[1] + y0)))
     return svg
 
@@ -377,7 +390,13 @@ def main():
                     help='the letters, in order, one per shape found')
     ap.add_argument('--umlaut', type=int, default=6,
                     help='which letter carries the dots (0-based)')
-    ap.add_argument('--upsample', type=int, default=2, metavar='N',
+    ap.add_argument('--noise', type=float, default=0.60, metavar='PX',
+                    help="the picture's own edge wobble, in source pixels. "
+                         'Boundaries are blurred and fitted to just under '
+                         'it, so ripple below it is absorbed rather than '
+                         'traced. 0.60 is this JPEG measured at p90; drop '
+                         'it towards 0.2 to follow the edge more literally')
+    ap.add_argument('--upsample', type=int, default=3, metavar='N',
                     help="work at N times the picture's own resolution. "
                          'It recovers no detail, but every mask boundary '
                          'is then quantised on a finer grid, and that '
@@ -395,6 +414,9 @@ def main():
 
     im = Image.open(o.image).convert('RGB')
     U = max(1, int(o.upsample))
+    TRACE.update(sigma=0.75 * o.noise * U,
+                 line=1.00 * o.noise * U,
+                 curve=0.75 * o.noise * U)
     if U > 1:
         im = im.resize((im.width * U, im.height * U), Image.LANCZOS)
     rgb = np.asarray(im).astype(np.float32)
