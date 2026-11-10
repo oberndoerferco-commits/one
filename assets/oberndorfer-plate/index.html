@@ -86,11 +86,13 @@
 var DOC = null, G = {};
 var S = {
   cap: 10.74,        // mm, cap height of the letters
-  rise: 6.67,        // mm, how far the baseline bows over the word
-  track: 0,          // mm, added between every pair of letters
+  rise: 4.80,        // mm, how far the baseline bows over the word
+  track: 1.10,       // mm, added between every pair of letters
   mtop: 0.80,        // mm, highest ink to the inside of the top keyline
   mbot: 2.47,        // mm, lowest ink to the inside of the bottom keyline
-  endgap: 5.09,      // mm, extra arc at each end of the plate
+  endgap: 7.60,      // mm, arc past the first and last letter's centre.
+                     // 5.09 was the drawing's own and the last R crosses
+                     // the keyline there; 6.69 is where it first clears.
   key: 0.69,         // mm, keyline weight
   round: 1.0,        // 0 square ends, 1 fully rounded
   inlay: true,       // draw the engraved highlights
@@ -195,46 +197,161 @@ function bounds(g){
   BOX.set(g, b); return b;
 }
 
-/* The frame: two arcs about the same centre as the letters, closed with a
-   round end at each side. The source is not quite like this - its two
-   keylines were struck about centres 71 px apart, so the real plate is
-   257 px deep in the middle and 263 at the ends. Concentric is a 2 per
-   cent change and makes the thing describable in one radius and one
-   depth, which is what a maker needs. */
-function framePath(lay, r){
-  var a0 = lay.at[0] - S.endgap, a1 = lay.at[lay.at.length-1] + S.endgap;
-  var rt = r.rt, rb = r.rb, cap = (rt - rb) / 2 * S.round;
-  if (lay.R === Infinity){
-    var y0 = -r.up - S.mtop - S.key / 2, y1 = r.dn + S.mbot + S.key / 2;
-    return 'M' + (a0 + cap) + ' ' + y0 +
-           'L' + (a1 - cap) + ' ' + y0 +
-           (cap > 0 ? 'A' + cap + ' ' + cap + ' 0 0 1 ' + (a1 - cap) + ' ' + y1
-                    : 'L' + (a1 - cap) + ' ' + y1) +
-           'L' + (a0 + cap) + ' ' + y1 +
-           (cap > 0 ? 'A' + cap + ' ' + cap + ' 0 0 1 ' + (a0 + cap) + ' ' + y0 : 'Z') + 'Z';
-  }
-  var R = lay.R;
-  // shrink the end angles by the cap so the round end fits inside them
-  var t0 = a0 / R + cap / rt, t1 = a1 / R - cap / rt;
-  var P = function(rad, t){ return [rad * Math.sin(t), R - rad * Math.cos(t)]; };
-  var A = P(rt, t0), B = P(rt, t1), C = P(rb, t1), E = P(rb, t0);
-  var big = Math.abs(t1 - t0) > Math.PI ? 1 : 0;
-  return 'M' + A + 'A' + rt + ' ' + rt + ' 0 ' + big + ' 1 ' + B +
-         'A' + cap + ' ' + cap + ' 0 0 1 ' + C +
-         'A' + rb + ' ' + rb + ' 0 ' + big + ' 0 ' + E +
-         'A' + cap + ' ' + cap + ' 0 0 1 ' + A + 'Z';
+/* The frame: two arcs about the same centre as the letters, closed at
+   each end with a flat radial edge and a fillet into each arc. At full
+   rounding the two fillets meet and the flat vanishes, which is the
+   stadium end the artwork has; at nothing they vanish instead and the
+   end is a square radial cut.
+
+   It was one arc of radius depth/2 x rounding to begin with, which is
+   only a shape when rounding is 1: below that the radius is too small to
+   reach from one keyline to the other, and SVG quietly scales a radius
+   that cannot fit, so every setting under 100 per cent drew something
+   that was not the thing asked for. Hence the fillets.
+
+   The source is not quite like this either - its two keylines were
+   struck about centres 71 px apart, so the real plate is 257 px deep in
+   the middle and 263 at the ends. Concentric is a 1.4 per cent change
+   and makes the thing describable in one radius and one depth, which is
+   what a maker needs. */
+function endCaps(lay, r){
+  var R = lay.R, f = (r.rt - r.rb) / 2 * S.round;
+  var a0 = lay.at[0] - S.endgap, a1 = lay.at[lay.at.length - 1] + S.endgap;
+  var out = [];
+  [[a0, -1], [a1, +1]].forEach(function(pair){
+    var te = R === Infinity ? pair[0] : pair[0] / R, sgn = pair[1];
+    var P, rad, tan;
+    if (R === Infinity){
+      P = function(h){ return [pair[0], h]; };
+      rad = [0, -1]; tan = [sgn, 0];
+    } else {
+      P = function(rr){ return [rr * Math.sin(te), R - rr * Math.cos(te)]; };
+      rad = [Math.sin(te), -Math.cos(te)];
+      tan = [sgn * Math.cos(te), sgn * Math.sin(te)];
+    }
+    var top = R === Infinity ? P(0) : P(r.rt - f);
+    var bot = R === Infinity ? P(0) : P(r.rb + f);
+    if (R === Infinity){
+      top = [pair[0] - sgn * f, r.yTop + f];
+      bot = [pair[0] - sgn * f, r.yBot - f];
+    } else {
+      top = [top[0] - tan[0] * f, top[1] - tan[1] * f];
+      bot = [bot[0] - tan[0] * f, bot[1] - tan[1] * f];
+    }
+    out.push({
+      f: f, sgn: sgn, ct: top, cb: bot,
+      A: [top[0] + rad[0] * f, top[1] + rad[1] * f],   // meets the top arc
+      B: [top[0] + tan[0] * f, top[1] + tan[1] * f],   // starts the flat
+      C: [bot[0] + tan[0] * f, bot[1] + tan[1] * f],   // ends the flat
+      D: [bot[0] - rad[0] * f, bot[1] - rad[1] * f]    // meets the bottom arc
+    });
+  });
+  return out;
 }
 
-/* The margins are the clear gap from the ink to the INSIDE of the
-   keyline, because that is the gap a person sees and a maker measures.
-   The path is stroked on its centre line, so half the keyline weight has
-   to be added back on each side. */
+function framePath(lay, r){
+  var c = endCaps(lay, r), L = c[0], Rg = c[1], f = L.f;
+  var arc = function(rr, p, sweep){
+    return 'A' + rr + ' ' + rr + ' 0 0 ' + sweep + ' ' + p;
+  };
+  if (lay.R === Infinity){
+    return 'M' + L.B + 'L' + Rg.B +
+           (f > 0 ? arc(f, Rg.A, 1) : '') +
+           'L' + Rg.D +     // top of the right flat down... straight band
+           (f > 0 ? arc(f, Rg.C, 1) : '') +
+           'L' + L.C + (f > 0 ? arc(f, L.D, 1) : '') +
+           'L' + L.A + (f > 0 ? arc(f, L.B, 1) : '') + 'Z';
+  }
+  return 'M' + L.A +
+         arc(r.rt, Rg.A, 1) +
+         (f > 0 ? arc(f, Rg.B, 1) : '') +
+         'L' + Rg.C +
+         (f > 0 ? arc(f, Rg.D, 1) : '') +
+         arc(r.rb, L.D, 0) +
+         (f > 0 ? arc(f, L.C, 1) : '') +
+         'L' + L.B +
+         (f > 0 ? arc(f, L.A, 1) : '') + 'Z';
+}
+
 function radii(lay, rr){
   var R = lay.R;
-  if (R === Infinity) return { rt: 0, rb: 0, up: rr.up, dn: rr.dn };
+  var yTop = -rr.up - S.mtop - S.key / 2, yBot = rr.dn + S.mbot + S.key / 2;
+  if (R === Infinity)
+    return { rt: -yTop, rb: -yBot, up: rr.up, dn: rr.dn,
+             yTop: yTop, yBot: yBot };
   return { rt: R + rr.up + S.mtop + S.key / 2,
            rb: R - rr.dn - S.mbot - S.key / 2,
-           up: rr.up, dn: rr.dn };
+           up: rr.up, dn: rr.dn, yTop: yTop, yBot: yBot };
+}
+
+/* How close the ink comes to the inside of the keyline.
+
+   The same question the bead asked about its marks, and worth asking for
+   the same reason: a flatter arch turns the end letters less, so their
+   corners reach further along the plate than the centres the end gap is
+   measured from, and the R can be touching the frame while the number
+   that was set says 5 mm. Nothing here is eyeballed.
+
+   Every letter path is walked at a third of a millimetre and each point
+   taken into the plate's own polar frame. Clearance is then the least of
+   three: to the top keyline, to the bottom one, and to whichever rounded
+   end is nearer - that last one a plain distance to the circle the cap is
+   struck on, which is what makes the ends honest. */
+function clearance(lay, r){
+  var paths = G.svg.querySelectorAll('g[data-ink] path');
+  var R = lay.R, key = S.key / 2, caps = endCaps(lay, r), f = caps[0].f;
+  var worst = Infinity, who = null;
+  var ang = function(p){
+    return R === Infinity ? p[0] : Math.atan2(p[0], R - p[1]);
+  };
+  var tL = ang(caps[0].B), tR = ang(caps[1].B);   // the flats
+  var ctL = ang(caps[0].ct), cbL = ang(caps[0].cb);
+  var ctR = ang(caps[1].ct), cbR = ang(caps[1].cb);
+
+  /* Which boundary is nearest depends on where the point stands: inside a
+     fillet's own quarter it is that fillet's circle, past the fillets it
+     is the flat end, and in the middle of the plate it is one of the two
+     keylines. Measuring every point against the end as well is what made
+     the first version report the O as 89 mm inside a keyline it is
+     nowhere near. */
+  function gap(x, y){
+    var rr = R === Infinity ? -y : Math.hypot(x, R - y);
+    var t = R === Infinity ? x : Math.atan2(x, R - y);
+    var rt = R === Infinity ? -r.yTop : r.rt;
+    var rb = R === Infinity ? -r.yBot : r.rb;
+    if (f > 0){
+      if (rr > rt - f){
+        if (t > ctR) return f - Math.hypot(x - caps[1].ct[0], y - caps[1].ct[1]) - key;
+        if (t < ctL) return f - Math.hypot(x - caps[0].ct[0], y - caps[0].ct[1]) - key;
+      }
+      if (rr < rb + f){
+        if (t > cbR) return f - Math.hypot(x - caps[1].cb[0], y - caps[1].cb[1]) - key;
+        if (t < cbL) return f - Math.hypot(x - caps[0].cb[0], y - caps[0].cb[1]) - key;
+      }
+    }
+    var toEnd = R === Infinity ? Math.min(tR - t, t - tL)
+                               : Math.min((tR - t) * rr, (t - tL) * rr);
+    return Math.min(rt - rr, rr - rb, toEnd) - key;
+  }
+
+  for (var i = 0; i < paths.length; i++){
+    var el = paths[i], len = el.getTotalLength();
+    // The element's OWN transform, not getCTM: that one goes all the way
+    // to the viewport and carries the viewBox with it, so the answer
+    // would come out in screen pixels and change with the window.
+    var cons = el.transform.baseVal.consolidate();
+    if (!len || !cons) continue;
+    var m = cons.matrix;
+    // lengths are in the glyph's own units - source pixels - so a third
+    // of a millimetre is a third divided by the scale
+    var step = Math.max(0.33 / lay.mm, len / 3000);
+    for (var l = 0; l <= len; l += step){
+      var q = el.getPointAtLength(l).matrixTransform(m);
+      var d = gap(q.x, q.y);
+      if (d < worst){ worst = d; who = el.getAttribute('data-ch'); }
+    }
+  }
+  return { mm: worst, ch: who };
 }
 
 /* --- drawing --------------------------------------------------------- */
@@ -270,6 +387,7 @@ function draw(){
   g.appendChild(plate);
 
   var letters = el('g');
+  letters.setAttribute('data-ink', '1');
   letters.setAttribute('fill', '#2b2825');
   letters.setAttribute('fill-rule', 'evenodd');
   g.appendChild(letters);
@@ -284,6 +402,7 @@ function draw(){
     var a = el('path');
     a.setAttribute('d', p.src.paths.join(' '));
     a.setAttribute('transform', t);
+    a.setAttribute('data-ch', p.ch);
     letters.appendChild(a);
     if (S.inlay && p.src.inlay.length){
       var b = el('path');
@@ -299,6 +418,7 @@ function draw(){
   svg.setAttribute('viewBox', [bb.x - pad, bb.y - pad,
                                bb.width + 2*pad, bb.height + 2*pad].join(' '));
   G.last = { w: bb.width, h: bb.height, lay: lay, r: r, frame: fp };
+  G.last.clear = clearance(lay, r);
   readout();
 }
 function getCSS(v){
@@ -311,6 +431,11 @@ function readout(){
   if (lay.R !== Infinity) txt += '  ·  arch radius ' + lay.R.toFixed(0) + ' mm';
   else txt += '  ·  straight';
   txt += '  ·  letters ' + lay.span.toFixed(1) + ' mm along the baseline';
+  var cl = L.clear;
+  if (cl && isFinite(cl.mm))
+    txt += '  ·  ' + (cl.mm < 0
+      ? cl.ch + ' into the keyline by ' + (-cl.mm).toFixed(2) + ' mm'
+      : cl.mm.toFixed(2) + ' mm clear at the ' + cl.ch);
   document.getElementById('dims').textContent = txt;
 }
 
@@ -401,10 +526,14 @@ function panel(){
 
   c.appendChild(h('p', 'note',
     'Arch rise is how far the baseline bows over the word, so 0 is a '
-    + 'straight line. Letter spacing adds to the gaps the artwork already '
-    + 'has, which are uneven by up to 20 per cent. The frame follows the '
+    + 'straight line; the drawing it was traced from had 6.67 mm, this '
+    + 'opens on 4.80. Letter spacing adds to the gaps the artwork already '
+    + 'has, which are uneven by up to 20 per cent; it opens on 1.10 mm '
+    + 'rather than the drawing\u2019s nothing. The frame follows the '
     + 'letters: margin is the gap from the ink to the keyline, ends is the '
-    + 'extra arc past the first and last letter.'));
+    + 'extra arc past the centre of the first and last letter \u2014 so '
+    + 'the readout, not that number, is what says whether the ink clears '
+    + 'the keyline.'));
   c.appendChild(h('p', 'note',
     'Margins are the clear gap from the ink to the inside of the keyline. '
     + 'In the drawing the umlaut has 0.04 mm above it — it touches, and '

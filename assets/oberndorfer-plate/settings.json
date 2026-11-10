@@ -1,0 +1,13 @@
+{
+  "cap": 10.74,
+  "rise": 4.8,
+  "track": 1.1,
+  "mtop": 0.8,
+  "mbot": 2.47,
+  "endgap": 7.6,
+  "key": 0.69,
+  "round": 1,
+  "inlay": true,
+  "ghost": false,
+  "reuse": false
+}
