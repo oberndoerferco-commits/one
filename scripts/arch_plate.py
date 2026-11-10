@@ -189,7 +189,7 @@ def hatched(gray, body, cap_px, thresh=9.0, U=1):
     return m & body
 
 
-def linework(gray, region, thresh=125.0, bar=4, U=1):
+def linework(gray, region, own=None, thresh=125.0, bar=4, U=1):
     """The drawn lines, with the ruling taken out from under them.
 
     Everything so far has been built from a filled silhouette, and a
@@ -207,7 +207,22 @@ def linework(gray, region, thresh=125.0, bar=4, U=1):
     missing.
     """
     dark = (gray < thresh) & region
-    return ndimage.binary_opening(dark, np.ones((int(round(bar * U)), 1)))
+    dark = ndimage.binary_opening(dark, np.ones((int(round(bar * U)), 1)))
+    if own is None:
+        return dark
+    # Each letter searches a dilated patch around itself so that its cast
+    # shadow comes with it, and that reach takes in the gap to the next
+    # letter as well - where it finds specks, crumbs of the neighbour's
+    # shadow, and whatever else fell under the cut. They belong to
+    # nothing, and they came out floating between the letters. Keeping
+    # only the parts that touch this letter's own silhouette drops them:
+    # a shadow is joined to the letter that casts it, a speck is not.
+    reach = ndimage.binary_dilation(own, np.ones((3, 3)), iterations=2 * U)
+    lab, n = ndimage.label(dark)
+    keep = np.zeros(n + 1, bool)
+    keep[np.unique(lab[reach & dark])] = True
+    keep[0] = False
+    return keep[lab]
 
 
 def deshadow(mask, dx, dy):
@@ -442,10 +457,11 @@ def main():
         # with it and hangs a bar over the O.
         near = ndimage.binary_dilation(d['mask'], np.ones((5, 5)),
                                        iterations=6 * U) & ~band
-        lines = linework(gray, near, U=U)
+        lines = linework(gray, near, own=d['mask'], U=U)
         # traced off the greyscale through the mask rather than off the
         # mask itself, so the edges land where the picture's own edge is
         # instead of on the pixel grid
+        loose = linework(gray, near, U=U).sum() - lines.sum()
         detail = glyph(gray, lines, to_local, 125.0 / 255.0) \
             if lines.sum() > 200 * U * U else []
         shade = hatched(gray, body, cap, U=U)
@@ -460,7 +476,8 @@ def main():
                             paths=solid, inlay=inlay, detail=detail))
         print(f'   {ch}  turned {np.degrees(th):+6.2f} deg   '
               f'{len(solid):2d} contours, {len(inlay):2d} ruled, '
-              f'{len(detail):3d} of line work, '
+              f'{len(detail):3d} of line work ({loose} px of strays '
+              f'dropped), '
               f'{shade.sum() / max(body.sum(), 1):.0%} hatched')
 
     doc = dict(
