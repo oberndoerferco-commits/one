@@ -94,7 +94,7 @@ def keylines(mask, band):
     return (x0, x1), ct, cb
 
 
-def free_the_dot(band, ct, cb, x0, x1, rad=5):
+def free_the_dot(band, ct, cb, x0, x1, rad=5, U=1):
     """Cut the umlaut dot off the frame it is stuck to.
 
     The dot hangs below the top keyline on a neck six pixels wide, so it
@@ -105,6 +105,7 @@ def free_the_dot(band, ct, cb, x0, x1, rad=5):
     returns the dot without the neck - two blobs left on the whole
     plate, and only one of them is round.
     """
+    rad = int(round(rad * U))
     yy, xx = np.mgrid[-rad:rad + 1, -rad:rad + 1]
     disc = (xx ** 2 + yy ** 2) <= rad * rad
     core = ndimage.binary_erosion(band, disc)
@@ -115,7 +116,7 @@ def free_the_dot(band, ct, cb, x0, x1, rad=5):
         s = int(blob.sum())
         ys, xs = np.nonzero(blob)
         wd, ht = np.ptp(xs) + 1, np.ptp(ys) + 1
-        if not (250 <= s <= 2000 and 0.55 < wd / ht < 1.8
+        if not (250 * U * U <= s <= 2000 * U * U and 0.55 < wd / ht < 1.8
                 and s / (wd * ht) > 0.55):
             continue
         out |= ndimage.binary_dilation(blob, disc)
@@ -133,7 +134,7 @@ def split_at_neck(comp, lo, hi):
     return left, right, cut, int(cols[cut - lo])
 
 
-def components(mask, band, dots):
+def components(mask, band, dots, U=1):
     """Every letter of the word, in reading order.
 
     The letters are what is left once the frame is taken away, plus the
@@ -148,7 +149,7 @@ def components(mask, band, dots):
     objs = ndimage.find_objects(lab)
     out = []
     for i in range(1, n + 1):
-        if sz[i] < 150:
+        if sz[i] < 150 * U * U:
             continue
         ys, xs = objs[i - 1]
         out.append(dict(mask=(lab == i), x0=xs.start, x1=xs.stop,
@@ -157,7 +158,7 @@ def components(mask, band, dots):
     return out
 
 
-def hatched(gray, body, thresh=9.0):
+def hatched(gray, body, cap_px, thresh=9.0, U=1):
     """Which part of a letter the engraver ruled, and which he left blank.
 
     The one measurement in this picture that is not ambiguous. The
@@ -169,25 +170,26 @@ def hatched(gray, body, thresh=9.0):
     is, and that is what the hatch has to be clipped to or the modelling
     is lost and every stroke reads flat.
     """
-    hp = gray - ndimage.uniform_filter(gray, size=(5, 1))
-    energy = ndimage.uniform_filter(np.abs(hp), size=(9, 9))
+    k = lambda n: np.ones((max(1, int(round(n * U))),) * 2)
+    hp = gray - ndimage.uniform_filter(gray, size=(max(3, 5 * U), 1))
+    energy = ndimage.uniform_filter(np.abs(hp), size=(9 * U, 9 * U))
     m = body & (energy > thresh)
-    m = ndimage.binary_closing(m, np.ones((5, 5)))
-    m = ndimage.binary_opening(m, np.ones((3, 3)))
+    m = ndimage.binary_closing(m, k(5))
+    m = ndimage.binary_opening(m, k(3))
     # The boundary between ruled and blank is soft in the picture, where
     # the hatching thins out rather than stopping, so the mask comes back
     # freckled with islands either way. Anything under a fiftieth of a
     # square millimetre is such a freckle and not a decision the engraver
     # made: it reads as dirt at any size.
-    keep = max(60, int(0.05 / (10.74 / 154.9) ** 2))
-    m = morphology.remove_small_objects(m, keep)
-    m = morphology.remove_small_holes(m, keep)
-    m = ndimage.binary_closing(m, np.ones((7, 7)))
-    m = ndimage.binary_opening(m, np.ones((5, 5)))
+    keep = max(60, int(0.05 / (10.74 / cap_px) ** 2))
+    m = morphology.remove_small_objects(m, min_size=keep)
+    m = morphology.remove_small_holes(m, area_threshold=keep)
+    m = ndimage.binary_closing(m, k(7))
+    m = ndimage.binary_opening(m, k(5))
     return m & body
 
 
-def linework(gray, region, thresh=125.0, bar=4):
+def linework(gray, region, thresh=125.0, bar=4, U=1):
     """The drawn lines, with the ruling taken out from under them.
 
     Everything so far has been built from a filled silhouette, and a
@@ -205,7 +207,7 @@ def linework(gray, region, thresh=125.0, bar=4):
     missing.
     """
     dark = (gray < thresh) & region
-    return ndimage.binary_opening(dark, np.ones((bar, 1)))
+    return ndimage.binary_opening(dark, np.ones((int(round(bar * U)), 1)))
 
 
 def deshadow(mask, dx, dy):
@@ -314,6 +316,11 @@ def main():
                     help='the letters, in order, one per shape found')
     ap.add_argument('--umlaut', type=int, default=6,
                     help='which letter carries the dots (0-based)')
+    ap.add_argument('--upsample', type=int, default=2, metavar='N',
+                    help="work at N times the picture's own resolution. "
+                         'It recovers no detail, but every mask boundary '
+                         'is then quantised on a finer grid, and that '
+                         'quantisation is what the ragged edges are')
     ap.add_argument('--ink', type=float, default=INK)
     ap.add_argument('--hilight', type=float, default=HILIGHT)
     ap.add_argument('--deshadow', default='11,18', metavar='DX,DY',
@@ -322,9 +329,14 @@ def main():
                          'silhouette; 0,0 leaves it welded on')
     o = ap.parse_args()
 
-    rgb = np.asarray(Image.open(o.image).convert('RGB')).astype(np.float32)
+    im = Image.open(o.image).convert('RGB')
+    U = max(1, int(o.upsample))
+    if U > 1:
+        im = im.resize((im.width * U, im.height * U), Image.LANCZOS)
+    rgb = np.asarray(im).astype(np.float32)
     gray = rgb.mean(2)
     mask = ndimage.binary_closing(gray < o.ink, np.ones((3, 3)))
+    print(f'working at {U}x: {gray.shape[1]} x {gray.shape[0]} px')
     lab, _ = ndimage.label(mask)
     band = lab == (np.bincount(lab.ravel())[1:].argmax() + 1)
 
@@ -335,10 +347,10 @@ def main():
     print(f'   bottom keyline centre ({cb[0]:.1f}, {cb[1]:.1f})  radius '
           f'{cb[2]:.1f}  fit {np.abs(cb[3]).max():.2f} px worst')
 
-    dots = free_the_dot(band, ct, cb, x0, x1)
+    dots = free_the_dot(band, ct, cb, x0, x1, U=U)
     print(f'   cut {int(dots.sum())} px of umlaut dot off the top keyline')
 
-    comps = components(mask, band, dots)
+    comps = components(mask, band, dots, U)
     for c in comps:
         print(f'      blob x {c["x0"]:4d}-{c["x1"]:4d}  y {c["y0"]:4d}-'
               f'{c["y1"]:4d}  {c["px"]:6d} px')
@@ -369,7 +381,7 @@ def main():
     for c in comps:
         ys, xs = np.nonzero(c['mask'])
         r = np.hypot(xs.mean() - cxx, ys.mean() - cyy)
-        (marks if c['px'] < 4000 else bodies).append((r, c))
+        (marks if c['px'] < 4000 * U * U else bodies).append((r, c))
     bodies.sort(key=lambda t: t[1]['x0'])
     if len(bodies) != len(o.text):
         raise SystemExit(f'found {len(bodies)} letters for {len(o.text)} '
@@ -429,13 +441,16 @@ def main():
         # keyline, so a plain dilation brings a slice of the frame back
         # with it and hangs a bar over the O.
         near = ndimage.binary_dilation(d['mask'], np.ones((5, 5)),
-                                       iterations=6) & ~band
-        lines = linework(gray, near)
-        detail = trace_mask(lines, to_local, smooth=0.45) \
-            if lines.sum() > 200 else []
-        shade = hatched(gray, body)
-        inlay = trace_mask(shade, to_local, smooth=2.0) \
-            if shade.sum() > 200 else []
+                                       iterations=6 * U) & ~band
+        lines = linework(gray, near, U=U)
+        # traced off the greyscale through the mask rather than off the
+        # mask itself, so the edges land where the picture's own edge is
+        # instead of on the pixel grid
+        detail = glyph(gray, lines, to_local, 125.0 / 255.0) \
+            if lines.sum() > 200 * U * U else []
+        shade = hatched(gray, body, cap, U=U)
+        inlay = trace_mask(shade, to_local, smooth=2.0 * U) \
+            if shade.sum() > 200 * U * U else []
         ys, xs = np.nonzero(body)
         edge = [to_local((x, y)) for x, y in
                 ((xs.min(), ys.mean()), (xs.max() + 1, ys.mean()))]
