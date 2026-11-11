@@ -118,6 +118,13 @@ var S = {
                      // the shadow still there, the shading not.
   pitch: 0.26,       // mm, centre to centre of the ruled hatching
   hatch: 0.10,       // mm, weight of one hatch line
+  invert: false,     // ink plate, paper letters. The mark stops being
+                     // an outline round some white and becomes a solid
+                     // object, which is most of what reads as weight.
+  rule: 0,           // mm, an inner keyline set this far inside the
+                     // frame. 0 for none.
+  rulew: 0.34,       // mm, its weight - lighter than the frame's, or
+                     // the two read as one thick band
   cut: false,        // solid letters with the drawing's OWN ornament
                      // knocked out of them in paper, rather than drawn
                      // over paper. Keeps the black mass of the plain
@@ -272,9 +279,11 @@ function bounds(g){
    the middle and 263 at the ends. Concentric is a 1.4 per cent change
    and makes the thing describable in one radius and one depth, which is
    what a maker needs. */
-function endCaps(lay, r){
+function endCaps(lay, r, inset){
+  inset = inset || 0;
   var R = lay.R, f = (r.rt - r.rb) / 2 * S.round;
-  var a0 = lay.at[0] - S.endgap, a1 = lay.at[lay.at.length - 1] + S.endgap;
+  var a0 = lay.at[0] - S.endgap + inset,
+      a1 = lay.at[lay.at.length - 1] + S.endgap - inset;
   var out = [];
   [[a0, -1], [a1, +1]].forEach(function(pair){
     var te = R === Infinity ? pair[0] : pair[0] / R, sgn = pair[1];
@@ -315,8 +324,8 @@ function endCaps(lay, r){
   return out;
 }
 
-function framePath(lay, r){
-  var c = endCaps(lay, r), L = c[0], Rg = c[1], f = L.f;
+function framePath(lay, r, inset){
+  var c = endCaps(lay, r, inset), L = c[0], Rg = c[1], f = L.f;
   var arc = function(rr, p, sweep){
     return 'A' + rr + ' ' + rr + ' 0 0 ' + sweep + ' ' + p;
   };
@@ -604,8 +613,27 @@ function draw(){
   var cPlate = S.bw ? '#ffffff' : getCSS('--plate');
   var cKey = S.bw ? '#000000' : getCSS('--key');
   var cInk = S.bw ? '#000000' : '#2b2825';
+  /* Inverted, the plate's own keyline has nothing to do - it would be
+     ink drawn on ink - so it takes the plate's colour and simply makes
+     the shape a hair larger. The INNER rule is the one that still has
+     a job, and inverted that job is a paper line inside the ink, so it
+     follows the letters rather than the frame. Giving both of them the
+     plate colour, which is what this did first, left the rule invisible
+     and three of the five variants identical. */
+  var cRule = cKey;
+  if (S.invert){
+    var sw = cPlate; cPlate = cInk; cInk = sw;
+    cKey = cPlate; cRule = cInk;
+  }
 
   var fp = framePath(lay, r);
+  /* The inner rule is the same frame struck a little smaller: the radii
+     pulled in, the ends pulled in by the same amount along the arc, so
+     it stays concentric and parallel instead of merely similar. */
+  function inner(d){
+    return framePath(lay, { rt: r.rt - d, rb: r.rb + d, up: r.up, dn: r.dn,
+                            yTop: r.yTop + d, yBot: r.yBot - d }, d);
+  }
   // before the plate: the plate's paper hides the overlap and its
   // keyline is then the line the two shapes share
   drawBanner(g, lay, r, cInk, cPlate, cKey);
@@ -616,6 +644,15 @@ function draw(){
   plate.setAttribute('stroke-width', S.key);
   plate.setAttribute('stroke-linejoin', 'round');
   if (S.frame) g.appendChild(plate);
+  if (S.frame && S.rule > 0 && S.rule < (r.rt - r.rb) / 2 - 0.2){
+    var ir = el('path');
+    ir.setAttribute('d', inner(S.rule));
+    ir.setAttribute('fill', 'none');
+    ir.setAttribute('stroke', cRule);
+    ir.setAttribute('stroke-width', S.rulew);
+    ir.setAttribute('stroke-linejoin', 'round');
+    g.appendChild(ir);
+  }
 
   var letters = el('g');
   letters.setAttribute('data-ink', '1');
@@ -855,6 +892,10 @@ function panel(){
     function(){ return S.endgap; }, function(v){ S.endgap = v; }, mm));
   sync.push(slider(b, 'Keyline', 0.15, 2.5, 0.01,
     function(){ return S.key; }, function(v){ S.key = v; }, mm));
+  sync.push(slider(b, 'Inner rule inset', 0, 4, 0.05,
+    function(){ return S.rule; }, function(v){ S.rule = v; }, mm));
+  sync.push(slider(b, 'Inner rule weight', 0.1, 1.2, 0.01,
+    function(){ return S.rulew; }, function(v){ S.rulew = v; }, mm));
   sync.push(slider(c, 'Keyline round the letters', 0.05, 0.6, 0.01,
     function(){ return S.outline; }, function(v){ S.outline = v; }, mm));
   sync.push(slider(c, 'Inline', 0, 0.3, 0.01,
@@ -895,6 +936,7 @@ function panel(){
   c.appendChild(chips);
   [['Engraved','engraved'], ['The drawing\u2019s own lines','detail'],
    ['Optical spacing','optical'], ['Ornament cut out','cut'],
+   ['Knockout','invert'],
    ['Frame','frame'], ['Banner','banner'], ['Hatching','hatching'],
    ['Leave the lit side blank','inlay'],
    ['Black and white','bw'],
