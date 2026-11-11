@@ -118,6 +118,11 @@ var S = {
                      // the shadow still there, the shading not.
   pitch: 0.26,       // mm, centre to centre of the ruled hatching
   hatch: 0.10,       // mm, weight of one hatch line
+  tip: 0,            // mm, the ends come to a POINT this far past the
+                     // frame instead of being rounded off. The rounded
+                     // end is the single strongest soft cue in the
+                     // mark; a point is what the pendant already does,
+                     // and the plate should not contradict it.
   pick: null,        // indices of the letters to set, or null for the
                      // whole word. One letter makes a maker's mark: the
                      // same drawn O, at a size the word cannot reach.
@@ -350,6 +355,31 @@ function framePath(lay, r, inset){
   var arc = function(rr, p, sweep){
     return 'A' + rr + ' ' + rr + ' 0 0 ' + sweep + ' ' + p;
   };
+
+  /* Pointed ends. The fillets and the flat between them are replaced
+     by a single apex on the mid radius, `tip` further out along the
+     arc - so each end is two straight runs from the keylines to a
+     point, the same move the pendant makes at the bottom. */
+  if (S.tip > 0){
+    var R0 = lay.R, d = S.tip;
+    var a0 = lay.at[0] - S.endgap + (inset || 0),
+        a1 = lay.at[lay.at.length - 1] + S.endgap - (inset || 0);
+    if (R0 === Infinity){
+      var ym = (r.yTop + r.yBot) / 2;
+      return 'M' + [a0, r.yTop] + 'L' + [a1, r.yTop] +
+             'L' + [a1 + d, ym] + 'L' + [a1, r.yBot] +
+             'L' + [a0, r.yBot] + 'L' + [a0 - d, ym] + 'Z';
+    }
+    var rm = (r.rt + r.rb) / 2;
+    var P = function(rr, t){ return [rr * Math.sin(t), R0 - rr * Math.cos(t)]; };
+    var t0 = a0 / R0, t1 = a1 / R0, dt = d / rm;
+    return 'M' + P(r.rt, t0) +
+           arc(r.rt, P(r.rt, t1), 1) +
+           'L' + P(rm, t1 + dt) +
+           'L' + P(r.rb, t1) +
+           arc(r.rb, P(r.rb, t0), 0) +
+           'L' + P(rm, t0 - dt) + 'Z';
+  }
   if (lay.R === Infinity){
     /* Top edge, right fillet, right end, right fillet, bottom edge,
        left fillet, left end, left fillet. It has to start at A, the
@@ -931,6 +961,8 @@ function panel(){
     function(){ return S.hatch; }, function(v){ S.hatch = v; }, mm));
   sync.push(slider(c, 'Cast shadow', 0, 3, 0.05,
     function(){ return S.shadow; }, function(v){ S.shadow = v; }, mm));
+  sync.push(slider(b, 'Pointed ends', 0, 12, 0.1,
+    function(){ return S.tip; }, function(v){ S.tip = v; }, mm));
   sync.push(slider(b, 'End rounding', 0, 1, 0.01,
     function(){ return S.round; }, function(v){ S.round = v; },
     function(v){ return Math.round(v*100) + '%'; }));
