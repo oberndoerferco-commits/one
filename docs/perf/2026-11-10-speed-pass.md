@@ -31,3 +31,17 @@ Lighthouse scores swing +-10 between runs because of third-party scripts, so the
   biggest script cost on every page (~0.5 s main thread on a phone). If GT-K5Q7S5K only duplicates the
   GA4 property, removing it in the app settings is the largest single speed gain left.
 - Product reviews (Judge.me is installed but shows nothing) would add review stars in Google results.
+
+## 11 November 2026: Horizon 4.5.0 update with customisations kept
+The owner published the speed draft through Shopify's "Update theme", which produced "Updated copy of
+REDESIGN 2026 - 1.2 ..." (Horizon 4.4.0 -> 4.5.0). The update replaced 117 files; 18 of them were customised.
+Shopify merged 7 correctly and overwrote 12 with stock Horizon (meta-tags.liquid - all the extra schema;
+main-collection - one card per model on Ready to Wear; price, card gallery/swatches, slideshow controls,
+product title heading level, measure-header-heights, paginated-list.js, product recommendations/information).
+Fix: duplicated the updated theme as "REDESIGN 2026 - 1.3 Horizon update + customs (draft)" (211074220357) and
+ran a 3-way merge per file (ours = 1.2 draft, base = github.com/Shopify/horizon b2b74b0 "Horizon v4.4.0",
+theirs = 51b31c9 "Horizon v4.5.0"): no conflicts; those 12 files did not change between 4.4.0 and 4.5.0, so
+the merge is the customised version. Locales and the other 99 files were stock and take 4.5.0 as is.
+Checked against the 1.2 draft: same structured data on 8 page types, pixel-identical screenshots, same 19
+products on Ready to Wear, add to cart works on desktop and phone, no script errors.
+Lesson: "Update theme" overwrites customised files. Update via a duplicate and re-merge instead.
