@@ -118,6 +118,10 @@ var S = {
                      // the shadow still there, the shading not.
   pitch: 0.26,       // mm, centre to centre of the ruled hatching
   hatch: 0.10,       // mm, weight of one hatch line
+  cut: false,        // solid letters with the drawing's OWN ornament
+                     // knocked out of them in paper, rather than drawn
+                     // over paper. Keeps the black mass of the plain
+                     // version and gets the barbs and curls back.
   optical: true,     // space the letters by the paper they leave,
                      // not by the steps the artwork happens to have
   frame: true,       // the plate itself. Off keeps the arch and the
@@ -647,6 +651,18 @@ function draw(){
       solid.setAttribute('fill', cInk);
       solid.setAttribute('data-ch', p.ch);
       g.appendChild(solid);
+      /* The ornament the drawing already carries - the barbs where
+         strokes meet, the curls, the inner line - cut OUT of the black
+         rather than drawn on paper. Same marks the engraved view uses,
+         read the other way round, so the letter keeps the weight of
+         the plain version and stops being a slab. */
+      if (S.cut && p.src.detail && p.src.detail.length){
+        var ct = el('path');
+        ct.setAttribute('d', p.src.detail.join(' '));
+        ct.setAttribute('fill', cPlate);
+        ct.setAttribute('fill-rule', 'evenodd');
+        g.appendChild(ct);
+      }
       return;
     }
 
@@ -878,7 +894,7 @@ function panel(){
   var chips = h('div', 'chips');
   c.appendChild(chips);
   [['Engraved','engraved'], ['The drawing\u2019s own lines','detail'],
-   ['Optical spacing','optical'],
+   ['Optical spacing','optical'], ['Ornament cut out','cut'],
    ['Frame','frame'], ['Banner','banner'], ['Hatching','hatching'],
    ['Leave the lit side blank','inlay'],
    ['Black and white','bw'],
