@@ -118,6 +118,9 @@ var S = {
                      // the shadow still there, the shading not.
   pitch: 0.26,       // mm, centre to centre of the ruled hatching
   hatch: 0.10,       // mm, weight of one hatch line
+  pick: null,        // indices of the letters to set, or null for the
+                     // whole word. One letter makes a maker's mark: the
+                     // same drawn O, at a size the word cannot reach.
   invert: false,     // ink plate, paper letters. The mark stops being
                      // an outline round some white and becomes a solid
                      // object, which is most of what reads as weight.
@@ -197,7 +200,25 @@ function radiusFor(arcLen, rise){
    source pixels, which is part of why it reads as drawn by hand. */
 function layout(){
   var mm = S.cap / DOC.arc.cap;              // mm per source pixel
-  var L = DOC.letters, n = L.length;
+  var L = DOC.letters, fit = DOC.fit;
+  if (S.pick && S.pick.length){
+    /* A subset keeps the letters' own drawings and their own widths,
+       but not the spacing: the optical fit was solved for the pairs
+       that stand next to each other in the word, and these do not. For
+       one letter there is no pair at all, which is the case this is
+       really for. */
+    var pk = S.pick.slice().sort(function(a, b){ return a - b; });
+    var L2 = [], f2 = [];
+    for (var k = 0; k < pk.length; k++){
+      L2.push(L[pk[k]]);
+      if (k < pk.length - 1)
+        f2.push(pk[k+1] - pk[k] === 1 && fit ? fit[pk[k]]
+                : (L[pk[k+1]].angle - L[pk[k]].angle)
+                  * Math.PI / 180 * DOC.arc.r_base);
+    }
+    L = L2; fit = f2;
+  }
+  var n = L.length;
   var step = [];
   for (var i = 0; i < n - 1; i++){
     /* Two ways to decide where the next letter goes. The artwork's own
@@ -206,8 +227,8 @@ function layout(){
        number the eye is actually reading. Or the optical fit measured
        off the letters' profiles, which is the same word length with
        that figure at nil. */
-    var d = S.optical && DOC.fit
-      ? DOC.fit[i]
+    var d = S.optical && fit
+      ? fit[i]
       : (L[i+1].angle - L[i].angle) * Math.PI / 180 * DOC.arc.r_base;
     step.push(d * mm + S.track);
   }
