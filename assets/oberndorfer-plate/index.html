@@ -242,6 +242,16 @@ function layout(){
   var span = at[n-1];
   for (i = 0; i < n; i++) at[i] -= span / 2;
 
+  /* Where the INK ends, not where the end letters' centres are.
+     `endgap` was measured from the centre of the first and last
+     letter, so its value had to carry half a letter's width inside it
+     before it meant anything - and the same number in the newer
+     generator means clear space past the ink. Carrying 1.5 mm across
+     put the frame's end inside the O. It is the ink edge in both
+     now. */
+  var ink0 = at[0] + L[0].left * mm;
+  var ink1 = at[n-1] + L[n-1].right * mm;
+
   var R = radiusFor(span, S.rise);
   var out = [];
   for (i = 0; i < n; i++){
@@ -253,7 +263,8 @@ function layout(){
       y: R === Infinity ? 0     : R * (1 - Math.cos(a))
     });
   }
-  return { R: R, span: span, mm: mm, at: at, place: out };
+  return { R: R, span: span, mm: mm, at: at, place: out,
+           ink0: ink0, ink1: ink1 };
 }
 var FIRST = {};
 function firstOf(ch){
@@ -308,8 +319,8 @@ function bounds(g){
 function endCaps(lay, r, inset){
   inset = inset || 0;
   var R = lay.R, f = (r.rt - r.rb) / 2 * S.round;
-  var a0 = lay.at[0] - S.endgap + inset,
-      a1 = lay.at[lay.at.length - 1] + S.endgap - inset;
+  var a0 = lay.ink0 - S.endgap + inset,
+      a1 = lay.ink1 + S.endgap - inset;
   var out = [];
   [[a0, -1], [a1, +1]].forEach(function(pair){
     var te = R === Infinity ? pair[0] : pair[0] / R, sgn = pair[1];
@@ -362,8 +373,8 @@ function framePath(lay, r, inset){
      point, the same move the pendant makes at the bottom. */
   if (S.tip > 0){
     var R0 = lay.R, d = S.tip;
-    var a0 = lay.at[0] - S.endgap + (inset || 0),
-        a1 = lay.at[lay.at.length - 1] + S.endgap - (inset || 0);
+    var a0 = lay.ink0 - S.endgap + (inset || 0),
+        a1 = lay.ink1 + S.endgap - (inset || 0);
     if (R0 === Infinity){
       var ym = (r.yTop + r.yBot) / 2;
       return 'M' + [a0, r.yTop] + 'L' + [a1, r.yTop] +
