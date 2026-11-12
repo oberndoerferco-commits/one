@@ -5,7 +5,7 @@
   "mtop": 1.9,
   "mbot": 2.9,
   "endgap": 7.5,
-  "key": 1.2,
+  "key": 0.55,
   "round": 1,
   "inlay": true,
   "ghost": false,
@@ -30,8 +30,8 @@
   "hatching": false,
   "optical": true,
   "frame": true,
-  "invert": true,
-  "rule": 0.95,
-  "rulew": 0.4,
+  "invert": false,
+  "rule": 1.15,
+  "rulew": 0.26,
   "tip": 9.0
 }
