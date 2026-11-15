@@ -23,6 +23,8 @@ far answers that, which is why nothing has landed.
 
 ## Superseded (do not revive)
 
+- Two tiers stacked with a gap — they must OVERLAP and read as one
+
 - The arched PLATE as the container — the mark is a ribbon, 11-15
 
 - Stadium ends on a knockout plate — read as ice cream, 11-12

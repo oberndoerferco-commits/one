@@ -96,8 +96,8 @@ def main():
     K = 'stroke="#000" stroke-linejoin="round"'
     adv = face.widths(W, CAP); span = sum(adv)
     R = radius(span, 4.6)
-    rt, rb = R + CAP + 3.0, R - 3.0
-    half = (span / 2 + 2.6) / ((rt + rb) / 2)
+    rt, rb = R + CAP + 4.4, R - 4.4
+    half = (span / 2 + 3.2) / ((rt + rb) / 2)
 
     tadv = tf.widths(T, TC); tspan = sum(tadv) + 1.1 * (len(T) - 1)
     # The two tiers are ONE object, not two stacked. The lower panel
@@ -110,9 +110,9 @@ def main():
         top = band(R, rt, rb, half, style)
         # the lower panel: the same bend, narrower, simple ends
         Rp = R
-        prt = rb - OVERLAP
-        prb = prt - (TC + 4.2)
-        phalf = (tspan / 2 + 4.0) / ((prt + prb) / 2)
+        prt = rb - OVERLAP                 # runs up behind the ribbon
+        prb = rb - (TC + 5.6)              # measured from what SHOWS
+        phalf = (tspan / 2 + 5.4) / ((prt + prb) / 2)
         low = band(Rp, prt, prb, phalf,
                    'swallow' if style in ('swallow', 'pennant') else 'plain',
                    fork=2.4)
@@ -121,7 +121,8 @@ def main():
                  f'<g fill="#000">'
                  f'{mk.arc(face, W, CAP, 0.0, R, 0.0, cx=0, cy=R)[0]}</g>',
                  f'<g fill="#000">'
-                 f'{mk.arc(tf, T, TC, 1.1, prb + 2.1, 0.0, cx=0, cy=Rp)[0]}</g>']
+                 f'{mk.arc(tf, T, TC, 1.1, (rb + prb) / 2 - TC / 2, 0.0, cx=0, cy=Rp)[0]}'
+                 f'</g>']
         open(os.path.join(o.outdir, style + '.svg'), 'w').write(mk.svg(parts, 5))
     print('8 ribbons ->', o.outdir)
 
