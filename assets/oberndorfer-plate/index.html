@@ -154,6 +154,9 @@ var S = {
                      // point the two bottom sweeps meet at
   bcurve: 0.55,      // how much the bottom edge sweeps on its way there,
                      // 0 being a plain straight V
+  btail: 13.0,      // mm, how far each folded tail reaches past the band
+  bdrop: 4.6,       // mm, how far the tail hangs below it
+  bfork: 3.4,       // mm, the V cut into the tail's end
   bround: 1.60,      // mm, the fillet at each shoulder
   bcap: 2.90,        // mm, cap height of the banner's type
   btrack: 0.55,      // mm, between its letters
@@ -526,79 +529,48 @@ function clearance(lay, r){
    that names a typeface renders differently on a machine without it, and
    a plate going to a maker is the wrong place to discover that. */
 function bannerPath(lay, r){
+  /* A scroll ribbon, not a swag. The references all share the same
+     three parts: a band across the middle, and at each end a tail that
+     FOLDS - stepping down and out from the band - finishing in a
+     forked cut. The fold is what makes it read as a ribbon rather than
+     a shape; a band with a point cut in it reads as a label. */
   var R = lay.R;
-  var dS = S.bdepth, dA = S.bdepth + S.bpoint;   // shoulder, apex
-  var k = Math.max(0, Math.min(1, S.bcurve));
+  var dS = S.bdepth, k = Math.max(0, Math.min(1, S.bcurve));
   var hw = S.bwidth / 2;
-  var f = Math.max(0, Math.min(S.bround, 0.45 * dS, 0.30 * hw));
 
   if (R === Infinity){
-    var y0 = r.yBot + S.bgap, yS = r.yBot + dS, yA = r.yBot + dA;
-    var ym = (r.yBot + yS) / 2;
-    var xs = hw - f;
-    var sweep = function(sgn){
-      return 'C' + [sgn * hw * (1 - 0.55 * k), yS] + ' ' +
-                   [sgn * hw * 0.18 * k, yS + (yA - yS) * (1 - 0.55 * k)] +
-             ' ' + [0, yA];
-    };
-    var arc = function(p){ return 'A' + f + ' ' + f + ' 0 0 1 ' + p; };
-    return { d: 'M' + [-hw, y0] + 'L' + [hw, y0] + 'L' + [hw, yS - f] +
-                (f > 0 ? arc([xs, yS]) : '') + sweep(+1) +
-                'C' + [-hw * 0.18 * k, yS + (yA - yS) * (1 - 0.55 * k)] + ' ' +
-                      [-hw * (1 - 0.55 * k), yS] + ' ' + [-xs, yS] +
-                (f > 0 ? arc([-hw, yS - f]) : 'L' + [-hw, yS]) + 'Z',
+    var y0 = r.yBot + S.bgap, yv = r.yBot, y1 = r.yBot + dS;
+    var ym = (yv + y1) / 2, td = S.bdrop, tl = S.btail;
+    return { d: 'M' + [-hw, y0] + 'L' + [hw, y0] +
+                'L' + [hw, yv + td] + 'L' + [hw + tl, yv + td] +
+                'L' + [hw + tl - S.bfork, ym + td] + 'L' + [hw + tl, y1 + td] +
+                'L' + [hw, y1 + td] + 'L' + [hw, y1] + 'L' + [-hw, y1] +
+                'L' + [-hw, y1 + td] + 'L' + [-hw - tl, y1 + td] +
+                'L' + [-hw - tl + S.bfork, ym + td] + 'L' + [-hw - tl, yv + td] +
+                'L' + [-hw, yv + td] + 'Z',
              base: ym + S.bcap / 2, mid: ym, straight: true };
   }
 
   var P = function(rr, t){ return [rr * Math.sin(t), R - rr * Math.cos(t)]; };
-  var rT = r.rb - S.bgap;                  // behind the plate when bgap < 0
-  var rS = r.rb - dS, rA = r.rb - dA;
-  var rm = (r.rb + rS) / 2;                // middle of the band on show
-  var w = (S.bwidth / 2) / rm;
+  var f = function(q){ return q[0].toFixed(4) + ' ' + q[1].toFixed(4); };
+  var rT = r.rb - S.bgap, rv = r.rb, rb = r.rb - dS;
+  var rm = (rv + rb) / 2;
+  var w = hw / rm, tw = S.btail / rm;
+  var dT = S.bdrop;
+  var rvT = rv - dT, rbT = rb - dT, rmT = rm - dT;
+  var fk = S.bfork / rmT;
+  var A = function(rr, q){ return 'A' + rr.toFixed(4) + ' ' + rr.toFixed(4) + ' 0 0 1 ' + f(q); };
+  var B = function(rr, q){ return 'A' + rr.toFixed(4) + ' ' + rr.toFixed(4) + ' 0 0 0 ' + f(q); };
 
-  /* The shoulder is where the side comes down and the bottom sets off
-     along the band, so it is a right angle, and a right angle is what
-     was circled. The fillet is struck the way the frame's ends are, not
-     by eye: tangent to the arc of radius rS from outside puts its
-     centre at rS + f, and tangent to the radial line at angle w puts
-     that centre at angle w - asin(f / (rS + f)). Both tangency points
-     follow from the CENTRE's own angle - radially for the arc, the foot
-     of the perpendicular for the side. Offsetting the angle by an arc
-     length of f instead is the mistake that left a visible kink in the
-     frame, and it would leave one here. */
-  var rc = rS + f;
-  var dw = f > 0 ? Math.asin(Math.min(1, f / rc)) : 0;
-  var tc = w - dw;                          // the fillet centre's angle
-  var ws = tc;                              // where the bottom now starts
-  var side = f > 0 ? rc * Math.cos(dw) : rS; // where the side now ends
-
-  /* Each half of the bottom is one cubic from a shoulder to the point.
-     It leaves the shoulder at constant radius, so it runs along the
-     band rather than turning a corner there - and so it is tangent to
-     the fillet that now stands in that corner - and comes into the
-     point steeply, so the two halves meet as a point and not as a curve
-     with a crease. The control points are struck in the plate's own
-     polar frame and then converted, which is what keeps the sweep
-     concentric with everything else. */
-  var c1 = function(sgn){ return P(rS, sgn * w * (1 - 0.55 * k)); };
-  var c2 = function(sgn){
-    return P(rA + (rS - rA) * (1 - 0.55 * k), sgn * w * 0.18 * k);
-  };
-  /* Each fillet is quarter-ish of a circle traversed the same way round
-     as the rest of the outline, so both take sweep 1: down-then-inboard
-     at the right shoulder, inboard-then-up at the left. */
-  var arc = function(p){ return 'A' + f + ' ' + f + ' 0 0 1 ' + p; };
-
-  return {
-    d: 'M' + P(rT, -w) +
-       'A' + rT + ' ' + rT + ' 0 0 1 ' + P(rT, w) +
-       'L' + P(side, w) +
-       (f > 0 ? arc(P(rS, ws)) : '') +
-       'C' + c1(+1) + ' ' + c2(+1) + ' ' + P(rA, 0) +
-       'C' + c2(-1) + ' ' + c1(-1) + ' ' + P(rS, -ws) +
-       (f > 0 ? arc(P(side, -w)) : '') + 'Z',
-    base: rm - S.bcap / 2, mid: rm, straight: false
-  };
+  var d = 'M' + f(P(rT, -w)) + A(rT, P(rT, w)) +
+          'L' + f(P(rvT, w)) + A(rvT, P(rvT, w + tw)) +
+          'L' + f(P(rmT, w + tw - fk)) +
+          'L' + f(P(rbT, w + tw)) + B(rbT, P(rbT, w)) +
+          'L' + f(P(rb, w)) + B(rb, P(rb, -w)) +
+          'L' + f(P(rbT, -w)) + B(rbT, P(rbT, -w - tw)) +
+          'L' + f(P(rmT, -w - tw + fk)) +
+          'L' + f(P(rvT, -w - tw)) + A(rvT, P(rvT, -w)) + 'Z';
+  return { d: d, base: rm - S.bcap / 2, mid: rm, straight: false };
 }
 
 function drawBanner(g, lay, r, cInk, cPlate, cKey){

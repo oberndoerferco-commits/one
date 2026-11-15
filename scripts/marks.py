@@ -176,7 +176,7 @@ def endclear(R, rt, rb, half, cap, span, q):
 
 def archband(R, rt, rb, half, tip=0.0, q=1.0):
     P = lambda r, t: (r * math.sin(t), R - r * math.cos(t))
-    f = lambda p: f'{F(p[0])} {F(p[1])}'
+    f = lambda q: f'{F(q[0])} {F(q[1])}'
     rm = (rt + rb) / 2
     if tip > 0:
         dt = tip / rm
@@ -273,6 +273,22 @@ def pendant(R, rb, half, kind, depth, width, point, fork, round_):
                 f'L{f(P(R,rS,w))}'[:0] or
                 f'M{f(P(R,top,-w))}A{F(top)} {F(top)} 0 0 1 {f(P(R,top,w))}'
                 f'L{f(P(R,rS,w))}A{F(rS)} {F(rS)} 0 0 0 {f(P(R,rS,-w))}Z')
+    if kind == 'ribbon':                  # band with folded, forked tails
+        tl, dT, fk_ = 13.0 / rm, 4.6, 3.4
+        rv, rbb = rb, rb - depth
+        rvT, rbT = rv - dT, rbb - dT
+        rmT = (rvT + rbT) / 2
+        fq = fk_ / rmT
+        A_ = lambda rr, q: f'A{F(rr)} {F(rr)} 0 0 1 {f(q)}'
+        B_ = lambda rr, q: f'A{F(rr)} {F(rr)} 0 0 0 {f(q)}'
+        return ('M' + f(P(R, top, -w)) + A_(top, P(R, top, w)) +
+                'L' + f(P(R, rvT, w)) + A_(rvT, P(R, rvT, w + tl)) +
+                'L' + f(P(R, rmT, w + tl - fq)) +
+                'L' + f(P(R, rbT, w + tl)) + B_(rbT, P(R, rbT, w)) +
+                'L' + f(P(R, rbb, w)) + B_(rbb, P(R, rbb, -w)) +
+                'L' + f(P(R, rbT, -w)) + B_(rbT, P(R, rbT, -w - tl)) +
+                'L' + f(P(R, rmT, -w - tl + fq)) +
+                'L' + f(P(R, rvT, -w - tl)) + A_(rvT, P(R, rvT, -w)) + 'Z')
     if kind == 'tag':                     # a rounded tab
         rr = min(round_, depth / 2)
         return (f'M{f(P(R,top,-w))}A{F(top)} {F(top)} 0 0 1 {f(P(R,top,w))}'
