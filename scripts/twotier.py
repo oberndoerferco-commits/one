@@ -21,7 +21,7 @@ def radius(span, rise):
     return (lo + hi) / 2
 
 
-def band(R, rt, rb, half, style, tail=14.0, drop=5.0, fork=3.6):
+def band(R, rt, rb, half, style, tail=9.5, drop=10.5, fork=3.6):
     """One bent band, with its ends done eight different ways."""
     P = lambda r, t: mk.P(R, r, t)
     f = lambda q: f'{F(q[0])} {F(q[1])}'
@@ -95,7 +95,7 @@ def main():
     CAP, TC = 10.6, 4.0
     K = 'stroke="#000" stroke-linejoin="round"'
     adv = face.widths(W, CAP); span = sum(adv)
-    R = radius(span, 4.6)
+    R = radius(span, 2.8)
     rt, rb = R + CAP + 4.4, R - 4.4
     half = (span / 2 + 3.2) / ((rt + rb) / 2)
 
@@ -116,8 +116,29 @@ def main():
         low = band(Rp, prt, prb, phalf,
                    'swallow' if style in ('swallow', 'pennant') else 'plain',
                    fork=2.4)
+        rmv = (rt + rb) / 2
+        prm = (prt + prb) / 2
+        IN = 1.5
+        topin = band(R, rt - IN, rb + IN, half - IN / rmv, style,
+                     tail=9.5 - IN, drop=10.5, fork=3.6 * 0.75)
+        lowin = band(Rp, prt - IN, prb + IN, phalf - IN / prm,
+                     'swallow' if style in ('swallow', 'pennant') else 'plain',
+                     fork=1.8)
+        # a device each side of the lower word, as the reference has
+        orn = ''
+        for sgn in (-1, 1):
+            ox = sgn * (tspan / 2 + 3.0) / prm
+            px, py = mk.P(Rp, (rb + prb) / 2, ox)
+            orn += (f'<path d="{mk.lozenge(2.3, 4.4)}" fill="#000" '
+                    f'transform="translate({F(px)} {F(py)})"/>')
+        # The lower panel's inner rule belongs UNDER the ribbon too.
+        # Drawn after it, the part of the panel that is meant to be
+        # hidden came through as a line across the name.
         parts = [f'<path d="{low}" fill="#fff" {K} stroke-width="1.15"/>',
+                 f'<path d="{lowin}" fill="none" {K} stroke-width="0.34"/>',
                  f'<path d="{top}" fill="#fff" {K} stroke-width="1.35"/>',
+                 f'<path d="{topin}" fill="none" {K} stroke-width="0.38"/>',
+                 orn,
                  f'<g fill="#000">'
                  f'{mk.arc(face, W, CAP, 0.0, R, 0.0, cx=0, cy=R)[0]}</g>',
                  f'<g fill="#000">'
