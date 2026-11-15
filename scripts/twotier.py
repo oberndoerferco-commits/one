@@ -100,22 +100,26 @@ def main():
     half = (span / 2 + 2.6) / ((rt + rb) / 2)
 
     tadv = tf.widths(T, TC); tspan = sum(tadv) + 1.1 * (len(T) - 1)
-    GAP = 3.0
+    # The two tiers are ONE object, not two stacked. The lower panel
+    # runs UP behind the ribbon and is drawn first, so the ribbon's own
+    # paper covers the overlap and its bottom edge is the line they
+    # share - the same join the reference makes.
+    OVERLAP = -2.6
     for style in ('fold-fork', 'fold-straight', 'swallow', 'pennant',
                   'step', 'roll', 'flare', 'plain'):
         top = band(R, rt, rb, half, style)
         # the lower panel: the same bend, narrower, simple ends
         Rp = R
-        prt = rb - GAP
+        prt = rb - OVERLAP
         prb = prt - (TC + 4.2)
         phalf = (tspan / 2 + 4.0) / ((prt + prb) / 2)
         low = band(Rp, prt, prb, phalf,
                    'swallow' if style in ('swallow', 'pennant') else 'plain',
                    fork=2.4)
-        parts = [f'<path d="{top}" fill="#fff" {K} stroke-width="1.35"/>',
+        parts = [f'<path d="{low}" fill="#fff" {K} stroke-width="1.15"/>',
+                 f'<path d="{top}" fill="#fff" {K} stroke-width="1.35"/>',
                  f'<g fill="#000">'
                  f'{mk.arc(face, W, CAP, 0.0, R, 0.0, cx=0, cy=R)[0]}</g>',
-                 f'<path d="{low}" fill="#fff" {K} stroke-width="1.15"/>',
                  f'<g fill="#000">'
                  f'{mk.arc(tf, T, TC, 1.1, prb + 2.1, 0.0, cx=0, cy=Rp)[0]}</g>']
         open(os.path.join(o.outdir, style + '.svg'), 'w').write(mk.svg(parts, 5))
