@@ -10,8 +10,8 @@ Last changed: 2026-11-15
 
 | | current answer | changed |
 |---|---|---|
-| **Structure** | *unset — plate+ribbon so far, ribbon-only never tried* | |
-| **Letterform** | *unset — house letters measure best, none liked yet* | |
+| **Structure** | TWO TIERS: name on a bent ribbon, MADE IN ITALY on its own panel below | 11-15 |
+| **Letterform** | *unset — not the house letters; "a different font" asked for* | |
 | **Treatment** | engraved for print, solid for the die | 11-13 |
 | **Where it goes** | leather hot stamp + print | 11-12 |
 | **Bend** | arched | 11-10 |
@@ -22,6 +22,8 @@ What should this mark BE? Not which variant - what idea. Nothing so
 far answers that, which is why nothing has landed.
 
 ## Superseded (do not revive)
+
+- The arched PLATE as the container — the mark is a ribbon, 11-15
 
 - Stadium ends on a knockout plate — read as ice cream, 11-12
 - Pointed ends — fixed that but still a template, 11-12
