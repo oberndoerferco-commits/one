@@ -1,48 +1,69 @@
 # Current direction — the live state
 
-This is the single source of truth for the logo. When it disagrees
-with anything earlier in the chat, THIS WINS. Read it before each
-round of work; update it the moment a decision changes.
+Single source of truth. When this disagrees with anything earlier in
+any chat, THIS WINS. Update it the moment a decision changes.
 
-Last changed: 2026-11-15
+Last changed: 2026-11-16
 
 ## The five decisions
 
 | | current answer | changed |
 |---|---|---|
-| **Structure** | TWO TIERS: name on a bent ribbon, MADE IN ITALY on its own panel below | 11-15 |
-| **Letterform** | *unset — not the house letters; "a different font" asked for* | |
-| **Treatment** | engraved for print, solid for the die | 11-13 |
+| **Structure** | TWO TIERS: name on a bent ribbon, MADE IN ITALY on its own panel below, the two OVERLAPPING so they read as one object | 11-15 |
+| **Letterform** | one of the four below — not yet chosen | |
+| **Treatment** | engraved/inline detail for print; a solid cut for the die | 11-13 |
 | **Where it goes** | leather hot stamp + print | 11-12 |
-| **Bend** | arched | 11-10 |
+| **Bend** | bent, and the bend comes FROM the ribbon, not chosen | 11-15 |
 
-## Open question
+## The assets that matter
 
-What should this mark BE? Not which variant - what idea. Nothing so
-far answers that, which is why nothing has landed.
+In `canva-fit/`, from the user's own Canva ("tshirt design", pages 110-113):
+
+- `wm-1-outlined.png`, `wm-2-engraved.png`, `wm-3-gold.png` — three
+  FINISHED wordmarks, already rendered. No font needed.
+- `wm-4-script.png` — assembled letter by letter from the user's
+  ornamental-script alphabet sheet.
+- `r01..r08.png` — ribbons cut from Canva page 112.
+- `all.png` — 4 faces x 4 ribbons, fitted.
+
+User's own read: the ENGRAVED and GOLD faces are the strongest.
+Best pairings so far: r04_2-engraved, r08_2-engraved, r04_3-gold.
+
+## Known facts, do not re-derive
+
+- The ornamental serif and outline serif alphabets are MISSING N.
+  Re-cut carefully, both are 26 glyphs running ...L M Ö O... The name
+  cannot be built from them until the user adds an N.
+- The script alphabet is the only complete one (26 + Ö).
+- Fitting a wordmark to a ribbon: fill the ribbon's silhouette, take
+  the largest enclosed area as the band's face, trace its centreline
+  per column, fit a quadratic, then slice the wordmark and lay each
+  slice at its own local slope. Tracing dark pixels directly locks onto
+  the OUTLINE of a line-drawn ribbon and puts the word tiny and below
+  the band.
+- Hot foil on leather: 0.5 mm minimum line, ~1 mm between elements.
+  Engraved/inline artwork is a PRINT tier; the die needs a solid cut.
 
 ## Superseded (do not revive)
 
-- Two tiers stacked with a gap — they must OVERLAP and read as one
-
-- The arched PLATE as the container — the mark is a ribbon, 11-15
-
-- Stadium ends on a knockout plate — read as ice cream, 11-12
-- Pointed ends — fixed that but still a template, 11-12
-- Gothic/blackletter wordmark — dropped, 11-12
-- Tag-shaped pendant — wrong, it is a ribbon, 11-15
-- Swag with a point cut in it — wrong, a ribbon FOLDS, 11-15
+- The arched PLATE as the container — the mark is a ribbon
+- Stadium ends, pointed ends, gothic/blackletter, the tag pendant,
+  the swag with a point cut into it
+- Two tiers stacked with a gap — they must overlap
+- Generating fifty variants of anything
 
 ## Protocol
 
-- The user may contradict earlier instructions. That is normal and
-  fine. The latest instruction wins; record it here and strike the old
-  one into Superseded.
-- Do not re-litigate anything in Superseded.
-- Do not answer a note with fifty variants. One change, shown.
+- The user may contradict earlier instructions. The latest wins;
+  record it here and strike the old one into Superseded.
+- ONE change per note, shown. Never a sheet of fifty.
+- LOOK at every image before sending it.
 - Measure to CHECK a design at the end. Never to choose it.
+- The user's own references and assets beat anything drawn from
+  scratch. Use them first.
 
-## Files
+## Next step
 
-`BRIEF.md` — what exists, every reference, every output, the
-manufacturing floors. Background, rarely changes.
+Pick one ribbon + one face, then put MADE IN ITALY on its panel
+beneath it and clean the whole thing up. The ribbons are stock
+mock-ups; the chosen shape gets redrawn as vector.
