@@ -3,13 +3,13 @@
 Single source of truth. When this disagrees with anything earlier in
 any chat, THIS WINS. Update it the moment a decision changes.
 
-Last changed: 2026-11-18
+Last changed: 2026-11-18 (swag)
 
 ## The five decisions
 
 | | current answer | changed |
 |---|---|---|
-| **Structure** | TWO TIERS: name on a bent ribbon, MADE IN ITALY on its own panel below, the two OVERLAPPING so they read as one object | 11-15 |
+| **Structure** | TWO TIERS: name on a bent ribbon; MADE IN ITALY in an OPEN SWAG that hangs off the ribbon's own lower edge and dips to a centre point, exactly as in `references/46.png`. No box, no side walls, no corners — the ribbon IS the swag's top edge, so the two are attached by construction | 11-18 |
 | **Letterform** | one of the four below — not yet chosen | |
 | **Treatment** | engraved/inline detail for print; a solid cut for the die | 11-13 |
 | **Where it goes** | leather hot stamp + print | 11-12 |
@@ -54,10 +54,9 @@ Best pairings so far: r04_2-engraved, r08_2-engraved, r04_3-gold.
 - Stadium ends, pointed ends, gothic/blackletter, the tag pendant,
   the swag with a point cut into it
 - Two tiers stacked with a gap — they must overlap
-- Tier two as a SWAG with a centre dip (my 11-17 reading of the red
-  pen). The user said plainly on 11-18: MADE IN ITALY goes in a
-  separate BOX under the ribbon, still attached. A box it is.
 - Tier two as a second RIBBON (tried 11-18, wrong)
+- Tier two as a closed BOX or tablet with its own side walls and
+  corners (tried 11-18 in three corner treatments, all rejected)
 - Choosing from the four Canva ribbon fits as the shortlist (11-17)
 - Generating fifty variants of anything
 
