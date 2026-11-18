@@ -51,7 +51,8 @@ def face_of(im):
     best=max(sz.items(),key=lambda kv:kv[1])[0]
     return lab==best
 
-def fit_word(ribimg, face, wm, margin, pctl=3):
+def fit_word(ribimg, face, wm, margin=10, clearance_iters=5):
+    """Largest scale whose BENT wordmark lies wholly inside the band face."""
     H,W=face.shape; SW,SH=wm.size
     cx=[];cy=[];hh=[]
     for x in range(W):
@@ -60,19 +61,38 @@ def fit_word(ribimg, face, wm, margin, pctl=3):
     cx=np.array(cx,float);cy=np.array(cy,float);hh=np.array(hh,float)
     lo,hi=np.percentile(cx,[4,96]); sel=(cx>=lo)&(cx<=hi)
     CO=np.polyfit(cx[sel],cy[sel],4); DCO=np.polyder(CO)
-    perp=np.interp(np.arange(W),cx,hh)*np.cos(np.arctan(np.polyval(DCO,np.arange(W))))
-    mid=(lo+hi)/2.; best=None
-    for L in range(300,int(W*1.2),4):
-        xa,xb=mid-L/2.,mid+L/2.
-        if xa<lo+8 or xb>hi-8: continue
-        s=L/SW
-        if s*SH/2. <= np.percentile(perp[int(xa):int(xb)+1],pctl)-margin: best=(L,s)
-    L,s=best
-    w2=wm.resize((max(1,int(SW*s)),max(1,int(SH*s))),Image.LANCZOS); xoff=mid-w2.width/2.
-    bw,ox,oy=bend_poly(w2, lambda t: np.polyval(CO,np.asarray(t)+xoff),
-                           lambda t: np.polyval(DCO,np.asarray(t)+xoff))
-    out=ribimg.copy(); out.alpha_composite(bw,(int(round(xoff+ox)),int(round(oy))))
-    return out, 100*(s*SH/2)/np.percentile(perp[int(mid-L/2):int(mid+L/2)],pctl)
+    mid=(lo+hi)/2.
+    faceimg=Image.fromarray((face*255).astype(np.uint8))
+
+    def attempt(s):
+        w2=wm.resize((max(8,int(SW*s)),max(2,int(SH*s))),Image.LANCZOS)
+        xoff=mid-w2.width/2.
+        bw,ox,oy=bend_poly(w2, lambda t: np.polyval(CO,np.asarray(t)+xoff),
+                               lambda t: np.polyval(DCO,np.asarray(t)+xoff))
+        px=int(round(xoff+ox)); py=int(round(oy))
+        canvas=Image.new("L",(W,H),0)
+        a=Image.fromarray((np.asarray(bw)[:,:,3]>40).astype(np.uint8)*255)
+        canvas.paste(a,(px,py))
+        grown=canvas
+        for _ in range(clearance_iters):
+            grown=grown.filter(ImageFilter.MaxFilter(margin//clearance_iters*2+1))
+        g=np.asarray(grown)>0
+        ok = not (g & ~face).any()
+        return ok,bw,px,py
+
+    glo,ghi=0.05,1.6
+    best=None
+    for _ in range(16):
+        s=(glo+ghi)/2.
+        ok,bw,px,py=attempt(s)
+        if ok: best=(s,bw,px,py); glo=s
+        else:  ghi=s
+    if best is None: raise SystemExit("no containable scale")
+    s,bw,px,py=best
+    s*=0.93
+    ok,bw,px,py=attempt(s)
+    out=ribimg.copy(); out.alpha_composite(bw,(px,py))
+    return out, s
 
 def textimg(txt,px,track):
     f=ImageFont.truetype(FONT,px); adv=[(c,f.getlength(c)) for c in txt]
@@ -84,13 +104,13 @@ def textimg(txt,px,track):
 
 T1=ribbon_bw(6.0); f1=face_of(T1)
 WM=Image.open(HERE+"/schrift-bw.png").convert("RGBA")
-t1,fill1=fit_word(T1,f1,WM,margin=16)
-print("tier1",T1.size,"fill %.0f%%"%fill1)
+t1,fill1=fit_word(T1,f1,WM,margin=14)
+print("tier1",T1.size,"scale %.3f"%fill1)
 
 T2=ribbon_bw(2.55); f2=face_of(T2)
 MI=textimg("MADE IN ITALY", 150, 40)
-t2,fill2=fit_word(T2,f2,MI,margin=14)
-print("tier2",T2.size,"fill %.0f%%"%fill2)
+t2,fill2=fit_word(T2,f2,MI,margin=10)
+print("tier2",T2.size,"scale %.3f"%fill2)
 
 # lowest ink of the WORD inside tier one, per column
 d=(np.asarray(t1).astype(int)-np.asarray(T1).astype(int))
