@@ -10,8 +10,24 @@ def ribbon_bw(scale):
     w,h=src.size
     big=src.resize((int(w*scale),int(h*scale)),Image.LANCZOS)
     a=np.asarray(big).astype(np.float32)
-    alpha=a[:,:,3]; lum=a[:,:,:3].mean(axis=2)
-    inside=alpha>110
+    lum=a[:,:,:3].mean(axis=2)
+    # the source has no real alpha: flood the white page in from the border
+    light=lum>=172
+    hh,ww=light.shape
+    seen=np.zeros_like(light); q=collections.deque()
+    for x in range(ww):
+        for y in (0,hh-1):
+            if light[y,x] and not seen[y,x]: seen[y,x]=True; q.append((y,x))
+    for y in range(hh):
+        for x in (0,ww-1):
+            if light[y,x] and not seen[y,x]: seen[y,x]=True; q.append((y,x))
+    while q:
+        y,x=q.popleft()
+        for dy,dx in ((1,0),(-1,0),(0,1),(0,-1)):
+            ny,nx=y+dy,x+dx
+            if 0<=ny<hh and 0<=nx<ww and light[ny,nx] and not seen[ny,nx]:
+                seen[ny,nx]=True; q.append((ny,nx))
+    inside=~seen
     outline=inside&(lum<172)
     rgb=np.where(outline[...,None],0.0,255.0).repeat(3,axis=2)
     al=np.where(inside,255,0).astype(np.uint8)

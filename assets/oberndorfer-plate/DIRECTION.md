@@ -3,7 +3,7 @@
 Single source of truth. When this disagrees with anything earlier in
 any chat, THIS WINS. Update it the moment a decision changes.
 
-Last changed: 2026-11-17
+Last changed: 2026-11-18
 
 ## The five decisions
 
@@ -54,8 +54,10 @@ Best pairings so far: r04_2-engraved, r08_2-engraved, r04_3-gold.
 - Stadium ends, pointed ends, gothic/blackletter, the tag pendant,
   the swag with a point cut into it
 - Two tiers stacked with a gap — they must overlap
-- Tier two as a RECTANGULAR panel with square corners — ringed in red
-  by the user on `47.webp`. It is a swag with a centre dip.
+- Tier two as a SWAG with a centre dip (my 11-17 reading of the red
+  pen). The user said plainly on 11-18: MADE IN ITALY goes in a
+  separate BOX under the ribbon, still attached. A box it is.
+- Tier two as a second RIBBON (tried 11-18, wrong)
 - Choosing from the four Canva ribbon fits as the shortlist (11-17)
 - Generating fifty variants of anything
 
@@ -100,6 +102,13 @@ alphabet — `alphabet-build/wordmark-ornamental.png`. Eleven glyphs cut
 from `references/56.jpg`, O derived from Ö, set tight on the letter
 bodies so the bone serifs nest. Awaiting the user's word on it.
 
-Then, in this order, one at a time: bend it to a scroll with rolled
-ends and let it FILL the band; draw tier two as the swag from `58`;
-measure last.
+Built 11-18: `chosen/mark-box.png`. The scroll the user picked from
+Canva page 113, the German Schrift wordmark lifted from
+`references/49.jpg` at full size and cut to black-and-white line art,
+and MADE IN ITALY in a BOX panel tucked under the ribbon's lower edge.
+Box width is measured from the clear gap between the ribbon's tails;
+the wordmark's scale is found by binary search that requires every
+pixel of the bent word to land inside the traced band face.
+
+Still open: trace to vector (the ribbon is upscaled from 460px), and
+MILANO vs MADE IN ITALY.
