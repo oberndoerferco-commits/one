@@ -3,7 +3,7 @@
 Single source of truth. When this disagrees with anything earlier in
 any chat, THIS WINS. Update it the moment a decision changes.
 
-Last changed: 2026-11-18 (swag)
+Last changed: 2026-11-19
 
 ## The five decisions
 
@@ -13,7 +13,7 @@ Last changed: 2026-11-18 (swag)
 | **Letterform** | one of the four below — not yet chosen | |
 | **Treatment** | engraved/inline detail for print; a solid cut for the die | 11-13 |
 | **Where it goes** | leather hot stamp + print | 11-12 |
-| **Bend** | bent, and the bend comes FROM the ribbon, not chosen | 11-15 |
+| **Bend** | bent, but FLATTENED: the chosen ribbon's own arc scaled to 0.55 of as-drawn (11-19). The bend still comes from the ribbon, it is just reduced | 11-19 |
 
 ## The assets that matter
 

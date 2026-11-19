@@ -32,7 +32,44 @@ def ribbon_bw(scale):
     rgb=np.where(outline[...,None],0.0,255.0).repeat(3,axis=2)
     al=np.where(inside,255,0).astype(np.uint8)
     im=Image.fromarray(np.dstack([rgb.astype(np.uint8),al]),"RGBA")
-    return im
+    return flatten(im, FLATTEN)
+
+FLATTEN=0.55   # 1.0 = as drawn, lower = less bend
+
+def flatten(im, k):
+    """Reduce the ribbon's arc by scaling each column's deviation from the centre."""
+    if k>=0.999: return im
+    face=face_of(im)
+    Hh,Ww=face.shape
+    cx=[];cy=[]
+    for x in range(Ww):
+        ys=np.where(face[:,x])[0]
+        if len(ys)>8: cx.append(x); cy.append((ys[0]+ys[-1])/2.0)
+    cx=np.array(cx,float); cy=np.array(cy,float)
+    CO=np.polyfit(cx,cy,2)
+    h=-CO[1]/(2*CO[0])
+    allx=np.arange(Ww,dtype=np.float32)
+    yc=np.polyval(CO,allx); ych=float(np.polyval(CO,h))
+    dy=(k-1.0)*(yc-ych)                      # ends rise, centre fixed
+    src=np.asarray(im).astype(np.float32)/255.0
+    P=np.concatenate([src[:,:,:3]*src[:,:,3:4], src[:,:,3:4]],axis=2)
+    pad=int(abs(dy).max())+4
+    OH=Hh+2*pad
+    Yg,Xg=np.meshgrid(np.arange(OH,dtype=np.float32)-pad,
+                      np.arange(Ww,dtype=np.float32), indexing="ij")
+    sy=Yg-dy[None,:]
+    y0=np.floor(sy).astype(np.int32); fy=(sy-y0)[...,None]
+    xi=Xg.astype(np.int32)
+    def at(iy):
+        ok=(iy>=0)&(iy<Hh)
+        return P[np.clip(iy,0,Hh-1),xi]*ok[...,None]
+    o=at(y0)*(1-fy)+at(y0+1)*fy
+    al2=np.clip(o[:,:,3:4],0,1)
+    col=np.where(al2>1e-5,o[:,:,:3]/np.maximum(al2,1e-5),1.0)
+    out=Image.fromarray((np.concatenate([np.clip(col,0,1),al2],axis=2)*255).astype(np.uint8),"RGBA")
+    a=np.asarray(out)[:,:,3]
+    yy=np.where(a.any(axis=1))[0]; xx=np.where(a.any(axis=0))[0]
+    return out.crop((xx[0],yy[0],xx[-1]+1,yy[-1]+1))
 
 def face_of(im):
     a=np.asarray(im.convert("RGBA"))
