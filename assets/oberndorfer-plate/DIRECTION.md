@@ -3,7 +3,7 @@
 Single source of truth. When this disagrees with anything earlier in
 any chat, THIS WINS. Update it the moment a decision changes.
 
-Last changed: 2026-11-19
+Last changed: 2026-11-21 (restart)
 
 ## The five decisions
 
@@ -70,7 +70,32 @@ Best pairings so far: r04_2-engraved, r08_2-engraved, r04_3-gold.
 - The user's own references and assets beat anything drawn from
   scratch. Use them first.
 
-## Live instruction (11-17, supersedes "pick one of the four")
+## RESTART (11-21) — this supersedes everything below
+
+The user called a reset: "forget everything i said, lets start over".
+What they asked for, in their words: a nice SECONDARY LOGO for the
+brand, with a nice FRAME, and the two lines CONNECTED.
+
+So the container is no longer a ribbon with something hung under it.
+Both lines live INSIDE one frame, which makes them connected by
+construction. The ribbon work is not deleted — it is in `chosen/` and
+`swag/` if it is ever wanted — but it is not the live direction.
+
+Kept from before, because the user confirmed both explicitly:
+- the German Schrift wordmark from `references/49.jpg`
+- MADE IN ITALY lifted from `references/47.webp`
+
+Rejected on the way here, do not revive: a second ribbon, a box or
+tablet with corners (three corner treatments), a swag in any form
+(traced, ruled, lozenged, scalloped), a hanging pendant, no container
+at all, and a compact banner lapping the tails.
+
+Research note (11-21): the proven form for a secondary mark on leather
+goods is an oval badge — Dooney's oval patch, Ralph Lauren's oval
+charm, Prada's badge. The user asked me to consult ChatGPT; I have no
+access to it and said so.
+
+## Live instruction (11-17, superseded by the restart above)
 
 The user rejected choosing from the four Canva fits and asked for
 real research and the best achievable mark. Research done. What it
