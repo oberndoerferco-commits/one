@@ -136,3 +136,12 @@ pixel of the bent word to land inside the traced band face.
 
 Still open: trace to vector (the ribbon is upscaled from 460px), and
 MILANO vs MADE IN ITALY.
+
+## 2026-11-23 — outline polish v3 (from the owner's marks on the markup artifact)
+He circled O and B on https://claude.ai/artifact/LgQJcPeriVSy2vR6A2M9ra — "they all have similar mistake".
+Read back from the artifact db (marks/current, 20 strokes). Every circle landed on one of three things:
+1. lumps/dents on edges that should be one clean arc, 2. feet and flat tops that were not level,
+3. blunt nicks at the terminals. Fixed globally in scripts font/polish.py + font/buildfont3.py:
+corner-locked moving average on the traced outline, long near-horizontal/vertical runs snapped dead level,
+short bridging edges at tips replaced by the intersection of the two arms. Font v3.0.
+Still open and not fixed by this pass: letter spacing in the word, stem-width consistency between glyphs.
