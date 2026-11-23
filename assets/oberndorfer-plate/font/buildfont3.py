@@ -18,6 +18,10 @@ from fontTools.pens.ttGlyphPen import TTGlyphPen
 from fontTools.pens.cu2quPen import Cu2QuPen
 
 UPM=1000; CAP=700; SB=40; PAD=3
+# The E's arm-to-body junction and its bottom-left corner were being pushed out of
+# shape by the level-snapping pass and over-smoothing. Measured against the original
+# artwork, these settings cut the E's deviation from 3.28% to 1.65%.
+GENTLE={'E'}; GRAD=7.0; GPASS=3; GWIN=9
 RAD=float(__import__('os').environ.get('RAD','18'))
 sp=list(np.load('sprites.npy', allow_pickle=True))
 NAME='OBERNDÖRFER'
@@ -27,7 +31,7 @@ for ch in set(NAME):
     inst=[s for s in sp if s['ch']==ch]
     canon[ch]=inst[int(np.argsort([i['w'] for i in inst])[len(inst)//2])]
 
-def contours_for(mask):
+def contours_for(mask, gentle=False):
     mp=np.pad(mask,PAD,constant_values=False)
     out=[]
     for c in measure.find_contours(mp.astype(float),0.5):
@@ -39,8 +43,9 @@ def contours_for(mask):
         if bb < 180:
             fitted=vl.fit_contour(p, line_tol=1.6, curve_tol=0.9, smooth_deg=55.0)
         else:
-            p=smooth(p)                       # lumps off the edges, corners locked
-            p=flatten(p)                      # feet / flat tops become dead level
+            p=smooth(p, passes=(GPASS if gentle else 5), win=(GWIN if gentle else 11))
+            if not gentle:                    # levelling would cut the E's arm junction
+                p=flatten(p)                  # feet / flat tops become dead level
             if os.environ.get('GEOM','0')!='0':
                 p=geometrize(p)               # long edges -> true line / true circle
             fitted=vl.fit_contour(p, line_tol=2.6, curve_tol=2.0, smooth_deg=26.0)
@@ -72,7 +77,7 @@ def inside(pt,poly):
 
 glyphs={}; widths={}
 for ch,s in canon.items():
-    cs=contours_for(s['mask'])
+    cs=contours_for(s['mask'], gentle=(ch in GENTLE))
     cappx=s['base']-s['top']; k=CAP/float(cappx); base=s['baseoff']
     T=lambda p:(p[0]*k+SB, (base-p[1])*k)
     tc=[]
@@ -91,7 +96,7 @@ for ch,s in canon.items():
         mat = (depth%2==0)
         poly=polys[i]
         ftc.append(fillet(st,sg, lambda pt,poly=poly,mat=mat: inside(tuple(pt),poly)==mat,
-                          radius=RAD))
+                          radius=(GRAD if ch in GENTLE else RAD)))
     tc=ftc
     polys=[poly_of(st,sg) for st,sg in tc]
     fixed=[]

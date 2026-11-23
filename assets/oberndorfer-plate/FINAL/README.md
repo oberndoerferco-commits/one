@@ -76,6 +76,16 @@ RN +44, RF −60, BE/ER/ÖR +12, OB +5, FE −5, DÖ −10. Nothing invented.
 Result: at the same cap height the font sets the word 1.1% wider than your drawing, with
 every letter in the same place. `matches-your-drawing.png` is the two stacked.
 
+## The E
+
+Measured against the artwork, the E was 3.28% off — the worst of the eight. Two causes,
+both mine: the level-snapping pass was cutting across the junction where the top arm meets
+the body, taking a notch out of it, and over-smoothing was pushing the bottom-left corner
+outwards into a bulge. The E is now traced with that levelling pass off, three smoothing
+passes instead of five over a narrower window, and a 7-unit corner radius instead of 18.
+Deviation from your drawing: **3.28% to 1.65%**. `e-fix.png` is your E, the overlay before,
+the overlay after, and the result.
+
 ## A thing I tried and reverted
 
 I harmonised the letters by grafting one canonical flag into all eight, on the theory that

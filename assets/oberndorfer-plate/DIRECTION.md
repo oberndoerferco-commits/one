@@ -259,3 +259,17 @@ place (font/matches-your-drawing.png).
 RULE LEARNED: measure his artwork before inventing anything. Restyling his letterforms has
 failed every single time; reproducing them has worked every time.
 
+## 2026-11-23 — the E. "just the E needs fixing"
+Cropped both of his drawn E's from the artwork, rendered the font's E, scaled both to the
+same cap height and overlaid them: 3.28% disagreement, the worst of the eight letters.
+Two causes, both mine: flatten() was snapping a level line across the junction where the
+top arm meets the body and taking a notch out of it, and 5 smoothing passes over an 11-wide
+window were pushing the bottom-left corner out into a bulge.
+Fix in font/buildfont3.py: GENTLE={'E'} — that glyph skips flatten entirely, smooths with
+3 passes over a 9-wide window, and takes a 7-unit corner radius instead of 18.
+Swept six settings and measured each against his artwork before choosing
+(rad/pass/win: 7/5/11 2.45%, 0/5/11 2.47%, 7/3/9 1.65%, 0/3/9 1.66%, 0/2/7 2.24%,
+4/4/9 1.83%). Chose 7/3/9. Deviation 3.28% -> 1.65%. Proof at font/e-fix.png.
+Verified the built glyphs are byte-identical to the tested build, and the word still sets
+1.1% wider than his drawing. No other glyph changed.
+
