@@ -166,3 +166,55 @@ def fillet(start, segs, inside_fn, radius=18.0, max_cut=62.0, max_frac=0.40,
             out.append(('C',tuple(np.array(s[1],float)+d0*0.6),
                             tuple(np.array(s[2],float)+d1*0.6), b))
     return first,out
+
+# ---- geometrize: long edges become a TRUE line or a TRUE circular arc ----
+def _runs(p, corner_deg, R):
+    n=len(p); sharp=_span_angle(p,R)<corner_deg
+    idx=[i for i in range(n) if sharp[i]]
+    if not idx: return [list(range(n))+[0]]
+    # collapse neighbouring corner samples to one break each
+    brk=[]; 
+    for i in idx:
+        if not brk or (i-brk[-1])>R: brk.append(i)
+    out=[]
+    for a,b in zip(brk, brk[1:]+[brk[0]+n]):
+        out.append([m%n for m in range(a,b+1)])
+    return out
+
+def _fit_line(q):
+    c=q.mean(0); u,s,vt=np.linalg.svd(q-c, full_matrices=False)
+    d=vt[0]; t=(q-c)@d
+    proj=c+np.outer(t,d)
+    return proj, float(np.abs((q-c)@np.array([-d[1],d[0]])).max())
+
+def _fit_circle(q):
+    x,y=q[:,0],q[:,1]
+    A=np.c_[x,y,np.ones(len(q))]
+    b=x*x+y*y
+    try: sol,*_=np.linalg.lstsq(A,b,rcond=None)
+    except np.linalg.LinAlgError: return None,1e9
+    cx,cy=sol[0]/2,sol[1]/2
+    r2=sol[2]+cx*cx+cy*cy
+    if r2<=1.0: return None,1e9
+    r=math.sqrt(r2)
+    v=q-np.array([cx,cy]); d=np.hypot(v[:,0],v[:,1])
+    proj=np.array([cx,cy])+v/ d[:,None]*r
+    return proj, float(np.abs(d-r).max())
+
+def geometrize(p, corner_deg=122.0, R=7, min_pts=22, tol_line=5.0, tol_circle=7.0,
+               max_r=5000.0, ease=0.14):
+    """Snap each smooth run between corners onto its best-fit line or circle."""
+    if len(p)<40: return p
+    q=p.copy()
+    for run in _runs(p, corner_deg, R):
+        if len(run)<min_pts: continue
+        seg=p[run]
+        lp,le=_fit_line(seg)
+        cp,ce=_fit_circle(seg)
+        if le<=tol_line: tgt=lp
+        elif cp is not None and ce<=tol_circle and np.hypot(*(cp[0]-cp[-1]))<max_r*2: tgt=cp
+        else: continue
+        m=len(run); w=np.ones(m); e=max(2,int(m*ease))
+        w[:e]=np.linspace(0,1,e); w[-e:]=np.linspace(1,0,e)   # ease into the corners
+        q[run]=seg*(1-w[:,None])+tgt*w[:,None]
+    return q

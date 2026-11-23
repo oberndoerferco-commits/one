@@ -155,3 +155,21 @@ fillet, so the sharper the spike the further back it cuts), and leaves inward no
 (the ink traps in the B and O stems) sharp. Tested at radius 12 / 18 / 26 — see
 font/radius-test.png; 18 chosen, 26 washes the bite out of the E and N. Font v3.1.
 Still open: letter spacing in the word, stem-width consistency between glyphs.
+
+## 2026-11-23 — spacing + true geometry, v3.2
+Asked for spacing plus "still uneven lines, creepy curves".
+1. SPACING. font/buildfont3.py now spaces optically instead of on a fixed 40-unit
+   sidebearing: each glyph's visual left/right edge is the weighted mean of its ink
+   profile (body rows count 1.0, the flag zone 0.28, since the body carries the rhythm),
+   and every letter is placed so adjacent visual edges sit GAP apart. A second pass walks
+   the actual outlines row by row and widens any pair whose real ink came closer than
+   CLEAR. Tested at GAP 150/175/200 (font/spacing-test.png); 175 chosen.
+2. CURVES. font/polish.py geometrize() splits each outline at its corners and snaps every
+   long smooth run onto its own best-fit LINE (residual <5) or CIRCLE (residual <7),
+   easing into the corners. So a bowl is a real arc and a diagonal is a real line,
+   not a Bezier fitted to a wobble. See font/curves-before-after.png.
+MEASURED, still wrong: widest stroke per glyph at 25/50/75% cap height ranges 103-191
+units, i.e. +-32% around the mean. That is the remaining "not a real font" signal and it
+cannot be fixed by smoothing outlines — the strokes were drawn at different widths.
+Fixing it means rebuilding the letters from one skeleton at one pen width.
+

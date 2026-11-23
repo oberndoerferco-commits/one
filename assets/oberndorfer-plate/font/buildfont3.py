@@ -11,7 +11,7 @@ def _cross(a,b,*r,**k):
 np.cross=_cross
 from skimage import measure
 import vectorize_lineart as vl
-from polish import smooth, flatten, sharpen, fillet
+from polish import smooth, flatten, sharpen, fillet, geometrize
 from regularise import regularise
 from fontTools.fontBuilder import FontBuilder
 from fontTools.pens.ttGlyphPen import TTGlyphPen
@@ -41,6 +41,7 @@ def contours_for(mask):
         else:
             p=smooth(p)                       # lumps off the edges, corners locked
             p=flatten(p)                      # feet / flat tops become dead level
+            p=geometrize(p)                   # long edges -> true line / true circle
             fitted=vl.fit_contour(p, line_tol=2.6, curve_tol=2.0, smooth_deg=26.0)
             fitted=regularise(fitted, corner_deg=30.0, straight_tol=3.0, fit_tol=3.0)
         out.append(fitted)
@@ -103,6 +104,79 @@ for ch,s in canon.items():
     ncur=sum(1 for st,sg,_ in fixed for x in sg if x[0]=='C')
     nlin=sum(1 for st,sg,_ in fixed for x in sg if x[0]=='L')
     print('%s contours %d  curves %3d  lines %3d  advance %d'%(ch,len(fixed),ncur,nlin,widths[ch]))
+
+# ---- optical spacing: measure each side's visual mass, equalise the gaps ----
+def spans(polys, y):
+    xs=[]
+    for q in polys:
+        for i in range(len(q)):
+            a=q[i]; b=q[(i+1)%len(q)]
+            if (a[1]>y)!=(b[1]>y):
+                xs.append(a[0]+(y-a[1])*(b[0]-a[0])/(b[1]-a[1]))
+    xs.sort()
+    return [(xs[i],xs[i+1]) for i in range(0,len(xs)-1,2)]
+
+def profile(polys, cap=CAP, step=5.0, body=(0.06,0.82), flagw=0.28):
+    """Weighted mean of the left and right ink edges: the glyph's visual edges.
+    The flag zone counts less than the body, because the body carries the rhythm."""
+    rows=[]; y=step*0.5
+    while y<cap:
+        sp=spans(polys,y)
+        if sp:
+            w = 1.0 if body[0]*cap<=y<=body[1]*cap else flagw
+            rows.append((sp[0][0], sp[-1][1], w))
+        y+=step
+    if not rows: return 0.0,0.0,0.0,0.0
+    W=sum(r[2] for r in rows)
+    return (min(r[0] for r in rows), max(r[1] for r in rows),
+            sum(r[0]*r[2] for r in rows)/W, sum(r[1]*r[2] for r in rows)/W)
+
+GAP=float(os.environ.get('GAP','175'))     # visual gap between two letters' mean edges
+CLEAR=float(os.environ.get('CLEAR','16'))  # real ink must never come closer than this
+
+def shift_contours(cs, dx):
+    out=[]
+    for st,sg,ok in cs:
+        ns=[]
+        for s in sg:
+            ns.append(('L',(s[1][0]+dx,s[1][1])) if s[0]=='L' else
+                      ('C',(s[1][0]+dx,s[1][1]),(s[2][0]+dx,s[2][1]),(s[3][0]+dx,s[3][1])))
+        out.append(((st[0]+dx,st[1]),ns,ok))
+    return out
+
+print()
+prof={}
+for ch in list(glyphs):
+    cs=glyphs[ch]
+    polys=[poly_of(st,sg) for st,sg,_ in cs]
+    xmin,xmax,ml,mr=profile(polys)
+    dx=GAP/2.0-ml
+    glyphs[ch]=shift_contours(cs,dx)
+    adv=int(round(mr+dx+GAP/2.0))
+    prof[ch]=dict(adv=adv, xmin=xmin+dx, xmax=xmax+dx)
+    print('%s  visual edges %6.1f %6.1f   advance %d -> %d'%(ch,ml,mr,widths[ch],adv))
+    widths[ch]=adv
+
+# ---- then make sure no two letters of the name actually collide ----
+rowsof={}
+for ch in glyphs:
+    polys=[poly_of(st,sg) for st,sg,_ in glyphs[ch]]
+    rr={}
+    y=4.0
+    while y<CAP:
+        sp=spans(polys,y)
+        if sp: rr[round(y)]=(sp[0][0],sp[-1][1])
+        y+=8.0
+    rowsof[ch]=rr
+for a,b in zip(NAME,NAME[1:]):
+    ra,rb=rowsof[a],rowsof[b]
+    ys=set(ra)&set(rb)
+    if not ys: continue
+    clear=min(widths[a]+rb[y][0]-ra[y][1] for y in ys)
+    if clear<CLEAR:
+        widths[a]+=int(round(CLEAR-clear))
+        print('  %s%s: ink only %.0f apart, advance %s widened to %d'%(a,b,clear,a,widths[a]))
+print()
 
 order=['.notdef']+list(dict.fromkeys(NAME))
 fb=FontBuilder(UPM, isTTF=True)
