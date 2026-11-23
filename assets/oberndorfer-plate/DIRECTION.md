@@ -145,3 +145,13 @@ Read back from the artifact db (marks/current, 20 strokes). Every circle landed 
 corner-locked moving average on the traced outline, long near-horizontal/vertical runs snapped dead level,
 short bridging edges at tips replaced by the intersection of the two arms. Font v3.0.
 Still open and not fixed by this pass: letter spacing in the word, stem-width consistency between glyphs.
+
+## 2026-11-23 — corner radius v3.1 (second round of marks)
+He circled the needle-sharp spurs at the feet of B, E and R: "edges that are too sharp...
+this should be a nice smooth font that has its style going over the whole thing".
+The v3 corner-lock had deliberately preserved them, so they needed their own fix:
+font/polish.py fillet() puts the SAME radius on every sharp outward tip (constant-radius
+fillet, so the sharper the spike the further back it cuts), and leaves inward notches
+(the ink traps in the B and O stems) sharp. Tested at radius 12 / 18 / 26 — see
+font/radius-test.png; 18 chosen, 26 washes the bite out of the E and N. Font v3.1.
+Still open: letter spacing in the word, stem-width consistency between glyphs.

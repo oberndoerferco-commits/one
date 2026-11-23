@@ -115,3 +115,54 @@ def sharpen(start, segs, max_nick=30.0, min_arm=55.0, max_reach=130.0, min_ang=1
             c1=tuple(np.array(s[1])+d0*0.5); c2=tuple(np.array(s[2])+d1*0.5)
             out.append(('C',c1,c2,b))
     return st,out
+
+# ---- fillet: every sharp OUTWARD tip gets the same corner radius --------
+def fillet(start, segs, inside_fn, radius=18.0, max_cut=62.0, max_frac=0.40,
+           max_wedge=108.0, k=0.56):
+    n=len(segs)
+    nodes=[start]+[segs[i][-1] for i in range(n-1)]
+    P=lambda i: np.array(nodes[i],float)
+    def armA(i):
+        s=segs[(i-1)%n]
+        q=np.array(s[2] if s[0]=='C' else nodes[(i-1)%n],float); v=q-P(i)
+        return (np.array(nodes[(i-1)%n],float)-P(i)) if np.hypot(*v)<1e-6 else v
+    def armB(i):
+        s=segs[i]; q=np.array(s[1],float); v=q-P(i)
+        return (np.array(s[-1],float)-P(i)) if np.hypot(*v)<1e-6 else v
+    def slen(i): return float(np.hypot(*(np.array(segs[i][-1],float)-P(i))))
+    cuts={}
+    for i in range(n):
+        A=armA(i); B=armB(i); la=np.hypot(*A); lb=np.hypot(*B)
+        if la<1e-6 or lb<1e-6: continue
+        Ah=A/la; Bh=B/lb
+        th=math.degrees(math.acos(float(np.clip(Ah@Bh,-1,1))))
+        if th>max_wedge: continue
+        w=Ah+Bh; nw=np.hypot(*w)
+        if nw<1e-9: continue
+        if not inside_fn(P(i)+w/nw*6.0): continue      # empty wedge = ink trap, leave it
+        d=min(radius/max(math.tan(math.radians(th/2)),1e-3), max_cut,
+              max_frac*min(slen((i-1)%n), slen(i)))
+        if d<3.0: continue
+        cuts[i]=(tuple(P(i)+Ah*d), tuple(P(i)+Bh*d))
+    if not cuts: return start,segs
+    out=[]; first=None
+    for i in range(n):
+        j=(i+1)%n
+        if i in cuts:
+            p1,p2=cuts[i]; V=P(i)
+            c1=tuple(np.array(p1)+(V-np.array(p1))*k); c2=tuple(np.array(p2)+(V-np.array(p2))*k)
+            if first is None: first=p1
+            else: out.append(('L',p1))
+            out.append(('C',c1,c2,p2))
+            a=p2
+        else:
+            a=nodes[i]
+            if first is None: first=a
+        b=cuts[j][0] if j in cuts else nodes[j]
+        s=segs[i]
+        if s[0]=='L': out.append(('L',b))
+        else:
+            d0=np.array(a,float)-P(i); d1=np.array(b,float)-np.array(segs[i][-1],float)
+            out.append(('C',tuple(np.array(s[1],float)+d0*0.6),
+                            tuple(np.array(s[2],float)+d1*0.6), b))
+    return first,out

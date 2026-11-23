@@ -11,13 +11,14 @@ def _cross(a,b,*r,**k):
 np.cross=_cross
 from skimage import measure
 import vectorize_lineart as vl
-from polish import smooth, flatten, sharpen
+from polish import smooth, flatten, sharpen, fillet
 from regularise import regularise
 from fontTools.fontBuilder import FontBuilder
 from fontTools.pens.ttGlyphPen import TTGlyphPen
 from fontTools.pens.cu2quPen import Cu2QuPen
 
 UPM=1000; CAP=700; SB=40; PAD=3
+RAD=float(__import__('os').environ.get('RAD','18'))
 sp=list(np.load('sprites.npy', allow_pickle=True))
 NAME='OBERNDÖRFER'
 for s in sp: s['baseoff']=s['base']-s['y0']
@@ -79,6 +80,17 @@ for ch,s in canon.items():
             ns.append(('L',T(sg[1])) if sg[0]=='L' else ('C',T(sg[1]),T(sg[2]),T(sg[3])))
         st,ns=sharpen(T(start),ns)
         tc.append((st,ns))
+    polys=[poly_of(st,sg) for st,sg in tc]
+    # round every sharp outward tip by the same radius; ink traps stay sharp
+    ftc=[]
+    for i,(st,sg) in enumerate(tc):
+        depth=sum(1 for j,q in enumerate(polys)
+                  if j!=i and abs(area_of(q))>abs(area_of(polys[i])) and inside(polys[i][0],q))
+        mat = (depth%2==0)
+        poly=polys[i]
+        ftc.append(fillet(st,sg, lambda pt,poly=poly,mat=mat: inside(tuple(pt),poly)==mat,
+                          radius=RAD))
+    tc=ftc
     polys=[poly_of(st,sg) for st,sg in tc]
     fixed=[]
     for i,(st,sg) in enumerate(tc):
