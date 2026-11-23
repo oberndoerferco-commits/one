@@ -57,31 +57,33 @@ letterform is the hairline inside the O, B, R and D stems. At the floors in
 BRIEF.md (hot foil 0.50 mm, laser 0.15 mm, casting 0.30 mm) check that
 hairline before committing to a size.
 
-## Version 5.0 — the letters share their parts
+## Spacing comes from your drawing, not from an algorithm
 
-A typeface is a kit of parts reused across the letters, not a set of separate drawings.
-Measured on v4.0, the top-left flag was **eight different shapes**: the worst pair
-disagreed over 42% of its area, and all eight agreed on only 21%. See `flags-before.png`.
+Your eleven letters do not touch, so your artwork records exactly where you put each one.
+`spacing_from_drawing.py` reads the PDF at 200 dpi, measures the cap height (303 px),
+splits the word into its eleven letter blocks and converts every letter position to font
+units. Those positions are the font's metrics.
 
-`harmonise.py` fixes it. It rasterises every glyph, finds each letter's own attachment
-point (the left edge of its first stem at the neck row, 230 units below the cap), lifts
-one canonical flag — the R's, which the disagreement matrix showed to be the most
-central of the eight — and grafts it into all eight letters at their own anchor. The
-bottom 45 units of the graft box are unioned rather than replaced, so the part fuses onto
-the letter instead of cutting a notch into it; the round O and Ö need 95 units of that
-weld because the flag springs off a curve, not a stem. The same is done with the foot
-spur, taken from the E, in the six letters that have one. Everything is then re-traced
-through the whole smoothing, flattening, terminal and fillet pipeline as one system, so
-the seams disappear.
+That measurement also settled an argument: **my traced letter widths match yours to within
+2%** — O 0.5%, E 0.0%, R 0.6%, N −0.2%, F 0.4%, B −1.1%, D −1.3%, Ö −2.1%. The shapes were
+faithful the whole time. What was wrong was the spacing, which I had been computing instead
+of reading off your page.
 
-Flag agreement went from 21% to 39% by that raw measure — the residual is the stem,
-shoulder and arm inside the measuring box, which *should* differ between a B, an E and
-an N. The flag itself is now literally the same outline in every letter.
+Your average gap between letters is 151 units, so each letter's advance is its own ink
+width plus 151. The places where you deviated from your own average become kerning:
+RN +44, RF −60, BE/ER/ÖR +12, OB +5, FE −5, DÖ −10. Nothing invented.
 
-Side effect worth noting: kerning values collapsed from a range of −128..+39 to
-−41..+43. When the parts are consistent, the letters space themselves.
+Result: at the same cap height the font sets the word 1.1% wider than your drawing, with
+every letter in the same place. `matches-your-drawing.png` is the two stacked.
 
-`parts-before-after.png` shows all eight before and after. `word-final.png` is the word.
+## A thing I tried and reverted
+
+I harmonised the letters by grafting one canonical flag into all eight, on the theory that
+a typeface should share its parts. The flag I chose was the R's, which is long; yours are
+short and tucked. The result swept into the letter before it and the whole word smeared
+together — `harmonised-was-worse.png` in the font folder shows it against your drawing.
+Reverted. Your flags vary, and at reading distance that variation is invisible while the
+long grafted flag was not.
 
 ## What this font does not have
 

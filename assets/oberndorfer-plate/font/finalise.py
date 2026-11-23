@@ -50,9 +50,10 @@ for ch in LETTERS:
     bot = -OVER if ch in ROUND else 0
     top = CAP+OVER if ch in ROUND else CAP
     k=(top-bot)/float(y1-y0)
+    x0=gl.xMin
     co=gl.coordinates
     for i in range(len(co)):
-        x,y=co[i]; co[i]=(x, int(round((y-y0)*k+bot)))
+        x,y=co[i]; co[i]=(int(round(x-x0)), int(round((y-y0)*k+bot)))
     gl.recalcBounds(g)
     print('  %s  bowl %4d..%4d -> %4d..%4d   y-scale %.4f   glyph now %4d..%4d'
           %(ch,y0,y1,bot,top,k,gl.yMin,gl.yMax))
@@ -112,28 +113,41 @@ def measure(a,b,k):
     gap=[adv+rb[y][0]-ra[y][1] for y in ys]
     return min(gap), sum(max(0.0,v) for v in gap)/len(gap)
 
+import json, os
+DRAWN='drawing_spacing.json'
+if os.path.exists(DRAWN):
+    d=json.load(open(DRAWN))
+    for ch in LETTERS:
+        gl=g[cm[ord(ch)]]; gl.recalcBounds(g)
+        hm.metrics[cm[ord(ch)]]=(int(round(gl.xMax+d['gap'])), 0)
+    kern={tuple(k.split('|')):v for k,v in d['kerns'].items()}
+    print('\nspacing taken from the original artwork: gap %.0f units'%d['gap'])
+    print('  advances ', {c:hm.metrics[cm[ord(c)]][0] for c in LETTERS})
+    print('  kerns    ', {a+b:v for (a,b),v in kern.items()})
+else:
+    kern=None
+
 raw={}
 for a,b in itertools.product(LETTERS,LETTERS):
     raw[(a,b)]=measure(a,b,0)
 import statistics
 TARGET=statistics.median(v[1] for v in raw.values())
-MINCLEAR=112.0
-print('\nkerning: target average white %.0f units, minimum ink clearance %.0f'%(TARGET,MINCLEAR))
-kern={}
-for (a,b),(cl0,av0) in raw.items():
-    lo,hi=-160.0,160.0
-    for _ in range(26):                      # bisect on the real measurement
-        mid=(lo+hi)/2
-        if measure(a,b,mid)[1] < TARGET: lo=mid
-        else: hi=mid
-    k=(lo+hi)/2
-    k=max(k, MINCLEAR-cl0)                   # never let the ink collide
-    k=max(-160.0,min(160.0,k))
-    if abs(k)>=4: kern[(a,b)]=int(round(k))
-print('  %d pairs of %d carry a kern; range %d .. %d'
-      %(len(kern),len(raw),min(kern.values()),max(kern.values())))
-for a in LETTERS:
-    print('   ',' '.join('%s%s%+5d'%(a,b,kern[(a,b)]) for b in LETTERS if (a,b) in kern))
+if kern is None:
+    MINCLEAR=112.0
+    print('\nkerning: target average white %.0f units, minimum ink clearance %.0f'%(TARGET,MINCLEAR))
+    kern={}
+    for (a,b),(cl0,av0) in raw.items():
+        lo,hi=-160.0,160.0
+        for _ in range(26):
+            mid=(lo+hi)/2
+            if measure(a,b,mid)[1] < TARGET: lo=mid
+            else: hi=mid
+        k=(lo+hi)/2
+        k=max(k, MINCLEAR-cl0)
+        k=max(-160.0,min(160.0,k))
+        if abs(k)>=4: kern[(a,b)]=int(round(k))
+    print('  %d pairs of %d carry a kern; range %d .. %d'
+          %(len(kern),len(raw),min(kern.values()),max(kern.values())))
 
 fea='feature kern {\n'+''.join(
     '  pos %s %s %d;\n'%(cm[ord(a)],cm[ord(b)],v) for (a,b),v in sorted(kern.items()))+'} kern;\n'

@@ -237,3 +237,25 @@ Result: all eight share one flag outline; kern range collapsed from -128..+39 to
 which is the proof that consistent parts space themselves.
 DO NOT go back to treating the glyphs as eight independent outlines.
 
+## 2026-11-23 — v5 HARMONISATION REVERTED. Spacing now read off the artwork.
+He showed the original PDF open in Preview: "before This, and it got even worse. Look at my
+drawing. From far, it looks perfect. Just do it like that." Rendered his PDF and put it
+next to my v5 at the same cap height (font/harmonised-was-worse.png). He is right and the
+cause is plain: HIS FLAGS ARE SHORT AND TUCKED, the R's flag I grafted into all eight is
+LONG, so every letter swept into the one before it and the word smeared. My v5 was also 11%
+narrower than his drawing — crowded where his breathes. Harmonisation reverted; glyph
+shapes are the faithful v3.1 trace again.
+Then the thing I should have done first: font/spacing_from_drawing.py reads his PDF at
+200 dpi, finds cap height 303 px, splits the word into its 11 non-touching letter blocks
+and converts his letter positions to font units. THOSE are the metrics now.
+It also settles the shape question: my traced widths match his to within 2% (O +0.5, E 0.0,
+R +0.6, N -0.2, F +0.4, B -1.1, D -1.3, Ö -2.1). The trace was always faithful. The spacing
+was the defect, and I had been computing it instead of reading it off his page.
+His mean gap is 151 units -> advance = ink width + 151; his deviations from his own average
+become the kerns (RN +44, RF -60, BE/ER/ÖR +12, OB +5, FE -5, DÖ -10). finalise.py now
+prefers drawing_spacing.json over its own optical solve.
+Result: the font sets the word 1.1% wider than his drawing with every letter in the same
+place (font/matches-your-drawing.png).
+RULE LEARNED: measure his artwork before inventing anything. Restyling his letterforms has
+failed every single time; reproducing them has worked every time.
+
