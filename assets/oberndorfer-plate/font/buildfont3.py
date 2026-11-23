@@ -41,7 +41,8 @@ def contours_for(mask):
         else:
             p=smooth(p)                       # lumps off the edges, corners locked
             p=flatten(p)                      # feet / flat tops become dead level
-            p=geometrize(p)                   # long edges -> true line / true circle
+            if os.environ.get('GEOM','0')!='0':
+                p=geometrize(p)               # long edges -> true line / true circle
             fitted=vl.fit_contour(p, line_tol=2.6, curve_tol=2.0, smooth_deg=26.0)
             fitted=regularise(fitted, corner_deg=30.0, straight_tol=3.0, fit_tol=3.0)
         out.append(fitted)
@@ -146,7 +147,8 @@ def shift_contours(cs, dx):
 
 print()
 prof={}
-for ch in list(glyphs):
+if os.environ.get('SPACE','0')=='0': prof=None
+for ch in (list(glyphs) if prof is not None else []):
     cs=glyphs[ch]
     polys=[poly_of(st,sg) for st,sg,_ in cs]
     xmin,xmax,ml,mr=profile(polys)
@@ -159,7 +161,7 @@ for ch in list(glyphs):
 
 # ---- then make sure no two letters of the name actually collide ----
 rowsof={}
-for ch in glyphs:
+for ch in (glyphs if prof is not None else []):
     polys=[poly_of(st,sg) for st,sg,_ in glyphs[ch]]
     rr={}
     y=4.0
@@ -168,7 +170,7 @@ for ch in glyphs:
         if sp: rr[round(y)]=(sp[0][0],sp[-1][1])
         y+=8.0
     rowsof[ch]=rr
-for a,b in zip(NAME,NAME[1:]):
+for a,b in (zip(NAME,NAME[1:]) if prof is not None else []):
     ra,rb=rowsof[a],rowsof[b]
     ys=set(ra)&set(rb)
     if not ys: continue

@@ -173,3 +173,10 @@ units, i.e. +-32% around the mean. That is the remaining "not a real font" signa
 cannot be fixed by smoothing outlines — the strokes were drawn at different widths.
 Fixing it means rebuilding the letters from one skeleton at one pen width.
 
+### REVERTED, same day: "before was better"
+v3.2 (optical spacing + geometrize) is backed out of the shipped font. buildfont3.py keeps
+both passes behind switches, GEOM and SPACE, both defaulting to 0, so the committed build
+reproduces v3.1 byte-for-byte in outlines and metrics. font/ab-spacing-curves.png isolates
+the two changes (A v3.1, B curves only, C spacing only, D both) so he can say which one hurt.
+Do not re-enable either without him choosing it.
+
