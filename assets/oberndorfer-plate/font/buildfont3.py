@@ -21,10 +21,10 @@ UPM=1000; CAP=700; SB=40; PAD=3
 # The E's arm-to-body junction and its bottom-left corner were being pushed out of
 # shape by the level-snapping pass and over-smoothing. Measured against the original
 # artwork, these settings cut the E's deviation from 3.28% to 1.65%.
-GENTLE={'E'}; GRAD=float(os.environ.get('GRAD','7'))
+GENTLE={'E'}; GRAD=float(os.environ.get('GRAD','38'))
 GPASS=int(os.environ.get('GPASS','3')); GWIN=int(os.environ.get('GWIN','9'))
-RIN=os.environ.get('RIN','')
-RAD=float(__import__('os').environ.get('RAD','18'))
+RIN=os.environ.get('RIN','22')
+RAD=float(__import__('os').environ.get('RAD','38'))
 sp=list(np.load('sprites.npy', allow_pickle=True))
 NAME='OBERNDÖRFER'
 for s in sp: s['baseoff']=s['base']-s['y0']
@@ -33,7 +33,18 @@ for ch in set(NAME):
     inst=[s for s in sp if s['ch']==ch]
     canon[ch]=inst[int(np.argsort([i['w'] for i in inst])[len(inst)//2])]
 
+def despike(mask, r=2):
+    """Morphological opening with a small disk: removes whiskers a couple of
+    pixels wide, which are trace artefacts rather than drawn features. The
+    D carried a 9-degree needle on its bowl that no corner rounding could
+    reach, because the whole whisker was shorter than the cut-back."""
+    from scipy import ndimage as ndi
+    yy,xx=np.mgrid[-r:r+1,-r:r+1]
+    disk=(xx*xx+yy*yy)<=r*r+0.5
+    return ndi.binary_opening(mask, structure=disk)
+
 def contours_for(mask, gentle=False):
+    mask=despike(mask)
     mp=np.pad(mask,PAD,constant_values=False)
     out=[]
     for c in measure.find_contours(mp.astype(float),0.5):

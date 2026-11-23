@@ -273,3 +273,26 @@ Swept six settings and measured each against his artwork before choosing
 Verified the built glyphs are byte-identical to the tested build, and the word still sets
 1.1% wider than his drawing. No other glyph changed.
 
+## 2026-11-23 — corners softened. v5 radii 38 outward / 22 inward.
+He marked all 8 letters on the markup artifact; same pattern in every one — every sharp
+tip and every sharp junction notch. (His Save failed, invalid_argument: the db rejects
+arrays nested inside arrays and a stroke is a list of points. Fixed by storing the whole
+set as one JSON string field. Worked from his screenshots this round.)
+Three fixes in font/polish.py + font/buildfont3.py:
+ 1. BUG: fillet's convexity probe walked a fixed 6 units along the bisector; on a needle
+    that lands outside the ink, so the corner was misclassified and skipped. That is how
+    the D kept a 2.9 deg spike through every pass. Probe now walks 0.25*shorter arm.
+ 2. Inward notches now get their own radius (22 vs 38 outward). A 4 deg notch reads as a
+    crack at logo size, not an ink trap.
+ 3. despike(): small morphological opening on the mask before tracing. The D's needle was
+    a 2 px trace artefact shorter than any cut-back could reach — unfixable by rounding.
+Tried relaxing max_frac to 0.48 and the cut floor to 1.0 to reach short-armed corners:
+REVERTED, it opened a new 0.4 deg crack in the D. Reverted to 0.40 / 2.0.
+Radii chosen by building 18/none, 26/14, 32/18, 38/22 and comparing the exact corners he
+circled (font/corners-chosen.png). 38/22 shipped.
+Sharpest corner in the font: 2.9 deg -> 25.3 deg, nothing under 15. Contour counts
+unchanged in all 8 glyphs so every hairline counter survived. Word still 1.1% wider than
+his drawing. Per-letter deviation from his artwork is now F 2.4, N 2.8, D 3.5, E 4.5,
+B 6.3, O 7.8, R 10.4, Ö 11.5 percent — rounding corners necessarily departs from the
+drawn shape, and he asked for it twice.
+
