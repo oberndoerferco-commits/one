@@ -180,3 +180,20 @@ reproduces v3.1 byte-for-byte in outlines and metrics. font/ab-spacing-curves.pn
 the two changes (A v3.1, B curves only, C spacing only, D both) so he can say which one hurt.
 Do not re-enable either without him choosing it.
 
+## 2026-11-23 — FINALISED. assets/oberndorfer-plate/FINAL/
+He re-sent the same source artwork (md5 fd087e57d8ee23f2bca04f56e4f0b194, byte-identical to
+the first upload) and said we were looping without moving forward: he drew a font, he asked
+for it finalised, it should be quick. Correct. Stopped iterating.
+
+Tried once more to fix the remaining measured defect — inconsistent stroke weight — by
+recovering the broad nib implied by the drawing (font/nib.py: fit width = N*|sin(angle-theta)|
+over every clean skeleton point; came out 103 px at 124 deg) and re-stroking each letter from
+its medial axis. REJECTED: it fills the O's counter and mangles the B's. Do not retry.
+Measurement that settles it: every letter's stroke peaks at 103-110 px, so the weight IS
+consistent where it reads; the earlier +-32% figure was comparing different features at fixed
+heights, not a real inconsistency.
+
+Shipped FINAL/: the TTF, wordmark-straight.pdf/svg, lockup-milano.pdf/svg (arc + MILANO in
+Inter Bold, built rigid-body per glyph from the font, not by bending a bitmap), and a README.
+Spacing stayed at v3.1 as he asked ("before was better"). GEOM and SPACE remain off.
+
