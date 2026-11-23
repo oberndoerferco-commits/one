@@ -27,20 +27,37 @@ def mat(sc, rot_deg, tx, ty):
     t=math.radians(rot_deg); c,s=math.cos(t),math.sin(t)
     return (sc*c, sc*s, -sc*s, sc*c, tx, ty)
 
+def kerns(f):
+    if 'kern' not in f: return {}
+    out={}
+    for st in f['kern'].kernTables: out.update(st.kernTable)
+    return out
+
+def advances(f, size):
+    """Per-letter advance including the font's own kerning, so the artwork and
+    the installed font set the word identically."""
+    hm=f['hmtx']; cm=f.getBestCmap(); kt=kerns(f)
+    k=size/f['head'].unitsPerEm; out=[]
+    for i,ch in enumerate(NAME):
+        gn=cm[ord(ch)]; a=hm[gn][0]
+        if i+1<len(NAME): a+=kt.get((gn,cm[ord(NAME[i+1])]),0)
+        out.append(a*k)
+    return out
+
 def layout_straight(size=200.0):
-    f=TTFont(TTF); gs=f.getGlyphSet(); hm=f['hmtx']; cm=f.getBestCmap()
+    f=TTFont(TTF); gs=f.getGlyphSet()
     k=size/f['head'].unitsPerEm; x=0.0; ops=[]
-    for ch in NAME:
+    for ch,a in zip(NAME, advances(f,size)):
         ops+=glyph_ops(f,gs,ch, mat(k,0,x,0))
-        x+=hm[cm[ord(ch)]][0]*k
+        x+=a
     return ops, x
 
 def layout_arc(size=200.0, risef=0.055):
     """Each letter is rotated to the arc's local tangent and set on it: a rigid
     body move, so nothing inside a letter is sheared or displaced."""
-    f=TTFont(TTF); gs=f.getGlyphSet(); hm=f['hmtx']; cm=f.getBestCmap()
+    f=TTFont(TTF); gs=f.getGlyphSet()
     k=size/f['head'].unitsPerEm
-    adv=[hm[cm[ord(c)]][0]*k for c in NAME]
+    adv=advances(f,size)
     L=sum(adv); rise=risef*L
     R=(rise/2.0)+(L*L)/(8.0*rise)
     ops=[]; run=0.0

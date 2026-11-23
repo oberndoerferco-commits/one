@@ -197,3 +197,26 @@ Shipped FINAL/: the TTF, wordmark-straight.pdf/svg, lockup-milano.pdf/svg (arc +
 Inter Bold, built rigid-body per glyph from the font, not by bending a bitmap), and a README.
 Spacing stayed at v3.1 as he asked ("before was better"). GEOM and SPACE remain off.
 
+## 2026-11-23 — v4.0. Audited as a FONT, not as artwork. font/finalise.py
+"are you even checking what you are doing? study what makes a font, whats important".
+Fair. I had been polishing curves and never audited the font's own machinery. The audit
+found real defects, all now fixed in font/finalise.py (runs on the build output):
+ - baselines ranged -1..+4 and caps 699..701: now exactly 0 and 700 for flat-footed
+   letters, with 8 units of overshoot top and bottom on the round O and Ö.
+ - NO KERNING AT ALL. This, not the sidebearings, was the spacing problem — it is
+   pair-specific. Measured the real white area between outlines row by row for all 64
+   pairs and solved each kern to a constant 266 units of visual white, floored at 112
+   units of ink clearance. 57 pairs carry a value, FF -128 to DÖ +39. Written as both a
+   GPOS kern feature and a legacy kern table.
+ - no space glyph at all: added at 280 units, U+00A0 mapped.
+ - .notdef was empty: now a visible box.
+ - hhea ascender 820 clipped the Ö at 886: now 900, typo metrics set, USE_TYPO_METRICS on.
+ - OS/2 was v3 with weight class 400 on a heavy face, no style bit, fsType 4, empty
+   PANOSE, no vendor ID: all corrected, OS/2 v4.
+ - name table had 4 records: now copyright, unique ID, full name, trademark, designer,
+   licence, typographic family.
+ - glyph was literally named "Ö", illegal as a PostScript name: now Odieresis.
+Verified: 0 missing extrema across all 8 glyphs, winding correct, clean save/load
+round-trip. Proof sheet at font/kerning-proof.png. FINAL/ regenerated, and final.py now
+applies the font's own kerning so the PDF and the installed font set the word identically.
+
