@@ -21,7 +21,9 @@ UPM=1000; CAP=700; SB=40; PAD=3
 # The E's arm-to-body junction and its bottom-left corner were being pushed out of
 # shape by the level-snapping pass and over-smoothing. Measured against the original
 # artwork, these settings cut the E's deviation from 3.28% to 1.65%.
-GENTLE={'E'}; GRAD=7.0; GPASS=3; GWIN=9
+GENTLE={'E'}; GRAD=float(os.environ.get('GRAD','7'))
+GPASS=int(os.environ.get('GPASS','3')); GWIN=int(os.environ.get('GWIN','9'))
+RIN=os.environ.get('RIN','')
 RAD=float(__import__('os').environ.get('RAD','18'))
 sp=list(np.load('sprites.npy', allow_pickle=True))
 NAME='OBERNDÖRFER'
@@ -96,7 +98,8 @@ for ch,s in canon.items():
         mat = (depth%2==0)
         poly=polys[i]
         ftc.append(fillet(st,sg, lambda pt,poly=poly,mat=mat: inside(tuple(pt),poly)==mat,
-                          radius=(GRAD if ch in GENTLE else RAD)))
+                          radius=(GRAD if ch in GENTLE else RAD),
+                          radius_in=(float(RIN) if RIN else None)))
     tc=ftc
     polys=[poly_of(st,sg) for st,sg in tc]
     fixed=[]

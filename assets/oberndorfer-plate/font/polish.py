@@ -117,8 +117,14 @@ def sharpen(start, segs, max_nick=30.0, min_arm=55.0, max_reach=130.0, min_ang=1
     return st,out
 
 # ---- fillet: every sharp OUTWARD tip gets the same corner radius --------
-def fillet(start, segs, inside_fn, radius=18.0, max_cut=62.0, max_frac=0.40,
-           max_wedge=108.0, k=0.56):
+def fillet(start, segs, inside_fn, radius=18.0, radius_in=None, max_cut=62.0,
+           max_frac=0.40, max_wedge=108.0, k=0.56):
+    """Round sharp corners. Outward spikes get `radius`; inward notches get
+    `radius_in` (default 55% of it) so an ink trap stays tighter than a tip but
+    does not read as a crack. The convexity probe walks a quarter of the shorter
+    arm along the bisector — a fixed 6-unit probe lands outside a needle and the
+    corner was then skipped, which is how the D's 2.9 degree spike survived."""
+    if radius_in is None: radius_in=radius*0.55
     n=len(segs)
     nodes=[start]+[segs[i][-1] for i in range(n-1)]
     P=lambda i: np.array(nodes[i],float)
@@ -139,10 +145,13 @@ def fillet(start, segs, inside_fn, radius=18.0, max_cut=62.0, max_frac=0.40,
         if th>max_wedge: continue
         w=Ah+Bh; nw=np.hypot(*w)
         if nw<1e-9: continue
-        if not inside_fn(P(i)+w/nw*6.0): continue      # empty wedge = ink trap, leave it
-        d=min(radius/max(math.tan(math.radians(th/2)),1e-3), max_cut,
+        probe=min(60.0, max(2.0, 0.25*min(la,lb)))
+        outward = inside_fn(P(i)+w/nw*probe)
+        r = radius if outward else radius_in
+        if r<=0: continue
+        d=min(r/max(math.tan(math.radians(th/2)),1e-3), max_cut,
               max_frac*min(slen((i-1)%n), slen(i)))
-        if d<3.0: continue
+        if d<2.0: continue
         cuts[i]=(tuple(P(i)+Ah*d), tuple(P(i)+Bh*d))
     if not cuts: return start,segs
     out=[]; first=None
