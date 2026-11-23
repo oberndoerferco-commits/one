@@ -57,6 +57,32 @@ letterform is the hairline inside the O, B, R and D stems. At the floors in
 BRIEF.md (hot foil 0.50 mm, laser 0.15 mm, casting 0.30 mm) check that
 hairline before committing to a size.
 
+## Version 5.0 — the letters share their parts
+
+A typeface is a kit of parts reused across the letters, not a set of separate drawings.
+Measured on v4.0, the top-left flag was **eight different shapes**: the worst pair
+disagreed over 42% of its area, and all eight agreed on only 21%. See `flags-before.png`.
+
+`harmonise.py` fixes it. It rasterises every glyph, finds each letter's own attachment
+point (the left edge of its first stem at the neck row, 230 units below the cap), lifts
+one canonical flag — the R's, which the disagreement matrix showed to be the most
+central of the eight — and grafts it into all eight letters at their own anchor. The
+bottom 45 units of the graft box are unioned rather than replaced, so the part fuses onto
+the letter instead of cutting a notch into it; the round O and Ö need 95 units of that
+weld because the flag springs off a curve, not a stem. The same is done with the foot
+spur, taken from the E, in the six letters that have one. Everything is then re-traced
+through the whole smoothing, flattening, terminal and fillet pipeline as one system, so
+the seams disappear.
+
+Flag agreement went from 21% to 39% by that raw measure — the residual is the stem,
+shoulder and arm inside the measuring box, which *should* differ between a B, an E and
+an N. The flag itself is now literally the same outline in every letter.
+
+Side effect worth noting: kerning values collapsed from a range of −128..+39 to
+−41..+43. When the parts are consistent, the letters space themselves.
+
+`parts-before-after.png` shows all eight before and after. `word-final.png` is the word.
+
 ## What this font does not have
 
 It covers only the eight letters of the name. It cannot set MILANO or MADE IN ITALY —

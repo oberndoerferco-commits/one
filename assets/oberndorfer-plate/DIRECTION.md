@@ -220,3 +220,20 @@ Verified: 0 missing extrema across all 8 glyphs, winding correct, clean save/loa
 round-trip. Proof sheet at font/kerning-proof.png. FINAL/ regenerated, and final.py now
 applies the font's own kerning so the PDF and the installed font set the word identically.
 
+## 2026-11-23 — v5.0 PARTS KIT. font/harmonise.py
+"a font has to be symmetrical, have a style that reflects in all of the letters, be
+precise". He is right and this was the real defect. Measured it: the top-left flag was
+EIGHT DIFFERENT SHAPES — worst pair disagreed on 42.5% of its area, all eight agreed on
+only 20.8% (font/flags-before.png shows them side by side and overlaid).
+harmonise.py now builds the letters from shared parts: it rasterises each glyph at 2 px
+per unit, finds each letter's own attachment point (left edge of the first stem at the
+neck row, CAP-230), lifts the canonical flag from R (the medoid of the disagreement
+matrix) and the canonical foot spur from E, and grafts them into every letter. The bottom
+of the graft box is UNIONED not replaced (45 units on stems, 95 on the round O and Ö whose
+flag springs off a curve) so the part welds on instead of notching the bowl — that weld
+is what fixed the floating contours in the first attempt. Everything re-traced through the
+full pipeline afterwards so no seam survives. Then finalise.py as usual.
+Result: all eight share one flag outline; kern range collapsed from -128..+39 to -41..+43,
+which is the proof that consistent parts space themselves.
+DO NOT go back to treating the glyphs as eight independent outlines.
+
