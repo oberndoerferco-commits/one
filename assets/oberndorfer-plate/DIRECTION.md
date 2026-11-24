@@ -423,3 +423,21 @@ DECISION: reverted. The shipped font is byte-identical to what he already has. T
 plainly, with the picture, and asked what is actually wrong at the hairline ends rather
 than guessing a seventh time. DO NOT ship this pass without an answer for those spots.
 
+## 2026-11-24 — second automated attempt FAILED WORSE. Both approaches are dead ends.
+He asked what is confusing me. Answer, recorded so it is not re-learned:
+ 1. I have only geometry, no idea what a feature IS. A sharp beak, an already-round pen
+    terminal and a small curl all look alike to a corner finder.
+ 2. The span-based corner finder cannot separate a sharp corner from a tight curl: on a
+    small blob the outline doubles back and both arms point the same way, reading acute.
+ 3. THE REAL DAMAGE: inner contours. Rounding a "corner" on a counter pushes ink INTO the
+    white. That is not rounding, it is a new dent — the F crack, the E counter, the N blob.
+Tried next: smooth_marked.py, local smoothing of the TrueType point list inside each
+circle, tapered to zero at the edge. REASONING WAS WRONG AND THE RESULT IS FAR WORSE:
+averaging a TT point list mixes on-curve points with off-curve controls and shrinks small
+features out of existence. The F's hairline counter DISAPPEARS, the N's terminal mangles,
+the O's edge goes lumpy. Audit: sharpest 60.3 -> 2.0 deg, 12 corners under 60.
+BOTH reverted. Shipped font remains byte-identical to what he has.
+DO NOT attempt a third general algorithm for this. Any fix at these spots has to be a
+hand edit of named points, from him saying what shape he wants there — or a human type
+designer. Said so plainly rather than trying again.
+
