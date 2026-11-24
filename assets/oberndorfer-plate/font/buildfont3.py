@@ -43,8 +43,14 @@ def despike(mask, r=2):
     disk=(xx*xx+yy*yy)<=r*r+0.5
     return ndi.binary_opening(mask, structure=disk)
 
+# FAITHFUL MODE, the default. Measured against his artwork, every shaping step
+# moved the letters AWAY from his drawing: faithful 2.67% mean deviation against
+# 4.92% for the smoothed build. He preferred his drawing every single time.
+# So: trace exactly what he drew. The only thing removed is despike(), which
+# deletes 2px scan artefacts that are not his line.
+RAW=os.environ.get('RAW','1')!='0'
 def contours_for(mask, gentle=False):
-    mask=despike(mask)
+    if (not RAW) or os.environ.get('DESPIKE','1')!='0': mask=despike(mask)
     mp=np.pad(mask,PAD,constant_values=False)
     out=[]
     for c in measure.find_contours(mp.astype(float),0.5):
@@ -53,6 +59,9 @@ def contours_for(mask, gentle=False):
         if len(p)<6: continue
         # small shapes (the umlaut dots) keep every corner: no node merging
         bb=max(p[:,0].max()-p[:,0].min(), p[:,1].max()-p[:,1].min())
+        if RAW:
+            out.append(vl.fit_contour(p, line_tol=0.7, curve_tol=0.4, smooth_deg=30.0))
+            continue
         if bb < 180:
             fitted=vl.fit_contour(p, line_tol=1.6, curve_tol=0.9, smooth_deg=55.0)
         else:

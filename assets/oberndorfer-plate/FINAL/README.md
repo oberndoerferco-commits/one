@@ -76,63 +76,38 @@ RN +44, RF −60, BE/ER/ÖR +12, OB +5, FE −5, DÖ −10. Nothing invented.
 Result: at the same cap height the font sets the word 1.1% wider than your drawing, with
 every letter in the same place. `matches-your-drawing.png` is the two stacked.
 
-## Corners
+## Faithful mode — what the font does now
 
-Rounded back to the level you approved: 38/22 over-softened it and lost the bite, so the
-outward radius is 18 again and inward notches are left as drawn. Two things from that
-round were kept, because they are corrections rather than restyling:
+You said your drawing still looked better. So I stopped improving it and measured instead:
+how far is each build from your artwork, letter by letter, scaled to the same cap height?
 
-- **A bug fix.** The test that decides whether a corner is an outward tip or an inward
-  notch probed a fixed 6 units along the bisector. On a needle that probe lands outside
-  the ink, so the corner was classified wrongly and skipped. The probe now walks a
-  quarter of the shorter arm.
-- **Whisker removal.** A small opening on the mask before tracing deletes features two
-  pixels wide. The D carried a 2.9 degree needle on its bowl that was a trace artefact,
-  not something you drew, and it was shorter than any corner rounding could reach.
+| | O | B | E | R | N | D | Ö | F | **mean** |
+|---|---|---|---|---|---|---|---|---|---|
+| smoothed | 8.0 | 5.6 | 1.9 | 3.0 | 2.9 | 3.2 | 12.1 | 2.7 | **4.9%** |
+| **faithful** | 6.4 | 2.3 | 1.4 | **0.9** | 1.1 | 2.3 | 5.7 | 1.3 | **2.7%** |
 
-## Straightening and smoothing
+You were right, and the number says so: every shaping step was moving the letters away
+from what you drew. The R is now 0.9% off, the N 1.1%, the F 1.3%, the E 1.4% — that is
+the same letter, not an interpretation of it.
 
-`geometrize()` splits every outline at its corners, then takes each long run and asks
-whether a straight line or a true circle already nearly fits it. If one does, the run is
-projected onto that exact geometry, eased at both ends so the joins stay clean. A run that
-fits neither is left alone, so nothing with real character gets flattened.
+The font is now a straight, high-precision vectorisation of your artwork. No smoothing,
+no corner rounding, no levelling, no straightening. The one thing still removed is
+`despike()`, a small opening that deletes features two pixels wide — scanner artefacts
+rather than your line. It takes the sharpest corner in the font from 0.4 degrees to 14.9
+without touching anything you drew.
 
-Tolerances were swept — 8/10, 12/14, 16/16, 20/18, 26/22 and 34/26 — and **12/14 measured
-best**. Higher tolerances are worse, not better: they force gently curved runs onto
-straight lines and the result bows somewhere else.
+The O and Ö read 6.4 and 5.7 per cent, but an overlay shows their outlines running
+parallel to yours — that residual is how the comparison registers the two crops, not a
+difference in the shapes.
 
-| | before | after |
-|---|---|---|
-| worst bow on a long straight edge | 15.6 units | **9.7** |
-| ripple on runs that should be true arcs | 8.5 units mean | **6.4** |
+**What this costs, stated plainly.** The wobble and the sharp corners you flagged in
+earlier rounds are back, because they are yours. Every attempt to remove them moved the
+letters further from the drawing you prefer. That is the trade, and you have now chosen
+this side of it twice.
 
-`stems-before-after.png` shows the B stem, the N diagonal, the D hairline, the E stem and
-the O and R bowls side by side.
-
-## Repeated letters
-
-Already identical, by construction. OBERNDÖRFER is eleven letters set from eight glyphs —
-the three R and the two E are literally the same outline, so they cannot drift apart the
-way they do in a drawing.
-
-## The E
-
-Measured against the artwork, the E was 3.28% off — the worst of the eight. Two causes,
-both mine: the level-snapping pass was cutting across the junction where the top arm meets
-the body, taking a notch out of it, and over-smoothing was pushing the bottom-left corner
-outwards into a bulge. The E is now traced with that levelling pass off, three smoothing
-passes instead of five over a narrower window, and a 7-unit corner radius instead of 18.
-Deviation from your drawing: **3.28% to 1.65%**. `e-fix.png` is your E, the overlay before,
-the overlay after, and the result.
-
-## A thing I tried and reverted
-
-I harmonised the letters by grafting one canonical flag into all eight, on the theory that
-a typeface should share its parts. The flag I chose was the R's, which is long; yours are
-short and tucked. The result swept into the letter before it and the whole word smeared
-together — `harmonised-was-worse.png` in the font folder shows it against your drawing.
-Reverted. Your flags vary, and at reading distance that variation is invisible while the
-long grafted flag was not.
+Everything around the outlines is still done properly, because none of it changes your
+shapes: one baseline, one cap height, overshoot on the round letters, spacing measured off
+your artwork, kerning, a space glyph, correct vertical metrics and a complete name table.
 
 ## What this font does not have
 

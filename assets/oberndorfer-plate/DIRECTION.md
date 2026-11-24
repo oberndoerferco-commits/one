@@ -314,3 +314,19 @@ make repeated letters identical, refine spacing and alignment.
  - SPACING/ALIGNMENT: unchanged — already read off his artwork, and one baseline / one cap
    height with 8 units of overshoot on the round O and Ö.
 
+## 2026-11-24 — FAITHFUL MODE IS THE DEFAULT. "my drawing still looks better"
+Stopped improving and measured. Deviation from his artwork, per letter, same cap height:
+  smoothed build  O 8.0  B 5.6  E 1.9  R 3.0  N 2.9  D 3.2  Ö 12.1  F 2.7  mean 4.92%
+  faithful build  O 6.4  B 2.3  E 1.4  R 0.9  N 1.1  D 2.3  Ö  5.7  F 1.3  mean 2.67%
+He is right and the number proves it: EVERY shaping step moved the letters away from his
+drawing. buildfont3.py RAW mode is now the default: trace and fit only, no smooth, no
+flatten, no geometrize, no fillet. despike() stays (DESPIKE default 1) because 2 px scan
+artefacts are not his line — it takes the sharpest corner from 0.4 deg to 14.9 deg.
+O/Ö residual is crop registration, not shape: the overlay shows the outlines parallel.
+THE TRADE, said to him plainly: the wobble and sharp corners he flagged earlier are back,
+because they are his. He has chosen this side twice now.
+Font plumbing unchanged (baseline/cap/overshoot, spacing off his artwork, kerning, space,
+metrics, names) because none of it touches his shapes.
+RULE, now proven three times: measure against his artwork before changing anything.
+Restyling his letterforms has failed every time; reproducing them has worked every time.
+
