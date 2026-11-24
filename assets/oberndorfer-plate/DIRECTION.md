@@ -296,3 +296,21 @@ his drawing. Per-letter deviation from his artwork is now F 2.4, N 2.8, D 3.5, E
 B 6.3, O 7.8, R 10.4, Ö 11.5 percent — rounding corners necessarily departs from the
 drawn shape, and he asked for it twice.
 
+## 2026-11-24 — reverted the heavy rounding; straightened stems and trued curves
+"i still like before more" + a precise brief: preserve his shapes/proportions/serifs/
+details, straighten the stems and the wobble, smooth curves without changing character,
+make repeated letters identical, refine spacing and alignment.
+ - CORNERS BACK to 18 outward / inward untouched (38/22 over-softened and lost the bite).
+   KEPT from that round because they are corrections not restyling: the convexity-probe
+   bug fix, and despike() which removes 2 px trace whiskers.
+ - STRAIGHTENING: geometrize() re-enabled by default at tol_line 12 / tol_circle 14.
+   Swept 8/10, 12/14, 16/16, 20/18, 26/22, 34/26 — 12/14 is the optimum and HIGHER
+   TOLERANCES ARE WORSE: they force gently curved runs onto lines and the bow reappears
+   elsewhere (t20 max 15.95 vs 12/14's 9.68). Do not raise it.
+   Worst bow on a long straight edge 15.6 -> 9.7 units. Arc ripple 8.5 -> 6.4 mean.
+   font/stems-before-after.png, font/drawing-before-after.png.
+ - REPEATED LETTERS: already identical by construction, 11 letters from 8 glyphs. Nothing
+   to do; said so rather than inventing work.
+ - SPACING/ALIGNMENT: unchanged — already read off his artwork, and one baseline / one cap
+   height with 8 units of overshoot on the round O and Ö.
+

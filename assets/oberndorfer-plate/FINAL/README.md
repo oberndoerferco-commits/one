@@ -78,28 +78,42 @@ every letter in the same place. `matches-your-drawing.png` is the two stacked.
 
 ## Corners
 
-He marked every one of the eight letters, and the pattern was identical in all of them:
-every sharp tip and every sharp junction notch. Three things came out of that.
+Rounded back to the level you approved: 38/22 over-softened it and lost the bite, so the
+outward radius is 18 again and inward notches are left as drawn. Two things from that
+round were kept, because they are corrections rather than restyling:
 
-1. **A bug.** The test that decides whether a corner is an outward tip or an inward notch
-   probed a fixed 6 units along the corner's bisector. On a needle that probe lands
-   *outside* the ink, so those corners were classified wrongly and skipped entirely —
-   which is how the D carried a 2.9 degree spike through every previous pass. The probe
-   now walks a quarter of the shorter arm and cannot fall out of a needle.
-2. **Inward notches are rounded too**, at 22 units against 38 for outward tips. Leaving
-   them perfectly sharp is correct for a text blackletter but at logo size a 4 degree
-   notch reads as a crack, not an ink trap.
-3. **Whiskers are removed at the source.** The D's needle was a two-pixel trace artefact
-   shorter than any cut-back could reach, so no amount of corner rounding could fix it. A
-   small morphological opening on the mask before tracing removes features that thin
-   without touching anything drawn.
+- **A bug fix.** The test that decides whether a corner is an outward tip or an inward
+  notch probed a fixed 6 units along the bisector. On a needle that probe lands outside
+  the ink, so the corner was classified wrongly and skipped. The probe now walks a
+  quarter of the shorter arm.
+- **Whisker removal.** A small opening on the mask before tracing deletes features two
+  pixels wide. The D carried a 2.9 degree needle on its bowl that was a trace artefact,
+  not something you drew, and it was shorter than any corner rounding could reach.
 
-Radii were chosen by building four versions and comparing the exact corners he circled
-(`corners-chosen.png`): 18/none, 26/14, 32/18 and 38/22. 38/22 shipped.
+## Straightening and smoothing
 
-**The sharpest corner anywhere in the font went from 2.9 degrees to 25.3**, and nothing
-is under 15 degrees. Contour counts are unchanged in every glyph, so every hairline
-counter survived.
+`geometrize()` splits every outline at its corners, then takes each long run and asks
+whether a straight line or a true circle already nearly fits it. If one does, the run is
+projected onto that exact geometry, eased at both ends so the joins stay clean. A run that
+fits neither is left alone, so nothing with real character gets flattened.
+
+Tolerances were swept — 8/10, 12/14, 16/16, 20/18, 26/22 and 34/26 — and **12/14 measured
+best**. Higher tolerances are worse, not better: they force gently curved runs onto
+straight lines and the result bows somewhere else.
+
+| | before | after |
+|---|---|---|
+| worst bow on a long straight edge | 15.6 units | **9.7** |
+| ripple on runs that should be true arcs | 8.5 units mean | **6.4** |
+
+`stems-before-after.png` shows the B stem, the N diagonal, the D hairline, the E stem and
+the O and R bowls side by side.
+
+## Repeated letters
+
+Already identical, by construction. OBERNDÖRFER is eleven letters set from eight glyphs —
+the three R and the two E are literally the same outline, so they cannot drift apart the
+way they do in a drawing.
 
 ## The E
 

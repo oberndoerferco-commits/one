@@ -211,7 +211,7 @@ def _fit_circle(q):
     return proj, float(np.abs(d-r).max())
 
 def geometrize(p, corner_deg=122.0, R=7, min_pts=22, tol_line=5.0, tol_circle=7.0,
-               max_r=5000.0, ease=0.14):
+               max_r=5000.0, ease=0.06):
     """Snap each smooth run between corners onto its best-fit line or circle."""
     if len(p)<40: return p
     q=p.copy()

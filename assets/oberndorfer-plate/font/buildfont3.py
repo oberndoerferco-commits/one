@@ -21,10 +21,10 @@ UPM=1000; CAP=700; SB=40; PAD=3
 # The E's arm-to-body junction and its bottom-left corner were being pushed out of
 # shape by the level-snapping pass and over-smoothing. Measured against the original
 # artwork, these settings cut the E's deviation from 3.28% to 1.65%.
-GENTLE={'E'}; GRAD=float(os.environ.get('GRAD','38'))
+GENTLE={'E'}; GRAD=float(os.environ.get('GRAD','7'))
 GPASS=int(os.environ.get('GPASS','3')); GWIN=int(os.environ.get('GWIN','9'))
-RIN=os.environ.get('RIN','22')
-RAD=float(__import__('os').environ.get('RAD','38'))
+RIN=os.environ.get('RIN','')
+RAD=float(__import__('os').environ.get('RAD','18'))
 sp=list(np.load('sprites.npy', allow_pickle=True))
 NAME='OBERNDÖRFER'
 for s in sp: s['baseoff']=s['base']-s['y0']
@@ -59,8 +59,12 @@ def contours_for(mask, gentle=False):
             p=smooth(p, passes=(GPASS if gentle else 5), win=(GWIN if gentle else 11))
             if not gentle:                    # levelling would cut the E's arm junction
                 p=flatten(p)                  # feet / flat tops become dead level
-            if os.environ.get('GEOM','0')!='0':
-                p=geometrize(p)               # long edges -> true line / true circle
+            # straighten what should be straight and true up what should be an arc.
+            # 12/14 measured best: pushing the tolerance higher forces gently curved
+            # runs onto lines and the result is worse, not straighter.
+            if os.environ.get('GEOM','1')!='0':
+                p=geometrize(p, tol_line=float(os.environ.get('TL','12')),
+                                tol_circle=float(os.environ.get('TC','14')))
             fitted=vl.fit_contour(p, line_tol=2.6, curve_tol=2.0, smooth_deg=26.0)
             fitted=regularise(fitted, corner_deg=30.0, straight_tol=3.0, fit_tol=3.0)
         out.append(fitted)
