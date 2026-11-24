@@ -102,6 +102,12 @@ whole font.
 `true-lines-and-arcs.png` is the proof at high zoom — the N stem, the B stem, the E stem
 and arms, the O and D bowls, before and after. `letters-reconstructed.png` is all eight.
 
+**Smooth joins are not intersected.** Two nearly tangent arcs either meet far away or not
+at all, so forcing an intersection there puts a kink in what should be one continuous
+curve — that was the wobble two thirds down the D's counter and the dent in its bottom
+edge. A join whose tangents differ by less than 14 degrees is now taken as the midpoint of
+the two pieces instead; only a real corner is intersected. `d-fix.png` shows both.
+
 The method was verified on shapes with a known answer before it went near your letters: a
 noisy circle comes back as one exact circle, a noisy square as exactly four lines with
 corners landing within 0.2 px of the true corners, and a rounded rectangle as four lines

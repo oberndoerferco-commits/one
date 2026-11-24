@@ -352,3 +352,14 @@ TWO BUGS FOUND AND FIXED while building it, both worth remembering:
  - max error is the wrong merge criterion on hand-drawn data: one outlier blocks a valid
    merge. Judge on RMS with a cap on the worst point (MAXK=3).
 
+## 2026-11-24 — the D: dent in the bottom, wobble in the counter
+He spotted both. Cause: reconstruct.py was intersecting EVERY pair of neighbouring
+primitives. Two nearly tangent arcs intersect far away or not at all, so forcing it puts a
+kink in a curve that should be continuous — exactly the wobble 2/3 down the D's counter and
+the dent in its bottom edge. joint() now measures the tangent difference: under 14 degrees
+is a SMOOTH join, taken as the midpoint of the two pieces; only a real corner is
+intersected. Both defects gone (font/d-fix.png).
+Side effect, worth knowing: the big per-letter outliers improved a lot (O 6.4->4.0,
+Ö 5.7->2.6) while E went 1.4->4.5; mean 2.59 -> 2.82%. Visually the E is unchanged, so the
+E figure is crop registration again, not a defect. Do not chase it.
+

@@ -123,14 +123,35 @@ def _circle_circle(A,B,near):
     perp=np.array([-(B['c']-A['c'])[1],(B['c']-A['c'])[0]])/d
     return min([m+perp*h, m-perp*h], key=lambda p: np.hypot(*(p-near)))
 
-def intersect(A,B,near,max_move=12.0):
+def _tangent(P, pt, sign=1.0):
+    if P['kind']=='L': return P['d']
+    v=pt-P['c']; n=np.hypot(*v)
+    if n<1e-9: return np.array([1.0,0.0])
+    return np.array([-v[1],v[0]])/n
+
+def joint(A,B,endA,startB,smooth_deg=14.0,max_move=12.0):
+    """Where two primitives meet.
+
+    A real corner is the exact intersection of the two. A SMOOTH join is not:
+    two nearly tangent arcs intersect far away or not at all, and forcing it
+    puts a kink in what should be one continuous curve. So a smooth join is
+    taken as the midpoint of the two pieces' own endpoints instead.
+    """
+    near=(np.asarray(endA,float)+np.asarray(startB,float))/2.0
+    ta=_tangent(A,endA); tb=_tangent(B,startB)
+    ca=abs(float(np.clip(ta@tb/((np.hypot(*ta)*np.hypot(*tb))+1e-9),-1,1)))
+    ang=math.degrees(math.acos(ca))
+    if ang<smooth_deg: return near, False          # smooth: do not intersect
     p=None
     if A['kind']=='L' and B['kind']=='L': p=_line_line(A,B)
     elif A['kind']=='L' and B['kind']=='A': p=_line_circle(A,B,near)
     elif A['kind']=='A' and B['kind']=='L': p=_line_circle(B,A,near)
     else: p=_circle_circle(A,B,near)
-    if p is None or np.hypot(*(p-near))>max_move: return near
-    return p
+    if p is None or np.hypot(*(p-near))>max_move: return near, False
+    return p, True
+
+def intersect(A,B,near,max_move=12.0):             # kept for callers
+    return joint(A,B,near,near,max_move=max_move)[0]
 
 # ---------- emit ----------
 def arc_to_beziers(C, p0, p1, ccw, max_sweep=None):
@@ -186,11 +207,11 @@ def rebuild(points, tol=1.6, merge_tol=1.6):
         return tuple(pts[0]), segs
     if len(prims)<2: return None
     # corner points: intersect each neighbouring pair
-    corners=[]
+    corners=[]; kinds=[]
     for i in range(len(prims)):
         A=prims[i][0]; B=prims[(i+1)%len(prims)][0]
-        near=prims[i][1][-1]
-        corners.append(intersect(A,B,near))
+        pt,is_corner=joint(A,B, prims[i][1][-1], prims[(i+1)%len(prims)][1][0])
+        corners.append(pt); kinds.append(is_corner)
     # winding of the source, for arc direction
     area=0.5*np.sum(qq[:,0]*np.roll(qq[:,1],-1)-np.roll(qq[:,0],-1)*qq[:,1])
     segs=[]; start=tuple(corners[-1])
