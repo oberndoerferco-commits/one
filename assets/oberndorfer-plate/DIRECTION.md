@@ -363,3 +363,20 @@ Side effect, worth knowing: the big per-letter outliers improved a lot (O 6.4->4
 Ö 5.7->2.6) while E went 1.4->4.5; mean 2.59 -> 2.82%. Visually the E is unchanged, so the
 E figure is crop registration again, not a defect. Do not chase it.
 
+## 2026-11-24 — "its getting worse..cant you see it?" — I could not, and here is why
+Measured it honestly instead of guessing further. TWO THINGS LEARNED:
+1. My per-letter deviation numbers were INFLATED BY MISREGISTRATION. The crops were aligned
+   by bounding box; aligning by centre of mass instead gives O 2.1%, D 1.4%, B 1.9%,
+   R 4.0% against his artwork. The shapes ARE his. I had been chasing comparison noise —
+   e.g. the "E 1.4 -> 4.5% regression" I reported was not real.
+   font/shape-overlay.png. USE CENTRE-OF-MASS ALIGNMENT for any future comparison.
+2. Rendered identically (same cap height 300 px, same renderer, same anti-aliasing) his
+   drawing and all three builds are near indistinguishable: font/same-size-comparison.png.
+   Earlier side-by-sides were unfair — his raster was displayed larger than the font rows.
+Tested whether the smooth-join threshold was swallowing real corners (4/6/8/10/14 deg):
+the corner audit is flat across all of them, so that is NOT the lever. Default set to 8.
+I cannot find a regression between the build he called "getting better" and this one, and
+I said so rather than invent another change. Three candidates kept side by side in
+FINAL/alternatives/ (A traced, B reconstructed hard corners, C reconstructed smooth joins
+= current) so he can name one. DO NOT keep iterating blind; get a specific mark or a row.
+

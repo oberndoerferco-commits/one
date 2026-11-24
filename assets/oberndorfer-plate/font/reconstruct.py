@@ -27,17 +27,23 @@ def fit_circle(q):
     r2=sol[2]+cx*cx+cy*cy
     if r2<=1.0: return None,(1e9,1e9)
     r=math.sqrt(r2); ctr=np.array([cx,cy])
-    if r>6000: return None,(1e9,1e9)               # a circle that big is a line
+    if r>MAXR: return None,(1e9,1e9)               # a circle that big is a line, and
+                                                   # drawing it as an arc bulges the stroke
     d=np.hypot(x-cx,y-cy)
     return dict(kind='A', c=ctr, r=r), _stats(np.abs(d-r))
 
 MAXK=3.0        # a piece may not stray further than MAXK x tol anywhere
+import os as _os
+MAXR=float(_os.environ.get('MAXR','900'))      # above this radius, call it a line
+LBIAS=float(_os.environ.get('LBIAS','2.0'))    # how much better a circle must be
+SMOOTH=float(_os.environ.get('SMOOTH','8'))    # under this, a join is smooth not a corner
 
 def ok(e, tol): return e[0]<=tol and e[1]<=MAXK*tol
 
-def classify(q, tol, line_bias=1.25):
+def classify(q, tol, line_bias=None):
     """Prefer a straight line unless a circle fits clearly better.
     Judged on RMS, with a cap on the worst point so a piece cannot bow away."""
+    if line_bias is None: line_bias=LBIAS
     L,le=fit_line(q)
     C,ce=fit_circle(q)
     lok=ok(le,tol); cok=(C is not None and ok(ce,tol))
@@ -129,7 +135,7 @@ def _tangent(P, pt, sign=1.0):
     if n<1e-9: return np.array([1.0,0.0])
     return np.array([-v[1],v[0]])/n
 
-def joint(A,B,endA,startB,smooth_deg=14.0,max_move=12.0):
+def joint(A,B,endA,startB,smooth_deg=None,max_move=12.0):
     """Where two primitives meet.
 
     A real corner is the exact intersection of the two. A SMOOTH join is not:
@@ -137,6 +143,7 @@ def joint(A,B,endA,startB,smooth_deg=14.0,max_move=12.0):
     puts a kink in what should be one continuous curve. So a smooth join is
     taken as the midpoint of the two pieces' own endpoints instead.
     """
+    if smooth_deg is None: smooth_deg=SMOOTH
     near=(np.asarray(endA,float)+np.asarray(startB,float))/2.0
     ta=_tangent(A,endA); tb=_tangent(B,startB)
     ca=abs(float(np.clip(ta@tb/((np.hypot(*ta)*np.hypot(*tb))+1e-9),-1,1)))

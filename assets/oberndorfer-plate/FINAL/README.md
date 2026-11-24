@@ -113,6 +113,20 @@ noisy circle comes back as one exact circle, a noisy square as exactly four line
 corners landing within 0.2 px of the true corners, and a rounded rectangle as four lines
 plus four arcs.
 
+## If you want a different one
+
+`alternatives/` holds the three builds side by side, so you can install whichever you
+prefer rather than wait on me:
+
+- `A-traced.ttf` — the outline traced point for point from your artwork
+- `B-reconstructed-hard-corners.ttf` — primitives, every join intersected
+- `C-reconstructed-smooth-joins.ttf` — primitives, tangent joins left smooth (the one
+  installed as `OberndorferDrawn-Regular.ttf`)
+
+`same-size-comparison.png` shows your drawing and all three at the same cap height through
+the same renderer. `shape-overlay.png` overlays your letters with the font's, aligned on
+centre of mass: O 2.1 per cent, D 1.4, B 1.9.
+
 ## What this font does not have
 
 It covers only the eight letters of the name. It cannot set MILANO or MADE IN ITALY —
