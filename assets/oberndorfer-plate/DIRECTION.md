@@ -398,3 +398,28 @@ HIS CHOICE: "Only fix what I point at."
  - The markup artifact is the channel: https://claude.ai/artifact/GJmTEtnmmPujbyZCTLKJv9
    Rebuilt on the shipping outlines; the Save bug (nested arrays) is fixed.
 
+## 2026-11-24 — his 103 marks read; rounding applied to the TIPS only; NOT SHIPPED yet
+Read all 8 letters off the markup artifact (marks/<panel>, one doc each — the new save
+worked). font/your-marks.png shows them on the outlines. The pattern: sharp TIPS, and the
+ENDS OF THE HAIRLINES (the little blobs where the thin inner line stops).
+font/round_marked.py rounds ONLY corners inside a circle he drew, on the finished font so
+his marks land where he drew them. Cutting back along both arms and bridging with a
+quadratic; nothing else in the glyph moves.
+WORKS on the big tips: O, D, E, N, R, B flag tips come out cleanly rounded
+(font/tips-rounded-ok.png).
+DOES NOT WORK on the hairline ends and rounded terminals, and the failure is severe, not
+cosmetic (font/damage-from-rounding.png):
+ - F: the rounded top of the hairline counter becomes a long thin CRACK.
+ - E: same counter, top deformed.
+ - N: a rounded blob terminal becomes a sharp point — the opposite of rounding.
+Cause: those features have no sharp corner to round. The span-based corner finder reports
+one because the outline CURLS BACK on a small blob, so both arms point the same way and
+read as a sharp angle. Guards tried and insufficient: thin-feature distance test (excluded
+real tips too, since at a tip the opposite arm is near by construction), arm-straightness
+test la,lb >= 0.6*reach, outward-only convexity probe, and a rebuild-and-revert loop.
+Corner audit proves the damage: premark sharpest 60.3 deg with NOTHING under 60; after the
+pass, 6.3 deg with 5 corners under 60. It SHARPENS where it should soften.
+DECISION: reverted. The shipped font is byte-identical to what he already has. Told him
+plainly, with the picture, and asked what is actually wrong at the hairline ends rather
+than guessing a seventh time. DO NOT ship this pass without an answer for those spots.
+
