@@ -330,3 +330,25 @@ metrics, names) because none of it touches his shapes.
 RULE, now proven three times: measure against his artwork before changing anything.
 Restyling his letterforms has failed every time; reproducing them has worked every time.
 
+## 2026-11-24 — TRUE PRIMITIVES. font/reconstruct.py. This is the answer.
+"straight lines, curves where there's curves, corner where there's corner, and no wobble
+in the middle." That is reconstruction, not smoothing, and smoothing is why every previous
+attempt failed. reconstruct.py:
+ 1. decompose(): recursive split at the worst-fitting point until every piece is a line or
+    a circle within tol (0.8 px).
+ 2. merge(): rejoin neighbours that are really one primitive, so a stem is ONE line.
+ 3. re-intersect neighbours exactly (line/line, line/circle, circle/circle) so corners are
+    mathematical points, NOT eased blends. Nothing is averaged anywhere.
+Verified on known shapes FIRST: noisy circle -> one exact circle; noisy square -> exactly
+4 lines, corners within 0.2 px; rounded rect -> 4 lines + 4 arcs.
+RESULT: 2.59% from his artwork (the raw trace was 2.67%) with 947 points instead of 6706.
+Sharpest corner 14.9 -> 52.2 deg; exactly one corner under 60 deg in the whole font.
+font/true-lines-and-arcs.png is the high-zoom proof.
+TWO BUGS FOUND AND FIXED while building it, both worth remembering:
+ - decompose() split at the worst point but clamped the index to min_pts from each end, so
+   a worst point near an end peeled off 7 points at a time; the recursion then hit the
+   depth limit and ACCEPTED a 1080-point blob as a single "line". A lopsided split now
+   falls back to the midpoint. This was the whole reason the first attempt gave 34%.
+ - max error is the wrong merge criterion on hand-drawn data: one outlier blocks a valid
+   merge. Judge on RMS with a cap on the worst point (MAXK=3).
+

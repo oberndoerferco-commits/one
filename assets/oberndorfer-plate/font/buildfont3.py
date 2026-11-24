@@ -12,6 +12,7 @@ np.cross=_cross
 from skimage import measure
 import vectorize_lineart as vl
 from polish import smooth, flatten, sharpen, fillet, geometrize
+import reconstruct as RC
 from regularise import regularise
 from fontTools.fontBuilder import FontBuilder
 from fontTools.pens.ttGlyphPen import TTGlyphPen
@@ -49,6 +50,12 @@ def despike(mask, r=2):
 # So: trace exactly what he drew. The only thing removed is despike(), which
 # deletes 2px scan artefacts that are not his line.
 RAW=os.environ.get('RAW','1')!='0'
+# Rebuild each outline out of TRUE primitives: exact straight segments and exact
+# circular arcs, re-intersected at their corners. Not smoothing — there is simply
+# nothing between the primitives for wobble to live in. tol 0.8 px measured 2.59%
+# from his artwork against 2.67% for the raw trace, with 947 points instead of 6706.
+RECON=os.environ.get('RECON','1')!='0'
+RTOL=float(os.environ.get('RTOL','0.8'))
 def contours_for(mask, gentle=False):
     if (not RAW) or os.environ.get('DESPIKE','1')!='0': mask=despike(mask)
     mp=np.pad(mask,PAD,constant_values=False)
@@ -59,6 +66,10 @@ def contours_for(mask, gentle=False):
         if len(p)<6: continue
         # small shapes (the umlaut dots) keep every corner: no node merging
         bb=max(p[:,0].max()-p[:,0].min(), p[:,1].max()-p[:,1].min())
+        if RECON:
+            r=RC.rebuild(p, tol=RTOL, merge_tol=RTOL)
+            if r is not None:
+                out.append(r); continue
         if RAW:
             out.append(vl.fit_contour(p, line_tol=0.7, curve_tol=0.4, smooth_deg=30.0))
             continue

@@ -76,38 +76,36 @@ RN +44, RF −60, BE/ER/ÖR +12, OB +5, FE −5, DÖ −10. Nothing invented.
 Result: at the same cap height the font sets the word 1.1% wider than your drawing, with
 every letter in the same place. `matches-your-drawing.png` is the two stacked.
 
-## Faithful mode — what the font does now
+## Built from true lines and true arcs
 
-You said your drawing still looked better. So I stopped improving it and measured instead:
-how far is each build from your artwork, letter by letter, scaled to the same cap height?
+You asked for straight lines where there are straight lines, curves where there are
+curves, corners where there are corners, and nothing wobbling in between. That is a
+different job from smoothing, and `reconstruct.py` does it:
 
-| | O | B | E | R | N | D | Ö | F | **mean** |
-|---|---|---|---|---|---|---|---|---|---|
-| smoothed | 8.0 | 5.6 | 1.9 | 3.0 | 2.9 | 3.2 | 12.1 | 2.7 | **4.9%** |
-| **faithful** | 6.4 | 2.3 | 1.4 | **0.9** | 1.1 | 2.3 | 5.7 | 1.3 | **2.7%** |
+1. Every outline is **decomposed** into pieces, splitting recursively at the worst-fitting
+   point until each piece is either a straight line or a circular arc to within 0.8 px.
+2. Neighbouring pieces that are really one primitive are **merged** back together, so a
+   long stem is one line and a bowl is one arc rather than a chain of fragments.
+3. Each piece is replaced by its **exact** primitive, and neighbours are **re-intersected**
+   — line against line, line against circle, circle against circle — so every corner is a
+   mathematical point rather than a blend.
 
-You were right, and the number says so: every shaping step was moving the letters away
-from what you drew. The R is now 0.9% off, the N 1.1%, the F 1.3%, the E 1.4% — that is
-the same letter, not an interpretation of it.
+Nothing is averaged or eased. A stem is straight to the last decimal because it *is* a
+straight segment; a bowl is a real circle. There is no longer anything between the
+primitives for wobble to live in.
 
-The font is now a straight, high-precision vectorisation of your artwork. No smoothing,
-no corner rounding, no levelling, no straightening. The one thing still removed is
-`despike()`, a small opening that deletes features two pixels wide — scanner artefacts
-rather than your line. It takes the sharpest corner in the font from 0.4 degrees to 14.9
-without touching anything you drew.
+**It is also closer to your drawing than the traced version was: 2.59% against 2.67%**,
+and it does it with **947 points instead of 6,706**. The sharpest corner in the font went
+from 14.9 degrees to 52.2, and there is now exactly one corner under 60 degrees in the
+whole font.
 
-The O and Ö read 6.4 and 5.7 per cent, but an overlay shows their outlines running
-parallel to yours — that residual is how the comparison registers the two crops, not a
-difference in the shapes.
+`true-lines-and-arcs.png` is the proof at high zoom — the N stem, the B stem, the E stem
+and arms, the O and D bowls, before and after. `letters-reconstructed.png` is all eight.
 
-**What this costs, stated plainly.** The wobble and the sharp corners you flagged in
-earlier rounds are back, because they are yours. Every attempt to remove them moved the
-letters further from the drawing you prefer. That is the trade, and you have now chosen
-this side of it twice.
-
-Everything around the outlines is still done properly, because none of it changes your
-shapes: one baseline, one cap height, overshoot on the round letters, spacing measured off
-your artwork, kerning, a space glyph, correct vertical metrics and a complete name table.
+The method was verified on shapes with a known answer before it went near your letters: a
+noisy circle comes back as one exact circle, a noisy square as exactly four lines with
+corners landing within 0.2 px of the true corners, and a rounded rectangle as four lines
+plus four arcs.
 
 ## What this font does not have
 
