@@ -441,3 +441,21 @@ DO NOT attempt a third general algorithm for this. Any fix at these spots has to
 hand edit of named points, from him saying what shape he wants there — or a human type
 designer. Said so plainly rather than trying again.
 
+## 2026-11-24 — ornamental logo: decoration recoloured red. assets/.../ornament/
+He sent Logo_2026-2.pdf (ornamental blackletter, vines around every letter) and asked for
+the thin floral lines in red, letters left black. Text is LIVE in an embedded font, so each
+glyph outline holds the letter AND its vine as one shape — they have to be separated by
+geometry. ornament/separate.py:
+ - measured first: at 600 dpi the vines run 10-22 px wide, letter strokes 50-130. Bimodal,
+   so a morphological opening with an 18 px disk keeps letters and drops vines.
+ - correction 1: a "vine" piece whose skeleton is under 110 px is a letter's own flag tip,
+   not a trailing vine -> back to the letter.
+ - correction 2: a surviving piece under 60 px at its widest is an ornament bud that was
+   fat enough to survive -> to the decoration. Clean gap: letter components are 122-133 px
+   at their widest, buds 13-40.
+Tried and rejected on the way: area threshold (kept fat buds), bbox-height threshold
+(turned the B's flag red, since a flag is short but heavy). Width is the right measure.
+ornament/emit.py traces both masks and writes a two-colour vector PDF + SVG at the original
+1500x1500 pt, letters #111111 and decoration #D61C26. Verified by re-rendering the written
+PDF, not just the intermediate mask.
+
