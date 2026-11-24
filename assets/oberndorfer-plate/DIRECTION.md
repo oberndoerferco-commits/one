@@ -459,3 +459,54 @@ ornament/emit.py traces both masks and writes a two-colour vector PDF + SVG at t
 1500x1500 pt, letters #111111 and decoration #D61C26. Verified by re-rendering the written
 PDF, not just the intermediate mask.
 
+
+## Ornamental logo (Logo_2026-2) — decoration removed, not recoloured
+
+He corrected the first attempt ("no you didnt really got it") and sent a file
+where he had cleaned O, B and E by hand. Reading that file against the original
+at 600 dpi showed exactly two operations, and nothing else:
+
+1. **the vine goes away entirely** — outer flourishes, inner curls, buds, leaves;
+2. **the thin inner stem stays and gets thicker** — the hairline vertical inside
+   O, B, E measures 17 px in the original and 45 px in his version, same left
+   edge, widened to the right, ending in a semicircular foot about 45 px above
+   where the original hairline's tail stopped.
+
+`separate.py` now does both. The split is still by stroke thickness (opening
+with an 18 px disk), with two corrections that were needed to match him:
+
+- the **support test runs before the tips are put back**, not after. A fat leaf
+  clears the 18 px disk but not a 30 px one, so it is dropped — but it hangs off
+  a stem by a short neck, and if the neck is restored first the leaf rides back
+  in as part of the letter. Reordering removed every leaf; restored tips that
+  touch a dropped leaf are skipped too, or a nub is left behind.
+- every threshold is **scaled per line of type** (`clean()`): MILANO's strokes
+  are 0.65 of the big line's, so a vine there is short enough to read as a
+  letter's own tip at the big line's threshold and survives.
+
+`thicken_stems` finds the hairlines as the only long dead-vertical runs outside
+the letter mask — 12 on the top line, 6 on MILANO, one per letter except N which
+has two — and redraws each as a bar at his measured width.
+
+Measured against his hand-cleaned O, B and E the automatic result matches
+**95.5 % of their union** (was 83.6 % before the stem bars, 90.9 % before the bar
+geometry was matched). What is left is his own small redraws: he lengthened the
+B and E bottom tails and the O's bottom-right a little, and smoothed the bumps on
+the left edge where the vine used to attach. His three letters are spliced into
+the output untouched.
+
+Rejected, each because it measurably moved the result away from his:
+- closing the letter mask to fill the notches the vine left (r=10 already
+  welds the D's top flag to its bowl; 95.5 % -> 94.8 %);
+- filling only the small notches (95.5 % -> 94.8 %);
+- smoothing the contour with an open/close pair (no gain at any radius);
+- lowering `min_vine_len` globally to kill MILANO's leftovers (95.5 % -> 95.1 %);
+- dropping blob-shaped residue of a coarse opening, to kill the surviving
+  darts (95.5 % -> 94.6 %).
+
+Known and left alone: a few vine darts that touch a letter stroke survive — one
+in the D's bowl, one by the M's first stem. Removing them automatically costs
+more than they do.
+
+    python3 ornament/clean_logo.py <original>.pdf --reference <hand-cleaned>.pdf \
+        --out OBERNDORFER-MILANO-clean
