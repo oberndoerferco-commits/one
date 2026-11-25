@@ -580,3 +580,44 @@ more than it is worth at this size.
 
     python3 ornament/fix_letters.py page18.png --fix O B D Oe M Om \
         --repair ornament/marked-spots.json --out OBERNDORFER-MILANO-v2
+
+## Trace it, don't redraw it
+
+He said the E, R, N, F I sent back were not the same as the ones he had
+approved, and that I had reshaped the circled letters beyond the circles. He
+was right on the second count and it is the same mistake either way: I had been
+running his outlines through the lines-and-arcs refit (`font/reconstruct.py`)
+before drawing them. Measured against his own artwork the refit moved the O by
+about 4.6 % of its area -- invisible as wobble, plainly visible as a different
+letter to the person who drew it.
+
+Checked first, rather than argued about: the letters he circled match his
+page-18 artwork at IoU 0.976 and my refit of them at 0.953. He was marking his
+own drawing, not my version of it. So the refit had to go entirely.
+
+`ornament/vectorize.py` replaces `fix_letters.py` and does one thing: trace.
+
+- Contours come from the **50 % grey level** of the antialiased export, not
+  from a black/white mask. The 12000 px export carries ~149000 part-grey
+  pixels, and that is exactly the sub-pixel information a binary threshold
+  throws away -- without it the trace follows pixel corners and the edges come
+  out faceted, which is what he kept seeing.
+- Fitting runs at the artwork's own resolution, tolerance 1.4 px against a cap
+  height near 1030.
+- The 13 circled discs are repaired with **grey** morphology (closing 36, then
+  opening 14) so the repaired edge keeps its antialiasing and traces as
+  smoothly as everything around it.
+
+Result: 33 contours, 1740 segments. Per letter the trace matches his artwork at
+IoU 0.981-0.995; the residual is the half-pixel offset between a 50 %-level
+contour and a <128 threshold, i.e. the trace is as close as a trace gets. The
+seven letters he called perfect are not repaired at all, only traced.
+
+    python3 ornament/vectorize.py page18.png \
+        --repair ornament/marked-spots.json --out OBERNDORFER-MILANO
+
+Note on `91270572-Untitled_Artwork_4.pdf`, sent as the artwork to vectorize: it
+holds a single JPEG, 2420x1668, grey (darkest level 86), **OBERNDÖRFER only, no
+MILANO**, cap height about 250 px. His Canva page-18 export is the same design
+at four times the resolution in true black and with both lines, so that stays
+the source.
