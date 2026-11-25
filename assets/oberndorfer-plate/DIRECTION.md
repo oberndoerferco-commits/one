@@ -659,3 +659,35 @@ letters and twelve lumpy ones is worse than either.
 
     python3 ornament/vectorize.py page18.png --repair ornament/marked-spots.json \
         --smooth 40 --out OBERNDORFER-MILANO
+
+## Three named fixes: the D's hole, the O's lane, the O's lower right
+
+All three are driven by `ornament/edits.json` and applied to the grey image
+before the trace, so each repaired edge keeps its antialiasing.
+
+**The D's hole.** A 20 px speck of white inside the bowl's lower right, at
+(6293, 5886) in source pixels. `fill_holes` closes interior holes at or under
+200 px; three existed, all noise, and the real counters are 190000+ px, so the
+threshold has two orders of magnitude of room.
+
+**The O's second lane, attached.** The thin lane inside the counter was cut off
+from the stroke above it by a white gap of 4-11 px, in his artwork as well as in
+the trace. `join` closes it inside one disc at (765, 5158), r 70. The closing
+radius is **10, not the 36 the marked-spot repair uses**: the slit between that
+lane and the stem beside it is 32 px, and a disc wide enough for the usual
+repair welds the two into one blob.
+
+**The O's lower right, thicker.** Its waist measured 37 px against a cap of
+1003 -- 3.7 %, the thinnest stroke in the letter, where the inner lane is 5.1 %.
+`thicken` grows it to 47 px inside a disc at (1057, 5700), r 230, by 13 px
+ramped to nothing at the rim so the disc leaves no step. The growth is
+**one-sided, into the counter**: the outer silhouette does not move (the outer
+edge at y 5700 stays at x 1076 before and after). Running it before the wobble
+filter lets the filter blend the ramp.
+
+Not done, because he named only the O: the Ö's lower right measures 3.0 % of
+its cap and MILANO's O 3.8 %, so both are now thinner than the O's 4.7 %. One
+line each in `edits.json` if he wants them matched.
+
+    python3 ornament/vectorize.py page18.png --repair ornament/marked-spots.json \
+        --edits ornament/edits.json --smooth 40 --out OBERNDORFER-MILANO

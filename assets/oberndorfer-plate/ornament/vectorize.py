@@ -47,6 +47,58 @@ def disk(r):
     y, x = np.mgrid[-r:r+1, -r:r+1]
     return (x*x + y*y) <= r*r + 0.5
 
+def fill_holes(grey, max_area):
+    """Close interior holes smaller than max_area px -- the speck of white the
+    trace left inside the D's lower right."""
+    ink = grey < 128
+    holes = ndi.binary_fill_holes(ink) & ~ink
+    lab, n = ndi.label(holes, np.ones((3, 3)))
+    sz = ndi.sum(holes, lab, range(1, n+1))
+    tiny = [i+1 for i, v in enumerate(sz) if v <= max_area]
+    if not tiny: return grey, 0
+    return np.where(np.isin(lab, tiny), np.uint8(0), grey), len(tiny)
+
+def join(grey, spots):
+    """Close a gap inside one disc. Radius stays small on purpose: the gap over
+    the O's second lane is 8 px and the slit beside it is 32, so a disc wide
+    enough for the usual repair would weld the lane to the stem."""
+    out = grey.copy(); H, W = grey.shape
+    for cx, cy, r, rc in spots:
+        pad = int(3*rc + 4); R0 = int(r)
+        y0, y1 = max(0, int(cy)-R0-pad), min(H, int(cy)+R0+pad)
+        x0, x1 = max(0, int(cx)-R0-pad), min(W, int(cx)+R0+pad)
+        sm = 255 - ndi.grey_closing(255 - out[y0:y1, x0:x1].astype(np.int16), footprint=disk(rc))
+        yy, xx = np.mgrid[y0:y1, x0:x1]
+        d = np.hypot(xx-cx, yy-cy) <= r
+        tile = out[y0:y1, x0:x1].copy()
+        tile[d] = np.clip(sm, 0, 255).astype(np.uint8)[d]
+        out[y0:y1, x0:x1] = tile
+    print('joined %d gaps' % len(spots))
+    return out
+
+def thicken(grey, spots):
+    """Grow a stroke sideways inside one disc, by `k` px at the centre fading
+    to nothing at the rim, so no step is left where the disc ends. The growth
+    is one-sided -- the O's lower right bowl thickens into its counter and its
+    outer silhouette does not move."""
+    out = grey.copy(); H, W = grey.shape
+    for cx, cy, r, k, dx, dy in spots:
+        R0 = int(r) + abs(int(k)) + 4
+        y0, y1 = max(0, int(cy)-R0), min(H, int(cy)+R0)
+        x0, x1 = max(0, int(cx)-R0), min(W, int(cx)+R0)
+        win = out[y0:y1, x0:x1].astype(np.int16)
+        yy, xx = np.mgrid[y0:y1, x0:x1]
+        d = np.hypot(xx-cx, yy-cy)
+        want = np.clip(k*(1.0 - d/r), 0, None)          # px of growth, ramped
+        acc = win.copy()
+        for step in range(1, int(abs(k))+1):
+            sh = np.roll(np.roll(win, step*int(np.sign(dx) or 0), axis=1),
+                         step*int(np.sign(dy) or 0), axis=0)
+            acc = np.where(want >= step, np.minimum(acc, sh), acc)   # dark = ink
+        out[y0:y1, x0:x1] = np.clip(acc, 0, 255).astype(np.uint8)
+    print('thickened %d strokes' % len(spots))
+    return out
+
 def repair(grey, marks, rclose=36, ropen=14):
     """Grey closing then a smaller grey opening, inside each disc only."""
     out = grey.copy(); H, W = grey.shape
@@ -70,6 +122,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('source')
     ap.add_argument('--repair', help='JSON {letter: [[cx, cy, r], ...]} in source pixels')
+    ap.add_argument('--edits', help='JSON with fill_holes / join / thicken, in source pixels')
     ap.add_argument('--out', default='logo')
     ap.add_argument('--tol', type=float, default=1.4)
     ap.add_argument('--smooth', type=float, default=0.0,
@@ -96,6 +149,14 @@ def main():
     if a.repair:
         spots = json.load(open(a.repair))
         grey = repair(grey, [m for v in spots.values() for m in v])
+
+    if a.edits:
+        e = json.load(open(a.edits))
+        if e.get('fill_holes'):
+            grey, nh = fill_holes(grey, e['fill_holes'])
+            print('holes filled: %d' % nh)
+        if e.get('join'):    grey = join(grey, e['join'])
+        if e.get('thicken'): grey = thicken(grey, e['thicken'])
 
     cs = []
     for c in measure.find_contours(grey.astype(float), 127.5):
