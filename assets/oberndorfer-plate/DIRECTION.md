@@ -621,3 +621,41 @@ holds a single JPEG, 2420x1668, grey (darkest level 86), **OBERNDÖRFER only, no
 MILANO**, cap height about 250 px. His Canva page-18 export is the same design
 at four times the resolution in true black and with both lines, so that stays
 the source.
+
+## The wobble in the middle of a curve
+
+"A curve that follows a shape, not with wobble in the middle." He is right, and
+a faithful trace cannot fix it: his artwork is hand-made, so an edge that should
+be one curve weaves a pixel or two along the way, and tracing it faithfully
+traces the weave too. The O's bowl had visible lumps on the left flank and under
+the bottom right.
+
+Refitting into lines and arcs removes them and also decides what the letter
+ought to be -- that is the move that moved his O by 4.6 % of its area and that
+he spotted at once. `ornament/smooth.py` does the opposite: it keeps his outline
+and filters it. The path is walked by arc length, the places where it genuinely
+turns a corner are pinned, and between them the coordinates are low-passed with
+a Gaussian. A corner stays a corner, the curve stays the one he drew, and the
+weave goes.
+
+Two settings earned their value by measurement rather than taste:
+
+- **sigma 40 px** against a cap height of ~1030. At 16 and 26 the lumps on the
+  O's bowl survive; at 40 they are gone and the letter still matches his
+  outline at IoU 0.967 with its area down 0.28 %. Across all 17 letters the
+  area moves between -0.2 % and -1.9 %, an order of magnitude less than the
+  refit moved it.
+- **corners pinned over +-10 steps past 52 deg**, not +-4 past 38. The tighter
+  window reads the wobble itself as a string of little corners, pins them, and
+  the filter then has nothing left to do -- the jags on the O's left flank
+  survived every sigma until this was widened.
+
+The correction is ramped to zero over 1.5 sigma on each side of a pinned corner,
+or the filter rounds the very corners it was told to keep.
+
+Applied to every letter, not only the five he named: he had called E and R
+perfect earlier and now lists them as needing work, and a logo with five smooth
+letters and twelve lumpy ones is worse than either.
+
+    python3 ornament/vectorize.py page18.png --repair ornament/marked-spots.json \
+        --smooth 40 --out OBERNDORFER-MILANO

@@ -38,6 +38,7 @@ np.cross = _cross
 sys.path.insert(0, '/home/user/one/scripts')
 from skimage import measure
 import vectorize_lineart as vl
+import smooth as sg
 
 Image.MAX_IMAGE_PIXELS = None
 SPECK = 1000           # components smaller than this are export noise
@@ -71,6 +72,10 @@ def main():
     ap.add_argument('--repair', help='JSON {letter: [[cx, cy, r], ...]} in source pixels')
     ap.add_argument('--out', default='logo')
     ap.add_argument('--tol', type=float, default=1.4)
+    ap.add_argument('--smooth', type=float, default=0.0,
+                    help='sigma in source px for the wobble filter; 0 = trace as drawn')
+    ap.add_argument('--corner-k', type=int, default=10)
+    ap.add_argument('--corner-deg', type=float, default=52.0)
     ap.add_argument('--scale', type=float, default=6.0, help='source px per output point')
     ap.add_argument('--page', type=float, default=2000.0)
     a = ap.parse_args()
@@ -97,7 +102,13 @@ def main():
         p = c[:, ::-1]
         if np.allclose(p[0], p[-1]): p = p[:-1]
         if len(p) < 40: continue
+        if a.smooth:
+            p = sg.smooth_closed(p, sigma=a.smooth, step=2.0,
+                                 corner_k=a.corner_k, corner_deg=a.corner_deg)
         cs.append(vl.fit_contour(p, line_tol=a.tol, curve_tol=a.tol*0.7, smooth_deg=32.0))
+    if a.smooth:
+        print('wobble filtered at sigma %g px, corners pinned over +-%d steps past %g deg'
+              % (a.smooth, a.corner_k, a.corner_deg))
     segs = sum(len(s) for _, s in cs)
     print('traced %d contours, %d segments' % (len(cs), segs))
 
