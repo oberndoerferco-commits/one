@@ -99,6 +99,43 @@ def thicken(grey, spots):
     print('thickened %d strokes' % len(spots))
     return out
 
+def clone(cs, jobs):
+    """Replace one letter with a scaled copy of another.
+
+    MILANO's O and the OBERNDORFER O are the same letter, drawn twice by hand,
+    so they carry different lumps. Copying the vector outline is exact -- no
+    resampling, and every later edit to the source letter follows the copy.
+    The copy is scaled by the ratio of the two letters' cap heights and set on
+    the slot's own baseline and horizontal centre, so the spacing he laid out
+    does not move.
+    """
+    def inside(c, b):
+        xs = [c[0][0]] + [q[0] for s in c[1] for q in s[1:]]
+        ys = [c[0][1]] + [q[1] for s in c[1] for q in s[1:]]
+        return b[0] <= min(xs) and max(xs) <= b[2] and b[1] <= min(ys) and max(ys) <= b[3]
+    def bbox(group):
+        xs = [q[0] for c in group for q in [c[0]] + [p for s in c[1] for p in s[1:]]]
+        ys = [q[1] for c in group for q in [c[0]] + [p for s in c[1] for p in s[1:]]]
+        return min(xs), min(ys), max(xs), max(ys)
+    out = list(cs)
+    for src_b, dst_b in jobs:
+        src = [c for c in out if inside(c, src_b)]
+        dst_i = {i for i, c in enumerate(out) if inside(c, dst_b)}
+        dst = [out[i] for i in dst_i]
+        if not src or not dst:
+            print('clone: skipped, %d source and %d target contours' % (len(src), len(dst))); continue
+        sx0, sy0, sx1, sy1 = bbox(src)
+        dx0, dy0, dx1, dy1 = bbox(dst)
+        k = (dy1 - dy0) / (sy1 - sy0)                      # match cap height
+        ox = (dx0 + dx1)/2 - k*(sx0 + sx1)/2               # centre horizontally
+        oy = dy1 - k*sy1                                   # sit on the same baseline
+        put = lambda q: (q[0]*k + ox, q[1]*k + oy)
+        out = [c for i, c in enumerate(out) if i not in dst_i]
+        for start, sgs in src:
+            out.append((put(start), [(s[0],) + tuple(put(q) for q in s[1:]) for s in sgs]))
+        print('cloned %d contours at %.4f scale, replacing %d' % (len(src), k, len(dst)))
+    return out
+
 def repair(grey, marks, rclose=36, ropen=14):
     """Grey closing then a smaller grey opening, inside each disc only."""
     out = grey.copy(); H, W = grey.shape
@@ -170,6 +207,10 @@ def main():
     if a.smooth:
         print('wobble filtered at sigma %g px, corners pinned over +-%d steps past %g deg'
               % (a.smooth, a.corner_k, a.corner_deg))
+    if a.edits:
+        e = json.load(open(a.edits))
+        if e.get('clone'):
+            cs = clone(cs, [(j[:4], j[4:]) for j in e['clone']])
     segs = sum(len(s) for _, s in cs)
     print('traced %d contours, %d segments' % (len(cs), segs))
 

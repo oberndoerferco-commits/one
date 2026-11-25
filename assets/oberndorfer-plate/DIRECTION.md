@@ -714,3 +714,23 @@ MILANO's O also had a detached sliver floating over its bottom stroke, at
 is a pointed tip, so joining is what makes the two letters match, which is what
 he asked for. Its inner lane needed nothing: unlike the O's, it was already
 attached, and so was the Ö's. Checked before changing anything.
+
+## MILANO's O becomes the OBERNDÖRFER O
+
+Matching their weight was not enough -- they are the same letter drawn twice by
+hand, so they carried different lumps. `clone` in `ornament/vectorize.py`
+replaces one letter with a scaled copy of another, **in the vector domain after
+the trace**: no resampling, and every later edit to the source letter follows
+the copy, so the two can never drift apart again.
+
+The copy is scaled by the ratio of the two letters' cap heights (0.7567 here)
+and set on the target slot's own baseline and horizontal centre, so his
+spacing does not move. Source and target are named as boxes in `edits.json`;
+a contour belongs to a letter only if it lies wholly inside the box, which is
+what keeps a neighbour's flourish out of the copy.
+
+MILANO's O therefore needs no thickening entry of its own any more -- it
+inherits the O's. Its old `join` for the floating sliver is gone too: the
+sliver belonged to the drawing that has been replaced.
+
+Weights now, on each letter's own body cap: O 0.062, Ö 0.060, MILANO's O 0.062.
