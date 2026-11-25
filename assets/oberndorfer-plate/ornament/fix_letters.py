@@ -23,7 +23,7 @@ Two details that cost a pass each:
 
   python3 fix_letters.py page18.png --fix O B D Oe M Om --out logo-final
 """
-import argparse, os, sys
+import argparse, json, os, sys
 import numpy as np
 from scipy import ndimage as ndi
 from PIL import Image
@@ -61,6 +61,35 @@ LETTERS = [('O',  TOPY, (120, 1290)),  ('B',  TOPY, (1300, 2320)),
            ('L',  MILY, (5200, 5950)), ('A',  MILY, (5990, 6780)),
            ('N2', MILY, (6800, 7680)), ('Om', MILY, (7700, 8640))]
 
+def disk(r):
+    y, x = np.mgrid[-r:r+1, -r:r+1]
+    return (x*x + y*y) <= r*r + 0.5
+
+def repair(ink, marks, rclose=36, ropen=14):
+    """Smooth the outline inside each marked disc and nowhere else.
+
+    Every spot he circled is a scar from erasing the vine: a hairline sliver
+    cut into a stroke, or a thin spike left sticking out of one. A closing
+    fills the slivers, an opening then takes the spikes off, and only the
+    pixels inside the disc are written back. Closing runs first and the
+    opening disc stays small on purpose -- with a disc big enough to do both
+    in one pass the opening also rounds off the fine points where the bowls
+    taper, which are letterform, not damage.
+    """
+    out = ink.copy(); H, W = ink.shape; n = 0
+    for cx, cy, r in marks:
+        pad = int(3*max(rclose, ropen) + 4); R0 = int(r)
+        y0, y1 = max(0, int(cy)-R0-pad), min(H, int(cy)+R0+pad)
+        x0, x1 = max(0, int(cx)-R0-pad), min(W, int(cx)+R0+pad)
+        sm = ndi.binary_closing(ink[y0:y1, x0:x1], disk(rclose))
+        sm = ndi.binary_opening(sm, disk(ropen))
+        yy, xx = np.mgrid[y0:y1, x0:x1]
+        d = np.hypot(xx-cx, yy-cy) <= r
+        w = out[y0:y1, x0:x1]; w[d] = sm[d]; out[y0:y1, x0:x1] = w
+        n += 1
+    print('repaired %d marked spots, %d px changed' % (n, int((out ^ ink).sum())))
+    return out
+
 def contours_of(mask, min_len=40):
     out = []
     mp = np.pad(mask, 3, constant_values=False)
@@ -86,11 +115,15 @@ def main():
     ap.add_argument('--tol', type=float, default=2.0)
     ap.add_argument('--scale', type=float, default=6.0, help='source px per output point')
     ap.add_argument('--page', type=float, default=2000.0)
+    ap.add_argument('--repair', help='JSON of {letter: [[cx, cy, r], ...]} in source pixels')
     a = ap.parse_args()
 
     ink = np.array(Image.open(a.source).convert('L')) < 128
     ink, dropped = despeck(ink, SPECK)
     print('specks dropped: %d' % dropped)
+    if a.repair:
+        spots = json.load(open(a.repair))
+        ink = repair(ink, [m for v in spots.values() for m in v])
 
     out = []
     for nm, (y0, y1), (x0, x1) in LETTERS:

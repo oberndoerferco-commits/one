@@ -549,3 +549,34 @@ contours in the vector.
 
     python3 ornament/fix_letters.py page18.png --fix O B D Oe M Om \
         --out OBERNDORFER-MILANO-final
+
+## The thirteen spots he circled
+
+He sent the letters back with red circles and said those are the only things to
+fix. Reading the circles out of his screenshots beats eyeballing them: the red
+pixels give each circle's centre and radius, the black pixels give the letter's
+bounding box, and that box against the same letter in the artwork is the
+transform. Thirteen discs, in `ornament/marked-spots.json` in source pixels.
+
+Every one of them is the same defect, in two forms: a hairline **sliver** cut
+into a stroke, or a thin **spike** left sticking out of one -- the scars from
+erasing the vine. So `repair()` works only inside each disc: a closing fills the
+slivers, an opening then takes the spikes off, and only pixels inside the disc
+are written back. 2383 px changed out of 5.6M of ink.
+
+Closing runs first and the opening disc stays deliberately small (36 / 14).
+A single open-then-close pass at one radius also works on the spikes, but at
+any radius large enough to clear them it rounds off the fine points where the
+O and Ö bowls taper to nothing -- and those points are letterform, not damage.
+Radii 24 and 44 were both tried; 24 clubs the O's tail, 44 clubs it badly.
+
+One honest caveat: the letters are refitted after the repair, so the fitter
+re-chooses its split points and the outline moves a hair in places he did not
+circle. Measured at 300 dpi it is 7118 px of 2.69M (0.26 %), all of it a
+one-pixel rim along edges inside the five letters he marked; nothing structural
+moves and E R N F I L A N are byte-identical, since they are traced rather than
+refitted. Removing even that would mean splicing Bézier sub-paths, which costs
+more than it is worth at this size.
+
+    python3 ornament/fix_letters.py page18.png --fix O B D Oe M Om \
+        --repair ornament/marked-spots.json --out OBERNDORFER-MILANO-v2
