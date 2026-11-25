@@ -691,3 +691,26 @@ line each in `edits.json` if he wants them matched.
 
     python3 ornament/vectorize.py page18.png --repair ornament/marked-spots.json \
         --edits ornament/edits.json --smooth 40 --out OBERNDORFER-MILANO
+
+## One weight for all three O shapes
+
+He asked for the O's lower right thicker still, and the Ö and MILANO's O
+brought to the same thickness. Measured on his artwork, all three start in the
+same place: waist 36 / 36 / 27 px against letter-body caps of 1042 / 1006 /
+764, which is 3.5 %, 3.6 %, 3.5 %. So the target is one fraction of the body
+cap, not one pixel count -- and the Ö's cap has to exclude its umlaut dots,
+which are separate components and would otherwise read as 1312 and leave that
+letter 20 % too light.
+
+Target 5.7 % of the body cap. The growth needed is not the shortfall: the ramp
+and the wobble filter eat about 2 px, so each disc asks for the shortfall plus
+2 and the three land at 0.057 / 0.055 / 0.054 -- the same weight to the eye.
+Discs at (1063, 5694) r 230, (7691, 5694) r 230, (8460, 7017) r 170, each
+checked against the letter's inner lane so no disc reaches it: the nearest
+approach is the MILANO O at 201 px against r 170.
+
+MILANO's O also had a detached sliver floating over its bottom stroke, at
+(8272, 7162). It is joined, not deleted -- the same place in his OBERNDÖRFER O
+is a pointed tip, so joining is what makes the two letters match, which is what
+he asked for. Its inner lane needed nothing: unlike the O's, it was already
+attached, and so was the Ö's. Checked before changing anything.
