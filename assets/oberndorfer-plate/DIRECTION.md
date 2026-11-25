@@ -510,3 +510,42 @@ more than they do.
 
     python3 ornament/clean_logo.py <original>.pdf --reference <hand-cleaned>.pdf \
         --out OBERNDORFER-MILANO-clean
+
+## Finalising from his page-18 reference
+
+He built the target himself in Canva ("Logo 2026" page 18) and said the PDF
+export does not match the screen, so it was read as a 12000 px PNG export
+instead. His brief: E R N F A I L are right, fix **O / Ö B D M** (and MILANO's
+O, same letterform) -- "no wobble, curve that follows shape of letter".
+
+Those letters are hand-edited in Canva and carry a hand-drawn edge: the outline
+weaves a few px either side of where it should be, and what should be one curve
+is a chain of small arcs pulling different ways. `ornament/fix_letters.py` takes
+each of their outlines apart into pieces that are each an exact straight segment
+or an exact circular arc (the `font/reconstruct.py` written for his drawn font)
+and re-intersects neighbouring pieces, so a straight edge is straight to the
+last decimal and a curve is a real circle. Deviation from his own outline runs
+2.2-3.1 %, which is the wobble and nothing else. Every other letter is traced
+as it stands, so the ones he called perfect are untouched.
+
+Two details that each cost a pass:
+
+- the letters are refitted at a 700 px cap height, the size reconstruct.py's
+  tolerances were tuned at, and mapped back afterwards; the output is vector so
+  nothing is lost by fitting small. At the native 12000 px the same tolerances
+  are ~1.5x too tight and the wobble survives;
+- parts under 18 % of the cap -- the umlaut dots -- are traced, not refitted.
+  At that size the fitter has too few points per piece and turned the left
+  diamond into a heart.
+
+Settings: `tol = 2.0`, `SMOOTH = 8` (reconstruct.py's default), `MAXR = 1400`.
+Tried and rejected: `tol` 2.8 and above (3.9-5.6 % deviation, the O's bowl and
+the Ö's top flag visibly flatten); `SMOOTH` 18 and 28 (no gain, and they broke
+the umlaut dot).
+
+Also dropped 61 specks left by his export, none bigger than 118 px against
+letters of ~500 000 px -- invisible at any size, but they would have become real
+contours in the vector.
+
+    python3 ornament/fix_letters.py page18.png --fix O B D Oe M Om \
+        --out OBERNDORFER-MILANO-final
