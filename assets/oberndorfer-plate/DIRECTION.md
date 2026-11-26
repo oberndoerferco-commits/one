@@ -734,3 +734,38 @@ inherits the O's. Its old `join` for the floating sliver is gone too: the
 sliver belonged to the drawing that has been replaced.
 
 Weights now, on each letter's own body cap: O 0.062, Ö 0.060, MILANO's O 0.062.
+
+## The line he drew is the instruction
+
+He sent the O back with a red line down the inside of its lower right bowl.
+Read off his screenshot the way the circles were -- red pixels give the curve,
+the letter's own bounding box gives the transform -- it asks for a **wedge**,
+not a bump: +13 px of growth at its top, +23, +32, +47, +55 further down. The
+ramped disc could never produce that, so the discs are gone and `thicken_to`
+fills each scanline from his curve across to the stroke's present inner edge.
+The curve is a floor, never a trim: where it lies inside the stroke already,
+the row is left alone. The left edge is feathered by its fractional pixel so
+the new boundary traces at the same sub-pixel accuracy as the rest.
+
+Two bugs worth remembering, both found by the O's outline swallowing the B:
+
+- "the rightmost run in the row" is the wrong stroke -- a scanline crosses the
+  whole logo, so the last run is the final R. It has to be the first run to the
+  **right of the curve**.
+- even then, where the stroke has already ended the next run is the next
+  letter, so a fill wider than `max_fill` (150 px, against his largest ask of
+  55) is not the stroke he pointed at and is skipped.
+
+Result: the inner edge now sits within 1-7 px of his line, a touch outside it
+(the wobble filter rounds the corner marginally), and the waist reads 0.079 of
+cap on all three O shapes.
+
+**The Ö is now the O too.** "The O is the same as the Ö, just that the Ö has to
+point over" -- so the Ö's body is cloned from the O exactly as MILANO's O is,
+and only the two dots are its own. The clone's target box stops at y 4950,
+below the dots, so they are not matched as targets and survive; the body's cap
+is then measured without them, which is what makes the scale come out right
+(1.0094, not the 1.30 their inclusion would give).
+
+Both clones are also why the Ö and MILANO's O no longer need thickening entries
+of their own: there is one O now, and the other two follow it.

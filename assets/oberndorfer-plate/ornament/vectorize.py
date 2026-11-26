@@ -136,6 +136,47 @@ def clone(cs, jobs):
         print('cloned %d contours at %.4f scale, replacing %d' % (len(src), k, len(dst)))
     return out
 
+def thicken_to(grey, jobs, max_fill=150):
+    """Grow a stroke until its inner edge reaches a curve he drew.
+
+    A ramped disc makes a symmetric bump; what he marked on the O is a wedge
+    that keeps widening downhill (+13 px at the top of his line, +55 near the
+    bottom), so the curve itself is the instruction. Each scanline is filled
+    from the curve across to the stroke's present inner edge, and only where
+    the curve lies outside it -- the line is a floor, never a trim. The left
+    edge is feathered by its fractional pixel so the new boundary traces at
+    the same sub-pixel accuracy as the rest.
+    """
+    out = grey.copy(); H, W = grey.shape
+    for pts, side in jobs:
+        q = np.asarray(pts, float)
+        y0, y1 = int(np.ceil(q[:, 1].min())), int(np.floor(q[:, 1].max()))
+        grown = 0
+        for y in range(max(0, y0), min(H, y1+1)):
+            cx = float(np.interp(y, q[:, 1], q[:, 0]))
+            row = out[y] < 128
+            runs = np.flatnonzero(np.diff(np.r_[0, row.view(np.int8), 0]))
+            if len(runs) < 2: continue
+            starts, ends = runs[0::2], runs[1::2]
+            if side < 0:
+                # the first stroke to the RIGHT of the curve -- not the last run
+                # in the row, which is three letters away
+                j = np.searchsorted(starts, cx)
+                if j >= len(starts): continue
+                a = int(starts[j])
+                if cx >= a: continue                  # already thick enough
+                # a gap this wide is not the stroke he pointed at, it is the
+                # next letter: without this the O's outline swallowed the B
+                if a - cx > max_fill: continue
+                lo, hi = int(np.ceil(cx)), int(a)
+                out[y, lo:hi] = 0
+                f = int(np.floor(cx))
+                if 0 <= f < W:
+                    out[y, f] = min(out[y, f], np.uint8(round(255*(cx - f))))
+            grown += 1
+        print('thickened to a drawn curve over %d rows' % grown)
+    return out
+
 def repair(grey, marks, rclose=36, ropen=14):
     """Grey closing then a smaller grey opening, inside each disc only."""
     out = grey.copy(); H, W = grey.shape
@@ -194,6 +235,9 @@ def main():
             print('holes filled: %d' % nh)
         if e.get('join'):    grey = join(grey, e['join'])
         if e.get('thicken'): grey = thicken(grey, e['thicken'])
+        if e.get('thicken_to'):
+            grey = thicken_to(grey, [(j['points'], j.get('side', -1)) for j in e['thicken_to']],
+                              max_fill=e.get('max_fill', 150))
 
     cs = []
     for c in measure.find_contours(grey.astype(float), 127.5):
