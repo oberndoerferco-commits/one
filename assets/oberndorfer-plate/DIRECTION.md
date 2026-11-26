@@ -877,3 +877,20 @@ So the edit order is load, despeck, marked-spot repair, fill_holes,
 smooth_spot, widen_lane, outset, thicken_to, **join, smooth_last**, cleanup,
 round, trace, clone. Anything that repairs what an earlier edit produces has to
 sit after it, which is obvious in hindsight and cost two builds to see.
+
+## Taking the thickening back out
+
+He called a stop to the lane widening: `widen_lane` and `lane_target` are gone
+from `edits.json`, so the lanes keep the widths in his artwork and their cut
+ends. Both spots he then circled on the O were mine, not his drawing's -- the
+hook at the bowl's upper-right inner edge is where the counter fill starts, and
+the step at the bottom is where a patch disc crosses the edge -- so both go to
+`smooth_last`, which runs after the steps that make them.
+
+`freeze` 26 -> 55 px. The sharp corners are what give the letters their
+character, and at 26 the filter was still reaching far enough past a pinned
+corner to blunt it.
+
+Lesson for anything further here: every edit that adds weight has been
+reverted in the end, and every edit that removed a defect has stuck. Prefer
+removing what is wrong over adding what might look better.
