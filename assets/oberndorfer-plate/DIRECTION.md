@@ -834,3 +834,25 @@ a contour of its own.
 
 The Ö and MILANO's O are not in the widen list: they are clones of the O, so
 their own raster is discarded and the O's wider lane comes with the copy.
+
+## The slit tips, one lane weight, and the counter arc
+
+**The tips he circled are the two ends of each letter's white slit**, and my
+filter was rounding them. Pinning the corner point is not enough on a needle:
+the two sides of a wedge sit far apart along the path but close together in
+space, so the Gaussian still pulls each toward its own neighbourhood and blunts
+the point. `freeze` now holds 26 px either side of a pinned corner exactly as
+traced before the correction ramps in. The D's slit top is a sharp wedge again
+and its lane foot a crisp point.
+
+**One lane weight.** He arrowed the O's lane and said "this thickness" for the
+rest, so `widen_lane` takes a target share of the cap (0.1017, the O's) instead
+of doubling each lane's own width -- doubling gave each letter twice its own
+starting width, which is not the same thing. Measured after: 0.1009-0.1030
+across O, B, E, R, D, F, M, L. The three R's now reach it too, where the
+doubling rule had capped them at 76 px, and the gap on their right still holds
+at 19 px (15 on the B).
+
+**The counter.** His second red arc runs higher and further left than the first.
+`thicken_to` takes it as the new target and the inner edge now lands within
+0-5 px of it, inside his line rather than outside.
