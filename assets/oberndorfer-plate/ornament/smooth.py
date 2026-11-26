@@ -94,7 +94,7 @@ def smooth_closed(p, sigma=26.0, step=2.0, corner_k=4, corner_deg=38.0, taper=1.
     return out
 
 def taubin_closed(p, iters=120, lam=0.5, mu=-0.53, step=2.0,
-                  corner_k=10, corner_deg=52.0):
+                  corner_k=10, corner_deg=52.0, wide=True, fine=True):
     """Low-pass an outline without shrinking it.
 
     A Gaussian moves every point toward the local average, which on a convex
@@ -110,7 +110,15 @@ def taubin_closed(p, iters=120, lam=0.5, mu=-0.53, step=2.0,
     q=resample(p, step)
     n=len(q)
     if n<16: return p
-    anchor=corners(q, corner_k, corner_deg) | corners(q, 3, 70.0)
+    # Two detectors, and they disagree on purpose. The wide window (+-20px)
+    # reads a wobble bump as a corner and anchors it, so nothing smooths; the
+    # narrow one (+-6px) ignores a bump that wide but still fires on a real
+    # corner. The wide window exists only because two corners 30px apart - the
+    # two sides of a slit tip - cancel inside it. So the pass that has to kill
+    # wobble asks for the narrow detector alone.
+    anchor=np.zeros(n, bool)
+    if wide: anchor = anchor | corners(q, corner_k, corner_deg)
+    if fine: anchor = anchor | corners(q, 3, 70.0)
     orig=q.copy()
     for _ in range(int(iters)):
         for f in (lam, mu):

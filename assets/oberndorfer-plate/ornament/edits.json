@@ -98,7 +98,9 @@
    ],
    "sigma": 140,
    "which": "all",
-   "freeze": 110
+   "iters": 900,
+   "wide": false,
+   "fine": true
   }
  ],
  "smooth_spot": [
