@@ -968,3 +968,26 @@ run as separate entries: d=10 outside, d=4 in. Final O: IoU 0.8812, area
 
 The pattern from earlier phases held again: every edit that added weight
 was reverted, every edit that removed a defect stuck.
+
+## Phase: his mark-up of the delivered PDF (build VO)
+
+He annotated the delivered PDF in three colours. Read them off by colour
+segmentation rather than by eye — one call, exact coordinates for all 15,
+instead of iterating on guesses.
+
+- **cyan (3)** on the O and Ö: corners he wants sharp. A `keep` list,
+  pinned in every pass so nothing can round them off.
+- **brown, "smoothen out wobble" (11)** across O B E Ö F E and MILANO's O:
+  `soften` spots run Taubin with `window=`, which freezes everything
+  outside the circle he drew, so the arc blends in by itself.
+- **red, "WHY did you remove this part?!"** on the R after the Ö. That R
+  ends in a flat cut; the final R carries a curled tail. Not a regression
+  — his page 18 draws that R the same way — but the ask is clear, so the
+  final R is cloned onto it. `clone` now takes `align:'left'` to keep the
+  stem where he placed it and let the tail grow into the gap. Cost: the
+  R→F gap narrows from 246 to 132px against 222–306 elsewhere. Checked
+  visually; the tail ends low and clears the F.
+
+Method note: colour-segmenting his annotations is how this should have
+been done from the start. Earlier phases burned builds on guesses about
+which defect he meant.
