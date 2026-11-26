@@ -412,12 +412,18 @@ def main():
                 and p[:, 1].min() >= bx[1] and p[:, 1].max() <= bx[3]]
         if not pick:
             print('round: no contour inside the box'); continue
-        # the silhouette, not the counter
-        i = max(pick, key=lambda i: (np.ptp(raw[i][:, 0]) * np.ptp(raw[i][:, 1])))
-        raw[i] = sg.smooth_closed(raw[i], sigma=r['sigma'], step=2.0,
-                                  corner_k=a.corner_k, corner_deg=a.corner_deg,
-                                  freeze=a.freeze)
-        print('rounded one silhouette at sigma %g px' % r['sigma'])
+        # by default only the silhouette; 'all' takes the counter too, so the
+        # inside of the O reads as cleanly as its outside
+        if r.get('which') == 'all':
+            take = pick
+        else:
+            take = [max(pick, key=lambda i: (np.ptp(raw[i][:, 0]) * np.ptp(raw[i][:, 1])))]
+        fz = r.get('freeze', a.freeze)
+        for i in take:
+            raw[i] = sg.smooth_closed(raw[i], sigma=r['sigma'], step=2.0,
+                                      corner_k=a.corner_k, corner_deg=a.corner_deg,
+                                      freeze=fz)
+        print('rounded %d contour(s) at sigma %g px, freeze %g' % (len(take), r['sigma'], fz))
 
     cs = []
     for p in raw:

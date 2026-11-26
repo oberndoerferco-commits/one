@@ -96,7 +96,9 @@
     1290,
     6100
    ],
-   "sigma": 140
+   "sigma": 140,
+   "which": "all",
+   "freeze": 110
   }
  ],
  "smooth_spot": [
