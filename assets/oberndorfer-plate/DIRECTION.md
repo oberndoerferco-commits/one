@@ -913,3 +913,58 @@ hairline rims remain, so the tips are now as he drew them.
 a different place: his red arc is hand-drawn and was thinned to eleven points,
 and `thicken_to` read it linearly between them, which puts a facet in the
 filled edge at every segment. It now densifies and low-passes the curve first.
+
+## Phase: the O's roundness — what was actually wrong (builds VG–VN)
+
+He asked for sharp corners and an inner circle as clean as the outer
+shape. Three separate causes, each found by measuring rather than by eye.
+
+**1. The smoothing was shrinking the letter.** Gaussian sigma=140 on the
+O: area −5.85%, IoU 0.854 against his page-18 artwork, with a red
+artwork-only band all round the outer edge — his flag tip and corners
+eaten from the outside in. A Gaussian low-pass along arc length pulls a
+convex outline in by ~sigma²/2R. Replaced with Taubin (alternating
+lambda=+0.5 / mu=−0.53), which cancels that drift:
+
+| filter | area | IoU |
+|---|---|---|
+| Gaussian sigma=140 | −5.85% | 0.854 |
+| Taubin 60 | ±0.00% | 0.9995 |
+| Taubin 400 | +0.02% | 0.9986 |
+
+**2. Taubin's cutoff is fixed by its coefficients, not by iterations.**
+At d=1 and a 2px step it passes anything longer than ~37px however many
+times it runs, so more passes could never have removed the lumps. Taking
+the Laplacian over neighbours d apart scales the cutoff by d without
+thinning the vertices, so corners keep their position.
+
+**3. The wobble had two different sources, and I had blamed the wrong
+one both times.** Some of it is in his artwork: a jog where the edge
+turns ~150° one way, runs straight ~20px and turns ~146° back. It
+survived because it is sharp, so the corner detector pinned it exactly
+like a drawn corner. nicks() separates the two by pairing, not angle — a
+nick is two corners whose turns CANCEL, a terminal or slit tip two that
+ADD UP. Nicks are unpinned, never cut: the chord across a jog is the jog.
+
+The rest is mine. Side by side at the left flank, his edge is a clean arc
+and my build undulates — from `outset`, where the mask is grown out to
+the two arcs he drew, because morphological growth follows the drawn
+stroke's own roughness. Those waves are ~200–300px, past the d=4 cutoff.
+
+**What could not be automated.** Where one of his arcs joins the bowl the
+seam is a single convex corner with no cancelling partner, and every
+curvature measure ranks it ABOVE the flag corners he wants kept (ratio
+12.97 vs 9.77 and 7.86). No geometric test separates them. Named points
+in an `unpin` list instead — new arcs he draws will each need pointing
+at, the same way he points at the red circles.
+
+**Settings.** Swept the stencil on the built silhouette: d=10 resolves
+the flank into one arc with the flag tip still a point (+0.82%); d=16 and
+d=24 flatten the wave but round the tip. d=10 then faceted the counter
+and dropped IoU 0.8933 → 0.8761 — the counter turns far more tightly, so
+the reach sized for the bowl cuts its corners. Silhouette and counter now
+run as separate entries: d=10 outside, d=4 in. Final O: IoU 0.8812, area
++11.56% (the surplus is the counter fill and the arcs he asked for).
+
+The pattern from earlier phases held again: every edit that added weight
+was reverted, every edit that removed a defect stuck.
