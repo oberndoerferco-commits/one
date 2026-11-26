@@ -94,7 +94,18 @@ def smooth_closed(p, sigma=26.0, step=2.0, corner_k=4, corner_deg=38.0, taper=1.
     return out
 
 def taubin_closed(p, iters=120, lam=0.5, mu=-0.53, step=2.0,
-                  corner_k=10, corner_deg=52.0, wide=True, fine=True):
+                  corner_k=10, corner_deg=52.0, wide=True, fine=True, d=1,
+                  drop_nicks=False):
+    """Taubin's lambda/mu filter: a low-pass that does not shrink.
+
+    lam/mu set a fixed cutoff - waves longer than about 2*pi*d/0.3376
+    vertices pass through untouched however many times it runs, which is
+    exactly why it keeps the letter's size. With the neighbours one step
+    away (d=1, step=2px) that cutoff sits at ~37px, so a 100px lump in an
+    edge is 'shape' to the filter and survives any number of passes.
+    Taking the Laplacian over neighbours d apart scales the cutoff by d
+    without thinning the vertices, so corners stay where they are.
+    """
     """Low-pass an outline without shrinking it.
 
     A Gaussian moves every point toward the local average, which on a convex
@@ -119,10 +130,55 @@ def taubin_closed(p, iters=120, lam=0.5, mu=-0.53, step=2.0,
     anchor=np.zeros(n, bool)
     if wide: anchor = anchor | corners(q, corner_k, corner_deg)
     if fine: anchor = anchor | corners(q, 3, 70.0)
+    if drop_nicks:
+        anchor &= ~nicks(q, step)
+    d=max(1,int(d))
+    if d>1:
+        # a wide stencil reaches across a corner, so hold the d vertices
+        # either side of one too: that keeps the wedge itself rigid.
+        a=anchor.copy()
+        for s_ in range(1,d+1): a |= np.roll(anchor,s_) | np.roll(anchor,-s_)
+        anchor=a
     orig=q.copy()
     for _ in range(int(iters)):
         for f in (lam, mu):
-            lap=0.5*(np.roll(q,1,axis=0)+np.roll(q,-1,axis=0))-q
+            lap=0.5*(np.roll(q,d,axis=0)+np.roll(q,-d,axis=0))-q
             q=q+f*lap
             q[anchor]=orig[anchor]
     return q
+
+
+def nicks(q, step=2.0, gap=90.0, deg=45.0, net=55.0):
+    """Mask the corners that are the pen's nicks rather than drawn corners.
+
+    Both kinds are sharp, so no angle threshold tells them apart. The
+    pairing does: a nick is a jog - the edge turns one way and straight
+    back the other within a few tens of pixels, two corners whose turns
+    CANCEL. A terminal or a slit tip is two corners of the same sign that
+    add up to the turn round the end. So the cancelling pairs are the
+    nicks. They are only unpinned here, never cut: the chord across a jog
+    is the jog, and it is the low-pass that has to flatten it.
+    """
+    n=len(q)
+    if n<32: return np.zeros(n, bool)
+    k=max(2, int(round(6.0/step)))
+    i=np.arange(n)
+    a=q[np.roll(i,-k)]-q
+    b=q-q[np.roll(i,k)]
+    turn=np.degrees(np.arctan2(_cross(b,a), (a*b).sum(1)))
+    t=np.abs(turn)
+    peak=[j for j in range(n) if t[j]>deg and t[j]>=t[j-1] and t[j]>t[(j+1)%n]]
+    span=int(round(gap/step))
+    out=np.zeros(n, bool)
+    for u in range(len(peak)):
+        for v in range(u+1, len(peak)):
+            x, y = peak[u], peak[v]
+            if y-x > span: break
+            if np.sign(turn[x]) == np.sign(turn[y]): continue
+            if abs(turn[x]+turn[y]) > net: continue
+            out[max(0, x-k):y+k+1]=True
+    return out
+
+
+def _cross(a, b):
+    return a[:, 0]*b[:, 1]-a[:, 1]*b[:, 0]

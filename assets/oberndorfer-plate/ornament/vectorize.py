@@ -423,7 +423,9 @@ def main():
             raw[i] = sg.taubin_closed(raw[i], iters=it, step=2.0,
                                       corner_k=a.corner_k, corner_deg=a.corner_deg,
                                       wide=r.get('wide', True),
-                                      fine=r.get('fine', True))
+                                      fine=r.get('fine', True),
+                                      d=r.get('d', 1),
+                                      drop_nicks=r.get('drop_nicks', False))
         print('rounded %d contour(s), %d passes' % (len(take), it))
 
     cs = []

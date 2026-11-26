@@ -98,9 +98,11 @@
    ],
    "sigma": 140,
    "which": "all",
-   "iters": 900,
+   "iters": 250,
+   "d": 4,
    "wide": false,
-   "fine": true
+   "fine": true,
+   "drop_nicks": true
   }
  ],
  "smooth_spot": [
