@@ -799,3 +799,38 @@ width. After it, the scan finds no jump over 3 px in any of the three.
 Checked and left alone: the same scan finds this structure at y 5025 in every
 letter except the O and Ö -- that one is the letterform, not damage, and he
 circled neither.
+
+## His two arcs, and doubling the lane on every letter
+
+**The arcs.** He drew two thin strokes just outside the O's right flank and
+bottom left to fill the shape out. Reading them took a diff rather than a colour
+key, since he drew them in black on the sheet I had sent: scale his panel to my
+own render by the letter's bounding box, subtract, and what is left is the two
+arcs. Their centre-lines go into `edits.json`; `outset` stamps each one in and
+closes it to the body, filling the sliver between. It runs before the rounding
+pass, which turns the union back into one curve.
+
+That closing has to be done **in the arcs' own window**. Over the whole 12000 px
+page a disk-22 closing plus a disk-33 dilation runs for minutes and gains
+nothing; the first attempt had to be killed.
+
+**The lane.** Every letter but N, A and MILANO's N carries the thin lane, 43-53
+px on the big line and 30-36 on MILANO -- about 0.045 of the cap either way.
+`widen_lane` finds it per letter instead of from a list: among runs of
+0.030-0.080 cap width, the one whose left edge recurs at the same x over at
+least a quarter of the cap. Growth is rightwards only, so the slit beside the
+stem is untouched, and each row grows by its **own** width, which keeps the
+taper rather than turning it into a parallel bar.
+
+Result: O 51->102, B 52->103, E 52->104, F 43->87, M 30->60. **The three R's cap
+at ~76**, not 104: their bowl starts about 46 px behind the lane, and the
+`keep_gap` of 20 px wins. That is the instruction he gave -- keep the gap -- so
+the guard is right and the R's lane is as wide as it can be without closing it.
+
+Two things the edits broke and a final pass now fixes: four slivers of 1-28 px
+and a 470 px pinhole where a widened lane ran into an arm. A despeck and
+pinhole fill now runs **after** the edits as well as before, or each one becomes
+a contour of its own.
+
+The Ö and MILANO's O are not in the widen list: they are clones of the O, so
+their own raster is discarded and the O's wider lane comes with the copy.
