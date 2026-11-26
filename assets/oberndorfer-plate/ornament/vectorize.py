@@ -373,6 +373,9 @@ def main():
         # join runs last: the blade of white that thicken_to leaves where its
         # curve turns horizontal is only there once thicken_to has run
         if e.get('join'):    grey = join(grey, e['join'])
+        # a disc that patches an edge leaves a small step where its boundary
+        # crosses that edge; this evens it out, so it has to run after the join
+        if e.get('smooth_last'): grey = smooth_spot(grey, e['smooth_last'])
 
     # the edits can leave hairline slivers and pinholes of their own, e.g.
     # where a widened lane runs into an arm; clear them before tracing or each
