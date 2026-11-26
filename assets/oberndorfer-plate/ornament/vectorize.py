@@ -351,9 +351,13 @@ def main():
     # the edits can leave hairline slivers and pinholes of their own, e.g.
     # where a widened lane runs into an arm; clear them before tracing or each
     # becomes a contour
-    grey, gone = despeck(grey, SPECK)
+    ink = grey < 128
+    lab, n = ndi.label(ink, np.ones((3, 3)))
+    sz = ndi.sum(ink, lab, range(1, n+1))
+    tiny = [i+1 for i, v in enumerate(sz) if v < SPECK]
+    if tiny: grey = np.where(np.isin(lab, tiny), np.uint8(255), grey)
     grey, nh = fill_holes(grey, 2000)
-    if gone or nh: print('cleanup: %d specks, %d pinholes' % (gone, nh))
+    if tiny or nh: print('cleanup: %d specks, %d pinholes' % (len(tiny), nh))
 
     raw = []
     for c in measure.find_contours(grey.astype(float), 127.5):
