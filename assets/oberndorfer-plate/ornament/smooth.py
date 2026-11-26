@@ -95,7 +95,7 @@ def smooth_closed(p, sigma=26.0, step=2.0, corner_k=4, corner_deg=38.0, taper=1.
 
 def taubin_closed(p, iters=120, lam=0.5, mu=-0.53, step=2.0,
                   corner_k=10, corner_deg=52.0, wide=True, fine=True, d=1,
-                  drop_nicks=False):
+                  drop_nicks=False, unpin=None):
     """Taubin's lambda/mu filter: a low-pass that does not shrink.
 
     lam/mu set a fixed cutoff - waves longer than about 2*pi*d/0.3376
@@ -132,6 +132,12 @@ def taubin_closed(p, iters=120, lam=0.5, mu=-0.53, step=2.0,
     if fine: anchor = anchor | corners(q, 3, 70.0)
     if drop_nicks:
         anchor &= ~nicks(q, step)
+    # Where one of his drawn arcs joins a bowl the seam is a single convex
+    # corner with no cancelling partner, so nicks() cannot see it, and every
+    # curvature measure scores it ABOVE the corners he wants kept - there is
+    # no geometric test that separates the two. Named points it is.
+    for ux, uy, ur in (unpin or ()):
+        anchor &= np.hypot(q[:, 0]-ux, q[:, 1]-uy) > ur
     d=max(1,int(d))
     if d>1:
         # a wide stencil reaches across a corner, so hold the d vertices

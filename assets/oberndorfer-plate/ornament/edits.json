@@ -102,7 +102,14 @@
    "d": 4,
    "wide": false,
    "fine": true,
-   "drop_nicks": true
+   "drop_nicks": true,
+   "unpin": [
+    [
+     167,
+     5154,
+     40
+    ]
+   ]
   }
  ],
  "smooth_spot": [

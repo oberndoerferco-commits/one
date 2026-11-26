@@ -425,7 +425,8 @@ def main():
                                       wide=r.get('wide', True),
                                       fine=r.get('fine', True),
                                       d=r.get('d', 1),
-                                      drop_nicks=r.get('drop_nicks', False))
+                                      drop_nicks=r.get('drop_nicks', False),
+                                      unpin=r.get('unpin'))
         print('rounded %d contour(s), %d passes' % (len(take), it))
 
     cs = []
