@@ -362,7 +362,6 @@ def main():
         if e.get('fill_holes'):
             grey, nh = fill_holes(grey, e['fill_holes'])
             print('holes filled: %d' % nh)
-        if e.get('join'):    grey = join(grey, e['join'])
         if e.get('smooth_spot'): grey = smooth_spot(grey, e['smooth_spot'])
         if e.get('widen_lane'):
             grey = widen_lane(grey, e['widen_lane'], target=e.get('lane_target'))
@@ -371,6 +370,9 @@ def main():
         if e.get('thicken_to'):
             grey = thicken_to(grey, [(j['points'], j.get('side', -1)) for j in e['thicken_to']],
                               max_fill=e.get('max_fill', 150))
+        # join runs last: the blade of white that thicken_to leaves where its
+        # curve turns horizontal is only there once thicken_to has run
+        if e.get('join'):    grey = join(grey, e['join'])
 
     # the edits can leave hairline slivers and pinholes of their own, e.g.
     # where a widened lane runs into an arm; clear them before tracing or each
