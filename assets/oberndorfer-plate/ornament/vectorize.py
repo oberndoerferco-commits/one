@@ -177,6 +177,31 @@ def thicken_to(grey, jobs, max_fill=150):
         print('thickened to a drawn curve over %d rows' % grown)
     return out
 
+def smooth_spot(grey, spots):
+    """Even out a step in an edge, inside one disc.
+
+    The underside of the E's and F's top arm steps down by 6-8 px partway
+    along, which reads as a small bend hanging off an otherwise clean sweep. A
+    step is neither a gap nor a spike, so neither join() nor the marked-spot
+    repair removes it: a closing and an opening at the same small radius do,
+    because together they are a morphological smoothing that takes off a tooth
+    and fills a notch of the same width.
+    """
+    out = grey.copy(); H, W = grey.shape
+    for cx, cy, r, rad in spots:
+        pad = int(3*rad + 4); R0 = int(r)
+        y0, y1 = max(0, int(cy)-R0-pad), min(H, int(cy)+R0+pad)
+        x0, x1 = max(0, int(cx)-R0-pad), min(W, int(cx)+R0+pad)
+        w = 255 - out[y0:y1, x0:x1].astype(np.int16)
+        w = ndi.grey_opening(ndi.grey_closing(w, footprint=disk(rad)), footprint=disk(rad))
+        yy, xx = np.mgrid[y0:y1, x0:x1]
+        d = np.hypot(xx-cx, yy-cy) <= r
+        tile = out[y0:y1, x0:x1].copy()
+        tile[d] = np.clip(255 - w, 0, 255).astype(np.uint8)[d]
+        out[y0:y1, x0:x1] = tile
+    print('evened out %d steps' % len(spots))
+    return out
+
 def repair(grey, marks, rclose=36, ropen=14):
     """Grey closing then a smaller grey opening, inside each disc only."""
     out = grey.copy(); H, W = grey.shape
@@ -234,16 +259,34 @@ def main():
             grey, nh = fill_holes(grey, e['fill_holes'])
             print('holes filled: %d' % nh)
         if e.get('join'):    grey = join(grey, e['join'])
+        if e.get('smooth_spot'): grey = smooth_spot(grey, e['smooth_spot'])
         if e.get('thicken'): grey = thicken(grey, e['thicken'])
         if e.get('thicken_to'):
             grey = thicken_to(grey, [(j['points'], j.get('side', -1)) for j in e['thicken_to']],
                               max_fill=e.get('max_fill', 150))
 
-    cs = []
+    raw = []
     for c in measure.find_contours(grey.astype(float), 127.5):
         p = c[:, ::-1]
         if np.allclose(p[0], p[-1]): p = p[:-1]
-        if len(p) < 40: continue
+        if len(p) >= 40: raw.append(p)
+
+    rounds = json.load(open(a.edits)).get('round', []) if a.edits else []
+    for r in rounds:
+        bx = r['box']
+        pick = [i for i, p in enumerate(raw)
+                if p[:, 0].min() >= bx[0] and p[:, 0].max() <= bx[2]
+                and p[:, 1].min() >= bx[1] and p[:, 1].max() <= bx[3]]
+        if not pick:
+            print('round: no contour inside the box'); continue
+        # the silhouette, not the counter
+        i = max(pick, key=lambda i: (np.ptp(raw[i][:, 0]) * np.ptp(raw[i][:, 1])))
+        raw[i] = sg.smooth_closed(raw[i], sigma=r['sigma'], step=2.0,
+                                  corner_k=a.corner_k, corner_deg=a.corner_deg)
+        print('rounded one silhouette at sigma %g px' % r['sigma'])
+
+    cs = []
+    for p in raw:
         if a.smooth:
             p = sg.smooth_closed(p, sigma=a.smooth, step=2.0,
                                  corner_k=a.corner_k, corner_deg=a.corner_deg)

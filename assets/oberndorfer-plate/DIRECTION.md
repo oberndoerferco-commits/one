@@ -769,3 +769,33 @@ is then measured without them, which is what makes the scale come out right
 
 Both clones are also why the Ö and MILANO's O no longer need thickening entries
 of their own: there is one O now, and the other two follow it.
+
+## Rounding the O's silhouette, and the bend on the E and F
+
+**The O had lost its roundness.** The sigma-40 wobble filter clears the fine
+weave but not the medium-scale lumps: a flat along the top right, a corner on
+the right flank, a long flat across the bottom -- 20-40 px departures spread
+over a thousand px of arc, which is exactly the band sigma 40 leaves alone. The
+answer is a second, stronger pass over **that one contour only**: `round` in
+`edits.json` picks the contour with the largest bounding box inside a box (the
+silhouette, not the counter) and smooths it again. Sigma 90 already reads as
+round; 140 is a clean oval and keeps the flag's point, since the corner pinning
+is unchanged. 200 was tried and is no better than 140.
+
+Doing it per-contour matters: at sigma 140 applied to everything, the flags and
+serifs melt. And because the Ö and MILANO's O are clones of the O, rounding the
+O rounds all three.
+
+**The bend he circled on the E and F** is a step of 6-8 px in the underside of
+the top arm, at x 9705 (F), 2985 (E) and 10681 (the second E), all at y 5183 --
+the same place in all three. Finding it took a scan of the arm's lower boundary
+for a jump; the eye reads it as a small bend hanging off a clean sweep.
+
+A step is neither a gap nor a spike, so neither `join` nor the marked-spot
+repair touches it. `smooth_spot` does: a grey closing and opening at the **same**
+small radius (16), which together take off a tooth and fill a notch of that
+width. After it, the scan finds no jump over 3 px in any of the three.
+
+Checked and left alone: the same scan finds this structure at y 5025 in every
+letter except the O and Ö -- that one is the letterform, not damage, and he
+circled neither.
