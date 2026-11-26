@@ -150,6 +150,16 @@ def thicken_to(grey, jobs, max_fill=150):
     out = grey.copy(); H, W = grey.shape
     for pts, side in jobs:
         q = np.asarray(pts, float)
+        # his curve is drawn by hand and thinned to a dozen points, so reading
+        # it straight gives a filled edge with a facet per segment. Densify and
+        # low-pass it first, and the new edge follows one path.
+        seg = np.cumsum(np.r_[0, np.hypot(*np.diff(q, axis=0).T)])
+        t = np.arange(0, seg[-1], 2.0)
+        qx = np.interp(t, seg, q[:, 0]); qy = np.interp(t, seg, q[:, 1])
+        r = int(round(3*40/2.0))
+        g = np.exp(-0.5*(np.arange(-r, r+1)*2.0/40.0)**2); g /= g.sum()
+        pad = lambda v: np.r_[np.repeat(v[0], r), v, np.repeat(v[-1], r)]
+        q = np.c_[np.convolve(pad(qx), g, 'valid'), np.convolve(pad(qy), g, 'valid')]
         y0, y1 = int(np.ceil(q[:, 1].min())), int(np.floor(q[:, 1].max()))
         grown = 0
         for y in range(max(0, y0), min(H, y1+1)):

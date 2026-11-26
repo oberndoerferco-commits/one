@@ -64,7 +64,11 @@ def smooth_closed(p, sigma=26.0, step=2.0, corner_k=4, corner_deg=38.0, taper=1.
     q=resample(p, step)
     n=len(q)
     if n<16: return p
-    cs=corners(q, corner_k, corner_deg)
+    # two scales. The wide window alone misses the ends of a narrow slit:
+    # its cap is two ~90 deg corners some 30 px apart, so a +-20 px window
+    # spans both and their turns cancel to nothing. A short window with a high
+    # threshold catches each one, and wobble never turns 70 deg over 12 px.
+    cs=corners(q, corner_k, corner_deg) | corners(q, 3, 70.0)
     g=gauss(sigma, step); r=(len(g)-1)//2
     idx=np.where(cs)[0]
     out=q.copy()
