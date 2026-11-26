@@ -856,3 +856,24 @@ at 19 px (15 on the B).
 **The counter.** His second red arc runs higher and further left than the first.
 `thicken_to` takes it as the new target and the inner edge now lands within
 0-5 px of it, inside his line rather than outside.
+
+## The ribbon cut, the blade in the counter, and order of operations
+
+**The lane had become a straight bar.** Two faults in `widen_lane`, both from
+setting a target width. It wrote the same width into every row, which flattened
+the profile; it now scales the lane by a single factor (1.95-2.6 per letter) so
+each row keeps its share of the shape. And it walked past the lane's last row
+into whatever narrow run sat below, extending the lane and squaring off its cut
+end; it now finds the lane's own contiguous rows and stops there.
+
+**The blade of white in the O's counter is made by `thicken_to`**, where his
+arc turns horizontal at the bottom and neighbouring rows fill to different x.
+That is why patching it did nothing at first: `join` ran *before* the step that
+creates it. Order now ends with join, then `smooth_last`, because a disc that
+patches an edge leaves a small step of its own where its boundary crosses that
+edge.
+
+So the edit order is load, despeck, marked-spot repair, fill_holes,
+smooth_spot, widen_lane, outset, thicken_to, **join, smooth_last**, cleanup,
+round, trace, clone. Anything that repairs what an earlier edit produces has to
+sit after it, which is obvious in hindsight and cost two builds to see.
