@@ -418,22 +418,20 @@ def main():
             take = pick
         else:
             take = [max(pick, key=lambda i: (np.ptp(raw[i][:, 0]) * np.ptp(raw[i][:, 1])))]
-        fz = r.get('freeze', a.freeze)
+        it = r.get('iters', 400)
         for i in take:
-            raw[i] = sg.smooth_closed(raw[i], sigma=r['sigma'], step=2.0,
-                                      corner_k=a.corner_k, corner_deg=a.corner_deg,
-                                      freeze=fz)
-        print('rounded %d contour(s) at sigma %g px, freeze %g' % (len(take), r['sigma'], fz))
+            raw[i] = sg.taubin_closed(raw[i], iters=it, step=2.0,
+                                      corner_k=a.corner_k, corner_deg=a.corner_deg)
+        print('rounded %d contour(s), %d passes' % (len(take), it))
 
     cs = []
     for p in raw:
         if a.smooth:
-            p = sg.smooth_closed(p, sigma=a.smooth, step=2.0,
-                                 corner_k=a.corner_k, corner_deg=a.corner_deg,
-                                 freeze=a.freeze)
+            p = sg.taubin_closed(p, iters=int(a.smooth), step=2.0,
+                                 corner_k=a.corner_k, corner_deg=a.corner_deg)
         cs.append(vl.fit_contour(p, line_tol=a.tol, curve_tol=a.tol*0.7, smooth_deg=32.0))
     if a.smooth:
-        print('wobble filtered at sigma %g px, corners pinned over +-%d steps past %g deg'
+        print('wobble filtered, %d passes, corners pinned at +-%d steps past %g deg and +-3 past 70'
               % (a.smooth, a.corner_k, a.corner_deg))
     if a.edits:
         e = json.load(open(a.edits))

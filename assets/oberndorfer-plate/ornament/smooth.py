@@ -92,3 +92,29 @@ def smooth_closed(p, sigma=26.0, step=2.0, corner_k=4, corner_deg=38.0, taper=1.
         w=np.clip((d-freeze)/(taper*sigma),0,1)[:,None]
         out[np.arange(a0,b0+1)%n]=seg+(sm-seg)*w
     return out
+
+def taubin_closed(p, iters=120, lam=0.5, mu=-0.53, step=2.0,
+                  corner_k=10, corner_deg=52.0):
+    """Low-pass an outline without shrinking it.
+
+    A Gaussian moves every point toward the local average, which on a convex
+    curve pulls the whole outline inward by about sigma^2/2R -- at sigma 140 on
+    a bowl of radius 500 that is 20 px off every edge, and it ate the O.
+    Taubin's pair of passes, one positive and one negative, cancels that drift:
+    the same high frequencies go, the shape stays where he drew it.
+
+    Corner vertices are reset to their original position after every pass, so a
+    corner stays put and its neighbours relax smoothly up to it instead of
+    needing a hand-tuned freeze.
+    """
+    q=resample(p, step)
+    n=len(q)
+    if n<16: return p
+    anchor=corners(q, corner_k, corner_deg) | corners(q, 3, 70.0)
+    orig=q.copy()
+    for _ in range(int(iters)):
+        for f in (lam, mu):
+            lap=0.5*(np.roll(q,1,axis=0)+np.roll(q,-1,axis=0))-q
+            q=q+f*lap
+            q[anchor]=orig[anchor]
+    return q
