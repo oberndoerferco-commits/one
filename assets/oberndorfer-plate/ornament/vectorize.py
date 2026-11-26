@@ -467,7 +467,7 @@ def main():
     if a.edits:
         e = json.load(open(a.edits))
         if e.get('clone'):
-            cs = clone(cs, [(j[:4], j[4:]) for j in e['clone']])
+            cs = clone(cs, e['clone'])
     segs = sum(len(s) for _, s in cs)
     print('traced %d contours, %d segments' % (len(cs), segs))
 
