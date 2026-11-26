@@ -202,6 +202,87 @@ def smooth_spot(grey, spots):
     print('evened out %d steps' % len(spots))
     return out
 
+def outset(grey, curves, stroke=11, bridge=22):
+    """Push a silhouette out to a line he drew just outside it.
+
+    He drew two thin arcs a few px beyond the O's right flank and bottom left
+    to fill the shape out. Each arc is stamped in, then a closing bridges it to
+    the body and fills the sliver between. Both run before the rounding pass,
+    which turns the union back into one clean curve.
+    """
+    out = grey.copy(); H, W = grey.shape
+    # work in the arcs' own window: a closing with this radius over the whole
+    # 12000 px page takes minutes and gains nothing
+    allp = np.concatenate([np.asarray(c, float) for c in curves])
+    pad = 4*(stroke + bridge)
+    wy0 = max(0, int(allp[:, 1].min()) - pad); wy1 = min(H, int(allp[:, 1].max()) + pad)
+    wx0 = max(0, int(allp[:, 0].min()) - pad); wx1 = min(W, int(allp[:, 0].max()) + pad)
+    win = out[wy0:wy1, wx0:wx1]
+    H, W = win.shape
+    ink = win < 128
+    add = np.zeros_like(ink)
+    for pts in curves:
+        q = np.asarray(pts, float)
+        seg = np.cumsum(np.r_[0, np.hypot(*np.diff(q, axis=0).T)])
+        t = np.arange(0, seg[-1], 2.0)
+        px = np.interp(t, seg, q[:, 0]) - wx0; py = np.interp(t, seg, q[:, 1]) - wy0
+        d = disk(stroke)
+        for x, y in zip(px, py):
+            yi, xi = int(round(y)), int(round(x))
+            y0, y1 = max(0, yi-stroke), min(H, yi+stroke+1)
+            x0, x1 = max(0, xi-stroke), min(W, xi+stroke+1)
+            add[y0:y1, x0:x1] |= d[y0-(yi-stroke):y1-(yi-stroke), x0-(xi-stroke):x1-(xi-stroke)]
+    region = ndi.binary_dilation(add, disk(bridge+stroke))
+    merged = ndi.binary_closing(ink | add, disk(bridge))
+    win[region & merged] = 0
+    out[wy0:wy1, wx0:wx1] = win
+    print('outset %d drawn arcs' % len(curves))
+    return out
+
+def widen_lane(grey, boxes, factor=2.0, keep_gap=20):
+    """Double the width of the thin inner lane, growing to the right.
+
+    Every letter but N and A carries a thin lane beside its stem, 43-53 px on
+    the big line and 30-36 on MILANO -- about 0.045 of the cap either way. The
+    lane is found per letter rather than listed: among runs of 0.030-0.080 cap
+    width, the one whose left edge recurs at the same x over at least a quarter
+    of the cap. Growth goes rightwards only, so the slit between lane and stem
+    is untouched, and it stops `keep_gap` px short of whatever is next so the
+    gap on that side survives too. The taper is kept because each row grows by
+    its own width, not by a fixed amount.
+    """
+    from collections import Counter
+    out = grey.copy()
+    for bx in boxes:
+        x0, y0, x1, y1 = bx
+        M = out[y0:y1, x0:x1] < 128
+        ys, xs = np.where(M)
+        if not len(ys): continue
+        top, cap = ys.min(), ys.max() - ys.min()
+        def runs_of(y):
+            r = np.flatnonzero(np.diff(np.r_[0, M[y].view(np.int8), 0]))
+            return list(zip(r[0::2], r[1::2]))
+        c = Counter()
+        for y in range(top + int(0.25*cap), top + int(0.85*cap)):
+            for a, b in runs_of(y):
+                if 0.030*cap <= b-a <= 0.080*cap: c[(a//6)*6] += 1
+        if not c: print('widen_lane: no lane in box %s' % (bx,)); continue
+        sx, hits = max(c.items(), key=lambda kv: kv[1])
+        if hits < 0.2*cap: print('widen_lane: no lane in box %s' % (bx,)); continue
+        grown = 0
+        for y in range(M.shape[0]):
+            rs = runs_of(y)
+            hit = [(a, b) for a, b in rs if abs(a - sx) < 14 and b-a <= 0.09*cap]
+            if not hit: continue
+            a, b = hit[0]
+            nxt = min([p for p, _ in rs if p > b] + [M.shape[1]])
+            want = int(round((b-a) * (factor-1)))
+            end = min(b + want, max(b, nxt - keep_gap))
+            if end > b:
+                out[y0+y, x0+b:x0+end] = 0; grown += 1
+        print('widened a lane over %d rows (x~%d)' % (grown, x0+sx))
+    return out
+
 def repair(grey, marks, rclose=36, ropen=14):
     """Grey closing then a smaller grey opening, inside each disc only."""
     out = grey.copy(); H, W = grey.shape
@@ -260,10 +341,19 @@ def main():
             print('holes filled: %d' % nh)
         if e.get('join'):    grey = join(grey, e['join'])
         if e.get('smooth_spot'): grey = smooth_spot(grey, e['smooth_spot'])
+        if e.get('widen_lane'): grey = widen_lane(grey, e['widen_lane'])
+        if e.get('outset'):     grey = outset(grey, e['outset'])
         if e.get('thicken'): grey = thicken(grey, e['thicken'])
         if e.get('thicken_to'):
             grey = thicken_to(grey, [(j['points'], j.get('side', -1)) for j in e['thicken_to']],
                               max_fill=e.get('max_fill', 150))
+
+    # the edits can leave hairline slivers and pinholes of their own, e.g.
+    # where a widened lane runs into an arm; clear them before tracing or each
+    # becomes a contour
+    grey, gone = despeck(grey, SPECK)
+    grey, nh = fill_holes(grey, 2000)
+    if gone or nh: print('cleanup: %d specks, %d pinholes' % (gone, nh))
 
     raw = []
     for c in measure.find_contours(grey.astype(float), 127.5):
