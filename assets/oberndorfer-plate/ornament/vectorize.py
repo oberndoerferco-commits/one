@@ -269,21 +269,39 @@ def widen_lane(grey, boxes, factor=2.0, target=None, keep_gap=20):
         if not c: print('widen_lane: no lane in box %s' % (bx,)); continue
         sx, hits = max(c.items(), key=lambda kv: kv[1])
         if hits < 0.2*cap: print('widen_lane: no lane in box %s' % (bx,)); continue
+        # the lane's own rows: the run of consecutive rows around the
+        # detection band that still carry it. Without this the fill walks on
+        # past the lane's end into whatever narrow run sits below, which is
+        # what turned a cut end into a straight bar.
+        def lane_at(y):
+            if y < 0 or y >= M.shape[0]: return None
+            for a, b in runs_of(y):
+                if abs(a - sx) < 14 and b-a <= 0.09*cap: return (a, b)
+            return None
+        seed = None
+        for y in range(top + int(0.25*cap), top + int(0.85*cap)):
+            if lane_at(y): seed = y; break
+        if seed is None: print('widen_lane: no lane in box %s' % (bx,)); continue
+        y_top = seed
+        while lane_at(y_top-1): y_top -= 1
+        y_bot = seed
+        while lane_at(y_bot+1): y_bot += 1
+        widths = [lane_at(y)[1] - lane_at(y)[0] for y in range(y_top, y_bot+1)]
+        base = float(np.median(widths))
+        # one factor for the whole lane, so every row keeps its share of the
+        # shape: a cut end stays cut instead of squaring off to the target
+        scale = (target*cap/base) if target else factor
         grown = 0
-        for y in range(M.shape[0]):
-            rs = runs_of(y)
-            hit = [(a, b) for a, b in rs if abs(a - sx) < 14 and b-a <= 0.09*cap]
+        for y in range(y_top, y_bot+1):
+            hit = lane_at(y)
             if not hit: continue
-            a, b = hit[0]
-            nxt = min([p for p, _ in rs if p > b] + [M.shape[1]])
-            # a share of the cap, so every letter carries the same weight he
-            # pointed at on the O, rather than each doubling its own width
-            goal = target*cap if target else (b-a)*factor
-            want = int(round(max(0.0, goal - (b-a))))
+            a, b = hit
+            nxt = min([q for q, _ in runs_of(y) if q > b] + [M.shape[1]])
+            want = int(round((b-a) * (scale-1)))
             end = min(b + want, max(b, nxt - keep_gap))
             if end > b:
                 out[y0+y, x0+b:x0+end] = 0; grown += 1
-        print('widened a lane over %d rows (x~%d)' % (grown, x0+sx))
+        print('widened a lane over %d rows (x~%d, x%.2f)' % (grown, x0+sx, scale))
     return out
 
 def repair(grey, marks, rclose=36, ropen=14):
