@@ -239,7 +239,7 @@ def outset(grey, curves, stroke=11, bridge=22):
     print('outset %d drawn arcs' % len(curves))
     return out
 
-def widen_lane(grey, boxes, factor=2.0, keep_gap=20):
+def widen_lane(grey, boxes, factor=2.0, target=None, keep_gap=20):
     """Double the width of the thin inner lane, growing to the right.
 
     Every letter but N and A carries a thin lane beside its stem, 43-53 px on
@@ -276,7 +276,10 @@ def widen_lane(grey, boxes, factor=2.0, keep_gap=20):
             if not hit: continue
             a, b = hit[0]
             nxt = min([p for p, _ in rs if p > b] + [M.shape[1]])
-            want = int(round((b-a) * (factor-1)))
+            # a share of the cap, so every letter carries the same weight he
+            # pointed at on the O, rather than each doubling its own width
+            goal = target*cap if target else (b-a)*factor
+            want = int(round(max(0.0, goal - (b-a))))
             end = min(b + want, max(b, nxt - keep_gap))
             if end > b:
                 out[y0+y, x0+b:x0+end] = 0; grown += 1
@@ -313,6 +316,8 @@ def main():
                     help='sigma in source px for the wobble filter; 0 = trace as drawn')
     ap.add_argument('--corner-k', type=int, default=10)
     ap.add_argument('--corner-deg', type=float, default=52.0)
+    ap.add_argument('--freeze', type=float, default=26.0,
+                    help='px held exactly as traced on each side of a pinned corner')
     ap.add_argument('--scale', type=float, default=6.0, help='source px per output point')
     ap.add_argument('--page', type=float, default=2000.0)
     a = ap.parse_args()
@@ -341,7 +346,8 @@ def main():
             print('holes filled: %d' % nh)
         if e.get('join'):    grey = join(grey, e['join'])
         if e.get('smooth_spot'): grey = smooth_spot(grey, e['smooth_spot'])
-        if e.get('widen_lane'): grey = widen_lane(grey, e['widen_lane'])
+        if e.get('widen_lane'):
+            grey = widen_lane(grey, e['widen_lane'], target=e.get('lane_target'))
         if e.get('outset'):     grey = outset(grey, e['outset'])
         if e.get('thicken'): grey = thicken(grey, e['thicken'])
         if e.get('thicken_to'):
@@ -376,14 +382,16 @@ def main():
         # the silhouette, not the counter
         i = max(pick, key=lambda i: (np.ptp(raw[i][:, 0]) * np.ptp(raw[i][:, 1])))
         raw[i] = sg.smooth_closed(raw[i], sigma=r['sigma'], step=2.0,
-                                  corner_k=a.corner_k, corner_deg=a.corner_deg)
+                                  corner_k=a.corner_k, corner_deg=a.corner_deg,
+                                  freeze=a.freeze)
         print('rounded one silhouette at sigma %g px' % r['sigma'])
 
     cs = []
     for p in raw:
         if a.smooth:
             p = sg.smooth_closed(p, sigma=a.smooth, step=2.0,
-                                 corner_k=a.corner_k, corner_deg=a.corner_deg)
+                                 corner_k=a.corner_k, corner_deg=a.corner_deg,
+                                 freeze=a.freeze)
         cs.append(vl.fit_contour(p, line_tol=a.tol, curve_tol=a.tol*0.7, smooth_deg=32.0))
     if a.smooth:
         print('wobble filtered at sigma %g px, corners pinned over +-%d steps past %g deg'

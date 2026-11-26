@@ -58,7 +58,8 @@ def gauss(sig, step):
     x=np.arange(-r,r+1)*step
     g=np.exp(-0.5*(x/sig)**2); return g/g.sum()
 
-def smooth_closed(p, sigma=26.0, step=2.0, corner_k=4, corner_deg=38.0, taper=1.5):
+def smooth_closed(p, sigma=26.0, step=2.0, corner_k=4, corner_deg=38.0, taper=1.5,
+                  freeze=26.0):
     """Low-pass the outline along arc length, holding detected corners fixed."""
     q=resample(p, step)
     n=len(q)
@@ -78,8 +79,12 @@ def smooth_closed(p, sigma=26.0, step=2.0, corner_k=4, corner_deg=38.0, taper=1.
         seg=q[np.arange(a0,b0+1)%n]
         pad=np.vstack([np.repeat(seg[:1],r,0), seg, np.repeat(seg[-1:],r,0)])
         sm=np.c_[np.convolve(pad[:,0],g,'valid'), np.convolve(pad[:,1],g,'valid')]
-        # ramp the correction to zero at the two corners so they stay crisp
-        t=np.minimum(np.arange(m), np.arange(m)[::-1])*step/(taper*sigma)
-        w=np.clip(t,0,1)[:,None]
+        # hold the corner itself, then ramp the correction in. Pinning the
+        # single apex is not enough on a needle: the two sides of a wedge sit
+        # far apart along the path but close together in space, so the filter
+        # still pulls each toward its own neighbourhood and blunts the point.
+        # `freeze` px either side stay exactly as traced.
+        d=np.minimum(np.arange(m), np.arange(m)[::-1])*step
+        w=np.clip((d-freeze)/(taper*sigma),0,1)[:,None]
         out[np.arange(a0,b0+1)%n]=seg+(sm-seg)*w
     return out
