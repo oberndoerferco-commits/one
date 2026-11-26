@@ -894,3 +894,22 @@ corner to blunt it.
 Lesson for anything further here: every edit that adds weight has been
 reverted in the end, and every edit that removed a defect has stuck. Prefer
 removing what is wrong over adding what might look better.
+
+## Why the sharp corners kept disappearing
+
+A real bug, not a judgement call. **The end of a slit is not one corner but
+two ~90 deg corners about 30 px apart.** The detector measured the turn across
+a +-20 px window, which spans both, and their turns cancel to nothing -- so it
+saw no corner there at all and the filter smoothed straight through, whatever
+`freeze` was set to. `corners()` now runs at two scales and takes the union:
+the wide window as before, plus +-6 px at a 70 deg threshold, which isolates
+each corner. Wobble never turns 70 deg over 12 px, so the reason the window was
+widened in the first place still holds.
+
+Checked by diffing the D's slit against his artwork in that region: only
+hairline rims remain, so the tips are now as he drew them.
+
+**The O's inner curve not following one path** had the same shape of cause in
+a different place: his red arc is hand-drawn and was thinned to eleven points,
+and `thicken_to` read it linearly between them, which puts a facet in the
+filled edge at every segment. It now densifies and low-passes the curve first.
