@@ -414,10 +414,17 @@ def main():
             print('round: no contour inside the box'); continue
         # by default only the silhouette; 'all' takes the counter too, so the
         # inside of the O reads as cleanly as its outside
-        if r.get('which') == 'all':
+        big = max(pick, key=lambda i: (np.ptp(raw[i][:, 0]) * np.ptp(raw[i][:, 1])))
+        w = r.get('which')
+        if w == 'all':
             take = pick
+        elif w == 'counter':
+            # the counter turns far tighter than the silhouette, so the reach
+            # that flattens the bowl's long waves facets the inside: each gets
+            # its own entry and its own d.
+            take = [i for i in pick if i != big]
         else:
-            take = [max(pick, key=lambda i: (np.ptp(raw[i][:, 0]) * np.ptp(raw[i][:, 1])))]
+            take = [big]
         it = r.get('iters', 400)
         for i in take:
             raw[i] = sg.taubin_closed(raw[i], iters=it, step=2.0,

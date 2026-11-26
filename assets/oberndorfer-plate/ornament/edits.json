@@ -96,8 +96,7 @@
     1290,
     6100
    ],
-   "sigma": 140,
-   "which": "all",
+   "which": "silhouette",
    "iters": 160,
    "d": 10,
    "wide": false,
@@ -110,6 +109,20 @@
      40
     ]
    ]
+  },
+  {
+   "box": [
+    120,
+    4700,
+    1290,
+    6100
+   ],
+   "which": "counter",
+   "iters": 250,
+   "d": 4,
+   "wide": false,
+   "fine": true,
+   "drop_nicks": true
   }
  ],
  "smooth_spot": [
