@@ -118,7 +118,11 @@ def clone(cs, jobs):
         ys = [q[1] for c in group for q in [c[0]] + [p for s in c[1] for p in s[1:]]]
         return min(xs), min(ys), max(xs), max(ys)
     out = list(cs)
-    for src_b, dst_b in jobs:
+    for job in jobs:
+        if isinstance(job, dict):
+            src_b, dst_b, align = job['src'], job['dst'], job.get('align', 'centre')
+        else:
+            src_b, dst_b, align = job[:4], job[4:8], 'centre'
         src = [c for c in out if inside(c, src_b)]
         dst_i = {i for i, c in enumerate(out) if inside(c, dst_b)}
         dst = [out[i] for i in dst_i]
@@ -127,7 +131,10 @@ def clone(cs, jobs):
         sx0, sy0, sx1, sy1 = bbox(src)
         dx0, dy0, dx1, dy1 = bbox(dst)
         k = (dy1 - dy0) / (sy1 - sy0)                      # match cap height
-        ox = (dx0 + dx1)/2 - k*(sx0 + sx1)/2               # centre horizontally
+        if align == 'left':
+            ox = dx0 - k*sx0        # keep the stem put, let the tail grow right
+        else:
+            ox = (dx0 + dx1)/2 - k*(sx0 + sx1)/2           # centre horizontally
         oy = dy1 - k*sy1                                   # sit on the same baseline
         put = lambda q: (q[0]*k + ox, q[1]*k + oy)
         out = [c for i, c in enumerate(out) if i not in dst_i]
@@ -404,7 +411,9 @@ def main():
         if np.allclose(p[0], p[-1]): p = p[:-1]
         if len(p) >= 40: raw.append(p)
 
-    rounds = json.load(open(a.edits)).get('round', []) if a.edits else []
+    ed = json.load(open(a.edits)) if a.edits else {}
+    keep = [tuple(k) for k in ed.get('keep', [])]
+    rounds = ed.get('round', [])
     for r in rounds:
         bx = r['box']
         pick = [i for i, p in enumerate(raw)
@@ -433,14 +442,24 @@ def main():
                                       fine=r.get('fine', True),
                                       d=r.get('d', 1),
                                       drop_nicks=r.get('drop_nicks', False),
-                                      unpin=r.get('unpin'))
+                                      unpin=r.get('unpin'), keep=keep)
         print('rounded %d contour(s), %d passes' % (len(take), it))
+
+    for spot in ed.get('soften', []):
+        sx, sy, sr, sd, sit = spot
+        i = min(range(len(raw)),
+                key=lambda j: np.hypot(raw[j][:, 0]-sx, raw[j][:, 1]-sy).min())
+        raw[i] = sg.taubin_closed(raw[i], iters=sit, step=2.0, d=sd,
+                                  window=(sx, sy, sr), keep=keep)
+    if ed.get('soften'):
+        print('softened %d circled spot(s)' % len(ed['soften']))
 
     cs = []
     for p in raw:
         if a.smooth:
             p = sg.taubin_closed(p, iters=int(a.smooth), step=2.0,
-                                 corner_k=a.corner_k, corner_deg=a.corner_deg)
+                                 corner_k=a.corner_k, corner_deg=a.corner_deg,
+                                 keep=keep)
         cs.append(vl.fit_contour(p, line_tol=a.tol, curve_tol=a.tol*0.7, smooth_deg=32.0))
     if a.smooth:
         print('wobble filtered, %d passes, corners pinned at +-%d steps past %g deg and +-3 past 70'

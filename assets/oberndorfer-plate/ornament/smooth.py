@@ -95,7 +95,7 @@ def smooth_closed(p, sigma=26.0, step=2.0, corner_k=4, corner_deg=38.0, taper=1.
 
 def taubin_closed(p, iters=120, lam=0.5, mu=-0.53, step=2.0,
                   corner_k=10, corner_deg=52.0, wide=True, fine=True, d=1,
-                  drop_nicks=False, unpin=None):
+                  drop_nicks=False, unpin=None, window=None, keep=None):
     """Taubin's lambda/mu filter: a low-pass that does not shrink.
 
     lam/mu set a fixed cutoff - waves longer than about 2*pi*d/0.3376
@@ -138,6 +138,14 @@ def taubin_closed(p, iters=120, lam=0.5, mu=-0.53, step=2.0,
     # no geometric test that separates the two. Named points it is.
     for ux, uy, ur in (unpin or ()):
         anchor &= np.hypot(q[:, 0]-ux, q[:, 1]-uy) > ur
+    if window is not None:
+        # smooth ONLY the arc he circled: everything outside is frozen, so the
+        # ends of the arc hold and the repair blends into the letter by itself.
+        wx, wy, wr = window
+        anchor = np.hypot(q[:, 0]-wx, q[:, 1]-wy) > wr
+    for cx, cy, cr in (keep or ()):
+        # a corner he wants sharp: pin it so no pass can round it off
+        anchor |= np.hypot(q[:, 0]-cx, q[:, 1]-cy) <= cr
     d=max(1,int(d))
     if d>1:
         # a wide stencil reaches across a corner, so hold the d vertices
